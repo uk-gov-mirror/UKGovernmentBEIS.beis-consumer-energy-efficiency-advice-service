@@ -1,6 +1,8 @@
 # Custom ignored files
 
 wordpress/wp-content/themes/angular-theme/dist/
+/.idea/workspace.xml
+/.idea/tasks.xml
 
 # Default gitignore for Angular project
 
@@ -13,7 +15,7 @@ angular/out-tsc
 angular/node_modules
 
 # IDEs and editors
-/.idea
+# /.idea
 .project
 .classpath
 .c9/

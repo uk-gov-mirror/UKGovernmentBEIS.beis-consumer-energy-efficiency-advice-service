@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Angular src" pattern="file[BEIS Energy Efficiency]:angular/src//*&amp;&amp;!file[BEIS Energy Efficiency]:angular/src//*.spec.ts" />
+</component>
