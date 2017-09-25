@@ -1,1 +1,3 @@
-<?php require get_template_directory()."/dist/index.html"; ?>
+<?php
+    get_header();
+    require get_template_directory()."/dist/index.html"; ?>

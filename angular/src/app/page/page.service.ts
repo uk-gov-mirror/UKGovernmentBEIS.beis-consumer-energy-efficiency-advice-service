@@ -14,6 +14,7 @@ export class PageService {
 
   getPage(slug: string): Observable<Page> {
     return this.http
-        .get(PageService.pagesEndpoint + `?per_page=1&slug=${slug}`);
+        .get(PageService.pagesEndpoint + `?per_page=1&slug=${slug}`)
+        .map((pages: Page[]) => pages.length === 1 ? pages[0] : null);
   }
 }
