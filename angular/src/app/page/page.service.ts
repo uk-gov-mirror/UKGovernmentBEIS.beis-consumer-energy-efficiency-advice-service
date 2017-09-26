@@ -8,7 +8,7 @@ import { Page } from './page'
 
 @Injectable()
 export class PageService {
-  private static pagesEndpoint = 'http://localhost:81/wp-json/wp/v2/pages';
+  private static pagesEndpoint = '/wp-json/wp/v2/pages';
 
   constructor(private http: HttpClient) { }
 
