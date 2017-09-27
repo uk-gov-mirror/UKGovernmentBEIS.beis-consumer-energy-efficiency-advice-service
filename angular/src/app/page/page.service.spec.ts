@@ -29,8 +29,8 @@ describe('PageService', () => {
         service.getPage(testSlug)
             .subscribe(data => expect(data.content.rendered).toEqual(renderedContent));
 
-        httpMock.expectOne(`http://localhost:81/wp-json/wp/v2/pages?per_page=1&slug=${testSlug}`)
-            .flush(returnedPage);
+        httpMock.expectOne(`/wp-json/wp/v2/pages?per_page=1&slug=${testSlug}`)
+            .flush([returnedPage]);
         httpMock.verify();
     }));
 });
