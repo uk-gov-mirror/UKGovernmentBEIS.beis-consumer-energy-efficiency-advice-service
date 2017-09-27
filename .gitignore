@@ -50,7 +50,7 @@ Thumbs.db
 # Default gitignore for Wordpress from https://github.com/github/gitignore/blob/master/WordPress.gitignore
 
 wordpress/*.log
-wordpress/wp-config.php
+# wordpress/wp-config.php
 wordpress/wp-content/advanced-cache.php
 wordpress/wp-content/backup-db/
 wordpress/wp-content/backups/
