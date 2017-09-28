@@ -1,0 +1,19 @@
+{
+  "name": "integration-tests",
+  "version": "1.0.0",
+  "description": "Integration tests for the BEIS DCEAS application",
+  "main": "index.js",
+  "scripts": {
+    "test": "webdriver-manager update && protractor protractor.conf.js"
+  },
+  "author": "Softwire",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jasmine": "^2.6.0",
+    "@types/jasminewd2": "^2.0.3",
+    "jasmine-spec-reporter": "^4.2.1",
+    "protractor": "^5.1.2",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.3"
+  }
+}
