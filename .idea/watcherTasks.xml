@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectTasksOptions">
-    <TaskOptions isEnabled="true">
-      <option name="arguments" value="run build -- --no-delete-output-path" />
-      <option name="checkSyntaxErrors" value="true" />
-      <option name="description" />
-      <option name="exitCodeBehavior" value="ERROR" />
-      <option name="fileExtension" value="*" />
-      <option name="immediateSync" value="true" />
-      <option name="name" value="Angular compile" />
-      <option name="output" value="C:\Work\BEIS\BEIS Energy Efficiency\wordpress\wp-content\themes\angular-theme\dist" />
-      <option name="outputFilters">
-        <array />
-      </option>
-      <option name="outputFromStdout" value="false" />
-      <option name="program" value="C:/Program Files/nodejs/npm.cmd" />
-      <option name="scopeName" value="Angular src" />
-      <option name="trackOnlyRoot" value="false" />
-      <option name="workingDir" value="$PROJECT_DIR$/angular" />
-      <envs />
-    </TaskOptions>
-  </component>
+  <component name="ProjectTasksOptions" suppressed-tasks="SCSS" />
 </project>
