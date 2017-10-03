@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PageComponent } from './page/page.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { PostcodeEpcComponent } from './postcode-epc/postcode-epc.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    PostcodeEpcComponent
   ],
   imports: [
     BrowserModule,
