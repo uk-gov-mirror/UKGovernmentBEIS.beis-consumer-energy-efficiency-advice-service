@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --deploy-url=\"/wp-content/themes/angular-theme/dist/\" --output-path=\"../wordpress/wp-content/themes/angular-theme/dist/\"",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint"
   },

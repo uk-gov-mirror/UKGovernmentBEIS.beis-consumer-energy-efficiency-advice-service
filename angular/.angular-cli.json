@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "../wordpress/wp-content/themes/angular-theme/dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -26,23 +26,16 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      }
+      },
+      "deployUrl": "/wp-content/themes/angular-theme/dist/"
     }
   ],
-  "e2e": {
-    "protractor": {
-      "config": "./protractor.conf.js"
-    }
-  },
   "lint": [
     {
       "project": "src/tsconfig.app.json"
     },
     {
       "project": "src/tsconfig.spec.json"
-    },
-    {
-      "project": "e2e/tsconfig.e2e.json"
     }
   ],
   "test": {
