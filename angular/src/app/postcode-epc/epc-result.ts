@@ -1,3 +1,3 @@
 export class EpcResult {
-  rows: Object[]
+    rows: Object[]
 }

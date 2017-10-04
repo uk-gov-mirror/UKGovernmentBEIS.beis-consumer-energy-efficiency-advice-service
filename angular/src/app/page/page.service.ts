@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from "@angular/core";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
-import {Observable} from 'rxjs/Observable';
+import {Observable} from "rxjs/Observable";
 
-import 'rxjs/add/operator/map';
-import {Page} from './page'
+import "rxjs/add/operator/map";
+import {Page} from "./page";
 import {WordpressApiService} from "../common/wordpress-api-service/wordpress-api-service";
 
 @Injectable()

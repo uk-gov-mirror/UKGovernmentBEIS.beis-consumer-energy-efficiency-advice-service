@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PageComponent } from './page/page.component';
-import { CalculatorComponent } from './calculator/calculator.component';
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {PageComponent} from "./page/page.component";
+import {CalculatorComponent} from "./calculator/calculator.component";
 import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
 
 const routes: Routes = [
@@ -10,8 +10,8 @@ const routes: Routes = [
         component: CalculatorComponent
     },
     {
-      path: 'postcode-epc',
-      component: PostcodeEpcComponent
+        path: 'postcode-epc',
+        component: PostcodeEpcComponent
     },
     {
         path: ':slug',
@@ -24,4 +24,5 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: []
 })
-export class RoutingModule { }
+export class RoutingModule {
+}

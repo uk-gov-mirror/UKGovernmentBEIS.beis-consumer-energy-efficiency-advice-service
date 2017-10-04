@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import "rxjs/add/operator/switchMap";
 
-import { PageService } from './page.service';
-import { Page } from './page';
+import {PageService} from "./page.service";
+import {Page} from "./page";
 
 @Component({
     selector: 'app-page',
@@ -14,8 +14,8 @@ import { Page } from './page';
 export class PageComponent implements OnInit {
     pageData: Page;
 
-    constructor(private route:ActivatedRoute,
-                private pageService:PageService) {
+    constructor(private route: ActivatedRoute,
+                private pageService: PageService) {
     }
 
     ngOnInit() {

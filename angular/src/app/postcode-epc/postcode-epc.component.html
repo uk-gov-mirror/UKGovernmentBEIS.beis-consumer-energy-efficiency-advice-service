@@ -1,17 +1,17 @@
 <form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="number">House Number</label>
-    <input id="number" name="number" [(ngModel)]="number"/>
-  </div>
-  <div>
-    <label for="postcode">Postcode</label>
-    <input id="postcode" name="postcode" [(ngModel)]="postcode"/>
-  </div>
-  <button type="submit">Submit</button>
+    <div>
+        <label for="number">House Number</label>
+        <input id="number" name="number" [(ngModel)]="number"/>
+    </div>
+    <div>
+        <label for="postcode">Postcode</label>
+        <input id="postcode" name="postcode" [(ngModel)]="postcode"/>
+    </div>
+    <button type="submit">Submit</button>
 </form>
 
 <div>
-  <div *ngFor="let row of result">
-    {{row.key}}: {{row.value}}
-  </div>
+    <div *ngFor="let row of result">
+        {{row.key}}: {{row.value}}
+    </div>
 </div>

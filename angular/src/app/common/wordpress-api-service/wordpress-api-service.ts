@@ -5,9 +5,10 @@ import {Injectable} from "@angular/core";
 export class WordpressApiService {
     private static readonly WORDPRESS_API_ROOT = '/wp-json/';
 
-    constructor(private location: Location) { }
+    constructor(private location: Location) {
+    }
 
-    getFullApiEndpoint(path:string):string {
+    getFullApiEndpoint(path: string): string {
         return this.location.prepareExternalUrl(WordpressApiService.WORDPRESS_API_ROOT + path);
     }
 }
