@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {EpcResult} from "./epc-result";
-import {AppSettings} from "../app-settings";
+import {WordpressApiService} from "../common/wordpress-api-service/wordpress-api-service";
 
 @Injectable()
 export class PostcodeEpcService {
-  constructor(private http: HttpClient) { }
+    private static readonly epcEndpoint = 'angular-theme/v1/postcode-epc';
 
-  getEpcData(postcode: string, number: number): Observable<EpcResult> {
-    const params = new HttpParams().set('postcode', postcode).set('number', number.toString());
-    return this.http.get(AppSettings.WORDPRESS_API_ROOT + 'angular-theme/v1/postcode-epc', {params: params});
-  }
+    constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
+    }
+
+    getEpcData(postcode: string, number: number): Observable<EpcResult> {
+        const params = new HttpParams().set('postcode', postcode).set('number', number.toString());
+        return this.http.get(this.wordpressApiService.getFullApiEndpoint(PostcodeEpcService.epcEndpoint), {params: params});
+    }
 }
