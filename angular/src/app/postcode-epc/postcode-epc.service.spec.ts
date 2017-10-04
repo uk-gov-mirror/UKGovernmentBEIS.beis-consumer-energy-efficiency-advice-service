@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { PostcodeEpcService } from './postcode-epc.service';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('PostcodeEpcService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PostcodeEpcService]
+      providers: [PostcodeEpcService],
+      imports: [HttpClientTestingModule]
     });
   });
 
