@@ -3,6 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 
 import { PageService } from './page.service';
 import { Page, PageContent } from './page';
+import {AppSettings} from "../app-settings";
 
 describe('PageService', () => {
     beforeEach(() => {
@@ -29,7 +30,7 @@ describe('PageService', () => {
         service.getPage(testSlug)
             .subscribe(data => expect(data.content.rendered).toEqual(renderedContent));
 
-        httpMock.expectOne(`/wp-json/wp/v2/pages?per_page=1&slug=${testSlug}`)
+        httpMock.expectOne(`${AppSettings.WORDPRESS_API_ROOT}wp/v2/pages?per_page=1&slug=${testSlug}`)
             .flush([returnedPage]);
         httpMock.verify();
     }));

@@ -5,10 +5,11 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 import { Page } from './page'
+import {AppSettings} from "../app-settings";
 
 @Injectable()
 export class PageService {
-  private static pagesEndpoint = '/wp-json/wp/v2/pages';
+  private static pagesEndpoint = AppSettings.WORDPRESS_API_ROOT + 'wp/v2/pages';
 
   constructor(private http: HttpClient) { }
 
