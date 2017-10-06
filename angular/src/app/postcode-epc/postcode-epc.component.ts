@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {PostcodeEpcService} from "./api-service/postcode-epc.service";
 import {EpcParserService} from "./epc-parser-service/epc-parser.service";
 import {DisplayEpcRow} from "./epc-parser-service/display-epc-row";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-postcode-epc',
@@ -13,7 +14,7 @@ export class PostcodeEpcComponent implements OnInit {
     postcode: string;
     number: number;
 
-    result: DisplayEpcRow[];
+    result: Observable<DisplayEpcRow[]>;
 
     constructor(private postcodeEpcService: PostcodeEpcService, private epcParserService: EpcParserService) {
     }
@@ -22,8 +23,7 @@ export class PostcodeEpcComponent implements OnInit {
     }
 
     onSubmit() {
-        this.postcodeEpcService.getEpcData(this.postcode, this.number)
-            .map(result => this.epcParserService.parseToArray(result))
-            .subscribe(result => this.result = result)
+        this.result = this.postcodeEpcService.getEpcData(this.postcode, this.number)
+            .map(result => this.epcParserService.parseToArray(result));
     }
 }
