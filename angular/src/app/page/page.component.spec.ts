@@ -5,13 +5,14 @@ import "rxjs/add/observable/of";
 
 import {PageComponent} from "./page.component";
 import {PageService} from "./page.service";
-import {Page} from "./page";
+import "rxjs/add/operator/toPromise";
+import {By} from "@angular/platform-browser";
 
 describe('PageComponent', () => {
     let component: PageComponent;
     let fixture: ComponentFixture<PageComponent>;
 
-    let expectedPage = new Page();
+    let expectedPage = {content: {rendered: 'test data!'}};
     let pageServiceStub = {
         getPage: () => Observable.of(expectedPage)
     };
@@ -50,6 +51,13 @@ describe('PageComponent', () => {
 
     it('should call the PageService with the route param', () => {
         expect(pageServiceStub.getPage).toHaveBeenCalledWith(routeParam);
-        expect(component.pageData).toBe(expectedPage);
+    });
+
+    it('should display the page content with data from the PageService', async () => {
+        component.pageData.toPromise()
+            .then(() => {
+                let pageContent = fixture.debugElement.query(By.css('.page-content'));
+                expect(pageContent.nativeElement.textContent).toBe(expectedPage.content.rendered);
+            });
     })
 });
