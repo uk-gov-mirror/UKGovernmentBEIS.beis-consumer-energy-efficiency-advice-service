@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
 import {PostcodeEpcComponent} from "./postcode-epc.component";
 import {FormsModule} from "@angular/forms";
-import {PostcodeEpcService} from "./postcode-epc.service";
+import {PostcodeEpcService} from "./api-service/postcode-epc.service";
 
 describe('PostcodeEpcComponent', () => {
     let component: PostcodeEpcComponent;

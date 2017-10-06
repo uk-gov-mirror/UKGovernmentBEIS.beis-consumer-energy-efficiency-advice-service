@@ -2,7 +2,7 @@ import {inject, TestBed} from "@angular/core/testing";
 
 import {PostcodeEpcService} from "./postcode-epc.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {WordpressApiService} from "../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-api-service";
 
 describe('PostcodeEpcService', () => {
     beforeEach(() => {

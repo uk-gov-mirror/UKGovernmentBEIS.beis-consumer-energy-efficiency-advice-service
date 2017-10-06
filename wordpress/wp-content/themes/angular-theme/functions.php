@@ -4,7 +4,7 @@ function getEpc(WP_REST_Request $request)
 {
     $args = array(
         'headers' => array(
-            'Authorization' => 'Basic AUTH_TOKEN',
+            'Authorization' => 'Basic ' . $_SERVER['EPC_API_TOKEN'],
             'Accept' => 'application/json'
         )
     );

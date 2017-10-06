@@ -1,8 +1,7 @@
-export class Page {
+export interface Page {
     content: PageContent
 }
 
-export class PageContent {
+export interface PageContent {
     rendered: string;
-    protected: boolean
 }
