@@ -1,6 +1,42 @@
 <?php
-// Gets an EPC
-function getEpc(WP_REST_Request $request)
+
+// Load custom analytics scripts in the head
+function enqueue_custom_scripts()
+{
+    $ga_id = get_google_analytics_key();
+    if (!is_null($ga_id)) {
+        wp_register_script('gtag', 'https://www.googletagmanager.com/gtag/js?id=' . $ga_id);
+        wp_register_script('google-analytics', get_template_directory_uri() . '/js/google-analytics.js', array('gtag'));
+        wp_enqueue_script('google-analytics');
+        wp_localize_script('google-analytics', 'gaId', $ga_id);
+    }
+
+    $hotjar_id = get_hotjar_id();
+    if (!is_null($hotjar_id)) {
+        wp_register_script('hotjar', get_template_directory_uri() . '/js/hotjar.js');
+        wp_enqueue_script('hotjar');
+        wp_localize_script('hotjar', 'hotjarId', $hotjar_id);
+    }
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+function get_google_analytics_key() {
+    if (array_key_exists('GOOGLE_ANALYTICS_ID', $_SERVER)) {
+        return $_SERVER['GOOGLE_ANALYTICS_ID'];
+    }
+    return null;
+}
+
+function get_hotjar_id() {
+    if (array_key_exists('HOTJAR_ID', $_SERVER)) {
+        return $_SERVER['HOTJAR_ID'];
+    }
+    return null;
+}
+
+// Add Wordpress API function for getting EPC
+function get_epc(WP_REST_Request $request)
 {
     $args = array(
         'headers' => array(
@@ -11,9 +47,10 @@ function getEpc(WP_REST_Request $request)
     $url = 'https://epc.opendatacommunities.org/api/v1/domestic/search?postcode=' . $request['postcode'] . '&address=' . $request['number'];
     return json_decode(wp_remote_retrieve_body(wp_remote_get($url, $args)));
 }
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'angular-theme/v1', '/postcode-epc', array(
+
+add_action('rest_api_init', function () {
+    register_rest_route('angular-theme/v1', '/postcode-epc', array(
         'methods' => 'GET',
-        'callback' => 'getEpc',
+        'callback' => 'get_epc',
     ));
 });
