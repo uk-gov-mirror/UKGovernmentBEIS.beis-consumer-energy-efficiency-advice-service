@@ -1,4 +1,9 @@
 import {Component} from "@angular/core";
+import {NavigationEnd, Router} from "@angular/router";
+import "rxjs/add/operator/distinctUntilChanged";
+
+declare let gtag: any;
+declare const gaId: string;
 
 @Component({
     selector: 'app-root',
@@ -6,5 +11,20 @@ import {Component} from "@angular/core";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'the BEIS DCEAS app';
+    readonly title = 'the BEIS DCEAS app';
+
+    constructor(router: Router) {
+        // Configure Google Analytics tracking if that's supported in this environment
+        if (gtag && gaId) {
+            router.events.distinctUntilChanged((previous: any, current: any) => {
+                if (current instanceof NavigationEnd) {
+                    return previous.url === current.url;
+                }
+                return true;
+            }).subscribe((x: any) => {
+                console.log('router.change', x);
+                gtag('config', gaId, {'page_path': x.url});
+            });
+        }
+    }
 }
