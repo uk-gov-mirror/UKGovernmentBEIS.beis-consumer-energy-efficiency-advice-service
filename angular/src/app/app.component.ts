@@ -3,7 +3,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import "rxjs/add/operator/distinctUntilChanged";
 
 declare let gtag: any;
-declare const gaId: string;
+declare const gaId: any;
 
 @Component({
     selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent {
 
     constructor(router: Router) {
         // Configure Google Analytics tracking if that's supported in this environment
-        if (gtag && gaId) {
+        if (typeof gtag !== undefined && typeof gaId !== undefined) {
             router.events.distinctUntilChanged((previous: any, current: any) => {
                 if (current instanceof NavigationEnd) {
                     return previous.url === current.url;
