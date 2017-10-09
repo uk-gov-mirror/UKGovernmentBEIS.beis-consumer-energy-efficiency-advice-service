@@ -9,13 +9,15 @@ import {PageComponent} from "./page/page.component";
 import {CalculatorComponent} from "./calculator/calculator.component";
 import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
 import {WordpressApiService} from "./common/wordpress-api-service/wordpress-api-service";
+import {OcrComponent} from "./ocr/ocr.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         PageComponent,
         CalculatorComponent,
-        PostcodeEpcComponent
+        PostcodeEpcComponent,
+        OcrComponent
     ],
     imports: [
         BrowserModule,

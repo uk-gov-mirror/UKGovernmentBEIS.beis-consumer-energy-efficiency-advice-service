@@ -1,0 +1,7 @@
+<h2>Automatically detect text in photos</h2>
+<div>
+    <input type="file" (change)="fileChange($event)" placeholder="Select image">
+</div>
+<div class="ocr-result">
+    {{result|async}}
+</div>
