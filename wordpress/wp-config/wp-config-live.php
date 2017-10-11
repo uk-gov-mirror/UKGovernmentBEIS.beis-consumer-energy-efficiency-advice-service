@@ -20,7 +20,7 @@ foreach ($_SERVER as $key => $value) {
     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
-// ** MySQL settings - You can get this info from your web host ** //
+// ** MySQL settings - uses configuration retrieved from the Azure environment ** //
 /** The name of the database for WordPress */
 define('DB_NAME', $connectstr_dbname);
 
