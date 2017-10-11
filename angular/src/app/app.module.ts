@@ -16,6 +16,7 @@ import {QuestionDirective} from "./questionnaire/questions/question.directive";
 import {QuestionService} from "./questionnaire/questions/question.service";
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
 import {ResponseData} from "./questionnaire/questions/response-data";
+import {PostcodeComponent} from './postcode/postcode.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,8 @@ import {ResponseData} from "./questionnaire/questions/response-data";
         PageComponent,
         CalculatorComponent,
         PostcodeEpcComponent,
+        OcrComponent,
+        PostcodeComponent,
         OcrComponent,
         QuestionDirective,
         QuestionnaireComponent,
