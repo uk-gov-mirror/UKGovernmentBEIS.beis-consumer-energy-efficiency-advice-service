@@ -15,7 +15,7 @@ export class AppComponent {
 
     constructor(router: Router) {
         // Configure Google Analytics tracking if that's supported in this environment
-        if (typeof gtag !== undefined && typeof gaId !== undefined) {
+        if (typeof gtag !== 'undefined' && typeof gaId !== 'undefined') {
             router.events.distinctUntilChanged((previous: any, current: any) => {
                 if (current instanceof NavigationEnd) {
                     return previous.url === current.url;
