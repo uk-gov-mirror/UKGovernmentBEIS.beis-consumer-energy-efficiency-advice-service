@@ -1,7 +1,13 @@
 <div class="questionnaire-component">
-    <label for="postcode" class="input-header">What's your postcode?</label>
-    <input class="text-input" id="postcode" name="postcode" type="text" spellcheck="false"
-           [(ngModel)]="postcodeInput" (change)="handlePostcodeEntered()">
+    <form class="questionnaire-form" (submit)="handlePostcodeEntered()">
+        <label for="postcode-input" class="input-header">What's your postcode?</label>
+        <div class="form-element">
+            <input class="text-input" id="postcode-input" name="postcode-input" type="text" spellcheck="false"
+                   [(ngModel)]="postcodeInput">
+            <button id="submit-postcode" type="submit" class="submit-button"></button>
+            <label title="Search" for="submit-postcode" class="submit-icon">►</label>
+        </div>
+    </form>
     <div class="validation-error-message"
          *ngIf="shouldDisplayValidationErrorMessage">Please enter a full valid UK postcode</div>
 </div>

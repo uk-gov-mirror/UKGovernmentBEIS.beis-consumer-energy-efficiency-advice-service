@@ -8,11 +8,23 @@
   font-family: $font-family;
 }
 
+.questionnaire-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .input-header {
   font-size: 36px;
   font-weight: bold;
   padding: 4px;
   margin-bottom: 40px;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: row;
 }
 
 .text-input {
@@ -24,6 +36,25 @@
   text-align: center;
   text-transform: uppercase;
   outline: none;
+}
+
+.submit-button {
+  display: none;
+}
+
+.submit-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  color: white;
+  width: 60px;
+  height: 60px;
+  font-size: 36px;
 }
 
 .validation-error-message {
