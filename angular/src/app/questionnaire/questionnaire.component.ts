@@ -81,7 +81,9 @@ export class QuestionnaireComponent implements AfterViewInit {
         componentInstance.response = question.response;
         componentInstance.onResponse = response => {
             this.getCurrentQuestion().response = componentInstance.response = response;
-            this.goForwardsOneQuestion();
+            // Allow a change-detection cycle to run, and the user to see their updated answer
+            // before moving on to the next question.
+            setTimeout(() => this.goForwardsOneQuestion(), 100);
         }
     }
 }
