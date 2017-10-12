@@ -1,0 +1,36 @@
+@import './var/_font';
+
+.questionnaire-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family;
+}
+
+.input-header {
+  font-size: 36px;
+  font-weight: bold;
+  padding: 4px;
+  margin-bottom: 40px;
+}
+
+.text-input {
+  font-size: 24px;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.validation-error-message {
+  margin-top: 20px;
+  background-color: crimson;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: white;
+}

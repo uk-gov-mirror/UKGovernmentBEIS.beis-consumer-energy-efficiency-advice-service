@@ -6,7 +6,7 @@ import {Component, OnInit} from "@angular/core";
     styleUrls: ['./postcode.component.scss']
 })
 export class PostcodeComponent implements OnInit {
-    POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
+    static readonly POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
 
     postcodeInput: string;
     shouldDisplayValidationErrorMessage: boolean = false;
@@ -19,7 +19,7 @@ export class PostcodeComponent implements OnInit {
 
     handlePostcodeEntered(): void {
         let isInputEmpty: boolean = !this.postcodeInput;
-        let isInputInvalid: boolean = !this.POSTCODE_REGEXP.test(this.postcodeInput);
+        let isInputInvalid: boolean = !PostcodeComponent.POSTCODE_REGEXP.test(this.postcodeInput);
         this.shouldDisplayValidationErrorMessage = isInputEmpty || isInputInvalid;
     }
 }
