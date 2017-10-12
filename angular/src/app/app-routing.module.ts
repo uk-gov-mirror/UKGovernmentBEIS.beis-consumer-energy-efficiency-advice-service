@@ -4,6 +4,7 @@ import {PageComponent} from "./page/page.component";
 import {CalculatorComponent} from "./calculator/calculator.component";
 import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
 import {OcrComponent} from "./ocr/ocr.component";
+import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'ocr',
         component: OcrComponent
+    },
+    {
+        path: 'questionnaire',
+        component: QuestionnaireComponent
     },
     {
         path: ':slug',
