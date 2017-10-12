@@ -1,3 +1,9 @@
-<p>
-  home-type-question works!
-</p>
+<div class="home-type-options">
+    <div class="baseline"></div>
+    <div tabindex="0" class="home-type-option" *ngFor="let homeType of homeTypes" [class.selected]="response === homeType.value" (click)="onResponse(homeType.value)">
+        <div class="icon-container">
+            <img src="{{homeType.iconSrc}}">
+        </div>
+        <span class="home-type-name">{{homeType.name}}</span>
+    </div>
+</div>

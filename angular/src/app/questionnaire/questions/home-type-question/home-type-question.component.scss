@@ -1,0 +1,47 @@
+.home-type-options {
+  display: flex;
+  justify-content: space-between;
+
+  .baseline {
+    position: absolute;
+    width: 100%;
+    top: 149px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #9C9C9C;
+  }
+
+  .home-type-option {
+    flex: 0 1 auto;
+    margin: 0 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon-container {
+      height: 150px;
+      position: relative;
+
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .home-type-name {
+      text-align: center;
+      margin-top: 8px;
+
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    &:hover, &:active {
+      outline: none;
+      background-color: rgba(#2196F3, 0.2);
+    }
+
+    &.selected {
+      outline: none;
+      background-color: rgba(#2196F3, 0.5);
+    }
+  }
+}
