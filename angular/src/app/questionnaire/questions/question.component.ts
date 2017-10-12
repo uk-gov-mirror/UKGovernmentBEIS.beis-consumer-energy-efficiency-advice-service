@@ -45,7 +45,7 @@ export function QuestionComponent(metadata: any = {}) {
 }
 
 export abstract class QuestionBaseComponent<S> {
-    @HostBinding('@slideInOut')@Input() slideInOut: string = 'none';
+    @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
     @Input() response: S;
     @Input() onResponse: (response: S) => void;
 }

@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Question} from "./question";
 import {QuestionBaseComponent} from "./question.component";
-import {DummyQuestion} from "./dummy-question/dummy-question";
-import {DummyQuestionComponent} from "./dummy-question/dummy-question.component";
+import {HomeTypeQuestionComponent} from "./home-type-question/home-type-question.component";
+import {HomeTypeQuestion} from "./home-type-question/home-type-question";
 
-const DUMMY_QUESTION_1 = "dummy1";
-const DUMMY_QUESTION_2 = "dummy2";
-const DUMMY_QUESTION_3 = "dummy3";
+const HOME_TYPE_QUESTION = 'home-type';
 
 @Injectable()
 export class QuestionService {
@@ -16,13 +14,9 @@ export class QuestionService {
 
     constructor() {
         this.questions = {};
-        this.questions[DUMMY_QUESTION_1] = new DummyQuestion(DummyQuestionComponent);
-        this.questions[DUMMY_QUESTION_2] = new DummyQuestion(DummyQuestionComponent);
-        this.questions[DUMMY_QUESTION_3] = new DummyQuestion(DummyQuestionComponent);
+        this.questions[HOME_TYPE_QUESTION] = new HomeTypeQuestion(HomeTypeQuestionComponent);
         this.questionOrder = [
-            {key: DUMMY_QUESTION_1, heading: 'Dummy question 1'},
-            {key: DUMMY_QUESTION_2, heading: 'Dummy question 2'},
-            {key: DUMMY_QUESTION_3, heading: 'Dummy question 3'}
+            {key: HOME_TYPE_QUESTION, heading: 'So what type of home do you have?'}
         ];
     }
 
