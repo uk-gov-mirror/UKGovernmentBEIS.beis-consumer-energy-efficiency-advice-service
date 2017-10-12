@@ -47,11 +47,16 @@
 
   .question {
     width: 100%;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
 
     & > * {
-      display: inline-block;
+      display: block;
       position: absolute;
       width: 100%;
+      max-width: 1008px;
     }
   }
 }
