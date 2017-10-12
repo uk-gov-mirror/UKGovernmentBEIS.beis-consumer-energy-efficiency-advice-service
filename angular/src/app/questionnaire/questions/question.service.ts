@@ -46,7 +46,7 @@ export class QuestionService {
         return this.getQuestionByIndex(index).response !== undefined;
     }
 
-    public findFirstUnansweredQuestionIndex(): number {
+    public getFirstUnansweredQuestionIndex(): number {
         const index = this.questionOrder.findIndex(q => this.getQuestionByKey(q.key).response === undefined);
         return index === -1 ? this.questionOrder.length - 1 : index;
     }

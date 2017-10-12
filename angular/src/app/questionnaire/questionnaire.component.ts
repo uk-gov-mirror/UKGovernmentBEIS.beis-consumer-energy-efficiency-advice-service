@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation, ChangeDetectorRef, Input } from '@angular/core';
 import { QuestionService } from "./questions/question.service";
-import {Question} from "./questions/question";
 import {QuestionDirective} from "./questions/question.directive";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions/question.component";
 
@@ -25,7 +24,7 @@ export class QuestionnaireComponent implements AfterViewInit {
     ngAfterViewInit() {
         // Since we are inside a change detection hook, we can't just call this directly! We must
         // schedule it to be called after the change detection cycle has completed.
-        setTimeout(() =>  this.jumpToQuestion(this.questionService.findFirstUnansweredQuestionIndex()), 0);
+        setTimeout(() => this.jumpToQuestion(this.questionService.getFirstUnansweredQuestionIndex()), 0);
     }
 
     private jumpToQuestion(index) {
@@ -57,27 +56,29 @@ export class QuestionnaireComponent implements AfterViewInit {
 
     private renderQuestion(slideInFrom: SlideInFrom) {
         const question = this.questionService.getQuestionByIndex(this.currentQuestionIndex);
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
+        if (!!question) {
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
 
-        // Set the current question to slide out in the opposite direction. Manual change
-        // detection must be triggered here or the change will not apply.
-        if (this.questionComponent) {
-            this.questionComponent.slideInOut = oppositeDirection(slideInFrom);
+            // Set the current question to slide out in the opposite direction. Manual change
+            // detection must be triggered here or the change will not apply.
+            if (this.questionComponent) {
+                this.questionComponent.slideInOut = oppositeDirection(slideInFrom);
+            }
+            this.changeDetectorRef.detectChanges();
+
+            // Instantiate the new question and slide in in from the given direction.
+            this.questionHost.viewContainerRef.clear();
+            const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
+            this.questionComponent = componentRef.instance;
+
+            this.questionComponent.slideInOut = slideInFrom;
+            this.questionComponent.response = question.response;
+            this.questionComponent.onResponse = response => {
+                question.response = this.questionComponent.response = response;
+                // Allow a change-detection cycle to run, and the user to see their updated answer,
+                // before moving on to the next question.
+                setTimeout(() => this.goForwardsOneQuestion(), 50);
+            };
         }
-        this.changeDetectorRef.detectChanges();
-
-        // Instantiate the new question and slide in in from the given direction.
-        this.questionHost.viewContainerRef.clear();
-        const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
-        this.questionComponent = componentRef.instance;
-
-        this.questionComponent.slideInOut = slideInFrom;
-        this.questionComponent.response = question.response;
-        this.questionComponent.onResponse = response => {
-            question.response = this.questionComponent.response = response;
-            // Allow a change-detection cycle to run, and the user to see their updated answer,
-            // before moving on to the next question.
-            setTimeout(() => this.goForwardsOneQuestion(), 50);
-        };
     }
 }
