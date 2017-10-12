@@ -2,7 +2,7 @@
 <div class="questions-container">
     <div class="question-heading">
         <div class="left-arrow" [class.inactive]="!canGoBack()" (click)="goBackOneQuestion()"><</div>
-        <div class="heading">{{questionOrder[currentQuestionIndex].heading}}</div>
+        <div class="heading">{{questionService.getHeading(this.currentQuestionIndex)}}</div>
         <div class="right-arrow" [class.inactive]="!canGoForwards()" (click)="goForwardsOneQuestion()">></div>
     </div>
     <div class="question">
