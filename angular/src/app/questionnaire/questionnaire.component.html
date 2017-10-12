@@ -5,5 +5,7 @@
         <div class="heading">{{questionOrder[currentQuestionIndex].heading}}</div>
         <div class="right-arrow" [class.inactive]="!canGoForwards()" (click)="goForwardsOneQuestion()">></div>
     </div>
-    <ng-template question-host></ng-template>
+    <div class="question">
+        <ng-template question-host></ng-template>
+    </div>
 </div>

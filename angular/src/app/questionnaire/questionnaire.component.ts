@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DUMMY_QUESTION_1, DUMMY_QUESTION_2, DUMMY_QUESTION_3, QuestionService } from "./questions/question.service";
 import {Question} from "./questions/question";
 import {QuestionDirective} from "./questions/question.directive";
@@ -7,7 +7,8 @@ import {QuestionBaseComponent} from "./questions/question.component";
 @Component({
     selector: 'app-questionnaire',
     templateUrl: './questionnaire.component.html',
-    styleUrls: ['./questionnaire.component.scss']
+    styleUrls: ['./questionnaire.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class QuestionnaireComponent implements AfterViewInit {
 

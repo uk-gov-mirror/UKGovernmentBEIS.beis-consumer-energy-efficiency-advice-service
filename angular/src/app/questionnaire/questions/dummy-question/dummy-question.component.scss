@@ -1,8 +1,9 @@
-.options {
+.dummy-question-options {
   display: flex;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 
-  .option {
+  .dummy-question-option {
     width: 100px;
     height: 100px;
     border: 2px solid black;
