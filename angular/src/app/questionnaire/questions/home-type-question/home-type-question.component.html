@@ -1,6 +1,6 @@
 <div class="home-type-options">
     <div class="baseline"></div>
-    <div tabindex="0" class="home-type-option" *ngFor="let option of homeTypeOptions" [class.selected]="response === option.value" (click)="response = option.value; notifyOfCompletion()">
+    <div tabindex="0" class="home-type-option" *ngFor="let option of homeTypeOptions" [class.selected]="response === option.value" (click)="response = option.value">
         <div class="icon-container">
             <img [ngClass]="option.className">
         </div>
