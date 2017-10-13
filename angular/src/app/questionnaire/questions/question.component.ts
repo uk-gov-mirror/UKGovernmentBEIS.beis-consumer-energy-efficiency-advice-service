@@ -1,8 +1,6 @@
-import { Component, Input, HostBinding, ViewEncapsulation } from '@angular/core';
+import { Input, HostBinding } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import {Question} from "./question";
-
-declare const Reflect: any;
 
 export type SlideInFrom = 'none' | 'left' | 'right';
 
@@ -16,7 +14,7 @@ export function oppositeDirection(slideInFrom: SlideInFrom): SlideInFrom {
     }
 }
 
-const slideInOutAnimation = trigger('slideInOut', [
+export const slideInOutAnimation = trigger('slideInOut', [
     state('none', style({transform: 'translateX(0)'})),
     state('left', style({transform: 'translateX(0)'})),
     state('right', style({transform: 'translateX(0)'})),
@@ -35,16 +33,6 @@ const slideInOutAnimation = trigger('slideInOut', [
         animate(500, style({transform: 'translateX(100vw)'}))
     ])
 ]);
-
-export function QuestionComponent(metadata: any = {}) {
-    return function(cls: any) {
-        const annotations = Reflect.getMetadata('annotations', cls) || [];
-        // TODO: Don't use ViewEncapsulation.None, use global SCSS instead.
-        annotations.push(new Component({...metadata, encapsulation: ViewEncapsulation.None, animations: [slideInOutAnimation]}));
-        Reflect.defineMetadata('annotations', annotations, cls);
-        return cls;
-    };
-}
 
 export abstract class QuestionBaseComponent<S> {
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';

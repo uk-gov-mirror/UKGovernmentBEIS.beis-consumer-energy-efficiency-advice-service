@@ -15,7 +15,6 @@ import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {QuestionDirective} from "./questionnaire/questions/question.directive";
 import {QuestionService} from "./questionnaire/questions/question.service";
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
-import {AppConstants, Constants} from "./common/constants";
 import {ResponseData} from "./questionnaire/questions/response-data";
 
 @NgModule({
@@ -39,7 +38,7 @@ import {ResponseData} from "./questionnaire/questions/response-data";
     entryComponents: [
         HomeTypeQuestionComponent
     ],
-    providers: [WordpressApiService, QuestionService, ResponseData, {provide: Constants, useClass: AppConstants}],
+    providers: [WordpressApiService, QuestionService, ResponseData],
     bootstrap: [AppComponent],
 })
 export class AppModule {

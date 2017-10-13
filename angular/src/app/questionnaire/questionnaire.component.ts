@@ -33,11 +33,11 @@ export class QuestionnaireComponent implements AfterViewInit {
         this.renderQuestion('none');
     }
 
-    private canGoBack() {
+    canGoBack() {
         return this.currentQuestionIndex !== 0;
     }
 
-    private canGoForwards() {
+    canGoForwards() {
         return (
             this.questionService.getQuestion(this.currentQuestionIndex) !== undefined &&
             this.questionService.getQuestion(this.currentQuestionIndex).response !== undefined &&
@@ -45,21 +45,21 @@ export class QuestionnaireComponent implements AfterViewInit {
         );
     }
 
-    private goBackOneQuestion() {
+    goBackOneQuestion() {
         if (this.canGoBack()) {
             this.currentQuestionIndex -= 1;
             this.renderQuestion('left');
         }
     }
 
-    private goForwardsOneQuestion() {
+    goForwardsOneQuestion() {
         if (this.canGoForwards()) {
             this.currentQuestionIndex += 1;
             this.renderQuestion('right');
         }
     }
 
-    private getHeading() {
+    getHeading() {
         return this.questionService.getHeading(this.currentQuestionIndex);
     }
 

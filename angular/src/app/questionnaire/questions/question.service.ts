@@ -11,7 +11,7 @@ export class QuestionService {
 
     constructor(responseData: ResponseData) {
         this.questions = [
-            new HomeTypeQuestion(responseData)
+            new HomeTypeQuestion(responseData),
         ];
     }
 
