@@ -18,8 +18,8 @@ export class PostcodeComponent implements OnInit {
     }
 
     handlePostcodeEntered(): void {
-        let isInputEmpty: boolean = !this.postcodeInput;
-        let isInputInvalid: boolean = !PostcodeComponent.POSTCODE_REGEXP.test(this.postcodeInput);
+        const isInputEmpty: boolean = !this.postcodeInput;
+        const isInputInvalid: boolean = !PostcodeComponent.POSTCODE_REGEXP.test(this.postcodeInput);
         this.shouldDisplayValidationErrorMessage = isInputEmpty || isInputInvalid;
     }
 }
