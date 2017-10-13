@@ -32,14 +32,24 @@ describe('HomeTypeQuestionComponent', () => {
     });
 
     it('should set the response when clicking on a home type', () => {
+        // given
+
+        // when
         let detachedHouse = fixture.debugElement.query(By.css('.detached-house'));
         detachedHouse.nativeElement.click();
+
+        // then
         expect(responseData.homeType).toBe(HomeType.DetachedHouse);
     });
 
     it('should notify of completion when clicking on a home type', () => {
+        // given
+
+        // when
         let detachedHouse = fixture.debugElement.query(By.css('.detached-house'));
         detachedHouse.nativeElement.click();
+
+        // then
         expect(component.notifyOfCompletion).toHaveBeenCalled();
     });
 });
