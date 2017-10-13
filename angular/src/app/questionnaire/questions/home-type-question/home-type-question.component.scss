@@ -24,6 +24,46 @@
 
       display: flex;
       align-items: flex-end;
+
+      .detached-house {
+        content: url('../../../../assets/images/home-types/detached-house.svg');
+      }
+
+      .semi-detached-house {
+        content: url('../../../../assets/images/home-types/semi-detached-house.svg');
+      }
+
+      .end-terrace-house {
+        content: url('../../../../assets/images/home-types/end-terrace-house.svg');
+      }
+
+      .mid-terrace-house {
+        content: url('../../../../assets/images/home-types/mid-terrace-house.svg');
+      }
+
+      .ground-floor-flat {
+        content: url('../../../../assets/images/home-types/ground-floor-flat.svg');
+      }
+
+      .mid-floor-flat {
+        content: url('../../../../assets/images/home-types/mid-floor-flat.svg');
+      }
+
+      .top-floor-flat {
+        content: url('../../../../assets/images/home-types/top-floor-flat.svg');
+      }
+
+      .bungalow-attached {
+        content: url('../../../../assets/images/home-types/bungalow-attached.svg');
+      }
+
+      .bungalow-detached {
+        content: url('../../../../assets/images/home-types/bungalow-detached.svg');
+      }
+
+      .park-home {
+        content: url('../../../../assets/images/home-types/park-home.svg');
+      }
     }
 
     .home-type-name {

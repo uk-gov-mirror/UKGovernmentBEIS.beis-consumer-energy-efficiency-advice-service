@@ -15,4 +15,7 @@ export enum HomeType {
 }
 
 export class HomeTypeQuestion extends Question<HomeType, HomeTypeQuestionComponent> {
+    constructor(responseGetter: () => HomeType, responseSetter: (HomeType) => void) {
+        super(HomeTypeQuestionComponent, responseGetter, responseSetter);
+    }
 }

@@ -1,6 +1,11 @@
 import {QuestionBaseComponent, QuestionComponent} from "../question.component";
 import {HomeType} from "./home-type-question";
-import {Constants} from "../../../common/constants";
+
+interface HomeTypeOption {
+    name: string;
+    value: HomeType;
+    className: string;
+}
 
 @QuestionComponent({
     selector: 'app-home-type-question',
@@ -8,21 +13,21 @@ import {Constants} from "../../../common/constants";
     styleUrls: ['./home-type-question.component.scss']
 })
 export class HomeTypeQuestionComponent extends QuestionBaseComponent<HomeType> {
-    private homeTypes: {iconSrc: string, name: string, value: HomeType}[];
+    private homeTypeOptions: HomeTypeOption[];
 
-    constructor(constants: Constants) {
+    constructor() {
         super();
-        this.homeTypes = [
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/detached-house.svg', name: 'Detached house', value: HomeType.DetachedHouse},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/semi-detached-house.svg', name: 'Semi-detached house', value: HomeType.SemiDetachedHouse},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/end-terrace-house.svg', name: 'End-terrace house', value: HomeType.EndTerraceHouse},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/mid-terrace-house.svg', name: 'Mid-terrace house', value: HomeType.MidTerraceHouse},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/ground-floor-flat.svg', name: 'Ground floor flat', value: HomeType.GroundFloorFlat},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/mid-floor-flat.svg', name: 'Mid floor flat', value: HomeType.MidFloorFlat},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/top-floor-flat.svg', name: 'Top floor flat', value: HomeType.TopFloorFlat},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/bungalow-detached.svg', name: 'Bungalow detached', value: HomeType.BungalowDetached},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/bungalow-attached.svg', name: 'Bungalow attached', value: HomeType.BungalowAttached},
-            {iconSrc: constants.ASSETS_ROOT + '/images/home-types/park-home.svg', name: 'Park home', value: HomeType.ParkHome},
+        this.homeTypeOptions = [
+            {name: 'Detached house', value: HomeType.DetachedHouse, className: 'detached-house'},
+            {name: 'Semi-detached house', value: HomeType.SemiDetachedHouse, className: 'semi-detached-house'},
+            {name: 'End-terrace house', value: HomeType.EndTerraceHouse, className: 'end-terrace-house'},
+            {name: 'Mid-terrace house', value: HomeType.MidTerraceHouse, className: 'mid-terrace-house'},
+            {name: 'Ground floor flat', value: HomeType.GroundFloorFlat, className: 'ground-floor-flat'},
+            {name: 'Mid floor flat', value: HomeType.MidFloorFlat, className: 'mid-floor-flat'},
+            {name: 'Top floor flat', value: HomeType.TopFloorFlat, className: 'top-floor-flat'},
+            {name: 'Bungalow detached', value: HomeType.BungalowDetached, className: 'bungalow-detached'},
+            {name: 'Bungalow attached', value: HomeType.BungalowAttached, className: 'bungalow-attached'},
+            {name: 'Park home', value: HomeType.ParkHome, className: 'park-home'},
         ];
     }
 }

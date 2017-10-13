@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Question} from "./question";
 import {QuestionBaseComponent} from "./question.component";
-import {HomeTypeQuestionComponent} from "./home-type-question/home-type-question.component";
 import {HomeTypeQuestion} from "./home-type-question/home-type-question";
 import {ResponseData} from "./response-data";
 
@@ -16,7 +15,7 @@ export class QuestionService {
         this.questions = [
             {
                 heading: "So what type of home do you have?",
-                question: new HomeTypeQuestion(HomeTypeQuestionComponent, () => this.responseData.homeType, val => this.responseData.homeType = val)
+                question: new HomeTypeQuestion(() => this.responseData.homeType, val => this.responseData.homeType = val)
             }
         ];
     }
