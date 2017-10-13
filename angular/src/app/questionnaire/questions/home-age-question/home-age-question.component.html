@@ -1,5 +1,12 @@
-<div class="home-age-options">
-    <div *ngFor="let homeAge of homeAges" [class.selected]="response === homeAge.value" (click)="response = homeAge.value">
-        {{homeAge.name}}
+<div class="home-age-question">
+    <div class="home-age-timeline">
+        <div [horizontalDraggableSelector]="homeAges" (onResponseSelected)="saveHomeAge($event)"
+             [initialOption]="response" class="home-age-timeline-slider"></div>
+        <div class="home-age-options">
+            <div class="home-age-option" *ngFor="let homeAgeOption of homeAgeOptions" (click)="selectHomeAge(homeAgeOption)">
+                <div class="home-age-timeline-section"></div>
+                <div class="home-age-option-name">{{homeAgeOption.name}}</div>
+            </div>
+        </div>
     </div>
 </div>
