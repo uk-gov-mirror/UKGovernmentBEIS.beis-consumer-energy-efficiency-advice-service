@@ -4,6 +4,7 @@ import {HomeType} from "./home-type-question/home-type";
 @Injectable()
 export class ResponseData {
     private _homeType: HomeType;
+    private _numberOfStoreys: number;
 
     get homeType(): HomeType {
         return this._homeType;
@@ -11,5 +12,13 @@ export class ResponseData {
 
     set homeType(val: HomeType) {
         this._homeType = val;
+    }
+
+    get numberOfStoreys(): number {
+        return this._numberOfStoreys;
+    }
+
+    set numberOfStoreys(val: number) {
+        this._numberOfStoreys = val;
     }
 }

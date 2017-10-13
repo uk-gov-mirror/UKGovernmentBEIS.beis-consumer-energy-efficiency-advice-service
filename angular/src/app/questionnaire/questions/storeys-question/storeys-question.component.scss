@@ -1,0 +1,49 @@
+.storeys-question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+
+  margin: 0 8px;
+}
+
+// TODO: when the questionnaire scss is moved to a common file, use that
+.increase-button {
+  border: none;
+  cursor: pointer;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background-color: black;
+  color: white;
+  font-weight: 900;
+  font-size: 16px;
+  margin: 0 16px;
+
+  &[disabled] {
+    background-color: #9C9C9C;
+    cursor: default;
+  }
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.storeys-icons {
+  padding-top: 32px;
+
+  .icon-home-storeys {
+    padding: 0 16px;
+  }
+}

@@ -14,9 +14,10 @@ import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {QuestionDirective} from "./questionnaire/questions/question.directive";
 import {QuestionService} from "./questionnaire/questions/question.service";
-import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
+import {HomeTypeQuestionComponent} from "./questionnaire/questions/home-type-question/home-type-question.component";
 import {AppConstants, Constants} from "./common/constants";
 import {ResponseData} from "./questionnaire/questions/response-data";
+import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {ResponseData} from "./questionnaire/questions/response-data";
         OcrComponent,
         QuestionDirective,
         QuestionnaireComponent,
-        HomeTypeQuestionComponent
+        HomeTypeQuestionComponent,
+        StoreysQuestionComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +39,8 @@ import {ResponseData} from "./questionnaire/questions/response-data";
         FormsModule
     ],
     entryComponents: [
-        HomeTypeQuestionComponent
+        HomeTypeQuestionComponent,
+        StoreysQuestionComponent
     ],
     providers: [WordpressApiService, QuestionService, ResponseData, {provide: Constants, useClass: AppConstants}],
     bootstrap: [AppComponent],
