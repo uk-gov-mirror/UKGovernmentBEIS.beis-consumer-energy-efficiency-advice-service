@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { QuestionService } from "./questions/question.service";
 import {QuestionDirective} from "./questions/question.directive";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions/question.component";
@@ -24,7 +24,7 @@ export class QuestionnaireComponent implements AfterViewInit {
     ngAfterViewInit() {
         // Since we are inside a change detection hook, we can't just call this directly! We must
         // schedule it to be called after the change detection cycle has completed.
-        setTimeout(() => this.jumpToQuestion(this.questionService.getFirstUnansweredQuestionIndex()), 0);
+        setTimeout(() => this.jumpToQuestion(this.currentQuestionIndex), 0);
     }
 
     private jumpToQuestion(index) {
@@ -37,7 +37,10 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     private canGoForwards() {
-        return this.questionService.questionHasBeenAnswered(this.currentQuestionIndex) && !this.questionService.isFinalQuestion(this.currentQuestionIndex);
+        return (
+            this.questionService.getQuestion(this.currentQuestionIndex).response !== undefined &&
+            this.currentQuestionIndex + 1 < this.questionService.numberOfQuestions
+        );
     }
 
     private goBackOneQuestion() {
@@ -54,8 +57,12 @@ export class QuestionnaireComponent implements AfterViewInit {
         }
     }
 
+    private getHeading() {
+        return this.questionService.getHeading(this.currentQuestionIndex);
+    }
+
     private renderQuestion(slideInFrom: SlideInFrom) {
-        const question = this.questionService.getQuestionByIndex(this.currentQuestionIndex);
+        const question = this.questionService.getQuestion(this.currentQuestionIndex);
         if (!!question) {
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
 
