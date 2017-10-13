@@ -1,0 +1,5 @@
+<div class="home-age-options">
+    <div *ngFor="let homeAge of homeAges" [class.selected]="response === homeAge.value" (click)="response = homeAge.value">
+        {{homeAge.name}}
+    </div>
+</div>

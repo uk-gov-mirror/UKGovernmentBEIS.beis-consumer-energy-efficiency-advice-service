@@ -14,6 +14,9 @@ import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {QuestionDirective} from "./questionnaire/questions/question.directive";
 import {QuestionService} from "./questionnaire/questions/question.service";
+import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
+import {HomeAgeQuestionComponent} from './questionnaire/questions/home-age-question/home-age-question.component';
+import {AppConstants, Constants} from "./common/constants";
 import {HomeTypeQuestionComponent} from "./questionnaire/questions/home-type-question/home-type-question.component";
 import {ResponseData} from "./questionnaire/questions/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
@@ -35,6 +38,7 @@ import {ElectricityTariffQuestionComponent} from './questionnaire/questions/elec
         QuestionnaireComponent,
         PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
+        HomeAgeQuestionComponent,
         StoreysQuestionComponent,
         FuelTypeQuestionComponent,
         HomeTypeQuestionComponent,
@@ -52,6 +56,7 @@ import {ElectricityTariffQuestionComponent} from './questionnaire/questions/elec
     entryComponents: [
         PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
+        HomeAgeQuestionComponent,
         StoreysQuestionComponent,
         FuelTypeQuestionComponent,
         HomeTypeQuestionComponent,

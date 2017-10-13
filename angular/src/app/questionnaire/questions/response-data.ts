@@ -3,11 +3,13 @@ import {HomeType} from "./home-type-question/home-type";
 import {FuelType} from "./fuel-type-question/fuel-type";
 import {FlatPosition} from "./flat-position-question/flat-position";
 import {ElectricityTariff} from "./electricity-tariff-question/electricity-tariff";
+import {HomeAge} from './home-age-question/home-age';
 
 @Injectable()
 export class ResponseData {
     private _postCode: string;
     private _homeType: HomeType;
+    private _homeAge: HomeAge;
     private _flatPosition: FlatPosition;
     private _numberOfStoreys: number;
     private _fuelType: FuelType;
@@ -68,5 +70,13 @@ export class ResponseData {
 
     set electricityTariff(val: ElectricityTariff) {
         this._electricityTariff = val;
+    }
+
+    get homeAge(): HomeAge {
+        return this._homeAge;
+    }
+
+    set homeAge(value: HomeAge) {
+        this._homeAge = value;
     }
 }
