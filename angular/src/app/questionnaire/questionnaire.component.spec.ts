@@ -8,20 +8,14 @@ describe('QuestionnaireComponent', () => {
     let fixture: ComponentFixture<QuestionnaireComponent>;
 
     class QuestionServiceStub {
-        getFirstUnansweredQuestionIndex() {
-            return 0;
-        }
-        getQuestionByIndex(index) {
+        getQuestion(index) {
             return undefined;
-        }
-        questionHasBeenAnswered(index) {
-            return false;
-        }
-        isFinalQuestion(index) {
-            return true;
         }
         getHeading(index) {
             return 'question';
+        }
+        get numberOfQuestions() {
+            return 0;
         }
     }
 
