@@ -118,7 +118,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             expect(component.error).toEqual(PostcodeComponent.ERROR_VALIDATION);
         });
 
-        it('should call epc api if postcode is valid', (done) => {
+        it('should call epc api if postcode is valid', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
@@ -128,14 +128,13 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 expect(mockApiService.getEpcData).toHaveBeenCalledTimes(1);
                 expect(mockApiService.getEpcData).toHaveBeenCalledWith(VALID_POSTCODE);
-                done();
-            }, 10);
-        });
+            });
+        }));
 
-        it('should not call epc api if postcode is not valid', (done) => {
+        it('should not call epc api if postcode is not valid', async(() => {
             // given
             component.postcodeInput = 'invalid';
             let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
@@ -145,13 +144,12 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 expect(mockApiService.getEpcData).toHaveBeenCalledTimes(0);
-                done();
-            }, 10);
-        });
+            });
+        }));
 
-        it('should display all epcs which are returned', (done) => {
+        it('should display all epcs which are returned', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -159,14 +157,13 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 // matches data in dummy-epc-response.json
                 expect(component.allEpcsForPostcode.length).toEqual(3);
-                done();
-            }, 10);
-        });
+            });
+        }));
 
-        it('should order epcs by address', (done) => {
+        it('should order epcs by address', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -174,16 +171,15 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 // matches data in dummy-epc-response.json
                 expect(component.allEpcsForPostcode[0].address1).toEqual('Apartment 1');
                 expect(component.allEpcsForPostcode[1].address1).toEqual('Apartment 2');
                 expect(component.allEpcsForPostcode[2].address1).toEqual('Apartment 3');
-                done();
-            }, 10);
-        });
+            });
+        }));
 
-        it('should display epcs correctly', (done) => {
+        it('should display epcs correctly', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -191,30 +187,28 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 // matches data in dummy-epc-response.json
                 expect(component.allEpcsForPostcode[0].getDisplayAddress()).toEqual('Apartment 1, 1 Test Street');
-                done();
-            }, 10);
-        });
+            });
+        }));
 
-        it('should display error message if no epcs are returned', (done) => {
+        it('should display error message if no epcs are returned', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
-            mockApiService.getEpcData = () => Observable.of(null);
+            mockApiService.getEpcData = (postcode) => Observable.of(null);
 
             // when
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 expect(component.error).toEqual(PostcodeComponent.ERROR_NO_EPCS);
-                done();
-            }, 10);
-        });
+            });
+        }));
 
-        it('should display error message if epc api returns an error', (done) => {
+        it('should display error message if epc api returns an error', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
@@ -224,11 +218,10 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.handlePostcodeEntered();
 
             // then
-            window.setTimeout(() => {
+            fixture.whenStable().then(() => {
                 expect(component.error).toEqual(PostcodeComponent.ERROR_EPC_API_FAILURE);
-                done();
-            }, 10);
-        });
+            });
+        }));
     });
 
     it('should set the response when a valid postcode is entered', () => {

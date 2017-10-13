@@ -7,12 +7,15 @@ import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-
 @Injectable()
 export class PostcodeEpcService {
     private static readonly epcEndpoint = 'angular-theme/v1/postcode-epc';
+    static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
     getEpcData(postcode: string): Observable<EpcsResponse> {
-        const params = new HttpParams().set('postcode', postcode.toUpperCase());
+        const params = new HttpParams()
+            .set('postcode', postcode)
+            .set('size', PostcodeEpcService.MAX_NUMBER_OF_EPCS_PER_RESPONSE.toString());
         return this.http.get(this.wordpressApiService.getFullApiEndpoint(PostcodeEpcService.epcEndpoint), {params: params})
     }
 }

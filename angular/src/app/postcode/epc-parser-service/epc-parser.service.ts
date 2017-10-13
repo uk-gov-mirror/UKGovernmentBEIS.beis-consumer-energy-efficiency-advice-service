@@ -13,9 +13,9 @@ export abstract class EpcParserService {
     }
 
     static sortEpcsByAddress(a: Epc, b: Epc): number {
-        if (a.address2 < b.address2) return -1;
-        if (a.address2 > b.address2) return 1;
-        if (a.address1 < b.address1) return -1;
-        if (a.address1 > b.address1) return 1;
+        if (a.address2 < b.address2) { return -1 ; }
+        if (a.address2 > b.address2) { return 1; }
+        if (a.address1 < b.address1) { return -1; }
+        if (a.address1 > b.address1) { return 1; }
     }
 }
