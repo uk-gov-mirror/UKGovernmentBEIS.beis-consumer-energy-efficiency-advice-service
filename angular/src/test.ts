@@ -9,6 +9,8 @@ import "zone.js/dist/fake-async-test";
 import {getTestBed} from "@angular/core/testing";
 import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angular/platform-browser-dynamic/testing";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {Constants, TestConstants} from "./app/common/constants";
+import {NgModule} from "@angular/core";
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare const __karma__: any;
@@ -19,9 +21,15 @@ __karma__.loaded = function () {
 };
 
 // First, initialize the Angular testing environment.
+@NgModule({
+    providers: [{provide: Constants, useClass: TestConstants}]
+})
+class TestConstantsModule {}
+
 getTestBed().initTestEnvironment(
     [
         BrowserDynamicTestingModule,
+        TestConstantsModule,
         NoopAnimationsModule,
     ],
     platformBrowserDynamicTesting()

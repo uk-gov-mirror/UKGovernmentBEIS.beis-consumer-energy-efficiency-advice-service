@@ -15,6 +15,7 @@ import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {QuestionDirective} from "./questionnaire/questions/question.directive";
 import {QuestionService} from "./questionnaire/questions/question.service";
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
+import {AppConstants, Constants} from "./common/constants";
 
 @NgModule({
     declarations: [
@@ -37,7 +38,7 @@ import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-que
     entryComponents: [
         HomeTypeQuestionComponent
     ],
-    providers: [WordpressApiService, QuestionService],
+    providers: [WordpressApiService, QuestionService, {provide: Constants, useClass: AppConstants}],
     bootstrap: [AppComponent],
 })
 export class AppModule {
