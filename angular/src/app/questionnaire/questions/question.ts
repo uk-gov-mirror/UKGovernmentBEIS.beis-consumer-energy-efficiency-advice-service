@@ -2,7 +2,7 @@ import { Type } from '@angular/core';
 import { QuestionBaseComponent } from "./question.component";
 
 export abstract class Question<S, T extends QuestionBaseComponent<S>> {
-    constructor(public questionComponent: Type<T>, private responseGetter: () => S, private responseSetter: (S) => void) {
+    constructor(public questionComponent: Type<T>, public heading: string, private responseGetter: () => S, private responseSetter: (S) => void) {
     }
 
     get response(): S {

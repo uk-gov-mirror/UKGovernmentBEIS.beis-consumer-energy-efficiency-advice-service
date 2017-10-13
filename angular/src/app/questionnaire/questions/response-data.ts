@@ -1,4 +1,4 @@
-import {HomeType} from "./home-type-question/home-type-question";
+import {HomeType} from "./home-type-question/home-type";
 
 export class ResponseData {
     private _homeType: HomeType;

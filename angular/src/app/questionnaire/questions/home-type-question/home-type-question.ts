@@ -1,21 +1,9 @@
 import {Question} from "../question";
 import {HomeTypeQuestionComponent} from "./home-type-question.component";
-
-export enum HomeType {
-    DetachedHouse,
-    SemiDetachedHouse,
-    EndTerraceHouse,
-    MidTerraceHouse,
-    GroundFloorFlat,
-    MidFloorFlat,
-    TopFloorFlat,
-    BungalowDetached,
-    BungalowAttached,
-    ParkHome,
-}
+import {HomeType} from "./home-type";
 
 export class HomeTypeQuestion extends Question<HomeType, HomeTypeQuestionComponent> {
     constructor(responseGetter: () => HomeType, responseSetter: (HomeType) => void) {
-        super(HomeTypeQuestionComponent, responseGetter, responseSetter);
+        super(HomeTypeQuestionComponent, 'So what type of home do you have?', responseGetter, responseSetter);
     }
 }

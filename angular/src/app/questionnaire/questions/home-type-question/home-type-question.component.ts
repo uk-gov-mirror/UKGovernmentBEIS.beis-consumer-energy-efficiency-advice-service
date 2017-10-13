@@ -1,5 +1,5 @@
 import {QuestionBaseComponent, QuestionComponent} from "../question.component";
-import {HomeType} from "./home-type-question";
+import {HomeType} from "./home-type";
 
 interface HomeTypeOption {
     name: string;
