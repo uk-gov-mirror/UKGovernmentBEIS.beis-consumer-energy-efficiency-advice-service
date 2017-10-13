@@ -1,5 +1,7 @@
+import {Injectable} from "@angular/core";
 import {HomeType} from "./home-type-question/home-type";
 
+@Injectable()
 export class ResponseData {
     private _homeType: HomeType;
 

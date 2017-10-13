@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeTypeQuestionComponent } from './home-type-question.component';
-import {HomeType, HomeTypeQuestion} from "./home-type-question";
+import { HomeTypeQuestion } from './home-type-question';
+import {ResponseData} from "../response-data";
 
 describe('HomeTypeQuestionComponent', () => {
     let component: HomeTypeQuestionComponent;
@@ -17,7 +18,7 @@ describe('HomeTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeTypeQuestionComponent);
         component = fixture.componentInstance;
-        component.question = new HomeTypeQuestion(() => undefined, () => {});
+        component.question = new HomeTypeQuestion(new ResponseData());
         fixture.detectChanges();
     });
 

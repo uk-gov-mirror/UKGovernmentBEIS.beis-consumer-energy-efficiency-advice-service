@@ -8,12 +8,10 @@ import {ResponseData} from "./response-data";
 export class QuestionService {
 
     private readonly questions: Question<any, QuestionBaseComponent<any>>[];
-    private responseData: ResponseData;
 
-    constructor() {
-        this.responseData = new ResponseData();
+    constructor(responseData: ResponseData) {
         this.questions = [
-            new HomeTypeQuestion(() => this.responseData.homeType, val => this.responseData.homeType = val)
+            new HomeTypeQuestion(responseData)
         ];
     }
 

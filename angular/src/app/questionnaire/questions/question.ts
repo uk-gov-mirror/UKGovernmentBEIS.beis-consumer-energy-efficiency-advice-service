@@ -1,15 +1,12 @@
 import { Type } from '@angular/core';
 import { QuestionBaseComponent } from "./question.component";
+import {ResponseData} from "./response-data";
 
 export abstract class Question<S, T extends QuestionBaseComponent<S>> {
-    constructor(public questionComponent: Type<T>, public heading: string, private responseGetter: () => S, private responseSetter: (S) => void) {
+    constructor(public questionComponent: Type<T>, public heading: string, protected responseData: ResponseData) {
     }
 
-    get response(): S {
-        return this.responseGetter();
-    }
+    abstract get response(): S;
 
-    set response(data: S) {
-        this.responseSetter(data);
-    }
+    abstract set response(val: S);
 }
