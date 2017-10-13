@@ -1,5 +1,6 @@
 import { Component, Input, HostBinding, ViewEncapsulation } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import {Question} from "./question";
 
 declare const Reflect: any;
 
@@ -38,6 +39,7 @@ const slideInOutAnimation = trigger('slideInOut', [
 export function QuestionComponent(metadata: any = {}) {
     return function(cls: any) {
         const annotations = Reflect.getMetadata('annotations', cls) || [];
+        // TODO: Don't use ViewEncapsulation.None, use global SCSS instead.
         annotations.push(new Component({...metadata, encapsulation: ViewEncapsulation.None, animations: [slideInOutAnimation]}));
         Reflect.defineMetadata('annotations', annotations, cls);
         return cls;
@@ -46,6 +48,14 @@ export function QuestionComponent(metadata: any = {}) {
 
 export abstract class QuestionBaseComponent<S> {
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
-    @Input() response: S;
-    @Input() onResponse: (response: S) => void;
+    @Input() question: Question<S, QuestionBaseComponent<S>>;
+    @Input() notifyOfCompletion: () => void;
+
+    get response(): S {
+        return this.question.response;
+    }
+
+    set response(val: S) {
+        this.question.response = val;
+    }
 }
