@@ -1,8 +1,8 @@
 <div class="dummy-question-options">
-  <div class="dummy-question-option" [class.selected]="isZero()" (click)="onResponse(0)">
+  <div class="dummy-question-option" [class.selected]="isZero()" (click)="this.response = 0; notifyOfCompletion()">
     0
   </div>
-  <div class="dummy-question-option" [class.selected]="isOne()" (click)="onResponse(1)">
+  <div class="dummy-question-option" [class.selected]="isOne()" (click)="this.response = 1; notifyOfCompletion()">
     1
   </div>
 </div>

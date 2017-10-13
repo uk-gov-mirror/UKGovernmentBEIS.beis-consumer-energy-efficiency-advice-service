@@ -81,12 +81,9 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionComponent = componentRef.instance;
 
             this.questionComponent.slideInOut = slideInFrom;
-            this.questionComponent.response = question.response;
-            this.questionComponent.onResponse = response => {
-                question.response = this.questionComponent.response = response;
-                // Allow a change-detection cycle to run, and the user to see their updated answer,
-                // before moving on to the next question.
-                setTimeout(() => this.goForwardsOneQuestion(), 50);
+            this.questionComponent.question = question;
+            this.questionComponent.notifyOfCompletion = () => {
+                this.goForwardsOneQuestion();
             };
         }
     }

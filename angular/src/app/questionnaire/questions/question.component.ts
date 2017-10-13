@@ -1,5 +1,6 @@
 import { Component, Input, HostBinding, ViewEncapsulation } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import {Question} from "./question";
 
 declare const Reflect: any;
 
@@ -46,7 +47,15 @@ export function QuestionComponent(metadata: any = {}) {
 }
 
 export abstract class QuestionBaseComponent<S> {
-    @HostBinding('@slideInOut')@Input() slideInOut: string = 'none';
-    @Input() response: S;
-    @Input() onResponse: (response: S) => void;
+    @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
+    @Input() question: Question<S, QuestionBaseComponent<S>>;
+    @Input() notifyOfCompletion: () => void;
+
+    get response(): S {
+        return this.question.response;
+    }
+
+    set response(val: S) {
+        this.question.response = val;
+    }
 }
