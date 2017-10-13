@@ -7,6 +7,7 @@ import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions
     selector: 'app-questionnaire',
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss'],
+    // TODO: Don't use ViewEncapsulation.None, use global SCSS instead.
     encapsulation: ViewEncapsulation.None
 })
 export class QuestionnaireComponent implements AfterViewInit {

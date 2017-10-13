@@ -38,6 +38,7 @@ const slideInOutAnimation = trigger('slideInOut', [
 export function QuestionComponent(metadata: any = {}) {
     return function(cls: any) {
         const annotations = Reflect.getMetadata('annotations', cls) || [];
+        // TODO: Don't use ViewEncapsulation.None, use global SCSS instead.
         annotations.push(new Component({...metadata, encapsulation: ViewEncapsulation.None, animations: [slideInOutAnimation]}));
         Reflect.defineMetadata('annotations', annotations, cls);
         return cls;
