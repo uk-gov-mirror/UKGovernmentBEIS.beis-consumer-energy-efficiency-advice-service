@@ -1,0 +1,12 @@
+<div class="question-component postcode-epc-question">
+    <form class="questionnaire-form" (submit)="handlePostcodeEntered()">
+        <div class="form-element">
+            <input class="text-input" id="postcode-input" name="postcode-input" type="text" spellcheck="false"
+                   [(ngModel)]="postcodeInput">
+            <button id="submit-postcode" type="submit" class="submit-button"></button>
+            <label title="Search" for="submit-postcode" class="submit-icon">►</label>
+        </div>
+    </form>
+    <div class="validation-error-message"
+         *ngIf="shouldDisplayValidationErrorMessage">Please enter a full valid UK postcode</div>
+</div>

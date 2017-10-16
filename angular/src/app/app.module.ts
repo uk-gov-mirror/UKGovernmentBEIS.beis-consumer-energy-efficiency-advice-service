@@ -17,6 +17,7 @@ import {QuestionService} from "./questionnaire/questions/question.service";
 import {HomeTypeQuestionComponent} from "./questionnaire/questions/home-type-question/home-type-question.component";
 import {ResponseData} from "./questionnaire/questions/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
+import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
 
 @NgModule({
     declarations: [
@@ -25,8 +26,10 @@ import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-questi
         CalculatorComponent,
         PostcodeEpcComponent,
         OcrComponent,
+        OcrComponent,
         QuestionDirective,
         QuestionnaireComponent,
+        PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
         StoreysQuestionComponent
     ],
@@ -38,6 +41,7 @@ import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-questi
         FormsModule
     ],
     entryComponents: [
+        PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
         StoreysQuestionComponent
     ],

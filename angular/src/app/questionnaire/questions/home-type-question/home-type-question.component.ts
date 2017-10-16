@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
 import {HomeType} from "./home-type";
 
@@ -12,8 +12,6 @@ interface HomeTypeOption {
     selector: 'app-home-type-question',
     templateUrl: './home-type-question.component.html',
     styleUrls: ['./home-type-question.component.scss'],
-    // TODO: Remove this and use global SCSS instead
-    encapsulation: ViewEncapsulation.None,
     animations: [slideInOutAnimation]
 })
 export class HomeTypeQuestionComponent extends QuestionBaseComponent<HomeType> {
