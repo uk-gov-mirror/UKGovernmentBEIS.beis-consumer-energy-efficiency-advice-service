@@ -3,12 +3,9 @@
   flex-direction: column;
 }
 
-.home-age-options {
+.home-age-timeline {
   display: flex;
   flex-direction: row;
-}
-
-.home-age-timeline {
 }
 
 .home-age-timeline-slider {
@@ -24,7 +21,8 @@
 .home-age-option {
   display: flex;
   flex-direction: column;
-  width: 90px;
+  flex-grow: 0;
+  flex-shrink: 0;
 
   .home-age-timeline-section {
     height: 10px;

@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {HomeAgeQuestionComponent} from './home-age-question.component';
-import {HorizontalDraggableSelectorDirective} from './horizontal-draggable-selector.directive';
 import {ResponseData} from '../response-data';
 import {HomeAgeQuestion} from './home-age-question';
 import {HomeAge} from './home-age';
@@ -14,7 +13,7 @@ describe('HomeAgeQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HomeAgeQuestionComponent, HorizontalDraggableSelectorDirective ]
+            declarations: [ HomeAgeQuestionComponent ]
         })
             .compileComponents();
     }));
@@ -35,7 +34,7 @@ describe('HomeAgeQuestionComponent', () => {
     it('should set the response when clicking on a home age', () => {
         // given
         const expectedHomeAge = HomeAge.from1950to1966;
-        const homeAgeOptions = fixture.debugElement.query(By.css('.home-age-options'));
+        const homeAgeOptions = fixture.debugElement.query(By.css('.home-age-timeline'));
         const homeAgeOption = homeAgeOptions.children[expectedHomeAge];
 
         // when
@@ -48,7 +47,7 @@ describe('HomeAgeQuestionComponent', () => {
     it('should notify of completion when clicking on a home age', () => {
         // given
         const expectedHomeAge = HomeAge.from1950to1966;
-        const homeAgeOptions = fixture.debugElement.query(By.css('.home-age-options'));
+        const homeAgeOptions = fixture.debugElement.query(By.css('.home-age-timeline'));
         const homeAgeOption = homeAgeOptions.children[expectedHomeAge];
 
         // when
