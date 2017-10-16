@@ -45,6 +45,5 @@ export abstract class QuestionBaseComponent<S> {
 
     set response(val: S) {
         this.question.response = val;
-        this.notifyOfCompletion();
     }
 }

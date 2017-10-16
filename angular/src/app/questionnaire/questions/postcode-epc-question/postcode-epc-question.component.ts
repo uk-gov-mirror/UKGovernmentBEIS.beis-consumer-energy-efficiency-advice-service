@@ -27,6 +27,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<string> 
         this.shouldDisplayValidationErrorMessage = isInputEmpty || isInputInvalid;
         if (!this.shouldDisplayValidationErrorMessage) {
             this.response = this.postcodeInput;
+            this.notifyOfCompletion();
         }
     }
 }
