@@ -1,0 +1,12 @@
+.question-component {
+  width: 1008px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .help-text {
+    width: 768px;
+    text-align: center;
+  }
+}
