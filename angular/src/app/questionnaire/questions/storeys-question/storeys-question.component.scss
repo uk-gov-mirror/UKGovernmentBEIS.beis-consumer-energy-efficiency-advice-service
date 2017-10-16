@@ -35,6 +35,14 @@ input[type="number"] {
     cursor: default;
   }
 
+  &:not([disabled]) {
+    &:hover, &:focus {
+      background-color: white;
+      border: 1px solid black;
+      color: black;
+    }
+  }
+
   display: inline-flex;
   align-items: center;
   justify-content: center;

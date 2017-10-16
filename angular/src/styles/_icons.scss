@@ -1,7 +1,7 @@
-i.icon-tree {
+i.icon-tree::before {
   content: url('/assets/images/icons/tree.svg');
 }
 
-i.icon-home-storeys {
+i.icon-home-storeys::before {
   content: url('/assets/images/icons/home-storeys.svg');
 }

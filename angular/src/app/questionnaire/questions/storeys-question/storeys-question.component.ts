@@ -1,16 +1,24 @@
-import {QuestionBaseComponent, QuestionComponent} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 
-@QuestionComponent({
+@Component({
     selector: 'app-storeys-question',
     templateUrl: './storeys-question.component.html',
-    styleUrls: ['./storeys-question.component.scss']
+    styleUrls: ['./storeys-question.component.scss'],
+    // TODO: Remove this and use global SCSS instead
+    encapsulation: ViewEncapsulation.None,
+    animations: [slideInOutAnimation]
 })
-export class StoreysQuestionComponent extends QuestionBaseComponent<number> {
-    storeys: number = 1;
+export class StoreysQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
+    storeys: number;
     isInvalid: boolean;
 
     constructor() {
         super();
+    }
+
+    ngOnInit() {
+        this.storeys = this.response || 1;
     }
 
     increaseStoreys(amount: number): void {
@@ -23,7 +31,7 @@ export class StoreysQuestionComponent extends QuestionBaseComponent<number> {
             this.isInvalid = true;
         } else {
             this.isInvalid = false;
-            console.log(this.storeys);
+            this.response = this.storeys;
         }
     }
 }
