@@ -1,26 +1,26 @@
 .multiple-choice-options .multiple-choice-option .icon-container {
   &.electricity::after {
-    content: url('../../../../assets/images/fuel-types/electricty.svg');
+    content: url('/assets/images/fuel-types/electricty.svg');
     line-height: 0;
   }
 
   &.mains-gas::after {
-    content: url('../../../../assets/images/fuel-types/mains-gas.svg');
+    content: url('/assets/images/fuel-types/mains-gas.svg');
     line-height: 0;
   }
 
   &.lpg-gas::after {
-    content: url('../../../../assets/images/fuel-types/lpg-gas.svg');
+    content: url('/assets/images/fuel-types/lpg-gas.svg');
     line-height: 0;
   }
 
   &.heating-oil::after {
-    content: url('../../../../assets/images/fuel-types/heating-oil.svg');
+    content: url('/assets/images/fuel-types/heating-oil.svg');
     line-height: 0;
   }
 
   &.solid-fuel::after {
-    content: url('../../../../assets/images/fuel-types/solid-fuel.svg');
+    content: url('/assets/images/fuel-types/solid-fuel.svg');
     line-height: 0;
   }
 }
