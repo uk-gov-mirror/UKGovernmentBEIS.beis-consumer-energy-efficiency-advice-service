@@ -5,8 +5,6 @@ import {Component, OnInit, ViewEncapsulation} from "@angular/core";
     selector: 'app-storeys-question',
     templateUrl: './storeys-question.component.html',
     styleUrls: ['./storeys-question.component.scss'],
-    // TODO: Remove this and use global SCSS instead
-    encapsulation: ViewEncapsulation.None,
     animations: [slideInOutAnimation]
 })
 export class StoreysQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
