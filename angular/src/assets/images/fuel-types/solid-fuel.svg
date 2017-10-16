@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="67px" viewBox="0 0 48 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>solid-fuel</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Supply" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="solid-fuel">
+            <path d="M24.4637162,0.0180774995 C24.4637162,-0.600021073 36.9274324,14.7797638 36.9274324,23.5080544 C36.9274324,32.2363449 31.7803256,36.2082163 24.4637162,39.3521739 C17.1471068,36.2082163 12,32.2363449 12,23.5080544 C12,14.7797638 24.6614935,0.569518383 24.4637162,0.0180774995 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+            <path d="M25.098793,19 C28.0919514,20.356056 30.197586,23.5827329 30.197586,27.3474308 C30.197586,31.1121287 28.0919514,34.3388057 25.098793,35.6948617 C22.1056346,34.3388057 20,31.1121287 20,27.3474308 C20,23.5827329 22.1056346,20.356056 25.098793,19 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            <polygon id="Rectangle-16" fill="#000000" points="6.82121026e-13 56.7420518 43.6394156 35 48 44.9912815 4.36058437 66.7333333"></polygon>
+            <polygon id="Rectangle-16" fill="#000000" points="4.36058437 35 48 56.7420518 43.6394156 66.7333333 6.82121026e-13 44.9912815"></polygon>
+        </g>
+    </g>
+</svg>

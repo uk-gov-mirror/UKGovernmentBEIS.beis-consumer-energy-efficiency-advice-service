@@ -4,6 +4,7 @@ import {QuestionBaseComponent} from "./question.component";
 import {HomeTypeQuestion} from "./home-type-question/home-type-question";
 import {ResponseData} from "./response-data";
 import {PostcodeEpcQuestion} from './postcode-epc-question/postcode-epc-question';
+import {FuelTypeQuestion} from './fuel-type-question/fuel-type-question';
 
 @Injectable()
 export class QuestionService {
@@ -14,6 +15,7 @@ export class QuestionService {
         this.questions = [
             new PostcodeEpcQuestion(responseData),
             new HomeTypeQuestion(responseData),
+            new FuelTypeQuestion(responseData)
         ];
     }
 

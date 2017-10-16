@@ -1,0 +1,9 @@
+<div class="question-component">
+    <div class="multiple-choice-options">
+        <div tabindex="0" class="multiple-choice-option" *ngFor="let option of fuelTypeOptions"
+             [class.selected]="response === option.value" (click)="response = option.value">
+            <div class="icon-container" [ngClass]="option.className"></div>
+            <span class="name">{{option.name}}</span>
+        </div>
+    </div>
+</div>
