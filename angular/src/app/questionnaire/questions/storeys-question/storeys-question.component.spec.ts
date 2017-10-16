@@ -29,7 +29,6 @@ describe('StoreysQuestionComponent', () => {
         responseData.numberOfStoreys = originalNumberOfStoreys;
 
         component.question = new StoreysQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });
 
@@ -39,7 +38,7 @@ describe('StoreysQuestionComponent', () => {
 
     it('should populate with original number of storeys in response data', async(() => {
         fixture.whenStable().then(() => {
-            let storeysInput = fixture.debugElement.query(By.css('input.storeys-input'));
+            let storeysInput = fixture.debugElement.query(By.css('input'));
             expect(storeysInput.nativeElement.value).toBe(originalNumberOfStoreys.toString());
         });
     }));
@@ -49,7 +48,7 @@ describe('StoreysQuestionComponent', () => {
         const expectedStoreys = 5;
 
         // when
-        let storeysInput = fixture.debugElement.query(By.css('input.storeys-input'));
+        let storeysInput = fixture.debugElement.query(By.css('input'));
         storeysInput.nativeElement.value = expectedStoreys;
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -57,19 +56,7 @@ describe('StoreysQuestionComponent', () => {
         expect(responseData.numberOfStoreys).toBe(expectedStoreys);
     });
 
-    it('should notify of completion given a valid number of storeys', () => {
-        // given
-
-        // when
-        let storeysInput = fixture.debugElement.query(By.css('input.storeys-input'));
-        storeysInput.nativeElement.value = 6;
-        storeysInput.nativeElement.dispatchEvent(new Event('input'));
-
-        // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
-    });
-
-    it('should not set the response nor notify of completion given an invalid number of storeys', () => {
+    it('should not set the response given an invalid number of storeys', () => {
         // given
         const invalidStoreys = 0;
 
@@ -80,7 +67,6 @@ describe('StoreysQuestionComponent', () => {
 
         // then
         expect(responseData.numberOfStoreys).not.toBe(invalidStoreys);
-        expect(component.notifyOfCompletion).not.toHaveBeenCalled();
     });
 
     it('should increase and decrease storeys when buttons are clicked', () => {
@@ -93,7 +79,6 @@ describe('StoreysQuestionComponent', () => {
 
         // then
         expect(responseData.numberOfStoreys).toBe(originalNumberOfStoreys - 1);
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
 
         // when
         increaseButton.nativeElement.click();
