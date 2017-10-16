@@ -16,7 +16,7 @@ export class StoreysQuestionComponent extends QuestionBaseComponent<number> impl
     }
 
     ngOnInit() {
-        this.storeys = this.response || 1;
+        this.storeys = this.response = this.response || 1;
     }
 
     increaseStoreys(amount: number): void {
