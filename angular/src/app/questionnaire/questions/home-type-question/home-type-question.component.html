@@ -1,9 +1,9 @@
 <div class="question-component">
     <div class="multiple-choice-options">
         <div class="baseline"></div>
-        <div tabindex="0" class="multiple-choice-option" *ngFor="let option of homeTypeOptions" [class.selected]="response === option.value" (click)="response = option.value">
+        <button class="multiple-choice-option" *ngFor="let option of homeTypeOptions" [class.selected]="response === option.value" (click)="response = option.value">
             <div class="icon-container" [ngClass]="option.className"></div>
             <span class="name">{{option.name}}</span>
-        </div>
+        </button>
     </div>
-</div>
+</div>      
