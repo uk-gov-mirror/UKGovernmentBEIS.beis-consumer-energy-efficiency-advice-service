@@ -74,7 +74,7 @@ describe('StoreysQuestionComponent', () => {
         const invalidStoreys = 0;
 
         // when
-        let storeysInput = fixture.debugElement.query(By.css('input.storeys-input'));
+        let storeysInput = fixture.debugElement.query(By.css('input'));
         storeysInput.nativeElement.value = invalidStoreys;
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 

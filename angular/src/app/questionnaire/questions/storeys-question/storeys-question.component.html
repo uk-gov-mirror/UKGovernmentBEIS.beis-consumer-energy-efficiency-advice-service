@@ -1,10 +1,10 @@
-<div class="storeys-question">
-  <div>
+<div class="storeys-question question-component">
+  <div class="form-element">
     <button (click)="increaseStoreys(-1)" [disabled]="storeys <= 1" class="increase-button"><span>-</span></button>
-    <input class="storeys-input" type="number" [(ngModel)]="storeys" (ngModelChange)="updateStoreys()" [attr.aria-label]="question.heading">
+    <input class="text-input" type="number" [(ngModel)]="storeys" (ngModelChange)="updateStoreys()" [attr.aria-label]="question.heading">
     <button (click)="increaseStoreys(1)" class="increase-button">+</button>
   </div>
-  <div *ngIf="isInvalid">
+  <div *ngIf="isInvalid" class="validation-error-message">
     Please enter a valid number of storeys.
   </div>
   <div class="storeys-icons">
