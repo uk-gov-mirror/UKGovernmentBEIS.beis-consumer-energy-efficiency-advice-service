@@ -11,6 +11,12 @@ describe('QuestionnaireComponent', () => {
         getQuestion(index) {
             return undefined;
         }
+        getPreviousQuestionIndex(index) {
+            return -1;
+        }
+        getNextQuestionIndex(index) {
+            return -1;
+        }
         getHeading(index) {
             return 'question';
         }

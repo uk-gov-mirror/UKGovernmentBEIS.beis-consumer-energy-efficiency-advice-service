@@ -2,6 +2,7 @@ import {Question} from "../question";
 import {FlatPositionQuestionComponent} from "./flat-position-question.component";
 import {FlatPosition} from './flat-position';
 import {ResponseData} from "../response-data";
+import {isFlat} from "../home-type-question/home-type";
 
 export class FlatPositionQuestion extends Question<FlatPosition, FlatPositionQuestionComponent> {
     constructor(responseData: ResponseData) {
@@ -14,5 +15,9 @@ export class FlatPositionQuestion extends Question<FlatPosition, FlatPositionQue
 
     set response(val: FlatPosition) {
         this.responseData.flatPosition = val;
+    }
+
+    isApplicable(): boolean {
+        return isFlat(this.responseData.homeType);
     }
 }

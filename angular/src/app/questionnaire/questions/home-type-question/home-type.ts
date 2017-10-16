@@ -10,3 +10,9 @@ export enum HomeType {
     BungalowAttached,
     ParkHome,
 }
+
+export function isFlat(homeType: HomeType): boolean {
+    return homeType === HomeType.GroundFloorFlat ||
+           homeType === HomeType.MidFloorFlat ||
+           homeType === HomeType.TopFloorFlat;
+}

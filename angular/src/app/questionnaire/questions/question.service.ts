@@ -27,6 +27,24 @@ export class QuestionService {
         return this.questions[index];
     }
 
+    public getPreviousQuestionIndex(index: number) {
+        for (let i = index - 1; i >= 0; i--) {
+            if (this.questions[i].isApplicable()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public getNextQuestionIndex(index: number) {
+        for (let i = index + 1; i < this.questions.length; i++) {
+            if (this.questions[i].isApplicable()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public getHeading(index: number) {
         return this.questions[index].heading;
     }

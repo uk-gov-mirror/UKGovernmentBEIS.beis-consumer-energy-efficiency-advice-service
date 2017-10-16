@@ -32,27 +32,25 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     canGoBack() {
-        return this.currentQuestionIndex !== 0;
+        return this.questionService.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     canGoForwards() {
-        return (
-            this.questionService.getQuestion(this.currentQuestionIndex) !== undefined &&
-            this.questionService.getQuestion(this.currentQuestionIndex).response !== undefined &&
-            this.currentQuestionIndex + 1 < this.questionService.numberOfQuestions
-        );
+        return this.questionService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     goBackOneQuestion() {
-        if (this.canGoBack()) {
-            this.currentQuestionIndex -= 1;
+        const prevIndex = this.questionService.getPreviousQuestionIndex(this.currentQuestionIndex);
+        if (prevIndex !== -1) {
+            this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
         }
     }
 
     goForwardsOneQuestion() {
-        if (this.canGoForwards()) {
-            this.currentQuestionIndex += 1;
+        const nextIndex = this.questionService.getNextQuestionIndex(this.currentQuestionIndex);
+        if (nextIndex !== -1) {
+            this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
         }
     }

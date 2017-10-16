@@ -9,4 +9,8 @@ export abstract class Question<S, T extends QuestionBaseComponent<S>> {
     abstract get response(): S;
 
     abstract set response(val: S);
+
+    isApplicable(): boolean {
+        return true;
+    }
 }
