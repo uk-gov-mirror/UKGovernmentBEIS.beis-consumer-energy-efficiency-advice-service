@@ -8,6 +8,7 @@ import {StoreysQuestion} from "./storeys-question/storeys-question";
 import {FuelTypeQuestion} from "./fuel-type-question/fuel-type-question";
 import {PostcodeEpcQuestion} from "./postcode-epc-question/postcode-epc-question";
 import {FlatPositionQuestion} from "./flat-position-question/flat-position-question";
+import {BoilerTypeQuestion} from "./boiler-type-question/boiler-type-question";
 
 @Injectable()
 export class QuestionService {
@@ -20,7 +21,8 @@ export class QuestionService {
             new HomeTypeQuestion(responseData),
             new FlatPositionQuestion(responseData),
             new StoreysQuestion(responseData),
-            new FuelTypeQuestion(responseData)
+            new FuelTypeQuestion(responseData),
+            new BoilerTypeQuestion(responseData),
         ];
     }
 

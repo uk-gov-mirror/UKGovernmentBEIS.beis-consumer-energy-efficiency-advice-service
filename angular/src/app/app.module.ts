@@ -20,6 +20,7 @@ import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-questi
 import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
 import {FuelTypeQuestionComponent} from './questionnaire/questions/fuel-type-question/fuel-type-question.component';
 import { FlatPositionQuestionComponent } from './questionnaire/questions/flat-position-question/flat-position-question.component';
+import { BoilerTypeQuestionComponent } from './questionnaire/questions/boiler-type-question/boiler-type-question.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { FlatPositionQuestionComponent } from './questionnaire/questions/flat-po
         StoreysQuestionComponent,
         FuelTypeQuestionComponent,
         HomeTypeQuestionComponent,
-        FlatPositionQuestionComponent
+        FlatPositionQuestionComponent,
+        BoilerTypeQuestionComponent
     ],
     imports: [
         BrowserModule,
@@ -52,6 +54,7 @@ import { FlatPositionQuestionComponent } from './questionnaire/questions/flat-po
         FuelTypeQuestionComponent,
         HomeTypeQuestionComponent,
         FlatPositionQuestionComponent,
+        BoilerTypeQuestionComponent,
     ],
     providers: [WordpressApiService, QuestionService, ResponseData],
     bootstrap: [AppComponent],
