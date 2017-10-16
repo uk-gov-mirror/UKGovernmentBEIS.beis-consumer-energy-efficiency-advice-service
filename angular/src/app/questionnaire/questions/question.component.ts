@@ -15,9 +15,9 @@ export function oppositeDirection(slideInFrom: SlideInFrom): SlideInFrom {
 }
 
 export const slideInOutAnimation = trigger('slideInOut', [
-    state('none', style({transform: 'translateX(0)'})),
-    state('left', style({transform: 'translateX(0)'})),
-    state('right', style({transform: 'translateX(0)'})),
+    state('none', style({transform: 'translateX(-50%)'})),
+    state('left', style({transform: 'translateX(-50%)'})),
+    state('right', style({transform: 'translateX(-50%)'})),
     transition('void => left', [
         style({transform: 'translateX(-100vw)'}),
         animate(500)
