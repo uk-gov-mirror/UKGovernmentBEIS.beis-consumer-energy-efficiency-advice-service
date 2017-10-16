@@ -18,6 +18,7 @@ import {HomeTypeQuestionComponent} from "./questionnaire/questions/home-type-que
 import {ResponseData} from "./questionnaire/questions/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
 import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
+import {FuelTypeQuestionComponent} from './questionnaire/questions/fuel-type-question/fuel-type-question.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-e
         QuestionnaireComponent,
         PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
-        StoreysQuestionComponent
+        StoreysQuestionComponent,
+        FuelTypeQuestionComponent
     ],
     imports: [
         BrowserModule,
@@ -43,7 +45,8 @@ import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-e
     entryComponents: [
         PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
-        StoreysQuestionComponent
+        StoreysQuestionComponent,
+        FuelTypeQuestionComponent
     ],
     providers: [WordpressApiService, QuestionService, ResponseData],
     bootstrap: [AppComponent],

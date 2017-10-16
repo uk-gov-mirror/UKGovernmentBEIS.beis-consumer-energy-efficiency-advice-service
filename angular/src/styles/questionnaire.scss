@@ -15,6 +15,7 @@
       display: block;
       position: absolute;
       left: 50%;
+      transform: translateX(-50%);
       max-width: 100%;
     }
   }
@@ -50,6 +51,10 @@
       text-align: center;
       text-transform: uppercase;
       outline: none;
+
+      &:focus {
+        box-shadow: 0 0 10px 4px grey;
+      }
     }
 
     .submit-button {
@@ -78,7 +83,7 @@
       .baseline {
         position: absolute;
         width: 100%;
-        top: 149px;
+        top: 150px;
         box-sizing: border-box;
         border-bottom: 1px solid #9C9C9C;
       }
@@ -86,6 +91,9 @@
       .multiple-choice-option {
         flex: 0 1 auto;
         margin: 0 12px;
+
+        background: none;
+        border: none;
 
         display: flex;
         flex-direction: column;

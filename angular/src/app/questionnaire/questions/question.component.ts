@@ -15,22 +15,22 @@ export function oppositeDirection(slideInFrom: SlideInFrom): SlideInFrom {
 }
 
 export const slideInOutAnimation = trigger('slideInOut', [
-    state('none', style({transform: 'translateX(-50%)'})),
-    state('left', style({transform: 'translateX(-50%)'})),
-    state('right', style({transform: 'translateX(-50%)'})),
+    state('none', style({left: '50%'})),
+    state('left', style({left: '50%'})),
+    state('right', style({left: '50%'})),
     transition('void => left', [
-        style({transform: 'translateX(-100vw)'}),
+        style({left: '-50vw'}),
         animate(500)
     ]),
     transition('void => right', [
-        style({transform: 'translateX(100vw)'}),
+        style({left: '150vw'}),
         animate(500)
     ]),
     transition('left => void', [
-        animate(500, style({transform: 'translateX(-100vw)'}))
+        animate(500, style({left: '-50vw'}))
     ]),
     transition('right => void', [
-        animate(500, style({transform: 'translateX(100vw)'}))
+        animate(500, style({left: '150vw'}))
     ])
 ]);
 

@@ -1,9 +1,9 @@
 <h2 class="questionnaire-heading">Questionnaire heading</h2>
 <div class="questions-container">
     <div class="question-heading">
-        <div class="left-arrow" [class.inactive]="!canGoBack()" (click)="goBackOneQuestion()"><</div>
+        <button class="left-arrow" [disabled]="!canGoBack()" (click)="goBackOneQuestion()"><</button>
         <div class="heading">{{getHeading()}}</div>
-        <div class="right-arrow" [class.inactive]="!canGoForwards()" (click)="goForwardsOneQuestion()">></div>
+        <button class="right-arrow" [disabled]="!canGoForwards()" (click)="goForwardsOneQuestion()">></button>
     </div>
     <div class="question">
         <ng-template question-host></ng-template>
