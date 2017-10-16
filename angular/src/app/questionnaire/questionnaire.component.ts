@@ -36,7 +36,9 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     canGoForwards() {
-        return this.questionService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
+        return this.questionService.getQuestion(this.currentQuestionIndex) !== undefined &&
+               this.questionService.getQuestion(this.currentQuestionIndex).response !== undefined &&
+               this.questionService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     goBackOneQuestion() {

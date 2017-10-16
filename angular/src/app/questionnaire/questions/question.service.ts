@@ -29,7 +29,9 @@ export class QuestionService {
     }
 
     public getPreviousQuestionIndex(index: number) {
-        return findLastIndex(this.questions, q => q.isApplicable(), index - 1);
+        return index === 0
+            ? -1
+            : findLastIndex(this.questions, q => q.isApplicable(), index - 1);
     }
 
     public getNextQuestionIndex(index: number) {
