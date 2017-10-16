@@ -37,8 +37,9 @@
       font-size: 16px;
       margin: 0 16px;
 
-      &.inactive {
+      &[disabled] {
         background-color: #9C9C9C;
+        cursor: default;
       }
 
       display: flex;
