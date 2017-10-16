@@ -12,7 +12,7 @@
         <div *ngIf="error.message" class="error-message">{{error.message}}</div>
     </div>
     <div class="loading-spinner" *ngIf="shouldDisplayLoadingSpinner"></div>
-    <div *ngIf="allEpcsForPostcode && allEpcsForPostcode.length">
+    <div *ngIf="allEpcsForPostcode && allEpcsForPostcode.length > 0">
         <div class="select-address">Please select your address:</div>
         <div class="list-select">
             <div class="list-select-option" [class.selected]="isSelected(epc)"

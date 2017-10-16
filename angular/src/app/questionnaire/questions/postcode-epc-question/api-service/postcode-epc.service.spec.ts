@@ -36,7 +36,7 @@ describe('PostcodeEpcService', () => {
 
         const postcode = 'SW1H 0ET';
 
-        it('return data from the API endpoint', async(() => {
+        it('returns data from the API endpoint', async(() => {
             // given
             const expectedResponse: EpcsResponse = {
                 'column-names': ['dummy-column'],
