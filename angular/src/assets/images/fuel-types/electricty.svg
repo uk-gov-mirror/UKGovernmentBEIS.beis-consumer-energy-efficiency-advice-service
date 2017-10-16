@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="136px" viewBox="0 0 46 136" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>electricty</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Supply" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="electricty" fill="#000000">
+            <g id="Group-5" transform="translate(0.000000, 4.000000)">
+                <g id="Group-4" transform="translate(22.963803, 14.952165) rotate(20.000000) translate(-22.963803, -14.952165) translate(14.963803, 1.952165)">
+                    <path d="M9,-2.84415681 L9,16 L9,16 C9,16.5522847 8.55228475,17 8,17 L0.89220939,17 L0.89220939,17 C0.33992464,17 -0.10779061,16.5522847 -0.10779061,16 C-0.10779061,15.8794439 -0.085991379,15.7598812 -0.0434449989,15.6470824 L7.06434561,-3.19707446 L7.06434561,-3.19707446 C7.25925665,-3.71382211 7.83617,-3.97472223 8.35291765,-3.7798112 C8.7422839,-3.63294691 9,-3.26030006 9,-2.84415681 Z" id="Rectangle-12"></path>
+                    <path d="M8,9 L15.1077906,9 L15.1077906,9 C15.6600754,9 16.1077906,9.44771525 16.1077906,10 C16.1077906,10.1205561 16.0859914,10.2401188 16.043445,10.3529176 L8.93565439,29.1970745 L8.93565439,29.1970745 C8.74074335,29.7138221 8.16383,29.9747222 7.64708235,29.7798112 C7.2577161,29.6329469 7,29.2603001 7,28.8441568 L7,10 L7,10 C7,9.44771525 7.44771525,9 8,9 Z" id="Rectangle-12-Copy"></path>
+                </g>
+                <rect id="Rectangle-13" x="0" y="66" width="46" height="9"></rect>
+                <rect id="Rectangle-14" x="7" y="48" width="8" height="15"></rect>
+                <rect id="Rectangle-14-Copy" x="30" y="48" width="8" height="15"></rect>
+                <path d="M7,71 L38,71 L38,88 L38,88 C38,92.418278 34.418278,96 30,96 L15,96 L15,96 C10.581722,96 7,92.418278 7,88 L7,71 Z" id="Rectangle-15"></path>
+                <rect id="Rectangle-2" x="18" y="99" width="8" height="32"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
