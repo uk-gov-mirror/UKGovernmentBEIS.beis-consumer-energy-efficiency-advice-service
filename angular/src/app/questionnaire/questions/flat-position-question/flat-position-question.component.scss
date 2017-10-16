@@ -1,57 +1,17 @@
-// TODO: Consider moving some of this to a global style sheet.
+.multiple-choice-options .multiple-choice-option .icon-container {
+  .one-side-exposed {
+    content: url('../../../../assets/images/flat-positions/one-side-exposed.svg');
+  }
 
-.flat-position-options {
-  display: flex;
-  justify-content: space-between;
+  .two-sides-exposed {
+    content: url('../../../../assets/images/flat-positions/two-sides-exposed.svg');
+  }
 
-  .flat-position-option {
-    flex: 0 1 auto;
-    margin: 0 12px;
+  .three-sides-exposed {
+    content: url('../../../../assets/images/flat-positions/three-sides-exposed.svg');
+  }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .icon-container {
-      height: 150px;
-      position: relative;
-
-      display: flex;
-      align-items: flex-end;
-
-      .one-side-exposed {
-        content: url('../../../../assets/images/flat-positions/one-side-exposed.svg');
-      }
-
-      .two-sides-exposed {
-        content: url('../../../../assets/images/flat-positions/two-sides-exposed.svg');
-      }
-
-      .three-sides-exposed {
-        content: url('../../../../assets/images/flat-positions/three-sides-exposed.svg');
-      }
-
-      .four-sides-exposed {
-        content: url('../../../../assets/images/flat-positions/four-sides-exposed.svg');
-      }
-    }
-
-    .flat-position-name {
-      text-align: center;
-      margin-top: 8px;
-
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    &:hover, &:active {
-      outline: none;
-      background-color: rgba(#2196F3, 0.2);
-    }
-
-    &.selected {
-      outline: none;
-      background-color: rgba(#2196F3, 0.5);
-    }
+  .four-sides-exposed {
+    content: url('../../../../assets/images/flat-positions/four-sides-exposed.svg');
   }
 }

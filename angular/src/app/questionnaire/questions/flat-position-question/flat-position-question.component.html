@@ -1,8 +1,10 @@
-<div class="flat-position-options">
-  <div tabindex="0" class="flat-position-option" *ngFor="let option of flatPositionOptions" [class.selected]="response === option.value" (click)="response = option.value">
-    <div class="icon-container">
-      <img [ngClass]="option.className">
+<div class="question-component">
+    <div class="multiple-choice-options">
+        <div tabindex="0" class="multiple-choice-option" *ngFor="let option of flatPositionOptions" [class.selected]="response === option.value" (click)="response = option.value">
+            <div class="icon-container">
+                <img [ngClass]="option.className">
+            </div>
+            <span class="name">{{option.name}}</span>
+        </div>
     </div>
-    <span class="flat-position-name">{{option.name}}</span>
-  </div>
 </div>
