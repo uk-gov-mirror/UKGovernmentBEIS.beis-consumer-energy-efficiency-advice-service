@@ -1,3 +1,5 @@
+@import '~styles/mixins/buttons';
+
 .storeys-question {
   display: flex;
   flex-direction: column;
@@ -16,36 +18,10 @@ input[type="number"] {
   margin: 0 8px;
 }
 
-// TODO: when the questionnaire scss is moved to a common file, use that
 .increase-button {
-  border: none;
-  cursor: pointer;
-
-  width: 32px;
-  height: 32px;
-  border-radius: 100%;
-  background-color: black;
-  color: white;
-  font-weight: 900;
+  @include default-button(32px);
   font-size: 16px;
   margin: 0 16px;
-
-  &[disabled] {
-    background-color: #9C9C9C;
-    cursor: default;
-  }
-
-  &:not([disabled]) {
-    &:hover, &:focus {
-      background-color: white;
-      border: 1px solid black;
-      color: black;
-    }
-  }
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .storeys-icons {

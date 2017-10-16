@@ -1,3 +1,5 @@
+@import '~styles/mixins/buttons';
+
 .questionnaire-heading {
   width: 100%;
   text-align: center;
@@ -28,22 +30,9 @@
     }
 
     .left-arrow, .right-arrow {
-      width: 32px;
-      height: 32px;
-      border-radius: 100%;
-      background-color: black;
-      color: white;
-      font-weight: 900;
+      @include default-button(32px);
       font-size: 16px;
       margin: 0 16px;
-
-      &.inactive {
-        background-color: #9C9C9C;
-      }
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 }

@@ -7,8 +7,7 @@ declare const gaId: any;
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
     readonly title = 'the BEIS DCEAS app';

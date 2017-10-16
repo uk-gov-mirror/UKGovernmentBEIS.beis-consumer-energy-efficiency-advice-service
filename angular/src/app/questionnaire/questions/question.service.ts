@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {Question} from "./question";
 import {QuestionBaseComponent} from "./question.component";
 import {HomeTypeQuestion} from "./home-type-question/home-type-question";
 import {ResponseData} from "./response-data";
 import {StoreysQuestion} from "./storeys-question/storeys-question";
-import {PostcodeEpcQuestion} from './postcode-epc-question/postcode-epc-question';
+import {PostcodeEpcQuestion} from "./postcode-epc-question/postcode-epc-question";
 
 @Injectable()
 export class QuestionService {

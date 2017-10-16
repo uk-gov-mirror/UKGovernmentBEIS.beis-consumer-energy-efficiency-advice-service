@@ -1,0 +1,27 @@
+@mixin default-button($size) {
+  cursor: pointer;
+  border: none;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  width: $size;
+  height: $size;
+  font-weight: bold;
+
+  &[disabled], &.inactive {
+    background-color: #9C9C9C;
+    cursor: default;
+  }
+
+  &:not([disabled]) {
+    &:hover, &:focus {
+      background-color: white;
+      border: 1px solid black;
+      color: black;
+    }
+  }
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
