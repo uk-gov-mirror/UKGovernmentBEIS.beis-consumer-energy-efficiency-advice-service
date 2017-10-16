@@ -16,7 +16,7 @@ import {QuestionDirective} from "./questionnaire/questions/question.directive";
 import {QuestionService} from "./questionnaire/questions/question.service";
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
 import {ResponseData} from "./questionnaire/questions/response-data";
-import {PostcodeComponent} from './postcode/postcode.component';
+import {PostcodeEpcQuestionComponent} from './questionnaire/questions/postcode-epc-question/postcode-epc-question.component';
 
 @NgModule({
     declarations: [
@@ -25,10 +25,10 @@ import {PostcodeComponent} from './postcode/postcode.component';
         CalculatorComponent,
         PostcodeEpcComponent,
         OcrComponent,
-        PostcodeComponent,
         OcrComponent,
         QuestionDirective,
         QuestionnaireComponent,
+        PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent
     ],
     imports: [
@@ -39,6 +39,7 @@ import {PostcodeComponent} from './postcode/postcode.component';
         FormsModule
     ],
     entryComponents: [
+        PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent
     ],
     providers: [WordpressApiService, QuestionService, ResponseData],

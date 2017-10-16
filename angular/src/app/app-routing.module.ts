@@ -5,7 +5,6 @@ import {CalculatorComponent} from "./calculator/calculator.component";
 import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
 import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
-import {PostcodeComponent} from './postcode/postcode.component';
 
 const routes: Routes = [
     {
@@ -23,10 +22,6 @@ const routes: Routes = [
     {
         path: 'questionnaire',
         component: QuestionnaireComponent
-    },
-    {
-        path: 'postcode',
-        component: PostcodeComponent
     },
     {
         path: ':slug',

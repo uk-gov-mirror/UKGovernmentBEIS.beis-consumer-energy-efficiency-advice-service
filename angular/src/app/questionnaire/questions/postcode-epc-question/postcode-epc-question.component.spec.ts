@@ -1,23 +1,29 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PostcodeComponent} from './postcode.component';
-import {FormsModule} from "@angular/forms";
+import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../response-data';
+import {PostcodeEpcQuestion} from './postcode-epc-question';
 
-describe('PostcodeComponent', () => {
-    let component: PostcodeComponent;
-    let fixture: ComponentFixture<PostcodeComponent>;
+describe('PostcodeEpcQuestionComponent', () => {
+    let component: PostcodeEpcQuestionComponent;
+    let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
+    let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PostcodeComponent],
+            declarations: [PostcodeEpcQuestionComponent],
             imports: [FormsModule]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PostcodeComponent);
+        fixture = TestBed.createComponent(PostcodeEpcQuestionComponent);
         component = fixture.componentInstance;
+        responseData = new ResponseData();
+        component.question = new PostcodeEpcQuestion(responseData);
+        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });
 
@@ -89,5 +95,28 @@ describe('PostcodeComponent', () => {
 
         // then
         expect(component.shouldDisplayValidationErrorMessage).toBeTruthy();
+    });
+
+    it('should set the response when a valid postcode is entered', () => {
+        // given
+        const postcode = 'SW1H 0ET';
+        component.postcodeInput = postcode;
+
+        // when
+        component.handlePostcodeEntered();
+
+        // then
+        expect(responseData.postCode).toBe(postcode);
+    });
+
+    it('should notify of completion when a valid postcode is entered', () => {
+        // given
+        component.postcodeInput = 'SW1H 0ET';
+
+        // when
+        component.handlePostcodeEntered();
+
+        // then
+        expect(component.notifyOfCompletion).toHaveBeenCalled();
     });
 });
