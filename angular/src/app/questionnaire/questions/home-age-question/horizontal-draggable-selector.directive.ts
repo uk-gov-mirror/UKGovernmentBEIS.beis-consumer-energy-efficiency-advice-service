@@ -7,12 +7,12 @@ export class HorizontalDraggableSelectorDirective {
 
     private mouseOffsetFromSliderX: number = 0;
     private currentSliderCentreX: number = 0;
+    private currentlySelectedOption: any;
 
-    private mouseMoveListener: () => void;
-    private mouseUpListener: () => void;
+    private deregisterMouseMoveListener: () => void;
+    private deregisterMouseUpListener: () => void;
 
     constructor(private el: ElementRef, private renderer: Renderer2) {
-        el.nativeElement.style.position = 'absolute';
     }
 
     @Input('horizontalDraggableSelector') responseOptions: any[];
@@ -22,18 +22,24 @@ export class HorizontalDraggableSelectorDirective {
     @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
         event.preventDefault();
         this.mouseOffsetFromSliderX = event.pageX - this.currentSliderCentreX;
-        this.mouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.onMouseMove(event));
-        this.mouseUpListener = this.renderer.listen('document', 'mouseup', event => this.onMouseUp(event));
+        this.deregisterMouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.onMouseMove(event));
+        this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', event => this.onMouseUp(event));
     };
 
+    @HostListener('window:resize', ['$event']) onResizeWindow(event) {
+        if (event.currentTarget.innerWidth > this.getTotalWidthOfSlideRangeInPixels()) {
+            this.moveSliderToCentreOfOption(this.currentlySelectedOption);
+        }
+    }
+
     ngOnInit() {
-        window.setTimeout(() => {
+        setTimeout(() => {
             this.moveSliderToCentreOfOption(this.initialOption || this.responseOptions[0]);
-        }, 0);
+        });
     }
 
     ngOnDestroy() {
-        this.destroyEventListeners();
+        this.deregisterEventListeners();
     }
 
     onMouseMove(event: MouseEvent) {
@@ -51,14 +57,14 @@ export class HorizontalDraggableSelectorDirective {
     }
 
     onMouseUp(event: MouseEvent) {
-        this.destroyEventListeners();
+        this.deregisterEventListeners();
         event.preventDefault();
         this.selectResponseFromSliderLocation(event.pageX - this.mouseOffsetFromSliderX);
     }
 
-    destroyEventListeners(): void {
-        this.mouseMoveListener && this.mouseMoveListener();
-        this.mouseUpListener && this.mouseUpListener();
+    deregisterEventListeners(): void {
+        this.deregisterMouseMoveListener && this.deregisterMouseMoveListener();
+        this.deregisterMouseUpListener && this.deregisterMouseUpListener();
     }
 
     selectResponseFromSliderLocation(x: number): void {
@@ -82,10 +88,11 @@ export class HorizontalDraggableSelectorDirective {
         const optionWidth = this.getOptionWidthInPixels();
         const newX = optionIndex * optionWidth + optionWidth/2;
         this.setSliderLocation(newX);
+        this.currentlySelectedOption = option;
     }
 
     getTotalWidthOfSlideRangeInPixels(): number {
-        return this.el.nativeElement.parentElement.clientWidth;
+        return this.el.nativeElement.parentElement.scrollWidth;
     }
 
     getNumberOfResponseOptions(): number {
