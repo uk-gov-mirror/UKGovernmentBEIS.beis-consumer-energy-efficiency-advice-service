@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="140px" height="123px" viewBox="0 0 140 123" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>flat-p-corner</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="1.46442 0.4375 0.06442 0.4375 0.06442 0.0421875 1.46442 0.0421875"></polygon>
+        <polygon id="path-3" points="2.41275 1.5 0.91275 1.5 0.91275 0.90465 2.41275 0.90465 2.41275 1.5"></polygon>
+    </defs>
+    <g id="Supply" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="flat-p-corner">
+            <g id="Group-18" transform="translate(1.000000, 1.000000)">
+                <polyline id="Stroke-24" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="138.004 38.042 138.047 38.017 138 38"></polyline>
+                <path d="M135,37 L83,18" id="Stroke-25" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-26" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="82.09 18.018 82.043 18 82 18.026"></polyline>
+                <path d="M79,19 L1,64" id="Stroke-27" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <polyline id="Stroke-28" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="0.043 65 0 65.025 0.047 65.042"></polyline>
+                <path d="M3,66 L55,85" id="Stroke-29" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-30" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="56 86.008 56.047 86.026 56.09 86"></polyline>
+                <path d="M59,84 L137,39" id="Stroke-31" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <polyline id="Stroke-32" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="138.004 56.042 138.047 56.017 138 56"></polyline>
+                <path d="M135,55 L83,36" id="Stroke-33" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-34" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="82.09 36.017 82.043 36 82 36.025"></polyline>
+                <path d="M79,37 L1,82" id="Stroke-35" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <polyline id="Stroke-36" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="0.043 83 0 83.025 0.047 83.042"></polyline>
+                <path d="M3,84 L55,103" id="Stroke-37" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-38" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="56 103.008 56.047 103.026 56.09 103"></polyline>
+                <path d="M59,102 L137,57" id="Stroke-39" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <polyline id="Stroke-40" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="138.004 74.042 138.047 74.018 138 74"></polyline>
+                <path d="M135,73 L83,54" id="Stroke-41" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-42" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="82.09 53.017 82.043 53 82 53.025"></polyline>
+                <path d="M79,55 L1,100" id="Stroke-43" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <polyline id="Stroke-44" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="0.043 101 0 101.024 0.047 101.042"></polyline>
+                <g id="Group-50" transform="translate(2.000000, 101.000000)">
+                    <path d="M0.17376,0.33730625 L51.93456,19.6817437" id="Stroke-45" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                    <g id="Group-49" transform="translate(53.200000, 20.125000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-48"></g>
+                        <polyline id="Stroke-47" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-2)" points="0.06442 0.0536875 0.13022 0.078125 0.19042 0.0421875"></polyline>
+                    </g>
+                </g>
+                <path d="M59,119 L137,74" id="Stroke-51" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <path d="M82,1 L82,1.051" id="Stroke-104" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M82,4 L82,52" id="Stroke-105" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.099,1.983"></path>
+                <path d="M82,54 L82,54.05" id="Stroke-106" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M138,21 L138,21.05" id="Stroke-118" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M138,24 L138,72" id="Stroke-119" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.099,1.983"></path>
+                <path d="M138,74 L138,74.05" id="Stroke-120" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <polygon id="Fill-124" fill="#E5E6E7" points="78 72.7337042 58.8641394 66 36 79.3647126 55.8097481 86"></polygon>
+                <path d="M0,48 L0,48.05" id="Stroke-149" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M0,51 L0,99" id="Stroke-150" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.099,1.983"></path>
+                <path d="M0,100 L0,100.05" id="Stroke-151" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <polygon id="Fill-152" fill="#231F20" points="56 85.6668517 56 103 78 90.2582212 78 73"></polygon>
+                <polyline id="Fill-153" fill="#231F20" points="55 85.3340993 36 79 36 96.4254905 55 103"></polyline>
+                <path d="M56,68 L56,68.05" id="Stroke-154" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M56,71 L56,119" id="Stroke-155" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.099,1.983"></path>
+                <g id="Group-158" transform="translate(55.000000, 120.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-157"></g>
+                    <path d="M0.91275,0.90465 L0.91275,0.97965" id="Stroke-156" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" mask="url(#mask-4)"></path>
+                </g>
+                <polyline id="Stroke-159" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="138.004 21.042 138.047 21.018 138 21"></polyline>
+                <path d="M135,20 L83,1" id="Stroke-160" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-161" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="82.09 0.017 82.043 0 82 0.025"></polyline>
+                <path d="M79,2 L1,47" id="Stroke-162" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+                <polyline id="Stroke-163" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="0.043 48 0 48.024 0.047 48.042"></polyline>
+                <path d="M3,49 L55,68" id="Stroke-164" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.101,2.023"></path>
+                <polyline id="Stroke-165" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="56 68.008 56.047 68.025 56.09 68"></polyline>
+                <path d="M59,67 L137,22" id="Stroke-166" stroke="#939597" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1,2.001"></path>
+            </g>
+        </g>
+    </g>
+</svg>

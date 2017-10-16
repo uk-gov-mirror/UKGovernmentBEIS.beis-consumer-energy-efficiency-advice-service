@@ -6,6 +6,7 @@ import {ResponseData} from "./response-data";
 import {StoreysQuestion} from "./storeys-question/storeys-question";
 import {FuelTypeQuestion} from "./fuel-type-question/fuel-type-question";
 import {PostcodeEpcQuestion} from "./postcode-epc-question/postcode-epc-question";
+import {FlatPositionQuestion} from "./flat-position-question/flat-position-question";
 
 @Injectable()
 export class QuestionService {
@@ -16,6 +17,7 @@ export class QuestionService {
         this.questions = [
             new PostcodeEpcQuestion(responseData),
             new HomeTypeQuestion(responseData),
+            new FlatPositionQuestion(responseData),
             new StoreysQuestion(responseData),
             new FuelTypeQuestion(responseData)
         ];
