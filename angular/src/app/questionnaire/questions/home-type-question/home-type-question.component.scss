@@ -1,89 +1,41 @@
-// TODO: Consider moving some of this to a global style sheet.
-
-.home-type-options {
-  display: flex;
-  justify-content: space-between;
-
-  .baseline {
-    position: absolute;
-    width: 100%;
-    top: 149px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #9C9C9C;
+.multiple-choice-options .multiple-choice-option .icon-container {
+  .detached-house {
+    content: url('../../../../assets/images/home-types/detached-house.svg');
   }
 
-  .home-type-option {
-    flex: 0 1 auto;
-    margin: 0 12px;
+  .semi-detached-house {
+    content: url('../../../../assets/images/home-types/semi-detached-house.svg');
+  }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .end-terrace-house {
+    content: url('../../../../assets/images/home-types/end-terrace-house.svg');
+  }
 
-    .icon-container {
-      height: 150px;
-      position: relative;
+  .mid-terrace-house {
+    content: url('../../../../assets/images/home-types/mid-terrace-house.svg');
+  }
 
-      display: flex;
-      align-items: flex-end;
+  .ground-floor-flat {
+    content: url('../../../../assets/images/home-types/ground-floor-flat.svg');
+  }
 
-      .detached-house {
-        content: url('../../../../assets/images/home-types/detached-house.svg');
-      }
+  .mid-floor-flat {
+    content: url('../../../../assets/images/home-types/mid-floor-flat.svg');
+  }
 
-      .semi-detached-house {
-        content: url('../../../../assets/images/home-types/semi-detached-house.svg');
-      }
+  .top-floor-flat {
+    content: url('../../../../assets/images/home-types/top-floor-flat.svg');
+  }
 
-      .end-terrace-house {
-        content: url('../../../../assets/images/home-types/end-terrace-house.svg');
-      }
+  .bungalow-attached {
+    content: url('../../../../assets/images/home-types/bungalow-attached.svg');
+  }
 
-      .mid-terrace-house {
-        content: url('../../../../assets/images/home-types/mid-terrace-house.svg');
-      }
+  .bungalow-detached {
+    content: url('../../../../assets/images/home-types/bungalow-detached.svg');
+  }
 
-      .ground-floor-flat {
-        content: url('../../../../assets/images/home-types/ground-floor-flat.svg');
-      }
-
-      .mid-floor-flat {
-        content: url('../../../../assets/images/home-types/mid-floor-flat.svg');
-      }
-
-      .top-floor-flat {
-        content: url('../../../../assets/images/home-types/top-floor-flat.svg');
-      }
-
-      .bungalow-attached {
-        content: url('../../../../assets/images/home-types/bungalow-attached.svg');
-      }
-
-      .bungalow-detached {
-        content: url('../../../../assets/images/home-types/bungalow-detached.svg');
-      }
-
-      .park-home {
-        content: url('../../../../assets/images/home-types/park-home.svg');
-      }
-    }
-
-    .home-type-name {
-      text-align: center;
-      margin-top: 8px;
-
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    &:hover, &:active {
-      outline: none;
-      background-color: rgba(#2196F3, 0.2);
-    }
-
-    &.selected {
-      outline: none;
-      background-color: rgba(#2196F3, 0.5);
-    }
+  .park-home {
+    content: url('../../../../assets/images/home-types/park-home.svg');
   }
 }
