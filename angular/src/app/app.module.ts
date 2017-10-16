@@ -19,8 +19,8 @@ import {ResponseData} from "./questionnaire/questions/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
 import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
 import {FuelTypeQuestionComponent} from './questionnaire/questions/fuel-type-question/fuel-type-question.component';
-import { FlatPositionQuestionComponent } from './questionnaire/questions/flat-position-question/flat-position-question.component';
-import { BoilerTypeQuestionComponent } from './questionnaire/questions/boiler-type-question/boiler-type-question.component';
+import {FlatPositionQuestionComponent} from './questionnaire/questions/flat-position-question/flat-position-question.component';
+import {BoilerTypeQuestionComponent} from './questionnaire/questions/boiler-type-question/boiler-type-question.component';
 
 @NgModule({
     declarations: [
