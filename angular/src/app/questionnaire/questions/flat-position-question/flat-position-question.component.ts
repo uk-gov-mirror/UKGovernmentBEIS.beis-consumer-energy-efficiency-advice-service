@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
 import {FlatPosition} from "./flat-position";
 
@@ -12,8 +12,6 @@ interface FlatPositionOption {
     selector: 'app-flat-position-question',
     templateUrl: './flat-position-question.component.html',
     styleUrls: ['./flat-position-question.component.scss'],
-    // TODO: Remove this and use global SCSS instead
-    encapsulation: ViewEncapsulation.None,
     animations: [slideInOutAnimation]
 })
 export class FlatPositionQuestionComponent extends QuestionBaseComponent<FlatPosition> {

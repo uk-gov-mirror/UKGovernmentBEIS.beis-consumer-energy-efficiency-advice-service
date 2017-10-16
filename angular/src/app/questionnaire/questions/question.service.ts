@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {findIndex, findLastIndex} from 'lodash'
 import {Question} from "./question";
 import {QuestionBaseComponent} from "./question.component";
 import {HomeTypeQuestion} from "./home-type-question/home-type-question";
@@ -28,21 +29,11 @@ export class QuestionService {
     }
 
     public getPreviousQuestionIndex(index: number) {
-        for (let i = index - 1; i >= 0; i--) {
-            if (this.questions[i].isApplicable()) {
-                return i;
-            }
-        }
-        return -1;
+        return findLastIndex(this.questions, q => q.isApplicable(), index - 1);
     }
 
     public getNextQuestionIndex(index: number) {
-        for (let i = index + 1; i < this.questions.length; i++) {
-            if (this.questions[i].isApplicable()) {
-                return i;
-            }
-        }
-        return -1;
+        return findIndex(this.questions, q => q.isApplicable(), index + 1);
     }
 
     public getHeading(index: number) {

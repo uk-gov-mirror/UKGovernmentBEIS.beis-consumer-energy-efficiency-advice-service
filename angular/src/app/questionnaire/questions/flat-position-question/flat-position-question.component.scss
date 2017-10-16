@@ -1,17 +1,18 @@
 .multiple-choice-options .multiple-choice-option .icon-container {
-  .one-side-exposed {
-    content: url('../../../../assets/images/flat-positions/one-side-exposed.svg');
+  &.one-side-exposed::before {
+    //noinspection CssUnknownTarget
+    content: url('/assets/images/flat-positions/one-side-exposed.svg');
   }
 
-  .two-sides-exposed {
-    content: url('../../../../assets/images/flat-positions/two-sides-exposed.svg');
+  &.two-sides-exposed::before {
+    content: url('/assets/images/flat-positions/two-sides-exposed.svg');
   }
 
-  .three-sides-exposed {
-    content: url('../../../../assets/images/flat-positions/three-sides-exposed.svg');
+  &.three-sides-exposed::before {
+    content: url('/assets/images/flat-positions/three-sides-exposed.svg');
   }
 
-  .four-sides-exposed {
-    content: url('../../../../assets/images/flat-positions/four-sides-exposed.svg');
+  &.four-sides-exposed::before {
+    content: url('/assets/images/flat-positions/four-sides-exposed.svg');
   }
 }
