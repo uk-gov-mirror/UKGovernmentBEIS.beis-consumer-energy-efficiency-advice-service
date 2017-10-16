@@ -49,6 +49,10 @@
       text-align: center;
       text-transform: uppercase;
       outline: none;
+
+      &:focus {
+        box-shadow: 0 0 10px 4px grey;
+      }
     }
 
     .submit-button {
