@@ -12,6 +12,7 @@ import {BedroomsQuestion} from "./bedrooms-question/bedrooms-question";
 import {BoilerTypeQuestion} from "./boiler-type-question/boiler-type-question";
 import {ElectricityTariffQuestion} from "./electricity-tariff-question/electricity-tariff-question";
 import {HomeAgeQuestion} from './home-age-question/home-age-question';
+import {QuestionType} from '../question-type';
 
 @Injectable()
 export class QuestionService {
@@ -48,6 +49,10 @@ export class QuestionService {
 
     public getHeading(index: number) {
         return this.questions[index].heading;
+    }
+
+    public getQuestionType(index: number): QuestionType {
+        return this.questions[index].questionType;
     }
 
     get numberOfQuestions() {

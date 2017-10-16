@@ -1,0 +1,20 @@
+<div class="progress-indicator-component">
+    <div class="reference-number-container">
+        <div class="arrow-background-cover-up"></div>
+        <div class="arrow"></div>
+    </div>
+    <div class="progress-indicator">
+        <div class="questionnaire-section" *ngFor="let questionnaireSection of questionnaireSections"
+             [style.flex-basis]="getFlexBasis(questionnaireSection)">
+            <div class="question-type-icon" [ngClass]="questionnaireSection.className"></div>
+            <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
+                <div class="horizontal-dotted-line"></div>
+                <a class="step-link" [class.active]="question.questionIndex === currentQuestionIndex"></a>
+                <div class="horizontal-dotted-line"></div>
+            </div>
+            <div class="arrow-background-cover-up"></div>
+            <div class="arrow"></div>
+            <div class="arrow-cover-up"></div>
+        </div>
+    </div>
+</div>

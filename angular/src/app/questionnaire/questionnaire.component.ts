@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEnca
 import { QuestionService } from "./questions/question.service";
 import {QuestionDirective} from "./questions/question.directive";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions/question.component";
+import {QuestionTypeUtil} from './question-type';
 
 @Component({
     selector: 'app-questionnaire',
@@ -59,6 +60,11 @@ export class QuestionnaireComponent implements AfterViewInit {
 
     getHeading() {
         return this.questionService.getHeading(this.currentQuestionIndex);
+    }
+
+    getQuestionTypeIconClassName() {
+        const questionType = this.questionService.getQuestionType(this.currentQuestionIndex);
+        return QuestionTypeUtil.getIconClassName(questionType);
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {

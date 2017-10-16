@@ -1,5 +1,6 @@
-<h2 class="questionnaire-heading">Questionnaire heading</h2>
+<progress-indicator [currentQuestionIndex]="currentQuestionIndex"></progress-indicator>
 <div class="questions-container">
+    <i class="question-type-icon" [ngClass]="getQuestionTypeIconClassName()"></i>
     <div class="question-heading">
         <button class="left-arrow" [disabled]="!canGoBack()" (click)="goBackOneQuestion()"><</button>
         <div class="heading">{{getHeading()}}</div>

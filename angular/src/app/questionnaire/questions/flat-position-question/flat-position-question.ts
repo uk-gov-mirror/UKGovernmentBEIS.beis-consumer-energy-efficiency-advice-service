@@ -3,10 +3,11 @@ import {FlatPositionQuestionComponent} from "./flat-position-question.component"
 import {FlatPosition} from './flat-position';
 import {ResponseData} from "../response-data";
 import {isFlat} from "../home-type-question/home-type";
+import {QuestionType} from '../../question-type';
 
 export class FlatPositionQuestion extends Question<FlatPosition, FlatPositionQuestionComponent> {
     constructor(responseData: ResponseData) {
-        super(FlatPositionQuestionComponent, 'You\'ve selected a flat. What\'s its position?', responseData);
+        super(FlatPositionQuestionComponent, 'You\'ve selected a flat. What\'s its position?', QuestionType.House, responseData);
     }
 
     get response(): FlatPosition {

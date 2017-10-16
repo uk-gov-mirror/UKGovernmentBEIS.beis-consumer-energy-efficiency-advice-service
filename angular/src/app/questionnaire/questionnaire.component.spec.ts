@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionnaireComponent } from './questionnaire.component';
 import {QuestionService} from "./questions/question.service";
+import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -20,6 +21,9 @@ describe('QuestionnaireComponent', () => {
         getHeading(index) {
             return 'question';
         }
+        getQuestionType(index) {
+            return 0;
+        }
         get numberOfQuestions() {
             return 0;
         }
@@ -27,7 +31,7 @@ describe('QuestionnaireComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ QuestionnaireComponent ],
+            declarations: [ QuestionnaireComponent, ProgressIndicatorComponent ],
             providers: [ {provide: QuestionService, useClass: QuestionServiceStub} ],
         })
         .compileComponents();
