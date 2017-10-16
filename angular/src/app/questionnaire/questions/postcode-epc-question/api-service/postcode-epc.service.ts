@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {EpcsResponse} from "../model/response/epcs-response";
-import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../../../common/wordpress-api-service/wordpress-api-service";
 
 @Injectable()
 export class PostcodeEpcService {

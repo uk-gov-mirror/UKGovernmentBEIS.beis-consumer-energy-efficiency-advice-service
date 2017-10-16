@@ -12,12 +12,12 @@
         <div *ngIf="error.message" class="error-message">{{error.message}}</div>
     </div>
     <div class="loading-spinner" *ngIf="shouldDisplayLoadingSpinner"></div>
-    <div *ngIf="allEpcsForPostcode as epcs">
-        <div class="list-select" *ngIf="epcs.length">
-            <div class="input-label">Please select your address:</div>
+    <div *ngIf="allEpcsForPostcode && allEpcsForPostcode.length">
+        <div class="select-address">Please select your address:</div>
+        <div class="list-select">
             <div class="list-select-option" [class.selected]="isSelected(epc)"
-                 *ngFor="let epc of epcs" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}</div>
-            <div class="list-select-option" [class.selected]="isNoEpcSelected"
+                 *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}</div>
+            <div class="list-select-option address-not-listed" [class.selected]="isNoEpcSelected"
                  (click)="continueWithoutEpc()">My address is not listed</div>
         </div>
     </div>

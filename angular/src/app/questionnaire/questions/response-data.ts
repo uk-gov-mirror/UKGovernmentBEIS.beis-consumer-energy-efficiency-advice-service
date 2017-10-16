@@ -4,10 +4,12 @@ import {FuelType} from "./fuel-type-question/fuel-type";
 import {FlatPosition} from "./flat-position-question/flat-position";
 import {ElectricityTariff} from "./electricity-tariff-question/electricity-tariff";
 import {HomeAge} from './home-age-question/home-age';
+import {Epc} from './postcode-epc-question/model/epc';
 
 @Injectable()
 export class ResponseData {
-    private _postCode: string;
+    private _postcode: string;
+    private _epc: Epc;
     private _homeType: HomeType;
     private _homeAge: HomeAge;
     private _flatPosition: FlatPosition;
@@ -16,12 +18,20 @@ export class ResponseData {
     private _condensingBoiler: boolean;
     private _electricityTariff: ElectricityTariff;
 
-    get postCode(): string {
-        return this._postCode;
+    get postcode(): string {
+        return this._postcode;
     }
 
-    set postCode(val: string) {
-        this._postCode = val;
+    set postcode(val: string) {
+        this._postcode = val;
+    }
+
+    get epc(): Epc {
+        return this._epc;
+    }
+
+    set epc(value: Epc) {
+        this._epc = value;
     }
 
     get homeType(): HomeType {

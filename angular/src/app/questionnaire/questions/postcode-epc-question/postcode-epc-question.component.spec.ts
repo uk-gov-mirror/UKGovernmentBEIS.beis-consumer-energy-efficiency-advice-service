@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
@@ -7,6 +8,7 @@ import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
 import {ResponseData} from '../response-data';
 import {PostcodeEpcQuestion} from './postcode-epc-question';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
+import {Epc} from './model/epc';
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -16,11 +18,14 @@ describe('PostcodeEpcQuestionComponent', () => {
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
     let responseData: ResponseData;
 
-    let apiServiceStub;
-
-    let dummyEpcResponse = require('../../assets/test/dummy-epc-response.json');
+    const dummyEpcResponse = require('../../../../assets/test/dummy-epc-response.json');
+    let apiServiceStub = {
+        getEpcData: (postcode) => Observable.of(dummyEpcResponse)
+    };
 
     beforeEach(async(() => {
+        spyOn(apiServiceStub, 'getEpcData').and.callThrough();
+
         TestBed.configureTestingModule({
             declarations: [PostcodeEpcQuestionComponent],
             imports: [FormsModule]
@@ -40,9 +45,6 @@ describe('PostcodeEpcQuestionComponent', () => {
         component.question = new PostcodeEpcQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
-        apiServiceStub = {
-            getEpcData: (postcode) => Observable.of(dummyEpcResponse)
-        };
     });
 
     describe('#construct', () => {
@@ -51,13 +53,13 @@ describe('PostcodeEpcQuestionComponent', () => {
         });
     });
 
-    describe('#handlePostcodeEntered', () => {
+    describe('#search-by-postcode', () => {
         it('should recognise a correct postcode as valid', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             expect(component.error).toBeNull();
@@ -68,7 +70,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = 'SW1H0ET';
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             expect(component.error).toBeNull();
@@ -79,7 +81,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = 'sw1h 0et';
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             expect(component.error).toBeNull();
@@ -90,7 +92,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = 's1 0et';
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             expect(component.error).toBeNull();
@@ -101,10 +103,10 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = 's1 0e';
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
-            expect(component.error).toEqual(PostcodeComponent.ERROR_VALIDATION);
+            expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
         });
 
         it('should recognise a postcode input with special characters as invalid', () => {
@@ -112,40 +114,36 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = 'SW!H 0ET';
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
-            expect(component.error).toEqual(PostcodeComponent.ERROR_VALIDATION);
+            expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
         });
 
         it('should call epc api if postcode is valid', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
-            let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
-            spyOn(mockApiService, 'getEpcData').and.callThrough();
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
-                expect(mockApiService.getEpcData).toHaveBeenCalledTimes(1);
-                expect(mockApiService.getEpcData).toHaveBeenCalledWith(VALID_POSTCODE);
+                expect(apiServiceStub.getEpcData).toHaveBeenCalledTimes(1);
+                expect(apiServiceStub.getEpcData).toHaveBeenCalledWith(VALID_POSTCODE);
             });
         }));
 
         it('should not call epc api if postcode is not valid', async(() => {
             // given
             component.postcodeInput = 'invalid';
-            let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
-            spyOn(mockApiService, 'getEpcData').and.callThrough();
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
-                expect(mockApiService.getEpcData).toHaveBeenCalledTimes(0);
+                expect(apiServiceStub.getEpcData).toHaveBeenCalledTimes(0);
             });
         }));
 
@@ -154,7 +152,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -168,7 +166,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -184,7 +182,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -200,11 +198,11 @@ describe('PostcodeEpcQuestionComponent', () => {
             mockApiService.getEpcData = (postcode) => Observable.of(null);
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
-                expect(component.error).toEqual(PostcodeComponent.ERROR_NO_EPCS);
+                expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_NO_EPCS);
             });
         }));
 
@@ -215,35 +213,112 @@ describe('PostcodeEpcQuestionComponent', () => {
             mockApiService.getEpcData = () => ErrorObservable.create('error');
 
             // when
-            component.handlePostcodeEntered();
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
-                expect(component.error).toEqual(PostcodeComponent.ERROR_EPC_API_FAILURE);
+                expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_EPC_API_FAILURE);
+            });
+        }));
+
+        it('should set the response if no epcs are returned', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+            let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
+            mockApiService.getEpcData = (postcode) => Observable.of(null);
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+
+                // then
+                expect(responseData.postcode).toEqual(VALID_POSTCODE);
+                expect(responseData.epc).toBeNull();
+            });
+        }));
+
+        it('should notify of completion if no epcs are returned', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+            let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
+            mockApiService.getEpcData = (postcode) => Observable.of(null);
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+
+                // then
+                expect(component.notifyOfCompletion).toHaveBeenCalled();
             });
         }));
     });
 
-    it('should set the response when a valid postcode is entered', () => {
-        // given
-        const postcode = 'SW1H 0ET';
-        component.postcodeInput = postcode;
+    describe('#select-epc', () => {
+        it('should set the response when an epc is selected', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+            const expectedEpc = new Epc(dummyEpcResponse.rows[0]);
 
-        // when
-        component.handlePostcodeEntered();
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+                const allEpcs = fixture.debugElement.query(By.css('.list-select')).children;
+                allEpcs[0].nativeElement.click();
 
-        // then
-        expect(responseData.postCode).toBe(postcode);
-    });
+                // then
+                expect(responseData.postcode).toEqual(VALID_POSTCODE);
+                expect(responseData.epc).toEqual(expectedEpc);
+            });
+        }));
 
-    it('should notify of completion when a valid postcode is entered', () => {
-        // given
-        component.postcodeInput = 'SW1H 0ET';
+        it('should notify of completion when an epc is selected', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
 
-        // when
-        component.handlePostcodeEntered();
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+                const allEpcs = fixture.debugElement.query(By.css('.list-select')).children;
+                allEpcs[0].nativeElement.click();
 
-        // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+                // then
+                expect(component.notifyOfCompletion).toHaveBeenCalled();
+            });
+        }));
+
+        it('should set the response when address-not-listed is selected', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+                fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
+
+                // then
+                expect(responseData.postcode).toEqual(VALID_POSTCODE);
+                expect(responseData.epc).toEqual(null);
+            });
+        }));
+
+        it('should notify of completion when an epc is selected', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+                fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
+
+                // then
+                expect(component.notifyOfCompletion).toHaveBeenCalled();
+            });
+        }));
     });
 });
