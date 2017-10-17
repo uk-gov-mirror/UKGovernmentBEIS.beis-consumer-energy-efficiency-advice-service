@@ -19,7 +19,7 @@ export class NumberQuestionComponent {
         this.updateQuantity();
     }
 
-    private updateQuantity() {
+    updateQuantity() {
         if (this.quantity >= 1) {
             this.isInvalid = false;
             this.quantityChange.emit(this.quantity);
