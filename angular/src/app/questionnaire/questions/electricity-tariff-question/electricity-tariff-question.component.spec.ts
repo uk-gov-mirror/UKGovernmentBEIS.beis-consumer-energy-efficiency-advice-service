@@ -35,7 +35,7 @@ describe('ElectricityTariffQuestionComponent', () => {
         // given
 
         // when
-        let standard = fixture.debugElement.query(By.css('#standardButton'));
+        let standard = fixture.debugElement.query(By.css('#standard-button'));
         standard.nativeElement.click();
 
         // then
@@ -46,7 +46,7 @@ describe('ElectricityTariffQuestionComponent', () => {
         // given
 
         // when
-        let offPeak = fixture.debugElement.query(By.css('#offPeakButton'));
+        let offPeak = fixture.debugElement.query(By.css('#off-peak-button'));
         offPeak.nativeElement.click();
 
         // then
