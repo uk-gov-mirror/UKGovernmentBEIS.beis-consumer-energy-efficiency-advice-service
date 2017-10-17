@@ -104,6 +104,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
             epc: epc,
             postcode: this.postcodeInput
         };
+        this.notifyOfCompletion();
     }
 
     continueWithoutEpc(): void {
@@ -113,6 +114,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
             epc: null,
             postcode: this.postcodeInput
         };
+        this.notifyOfCompletion();
     }
 }
 

@@ -18,17 +18,17 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     private homeAges: HomeAge[] = Object.values(HomeAge)
         .filter(homeAge => !isNaN(homeAge));
 
-    private homeAgeOptions: HomeAgeOption[] = this.homeAges
+    homeAgeOptions: HomeAgeOption[] = this.homeAges
         .map(homeAge => {
             return {
                 name: HomeAgeUtil.getDisplayName(homeAge),
                 value: homeAge
             };
         });
+    sliderLeftPosition: number = 0;
 
     private mouseOffsetFromSliderX: number = 0;
     private currentSliderCentreX: number = 0;
-    private sliderLeftPosition: number = 0;
 
     private deregisterMouseMoveListener: () => void;
     private deregisterMouseUpListener: () => void;
@@ -54,7 +54,6 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     selectResponse(homeAge: HomeAge) {
         this.moveSliderToCentreOfOption(homeAge);
         this.response = homeAge;
-        this.notifyOfCompletion();
     }
 
     @HostListener('window:resize', ['$event']) onResizeWindow(event) {

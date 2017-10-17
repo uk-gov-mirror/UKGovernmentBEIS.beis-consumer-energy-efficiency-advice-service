@@ -306,7 +306,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             });
         }));
 
-        it('should notify of completion when an epc is selected', async(() => {
+        it('should notify of completion when address-not-listed is selected', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
