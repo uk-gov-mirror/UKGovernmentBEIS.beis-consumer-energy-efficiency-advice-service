@@ -10,6 +10,7 @@ export class ResponseData {
     private _flatPosition: FlatPosition;
     private _numberOfStoreys: number;
     private _fuelType: FuelType;
+    private _condensingBoiler: boolean;
 
     get postCode(): string {
         return this._postCode;
@@ -49,5 +50,13 @@ export class ResponseData {
 
     set fuelType(value: FuelType) {
         this._fuelType = value;
+    }
+
+    get condensingBoiler(): boolean {
+        return this._condensingBoiler;
+    }
+
+    set condensingBoiler(val: boolean) {
+        this._condensingBoiler = val;
     }
 }
