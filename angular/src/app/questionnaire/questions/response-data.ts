@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HomeType} from "./home-type-question/home-type";
 import {FuelType} from "./fuel-type-question/fuel-type";
 import {FlatPosition} from "./flat-position-question/flat-position";
+import {ElectricityTariff} from "./electricity-tariff-question/electricity-tariff";
 
 @Injectable()
 export class ResponseData {
@@ -11,6 +12,7 @@ export class ResponseData {
     private _numberOfStoreys: number;
     private _fuelType: FuelType;
     private _condensingBoiler: boolean;
+    private _electricityTariff: ElectricityTariff;
 
     get postCode(): string {
         return this._postCode;
@@ -58,5 +60,13 @@ export class ResponseData {
 
     set condensingBoiler(val: boolean) {
         this._condensingBoiler = val;
+    }
+
+    get electricityTariff(): ElectricityTariff {
+        return this._electricityTariff;
+    }
+
+    set electricityTariff(val: ElectricityTariff) {
+        this._electricityTariff = val;
     }
 }

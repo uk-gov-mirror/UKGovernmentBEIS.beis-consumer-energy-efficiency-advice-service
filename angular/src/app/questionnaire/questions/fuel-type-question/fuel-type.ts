@@ -8,6 +8,10 @@ export enum FuelType {
 
 export function isGasOrOil(fuelType: FuelType) {
     return fuelType === FuelType.MainsGas ||
-           fuelType === FuelType.LPGGas ||
-           fuelType === FuelType.HeatingOil;
+        fuelType === FuelType.LPGGas ||
+        fuelType === FuelType.HeatingOil;
+}
+
+export function isElectric(fuelType: FuelType) {
+    return fuelType === FuelType.Electricity;
 }

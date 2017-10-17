@@ -1,0 +1,15 @@
+@import '~styles/mixins/buttons';
+
+.electricity-tariff-question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .buttons {
+    margin: 32px 0;
+    .tariff-button {
+      @include capsule-button(200px, 50px);
+      font-size: 20px;
+    }
+  }
+}
