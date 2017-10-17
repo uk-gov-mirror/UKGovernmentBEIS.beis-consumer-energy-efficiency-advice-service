@@ -1,6 +1,7 @@
 import {Question} from "../question";
 import {BoilerTypeQuestionComponent} from "./boiler-type-question.component";
 import {ResponseData} from "../response-data";
+import {isGasOrOil} from "../fuel-type-question/fuel-type";
 
 export class BoilerTypeQuestion extends Question<boolean, BoilerTypeQuestionComponent> {
     constructor(responseData: ResponseData) {
@@ -13,5 +14,9 @@ export class BoilerTypeQuestion extends Question<boolean, BoilerTypeQuestionComp
 
     set response(val: boolean) {
         this.responseData.condensingBoiler = val;
+    }
+
+    isApplicable(): boolean {
+        return isGasOrOil(this.responseData.fuelType);
     }
 }

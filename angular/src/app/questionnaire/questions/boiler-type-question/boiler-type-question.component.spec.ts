@@ -34,7 +34,7 @@ describe('BoilerTypeQuestionComponent', () => {
         // given
 
         // when
-        let yes = fixture.debugElement.query(By.css('#yesButton'));
+        let yes = fixture.debugElement.query(By.css('#yes-button'));
         yes.nativeElement.click();
 
         // then
@@ -45,7 +45,7 @@ describe('BoilerTypeQuestionComponent', () => {
         // given
 
         // when
-        let no = fixture.debugElement.query(By.css('#noButton'));
+        let no = fixture.debugElement.query(By.css('#no-button'));
         no.nativeElement.click();
 
         // then
