@@ -16,4 +16,10 @@ export class BedroomsQuestionComponent extends QuestionBaseComponent<number> imp
     ngOnInit() {
         this.response = this.response || 1;
     }
+
+    handleFormSubmit() {
+        if (this.response) {
+            this.notifyOfCompletion();
+        }
+    }
 }

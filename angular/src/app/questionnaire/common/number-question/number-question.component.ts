@@ -5,7 +5,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
     templateUrl: './number-question.component.html',
     styleUrls: ['./number-question.component.scss']
 })
-export class NumberQuestionComponent implements OnInit {
+export class NumberQuestionComponent {
     isInvalid: boolean;
 
     @Input() itemsName: string;
@@ -14,23 +14,18 @@ export class NumberQuestionComponent implements OnInit {
     @Input() quantity: number;
     @Output() quantityChange = new EventEmitter<number>();
 
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
     increaseQuantity(amount: number): void {
         this.quantity += amount;
         this.updateQuantity();
     }
 
     private updateQuantity() {
-        if (this.quantity < 1) {
-            this.isInvalid = true;
-        } else {
+        if (this.quantity >= 1) {
             this.isInvalid = false;
             this.quantityChange.emit(this.quantity);
+        } else {
+            this.isInvalid = true;
+            this.quantityChange.emit(undefined);
         }
     }
 }

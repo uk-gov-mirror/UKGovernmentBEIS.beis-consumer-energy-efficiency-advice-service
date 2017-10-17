@@ -1,8 +1,12 @@
 <div class="storeys-question question-component">
-  <app-number-question [itemsName]="'storeys'" [heading]="question.heading" [(quantity)]="response"></app-number-question>
-  <div class="storeys-icons">
-    <span class="icon-tree" aria-label="tree"></span>
-    <span class="icon-home-storeys" aria-label="house with storeys"></span>
-    <span class="icon-tree" aria-label="tree"></span>
-  </div>
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <app-number-question [itemsName]="'storeys'"
+                             [heading]="question.heading"
+                             [(quantity)]="response"></app-number-question>
+    </form>
+    <div class="storeys-icons">
+        <span class="icon-tree" aria-label="tree"></span>
+        <span class="icon-home-storeys" aria-label="house with storeys"></span>
+        <span class="icon-tree" aria-label="tree"></span>
+    </div>
 </div>

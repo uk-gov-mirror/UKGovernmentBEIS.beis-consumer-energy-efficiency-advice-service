@@ -15,4 +15,10 @@ export class StoreysQuestionComponent extends QuestionBaseComponent<number> impl
     ngOnInit() {
         this.response = this.response || 1;
     }
+
+    handleFormSubmit() {
+        if (this.response) {
+            this.notifyOfCompletion();
+        }
+    }
 }
