@@ -1,8 +1,8 @@
 <div class="question-component">
     <div class="multiple-choice-options fuel-type-options">
-        <div class="multiple-choice-option" *ngFor="let option of fuelTypeOptions">
+        <div class="multiple-choice-option" *ngFor="let option of fuelTypeOptions" [class.selected]="response === option.value" (click)="response = option.value; notifyOfCompletion()">
             <div class="icon-container">
-                <button [ngClass]="option.className" [class.selected]="response === option.value" (click)="response = option.value; notifyOfCompletion()"></button>
+                <button [ngClass]="option.className"></button>
             </div>
             <span class="name">{{option.name}}</span>
         </div>
