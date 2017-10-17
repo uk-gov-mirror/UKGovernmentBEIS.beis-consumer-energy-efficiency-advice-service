@@ -18,13 +18,10 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
         heading: null,
         message: 'Please enter a full valid UK postcode'
     };
-    static readonly ERROR_NO_EPCS: Error = {
-        heading: null,
-        message: 'We can\'t find basic energy efficiency details for any addresses at this postcode'
-    };
     static readonly ERROR_EPC_API_FAILURE: Error = {
         heading: 'Something went wrong',
-        message: 'We can\'t fetch basic details about energy efficiency at your property right now. Please try again later.'
+        message: 'We can\'t fetch basic details about energy efficiency at your property right now.\n' +
+        'Please try again later, or continue to the next question to tell us some more about your property.'
     };
 
     postcodeInput: string;
@@ -82,13 +79,12 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
         this.shouldDisplayLoadingSpinner = false;
         this.allEpcsForPostcode = epcs;
         if (!epcs || epcs.length === 0) {
-            this.error = PostcodeEpcQuestionComponent.ERROR_NO_EPCS;
             this.continueWithoutEpc();
-            return;
         }
     }
 
     handleEpcApiError(): void {
+        this.setResponsePostcodeFromInput();
         this.shouldDisplayLoadingSpinner = false;
         this.error = PostcodeEpcQuestionComponent.ERROR_EPC_API_FAILURE;
     }
@@ -110,11 +106,15 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     continueWithoutEpc(): void {
         this.isNoEpcSelected = true;
         this.selectedEpc = null;
+        this.setResponsePostcodeFromInput();
+        this.notifyOfCompletion();
+    }
+
+    setResponsePostcodeFromInput(): void {
         this.response = {
             epc: null,
             postcode: this.postcodeInput
         };
-        this.notifyOfCompletion();
     }
 }
 

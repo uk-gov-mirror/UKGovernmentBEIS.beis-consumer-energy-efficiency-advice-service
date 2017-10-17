@@ -191,21 +191,6 @@ describe('PostcodeEpcQuestionComponent', () => {
             });
         }));
 
-        it('should display error message if no epcs are returned', async(() => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-            let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
-            mockApiService.getEpcData = (postcode) => Observable.of(null);
-
-            // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_NO_EPCS);
-            });
-        }));
-
         it('should display error message if epc api returns an error', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
@@ -218,6 +203,21 @@ describe('PostcodeEpcQuestionComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_EPC_API_FAILURE);
+            });
+        }));
+
+        it('should set the postcode response if epc api returns an error', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+            let mockApiService = fixture.debugElement.injector.get(PostcodeEpcService);
+            mockApiService.getEpcData = () => ErrorObservable.create('error');
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(responseData.postcode).toEqual(VALID_POSTCODE);
             });
         }));
 
