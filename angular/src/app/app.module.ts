@@ -22,6 +22,7 @@ import {FuelTypeQuestionComponent} from "./questionnaire/questions/fuel-type-que
 import {FlatPositionQuestionComponent} from "./questionnaire/questions/flat-position-question/flat-position-question.component";
 import {NumberQuestionComponent} from "./questionnaire/common/number-question/number-question.component";
 import {BedroomsQuestionComponent} from "./questionnaire/questions/bedrooms-question/bedrooms-question.component";
+import { TimesPipe } from './common/times/times.pipe';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import {BedroomsQuestionComponent} from "./questionnaire/questions/bedrooms-ques
         HomeTypeQuestionComponent,
         FlatPositionQuestionComponent,
         NumberQuestionComponent,
-        BedroomsQuestionComponent
+        BedroomsQuestionComponent,
+        TimesPipe
     ],
     imports: [
         BrowserModule,

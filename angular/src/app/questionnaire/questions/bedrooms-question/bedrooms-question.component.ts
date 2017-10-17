@@ -9,23 +9,11 @@ import {range} from "lodash";
     animations: [slideInOutAnimation]
 })
 export class BedroomsQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
-    bedroomsArray: number[];
-
     constructor() {
         super();
     }
 
     ngOnInit() {
         this.response = this.response || 1;
-        this.updateBedroomsArray();
-    }
-
-    updateBedrooms(quantity: number) {
-        this.response = quantity;
-        this.updateBedroomsArray();
-    }
-
-    private updateBedroomsArray() {
-        this.bedroomsArray = range(this.response);
     }
 }
