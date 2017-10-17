@@ -1,60 +1,55 @@
 //noinspection CssUnknownTarget
-.multiple-choice-options .multiple-choice-option {
+.home-type-options {
 
-  .home-type-button {
-    background: none;
-    border: none;
+  .baseline {
+    position: absolute;
+    width: 100%;
+    top: 144px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #9C9C9C;
+  }
 
-    .icon-container {
-      &.detached-house::after {
-        content: url('/assets/images/home-types/detached-house.svg');
-        line-height: 0;
-      }
+  .icon-container {
+    height: 150px;
 
-      &.semi-detached-house::after {
-        content: url('/assets/images/home-types/semi-detached-house.svg');
-        line-height: 0;
-      }
+    .detached-house::before {
+      content: url('/assets/images/home-types/detached-house.svg');
+    }
 
-      &.end-terrace-house::after {
-        content: url('/assets/images/home-types/end-terrace-house.svg');
-        line-height: 0;
-      }
+    .semi-detached-house::before {
+      content: url('/assets/images/home-types/semi-detached-house.svg');
+    }
 
-      &.mid-terrace-house::after {
-        content: url('/assets/images/home-types/mid-terrace-house.svg');
-        line-height: 0;
-      }
+    .end-terrace-house::before {
+      content: url('/assets/images/home-types/end-terrace-house.svg');
+    }
 
-      &.ground-floor-flat::after {
-        content: url('/assets/images/home-types/ground-floor-flat.svg');
-        line-height: 0;
-      }
+    .mid-terrace-house::before {
+      content: url('/assets/images/home-types/mid-terrace-house.svg');
+    }
 
-      &.mid-floor-flat::after {
-        content: url('/assets/images/home-types/mid-floor-flat.svg');
-        line-height: 0;
-      }
+    .ground-floor-flat::before {
+      content: url('/assets/images/home-types/ground-floor-flat.svg');
+    }
 
-      &.top-floor-flat::after {
-        content: url('/assets/images/home-types/top-floor-flat.svg');
-        line-height: 0;
-      }
+    .mid-floor-flat::before {
+      content: url('/assets/images/home-types/mid-floor-flat.svg');
+    }
 
-      &.bungalow-attached::after {
-        content: url('/assets/images/home-types/bungalow-attached.svg');
-        line-height: 0;
-      }
+    .top-floor-flat::before {
+      content: url('/assets/images/home-types/top-floor-flat.svg');
+    }
 
-      &.bungalow-detached::after {
-        content: url('/assets/images/home-types/bungalow-detached.svg');
-        line-height: 0;
-      }
+    .bungalow-attached::before {
+      content: url('/assets/images/home-types/bungalow-attached.svg');
+    }
 
-      &.park-home::after {
-        content: url('/assets/images/home-types/park-home.svg');
-        line-height: 0;
-      }
+    .bungalow-detached::before {
+      content: url('/assets/images/home-types/bungalow-detached.svg');
+    }
+
+    .park-home::before {
+      content: url('/assets/images/home-types/park-home.svg');
     }
   }
 }
