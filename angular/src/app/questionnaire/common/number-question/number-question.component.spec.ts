@@ -51,11 +51,15 @@ describe('NumberQuestionComponent', () => {
         expect(emitted).toBe(expectedQuantity);
     });
 
-    it('should not emit an event given an invalid quantity', () => {
+    it('should emit an event with undefined value given an invalid quantity', () => {
         // given
         const invalidStoreys = 0;
-        let emitted: boolean;
-        component.quantityChange.subscribe(quantity => emitted = true);
+        let hasEmitted: boolean;
+        let emitted: number;
+        component.quantityChange.subscribe(quantity => {
+            hasEmitted = true;
+            emitted = quantity;
+        });
 
         // when
         let storeysInput = fixture.debugElement.query(By.css('input'));
@@ -63,7 +67,8 @@ describe('NumberQuestionComponent', () => {
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(emitted).toBeFalsy();
+        expect(hasEmitted).toBeTruthy();
+        expect(emitted).toBeUndefined();
     });
 
     it('should increase and decrease quantity when buttons are clicked', () => {
