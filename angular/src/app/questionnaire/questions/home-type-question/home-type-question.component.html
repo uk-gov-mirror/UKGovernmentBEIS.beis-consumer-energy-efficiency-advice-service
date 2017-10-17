@@ -1,9 +1,11 @@
 <div class="question-component">
     <div class="multiple-choice-options">
         <div class="baseline"></div>
-        <button class="multiple-choice-option" *ngFor="let option of homeTypeOptions" [class.selected]="response === option.value" (click)="response = option.value; notifyOfCompletion()">
-            <div class="icon-container" [ngClass]="option.className"></div>
-            <span class="name">{{option.name}}</span>
-        </button>
+        <div class="home-type-option multiple-choice-option" *ngFor="let option of homeTypeOptions" [class.selected]="response === option.value" (click)="response = option.value; notifyOfCompletion()">
+            <button class="home-type-button">
+                <div class="icon-container" [ngClass]="option.className"></div>
+                <span class="name">{{option.name}}</span>
+            </button>
+        </div>
     </div>
 </div>

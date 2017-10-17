@@ -25,3 +25,16 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin capsule-button($width, $height) {
+  cursor: pointer;
+  width: $width;
+  height: $height;
+  border-radius: 10%/50%;
+  border: 1px solid black;
+  font-weight: bold;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

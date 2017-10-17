@@ -2,22 +2,37 @@ import {Injectable} from "@angular/core";
 import {HomeType} from "./home-type-question/home-type";
 import {FuelType} from "./fuel-type-question/fuel-type";
 import {FlatPosition} from "./flat-position-question/flat-position";
+import {ElectricityTariff} from "./electricity-tariff-question/electricity-tariff";
+import {HomeAge} from './home-age-question/home-age';
+import {Epc} from './postcode-epc-question/model/epc';
 
 @Injectable()
 export class ResponseData {
-    private _postCode: string;
+    private _postcode: string;
+    private _epc: Epc;
     private _homeType: HomeType;
+    private _homeAge: HomeAge;
     private _flatPosition: FlatPosition;
     private _numberOfStoreys: number;
     private _numberOfBedrooms: number;
     private _fuelType: FuelType;
+    private _condensingBoiler: boolean;
+    private _electricityTariff: ElectricityTariff;
 
-    get postCode(): string {
-        return this._postCode;
+    get postcode(): string {
+        return this._postcode;
     }
 
-    set postCode(val: string) {
-        this._postCode = val;
+    set postcode(val: string) {
+        this._postcode = val;
+    }
+
+    get epc(): Epc {
+        return this._epc;
+    }
+
+    set epc(value: Epc) {
+        this._epc = value;
     }
 
     get homeType(): HomeType {
@@ -58,5 +73,29 @@ export class ResponseData {
 
     set fuelType(value: FuelType) {
         this._fuelType = value;
+    }
+
+    get condensingBoiler(): boolean {
+        return this._condensingBoiler;
+    }
+
+    set condensingBoiler(val: boolean) {
+        this._condensingBoiler = val;
+    }
+
+    get electricityTariff(): ElectricityTariff {
+        return this._electricityTariff;
+    }
+
+    set electricityTariff(val: ElectricityTariff) {
+        this._electricityTariff = val;
+    }
+
+    get homeAge(): HomeAge {
+        return this._homeAge;
+    }
+
+    set homeAge(value: HomeAge) {
+        this._homeAge = value;
     }
 }

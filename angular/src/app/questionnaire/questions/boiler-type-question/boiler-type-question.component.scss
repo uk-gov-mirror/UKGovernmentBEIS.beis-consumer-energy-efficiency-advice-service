@@ -1,0 +1,20 @@
+@import '~styles/mixins/buttons';
+
+.boiler-type-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .help-text {
+    width: 768px;
+    text-align: center;
+  }
+
+  .buttons {
+    margin: 32px 0;
+    .yes-no-button {
+      @include capsule-button(200px, 50px);
+      font-size: 20px;
+    }
+  }
+}

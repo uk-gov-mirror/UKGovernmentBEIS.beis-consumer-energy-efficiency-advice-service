@@ -1,0 +1,6 @@
+<div class="electricity-tariff-question question-component">
+    <div class="multiple-choice-options buttons">
+        <button id="standard-button" class="multiple-choice-option tariff-button" [class.selected]="response === ElectricityTariff.Standard" (click)="response = ElectricityTariff.Standard; notifyOfCompletion()">Standard</button>
+        <button id="off-peak-button" class="multiple-choice-option tariff-button" [class.selected]="response === ElectricityTariff.OffPeak" (click)="response = ElectricityTariff.OffPeak; notifyOfCompletion()">Off Peak</button>
+    </div>
+</div>

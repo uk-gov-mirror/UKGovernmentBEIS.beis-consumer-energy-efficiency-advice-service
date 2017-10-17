@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import { HomeTypeQuestionComponent } from './home-type-question.component';
-import { HomeTypeQuestion } from './home-type-question';
+import {HomeTypeQuestionComponent} from './home-type-question.component';
+import {HomeTypeQuestion} from './home-type-question';
 import {ResponseData} from "../response-data";
 import {HomeType} from "./home-type";
 

@@ -1,0 +1,10 @@
+<div class="boiler-type-component question-component">
+    <p class="help-text">
+        If you are not sure whether your boiler is condensing then look at the boiler unit -
+        a condensing boiler will have a white plastic pipe coming from the bottom in addition to any metal gas/oil pipes
+    </p>
+    <div class="multiple-choice-options buttons">
+        <button id="yes-button" class="multiple-choice-option yes-no-button" [class.selected]="response === true" (click)="response = true; notifyOfCompletion()">Yes</button>
+        <button id="no-button" class="multiple-choice-option yes-no-button" [class.selected]="response === false" (click)="response = false; notifyOfCompletion()">No</button>
+    </div>
+</div>

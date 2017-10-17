@@ -9,6 +9,9 @@ import {FuelTypeQuestion} from "./fuel-type-question/fuel-type-question";
 import {PostcodeEpcQuestion} from "./postcode-epc-question/postcode-epc-question";
 import {FlatPositionQuestion} from "./flat-position-question/flat-position-question";
 import {BedroomsQuestion} from "./bedrooms-question/bedrooms-question";
+import {BoilerTypeQuestion} from "./boiler-type-question/boiler-type-question";
+import {ElectricityTariffQuestion} from "./electricity-tariff-question/electricity-tariff-question";
+import {HomeAgeQuestion} from './home-age-question/home-age-question';
 
 @Injectable()
 export class QuestionService {
@@ -20,9 +23,12 @@ export class QuestionService {
             new PostcodeEpcQuestion(responseData),
             new HomeTypeQuestion(responseData),
             new FlatPositionQuestion(responseData),
+            new HomeAgeQuestion(responseData),
             new StoreysQuestion(responseData),
             new BedroomsQuestion(responseData),
-            new FuelTypeQuestion(responseData)
+            new FuelTypeQuestion(responseData),
+            new BoilerTypeQuestion(responseData),
+            new ElectricityTariffQuestion(responseData)
         ];
     }
 
