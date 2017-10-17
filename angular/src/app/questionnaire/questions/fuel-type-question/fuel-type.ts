@@ -5,3 +5,7 @@ export enum FuelType {
     HeatingOil,
     SolidFuel
 }
+
+export function isElectric(fuelType: FuelType) {
+    return fuelType === FuelType.Electricity;
+}
