@@ -27,6 +27,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
 
     private mouseOffsetFromSliderX: number = 0;
     private currentSliderCentreX: number = 0;
+    private sliderLeftPosition: number = 0;
 
     private deregisterMouseMoveListener: () => void;
     private deregisterMouseUpListener: () => void;
@@ -55,9 +56,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     }
 
     @HostListener('window:resize', ['$event']) onResizeWindow(event) {
-        if (event.currentTarget.innerWidth > this.getTotalWidthOfSlideRangeInPixels()) {
-            this.moveSliderToCentreOfOption(this.response);
-        }
+        this.moveSliderToCentreOfOption(this.response);
     }
 
     @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
@@ -67,18 +66,24 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
         this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', event => this.onMouseUp(event));
     };
 
-    onMouseMove(event: MouseEvent) {
-        event.preventDefault();
-        const unboundedNewLocationX = event.pageX - this.mouseOffsetFromSliderX;
-        const newLocationX = HomeAgeQuestionComponent.boundBy(unboundedNewLocationX, 0, this.getTotalWidthOfSlideRangeInPixels());
-        this.setSliderLocation(newLocationX);
+    moveSliderToCentreOfOption(homeAge: HomeAge): void {
+        const optionIndex = this.homeAges.indexOf(homeAge) >= 0 ? this.homeAges.indexOf(homeAge) : 0;
+        const optionWidth = this.getOptionWidthInPixels();
+        const newX = optionIndex * optionWidth + optionWidth/2;
+        this.setSliderLocation(newX);
     }
 
     setSliderLocation(newX: number): void {
         this.currentSliderCentreX = newX;
         const sliderWidth = this.slider.nativeElement.clientWidth;
-        const sliderLeftX = this.currentSliderCentreX - sliderWidth/2;
-        this.slider.nativeElement.style.left = sliderLeftX + 'px';
+        this.sliderLeftPosition = this.currentSliderCentreX - sliderWidth/2;
+    }
+
+    onMouseMove(event: MouseEvent) {
+        event.preventDefault();
+        const unboundedNewLocationX = event.pageX - this.mouseOffsetFromSliderX;
+        const newLocationX = HomeAgeQuestionComponent.boundBy(unboundedNewLocationX, 0, this.getTotalWidthOfSlideRangeInPixels());
+        this.setSliderLocation(newLocationX);
     }
 
     onMouseUp(event: MouseEvent) {
@@ -102,6 +107,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
         const optionIndex = HomeAgeQuestionComponent.boundBy(rawIndex, 0, this.getNumberOfResponseOptions() - 1);
         return this.homeAges[optionIndex];
     }
+
     getTotalWidthOfSlideRangeInPixels(): number {
         return this.timeline.nativeElement.scrollWidth;
     }
@@ -115,14 +121,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     }
 
     static boundBy(target: number, min: number, max: number): number {
-        let boundedBelow = Math.max(target, min);
+        const boundedBelow = Math.max(target, min);
         return Math.min(boundedBelow, max);
-    }
-
-    moveSliderToCentreOfOption(homeAge: HomeAge): void {
-        const optionIndex = this.homeAges.indexOf(homeAge) >= 0 ? this.homeAges.indexOf(homeAge) : 0;
-        const optionWidth = this.getOptionWidthInPixels();
-        const newX = optionIndex * optionWidth + optionWidth/2;
-        this.setSliderLocation(newX);
     }
 }

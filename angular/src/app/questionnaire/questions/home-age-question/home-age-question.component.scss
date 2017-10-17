@@ -23,6 +23,8 @@
   flex-direction: column;
   flex-grow: 0;
   flex-shrink: 0;
+  width: 100px;
+  min-width: 50px;
 
   .home-age-timeline-section {
     height: 10px;
