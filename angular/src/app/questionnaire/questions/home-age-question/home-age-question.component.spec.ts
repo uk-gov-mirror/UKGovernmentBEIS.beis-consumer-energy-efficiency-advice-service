@@ -43,17 +43,4 @@ describe('HomeAgeQuestionComponent', () => {
         // then
         expect(responseData.homeAge).toBe(expectedHomeAge);
     });
-
-    it('should notify of completion when clicking on a home age', () => {
-        // given
-        const expectedHomeAge = HomeAge.from1950to1966;
-        const homeAgeOptions = fixture.debugElement.query(By.css('.home-age-timeline'));
-        const homeAgeOption = homeAgeOptions.children[expectedHomeAge];
-
-        // when
-        homeAgeOption.nativeElement.click();
-
-        // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
-    });
 });

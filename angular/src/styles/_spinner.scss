@@ -1,0 +1,13 @@
+.loading-spinner {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 6px solid lightgrey;
+  border-top-color: transparent;
+  animation: spinner 1s linear infinite;
+  margin: 40px;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
