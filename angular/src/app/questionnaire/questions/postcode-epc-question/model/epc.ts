@@ -1,4 +1,5 @@
 import {EpcResponse} from './response/epc-response';
+import {EpcRating} from './epc-rating';
 
 export class Epc {
     public lmkKey: string;
@@ -7,7 +8,7 @@ export class Epc {
     public address3: string;
     public postcode: string;
     public buildingReferenceNumber: string;
-    public currentEnergyRating: string;
+    public currentEnergyRating: EpcRating;
     public potentialEnergyRating: string;
     public currentEnergyEfficiency: string;
     public potentialEnergyEfficiency: string;
@@ -35,7 +36,7 @@ export class Epc {
     public totalFloorArea: string;
     public energyTariff: string;
     public mainsGasFlag: string;
-    public floorLevel: string;
+    public floorLevel: number;
     public flatTopStorey: string;
     public flatStoreyCount: string;
     public mainHeatingControls: string;
@@ -43,7 +44,7 @@ export class Epc {
     public glazedType: string;
     public glazedArea: string;
     public extensionCount: string;
-    public numberHabitableRooms: string;
+    public numberHabitableRooms: number;
     public numberHeatedRooms: string;
     public lowEnergyLighting: string;
     public numberOpenFireplaces: string;
@@ -65,7 +66,7 @@ export class Epc {
     public roofDescription: string;
     public roofEnergyEff: string;
     public roofEnvEff: string;
-    public mainheatDescription: string;
+    public mainHeatDescription: string;
     public mainheatEnergyEff: string;
     public mainheatEnvEff: string;
     public mainheatcontDescription: string;
@@ -74,7 +75,7 @@ export class Epc {
     public lightingDescription: string;
     public lightingEnergyEff: string;
     public lightingEnvEff: string;
-    public mainFuel: string;
+    // public mainFuel: string; (this field is marked as deprecated in some response)
     public windTurbineCount: string;
     public heatLossCorridor: string;
     public unheatedCorridorLength: string;
@@ -87,18 +88,30 @@ export class Epc {
     public constituencyLabel: string;
     public certificateHash: string;
 
+    private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
+
     constructor(epcResponse: EpcResponse) {
-        this.lmkKey = epcResponse['lmk-key'];
+        // TODO: We may not use all these fields and may be able to remove some. We currently use the following fields:
+        // NB The data quality is mixed. Any field that we use should be escaped/parsed appropriately and we should be able to deal with
+        // a missing or bad field.
         this.address1 = epcResponse['address1'];
         this.address2 = epcResponse['address2'];
         this.address3 = epcResponse['address3'];
         this.postcode = epcResponse['postcode'];
+        this.currentEnergyRating = EpcRating[epcResponse['current-energy-rating']];
+        this.numberHabitableRooms = Epc.getParsedIntegerOrNull(epcResponse['number-habitable-rooms']);
+        this.propertyType = epcResponse['property-type'].toLowerCase();
+        this.floorLevel = Epc.getParsedFloorLevel(epcResponse['floor-level']);
+        this.localAuthorityLabel = epcResponse['local-authority-label'];
+        this.mainHeatDescription = (epcResponse['mainheat-description'] === Epc.MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE) ?
+            null : epcResponse['mainheat-description'].toLowerCase();
+
+        // TODO: These fields are not currently used; maybe we can remove these later on
+        this.lmkKey = epcResponse['lmk-key'];
         this.buildingReferenceNumber = epcResponse['building-reference-number'];
-        this.currentEnergyRating = epcResponse['current-energy-rating'];
         this.potentialEnergyRating = epcResponse['potential-energy-rating'];
         this.currentEnergyEfficiency = epcResponse['current-energy-efficiency'];
         this.potentialEnergyEfficiency = epcResponse['potential-energy-efficiency'];
-        this.propertyType = epcResponse['property-type'];
         this.builtForm = epcResponse['built-form'];
         this.inspectionDate = epcResponse['inspection-date'];
         this.localAuthority = epcResponse['local-authority'];
@@ -122,7 +135,6 @@ export class Epc {
         this.totalFloorArea = epcResponse['total-floor-area'];
         this.energyTariff = epcResponse['energy-tariff'];
         this.mainsGasFlag = epcResponse['mains-gas-flag'];
-        this.floorLevel = epcResponse['floor-level'];
         this.flatTopStorey = epcResponse['flat-top-storey'];
         this.flatStoreyCount = epcResponse['flat-storey-count'];
         this.mainHeatingControls = epcResponse['main-heating-controls'];
@@ -130,7 +142,6 @@ export class Epc {
         this.glazedType = epcResponse['glazed-type'];
         this.glazedArea = epcResponse['glazed-area'];
         this.extensionCount = epcResponse['extension-count'];
-        this.numberHabitableRooms = epcResponse['number-habitable-rooms'];
         this.numberHeatedRooms = epcResponse['number-heated-rooms'];
         this.lowEnergyLighting = epcResponse['low-energy-lighting'];
         this.numberOpenFireplaces = epcResponse['number-open-fireplaces'];
@@ -152,7 +163,6 @@ export class Epc {
         this.roofDescription = epcResponse['roof-description'];
         this.roofEnergyEff = epcResponse['roof-energy-eff'];
         this.roofEnvEff = epcResponse['roof-env-eff'];
-        this.mainheatDescription = epcResponse['mainheat-description'];
         this.mainheatEnergyEff = epcResponse['mainheat-energy-eff'];
         this.mainheatEnvEff = epcResponse['mainheat-env-eff'];
         this.mainheatcontDescription = epcResponse['mainheatcont-description'];
@@ -161,7 +171,6 @@ export class Epc {
         this.lightingDescription = epcResponse['lighting-description'];
         this.lightingEnergyEff = epcResponse['lighting-energy-eff'];
         this.lightingEnvEff = epcResponse['lighting-env-eff'];
-        this.mainFuel = epcResponse['main-fuel'];
         this.windTurbineCount = epcResponse['wind-turbine-count'];
         this.heatLossCorridor = epcResponse['heat-loss-corridoor'];
         this.unheatedCorridorLength = epcResponse['unheated-corridor-length'];
@@ -170,9 +179,9 @@ export class Epc {
         this.solarWaterHeatingFlag = epcResponse['solar-water-heating-flag'];
         this.mechanicalVentilation = epcResponse['mechanical-ventilation'];
         this.address = epcResponse['address'];
-        this.localAuthorityLabel = epcResponse['local-authority-label'];
         this.constituencyLabel = epcResponse['constituency-label'];
         this.certificateHash = epcResponse['certificate-hash'];
+        // this.mainFuel = epcResponse['main-fuel']; (this field is marked as deprecated in some response)
     }
 
     public getDisplayAddress(): string {
@@ -188,11 +197,20 @@ export class Epc {
         return houseNumberFromFirstLine || houseNumberFromSecondLine;
     }
 
-    static getIntegerFromStartOfString(input: string): number {
+    private static getIntegerFromStartOfString(input: string): number {
         const matchNumberAtStartOfString = /^[0-9]+/;
         const regexMatches = matchNumberAtStartOfString.exec(input);
         const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
         const number = numberAsString ? parseInt(numberAsString) : null;
         return (number && !isNaN(number)) ? number : null;
+    }
+
+    private static getParsedFloorLevel(val: string): number {
+        return (val.toLowerCase() === 'ground') ? 0 : Epc.getParsedIntegerOrNull(val);
+    }
+
+    private static getParsedIntegerOrNull(val: string): number {
+        const parsedNumber = parseInt(val);
+        return isNaN(parsedNumber) ? null : parsedNumber;
     }
 }

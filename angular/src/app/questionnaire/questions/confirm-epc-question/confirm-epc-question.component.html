@@ -1,0 +1,44 @@
+<div class="confirm-epc-question" *ngIf="isEpcAvailable">
+    <div class="horizontal-line"></div>
+    <div class="epc-rating-container">
+        <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
+        <div class="epc-rating">{{epcRating}}</div>
+        <div class="epc-rating-description">
+            <span>{{epcRatingRelativeDescription}}</span><br>
+            <span>Most homes appear around grade </span><span>{{getAverageEpcRating()}}</span><span>.</span>
+        </div>
+    </div>
+    <div class="horizontal-line"></div>
+    <div class="confirm-epc-details-section">
+        <div class="epc-details-container">
+            <div class="epc-details-header">We've found that your home is the following:</div>
+            <ol type="1" class="epc-details-list">
+                <li class="epc-detail" *ngIf="propertyType">
+                    <span>It is a </span><span>{{propertyType}}</span>
+                </li>
+                <li class="epc-detail" *ngIf="floorLevelDescription">
+                    <span>It's on the </span><span>{{floorLevelDescription}}</span><span> floor</span>
+                </li>
+                <li class="epc-detail" *ngIf="numberHabitableRooms">
+                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span *ngIf="numberHabitableRooms > 1">s</span>
+                </li>
+                <li class="epc-detail" *ngIf="mainHeatDescription">
+                    <span>It is heated by </span><span>{{mainHeatDescription}}</span>
+                </li>
+                <li class="epc-detail" *ngIf="localAuthorityDescription">
+                    <span>The local authority is </span><span>{{localAuthorityDescription}}</span>
+                </li>
+            </ol>
+        </div>
+        <div class="confirm-epc-details">
+            <div class="confirm-epc-details-question">Are these details correct?</div>
+            <button class="confirm-epc-details-button">Yes</button>
+            <button class="confirm-epc-details-button">No</button>
+        </div>
+    </div>
+</div>
+<div class="confirm-epc-question" *ngIf="!isEpcAvailable">
+    <span>We couldn't find any details about energy efficiency at your property based on your postcode.</span>
+    <br>
+    <span>Let's get a few more details to get a better picture.</span>
+</div>
