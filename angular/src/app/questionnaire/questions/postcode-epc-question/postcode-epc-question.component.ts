@@ -45,9 +45,9 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     }
 
     populateFormFromSavedData(): void {
-        this.postcodeInput = this.response.postcode;
-        this.allEpcsForPostcode = this.response.epc ? [this.response.epc] : null;
-        this.selectedEpc = this.response.epc;
+        this.postcodeInput = this.response && this.response.postcode;
+        this.allEpcsForPostcode = (this.response && this.response.epc) ? [this.response.epc] : null;
+        this.selectedEpc = this.response && this.response.epc;
     }
 
     handlePostcodeEntered(): void {

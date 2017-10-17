@@ -42,8 +42,9 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     }
 
     ngOnInit() {
+        this.response = this.response || this.homeAges[0];
         setTimeout(() => {
-            this.moveSliderToCentreOfOption(this.response || this.homeAges[0]);
+            this.moveSliderToCentreOfOption(this.response);
         });
     }
 

@@ -9,10 +9,11 @@ export class PostcodeEpcQuestion extends Question<PostcodeEpc, PostcodeEpcQuesti
     }
 
     get response(): PostcodeEpc {
-        return {
+        const postcodeEpc = {
             epc: this.responseData.epc,
             postcode: this.responseData.postcode
         };
+        return this.responseData.postcode && postcodeEpc;
     }
 
     set response(val: PostcodeEpc) {
