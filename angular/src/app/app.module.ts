@@ -18,10 +18,10 @@ import {HomeTypeQuestionComponent} from "./questionnaire/questions/home-type-que
 import {ResponseData} from "./questionnaire/questions/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
 import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
-import {FuelTypeQuestionComponent} from './questionnaire/questions/fuel-type-question/fuel-type-question.component';
-import { FlatPositionQuestionComponent } from './questionnaire/questions/flat-position-question/flat-position-question.component';
-import { NumberQuestionComponent } from './questionnaire/common/number-question/number-question.component';
-import { BedroomsQuestionComponent } from './questionnaire/bedrooms-question/bedrooms-question.component';
+import {FuelTypeQuestionComponent} from "./questionnaire/questions/fuel-type-question/fuel-type-question.component";
+import {FlatPositionQuestionComponent} from "./questionnaire/questions/flat-position-question/flat-position-question.component";
+import {NumberQuestionComponent} from "./questionnaire/common/number-question/number-question.component";
+import {BedroomsQuestionComponent} from "./questionnaire/questions/bedrooms-question/bedrooms-question.component";
 
 @NgModule({
     declarations: [
@@ -53,6 +53,7 @@ import { BedroomsQuestionComponent } from './questionnaire/bedrooms-question/bed
         PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
         StoreysQuestionComponent,
+        BedroomsQuestionComponent,
         FuelTypeQuestionComponent,
         HomeTypeQuestionComponent,
         FlatPositionQuestionComponent,

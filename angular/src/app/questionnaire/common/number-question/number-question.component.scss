@@ -1,6 +1,6 @@
 @import '~styles/mixins/buttons';
 
-.storeys-question {
+:host {
   display: flex;
   flex-direction: column;
   align-items: center;

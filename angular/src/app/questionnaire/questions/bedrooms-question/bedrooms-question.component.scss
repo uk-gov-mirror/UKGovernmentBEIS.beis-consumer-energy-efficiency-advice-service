@@ -1,13 +1,13 @@
-.storeys-question {
+.bedrooms-question {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.storeys-icons {
+.bedrooms-icons {
   padding-top: 48px;
 
-  .icon-home-storeys {
-    padding: 0 16px;
+  .icon-bed {
+    padding: 0 8px;
   }
 }

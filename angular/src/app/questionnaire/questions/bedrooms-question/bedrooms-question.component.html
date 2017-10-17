@@ -1,0 +1,6 @@
+<div class="bedrooms-question question-component">
+  <app-number-question [itemsName]="'bedrooms'" [heading]="question.heading" [quantity]="response" (quantityChange)="updateBedrooms($event)"></app-number-question>
+  <div class="bedrooms-icons">
+    <span *ngFor="let i of bedroomsArray" class="icon-bed" aria-label="bed"></span>
+  </div>
+</div>

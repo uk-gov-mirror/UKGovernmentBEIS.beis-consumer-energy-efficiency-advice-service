@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {findIndex, findLastIndex} from 'lodash'
+import {findIndex, findLastIndex} from "lodash";
 import {Question} from "./question";
 import {QuestionBaseComponent} from "./question.component";
 import {HomeTypeQuestion} from "./home-type-question/home-type-question";
@@ -8,6 +8,7 @@ import {StoreysQuestion} from "./storeys-question/storeys-question";
 import {FuelTypeQuestion} from "./fuel-type-question/fuel-type-question";
 import {PostcodeEpcQuestion} from "./postcode-epc-question/postcode-epc-question";
 import {FlatPositionQuestion} from "./flat-position-question/flat-position-question";
+import {BedroomsQuestion} from "./bedrooms-question/bedrooms-question";
 
 @Injectable()
 export class QuestionService {
@@ -20,6 +21,7 @@ export class QuestionService {
             new HomeTypeQuestion(responseData),
             new FlatPositionQuestion(responseData),
             new StoreysQuestion(responseData),
+            new BedroomsQuestion(responseData),
             new FuelTypeQuestion(responseData)
         ];
     }

@@ -9,6 +9,7 @@ export class ResponseData {
     private _homeType: HomeType;
     private _flatPosition: FlatPosition;
     private _numberOfStoreys: number;
+    private _numberOfBedrooms: number;
     private _fuelType: FuelType;
 
     get postCode(): string {
@@ -41,6 +42,14 @@ export class ResponseData {
 
     set numberOfStoreys(val: number) {
         this._numberOfStoreys = val;
+    }
+
+    get numberOfBedrooms(): number {
+        return this._numberOfBedrooms;
+    }
+
+    set numberOfBedrooms(val: number) {
+        this._numberOfBedrooms = val;
     }
 
     get fuelType(): FuelType {

@@ -1,7 +1,14 @@
+//noinspection CssUnknownTarget
 .icon-tree::before {
   content: url('/assets/images/icons/tree.svg');
 }
 
+//noinspection CssUnknownTarget
 .icon-home-storeys::before {
   content: url('/assets/images/icons/home-storeys.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-bed::before {
+  content: url('/assets/images/icons/bedrooms.svg');
 }
