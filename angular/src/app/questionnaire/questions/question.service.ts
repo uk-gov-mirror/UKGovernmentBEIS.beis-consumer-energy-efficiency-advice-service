@@ -21,8 +21,8 @@ export class QuestionService {
         this.questions = [
             new PostcodeEpcQuestion(responseData),
             new HomeTypeQuestion(responseData),
-            new HomeAgeQuestion(responseData),
             new FlatPositionQuestion(responseData),
+            new HomeAgeQuestion(responseData),
             new StoreysQuestion(responseData),
             new FuelTypeQuestion(responseData),
             new BoilerTypeQuestion(responseData),
