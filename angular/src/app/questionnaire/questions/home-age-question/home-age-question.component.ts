@@ -1,16 +1,17 @@
-import {QuestionBaseComponent, QuestionComponent} from '../question.component';
+import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
 import {HomeAge, HomeAgeUtil} from './home-age';
-import {HostListener, Renderer2, ViewChild} from '@angular/core';
+import {HostListener, Renderer2, ViewChild, Component} from '@angular/core';
 
 interface HomeAgeOption {
     name: string,
     value: HomeAge
 }
 
-@QuestionComponent({
+@Component({
     selector: 'app-home-age-question',
     templateUrl: './home-age-question.component.html',
-    styleUrls: ['./home-age-question.component.scss']
+    styleUrls: ['./home-age-question.component.scss'],
+    animations: [slideInOutAnimation]
 })
 export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
 
@@ -53,6 +54,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     selectResponse(homeAge: HomeAge) {
         this.moveSliderToCentreOfOption(homeAge);
         this.response = homeAge;
+        this.notifyOfCompletion();
     }
 
     @HostListener('window:resize', ['$event']) onResizeWindow(event) {

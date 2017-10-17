@@ -16,8 +16,6 @@ import {QuestionDirective} from './questionnaire/questions/question.directive';
 import {QuestionService} from './questionnaire/questions/question.service';
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
 import {HomeAgeQuestionComponent} from './questionnaire/questions/home-age-question/home-age-question.component';
-import {AppConstants, Constants} from "./common/constants";
-import {HomeTypeQuestionComponent} from "./questionnaire/questions/home-type-question/home-type-question.component";
 import {ResponseData} from "./questionnaire/questions/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
 import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
@@ -25,7 +23,6 @@ import {FuelTypeQuestionComponent} from './questionnaire/questions/fuel-type-que
 import {FlatPositionQuestionComponent} from './questionnaire/questions/flat-position-question/flat-position-question.component';
 import {BoilerTypeQuestionComponent} from './questionnaire/questions/boiler-type-question/boiler-type-question.component';
 import {ElectricityTariffQuestionComponent} from './questionnaire/questions/electricity-tariff-question/electricity-tariff-question.component';
-import {HorizontalDraggableSelectorDirective} from './questionnaire/questions/home-age-question/horizontal-draggable-selector.directive';
 
 @NgModule({
     declarations: [
@@ -42,7 +39,6 @@ import {HorizontalDraggableSelectorDirective} from './questionnaire/questions/ho
         HomeAgeQuestionComponent,
         StoreysQuestionComponent,
         FuelTypeQuestionComponent,
-        HomeTypeQuestionComponent,
         FlatPositionQuestionComponent,
         BoilerTypeQuestionComponent,
         ElectricityTariffQuestionComponent,
