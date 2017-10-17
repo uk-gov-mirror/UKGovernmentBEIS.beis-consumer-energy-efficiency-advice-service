@@ -18,11 +18,8 @@ describe('QuestionnaireComponent', () => {
         getNextQuestionIndex(index) {
             return -1;
         }
-        getHeading(index) {
-            return 'question';
-        }
-        getQuestionType(index) {
-            return 0;
+        getQuestions() {
+            return [];
         }
         get numberOfQuestions() {
             return 0;

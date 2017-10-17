@@ -1,8 +1,7 @@
+import * as _ from 'lodash';
 import { Component, Input } from '@angular/core';
-import {QuestionService} from '../questions/question.service';
-import {QuestionType, QuestionTypeUtil} from '../question-type';
-import {Question} from '../questions/question';
-import {QuestionBaseComponent} from '../questions/question.component';
+import { QuestionService } from '../questions/question.service';
+import { QuestionType, QuestionTypeUtil } from '../question-type';
 
 @Component({
     selector: 'progress-indicator',
@@ -11,38 +10,41 @@ import {QuestionBaseComponent} from '../questions/question.component';
 })
 export class ProgressIndicatorComponent {
 
-    private readonly questionnaireSections: QuestionnaireSection[];
+    private static readonly ICONS_PER_SECTION = 1;
+
+    questionnaireSections: QuestionnaireSection[];
+    private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
 
     constructor(private questionService: QuestionService) {
-        const allQuestions = Array.from(Array(questionService.numberOfQuestions).keys())
-            .map(questionIndex => {
+    }
+
+    ngOnInit() {
+        this.questionnaireSections = _.chain(this.questionService.getQuestions())
+            .map((question, i) => {
                 return {
-                    questionIndex: questionIndex,
-                    questionType: questionService.getQuestionType(questionIndex)
+                    questionIndex: i,
+                    questionType: question.questionType
                 }
-            });
-        this.questionnaireSections = allQuestions.reduce((result, question) => {
-            const questionSectionIndex = result.findIndex(section => section.questionType === question.questionType);
-            if (questionSectionIndex < 0) {
-                const questionSection = {
-                    questionType: question.questionType,
-                    questions: [question],
-                    className: QuestionTypeUtil.getIconClassName(question.questionType)
-                };
-                result.push(questionSection);
-            } else {
-                result[questionSectionIndex].questions.push(question);
-            }
-            return result;
-        }, []);
+            })
+            .groupBy('questionType').values()
+            .sortBy(questionGroup => _.head(questionGroup).questionIndex)
+            .map(questionGroup => {
+                const questionType = _.head(questionGroup).questionType;
+                return {
+                    questionType: questionType,
+                    questions: questionGroup,
+                    className: QuestionTypeUtil.getIconClassName(questionType)
+                }
+            })
+            .value();
+        this.totalNumberOfIconsAndQuestions = this.questionService.numberOfQuestions +
+            ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
     }
 
     getFlexBasis(questionTypeSection: QuestionnaireSection) {
-        const iconsPerSection = 1;
-        const questionsAndIconsInThisSection = iconsPerSection + questionTypeSection.questions.length;
-        const totalIconsAndQuestions = this.questionService.numberOfQuestions + iconsPerSection * this.questionnaireSections.length;
-        return 100 * questionsAndIconsInThisSection / totalIconsAndQuestions + '%';
+        const questionsAndIconsInThisSection = ProgressIndicatorComponent.ICONS_PER_SECTION + questionTypeSection.questions.length;
+        return 100 * questionsAndIconsInThisSection / this.totalNumberOfIconsAndQuestions + '%';
     }
 }
 

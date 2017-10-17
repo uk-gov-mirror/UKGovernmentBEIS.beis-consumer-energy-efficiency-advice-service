@@ -47,12 +47,12 @@ export class QuestionService {
         return findIndex(this.questions, q => q.isApplicable(), index + 1);
     }
 
-    public getHeading(index: number) {
-        return this.questions[index].heading;
-    }
-
     public getQuestionType(index: number): QuestionType {
         return this.questions[index].questionType;
+    }
+
+    public getQuestions(): Question<any, QuestionBaseComponent<any>>[] {
+        return this.questions;
     }
 
     get numberOfQuestions() {

@@ -1,6 +1,6 @@
-<progress-indicator [currentQuestionIndex]="currentQuestionIndex"></progress-indicator>
+<progress-indicator [currentQuestionIndex]="getCurrentQuestionIndex()"></progress-indicator>
 <div class="questions-container">
-    <i class="question-type-icon" [ngClass]="getQuestionTypeIconClassName()"></i>
+    <span class="question-type-icon" [ngClass]="getQuestionTypeIconClassName()"></span>
     <div class="question-heading">
         <button class="left-arrow" [disabled]="!canGoBack()" (click)="goBackOneQuestion()"><</button>
         <div class="heading">{{getHeading()}}</div>

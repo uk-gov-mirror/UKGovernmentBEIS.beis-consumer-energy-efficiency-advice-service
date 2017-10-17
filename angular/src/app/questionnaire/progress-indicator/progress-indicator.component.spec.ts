@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 
 import {ProgressIndicatorComponent} from './progress-indicator.component';
 import {QuestionService} from '../questions/question.service';
-import {QuestionType} from '../question-type';
+import {QuestionType, QuestionTypeUtil} from '../question-type';
 import {DebugElement} from "@angular/core/core";
 
 describe('ProgressIndicatorComponent', () => {
@@ -32,11 +32,8 @@ describe('ProgressIndicatorComponent', () => {
         getNextQuestionIndex(index) {
             return -1;
         }
-        getHeading(index) {
-            return 'question';
-        }
-        getQuestionType(index) {
-            return QuestionServiceStub.questions[index].questionType;
+        getQuestions() {
+            return QuestionServiceStub.questions;
         }
         get numberOfQuestions() {
             return QuestionServiceStub.questions.length;
@@ -87,6 +84,44 @@ describe('ProgressIndicatorComponent', () => {
 
         // then
         nonCurrentProgressIndicatorSteps.forEach((progressIndicatorStep) => expect(isActive(progressIndicatorStep)).toBeFalsy());
+    });
+
+    it('should display the correct number of sections', () => {
+        // given
+        const expectedNumberOfQuestionnaireSections = Object.keys(QuestionType).length / 2;
+
+        // when
+        const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
+
+        // then
+        expect(allQuestionnaireSections.length).toEqual(expectedNumberOfQuestionnaireSections);
+    });
+
+    it('should display the correct number of questions in each section', () => {
+        // given
+        const expectedNumberOfHeatingQuestions = QuestionServiceStub.questions
+            .filter(q => q.questionType === QuestionType.Heating)
+            .length;
+        const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
+
+        // when
+        const heatingSection = allQuestionnaireSections.find(section => {
+            const sectionIcon = section.query(By.css('.question-type-icon'));
+            const heatingIconClassName = QuestionTypeUtil.getIconClassName(QuestionType.Heating);
+            return sectionIcon.nativeElement.classList.contains(heatingIconClassName);
+        });
+
+        // then
+        const allHeatingQuestions = heatingSection.queryAll(By.css('.progress-indicator-step'));
+        expect(allHeatingQuestions.length).toEqual(expectedNumberOfHeatingQuestions);
+    });
+
+    it('should display the correct total number of questions', () => {
+        // given
+        const allQuestions = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
+
+        // then
+        expect(allQuestions.length).toEqual(QuestionServiceStub.questions.length);
     });
 
     function isActive(progressIndicatorStep: DebugElement): boolean {

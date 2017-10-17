@@ -59,12 +59,15 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     getHeading() {
-        return this.questionService.getHeading(this.currentQuestionIndex);
+        return this.questionComponent && this.questionComponent.heading;
     }
 
     getQuestionTypeIconClassName() {
-        const questionType = this.questionService.getQuestionType(this.currentQuestionIndex);
-        return QuestionTypeUtil.getIconClassName(questionType);
+        return this.questionComponent && this.questionComponent.questionTypeIconClassName;
+    }
+
+    getCurrentQuestionIndex() {
+        return this.currentQuestionIndex;
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
@@ -89,6 +92,8 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionComponent.notifyOfCompletion = () => {
                 this.goForwardsOneQuestion();
             };
+            this.questionComponent.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
+            this.questionComponent.heading = question.heading;
         }
     }
 }
