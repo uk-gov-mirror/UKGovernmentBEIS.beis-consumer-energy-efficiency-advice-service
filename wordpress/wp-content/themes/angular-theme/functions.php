@@ -46,7 +46,11 @@ function get_epc(WP_REST_Request $request)
             'Accept' => 'application/json'
         )
     );
-    $url = 'https://epc.opendatacommunities.org/api/v1/domestic/search?postcode=' . $request['postcode'] . '&address=' . $request['number'];
+    $postcodeQuery = $request['postcode'] ? 'postcode=' . $request['postcode'] : '';
+    $addressQuery = $request['address'] ? 'address=' . $request['address'] : '';
+    $sizeQuery = $request['size'] ? 'size=' . $request['size'] : '';
+    $queryString = $postcodeQuery . ( $addressQuery ? '&' . $addressQuery : '') . ( $sizeQuery ? '&' . $sizeQuery : '');
+    $url = 'https://epc.opendatacommunities.org/api/v1/domestic/search?' . $queryString;
     return json_decode(wp_remote_retrieve_body(wp_remote_get($url, $args)));
 }
 
