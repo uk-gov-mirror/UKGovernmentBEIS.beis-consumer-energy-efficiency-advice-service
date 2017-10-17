@@ -5,6 +5,7 @@ import {By} from "@angular/platform-browser";
 import {ResponseData} from "../response-data";
 import {StoreysQuestion} from "./storeys-question";
 import {FormsModule} from "@angular/forms";
+import {NumberQuestionComponent} from "../../common/number-question/number-question.component";
 
 describe('StoreysQuestionComponent', () => {
     let component: StoreysQuestionComponent;
@@ -15,7 +16,7 @@ describe('StoreysQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [StoreysQuestionComponent],
+            declarations: [StoreysQuestionComponent, NumberQuestionComponent],
             imports: [FormsModule]
         })
             .compileComponents();
@@ -54,36 +55,5 @@ describe('StoreysQuestionComponent', () => {
 
         // then
         expect(responseData.numberOfStoreys).toBe(expectedStoreys);
-    });
-
-    it('should not set the response given an invalid number of storeys', () => {
-        // given
-        const invalidStoreys = 0;
-
-        // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
-        storeysInput.nativeElement.value = invalidStoreys;
-        storeysInput.nativeElement.dispatchEvent(new Event('input'));
-
-        // then
-        expect(responseData.numberOfStoreys).not.toBe(invalidStoreys);
-    });
-
-    it('should increase and decrease storeys when buttons are clicked', () => {
-        // given
-        let decreaseButton = fixture.debugElement.query(de => de.nativeElement.textContent === '-');
-        let increaseButton = fixture.debugElement.query(de => de.nativeElement.textContent === '+');
-
-        // when
-        decreaseButton.nativeElement.click();
-
-        // then
-        expect(responseData.numberOfStoreys).toBe(originalNumberOfStoreys - 1);
-
-        // when
-        increaseButton.nativeElement.click();
-
-        // then
-        expect(responseData.numberOfStoreys).toBe(originalNumberOfStoreys);
     });
 });
