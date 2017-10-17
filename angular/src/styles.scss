@@ -4,3 +4,10 @@
 
 @import "./styles/icons";
 @import './styles/questionnaire';
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: visible;
+}

@@ -79,6 +79,7 @@
     .multiple-choice-options {
       display: flex;
       justify-content: space-between;
+      max-width: 100%;
 
       .baseline {
         position: absolute;
