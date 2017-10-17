@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
 import {HomeAge, HomeAgeUtil} from './home-age';
 import {HostListener, Renderer2, ViewChild, Component} from '@angular/core';
@@ -15,8 +16,9 @@ interface HomeAgeOption {
 })
 export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
 
-    private homeAges: HomeAge[] = Object.values(HomeAge)
-        .filter(homeAge => !isNaN(homeAge));
+    private homeAges: HomeAge[] = _.keys(HomeAge)
+        .filter(homeAge => !isNaN(homeAge))
+        .map(x => parseInt(x));
 
     homeAgeOptions: HomeAgeOption[] = this.homeAges
         .map(homeAge => {
@@ -26,6 +28,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
             };
         });
     sliderLeftPosition: number = 0;
+    isSliderSelected: boolean = false;
 
     private mouseOffsetFromSliderX: number = 0;
     private currentSliderCentreX: number = 0;
@@ -63,9 +66,12 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
 
     @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
         event.preventDefault();
-        this.mouseOffsetFromSliderX = event.pageX - this.currentSliderCentreX;
-        this.deregisterMouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.onMouseMove(event));
-        this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', event => this.onMouseUp(event));
+        if (event.target === this.slider.nativeElement) {
+            this.isSliderSelected = true;
+            this.mouseOffsetFromSliderX = event.pageX - this.currentSliderCentreX;
+            this.deregisterMouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.onMouseMove(event));
+            this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', event => this.onMouseUp(event));
+        }
     };
 
     moveSliderToCentreOfOption(homeAge: HomeAge): void {
@@ -89,6 +95,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     }
 
     onMouseUp(event: MouseEvent) {
+        this.isSliderSelected = false;
         this.deregisterEventListeners();
         event.preventDefault();
         this.selectResponseFromSliderLocation(event.pageX - this.mouseOffsetFromSliderX);

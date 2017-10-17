@@ -1,10 +1,10 @@
 <div class="home-age-question">
     <div #timeline class="home-age-timeline">
-        <div #option class="home-age-option" *ngFor="let homeAgeOption of homeAgeOptions"
-                (click)="selectResponse(homeAgeOption.value)" [ngStyle]="{ 'flex-basis': 100/getNumberOfResponseOptions() + '%' }" >
+        <div #option class="home-age-option" *ngFor="let homeAgeOption of homeAgeOptions" (click)="selectResponse(homeAgeOption.value)">
             <div class="home-age-timeline-section"></div>
-            <div class="home-age-option-name">{{homeAgeOption.name}}</div>
+            <button class="home-age-option-button">{{homeAgeOption.name}}</button>
         </div>
-        <div #slider class="home-age-timeline-slider" [style.left.px]="sliderLeftPosition"></div>
+        <div #slider class="home-age-timeline-slider" [style.left.px]="sliderLeftPosition"
+             [class.selected]="isSliderSelected"></div>
     </div>
 </div>
