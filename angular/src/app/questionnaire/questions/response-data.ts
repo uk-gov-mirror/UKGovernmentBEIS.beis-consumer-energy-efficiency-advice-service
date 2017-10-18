@@ -10,14 +10,14 @@ import {Epc} from './postcode-epc-question/model/epc';
 export class ResponseData {
     private _postcode: string;
     private _epc: Epc;
-    private _homeType: HomeType;
-    private _homeAge: HomeAge;
-    private _flatPosition: FlatPosition;
+    private _homeType: string;
+    private _homeAge: string;
+    private _flatPosition: string;
     private _numberOfStoreys: number;
     private _numberOfBedrooms: number;
-    private _fuelType: FuelType;
+    private _fuelType: string;
     private _condensingBoiler: boolean;
-    private _electricityTariff: ElectricityTariff;
+    private _electricityTariff: string;
 
     get postcode(): string {
         return this._postcode;
@@ -36,19 +36,19 @@ export class ResponseData {
     }
 
     get homeType(): HomeType {
-        return this._homeType;
+        return HomeType[this._homeType];
     }
 
     set homeType(val: HomeType) {
-        this._homeType = val;
+        this._homeType = HomeType[val];
     }
 
     get flatPosition(): FlatPosition {
-        return this._flatPosition;
+        return FlatPosition[this._flatPosition];
     }
 
     set flatPosition(val: FlatPosition) {
-        this._flatPosition = val;
+        this._flatPosition = FlatPosition[val];
     }
 
     get numberOfStoreys(): number {
@@ -68,11 +68,11 @@ export class ResponseData {
     }
 
     get fuelType(): FuelType {
-        return this._fuelType;
+        return FuelType[this._fuelType];
     }
 
     set fuelType(value: FuelType) {
-        this._fuelType = value;
+        this._fuelType = FuelType[value];
     }
 
     get condensingBoiler(): boolean {
@@ -84,18 +84,18 @@ export class ResponseData {
     }
 
     get electricityTariff(): ElectricityTariff {
-        return this._electricityTariff;
+        return ElectricityTariff[this._electricityTariff];
     }
 
     set electricityTariff(val: ElectricityTariff) {
-        this._electricityTariff = val;
+        this._electricityTariff = ElectricityTariff[val];
     }
 
     get homeAge(): HomeAge {
-        return this._homeAge;
+        return HomeAge[this._homeAge];
     }
 
     set homeAge(value: HomeAge) {
-        this._homeAge = value;
+        this._homeAge = HomeAge[value];
     }
 }

@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
+import {TJsonViewerModule} from 't-json-viewer';
 
 import {AppComponent} from './app.component';
 import {PageComponent} from './page/page.component';
@@ -23,10 +24,11 @@ import {FuelTypeQuestionComponent} from "./questionnaire/questions/fuel-type-que
 import {FlatPositionQuestionComponent} from "./questionnaire/questions/flat-position-question/flat-position-question.component";
 import {NumberQuestionComponent} from "./questionnaire/common/number-question/number-question.component";
 import {BedroomsQuestionComponent} from "./questionnaire/questions/bedrooms-question/bedrooms-question.component";
-import { TimesPipe } from './common/times/times.pipe';
+import {TimesPipe} from './common/times/times.pipe';
 import {BoilerTypeQuestionComponent} from './questionnaire/questions/boiler-type-question/boiler-type-question.component';
 import {ElectricityTariffQuestionComponent} from './questionnaire/questions/electricity-tariff-question/electricity-tariff-question.component';
 import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/progress-indicator.component';
+import {ResponseSummaryComponent} from './response-summary/response-summary.component';
 
 @NgModule({
     declarations: [
@@ -50,13 +52,15 @@ import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/pro
         BoilerTypeQuestionComponent,
         ElectricityTariffQuestionComponent,
         TimesPipe,
+        ResponseSummaryComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         RoutingModule,
-        FormsModule
+        FormsModule,
+        TJsonViewerModule,
     ],
     entryComponents: [
         PostcodeEpcQuestionComponent,

@@ -5,6 +5,7 @@ import {CalculatorComponent} from "./calculator/calculator.component";
 import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
 import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
+import {ResponseSummaryComponent} from "./response-summary/response-summary.component";
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: 'questionnaire',
         component: QuestionnaireComponent
+    },
+    {
+        path: 'responses',
+        component: ResponseSummaryComponent
     },
     {
         path: ':slug',
