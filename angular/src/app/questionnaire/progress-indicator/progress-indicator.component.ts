@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {QuestionService} from '../questions/question.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 
@@ -8,7 +8,7 @@ import {QuestionType, QuestionTypeUtil} from '../question-type';
     templateUrl: './progress-indicator.component.html',
     styleUrls: ['./progress-indicator.component.scss']
 })
-export class ProgressIndicatorComponent {
+export class ProgressIndicatorComponent implements OnInit {
 
     private static readonly ICONS_PER_SECTION = 1;
 
