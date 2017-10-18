@@ -1,6 +1,6 @@
 <div class="confirm-epc-question" *ngIf="isEpcAvailable">
-    <div class="horizontal-line"></div>
-    <div class="epc-rating-container">
+    <div class="horizontal-line" *ngIf="epcRating"></div>
+    <div class="epc-rating-container" *ngIf="epcRating">
         <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
         <div class="epc-rating">{{epcRating}}</div>
         <div class="epc-rating-description">

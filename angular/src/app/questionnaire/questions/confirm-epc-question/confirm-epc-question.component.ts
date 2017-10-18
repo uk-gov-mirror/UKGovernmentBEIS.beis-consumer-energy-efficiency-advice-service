@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
 import {ResponseData} from '../response-data';
 import {EpcRating} from '../postcode-epc-question/model/epc-rating';
@@ -16,7 +16,7 @@ import {
     styleUrls: ['./confirm-epc-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfirmation> {
+export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfirmation> implements OnInit {
 
     static readonly AVERAGE_EPC_RATING = 'D';
 
@@ -37,7 +37,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfir
     }
 
     ngOnInit() {
-        this.getDetailsFromResponseData();
+        setTimeout(() => this.getDetailsFromResponseData());
     }
 
     getDetailsFromResponseData() {

@@ -18,9 +18,9 @@ describe('PostcodeEpcQuestionComponent', () => {
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
     let responseData: ResponseData;
 
-    const dummyEpcResponse = require('../../../../assets/test/dummy-epc-response.json');
+    const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     let apiServiceStub = {
-        getEpcData: (postcode) => Observable.of(dummyEpcResponse)
+        getEpcData: (postcode) => Observable.of(dummyEpcsResponse)
     };
 
     beforeEach(async(() => {
@@ -156,7 +156,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                // matches data in dummy-epc-response.json
+                // matches data in dummy-epcs-response.json
                 expect(component.allEpcsForPostcode.length).toEqual(3);
             });
         }));
@@ -170,7 +170,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                // matches data in dummy-epc-response.json
+                // matches data in dummy-epcs-response.json
                 expect(component.allEpcsForPostcode[0].address1).toEqual('Apartment 1');
                 expect(component.allEpcsForPostcode[1].address1).toEqual('Apartment 2');
                 expect(component.allEpcsForPostcode[2].address1).toEqual('Apartment 3');
@@ -186,7 +186,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                // matches data in dummy-epc-response.json
+                // matches data in dummy-epcs-response.json
                 expect(component.allEpcsForPostcode[0].getDisplayAddress()).toEqual('Apartment 1, 1 Test Street');
             });
         }));
@@ -259,7 +259,7 @@ describe('PostcodeEpcQuestionComponent', () => {
         it('should set the response when an epc is selected', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
-            const expectedEpc = new Epc(dummyEpcResponse.rows[0]);
+            const expectedEpc = new Epc(dummyEpcsResponse.rows[0]);
 
             // when
             fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
