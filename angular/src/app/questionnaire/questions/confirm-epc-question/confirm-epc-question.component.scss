@@ -54,6 +54,7 @@ $epc-rating-margin: 40px;
     margin: $section-break-margin 0;
     display: flex;
     flex-direction: row;
+    align-items: stretch;
 
     .epc-details-container {
       display: flex;
@@ -62,7 +63,7 @@ $epc-rating-margin: 40px;
 
       .epc-details-header {
         font-weight: bold;
-        margin: 10px 0;
+        margin-bottom: 10px;
       }
 
       .epc-details-list {
@@ -76,27 +77,45 @@ $epc-rating-margin: 40px;
 
     .confirm-epc-details {
       display: flex;
+      flex-direction: column;
       font-weight: bold;
       flex-basis: $right-column-width;
+      justify-content: space-between;
 
-      .confirm-epc-details-question {
-        margin-right: 20px;
-      }
+      .confirm-epc-details-row {
+        display: flex;
 
-      .confirm-epc-details-button {
-        background: none;
-        border: 1px solid black;
-        height: 30px;
-        width: 80px;
-        border-radius: 15px;
-        margin: 0 10px;
-        cursor: pointer;
+        .confirm-epc-details-question {
+          margin-right: 20px;
+        }
 
-        &:hover {
-          background-color: black;
-          color: white;
+        .confirm-epc-details-button {
+          background: none;
+          border: 1px solid black;
+          height: 30px;
+          width: 80px;
+          border-radius: 15px;
+          margin: 0 10px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: black;
+            color: white;
+          }
         }
       }
+    }
+  }
+
+  .need-more-details-button {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 10px 40px 10px 20px;
+    border: none;
+
+    &:hover {
+      box-shadow: 0 0 2px 2px grey;
     }
   }
 }

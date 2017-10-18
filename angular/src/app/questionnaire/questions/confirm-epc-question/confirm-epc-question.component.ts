@@ -1,8 +1,14 @@
-import {Component} from "@angular/core";
+import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
-import {Epc} from '../postcode-epc-question/model/epc';
 import {ResponseData} from '../response-data';
 import {EpcRating} from '../postcode-epc-question/model/epc-rating';
+import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
+import {EpcConfirmation} from './epc-confirmation';
+import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from '../fuel-type-question/fuel-type';
+import {
+    ElectricityTariff, getElectricityTariffDescription,
+    getElectricityTariffFromEpc
+} from '../electricity-tariff-question/electricity-tariff';
 
 @Component({
     selector: 'confirm-epc',
@@ -10,18 +16,21 @@ import {EpcRating} from '../postcode-epc-question/model/epc-rating';
     styleUrls: ['./confirm-epc-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<void> {
+export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfirmation> {
 
     static readonly AVERAGE_EPC_RATING = 'D';
 
     isEpcAvailable: boolean;
     epcRating: string;
     epcRatingRelativeDescription: string;
-    propertyType: string;
-    floorLevelDescription: string;
+    homeType: HomeType;
+    homeTypeDescription: string;
     numberHabitableRooms: number;
-    mainHeatDescription: string;
     localAuthorityDescription: string;
+    fuelType: FuelType;
+    fuelTypeDescription: string;
+    electricityTariff: ElectricityTariff;
+    electricityTariffDescription: string;
 
     constructor(private responseData: ResponseData) {
         super();
@@ -38,43 +47,49 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<void> {
             return;
         }
         this.isEpcAvailable = true;
+
         this.epcRating = EpcRating[epc.currentEnergyRating];
         this.epcRatingRelativeDescription = ConfirmEpcQuestionComponent.getEpcRatingRelativeDescription(this.epcRating);
-        this.propertyType = epc.propertyType.toLowerCase();
-        this.floorLevelDescription = ConfirmEpcQuestionComponent.getFloorLevelDescription(epc.floorLevel);
+
+        this.homeType = (this.response && this.response.homeType) || getHomeTypeFromEpc(epc);
+        this.homeTypeDescription = getHomeTypeDescription(this.homeType);
+
+        this.fuelType = (this.response && this.response.fuelType) || getFuelTypeFromEpc(epc);
+        this.fuelTypeDescription = getFuelTypeDescription(this.fuelType);
+
+        this.electricityTariff = (this.response && this.response.electricityTariff) || getElectricityTariffFromEpc(epc);
+        this.electricityTariffDescription = getElectricityTariffDescription(this.electricityTariff);
+
         this.numberHabitableRooms = epc.numberHabitableRooms;
-        this.mainHeatDescription = epc.mainHeatDescription;
         this.localAuthorityDescription = epc.localAuthorityLabel;
     }
+
+    confirmEpcDetails() {
+        // TODO: Think about what to do on confirmation/rejection of EPC
+        // For now we just autopopulate future questions based on data in the EPC, and we do this whether the user
+        // confirms or rejects the data.
+        this.response = {
+            homeType: this.homeType,
+            fuelType: this.fuelType,
+            electricityTariff: this.electricityTariff
+        };
+        this.notifyOfCompletion();
+    }
+
+    rejectEpcDetails() {
+        this.confirmEpcDetails();
+    }
+
 
     getAverageEpcRating(): string {
         return ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
     }
 
     static getEpcRatingRelativeDescription(epcRating: string): string {
+        if (epcRating === ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING) {
+            return 'This means your home\'s efficiency is about average.'
+        }
         const comparatorAdjective = epcRating < ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING ? 'high' : 'low';
         return 'This means your home is relatively ' + comparatorAdjective + ' efficiency.'
-    }
-
-    static getFloorLevelDescription(floorLevel: number): string {
-        if (floorLevel === 0) {
-            return 'ground';
-        } else if (!floorLevel) {
-            return null;
-        } else {
-            return ConfirmEpcQuestionComponent.getOrdinal(floorLevel);
-        }
-    }
-
-    static getOrdinal(n: number): string {
-        const ordinalSuffixes: string[] = ["th","st","nd","rd"];
-        const lastTwoDigits: number = n % 100;
-        if (lastTwoDigits < 4) {
-            return n + ordinalSuffixes[lastTwoDigits];
-        } else if (lastTwoDigits < 20) {
-            return n + ordinalSuffixes[0];
-        } else {
-            return n + ordinalSuffixes[lastTwoDigits % 10];
-        }
     }
 }

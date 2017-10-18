@@ -2,6 +2,8 @@ import {EpcResponse} from './response/epc-response';
 import {EpcRating} from './epc-rating';
 
 export class Epc {
+    // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
+
     public lmkKey: string;
     public address1: string;
     public address2: string;
@@ -35,9 +37,9 @@ export class Epc {
     public hotWaterCostPotential: string;
     public totalFloorArea: string;
     public energyTariff: string;
-    public mainsGasFlag: string;
+    public isConnectedToMainsGas: boolean;
     public floorLevel: number;
-    public flatTopStorey: string;
+    public flatTopStorey: boolean;
     public flatStoreyCount: string;
     public mainHeatingControls: string;
     public multiGlazeProportion: string;
@@ -75,7 +77,7 @@ export class Epc {
     public lightingDescription: string;
     public lightingEnergyEff: string;
     public lightingEnvEff: string;
-    // public mainFuel: string; (this field is marked as deprecated in some response)
+    public mainFuel: string;
     public windTurbineCount: string;
     public heatLossCorridor: string;
     public unheatedCorridorLength: string;
@@ -105,6 +107,11 @@ export class Epc {
         this.localAuthorityLabel = epcResponse['local-authority-label'];
         this.mainHeatDescription = (epcResponse['mainheat-description'] === Epc.MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE) ?
             null : epcResponse['mainheat-description'].toLowerCase();
+        this.flatTopStorey = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['flat-top-storey']);
+        this.builtForm = epcResponse['built-form'].toLowerCase();
+        this.isConnectedToMainsGas = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['mains-gas-flag']);
+        this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO: watch out - this field is marked as deprecated in some responses
+        this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
 
         // TODO: These fields are not currently used; maybe we can remove these later on
         this.lmkKey = epcResponse['lmk-key'];
@@ -112,7 +119,6 @@ export class Epc {
         this.potentialEnergyRating = epcResponse['potential-energy-rating'];
         this.currentEnergyEfficiency = epcResponse['current-energy-efficiency'];
         this.potentialEnergyEfficiency = epcResponse['potential-energy-efficiency'];
-        this.builtForm = epcResponse['built-form'];
         this.inspectionDate = epcResponse['inspection-date'];
         this.localAuthority = epcResponse['local-authority'];
         this.constituency = epcResponse['constituency'];
@@ -134,9 +140,7 @@ export class Epc {
         this.hotWaterCostPotential = epcResponse['hot-water-cost-potential'];
         this.totalFloorArea = epcResponse['total-floor-area'];
         this.energyTariff = epcResponse['energy-tariff'];
-        this.mainsGasFlag = epcResponse['mains-gas-flag'];
-        this.flatTopStorey = epcResponse['flat-top-storey'];
-        this.flatStoreyCount = epcResponse['flat-storey-count'];
+        this.flatStoreyCount = epcResponse['flat-storey-count']; // this is the number of storeys in the apartment block, not the number of storeys in the flat
         this.mainHeatingControls = epcResponse['main-heating-controls'];
         this.multiGlazeProportion = epcResponse['multi-glaze-proportion'];
         this.glazedType = epcResponse['glazed-type'];
@@ -145,7 +149,6 @@ export class Epc {
         this.numberHeatedRooms = epcResponse['number-heated-rooms'];
         this.lowEnergyLighting = epcResponse['low-energy-lighting'];
         this.numberOpenFireplaces = epcResponse['number-open-fireplaces'];
-        this.hotWaterDescription = epcResponse['hotwater-description'];
         this.hotWaterEnergyEff = epcResponse['hot-water-energy-eff'];
         this.hotWaterEnvEff = epcResponse['hot-water-env-eff'];
         this.floorDescription = epcResponse['floor-description'];
@@ -181,7 +184,6 @@ export class Epc {
         this.address = epcResponse['address'];
         this.constituencyLabel = epcResponse['constituency-label'];
         this.certificateHash = epcResponse['certificate-hash'];
-        // this.mainFuel = epcResponse['main-fuel']; (this field is marked as deprecated in some response)
     }
 
     public getDisplayAddress(): string {
@@ -212,5 +214,15 @@ export class Epc {
     private static getParsedIntegerOrNull(val: string): number {
         const parsedNumber = parseInt(val);
         return isNaN(parsedNumber) ? null : parsedNumber;
+    }
+
+    private static getParsedBooleanFromEpcResponseValue(val: string): boolean {
+        if (val === 'Y') {
+            return true;
+        } else if (val === 'N') {
+            return false;
+        } else {
+            return null;
+        }
     }
 }

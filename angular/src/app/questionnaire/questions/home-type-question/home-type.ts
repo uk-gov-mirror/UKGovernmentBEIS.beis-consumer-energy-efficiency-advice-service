@@ -1,3 +1,4 @@
+import {Epc} from '../postcode-epc-question/model/epc';
 export enum HomeType {
     DetachedHouse,
     SemiDetachedHouse,
@@ -15,4 +16,45 @@ export function isFlat(homeType: HomeType): boolean {
     return homeType === HomeType.GroundFloorFlat ||
            homeType === HomeType.MidFloorFlat ||
            homeType === HomeType.TopFloorFlat;
+}
+
+export function getHomeTypeDescription(homeType: HomeType): string {
+    switch(homeType) {
+        case HomeType.DetachedHouse:     { return 'detached house'; }
+        case HomeType.SemiDetachedHouse: { return 'semi-detached house'; }
+        case HomeType.EndTerraceHouse:   { return 'end-terrace house'; }
+        case HomeType.MidTerraceHouse:   { return 'mid-terrace house'; }
+        case HomeType.GroundFloorFlat:   { return 'ground floor flat'; }
+        case HomeType.MidFloorFlat:      { return 'mid floor flat'; }
+        case HomeType.TopFloorFlat:      { return 'top floor flat'; }
+        case HomeType.BungalowDetached:  { return 'bungalow detached'; }
+        case HomeType.BungalowAttached:  { return 'bungalow attached'; }
+        case HomeType.ParkHome:          { return 'park home'; }
+        default:                         { return null; }
+    }
+}
+
+export function getHomeTypeFromEpc(epc: Epc): HomeType {
+    // TODO: this is very fragile!
+    if (epc.propertyType === 'flat') {
+        if (epc.flatTopStorey) {
+            return HomeType.TopFloorFlat;
+        } else if (epc.floorLevel === 0) {
+            return HomeType.GroundFloorFlat;
+        } else {
+            return HomeType.MidFloorFlat;
+        }
+    } else if (epc.propertyType === 'house') {
+        if (epc.builtForm === 'detached') {
+            return HomeType.DetachedHouse;
+        } else if (epc.builtForm === 'semi-detached') {
+            return HomeType.SemiDetachedHouse;
+        } else if (epc.builtForm.includes('end-terrace')) {
+            return HomeType.EndTerraceHouse;
+        } else if (epc.builtForm.includes('mid-terrace')) {
+            return HomeType.MidTerraceHouse;
+        }
+    } else {
+        return null;
+    }
 }
