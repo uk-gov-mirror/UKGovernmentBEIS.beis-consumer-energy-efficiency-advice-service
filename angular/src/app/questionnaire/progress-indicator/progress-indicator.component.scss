@@ -1,0 +1,104 @@
+$progress-indicator-height: 40px;
+$progress-indicator-border-width: 1px;
+
+.progress-indicator-component {
+  display: flex;
+  border: $progress-indicator-border-width solid black;
+  height: $progress-indicator-height;
+  width: 98vw;
+
+  .arrow, .arrow-cover-up, .arrow-background-cover-up {
+    position: absolute;
+    left: calc(100% - 20px);
+    top: 50%;
+  }
+
+  .arrow-background-cover-up {
+    background-color: white;
+    height: $progress-indicator-height;
+    width: $progress-indicator-height + $progress-indicator-border-width;
+    margin-top: (-0.5) * $progress-indicator-height;
+  }
+
+  .arrow {
+    border: solid 0.5 * $progress-indicator-height + $progress-indicator-border-width transparent;
+    border-left-color: black;
+    margin-top: (-0.5) * $progress-indicator-height - $progress-indicator-border-width;
+  }
+
+  .arrow-cover-up {
+    border: solid 0.5 * $progress-indicator-height transparent;
+    border-left-color: white;
+    margin-top: (-0.5) * $progress-indicator-height;
+  }
+
+  .reference-number-container {
+    width: 60px;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    flex-grow: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 6px 50px 6px 30px;
+
+    .reference-number-label {
+      font-weight: bold;
+    }
+
+    .reference-number, .reference-number-label {
+      font-size: 10px;
+    }
+  }
+
+  .progress-indicator {
+    display: flex;
+    flex-grow: 1;
+
+    .questionnaire-section {
+      flex-grow: 1;
+      display: flex;
+      position: relative;
+
+      .question-type-icon {
+        padding: 5px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+      }
+
+      .progress-indicator-step {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        z-index: 1;
+
+        .horizontal-dotted-line {
+          border-bottom: 1px dotted black;
+          flex: 1;
+        }
+
+        .step-link {
+          width: 15px;
+          height: 15px;
+          border-radius: 15px;
+          border: 1px solid black;
+
+          &.active {
+            background-color: black;
+          }
+        }
+      }
+
+      &:last-child {
+        .arrow-background-cover-up {
+          height: $progress-indicator-height + 2 * $progress-indicator-border-width;
+          margin-top: (-0.5) * $progress-indicator-height - $progress-indicator-border-width;
+        }
+      }
+    }
+  }
+}

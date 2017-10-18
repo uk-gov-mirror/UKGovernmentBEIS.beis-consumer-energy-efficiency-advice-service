@@ -3,10 +3,11 @@ import {ElectricityTariffQuestionComponent} from "./electricity-tariff-question.
 import {ResponseData} from "../response-data";
 import {Question} from "../question";
 import {FuelType, isElectric} from "../fuel-type-question/fuel-type";
+import {QuestionType} from '../../question-type';
 
 export class ElectricityTariffQuestion extends Question<ElectricityTariff, ElectricityTariffQuestionComponent> {
     constructor(responseData: ResponseData) {
-        super(ElectricityTariffQuestionComponent, 'Do you know your electricity tariff?', responseData);
+        super(ElectricityTariffQuestionComponent, 'Do you know your electricity tariff?', QuestionType.Heating, responseData);
     }
 
     get response(): ElectricityTariff {

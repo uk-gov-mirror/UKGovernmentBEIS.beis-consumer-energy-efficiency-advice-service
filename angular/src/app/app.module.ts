@@ -26,6 +26,7 @@ import {BedroomsQuestionComponent} from "./questionnaire/questions/bedrooms-ques
 import { TimesPipe } from './common/times/times.pipe';
 import {BoilerTypeQuestionComponent} from './questionnaire/questions/boiler-type-question/boiler-type-question.component';
 import {ElectricityTariffQuestionComponent} from './questionnaire/questions/electricity-tariff-question/electricity-tariff-question.component';
+import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/progress-indicator.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {ElectricityTariffQuestionComponent} from './questionnaire/questions/elec
         OcrComponent,
         QuestionDirective,
         QuestionnaireComponent,
+        ProgressIndicatorComponent,
         PostcodeEpcQuestionComponent,
         HomeTypeQuestionComponent,
         HomeAgeQuestionComponent,

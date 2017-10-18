@@ -12,3 +12,18 @@
 .icon-bed::before {
   content: url('/assets/images/icons/bedrooms.svg');
 }
+
+//noinspection CssUnknownTarget
+.icon-house::before {
+  content: url('assets/images/question-types/house.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-person::before {
+  content: url('assets/images/question-types/person.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-thermostat::before {
+  content: url('assets/images/question-types/thermostat.svg');
+}

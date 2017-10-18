@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEnca
 import { QuestionService } from "./questions/question.service";
 import {QuestionDirective} from "./questions/question.directive";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions/question.component";
+import {QuestionTypeUtil} from './question-type';
 
 @Component({
     selector: 'app-questionnaire',
@@ -10,8 +11,12 @@ import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions
 })
 export class QuestionnaireComponent implements AfterViewInit {
 
-    private currentQuestionIndex: number;
     private questionComponent: QuestionBaseComponent<any>;
+
+    currentQuestionIndex: number;
+    heading: string;
+    questionTypeIconClassName: string;
+
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
     constructor(private questionService: QuestionService,
@@ -57,13 +62,12 @@ export class QuestionnaireComponent implements AfterViewInit {
         }
     }
 
-    getHeading() {
-        return this.questionService.getHeading(this.currentQuestionIndex);
-    }
-
     private renderQuestion(slideInFrom: SlideInFrom) {
         const question = this.questionService.getQuestion(this.currentQuestionIndex);
         if (!!question) {
+            this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
+            this.heading = question.heading;
+
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
 
             // Set the current question to slide out in the opposite direction. Manual change
