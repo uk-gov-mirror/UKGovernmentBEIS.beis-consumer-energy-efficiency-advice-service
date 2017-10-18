@@ -2,9 +2,9 @@
     <form class="questionnaire-form" (submit)="handlePostcodeEntered()">
         <div class="form-element">
             <input class="text-input" id="postcode-input" name="postcode-input" type="text" spellcheck="false"
-                   [(ngModel)]="postcodeInput">
+                   aria-labelledby="question-heading" [(ngModel)]="postcodeInput">
             <button id="submit-postcode" type="submit" class="submit-button"></button>
-            <label title="Search" for="submit-postcode" class="submit-icon">►</label>
+            <label title="Submit" aria-label="Submit" for="submit-postcode" class="submit-icon">►</label>
         </div>
     </form>
     <div class="error" *ngIf="error">
@@ -15,10 +15,10 @@
     <div *ngIf="allEpcsForPostcode && allEpcsForPostcode.length > 0">
         <div class="select-address">Please select your address:</div>
         <div class="list-select">
-            <div class="list-select-option" [class.selected]="isSelected(epc)"
-                 *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}</div>
-            <div class="list-select-option address-not-listed" [class.selected]="isNoEpcSelected"
-                 (click)="continueWithoutEpc()">My address is not listed</div>
+            <button class="list-select-option" [class.selected]="isSelected(epc)"
+                 *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}</button>
+            <button class="list-select-option address-not-listed" [class.selected]="isNoEpcSelected"
+                 (click)="continueWithoutEpc()">My address is not listed</button>
         </div>
     </div>
 </div>
