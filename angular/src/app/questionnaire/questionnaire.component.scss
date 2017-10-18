@@ -11,9 +11,12 @@
     padding: 100px 0 20px;
   }
 
-  .question-heading {
+  .question-heading, .question {
     width: 100%;
     max-width: 1280px;
+  }
+
+  .question-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;

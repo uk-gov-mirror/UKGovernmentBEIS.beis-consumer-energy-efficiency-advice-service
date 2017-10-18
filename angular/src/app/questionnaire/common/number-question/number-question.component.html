@@ -1,7 +1,7 @@
 <div class="form-element">
-  <button type="button" (click)="increaseQuantity(-1)" [disabled]="quantity <= 1" class="increase-button"><span>-</span></button>
-  <input class="text-input" type="number" [(ngModel)]="quantity" (ngModelChange)="updateQuantity()" [attr.aria-label]="heading" min="1">
-  <button type="button" (click)="increaseQuantity(1)" class="increase-button">+</button>
+  <button type="button" (click)="increaseQuantity(-1)" [disabled]="!quantity || quantity <= 1" class="increase-button"><span>-</span></button>
+  <input class="text-input" type="number" [(ngModel)]="quantity" (ngModelChange)="updateQuantity()" aria-labelledby="question-heading" min="1" max="20">
+  <button type="button" (click)="increaseQuantity(1)" [disabled]="!quantity || quantity >= 20" class="increase-button">+</button>
 </div>
 <div *ngIf="isInvalid" class="error">
   Please enter a valid number of {{itemsName}}.
