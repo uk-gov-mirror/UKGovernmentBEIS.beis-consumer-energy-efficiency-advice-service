@@ -38,8 +38,6 @@ export abstract class QuestionBaseComponent<S> {
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
     @Input() question: Question<S, QuestionBaseComponent<S>>;
     @Input() notifyOfCompletion: () => void;
-    @Input() questionTypeIconClassName: string;
-    @Input() heading: string;
 
     get response(): S {
         return this.question.response;

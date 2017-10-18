@@ -35,9 +35,6 @@ describe('ProgressIndicatorComponent', () => {
         getQuestions() {
             return QuestionServiceStub.questions;
         }
-        get numberOfQuestions() {
-            return QuestionServiceStub.questions.length;
-        }
     }
 
     beforeEach(async(() => {
@@ -88,6 +85,8 @@ describe('ProgressIndicatorComponent', () => {
 
     it('should display the correct number of sections', () => {
         // given
+        // Typescript implements an enum as an object which has each member as a property twice (as 'index: value'
+        // and 'value: index') so we need to divide the keyset by 2 to get the number of members of the enum
         const expectedNumberOfQuestionnaireSections = Object.keys(QuestionType).length / 2;
 
         // when

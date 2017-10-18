@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
-import { Component, Input } from '@angular/core';
-import { QuestionService } from '../questions/question.service';
-import { QuestionType, QuestionTypeUtil } from '../question-type';
+import {Component, Input} from '@angular/core';
+import {QuestionService} from '../questions/question.service';
+import {QuestionType, QuestionTypeUtil} from '../question-type';
 
 @Component({
     selector: 'progress-indicator',
@@ -20,15 +20,16 @@ export class ProgressIndicatorComponent {
     }
 
     ngOnInit() {
-        this.questionnaireSections = _.chain(this.questionService.getQuestions())
+        const allQuestions = this.questionService.getQuestions();
+        this.questionnaireSections = _.chain(allQuestions)
             .map((question, i) => {
                 return {
                     questionIndex: i,
                     questionType: question.questionType
                 }
             })
-            .groupBy('questionType').values()
-            .sortBy(questionGroup => _.head(questionGroup).questionIndex)
+            .groupBy('questionType')
+            .sortBy((questionGroup: {questionIndex: number, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
             .map(questionGroup => {
                 const questionType = _.head(questionGroup).questionType;
                 return {
@@ -38,7 +39,7 @@ export class ProgressIndicatorComponent {
                 }
             })
             .value();
-        this.totalNumberOfIconsAndQuestions = this.questionService.numberOfQuestions +
+        this.totalNumberOfIconsAndQuestions = allQuestions.length +
             ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
     }
 

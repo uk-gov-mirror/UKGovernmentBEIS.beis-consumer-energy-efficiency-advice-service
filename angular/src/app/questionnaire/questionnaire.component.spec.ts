@@ -21,9 +21,6 @@ describe('QuestionnaireComponent', () => {
         getQuestions() {
             return [];
         }
-        get numberOfQuestions() {
-            return 0;
-        }
     }
 
     beforeEach(async(() => {

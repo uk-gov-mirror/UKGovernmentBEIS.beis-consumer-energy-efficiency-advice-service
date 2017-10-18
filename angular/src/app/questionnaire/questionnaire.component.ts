@@ -11,8 +11,12 @@ import {QuestionTypeUtil} from './question-type';
 })
 export class QuestionnaireComponent implements AfterViewInit {
 
-    private currentQuestionIndex: number;
     private questionComponent: QuestionBaseComponent<any>;
+
+    currentQuestionIndex: number;
+    heading: string;
+    questionTypeIconClassName: string;
+
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
     constructor(private questionService: QuestionService,
@@ -58,21 +62,12 @@ export class QuestionnaireComponent implements AfterViewInit {
         }
     }
 
-    getHeading() {
-        return this.questionComponent && this.questionComponent.heading;
-    }
-
-    getQuestionTypeIconClassName() {
-        return this.questionComponent && this.questionComponent.questionTypeIconClassName;
-    }
-
-    getCurrentQuestionIndex() {
-        return this.currentQuestionIndex;
-    }
-
     private renderQuestion(slideInFrom: SlideInFrom) {
         const question = this.questionService.getQuestion(this.currentQuestionIndex);
         if (!!question) {
+            this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
+            this.heading = question.heading;
+
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
 
             // Set the current question to slide out in the opposite direction. Manual change
@@ -92,8 +87,6 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionComponent.notifyOfCompletion = () => {
                 this.goForwardsOneQuestion();
             };
-            this.questionComponent.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
-            this.questionComponent.heading = question.heading;
         }
     }
 }

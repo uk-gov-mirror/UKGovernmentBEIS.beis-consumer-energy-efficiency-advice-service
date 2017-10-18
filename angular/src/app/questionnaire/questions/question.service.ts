@@ -12,7 +12,6 @@ import {BedroomsQuestion} from "./bedrooms-question/bedrooms-question";
 import {BoilerTypeQuestion} from "./boiler-type-question/boiler-type-question";
 import {ElectricityTariffQuestion} from "./electricity-tariff-question/electricity-tariff-question";
 import {HomeAgeQuestion} from './home-age-question/home-age-question';
-import {QuestionType} from '../question-type';
 
 @Injectable()
 export class QuestionService {
@@ -47,15 +46,7 @@ export class QuestionService {
         return findIndex(this.questions, q => q.isApplicable(), index + 1);
     }
 
-    public getQuestionType(index: number): QuestionType {
-        return this.questions[index].questionType;
-    }
-
     public getQuestions(): Question<any, QuestionBaseComponent<any>>[] {
         return this.questions;
-    }
-
-    get numberOfQuestions() {
-        return this.questions.length;
     }
 }
