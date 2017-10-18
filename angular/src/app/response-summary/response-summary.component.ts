@@ -3,8 +3,7 @@ import {ResponseData} from "../questionnaire/questions/response-data";
 
 @Component({
     selector: 'app-response-summary',
-    templateUrl: './response-summary.component.html',
-    styleUrls: ['./response-summary.component.scss']
+    templateUrl: './response-summary.component.html'
 })
 export class ResponseSummaryComponent {
 
