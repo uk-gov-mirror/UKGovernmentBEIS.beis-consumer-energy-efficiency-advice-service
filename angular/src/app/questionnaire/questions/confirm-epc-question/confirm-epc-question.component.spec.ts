@@ -149,4 +149,32 @@ describe('ConfirmEpcQuestionComponent', () => {
             expect(component.localAuthorityDescription).toEqual(expectedLocalAuthority);
         });
     }));
+
+    describe('#confirmEpcDetails', () => {
+
+        it('should autopopulate future questions', async(() => {
+            // given
+            component.fuelType = FuelType.LPGGas;
+            component.homeType = HomeType.ParkHome;
+            component.electricityTariff = ElectricityTariff.OffPeak;
+
+            // when
+            component.confirmEpcDetails();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(component.question.response.fuelType).toBe(FuelType.LPGGas);
+                expect(component.question.response.homeType).toBe(HomeType.ParkHome);
+                expect(component.question.response.electricityTariff).toBe(ElectricityTariff.OffPeak);
+            });
+        }));
+
+        it('should notify of completion', () => {
+            // when
+            component.confirmEpcDetails();
+
+            // then
+            expect(component.notifyOfCompletion).toHaveBeenCalled();
+        });
+    });
 });
