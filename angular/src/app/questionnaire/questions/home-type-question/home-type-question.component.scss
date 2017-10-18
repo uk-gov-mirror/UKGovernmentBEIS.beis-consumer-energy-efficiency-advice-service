@@ -9,47 +9,54 @@
     border-bottom: 1px solid #9C9C9C;
   }
 
-  .icon-container {
-    height: 150px;
+  .multiple-choice-option {
 
-    .detached-house::before {
-      content: url('/assets/images/home-types/detached-house.svg');
+    .icon-container {
+      height: 150px;
+
+      .detached-house::before {
+        content: url('/assets/images/home-types/detached-house.svg');
+      }
+
+      .semi-detached-house::before {
+        content: url('/assets/images/home-types/semi-detached-house.svg');
+      }
+
+      .end-terrace-house::before {
+        content: url('/assets/images/home-types/end-terrace-house.svg');
+      }
+
+      .mid-terrace-house::before {
+        content: url('/assets/images/home-types/mid-terrace-house.svg');
+      }
+
+      .ground-floor-flat::before {
+        content: url('/assets/images/home-types/ground-floor-flat.svg');
+      }
+
+      .mid-floor-flat::before {
+        content: url('/assets/images/home-types/mid-floor-flat.svg');
+      }
+
+      .top-floor-flat::before {
+        content: url('/assets/images/home-types/top-floor-flat.svg');
+      }
+
+      .bungalow-attached::before {
+        content: url('/assets/images/home-types/bungalow-attached.svg');
+      }
+
+      .bungalow-detached::before {
+        content: url('/assets/images/home-types/bungalow-detached.svg');
+      }
+
+      .park-home::before {
+        content: url('/assets/images/home-types/park-home.svg');
+      }
     }
 
-    .semi-detached-house::before {
-      content: url('/assets/images/home-types/semi-detached-house.svg');
-    }
-
-    .end-terrace-house::before {
-      content: url('/assets/images/home-types/end-terrace-house.svg');
-    }
-
-    .mid-terrace-house::before {
-      content: url('/assets/images/home-types/mid-terrace-house.svg');
-    }
-
-    .ground-floor-flat::before {
-      content: url('/assets/images/home-types/ground-floor-flat.svg');
-    }
-
-    .mid-floor-flat::before {
-      content: url('/assets/images/home-types/mid-floor-flat.svg');
-    }
-
-    .top-floor-flat::before {
-      content: url('/assets/images/home-types/top-floor-flat.svg');
-    }
-
-    .bungalow-attached::before {
-      content: url('/assets/images/home-types/bungalow-attached.svg');
-    }
-
-    .bungalow-detached::before {
-      content: url('/assets/images/home-types/bungalow-detached.svg');
-    }
-
-    .park-home::before {
-      content: url('/assets/images/home-types/park-home.svg');
+    .name {
+      max-width: 100px;
     }
   }
 }
