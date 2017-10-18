@@ -17,8 +17,8 @@ interface HomeAgeOption {
 export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
 
     private homeAges: HomeAge[] = _.keys(HomeAge)
-        .filter(homeAge => !isNaN(homeAge))
-        .map(x => parseInt(x));
+        .map(x => parseInt(x))
+        .filter(homeAge => !isNaN(homeAge));
 
     homeAgeOptions: HomeAgeOption[] = this.homeAges
         .map(homeAge => {

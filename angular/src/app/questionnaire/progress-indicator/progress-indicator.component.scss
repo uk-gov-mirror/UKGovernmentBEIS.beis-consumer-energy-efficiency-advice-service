@@ -5,6 +5,7 @@ $progress-indicator-border-width: 1px;
   display: flex;
   border: $progress-indicator-border-width solid black;
   height: $progress-indicator-height;
+  width: 98vw;
 
   .arrow, .arrow-cover-up, .arrow-background-cover-up {
     position: absolute;
@@ -84,6 +85,7 @@ $progress-indicator-border-width: 1px;
           width: 15px;
           height: 15px;
           border-radius: 15px;
+          border: 1px solid black;
 
           &.active {
             background-color: black;
