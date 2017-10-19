@@ -61,25 +61,33 @@ $progress-indicator-border-width: 1px;
       flex-grow: 1;
       display: flex;
       position: relative;
+      align-items: center;
 
-      .question-type-icon {
-        padding: 5px 20px;
+      .horizontal-dotted-line {
+        border-bottom: 1px dotted black;
+        flex: 1;
+      }
+
+      .question-type-icon-container, .progress-indicator-step {
         display: flex;
         align-items: center;
-        justify-content: center;
-        line-height: 0;
+        z-index: 1;
+      }
+
+      .question-type-icon-container {
+        flex: 1.5;
+
+        .question-type-icon {
+          padding: 5px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0;
+        }
       }
 
       .progress-indicator-step {
-        display: flex;
-        align-items: center;
         flex: 1;
-        z-index: 1;
-
-        .horizontal-dotted-line {
-          border-bottom: 1px dotted black;
-          flex: 1;
-        }
 
         .step-link {
           width: 15px;
