@@ -9,13 +9,27 @@ export abstract class EpcParserService {
         }
         return epcApiResponse.rows
             .map(epcResponse => new Epc(epcResponse))
-            .sort(EpcParserService.sortEpcsByAddress);
+            .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
     }
 
-    static sortEpcsByAddress(a: Epc, b: Epc): number {
+    static sortEpcsByHouseNumberOrAlphabetically(a: Epc, b: Epc): number {
+        const houseNumberA = a.getHouseNumber();
+        const houseNumberB = b.getHouseNumber();
+        if (houseNumberA && houseNumberB) {
+            if (a.getHouseNumber() < b.getHouseNumber()) { return -1; }
+            if (a.getHouseNumber() > b.getHouseNumber()) { return 1; }
+            return EpcParserService.sortEpcsAlphabetically(a, b);
+        }
+        if (houseNumberA) { return -1; }
+        if (houseNumberB) { return 1; }
+        return EpcParserService.sortEpcsAlphabetically(a, b);
+    }
+
+    static sortEpcsAlphabetically(a: Epc, b: Epc): number {
         if (a.address2 < b.address2) { return -1 ; }
         if (a.address2 > b.address2) { return 1; }
         if (a.address1 < b.address1) { return -1; }
         if (a.address1 > b.address1) { return 1; }
+        return 0;
     }
 }

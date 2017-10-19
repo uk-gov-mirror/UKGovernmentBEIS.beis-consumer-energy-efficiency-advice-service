@@ -3,8 +3,7 @@
         <div class="form-element">
             <input class="text-input" id="postcode-input" name="postcode-input" type="text" spellcheck="false"
                    aria-labelledby="question-heading" [(ngModel)]="postcodeInput">
-            <button id="submit-postcode" type="submit" class="submit-button"></button>
-            <label title="Submit" aria-label="Submit" for="submit-postcode" class="submit-icon">►</label>
+            <button title="Submit" aria-label="Submit" id="submit-postcode" type="submit" class="submit-button">►</button>
         </div>
     </form>
     <div class="error" *ngIf="error">

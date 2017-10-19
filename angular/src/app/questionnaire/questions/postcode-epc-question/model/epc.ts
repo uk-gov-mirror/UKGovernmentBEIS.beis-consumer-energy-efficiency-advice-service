@@ -181,4 +181,18 @@ export class Epc {
         let displayAddress3 = this.address3 ? ', ' + this.address3 : '';
         return displayAddress1 + displayAddress2 + displayAddress3;
     }
+
+    public getHouseNumber(): number {
+        const houseNumberFromFirstLine = Epc.getIntegerFromStartOfString(this.address1);
+        const houseNumberFromSecondLine = Epc.getIntegerFromStartOfString(this.address2);
+        return houseNumberFromFirstLine || houseNumberFromSecondLine;
+    }
+
+    static getIntegerFromStartOfString(input: string): number {
+        const matchNumberAtStartOfString = /^[0-9]+/;
+        const regexMatches = matchNumberAtStartOfString.exec(input);
+        const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
+        const number = numberAsString ? parseInt(numberAsString) : null;
+        return (number && !isNaN(number)) ? number : null;
+    }
 }
