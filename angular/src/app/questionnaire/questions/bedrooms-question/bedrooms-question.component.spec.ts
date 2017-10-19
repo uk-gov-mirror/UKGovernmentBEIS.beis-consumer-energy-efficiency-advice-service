@@ -4,7 +4,7 @@ import {BedroomsQuestionComponent} from "./bedrooms-question.component";
 import {NumberQuestionComponent} from "../../common/number-question/number-question.component";
 import {FormsModule} from "@angular/forms";
 import {BedroomsQuestion} from "./bedrooms-question";
-import {ResponseData} from "../response-data";
+import {ResponseData} from "../../response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../common/times/times.pipe";
 

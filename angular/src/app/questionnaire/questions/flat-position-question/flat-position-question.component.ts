@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {FlatPosition} from "./flat-position";
 
 interface FlatPositionOption {

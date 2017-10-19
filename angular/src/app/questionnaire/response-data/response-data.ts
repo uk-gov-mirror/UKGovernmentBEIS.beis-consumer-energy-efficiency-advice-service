@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
-import {HomeType} from "./home-type-question/home-type";
-import {FuelType} from "./fuel-type-question/fuel-type";
-import {FlatPosition} from "./flat-position-question/flat-position";
-import {ElectricityTariff} from "./electricity-tariff-question/electricity-tariff";
-import {HomeAge} from './home-age-question/home-age';
-import {Epc} from './postcode-epc-question/model/epc';
+import {HomeType} from "../questions/home-type-question/home-type";
+import {FuelType} from "../questions/fuel-type-question/fuel-type";
+import {FlatPosition} from "../questions/flat-position-question/flat-position";
+import {ElectricityTariff} from "../questions/electricity-tariff-question/electricity-tariff";
+import {HomeAge} from '../questions/home-age-question/home-age';
+import {Epc} from '../questions/postcode-epc-question/model/epc';
 
 @Injectable()
 export class ResponseData {

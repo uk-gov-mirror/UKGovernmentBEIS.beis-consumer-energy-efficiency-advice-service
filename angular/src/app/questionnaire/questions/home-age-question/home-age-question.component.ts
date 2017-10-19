@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {HomeAge, HomeAgeUtil} from './home-age';
 import {HostListener, Renderer2, ViewChild, Component} from '@angular/core';
 

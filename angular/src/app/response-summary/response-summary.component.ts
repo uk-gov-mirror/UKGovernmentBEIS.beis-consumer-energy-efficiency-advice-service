@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ResponseData} from "../questionnaire/questions/response-data";
+import {ResponseData} from "../questionnaire/response-data/response-data";
 
 @Component({
     selector: 'app-response-summary',

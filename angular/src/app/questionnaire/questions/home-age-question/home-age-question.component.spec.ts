@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {HomeAgeQuestionComponent} from './home-age-question.component';
-import {ResponseData} from '../response-data';
+import {ResponseData} from '../../response-data/response-data';
 import {HomeAgeQuestion} from './home-age-question';
 import {HomeAge} from './home-age';
 

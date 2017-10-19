@@ -1,6 +1,6 @@
-import { Input, HostBinding } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import {Question} from "./question";
+import {Input, HostBinding} from '@angular/core';
+import {trigger, state, style, transition, animate} from '@angular/animations';
+import {QuestionMetadata} from './question-metadata';
 
 export type SlideInFrom = 'none' | 'left' | 'right';
 
@@ -36,7 +36,7 @@ export const slideInOutAnimation = trigger('slideInOut', [
 
 export abstract class QuestionBaseComponent<S> {
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
-    @Input() question: Question<S, QuestionBaseComponent<S>>;
+    @Input() question: QuestionMetadata<S, QuestionBaseComponent<S>>;
     @Input() notifyOfCompletion: () => void;
 
     get response(): S {

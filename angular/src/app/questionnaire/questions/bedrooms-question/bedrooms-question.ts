@@ -1,9 +1,9 @@
-import {Question} from "../question";
-import {ResponseData} from "../response-data";
-import {BedroomsQuestionComponent} from "./bedrooms-question.component";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {ResponseData} from '../../response-data/response-data';
+import {BedroomsQuestionComponent} from './bedrooms-question.component';
 import {QuestionType} from '../../question-type';
 
-export class BedroomsQuestion extends Question<number, BedroomsQuestionComponent> {
+export class BedroomsQuestion extends QuestionMetadata<number, BedroomsQuestionComponent> {
     constructor(responseData: ResponseData) {
         super(BedroomsQuestionComponent, 'How many bedrooms do you have?', QuestionType.House, responseData);
     }

@@ -1,4 +1,4 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {Component, OnInit} from "@angular/core";
 
 @Component({

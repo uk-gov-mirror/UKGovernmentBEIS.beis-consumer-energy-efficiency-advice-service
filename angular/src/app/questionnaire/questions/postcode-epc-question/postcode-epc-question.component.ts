@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 import {EpcParserService} from './epc-parser-service/epc-parser.service';
-import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {PostcodeEpc} from './model/postcode-epc';
 
 @Component({

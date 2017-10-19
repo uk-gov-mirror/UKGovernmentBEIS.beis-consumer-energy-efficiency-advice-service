@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
-import {ResponseData} from "../response-data";
+import {ResponseData} from "../../response-data/response-data";
 import {ElectricityTariffQuestion} from "./electricity-tariff-question";
 import {ElectricityTariff} from "./electricity-tariff";
 

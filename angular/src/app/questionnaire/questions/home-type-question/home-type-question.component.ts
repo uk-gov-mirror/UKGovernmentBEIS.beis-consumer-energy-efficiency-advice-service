@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {HomeType} from "./home-type";
 
 interface HomeTypeOption {

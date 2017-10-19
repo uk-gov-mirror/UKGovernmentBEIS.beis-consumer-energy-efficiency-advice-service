@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {FlatPositionQuestionComponent} from './flat-position-question.component';
-import {ResponseData} from "../response-data";
+import {ResponseData} from "../../response-data/response-data";
 import {FlatPositionQuestion} from "./flat-position-question";
 import {FlatPosition} from "./flat-position";
 

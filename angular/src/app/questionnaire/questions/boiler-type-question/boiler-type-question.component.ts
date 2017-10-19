@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 
 @Component({
     selector: 'app-boiler-type-question',

@@ -1,6 +1,5 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {Component, OnInit} from "@angular/core";
-import {range} from "lodash";
 
 @Component({
     selector: 'app-bedrooms-question',

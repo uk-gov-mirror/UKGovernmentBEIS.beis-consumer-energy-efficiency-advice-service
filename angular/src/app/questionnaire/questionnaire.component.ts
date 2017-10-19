@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { QuestionService } from "./questions/question.service";
-import {QuestionDirective} from "./questions/question.directive";
-import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions/question.component";
+import {QuestionDirective} from "./question.directive";
+import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
 import {QuestionTypeUtil} from './question-type';
 
 @Component({

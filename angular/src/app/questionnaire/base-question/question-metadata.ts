@@ -1,9 +1,9 @@
-import { Type } from '@angular/core';
-import { QuestionBaseComponent } from "./question.component";
-import {ResponseData} from "./response-data";
+import {Type} from '@angular/core';
+import {QuestionBaseComponent} from './question-base-component';
+import {ResponseData} from "../response-data/response-data";
 import {QuestionType} from '../question-type';
 
-export abstract class Question<S, T extends QuestionBaseComponent<S>> {
+export abstract class QuestionMetadata<S, T extends QuestionBaseComponent<S>> {
     constructor(
         public questionComponent: Type<T>,
         public heading: string,

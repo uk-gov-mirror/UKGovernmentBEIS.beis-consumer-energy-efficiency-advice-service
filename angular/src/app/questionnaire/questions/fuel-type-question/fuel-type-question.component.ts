@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FuelType} from './fuel-type';
-import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 
 interface FuelTypeOption {
     name: string,

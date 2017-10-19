@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {TJsonViewerModule} from 't-json-viewer';
 
 import {ResponseSummaryComponent} from './response-summary.component';
-import {ResponseData} from "../questionnaire/questions/response-data";
+import {ResponseData} from "../questionnaire/response-data/response-data";
 
 describe('ResponseSummaryComponent', () => {
     let component: ResponseSummaryComponent;
