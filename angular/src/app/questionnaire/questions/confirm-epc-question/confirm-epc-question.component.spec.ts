@@ -29,7 +29,6 @@ describe('ConfirmEpcQuestionComponent', () => {
         responseData = new ResponseData();
         component.question = new ConfirmEpcQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
-        fixture.detectChanges();
     });
 
     it('should create', () => {
@@ -39,9 +38,12 @@ describe('ConfirmEpcQuestionComponent', () => {
     // TODO: add more tests once the intended behaviour of this page is more certain
 
     it('should display EPC results if there is an epc', async(() => {
-        // when
+        // given
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -50,9 +52,12 @@ describe('ConfirmEpcQuestionComponent', () => {
     }));
 
     it('should not display EPC results if there is no epc', async(() => {
-        // when
+        // given
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = null;
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -64,10 +69,11 @@ describe('ConfirmEpcQuestionComponent', () => {
         // given
         const expectedEpcRating = 'C';
         epcResponse['current-energy-rating'] = expectedEpcRating;
-
-        // when
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -80,10 +86,11 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['property-type'] = 'Flat';
         epcResponse['flat-top-storey'] = 'N';
         epcResponse['floor-level'] = '1';
-
-        // when
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -94,10 +101,11 @@ describe('ConfirmEpcQuestionComponent', () => {
     it('should display the fuel type if available', async(() => {
         // given
         epcResponse['mainheat-description'] = 'mains gas';
-
-        // when
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -109,10 +117,11 @@ describe('ConfirmEpcQuestionComponent', () => {
         // given
         epcResponse['mainheat-description'] = 'electric storage heaters';
         epcResponse['hotwater-description'] = 'electric, off-peak tariff';
-
-        // when
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -124,10 +133,11 @@ describe('ConfirmEpcQuestionComponent', () => {
         // given
         const expectedNumberHabitableRooms = 12;
         epcResponse['number-habitable-rooms'] = expectedNumberHabitableRooms.toString();
-
-        // when
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -139,10 +149,11 @@ describe('ConfirmEpcQuestionComponent', () => {
         // given
         const expectedLocalAuthority = 'Westminster';
         epcResponse['local-authority-label'] = expectedLocalAuthority;
-
-        // when
         let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = new Epc(epcResponse);
+
+        // when
+        fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
@@ -151,6 +162,8 @@ describe('ConfirmEpcQuestionComponent', () => {
     }));
 
     describe('#confirmEpcDetails', () => {
+
+        beforeEach(() => fixture.detectChanges());
 
         it('should autopopulate future questions', async(() => {
             // given

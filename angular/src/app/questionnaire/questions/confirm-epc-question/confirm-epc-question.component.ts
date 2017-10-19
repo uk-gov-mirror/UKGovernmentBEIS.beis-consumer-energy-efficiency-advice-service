@@ -37,7 +37,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfir
     }
 
     ngOnInit() {
-        setTimeout(() => this.getDetailsFromResponseData());
+        this.getDetailsFromResponseData();
     }
 
     getDetailsFromResponseData() {

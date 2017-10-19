@@ -3,9 +3,9 @@ import {FuelType, getFuelTypeDescription} from './fuel-type';
 import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
 
 class FuelTypeOption {
-    public name: string;
+    public readonly name: string;
 
-    constructor(public value: FuelType, public className: string) {
+    constructor(public readonly value: FuelType, public readonly className: string) {
         this.name = getFuelTypeDescription(value);
     }
 }

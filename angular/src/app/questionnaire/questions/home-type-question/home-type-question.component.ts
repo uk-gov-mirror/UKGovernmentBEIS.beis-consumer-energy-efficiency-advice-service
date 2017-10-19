@@ -3,9 +3,9 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../question.component"
 import {getHomeTypeDescription, HomeType} from "./home-type";
 
 class HomeTypeOption {
-    public name: string;
+    public readonly name: string;
 
-    constructor(public value: HomeType, public className: string) {
+    constructor(public readonly value: HomeType, public readonly className: string) {
         this.name = getHomeTypeDescription(value);
     }
 }
