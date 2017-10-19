@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
-import {HomeType} from "./home-type";
+import {getHomeTypeDescription, HomeType} from "./home-type";
 
-interface HomeTypeOption {
-    name: string;
-    value: HomeType;
-    className: string;
+class HomeTypeOption {
+    public readonly name: string;
+
+    constructor(public readonly value: HomeType, public readonly className: string) {
+        this.name = getHomeTypeDescription(value);
+    }
 }
 
 @Component({
@@ -20,16 +22,16 @@ export class HomeTypeQuestionComponent extends QuestionBaseComponent<HomeType> {
     constructor() {
         super();
         this.homeTypeOptions = [
-            {name: 'Detached house', value: HomeType.DetachedHouse, className: 'detached-house'},
-            {name: 'Semi-detached house', value: HomeType.SemiDetachedHouse, className: 'semi-detached-house'},
-            {name: 'End-terrace house', value: HomeType.EndTerraceHouse, className: 'end-terrace-house'},
-            {name: 'Mid-terrace house', value: HomeType.MidTerraceHouse, className: 'mid-terrace-house'},
-            {name: 'Ground floor flat', value: HomeType.GroundFloorFlat, className: 'ground-floor-flat'},
-            {name: 'Mid floor flat', value: HomeType.MidFloorFlat, className: 'mid-floor-flat'},
-            {name: 'Top floor flat', value: HomeType.TopFloorFlat, className: 'top-floor-flat'},
-            {name: 'Bungalow detached', value: HomeType.BungalowDetached, className: 'bungalow-detached'},
-            {name: 'Bungalow attached', value: HomeType.BungalowAttached, className: 'bungalow-attached'},
-            {name: 'Park home', value: HomeType.ParkHome, className: 'park-home'},
+            new HomeTypeOption(HomeType.DetachedHouse, 'detached-house'),
+            new HomeTypeOption(HomeType.SemiDetachedHouse, 'semi-detached-house'),
+            new HomeTypeOption(HomeType.EndTerraceHouse, 'end-terrace-house'),
+            new HomeTypeOption(HomeType.MidTerraceHouse, 'mid-terrace-house'),
+            new HomeTypeOption(HomeType.GroundFloorFlat, 'ground-floor-flat'),
+            new HomeTypeOption(HomeType.MidFloorFlat, 'mid-floor-flat'),
+            new HomeTypeOption(HomeType.TopFloorFlat, 'top-floor-flat'),
+            new HomeTypeOption(HomeType.BungalowDetached, 'bungalow-detached'),
+            new HomeTypeOption(HomeType.BungalowAttached, 'bungalow-attached'),
+            new HomeTypeOption(HomeType.ParkHome, 'park-home')
         ];
     }
 }

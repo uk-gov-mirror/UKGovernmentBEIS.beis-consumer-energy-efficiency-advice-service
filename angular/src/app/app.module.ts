@@ -29,6 +29,7 @@ import {BoilerTypeQuestionComponent} from './questionnaire/questions/boiler-type
 import {ElectricityTariffQuestionComponent} from './questionnaire/questions/electricity-tariff-question/electricity-tariff-question.component';
 import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/progress-indicator.component';
 import {ResponseSummaryComponent} from './response-summary/response-summary.component';
+import {ConfirmEpcQuestionComponent} from './questionnaire/questions/confirm-epc-question/confirm-epc-question.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import {ResponseSummaryComponent} from './response-summary/response-summary.comp
         QuestionnaireComponent,
         ProgressIndicatorComponent,
         PostcodeEpcQuestionComponent,
+        ConfirmEpcQuestionComponent,
         HomeTypeQuestionComponent,
         HomeAgeQuestionComponent,
         NumberQuestionComponent,
@@ -64,6 +66,7 @@ import {ResponseSummaryComponent} from './response-summary/response-summary.comp
     ],
     entryComponents: [
         PostcodeEpcQuestionComponent,
+        ConfirmEpcQuestionComponent,
         HomeTypeQuestionComponent,
         HomeAgeQuestionComponent,
         StoreysQuestionComponent,

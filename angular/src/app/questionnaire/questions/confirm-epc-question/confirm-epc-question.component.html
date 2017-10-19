@@ -1,0 +1,50 @@
+<div class="confirm-epc-question" *ngIf="isEpcAvailable">
+    <div class="horizontal-line" *ngIf="epcRating"></div>
+    <div class="epc-rating-container" *ngIf="epcRating">
+        <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
+        <div class="epc-rating">{{epcRating}}</div>
+        <div class="epc-rating-description">
+            <span>{{epcRatingRelativeDescription}}</span><br>
+            <span>Most homes appear around grade </span><span>{{getAverageEpcRating()}}</span><span>.</span>
+        </div>
+    </div>
+    <div class="horizontal-line"></div>
+    <div class="confirm-epc-details-section">
+        <div class="epc-details-container">
+            <div class="epc-details-header">We've found that your home is the following:</div>
+            <ol type="1" class="epc-details-list">
+                <li class="epc-detail" *ngIf="homeTypeDescription">
+                    <span>It is a </span><span>{{homeTypeDescription}}</span>
+                </li>
+                <li class="epc-detail" *ngIf="numberHabitableRooms">
+                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span *ngIf="numberHabitableRooms !== 1">s</span>
+                </li>
+                <li class="epc-detail" *ngIf="fuelTypeDescription">
+                    <span>It is heated by </span><span>{{fuelTypeDescription}}</span>
+                </li>
+                <li class="epc-detail" *ngIf="electricityTariffDescription">
+                    <span>You have </span><span>{{electricityTariffDescription === 'off peak' ? 'an' : 'a'}}</span>
+                    <span>{{electricityTariffDescription}}</span><span> electricity tariff</span>
+                </li>
+                <li class="epc-detail" *ngIf="localAuthorityDescription">
+                    <span>The local authority is </span><span>{{localAuthorityDescription}}</span>
+                </li>
+            </ol>
+        </div>
+        <div class="confirm-epc-details">
+            <div class="confirm-epc-details-row">
+                <div class="confirm-epc-details-question">Are these details correct?</div>
+                <button class="confirm-epc-details-button" (click)="confirmEpcDetails()">Yes</button>
+                <button class="confirm-epc-details-button" (click)="rejectEpcDetails()">No</button>
+            </div>
+            <div class="confirm-epc-details-row">
+                <button class="need-more-details-button" (click)="confirmEpcDetails()">Let's get a few more details to get a better picture.</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="confirm-epc-question" *ngIf="!isEpcAvailable">
+    <span>We couldn't find any details about energy efficiency at your property based on your postcode.</span>
+    <br>
+    <button class="need-more-details-button" (click)="rejectEpcDetails()">Let's get a few more details to get a better picture.</button>
+</div>

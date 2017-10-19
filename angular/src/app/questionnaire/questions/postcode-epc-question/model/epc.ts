@@ -1,13 +1,16 @@
 import {EpcResponse} from './response/epc-response';
+import {EpcRating} from './epc-rating';
 
 export class Epc {
+    // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
+
     public lmkKey: string;
     public address1: string;
     public address2: string;
     public address3: string;
     public postcode: string;
     public buildingReferenceNumber: string;
-    public currentEnergyRating: string;
+    public currentEnergyRating: EpcRating;
     public potentialEnergyRating: string;
     public currentEnergyEfficiency: string;
     public potentialEnergyEfficiency: string;
@@ -34,16 +37,16 @@ export class Epc {
     public hotWaterCostPotential: string;
     public totalFloorArea: string;
     public energyTariff: string;
-    public mainsGasFlag: string;
-    public floorLevel: string;
-    public flatTopStorey: string;
+    public isConnectedToMainsGas: boolean;
+    public floorLevel: number;
+    public flatTopStorey: boolean;
     public flatStoreyCount: string;
     public mainHeatingControls: string;
     public multiGlazeProportion: string;
     public glazedType: string;
     public glazedArea: string;
     public extensionCount: string;
-    public numberHabitableRooms: string;
+    public numberHabitableRooms: number;
     public numberHeatedRooms: string;
     public lowEnergyLighting: string;
     public numberOpenFireplaces: string;
@@ -65,7 +68,7 @@ export class Epc {
     public roofDescription: string;
     public roofEnergyEff: string;
     public roofEnvEff: string;
-    public mainheatDescription: string;
+    public mainHeatDescription: string;
     public mainheatEnergyEff: string;
     public mainheatEnvEff: string;
     public mainheatcontDescription: string;
@@ -87,19 +90,35 @@ export class Epc {
     public constituencyLabel: string;
     public certificateHash: string;
 
+    private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
+
     constructor(epcResponse: EpcResponse) {
-        this.lmkKey = epcResponse['lmk-key'];
+        // TODO: We may not use all these fields and may be able to remove some. We currently use the following fields:
+        // NB The data quality is mixed. Any field that we use should be escaped/parsed appropriately and we should be able to deal with
+        // a missing or bad field.
         this.address1 = epcResponse['address1'];
         this.address2 = epcResponse['address2'];
         this.address3 = epcResponse['address3'];
         this.postcode = epcResponse['postcode'];
+        this.currentEnergyRating = EpcRating[epcResponse['current-energy-rating']];
+        this.numberHabitableRooms = Epc.getParsedIntegerOrNull(epcResponse['number-habitable-rooms']);
+        this.propertyType = epcResponse['property-type'].toLowerCase();
+        this.floorLevel = Epc.getParsedFloorLevel(epcResponse['floor-level']);
+        this.localAuthorityLabel = epcResponse['local-authority-label'];
+        this.mainHeatDescription = (epcResponse['mainheat-description'] === Epc.MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE) ?
+            null : epcResponse['mainheat-description'].toLowerCase();
+        this.flatTopStorey = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['flat-top-storey']);
+        this.builtForm = epcResponse['built-form'].toLowerCase();
+        this.isConnectedToMainsGas = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['mains-gas-flag']);
+        this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO: watch out - this field is marked as deprecated in some responses
+        this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
+
+        // TODO: These fields are not currently used; maybe we can remove these later on
+        this.lmkKey = epcResponse['lmk-key'];
         this.buildingReferenceNumber = epcResponse['building-reference-number'];
-        this.currentEnergyRating = epcResponse['current-energy-rating'];
         this.potentialEnergyRating = epcResponse['potential-energy-rating'];
         this.currentEnergyEfficiency = epcResponse['current-energy-efficiency'];
         this.potentialEnergyEfficiency = epcResponse['potential-energy-efficiency'];
-        this.propertyType = epcResponse['property-type'];
-        this.builtForm = epcResponse['built-form'];
         this.inspectionDate = epcResponse['inspection-date'];
         this.localAuthority = epcResponse['local-authority'];
         this.constituency = epcResponse['constituency'];
@@ -121,20 +140,15 @@ export class Epc {
         this.hotWaterCostPotential = epcResponse['hot-water-cost-potential'];
         this.totalFloorArea = epcResponse['total-floor-area'];
         this.energyTariff = epcResponse['energy-tariff'];
-        this.mainsGasFlag = epcResponse['mains-gas-flag'];
-        this.floorLevel = epcResponse['floor-level'];
-        this.flatTopStorey = epcResponse['flat-top-storey'];
-        this.flatStoreyCount = epcResponse['flat-storey-count'];
+        this.flatStoreyCount = epcResponse['flat-storey-count']; // this is the number of storeys in the apartment block, not the number of storeys in the flat
         this.mainHeatingControls = epcResponse['main-heating-controls'];
         this.multiGlazeProportion = epcResponse['multi-glaze-proportion'];
         this.glazedType = epcResponse['glazed-type'];
         this.glazedArea = epcResponse['glazed-area'];
         this.extensionCount = epcResponse['extension-count'];
-        this.numberHabitableRooms = epcResponse['number-habitable-rooms'];
         this.numberHeatedRooms = epcResponse['number-heated-rooms'];
         this.lowEnergyLighting = epcResponse['low-energy-lighting'];
         this.numberOpenFireplaces = epcResponse['number-open-fireplaces'];
-        this.hotWaterDescription = epcResponse['hotwater-description'];
         this.hotWaterEnergyEff = epcResponse['hot-water-energy-eff'];
         this.hotWaterEnvEff = epcResponse['hot-water-env-eff'];
         this.floorDescription = epcResponse['floor-description'];
@@ -152,7 +166,6 @@ export class Epc {
         this.roofDescription = epcResponse['roof-description'];
         this.roofEnergyEff = epcResponse['roof-energy-eff'];
         this.roofEnvEff = epcResponse['roof-env-eff'];
-        this.mainheatDescription = epcResponse['mainheat-description'];
         this.mainheatEnergyEff = epcResponse['mainheat-energy-eff'];
         this.mainheatEnvEff = epcResponse['mainheat-env-eff'];
         this.mainheatcontDescription = epcResponse['mainheatcont-description'];
@@ -161,7 +174,6 @@ export class Epc {
         this.lightingDescription = epcResponse['lighting-description'];
         this.lightingEnergyEff = epcResponse['lighting-energy-eff'];
         this.lightingEnvEff = epcResponse['lighting-env-eff'];
-        this.mainFuel = epcResponse['main-fuel'];
         this.windTurbineCount = epcResponse['wind-turbine-count'];
         this.heatLossCorridor = epcResponse['heat-loss-corridoor'];
         this.unheatedCorridorLength = epcResponse['unheated-corridor-length'];
@@ -170,7 +182,6 @@ export class Epc {
         this.solarWaterHeatingFlag = epcResponse['solar-water-heating-flag'];
         this.mechanicalVentilation = epcResponse['mechanical-ventilation'];
         this.address = epcResponse['address'];
-        this.localAuthorityLabel = epcResponse['local-authority-label'];
         this.constituencyLabel = epcResponse['constituency-label'];
         this.certificateHash = epcResponse['certificate-hash'];
     }
@@ -188,11 +199,30 @@ export class Epc {
         return houseNumberFromFirstLine || houseNumberFromSecondLine;
     }
 
-    static getIntegerFromStartOfString(input: string): number {
+    private static getIntegerFromStartOfString(input: string): number {
         const matchNumberAtStartOfString = /^[0-9]+/;
         const regexMatches = matchNumberAtStartOfString.exec(input);
         const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
         const number = numberAsString ? parseInt(numberAsString) : null;
         return (number && !isNaN(number)) ? number : null;
+    }
+
+    private static getParsedFloorLevel(val: string): number {
+        return (val.toLowerCase() === 'ground') ? 0 : Epc.getParsedIntegerOrNull(val);
+    }
+
+    private static getParsedIntegerOrNull(val: string): number {
+        const parsedNumber = parseInt(val);
+        return isNaN(parsedNumber) ? null : parsedNumber;
+    }
+
+    private static getParsedBooleanFromEpcResponseValue(val: string): boolean {
+        if (val === 'Y') {
+            return true;
+        } else if (val === 'N') {
+            return false;
+        } else {
+            return null;
+        }
     }
 }

@@ -12,6 +12,7 @@ import {BedroomsQuestion} from "./bedrooms-question/bedrooms-question";
 import {BoilerTypeQuestion} from "./boiler-type-question/boiler-type-question";
 import {ElectricityTariffQuestion} from "./electricity-tariff-question/electricity-tariff-question";
 import {HomeAgeQuestion} from './home-age-question/home-age-question';
+import {ConfirmEpcQuestion} from './confirm-epc-question/confirm-epc-question';
 
 @Injectable()
 export class QuestionService {
@@ -21,6 +22,7 @@ export class QuestionService {
     constructor(responseData: ResponseData) {
         this.questions = [
             new PostcodeEpcQuestion(responseData),
+            new ConfirmEpcQuestion(responseData),
             new HomeTypeQuestion(responseData),
             new FlatPositionQuestion(responseData),
             new HomeAgeQuestion(responseData),
