@@ -6,9 +6,11 @@
     <div class="progress-indicator">
         <div class="questionnaire-section" *ngFor="let questionnaireSection of questionnaireSections"
              [style.flex-basis]="getFlexBasis(questionnaireSection)">
-            <div class="question-type-icon" [ngClass]="questionnaireSection.className"></div>
-            <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
+            <div class="question-type-icon-container">
+                <div class="question-type-icon" [ngClass]="questionnaireSection.className"></div>
                 <div class="horizontal-dotted-line"></div>
+            </div>
+            <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
                 <div class="step-link" [class.active]="question.questionIndex === currentQuestionIndex"></div>
                 <div class="horizontal-dotted-line"></div>
             </div>
