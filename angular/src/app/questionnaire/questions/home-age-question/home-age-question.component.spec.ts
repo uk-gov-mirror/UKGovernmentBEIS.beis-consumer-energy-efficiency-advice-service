@@ -20,7 +20,6 @@ describe('HomeAgeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeAgeQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });
 

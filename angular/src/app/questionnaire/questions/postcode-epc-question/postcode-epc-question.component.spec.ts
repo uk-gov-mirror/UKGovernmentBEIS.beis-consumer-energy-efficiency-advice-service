@@ -40,7 +40,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PostcodeEpcQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -247,7 +247,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
 
                 // then
-                expect(component.notifyOfCompletion).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
     });
@@ -283,7 +283,7 @@ describe('PostcodeEpcQuestionComponent', () => {
                 allEpcs[0].nativeElement.click();
 
                 // then
-                expect(component.notifyOfCompletion).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
 
@@ -314,7 +314,7 @@ describe('PostcodeEpcQuestionComponent', () => {
                 fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
 
                 // then
-                expect(component.notifyOfCompletion).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
     });

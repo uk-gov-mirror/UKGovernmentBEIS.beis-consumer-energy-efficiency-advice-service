@@ -1,4 +1,4 @@
-import {Input, HostBinding, Inject} from '@angular/core';
+import {Input, Output, HostBinding, EventEmitter, Inject} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import {ResponseData} from "../../response-data/response-data";
 
@@ -40,7 +40,7 @@ export abstract class QuestionBaseComponent<S> {
     }
 
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
-    @Input() notifyOfCompletion: () => void;
+    @Output() complete: EventEmitter<void> = new EventEmitter<void>();
 
     abstract get response(): S;
     abstract set response(val: S);

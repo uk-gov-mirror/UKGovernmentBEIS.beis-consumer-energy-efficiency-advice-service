@@ -20,7 +20,7 @@ describe('FlatPositionQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FlatPositionQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -47,6 +47,6 @@ describe('FlatPositionQuestionComponent', () => {
         threeSidesExposed.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

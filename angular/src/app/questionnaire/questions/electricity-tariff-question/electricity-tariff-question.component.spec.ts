@@ -20,7 +20,7 @@ describe('ElectricityTariffQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ElectricityTariffQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -47,6 +47,6 @@ describe('ElectricityTariffQuestionComponent', () => {
         offPeak.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

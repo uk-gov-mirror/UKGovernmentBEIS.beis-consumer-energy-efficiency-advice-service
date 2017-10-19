@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { QuestionnaireService } from "./questions/questionnaire.service";
-import {QuestionDirective} from "./question.directive";
+import {Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {QuestionnaireService} from './questions/questionnaire.service';
+import {QuestionDirective} from './question.directive';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
 import {QuestionTypeUtil} from './question-type';
 
@@ -12,6 +13,7 @@ import {QuestionTypeUtil} from './question-type';
 export class QuestionnaireComponent implements AfterViewInit {
 
     private questionComponent: QuestionBaseComponent<any>;
+    private onQuestionCompleteSubscription: Subscription;
 
     currentQuestionIndex: number;
     heading: string;
@@ -80,11 +82,15 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionHost.viewContainerRef.clear();
             const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
             this.questionComponent = componentRef.instance;
-
             this.questionComponent.slideInOut = slideInFrom;
-            this.questionComponent.notifyOfCompletion = () => {
-                this.goForwardsOneQuestion();
-            };
+
+            // Subscribe to the question's completion event, and unsubscribe from the previous one.
+            if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
+                this.onQuestionCompleteSubscription.unsubscribe();
+            }
+            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() =>
+                this.goForwardsOneQuestion()
+            );
         }
     }
 }

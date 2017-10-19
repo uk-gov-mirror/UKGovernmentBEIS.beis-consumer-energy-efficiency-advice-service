@@ -20,7 +20,7 @@ describe('FuelTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FuelTypeQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -47,6 +47,6 @@ describe('FuelTypeQuestionComponent', () => {
         solidFuel.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

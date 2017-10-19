@@ -20,7 +20,7 @@ describe('HomeTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeTypeQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -47,6 +47,6 @@ describe('HomeTypeQuestionComponent', () => {
         detachedHouse.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

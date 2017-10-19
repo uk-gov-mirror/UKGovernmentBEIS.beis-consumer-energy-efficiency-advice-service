@@ -114,14 +114,14 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
             epc: epc,
             postcode: this.postcodeInput
         };
-        this.notifyOfCompletion();
+        this.complete.emit();
     }
 
     continueWithoutEpc(): void {
         this.isNoEpcSelected = true;
         this.selectedEpc = null;
         this.setResponsePostcodeFromInput();
-        this.notifyOfCompletion();
+        this.complete.emit();
     }
 
     setResponsePostcodeFromInput(): void {

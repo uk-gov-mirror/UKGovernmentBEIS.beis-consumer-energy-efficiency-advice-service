@@ -4,7 +4,7 @@
         a condensing boiler will have a white plastic pipe coming from the bottom in addition to any metal gas/oil pipes
     </p>
     <div class="multiple-choice-options buttons">
-        <button id="yes-button" class="multiple-choice-option yes-no-button" [class.selected]="response === true" (click)="response = true; notifyOfCompletion()">Yes</button>
-        <button id="no-button" class="multiple-choice-option yes-no-button" [class.selected]="response === false" (click)="response = false; notifyOfCompletion()">No</button>
+        <button id="yes-button" class="multiple-choice-option yes-no-button" [class.selected]="response === true" (click)="response = true; complete.emit()">Yes</button>
+        <button id="no-button" class="multiple-choice-option yes-no-button" [class.selected]="response === false" (click)="response = false; complete.emit()">No</button>
     </div>
 </div>

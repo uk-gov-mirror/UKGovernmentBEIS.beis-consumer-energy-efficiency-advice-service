@@ -19,7 +19,7 @@ describe('BoilerTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BoilerTypeQuestionComponent);
         component = fixture.componentInstance;
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -46,6 +46,6 @@ describe('BoilerTypeQuestionComponent', () => {
         no.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

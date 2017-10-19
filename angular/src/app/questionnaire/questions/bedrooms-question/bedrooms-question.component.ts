@@ -23,7 +23,7 @@ export class BedroomsQuestionComponent extends QuestionBaseComponent<number> imp
 
     handleFormSubmit() {
         if (this.response) {
-            this.notifyOfCompletion();
+            this.complete.emit();
         }
     }
 }

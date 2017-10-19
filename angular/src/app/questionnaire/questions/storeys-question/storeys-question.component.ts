@@ -24,7 +24,7 @@ export class StoreysQuestionComponent extends QuestionBaseComponent<number> impl
 
     handleFormSubmit() {
         if (this.response) {
-            this.notifyOfCompletion();
+            this.complete.emit();
         }
     }
 }
