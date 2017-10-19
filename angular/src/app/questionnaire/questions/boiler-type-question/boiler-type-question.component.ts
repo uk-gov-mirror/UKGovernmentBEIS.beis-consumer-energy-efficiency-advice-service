@@ -8,4 +8,11 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/qu
     animations: [slideInOutAnimation],
 })
 export class BoilerTypeQuestionComponent extends QuestionBaseComponent<boolean> {
+    get response(): boolean {
+        return this.responseData.condensingBoiler;
+    }
+
+    set response(val: boolean) {
+        this.responseData.condensingBoiler = val;
+    }
 }

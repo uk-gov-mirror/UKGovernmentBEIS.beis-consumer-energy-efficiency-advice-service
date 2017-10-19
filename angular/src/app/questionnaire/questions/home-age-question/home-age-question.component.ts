@@ -1,7 +1,8 @@
 import * as _ from 'lodash';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {HomeAge, HomeAgeUtil} from './home-age';
-import {HostListener, Renderer2, ViewChild, Component} from '@angular/core';
+import {HostListener, Renderer2, ViewChild, Component, OnInit, OnDestroy} from '@angular/core';
+import {ResponseData} from "../../response-data/response-data";
 
 interface HomeAgeOption {
     name: string,
@@ -14,7 +15,7 @@ interface HomeAgeOption {
     styleUrls: ['./home-age-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
+export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> implements OnInit, OnDestroy {
 
     private homeAges: HomeAge[] = _.keys(HomeAge)
         .map(x => parseInt(x))
@@ -40,8 +41,8 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
     @ViewChild('timeline') timeline;
     @ViewChild('option') option;
 
-    constructor(private renderer: Renderer2) {
-        super();
+    constructor(responseData: ResponseData, private renderer: Renderer2) {
+        super(responseData);
     }
 
     ngOnInit() {
@@ -53,6 +54,14 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> {
 
     ngOnDestroy() {
         this.deregisterEventListeners();
+    }
+
+    get response(): HomeAge {
+        return this.responseData.homeAge;
+    }
+
+    set response(val: HomeAge) {
+        this.responseData.homeAge = val;
     }
 
     selectResponse(homeAge: HomeAge) {

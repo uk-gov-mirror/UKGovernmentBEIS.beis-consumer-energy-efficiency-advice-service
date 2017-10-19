@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { QuestionService } from "./questions/question.service";
 import {QuestionDirective} from "./question.directive";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
@@ -68,7 +68,7 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.heading = question.heading;
 
-            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
             // Set the current question to slide out in the opposite direction. Manual change
             // detection must be triggered here or the change will not apply.
@@ -83,7 +83,6 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionComponent = componentRef.instance;
 
             this.questionComponent.slideInOut = slideInFrom;
-            this.questionComponent.question = question;
             this.questionComponent.notifyOfCompletion = () => {
                 this.goForwardsOneQuestion();
             };

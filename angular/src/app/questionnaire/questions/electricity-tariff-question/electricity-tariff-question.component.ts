@@ -10,4 +10,12 @@ import {ElectricityTariff} from "./electricity-tariff";
 })
 export class ElectricityTariffQuestionComponent extends QuestionBaseComponent<ElectricityTariff> {
     ElectricityTariff: typeof ElectricityTariff = ElectricityTariff;
+
+    get response(): ElectricityTariff {
+        return this.responseData.electricityTariff;
+    }
+
+    set response(val: ElectricityTariff) {
+        this.responseData.electricityTariff = val;
+    }
 }

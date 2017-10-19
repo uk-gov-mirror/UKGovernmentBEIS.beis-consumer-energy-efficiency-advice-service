@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {HomeType} from "./home-type";
+import {ResponseData} from "../../response-data/response-data";
 
 interface HomeTypeOption {
     name: string;
@@ -17,8 +18,8 @@ interface HomeTypeOption {
 export class HomeTypeQuestionComponent extends QuestionBaseComponent<HomeType> {
     homeTypeOptions: HomeTypeOption[];
 
-    constructor() {
-        super();
+    constructor(responseData: ResponseData) {
+        super(responseData);
         this.homeTypeOptions = [
             {name: 'Detached house', value: HomeType.DetachedHouse, className: 'detached-house'},
             {name: 'Semi-detached house', value: HomeType.SemiDetachedHouse, className: 'semi-detached-house'},
@@ -31,5 +32,13 @@ export class HomeTypeQuestionComponent extends QuestionBaseComponent<HomeType> {
             {name: 'Bungalow attached', value: HomeType.BungalowAttached, className: 'bungalow-attached'},
             {name: 'Park home', value: HomeType.ParkHome, className: 'park-home'},
         ];
+    }
+
+    get response(): HomeType {
+        return this.responseData.homeType;
+    }
+
+    set response(val: HomeType) {
+        this.responseData.homeType = val;
     }
 }

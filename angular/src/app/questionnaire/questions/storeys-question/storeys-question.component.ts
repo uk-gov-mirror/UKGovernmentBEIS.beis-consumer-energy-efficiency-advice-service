@@ -8,12 +8,17 @@ import {Component, OnInit} from "@angular/core";
     animations: [slideInOutAnimation]
 })
 export class StoreysQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
-    constructor() {
-        super();
-    }
 
     ngOnInit() {
         this.response = this.response || 1;
+    }
+
+    get response(): number {
+        return this.responseData.numberOfStoreys;
+    }
+
+    set response(val: number) {
+        this.responseData.numberOfStoreys = val;
     }
 
     handleFormSubmit() {

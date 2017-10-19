@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 import {EpcParserService} from './epc-parser-service/epc-parser.service';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {PostcodeEpc} from './model/postcode-epc';
+import {ResponseData} from "../../response-data/response-data";
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -12,7 +13,7 @@ import {PostcodeEpc} from './model/postcode-epc';
     providers: [PostcodeEpcService],
     animations: [slideInOutAnimation]
 })
-export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<PostcodeEpc> {
+export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<PostcodeEpc> implements OnInit {
     static readonly POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
     static readonly ERROR_VALIDATION: Error = {
         heading: null,
@@ -33,12 +34,25 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     allEpcsForPostcode: Epc[];
     selectedEpc: Epc;
 
-    constructor(private postcodeEpcService: PostcodeEpcService) {
-        super();
+    constructor(responseData: ResponseData, private postcodeEpcService: PostcodeEpcService) {
+        super(responseData);
     }
 
     ngOnInit() {
         this.populateFormFromSavedData();
+    }
+
+    get response(): PostcodeEpc {
+        const postcodeEpc = {
+            epc: this.responseData.epc,
+            postcode: this.responseData.postcode
+        };
+        return this.responseData.postcode && postcodeEpc;
+    }
+
+    set response(val: PostcodeEpc) {
+        this.responseData.postcode = val.postcode;
+        this.responseData.epc = val.epc;
     }
 
     populateFormFromSavedData(): void {
