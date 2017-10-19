@@ -90,6 +90,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfir
             return 'This means your home\'s efficiency is about average.'
         }
         const comparatorAdjective = epcRating < ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING ? 'high' : 'low';
-        return 'This means your home is relatively ' + comparatorAdjective + ' efficiency.'
+        return `This means your home is relatively ${ comparatorAdjective } efficiency.`
     }
 }

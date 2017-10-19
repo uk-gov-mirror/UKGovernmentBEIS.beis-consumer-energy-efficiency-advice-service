@@ -17,7 +17,7 @@
                     <span>It is a </span><span>{{homeTypeDescription}}</span>
                 </li>
                 <li class="epc-detail" *ngIf="numberHabitableRooms">
-                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span *ngIf="numberHabitableRooms > 1">s</span>
+                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span *ngIf="numberHabitableRooms !== 1">s</span>
                 </li>
                 <li class="epc-detail" *ngIf="fuelTypeDescription">
                     <span>It is heated by </span><span>{{fuelTypeDescription}}</span>

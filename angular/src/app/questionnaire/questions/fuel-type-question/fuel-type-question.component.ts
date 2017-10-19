@@ -2,10 +2,12 @@ import {Component} from '@angular/core';
 import {FuelType, getFuelTypeDescription} from './fuel-type';
 import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
 
-interface FuelTypeOption {
-    name: string,
-    value: FuelType,
-    className: string
+class FuelTypeOption {
+    public name: string;
+
+    constructor(public value: FuelType, public className: string) {
+        this.name = getFuelTypeDescription(value);
+    }
 }
 
 @Component({
@@ -20,11 +22,11 @@ export class FuelTypeQuestionComponent extends QuestionBaseComponent<FuelType> {
     constructor() {
         super();
         this.fuelTypeOptions = [
-            {name: getFuelTypeDescription(FuelType.Electricity), value: FuelType.Electricity, className: 'electricity'},
-            {name: getFuelTypeDescription(FuelType.MainsGas), value: FuelType.MainsGas, className: 'mains-gas'},
-            {name: getFuelTypeDescription(FuelType.LPGGas), value: FuelType.LPGGas, className: 'lpg-gas'},
-            {name: getFuelTypeDescription(FuelType.HeatingOil), value: FuelType.HeatingOil, className: 'heating-oil'},
-            {name: getFuelTypeDescription(FuelType.SolidFuel), value: FuelType.SolidFuel, className: 'solid-fuel'},
+            new FuelTypeOption(FuelType.Electricity, 'electricity'),
+            new FuelTypeOption(FuelType.MainsGas, 'mains-gas'),
+            new FuelTypeOption(FuelType.LPGGas, 'lpg-gas'),
+            new FuelTypeOption(FuelType.HeatingOil, 'heating-oil'),
+            new FuelTypeOption(FuelType.SolidFuel, 'solid-fuel')
         ]
     }
 }
