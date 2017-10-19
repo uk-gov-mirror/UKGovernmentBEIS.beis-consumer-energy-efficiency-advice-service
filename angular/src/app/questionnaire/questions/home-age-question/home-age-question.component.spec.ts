@@ -9,12 +9,10 @@ describe('HomeAgeQuestionComponent', () => {
     let component: HomeAgeQuestionComponent;
     let fixture: ComponentFixture<HomeAgeQuestionComponent>;
 
-    const responseData: ResponseData = new ResponseData();
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ HomeAgeQuestionComponent ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -40,6 +38,6 @@ describe('HomeAgeQuestionComponent', () => {
         homeAgeOption.nativeElement.click();
 
         // then
-        expect(responseData.homeAge).toBe(expectedHomeAge);
+        expect(component.response).toBe(expectedHomeAge);
     });
 });

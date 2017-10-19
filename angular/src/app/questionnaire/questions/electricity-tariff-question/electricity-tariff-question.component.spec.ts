@@ -9,12 +9,10 @@ describe('ElectricityTariffQuestionComponent', () => {
     let fixture: ComponentFixture<ElectricityTariffQuestionComponent>;
     let component: ElectricityTariffQuestionComponent;
 
-    const responseData: ResponseData = new ResponseData();
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ ElectricityTariffQuestionComponent ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -38,7 +36,7 @@ describe('ElectricityTariffQuestionComponent', () => {
         standard.nativeElement.click();
 
         // then
-        expect(responseData.electricityTariff).toBe(ElectricityTariff.Standard);
+        expect(component.response).toBe(ElectricityTariff.Standard);
     });
 
     it('should notify of completion when clicking on a tariff type', () => {

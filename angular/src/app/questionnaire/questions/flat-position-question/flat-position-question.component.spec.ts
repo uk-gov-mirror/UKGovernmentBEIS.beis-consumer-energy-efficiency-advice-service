@@ -9,12 +9,10 @@ describe('FlatPositionQuestionComponent', () => {
     let fixture: ComponentFixture<FlatPositionQuestionComponent>;
     let component: FlatPositionQuestionComponent;
 
-    const responseData: ResponseData = new ResponseData();
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ FlatPositionQuestionComponent ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
         .compileComponents();
     }));
@@ -38,7 +36,7 @@ describe('FlatPositionQuestionComponent', () => {
         threeSidesExposed.nativeElement.click();
 
         // then
-        expect(responseData.flatPosition).toBe(FlatPosition.ThreeSidesExposed);
+        expect(component.response).toBe(FlatPosition.ThreeSidesExposed);
     });
 
     it('should notify of completion when clicking on a flat position', () => {

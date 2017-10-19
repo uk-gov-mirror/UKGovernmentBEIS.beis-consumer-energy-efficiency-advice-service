@@ -11,15 +11,13 @@ describe('BedroomsQuestionComponent', () => {
     let component: BedroomsQuestionComponent;
     let fixture: ComponentFixture<BedroomsQuestionComponent>;
 
-    const responseData: ResponseData = new ResponseData();
-
     const originalNumberOfBedrooms: number = 3;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [BedroomsQuestionComponent, NumberQuestionComponent, TimesPipe],
             imports: [FormsModule],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -27,7 +25,7 @@ describe('BedroomsQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BedroomsQuestionComponent);
         component = fixture.componentInstance;
-        responseData.numberOfBedrooms = originalNumberOfBedrooms;
+        component.response = originalNumberOfBedrooms;
         fixture.detectChanges();
     });
 
@@ -52,7 +50,7 @@ describe('BedroomsQuestionComponent', () => {
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(responseData.numberOfBedrooms).toBe(expectedBedrooms);
+        expect(component.response).toBe(expectedBedrooms);
     });
 
     it('should set the number of beds given a valid number of bedrooms', () => {

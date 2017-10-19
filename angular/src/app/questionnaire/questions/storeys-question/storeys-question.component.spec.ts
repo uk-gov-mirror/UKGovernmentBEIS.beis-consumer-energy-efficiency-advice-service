@@ -10,15 +10,13 @@ describe('StoreysQuestionComponent', () => {
     let component: StoreysQuestionComponent;
     let fixture: ComponentFixture<StoreysQuestionComponent>;
 
-    const responseData: ResponseData = new ResponseData();
-
     const originalNumberOfStoreys: number = 10;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [StoreysQuestionComponent, NumberQuestionComponent],
             imports: [FormsModule],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -26,7 +24,7 @@ describe('StoreysQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(StoreysQuestionComponent);
         component = fixture.componentInstance;
-        responseData.numberOfStoreys = originalNumberOfStoreys;
+        component.response = originalNumberOfStoreys;
         fixture.detectChanges();
     });
 
@@ -51,6 +49,6 @@ describe('StoreysQuestionComponent', () => {
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(responseData.numberOfStoreys).toBe(expectedStoreys);
+        expect(component.response).toBe(expectedStoreys);
     });
 });

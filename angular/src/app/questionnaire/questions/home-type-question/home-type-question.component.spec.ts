@@ -9,12 +9,10 @@ describe('HomeTypeQuestionComponent', () => {
     let fixture: ComponentFixture<HomeTypeQuestionComponent>;
     let component: HomeTypeQuestionComponent;
 
-    const responseData: ResponseData = new ResponseData();
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ HomeTypeQuestionComponent ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
         .compileComponents();
     }));
@@ -38,7 +36,7 @@ describe('HomeTypeQuestionComponent', () => {
         detachedHouse.nativeElement.click();
 
         // then
-        expect(responseData.homeType).toBe(HomeType.DetachedHouse);
+        expect(component.response).toBe(HomeType.DetachedHouse);
     });
 
     it('should notify of completion when clicking on a home type', () => {

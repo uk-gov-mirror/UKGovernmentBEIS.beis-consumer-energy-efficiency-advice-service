@@ -16,7 +16,6 @@ describe('PostcodeEpcQuestionComponent', () => {
     let component: PostcodeEpcQuestionComponent;
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
 
-    const responseData: ResponseData = new ResponseData();
     const dummyEpcResponse = require('../../../../assets/test/dummy-epc-response.json');
     let apiServiceStub = {
         getEpcData: (postcode) => Observable.of(dummyEpcResponse)
@@ -28,7 +27,7 @@ describe('PostcodeEpcQuestionComponent', () => {
         TestBed.configureTestingModule({
             declarations: [PostcodeEpcQuestionComponent],
             imports: [FormsModule],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .overrideComponent(PostcodeEpcQuestionComponent, {
             set: {
@@ -215,7 +214,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
             });
         }));
 
@@ -231,8 +230,8 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
 
                 // then
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
-                expect(responseData.epc).toBeNull();
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.epc).toBeNull();
             });
         }));
 
@@ -267,8 +266,8 @@ describe('PostcodeEpcQuestionComponent', () => {
                 allEpcs[0].nativeElement.click();
 
                 // then
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
-                expect(responseData.epc).toEqual(expectedEpc);
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.epc).toEqual(expectedEpc);
             });
         }));
 
@@ -299,8 +298,8 @@ describe('PostcodeEpcQuestionComponent', () => {
                 fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
 
                 // then
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
-                expect(responseData.epc).toEqual(null);
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.epc).toEqual(null);
             });
         }));
 

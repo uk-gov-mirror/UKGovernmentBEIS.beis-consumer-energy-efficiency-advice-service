@@ -8,12 +8,10 @@ describe('BoilerTypeQuestionComponent', () => {
     let component: BoilerTypeQuestionComponent;
     let fixture: ComponentFixture<BoilerTypeQuestionComponent>;
 
-    const responseData: ResponseData = new ResponseData();
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ BoilerTypeQuestionComponent ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -37,7 +35,7 @@ describe('BoilerTypeQuestionComponent', () => {
         yes.nativeElement.click();
 
         // then
-        expect(responseData.condensingBoiler).toBe(true);
+        expect(component.response).toBe(true);
     });
 
     it('should notify of completion when clicking on one of the buttons', () => {

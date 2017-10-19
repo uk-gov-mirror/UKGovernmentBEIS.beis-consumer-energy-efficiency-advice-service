@@ -9,12 +9,10 @@ describe('FuelTypeQuestionComponent', () => {
     let fixture: ComponentFixture<FuelTypeQuestionComponent>;
     let component: FuelTypeQuestionComponent;
 
-    const responseData: ResponseData = new ResponseData();
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ FuelTypeQuestionComponent ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -38,7 +36,7 @@ describe('FuelTypeQuestionComponent', () => {
         solidFuel.nativeElement.click();
 
         // then
-        expect(responseData.fuelType).toBe(FuelType.SolidFuel);
+        expect(component.response).toBe(FuelType.SolidFuel);
     });
 
     it('should notify of completion when clicking on a fuel type', () => {
