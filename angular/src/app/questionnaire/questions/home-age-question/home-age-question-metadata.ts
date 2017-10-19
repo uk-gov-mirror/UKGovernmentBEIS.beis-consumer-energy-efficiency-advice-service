@@ -13,10 +13,6 @@ export class HomeAgeQuestionMetadata extends QuestionMetadata<HomeAge> {
         );
     }
 
-    isApplicable(): boolean {
-        return true;
-    }
-
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.homeAge !== undefined;
     }

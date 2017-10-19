@@ -13,10 +13,6 @@ export class PostcodeEpcQuestionMetadata extends QuestionMetadata<PostcodeEpc> {
         );
     }
 
-    isApplicable(): boolean {
-        return true;
-    }
-
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.postcode !== undefined;
     }

@@ -11,6 +11,9 @@ export abstract class QuestionMetadata<S> {
     ) {
     }
 
-    abstract isApplicable(responseData: ResponseData): boolean;
+    isApplicable(responseData: ResponseData): boolean {
+        return true;
+    }
+
     abstract hasBeenAnswered(responseData: ResponseData): boolean;
 }

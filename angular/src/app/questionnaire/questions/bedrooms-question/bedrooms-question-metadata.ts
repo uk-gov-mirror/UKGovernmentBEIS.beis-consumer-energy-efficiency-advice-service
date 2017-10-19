@@ -12,10 +12,6 @@ export class BedroomsQuestionMetadata extends QuestionMetadata<number> {
         );
     }
 
-    isApplicable(): boolean {
-        return true;
-    }
-
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.numberOfBedrooms !== undefined;
     }

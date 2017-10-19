@@ -13,10 +13,6 @@ export class FuelTypeQuestionMetadata extends QuestionMetadata<FuelType> {
         );
     }
 
-    isApplicable(): boolean {
-        return true;
-    }
-
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.fuelType !== undefined;
     }
