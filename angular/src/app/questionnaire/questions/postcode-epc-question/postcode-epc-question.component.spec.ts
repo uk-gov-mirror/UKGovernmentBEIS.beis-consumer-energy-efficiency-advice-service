@@ -16,7 +16,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     let component: PostcodeEpcQuestionComponent;
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
 
-    const dummyEpcResponse = require('../../../../assets/test/dummy-epc-response.json');
+    const dummyEpcResponse = require('assets/test/dummy-epc-response.json');
     let apiServiceStub = {
         getEpcData: (postcode) => Observable.of(dummyEpcResponse)
     };
