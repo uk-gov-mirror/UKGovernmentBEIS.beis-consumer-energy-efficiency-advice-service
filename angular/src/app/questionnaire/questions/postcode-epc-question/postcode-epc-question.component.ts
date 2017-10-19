@@ -4,7 +4,7 @@ import {Epc} from './model/epc';
 import {EpcParserService} from './epc-parser-service/epc-parser.service';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {PostcodeEpc} from './model/postcode-epc';
-import {ResponseData} from "../../response-data/response-data";
+import {ResponseData} from "../../../response-data/response-data";
 
 @Component({
     selector: 'app-postcode-epc-question',

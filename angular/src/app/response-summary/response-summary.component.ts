@@ -1,12 +1,14 @@
 import {Component} from '@angular/core';
-import {ResponseData} from "../questionnaire/response-data/response-data";
+import {DisplayableResponseData, ResponseData} from "../response-data/response-data";
 
 @Component({
     selector: 'app-response-summary',
     templateUrl: './response-summary.component.html'
 })
 export class ResponseSummaryComponent {
+    displayableResponseData: DisplayableResponseData;
 
-    constructor(public responseData: ResponseData) {
+    constructor(responseData: ResponseData) {
+        this.displayableResponseData = DisplayableResponseData.fromResponseData(responseData);
     }
 }

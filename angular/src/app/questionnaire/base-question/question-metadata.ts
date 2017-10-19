@@ -1,7 +1,7 @@
 import {Type} from '@angular/core';
 import {QuestionBaseComponent} from './question-base-component';
 import {QuestionType} from '../question-type';
-import {ResponseData} from "../response-data/response-data";
+import {ResponseData} from "../../response-data/response-data";
 
 export abstract class QuestionMetadata<S> {
     constructor(

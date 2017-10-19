@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {findIndex, findLastIndex} from 'lodash';
 import {QuestionMetadata} from '../base-question/question-metadata';
 import {HomeTypeQuestionMetadata} from './home-type-question/home-type-question-metadata';
-import {ResponseData} from '../response-data/response-data';
+import {ResponseData} from '../../response-data/response-data';
 import {StoreysQuestionMetadata} from './storeys-question/storeys-question-metadata';
 import {FuelTypeQuestionMetadata} from './fuel-type-question/fuel-type-question-metadata';
 import {PostcodeEpcQuestionMetadata} from './postcode-epc-question/postcode-epc-question-metadata';

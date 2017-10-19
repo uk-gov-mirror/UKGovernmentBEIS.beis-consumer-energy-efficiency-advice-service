@@ -17,7 +17,7 @@ import {QuestionDirective} from './questionnaire/question.directive';
 import {QuestionnaireService} from './questionnaire/questions/questionnaire.service';
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
 import {HomeAgeQuestionComponent} from './questionnaire/questions/home-age-question/home-age-question.component';
-import {ResponseData} from "./questionnaire/response-data/response-data";
+import {ResponseData} from "./response-data/response-data";
 import {StoreysQuestionComponent} from "./questionnaire/questions/storeys-question/storeys-question.component";
 import {PostcodeEpcQuestionComponent} from "./questionnaire/questions/postcode-epc-question/postcode-epc-question.component";
 import {FuelTypeQuestionComponent} from "./questionnaire/questions/fuel-type-question/fuel-type-question.component";

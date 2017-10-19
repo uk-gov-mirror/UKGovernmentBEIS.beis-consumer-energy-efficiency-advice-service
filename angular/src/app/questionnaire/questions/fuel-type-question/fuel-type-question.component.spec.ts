@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {FuelTypeQuestionComponent} from './fuel-type-question.component';
-import {ResponseData} from '../../response-data/response-data';
+import {ResponseData} from '../../../response-data/response-data';
 import {FuelType} from './fuel-type';
 
 describe('FuelTypeQuestionComponent', () => {
