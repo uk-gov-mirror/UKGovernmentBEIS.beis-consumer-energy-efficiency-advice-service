@@ -2,7 +2,7 @@ import {inject, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 
 import {PageService} from "./page.service";
-import {WordpressApiService} from "../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../common/service/wordpress-api-service/wordpress-api-service";
 
 describe('PageService', () => {
     beforeEach(() => {

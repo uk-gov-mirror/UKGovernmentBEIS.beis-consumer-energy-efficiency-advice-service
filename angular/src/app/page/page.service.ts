@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
 import {Page} from "./page";
-import {WordpressApiService} from "../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../common/service/wordpress-api-service/wordpress-api-service";
 
 @Injectable()
 export class PageService {

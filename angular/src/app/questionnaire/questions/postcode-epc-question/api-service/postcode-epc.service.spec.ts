@@ -2,7 +2,7 @@ import {TestBed, getTestBed, async} from "@angular/core/testing";
 
 import {PostcodeEpcService} from "./postcode-epc.service";
 import {HttpClientTestingModule, HttpTestingController, RequestMatch} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../../../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../../../common/service/wordpress-api-service/wordpress-api-service";
 import {EpcsResponse} from '../model/response/epcs-response';
 import {HttpRequest} from "@angular/common/http";
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {WordpressApiService} from "../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../common/service/wordpress-api-service/wordpress-api-service";
 
 @Component({
     selector: 'app-ocr',

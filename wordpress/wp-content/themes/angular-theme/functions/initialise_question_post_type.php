@@ -19,7 +19,7 @@ function create_question_posttype() {
             'show_in_rest'          => true,
             'menu_icon'             => 'dashicons-editor-help',
             'menu_position'         => 5,
-            'supports'              => array('title', 'author', 'revisions')
+            'supports'              => array('title', 'revisions')
         ));
 }
 
@@ -32,11 +32,11 @@ function setup_question_acf_group() {
             'title' => 'Question metadata',
             'fields' => array (
                 array (
-                    'key' => 'field_59e876b298f38',
+                    'key' => 'field_59e8be23eda3e',
                     'label' => 'Question Heading',
                     'name' => 'questionHeading',
+                    'instructions' => 'Appears at the top of the question page in the questionnaire (e.g. "What\'s your postcode?")',
                     'type' => 'text',
-                    'instructions' => 'This heading will be displayed above the question',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
@@ -45,6 +45,19 @@ function setup_question_acf_group() {
                     'formatting' => 'html',
                     'maxlength' => '',
                 ),
+                array (
+                    'key' => 'field_59e8cfc09ab2a',
+                    'label' => 'Help Text',
+                    'name' => 'helpText',
+                    'type' => 'text',
+                    'instructions' => 'Optional hint to user',
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'html',
+                    'maxlength' => '',
+                )
             ),
             'location' => array (
                 array (
@@ -68,7 +81,8 @@ function setup_question_acf_group() {
     }
 
 
+
 }
 
 add_action( 'init', 'create_question_posttype' );
-add_action( 'acf/init', 'setup_question_acf_group');
+add_action( 'init', 'setup_question_acf_group');

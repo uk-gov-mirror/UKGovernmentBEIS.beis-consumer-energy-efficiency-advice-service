@@ -8,7 +8,7 @@ export class HomeAgeQuestionMetadata extends QuestionMetadata<HomeAge> {
     constructor() {
         super(
             HomeAgeQuestionComponent,
-            'How old is your home?',
+            'home-age',
             QuestionType.House
         );
     }
