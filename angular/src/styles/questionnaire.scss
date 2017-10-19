@@ -47,10 +47,6 @@
     }
 
     .submit-button {
-      display: none;
-    }
-
-    .submit-icon {
       @include default-button(60px);
       margin-left: 10px;
       font-size: 36px;
