@@ -3,17 +3,18 @@ import {By} from '@angular/platform-browser';
 
 import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
 import {ResponseData} from "../../response-data/response-data";
-import {ElectricityTariffQuestion} from "./electricity-tariff-question";
 import {ElectricityTariff} from "./electricity-tariff";
 
 describe('ElectricityTariffQuestionComponent', () => {
     let fixture: ComponentFixture<ElectricityTariffQuestionComponent>;
     let component: ElectricityTariffQuestionComponent;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ElectricityTariffQuestionComponent ]
+            declarations: [ ElectricityTariffQuestionComponent ],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -21,8 +22,6 @@ describe('ElectricityTariffQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ElectricityTariffQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new ElectricityTariffQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

@@ -17,4 +17,8 @@ export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition>
     isApplicable(responseData: ResponseData): boolean {
         return isFlat(responseData.homeType);
     }
+
+    hasBeenAnswered(responseData: ResponseData): boolean {
+        return responseData.flatPosition !== undefined;
+    }
 }

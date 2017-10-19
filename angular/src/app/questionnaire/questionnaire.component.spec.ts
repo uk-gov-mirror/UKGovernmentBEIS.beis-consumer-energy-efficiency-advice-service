@@ -1,16 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionnaireComponent } from './questionnaire.component';
-import {QuestionService} from "./questions/question.service";
+import {QuestionnaireService} from "./questions/questionnaire.service";
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
 
-    class QuestionServiceStub {
+    class QuestionnaireServiceStub {
         getQuestion(index) {
             return undefined;
+        }
+        hasBeenAnswered(index) {
+            return false;
         }
         getPreviousQuestionIndex(index) {
             return -1;
@@ -26,7 +29,7 @@ describe('QuestionnaireComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ QuestionnaireComponent, ProgressIndicatorComponent ],
-            providers: [ {provide: QuestionService, useClass: QuestionServiceStub} ],
+            providers: [ {provide: QuestionnaireService, useClass: QuestionnaireServiceStub} ],
         })
         .compileComponents();
     }));

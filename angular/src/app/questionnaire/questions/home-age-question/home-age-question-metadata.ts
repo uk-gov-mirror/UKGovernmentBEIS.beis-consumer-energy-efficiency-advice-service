@@ -2,6 +2,7 @@ import {QuestionMetadata} from '../../base-question/question-metadata';
 import {HomeAgeQuestionComponent} from './home-age-question.component';
 import {HomeAge} from './home-age';
 import {QuestionType} from '../../question-type';
+import {ResponseData} from "../../response-data/response-data";
 
 export class HomeAgeQuestionMetadata extends QuestionMetadata<HomeAge> {
     constructor() {
@@ -14,5 +15,9 @@ export class HomeAgeQuestionMetadata extends QuestionMetadata<HomeAge> {
 
     isApplicable(): boolean {
         return true;
+    }
+
+    hasBeenAnswered(responseData: ResponseData): boolean {
+        return responseData.homeAge !== undefined;
     }
 }

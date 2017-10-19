@@ -3,16 +3,17 @@ import {By} from '@angular/platform-browser';
 
 import {BoilerTypeQuestionComponent} from './boiler-type-question.component';
 import {ResponseData} from "../../response-data/response-data";
-import {BoilerTypeQuestion} from "./boiler-type-question";
 
 describe('BoilerTypeQuestionComponent', () => {
     let component: BoilerTypeQuestionComponent;
     let fixture: ComponentFixture<BoilerTypeQuestionComponent>;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ BoilerTypeQuestionComponent ]
+            declarations: [ BoilerTypeQuestionComponent ],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -20,8 +21,6 @@ describe('BoilerTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BoilerTypeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new BoilerTypeQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

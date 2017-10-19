@@ -3,17 +3,18 @@ import {By} from '@angular/platform-browser';
 
 import {FlatPositionQuestionComponent} from './flat-position-question.component';
 import {ResponseData} from "../../response-data/response-data";
-import {FlatPositionQuestion} from "./flat-position-question";
 import {FlatPosition} from "./flat-position";
 
 describe('FlatPositionQuestionComponent', () => {
     let fixture: ComponentFixture<FlatPositionQuestionComponent>;
     let component: FlatPositionQuestionComponent;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ FlatPositionQuestionComponent ]
+            declarations: [ FlatPositionQuestionComponent ],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
         .compileComponents();
     }));
@@ -21,8 +22,6 @@ describe('FlatPositionQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FlatPositionQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new FlatPositionQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

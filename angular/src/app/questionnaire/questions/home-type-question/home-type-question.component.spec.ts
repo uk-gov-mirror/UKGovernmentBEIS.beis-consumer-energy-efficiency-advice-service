@@ -2,18 +2,19 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {HomeTypeQuestionComponent} from './home-type-question.component';
-import {HomeTypeQuestion} from './home-type-question';
 import {ResponseData} from "../../response-data/response-data";
 import {HomeType} from "./home-type";
 
 describe('HomeTypeQuestionComponent', () => {
     let fixture: ComponentFixture<HomeTypeQuestionComponent>;
     let component: HomeTypeQuestionComponent;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ HomeTypeQuestionComponent ],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
         .compileComponents();
     }));
@@ -21,8 +22,6 @@ describe('HomeTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeTypeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new HomeTypeQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

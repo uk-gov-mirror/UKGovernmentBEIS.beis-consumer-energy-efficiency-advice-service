@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { QuestionService } from "./questions/question.service";
+import { QuestionnaireService } from "./questions/questionnaire.service";
 import {QuestionDirective} from "./question.directive";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
 import {QuestionTypeUtil} from './question-type';
@@ -19,7 +19,7 @@ export class QuestionnaireComponent implements AfterViewInit {
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
-    constructor(private questionService: QuestionService,
+    constructor(private questionService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef) {
         this.currentQuestionIndex = 0;
@@ -41,8 +41,7 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     canGoForwards() {
-        return this.questionService.getQuestion(this.currentQuestionIndex) !== undefined &&
-               this.questionService.getQuestion(this.currentQuestionIndex).response !== undefined &&
+        return this.questionService.hasBeenAnswered(this.currentQuestionIndex) &&
                this.questionService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 

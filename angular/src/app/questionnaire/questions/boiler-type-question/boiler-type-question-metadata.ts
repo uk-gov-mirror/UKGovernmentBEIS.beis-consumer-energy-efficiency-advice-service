@@ -16,4 +16,8 @@ export class BoilerTypeQuestionMetadata extends QuestionMetadata<boolean> {
     isApplicable(responseData: ResponseData): boolean {
         return isGasOrOil(responseData.fuelType);
     }
+
+    hasBeenAnswered(responseData: ResponseData): boolean {
+        return responseData.fuelType !== undefined;
+    }
 }

@@ -3,7 +3,6 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {BedroomsQuestionComponent} from "./bedrooms-question.component";
 import {NumberQuestionComponent} from "../../common/number-question/number-question.component";
 import {FormsModule} from "@angular/forms";
-import {BedroomsQuestion} from "./bedrooms-question";
 import {ResponseData} from "../../response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../common/times/times.pipe";
@@ -11,14 +10,16 @@ import {TimesPipe} from "../../../common/times/times.pipe";
 describe('BedroomsQuestionComponent', () => {
     let component: BedroomsQuestionComponent;
     let fixture: ComponentFixture<BedroomsQuestionComponent>;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     const originalNumberOfBedrooms: number = 3;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [BedroomsQuestionComponent, NumberQuestionComponent, TimesPipe],
-            imports: [FormsModule]
+            imports: [FormsModule],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -26,11 +27,7 @@ describe('BedroomsQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BedroomsQuestionComponent);
         component = fixture.componentInstance;
-
-        responseData = new ResponseData();
         responseData.numberOfBedrooms = originalNumberOfBedrooms;
-
-        component.question = new BedroomsQuestion(responseData);
         fixture.detectChanges();
     });
 

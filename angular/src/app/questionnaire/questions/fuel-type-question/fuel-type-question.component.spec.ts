@@ -3,17 +3,18 @@ import { By } from '@angular/platform-browser';
 
 import {FuelTypeQuestionComponent} from './fuel-type-question.component';
 import {ResponseData} from '../../response-data/response-data';
-import {FuelTypeQuestion} from './fuel-type-question';
 import {FuelType} from './fuel-type';
 
 describe('FuelTypeQuestionComponent', () => {
     let fixture: ComponentFixture<FuelTypeQuestionComponent>;
     let component: FuelTypeQuestionComponent;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ FuelTypeQuestionComponent ]
+            declarations: [ FuelTypeQuestionComponent ],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -21,8 +22,6 @@ describe('FuelTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FuelTypeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new FuelTypeQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

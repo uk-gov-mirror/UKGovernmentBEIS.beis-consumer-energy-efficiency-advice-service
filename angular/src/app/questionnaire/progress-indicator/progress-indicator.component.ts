@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import {Component, Input, OnInit} from '@angular/core';
-import {QuestionService} from '../questions/question.service';
+import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProgressIndicatorComponent implements OnInit {
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
 
-    constructor(private questionService: QuestionService) {
+    constructor(private questionService: QuestionnaireService) {
     }
 
     ngOnInit() {

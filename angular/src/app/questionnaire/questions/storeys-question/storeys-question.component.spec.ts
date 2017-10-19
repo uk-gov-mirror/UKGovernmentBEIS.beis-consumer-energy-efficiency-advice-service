@@ -3,21 +3,22 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {StoreysQuestionComponent} from "./storeys-question.component";
 import {By} from "@angular/platform-browser";
 import {ResponseData} from "../../response-data/response-data";
-import {StoreysQuestion} from "./storeys-question";
 import {FormsModule} from "@angular/forms";
 import {NumberQuestionComponent} from "../../common/number-question/number-question.component";
 
 describe('StoreysQuestionComponent', () => {
     let component: StoreysQuestionComponent;
     let fixture: ComponentFixture<StoreysQuestionComponent>;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     const originalNumberOfStoreys: number = 10;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [StoreysQuestionComponent, NumberQuestionComponent],
-            imports: [FormsModule]
+            imports: [FormsModule],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -25,11 +26,7 @@ describe('StoreysQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(StoreysQuestionComponent);
         component = fixture.componentInstance;
-
-        responseData = new ResponseData();
         responseData.numberOfStoreys = originalNumberOfStoreys;
-
-        component.question = new StoreysQuestion(responseData);
         fixture.detectChanges();
     });
 

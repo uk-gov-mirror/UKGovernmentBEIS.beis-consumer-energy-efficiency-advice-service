@@ -1,4 +1,4 @@
-import {Input, HostBinding} from '@angular/core';
+import {Input, HostBinding, Inject} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import {ResponseData} from "../response-data/response-data";
 
@@ -36,7 +36,7 @@ export const slideInOutAnimation = trigger('slideInOut', [
 
 export abstract class QuestionBaseComponent<S> {
 
-    constructor(protected responseData: ResponseData) {
+    constructor(@Inject(ResponseData) protected responseData: ResponseData) {
     }
 
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';

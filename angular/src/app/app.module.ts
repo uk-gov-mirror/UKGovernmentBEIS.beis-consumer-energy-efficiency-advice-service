@@ -14,7 +14,7 @@ import {WordpressApiService} from './common/wordpress-api-service/wordpress-api-
 import {OcrComponent} from './ocr/ocr.component';
 import {QuestionnaireComponent} from './questionnaire/questionnaire.component';
 import {QuestionDirective} from './questionnaire/question.directive';
-import {QuestionService} from './questionnaire/questions/question.service';
+import {QuestionnaireService} from './questionnaire/questions/questionnaire.service';
 import {HomeTypeQuestionComponent} from './questionnaire/questions/home-type-question/home-type-question.component';
 import {HomeAgeQuestionComponent} from './questionnaire/questions/home-age-question/home-age-question.component';
 import {ResponseData} from "./questionnaire/response-data/response-data";
@@ -74,7 +74,7 @@ import {ResponseSummaryComponent} from './response-summary/response-summary.comp
         BoilerTypeQuestionComponent,
         ElectricityTariffQuestionComponent,
     ],
-    providers: [WordpressApiService, QuestionService, ResponseData],
+    providers: [WordpressApiService, QuestionnaireService, ResponseData],
     bootstrap: [AppComponent],
 })
 export class AppModule {

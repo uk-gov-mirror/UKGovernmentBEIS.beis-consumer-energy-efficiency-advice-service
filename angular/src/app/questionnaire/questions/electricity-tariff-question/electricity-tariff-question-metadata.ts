@@ -17,4 +17,8 @@ export class ElectricityTariffQuestionMetadata extends QuestionMetadata<Electric
     isApplicable(responseData: ResponseData): boolean {
         return isElectric(responseData.fuelType);
     }
+
+    hasBeenAnswered(responseData: ResponseData): boolean {
+        return responseData.electricityTariff !== undefined;
+    }
 }

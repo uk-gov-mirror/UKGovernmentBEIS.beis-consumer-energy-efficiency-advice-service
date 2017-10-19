@@ -6,7 +6,6 @@ import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
 import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
 import {ResponseData} from '../../response-data/response-data';
-import {PostcodeEpcQuestion} from './postcode-epc-question';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 
@@ -16,8 +15,8 @@ describe('PostcodeEpcQuestionComponent', () => {
 
     let component: PostcodeEpcQuestionComponent;
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
-    let responseData: ResponseData;
 
+    const responseData: ResponseData = new ResponseData();
     const dummyEpcResponse = require('../../../../assets/test/dummy-epc-response.json');
     let apiServiceStub = {
         getEpcData: (postcode) => Observable.of(dummyEpcResponse)
@@ -28,7 +27,8 @@ describe('PostcodeEpcQuestionComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [PostcodeEpcQuestionComponent],
-            imports: [FormsModule]
+            imports: [FormsModule],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .overrideComponent(PostcodeEpcQuestionComponent, {
             set: {
@@ -41,8 +41,6 @@ describe('PostcodeEpcQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PostcodeEpcQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new PostcodeEpcQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

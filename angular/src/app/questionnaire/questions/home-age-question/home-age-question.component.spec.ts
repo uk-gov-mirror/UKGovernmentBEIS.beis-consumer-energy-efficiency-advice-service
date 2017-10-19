@@ -3,17 +3,18 @@ import { By } from '@angular/platform-browser';
 
 import {HomeAgeQuestionComponent} from './home-age-question.component';
 import {ResponseData} from '../../response-data/response-data';
-import {HomeAgeQuestion} from './home-age-question';
 import {HomeAge} from './home-age';
 
 describe('HomeAgeQuestionComponent', () => {
     let component: HomeAgeQuestionComponent;
     let fixture: ComponentFixture<HomeAgeQuestionComponent>;
-    let responseData: ResponseData;
+
+    const responseData: ResponseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HomeAgeQuestionComponent ]
+            declarations: [ HomeAgeQuestionComponent ],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -21,8 +22,6 @@ describe('HomeAgeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeAgeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new HomeAgeQuestion(responseData);
         component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });

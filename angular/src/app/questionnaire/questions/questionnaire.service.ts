@@ -13,7 +13,7 @@ import {ElectricityTariffQuestionMetadata} from './electricity-tariff-question/e
 import {HomeAgeQuestionMetadata} from './home-age-question/home-age-question-metadata';
 
 @Injectable()
-export class QuestionService {
+export class QuestionnaireService {
 
     private readonly questionMetadata: QuestionMetadata<any>[];
 
@@ -33,6 +33,10 @@ export class QuestionService {
 
     public getQuestion(index: number) {
         return this.questionMetadata[index];
+    }
+
+    public hasBeenAnswered(index: number) {
+        return this.questionMetadata[index] !== undefined && this.questionMetadata[index].hasBeenAnswered(this.responseData);
     }
 
     public getPreviousQuestionIndex(index: number) {
