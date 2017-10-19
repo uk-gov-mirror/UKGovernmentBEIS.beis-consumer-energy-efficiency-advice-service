@@ -2,9 +2,9 @@
 <div class="questions-container">
     <span class="question-type-icon" [ngClass]="questionTypeIconClassName"></span>
     <div class="question-heading">
-        <button class="left-arrow" [disabled]="!canGoBack()" (click)="goBackOneQuestion()"><</button>
+        <button class="left-arrow" [disabled]="!canGoBack()" (click)="goBackOneQuestion()" aria-label="Go back"><</button>
         <div id="question-heading" class="heading">{{heading}}</div>
-        <button class="right-arrow" [disabled]="!canGoForwards()" (click)="goForwardsOneQuestion()">></button>
+        <button class="right-arrow" [disabled]="!canGoForwards()" (click)="goForwardsOneQuestion()" aria-label="Go forwards">></button>
     </div>
     <div class="question">
         <ng-template question-host></ng-template>
