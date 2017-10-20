@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {QuestionBaseComponent, slideInOutAnimation} from "../question.component";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 
 @Component({
     selector: 'app-boiler-type-question',
@@ -8,4 +8,11 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../question.component"
     animations: [slideInOutAnimation],
 })
 export class BoilerTypeQuestionComponent extends QuestionBaseComponent<boolean> {
+    get response(): boolean {
+        return this.responseData.condensingBoiler;
+    }
+
+    set response(val: boolean) {
+        this.responseData.condensingBoiler = val;
+    }
 }

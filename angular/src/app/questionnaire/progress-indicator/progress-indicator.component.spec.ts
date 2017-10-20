@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {ProgressIndicatorComponent} from './progress-indicator.component';
-import {QuestionService} from '../questions/question.service';
+import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 import {DebugElement} from "@angular/core/core";
 
@@ -10,7 +10,7 @@ describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
     let fixture: ComponentFixture<ProgressIndicatorComponent>;
 
-    class QuestionServiceStub {
+    class QuestionnaireServiceStub {
         static readonly questions = [
             {questionType: QuestionType.User},
             {questionType: QuestionType.User},
@@ -24,7 +24,10 @@ describe('ProgressIndicatorComponent', () => {
             {questionType: QuestionType.Heating}
         ];
         getQuestion(index) {
-            return QuestionServiceStub.questions[index];
+            return QuestionnaireServiceStub.questions[index];
+        }
+        hasBeenAnswered(index) {
+            return false;
         }
         getPreviousQuestionIndex(index) {
             return -1;
@@ -33,14 +36,14 @@ describe('ProgressIndicatorComponent', () => {
             return -1;
         }
         getQuestions() {
-            return QuestionServiceStub.questions;
+            return QuestionnaireServiceStub.questions;
         }
     }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ ProgressIndicatorComponent ],
-            providers: [ {provide: QuestionService, useClass: QuestionServiceStub } ]
+            providers: [ {provide: QuestionnaireService, useClass: QuestionnaireServiceStub } ]
         })
             .compileComponents();
     }));
@@ -98,7 +101,7 @@ describe('ProgressIndicatorComponent', () => {
 
     it('should display the correct number of questions in each section', () => {
         // given
-        const expectedNumberOfHeatingQuestions = QuestionServiceStub.questions
+        const expectedNumberOfHeatingQuestions = QuestionnaireServiceStub.questions
             .filter(q => q.questionType === QuestionType.Heating)
             .length;
         const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
@@ -120,7 +123,7 @@ describe('ProgressIndicatorComponent', () => {
         const allQuestions = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
 
         // then
-        expect(allQuestions.length).toEqual(QuestionServiceStub.questions.length);
+        expect(allQuestions.length).toEqual(QuestionnaireServiceStub.questions.length);
     });
 
     function isActive(progressIndicatorStep: DebugElement): boolean {

@@ -2,18 +2,17 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
-import {ResponseData} from "../response-data";
-import {ElectricityTariffQuestion} from "./electricity-tariff-question";
+import {ResponseData} from "../../../response-data/response-data";
 import {ElectricityTariff} from "./electricity-tariff";
 
 describe('ElectricityTariffQuestionComponent', () => {
     let fixture: ComponentFixture<ElectricityTariffQuestionComponent>;
     let component: ElectricityTariffQuestionComponent;
-    let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ElectricityTariffQuestionComponent ]
+            declarations: [ ElectricityTariffQuestionComponent ],
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -21,9 +20,7 @@ describe('ElectricityTariffQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ElectricityTariffQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new ElectricityTariffQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -39,7 +36,7 @@ describe('ElectricityTariffQuestionComponent', () => {
         standard.nativeElement.click();
 
         // then
-        expect(responseData.electricityTariff).toBe(ElectricityTariff.Standard);
+        expect(component.response).toBe(ElectricityTariff.Standard);
     });
 
     it('should notify of completion when clicking on a tariff type', () => {
@@ -50,6 +47,6 @@ describe('ElectricityTariffQuestionComponent', () => {
         offPeak.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

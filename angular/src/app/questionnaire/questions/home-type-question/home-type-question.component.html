@@ -1,7 +1,7 @@
 <div class="question-component">
     <div class="multiple-choice-options home-type-options">
         <div class="baseline"></div>
-        <div class="multiple-choice-option" *ngFor="let option of homeTypeOptions; let idx = index" [class.selected]="response === option.value" (click)="response = option.value; notifyOfCompletion()">
+        <div class="multiple-choice-option" *ngFor="let option of homeTypeOptions; let idx = index" [class.selected]="response === option.value" (click)="response = option.value; complete.emit()">
             <div class="icon-container">
                 <button [ngClass]="option.className" [attr.aria-labelledby]="'home-type-name-' + idx"></button>
             </div>

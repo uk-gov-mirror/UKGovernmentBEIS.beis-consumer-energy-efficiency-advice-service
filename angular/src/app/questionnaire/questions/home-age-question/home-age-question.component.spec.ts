@@ -2,18 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {HomeAgeQuestionComponent} from './home-age-question.component';
-import {ResponseData} from '../response-data';
-import {HomeAgeQuestion} from './home-age-question';
+import {ResponseData} from '../../../response-data/response-data';
 import {HomeAge} from './home-age';
 
 describe('HomeAgeQuestionComponent', () => {
     let component: HomeAgeQuestionComponent;
     let fixture: ComponentFixture<HomeAgeQuestionComponent>;
-    let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HomeAgeQuestionComponent ]
+            declarations: [ HomeAgeQuestionComponent ],
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -21,9 +20,6 @@ describe('HomeAgeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeAgeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new HomeAgeQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
         fixture.detectChanges();
     });
 
@@ -41,6 +37,6 @@ describe('HomeAgeQuestionComponent', () => {
         homeAgeOption.nativeElement.click();
 
         // then
-        expect(responseData.homeAge).toBe(expectedHomeAge);
+        expect(component.response).toBe(expectedHomeAge);
     });
 });

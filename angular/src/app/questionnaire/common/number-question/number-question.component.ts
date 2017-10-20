@@ -10,7 +10,6 @@ export class NumberQuestionComponent {
     private _quantity: number;
 
     @Input() itemsName: string;
-    @Input() heading: string;
 
     @Input()
     set quantity(value: number) {

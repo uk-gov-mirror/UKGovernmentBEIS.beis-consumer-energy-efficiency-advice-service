@@ -1,12 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
-import { By } from '@angular/platform-browser';
+import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
 import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
-import {ResponseData} from '../response-data';
-import {PostcodeEpcQuestion} from './postcode-epc-question';
+import {ResponseData} from '../../../response-data/response-data';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 
@@ -16,7 +15,6 @@ describe('PostcodeEpcQuestionComponent', () => {
 
     let component: PostcodeEpcQuestionComponent;
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
-    let responseData: ResponseData;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     let apiServiceStub = {
@@ -28,7 +26,8 @@ describe('PostcodeEpcQuestionComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [PostcodeEpcQuestionComponent],
-            imports: [FormsModule]
+            imports: [FormsModule],
+            providers: [ResponseData]
         })
             .overrideComponent(PostcodeEpcQuestionComponent, {
             set: {
@@ -41,9 +40,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PostcodeEpcQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new PostcodeEpcQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -217,7 +214,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
             });
         }));
 
@@ -233,8 +230,8 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
 
                 // then
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
-                expect(responseData.epc).toBeNull();
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.epc).toBeNull();
             });
         }));
 
@@ -250,7 +247,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
 
                 // then
-                expect(component.notifyOfCompletion).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
     });
@@ -269,8 +266,8 @@ describe('PostcodeEpcQuestionComponent', () => {
                 allEpcs[0].nativeElement.click();
 
                 // then
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
-                expect(responseData.epc).toEqual(expectedEpc);
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.epc).toEqual(expectedEpc);
             });
         }));
 
@@ -286,7 +283,7 @@ describe('PostcodeEpcQuestionComponent', () => {
                 allEpcs[0].nativeElement.click();
 
                 // then
-                expect(component.notifyOfCompletion).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
 
@@ -301,8 +298,8 @@ describe('PostcodeEpcQuestionComponent', () => {
                 fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
 
                 // then
-                expect(responseData.postcode).toEqual(VALID_POSTCODE);
-                expect(responseData.epc).toEqual(null);
+                expect(component.response.postcode).toEqual(VALID_POSTCODE);
+                expect(component.response.epc).toEqual(null);
             });
         }));
 
@@ -317,7 +314,7 @@ describe('PostcodeEpcQuestionComponent', () => {
                 fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
 
                 // then
-                expect(component.notifyOfCompletion).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
     });

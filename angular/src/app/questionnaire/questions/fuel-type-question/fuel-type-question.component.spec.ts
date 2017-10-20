@@ -2,18 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {FuelTypeQuestionComponent} from './fuel-type-question.component';
-import {ResponseData} from '../response-data';
-import {FuelTypeQuestion} from './fuel-type-question';
+import {ResponseData} from '../../../response-data/response-data';
 import {FuelType} from './fuel-type';
 
 describe('FuelTypeQuestionComponent', () => {
     let fixture: ComponentFixture<FuelTypeQuestionComponent>;
     let component: FuelTypeQuestionComponent;
-    let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ FuelTypeQuestionComponent ]
+            declarations: [ FuelTypeQuestionComponent ],
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -21,9 +20,7 @@ describe('FuelTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FuelTypeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new FuelTypeQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -39,7 +36,7 @@ describe('FuelTypeQuestionComponent', () => {
         solidFuel.nativeElement.click();
 
         // then
-        expect(responseData.fuelType).toBe(FuelType.SolidFuel);
+        expect(component.response).toBe(FuelType.SolidFuel);
     });
 
     it('should notify of completion when clicking on a fuel type', () => {
@@ -50,6 +47,6 @@ describe('FuelTypeQuestionComponent', () => {
         solidFuel.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

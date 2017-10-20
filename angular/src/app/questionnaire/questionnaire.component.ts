@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
-import { QuestionService } from "./questions/question.service";
-import {QuestionDirective} from "./questions/question.directive";
-import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./questions/question.component";
+import {Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {QuestionnaireService} from './questions/questionnaire.service';
+import {QuestionDirective} from './question.directive';
+import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
 import {QuestionTypeUtil} from './question-type';
 
 @Component({
@@ -12,6 +13,7 @@ import {QuestionTypeUtil} from './question-type';
 export class QuestionnaireComponent implements AfterViewInit {
 
     private questionComponent: QuestionBaseComponent<any>;
+    private onQuestionCompleteSubscription: Subscription;
 
     currentQuestionIndex: number;
     heading: string;
@@ -19,7 +21,7 @@ export class QuestionnaireComponent implements AfterViewInit {
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
-    constructor(private questionService: QuestionService,
+    constructor(private questionService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef) {
         this.currentQuestionIndex = 0;
@@ -41,8 +43,7 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     canGoForwards() {
-        return this.questionService.getQuestion(this.currentQuestionIndex) !== undefined &&
-               this.questionService.getQuestion(this.currentQuestionIndex).response !== undefined &&
+        return this.questionService.hasBeenAnswered(this.currentQuestionIndex) &&
                this.questionService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
@@ -68,7 +69,7 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.heading = question.heading;
 
-            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.questionComponent);
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
             // Set the current question to slide out in the opposite direction. Manual change
             // detection must be triggered here or the change will not apply.
@@ -81,12 +82,15 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionHost.viewContainerRef.clear();
             const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
             this.questionComponent = componentRef.instance;
-
             this.questionComponent.slideInOut = slideInFrom;
-            this.questionComponent.question = question;
-            this.questionComponent.notifyOfCompletion = () => {
-                this.goForwardsOneQuestion();
-            };
+
+            // Subscribe to the question's completion event, and unsubscribe from the previous one.
+            if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
+                this.onQuestionCompleteSubscription.unsubscribe();
+            }
+            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() =>
+                this.goForwardsOneQuestion()
+            );
         }
     }
 }

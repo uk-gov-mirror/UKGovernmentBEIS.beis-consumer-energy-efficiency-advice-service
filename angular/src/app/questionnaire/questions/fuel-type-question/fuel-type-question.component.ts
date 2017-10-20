@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FuelType, getFuelTypeDescription} from './fuel-type';
-import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ResponseData} from "../../../response-data/response-data";
 
 class FuelTypeOption {
     public readonly name: string;
@@ -19,8 +20,8 @@ class FuelTypeOption {
 export class FuelTypeQuestionComponent extends QuestionBaseComponent<FuelType> {
     fuelTypeOptions: FuelTypeOption[];
 
-    constructor() {
-        super();
+    constructor(responseData: ResponseData) {
+        super(responseData);
         this.fuelTypeOptions = [
             new FuelTypeOption(FuelType.Electricity, 'electricity'),
             new FuelTypeOption(FuelType.MainsGas, 'mains-gas'),
@@ -28,5 +29,13 @@ export class FuelTypeQuestionComponent extends QuestionBaseComponent<FuelType> {
             new FuelTypeOption(FuelType.HeatingOil, 'heating-oil'),
             new FuelTypeOption(FuelType.SolidFuel, 'solid-fuel')
         ]
+    }
+
+    get response(): FuelType {
+        return this.responseData.fuelType;
+    }
+
+    set response(val: FuelType) {
+        this.responseData.fuelType = val;
     }
 }

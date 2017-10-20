@@ -1,0 +1,71 @@
+import {Injectable} from "@angular/core";
+import {Epc} from '../questionnaire/questions/postcode-epc-question/model/epc';
+import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type";
+import {ElectricityTariff} from "../questionnaire/questions/electricity-tariff-question/electricity-tariff";
+import {FlatPosition} from "../questionnaire/questions/flat-position-question/flat-position";
+import {HomeAge} from "../questionnaire/questions/home-age-question/home-age";
+import {HomeType} from "../questionnaire/questions/home-type-question/home-type";
+
+interface ResponseDataShape {
+    postcode: any;
+    epc: any;
+    homeType: any;
+    homeAge: any;
+    flatPosition: any;
+    numberOfStoreys: any;
+    numberOfBedrooms: any;
+    fuelType: any;
+    condensingBoiler: any;
+    electricityTariff: any;
+}
+
+@Injectable()
+export class ResponseData implements ResponseDataShape {
+    public postcode: string;
+    public epc: Epc;
+    public homeType: HomeType;
+    public homeAge: HomeAge;
+    public flatPosition: FlatPosition;
+    public numberOfStoreys: number;
+    public numberOfBedrooms: number;
+    public fuelType: FuelType;
+    public condensingBoiler: boolean;
+    public electricityTariff: ElectricityTariff;
+}
+
+// This class is *ONLY* used for displaying the summary page of the user's responses.
+// It is necessary because at runtime, some values (such as enum values, which are
+// just numbers at runtime) display in a way which is meaningless.
+//
+// This class therefore is of the same shape as ResponseData, but transforms certain
+// values into forms which will display correctly.
+export class DisplayableResponseData implements ResponseDataShape {
+    constructor(
+        public postcode: string,
+        public epc: Epc,
+        public homeType: string,
+        public homeAge: string,
+        public flatPosition: string,
+        public numberOfStoreys: number,
+        public numberOfBedrooms: number,
+        public fuelType: string,
+        public condensingBoiler: boolean,
+        public electricityTariff: string
+    ) {
+    }
+
+    static fromResponseData(responseData: ResponseData): DisplayableResponseData {
+        return new DisplayableResponseData(
+            responseData.postcode,
+            responseData.epc,
+            HomeType[responseData.homeType],
+            HomeAge[responseData.homeAge],
+            FlatPosition[responseData.flatPosition],
+            responseData.numberOfStoreys,
+            responseData.numberOfBedrooms,
+            FuelType[responseData.fuelType],
+            responseData.condensingBoiler,
+            ElectricityTariff[responseData.electricityTariff]
+        );
+    }
+}

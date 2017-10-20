@@ -2,17 +2,16 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {BoilerTypeQuestionComponent} from './boiler-type-question.component';
-import {ResponseData} from "../response-data";
-import {BoilerTypeQuestion} from "./boiler-type-question";
+import {ResponseData} from "../../../response-data/response-data";
 
 describe('BoilerTypeQuestionComponent', () => {
     let component: BoilerTypeQuestionComponent;
     let fixture: ComponentFixture<BoilerTypeQuestionComponent>;
-    let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ BoilerTypeQuestionComponent ]
+            declarations: [ BoilerTypeQuestionComponent ],
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -20,9 +19,7 @@ describe('BoilerTypeQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BoilerTypeQuestionComponent);
         component = fixture.componentInstance;
-        responseData = new ResponseData();
-        component.question = new BoilerTypeQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
+        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
@@ -38,7 +35,7 @@ describe('BoilerTypeQuestionComponent', () => {
         yes.nativeElement.click();
 
         // then
-        expect(responseData.condensingBoiler).toBe(true);
+        expect(component.response).toBe(true);
     });
 
     it('should notify of completion when clicking on one of the buttons', () => {
@@ -49,6 +46,6 @@ describe('BoilerTypeQuestionComponent', () => {
         no.nativeElement.click();
 
         // then
-        expect(component.notifyOfCompletion).toHaveBeenCalled();
+        expect(component.complete.emit).toHaveBeenCalled();
     });
 });
