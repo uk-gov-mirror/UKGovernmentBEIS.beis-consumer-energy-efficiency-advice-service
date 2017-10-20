@@ -1,7 +1,7 @@
-import * as _ from 'lodash';
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {QuestionnaireService} from '../questions/questionnaire.service';
-import {QuestionType, QuestionTypeUtil} from '../question-type';
+import * as _ from "lodash";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {QuestionnaireService} from "../questions/questionnaire.service";
+import {QuestionType, QuestionTypeUtil} from "../question-type";
 
 @Component({
     selector: 'progress-indicator',
@@ -31,7 +31,7 @@ export class ProgressIndicatorComponent implements OnInit {
                 }
             })
             .groupBy('questionType')
-            .sortBy((questionGroup: {questionIndex: number, questionHeading: string, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
+            .sortBy((questionGroup: QuestionStep[]) => _.head(questionGroup).questionIndex)
             .map(questionGroup => {
                 const questionType = _.head(questionGroup).questionType;
                 return {
@@ -49,6 +49,16 @@ export class ProgressIndicatorComponent implements OnInit {
         return this.questionnaireService.isAvailable(questionIndex);
     }
 
+    isApplicable(questionIndex: number) {
+        return this.questionnaireService.isApplicable(questionIndex);
+    }
+
+    getTitleText(questionStep: QuestionStep) {
+        return this.isApplicable(questionStep.questionIndex) ?
+            `Go to ${questionStep.questionHeading}` :
+            'This question is not applicable to your home';
+    }
+
     getFlexBasis(questionTypeSection: QuestionnaireSection) {
         const questionsAndIconsInThisSection = ProgressIndicatorComponent.ICONS_PER_SECTION + questionTypeSection.questions.length;
         return 100 * questionsAndIconsInThisSection / this.totalNumberOfIconsAndQuestions + '%';
@@ -57,6 +67,12 @@ export class ProgressIndicatorComponent implements OnInit {
 
 interface QuestionnaireSection {
     questionType: QuestionType;
-    questions: {questionIndex: number, questionHeading: string}[];
+    questions: QuestionStep[];
     className: string;
+}
+
+interface QuestionStep {
+    questionIndex: number;
+    questionType: QuestionType;
+    questionHeading: string
 }
