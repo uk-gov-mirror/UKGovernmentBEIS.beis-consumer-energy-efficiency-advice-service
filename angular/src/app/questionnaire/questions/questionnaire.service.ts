@@ -41,8 +41,7 @@ export class QuestionnaireService {
         return this.questionMetadata[index] !== undefined &&
                this.questionMetadata[index].isApplicable(this.responseData) &&
                this.questionMetadata.slice(0, index)
-                   .filter(q => q.isApplicable(this.responseData))
-                   .every(q => q.hasBeenAnswered(this.responseData));
+                   .every(q => q.hasBeenAnswered(this.responseData) || !q.isApplicable(this.responseData));
     }
 
     public hasBeenAnswered(index: number) {
