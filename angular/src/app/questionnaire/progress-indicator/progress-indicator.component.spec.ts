@@ -30,6 +30,9 @@ describe('ProgressIndicatorComponent', () => {
         isAvailable(index) {
             return availableQuestions !== undefined && availableQuestions.includes(index);
         }
+        isApplicable(index) {
+            return availableQuestions !== undefined && availableQuestions.includes(index);
+        }
         hasBeenAnswered(index) {
             return false;
         }
