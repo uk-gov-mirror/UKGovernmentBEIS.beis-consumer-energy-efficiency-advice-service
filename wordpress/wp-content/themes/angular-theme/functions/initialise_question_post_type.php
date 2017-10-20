@@ -1,6 +1,9 @@
 <?php
 
-// TODO: add custom capability
+add_action( 'init', 'create_question_posttype' );
+add_action( 'init', 'setup_question_acf_group');
+// Disable the quick-edit link to prevent users editing the slug for a question
+add_filter( 'post_row_actions', 'disable_quick_edit_for_questions', 10, 2 );
 
 function create_question_posttype() {
 
@@ -74,15 +77,26 @@ function setup_question_acf_group() {
                 'position' => 'normal',
                 'layout' => 'no_box',
                 'hide_on_screen' => array (
+                    0 => 'slug'
                 ),
             ),
             'menu_order' => 0,
         ));
     }
-
-
-
 }
 
-add_action( 'init', 'create_question_posttype' );
-add_action( 'init', 'setup_question_acf_group');
+function disable_quick_edit_for_questions($actions = array(), $post = null ) {
+
+    // Abort if the post type is not "question"
+    global $current_screen;
+    if ( $current_screen->post_type != 'question' ) {
+        return $actions;
+    }
+
+    if ( isset( $actions['inline hide-if-no-js'] ) ) {
+        unset( $actions['inline hide-if-no-js'] );
+        unset( $actions['trash'] );
+    }
+
+    return $actions;
+}

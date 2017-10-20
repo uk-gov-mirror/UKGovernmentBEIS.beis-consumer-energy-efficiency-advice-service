@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+	xmlns:wp="http://wordpress.org/export/1.2/"
+>
+
+<channel>
+	<wp:wxr_version>1.2</wp:wxr_version>
+
+	<item>
+		<title>Postcode EPC</title>
+		<wp:post_name><![CDATA[postcode-epc]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[What's your postcode?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Confirm EPC Details</title>
+		<wp:post_name><![CDATA[confirm-epc]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[Here's what we know so far...]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Bedrooms</title>
+		<wp:post_name><![CDATA[bedrooms]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[How many bedrooms do you have?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Boiler Type</title>
+		<wp:post_name><![CDATA[boiler-type]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[Do you have a condensing boiler?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[helpText]]></wp:meta_key>
+			<wp:meta_value><![CDATA[If you are not sure whether your boiler is condensing then look at the boiler unit - a condensing boiler will have a white plastic pipe coming from the bottom in addition to any metal gas/oil pipes]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_helpText]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8cfc09ab2a]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Electricity Tariff</title>
+		<wp:post_name><![CDATA[electricity-tariff]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[Do you know your electricity tariff?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Flat position</title>
+		<wp:post_name><![CDATA[flat-position]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[You've selected a flat. What's its position?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Fuel type</title>
+		<wp:post_name><![CDATA[fuel-type]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[Which type of fuel supplies your heating?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Home Age</title>
+		<wp:post_name><![CDATA[home-age]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[How old is your home?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Home Type</title>
+		<wp:post_name><![CDATA[home-type]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[So what type of home do you have?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>Storeys</title>
+		<wp:post_name><![CDATA[storeys]]></wp:post_name>
+		<wp:status><![CDATA[publish]]></wp:status>
+		<wp:post_type><![CDATA[question]]></wp:post_type>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[How many storeys does your home have?]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_questionHeading]]></wp:meta_key>
+			<wp:meta_value><![CDATA[field_59e8be23eda3e]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+</channel>
+</rss>
