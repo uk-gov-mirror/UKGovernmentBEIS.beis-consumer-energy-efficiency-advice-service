@@ -26,11 +26,12 @@ export class ProgressIndicatorComponent implements OnInit {
             .map((question, i) => {
                 return {
                     questionIndex: i,
+                    questionHeading: question.heading,
                     questionType: question.questionType
                 }
             })
             .groupBy('questionType')
-            .sortBy((questionGroup: {questionIndex: number, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
+            .sortBy((questionGroup: {questionIndex: number, questionHeading: string, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
             .map(questionGroup => {
                 const questionType = _.head(questionGroup).questionType;
                 return {
@@ -56,6 +57,6 @@ export class ProgressIndicatorComponent implements OnInit {
 
 interface QuestionnaireSection {
     questionType: QuestionType;
-    questions: {questionIndex: number}[];
+    questions: {questionIndex: number, questionHeading: string}[];
     className: string;
 }

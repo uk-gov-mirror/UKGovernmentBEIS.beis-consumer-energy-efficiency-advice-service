@@ -12,6 +12,8 @@
             </div>
             <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
                 <button class="step-link"
+                        [attr.title]="'Go to ' + question.questionHeading"
+                        [attr.aria-label]="'Go to ' + question.questionHeading"
                         [disabled]="!isAvailable(question.questionIndex)"
                         [class.active]="question.questionIndex === currentQuestionIndex"
                         (click)="clickedOnLink.emit(question.questionIndex)"></button>
