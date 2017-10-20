@@ -8,7 +8,7 @@
 @import 'styles/_spinner';
 
 html, body {
-  width: 100vw;
+  width: calc(100vw - 32px);
   height: 100vh;
   overflow-x: hidden;
   overflow-y: visible;
