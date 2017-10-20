@@ -16,11 +16,11 @@ export class ProgressIndicatorComponent implements OnInit {
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
 
-    constructor(private questionService: QuestionnaireService) {
+    constructor(private questionnaireService: QuestionnaireService) {
     }
 
     ngOnInit() {
-        const allQuestions = this.questionService.getQuestions();
+        const allQuestions = this.questionnaireService.getQuestions();
         this.questionnaireSections = _.chain(allQuestions)
             .map((question, i) => {
                 return {
