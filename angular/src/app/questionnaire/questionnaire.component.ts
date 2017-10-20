@@ -1,31 +1,29 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
+import {OnInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {QuestionnaireService} from './questions/questionnaire.service';
 import {QuestionDirective} from './question.directive';
 import {QuestionTypeUtil} from './question-type';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
-import {AllQuestionsContent} from '../common/model/all-questions-content';
-import {QuestionContent} from '../common/model/question-content';
-import {QuestionContentService} from '../common/service/question-content-service/question-content.service';
+import {AllQuestionsContent} from '../common/question-content/all-questions-content';
+import {QuestionContent} from '../common/question-content/question-content';
+import {QuestionContentService} from '../common/question-content/question-content.service';
 
 @Component({
     selector: 'app-questionnaire',
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss']
 })
-export class QuestionnaireComponent implements AfterViewInit {
+export class QuestionnaireComponent implements OnInit {
 
     private questionComponent: QuestionBaseComponent<any>;
     private allQuestionsContent: AllQuestionsContent;
-    private currentQuestionContent: QuestionContent;
     private onQuestionCompleteSubscription: Subscription;
+    private currentQuestionId: string;
 
     isLoading: boolean;
     isError: boolean;
     currentQuestionIndex: number;
-    currentQuestionId: string;
-    heading: string;
-    helpText: string;
+    currentQuestionContent: QuestionContent;
     questionTypeIconClassName: string;
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
@@ -39,7 +37,7 @@ export class QuestionnaireComponent implements AfterViewInit {
         this.isError = false;
     }
 
-    ngAfterViewInit() {
+    ngOnInit() {
         this.questionContentService.fetchQuestionsContent()
             .subscribe(
                 questionContent => this.onQuestionContentLoaded(questionContent),
@@ -50,7 +48,6 @@ export class QuestionnaireComponent implements AfterViewInit {
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
         this.isLoading = false;
         this.allQuestionsContent = questionContent;
-        this.changeDetectorRef.detectChanges();
         this.jumpToQuestion(this.currentQuestionIndex);
     }
 
@@ -78,7 +75,6 @@ export class QuestionnaireComponent implements AfterViewInit {
     private displayErrorMessage() {
         this.isLoading = false;
         this.isError = true;
-        this.changeDetectorRef.detectChanges();
     }
 
     canGoBack() {
@@ -112,8 +108,10 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.currentQuestionId = question.questionId;
             this.currentQuestionContent = this.allQuestionsContent[this.currentQuestionId];
-            this.heading = this.currentQuestionContent && this.currentQuestionContent.questionHeading;
-            this.helpText = this.currentQuestionContent && this.currentQuestionContent.helpText;
+            if (!(this.currentQuestionContent && this.currentQuestionContent.questionHeading)) {
+                this.displayErrorMessage();
+                return;
+            }
 
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 

@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 import {Observable} from 'rxjs/Observable';
-import {AllQuestionsContent} from '../../model/all-questions-content';
-import {QuestionResponse} from '../../model/question-response';
+import {AllQuestionsContent} from './all-questions-content';
+import {QuestionResponse} from './question-response';
 
 @Injectable()
 export class QuestionContentService {

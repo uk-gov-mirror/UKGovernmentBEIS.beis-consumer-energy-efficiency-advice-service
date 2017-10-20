@@ -6,8 +6,8 @@ import {Observable} from 'rxjs/Observable';
 import {QuestionnaireComponent} from './questionnaire.component';
 import {QuestionnaireService} from './questions/questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
-import {QuestionContentService} from '../common/service/question-content-service/question-content.service';
-import {AllQuestionsContent} from '../common/model/all-questions-content';
+import {QuestionContentService} from '../common/question-content/question-content.service';
+import {AllQuestionsContent} from '../common/question-content/all-questions-content';
 import {QuestionType} from './question-type';
 import {PostcodeEpcComponent} from '../postcode-epc/postcode-epc.component';
 

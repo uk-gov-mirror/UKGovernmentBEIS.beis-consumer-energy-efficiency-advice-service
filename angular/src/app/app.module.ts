@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {PageComponent} from './page/page.component';
 import {CalculatorComponent} from './calculator/calculator.component';
 import {PostcodeEpcComponent} from './postcode-epc/postcode-epc.component';
-import {WordpressApiService} from './common/service/wordpress-api-service/wordpress-api-service';
+import {WordpressApiService} from './common/wordpress-api-service/wordpress-api-service';
 import {OcrComponent} from './ocr/ocr.component';
 import {QuestionnaireComponent} from './questionnaire/questionnaire.component';
 import {QuestionDirective} from './questionnaire/question.directive';
@@ -30,7 +30,7 @@ import {ElectricityTariffQuestionComponent} from './questionnaire/questions/elec
 import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/progress-indicator.component';
 import {ResponseSummaryComponent} from './response-summary/response-summary.component';
 import {ConfirmEpcQuestionComponent} from './questionnaire/questions/confirm-epc-question/confirm-epc-question.component';
-import {QuestionContentService} from './common/service/question-content-service/question-content.service';
+import {QuestionContentService} from './common/question-content/question-content.service';
 
 @NgModule({
     declarations: [
