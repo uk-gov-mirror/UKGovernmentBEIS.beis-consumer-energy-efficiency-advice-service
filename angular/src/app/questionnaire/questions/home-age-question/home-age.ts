@@ -8,11 +8,13 @@ export enum HomeAge {
     from1983to1990,
     from1991to1995,
     from1996to2002,
-    from2003toPresent
+    from2003to2006,
+    from2007to2011,
+    from2011toPresent
 }
 
 export abstract class HomeAgeUtil {
-    static getInclusiveLowerBoundYear(homeAge: HomeAge) {
+    private static getInclusiveLowerBoundYear(homeAge: HomeAge) {
         switch (homeAge) {
             case HomeAge.pre1900:           { return null; }
             case HomeAge.from1900to1929:    { return 1900; }
@@ -23,12 +25,14 @@ export abstract class HomeAgeUtil {
             case HomeAge.from1983to1990:    { return 1983; }
             case HomeAge.from1991to1995:    { return 1991; }
             case HomeAge.from1996to2002:    { return 1996; }
-            case HomeAge.from2003toPresent: { return 2003; }
+            case HomeAge.from2003to2006:    { return 2003; }
+            case HomeAge.from2007to2011:    { return 2007; }
+            case HomeAge.from2011toPresent: { return 2011; }
         }
     }
 
-    static getInclusiveUpperBoundYear(homeAge: HomeAge) {
-        if (homeAge === HomeAge.from2003toPresent) {
+    private static getInclusiveUpperBoundYear(homeAge: HomeAge) {
+        if (homeAge === HomeAge.from2011toPresent) {
             return null;
         }
         let nextHomeAge = homeAge + 1;
@@ -38,9 +42,11 @@ export abstract class HomeAgeUtil {
     public static getDisplayName(homeAge: HomeAge) {
         switch (homeAge) {
             case HomeAge.pre1900:
-                return 'pre 1900';
-            case HomeAge.from2003toPresent:
-                return '2003-present';
+                const exclusiveUpperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(HomeAge.pre1900) + 1;
+                return `pre ${ exclusiveUpperBoundYear }`;
+            case HomeAge.from2011toPresent:
+                const inclusiveLowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(HomeAge.from2011toPresent);
+                return `${ inclusiveLowerBoundYear }-present`;
             default:
                 let lowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(homeAge);
                 let upperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(homeAge);

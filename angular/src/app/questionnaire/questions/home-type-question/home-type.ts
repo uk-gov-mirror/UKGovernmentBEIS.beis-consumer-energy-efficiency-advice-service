@@ -4,33 +4,58 @@ export enum HomeType {
     SemiDetachedHouse,
     EndTerraceHouse,
     MidTerraceHouse,
+    BasementFlat,
     GroundFloorFlat,
     MidFloorFlat,
     TopFloorFlat,
-    BungalowDetached,
-    BungalowAttached,
-    ParkHome,
+    DetachedBungalow,
+    SemiDetachedBungalow,
+    EndTerraceBungalow,
+    MidTerraceBungalow,
+    ParkHome
 }
 
 export function isFlat(homeType: HomeType): boolean {
-    return homeType === HomeType.GroundFloorFlat ||
+    return homeType === HomeType.BasementFlat ||
+           homeType === HomeType.GroundFloorFlat ||
            homeType === HomeType.MidFloorFlat ||
            homeType === HomeType.TopFloorFlat;
 }
 
+export function isTerraced(homeType: HomeType): boolean {
+    return homeType === HomeType.EndTerraceHouse ||
+           homeType === HomeType.MidTerraceHouse ||
+           homeType === HomeType.EndTerraceBungalow ||
+           homeType === HomeType.MidTerraceBungalow;
+}
+
+export function isBungalow(homeType: HomeType): boolean {
+    return homeType === HomeType.DetachedBungalow ||
+           homeType === HomeType.SemiDetachedBungalow ||
+           homeType === HomeType.EndTerraceBungalow ||
+           homeType === HomeType.MidTerraceBungalow;
+}
+
+export function isParkHome(homeType: HomeType): boolean {
+    return homeType === HomeType.ParkHome;
+}
+
 export function getHomeTypeDescription(homeType: HomeType): string {
     switch(homeType) {
-        case HomeType.DetachedHouse:     { return 'detached house'; }
-        case HomeType.SemiDetachedHouse: { return 'semi-detached house'; }
-        case HomeType.EndTerraceHouse:   { return 'end-terrace house'; }
-        case HomeType.MidTerraceHouse:   { return 'mid-terrace house'; }
-        case HomeType.GroundFloorFlat:   { return 'ground floor flat'; }
-        case HomeType.MidFloorFlat:      { return 'mid floor flat'; }
-        case HomeType.TopFloorFlat:      { return 'top floor flat'; }
-        case HomeType.BungalowDetached:  { return 'bungalow detached'; }
-        case HomeType.BungalowAttached:  { return 'bungalow attached'; }
-        case HomeType.ParkHome:          { return 'park home'; }
-        default:                         { return null; }
+        case HomeType.DetachedHouse:        { return 'detached house'; }
+        case HomeType.SemiDetachedHouse:    { return 'semi-detached house'; }
+        case HomeType.EndTerraceHouse:      { return 'end-terrace house'; }
+        case HomeType.MidTerraceHouse:      { return 'mid-terrace house'; }
+        case HomeType.BasementFlat:         { return 'basement flat'; }
+        case HomeType.GroundFloorFlat:      { return 'ground floor flat'; }
+        case HomeType.MidFloorFlat:         { return 'mid floor flat'; }
+        case HomeType.TopFloorFlat:         { return 'top floor flat'; }
+        case HomeType.DetachedBungalow:     { return 'detached bungalow'; }
+        case HomeType.SemiDetachedBungalow: { return 'semi-detached bungalow'; }
+        case HomeType.MidTerraceBungalow:   { return 'mid-terrace bungalow'; }
+        case HomeType.EndTerraceBungalow:   { return 'end-terrace bungalow'; }
+        case HomeType.ParkHome:             { return 'park home'; }
+        default:                            { return null; }
     }
 }
 
