@@ -1,4 +1,4 @@
-<div class="confirm-epc-question" *ngIf="isEpcAvailable">
+<div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
     <div class="horizontal-line" *ngIf="epcRating"></div>
     <div class="epc-rating-container" *ngIf="epcRating">
         <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
@@ -43,8 +43,9 @@
         </div>
     </div>
 </div>
-<div class="confirm-epc-question" *ngIf="!isEpcAvailable">
-    <span>We couldn't find any details about energy efficiency at your property based on your postcode.</span>
-    <br>
-    <button class="need-more-details-button" (click)="rejectEpcDetails()">Let's get a few more details to get a better picture.</button>
+<div class="question-component confirm-epc-question" *ngIf="!isEpcAvailable">
+    <div class="need-more-details-container">
+        <div>We couldn't find any details about energy efficiency at your property based on your postcode.</div>
+        <button class="need-more-details-button" (click)="rejectEpcDetails()">Let's get a few more details to get a better picture.</button>
+    </div>
 </div>
