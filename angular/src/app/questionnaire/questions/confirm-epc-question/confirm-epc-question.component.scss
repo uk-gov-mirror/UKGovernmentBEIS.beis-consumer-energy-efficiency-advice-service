@@ -7,7 +7,8 @@ $epc-rating-margin: 40px;
 .confirm-epc-question {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  max-width: 100%;
+  min-width: 60vw;
 
   .horizontal-line {
     border-top: 1px solid black;
@@ -107,15 +108,22 @@ $epc-rating-margin: 40px;
     }
   }
 
-  .need-more-details-button {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    padding: 10px 40px 10px 20px;
-    border: none;
+  .need-more-details-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
-    &:hover {
-      box-shadow: 0 0 2px 2px grey;
+    .need-more-details-button {
+      margin-top: $section-break-margin;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      padding: 10px 40px 10px 20px;
+      border: none;
+
+      &:hover {
+        box-shadow: 0 0 2px 2px grey;
+      }
     }
   }
 }
