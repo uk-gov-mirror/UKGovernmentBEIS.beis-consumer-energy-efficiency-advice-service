@@ -62,6 +62,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     }
 
     handlePostcodeEntered(): void {
+        this.trimLeadingOrTrailingSpacesFromPostcodeString();
         this.resetSearchState();
         let isPostcodeInputValid = PostcodeEpcQuestionComponent.POSTCODE_REGEXP.test(this.postcodeInput);
         if (!isPostcodeInputValid) {
@@ -69,6 +70,14 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
             return;
         }
         this.lookupAllEpcsForPostcode();
+    }
+
+    trimLeadingOrTrailingSpacesFromPostcodeString(): void {
+        const matchLeadingSpaces = /^\s+/;
+        const matchTrailingSpaces = /\s+$/;
+        this.postcodeInput = this.postcodeInput
+            .replace(matchLeadingSpaces, '')
+            .replace(matchTrailingSpaces, '');
     }
 
     resetSearchState(): void {
