@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 
@@ -15,21 +15,23 @@ export class ProgressIndicatorComponent implements OnInit {
     questionnaireSections: QuestionnaireSection[];
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
+    @Output() clickedOnLink: EventEmitter<number> = new EventEmitter();
 
-    constructor(private questionService: QuestionnaireService) {
+    constructor(private questionnaireService: QuestionnaireService) {
     }
 
     ngOnInit() {
-        const allQuestions = this.questionService.getQuestions();
+        const allQuestions = this.questionnaireService.getQuestions();
         this.questionnaireSections = _.chain(allQuestions)
             .map((question, i) => {
                 return {
                     questionIndex: i,
+                    questionHeading: question.heading,
                     questionType: question.questionType
                 }
             })
             .groupBy('questionType')
-            .sortBy((questionGroup: {questionIndex: number, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
+            .sortBy((questionGroup: {questionIndex: number, questionHeading: string, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
             .map(questionGroup => {
                 const questionType = _.head(questionGroup).questionType;
                 return {
@@ -43,6 +45,10 @@ export class ProgressIndicatorComponent implements OnInit {
             ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
     }
 
+    isAvailable(questionIndex: number) {
+        return this.questionnaireService.isAvailable(questionIndex);
+    }
+
     getFlexBasis(questionTypeSection: QuestionnaireSection) {
         const questionsAndIconsInThisSection = ProgressIndicatorComponent.ICONS_PER_SECTION + questionTypeSection.questions.length;
         return 100 * questionsAndIconsInThisSection / this.totalNumberOfIconsAndQuestions + '%';
@@ -51,6 +57,6 @@ export class ProgressIndicatorComponent implements OnInit {
 
 interface QuestionnaireSection {
     questionType: QuestionType;
-    questions: {questionIndex: number}[];
+    questions: {questionIndex: number, questionHeading: string}[];
     className: string;
 }

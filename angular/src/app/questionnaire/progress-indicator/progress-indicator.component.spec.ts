@@ -9,6 +9,7 @@ import {DebugElement} from "@angular/core/core";
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
     let fixture: ComponentFixture<ProgressIndicatorComponent>;
+    let availableQuestions: number[];
 
     class QuestionnaireServiceStub {
         static readonly questions = [
@@ -25,6 +26,9 @@ describe('ProgressIndicatorComponent', () => {
         ];
         getQuestion(index) {
             return QuestionnaireServiceStub.questions[index];
+        }
+        isAvailable(index) {
+            return availableQuestions !== undefined && availableQuestions.includes(index);
         }
         hasBeenAnswered(index) {
             return false;
@@ -51,6 +55,7 @@ describe('ProgressIndicatorComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProgressIndicatorComponent);
         component = fixture.componentInstance;
+        spyOn(component.clickedOnLink, 'emit');
         fixture.detectChanges();
     });
 
@@ -126,8 +131,59 @@ describe('ProgressIndicatorComponent', () => {
         expect(allQuestions.length).toEqual(QuestionnaireServiceStub.questions.length);
     });
 
+    it('should not allow the button for an unavailable question link to be clicked', () => {
+        // given
+        availableQuestions = [1];
+        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
+
+        // when
+        const progressIndicatorStep = allProgressIndicatorSteps[0];
+        fixture.detectChanges();
+
+        // then
+        expect(isDisabled(progressIndicatorStep)).toBeTruthy();
+
+    });
+
+    it('should allow the button for an available question link to be clicked', () => {
+        // given
+        availableQuestions = [1];
+        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
+
+        // when
+        const progressIndicatorStep = allProgressIndicatorSteps[1];
+        fixture.detectChanges();
+
+        // then
+        expect(isDisabled(progressIndicatorStep)).toBeFalsy();
+
+    });
+
+    it('should emit an event when an available question link is clicked', () => {
+        // given
+        availableQuestions = [1];
+        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
+
+        // when
+        const progressIndicatorStep = allProgressIndicatorSteps[1];
+        getStepLink(progressIndicatorStep).nativeElement.click();
+        fixture.detectChanges();
+
+        // then
+        expect(component.clickedOnLink.emit).toHaveBeenCalledWith(1);
+    });
+
+    function getStepLink(progressIndicatorStep: DebugElement): DebugElement {
+        return progressIndicatorStep.children.find(el => el.nativeElement.classList.contains('step-link'));
+    }
+
     function isActive(progressIndicatorStep: DebugElement): boolean {
-        const stepDisplay = progressIndicatorStep.children.find(el => el.nativeElement.classList.contains('step-link'));
+        const stepDisplay = getStepLink(progressIndicatorStep);
         return stepDisplay.nativeElement.classList.contains('active');
+    }
+
+    function isDisabled(progressIndicatorStep: DebugElement): boolean {
+        const stepDisplay = getStepLink(progressIndicatorStep);
+        return stepDisplay.nativeElement.getAttribute('disabled') !== null;
     }
 });

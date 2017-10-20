@@ -21,7 +21,7 @@ export class QuestionnaireComponent implements AfterViewInit {
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
-    constructor(private questionService: QuestionnaireService,
+    constructor(private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef) {
         this.currentQuestionIndex = 0;
@@ -38,17 +38,33 @@ export class QuestionnaireComponent implements AfterViewInit {
         this.renderQuestion('none');
     }
 
+    private getAnimationDirection(index): SlideInFrom {
+        if (index < this.currentQuestionIndex) {
+            return 'left';
+        } else if (index > this.currentQuestionIndex) {
+            return 'right';
+        } else {
+            return 'none';
+        }
+    }
+
+    animateToQuestion(index) {
+        const direction = this.getAnimationDirection(index);
+        this.currentQuestionIndex = index;
+        this.renderQuestion(direction);
+    }
+
     canGoBack() {
-        return this.questionService.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
+        return this.questionnaireService.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     canGoForwards() {
-        return this.questionService.hasBeenAnswered(this.currentQuestionIndex) &&
-               this.questionService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
+        return this.questionnaireService.hasBeenAnswered(this.currentQuestionIndex) &&
+               this.questionnaireService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     goBackOneQuestion() {
-        const prevIndex = this.questionService.getPreviousQuestionIndex(this.currentQuestionIndex);
+        const prevIndex = this.questionnaireService.getPreviousQuestionIndex(this.currentQuestionIndex);
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
@@ -56,7 +72,7 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     goForwardsOneQuestion() {
-        const nextIndex = this.questionService.getNextQuestionIndex(this.currentQuestionIndex);
+        const nextIndex = this.questionnaireService.getNextQuestionIndex(this.currentQuestionIndex);
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
@@ -64,7 +80,7 @@ export class QuestionnaireComponent implements AfterViewInit {
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
-        const question = this.questionService.getQuestion(this.currentQuestionIndex);
+        const question = this.questionnaireService.getQuestion(this.currentQuestionIndex);
         if (!!question) {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.heading = question.heading;
