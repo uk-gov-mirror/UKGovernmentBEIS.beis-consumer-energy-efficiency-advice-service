@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {QuestionBaseComponent, slideInOutAnimation} from '../question.component';
-import {ResponseData} from '../response-data';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {EpcRating} from '../postcode-epc-question/model/epc-rating';
 import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
 import {EpcConfirmation} from './epc-confirmation';
@@ -32,12 +31,25 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfir
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
 
-    constructor(private responseData: ResponseData) {
-        super();
-    }
-
     ngOnInit() {
         this.getDetailsFromResponseData();
+    }
+
+    get response(): EpcConfirmation {
+        const epcConfirmation = {
+            confirmed: this.responseData.confirmEpc,
+            homeType: this.responseData.homeType,
+            fuelType: this.responseData.fuelType,
+            electricityTariff: this.responseData.electricityTariff
+        };
+        return epcConfirmation.confirmed === undefined ? undefined : epcConfirmation;
+    }
+
+    set response(val: EpcConfirmation) {
+        this.responseData.confirmEpc = val.confirmed;
+        this.responseData.homeType = val.homeType;
+        this.responseData.fuelType = val.fuelType;
+        this.responseData.electricityTariff = val.electricityTariff;
     }
 
     getDetailsFromResponseData() {
@@ -69,11 +81,12 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfir
         // For now we just autopopulate future questions based on data in the EPC, and we do this whether the user
         // confirms or rejects the data.
         this.response = {
+            confirmed: true,
             homeType: this.homeType,
             fuelType: this.fuelType,
             electricityTariff: this.electricityTariff
         };
-        this.notifyOfCompletion();
+        this.complete.emit();
     }
 
     rejectEpcDetails() {

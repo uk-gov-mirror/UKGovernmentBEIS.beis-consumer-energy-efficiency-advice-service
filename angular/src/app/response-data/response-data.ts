@@ -9,6 +9,7 @@ import {HomeType} from "../questionnaire/questions/home-type-question/home-type"
 interface ResponseDataShape {
     postcode: any;
     epc: any;
+    confirmEpc: boolean;
     homeType: any;
     homeAge: any;
     flatPosition: any;
@@ -23,6 +24,7 @@ interface ResponseDataShape {
 export class ResponseData implements ResponseDataShape {
     public postcode: string;
     public epc: Epc;
+    public confirmEpc: boolean;
     public homeType: HomeType;
     public homeAge: HomeAge;
     public flatPosition: FlatPosition;
@@ -43,6 +45,7 @@ export class DisplayableResponseData implements ResponseDataShape {
     constructor(
         public postcode: string,
         public epc: Epc,
+        public confirmEpc: boolean,
         public homeType: string,
         public homeAge: string,
         public flatPosition: string,
@@ -58,6 +61,7 @@ export class DisplayableResponseData implements ResponseDataShape {
         return new DisplayableResponseData(
             responseData.postcode,
             responseData.epc,
+            responseData.confirmEpc,
             HomeType[responseData.homeType],
             HomeAge[responseData.homeAge],
             FlatPosition[responseData.flatPosition],

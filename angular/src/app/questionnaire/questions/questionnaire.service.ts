@@ -11,6 +11,7 @@ import {BedroomsQuestionMetadata} from './bedrooms-question/bedrooms-question-me
 import {BoilerTypeQuestionMetadata} from './boiler-type-question/boiler-type-question-metadata';
 import {ElectricityTariffQuestionMetadata} from './electricity-tariff-question/electricity-tariff-question-metadata';
 import {HomeAgeQuestionMetadata} from './home-age-question/home-age-question-metadata';
+import {ConfirmEpcQuestionMetadata} from "./confirm-epc-question/confirm-epc-question-metadata";
 
 @Injectable()
 export class QuestionnaireService {
@@ -20,6 +21,7 @@ export class QuestionnaireService {
     constructor(public responseData: ResponseData) {
         this.questionMetadata = [
             new PostcodeEpcQuestionMetadata(),
+            new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),
             new HomeAgeQuestionMetadata(),

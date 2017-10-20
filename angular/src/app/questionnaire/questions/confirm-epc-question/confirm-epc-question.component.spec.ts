@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ResponseData} from '../response-data';
+import {ResponseData} from '../../../response-data/response-data';
 import {ConfirmEpcQuestionComponent} from './confirm-epc-question.component';
-import {ConfirmEpcQuestion} from './confirm-epc-question';
 import {Epc} from '../postcode-epc-question/model/epc';
 import {EpcResponse} from '../postcode-epc-question/model/response/epc-response';
 import {HomeType} from '../home-type-question/home-type';
@@ -11,7 +10,6 @@ import {ElectricityTariff} from '../electricity-tariff-question/electricity-tari
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;
     let fixture: ComponentFixture<ConfirmEpcQuestionComponent>;
-    let responseData: ResponseData = new ResponseData();
     let epcResponse: EpcResponse;
 
     function injectEpcAndDetectChanges(epc: Epc) {
@@ -23,7 +21,7 @@ describe('ConfirmEpcQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ConfirmEpcQuestionComponent],
-            providers: [ {provide: ResponseData, useValue: responseData } ],
+            providers: [ResponseData],
         })
             .compileComponents();
     }));
@@ -31,10 +29,8 @@ describe('ConfirmEpcQuestionComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ConfirmEpcQuestionComponent);
         component = fixture.componentInstance;
+        spyOn(component.complete, 'emit');
         epcResponse = require('assets/test/dummy-epc-response.json');
-        responseData = new ResponseData();
-        component.question = new ConfirmEpcQuestion(responseData);
-        component.notifyOfCompletion = jasmine.createSpy('notifyOfCompletion');
     });
 
     it('should create', () => {
@@ -162,9 +158,9 @@ describe('ConfirmEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(component.question.response.fuelType).toBe(FuelType.LPGGas);
-                expect(component.question.response.homeType).toBe(HomeType.ParkHome);
-                expect(component.question.response.electricityTariff).toBe(ElectricityTariff.OffPeak);
+                expect(component.response.fuelType).toBe(FuelType.LPGGas);
+                expect(component.response.homeType).toBe(HomeType.ParkHome);
+                expect(component.response.electricityTariff).toBe(ElectricityTariff.OffPeak);
             });
         }));
 
@@ -173,7 +169,7 @@ describe('ConfirmEpcQuestionComponent', () => {
             component.confirmEpcDetails();
 
             // then
-            expect(component.notifyOfCompletion).toHaveBeenCalled();
+            expect(component.complete.emit).toHaveBeenCalled();
         });
     });
 });
