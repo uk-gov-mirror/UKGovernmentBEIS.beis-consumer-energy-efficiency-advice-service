@@ -1,3 +1,5 @@
+@import '~styles/var/colours';
+
 $progress-indicator-height: 40px;
 $progress-indicator-border-width: 1px;
 
@@ -97,6 +99,10 @@ $progress-indicator-border-width: 1px;
 
           &.active {
             background-color: black;
+          }
+
+          &.not-applicable {
+            background-color: $grey;
           }
         }
       }

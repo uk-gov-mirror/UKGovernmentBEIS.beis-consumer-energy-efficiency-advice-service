@@ -15,10 +15,10 @@ export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition>
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return isFlat(responseData.homeType);
+        return responseData.homeType == null || isFlat(responseData.homeType);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.flatPosition !== undefined;
+        return responseData.flatPosition != null;
     }
 }

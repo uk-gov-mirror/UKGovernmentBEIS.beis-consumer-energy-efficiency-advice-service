@@ -2,6 +2,8 @@ import * as _ from 'lodash';
 import {Component, Input, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
+import {QuestionMetadata} from "../base-question/question-metadata";
+import {ResponseData} from "../../response-data/response-data";
 
 @Component({
     selector: 'progress-indicator',
@@ -16,7 +18,7 @@ export class ProgressIndicatorComponent implements OnInit {
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
 
-    constructor(private questionService: QuestionnaireService) {
+    constructor(private questionService: QuestionnaireService, private responseData: ResponseData) {
     }
 
     ngOnInit() {
@@ -25,13 +27,13 @@ export class ProgressIndicatorComponent implements OnInit {
             .map((question, i) => {
                 return {
                     questionIndex: i,
-                    questionType: question.questionType
+                    question: question
                 }
             })
-            .groupBy('questionType')
-            .sortBy((questionGroup: {questionIndex: number, questionType: QuestionType}[]) => _.head(questionGroup).questionIndex)
+            .groupBy(questionStep => questionStep.question.questionType)
+            .sortBy((questionGroup: QuestionStep[]) => _.head(questionGroup).questionIndex)
             .map(questionGroup => {
-                const questionType = _.head(questionGroup).questionType;
+                const questionType = _.head(questionGroup).question.questionType;
                 return {
                     questionType: questionType,
                     questions: questionGroup,
@@ -47,10 +49,19 @@ export class ProgressIndicatorComponent implements OnInit {
         const questionsAndIconsInThisSection = ProgressIndicatorComponent.ICONS_PER_SECTION + questionTypeSection.questions.length;
         return 100 * questionsAndIconsInThisSection / this.totalNumberOfIconsAndQuestions + '%';
     }
+
+    isApplicable(questionStep: QuestionStep) {
+        return questionStep.question.isApplicable(this.responseData);
+    }
 }
 
 interface QuestionnaireSection {
     questionType: QuestionType;
-    questions: {questionIndex: number}[];
+    questions: QuestionStep[];
     className: string;
+}
+
+interface QuestionStep {
+    questionIndex: number;
+    question: QuestionMetadata<any>;
 }
