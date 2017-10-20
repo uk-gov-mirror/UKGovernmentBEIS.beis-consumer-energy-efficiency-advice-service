@@ -51,6 +51,28 @@ describe('PostcodeEpcQuestionComponent', () => {
     });
 
     describe('#search-by-postcode', () => {
+        it('should trim leading spaces from the postcode input', () => {
+            // given
+            component.postcodeInput = '   ' + VALID_POSTCODE;
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+
+            // then
+            expect(component.postcodeInput).toEqual(VALID_POSTCODE);
+        });
+
+        it('should trim trailing spaces from the postcode input', () => {
+            // given
+            component.postcodeInput = VALID_POSTCODE + '   ';
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+
+            // then
+            expect(component.postcodeInput).toEqual(VALID_POSTCODE);
+        });
+
         it('should recognise a correct postcode as valid', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
