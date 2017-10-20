@@ -38,6 +38,22 @@ export class QuestionnaireComponent implements AfterViewInit {
         this.renderQuestion('none');
     }
 
+    private getAnimationDirection(index): SlideInFrom {
+        if (index < this.currentQuestionIndex) {
+            return 'left';
+        } else if (index > this.currentQuestionIndex) {
+            return 'right';
+        } else {
+            return 'none';
+        }
+    }
+
+    animateToQuestion(index) {
+        const direction = this.getAnimationDirection(index);
+        this.currentQuestionIndex = index;
+        this.renderQuestion(direction);
+    }
+
     canGoBack() {
         return this.questionnaireService.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
     }

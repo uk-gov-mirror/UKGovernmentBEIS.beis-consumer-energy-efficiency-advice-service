@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 
@@ -15,6 +15,7 @@ export class ProgressIndicatorComponent implements OnInit {
     questionnaireSections: QuestionnaireSection[];
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
+    @Output() clickedOnLink: EventEmitter<number> = new EventEmitter();
 
     constructor(private questionnaireService: QuestionnaireService) {
     }
@@ -41,6 +42,10 @@ export class ProgressIndicatorComponent implements OnInit {
             .value();
         this.totalNumberOfIconsAndQuestions = allQuestions.length +
             ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
+    }
+
+    isAvailable(questionIndex: number) {
+        return this.questionnaireService.isAvailable(questionIndex);
     }
 
     getFlexBasis(questionTypeSection: QuestionnaireSection) {

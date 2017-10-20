@@ -1,4 +1,4 @@
-<progress-indicator [currentQuestionIndex]="currentQuestionIndex"></progress-indicator>
+<progress-indicator [currentQuestionIndex]="currentQuestionIndex" (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
 <div class="questions-container">
     <span class="question-type-icon" [ngClass]="questionTypeIconClassName"></span>
     <div class="question-heading">

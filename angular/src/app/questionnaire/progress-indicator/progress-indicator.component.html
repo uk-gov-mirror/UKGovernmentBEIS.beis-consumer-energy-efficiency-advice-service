@@ -11,7 +11,10 @@
                 <div class="horizontal-dotted-line"></div>
             </div>
             <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
-                <div class="step-link" [class.active]="question.questionIndex === currentQuestionIndex"></div>
+                <button class="step-link"
+                        [disabled]="!isAvailable(question.questionIndex)"
+                        [class.active]="question.questionIndex === currentQuestionIndex"
+                        (click)="clickedOnLink.emit(question.questionIndex)"></button>
                 <div class="horizontal-dotted-line"></div>
             </div>
             <div class="arrow-background-cover-up"></div>
