@@ -15,9 +15,6 @@ export class QuestionContentService {
     fetchQuestionsContent(): Observable<AllQuestionsContent> {
         const url = this.wordpressApiService.getFullApiEndpoint(QuestionContentService.questionsContentEndpoint);
         const questionResponses: Observable<QuestionResponse[]> = this.http.get(url);
-        return questionResponses.map(response => {
-            console.log(response);
-            return new AllQuestionsContent(response);
-        });
+        return questionResponses.map(questionResponses => new AllQuestionsContent(questionResponses));
     }
 }
