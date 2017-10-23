@@ -9,6 +9,7 @@ import {QuestionContent} from '../common/question-content/question-content';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
+import {EnergyCalculationApiService} from '../common/bre-api-service/energy-calculation-api-service';
 
 @Component({
     selector: 'app-questionnaire',
@@ -33,6 +34,7 @@ export class QuestionnaireComponent implements OnInit {
 
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
+                private energyCalculationApiService: EnergyCalculationApiService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
                 private router: Router,
@@ -48,6 +50,9 @@ export class QuestionnaireComponent implements OnInit {
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorMessage()
         );
+        this.energyCalculationApiService.getEnergyCalculation().subscribe(response => {
+            console.log(response);
+        });
     }
 
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
