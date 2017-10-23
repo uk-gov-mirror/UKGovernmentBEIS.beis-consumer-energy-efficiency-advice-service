@@ -2,6 +2,7 @@ import * as _ from "lodash";
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {QuestionnaireService} from "../questions/questionnaire.service";
 import {QuestionType, QuestionTypeUtil} from "../question-type";
+import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
 
 @Component({
     selector: 'progress-indicator',
@@ -15,6 +16,7 @@ export class ProgressIndicatorComponent implements OnInit {
     questionnaireSections: QuestionnaireSection[];
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
+    @Input() allQuestionsContent: AllQuestionsContent;
     @Output() clickedOnLink: EventEmitter<number> = new EventEmitter();
 
     constructor(private questionnaireService: QuestionnaireService) {
@@ -24,9 +26,11 @@ export class ProgressIndicatorComponent implements OnInit {
         const allQuestions = this.questionnaireService.getQuestions();
         this.questionnaireSections = _.chain(allQuestions)
             .map((question, i) => {
+                const questionHeading = this.allQuestionsContent && this.allQuestionsContent[question.questionId]
+                    && this.allQuestionsContent[question.questionId].questionHeading;
                 return {
                     questionIndex: i,
-                    questionHeading: question.heading,
+                    questionHeading: questionHeading,
                     questionType: question.questionType
                 }
             })
@@ -54,8 +58,9 @@ export class ProgressIndicatorComponent implements OnInit {
     }
 
     getTitleText(questionStep: QuestionStep) {
+        const questionHeadingIfApplicable = questionStep.questionHeading ? `Go to ${questionStep.questionHeading}` : '';
         return this.isApplicable(questionStep.questionIndex) ?
-            `Go to ${questionStep.questionHeading}` :
+             questionHeadingIfApplicable :
             'This question is not applicable to your home';
     }
 

@@ -8,7 +8,7 @@ export class FuelTypeQuestionMetadata extends QuestionMetadata<FuelType> {
     constructor() {
         super(
             FuelTypeQuestionComponent,
-            'fuel-type',
+            'fuel_type',
             QuestionType.Heating
         );
     }

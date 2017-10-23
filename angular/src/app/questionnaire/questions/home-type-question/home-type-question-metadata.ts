@@ -8,7 +8,7 @@ export class HomeTypeQuestionMetadata extends QuestionMetadata<HomeType> {
     constructor() {
         super(
             HomeTypeQuestionComponent,
-            'home-type',
+            'home_type',
             QuestionType.House
         );
     }

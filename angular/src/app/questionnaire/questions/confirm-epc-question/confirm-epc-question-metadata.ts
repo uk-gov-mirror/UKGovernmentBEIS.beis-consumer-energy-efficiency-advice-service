@@ -9,7 +9,7 @@ export class ConfirmEpcQuestionMetadata extends QuestionMetadata<EpcConfirmation
     constructor() {
         super(
             ConfirmEpcQuestionComponent,
-            'Here\'s what we know so far...',
+            'confirm_epc',
             QuestionType.User
         );
     }

@@ -8,7 +8,7 @@ export class PostcodeEpcQuestionMetadata extends QuestionMetadata<PostcodeEpc> {
     constructor() {
         super(
             PostcodeEpcQuestionComponent,
-            'postcode-epc',
+            'postcode_epc',
             QuestionType.User
         );
     }

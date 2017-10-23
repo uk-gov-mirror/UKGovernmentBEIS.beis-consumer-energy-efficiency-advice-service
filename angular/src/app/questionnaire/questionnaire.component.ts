@@ -16,13 +16,13 @@ import {QuestionContentService} from '../common/question-content/question-conten
 export class QuestionnaireComponent implements OnInit {
 
     private questionComponent: QuestionBaseComponent<any>;
-    private allQuestionsContent: AllQuestionsContent;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
 
     isLoading: boolean;
     isError: boolean;
     currentQuestionIndex: number;
+    allQuestionsContent: AllQuestionsContent;
     currentQuestionContent: QuestionContent;
     questionTypeIconClassName: string;
 

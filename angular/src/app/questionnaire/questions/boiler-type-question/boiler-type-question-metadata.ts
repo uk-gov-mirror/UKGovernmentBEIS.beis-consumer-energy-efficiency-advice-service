@@ -8,7 +8,7 @@ export class BoilerTypeQuestionMetadata extends QuestionMetadata<boolean> {
     constructor() {
         super(
             BoilerTypeQuestionComponent,
-            'boiler-type',
+            'boiler_type',
             QuestionType.Heating
         );
     }

@@ -35,6 +35,12 @@ describe('QuestionnaireComponent', () => {
         getQuestion(index) {
             return questions[index];
         }
+        isAvailable(index) {
+            return true;
+        }
+        isApplicable(index) {
+            return true;
+        }
         hasBeenAnswered(index) {
             return false;
         }
