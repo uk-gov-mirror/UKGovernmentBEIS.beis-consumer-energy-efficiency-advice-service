@@ -1,36 +1,54 @@
-import {Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {OnInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {QuestionnaireService} from './questions/questionnaire.service';
 import {QuestionDirective} from './question.directive';
-import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
 import {QuestionTypeUtil} from './question-type';
+import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
+import {AllQuestionsContent} from '../common/question-content/all-questions-content';
+import {QuestionContent} from '../common/question-content/question-content';
+import {QuestionContentService} from '../common/question-content/question-content.service';
 
 @Component({
     selector: 'app-questionnaire',
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss']
 })
-export class QuestionnaireComponent implements AfterViewInit {
+export class QuestionnaireComponent implements OnInit {
 
     private questionComponent: QuestionBaseComponent<any>;
     private onQuestionCompleteSubscription: Subscription;
+    private currentQuestionId: string;
 
+    isLoading: boolean;
+    isError: boolean;
     currentQuestionIndex: number;
-    heading: string;
+    allQuestionsContent: AllQuestionsContent;
+    currentQuestionContent: QuestionContent;
     questionTypeIconClassName: string;
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
-    constructor(private questionnaireService: QuestionnaireService,
+    constructor(private questionContentService: QuestionContentService,
+                private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef) {
         this.currentQuestionIndex = 0;
+        this.isLoading = true;
+        this.isError = false;
     }
 
-    ngAfterViewInit() {
-        // Since we are inside a change detection hook, we can't just call this directly! We must
-        // schedule it to be called after the change detection cycle has completed.
-        setTimeout(() => this.jumpToQuestion(this.currentQuestionIndex), 0);
+    ngOnInit() {
+        this.questionContentService.fetchQuestionsContent()
+            .subscribe(
+                questionContent => this.onQuestionContentLoaded(questionContent),
+                () => this.displayErrorMessage()
+            );
+    }
+
+    private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
+        this.isLoading = false;
+        this.allQuestionsContent = questionContent;
+        this.jumpToQuestion(this.currentQuestionIndex);
     }
 
     private jumpToQuestion(index) {
@@ -52,6 +70,11 @@ export class QuestionnaireComponent implements AfterViewInit {
         const direction = this.getAnimationDirection(index);
         this.currentQuestionIndex = index;
         this.renderQuestion(direction);
+    }
+
+    private displayErrorMessage() {
+        this.isLoading = false;
+        this.isError = true;
     }
 
     canGoBack() {
@@ -83,7 +106,12 @@ export class QuestionnaireComponent implements AfterViewInit {
         const question = this.questionnaireService.getQuestion(this.currentQuestionIndex);
         if (!!question) {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
-            this.heading = question.heading;
+            this.currentQuestionId = question.questionId;
+            this.currentQuestionContent = this.allQuestionsContent[this.currentQuestionId];
+            if (!(this.currentQuestionContent && this.currentQuestionContent.questionHeading)) {
+                this.displayErrorMessage();
+                return;
+            }
 
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
@@ -93,6 +121,9 @@ export class QuestionnaireComponent implements AfterViewInit {
                 this.questionComponent.slideInOut = oppositeDirection(slideInFrom);
             }
             this.changeDetectorRef.detectChanges();
+            if (!this.questionHost) {
+                return;
+            }
 
             // Instantiate the new question and slide in in from the given direction.
             this.questionHost.viewContainerRef.clear();

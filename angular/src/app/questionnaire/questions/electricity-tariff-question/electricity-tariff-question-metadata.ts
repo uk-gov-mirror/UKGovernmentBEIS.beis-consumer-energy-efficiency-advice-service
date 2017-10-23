@@ -9,7 +9,7 @@ export class ElectricityTariffQuestionMetadata extends QuestionMetadata<Electric
     constructor() {
         super(
             ElectricityTariffQuestionComponent,
-            'Do you know your electricity tariff?',
+            'electricity_tariff',
             QuestionType.Heating
         );
     }

@@ -9,7 +9,7 @@ export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition>
     constructor() {
         super(
             FlatPositionQuestionComponent,
-            'You\'ve selected a flat. What\'s its position?',
+            'flat_position',
             QuestionType.House
         );
     }

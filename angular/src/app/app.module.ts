@@ -30,6 +30,7 @@ import {ElectricityTariffQuestionComponent} from './questionnaire/questions/elec
 import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/progress-indicator.component';
 import {ResponseSummaryComponent} from './response-summary/response-summary.component';
 import {ConfirmEpcQuestionComponent} from './questionnaire/questions/confirm-epc-question/confirm-epc-question.component';
+import {QuestionContentService} from './common/question-content/question-content.service';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,7 @@ import {ConfirmEpcQuestionComponent} from './questionnaire/questions/confirm-epc
         BoilerTypeQuestionComponent,
         ElectricityTariffQuestionComponent,
     ],
-    providers: [WordpressApiService, QuestionnaireService, ResponseData],
+    providers: [WordpressApiService, QuestionnaireService, ResponseData, QuestionContentService],
     bootstrap: [AppComponent],
 })
 export class AppModule {
