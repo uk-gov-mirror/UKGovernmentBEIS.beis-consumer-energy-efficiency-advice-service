@@ -11,9 +11,9 @@
     <progress-indicator [currentQuestionIndex]="currentQuestionIndex" [allQuestionsContent]="allQuestionsContent"
                         (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
     <span class="question-type-icon" [ngClass]="questionTypeIconClassName"></span>
-    <div class="question-heading">
+    <div class="question-heading-container">
         <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()" (click)="goBackOneQuestion()" aria-label="Go back"><</button>
-        <div id="question-heading" class="heading">{{currentQuestionContent.questionHeading}}</div>
+        <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
         <button class="right-arrow" [class.hidden]="!nextQuestionExists()" [disabled]="!canGoForwards()" (click)="goForwardsOneQuestion()" aria-label="Go forwards">></button>
     </div>
     <div class="help-text" *ngIf="currentQuestionContent.helpText">{{currentQuestionContent.helpText}}</div>

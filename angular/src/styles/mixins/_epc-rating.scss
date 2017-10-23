@@ -1,0 +1,14 @@
+@mixin epc-rating($size) {
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+
+  font-size: calc((5 * #{$size}) / 8);
+  font-weight: bold;
+  background-color: black;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,4 +1,5 @@
-@import "~styles/var/font";
+@import "~styles/mixins/font";
+@import "~styles/mixins/epc-rating";
 
 :host {
   display: block;
@@ -37,19 +38,8 @@
     justify-content: flex-end;
 
     .epc-rating {
-      width: 64px;
-      height: 64px;
-      border-radius: 64px;
+      @include epc-rating(64px);
       margin: 8px;
-
-      font-size: 42px;
-      font-weight: bold;
-      background-color: black;
-      color: white;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .current-epc, .potential-epc {
