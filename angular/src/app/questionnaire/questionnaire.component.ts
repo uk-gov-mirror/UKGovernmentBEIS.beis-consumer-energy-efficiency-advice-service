@@ -1,4 +1,5 @@
 import {Component, AfterViewInit, ComponentFactoryResolver, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {QuestionnaireService} from './questions/questionnaire.service';
 import {QuestionDirective} from './question.directive';
@@ -23,7 +24,8 @@ export class QuestionnaireComponent implements AfterViewInit {
 
     constructor(private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef) {
+                private changeDetectorRef: ChangeDetectorRef,
+                private router: Router) {
         this.currentQuestionIndex = 0;
     }
 
@@ -54,13 +56,21 @@ export class QuestionnaireComponent implements AfterViewInit {
         this.renderQuestion(direction);
     }
 
-    canGoBack() {
+    previousQuestionExists() {
         return this.questionnaireService.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
+    nextQuestionExists() {
+        return this.questionnaireService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
+    }
+
+    canGoBack() {
+        return this.previousQuestionExists();
+    }
+
     canGoForwards() {
-        return this.questionnaireService.hasBeenAnswered(this.currentQuestionIndex) &&
-               this.questionnaireService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
+        return this.nextQuestionExists() &&
+               this.questionnaireService.hasBeenAnswered(this.currentQuestionIndex);
     }
 
     goBackOneQuestion() {
@@ -77,6 +87,10 @@ export class QuestionnaireComponent implements AfterViewInit {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
         }
+    }
+
+    goToResultsPage() {
+        this.router.navigate(['/results']);
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
@@ -104,9 +118,13 @@ export class QuestionnaireComponent implements AfterViewInit {
             if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
                 this.onQuestionCompleteSubscription.unsubscribe();
             }
-            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() =>
-                this.goForwardsOneQuestion()
-            );
+            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() => {
+                if (this.nextQuestionExists()) {
+                    this.goForwardsOneQuestion()
+                } else {
+                    this.goToResultsPage();
+                }
+            });
         }
     }
 }
