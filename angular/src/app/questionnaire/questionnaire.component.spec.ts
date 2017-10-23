@@ -10,6 +10,7 @@ import {QuestionContentService} from '../common/question-content/question-conten
 import {AllQuestionsContent} from '../common/question-content/all-questions-content';
 import {QuestionType} from './question-type';
 import {PostcodeEpcComponent} from '../postcode-epc/postcode-epc.component';
+import {Router} from "@angular/router";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -55,16 +56,20 @@ describe('QuestionnaireComponent', () => {
         }
     }
 
+    class MockRouter {
+    }
+
     beforeEach(async(() => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
 
         TestBed.configureTestingModule({
-            declarations: [ QuestionnaireComponent, ProgressIndicatorComponent ],
+            declarations: [QuestionnaireComponent, ProgressIndicatorComponent],
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,
+                {provide: Router, useClass: MockRouter},
                 {provide: QuestionnaireService, useClass: QuestionnaireServiceStub},
-                {provide: QuestionContentService, useValue: questionContentServiceStub}
+                {provide: QuestionContentService, useValue: questionContentServiceStub},
             ],
         })
         .compileComponents();

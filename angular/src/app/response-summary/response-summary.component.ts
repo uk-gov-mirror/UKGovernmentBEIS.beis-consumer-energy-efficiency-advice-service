@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {DisplayableResponseData, ResponseData} from "../response-data/response-data";
+import {DisplayableResponseData, ResponseData} from "../common/response-data/response-data";
 
 @Component({
     selector: 'app-response-summary',

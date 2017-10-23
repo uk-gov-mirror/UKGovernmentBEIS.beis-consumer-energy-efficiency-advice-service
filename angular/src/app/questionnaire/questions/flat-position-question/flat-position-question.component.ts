@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {FlatPosition} from "./flat-position";
-import {ResponseData} from "../../../response-data/response-data";
+import {ResponseData} from "../../../common/response-data/response-data";
 
 interface FlatPositionOption {
     name: string;

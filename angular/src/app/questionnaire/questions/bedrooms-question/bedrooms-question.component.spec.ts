@@ -3,7 +3,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {BedroomsQuestionComponent} from "./bedrooms-question.component";
 import {NumberQuestionComponent} from "../../common/number-question/number-question.component";
 import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../response-data/response-data";
+import {ResponseData} from "../../../common/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../common/times/times.pipe";
 
