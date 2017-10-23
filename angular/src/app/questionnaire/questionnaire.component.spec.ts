@@ -3,6 +3,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
+import {Router, ActivatedRoute} from "@angular/router";
 
 import {QuestionnaireComponent} from './questionnaire.component';
 import {QuestionnaireService} from './questionnaire.service';
@@ -10,21 +11,18 @@ import {ProgressIndicatorComponent} from './progress-indicator/progress-indicato
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {AllQuestionsContent} from '../common/question-content/all-questions-content';
 import {QuestionType} from './question-type';
-import {PostcodeEpcComponent} from '../postcode-epc/postcode-epc.component';
+import {QuestionBaseComponent} from "./base-question/question-base-component";
+import {QuestionMetadata} from "./base-question/question-metadata";
+import {Questionnaire} from "./base-questionnaire/questionnaire";
+import {ResponseData} from "../common/response-data/response-data";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
 
+    const questionnaireId = 'test';
     const questionId = 'test-question-id';
-    const questions = [
-        {
-            componentType: PostcodeEpcComponent,
-            questionId: questionId,
-            questionType: QuestionType.User
-        }
-    ];
 
     const questionContentServiceStub = {
         fetchQuestionsContent() {
@@ -32,28 +30,44 @@ describe('QuestionnaireComponent', () => {
         }
     };
 
-    class QuestionnaireServiceStub {
-        getQuestion(index) {
-            return questions[index];
+    class TestQuestionComponent extends QuestionBaseComponent<void> {
+        get response(): void { return null; }
+        set response(val: void) {}
+    }
+
+    class TestQuestion extends QuestionMetadata<void> {
+        hasBeenAnswered() { return false; }
+    }
+
+    class TestQuestionnaire extends Questionnaire {
+        constructor() {
+            super(new ResponseData(), [new TestQuestion(TestQuestionComponent, questionId, QuestionType.User)]);
         }
-        isAvailable(index) {
-            return true;
+    }
+
+    class MockQuestionnaireService {
+        getQuestionnaireWithId(id) {
+            if (id === questionnaireId) {
+                return Observable.of(new TestQuestionnaire());
+            } else {
+                throw new Error('Unexpected questionnaire ID');
+            }
         }
-        isApplicable(index) {
-            return true;
-        }
-        hasBeenAnswered(index) {
-            return false;
-        }
-        getPreviousQuestionIndex(index) {
-            return -1;
-        }
-        getNextQuestionIndex(index) {
-            return -1;
-        }
-        getQuestions() {
-            return questions;
-        }
+    }
+
+    class MockRouter {
+    }
+
+    class MockActivatedRoute {
+        public paramMap = Observable.of({
+            get: function(key) {
+                if (key === 'id') {
+                    return questionnaireId;
+                } else {
+                    throw new Error('Unexpected parameter name');
+                }
+            }
+        });
     }
 
     beforeEach(async(() => {
@@ -65,7 +79,9 @@ describe('QuestionnaireComponent', () => {
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,
-                {provide: QuestionnaireService, useClass: QuestionnaireServiceStub},
+                {provide: Router, useClass: MockRouter},
+                {provide: ActivatedRoute, useClass: MockActivatedRoute},
+                {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
             ],
         })

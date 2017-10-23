@@ -1,10 +1,9 @@
 import {findIndex, findLastIndex} from 'lodash';
 import {QuestionMetadata} from '../base-question/question-metadata';
 import {ResponseData} from '../../common/response-data/response-data';
-import {QuestionnaireId} from "../questionnaires/questionnaire-id";
 
 export abstract class Questionnaire {
-    constructor(public readonly id: QuestionnaireId,
+    constructor(public readonly id: string,
                 private responseData: ResponseData,
                 private readonly questionsMetadata: QuestionMetadata<any>[]) {
     }
