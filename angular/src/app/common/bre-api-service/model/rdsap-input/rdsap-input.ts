@@ -7,7 +7,7 @@ import {ResponseData} from '../../../../response-data/response-data';
 import {HomeType} from '../../../../questionnaire/questions/home-type-question/home-type';
 import {FlatPosition} from '../../../../questionnaire/questions/flat-position-question/flat-position';
 
-export class RdSAP {
+export class RdSapInput {
     property_type: PropertyType;
     built_form: BuiltForm;
     flat_level: FlatLevel;
@@ -18,14 +18,14 @@ export class RdSAP {
     heating_fuel: string;
 
     constructor(responseData: ResponseData) {
-        this.property_type = RdSAP.getPropertyType(responseData.homeType);
-        this.built_form = RdSAP.getBuiltForm(responseData.homeType, responseData.flatPosition);
-        this.flat_level = RdSAP.getFlatLevel(responseData.homeType);
-        this.construction_date = RdSAP.getConstructionDateEncoding(responseData.homeAge);
+        this.property_type = RdSapInput.getPropertyType(responseData.homeType);
+        this.built_form = RdSapInput.getBuiltForm(responseData.homeType, responseData.flatPosition);
+        this.flat_level = RdSapInput.getFlatLevel(responseData.homeType);
+        this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = undefined;
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
-        this.heating_fuel = RdSAP.getFuelTypeEncoding(responseData.fuelType);
+        this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
     }
 
     private static getPropertyType(homeType: HomeType): PropertyType {
@@ -51,16 +51,16 @@ export class RdSAP {
         switch(homeType) {
             case HomeType.DetachedHouse:         { return BuiltForm.Detached; }
             case HomeType.SemiDetachedHouse:     { return BuiltForm.SemiDetached; }
-            case HomeType.EndTerraceHouse:       { return RdSAP.getEndTerraceBuiltForm(flatPosition); }
-            case HomeType.MidTerraceHouse:       { return RdSAP.getMidTerraceBuiltForm(flatPosition); }
+            case HomeType.EndTerraceHouse:       { return RdSapInput.getEndTerraceBuiltForm(flatPosition); }
+            case HomeType.MidTerraceHouse:       { return RdSapInput.getMidTerraceBuiltForm(flatPosition); }
             case HomeType.BasementFlat:          { return null; }
             case HomeType.GroundFloorFlat:       { return null; }
             case HomeType.MidFloorFlat:          { return null; }
             case HomeType.TopFloorFlat:          { return null; }
             case HomeType.DetachedBungalow:      { return BuiltForm.Detached; }
             case HomeType.SemiDetachedBungalow:  { return BuiltForm.SemiDetached; }
-            case HomeType.MidTerraceBungalow:    { return RdSAP.getMidTerraceBuiltForm(flatPosition); }
-            case HomeType.EndTerraceBungalow:    { return RdSAP.getEndTerraceBuiltForm(flatPosition); }
+            case HomeType.MidTerraceBungalow:    { return RdSapInput.getMidTerraceBuiltForm(flatPosition); }
+            case HomeType.EndTerraceBungalow:    { return RdSapInput.getEndTerraceBuiltForm(flatPosition); }
             case HomeType.ParkHome:              { return BuiltForm.Detached; }
             default:                             { return null; }
         }
