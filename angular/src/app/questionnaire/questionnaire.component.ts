@@ -8,7 +8,7 @@ import {AllQuestionsContent} from '../common/question-content/all-questions-cont
 import {QuestionContent} from '../common/question-content/question-content';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {Questionnaire} from "./base-questionnaire/questionnaire";
-import {QuestionnaireService} from "./questions/questionnaire.service";
+import {QuestionnaireService} from "./questionnaire.service";
 
 @Component({
     selector: 'app-questionnaire',

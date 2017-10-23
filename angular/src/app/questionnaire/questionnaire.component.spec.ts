@@ -5,7 +5,7 @@ import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 
 import {QuestionnaireComponent} from './questionnaire.component';
-import {QuestionnaireService} from './questions/questionnaire.service';
+import {QuestionnaireService} from './questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {AllQuestionsContent} from '../common/question-content/all-questions-content';

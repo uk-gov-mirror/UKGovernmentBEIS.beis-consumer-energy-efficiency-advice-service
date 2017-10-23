@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {ProgressIndicatorComponent} from './progress-indicator.component';
-import {QuestionnaireService} from '../questions/questionnaire.service';
+import {QuestionnaireService} from '../questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 import {DebugElement} from "@angular/core/core";
 import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
