@@ -8,7 +8,9 @@
     </div>
 </div>
 <div class="questions-container" *ngIf="!isLoading && !isError">
-    <progress-indicator [currentQuestionIndex]="currentQuestionIndex" [allQuestionsContent]="allQuestionsContent"
+    <progress-indicator [questionnaire]="questionnaire"
+                        [currentQuestionIndex]="currentQuestionIndex"
+                        [allQuestionsContent]="allQuestionsContent"
                         (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
     <span class="question-type-icon" [ngClass]="questionTypeIconClassName"></span>
     <div class="question-heading-container">

@@ -3,6 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {QuestionnaireService} from "../questions/questionnaire.service";
 import {QuestionType, QuestionTypeUtil} from "../question-type";
 import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
+import {Questionnaire} from "../base-questionnaire/questionnaire";
 
 @Component({
     selector: 'progress-indicator',
@@ -17,13 +18,11 @@ export class ProgressIndicatorComponent implements OnInit {
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
     @Input() allQuestionsContent: AllQuestionsContent;
+    @Input() questionnaire: Questionnaire;
     @Output() clickedOnLink: EventEmitter<number> = new EventEmitter();
 
-    constructor(private questionnaireService: QuestionnaireService) {
-    }
-
     ngOnInit() {
-        const allQuestions = this.questionnaireService.getQuestions();
+        const allQuestions = this.questionnaire.getQuestions();
         this.questionnaireSections = _.chain(allQuestions)
             .map((question, i) => {
                 const questionHeading = this.allQuestionsContent && this.allQuestionsContent[question.questionId]
@@ -50,11 +49,11 @@ export class ProgressIndicatorComponent implements OnInit {
     }
 
     isAvailable(questionIndex: number) {
-        return this.questionnaireService.isAvailable(questionIndex);
+        return this.questionnaire.isAvailable(questionIndex);
     }
 
     isApplicable(questionIndex: number) {
-        return this.questionnaireService.isApplicable(questionIndex);
+        return this.questionnaire.isApplicable(questionIndex);
     }
 
     getTitleText(questionStep: QuestionStep) {

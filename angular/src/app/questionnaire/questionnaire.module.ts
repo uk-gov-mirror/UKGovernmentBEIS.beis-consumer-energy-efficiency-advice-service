@@ -19,6 +19,7 @@ import {PostcodeEpcQuestionComponent} from './questions/postcode-epc-question/po
 import {ConfirmEpcQuestionComponent} from './questions/confirm-epc-question/confirm-epc-question.component';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
 import {CommonModule} from "../common/common.module";
+import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics-questionnaire";
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import {CommonModule} from "../common/common.module";
         FlatPositionQuestionComponent,
         BoilerTypeQuestionComponent,
         ElectricityTariffQuestionComponent,
-    ]
+    ],
+    providers: [HomeBasicsQuestionnaire]
 })
 export class QuestionnaireModule {
     static forRoot() {

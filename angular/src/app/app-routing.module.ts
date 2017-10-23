@@ -22,7 +22,7 @@ const routes: Routes = [
         component: OcrComponent
     },
     {
-        path: 'questionnaire',
+        path: 'questionnaire/:id',
         component: QuestionnaireComponent
     },
     {
