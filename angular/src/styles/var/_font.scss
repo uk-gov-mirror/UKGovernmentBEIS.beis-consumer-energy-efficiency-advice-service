@@ -1,1 +1,12 @@
 $font-family: "nta", Arial, sans-serif;
+
+@mixin card-heading {
+  font-family: $font-family;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@mixin body-uppercase {
+  font-size: 13px;
+  text-transform: uppercase;
+}
