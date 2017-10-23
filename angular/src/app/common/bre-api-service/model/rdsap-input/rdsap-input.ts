@@ -1,11 +1,10 @@
 import {PropertyType} from './property-type';
 import {BuiltForm} from './built-form';
 import {FlatLevel} from './flat-level';
-import {HomeAge, HomeAgeUtil} from '../../../../questionnaire/questions/home-age-question/home-age';
+import {HomeAge} from '../../../../questionnaire/questions/home-age-question/home-age';
 import {FuelType} from '../../../../questionnaire/questions/fuel-type-question/fuel-type';
-import {ResponseData} from '../../../../response-data/response-data';
 import {HomeType} from '../../../../questionnaire/questions/home-type-question/home-type';
-import {FlatPosition} from '../../../../questionnaire/questions/flat-position-question/flat-position';
+import {ResponseData} from '../../../response-data/response-data';
 
 export class RdSapInput {
     property_type: PropertyType;
@@ -18,8 +17,11 @@ export class RdSapInput {
     heating_fuel: string;
 
     constructor(responseData: ResponseData) {
+        // TODO: This is not currently a full correct mapping to RdSAP. For a full mapping, the homeType question needs to be changed.
+        // This is a 'best possible' mapping based on the current questions, to enable a PoC connection to the BRE API.
+        // See BEISDEAS-28 for updating the questions to allow a correct mapping.
         this.property_type = RdSapInput.getPropertyType(responseData.homeType);
-        this.built_form = RdSapInput.getBuiltForm(responseData.homeType, responseData.flatPosition);
+        this.built_form = RdSapInput.getBuiltForm(responseData.homeType);
         this.flat_level = RdSapInput.getFlatLevel(responseData.homeType);
         this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = undefined;
@@ -34,56 +36,34 @@ export class RdSapInput {
             case HomeType.SemiDetachedHouse:     { return PropertyType.House; }
             case HomeType.EndTerraceHouse:       { return PropertyType.House; }
             case HomeType.MidTerraceHouse:       { return PropertyType.House; }
-            case HomeType.BasementFlat:          { return PropertyType.Flat; }
             case HomeType.GroundFloorFlat:       { return PropertyType.Flat; }
             case HomeType.MidFloorFlat:          { return PropertyType.Flat; }
             case HomeType.TopFloorFlat:          { return PropertyType.Flat; }
-            case HomeType.DetachedBungalow:      { return PropertyType.Bungalow; }
-            case HomeType.SemiDetachedBungalow:  { return PropertyType.Bungalow; }
-            case HomeType.MidTerraceBungalow:    { return PropertyType.Bungalow; }
-            case HomeType.EndTerraceBungalow:    { return PropertyType.Bungalow; }
+            case HomeType.BungalowDetached:      { return PropertyType.Bungalow; }
+            case HomeType.BungalowAttached:      { return PropertyType.Bungalow; }
             case HomeType.ParkHome:              { return PropertyType.ParkHome; }
             default:                             { return null; }
         }
     }
 
-    private static getBuiltForm(homeType: HomeType, flatPosition: FlatPosition): BuiltForm {
+    private static getBuiltForm(homeType: HomeType): BuiltForm {
         switch(homeType) {
             case HomeType.DetachedHouse:         { return BuiltForm.Detached; }
             case HomeType.SemiDetachedHouse:     { return BuiltForm.SemiDetached; }
-            case HomeType.EndTerraceHouse:       { return RdSapInput.getEndTerraceBuiltForm(flatPosition); }
-            case HomeType.MidTerraceHouse:       { return RdSapInput.getMidTerraceBuiltForm(flatPosition); }
-            case HomeType.BasementFlat:          { return null; }
+            case HomeType.EndTerraceHouse:       { return BuiltForm.EndTerrace }
+            case HomeType.MidTerraceHouse:       { return BuiltForm.MidTerrace }
             case HomeType.GroundFloorFlat:       { return null; }
             case HomeType.MidFloorFlat:          { return null; }
             case HomeType.TopFloorFlat:          { return null; }
-            case HomeType.DetachedBungalow:      { return BuiltForm.Detached; }
-            case HomeType.SemiDetachedBungalow:  { return BuiltForm.SemiDetached; }
-            case HomeType.MidTerraceBungalow:    { return RdSapInput.getMidTerraceBuiltForm(flatPosition); }
-            case HomeType.EndTerraceBungalow:    { return RdSapInput.getEndTerraceBuiltForm(flatPosition); }
+            case HomeType.BungalowDetached:      { return BuiltForm.Detached; }
+            case HomeType.BungalowAttached:      { return BuiltForm.SemiDetached; }
             case HomeType.ParkHome:              { return BuiltForm.Detached; }
             default:                             { return null; }
         }
     }
 
-    private static getEndTerraceBuiltForm(flatPosition: FlatPosition): BuiltForm {
-        switch(flatPosition) {
-            case FlatPosition.OneSideExposed:    { return BuiltForm.EnclosedEndTerrace; }
-            case FlatPosition.TwoSidesExposed:   { return BuiltForm.EnclosedEndTerrace; }
-            default:                             { return BuiltForm.EndTerrace; }
-        }
-    }
-
-    private static getMidTerraceBuiltForm(flatPosition: FlatPosition): BuiltForm {
-        switch(flatPosition) {
-            case FlatPosition.OneSideExposed:    { return BuiltForm.EnclosedMidTerrace; }
-            default:                             { return BuiltForm.MidTerrace; }
-        }
-    }
-
     private static getFlatLevel(homeType: HomeType): FlatLevel {
         switch(homeType) {
-            case HomeType.BasementFlat:     { return FlatLevel.Basement; }
             case HomeType.GroundFloorFlat:  { return FlatLevel.GroundFloor; }
             case HomeType.MidFloorFlat:     { return FlatLevel.MidFloor; }
             case HomeType.TopFloorFlat:     { return FlatLevel.TopFloor; }

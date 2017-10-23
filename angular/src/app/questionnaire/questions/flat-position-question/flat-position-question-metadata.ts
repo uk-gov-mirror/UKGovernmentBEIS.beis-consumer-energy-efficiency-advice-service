@@ -2,7 +2,7 @@ import {QuestionMetadata} from '../../base-question/question-metadata';
 import {FlatPositionQuestionComponent} from './flat-position-question.component';
 import {FlatPosition} from './flat-position';
 import {ResponseData} from '../../../common/response-data/response-data';
-import {isFlat, isTerraced} from '../home-type-question/home-type';
+import {isFlat} from '../home-type-question/home-type';
 import {QuestionType} from '../../question-type';
 
 export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition> {
@@ -15,7 +15,7 @@ export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition>
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.homeType == null || isFlat(responseData.homeType) || isTerraced(responseData.homeType);
+        return responseData.homeType == null || isFlat(responseData.homeType);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

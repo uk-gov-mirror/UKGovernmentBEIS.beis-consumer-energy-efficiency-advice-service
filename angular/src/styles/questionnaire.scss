@@ -55,9 +55,8 @@
 
   .multiple-choice-options {
     display: flex;
-    justify-content: center;
-    width: 60vw;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100%;
 
     .multiple-choice-option {
       flex: 0 1 auto;
