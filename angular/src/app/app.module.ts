@@ -30,12 +30,13 @@ import {ElectricityTariffQuestionComponent} from './questionnaire/questions/elec
 import {ProgressIndicatorComponent} from './questionnaire/progress-indicator/progress-indicator.component';
 import {ResponseSummaryComponent} from './response-summary/response-summary.component';
 import {ConfirmEpcQuestionComponent} from './questionnaire/questions/confirm-epc-question/confirm-epc-question.component';
-import { ResultsPageComponent } from './results-page/results-page.component';
-import { RecommendationCardComponent } from './results-page/recommendation-card/recommendation-card.component';
-import { PotentialsComponent } from './results-page/potentials/potentials.component';
-import { FurtherQuestionsLinkComponent } from './results-page/further-questions-link/further-questions-link.component';
-import { GrantCardComponent } from './results-page/grant-card/grant-card.component';
-import { SuggestionCardComponent } from './results-page/suggestion-card/suggestion-card.component';
+import {ResultsPageComponent} from './results-page/results-page.component';
+import {RecommendationCardComponent} from './results-page/recommendation-card/recommendation-card.component';
+import {PotentialsComponent} from './results-page/potentials/potentials.component';
+import {FurtherQuestionsLinkComponent} from './results-page/further-questions-link/further-questions-link.component';
+import {GrantCardComponent} from './results-page/grant-card/grant-card.component';
+import {SuggestionCardComponent} from './results-page/suggestion-card/suggestion-card.component';
+import {QuestionContentService} from './common/question-content/question-content.service';
 
 @NgModule({
     declarations: [
@@ -89,7 +90,7 @@ import { SuggestionCardComponent } from './results-page/suggestion-card/suggesti
         BoilerTypeQuestionComponent,
         ElectricityTariffQuestionComponent,
     ],
-    providers: [WordpressApiService, QuestionnaireService, ResponseData],
+    providers: [WordpressApiService, QuestionnaireService, ResponseData, QuestionContentService],
     bootstrap: [AppComponent],
 })
 export class AppModule {

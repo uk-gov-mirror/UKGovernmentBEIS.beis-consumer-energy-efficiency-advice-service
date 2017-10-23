@@ -6,7 +6,7 @@ import {ResponseData} from "../../response-data/response-data";
 export abstract class QuestionMetadata<S> {
     constructor(
         public componentType: Type<QuestionBaseComponent<S>>,
-        public heading: string,
+        public questionId: string,
         public questionType: QuestionType,
     ) {
     }

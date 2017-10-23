@@ -9,16 +9,16 @@ export class ElectricityTariffQuestionMetadata extends QuestionMetadata<Electric
     constructor() {
         super(
             ElectricityTariffQuestionComponent,
-            'Do you know your electricity tariff?',
+            'electricity_tariff',
             QuestionType.Heating
         );
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return isElectric(responseData.fuelType);
+        return responseData.fuelType == null || isElectric(responseData.fuelType);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.electricityTariff !== undefined;
+        return responseData.electricityTariff != null;
     }
 }

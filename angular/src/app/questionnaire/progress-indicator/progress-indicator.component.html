@@ -12,10 +12,11 @@
             </div>
             <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
                 <button class="step-link"
-                        [attr.title]="'Go to ' + question.questionHeading"
-                        [attr.aria-label]="'Go to ' + question.questionHeading"
+                        [attr.title]="getTitleText(question)"
+                        [attr.aria-label]="getTitleText(question)"
                         [disabled]="!isAvailable(question.questionIndex)"
                         [class.active]="question.questionIndex === currentQuestionIndex"
+                        [class.not-applicable]="!isApplicable(question.questionIndex)"
                         (click)="clickedOnLink.emit(question.questionIndex)"></button>
                 <div class="horizontal-dotted-line"></div>
             </div>

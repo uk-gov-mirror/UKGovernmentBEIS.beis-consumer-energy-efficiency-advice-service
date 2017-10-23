@@ -112,7 +112,9 @@ $epc-rating-margin: 40px;
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
 
+  .need-more-details-container, .confirm-epc-details-section {
     .need-more-details-button {
       margin-top: $section-break-margin;
       background-color: black;

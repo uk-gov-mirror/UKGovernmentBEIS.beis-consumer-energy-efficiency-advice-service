@@ -1,5 +1,29 @@
 @import '~styles/mixins/buttons';
 
+.questionnaire-loading-container, .questionnaire-error-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 10vw;
+}
+
+.questionnaire-error-container {
+  .error {
+    margin-top: 20px;
+    background-color: crimson;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    color: white;
+
+    .error-header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+}
+
 .questions-container {
   width: 100%;
   display: flex;
@@ -11,12 +35,12 @@
     padding: 100px 0 20px;
   }
 
-  .question-heading, .question {
+  .question-heading-container, .question {
     width: 100%;
     max-width: 1280px;
   }
 
-  .question-heading {
+  .question-heading-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,7 +50,7 @@
       flex: 0 0 auto;
     }
 
-    .heading {
+    .question-heading {
       font-size: 36px;
       font-weight: bold;
     }
@@ -40,5 +64,10 @@
         visibility: hidden;
       }
     }
+  }
+
+  .help-text {
+    width: 60vw;
+    text-align: center;
   }
 }

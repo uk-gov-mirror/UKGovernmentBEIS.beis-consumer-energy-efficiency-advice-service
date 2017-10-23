@@ -5,29 +5,46 @@ import {ProgressIndicatorComponent} from './progress-indicator.component';
 import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 import {DebugElement} from "@angular/core/core";
+import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
     let fixture: ComponentFixture<ProgressIndicatorComponent>;
     let availableQuestions: number[];
+    const question1TitleText = 'Question 1 heading';
+    let allQuestionsContent: AllQuestionsContent = {
+        question0: { questionHeading: 'Question 0 heading', helpText: 'Question 0 help text' },
+        question1: { questionHeading: question1TitleText, helpText: 'Question 1 help text' },
+        question2: { questionHeading: 'Question 2 heading', helpText: 'Question 2 help text' },
+        question3: { questionHeading: 'Question 3 heading', helpText: 'Question 3 help text' },
+        question4: { questionHeading: 'Question 4 heading', helpText: 'Question 4 help text' },
+        question5: { questionHeading: 'Question 5 heading', helpText: 'Question 5 help text' },
+        question6: { questionHeading: 'Question 6 heading', helpText: 'Question 6 help text' },
+        question7: { questionHeading: 'Question 7 heading', helpText: 'Question 7 help text' },
+        question8: { questionHeading: 'Question 8 heading', helpText: 'Question 8 help text' },
+        question9: { questionHeading: 'Question 9 heading', helpText: 'Question 9 help text' }
+    };
 
     class QuestionnaireServiceStub {
         static readonly questions = [
-            {questionType: QuestionType.User},
-            {questionType: QuestionType.User},
-            {questionType: QuestionType.House},
-            {questionType: QuestionType.House},
-            {questionType: QuestionType.House},
-            {questionType: QuestionType.Heating},
-            {questionType: QuestionType.Heating},
-            {questionType: QuestionType.Heating},
-            {questionType: QuestionType.Heating},
-            {questionType: QuestionType.Heating}
+            {questionType: QuestionType.User, questionId: 'question0'},
+            {questionType: QuestionType.User, questionId: 'question1'},
+            {questionType: QuestionType.House, questionId: 'question2'},
+            {questionType: QuestionType.House, questionId: 'question3'},
+            {questionType: QuestionType.House, questionId: 'question4'},
+            {questionType: QuestionType.Heating, questionId: 'question5'},
+            {questionType: QuestionType.Heating, questionId: 'question6'},
+            {questionType: QuestionType.Heating, questionId: 'question7'},
+            {questionType: QuestionType.Heating, questionId: 'question8'},
+            {questionType: QuestionType.Heating, questionId: 'question9'}
         ];
         getQuestion(index) {
             return QuestionnaireServiceStub.questions[index];
         }
         isAvailable(index) {
+            return availableQuestions !== undefined && availableQuestions.includes(index);
+        }
+        isApplicable(index) {
             return availableQuestions !== undefined && availableQuestions.includes(index);
         }
         hasBeenAnswered(index) {
@@ -55,6 +72,7 @@ describe('ProgressIndicatorComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProgressIndicatorComponent);
         component = fixture.componentInstance;
+        component.allQuestionsContent = allQuestionsContent;
         spyOn(component.clickedOnLink, 'emit');
         fixture.detectChanges();
     });
@@ -171,6 +189,17 @@ describe('ProgressIndicatorComponent', () => {
 
         // then
         expect(component.clickedOnLink.emit).toHaveBeenCalledWith(1);
+    });
+
+    it('should display the correct question heading for an applicable available question', () => {
+        // given
+        const question1Step = component.questionnaireSections[0].questions[1];
+
+        // when
+        const titleText = component.getTitleText(question1Step);
+
+        // then
+        expect(titleText).toContain(question1TitleText);
     });
 
     function getStepLink(progressIndicatorStep: DebugElement): DebugElement {

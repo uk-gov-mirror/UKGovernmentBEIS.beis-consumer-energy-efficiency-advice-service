@@ -8,16 +8,16 @@ export class BoilerTypeQuestionMetadata extends QuestionMetadata<boolean> {
     constructor() {
         super(
             BoilerTypeQuestionComponent,
-            'Do you have a condensing boiler?',
+            'boiler_type',
             QuestionType.Heating
         );
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return isGasOrOil(responseData.fuelType);
+        return responseData.fuelType == null || isGasOrOil(responseData.fuelType);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.fuelType !== undefined;
+        return responseData.fuelType != null;
     }
 }

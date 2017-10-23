@@ -7,7 +7,7 @@ export class BedroomsQuestionMetadata extends QuestionMetadata<number> {
     constructor() {
         super(
             BedroomsQuestionComponent,
-            'How many bedrooms do you have?',
+            'bedrooms',
             QuestionType.House
         );
     }
