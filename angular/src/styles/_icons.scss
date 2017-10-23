@@ -27,3 +27,53 @@
 .icon-thermostat::before {
   content: url('assets/images/question-types/thermostat.svg');
 }
+
+//noinspection CssUnknownTarget
+.icon-behaviour::before {
+  content: url('assets/images/topics/behaviour.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-doors::before {
+  content: url('assets/images/topics/doors.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-flooring::before {
+  content: url('assets/images/topics/flooring.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-heating::before {
+  content: url('assets/images/topics/heating.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-home::before {
+  content: url('assets/images/topics/home.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-occupancy::before {
+  content: url('assets/images/topics/occupancy.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-roofing::before {
+  content: url('assets/images/topics/roofing.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-thermometer::before {
+  content: url('assets/images/topics/thermometer.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-walls::before {
+  content: url('assets/images/topics/walls.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-windows::before {
+  content: url('assets/images/topics/windows.svg');
+}

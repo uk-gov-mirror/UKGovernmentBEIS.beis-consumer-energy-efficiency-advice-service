@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ResponseData} from '../../../response-data/response-data';
+import {ResponseData} from '../../../common/response-data/response-data';
 import {ConfirmEpcQuestionComponent} from './confirm-epc-question.component';
 import {Epc} from '../postcode-epc-question/model/epc';
 import {EpcResponse} from '../postcode-epc-question/model/response/epc-response';

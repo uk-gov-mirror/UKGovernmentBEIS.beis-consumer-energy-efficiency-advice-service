@@ -1,0 +1,51 @@
+@import "~styles/mixins/font";
+@import "~styles/mixins/epc-rating";
+
+:host {
+  display: block;
+}
+
+.potentials {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .body-uppercase {
+    @include body-uppercase;
+  }
+
+  .savings, .epc {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+
+    > :not(:first-child) {
+      margin-left: 80px;
+    }
+  }
+
+  .savings {
+    justify-content: flex-start;
+    border-right: 1px solid black;
+
+    .headline-figure {
+      font-size: 64px;
+      font-weight: bold;
+    }
+  }
+
+  .epc {
+    justify-content: flex-end;
+
+    .epc-rating {
+      @include epc-rating(64px);
+      margin: 8px;
+    }
+
+    .current-epc, .potential-epc {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
 import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {ResponseSummaryComponent} from "./response-summary/response-summary.component";
+import {ResultsPageComponent} from "./results-page/results-page.component";
 
 const routes: Routes = [
     {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'responses',
         component: ResponseSummaryComponent
+    },
+    {
+        path: 'results',
+        component: ResultsPageComponent
     },
     {
         path: ':slug',

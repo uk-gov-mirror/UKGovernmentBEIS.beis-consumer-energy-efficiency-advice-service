@@ -1,3 +1,5 @@
+@import "~styles/mixins/epc-rating";
+
 $left-column-width: 50%;
 $right-column-width: 100% - $left-column-width;
 $section-break-margin: 40px;
@@ -30,19 +32,8 @@ $epc-rating-margin: 40px;
     }
 
     .epc-rating {
-      background-color: black;
-      color: white;
-      border-radius: 50%;
-      font-size: 36px;
-      font-weight: bold;
-      padding: 4px;
-      width: $epc-rating-width;
-      height: $epc-rating-width;
+      @include epc-rating($epc-rating-width);
       margin: 0 $epc-rating-margin;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
     }
 
     .epc-rating-description {

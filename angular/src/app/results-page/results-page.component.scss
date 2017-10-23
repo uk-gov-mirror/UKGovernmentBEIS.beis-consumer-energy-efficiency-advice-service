@@ -1,0 +1,109 @@
+@import "~styles/mixins/font";
+
+.results-page {
+
+  width: 100%;
+
+  .main-content {
+    width: calc(100% - 32px);
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h2 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  .subheading {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .body-uppercase {
+    @include body-uppercase;
+  }
+
+  > :not(:first-child) {
+    padding: 48px 0;
+
+    &.potentials {
+      padding-bottom: 32px;
+    }
+
+    &.potentials, &.recommendations, &.grants {
+      border-top: 1px solid black;
+    }
+  }
+
+  .recommendations {
+    .recommendation-cards {
+      margin-top: 32px;
+
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+
+      .recommendation-card {
+        flex: 1 0 1px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+      }
+    }
+
+    .tell-us-more {
+      margin-top: 80px;
+
+      .further-questions {
+        margin-top: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .grants {
+    .grant-cards {
+      margin-top: 32px;
+
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+
+      .grant-card {
+        flex: 1 0 1px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+
+  .suggestions {
+
+    background-color: #F2F2F2;
+
+    .suggestion-cards {
+      margin-top: 32px;
+
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+
+      .suggestion-card {
+        flex: 1 0 1px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+}

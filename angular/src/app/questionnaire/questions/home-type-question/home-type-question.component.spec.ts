@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {HomeTypeQuestionComponent} from './home-type-question.component';
-import {ResponseData} from "../../../response-data/response-data";
+import {ResponseData} from "../../../common/response-data/response-data";
 import {HomeType} from "./home-type";
 
 describe('HomeTypeQuestionComponent', () => {

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
 import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
-import {ResponseData} from '../../../response-data/response-data';
+import {ResponseData} from '../../../common/response-data/response-data';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 
