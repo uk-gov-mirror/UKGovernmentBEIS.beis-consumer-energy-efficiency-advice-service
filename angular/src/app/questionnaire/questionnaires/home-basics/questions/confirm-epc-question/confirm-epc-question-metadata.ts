@@ -14,6 +14,10 @@ export class ConfirmEpcQuestionMetadata extends QuestionMetadata<EpcConfirmation
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.postcode === undefined || responseData.epc !== null;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.confirmEpc !== undefined;
     }

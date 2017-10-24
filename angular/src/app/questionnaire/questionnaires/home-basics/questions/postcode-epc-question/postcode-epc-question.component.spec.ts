@@ -8,6 +8,8 @@ import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
 import {ResponseData} from '../../../../../common/response-data/response-data';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
+import {FeatureFlags} from "../../../../../common/feature-flag/feature-flags";
+import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -15,10 +17,19 @@ describe('PostcodeEpcQuestionComponent', () => {
 
     let component: PostcodeEpcQuestionComponent;
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
+    let fetchEpcFeatureFlag: boolean;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     let apiServiceStub = {
         getEpcData: (postcode) => Observable.of(dummyEpcsResponse)
+    };
+
+    const mockFeatureFlagsObservable: Observable<FeatureFlags> = new Observable(observer => {
+        observer.next({'fetch_epc_data': fetchEpcFeatureFlag});
+        observer.complete();
+    });
+    const featureFlagServiceStub = {
+        fetchFeatureFlags: () => mockFeatureFlagsObservable
     };
 
     beforeEach(async(() => {
@@ -31,13 +42,17 @@ describe('PostcodeEpcQuestionComponent', () => {
         })
             .overrideComponent(PostcodeEpcQuestionComponent, {
             set: {
-                providers: [{provide: PostcodeEpcService, useValue: apiServiceStub}]
+                providers: [
+                    {provide: PostcodeEpcService, useValue: apiServiceStub},
+                    {provide: FeatureFlagService, useValue: featureFlagServiceStub}
+                ]
             }
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
+        fetchEpcFeatureFlag = true;
         fixture = TestBed.createComponent(PostcodeEpcQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
@@ -162,7 +177,22 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(apiServiceStub.getEpcData).toHaveBeenCalledTimes(0);
+                expect(apiServiceStub.getEpcData).not.toHaveBeenCalled();
+            });
+        }));
+
+        it('should not call epc api if feature flag is turned off', async(() => {
+            // given
+            fetchEpcFeatureFlag = false;
+            component.postcodeInput = VALID_POSTCODE;
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(apiServiceStub.getEpcData).not.toHaveBeenCalled();
             });
         }));
 
@@ -269,6 +299,21 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
 
                 // then
+
+            });
+        }));
+
+        it('should notify of completion after entering postcode if feature flag is turned off', async(() => {
+            // given
+            fetchEpcFeatureFlag = false;
+            component.postcodeInput = VALID_POSTCODE;
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
                 expect(component.complete.emit).toHaveBeenCalled();
             });
         }));

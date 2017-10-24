@@ -7,6 +7,7 @@ import {EpcParserService} from './epc-parser-service/epc-parser.service';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../../../base-question/question-base-component';
 import {PostcodeEpc} from './model/postcode-epc';
 import {ResponseData} from "../../../../../common/response-data/response-data";
+import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -36,7 +37,9 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     allEpcsForPostcode: Epc[];
     selectedEpc: Epc;
 
-    constructor(responseData: ResponseData, private postcodeEpcService: PostcodeEpcService) {
+    constructor(responseData: ResponseData,
+                private postcodeEpcService: PostcodeEpcService,
+                private featureFlagService: FeatureFlagService) {
         super(responseData);
     }
 
@@ -71,7 +74,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
             this.error = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
             return;
         }
-        this.lookupAllEpcsForPostcode();
+        this.checkFeatureFlagAndLookupAllEpcsForPostcode();
     }
 
     trimLeadingOrTrailingSpacesFromPostcodeString(): void {
@@ -90,8 +93,19 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
         this.selectedEpc = null;
     }
 
-    lookupAllEpcsForPostcode(): void {
+    checkFeatureFlagAndLookupAllEpcsForPostcode(): void {
         this.shouldDisplayLoadingSpinner = true;
+        this.featureFlagService.fetchFeatureFlags().subscribe(flags => {
+            if (flags.fetch_epc_data) {
+                this.lookupAllEpcsForPostcode();
+            } else {
+                this.shouldDisplayLoadingSpinner = false;
+                this.continueWithoutEpc();
+            }
+        });
+    }
+
+    lookupAllEpcsForPostcode(): void {
         this.postcodeEpcService.getEpcData(this.postcodeInput)
             .map(result => EpcParserService.parse(result))
             .subscribe(
