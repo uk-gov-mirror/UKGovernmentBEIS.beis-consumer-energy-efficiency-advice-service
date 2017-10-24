@@ -8,6 +8,7 @@ import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {ResponseSummaryComponent} from "./response-summary/response-summary.component";
 import {ResultsPageComponent} from "./results-page/results-page.component";
 import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
+import {ResultsPageRouteGuard} from './results-page/results-page-route-guard.service';
 
 const routes: Routes = [
     {
@@ -33,7 +34,8 @@ const routes: Routes = [
     },
     {
         path: 'results',
-        component: ResultsPageComponent
+        component: ResultsPageComponent,
+        canActivate: [ResultsPageRouteGuard]
     },
     {
         path: ':slug',
@@ -44,7 +46,7 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: []
+    providers: [ResultsPageRouteGuard]
 })
 export class RoutingModule {
 }
