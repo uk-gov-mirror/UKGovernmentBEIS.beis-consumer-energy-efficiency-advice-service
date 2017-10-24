@@ -3,8 +3,7 @@ import {QuestionMetadata} from '../base-question/question-metadata';
 import {ResponseData} from '../../common/response-data/response-data';
 
 export abstract class Questionnaire {
-    constructor(public readonly id: string,
-                private responseData: ResponseData,
+    constructor(private responseData: ResponseData,
                 private readonly questionsMetadata: QuestionMetadata<any>[]) {
     }
 

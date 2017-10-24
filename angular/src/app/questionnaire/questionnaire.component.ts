@@ -9,6 +9,7 @@ import {QuestionContent} from '../common/question-content/question-content';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
+import {QuestionnaireType} from "./questionnaires/questionnaire-type";
 
 @Component({
     selector: 'app-questionnaire',
@@ -40,19 +41,19 @@ export class QuestionnaireComponent implements OnInit {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
+        this.questionnaire = this.questionnaireService.getQuestionnaireOfType(route.snapshot.paramMap.get('type') as QuestionnaireType);
     }
 
     ngOnInit() {
-        this.route.paramMap
-            .flatMap((params: ParamMap) => this.questionnaireService.getQuestionnaireWithId(params.get('id')))
-            .flatMap((questionnaire: Questionnaire) => {
-                this.questionnaire = questionnaire;
-                return this.questionContentService.fetchQuestionsContent();
-            })
-            .subscribe(
-                questionContent => this.onQuestionContentLoaded(questionContent),
-                () => this.displayErrorMessage()
-            );
+        this.route.paramMap.subscribe(
+            (params: ParamMap) => {
+                this.questionnaire = this.questionnaireService.getQuestionnaireOfType(params.get('type') as QuestionnaireType);
+            }
+        );
+        this.questionContentService.fetchQuestionsContent().subscribe(
+            questionContent => this.onQuestionContentLoaded(questionContent),
+            () => this.displayErrorMessage()
+        );
     }
 
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {

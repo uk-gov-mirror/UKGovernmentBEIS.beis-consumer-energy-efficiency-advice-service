@@ -52,7 +52,7 @@ describe('ProgressIndicatorComponent', () => {
         ];
 
         constructor() {
-            super('test', new ResponseData(), TestQuestionnaire.questions);
+            super(new ResponseData(), TestQuestionnaire.questions);
         }
 
         isAvailable(index) {

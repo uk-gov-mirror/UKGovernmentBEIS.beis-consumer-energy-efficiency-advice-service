@@ -21,7 +21,7 @@ describe('QuestionnaireComponent', () => {
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
 
-    const questionnaireId = 'test';
+    const questionnaireType = 'test';
     const questionId = 'test-question-id';
 
     const questionContentServiceStub = {
@@ -46,11 +46,11 @@ describe('QuestionnaireComponent', () => {
     }
 
     class MockQuestionnaireService {
-        getQuestionnaireWithId(id) {
-            if (id === questionnaireId) {
-                return Observable.of(new TestQuestionnaire());
+        getQuestionnaireOfType(type) {
+            if (type === questionnaireType) {
+                return new TestQuestionnaire();
             } else {
-                throw new Error('Unexpected questionnaire ID');
+                throw new Error('Unexpected questionnaire type');
             }
         }
     }
@@ -59,14 +59,20 @@ describe('QuestionnaireComponent', () => {
     }
 
     class MockActivatedRoute {
-        public paramMap = Observable.of({
-            get: function(key) {
-                if (key === 'id') {
-                    return questionnaireId;
-                } else {
-                    throw new Error('Unexpected parameter name');
-                }
+        private static paramMapGet(key) {
+            if (key === 'type') {
+                return questionnaireType;
+            } else {
+                throw new Error('Unexpected parameter name');
             }
+        }
+
+        public snapshot = {
+            paramMap: {get: MockActivatedRoute.paramMapGet}
+        };
+
+        public paramMap = Observable.of({
+            get: MockActivatedRoute.paramMapGet
         });
     }
 

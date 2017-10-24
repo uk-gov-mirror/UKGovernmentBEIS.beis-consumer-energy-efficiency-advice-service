@@ -15,21 +15,17 @@ import {ElectricityTariffQuestionMetadata} from "./questions/electricity-tariff-
 @Injectable()
 export class HomeBasicsQuestionnaire extends Questionnaire {
     constructor(responseData: ResponseData) {
-        super(
-            'home-basics',
-            responseData,
-            [
-                new PostcodeEpcQuestionMetadata(),
-                new ConfirmEpcQuestionMetadata(),
-                new HomeTypeQuestionMetadata(),
-                new FlatPositionQuestionMetadata(),
-                new HomeAgeQuestionMetadata(),
-                new StoreysQuestionMetadata(),
-                new BedroomsQuestionMetadata(),
-                new FuelTypeQuestionMetadata(),
-                new BoilerTypeQuestionMetadata(),
-                new ElectricityTariffQuestionMetadata()
-            ]
-        )
+        super(responseData, [
+            new PostcodeEpcQuestionMetadata(),
+            new ConfirmEpcQuestionMetadata(),
+            new HomeTypeQuestionMetadata(),
+            new FlatPositionQuestionMetadata(),
+            new HomeAgeQuestionMetadata(),
+            new StoreysQuestionMetadata(),
+            new BedroomsQuestionMetadata(),
+            new FuelTypeQuestionMetadata(),
+            new BoilerTypeQuestionMetadata(),
+            new ElectricityTariffQuestionMetadata()
+        ]);
     }
 }

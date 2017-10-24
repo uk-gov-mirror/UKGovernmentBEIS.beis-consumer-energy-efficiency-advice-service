@@ -1,20 +1,17 @@
 import {Injectable} from "@angular/core";
-import {Observable} from 'rxjs';
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-questionnaire";
+import {QuestionnaireType} from "./questionnaires/questionnaire-type";
 
 @Injectable()
 export class QuestionnaireService {
-    private readonly questionnaires: Questionnaire[];
+    private readonly questionnaires: {[K in QuestionnaireType]: Questionnaire};
 
     constructor(homeBasicsQuestionnaire: HomeBasicsQuestionnaire) {
-        this.questionnaires = [homeBasicsQuestionnaire];
+        this.questionnaires = {'home-basics': homeBasicsQuestionnaire};
     }
 
-    public getQuestionnaireWithId(id: string): Observable<Questionnaire> {
-        const questionnaire = this.questionnaires.find(questionnaire => questionnaire.id === id);
-        return questionnaire === undefined
-            ? Observable.throw(`No questionnaire with id ${id}`)
-            : Observable.of(questionnaire);
+    public getQuestionnaireOfType(type: QuestionnaireType): Questionnaire {
+        return this.questionnaires[type];
     }
 }
