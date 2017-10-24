@@ -3,22 +3,22 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {HttpRequest} from "@angular/common/http";
 
 import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
-import {FeatureFlagRepository} from './feature-flag.repository';
+import {FeatureFlagService} from './feature-flag.service';
 
 describe('FeatureFlagRepository', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
-    let service: FeatureFlagRepository;
+    let service: FeatureFlagService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [FeatureFlagRepository,
+            providers: [FeatureFlagService,
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}} ],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
-        service = injector.get(FeatureFlagRepository);
+        service = injector.get(FeatureFlagService);
     });
 
     describe('#construct', () => {

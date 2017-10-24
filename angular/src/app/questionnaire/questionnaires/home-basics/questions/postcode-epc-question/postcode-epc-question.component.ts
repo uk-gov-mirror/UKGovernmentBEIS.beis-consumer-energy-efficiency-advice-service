@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import 'rxjs/add/operator/map';
+
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 import {EpcParserService} from './epc-parser-service/epc-parser.service';
