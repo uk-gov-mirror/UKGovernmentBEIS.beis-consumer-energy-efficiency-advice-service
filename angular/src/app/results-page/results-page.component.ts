@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {EnergyCalculationApiService} from '../common/bre-api-service/energy-calculation-api-service';
+import {EnergyCalculationApiService} from '../common/energy-calculation-api-service/energy-calculation-api-service';
 import {ResponseData} from '../common/response-data/response-data';
-import {RdSapInput} from '../common/bre-api-service/model/rdsap-input/rdsap-input';
+import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
 import {EnergySavingRecommendation} from './recommendation-card/energy-saving-recommendation';
-import {EnergyCalculationResponse} from '../common/bre-api-service/model/energy-calculation-response';
+import {EnergyCalculationResponse} from '../common/energy-calculation-api-service/response/energy-calculation-response';
 import * as _ from 'lodash';
 import {EnergyCalculations} from './potentials/energy-calculations';
 
@@ -30,7 +30,7 @@ export class ResultsPageComponent implements OnInit {
     ngOnInit() {
         this.isLoading = true;
         this.isError = false;
-        this.energyCalculationApiService.getEnergyCalculation(this.rdSapInput)
+        this.energyCalculationApiService.fetchEnergyCalculation(this.rdSapInput)
             .subscribe(
                 response => this.handleEnergyCalculationResponse(response),
                 error => this.displayErrorMessage(error)
@@ -39,10 +39,8 @@ export class ResultsPageComponent implements OnInit {
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
         this.isLoading = false;
-        console.log(response);
-        const energySavingMeasureResponses = response.measures;
-        const allRecommendations = _.keys(energySavingMeasureResponses)
-            .map(measureCode => new EnergySavingRecommendation(measureCode, energySavingMeasureResponses[measureCode]));
+        const allRecommendations = _.keys(response.measures)
+            .map(measureCode => new EnergySavingRecommendation(measureCode, response.measures[measureCode]));
         this.recommendations = _.orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc'])
             .filter(recommendation => !!recommendation.recommendationType);
         const potentialEnergyBillSavingPoundsPerYear = _.chain(this.recommendations)
@@ -53,7 +51,6 @@ export class ResultsPageComponent implements OnInit {
     }
 
     private displayErrorMessage(error) {
-        console.log(error);
         this.isLoading = false;
         this.isError = true;
     }

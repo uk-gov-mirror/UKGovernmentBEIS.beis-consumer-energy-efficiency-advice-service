@@ -11,6 +11,7 @@ function post_energy_calculation_request(WP_REST_Request $request)
         ),
         $boundary
     );
+    $body = 'bad request';
     $args = array(
         'headers' => array(
             'Authorization' => $authHeader,
@@ -21,9 +22,13 @@ function post_energy_calculation_request(WP_REST_Request $request)
     );
     $url ='https://uat.brewebserv.com/bemapi/energy_use';
     $response = wp_remote_post($url, $args);
-    error_log(wp_remote_retrieve_response_code($response));
-    error_log(wp_remote_retrieve_body($response));
-    error_log($args['body']);
+    if (!empty(wp_remote_retrieve_response_code($response))) {
+        return new WP_Error(
+            'ENERGY_CALCULATION_API_ERROR',
+            wp_remote_retrieve_body($response),
+            array('status' => wp_remote_retrieve_response_code($response))
+        );
+    }
     return json_decode(wp_remote_retrieve_body($response));
 }
 

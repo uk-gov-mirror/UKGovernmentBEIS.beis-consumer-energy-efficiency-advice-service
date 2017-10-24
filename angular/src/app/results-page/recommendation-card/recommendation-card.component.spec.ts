@@ -1,25 +1,34 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RecommendationCardComponent } from './recommendation-card.component';
+import {RecommendationCardComponent} from './recommendation-card.component';
+import {EnergySavingRecommendation} from './energy-saving-recommendation';
+import {RecommendationType} from './recommendation-type';
 
 describe('RecommendationCardComponent', () => {
-  let component: RecommendationCardComponent;
-  let fixture: ComponentFixture<RecommendationCardComponent>;
+    let component: RecommendationCardComponent;
+    let fixture: ComponentFixture<RecommendationCardComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RecommendationCardComponent ]
-    })
-    .compileComponents();
-  }));
+    const recommendation: EnergySavingRecommendation = {
+        recommendationType: RecommendationType.LoftInsulation,
+        costSavingPoundsPerYear: 100,
+        energySavingKwhPerYear: 100
+    };
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RecommendationCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [RecommendationCardComponent]
+        })
+            .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(RecommendationCardComponent);
+        component = fixture.componentInstance;
+        component.recommendation = recommendation;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

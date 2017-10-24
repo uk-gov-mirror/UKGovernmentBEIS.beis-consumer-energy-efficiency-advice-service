@@ -1,4 +1,4 @@
-import {EnergySavingMeasureResponse} from '../../common/bre-api-service/model/energy-saving-measure-response';
+import {EnergySavingMeasureResponse} from '../../common/energy-calculation-api-service/response/energy-saving-measure-response';
 import {getRecommendationTypeFromCode, RecommendationType} from './recommendation-type';
 
 export class EnergySavingRecommendation {
