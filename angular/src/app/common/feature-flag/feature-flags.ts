@@ -1,12 +1,12 @@
 import {FeatureFlagResponse} from './feature-flag-response';
 
-export class FeatureFlags {
-    // fetch_epc_data: boolean;
-    [feature_flag_id: string]: boolean;
+export type FeatureFlagName = 'fetch_epc_data';
+export type FeatureFlags = {[K in FeatureFlagName]?: boolean};
 
-    constructor(featureFlagResponses: FeatureFlagResponse[]) {
-        featureFlagResponses.forEach((featureFlagResponse: FeatureFlagResponse) => {
-            this[featureFlagResponse.slug] = featureFlagResponse.acf.enabled;
-        });
-    }
+export function featureFlagsFromResponses(featureFlagResponses: FeatureFlagResponse[]): FeatureFlags {
+    let flags = {};
+    featureFlagResponses.forEach((featureFlagResponse: FeatureFlagResponse) => {
+        flags[featureFlagResponse.slug] = featureFlagResponse.acf.enabled;
+    });
+    return flags;
 }

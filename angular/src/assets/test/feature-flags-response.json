@@ -8,7 +8,7 @@
     },
     "modified": "2017-10-23T08:25:41",
     "modified_gmt": "2017-10-23T08:25:41",
-    "slug": "fetch-epc-data",
+    "slug": "fetch_epc_data",
     "status": "publish",
     "type": "feature_flag",
     "link": "http://localhost:81/feature_flag/fetch-epc-data/",

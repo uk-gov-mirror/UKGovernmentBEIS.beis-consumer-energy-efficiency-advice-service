@@ -5,7 +5,7 @@ import {HttpRequest} from "@angular/common/http";
 import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 import {FeatureFlagService} from './feature-flag.service';
 
-describe('FeatureFlagRepository', () => {
+describe('FeatureFlagService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: FeatureFlagService;
@@ -41,8 +41,9 @@ describe('FeatureFlagRepository', () => {
             // then
             actualResponse.then((featureFlags) => {
                 // match data in 'assets/test/feature-flags-response.json'
+                console.log(featureFlags);
                 expect(Object.keys(featureFlags).length).toBe(1);
-                expect(featureFlags['fetch-epc-data']).toBeTruthy();
+                expect(featureFlags.fetch_epc_data).toBeTruthy();
             });
             httpMock.verify();
         }));

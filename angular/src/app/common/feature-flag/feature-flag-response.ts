@@ -1,4 +1,6 @@
+import {FeatureFlagName} from "./feature-flags";
+
 export interface FeatureFlagResponse {
-    slug: string;
+    slug: FeatureFlagName;
     acf: {enabled: boolean};
 }

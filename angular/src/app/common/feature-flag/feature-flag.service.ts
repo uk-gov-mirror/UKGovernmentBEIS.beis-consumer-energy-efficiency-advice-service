@@ -4,7 +4,7 @@ import {WordpressApiService} from '../wordpress-api-service/wordpress-api-servic
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/shareReplay';
-import {FeatureFlags} from './feature-flags';
+import {FeatureFlags, featureFlagsFromResponses} from './feature-flags';
 import {FeatureFlagResponse} from './feature-flag-response';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class FeatureFlagService {
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
         const url = this.wordpressApiService.getFullApiEndpoint(FeatureFlagService.featureFlagsEndpoint);
         const featureflagResponses: Observable<FeatureFlagResponse[]> = this.http.get(url);
-        this.featureFlags = featureflagResponses.map(featureFlags => new FeatureFlags(featureFlags)).shareReplay(1);
+        this.featureFlags = featureflagResponses.map(responses => featureFlagsFromResponses(responses)).shareReplay(1);
     }
 
     public fetchFeatureFlags(): Observable<FeatureFlags> {
