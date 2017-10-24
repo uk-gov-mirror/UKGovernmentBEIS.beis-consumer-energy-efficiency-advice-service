@@ -18,6 +18,10 @@
   padding: 16px;
   box-sizing: border-box;
 
+  .heading, .read-more {
+    max-width: 100%;
+  }
+
   .heading {
     @include card-heading;
   }
