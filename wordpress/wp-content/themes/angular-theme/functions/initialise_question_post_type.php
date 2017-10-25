@@ -1,9 +1,14 @@
-<?php include 'disable_quick_edit.php';
+<?php include 'post_type_functions.php';
 
 add_action( 'init', 'create_question_posttype' );
 add_action( 'init', 'setup_question_acf_group');
+
 // Disable the quick-edit link to prevent users editing the slug for a question
 add_filter( 'post_row_actions', disable_quick_edit_for('question'), 10, 2 );
+
+// Add slug to returned ACF fields
+add_filter('acf/rest_api/question/get_items', 'add_slug');
+
 
 function create_question_posttype() {
 
@@ -84,14 +89,3 @@ function setup_question_acf_group() {
         ));
     }
 }
-
-// Add slug to returned ACF fields
-add_filter('acf/rest_api/question/get_items', function ($response) {
-    $data_with_slug = array_map(function ($datum) {
-        $datum['slug'] = get_post_field('post_name', $datum['id']);
-        return $datum;
-    }, $response->data);
-
-    $response->data = $data_with_slug;
-    return $response;
-});

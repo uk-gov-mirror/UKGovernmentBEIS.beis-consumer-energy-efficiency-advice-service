@@ -9,7 +9,7 @@ import {FeatureFlagResponse} from './feature-flag-response';
 
 @Injectable()
 export class FeatureFlagService {
-    private static readonly featureFlagsEndpoint = 'wp/v2/feature_flag';
+    private static readonly featureFlagsEndpoint = 'acf/v3/feature_flag';
     private readonly featureFlags: Observable<FeatureFlags>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
