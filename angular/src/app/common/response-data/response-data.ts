@@ -10,6 +10,7 @@ import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input'
 interface ResponseDataShape {
     postcode: any;
     epc: any;
+    localAuthorityCode: any;
     confirmEpc: boolean;
     homeType: any;
     homeAge: any;
@@ -25,6 +26,7 @@ interface ResponseDataShape {
 export class ResponseData implements ResponseDataShape {
     public postcode: string;
     public epc: Epc;
+    public localAuthorityCode: string;
     public confirmEpc: boolean;
     public homeType: HomeType;
     public homeAge: HomeAge;
@@ -46,6 +48,7 @@ export class DisplayableResponseData implements ResponseDataShape {
     constructor(
         public postcode: string,
         public epc: Epc,
+        public localAuthorityCode: string,
         public confirmEpc: boolean,
         public homeType: string,
         public homeAge: string,
@@ -62,6 +65,7 @@ export class DisplayableResponseData implements ResponseDataShape {
         return new DisplayableResponseData(
             responseData.postcode,
             responseData.epc,
+            responseData.localAuthorityCode,
             responseData.confirmEpc,
             HomeType[responseData.homeType],
             HomeAge[responseData.homeAge],

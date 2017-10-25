@@ -17,7 +17,7 @@
             <button class="list-select-option" [class.selected]="isSelected(epc)"
                  *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}</button>
             <button class="list-select-option address-not-listed" [class.selected]="isNoEpcSelected"
-                 (click)="continueWithoutEpc()">My address is not listed</button>
+                 (click)="lookupBasicPostcodeDetails()">My address is not listed</button>
         </div>
     </div>
 </div>

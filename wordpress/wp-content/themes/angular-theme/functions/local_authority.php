@@ -3,24 +3,18 @@
 // Add Wordpress API function for getting Local Authority data by ONS code
 function get_local_authority(WP_REST_Request $request)
 {
-    $wpQueryArgs = array(
-        'post_type' => 'local_authority',
-        'posts_per_page' => -1
-    );
-    $query = new WP_Query($wpQueryArgs);
-    $localAuthorityPosts = $query->get_posts();
-    $getLocalAuthorityDetails = function($post) {
-        $postId = $post->ID;
-        return get_fields($postId);
-    };
-    $localAuthorityDetails = array_map($getLocalAuthorityDetails, $localAuthorityPosts);
-    foreach($localAuthorityDetails as $localAuthorityDetail) {
-        if ($localAuthorityDetail['local_authority_code'] == $request['ons_code'])
-            return $localAuthorityDetail;
+    $matchingPosts = get_posts(array(
+        'post_type'      => 'local_authority',
+        'posts_per_page' => 1,
+        'meta_key'       => 'local_authority_code',
+        'meta_value'     => $request['ons_code']
+    ));
+    if (count($matchingPosts) > 0) {
+        return get_fields($matchingPosts[0]->ID);
     }
     return new WP_Error(
         'local_authority_not_found',
-        'Local authority not found',
+        'Local authority with code ' . $request['ons_code'] . ' not found',
         array(
             'status' => 404
         )

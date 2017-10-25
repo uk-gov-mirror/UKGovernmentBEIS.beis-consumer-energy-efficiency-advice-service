@@ -2,10 +2,10 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ResponseData} from '../../../../../common/response-data/response-data';
 import {ConfirmEpcQuestionComponent} from './confirm-epc-question.component';
 import {Epc} from '../postcode-epc-question/model/epc';
-import {EpcResponse} from '../postcode-epc-question/model/response/epc-response';
 import {HomeType} from '../home-type-question/home-type';
 import {FuelType} from '../fuel-type-question/fuel-type';
 import {ElectricityTariff} from '../electricity-tariff-question/electricity-tariff';
+import {EpcResponse} from '../../../../questions/postcode-epc-question/model/response/epc/epc-response';
 
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;

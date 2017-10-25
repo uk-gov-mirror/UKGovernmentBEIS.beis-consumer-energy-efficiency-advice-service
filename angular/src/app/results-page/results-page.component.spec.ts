@@ -26,8 +26,9 @@ describe('ResultsPageComponent', () => {
     };
 
     const responseData: ResponseData = {
-        postcode: 'w11aa',
+        postcode: 'sw1h0et',
         epc: null,
+        localAuthorityCode: 'E09000033',
         confirmEpc: true,
         homeType: HomeType.GroundFloorFlat,
         homeAge: HomeAge.pre1900,

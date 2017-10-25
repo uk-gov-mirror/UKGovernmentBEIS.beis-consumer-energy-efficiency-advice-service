@@ -18,7 +18,7 @@ function get_epc(WP_REST_Request $request)
 }
 
 add_action('rest_api_init', function () {
-    register_rest_route('angular-theme/v1', '/postcode-epc', array(
+    register_rest_route('angular-theme/v1', '/epc', array(
         'methods' => 'GET',
         'callback' => 'get_epc',
     ));

@@ -1,19 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
 import {EpcParserService} from './epc-parser-service/epc-parser.service';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../../../base-question/question-base-component';
 import {PostcodeEpc} from './model/postcode-epc';
 import {ResponseData} from "../../../../../common/response-data/response-data";
 import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
+import {EpcApiService} from '../../../../questions/postcode-epc-question/epc-api-service/epc-api.service';
+import {PostcodeApiService} from '../../../../questions/postcode-epc-question/postcode-api-service/postcode-api.service';
+import {PostcodeResponse} from '../../../../questions/postcode-epc-question/model/response/postcode/postcode-response';
+import {PostcodeErrorResponse} from '../../../../questions/postcode-epc-question/model/response/postcode/postcode-error-response';
 
 @Component({
     selector: 'app-postcode-epc-question',
     templateUrl: './postcode-epc-question.component.html',
     styleUrls: ['./postcode-epc-question.component.scss'],
-    providers: [PostcodeEpcService],
+    providers: [EpcApiService, PostcodeApiService],
     animations: [slideInOutAnimation]
 })
 export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<PostcodeEpc> implements OnInit {
@@ -21,11 +24,6 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     static readonly ERROR_VALIDATION: Error = {
         heading: null,
         message: 'Please enter a full valid UK postcode'
-    };
-    static readonly ERROR_EPC_API_FAILURE: Error = {
-        heading: 'Something went wrong',
-        message: 'We can\'t fetch basic details about energy efficiency at your property right now.\n' +
-        'Please try again later, or continue to the next question to tell us some more about your property.'
     };
 
     postcodeInput: string;
@@ -38,7 +36,8 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     selectedEpc: Epc;
 
     constructor(responseData: ResponseData,
-                private postcodeEpcService: PostcodeEpcService,
+                private epcApiService: EpcApiService,
+                private postcodeApiService: PostcodeApiService,
                 private featureFlagService: FeatureFlagService) {
         super(responseData);
     }
@@ -50,7 +49,8 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     get response(): PostcodeEpc {
         const postcodeEpc = {
             epc: this.responseData.epc,
-            postcode: this.responseData.postcode
+            postcode: this.responseData.postcode,
+            localAuthorityCode: this.responseData.localAuthorityCode
         };
         return this.responseData.postcode && postcodeEpc;
     }
@@ -58,6 +58,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     set response(val: PostcodeEpc) {
         this.responseData.postcode = val.postcode;
         this.responseData.epc = val.epc;
+        this.responseData.localAuthorityCode = val.localAuthorityCode;
     }
 
     populateFormFromSavedData(): void {
@@ -71,10 +72,15 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
         this.resetSearchState();
         let isPostcodeInputValid = PostcodeEpcQuestionComponent.POSTCODE_REGEXP.test(this.postcodeInput);
         if (!isPostcodeInputValid) {
-            this.error = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
+            this.displayPostcodeValidationError();
             return;
         }
         this.checkFeatureFlagAndLookupAllEpcsForPostcode();
+    }
+
+    displayPostcodeValidationError(): void {
+        this.resetSearchState();
+        this.error = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
     }
 
     trimLeadingOrTrailingSpacesFromPostcodeString(): void {
@@ -99,18 +105,17 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
             if (flags.fetch_epc_data) {
                 this.lookupAllEpcsForPostcode();
             } else {
-                this.shouldDisplayLoadingSpinner = false;
-                this.continueWithoutEpc();
+                this.lookupBasicPostcodeDetails();
             }
         });
     }
 
     lookupAllEpcsForPostcode(): void {
-        this.postcodeEpcService.getEpcData(this.postcodeInput)
+        this.epcApiService.getEpcData(this.postcodeInput)
             .map(result => EpcParserService.parse(result))
             .subscribe(
                 data => this.searchCompleted(data),
-                err => this.handleEpcApiError()
+                err => this.lookupBasicPostcodeDetails()
             );
     }
 
@@ -118,14 +123,8 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
         this.shouldDisplayLoadingSpinner = false;
         this.allEpcsForPostcode = epcs;
         if (!epcs || epcs.length === 0) {
-            this.continueWithoutEpc();
+            this.lookupBasicPostcodeDetails();
         }
-    }
-
-    handleEpcApiError(): void {
-        this.setResponsePostcodeFromInput();
-        this.shouldDisplayLoadingSpinner = false;
-        this.error = PostcodeEpcQuestionComponent.ERROR_EPC_API_FAILURE;
     }
 
     isSelected(epc: Epc): boolean {
@@ -137,23 +136,44 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
         this.isNoEpcSelected = false;
         this.response = {
             epc: epc,
-            postcode: this.postcodeInput
+            postcode: this.postcodeInput,
+            localAuthorityCode: epc.localAuthorityCode
         };
         this.complete.emit();
     }
 
-    continueWithoutEpc(): void {
-        this.isNoEpcSelected = true;
-        this.selectedEpc = null;
-        this.setResponsePostcodeFromInput();
-        this.complete.emit();
+    lookupBasicPostcodeDetails() {
+        this.resetSearchState();
+        this.shouldDisplayLoadingSpinner = true;
+        this.postcodeApiService.getPostcodeDetails(this.postcodeInput)
+            .subscribe(
+                response => this.handlePostcodeApiResponse(response),
+                err => this.handlePostcodeApiError(err)
+            );
     }
 
-    setResponsePostcodeFromInput(): void {
+    handlePostcodeApiResponse(response: PostcodeResponse) {
+        this.continueWithoutEpcWithLocalAuthorityCode(response.result.codes.admin_district);
+    }
+
+    handlePostcodeApiError(err: PostcodeErrorResponse) {
+        const isPostcodeNotFoundResponse: boolean = err.status && err.error &&
+            err.status === PostcodeApiService.postcodeNotFoundStatus &&
+            err.error.includes(PostcodeApiService.postcodeNotFoundMessage);
+        if (isPostcodeNotFoundResponse) {
+            this.displayPostcodeValidationError();
+            return;
+        }
+        this.continueWithoutEpcWithLocalAuthorityCode(null);
+    }
+
+    continueWithoutEpcWithLocalAuthorityCode(localAuthorityCode: string) {
         this.response = {
             epc: null,
-            postcode: this.postcodeInput
+            postcode: this.postcodeInput,
+            localAuthorityCode: localAuthorityCode
         };
+        this.complete.emit();
     }
 }
 
