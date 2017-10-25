@@ -2,8 +2,8 @@
 
 add_action('init', 'create_feature_flag_posttype');
 add_action('init', 'setup_feature_flag_acf_group');
-// Disable the quick-edit link to prevent users editing the slug for a question
-add_filter( 'post_row_actions', 'disable_quick_edit_for_feature_flags', 10, 2 );
+// Disable the quick-edit link to prevent users editing the slug for a feature flag
+add_filter( 'post_row_actions', disable_quick_edit_for('feature_flag'), 10, 2 );
 
 function create_feature_flag_posttype() {
 
@@ -65,20 +65,4 @@ function setup_feature_flag_acf_group() {
             'menu_order' => 0,
         ));
     }
-}
-
-function disable_quick_edit_for_feature_flags($actions = array(), $post = null ) {
-
-    // Abort if the post type is not "question"
-    global $current_screen;
-    if ( $current_screen->post_type != 'feature_flag' ) {
-        return $actions;
-    }
-
-    if ( isset( $actions['inline hide-if-no-js'] ) ) {
-        unset( $actions['inline hide-if-no-js'] );
-        unset( $actions['trash'] );
-    }
-
-    return $actions;
 }
