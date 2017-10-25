@@ -1,17 +1,20 @@
 import {Injectable} from "@angular/core";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-questionnaire";
-import {QuestionnaireType} from "./questionnaires/questionnaire-type";
 
 @Injectable()
 export class QuestionnaireService {
-    private readonly questionnaires: {[K in QuestionnaireType]: Questionnaire};
+    private readonly questionnaires: {[s: string]: Questionnaire};
 
     constructor(homeBasicsQuestionnaire: HomeBasicsQuestionnaire) {
         this.questionnaires = {'home-basics': homeBasicsQuestionnaire};
     }
 
-    public getQuestionnaireOfType(type: QuestionnaireType): Questionnaire {
-        return this.questionnaires[type];
+    public hasQuestionnaireWithName(name: string): boolean {
+        return this.questionnaires.hasOwnProperty(name);
+    }
+
+    public getQuestionnaireWithName(name: string): Questionnaire {
+        return this.questionnaires[name];
     }
 }

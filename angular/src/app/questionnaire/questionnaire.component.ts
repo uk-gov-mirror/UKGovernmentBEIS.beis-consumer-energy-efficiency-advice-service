@@ -9,7 +9,6 @@ import {QuestionContent} from '../common/question-content/question-content';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
-import {QuestionnaireType} from "./questionnaires/questionnaire-type";
 
 @Component({
     selector: 'app-questionnaire',
@@ -41,15 +40,10 @@ export class QuestionnaireComponent implements OnInit {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
-        this.questionnaire = this.questionnaireService.getQuestionnaireOfType(route.snapshot.paramMap.get('type') as QuestionnaireType);
+        this.questionnaire = this.questionnaireService.getQuestionnaireWithName(route.snapshot.paramMap.get('name'));
     }
 
     ngOnInit() {
-        this.route.paramMap.subscribe(
-            (params: ParamMap) => {
-                this.questionnaire = this.questionnaireService.getQuestionnaireOfType(params.get('type') as QuestionnaireType);
-            }
-        );
         this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorMessage()

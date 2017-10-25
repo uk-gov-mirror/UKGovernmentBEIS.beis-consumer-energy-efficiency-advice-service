@@ -21,7 +21,7 @@ describe('QuestionnaireComponent', () => {
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
 
-    const questionnaireType = 'test';
+    const questionnaireName = 'test';
     const questionId = 'test-question-id';
 
     const questionContentServiceStub = {
@@ -46,11 +46,11 @@ describe('QuestionnaireComponent', () => {
     }
 
     class MockQuestionnaireService {
-        getQuestionnaireOfType(type) {
-            if (type === questionnaireType) {
+        getQuestionnaireWithName(name) {
+            if (name === questionnaireName) {
                 return new TestQuestionnaire();
             } else {
-                throw new Error('Unexpected questionnaire type');
+                throw new Error('Unexpected questionnaire name');
             }
         }
     }
@@ -60,8 +60,8 @@ describe('QuestionnaireComponent', () => {
 
     class MockActivatedRoute {
         private static paramMapGet(key) {
-            if (key === 'type') {
-                return questionnaireType;
+            if (key === 'name') {
+                return questionnaireName;
             } else {
                 throw new Error('Unexpected parameter name');
             }

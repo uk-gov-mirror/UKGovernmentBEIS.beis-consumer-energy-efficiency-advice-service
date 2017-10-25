@@ -7,6 +7,7 @@ import {QuestionDirective} from './question.directive';
 import {QuestionnaireService} from './questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
 import {HomeBasicsQuestionnaireModule} from "./questionnaires/home-basics/home-basics-questionnaire.module";
+import {QuestionnaireGuard} from "./questionnaires/questionnaire.guard";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,7 @@ export class QuestionnaireModule {
     static forRoot() {
         return {
             ngModule: QuestionnaireModule,
-            providers: [QuestionnaireService]
+            providers: [QuestionnaireService, QuestionnaireGuard]
         };
     }
 }
