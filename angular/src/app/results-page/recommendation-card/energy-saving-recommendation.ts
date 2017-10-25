@@ -1,7 +1,8 @@
 import {EnergySavingMeasureResponse} from '../../common/energy-calculation-api-service/response/energy-saving-measure-response';
+import {RecommendationType, RecommendationTypeService} from './recommendation-type.service';
 
 export class EnergySavingRecommendation {
-    recommendationTypeCode: string;
+    recommendationType: RecommendationType;
     costSavingPoundsPerYear: number;
     energySavingKwhPerYear: number;
 
@@ -9,7 +10,7 @@ export class EnergySavingRecommendation {
         recommendationTypeCode: string,
         energySavingMeasureResponse: EnergySavingMeasureResponse
     ) {
-        this.recommendationTypeCode = recommendationTypeCode;
+        this.recommendationType = RecommendationTypeService.recommendationTypes[recommendationTypeCode];
         this.costSavingPoundsPerYear = energySavingMeasureResponse.cost_saving;
         this.energySavingKwhPerYear = energySavingMeasureResponse.energy_saving;
     }

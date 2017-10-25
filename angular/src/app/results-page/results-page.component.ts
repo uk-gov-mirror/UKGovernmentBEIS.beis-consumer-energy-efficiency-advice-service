@@ -39,10 +39,11 @@ export class ResultsPageComponent implements OnInit {
         const allRecommendations = _.keys(response.measures)
             .map(measureCode => new EnergySavingRecommendation(measureCode, response.measures[measureCode]));
         this.recommendations = _.orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc'])
-            .filter(recommendation => !!recommendation.recommendationTypeCode);
-        const potentialEnergyBillSavingPoundsPerYear = _.chain(this.recommendations)
-            .sumBy(recommendation => recommendation.costSavingPoundsPerYear)
-            .value();
+            .filter(recommendation => !!recommendation.recommendationType);
+        const potentialEnergyBillSavingPoundsPerYear = _.sumBy(
+            this.recommendations,
+            recommendation => recommendation.costSavingPoundsPerYear
+        );
         this.energyCalculations = new EnergyCalculations(response, potentialEnergyBillSavingPoundsPerYear);
     }
 

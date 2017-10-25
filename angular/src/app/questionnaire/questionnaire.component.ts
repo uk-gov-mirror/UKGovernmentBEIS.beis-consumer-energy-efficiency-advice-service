@@ -9,7 +9,6 @@ import {QuestionContent} from '../common/question-content/question-content';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
-import {EnergyCalculationApiService} from '../common/bre-api-service/energy-calculation-api-service';
 
 @Component({
     selector: 'app-questionnaire',

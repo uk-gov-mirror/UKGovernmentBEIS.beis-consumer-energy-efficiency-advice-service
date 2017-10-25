@@ -8,14 +8,14 @@ import {RecommendationCardComponent} from "./recommendation-card/recommendation-
 import {SuggestionCardComponent} from "./suggestion-card/suggestion-card.component";
 import {ResponseData} from '../common/response-data/response-data';
 import {EnergyCalculationResponse} from '../common/energy-calculation-api-service/response/energy-calculation-response';
-import {HomeType} from '../questionnaire/questions/home-type-question/home-type';
-import {HomeAge} from '../questionnaire/questions/home-age-question/home-age';
-import {FlatPosition} from '../questionnaire/questions/flat-position-question/flat-position';
-import {FuelType} from '../questionnaire/questions/fuel-type-question/fuel-type';
 import {EnergyCalculationApiService} from "../common/energy-calculation-api-service/energy-calculation-api-service";
 import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
+import {HomeType} from '../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type';
+import {HomeAge} from '../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age';
+import {FlatPosition} from '../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position';
+import {FuelType} from '../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type';
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -115,7 +115,7 @@ describe('ResultsPageComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.recommendations[0].recommendationTypeCode).toBe('V2');
+        expect(component.recommendations[0].recommendationType.description).toBe('Wind turbine on mast');
         expect(component.recommendations[0].costSavingPoundsPerYear).toBe(536.18);
         expect(component.recommendations[0].energySavingKwhPerYear).toBe(0);
     });
