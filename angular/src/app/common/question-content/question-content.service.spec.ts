@@ -50,7 +50,7 @@ describe('QuestionContentService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === 'wp/v2/question';
+            const matchesExpectedUrl = request.urlWithParams === 'acf/v3/question';
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

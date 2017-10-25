@@ -100,3 +100,14 @@ function disable_quick_edit_for_questions($actions = array(), $post = null ) {
 
     return $actions;
 }
+
+// Add slug to returned ACF fields
+add_filter('acf/rest_api/question/get_items', function ($response) {
+    $data_with_slug = array_map(function ($datum) {
+        $datum['slug'] = get_post_field('post_name', $datum['id']);
+        return $datum;
+    }, $response->data);
+
+    $response->data = $data_with_slug;
+    return $response;
+});

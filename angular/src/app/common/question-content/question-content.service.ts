@@ -7,7 +7,7 @@ import {QuestionResponse} from './question-response';
 
 @Injectable()
 export class QuestionContentService {
-    private static readonly questionsContentEndpoint = 'wp/v2/question';
+    private static readonly questionsContentEndpoint = 'acf/v3/question';
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
