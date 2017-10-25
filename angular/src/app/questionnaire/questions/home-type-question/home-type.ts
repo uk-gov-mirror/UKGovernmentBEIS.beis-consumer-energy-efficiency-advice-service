@@ -9,7 +9,7 @@ export enum HomeType {
     TopFloorFlat,
     BungalowDetached,
     BungalowAttached,
-    ParkHome,
+    ParkHome
 }
 
 export function isFlat(homeType: HomeType): boolean {
@@ -18,19 +18,28 @@ export function isFlat(homeType: HomeType): boolean {
            homeType === HomeType.TopFloorFlat;
 }
 
+export function isBungalow(homeType: HomeType): boolean {
+    return homeType === HomeType.BungalowDetached ||
+           homeType === HomeType.BungalowAttached;
+}
+
+export function isParkHome(homeType: HomeType): boolean {
+    return homeType === HomeType.ParkHome;
+}
+
 export function getHomeTypeDescription(homeType: HomeType): string {
     switch(homeType) {
-        case HomeType.DetachedHouse:     { return 'detached house'; }
-        case HomeType.SemiDetachedHouse: { return 'semi-detached house'; }
-        case HomeType.EndTerraceHouse:   { return 'end-terrace house'; }
-        case HomeType.MidTerraceHouse:   { return 'mid-terrace house'; }
-        case HomeType.GroundFloorFlat:   { return 'ground floor flat'; }
-        case HomeType.MidFloorFlat:      { return 'mid floor flat'; }
-        case HomeType.TopFloorFlat:      { return 'top floor flat'; }
-        case HomeType.BungalowDetached:  { return 'bungalow detached'; }
-        case HomeType.BungalowAttached:  { return 'bungalow attached'; }
-        case HomeType.ParkHome:          { return 'park home'; }
-        default:                         { return null; }
+        case HomeType.DetachedHouse:        { return 'detached house'; }
+        case HomeType.SemiDetachedHouse:    { return 'semi-detached house'; }
+        case HomeType.EndTerraceHouse:      { return 'end-terrace house'; }
+        case HomeType.MidTerraceHouse:      { return 'mid-terrace house'; }
+        case HomeType.GroundFloorFlat:      { return 'ground floor flat'; }
+        case HomeType.MidFloorFlat:         { return 'mid floor flat'; }
+        case HomeType.TopFloorFlat:         { return 'top floor flat'; }
+        case HomeType.BungalowDetached:     { return 'detached bungalow'; }
+        case HomeType.BungalowAttached:     { return 'attached bungalow'; }
+        case HomeType.ParkHome:             { return 'park home'; }
+        default:                            { return null; }
     }
 }
 
