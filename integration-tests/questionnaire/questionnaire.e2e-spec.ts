@@ -1,11 +1,11 @@
-import {QuestionnairePage} from "./questionnaire.po";
+import {HomeBasicsQuestionnairePage} from "./questionnaire.po";
 import {CommonPageHelpers} from "../common-page-helpers";
 
 describe('Questionnaire', () => {
-    let page: QuestionnairePage;
+    let page: HomeBasicsQuestionnairePage;
 
     beforeEach(() => {
-        page = new QuestionnairePage();
+        page = new HomeBasicsQuestionnairePage();
         page.navigateTo();
     });
 
