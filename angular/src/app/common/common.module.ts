@@ -6,6 +6,7 @@ import {QuestionContentService} from "./question-content/question-content.servic
 import {WordpressApiService} from "./wordpress-api-service/wordpress-api-service";
 import {ResponseData} from "./response-data/response-data";
 import {FeatureFlagService} from "./feature-flag/feature-flag.service";
+import {EnergyCalculationApiService} from './energy-calculation-api-service/energy-calculation-api-service';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,13 @@ export class CommonModule {
     static forRoot() {
         return {
             ngModule: CommonModule,
-            providers: [QuestionContentService, WordpressApiService, ResponseData, FeatureFlagService]
+            providers: [
+                QuestionContentService,
+                WordpressApiService,
+                ResponseData,
+                FeatureFlagService,
+                EnergyCalculationApiService
+            ]
         };
     }
 }

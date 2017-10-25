@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {EnergyCalculations} from './energy-calculations';
 
 @Component({
     selector: 'app-potentials',
@@ -6,8 +7,5 @@ import {Component, Input} from '@angular/core';
     styleUrls: ['./potentials.component.scss']
 })
 export class PotentialsComponent {
-    @Input() currentBill: number;
-    @Input() potentialSavings: number;
-    @Input() currentEpc: string;
-    @Input() potentialEpc: string;
+    @Input() energyCalculations: EnergyCalculations;
 }

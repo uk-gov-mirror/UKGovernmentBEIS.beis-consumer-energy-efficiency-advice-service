@@ -41,6 +41,7 @@
   .recommendations {
     .recommendation-cards {
       margin-top: 32px;
+      flex-wrap: wrap;
 
       display: flex;
       align-items: stretch;
@@ -48,10 +49,8 @@
 
       .recommendation-card {
         flex: 1 0 1px;
-
-        &:not(:last-child) {
-          margin-right: 24px;
-        }
+        margin-bottom: 24px;
+        margin-right: 24px;
       }
     }
 

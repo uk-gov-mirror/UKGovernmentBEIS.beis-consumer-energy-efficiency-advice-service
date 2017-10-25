@@ -5,6 +5,7 @@ import {ElectricityTariff} from "../../questionnaire/questionnaires/home-basics/
 import {FlatPosition} from "../../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position";
 import {HomeAge} from "../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
 import {HomeType} from "../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
+import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 
 interface ResponseDataShape {
     postcode: any;
@@ -72,4 +73,8 @@ export class DisplayableResponseData implements ResponseDataShape {
             ElectricityTariff[responseData.electricityTariff]
         );
     }
+}
+
+export function isComplete(responseData: ResponseData) {
+    return new RdSapInput(responseData).isMinimalDataSet();
 }

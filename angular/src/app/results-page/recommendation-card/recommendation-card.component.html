@@ -1,7 +1,7 @@
-<a class="recommendation-card">
+<a class="recommendation-card" *ngIf="recommendation && recommendation.recommendationType">
     <div class="heading">
-        <span class="icon" [ngClass]="iconClassName"></span>
-        <div class="description">{{description}}</div>
+        <span class="icon" [ngClass]="recommendation.recommendationType.iconClassName"></span>
+        <div class="description">{{recommendation.recommendationType.description}}</div>
     </div>
     <div class="savings">
         <span class="savings-amount">£{{savings}}</span>

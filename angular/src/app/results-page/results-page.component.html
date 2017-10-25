@@ -1,38 +1,26 @@
-<div class="results-page">
+<div class="page-loading-container" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+</div>
+<div class="page-error-container" *ngIf="isError">
+    <div class="error">
+        <div class="error-header">Oh no!</div>
+        <div>Something went wrong and we can't load this page right now. Please try again later.</div>
+    </div>
+</div>
+<div class="results-page" *ngIf="!isLoading && !isError">
     <div class="heading main-content">
         <h2>Thank you!</h2>
     </div>
-    <div class="potentials main-content">
-        <app-potentials class="potentials"
-                        currentBill="1378"
-                        potentialSavings="233"
-                        currentEpc="E"
-                        potentialEpc="C">
+    <div class="potentials main-content" *ngIf="energyCalculations">
+        <app-potentials class="potentials" [energyCalculations]="energyCalculations">
         </app-potentials>
     </div>
-    <div class="recommendations main-content">
+    <div class="recommendations main-content" *ngIf="recommendations && recommendations.length > 0">
         <div class="subheading">What you can do next</div>
         <div class="body-uppercase">As a home owner we recommend</div>
         <div class="recommendation-cards">
-            <app-recommendation-card class="recommendation-card"
-                                     iconClassName="icon-roofing"
-                                     description="Improve loft insulation to 270mm"
-                                     savings="90">
-            </app-recommendation-card>
-            <app-recommendation-card class="recommendation-card"
-                                     iconClassName="icon-walls"
-                                     description="Solid wall insulation (U-value to 0.3)"
-                                     savings="60">
-            </app-recommendation-card>
-            <app-recommendation-card class="recommendation-card"
-                                     iconClassName="icon-heating"
-                                     description="Biomass room heater with boiler"
-                                     savings="50">
-            </app-recommendation-card>
-            <app-recommendation-card class="recommendation-card"
-                                     iconClassName="icon-thermometer"
-                                     description="Heating controls for wet central heating system"
-                                     savings="33">
+            <app-recommendation-card class="recommendation-card" *ngFor="let recommendation of recommendations"
+                                     [recommendation]="recommendation">
             </app-recommendation-card>
         </div>
         <div class="tell-us-more">
