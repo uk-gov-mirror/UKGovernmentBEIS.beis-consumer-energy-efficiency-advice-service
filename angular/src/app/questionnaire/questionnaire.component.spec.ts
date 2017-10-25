@@ -1,4 +1,5 @@
 import {ChangeDetectorRef, ComponentFactoryResolver} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
@@ -10,7 +11,6 @@ import {QuestionContentService} from '../common/question-content/question-conten
 import {AllQuestionsContent} from '../common/question-content/all-questions-content';
 import {QuestionType} from './question-type';
 import {PostcodeEpcComponent} from '../postcode-epc/postcode-epc.component';
-import {Router} from "@angular/router";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -56,18 +56,15 @@ describe('QuestionnaireComponent', () => {
         }
     }
 
-    class MockRouter {
-    }
-
     beforeEach(async(() => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [QuestionnaireComponent, ProgressIndicatorComponent],
+            imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,
-                {provide: Router, useClass: MockRouter},
                 {provide: QuestionnaireService, useClass: QuestionnaireServiceStub},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
             ],
