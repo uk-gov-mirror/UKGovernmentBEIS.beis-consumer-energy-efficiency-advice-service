@@ -2,13 +2,13 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/defer';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
 import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
 import {ResponseData} from '../../../../../common/response-data/response-data';
 import {PostcodeEpcService} from './api-service/postcode-epc.service';
 import {Epc} from './model/epc';
-import {FeatureFlags} from "../../../../../common/feature-flag/feature-flags";
 import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
@@ -24,10 +24,7 @@ describe('PostcodeEpcQuestionComponent', () => {
         getEpcData: (postcode) => Observable.of(dummyEpcsResponse)
     };
 
-    const mockFeatureFlagsObservable: Observable<FeatureFlags> = new Observable(observer => {
-        observer.next({'fetch_epc_data': fetchEpcFeatureFlag});
-        observer.complete();
-    });
+    const mockFeatureFlagsObservable = Observable.defer(() => Observable.of({'fetch_epc_data': fetchEpcFeatureFlag}));
     const featureFlagServiceStub = {
         fetchFeatureFlags: () => mockFeatureFlagsObservable
     };
