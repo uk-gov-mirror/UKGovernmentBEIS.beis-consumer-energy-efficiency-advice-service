@@ -1,16 +1,15 @@
 import {EnergySavingMeasureResponse} from '../../common/energy-calculation-api-service/response/energy-saving-measure-response';
-import {getRecommendationTypeFromCode, RecommendationType} from './recommendation-type';
 
 export class EnergySavingRecommendation {
-    recommendationType: RecommendationType;
+    recommendationTypeCode: string;
     costSavingPoundsPerYear: number;
     energySavingKwhPerYear: number;
 
     constructor(
-        measureCode: string,
+        recommendationTypeCode: string,
         energySavingMeasureResponse: EnergySavingMeasureResponse
     ) {
-        this.recommendationType = getRecommendationTypeFromCode(measureCode);
+        this.recommendationTypeCode = recommendationTypeCode;
         this.costSavingPoundsPerYear = energySavingMeasureResponse.cost_saving;
         this.energySavingKwhPerYear = energySavingMeasureResponse.energy_saving;
     }

@@ -2,14 +2,14 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecommendationCardComponent} from './recommendation-card.component';
 import {EnergySavingRecommendation} from './energy-saving-recommendation';
-import {RecommendationType} from './recommendation-type';
+import {RecommendationType} from './recommendation-type.service';
 
 describe('RecommendationCardComponent', () => {
     let component: RecommendationCardComponent;
     let fixture: ComponentFixture<RecommendationCardComponent>;
 
     const recommendation: EnergySavingRecommendation = {
-        recommendationType: RecommendationType.LoftInsulation,
+        recommendationTypeCode: 'A',
         costSavingPoundsPerYear: 100,
         energySavingKwhPerYear: 100
     };

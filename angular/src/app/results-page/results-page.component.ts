@@ -13,8 +13,6 @@ import {EnergyCalculations} from './potentials/energy-calculations';
   styleUrls: ['./results-page.component.scss']
 })
 export class ResultsPageComponent implements OnInit {
-    private rdSapInput: RdSapInput;
-
     recommendations: EnergySavingRecommendation[];
     energyCalculations: EnergyCalculations;
     isLoading: boolean;
@@ -24,16 +22,15 @@ export class ResultsPageComponent implements OnInit {
         private responseData: ResponseData,
         private energyCalculationApiService: EnergyCalculationApiService
     ) {
-        this.rdSapInput = new RdSapInput(responseData);
     }
 
     ngOnInit() {
         this.isLoading = true;
         this.isError = false;
-        this.energyCalculationApiService.fetchEnergyCalculation(this.rdSapInput)
+        this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData))
             .subscribe(
                 response => this.handleEnergyCalculationResponse(response),
-                error => this.displayErrorMessage(error)
+                () => this.displayErrorMessage()
             );
     }
 
@@ -42,15 +39,14 @@ export class ResultsPageComponent implements OnInit {
         const allRecommendations = _.keys(response.measures)
             .map(measureCode => new EnergySavingRecommendation(measureCode, response.measures[measureCode]));
         this.recommendations = _.orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc'])
-            .filter(recommendation => !!recommendation.recommendationType);
+            .filter(recommendation => !!recommendation.recommendationTypeCode);
         const potentialEnergyBillSavingPoundsPerYear = _.chain(this.recommendations)
-            .map(recommendation => recommendation.costSavingPoundsPerYear)
-            .sum()
+            .sumBy(recommendation => recommendation.costSavingPoundsPerYear)
             .value();
         this.energyCalculations = new EnergyCalculations(response, potentialEnergyBillSavingPoundsPerYear);
     }
 
-    private displayErrorMessage(error) {
+    private displayErrorMessage() {
         this.isLoading = false;
         this.isError = true;
     }

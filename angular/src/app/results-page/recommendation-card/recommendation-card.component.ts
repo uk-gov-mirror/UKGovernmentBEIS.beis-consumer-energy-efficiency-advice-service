@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EnergySavingRecommendation} from './energy-saving-recommendation';
-import {getDescription, getIconClassName, getRecommendationTypeFromCode} from './recommendation-type';
+import {RecommendationType, RecommendationTypeService} from './recommendation-type.service';
 
 @Component({
     selector: 'app-recommendation-card',
@@ -8,15 +8,13 @@ import {getDescription, getIconClassName, getRecommendationTypeFromCode} from '.
     styleUrls: ['./recommendation-card.component.scss']
 })
 export class RecommendationCardComponent implements OnInit {
-    description: string;
-    iconClassName: string;
+    recommendationTypeDetails: RecommendationType;
     savings: string;
 
     @Input() recommendation: EnergySavingRecommendation;
 
     ngOnInit() {
-        this.description = getDescription(this.recommendation.recommendationType);
-        this.iconClassName = getIconClassName(this.recommendation.recommendationType);
+        this.recommendationTypeDetails = RecommendationTypeService.recommendationTypes[this.recommendation.recommendationTypeCode];
         this.savings = Math.round(this.recommendation.costSavingPoundsPerYear).toString();
     }
 }

@@ -16,7 +16,6 @@ import {EnergyCalculationApiService} from "../common/energy-calculation-api-serv
 import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
-import {getRecommendationTypeFromCode} from './recommendation-card/recommendation-type';
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -116,7 +115,7 @@ describe('ResultsPageComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.recommendations[0].recommendationType).toBe(getRecommendationTypeFromCode('V2'));
+        expect(component.recommendations[0].recommendationTypeCode).toBe('V2');
         expect(component.recommendations[0].costSavingPoundsPerYear).toBe(536.18);
         expect(component.recommendations[0].energySavingKwhPerYear).toBe(0);
     });

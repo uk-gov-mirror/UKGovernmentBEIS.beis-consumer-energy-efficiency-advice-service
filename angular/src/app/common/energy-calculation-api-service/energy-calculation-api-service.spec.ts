@@ -12,14 +12,14 @@ describe('EnergyCalculationApiService', () => {
     let service: EnergyCalculationApiService;
 
     const rdSapInput: RdSapInput = {
-        property_type:"2",
-        built_form:"4",
-        flat_level:"1",
-        construction_date:"A",
-        num_storeys:1,
-        num_bedrooms:1,
-        heating_fuel:"26",
-        measures:"Y",
+        property_type: "2",
+        built_form: "4",
+        flat_level: "1",
+        construction_date: "A",
+        num_storeys: 1,
+        num_bedrooms: 1,
+        heating_fuel: "26",
+        measures: "Y",
         floor_area: undefined,
         isMinimalDataSet: () => true
     };
@@ -27,7 +27,7 @@ describe('EnergyCalculationApiService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [EnergyCalculationApiService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}} ],
+                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -49,8 +49,7 @@ describe('EnergyCalculationApiService', () => {
 
             // when
             const actualResponse = service.fetchEnergyCalculation(rdSapInput).toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
-            request.flush(mockApiResponse);
+            httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
             actualResponse.then((energyCalculationResponse) => {
@@ -69,14 +68,14 @@ describe('EnergyCalculationApiService', () => {
 
             // when
             const actualResponse = service.fetchEnergyCalculation(rdSapInput).toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
-            request.error(
-                new ErrorEvent('mock network error'),
-                {
-                    status: expectedStatus,
-                    statusText: expectedStatusText
-                }
-            );
+            httpMock.expectOne(matchesExpectedRequest)
+                .error(
+                    new ErrorEvent('mock network error'),
+                    {
+                        status: expectedStatus,
+                        statusText: expectedStatusText
+                    }
+                );
 
             // then
             actualResponse.catch((errorResponse) => {
@@ -89,7 +88,7 @@ describe('EnergyCalculationApiService', () => {
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'POST';
             const matchesExpectedUrl = request.urlWithParams === 'angular-theme/v1/energy-calculation';
-            const matchesExpectedBody = request.body.includes(JSON.stringify(rdSapInput));
+            const matchesExpectedBody = request.body === rdSapInput;
             return matchesExpectedMethod && matchesExpectedUrl && matchesExpectedBody;
         }
     });

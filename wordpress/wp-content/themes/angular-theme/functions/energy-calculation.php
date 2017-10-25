@@ -11,7 +11,6 @@ function post_energy_calculation_request(WP_REST_Request $request)
         ),
         $boundary
     );
-    $body = 'bad request';
     $args = array(
         'headers' => array(
             'Authorization' => $authHeader,
@@ -22,7 +21,8 @@ function post_energy_calculation_request(WP_REST_Request $request)
     );
     $url ='https://uat.brewebserv.com/bemapi/energy_use';
     $response = wp_remote_post($url, $args);
-    if (!empty(wp_remote_retrieve_response_code($response))) {
+    $responseCode = wp_remote_retrieve_response_code($response);
+    if (!empty($responseCode) && $responseCode != 200) {
         return new WP_Error(
             'ENERGY_CALCULATION_API_ERROR',
             wp_remote_retrieve_body($response),
@@ -40,7 +40,7 @@ function get_energy_calculation_auth_header()
     $nonce = wp_generate_password(64, false);
     $stringToHash = $password . $nonce . $username . $created;
     $token = hash('sha256', $stringToHash);
-    $authHeader = 'WSSE UsernameToken Token="' . $token . '", Nonce="' . $nonce . '", Username="' . $username . '", Created="' . $created . '"';
+    $authHeader = "WSSE UsernameToken Token=\"$token\", Nonce=\"$nonce\", Username=\"$username\", Created=\"$created\"";
     return $authHeader;
 }
 

@@ -14,7 +14,6 @@ export class EnergyCalculationApiService {
 
     fetchEnergyCalculation(rdSapInput: RdSapInput): Observable<EnergyCalculationResponse> {
         const endpoint = this.wordpressApiService.getFullApiEndpoint(EnergyCalculationApiService.breEndpoint);
-        const body = JSON.stringify(rdSapInput);
-        return this.http.post(endpoint, body);
+        return this.http.post(endpoint, rdSapInput);
     }
 }

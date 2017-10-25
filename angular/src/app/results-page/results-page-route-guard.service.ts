@@ -17,5 +17,6 @@ export class ResultsPageRouteGuard implements CanActivate {
         }
         // If the response data is not complete then we can't display the results page so we navigate to the questionnaire first
         this.router.navigate(['/questionnaire']);
+        return false;
     }
 }
