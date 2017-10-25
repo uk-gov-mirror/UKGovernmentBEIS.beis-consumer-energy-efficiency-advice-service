@@ -1,4 +1,4 @@
-<?php include 'post_type_functions.php';
+<?php
 
 add_action( 'init', 'create_question_posttype' );
 add_action( 'init', 'setup_question_acf_group');
