@@ -7,6 +7,7 @@ import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {ResponseSummaryComponent} from "./response-summary/response-summary.component";
 import {ResultsPageComponent} from "./results-page/results-page.component";
+import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
 
 const routes: Routes = [
     {
@@ -22,8 +23,9 @@ const routes: Routes = [
         component: OcrComponent
     },
     {
-        path: 'questionnaire',
-        component: QuestionnaireComponent
+        path: 'questionnaire/:name',
+        component: QuestionnaireComponent,
+        canActivate: [QuestionnaireGuard],
     },
     {
         path: 'responses',

@@ -11,10 +11,10 @@ import {PageComponent} from './page/page.component';
 import {CalculatorComponent} from './calculator/calculator.component';
 import {PostcodeEpcComponent} from './postcode-epc/postcode-epc.component';
 import {OcrComponent} from './ocr/ocr.component';
-import {ResponseSummaryComponent} from './response-summary/response-summary.component';
 import {QuestionnaireModule} from "./questionnaire/questionnaire.module";
 import {CommonModule} from "./common/common.module";
 import {ResultsPageModule} from "./results-page/results-page.module";
+import {ResponseSummaryComponent} from './response-summary/response-summary.component';
 
 @NgModule({
     declarations: [

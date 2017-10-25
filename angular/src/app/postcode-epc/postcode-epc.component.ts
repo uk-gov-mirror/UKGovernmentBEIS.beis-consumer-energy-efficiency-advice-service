@@ -3,6 +3,7 @@ import {PostcodeEpcService} from "./api-service/postcode-epc.service";
 import {EpcParserService} from "./epc-parser-service/epc-parser.service";
 import {DisplayEpcRow} from "./epc-parser-service/display-epc-row";
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'app-postcode-epc',

@@ -1,8 +1,8 @@
 import {browser, by, element, protractor} from "protractor";
 
-export class QuestionnairePage {
+export class HomeBasicsQuestionnairePage {
     navigateTo() {
-        return browser.get('/questionnaire');
+        return browser.get('/questionnaire/home-basics');
     }
 
     hasError() {
@@ -15,6 +15,7 @@ export class QuestionnairePage {
 
     enterPostcode(postcode: string) {
         element(by.css('app-postcode-epc-question input.text-input')).sendKeys(postcode, protractor.Key.ENTER);
+        browser.waitForAngular();
     }
 
     selectFirstAddress() {

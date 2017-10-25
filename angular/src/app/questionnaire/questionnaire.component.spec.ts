@@ -1,30 +1,28 @@
 import {ChangeDetectorRef, ComponentFactoryResolver} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
+import {Router, ActivatedRoute} from "@angular/router";
 
 import {QuestionnaireComponent} from './questionnaire.component';
-import {QuestionnaireService} from './questions/questionnaire.service';
+import {QuestionnaireService} from './questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
 import {QuestionContentService} from '../common/question-content/question-content.service';
 import {AllQuestionsContent} from '../common/question-content/all-questions-content';
 import {QuestionType} from './question-type';
-import {PostcodeEpcComponent} from '../postcode-epc/postcode-epc.component';
-import {Router} from "@angular/router";
+import {QuestionBaseComponent} from "./base-question/question-base-component";
+import {QuestionMetadata} from "./base-question/question-metadata";
+import {Questionnaire} from "./base-questionnaire/questionnaire";
+import {ResponseData} from "../common/response-data/response-data";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
 
+    const questionnaireName = 'test';
     const questionId = 'test-question-id';
-    const questions = [
-        {
-            componentType: PostcodeEpcComponent,
-            questionId: questionId,
-            questionType: QuestionType.User
-        }
-    ];
 
     const questionContentServiceStub = {
         fetchQuestionsContent() {
@@ -32,31 +30,50 @@ describe('QuestionnaireComponent', () => {
         }
     };
 
-    class QuestionnaireServiceStub {
-        getQuestion(index) {
-            return questions[index];
+    class TestQuestionComponent extends QuestionBaseComponent<void> {
+        get response(): void { return null; }
+        set response(val: void) {}
+    }
+
+    class TestQuestion extends QuestionMetadata<void> {
+        hasBeenAnswered() { return false; }
+    }
+
+    class TestQuestionnaire extends Questionnaire {
+        constructor() {
+            super(new ResponseData(), [new TestQuestion(TestQuestionComponent, questionId, QuestionType.User)]);
         }
-        isAvailable(index) {
-            return true;
-        }
-        isApplicable(index) {
-            return true;
-        }
-        hasBeenAnswered(index) {
-            return false;
-        }
-        getPreviousQuestionIndex(index) {
-            return -1;
-        }
-        getNextQuestionIndex(index) {
-            return -1;
-        }
-        getQuestions() {
-            return questions;
+    }
+
+    class MockQuestionnaireService {
+        getQuestionnaireWithName(name) {
+            if (name === questionnaireName) {
+                return new TestQuestionnaire();
+            } else {
+                throw new Error('Unexpected questionnaire name');
+            }
         }
     }
 
     class MockRouter {
+    }
+
+    class MockActivatedRoute {
+        private static paramMapGet(key) {
+            if (key === 'name') {
+                return questionnaireName;
+            } else {
+                throw new Error('Unexpected parameter name');
+            }
+        }
+
+        public snapshot = {
+            paramMap: {get: MockActivatedRoute.paramMapGet}
+        };
+
+        public paramMap = Observable.of({
+            get: MockActivatedRoute.paramMapGet
+        });
     }
 
     beforeEach(async(() => {
@@ -64,11 +81,13 @@ describe('QuestionnaireComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [QuestionnaireComponent, ProgressIndicatorComponent],
+            imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,
                 {provide: Router, useClass: MockRouter},
-                {provide: QuestionnaireService, useClass: QuestionnaireServiceStub},
+                {provide: ActivatedRoute, useClass: MockActivatedRoute},
+                {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
             ],
         })

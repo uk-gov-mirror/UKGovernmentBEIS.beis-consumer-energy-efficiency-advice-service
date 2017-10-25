@@ -2,10 +2,13 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import {ProgressIndicatorComponent} from './progress-indicator.component';
-import {QuestionnaireService} from '../questions/questionnaire.service';
 import {QuestionType, QuestionTypeUtil} from '../question-type';
 import {DebugElement} from "@angular/core/core";
 import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
+import {Questionnaire} from "../base-questionnaire/questionnaire";
+import {ResponseData} from "../../common/response-data/response-data";
+import {QuestionMetadata} from "../base-question/question-metadata";
+import {QuestionBaseComponent} from "../base-question/question-base-component";
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
@@ -25,46 +28,44 @@ describe('ProgressIndicatorComponent', () => {
         question9: { questionHeading: 'Question 9 heading', helpText: 'Question 9 help text' }
     };
 
-    class QuestionnaireServiceStub {
+    class TestQuestionComponent extends QuestionBaseComponent<void> {
+        get response(): void { return null; }
+        set response(val: void) {}
+    }
+
+    class TestQuestion extends QuestionMetadata<void> {
+        hasBeenAnswered() { return false; }
+    }
+
+    class TestQuestionnaire extends Questionnaire {
         static readonly questions = [
-            {questionType: QuestionType.User, questionId: 'question0'},
-            {questionType: QuestionType.User, questionId: 'question1'},
-            {questionType: QuestionType.House, questionId: 'question2'},
-            {questionType: QuestionType.House, questionId: 'question3'},
-            {questionType: QuestionType.House, questionId: 'question4'},
-            {questionType: QuestionType.Heating, questionId: 'question5'},
-            {questionType: QuestionType.Heating, questionId: 'question6'},
-            {questionType: QuestionType.Heating, questionId: 'question7'},
-            {questionType: QuestionType.Heating, questionId: 'question8'},
-            {questionType: QuestionType.Heating, questionId: 'question9'}
+            new TestQuestion(TestQuestionComponent, 'question0', QuestionType.User),
+            new TestQuestion(TestQuestionComponent, 'question1', QuestionType.User),
+            new TestQuestion(TestQuestionComponent, 'question2', QuestionType.House),
+            new TestQuestion(TestQuestionComponent, 'question3', QuestionType.House),
+            new TestQuestion(TestQuestionComponent, 'question4', QuestionType.House),
+            new TestQuestion(TestQuestionComponent, 'question5', QuestionType.Heating),
+            new TestQuestion(TestQuestionComponent, 'question6', QuestionType.Heating),
+            new TestQuestion(TestQuestionComponent, 'question7', QuestionType.Heating),
+            new TestQuestion(TestQuestionComponent, 'question8', QuestionType.Heating),
+            new TestQuestion(TestQuestionComponent, 'question9', QuestionType.Heating)
         ];
-        getQuestion(index) {
-            return QuestionnaireServiceStub.questions[index];
+
+        constructor() {
+            super(new ResponseData(), TestQuestionnaire.questions);
         }
+
         isAvailable(index) {
             return availableQuestions !== undefined && availableQuestions.includes(index);
         }
         isApplicable(index) {
-            return availableQuestions !== undefined && availableQuestions.includes(index);
-        }
-        hasBeenAnswered(index) {
-            return false;
-        }
-        getPreviousQuestionIndex(index) {
-            return -1;
-        }
-        getNextQuestionIndex(index) {
-            return -1;
-        }
-        getQuestions() {
-            return QuestionnaireServiceStub.questions;
+            return true;
         }
     }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ ProgressIndicatorComponent ],
-            providers: [ {provide: QuestionnaireService, useClass: QuestionnaireServiceStub } ]
         })
             .compileComponents();
     }));
@@ -73,6 +74,7 @@ describe('ProgressIndicatorComponent', () => {
         fixture = TestBed.createComponent(ProgressIndicatorComponent);
         component = fixture.componentInstance;
         component.allQuestionsContent = allQuestionsContent;
+        component.questionnaire = new TestQuestionnaire();
         spyOn(component.clickedOnLink, 'emit');
         fixture.detectChanges();
     });
@@ -124,7 +126,7 @@ describe('ProgressIndicatorComponent', () => {
 
     it('should display the correct number of questions in each section', () => {
         // given
-        const expectedNumberOfHeatingQuestions = QuestionnaireServiceStub.questions
+        const expectedNumberOfHeatingQuestions = TestQuestionnaire.questions
             .filter(q => q.questionType === QuestionType.Heating)
             .length;
         const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
@@ -146,7 +148,7 @@ describe('ProgressIndicatorComponent', () => {
         const allQuestions = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
 
         // then
-        expect(allQuestions.length).toEqual(QuestionnaireServiceStub.questions.length);
+        expect(allQuestions.length).toEqual(TestQuestionnaire.questions.length);
     });
 
     it('should not allow the button for an unavailable question link to be clicked', () => {

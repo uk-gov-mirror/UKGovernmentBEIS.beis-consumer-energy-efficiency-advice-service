@@ -1,0 +1,57 @@
+[
+  {
+    "id": 147,
+    "date": "2017-10-23T08:11:15",
+    "date_gmt": "2017-10-23T08:11:15",
+    "guid": {
+      "rendered": "http://localhost:81/?post_type=feature_flag&#038;p=147"
+    },
+    "modified": "2017-10-23T08:25:41",
+    "modified_gmt": "2017-10-23T08:25:41",
+    "slug": "fetch_epc_data",
+    "status": "publish",
+    "type": "feature_flag",
+    "link": "http://localhost:81/feature_flag/fetch-epc-data/",
+    "title": {
+      "rendered": "Fetch EPC data"
+    },
+    "template": "",
+    "acf": {
+      "enabled": true
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "http://localhost:81/wp-json/wp/v2/feature_flag/147"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http://localhost:81/wp-json/wp/v2/feature_flag"
+        }
+      ],
+      "about": [
+        {
+          "href": "http://localhost:81/wp-json/wp/v2/types/feature_flag"
+        }
+      ],
+      "version-history": [
+        {
+          "href": "http://localhost:81/wp-json/wp/v2/feature_flag/147/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "http://localhost:81/wp-json/wp/v2/media?parent=147"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

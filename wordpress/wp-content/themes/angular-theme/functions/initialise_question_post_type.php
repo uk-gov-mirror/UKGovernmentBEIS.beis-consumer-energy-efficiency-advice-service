@@ -1,18 +1,18 @@
-<?php
+<?php include 'disable_quick_edit.php';
 
 add_action( 'init', 'create_question_posttype' );
 add_action( 'init', 'setup_question_acf_group');
 // Disable the quick-edit link to prevent users editing the slug for a question
-add_filter( 'post_row_actions', 'disable_quick_edit_for_questions', 10, 2 );
+add_filter( 'post_row_actions', disable_quick_edit_for('question'), 10, 2 );
 
 function create_question_posttype() {
 
     register_post_type( 'question',
         array(
             'labels'                => array(
-                                        'name' => __( 'Questions' ),
-                                        'singular_name' => __( 'Question' )
-                                    ),
+                'name' => __( 'Questions' ),
+                'singular_name' => __( 'Question' )
+            ),
             'description'           => 'Metadata for a question appearing in the questionnaire',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,
@@ -83,22 +83,6 @@ function setup_question_acf_group() {
             'menu_order' => 0,
         ));
     }
-}
-
-function disable_quick_edit_for_questions($actions = array(), $post = null ) {
-
-    // Abort if the post type is not "question"
-    global $current_screen;
-    if ( $current_screen->post_type != 'question' ) {
-        return $actions;
-    }
-
-    if ( isset( $actions['inline hide-if-no-js'] ) ) {
-        unset( $actions['inline hide-if-no-js'] );
-        unset( $actions['trash'] );
-    }
-
-    return $actions;
 }
 
 // Add slug to returned ACF fields

@@ -1,13 +1,14 @@
 import {OnInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {QuestionnaireService} from './questions/questionnaire.service';
 import {QuestionDirective} from './question.directive';
 import {QuestionTypeUtil} from './question-type';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
 import {AllQuestionsContent} from '../common/question-content/all-questions-content';
 import {QuestionContent} from '../common/question-content/question-content';
 import {QuestionContentService} from '../common/question-content/question-content.service';
+import {Questionnaire} from "./base-questionnaire/questionnaire";
+import {QuestionnaireService} from "./questionnaire.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -16,6 +17,7 @@ import {QuestionContentService} from '../common/question-content/question-conten
 })
 export class QuestionnaireComponent implements OnInit {
 
+    private questionnaire: Questionnaire;
     private questionComponent: QuestionBaseComponent<any>;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
@@ -33,18 +35,19 @@ export class QuestionnaireComponent implements OnInit {
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
-                private router: Router) {
+                private router: Router,
+                private route: ActivatedRoute) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
+        this.questionnaire = this.questionnaireService.getQuestionnaireWithName(route.snapshot.paramMap.get('name'));
     }
 
     ngOnInit() {
-        this.questionContentService.fetchQuestionsContent()
-            .subscribe(
-                questionContent => this.onQuestionContentLoaded(questionContent),
-                () => this.displayErrorMessage()
-            );
+        this.questionContentService.fetchQuestionsContent().subscribe(
+            questionContent => this.onQuestionContentLoaded(questionContent),
+            () => this.displayErrorMessage()
+        );
     }
 
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
@@ -80,11 +83,11 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     previousQuestionExists() {
-        return this.questionnaireService.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
+        return this.questionnaire.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     nextQuestionExists() {
-        return this.questionnaireService.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
+        return this.questionnaire.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
     canGoBack() {
@@ -93,11 +96,11 @@ export class QuestionnaireComponent implements OnInit {
 
     canGoForwards() {
         return this.nextQuestionExists() &&
-               this.questionnaireService.hasBeenAnswered(this.currentQuestionIndex);
+               this.questionnaire.hasBeenAnswered(this.currentQuestionIndex);
     }
 
     goBackOneQuestion() {
-        const prevIndex = this.questionnaireService.getPreviousQuestionIndex(this.currentQuestionIndex);
+        const prevIndex = this.questionnaire.getPreviousQuestionIndex(this.currentQuestionIndex);
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
@@ -105,7 +108,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     goForwardsOneQuestion() {
-        const nextIndex = this.questionnaireService.getNextQuestionIndex(this.currentQuestionIndex);
+        const nextIndex = this.questionnaire.getNextQuestionIndex(this.currentQuestionIndex);
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
@@ -117,7 +120,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
-        const question = this.questionnaireService.getQuestion(this.currentQuestionIndex);
+        const question = this.questionnaire.getQuestion(this.currentQuestionIndex);
         if (!!question) {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.currentQuestionId = question.questionId;
