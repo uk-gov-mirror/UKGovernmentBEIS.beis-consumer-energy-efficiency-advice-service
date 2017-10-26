@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EnergyCalculationApiService} from '../common/energy-calculation-api-service/energy-calculation-api-service';
 import {ResponseData} from '../common/response-data/response-data';
 import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
@@ -6,32 +6,43 @@ import {EnergySavingRecommendation} from './recommendation-card/energy-saving-re
 import {EnergyCalculationResponse} from '../common/energy-calculation-api-service/response/energy-calculation-response';
 import * as _ from 'lodash';
 import {EnergyCalculations} from './potentials/energy-calculations';
+import {LocalAuthorityService} from './local-authority-service/local-authority.service';
+import {LocalAuthorityResponse} from './local-authority-service/local-authority-response';
+import {Observable} from "rxjs/Rx";
+import {ResultsPageResponse} from './results-page-response';
 
 @Component({
-  selector: 'app-results-page',
-  templateUrl: './results-page.component.html',
-  styleUrls: ['./results-page.component.scss']
+    selector: 'app-results-page',
+    templateUrl: './results-page.component.html',
+    styleUrls: ['./results-page.component.scss']
 })
 export class ResultsPageComponent implements OnInit {
     recommendations: EnergySavingRecommendation[];
     energyCalculations: EnergyCalculations;
+    localAuthorityName: string;
     isLoading: boolean;
     isError: boolean;
 
-    constructor(
-        private responseData: ResponseData,
-        private energyCalculationApiService: EnergyCalculationApiService
-    ) {
+    constructor(private responseData: ResponseData,
+                private energyCalculationApiService: EnergyCalculationApiService,
+                private localAuthorityService: LocalAuthorityService) {
     }
 
     ngOnInit() {
         this.isLoading = true;
         this.isError = false;
-        this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData))
+        Observable.forkJoin(
+            this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
+            this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode),
+            (energyCalculation, localAuthority) => new ResultsPageResponse(energyCalculation, localAuthority)
+        )
             .subscribe(
-                response => this.handleEnergyCalculationResponse(response),
-                () => this.displayErrorMessage()
-            );
+                (response) => {
+                    this.handleEnergyCalculationResponse(response.energyCalculation);
+                    this.handleLocalAuthorityResponse(response.localAuthority);
+                },
+                () => this.displayErrorMessage(),
+                () => this.onLoadingComplete());
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
@@ -47,8 +58,16 @@ export class ResultsPageComponent implements OnInit {
         this.energyCalculations = new EnergyCalculations(response, potentialEnergyBillSavingPoundsPerYear);
     }
 
+    private handleLocalAuthorityResponse(response: LocalAuthorityResponse) {
+        this.localAuthorityName = response.display_name;
+    }
+
     private displayErrorMessage() {
         this.isLoading = false;
         this.isError = true;
+    }
+
+    private onLoadingComplete() {
+        this.isLoading = false;
     }
 }

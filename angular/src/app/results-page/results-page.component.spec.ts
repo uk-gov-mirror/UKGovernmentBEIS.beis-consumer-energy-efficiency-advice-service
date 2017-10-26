@@ -16,6 +16,9 @@ import {HomeType} from '../questionnaire/questionnaires/home-basics/questions/ho
 import {HomeAge} from '../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age';
 import {FlatPosition} from '../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position';
 import {FuelType} from '../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type';
+import {LocalAuthorityResponse} from './local-authority-service/local-authority-response';
+import {LocalAuthorityService} from './local-authority-service/local-authority.service';
+import {By} from "@angular/platform-browser";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -24,11 +27,20 @@ describe('ResultsPageComponent', () => {
     let mockEnergyCalculationApiService = {
         fetchEnergyCalculation: () => Observable.of(energyCalculationResponse)
     };
+    const localAuthorityCode = "E09000033";
+    const localAuthorityName = "Westminster";
+    let localAuthorityResponse: LocalAuthorityResponse = {
+        local_authority_code: localAuthorityCode,
+        display_name: localAuthorityName
+    };
+    let mockLocalAuthorityService = {
+        fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
+    };
 
     const responseData: ResponseData = {
         postcode: 'sw1h0et',
         epc: null,
-        localAuthorityCode: 'E09000033',
+        localAuthorityCode: localAuthorityCode,
         confirmEpc: true,
         homeType: HomeType.GroundFloorFlat,
         homeAge: HomeAge.pre1900,
@@ -41,14 +53,25 @@ describe('ResultsPageComponent', () => {
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {
-        let injectedService = getInjectedEnergyCalculationService();
-        injectedService.fetchEnergyCalculation = fetchEnergyCalculation;
-        spyOn(injectedService, 'fetchEnergyCalculation').and.callThrough();
+        let injectedEnergyCalcService = getInjectedEnergyCalculationService();
+        injectedEnergyCalcService.fetchEnergyCalculation = fetchEnergyCalculation;
+        spyOn(injectedEnergyCalcService, 'fetchEnergyCalculation').and.callThrough();
+        fixture.detectChanges();
+    }
+
+    function injectMockLocalAuthorityApiCallbackAndDetectChanges(fetchLocalAuthorityDetails: () => Observable<LocalAuthorityResponse>) {
+        let injectedLocalAuthorityService = getInjectedLocalAuthorityService();
+        injectedLocalAuthorityService.fetchLocalAuthorityDetails = fetchLocalAuthorityDetails;
+        spyOn(injectedLocalAuthorityService, 'fetchLocalAuthorityDetails').and.callThrough();
         fixture.detectChanges();
     }
 
     function getInjectedEnergyCalculationService() {
         return fixture.debugElement.injector.get(EnergyCalculationApiService);
+    }
+
+    function getInjectedLocalAuthorityService() {
+        return fixture.debugElement.injector.get(LocalAuthorityService);
     }
 
     beforeEach(async(() => {
@@ -63,7 +86,8 @@ describe('ResultsPageComponent', () => {
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
-                {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService }
+                {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService },
+                {provide: LocalAuthorityService, useValue: mockLocalAuthorityService}
             ]
         })
             .compileComponents();
@@ -130,5 +154,36 @@ describe('ResultsPageComponent', () => {
         expect(component.energyCalculations.currentEpcRating).toBe('B');
         expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(786);
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(1889);
+    });
+
+    it('should call local authority API service with code from response data', () => {
+        // when
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+
+        // then
+        expect(getInjectedLocalAuthorityService().fetchLocalAuthorityDetails).toHaveBeenCalled();
+        expect(getInjectedLocalAuthorityService().fetchLocalAuthorityDetails)
+            .toHaveBeenCalledWith(localAuthorityCode);
+    });
+
+    it('should display an error message if API responds with an error', () => {
+        // given
+        const errorResponse = ErrorObservable.create('some error text');
+
+        // when
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => errorResponse);
+
+        // then
+        expect(component.isLoading).toBeFalsy();
+        expect(component.isError).toBeTruthy();
+    });
+
+    it('should display correct local authority name', () => {
+        // when
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+
+        // then
+        const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .body-uppercase')).nativeElement;
+        expect(localAuthorityNameElement.innerText.toLowerCase()).toContain(localAuthorityName.toLowerCase());
     });
 });

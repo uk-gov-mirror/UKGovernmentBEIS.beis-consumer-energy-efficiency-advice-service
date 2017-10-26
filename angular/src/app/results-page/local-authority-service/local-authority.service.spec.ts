@@ -1,38 +1,30 @@
 import {async, getTestBed, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HttpRequest} from '@angular/common/http';
+import {LocalAuthorityService} from './local-authority.service';
+import {LocalAuthorityResponse} from './local-authority-response';
+import {WordpressApiService} from '../../common/wordpress-api-service/wordpress-api-service';
 
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
-import {EnergyCalculationApiService} from './energy-calculation-api-service';
-import {RdSapInput} from './request/rdsap-input';
-
-describe('EnergyCalculationApiService', () => {
+describe('LocalAuthorityService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
-    let service: EnergyCalculationApiService;
+    let service: LocalAuthorityService;
 
-    const rdSapInput: RdSapInput = {
-        property_type: "2",
-        built_form: "4",
-        flat_level: "1",
-        construction_date: "A",
-        num_storeys: 1,
-        num_bedrooms: 1,
-        heating_fuel: "26",
-        measures: "Y",
-        floor_area: undefined,
-        isMinimalDataSet: () => true
+    const localAuthorityCode = 'E09000033';
+    const mockApiResponse: LocalAuthorityResponse = {
+        local_authority_code: localAuthorityCode,
+        display_name: 'Westminster'
     };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [EnergyCalculationApiService,
+            providers: [LocalAuthorityService,
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
-        service = injector.get(EnergyCalculationApiService);
+        service = injector.get(LocalAuthorityService);
     });
 
     describe('#construct', () => {
@@ -41,22 +33,17 @@ describe('EnergyCalculationApiService', () => {
         });
     });
 
-    describe('#fetchEnergyCalculation', () => {
+    describe('#fetchLocalAuthorityDetails', () => {
 
         it('calls API and returns data correctly', async(() => {
-            // given
-            const mockApiResponse = require('assets/test/energy-calculation-response.json');
-
             // when
-            const actualResponse = service.fetchEnergyCalculation(rdSapInput).toPromise();
+            const actualResponse = service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
-            actualResponse.then((energyCalculationResponse) => {
-                // match data in 'assets/test/energy-calculation-response.json'
-                expect(energyCalculationResponse['Total-Energy-Consumption']).toBe(5990.53);
-                expect(energyCalculationResponse['Total-Lighting-Cost']).toBe(102.01);
-                expect(Object.keys(energyCalculationResponse.measures).length).toBe(13);
+            actualResponse.then((localAuthorityResponse) => {
+                expect(localAuthorityResponse.local_authority_code).toBe(localAuthorityCode);
+                expect(localAuthorityResponse.display_name).toBe(mockApiResponse.display_name);
             });
             httpMock.verify();
         }));
@@ -67,7 +54,7 @@ describe('EnergyCalculationApiService', () => {
             const expectedStatusText = 'bad request';
 
             // when
-            const actualResponse = service.fetchEnergyCalculation(rdSapInput).toPromise();
+            const actualResponse = service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
             httpMock.expectOne(matchesExpectedRequest)
                 .error(
                     new ErrorEvent('mock network error'),
@@ -86,10 +73,9 @@ describe('EnergyCalculationApiService', () => {
         }));
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
-            const matchesExpectedMethod = request.method === 'POST';
-            const matchesExpectedUrl = request.urlWithParams === 'angular-theme/v1/energy-calculation';
-            const matchesExpectedBody = request.body === rdSapInput;
-            return matchesExpectedMethod && matchesExpectedUrl && matchesExpectedBody;
+            const matchesExpectedMethod = request.method === 'GET';
+            const matchesExpectedUrl = request.urlWithParams === `angular-theme/v1/local-authority/${ localAuthorityCode }`;
+            return matchesExpectedMethod && matchesExpectedUrl;
         }
     });
 });
