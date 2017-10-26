@@ -3,6 +3,9 @@
 $recommendation-cards-per-row: 4;
 $recommendation-card-margin: 24px;
 
+$grant-cards-per-row: 4;
+$grant-card-margin: 24px;
+
 .results-page {
 
   width: 100%;
@@ -81,10 +84,10 @@ $recommendation-card-margin: 24px;
       justify-content: space-between;
 
       .grant-card {
-        flex: 1 0 1px;
-
-        &:not(:last-child) {
-          margin-right: 24px;
+        flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
+        margin-bottom: $grant-card-margin;
+        &:not(:nth-child(#{$grant-cards-per-row}n)) {
+          margin-right: $grant-card-margin;
         }
       }
     }

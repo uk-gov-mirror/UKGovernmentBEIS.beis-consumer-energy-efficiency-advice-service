@@ -7,7 +7,7 @@ import {EnergyCalculationResponse} from '../common/energy-calculation-api-servic
 import * as _ from 'lodash';
 import {EnergyCalculations} from './potentials/energy-calculations';
 import {LocalAuthorityService} from './local-authority-service/local-authority.service';
-import {LocalAuthorityResponse} from './local-authority-service/local-authority-response';
+import {GrantResponse, LocalAuthorityResponse} from './local-authority-service/local-authority-response';
 import {Observable} from "rxjs/Rx";
 
 @Component({
@@ -19,6 +19,7 @@ export class ResultsPageComponent implements OnInit {
     recommendations: EnergySavingRecommendation[];
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
+    availableGrants: GrantResponse[];
     isLoading: boolean;
     isError: boolean;
 
@@ -58,6 +59,7 @@ export class ResultsPageComponent implements OnInit {
 
     private handleLocalAuthorityResponse(response: LocalAuthorityResponse) {
         this.localAuthorityName = response.display_name;
+        this.availableGrants = response.grants;
     }
 
     private displayErrorMessage() {
