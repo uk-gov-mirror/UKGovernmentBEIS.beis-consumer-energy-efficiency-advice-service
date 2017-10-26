@@ -73,7 +73,7 @@ function setup_local_authority_acf_group() {
                     'type' => 'relationship',
                     'instructions' => 'The grants which are available in the local authority',
                     'required' => 1,
-                    'return_format' => 'object',
+                    'return_format' => 'id',
                     'post_type' => array (
                         0 => 'grant',
                     ),
