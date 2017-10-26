@@ -1,19 +1,21 @@
 // Global styling classes.
 
 @import "styles/mixins/font";
-
 @import './styles/mixins/buttons';
 
+@import "./styles/page";
 @import "./styles/icons";
+@import "./styles/logos";
 @import './styles/questionnaire';
 
 @import 'styles/_spinner';
 @import 'styles/_error';
 
 html, body {
-  width: calc(100vw - 32px);
+  width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: visible;
   font-family: $font-family;
+  margin: 0;
 }

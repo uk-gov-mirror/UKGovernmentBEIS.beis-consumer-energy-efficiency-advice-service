@@ -11,10 +11,11 @@ import {PageComponent} from './page/page.component';
 import {CalculatorComponent} from './calculator/calculator.component';
 import {PostcodeEpcComponent} from './postcode-epc/postcode-epc.component';
 import {OcrComponent} from './ocr/ocr.component';
-import {QuestionnaireModule} from "./questionnaire/questionnaire.module";
-import {CommonModule} from "./common/common.module";
-import {ResultsPageModule} from "./results-page/results-page.module";
+import {QuestionnaireModule} from './questionnaire/questionnaire.module';
+import {CommonModule} from './common/common.module';
+import {ResultsPageModule} from './results-page/results-page.module';
 import {ResponseSummaryComponent} from './response-summary/response-summary.component';
+import {HomePageModule} from './home-page/home-page.module';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,6 @@ import {ResponseSummaryComponent} from './response-summary/response-summary.comp
         PageComponent,
         CalculatorComponent,
         PostcodeEpcComponent,
-        OcrComponent,
         OcrComponent,
         ResponseSummaryComponent,
     ],
@@ -36,6 +36,7 @@ import {ResponseSummaryComponent} from './response-summary/response-summary.comp
         CommonModule.forRoot(),
         QuestionnaireModule.forRoot(),
         ResultsPageModule,
+        HomePageModule
     ],
     bootstrap: [AppComponent],
 })

@@ -1,0 +1,19 @@
+//noinspection CssUnknownTarget
+.logo-ehc::before {
+  content: url('/assets/images/logos/ehc.png');
+}
+
+//noinspection CssUnknownTarget
+.logo-gov-uk::before {
+  content: url('/assets/images/logos/gov-uk.png');
+}
+
+//noinspection CssUnknownTarget
+.logo-age-uk::before {
+  content: url('/assets/images/logos/age-uk.png');
+}
+
+//noinspection CssUnknownTarget
+.logo-ofgem::before {
+  content: url('/assets/images/logos/ofgem.png');
+}

@@ -77,3 +77,48 @@
 .icon-windows::before {
   content: url('assets/images/topics/windows.svg');
 }
+
+//noinspection CssUnknownTarget
+.icon-search::before {
+  content: url('assets/images/controls/search.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-phone::before {
+  content: url('assets/images/controls/phone.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-house-layers::before {
+  content: url('assets/images/icons/house-layers.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-timer::before {
+  content: url('assets/images/icons/timer.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-boiler::before {
+  content: url('assets/images/icons/boiler.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-video-play::before {
+  content: url('assets/images/page-type/video-play.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-infographic::before {
+  content: url('assets/images/page-type/infographic.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-checklist::before {
+  content: url('assets/images/page-type/checklist.svg');
+}
+
+//noinspection CssUnknownTarget
+.icon-grant::before {
+  content: url('assets/images/page-type/grant.svg');
+}

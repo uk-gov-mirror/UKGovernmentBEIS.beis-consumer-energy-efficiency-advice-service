@@ -9,8 +9,13 @@ import {ResponseSummaryComponent} from "./response-summary/response-summary.comp
 import {ResultsPageComponent} from "./results-page/results-page.component";
 import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
 import {ResultsPageRouteGuard} from './results-page/results-page-route-guard.service';
+import {HomePageComponent} from './home-page/home-page.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        component: HomePageComponent
+    },
     {
         path: 'calculator',
         component: CalculatorComponent

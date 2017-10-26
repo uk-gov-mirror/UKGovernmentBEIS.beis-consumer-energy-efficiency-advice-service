@@ -1,0 +1,41 @@
+.latest-news-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  height: 100%;
+  border: none;
+  outline: none;
+
+  .latest-news-icon-container {
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+  }
+
+  .heading, .read-more {
+    font-weight: bold;
+  }
+
+  .heading {
+    font-size: 16px;
+    padding: 20px 20px;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  .read-more {
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
