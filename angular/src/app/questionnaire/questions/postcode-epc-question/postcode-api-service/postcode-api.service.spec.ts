@@ -48,8 +48,7 @@ describe('PostcodeApiService', () => {
 
             // when
             const actualResponse = service.getPostcodeDetails(postcode).toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
-            request.flush(expectedResponse);
+            httpMock.expectOne(matchesExpectedRequest).flush(expectedResponse);
 
             // then
             actualResponse.then((response) => {

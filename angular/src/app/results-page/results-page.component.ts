@@ -9,7 +9,6 @@ import {EnergyCalculations} from './potentials/energy-calculations';
 import {LocalAuthorityService} from './local-authority-service/local-authority.service';
 import {LocalAuthorityResponse} from './local-authority-service/local-authority-response';
 import {Observable} from "rxjs/Rx";
-import {ResultsPageResponse} from './results-page-response';
 
 @Component({
     selector: 'app-results-page',
@@ -33,13 +32,12 @@ export class ResultsPageComponent implements OnInit {
         this.isError = false;
         Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
-            this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode),
-            (energyCalculation, localAuthority) => new ResultsPageResponse(energyCalculation, localAuthority)
+            this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
         )
             .subscribe(
-                (response) => {
-                    this.handleEnergyCalculationResponse(response.energyCalculation);
-                    this.handleLocalAuthorityResponse(response.localAuthority);
+                ([energyCalculation, localAuthority]) => {
+                    this.handleEnergyCalculationResponse(energyCalculation);
+                    this.handleLocalAuthorityResponse(localAuthority);
                 },
                 () => this.displayErrorMessage(),
                 () => this.onLoadingComplete());

@@ -14,7 +14,7 @@ export class PostcodeApiService {
     }
 
     getPostcodeDetails(postcode: string): Observable<PostcodeResponse> {
-        const postcodeWithoutSpaces = postcode.split(" ").join("");
+        const postcodeWithoutSpaces = postcode.replace(/ /g, '');
         const endpoint = PostcodeApiService.postcodeEndpoint + postcodeWithoutSpaces;
         return this.http.get(this.wordpressApiService.getFullApiEndpoint(endpoint));
     }

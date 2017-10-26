@@ -48,6 +48,20 @@ describe('LocalAuthorityService', () => {
             httpMock.verify();
         }));
 
+        it('does not call API on second call for same local authority', async(() => {
+            // given
+            const firstRequest = service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
+            httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
+
+            //when
+            firstRequest.then(() => {
+                service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
+
+                //then
+                httpMock.verify();
+            });
+        }));
+
         it('throws an error if API returns an error', async(() => {
             // given
             const expectedStatus = 400;
