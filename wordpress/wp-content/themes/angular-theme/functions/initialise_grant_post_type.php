@@ -1,45 +1,43 @@
-<?php include 'disable_quick_edit.php';
+<?php
 
-add_action( 'init', 'create_question_post_type' );
-add_action( 'init', 'setup_question_acf_group');
-// Disable the quick-edit link to prevent users editing the slug for a question
-add_filter( 'post_row_actions', disable_quick_edit_for('question'), 10, 2 );
+add_action( 'init', 'create_grant_post_type' );
+add_action( 'init', 'setup_grant_acf_group' );
 
-function create_question_post_type() {
+function create_grant_post_type() {
 
-    register_post_type( 'question',
+    register_post_type('grant',
         array(
             'labels'                => array(
-                'name' => __( 'Questions' ),
-                'singular_name' => __( 'Question' )
+                'name' => __( 'Grants' ),
+                'singular_name' => __( 'Grant' )
             ),
-            'description'           => 'Metadata for a question appearing in the questionnaire',
+            'description'           => 'Available energy-saving grants',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,
             'show_in_nav_menus'     => false,
             'show_ui'               => true,
             'show_in_menu'          => true,
             'show_in_rest'          => true,
-            'menu_icon'             => 'dashicons-editor-help',
+            'menu_icon'             => 'dashicons-money',
             'menu_position'         => 5,
             'supports'              => array('title', 'revisions')
         ));
 }
 
-function setup_question_acf_group() {
+function setup_grant_acf_group() {
 
     if(function_exists("register_field_group"))
     {
         register_field_group(array (
-            'id' => 'acf_question-metadata',
-            'title' => 'Question metadata',
+            'id' => 'acf_grant',
+            'title' => 'Grant',
             'fields' => array (
                 array (
-                    'key' => 'field_59e8be23eda3e',
-                    'label' => 'Question Heading',
-                    'name' => 'questionHeading',
-                    'instructions' => 'Appears at the top of the question page in the questionnaire (e.g. "What\'s your postcode?")',
+                    'key' => 'field_59f1e04695d2c',
+                    'label' => 'Display name',
+                    'name' => 'display_name',
                     'type' => 'text',
+                    'instructions' => 'Name to be displayed in the web app, e.g. \'Gold grant\'',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
@@ -49,11 +47,11 @@ function setup_question_acf_group() {
                     'maxlength' => '',
                 ),
                 array (
-                    'key' => 'field_59e8cfc09ab2a',
-                    'label' => 'Help Text',
-                    'name' => 'helpText',
+                    'key' => 'field_59f0c2758694e',
+                    'label' => 'Description',
+                    'name' => 'description',
                     'type' => 'text',
-                    'instructions' => 'Optional hint to user',
+                    'instructions' => 'A short description of the grant',
                     'default_value' => '',
                     'placeholder' => '',
                     'prepend' => '',
@@ -67,7 +65,7 @@ function setup_question_acf_group() {
                     array (
                         'param' => 'post_type',
                         'operator' => '==',
-                        'value' => 'question',
+                        'value' => 'grant',
                         'order_no' => 0,
                         'group_no' => 0,
                     ),
@@ -77,11 +75,10 @@ function setup_question_acf_group() {
                 'position' => 'normal',
                 'layout' => 'no_box',
                 'hide_on_screen' => array (
-                    0 => 'slug'
+                    0 => 'slug',
                 ),
             ),
             'menu_order' => 0,
         ));
     }
 }
-
