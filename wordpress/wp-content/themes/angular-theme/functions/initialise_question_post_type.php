@@ -1,4 +1,4 @@
-<?php require_once('disable_quick_edit.php');
+<?php require_once('post_type_functions.php');
 
 add_action( 'init', 'create_question_post_type' );
 add_action( 'init', 'setup_question_acf_group');
