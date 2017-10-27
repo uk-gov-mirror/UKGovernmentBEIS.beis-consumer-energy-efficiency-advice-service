@@ -7,23 +7,24 @@ import {Component, Renderer2, ViewChild} from '@angular/core';
 })
 export class HeaderComponent {
     isSearchBarFocussed: boolean = false;
-    deregisterFocusListener: () => void;
+    deregisterFocusOutListener: () => void;
 
     @ViewChild('searchContainer') searchContainer;
 
     constructor(private renderer: Renderer2) {
     }
 
-    handleSearchBoxFocussed() {
+    handleSearchBoxFocussed(): void {
         this.isSearchBarFocussed = true;
-        this.deregisterFocusListener = this.renderer.listen('window', 'focusin', event => this.handleBlurEvent(event));
+        this.deregisterFocusOutListener = this.renderer.listen('window', 'focusout', event => this.handleFocusOutEvent(event));
     }
 
-    handleBlurEvent(event) {
-        const isFocussedElementInSearchContainer = this.searchContainer.nativeElement.contains(event.target);
-        if (!isFocussedElementInSearchContainer) {
-            this.isSearchBarFocussed = false;
-            this.deregisterFocusListener();
+    handleFocusOutEvent(event): void {
+        const focussedElement = event.relatedTarget;
+        if (focussedElement && this.searchContainer.nativeElement.contains(focussedElement)) {
+            return;
         }
+        this.isSearchBarFocussed = false;
+        this.deregisterFocusOutListener();
     }
 }
