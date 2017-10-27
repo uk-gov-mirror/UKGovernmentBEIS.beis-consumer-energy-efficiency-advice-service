@@ -1,4 +1,4 @@
-import {EnergyCalculationResponse} from '../../common/energy-calculation-api-service/response/energy-calculation-response';
+import {EnergyCalculationResponse} from "../../common/energy-calculation-api-service/response/energy-calculation-response";
 
 export class EnergyCalculations {
     currentEnergyBillPoundsPerYear: number;
@@ -6,10 +6,8 @@ export class EnergyCalculations {
     currentEpcRating: string;
     potentialEpcRating: string;
 
-    constructor(
-        energyCalculationResponse: EnergyCalculationResponse,
-        potentialEnergyBillSavingPoundsPerYear: number
-    ) {
+    constructor(energyCalculationResponse: EnergyCalculationResponse,
+                potentialEnergyBillSavingPoundsPerYear: number) {
         this.currentEnergyBillPoundsPerYear = Math.round(
             energyCalculationResponse['Total-Lighting-Cost'] +
             energyCalculationResponse['Total-Heating-Cost'] +

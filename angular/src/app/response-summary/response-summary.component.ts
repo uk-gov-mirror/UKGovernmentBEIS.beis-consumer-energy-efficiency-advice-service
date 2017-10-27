@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 import {DisplayableResponseData, ResponseData} from "../common/response-data/response-data";
-import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
+import {RdSapInput} from "../common/energy-calculation-api-service/request/rdsap-input";
 
 @Component({
     selector: 'app-response-summary',

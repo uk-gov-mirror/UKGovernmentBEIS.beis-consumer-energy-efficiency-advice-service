@@ -1,25 +1,25 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {DebugElement} from "@angular/core";
 
-import { ResultsPageComponent } from './results-page.component';
+import {ResultsPageComponent} from "./results-page.component";
 import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {SuggestionCardComponent} from "./suggestion-card/suggestion-card.component";
-import {ResponseData} from '../common/response-data/response-data';
-import {EnergyCalculationResponse} from '../common/energy-calculation-api-service/response/energy-calculation-response';
+import {ResponseData} from "../common/response-data/response-data";
+import {EnergyCalculationResponse} from "../common/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculationApiService} from "../common/energy-calculation-api-service/energy-calculation-api-service";
 import {Observable} from "rxjs/Observable";
-import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
-import {HomeType} from '../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type';
-import {HomeAge} from '../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age';
-import {FlatPosition} from '../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position';
-import {FuelType} from '../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type';
-import {LocalAuthorityResponse} from './local-authority-service/local-authority-response';
-import {LocalAuthorityService} from './local-authority-service/local-authority.service';
+import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {RdSapInput} from "../common/energy-calculation-api-service/request/rdsap-input";
+import {HomeType} from "../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
+import {HomeAge} from "../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
+import {FlatPosition} from "../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position";
+import {FuelType} from "../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
+import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
+import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -92,7 +92,7 @@ describe('ResultsPageComponent', () => {
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
-                {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService },
+                {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
                 {provide: LocalAuthorityService, useValue: mockLocalAuthorityService}
             ]
         })

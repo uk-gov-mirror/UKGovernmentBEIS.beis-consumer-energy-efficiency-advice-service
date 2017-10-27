@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {GrantCardComponent} from './grant-card.component';
+import {GrantCardComponent} from "./grant-card.component";
 import {GrantResponse} from "../local-authority-service/local-authority-response";
 
 describe('GrantCardComponent', () => {
@@ -15,7 +15,7 @@ describe('GrantCardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ GrantCardComponent ]
+            declarations: [GrantCardComponent]
         })
             .compileComponents();
     }));

@@ -1,16 +1,16 @@
-import {ChangeDetectorRef, ComponentFactoryResolver} from '@angular/core';
-import {RouterTestingModule} from '@angular/router/testing';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {Observable} from 'rxjs/Observable';
-import {Router, ActivatedRoute} from "@angular/router";
+import {ChangeDetectorRef, ComponentFactoryResolver} from "@angular/core";
+import {RouterTestingModule} from "@angular/router/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
+import {Observable} from "rxjs/Observable";
+import {ActivatedRoute, Router} from "@angular/router";
 
-import {QuestionnaireComponent} from './questionnaire.component';
-import {QuestionnaireService} from './questionnaire.service';
-import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
-import {QuestionContentService} from '../common/question-content/question-content.service';
-import {AllQuestionsContent} from '../common/question-content/all-questions-content';
-import {QuestionType} from './question-type';
+import {QuestionnaireComponent} from "./questionnaire.component";
+import {QuestionnaireService} from "./questionnaire.service";
+import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
+import {QuestionContentService} from "../common/question-content/question-content.service";
+import {AllQuestionsContent} from "../common/question-content/all-questions-content";
+import {QuestionType} from "./question-type";
 import {QuestionBaseComponent} from "./base-question/question-base-component";
 import {QuestionMetadata} from "./base-question/question-metadata";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
@@ -31,12 +31,18 @@ describe('QuestionnaireComponent', () => {
     };
 
     class TestQuestionComponent extends QuestionBaseComponent<void> {
-        get response(): void { return null; }
-        set response(val: void) {}
+        get response(): void {
+            return null;
+        }
+
+        set response(val: void) {
+        }
     }
 
     class TestQuestion extends QuestionMetadata<void> {
-        hasBeenAnswered() { return false; }
+        hasBeenAnswered() {
+            return false;
+        }
     }
 
     class TestQuestionnaire extends Questionnaire {
@@ -91,7 +97,7 @@ describe('QuestionnaireComponent', () => {
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
             ],
         })
-        .compileComponents();
+            .compileComponents();
     }));
 
     beforeEach(() => {

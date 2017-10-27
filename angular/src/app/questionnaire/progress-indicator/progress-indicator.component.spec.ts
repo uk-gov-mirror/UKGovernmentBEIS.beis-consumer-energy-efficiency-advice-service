@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {ProgressIndicatorComponent} from './progress-indicator.component';
-import {QuestionType, QuestionTypeUtil} from '../question-type';
+import {ProgressIndicatorComponent} from "./progress-indicator.component";
+import {QuestionType, QuestionTypeUtil} from "../question-type";
 import {DebugElement} from "@angular/core/core";
-import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
+import {AllQuestionsContent} from "../../common/question-content/all-questions-content";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
 import {ResponseData} from "../../common/response-data/response-data";
 import {QuestionMetadata} from "../base-question/question-metadata";
@@ -16,25 +16,31 @@ describe('ProgressIndicatorComponent', () => {
     let availableQuestions: number[];
     const question1TitleText = 'Question 1 heading';
     let allQuestionsContent: AllQuestionsContent = {
-        question0: { questionHeading: 'Question 0 heading', helpText: 'Question 0 help text' },
-        question1: { questionHeading: question1TitleText, helpText: 'Question 1 help text' },
-        question2: { questionHeading: 'Question 2 heading', helpText: 'Question 2 help text' },
-        question3: { questionHeading: 'Question 3 heading', helpText: 'Question 3 help text' },
-        question4: { questionHeading: 'Question 4 heading', helpText: 'Question 4 help text' },
-        question5: { questionHeading: 'Question 5 heading', helpText: 'Question 5 help text' },
-        question6: { questionHeading: 'Question 6 heading', helpText: 'Question 6 help text' },
-        question7: { questionHeading: 'Question 7 heading', helpText: 'Question 7 help text' },
-        question8: { questionHeading: 'Question 8 heading', helpText: 'Question 8 help text' },
-        question9: { questionHeading: 'Question 9 heading', helpText: 'Question 9 help text' }
+        question0: {questionHeading: 'Question 0 heading', helpText: 'Question 0 help text'},
+        question1: {questionHeading: question1TitleText, helpText: 'Question 1 help text'},
+        question2: {questionHeading: 'Question 2 heading', helpText: 'Question 2 help text'},
+        question3: {questionHeading: 'Question 3 heading', helpText: 'Question 3 help text'},
+        question4: {questionHeading: 'Question 4 heading', helpText: 'Question 4 help text'},
+        question5: {questionHeading: 'Question 5 heading', helpText: 'Question 5 help text'},
+        question6: {questionHeading: 'Question 6 heading', helpText: 'Question 6 help text'},
+        question7: {questionHeading: 'Question 7 heading', helpText: 'Question 7 help text'},
+        question8: {questionHeading: 'Question 8 heading', helpText: 'Question 8 help text'},
+        question9: {questionHeading: 'Question 9 heading', helpText: 'Question 9 help text'}
     };
 
     class TestQuestionComponent extends QuestionBaseComponent<void> {
-        get response(): void { return null; }
-        set response(val: void) {}
+        get response(): void {
+            return null;
+        }
+
+        set response(val: void) {
+        }
     }
 
     class TestQuestion extends QuestionMetadata<void> {
-        hasBeenAnswered() { return false; }
+        hasBeenAnswered() {
+            return false;
+        }
     }
 
     class TestQuestionnaire extends Questionnaire {
@@ -58,6 +64,7 @@ describe('ProgressIndicatorComponent', () => {
         isAvailable(index) {
             return availableQuestions !== undefined && availableQuestions.includes(index);
         }
+
         isApplicable(index) {
             return true;
         }
@@ -65,7 +72,7 @@ describe('ProgressIndicatorComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ProgressIndicatorComponent ],
+            declarations: [ProgressIndicatorComponent],
         })
             .compileComponents();
     }));

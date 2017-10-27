@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input} from "@angular/core";
 import {GrantResponse} from "../local-authority-service/local-authority-response";
 
 @Component({

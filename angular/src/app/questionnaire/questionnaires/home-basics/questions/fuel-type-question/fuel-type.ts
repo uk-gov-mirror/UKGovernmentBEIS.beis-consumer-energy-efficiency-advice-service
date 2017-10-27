@@ -1,4 +1,4 @@
-import {Epc} from '../postcode-epc-question/model/epc';
+import {Epc} from "../postcode-epc-question/model/epc";
 export enum FuelType {
     Electricity,
     MainsGas,

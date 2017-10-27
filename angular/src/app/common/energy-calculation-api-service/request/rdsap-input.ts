@@ -1,10 +1,10 @@
-import {PropertyType} from './property-type';
-import {BuiltForm} from './built-form';
-import {FlatLevel} from './flat-level';
-import {ResponseData} from '../../response-data/response-data';
+import {PropertyType} from "./property-type";
+import {BuiltForm} from "./built-form";
+import {FlatLevel} from "./flat-level";
+import {ResponseData} from "../../response-data/response-data";
 import * as _ from "lodash";
 import {HomeType} from "../../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
-import {HomeAge} from '../../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age';
+import {HomeAge} from "../../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
 
 export class RdSapInput {

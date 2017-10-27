@@ -17,7 +17,8 @@
                     <span>It is a </span><span>{{homeTypeDescription}}</span>
                 </li>
                 <li class="epc-detail" *ngIf="numberHabitableRooms">
-                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span *ngIf="numberHabitableRooms !== 1">s</span>
+                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span
+                        *ngIf="numberHabitableRooms !== 1">s</span>
                 </li>
                 <li class="epc-detail" *ngIf="fuelTypeDescription">
                     <span>It is heated by </span><span>{{fuelTypeDescription}}</span>
@@ -38,7 +39,9 @@
                 <button class="confirm-epc-details-button" (click)="rejectEpcDetails()">No</button>
             </div>
             <div class="confirm-epc-details-row">
-                <button class="need-more-details-button" (click)="confirmEpcDetails()">Let's get a few more details to get a better picture.</button>
+                <button class="need-more-details-button" (click)="confirmEpcDetails()">Let's get a few more details to
+                    get a better picture.
+                </button>
             </div>
         </div>
     </div>
@@ -46,6 +49,8 @@
 <div class="question-component confirm-epc-question" *ngIf="!isEpcAvailable">
     <div class="need-more-details-container">
         <div>We couldn't find any details about energy efficiency at your property based on your postcode.</div>
-        <button class="need-more-details-button" (click)="rejectEpcDetails()">Let's get a few more details to get a better picture.</button>
+        <button class="need-more-details-button" (click)="rejectEpcDetails()">Let's get a few more details to get a
+            better picture.
+        </button>
     </div>
 </div>

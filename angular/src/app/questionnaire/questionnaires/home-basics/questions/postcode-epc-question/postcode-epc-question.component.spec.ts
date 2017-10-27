@@ -1,16 +1,16 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
-import {By} from '@angular/platform-browser';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/defer';
-import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {FormsModule} from "@angular/forms";
+import {By} from "@angular/platform-browser";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/observable/defer";
+import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 
-import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
-import {ResponseData} from '../../../../../common/response-data/response-data';
-import {Epc} from './model/epc';
+import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";
+import {ResponseData} from "../../../../../common/response-data/response-data";
+import {Epc} from "./model/epc";
 import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
-import {EpcApiService} from '../../../../questions/postcode-epc-question/epc-api-service/epc-api.service';
-import {PostcodeApiService} from '../../../../questions/postcode-epc-question/postcode-api-service/postcode-api.service';
+import {EpcApiService} from "../../../../questions/postcode-epc-question/epc-api-service/epc-api.service";
+import {PostcodeApiService} from "../../../../questions/postcode-epc-question/postcode-api-service/postcode-api.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -44,14 +44,14 @@ describe('PostcodeEpcQuestionComponent', () => {
             providers: [ResponseData]
         })
             .overrideComponent(PostcodeEpcQuestionComponent, {
-            set: {
-                providers: [
-                    {provide: FeatureFlagService, useValue: featureFlagServiceStub},
-                    {provide: EpcApiService, useValue: epcApiServiceStub},
-                    {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
-                ]
-            }
-        })
+                set: {
+                    providers: [
+                        {provide: FeatureFlagService, useValue: featureFlagServiceStub},
+                        {provide: EpcApiService, useValue: epcApiServiceStub},
+                        {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
+                    ]
+                }
+            })
             .compileComponents();
     }));
 
@@ -388,7 +388,10 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = 'W11AA';
             let injectedMockPostcodeApiService = fixture.debugElement.injector.get(PostcodeApiService);
-            injectedMockPostcodeApiService.getPostcodeDetails = () => ErrorObservable.create({status: 404, error: 'Postcode not found'});
+            injectedMockPostcodeApiService.getPostcodeDetails = () => ErrorObservable.create({
+                status: 404,
+                error: 'Postcode not found'
+            });
 
             // when
             component.lookupBasicPostcodeDetails();

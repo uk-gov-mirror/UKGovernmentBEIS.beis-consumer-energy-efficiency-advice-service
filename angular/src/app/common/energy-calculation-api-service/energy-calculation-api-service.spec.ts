@@ -1,10 +1,10 @@
-import {async, getTestBed, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {HttpRequest} from '@angular/common/http';
+import {async, getTestBed, TestBed} from "@angular/core/testing";
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {HttpRequest} from "@angular/common/http";
 
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
-import {EnergyCalculationApiService} from './energy-calculation-api-service';
-import {RdSapInput} from './request/rdsap-input';
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {EnergyCalculationApiService} from "./energy-calculation-api-service";
+import {RdSapInput} from "./request/rdsap-input";
 
 describe('EnergyCalculationApiService', () => {
     let httpMock: HttpTestingController;

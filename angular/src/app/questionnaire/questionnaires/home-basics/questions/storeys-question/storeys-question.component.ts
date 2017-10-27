@@ -1,6 +1,5 @@
 import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
 import {Component, OnInit} from "@angular/core";
-import {ResponseData} from "../../../../../common/response-data/response-data";
 
 @Component({
     selector: 'app-storeys-question',

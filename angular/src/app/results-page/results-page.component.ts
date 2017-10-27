@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {EnergyCalculationApiService} from '../common/energy-calculation-api-service/energy-calculation-api-service';
-import {ResponseData} from '../common/response-data/response-data';
-import {RdSapInput} from '../common/energy-calculation-api-service/request/rdsap-input';
-import {EnergySavingRecommendation} from './recommendation-card/energy-saving-recommendation';
-import {EnergyCalculationResponse} from '../common/energy-calculation-api-service/response/energy-calculation-response';
-import * as _ from 'lodash';
-import {EnergyCalculations} from './potentials/energy-calculations';
-import {LocalAuthorityService} from './local-authority-service/local-authority.service';
-import {GrantResponse, LocalAuthorityResponse} from './local-authority-service/local-authority-response';
+import {Component, OnInit} from "@angular/core";
+import {EnergyCalculationApiService} from "../common/energy-calculation-api-service/energy-calculation-api-service";
+import {ResponseData} from "../common/response-data/response-data";
+import {RdSapInput} from "../common/energy-calculation-api-service/request/rdsap-input";
+import {EnergySavingRecommendation} from "./recommendation-card/energy-saving-recommendation";
+import {EnergyCalculationResponse} from "../common/energy-calculation-api-service/response/energy-calculation-response";
+import * as _ from "lodash";
+import {EnergyCalculations} from "./potentials/energy-calculations";
+import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
+import {GrantResponse, LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {Observable} from "rxjs/Rx";
 
 @Component({

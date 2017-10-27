@@ -1,5 +1,5 @@
-import {QuestionContent} from './question-content';
-import {QuestionResponse} from './question-response';
+import {QuestionContent} from "./question-content";
+import {QuestionResponse} from "./question-response";
 
 export class AllQuestionsContent {
     [questionId: string]: QuestionContent

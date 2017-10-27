@@ -1,4 +1,4 @@
-import {FeatureFlagResponse} from './feature-flag-response';
+import {FeatureFlagResponse} from "./feature-flag-response";
 
 export type FeatureFlagName = 'fetch_epc_data';
 export type FeatureFlags = {[K in FeatureFlagName]?: boolean};

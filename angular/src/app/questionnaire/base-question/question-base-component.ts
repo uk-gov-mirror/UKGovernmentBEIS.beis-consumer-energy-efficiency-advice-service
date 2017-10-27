@@ -1,5 +1,5 @@
-import {Input, Output, HostBinding, EventEmitter, Inject} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
+import {EventEmitter, HostBinding, Inject, Input, Output} from "@angular/core";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ResponseData} from "../../common/response-data/response-data";
 
 export type SlideInFrom = 'none' | 'left' | 'right';

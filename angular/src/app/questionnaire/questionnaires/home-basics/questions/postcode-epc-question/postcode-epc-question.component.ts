@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import 'rxjs/add/operator/map';
+import {Component, OnInit} from "@angular/core";
+import "rxjs/add/operator/map";
 
-import {Epc} from './model/epc';
-import {EpcParserService} from './epc-parser-service/epc-parser.service';
-import {QuestionBaseComponent, slideInOutAnimation} from '../../../../base-question/question-base-component';
-import {PostcodeEpc} from './model/postcode-epc';
+import {Epc} from "./model/epc";
+import {EpcParserService} from "./epc-parser-service/epc-parser.service";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
+import {PostcodeEpc} from "./model/postcode-epc";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
-import {EpcApiService} from '../../../../questions/postcode-epc-question/epc-api-service/epc-api.service';
-import {PostcodeApiService} from '../../../../questions/postcode-epc-question/postcode-api-service/postcode-api.service';
-import {PostcodeResponse} from '../../../../questions/postcode-epc-question/model/response/postcode/postcode-response';
-import {PostcodeErrorResponse} from '../../../../questions/postcode-epc-question/model/response/postcode/postcode-error-response';
+import {EpcApiService} from "../../../../questions/postcode-epc-question/epc-api-service/epc-api.service";
+import {PostcodeApiService} from "../../../../questions/postcode-epc-question/postcode-api-service/postcode-api.service";
+import {PostcodeResponse} from "../../../../questions/postcode-epc-question/model/response/postcode/postcode-response";
+import {PostcodeErrorResponse} from "../../../../questions/postcode-epc-question/model/response/postcode/postcode-error-response";
 
 @Component({
     selector: 'app-postcode-epc-question',

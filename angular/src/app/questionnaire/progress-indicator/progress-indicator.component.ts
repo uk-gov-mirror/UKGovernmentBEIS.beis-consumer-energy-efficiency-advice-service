@@ -1,8 +1,7 @@
 import * as _ from "lodash";
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {QuestionnaireService} from "../questionnaire.service";
 import {QuestionType, QuestionTypeUtil} from "../question-type";
-import {AllQuestionsContent} from '../../common/question-content/all-questions-content';
+import {AllQuestionsContent} from "../../common/question-content/all-questions-content";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
 
 @Component({
@@ -59,7 +58,7 @@ export class ProgressIndicatorComponent implements OnInit {
     getTitleText(questionStep: QuestionStep) {
         const questionHeadingIfApplicable = questionStep.questionHeading ? `Go to ${questionStep.questionHeading}` : '';
         return this.isApplicable(questionStep.questionIndex) ?
-             questionHeadingIfApplicable :
+            questionHeadingIfApplicable :
             'This question is not applicable to your home';
     }
 

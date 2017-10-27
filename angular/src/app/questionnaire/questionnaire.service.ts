@@ -4,7 +4,7 @@ import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-
 
 @Injectable()
 export class QuestionnaireService {
-    private readonly questionnaires: {[s: string]: Questionnaire};
+    private readonly questionnaires: { [s: string]: Questionnaire };
 
     constructor(homeBasicsQuestionnaire: HomeBasicsQuestionnaire) {
         this.questionnaires = {'home-basics': homeBasicsQuestionnaire};

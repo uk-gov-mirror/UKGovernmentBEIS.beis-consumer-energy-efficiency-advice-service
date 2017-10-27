@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {HomeTypeQuestionComponent} from './home-type-question.component';
+import {HomeTypeQuestionComponent} from "./home-type-question.component";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 import {HomeType} from "./home-type";
 
@@ -11,10 +11,10 @@ describe('HomeTypeQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HomeTypeQuestionComponent ],
+            declarations: [HomeTypeQuestionComponent],
             providers: [ResponseData]
         })
-        .compileComponents();
+            .compileComponents();
     }));
 
     beforeEach(() => {

@@ -1,11 +1,10 @@
-import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {async, getTestBed, TestBed} from "@angular/core/testing";
 
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {WordpressApiService} from '../../../../common/wordpress-api-service/wordpress-api-service';
-import {EpcsResponse} from '../model/response/epc/epcs-response';
-import {HttpRequest} from '@angular/common/http';
-import {PostcodeApiService} from './postcode-api.service';
-import {PostcodeResponse} from '../model/response/postcode/postcode-response';
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {WordpressApiService} from "../../../../common/wordpress-api-service/wordpress-api-service";
+import {HttpRequest} from "@angular/common/http";
+import {PostcodeApiService} from "./postcode-api.service";
+import {PostcodeResponse} from "../model/response/postcode/postcode-response";
 
 describe('PostcodeApiService', () => {
     let httpMock: HttpTestingController;

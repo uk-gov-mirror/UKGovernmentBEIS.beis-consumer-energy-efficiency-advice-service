@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Questionnaire} from '../../base-questionnaire/questionnaire';
+import {Injectable} from "@angular/core";
+import {Questionnaire} from "../../base-questionnaire/questionnaire";
 import {ResponseData} from "../../../common/response-data/response-data";
 import {PostcodeEpcQuestionMetadata} from "./questions/postcode-epc-question/postcode-epc-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "./questions/confirm-epc-question/confirm-epc-question-metadata";

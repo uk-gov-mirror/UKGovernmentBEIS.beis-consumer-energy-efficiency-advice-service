@@ -1,9 +1,9 @@
-import {async, getTestBed, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {HttpRequest} from '@angular/common/http';
-import {LocalAuthorityService} from './local-authority.service';
-import {LocalAuthorityResponse} from './local-authority-response';
-import {WordpressApiService} from '../../common/wordpress-api-service/wordpress-api-service';
+import {async, getTestBed, TestBed} from "@angular/core/testing";
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {HttpRequest} from "@angular/common/http";
+import {LocalAuthorityService} from "./local-authority.service";
+import {LocalAuthorityResponse} from "./local-authority-response";
+import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-api-service";
 
 describe('LocalAuthorityService', () => {
     let httpMock: HttpTestingController;

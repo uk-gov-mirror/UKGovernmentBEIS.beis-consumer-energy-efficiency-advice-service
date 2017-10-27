@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {RecommendationCardComponent} from './recommendation-card.component';
-import {EnergySavingRecommendation} from './energy-saving-recommendation';
+import {RecommendationCardComponent} from "./recommendation-card.component";
+import {EnergySavingRecommendation} from "./energy-saving-recommendation";
 
 describe('RecommendationCardComponent', () => {
     let component: RecommendationCardComponent;

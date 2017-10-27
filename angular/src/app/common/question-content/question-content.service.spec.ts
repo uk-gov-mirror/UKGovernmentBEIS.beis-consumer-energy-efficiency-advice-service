@@ -1,9 +1,9 @@
-import {TestBed, getTestBed, async} from "@angular/core/testing";
+import {async, getTestBed, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpRequest} from "@angular/common/http";
 
-import {QuestionContentService} from './question-content.service';
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import {QuestionContentService} from "./question-content.service";
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
 
 describe('QuestionContentService', () => {
     let httpMock: HttpTestingController;
@@ -13,7 +13,7 @@ describe('QuestionContentService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [QuestionContentService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}} ],
+                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();

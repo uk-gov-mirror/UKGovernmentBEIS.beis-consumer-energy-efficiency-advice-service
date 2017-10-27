@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Epc} from '../../questionnaire/questionnaires/home-basics/questions/postcode-epc-question/model/epc';
+import {Epc} from "../../questionnaire/questionnaires/home-basics/questions/postcode-epc-question/model/epc";
 import {FuelType} from "../../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../../questionnaire/questionnaires/home-basics/questions/electricity-tariff-question/electricity-tariff";
 import {FlatPosition} from "../../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position";
 import {HomeAge} from "../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
 import {HomeType} from "../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
-import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
+import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 
 interface ResponseDataShape {
     postcode: any;
@@ -45,20 +45,18 @@ export class ResponseData implements ResponseDataShape {
 // This class therefore is of the same shape as ResponseData, but transforms certain
 // values into forms which will display correctly.
 export class DisplayableResponseData implements ResponseDataShape {
-    constructor(
-        public postcode: string,
-        public epc: Epc,
-        public localAuthorityCode: string,
-        public confirmEpc: boolean,
-        public homeType: string,
-        public homeAge: string,
-        public flatPosition: string,
-        public numberOfStoreys: number,
-        public numberOfBedrooms: number,
-        public fuelType: string,
-        public condensingBoiler: boolean,
-        public electricityTariff: string
-    ) {
+    constructor(public postcode: string,
+                public epc: Epc,
+                public localAuthorityCode: string,
+                public confirmEpc: boolean,
+                public homeType: string,
+                public homeAge: string,
+                public flatPosition: string,
+                public numberOfStoreys: number,
+                public numberOfBedrooms: number,
+                public fuelType: string,
+                public condensingBoiler: boolean,
+                public electricityTariff: string) {
     }
 
     static fromResponseData(responseData: ResponseData): DisplayableResponseData {

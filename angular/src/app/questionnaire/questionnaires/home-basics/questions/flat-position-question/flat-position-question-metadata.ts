@@ -1,9 +1,9 @@
-import {QuestionMetadata} from '../../../../base-question/question-metadata';
-import {FlatPositionQuestionComponent} from './flat-position-question.component';
-import {FlatPosition} from './flat-position';
-import {ResponseData} from '../../../../../common/response-data/response-data';
-import {isFlat} from '../home-type-question/home-type';
-import {QuestionType} from '../../../../question-type';
+import {QuestionMetadata} from "../../../../base-question/question-metadata";
+import {FlatPositionQuestionComponent} from "./flat-position-question.component";
+import {FlatPosition} from "./flat-position";
+import {ResponseData} from "../../../../../common/response-data/response-data";
+import {isFlat} from "../home-type-question/home-type";
+import {QuestionType} from "../../../../question-type";
 
 export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition> {
     constructor() {

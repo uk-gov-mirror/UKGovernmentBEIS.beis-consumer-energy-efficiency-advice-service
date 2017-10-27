@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {FlatPositionQuestionComponent} from './flat-position-question.component';
+import {FlatPositionQuestionComponent} from "./flat-position-question.component";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 import {FlatPosition} from "./flat-position";
 
@@ -11,10 +11,10 @@ describe('FlatPositionQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ FlatPositionQuestionComponent ],
+            declarations: [FlatPositionQuestionComponent],
             providers: [ResponseData]
         })
-        .compileComponents();
+            .compileComponents();
     }));
 
     beforeEach(() => {

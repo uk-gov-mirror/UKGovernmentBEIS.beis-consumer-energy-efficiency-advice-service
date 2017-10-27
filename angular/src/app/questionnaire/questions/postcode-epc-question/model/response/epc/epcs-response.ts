@@ -1,4 +1,4 @@
-import {EpcResponse} from './epc-response';
+import {EpcResponse} from "./epc-response";
 
 export interface EpcsResponse {
     'column-names': string[];

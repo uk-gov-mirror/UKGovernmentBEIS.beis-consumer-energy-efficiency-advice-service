@@ -1,5 +1,5 @@
-import {EpcRating} from './epc-rating';
-import {EpcResponse} from '../../../../../questions/postcode-epc-question/model/response/epc/epc-response';
+import {EpcRating} from "./epc-rating";
+import {EpcResponse} from "../../../../../questions/postcode-epc-question/model/response/epc/epc-response";
 
 export class Epc {
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data

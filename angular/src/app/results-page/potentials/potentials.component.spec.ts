@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {PotentialsComponent} from './potentials.component';
-import {EnergyCalculations} from './energy-calculations';
+import {PotentialsComponent} from "./potentials.component";
+import {EnergyCalculations} from "./energy-calculations";
 import {By} from "@angular/platform-browser";
 
 describe('PotentialsComponent', () => {

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {WordpressApiService} from '../../common/wordpress-api-service/wordpress-api-service';
-import {LocalAuthorityResponse} from './local-authority-response';
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
+import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-api-service";
+import {LocalAuthorityResponse} from "./local-authority-response";
 
 @Injectable()
 export class LocalAuthorityService {

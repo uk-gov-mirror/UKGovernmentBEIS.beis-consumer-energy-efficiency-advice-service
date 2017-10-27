@@ -1,6 +1,7 @@
 <div class="home-age-question">
     <div #timeline class="home-age-timeline">
-        <div #option class="home-age-option" *ngFor="let homeAgeOption of homeAgeOptions" (click)="selectResponse(homeAgeOption.value)">
+        <div #option class="home-age-option" *ngFor="let homeAgeOption of homeAgeOptions"
+             (click)="selectResponse(homeAgeOption.value)">
             <div class="home-age-timeline-section"></div>
             <button class="home-age-option-button">{{homeAgeOption.name}}</button>
         </div>

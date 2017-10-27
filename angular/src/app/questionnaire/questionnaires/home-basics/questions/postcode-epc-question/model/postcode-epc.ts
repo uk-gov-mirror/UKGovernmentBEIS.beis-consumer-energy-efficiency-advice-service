@@ -1,4 +1,4 @@
-import {Epc} from './epc';
+import {Epc} from "./epc";
 
 export interface PostcodeEpc {
     epc: Epc;

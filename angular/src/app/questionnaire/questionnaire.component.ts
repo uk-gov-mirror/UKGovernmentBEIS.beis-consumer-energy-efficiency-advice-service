@@ -1,12 +1,12 @@
-import {OnInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {QuestionDirective} from './question.directive';
-import {QuestionTypeUtil} from './question-type';
-import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
-import {AllQuestionsContent} from '../common/question-content/all-questions-content';
-import {QuestionContent} from '../common/question-content/question-content';
-import {QuestionContentService} from '../common/question-content/question-content.service';
+import {ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild} from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
+import {QuestionDirective} from "./question.directive";
+import {QuestionTypeUtil} from "./question-type";
+import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
+import {AllQuestionsContent} from "../common/question-content/all-questions-content";
+import {QuestionContent} from "../common/question-content/question-content";
+import {QuestionContentService} from "../common/question-content/question-content.service";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 
@@ -96,7 +96,7 @@ export class QuestionnaireComponent implements OnInit {
 
     canGoForwards() {
         return this.nextQuestionExists() &&
-               this.questionnaire.hasBeenAnswered(this.currentQuestionIndex);
+            this.questionnaire.hasBeenAnswered(this.currentQuestionIndex);
     }
 
     goBackOneQuestion() {
