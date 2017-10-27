@@ -1,4 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from "@angular/platform-browser";
+import {DebugElement} from "@angular/core";
 
 import { ResultsPageComponent } from './results-page.component';
 import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";
@@ -18,7 +20,6 @@ import {FlatPosition} from '../questionnaire/questionnaires/home-basics/question
 import {FuelType} from '../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type';
 import {LocalAuthorityResponse} from './local-authority-service/local-authority-response';
 import {LocalAuthorityService} from './local-authority-service/local-authority.service';
-import {By} from "@angular/platform-browser";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -29,9 +30,14 @@ describe('ResultsPageComponent', () => {
     };
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
-    let localAuthorityResponse: LocalAuthorityResponse = {
+    const localAuthorityResponse: LocalAuthorityResponse = {
         local_authority_code: localAuthorityCode,
-        display_name: localAuthorityName
+        display_name: localAuthorityName,
+        grants: [
+            {display_name: 'Grant 1', description: 'Grant 1'},
+            {display_name: 'Grant 2', description: 'Grant 2'},
+            {display_name: 'Grant 3', description: 'Grant 3'},
+        ]
     };
     let mockLocalAuthorityService = {
         fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
@@ -128,10 +134,17 @@ describe('ResultsPageComponent', () => {
     it('should display all recommendations', () => {
         // when
         injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        const expectedMeasures = Object.values(energyCalculationResponse.measures)
+            .map(measure => [measure.cost_saving, measure.energy_saving]);
 
         // then
-        // match data in assets/test/energy-calculation-response.json
-        expect(component.recommendations.length).toBe(13);
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
+        const actualMeasures = recommendationElements
+            .map(el => el.componentInstance.recommendation)
+            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
+
+        expect(actualMeasures.length).toBe(expectedMeasures.length);
+        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
     });
 
     it('should sort recommendations by cost saving descending', () => {
@@ -185,5 +198,14 @@ describe('ResultsPageComponent', () => {
         // then
         const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .body-uppercase')).nativeElement;
         expect(localAuthorityNameElement.innerText.toLowerCase()).toContain(localAuthorityName.toLowerCase());
+    });
+
+    it('should display all grants', () => {
+        // when
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+
+        // then
+        const grantElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
+        expect(grantElements.map(el => el.componentInstance.grant)).toEqual(localAuthorityResponse.grants);
     });
 });

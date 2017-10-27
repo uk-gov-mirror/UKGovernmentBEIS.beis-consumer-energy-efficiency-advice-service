@@ -13,7 +13,12 @@ describe('LocalAuthorityService', () => {
     const localAuthorityCode = 'E09000033';
     const mockApiResponse: LocalAuthorityResponse = {
         local_authority_code: localAuthorityCode,
-        display_name: 'Westminster'
+        display_name: 'Westminster',
+        grants: [
+            {display_name: 'Grant 1', description: 'Grant 1'},
+            {display_name: 'Grant 2', description: 'Grant 2'},
+            {display_name: 'Grant 3', description: 'Grant 3'},
+        ]
     };
 
     beforeEach(() => {
@@ -44,6 +49,7 @@ describe('LocalAuthorityService', () => {
             actualResponse.then((localAuthorityResponse) => {
                 expect(localAuthorityResponse.local_authority_code).toBe(localAuthorityCode);
                 expect(localAuthorityResponse.display_name).toBe(mockApiResponse.display_name);
+                expect(localAuthorityResponse.grants).toBe(mockApiResponse.grants);
             });
             httpMock.verify();
         }));

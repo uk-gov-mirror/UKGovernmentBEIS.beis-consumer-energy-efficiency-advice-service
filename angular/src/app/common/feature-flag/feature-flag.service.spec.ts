@@ -41,7 +41,6 @@ describe('FeatureFlagService', () => {
             // then
             actualResponse.then((featureFlags) => {
                 // match data in 'assets/test/feature-flags-response.json'
-                console.log(featureFlags);
                 expect(Object.keys(featureFlags).length).toBe(1);
                 expect(featureFlags.fetch_epc_data).toBeTruthy();
             });
