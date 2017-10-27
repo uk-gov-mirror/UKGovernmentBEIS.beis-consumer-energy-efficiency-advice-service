@@ -20,7 +20,7 @@ function post_energy_calculation_request(WP_REST_Request $request)
         'body' => $body
     );
     $url ='https://uat.brewebserv.com/bemapi/energy_use';
-    return response_body_or_else_error(wp_remote_get($url, $args), 'ENERGY_CALCULATION_API_ERROR');
+    return response_body_or_else_error(wp_remote_post($url, $args), 'ENERGY_CALCULATION_API_ERROR');
 }
 
 function get_energy_calculation_auth_header()
