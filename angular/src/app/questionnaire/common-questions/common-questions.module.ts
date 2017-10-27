@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {NumberQuestionComponent} from "./number-question/number-question.component";
+import {NumberQuestionComponent} from './number-question/number-question.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -11,7 +11,7 @@ import {NumberQuestionComponent} from "./number-question/number-question.compone
         NumberQuestionComponent
     ],
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule,
     ],
 })

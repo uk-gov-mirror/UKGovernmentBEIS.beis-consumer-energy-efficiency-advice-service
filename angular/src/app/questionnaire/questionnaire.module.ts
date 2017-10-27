@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {QuestionnaireComponent} from './questionnaire.component';
@@ -19,7 +19,7 @@ import {QuestionnaireGuard} from "./questionnaires/questionnaire.guard";
         QuestionnaireComponent,
     ],
     imports: [
-        BrowserModule,
+        CommonModule,
         BrowserAnimationsModule,
         HomeBasicsQuestionnaireModule,
     ]

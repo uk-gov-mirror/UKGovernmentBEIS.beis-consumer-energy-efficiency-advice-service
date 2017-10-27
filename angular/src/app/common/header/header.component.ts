@@ -6,7 +6,7 @@ import {Component, Renderer2, ViewChild} from '@angular/core';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    isSearchBarFocussed: boolean = false;
+    shouldDisplayExpandedSearchBar: boolean = false;
     deregisterFocusOutListener: () => void;
 
     @ViewChild('searchContainer') searchContainer;
@@ -15,16 +15,21 @@ export class HeaderComponent {
     }
 
     handleSearchBoxFocussed(): void {
-        this.isSearchBarFocussed = true;
-        this.deregisterFocusOutListener = this.renderer.listen('window', 'focusout', event => this.handleFocusOutEvent(event));
+        this.shouldDisplayExpandedSearchBar = true;
+        this.deregisterFocusOutListener = this.renderer.listen('window', 'focusout', event => this.handleFocusChange(event));
     }
 
-    handleFocusOutEvent(event): void {
-        const focussedElement = event.relatedTarget;
-        if (focussedElement && this.searchContainer.nativeElement.contains(focussedElement)) {
+    // For accessibility it should be possible to focus the links in the expanded search container by pressing tab.
+    // So when the search input is defocussed, we don't want to hide the expanded search container if the focus has moved
+    // to one of the links within the search container. But we do want to minimise the search container when focus moves outside it.
+    handleFocusChange(event): void {
+        const newFocussedElement = event.relatedTarget;
+        const isFocusStillInsideExpandedSearchContainer = newFocussedElement &&
+            this.searchContainer.nativeElement.contains(newFocussedElement);
+        if (isFocusStillInsideExpandedSearchContainer) {
             return;
         }
-        this.isSearchBarFocussed = false;
+        this.shouldDisplayExpandedSearchBar = false;
         this.deregisterFocusOutListener();
     }
 }

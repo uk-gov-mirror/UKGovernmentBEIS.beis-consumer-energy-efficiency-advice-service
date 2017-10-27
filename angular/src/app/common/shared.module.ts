@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
+import {CommonModule} from "@angular/common";
 
-import {TimesPipe} from "./times/times.pipe";
-import {QuestionContentService} from "./question-content/question-content.service";
-import {WordpressApiService} from "./wordpress-api-service/wordpress-api-service";
-import {ResponseData} from "./response-data/response-data";
-import {FeatureFlagService} from "./feature-flag/feature-flag.service";
+import {TimesPipe} from './times/times.pipe';
+import {QuestionContentService} from './question-content/question-content.service';
+import {WordpressApiService} from './wordpress-api-service/wordpress-api-service';
+import {ResponseData} from './response-data/response-data';
+import {FeatureFlagService} from './feature-flag/feature-flag.service';
 import {EnergyCalculationApiService} from './energy-calculation-api-service/energy-calculation-api-service';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
@@ -29,13 +29,13 @@ import {RoutingModule} from '../app-routing.module';
     imports: [
         HttpClientModule,
         RoutingModule,
-        BrowserModule
+        CommonModule
     ],
 })
-export class CommonModule {
+export class SharedModule {
     static forRoot() {
         return {
-            ngModule: CommonModule,
+            ngModule: SharedModule,
             providers: [
                 QuestionContentService,
                 WordpressApiService,

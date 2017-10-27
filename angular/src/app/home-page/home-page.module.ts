@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {CommonModule} from "@angular/common";
 
 import {HomePageComponent} from './home-page.component';
 import {LatestNewsCardComponent} from './latest-news-card/latest-news-card.component';
-import {CommonModule} from '../common/common.module';
+import {SharedModule} from '../common/shared.module';
 import {RoutingModule} from '../app-routing.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import {RoutingModule} from '../app-routing.module';
         HomePageComponent
     ],
     imports: [
-        BrowserModule,
-        CommonModule.forRoot(),
+        SharedModule,
+        CommonModule,
         RoutingModule
     ]
 })
