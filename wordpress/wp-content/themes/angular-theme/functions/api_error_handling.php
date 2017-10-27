@@ -5,7 +5,7 @@ function response_body_or_else_error($response, $error_code = 'ERROR') {
     if (!empty($responseCode) && $responseCode != 200) {
         $responseBody = json_decode(wp_remote_retrieve_body($response));
         return new WP_Error(
-            'POSTCODE_API_ERROR',
+            $error_code,
             $responseBody->error,
             array(
                 'status' => $responseCode
