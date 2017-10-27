@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {GrantResponse} from "../local-authority-service/local-authority-response";
 
 @Component({
     selector: 'app-grant-card',
@@ -6,6 +7,5 @@ import {Component, Input} from '@angular/core';
     styleUrls: ['./grant-card.component.scss']
 })
 export class GrantCardComponent {
-    @Input() title: string;
-    @Input() description: string;
+    @Input() grant: GrantResponse;
 }

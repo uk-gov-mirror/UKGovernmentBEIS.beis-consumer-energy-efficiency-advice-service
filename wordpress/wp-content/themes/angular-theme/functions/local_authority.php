@@ -10,7 +10,9 @@ function get_local_authority(WP_REST_Request $request)
         'meta_value'     => $request['ons_code']
     ));
     if (count($matching_posts) > 0) {
-        return get_fields($matching_posts[0]->ID);
+        $local_authority = get_fields($matching_posts[0]->ID);
+        $local_authority['grants'] = array_map('get_fields', $local_authority['grants']);
+        return $local_authority;
     }
     return new WP_Error(
         'local_authority_not_found',
