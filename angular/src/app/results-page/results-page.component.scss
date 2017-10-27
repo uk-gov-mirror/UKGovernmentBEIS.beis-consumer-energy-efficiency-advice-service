@@ -78,6 +78,7 @@ $grant-card-margin: 24px;
   .grants {
     .grant-cards {
       margin-top: 32px;
+      flex-wrap: wrap;
 
       display: flex;
       align-items: stretch;
