@@ -2,10 +2,14 @@
 
 add_action('init', 'create_feature_flag_post_type');
 add_action('init', 'setup_feature_flag_acf_group');
+
 // Disable the quick-edit link to prevent users editing the slug for a feature flag
 add_filter( 'post_row_actions', disable_quick_edit_for('feature_flag'), 10, 2 );
 
-function create_feature_flag_post_type() {
+// Add slug to returned ACF fields
+add_filter('acf/rest_api/feature_flag/get_items', 'add_slug');
+
+function create_feature_flag_posttype() {
 
     register_post_type( 'feature_flag',
         array(

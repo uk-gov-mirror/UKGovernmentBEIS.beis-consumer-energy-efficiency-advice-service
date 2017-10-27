@@ -1,4 +1,5 @@
 <?php
+require_once('functions/post_type_functions.php');
 
 require_once("functions/analytics.php");
 require_once("functions/epc.php");

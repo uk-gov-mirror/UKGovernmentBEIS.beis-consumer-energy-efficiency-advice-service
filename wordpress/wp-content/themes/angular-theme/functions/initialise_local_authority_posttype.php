@@ -1,49 +1,49 @@
 <?php
 
-add_action( 'init', 'create_question_post_type' );
-add_action( 'init', 'setup_question_acf_group');
+add_action( 'init', 'create_local_authority_posttype' );
+add_action( 'init', 'setup_local_authority_acf_group');
 
-// Disable the quick-edit link to prevent users editing the slug for a question
-add_filter( 'post_row_actions', disable_quick_edit_for('question'), 10, 2 );
+function create_local_authority_posttype() {
 
-// Add slug to returned ACF fields
-add_filter('acf/rest_api/question/get_items', 'add_slug');
-
-function create_question_posttype() {
-
-    register_post_type( 'question',
+    register_post_type('local_authority',
         array(
             'labels'                => array(
-                'name' => __( 'Questions' ),
-                'singular_name' => __( 'Question' )
+                'name' => __( 'Local Authorities' ),
+                'singular_name' => __( 'Local Authority' )
             ),
-            'description'           => 'Metadata for a question appearing in the questionnaire',
+            'description'           => 'Local Authority codes and grants',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,
             'show_in_nav_menus'     => false,
             'show_ui'               => true,
             'show_in_menu'          => true,
             'show_in_rest'          => true,
-            'menu_icon'             => 'dashicons-editor-help',
+            'menu_icon'             => 'dashicons-location',
             'menu_position'         => 5,
             'supports'              => array('title', 'revisions')
         ));
 }
 
-function setup_question_acf_group() {
+function setup_local_authority_acf_group() {
 
     if(function_exists("register_field_group"))
     {
         register_field_group(array (
-            'id' => 'acf_question-metadata',
-            'title' => 'Question metadata',
+            'id' => 'acf_local-authority',
+            'title' => 'Local Authority',
             'fields' => array (
                 array (
-                    'key' => 'field_59e8be23eda3e',
-                    'label' => 'Question Heading',
-                    'name' => 'questionHeading',
-                    'instructions' => 'Appears at the top of the question page in the questionnaire (e.g. "What\'s your postcode?")',
+                    'key' => 'field_59f05fb38853b',
+                    'label' => 'Basic Details',
+                    'name' => 'basic_details',
+                    'type' => 'tab',
+                ),
+                array (
+                    'key' => 'field_59ef61ef48e99',
+                    'label' => 'Local Authority Code',
+                    'name' => 'local_authority_code',
                     'type' => 'text',
+                    'instructions' => 'ONS (GSS) code for the Local Authority, e.g. E09000033',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
@@ -53,11 +53,12 @@ function setup_question_acf_group() {
                     'maxlength' => '',
                 ),
                 array (
-                    'key' => 'field_59e8cfc09ab2a',
-                    'label' => 'Help Text',
-                    'name' => 'helpText',
+                    'key' => 'field_59f05f32da262',
+                    'label' => 'Display Name',
+                    'name' => 'display_name',
                     'type' => 'text',
-                    'instructions' => 'Optional hint to user',
+                    'instructions' => 'Name to be displayed in the web app, e.g. Westminster',
+                    'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
                     'prepend' => '',
@@ -71,7 +72,7 @@ function setup_question_acf_group() {
                     array (
                         'param' => 'post_type',
                         'operator' => '==',
-                        'value' => 'question',
+                        'value' => 'local_authority',
                         'order_no' => 0,
                         'group_no' => 0,
                     ),
@@ -81,7 +82,7 @@ function setup_question_acf_group() {
                 'position' => 'normal',
                 'layout' => 'no_box',
                 'hide_on_screen' => array (
-                    0 => 'slug'
+                    0 => 'slug',
                 ),
             ),
             'menu_order' => 0,
