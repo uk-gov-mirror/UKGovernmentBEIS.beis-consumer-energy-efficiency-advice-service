@@ -1,4 +1,4 @@
-<?php
+<?php require_once('disable_quick_edit.php');
 
 add_action('init', 'create_feature_flag_post_type');
 add_action('init', 'setup_feature_flag_acf_group');

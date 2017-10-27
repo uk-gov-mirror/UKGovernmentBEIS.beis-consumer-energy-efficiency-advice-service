@@ -1,4 +1,4 @@
-<?php
+<?php require_once('api_error_handling.php');
 
 // Add Wordpress API function for getting EPC
 function get_postcode_details(WP_REST_Request $request)
@@ -10,19 +10,7 @@ function get_postcode_details(WP_REST_Request $request)
     );
     $postcode = $request['postcode'];
     $url = "https://api.postcodes.io/postcodes/$postcode";
-    $response = wp_remote_get($url, $args);
-    $responseCode = wp_remote_retrieve_response_code($response);
-    if (!empty($responseCode) && $responseCode != 200) {
-        $responseBody = json_decode(wp_remote_retrieve_body($response));
-        return new WP_Error(
-            'POSTCODE_API_ERROR',
-            $responseBody->error,
-            array(
-                'status' => $responseCode
-            )
-        );
-    }
-    return json_decode(wp_remote_retrieve_body($response));
+    return response_body_or_else_error(wp_remote_get($url, $args), 'POSTCODE_API_ERROR');
 }
 
 add_action('rest_api_init', function () {
