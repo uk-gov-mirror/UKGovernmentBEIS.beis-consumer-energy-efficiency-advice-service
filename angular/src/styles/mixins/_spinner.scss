@@ -1,0 +1,9 @@
+@mixin spinner($size) {
+  height: $size;
+  width: $size;
+  border-radius: 50%;
+  border: 6px solid lightgrey;
+  border-top-color: transparent;
+  animation: spinner 1s linear infinite;
+  margin: 40px;
+}
