@@ -9,7 +9,7 @@ add_filter( 'post_row_actions', disable_quick_edit_for('question'), 10, 2 );
 // Add slug to returned ACF fields
 add_filter('acf/rest_api/question/get_items', 'add_slug');
 
-function create_question_posttype() {
+function create_question_post_type() {
 
     register_post_type( 'question',
         array(
