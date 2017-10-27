@@ -16,8 +16,4 @@ export class StoreysQuestionMetadata extends QuestionMetadata<number> {
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.numberOfStoreys !== undefined;
     }
-
-    isApplicable(responseData: ResponseData): boolean {
-        return !isParkHome(responseData.homeType) && !isBungalow(responseData.homeType);
-    }
 }
