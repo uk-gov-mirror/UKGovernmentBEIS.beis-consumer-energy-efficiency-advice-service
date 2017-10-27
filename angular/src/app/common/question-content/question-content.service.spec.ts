@@ -42,8 +42,8 @@ describe('QuestionContentService', () => {
             actualResponse.then((questionsContent) => {
                 // match data in 'assets/test/questions-response.json'
                 expect(Object.keys(questionsContent).length).toBe(10);
-                expect(questionsContent['boiler-type'].questionHeading).toBe('Do you have a condensing boiler?');
-                expect(questionsContent['boiler-type'].helpText).toBe('Dummy help text for boiler type question');
+                expect(questionsContent['boiler_type'].questionHeading).toBe('Do you have a condensing boiler?');
+                expect(questionsContent['boiler_type'].helpText).toBe('Dummy help text for boiler type question');
             });
             httpMock.verify();
         }));

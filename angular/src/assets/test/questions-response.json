@@ -45,7 +45,7 @@
     "id": 38,
     "acf": {
       "questionHeading": "Do you have a condensing boiler?",
-      "helpText": "If you are not sure whether your boiler is condensing then look at the boiler unit - a condensing boiler will have a white plastic pipe coming from the bottom in addition to any metal gas\/oil pipes"
+      "helpText": "Dummy help text for boiler type question"
     },
     "slug": "boiler_type"
   },
