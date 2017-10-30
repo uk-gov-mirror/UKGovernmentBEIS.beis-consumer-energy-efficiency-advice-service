@@ -17,6 +17,7 @@ $animation-duration-vertical: 0.5s;
     .logos {
       display: flex;
       margin-right: 20px;
+      align-items: center;
 
       .vertical-line {
         border-left: 1px solid black;
