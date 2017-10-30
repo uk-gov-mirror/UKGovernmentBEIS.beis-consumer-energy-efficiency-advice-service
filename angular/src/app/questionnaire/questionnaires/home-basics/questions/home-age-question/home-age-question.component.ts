@@ -1,8 +1,8 @@
-import * as _ from "lodash";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
 import {HomeAge, HomeAgeUtil} from "./home-age";
 import {Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild} from "@angular/core";
 import {ResponseData} from "../../../../../common/response-data/response-data";
+import keys from "lodash-es/keys";
 
 interface HomeAgeOption {
     name: string,
@@ -17,7 +17,7 @@ interface HomeAgeOption {
 })
 export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> implements OnInit, OnDestroy {
 
-    private homeAges: HomeAge[] = _.keys(HomeAge)
+    private homeAges: HomeAge[] = keys(HomeAge)
         .map(x => parseInt(x))
         .filter(homeAge => !isNaN(homeAge));
 

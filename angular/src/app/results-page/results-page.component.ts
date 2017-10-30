@@ -4,12 +4,14 @@ import {ResponseData} from "../common/response-data/response-data";
 import {RdSapInput} from "../common/energy-calculation-api-service/request/rdsap-input";
 import {EnergySavingRecommendation} from "./recommendation-card/energy-saving-recommendation";
 import {EnergyCalculationResponse} from "../common/energy-calculation-api-service/response/energy-calculation-response";
-import * as _ from "lodash";
 import {EnergyCalculations} from "./potentials/energy-calculations";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {GrantResponse, LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
+import keys from "lodash-es/keys";
+import orderBy from "lodash-es/orderBy";
+import sumBy from "lodash-es/sumBy";
 
 @Component({
     selector: 'app-results-page',
@@ -47,11 +49,11 @@ export class ResultsPageComponent implements OnInit {
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
         this.isLoading = false;
-        const allRecommendations = _.keys(response.measures)
+        const allRecommendations = keys(response.measures)
             .map(measureCode => new EnergySavingRecommendation(measureCode, response.measures[measureCode]));
-        this.recommendations = _.orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc'])
+        this.recommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc'])
             .filter(recommendation => !!recommendation.recommendationType);
-        const potentialEnergyBillSavingPoundsPerYear = _.sumBy(
+        const potentialEnergyBillSavingPoundsPerYear = sumBy(
             this.recommendations,
             recommendation => recommendation.costSavingPoundsPerYear
         );

@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {range} from "lodash";
+import range from "lodash-es/range";
 
 @Pipe({
     name: 'times'

@@ -1,8 +1,10 @@
-import * as _ from "lodash";
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {QuestionType, QuestionTypeUtil} from "../question-type";
 import {AllQuestionsContent} from "../../common/question-content/all-questions-content";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
+import groupBy from "lodash-es/groupBy";
+import sortBy from "lodash-es/sortBy";
+import head from "lodash-es/head";
 
 @Component({
     selector: 'progress-indicator',
@@ -22,7 +24,7 @@ export class ProgressIndicatorComponent implements OnInit {
 
     ngOnInit() {
         const allQuestions = this.questionnaire.getQuestions();
-        this.questionnaireSections = _.chain(allQuestions)
+        const groupedQuestions = groupBy(allQuestions
             .map((question, i) => {
                 const questionHeading = this.allQuestionsContent && this.allQuestionsContent[question.questionId]
                     && this.allQuestionsContent[question.questionId].questionHeading;
@@ -31,18 +33,17 @@ export class ProgressIndicatorComponent implements OnInit {
                     questionHeading: questionHeading,
                     questionType: question.questionType
                 }
-            })
-            .groupBy('questionType')
-            .sortBy((questionGroup: QuestionStep[]) => _.head(questionGroup).questionIndex)
-            .map(questionGroup => {
-                const questionType = _.head(questionGroup).questionType;
-                return {
-                    questionType: questionType,
-                    questions: questionGroup,
-                    className: QuestionTypeUtil.getIconClassName(questionType)
-                }
-            })
-            .value();
+            }));
+        const sortedQuestions = sortBy(groupedQuestions, (questionGroup: QuestionStep[]) => head(questionGroup).questionIndex);
+
+        this.questionnaireSections = sortedQuestions.map(questionGroup => {
+            const questionType = head(questionGroup).questionType;
+            return {
+                questionType: questionType,
+                questions: questionGroup,
+                className: QuestionTypeUtil.getIconClassName(questionType)
+            }
+        });
         this.totalNumberOfIconsAndQuestions = allQuestions.length +
             ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
     }
