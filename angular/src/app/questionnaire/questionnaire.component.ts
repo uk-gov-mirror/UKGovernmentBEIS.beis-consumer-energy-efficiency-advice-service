@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
 import {QuestionDirective} from "./question.directive";
 import {QuestionTypeUtil} from "./question-type";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
@@ -9,6 +8,7 @@ import {QuestionContent} from "../common/question-content/question-content";
 import {QuestionContentService} from "../common/question-content/question-content.service";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'app-questionnaire',
