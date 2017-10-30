@@ -33,7 +33,7 @@ export class ProgressIndicatorComponent implements OnInit {
                     questionHeading: questionHeading,
                     questionType: question.questionType
                 }
-            }));
+            }), 'questionType');
         const sortedQuestions = sortBy(groupedQuestions, (questionGroup: QuestionStep[]) => head(questionGroup).questionIndex);
 
         this.questionnaireSections = sortedQuestions.map(questionGroup => {
