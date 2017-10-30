@@ -16,12 +16,9 @@ describe('Questionnaire', () => {
 
     it('should include core questions', () => {
         // Sleep 1s between each question to allow for animation
-        // Postcode and mini-EPC
+        // Postcode and mini-EPC, if exists
         page.enterPostcode('nw19pq');
-        page.selectFirstAddress();
-        CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('Here\'s what we know so far...');
-        CommonPageHelpers.clickButton('Yes');
+        page.workThroughMiniEpcIfExists();
 
         // Home type
         CommonPageHelpers.sleep(1000);
