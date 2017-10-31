@@ -69,7 +69,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> imp
         this.response = homeAge;
     }
 
-    @HostListener('window:resize', ['$event']) onResizeWindow(event) {
+    @HostListener('window:resize', ['$event']) onResizeWindow() {
         this.moveSliderToCentreOfOption(this.response);
     }
 

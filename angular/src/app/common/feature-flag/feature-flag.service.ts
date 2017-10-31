@@ -14,8 +14,8 @@ export class FeatureFlagService {
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
         const url = this.wordpressApiService.getFullApiEndpoint(FeatureFlagService.featureFlagsEndpoint);
-        const featureflagResponses: Observable<FeatureFlagResponse[]> = this.http.get(url);
-        this.featureFlags = featureflagResponses.map(responses => featureFlagsFromResponses(responses)).shareReplay(1);
+        const featureFlagResponses: Observable<FeatureFlagResponse[]> = this.http.get(url);
+        this.featureFlags = featureFlagResponses.map(responses => featureFlagsFromResponses(responses)).shareReplay(1);
     }
 
     public fetchFeatureFlags(): Observable<FeatureFlags> {

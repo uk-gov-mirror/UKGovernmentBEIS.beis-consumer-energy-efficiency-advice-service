@@ -45,6 +45,7 @@ export class ResponseData implements ResponseDataShape {
 // This class therefore is of the same shape as ResponseData, but transforms certain
 // values into forms which will display correctly.
 export class DisplayableResponseData implements ResponseDataShape {
+    //noinspection JSUnusedGlobalSymbols
     constructor(public postcode: string,
                 public epc: Epc,
                 public localAuthorityCode: string,
