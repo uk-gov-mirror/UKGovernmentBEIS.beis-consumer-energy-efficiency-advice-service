@@ -1,4 +1,5 @@
 import {WordpressPageResponse} from './wordpress-page-response';
+import {unescape} from 'lodash-es';
 
 export class WordpressPage {
     public title: string;
@@ -10,6 +11,7 @@ export class WordpressPage {
     }
 
     private static decodeEscapedAsciiChars(input: string) {
-        return input.replace(/&#(\d+);/g, (m, n) => String.fromCharCode(n));
+        // return input.replace(/&#(\d+);/g, (m, n) => String.fromCharCode(n));
+        return unescape(input);
     }
 }

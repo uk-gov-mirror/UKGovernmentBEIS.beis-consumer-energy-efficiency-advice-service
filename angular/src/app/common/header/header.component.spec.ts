@@ -163,27 +163,30 @@ describe('HeaderComponent', () => {
             fixture.whenStable().then(() => {
                 expect(component.searchState).toEqual(component.searchStates.Results);
                 const allSearchResultElements = fixture.debugElement.queryAll(By.css('.search-results .text-row'));
-                expect(allSearchResultElements.length).toEqual(HeaderComponent.numberOfSearchResultsToDisplayWhenNotExpanded);
+                expect(allSearchResultElements.length).toEqual(HeaderComponent.reducedSearchResultsQuantity);
             });
         }));
-
-        function injectSearchCallbackAndDetectChanges(callback: (searchText: string) => Observable<WordpressPageResponse[]>) {
-            const injectedSearchService = injector.get(WordpressPagesService);
-            injectedSearchService.searchPages = callback;
-            fixture.detectChanges();
-        }
     });
 
     describe('#displayExpandedSearchResults', () => {
-        it('should display all search results', () => {
+        it('should display all search results', async(() => {
             // given
-            component.allSearchResults = mockSearchResult.map(response => new WordpressPage(response));
+            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
+            component.searchForPages();
 
             // when
             component.displayExpandedSearchResults();
 
             // then
-            expect(component.getSearchResultsToDisplay().length).toEqual(mockSearchResult.length);
-        });
+            fixture.whenStable().then(() => {
+                expect(component.getSearchResultsToDisplay().length).toEqual(mockSearchResult.length);
+            });
+        }));
     });
+
+    function injectSearchCallbackAndDetectChanges(callback: (searchText: string) => Observable<WordpressPageResponse[]>) {
+        const injectedSearchService = injector.get(WordpressPagesService);
+        injectedSearchService.searchPages = callback;
+        fixture.detectChanges();
+    }
 });

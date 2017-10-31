@@ -9,16 +9,17 @@ import {WordpressPage} from './wordpress-pages-service/wordpress-page';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    static readonly numberOfSearchResultsToDisplayWhenNotExpanded = 3;
+    static readonly reducedSearchResultsQuantity = 3;
 
     shouldDisplaySearchDetailsDropdown: boolean = false;
     shouldDisplayExpandSearchResultsButton: boolean = false;
     shouldDisplayExpandedSearchResults: boolean = false;
-    deregisterFocusOutListener: () => void;
     searchText: string;
-    allSearchResults: WordpressPage[] = [];
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
+
+    private allSearchResults: WordpressPage[] = [];
+    private deregisterFocusOutListener: () => void;
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
@@ -38,10 +39,9 @@ export class HeaderComponent {
         const newFocussedElement = event.relatedTarget;
         const isFocusStillInsideExpandedSearchContainer = newFocussedElement &&
             this.searchContainer.nativeElement.contains(newFocussedElement);
-        if (isFocusStillInsideExpandedSearchContainer) {
-            return;
+        if (!isFocusStillInsideExpandedSearchContainer) {
+            this.collapseSearchBox();
         }
-        this.collapseSearchBox();
     }
 
     collapseSearchBox(): void {
@@ -76,7 +76,7 @@ export class HeaderComponent {
             return;
         }
         this.allSearchResults = results.map(result => new WordpressPage(result));
-        if (results.length > HeaderComponent.numberOfSearchResultsToDisplayWhenNotExpanded) {
+        if (results.length > HeaderComponent.reducedSearchResultsQuantity) {
             this.shouldDisplayExpandSearchResultsButton = true;
         }
         this.searchState = SearchStates.Results;
@@ -96,7 +96,7 @@ export class HeaderComponent {
     getSearchResultsToDisplay(): WordpressPage[] {
         return this.shouldDisplayExpandedSearchResults ?
             this.allSearchResults :
-            this.allSearchResults.slice(0, HeaderComponent.numberOfSearchResultsToDisplayWhenNotExpanded);
+            this.allSearchResults.slice(0, HeaderComponent.reducedSearchResultsQuantity);
     }
 }
 

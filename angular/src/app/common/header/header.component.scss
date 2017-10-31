@@ -90,7 +90,6 @@ $animation-duration-vertical: 0.5s;
         z-index: 10;
 
         &.expanded {
-          display: flex;
           max-height: 300px;
           transition-delay: $animation-duration-horizontal;
           box-shadow: 3px 3px 6px black;
