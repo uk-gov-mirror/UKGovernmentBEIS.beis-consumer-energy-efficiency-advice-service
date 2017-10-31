@@ -5,7 +5,11 @@ export class HomePage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getHeadingText() {
+    return element(by.css('.heading-text')).getText();
+  }
+
+  clickQuestionnaireLink() {
+    element(by.cssContainingText('.questionnaire-link', 'Reduce your energy bills')).click();
   }
 }

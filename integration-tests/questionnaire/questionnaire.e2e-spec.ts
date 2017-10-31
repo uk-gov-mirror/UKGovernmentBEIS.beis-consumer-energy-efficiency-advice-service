@@ -21,7 +21,7 @@ describe('Questionnaire', () => {
         page.workThroughMiniEpcIfExists();
 
         // Home type
-        CommonPageHelpers.sleep(1000);
+        CommonPageHelpers.sleep(2000);
         expect(page.getHeading()).toContain('type of home');
         page.clickOption('ground floor flat');
 
