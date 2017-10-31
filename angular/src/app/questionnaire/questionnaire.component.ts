@@ -9,6 +9,7 @@ import {QuestionContentService} from "../common/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
+import {ResponseData} from "../common/response-data/response-data";
 
 @Component({
     selector: 'app-questionnaire',
@@ -36,11 +37,17 @@ export class QuestionnaireComponent implements OnInit {
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
                 private router: Router,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                responseData: ResponseData) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(route.snapshot.paramMap.get('name'));
+
+        const partialResponse = route.snapshot.paramMap.get('partialResponse');
+        if (partialResponse !== null) {
+            Object.assign(responseData, JSON.parse(partialResponse));
+        }
     }
 
     ngOnInit() {
