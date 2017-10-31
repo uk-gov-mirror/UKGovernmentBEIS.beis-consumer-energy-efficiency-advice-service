@@ -7,6 +7,9 @@ import {HomeImprovementsComponent} from "./home-improvements/home-improvements.c
 import {SharedModule} from "../common/shared.module";
 import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { WarmerHomeComponent } from './warmer-home/warmer-home.component';
+import { ReduceBillsComponent } from './reduce-bills/reduce-bills.component';
+import { CarbonFootprintComponent } from './carbon-footprint/carbon-footprint.component';
 
 @NgModule({
     declarations: [
@@ -14,6 +17,9 @@ import { ArticleCardComponent } from './article-card/article-card.component';
         HomeImprovementsComponent,
         LargeVideoCardComponent,
         ArticleCardComponent,
+        WarmerHomeComponent,
+        ReduceBillsComponent,
+        CarbonFootprintComponent,
     ],
     exports: [
         HomeImprovementsComponent,
