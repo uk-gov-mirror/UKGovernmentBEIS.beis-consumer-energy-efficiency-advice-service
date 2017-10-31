@@ -1,4 +1,5 @@
 @import 'mixins/font';
+@import "var/colours";
 
 .questions-container {
   font-family: $font-family;
@@ -105,7 +106,7 @@
     align-items: stretch;
 
     .list-select-option {
-      background-color: #eee;
+      background-color: $light-grey;
       cursor: pointer;
       padding: 4px 20px;
       margin: 1px;

@@ -1,15 +1,16 @@
 //noinspection CssUnknownTarget
 @import '~styles/page';
-
 //noinspection CssUnknownTarget
 @import '~styles/mixins/buttons';
+//noinspection CssUnknownTarget
+@import "~styles/var/colours";
 
 :host {
   flex-shrink: 0;
 }
 
 .home-page {
-  background-color: #eee;
+  background-color: $light-grey;
   flex-direction: column;
 
   .heading {
@@ -56,11 +57,11 @@
   .quick-links {
     .page-row-content {
       > :nth-child(odd) {
-        background-color: #999;
+        background-color: $light-medium-grey;
       }
 
       > :nth-child(even) {
-        background-color: #bbb;
+        background-color: $lighter-medium-grey;
       }
 
       .quick-link {

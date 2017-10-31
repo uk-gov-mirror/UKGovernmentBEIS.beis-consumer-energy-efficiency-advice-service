@@ -1,4 +1,5 @@
 @import "~styles/mixins/font";
+@import "~styles/var/colours";
 
 $recommendation-cards-per-row: 4;
 $recommendation-card-margin: 24px;
@@ -96,7 +97,7 @@ $grant-card-margin: 24px;
 
   .suggestions {
 
-    background-color: #F2F2F2;
+    background-color: $lighter-medium-grey;
 
     .suggestion-cards {
       margin-top: 32px;
