@@ -7,4 +7,4 @@ require_once("functions/initialise_question_post_type.php");
 require_once("functions/initialise_feature_flags.php");
 require_once("functions/configure_api_caching.php");
 require_once("functions/energy-calculation.php");
-require_once("functions/remove-admin-header.php");
+require_once("functions/hide-admin-bar.php");
