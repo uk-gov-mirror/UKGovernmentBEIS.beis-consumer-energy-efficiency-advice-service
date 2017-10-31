@@ -22,7 +22,7 @@
                     <div class="search-results" *ngIf="searchState === searchStates.Results">
                         <div class="header">Results</div>
                         <a class="text-row" *ngFor="let result of getSearchResultsToDisplay()" [routerLink]="result.slug"
-                           [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" (click)="collapseSearchBox()">{{result.title}}</a>
+                           [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" (click)="collapseSearchBox()" [innerHtml]="result.title"></a>
                         <form (ngSubmit)="displayExpandedSearchResults()">
                             <input type="submit" value="See all" [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1"
                                    *ngIf="shouldDisplayExpandSearchResultsButton" class="see-all" />
