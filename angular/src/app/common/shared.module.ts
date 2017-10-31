@@ -12,19 +12,22 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {NavigationBarComponent} from "./navigation-bar/navigation-bar.component";
 import {RoutingModule} from "../app-routing.module";
+import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.component";
 
 @NgModule({
     declarations: [
         TimesPipe,
         HeaderComponent,
         FooterComponent,
-        NavigationBarComponent
+        NavigationBarComponent,
+        LatestNewsCardComponent
     ],
     exports: [
         TimesPipe,
         HeaderComponent,
         FooterComponent,
-        NavigationBarComponent
+        NavigationBarComponent,
+        LatestNewsCardComponent
     ],
     imports: [
         HttpClientModule,

@@ -1,7 +1,9 @@
 //noinspection CssUnknownTarget
-@import '~styles/page';
+@import "~styles/page";
 //noinspection CssUnknownTarget
 @import '~styles/mixins/buttons';
+//noinspection CssUnknownTarget
+@import '~styles/mixins/font';
 //noinspection CssUnknownTarget
 @import "~styles/var/colours";
 
@@ -16,10 +18,8 @@
   .heading {
     .page-row-content {
       .heading-text {
+        @include page-heading;
         max-width: 0.5 * $content-max-width;
-        font-weight: bold;
-        font-size: 44px;
-        line-height: 1.25;
         padding: 60px 0;
       }
     }

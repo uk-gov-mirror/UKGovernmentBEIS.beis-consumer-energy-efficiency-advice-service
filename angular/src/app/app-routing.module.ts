@@ -10,6 +10,7 @@ import {ResultsPageComponent} from "./results-page/results-page.component";
 import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
 import {ResultsPageRouteGuard} from "./results-page/results-page-route-guard.service";
 import {HomePageComponent} from "./home-page/home-page.component";
+import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-improvements.component";
 
 const routes: Routes = [
     {
@@ -41,6 +42,10 @@ const routes: Routes = [
         path: 'results',
         component: ResultsPageComponent,
         canActivate: [ResultsPageRouteGuard]
+    },
+    {
+        path: 'home-improvements',
+        component: HomeImprovementsComponent
     },
     {
         path: ':slug',

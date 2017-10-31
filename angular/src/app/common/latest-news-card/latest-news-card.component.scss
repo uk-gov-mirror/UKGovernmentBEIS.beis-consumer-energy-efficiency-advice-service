@@ -1,3 +1,6 @@
+//noinspection CssUnknownTarget
+@import "~styles/var/colours";
+
 .latest-news-card {
   display: flex;
   flex-direction: column;
@@ -7,7 +10,7 @@
   outline: none;
 
   .latest-news-icon-container {
-    background-color: grey;
+    background-color: $dark-medium-grey;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -16,6 +16,7 @@ import {SharedModule} from "./common/shared.module";
 import {ResultsPageModule} from "./results-page/results-page.module";
 import {ResponseSummaryComponent} from "./response-summary/response-summary.component";
 import {HomePageModule} from "./home-page/home-page.module";
+import {LandingPageModule} from "./landing-page/landing-page.module";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {HomePageModule} from "./home-page/home-page.module";
         SharedModule.forRoot(),
         QuestionnaireModule.forRoot(),
         ResultsPageModule,
-        HomePageModule
+        HomePageModule,
+        LandingPageModule,
     ],
     bootstrap: [AppComponent],
 })
