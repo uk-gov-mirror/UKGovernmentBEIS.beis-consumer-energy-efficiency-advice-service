@@ -24,6 +24,9 @@ describe('QuestionnaireComponent', () => {
     const questionnaireName = 'test';
     const questionId = 'test-question-id';
 
+    let responseDataStub: ResponseData;
+    const partialResponse = {postcode: 'w11aa'};
+
     const questionContentServiceStub = {
         fetchQuestionsContent() {
             return Observable.of(allQuestionsContent);
@@ -68,6 +71,8 @@ describe('QuestionnaireComponent', () => {
         private static paramMapGet(key) {
             if (key === 'name') {
                 return questionnaireName;
+            } else if (key === 'partialResponse') {
+                return JSON.stringify(partialResponse);
             } else {
                 throw new Error('Unexpected parameter name');
             }
@@ -84,7 +89,7 @@ describe('QuestionnaireComponent', () => {
 
     beforeEach(async(() => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
-
+        responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
             declarations: [QuestionnaireComponent, ProgressIndicatorComponent],
             imports: [RouterTestingModule.withRoutes([])],
@@ -95,6 +100,7 @@ describe('QuestionnaireComponent', () => {
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
+                {provide: ResponseData, useValue: responseDataStub}
             ],
         })
             .compileComponents();
@@ -159,5 +165,9 @@ describe('QuestionnaireComponent', () => {
                 expect(helpTextElement.nativeElement.innerText).toBe(expectedHelpText);
             });
         }));
+
+        it('should merge the partial response with the current response data', () => {
+            expect(responseDataStub).toEqual(jasmine.objectContaining(partialResponse));
+        });
     });
 });
