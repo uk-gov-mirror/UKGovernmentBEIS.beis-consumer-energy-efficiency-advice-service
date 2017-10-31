@@ -1,11 +1,11 @@
-import {PropertyType} from './property-type';
-import {BuiltForm} from './built-form';
-import {FlatLevel} from './flat-level';
-import {ResponseData} from '../../response-data/response-data';
-import * as _ from "lodash";
+import {PropertyType} from "./property-type";
+import {BuiltForm} from "./built-form";
+import {FlatLevel} from "./flat-level";
+import {ResponseData} from "../../response-data/response-data";
 import {HomeType} from "../../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
-import {HomeAge} from '../../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age';
+import {HomeAge} from "../../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
+import toString from "lodash-es/toString";
 
 export class RdSapInput {
     property_type: string;
@@ -22,9 +22,9 @@ export class RdSapInput {
         // TODO: This is not currently a full correct mapping to RdSAP. For a full mapping, the homeType question needs to be changed.
         // This is a 'best possible' mapping based on the current questions, to enable a PoC connection to the BRE API.
         // See BEISDEAS-28 for updating the questions to allow a correct mapping.
-        this.property_type = _.toString(RdSapInput.getPropertyType(responseData.homeType));
-        this.built_form = _.toString(RdSapInput.getBuiltForm(responseData.homeType));
-        this.flat_level = _.toString(RdSapInput.getFlatLevel(responseData.homeType));
+        this.property_type = toString(RdSapInput.getPropertyType(responseData.homeType));
+        this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
+        this.flat_level = toString(RdSapInput.getFlatLevel(responseData.homeType));
         this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = undefined;
         this.num_storeys = responseData.numberOfStoreys;
@@ -40,12 +40,12 @@ export class RdSapInput {
             this.construction_date,
             this.heating_fuel
         ];
-        if (this.property_type === _.toString(PropertyType.Flat)) {
+        if (this.property_type === toString(PropertyType.Flat)) {
             requiredProperties.push(this.flat_level);
         }
         if (!this.floor_area) {
-            requiredProperties.push(_.toString(this.num_storeys));
-            requiredProperties.push(_.toString(this.num_bedrooms));
+            requiredProperties.push(toString(this.num_storeys));
+            requiredProperties.push(toString(this.num_bedrooms));
         }
         return requiredProperties.every(value => {
             return value && value.length > 0;

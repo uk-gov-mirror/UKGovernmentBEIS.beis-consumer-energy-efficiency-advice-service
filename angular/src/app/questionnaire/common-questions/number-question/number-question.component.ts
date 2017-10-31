@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
     selector: 'app-number-question',
@@ -17,9 +17,11 @@ export class NumberQuestionComponent {
             this._quantity = value;
         }
     }
+
     get quantity(): number {
         return this._quantity;
     }
+
     @Output() quantityChange = new EventEmitter<number>();
 
     increaseQuantity(amount: number): void {

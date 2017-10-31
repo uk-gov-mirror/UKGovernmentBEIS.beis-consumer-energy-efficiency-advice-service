@@ -3,7 +3,8 @@
         <div class="form-element">
             <input class="text-input" id="postcode-input" name="postcode-input" type="text" spellcheck="false"
                    aria-labelledby="question-heading" [(ngModel)]="postcodeInput">
-            <button title="Submit" aria-label="Submit" id="submit-postcode" type="submit" class="submit-button">►</button>
+            <button title="Submit" aria-label="Submit" id="submit-postcode" type="submit" class="submit-button">►
+            </button>
         </div>
     </form>
     <div class="error" *ngIf="error">
@@ -15,9 +16,11 @@
         <div class="select-address">Please select your address:</div>
         <div class="list-select">
             <button class="list-select-option" [class.selected]="isSelected(epc)"
-                 *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}</button>
+                    *ngFor="let epc of allEpcsForPostcode" (click)="continueWithEpc(epc)">{{epc.getDisplayAddress()}}
+            </button>
             <button class="list-select-option address-not-listed" [class.selected]="isNoEpcSelected"
-                 (click)="continueWithoutEpc()">My address is not listed</button>
+                    (click)="lookupBasicPostcodeDetails()">My address is not listed
+            </button>
         </div>
     </div>
 </div>

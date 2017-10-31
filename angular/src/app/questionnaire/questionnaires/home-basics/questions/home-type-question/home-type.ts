@@ -1,4 +1,4 @@
-import {Epc} from '../postcode-epc-question/model/epc';
+import {Epc} from "../postcode-epc-question/model/epc";
 export enum HomeType {
     DetachedHouse,
     SemiDetachedHouse,
@@ -14,13 +14,13 @@ export enum HomeType {
 
 export function isFlat(homeType: HomeType): boolean {
     return homeType === HomeType.GroundFloorFlat ||
-           homeType === HomeType.MidFloorFlat ||
-           homeType === HomeType.TopFloorFlat;
+        homeType === HomeType.MidFloorFlat ||
+        homeType === HomeType.TopFloorFlat;
 }
 
 export function isBungalow(homeType: HomeType): boolean {
     return homeType === HomeType.BungalowDetached ||
-           homeType === HomeType.BungalowAttached;
+        homeType === HomeType.BungalowAttached;
 }
 
 export function isParkHome(homeType: HomeType): boolean {

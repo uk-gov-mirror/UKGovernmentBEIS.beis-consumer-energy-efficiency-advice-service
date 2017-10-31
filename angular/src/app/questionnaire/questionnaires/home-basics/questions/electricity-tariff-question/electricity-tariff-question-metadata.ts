@@ -1,9 +1,9 @@
-import {ElectricityTariff} from './electricity-tariff';
-import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
-import {ResponseData} from '../../../../../common/response-data/response-data';
-import {QuestionMetadata} from '../../../../base-question/question-metadata';
-import {isElectric} from '../fuel-type-question/fuel-type';
-import {QuestionType} from '../../../../question-type';
+import {ElectricityTariff} from "./electricity-tariff";
+import {ElectricityTariffQuestionComponent} from "./electricity-tariff-question.component";
+import {ResponseData} from "../../../../../common/response-data/response-data";
+import {QuestionMetadata} from "../../../../base-question/question-metadata";
+import {isElectric} from "../fuel-type-question/fuel-type";
+import {QuestionType} from "../../../../question-type";
 
 export class ElectricityTariffQuestionMetadata extends QuestionMetadata<ElectricityTariff> {
     constructor() {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
 import {FlatPosition} from "./flat-position";
 import {ResponseData} from "../../../../../common/response-data/response-data";

@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
-import {RdSapInput} from './request/rdsap-input';
-import {Observable} from 'rxjs/Observable';
-import {EnergyCalculationResponse} from './response/energy-calculation-response';
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {RdSapInput} from "./request/rdsap-input";
+import {Observable} from "rxjs/Observable";
+import {EnergyCalculationResponse} from "./response/energy-calculation-response";
 
 @Injectable()
 export class EnergyCalculationApiService {

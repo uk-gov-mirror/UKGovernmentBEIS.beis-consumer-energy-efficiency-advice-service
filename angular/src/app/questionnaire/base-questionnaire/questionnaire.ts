@@ -1,6 +1,7 @@
-import {findIndex, findLastIndex} from 'lodash';
-import {QuestionMetadata} from '../base-question/question-metadata';
-import {ResponseData} from '../../common/response-data/response-data';
+import findIndex from "lodash-es/findIndex";
+import findLastIndex from "lodash-es/findLastIndex";
+import {QuestionMetadata} from "../base-question/question-metadata";
+import {ResponseData} from "../../common/response-data/response-data";
 
 export abstract class Questionnaire {
     constructor(private responseData: ResponseData,

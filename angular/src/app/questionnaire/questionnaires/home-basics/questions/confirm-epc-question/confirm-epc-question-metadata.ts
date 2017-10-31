@@ -1,8 +1,8 @@
-import {ConfirmEpcQuestionComponent} from './confirm-epc-question.component';
-import {QuestionMetadata} from '../../../../base-question/question-metadata';
-import {ResponseData} from '../../../../../common/response-data/response-data';
-import {QuestionType} from '../../../../question-type';
-import {EpcConfirmation} from './epc-confirmation';
+import {ConfirmEpcQuestionComponent} from "./confirm-epc-question.component";
+import {QuestionMetadata} from "../../../../base-question/question-metadata";
+import {ResponseData} from "../../../../../common/response-data/response-data";
+import {QuestionType} from "../../../../question-type";
+import {EpcConfirmation} from "./epc-confirmation";
 
 export class ConfirmEpcQuestionMetadata extends QuestionMetadata<EpcConfirmation> {
 

@@ -8,8 +8,8 @@ import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {ResponseSummaryComponent} from "./response-summary/response-summary.component";
 import {ResultsPageComponent} from "./results-page/results-page.component";
 import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
-import {ResultsPageRouteGuard} from './results-page/results-page-route-guard.service';
-import {HomePageComponent} from './home-page/home-page.component';
+import {ResultsPageRouteGuard} from "./results-page/results-page-route-guard.service";
+import {HomePageComponent} from "./home-page/home-page.component";
 
 const routes: Routes = [
     {

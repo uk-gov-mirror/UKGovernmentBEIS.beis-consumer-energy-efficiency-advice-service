@@ -173,7 +173,8 @@
       "low-energy-lighting": "",
       "walls-description": "Average thermal transmittance 0.19 W/m²K",
       "hotwater-description": "Community scheme"
-    },{
+    },
+    {
       "address": "Apartment 2, 1 Test Street",
       "floor-height": "",
       "heating-cost-potential": "135",
@@ -259,7 +260,8 @@
       "low-energy-lighting": "",
       "walls-description": "Average thermal transmittance 0.19 W/m²K",
       "hotwater-description": "Community scheme"
-    },{
+    },
+    {
       "address": "Apartment 3, 1 Test Street",
       "floor-height": "",
       "heating-cost-potential": "135",

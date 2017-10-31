@@ -1,4 +1,4 @@
-<?php
+<?php require_once('api_error_handling.php');
 
 // Add Wordpress API function for getting Energy Calculations
 function post_energy_calculation_request(WP_REST_Request $request)
@@ -20,16 +20,7 @@ function post_energy_calculation_request(WP_REST_Request $request)
         'body' => $body
     );
     $url ='https://uat.brewebserv.com/bemapi/energy_use';
-    $response = wp_remote_post($url, $args);
-    $responseCode = wp_remote_retrieve_response_code($response);
-    if (!empty($responseCode) && $responseCode != 200) {
-        return new WP_Error(
-            'ENERGY_CALCULATION_API_ERROR',
-            wp_remote_retrieve_body($response),
-            array('status' => wp_remote_retrieve_response_code($response))
-        );
-    }
-    return json_decode(wp_remote_retrieve_body($response));
+    return response_body_or_else_error(wp_remote_post($url, $args), 'ENERGY_CALCULATION_API_ERROR');
 }
 
 function get_energy_calculation_auth_header()

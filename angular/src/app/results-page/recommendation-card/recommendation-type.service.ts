@@ -1,5 +1,5 @@
 export abstract class RecommendationTypeService {
-    public static recommendationTypes: {[recommendationTypeCode: string]: RecommendationType} = {
+    public static recommendationTypes: { [recommendationTypeCode: string]: RecommendationType } = {
         A:  {iconClassName: 'icon-roofing', description: 'Loft insulation'},
         A2: {iconClassName: 'icon-roofing', description: 'Flat roof insulation'},
         A3: {iconClassName: 'icon-roofing', description: 'Room-in-roof insulation'},

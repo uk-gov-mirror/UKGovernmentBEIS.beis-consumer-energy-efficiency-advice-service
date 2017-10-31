@@ -1,8 +1,8 @@
-import * as _ from 'lodash';
-import {QuestionBaseComponent, slideInOutAnimation} from '../../../../base-question/question-base-component';
-import {HomeAge, HomeAgeUtil} from './home-age';
-import {HostListener, Renderer2, ViewChild, Component, OnInit, OnDestroy} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
+import {HomeAge, HomeAgeUtil} from "./home-age";
+import {Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild} from "@angular/core";
 import {ResponseData} from "../../../../../common/response-data/response-data";
+import keys from "lodash-es/keys";
 
 interface HomeAgeOption {
     name: string,
@@ -17,7 +17,7 @@ interface HomeAgeOption {
 })
 export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> implements OnInit, OnDestroy {
 
-    private homeAges: HomeAge[] = _.keys(HomeAge)
+    private homeAges: HomeAge[] = keys(HomeAge)
         .map(x => parseInt(x))
         .filter(homeAge => !isNaN(homeAge));
 
@@ -86,14 +86,14 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> imp
     moveSliderToCentreOfOption(homeAge: HomeAge): void {
         const optionIndex = this.homeAges.indexOf(homeAge) >= 0 ? this.homeAges.indexOf(homeAge) : 0;
         const optionWidth = this.getOptionWidthInPixels();
-        const newX = optionIndex * optionWidth + optionWidth/2;
+        const newX = optionIndex * optionWidth + optionWidth / 2;
         this.setSliderLocation(newX);
     }
 
     setSliderLocation(newX: number): void {
         this.currentSliderCentreX = newX;
         const sliderWidth = this.slider.nativeElement.clientWidth;
-        this.sliderLeftPosition = this.currentSliderCentreX - sliderWidth/2;
+        this.sliderLeftPosition = this.currentSliderCentreX - sliderWidth / 2;
     }
 
     onMouseMove(event: MouseEvent) {
@@ -121,7 +121,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> imp
     };
 
     getSelectedOptionFromSliderLocation(x: number): HomeAge {
-        const rawIndex = Math.floor(x/this.getOptionWidthInPixels());
+        const rawIndex = Math.floor(x / this.getOptionWidthInPixels());
         const optionIndex = HomeAgeQuestionComponent.boundBy(rawIndex, 0, this.getNumberOfResponseOptions() - 1);
         return this.homeAges[optionIndex];
     }

@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
+import {ElectricityTariffQuestionComponent} from "./electricity-tariff-question.component";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 import {ElectricityTariff} from "./electricity-tariff";
 
@@ -11,7 +11,7 @@ describe('ElectricityTariffQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ElectricityTariffQuestionComponent ],
+            declarations: [ElectricityTariffQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

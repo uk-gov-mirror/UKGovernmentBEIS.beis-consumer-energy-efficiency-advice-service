@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {BoilerTypeQuestionComponent} from './boiler-type-question.component';
+import {BoilerTypeQuestionComponent} from "./boiler-type-question.component";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 
 describe('BoilerTypeQuestionComponent', () => {
@@ -10,7 +10,7 @@ describe('BoilerTypeQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ BoilerTypeQuestionComponent ],
+            declarations: [BoilerTypeQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

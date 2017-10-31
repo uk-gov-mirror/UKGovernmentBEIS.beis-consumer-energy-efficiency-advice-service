@@ -1,14 +1,20 @@
-import {Epc} from '../postcode-epc-question/model/epc';
+import {Epc} from "../postcode-epc-question/model/epc";
 export enum ElectricityTariff {
     Standard,
     OffPeak,
 }
 
 export function getElectricityTariffDescription(electricityTariff: ElectricityTariff) {
-    switch(electricityTariff) {
-        case ElectricityTariff.Standard: { return 'standard'; }
-        case ElectricityTariff.OffPeak:  { return 'off peak'; }
-        default:                         { return null; }
+    switch (electricityTariff) {
+        case ElectricityTariff.Standard: {
+            return 'standard';
+        }
+        case ElectricityTariff.OffPeak: {
+            return 'off peak';
+        }
+        default: {
+            return null;
+        }
     }
 }
 

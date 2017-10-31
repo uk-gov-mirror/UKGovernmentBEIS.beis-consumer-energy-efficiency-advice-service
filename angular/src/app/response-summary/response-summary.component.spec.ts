@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {TJsonViewerModule} from 't-json-viewer';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {TJsonViewerModule} from "t-json-viewer";
 
-import {ResponseSummaryComponent} from './response-summary.component';
+import {ResponseSummaryComponent} from "./response-summary.component";
 import {ResponseData} from "../common/response-data/response-data";
 
 describe('ResponseSummaryComponent', () => {
@@ -10,7 +10,7 @@ describe('ResponseSummaryComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations:  [ResponseSummaryComponent],
+            declarations: [ResponseSummaryComponent],
             imports: [TJsonViewerModule],
         }).overrideComponent(ResponseSummaryComponent, {
             set: {providers: [ResponseData]}

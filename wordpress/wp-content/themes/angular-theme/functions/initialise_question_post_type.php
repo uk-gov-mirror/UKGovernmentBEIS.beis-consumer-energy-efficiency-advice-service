@@ -1,11 +1,15 @@
-<?php include 'disable_quick_edit.php';
+<?php require_once('post_type_functions.php');
 
-add_action( 'init', 'create_question_posttype' );
+add_action( 'init', 'create_question_post_type' );
 add_action( 'init', 'setup_question_acf_group');
+
 // Disable the quick-edit link to prevent users editing the slug for a question
 add_filter( 'post_row_actions', disable_quick_edit_for('question'), 10, 2 );
 
-function create_question_posttype() {
+// Add slug to returned ACF fields
+add_filter('acf/rest_api/question/get_items', 'add_slug');
+
+function create_question_post_type() {
 
     register_post_type( 'question',
         array(
@@ -84,4 +88,3 @@ function setup_question_acf_group() {
         ));
     }
 }
-

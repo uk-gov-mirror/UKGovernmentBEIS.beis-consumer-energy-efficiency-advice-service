@@ -23,7 +23,7 @@ export class OcrComponent implements OnInit {
         if (fileList.length > 0) {
             let file: File = fileList[0];
 
-            let formData:FormData = new FormData();
+            let formData: FormData = new FormData();
             formData.append('uploadFile', file, file.name);
 
             this.result = this.http.post(this.wordpressApiService.getFullApiEndpoint(OcrComponent.ocrEndpoint), formData);

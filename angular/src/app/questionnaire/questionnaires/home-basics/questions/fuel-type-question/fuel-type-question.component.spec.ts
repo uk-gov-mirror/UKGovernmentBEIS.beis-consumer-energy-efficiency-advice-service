@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
 
-import {FuelTypeQuestionComponent} from './fuel-type-question.component';
-import {ResponseData} from '../../../../../common/response-data/response-data';
-import {FuelType} from './fuel-type';
+import {FuelTypeQuestionComponent} from "./fuel-type-question.component";
+import {ResponseData} from "../../../../../common/response-data/response-data";
+import {FuelType} from "./fuel-type";
 
 describe('FuelTypeQuestionComponent', () => {
     let fixture: ComponentFixture<FuelTypeQuestionComponent>;
@@ -11,7 +11,7 @@ describe('FuelTypeQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ FuelTypeQuestionComponent ],
+            declarations: [FuelTypeQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

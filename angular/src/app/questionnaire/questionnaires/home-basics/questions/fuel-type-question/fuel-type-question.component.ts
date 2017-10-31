@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {FuelType, getFuelTypeDescription} from './fuel-type';
-import {QuestionBaseComponent, slideInOutAnimation} from '../../../../base-question/question-base-component';
+import {Component} from "@angular/core";
+import {FuelType, getFuelTypeDescription} from "./fuel-type";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 
 class FuelTypeOption {

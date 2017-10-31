@@ -1,4 +1,4 @@
-import {EnergySavingMeasureResponse} from './energy-saving-measure-response';
+import {EnergySavingMeasureResponse} from "./energy-saving-measure-response";
 
 export interface EnergyCalculationResponse {
     'Total-Energy-Consumption': number,

@@ -1,9 +1,9 @@
-import {TestBed, getTestBed, async} from "@angular/core/testing";
+import {async, getTestBed, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpRequest} from "@angular/common/http";
 
-import {QuestionContentService} from './question-content.service';
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import {QuestionContentService} from "./question-content.service";
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
 
 describe('QuestionContentService', () => {
     let httpMock: HttpTestingController;
@@ -13,7 +13,7 @@ describe('QuestionContentService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [QuestionContentService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}} ],
+                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -42,15 +42,15 @@ describe('QuestionContentService', () => {
             actualResponse.then((questionsContent) => {
                 // match data in 'assets/test/questions-response.json'
                 expect(Object.keys(questionsContent).length).toBe(10);
-                expect(questionsContent['boiler-type'].questionHeading).toBe('Do you have a condensing boiler?');
-                expect(questionsContent['boiler-type'].helpText).toBe('Dummy help text for boiler type question');
+                expect(questionsContent['boiler_type'].questionHeading).toBe('Do you have a condensing boiler?');
+                expect(questionsContent['boiler_type'].helpText).toBe('Dummy help text for boiler type question');
             });
             httpMock.verify();
         }));
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === 'wp/v2/question';
+            const matchesExpectedUrl = request.urlWithParams === 'acf/v3/question';
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

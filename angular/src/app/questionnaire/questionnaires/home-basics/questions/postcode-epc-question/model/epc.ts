@@ -1,5 +1,5 @@
-import {EpcResponse} from './response/epc-response';
-import {EpcRating} from './epc-rating';
+import {EpcRating} from "./epc-rating";
+import {EpcResponse} from "../../../../../questions/postcode-epc-question/model/response/epc/epc-response";
 
 export class Epc {
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
@@ -17,7 +17,7 @@ export class Epc {
     public propertyType: string;
     public builtForm: string;
     public inspectionDate: string;
-    public localAuthority: string;
+    public localAuthorityCode: string;
     public constituency: string;
     public county: string;
     public lodgementDate: string;
@@ -112,6 +112,7 @@ export class Epc {
         this.isConnectedToMainsGas = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['mains-gas-flag']);
         this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO: watch out - this field is marked as deprecated in some responses
         this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
+        this.localAuthorityCode = epcResponse['local-authority'];
 
         // TODO: These fields are not currently used; maybe we can remove these later on
         this.lmkKey = epcResponse['lmk-key'];
@@ -120,7 +121,6 @@ export class Epc {
         this.currentEnergyEfficiency = epcResponse['current-energy-efficiency'];
         this.potentialEnergyEfficiency = epcResponse['potential-energy-efficiency'];
         this.inspectionDate = epcResponse['inspection-date'];
-        this.localAuthority = epcResponse['local-authority'];
         this.constituency = epcResponse['constituency'];
         this.county = epcResponse['county'];
         this.lodgementDate = epcResponse['lodgement-date'];

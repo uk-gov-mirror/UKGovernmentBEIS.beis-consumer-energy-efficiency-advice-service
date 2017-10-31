@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {QuestionBaseComponent, slideInOutAnimation} from '../../../../base-question/question-base-component';
-import {EpcRating} from '../postcode-epc-question/model/epc-rating';
-import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
-import {EpcConfirmation} from './epc-confirmation';
-import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from '../fuel-type-question/fuel-type';
+import {Component, OnInit} from "@angular/core";
+import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
+import {EpcRating} from "../postcode-epc-question/model/epc-rating";
+import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from "../home-type-question/home-type";
+import {EpcConfirmation} from "./epc-confirmation";
+import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from "../fuel-type-question/fuel-type";
 import {
-    ElectricityTariff, getElectricityTariffDescription,
+    ElectricityTariff,
+    getElectricityTariffDescription,
     getElectricityTariffFromEpc
-} from '../electricity-tariff-question/electricity-tariff';
+} from "../electricity-tariff-question/electricity-tariff";
 
 @Component({
     selector: 'confirm-epc',
