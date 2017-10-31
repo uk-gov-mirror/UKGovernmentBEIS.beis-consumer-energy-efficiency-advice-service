@@ -1,25 +1,25 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
 
+import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../../../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../../../../../common/wordpress-api-service/wordpress-api-service";
+import {EpcsResponse} from "../model/response/epc/epcs-response";
 import {HttpRequest} from "@angular/common/http";
-import {PostcodeApiService} from "./postcode-api.service";
-import {PostcodeResponse} from "../model/response/postcode/postcode-response";
 
-describe('PostcodeApiService', () => {
+describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
-    let service: PostcodeApiService;
+    let service: EpcApiService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [PostcodeApiService,
+            providers: [EpcApiService,
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
-        service = injector.get(PostcodeApiService);
+        service = injector.get(EpcApiService);
     });
 
     describe('#construct', () => {
@@ -28,26 +28,21 @@ describe('PostcodeApiService', () => {
         });
     });
 
-    describe('#getPostcodeDetails', () => {
+    describe('#getEpcData', () => {
 
         const postcode = 'SW1H 0ET';
-        const postcodeWithoutSpaces = 'SW1H0ET';
 
         it('returns data from the API endpoint', async(() => {
             // given
-            const expectedResponse: PostcodeResponse = {
-                status: 200,
-                result: {
-                    postcode: postcode,
-                    codes: {
-                        admin_district: "E09000033"
-                    }
-                }
+            const expectedResponse: EpcsResponse = {
+                'column-names': ['dummy-column'],
+                'rows': []
             };
 
             // when
-            const actualResponse = service.getPostcodeDetails(postcode).toPromise();
-            httpMock.expectOne(matchesExpectedRequest).flush(expectedResponse);
+            const actualResponse = service.getEpcData(postcode).toPromise();
+            let request = httpMock.expectOne(matchesExpectedRequest);
+            request.flush(expectedResponse);
 
             // then
             actualResponse.then((response) => {
@@ -58,9 +53,10 @@ describe('PostcodeApiService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl =
-                (request.urlWithParams === `angular-theme/v1/postcode/${ postcodeWithoutSpaces }`);
-            return matchesExpectedMethod && matchesExpectedUrl;
+            const encodedPostcode = encodeURI(postcode);
+            const matchesExpectedUrlWithParams =
+                (request.urlWithParams === 'angular-theme/v1/epc?postcode=' + encodedPostcode + '&size=100');
+            return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });
 });

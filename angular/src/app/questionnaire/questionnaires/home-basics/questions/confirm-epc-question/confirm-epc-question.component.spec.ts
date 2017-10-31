@@ -5,7 +5,7 @@ import {Epc} from "../postcode-epc-question/model/epc";
 import {HomeType} from "../home-type-question/home-type";
 import {FuelType} from "../fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../electricity-tariff-question/electricity-tariff";
-import {EpcResponse} from "../../../../questions/postcode-epc-question/model/response/epc/epc-response";
+import {EpcResponse} from "../postcode-epc-question/model/response/epc/epc-response";
 
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;

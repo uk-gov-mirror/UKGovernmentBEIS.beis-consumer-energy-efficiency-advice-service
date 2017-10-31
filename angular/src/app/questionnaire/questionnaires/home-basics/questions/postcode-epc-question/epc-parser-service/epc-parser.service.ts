@@ -1,5 +1,5 @@
 import {Epc} from "../model/epc";
-import {EpcsResponse} from "../../../../../questions/postcode-epc-question/model/response/epc/epcs-response";
+import {EpcsResponse} from "../model/response/epc/epcs-response";
 
 export abstract class EpcParserService {
 

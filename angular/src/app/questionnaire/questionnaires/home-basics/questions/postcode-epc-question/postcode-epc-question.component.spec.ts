@@ -9,8 +9,8 @@ import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";
 import {ResponseData} from "../../../../../common/response-data/response-data";
 import {Epc} from "./model/epc";
 import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
-import {EpcApiService} from "../../../../questions/postcode-epc-question/epc-api-service/epc-api.service";
-import {PostcodeApiService} from "../../../../questions/postcode-epc-question/postcode-api-service/postcode-api.service";
+import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
