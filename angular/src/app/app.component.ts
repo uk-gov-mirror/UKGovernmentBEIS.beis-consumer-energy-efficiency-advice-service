@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {Component} from "@angular/core";
+import {NavigationEnd, Router} from "@angular/router";
 import 'rxjs/add/operator/distinctUntilChanged';
 
 declare let gtag: any;

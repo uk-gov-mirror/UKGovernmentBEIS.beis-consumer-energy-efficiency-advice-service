@@ -1,5 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {LatestNewsCardComponent} from './latest-news-card.component';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {LatestNewsCardComponent} from "./latest-news-card.component";
 
 describe('LatestNewsCardComponent', () => {
     let component: LatestNewsCardComponent;
