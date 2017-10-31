@@ -1,31 +1,5 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div id="main-content">
-    <h1>
-        Welcome to {{title}}!
-    </h1>
-    <ul>
-        <li>
-            <a routerLink="/sample-page">sample Wordpress page, loaded from the Wordpress API by Angular</a>
-        </li>
-        <li>
-            <a routerLink="/calculator">sample non-Wordpress, Angular page</a>
-        </li>
-        <li>
-            <a routerLink="/postcode-epc">demo of EPC data retrieval</a>
-        </li>
-        <li>
-            <a routerLink="/ocr">demo of OCR</a>
-        </li>
-        <li>
-            <a routerLink="/questionnaire/home-basics">energy efficiency questionnaire - home basics</a>
-        </li>
-        <li>
-            <a routerLink="/responses">questionnaire response summary</a>
-        </li>
-        <li>
-            <a routerLink="/results">placeholder results page</a>
-        </li>
-    </ul>
+<div id="main-content" class="main-content">
+    <app-header></app-header>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
 </div>
-

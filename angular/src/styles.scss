@@ -1,9 +1,9 @@
 // Global styling classes.
 
 @import "styles/mixins/font";
-
 @import './styles/mixins/buttons';
 
+@import "./styles/page";
 @import "./styles/icons";
 @import './styles/questionnaire';
 
@@ -11,14 +11,10 @@
 @import 'styles/_error';
 
 html, body {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-#main-content {
-  width: calc(100vw - 32px);
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
   overflow-y: visible;
   font-family: $font-family;
+  margin: 0;
 }

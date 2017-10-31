@@ -1,0 +1,29 @@
+<div class="header page-row">
+    <div class="page-row-content">
+        <a routerLink="/" class="logos">
+            <img src="wp-content/themes/angular-theme/dist/assets/images/logos/ehc.png" />
+            <div class="vertical-line"></div>
+            <img src="wp-content/themes/angular-theme/dist/assets/images/logos/gov-uk.png" />
+        </a>
+        <div #searchContainer class="search-container" [ngClass]="{focussed: shouldDisplayExpandedSearchBar}">
+            <input class="search-input" aria-label="Search text"
+                   (focus)="handleSearchBoxFocussed()"/>
+            <button class="icon-search" aria-label="Search" title="Search"></button>
+            <div class="search-suggestions-container" [ngClass]="{expanded: shouldDisplayExpandedSearchBar}">
+                <div class="results">
+                    <div class="header">Results</div>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="text-row">I've had a microgen system installed but I'm not happy with the quality of the work. Who can I complain to?</a>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="text-row">What is the microgeneration certification scheme (MCS)?</a>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="text-row">Can I install a microgen system myself and still get the Feed-In Tariff or Renewable Heat Incentive?</a>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="see-all">See all</a>
+                </div>
+                <div class="popular-searches">
+                    <div class="header">Popular searches</div>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="text-row">What is micro generation?</a>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="text-row">How does switching work?</a>
+                    <a [tabindex]="shouldDisplayExpandedSearchBar ? null : -1" class="text-row">Are there any boiler grants in Northern Ireland?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

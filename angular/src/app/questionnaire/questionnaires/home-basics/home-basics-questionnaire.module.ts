@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {BedroomsQuestionComponent} from "./questions/bedrooms-question/bedrooms-question.component";
 import {BoilerTypeQuestionComponent} from "./questions/boiler-type-question/boiler-type-question.component";
@@ -12,7 +12,7 @@ import {HomeTypeQuestionComponent} from "./questions/home-type-question/home-typ
 import {PostcodeEpcQuestionComponent} from "./questions/postcode-epc-question/postcode-epc-question.component";
 import {StoreysQuestionComponent} from "./questions/storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../../common-questions/common-questions.module";
-import {CommonModule} from "../../../common/common.module";
+import {SharedModule} from "../../../common/shared.module";
 import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
 
 @NgModule({
@@ -41,9 +41,9 @@ import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
         StoreysQuestionComponent,
     ],
     imports: [
-        BrowserModule,
-        FormsModule,
         CommonModule,
+        FormsModule,
+        SharedModule,
         CommonQuestionsModule,
     ],
     entryComponents: [

@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 
 import {ResultsPageComponent} from "./results-page.component";
 import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";
@@ -23,7 +23,7 @@ import {LocalAuthorityService} from "./local-authority-service/local-authority.s
         ResultsPageComponent,
     ],
     imports: [
-        BrowserModule,
+        CommonModule,
     ],
     providers: [
         EnergyCalculationApiService,

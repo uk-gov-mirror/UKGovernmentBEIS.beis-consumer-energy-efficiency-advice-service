@@ -1,5 +1,9 @@
 @import '~styles/mixins/buttons';
 
+:host {
+  flex-grow: 1;
+}
+
 .questions-container {
   width: 100%;
   display: flex;
@@ -8,7 +12,8 @@
   justify-content: center;
 
   .question-type-icon {
-    padding: 100px 0 20px;
+    margin-top: 15vh;
+    margin-bottom: 20px;
   }
 
   .question-heading-container, .question {
@@ -32,7 +37,7 @@
     }
 
     .left-arrow, .right-arrow {
-      @include default-button(32px);
+      @include round-button(32px);
       font-size: 16px;
       margin: 0 16px;
 

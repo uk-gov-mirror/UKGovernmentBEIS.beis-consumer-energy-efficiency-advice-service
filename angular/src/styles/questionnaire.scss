@@ -46,7 +46,7 @@
     }
 
     .submit-button {
-      @include default-button(60px);
+      @include round-button(60px);
       margin-left: 10px;
       font-size: 36px;
     }

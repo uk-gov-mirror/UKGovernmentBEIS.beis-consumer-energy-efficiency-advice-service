@@ -1,13 +1,14 @@
 @import '../var/colours';
 
-@mixin default-button($size) {
+$border-width: 1px;
+
+@mixin default-button($width, $height) {
   cursor: pointer;
-  border: none;
+  border: $border-width solid transparent;
   background-color: black;
-  border-radius: 50%;
   color: white;
-  width: $size;
-  height: $size;
+  width: $width;
+  height: $height;
   font-weight: bold;
 
   &[disabled], &.inactive {
@@ -18,7 +19,7 @@
   &:not([disabled]) {
     &:hover, &:focus {
       background-color: white;
-      border: 1px solid black;
+      border-color: black;
       color: black;
     }
   }
@@ -28,15 +29,54 @@
   justify-content: center;
 }
 
+@mixin round-button($size) {
+  @include default-button($size, $size);
+  border-radius: 50%;
+}
+
 @mixin capsule-button($width, $height) {
   cursor: pointer;
   width: $width;
   height: $height;
   border-radius: 10%/50%;
-  border: 1px solid black;
+  border: $border-width solid black;
   font-weight: bold;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin arrow-button($width, $height) {
+  @include default-button($width, $height);
+  position: relative;
+
+  &:after {
+    right: -$height - 3 * $border-width;
+    top: -$border-width;
+    content: " ";
+    position: absolute;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: black;
+    border-width: 0.5 * $height + $border-width;
+  }
+
+  &:not([disabled]) {
+    &:hover, &:focus {
+      border-right-color: white;
+
+      &:before {
+        right: -$height -$border-width;
+        top: 0;
+        content: " ";
+        position: absolute;
+        border-style: solid;
+        border-color: transparent;
+        border-left-color: white;
+        border-width: 0.5 * $height;
+        z-index: 1;
+      }
+    }
+  }
 }

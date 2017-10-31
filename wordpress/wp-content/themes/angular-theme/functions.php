@@ -11,3 +11,4 @@ require_once("functions/initialise_grant_post_type.php");
 require_once("functions/configure_api_caching.php");
 require_once("functions/energy-calculation.php");
 require_once("functions/local_authority.php");
+require_once("functions/hide-admin-bar.php");

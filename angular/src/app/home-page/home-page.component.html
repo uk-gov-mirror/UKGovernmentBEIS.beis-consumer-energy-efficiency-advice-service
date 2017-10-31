@@ -1,0 +1,51 @@
+<div class="home-page">
+    <app-navigation-bar></app-navigation-bar>
+    <div class="heading page-row">
+        <div class="page-row-content">
+            <div class="heading-text">
+                Impartial and independent advice to help you...
+            </div>
+        </div>
+    </div>
+    <div class="questionnaire-links page-row">
+        <div class="page-row-content">
+            <button routerLink="/questionnaire/home-basics" class="questionnaire-link">Reduce your energy bills</button>
+            <button routerLink="/questionnaire/home-basics" class="questionnaire-link">Make your home warmer</button>
+            <button routerLink="/questionnaire/home-basics" class="questionnaire-link">Plan home improvements</button>
+            <button routerLink="/questionnaire/home-basics" class="questionnaire-link">Reduce your carbon footprint</button>
+        </div>
+    </div>
+    <div class="quick-links page-row">
+        <div class="page-row-content">
+            <button class="quick-link">
+                <div class="description">
+                    <div class="heading">Try our energy efficiency calculator</div>
+                    <div class="subheading">You'll receive personalised recommendations</div>
+                </div>
+                <div class="quick-link-icon center">
+                    <div class="icon-house-layers"></div>
+                    <div class="quick-link-icon-description icon-timer">  It takes about 5 minutes to complete</div>
+                </div>
+            </button>
+            <button class="quick-link">
+                <div class="description">
+                    <div class="heading">My boiler has problems</div>
+                    <div class="arrow-button">What do I do next?</div>
+                </div>
+                <div class="quick-link-icon top">
+                    <div class="icon-boiler"></div>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="latest-news page-row">
+        <div class="page-row-content">
+            <div class="latest-news-cards">
+                <app-latest-news-card iconClassName="icon-video-play" heading="How to draught-proof your home"></app-latest-news-card>
+                <app-latest-news-card iconClassName="icon-infographic" heading="5 simple tips to save energy this winter"></app-latest-news-card>
+                <app-latest-news-card iconClassName="icon-checklist" heading="How to choose the right installer"></app-latest-news-card>
+                <app-latest-news-card iconClassName="icon-grant" heading="Info on grants"></app-latest-news-card>
+            </div>
+        </div>
+    </div>
+</div>

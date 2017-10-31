@@ -19,7 +19,7 @@ input[type="number"] {
 }
 
 .increase-button {
-  @include default-button(32px);
+  @include round-button(32px);
   font-size: 24px;
   margin: 0 16px;
 }

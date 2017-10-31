@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="82px" viewBox="0 0 82 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>infographic</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Supply" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="infographic">
+            <g id="Group-4">
+                <path d="M41,82 C18.3563253,82 0,63.6436747 0,41 C0,18.3563253 18.3563253,0 41,0 C63.6436747,0 82,18.3563253 82,41 C82,63.6436747 63.6436747,82 41,82 Z M41,70.6896552 C57.3971438,70.6896552 70.6896552,57.3971438 70.6896552,41 C70.6896552,24.6028562 57.3971438,11.3103448 41,11.3103448 C24.6028562,11.3103448 11.3103448,24.6028562 11.3103448,41 C11.3103448,57.3971438 24.6028562,70.6896552 41,70.6896552 Z" id="Combined-Shape" fill="#CCCCCC"></path>
+                <path d="M41,0 C63.6436747,0 82,18.3563253 82,41 L70.6896552,41 C70.6896552,24.6028562 57.3971438,11.3103448 41,11.3103448 L41,-8.8817842e-16 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

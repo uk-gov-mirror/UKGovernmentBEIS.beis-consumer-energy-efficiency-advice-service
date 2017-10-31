@@ -1,17 +1,16 @@
-import {Component} from "@angular/core";
-import {NavigationEnd, Router} from "@angular/router";
-import "rxjs/add/operator/distinctUntilChanged";
+import {Component} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 declare let gtag: any;
 declare const gaId: any;
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html'
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    readonly title = 'the BEIS DCEAS app';
-
     constructor(router: Router) {
         // Configure Google Analytics tracking if that's supported in this environment
         if (typeof gtag !== 'undefined' && typeof gaId !== 'undefined') {

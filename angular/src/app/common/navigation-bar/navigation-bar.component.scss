@@ -1,0 +1,21 @@
+.navigation-bar {
+  background-color: #555;
+
+  .page-row-content {
+
+    .menu-item {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+      color: white;
+
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}
