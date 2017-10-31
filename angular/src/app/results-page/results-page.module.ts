@@ -23,7 +23,7 @@ import {LocalAuthorityService} from "./local-authority-service/local-authority.s
         ResultsPageComponent,
     ],
     imports: [
-        CommonModule
+        CommonModule,
     ],
     providers: [
         EnergyCalculationApiService,

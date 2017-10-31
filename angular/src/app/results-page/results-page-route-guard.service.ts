@@ -13,6 +13,7 @@ export class ResultsPageRouteGuard implements CanActivate {
         if (isComplete(this.responseData)) {
             return true;
         }
+        // If the response data is not complete then we can't display the results page so we navigate to the home page
         this.router.navigate(['/']);
         return false;
     }

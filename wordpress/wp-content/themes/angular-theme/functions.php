@@ -9,6 +9,6 @@ require_once("functions/initialise_feature_flag_post_type.php");
 require_once("functions/initialise_local_authority_post_type.php");
 require_once("functions/initialise_grant_post_type.php");
 require_once("functions/configure_api_caching.php");
+require_once("functions/local_authority.php");
 require_once("functions/energy_calculation.php");
 require_once("functions/hide_admin_bar.php");
-require_once("functions/local_authority.php");
