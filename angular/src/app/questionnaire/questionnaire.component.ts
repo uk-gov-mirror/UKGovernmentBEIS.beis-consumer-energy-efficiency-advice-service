@@ -38,19 +38,20 @@ export class QuestionnaireComponent implements OnInit {
                 private changeDetectorRef: ChangeDetectorRef,
                 private router: Router,
                 private route: ActivatedRoute,
-                responseData: ResponseData) {
+                private responseData: ResponseData) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(route.snapshot.paramMap.get('name'));
-
-        const partialResponse = route.snapshot.paramMap.get('partialResponse');
-        if (partialResponse !== null) {
-            Object.assign(responseData, JSON.parse(partialResponse));
-        }
     }
 
     ngOnInit() {
+        // Merge the partial response data, passed in via route params, with the saved responses.
+        const partialResponse = this.route.snapshot.paramMap.get('partialResponse');
+        if (partialResponse !== null) {
+            Object.assign(this.responseData, JSON.parse(partialResponse));
+        }
+
         this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorMessage()

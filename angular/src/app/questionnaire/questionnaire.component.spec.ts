@@ -167,6 +167,10 @@ describe('QuestionnaireComponent', () => {
         }));
 
         it('should merge the partial response with the current response data', () => {
+            // when
+            fixture.detectChanges();
+
+            // then
             expect(responseDataStub).toEqual(jasmine.objectContaining(partialResponse));
         });
     });
