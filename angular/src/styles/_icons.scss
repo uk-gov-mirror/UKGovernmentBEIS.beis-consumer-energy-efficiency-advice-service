@@ -79,6 +79,11 @@
 }
 
 //noinspection CssUnknownTarget
+.icon-circle-tick::before {
+  content: url('assets/images/topics/circle-tick.svg');
+}
+
+//noinspection CssUnknownTarget
 .icon-search::before {
   content: url('assets/images/controls/search.svg');
 }

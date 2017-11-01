@@ -17,4 +17,8 @@ export class QuestionnaireService {
     public getQuestionnaireWithName(name: string): Questionnaire {
         return this.questionnaires[name];
     }
+
+    public isComplete(name: string): boolean {
+        return this.questionnaires[name] && this.questionnaires[name].isComplete();
+    }
 }

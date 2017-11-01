@@ -1,5 +1,6 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
+import {RouterModule} from "@angular/router";
 
 import {ResultsPageComponent} from "./results-page.component";
 import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";
@@ -24,6 +25,7 @@ import {LocalAuthorityService} from "./local-authority-service/local-authority.s
     ],
     imports: [
         CommonModule,
+        RouterModule,
     ],
     providers: [
         EnergyCalculationApiService,
