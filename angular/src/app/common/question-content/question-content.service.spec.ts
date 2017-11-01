@@ -50,7 +50,7 @@ describe('QuestionContentService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === 'acf/v3/question';
+            const matchesExpectedUrl = request.urlWithParams === 'acf/v3/question?per_page=1000';
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });
