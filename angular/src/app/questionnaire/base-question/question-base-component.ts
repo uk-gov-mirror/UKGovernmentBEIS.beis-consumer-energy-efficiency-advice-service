@@ -15,22 +15,24 @@ export function oppositeDirection(slideInFrom: SlideInFrom): SlideInFrom {
 }
 
 export const slideInOutAnimation = trigger('slideInOut', [
-    state('none', style({left: '50%'})),
-    state('left', style({left: '50%'})),
-    state('right', style({left: '50%'})),
+    // All states refer to when question is rendered in centre of page;
+    // State indicates direction of slide in/out
+    state('none', style({'margin-left': '0'})),
+    state('left', style({'margin-left': '0', order: 1})),
+    state('right', style({'margin-left': '0', order: 2})),
+    // Slide in from left
     transition('void => left', [
-        style({left: '-50vw'}),
+        style({'margin-left': '-100vw', order: 1}),
         animate(500)
     ]),
-    transition('void => right', [
-        style({left: '150vw'}),
-        animate(500)
-    ]),
+    // Slide in from right - no animation required
+    // Slide out to left
     transition('left => void', [
-        animate(500, style({left: '-50vw'}))
+        animate(500, style({'margin-left': '-100vw', order: 1}))
     ]),
+    // Slide out to right
     transition('right => void', [
-        animate(500, style({left: '150vw'}))
+        animate(500, style({order: 2}))
     ])
 ]);
 
