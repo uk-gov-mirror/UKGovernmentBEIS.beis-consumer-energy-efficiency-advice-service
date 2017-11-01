@@ -5,6 +5,11 @@
   // IE11 requires a height on a flex-container to facilitate flex-grow
   height: 0;
 
+  .page-component {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
   & > :last-child {
     margin-top: auto;
   }

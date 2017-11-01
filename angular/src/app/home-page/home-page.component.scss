@@ -4,10 +4,6 @@
 //noinspection CssUnknownTarget
 @import '~styles/mixins/buttons';
 
-:host {
-  flex-shrink: 0;
-}
-
 .home-page {
   background-color: #eee;
   flex-direction: column;
