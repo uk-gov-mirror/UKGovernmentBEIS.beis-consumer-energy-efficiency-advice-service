@@ -20,16 +20,10 @@ export class LandingPageComponent {
     validationError: boolean = false;
 
     onPostcodeSubmit() {
-        this.trimPostcodeInput();
+        this.postcodeInput = this.postcodeInput.trim();
         if (!(this.validationError = !this.postcodeValidationService.isValid(this.postcodeInput))) {
             this.responseData.postcode = this.postcodeInput;
             this.router.navigate(['/questionnaire/home-basics']);
         }
-    }
-
-    private trimPostcodeInput() {
-        this.postcodeInput
-            .replace(/^\s+/, '')
-            .replace(/\s+$/, '');
     }
 }
