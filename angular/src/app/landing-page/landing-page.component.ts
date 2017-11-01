@@ -1,5 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
+import {ResponseData} from "../common/response-data/response-data";
+import {PostcodeValidationService} from "../common/postcode-validation-service/postcode-validation.service";
 
 @Component({
     selector: 'app-landing-page',
@@ -8,14 +10,26 @@ import {Router} from "@angular/router";
 })
 export class LandingPageComponent {
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private postcodeValidationService: PostcodeValidationService,
+                private responseData: ResponseData) {
     }
 
     @Input() heading: string;
     postcodeInput: string;
+    validationError: boolean = false;
 
     onPostcodeSubmit() {
-        const partialResponse = {postcode: this.postcodeInput};
-        this.router.navigate(['/questionnaire/home-basics', {partialResponse: JSON.stringify(partialResponse)}]);
+        this.trimPostcodeInput();
+        if (!(this.validationError = !this.postcodeValidationService.isValid(this.postcodeInput))) {
+            this.responseData.postcode = this.postcodeInput;
+            this.router.navigate(['/questionnaire/home-basics']);
+        }
+    }
+
+    private trimPostcodeInput() {
+        this.postcodeInput
+            .replace(/^\s+/, '')
+            .replace(/\s+$/, '');
     }
 }

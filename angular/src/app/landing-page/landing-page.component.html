@@ -7,13 +7,16 @@
     </div>
     <div class="postcode page-row">
         <div class="page-row-content">
-            <span class="enter-postcode-text">Enter your postcode for personalised advice</span>
-            <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
-                <input class="postcode-input-text" [(ngModel)]="postcodeInput" spellcheck="false" type="text"
-                       name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
-                <button class="postcode-input-submit" type="submit"
-                        title="Submit" aria-label="Submit">></button>
-            </form>
+            <div class="postcode-input">
+                <span class="enter-postcode-text">Enter your postcode for personalised advice</span>
+                <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
+                    <input class="postcode-input-text" [(ngModel)]="postcodeInput" spellcheck="false" type="text"
+                           name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
+                    <button class="postcode-input-submit" type="submit"
+                            title="Submit" aria-label="Submit">></button>
+                </form>
+            </div>
+            <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
             <div class="or">Or</div>
         </div>
     </div>

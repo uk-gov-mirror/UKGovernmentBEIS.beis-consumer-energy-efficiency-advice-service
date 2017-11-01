@@ -9,6 +9,8 @@ import {LatestNewsCardComponent} from "../../common/latest-news-card/latest-news
 import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../common/navigation-bar/navigation-bar.component";
+import {ResponseData} from "../../common/response-data/response-data";
+import {PostcodeValidationService} from "../../common/postcode-validation-service/postcode-validation.service";
 
 describe('ReduceBillsComponent', () => {
     let component: ReduceBillsComponent;
@@ -31,7 +33,11 @@ describe('ReduceBillsComponent', () => {
                 CommonModule,
                 FormsModule,
             ],
-            providers: [{provide: Router, useClass: MockRouter}]
+            providers: [
+                ResponseData,
+                PostcodeValidationService,
+                {provide: Router, useClass: MockRouter}
+            ]
         })
             .compileComponents();
     }));

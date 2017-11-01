@@ -9,8 +9,11 @@ import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LatestNewsCardComponent} from "../../common/latest-news-card/latest-news-card.component";
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../common/navigation-bar/navigation-bar.component";
+import {ResponseData} from "../../common/response-data/response-data";
+import {PostcodeValidationService} from "../../common/postcode-validation-service/postcode-validation.service";
 
 describe('CarbonFootprintComponent', () => {
+
     let component: CarbonFootprintComponent;
     let fixture: ComponentFixture<CarbonFootprintComponent>;
 
@@ -31,7 +34,11 @@ describe('CarbonFootprintComponent', () => {
                 CommonModule,
                 FormsModule,
             ],
-            providers: [{provide: Router, useClass: MockRouter}]
+            providers: [
+                ResponseData,
+                PostcodeValidationService,
+                {provide: Router, useClass: MockRouter}
+            ]
         })
             .compileComponents();
     }));

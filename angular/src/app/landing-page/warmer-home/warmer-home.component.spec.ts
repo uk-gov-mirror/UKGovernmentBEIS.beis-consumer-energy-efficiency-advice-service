@@ -9,6 +9,8 @@ import {LatestNewsCardComponent} from "../../common/latest-news-card/latest-news
 import {LargeVideoCardComponent} from "../large-video-card/large-video-card.component";
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../common/navigation-bar/navigation-bar.component";
+import {ResponseData} from "../../common/response-data/response-data";
+import {PostcodeValidationService} from "../../common/postcode-validation-service/postcode-validation.service";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -16,6 +18,12 @@ describe('WarmerHomeComponent', () => {
 
     class MockRouter {
     }
+
+    const VALID_POSTCODE = 'PO57 C03';
+    const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
+    const postcodeValidationServiceStub = {
+        isValid: jasmine.createSpy('isValid').and.callFake(mockPostcodeValidator)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -31,7 +39,11 @@ describe('WarmerHomeComponent', () => {
                 CommonModule,
                 FormsModule,
             ],
-            providers: [{provide: Router, useClass: MockRouter}]
+            providers: [
+                ResponseData,
+                PostcodeValidationService,
+                {provide: Router, useClass: MockRouter}
+            ]
         })
             .compileComponents();
     }));
