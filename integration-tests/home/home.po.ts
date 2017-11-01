@@ -1,15 +1,15 @@
-import { browser, by, element } from 'protractor';
+import {browser, by, element} from "protractor";
 
 export class HomePage {
-  navigateTo() {
-    return browser.get('/');
-  }
+    navigateTo() {
+        return browser.get('/');
+    }
 
-  getHeadingText() {
-    return element(by.css('.heading-text')).getText();
-  }
+    getHeadingText() {
+        return element(by.css('.heading-text')).getText();
+    }
 
-  clickQuestionnaireLink() {
-    element(by.cssContainingText('.questionnaire-link', 'Reduce your energy bills')).click();
-  }
+    clickLandingPageLink() {
+        element(by.cssContainingText('.questionnaire-link', 'Reduce your energy bills')).click();
+    }
 }
