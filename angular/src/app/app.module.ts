@@ -7,10 +7,6 @@ import {FormsModule} from "@angular/forms";
 import {TJsonViewerModule} from "t-json-viewer";
 
 import {AppComponent} from "./app.component";
-import {PageComponent} from "./page/page.component";
-import {CalculatorComponent} from "./calculator/calculator.component";
-import {PostcodeEpcComponent} from "./postcode-epc/postcode-epc.component";
-import {OcrComponent} from "./ocr/ocr.component";
 import {QuestionnaireModule} from "./questionnaire/questionnaire.module";
 import {SharedModule} from "./common/shared.module";
 import {ResultsPageModule} from "./results-page/results-page.module";
@@ -21,10 +17,6 @@ import {LandingPageModule} from "./landing-page/landing-page.module";
 @NgModule({
     declarations: [
         AppComponent,
-        PageComponent,
-        CalculatorComponent,
-        PostcodeEpcComponent,
-        OcrComponent,
         ResponseSummaryComponent,
     ],
     imports: [
