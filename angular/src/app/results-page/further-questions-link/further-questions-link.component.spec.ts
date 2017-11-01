@@ -13,9 +13,9 @@ describe('FurtherQuestionsLinkComponent', () => {
     const questionnaireName = 'questionnaire';
     const displayName = 'name';
 
-    let completeQuestionnaires: string[];
+    let questionnaireIsComplete: boolean;
     const mockQuestionnaireService = {
-        isComplete: (name: string) => completeQuestionnaires.includes(name)
+        isComplete: () => questionnaireIsComplete
     };
 
     beforeEach(async(() => {
@@ -28,7 +28,7 @@ describe('FurtherQuestionsLinkComponent', () => {
     }));
 
     beforeEach(() => {
-        completeQuestionnaires = [];
+        questionnaireIsComplete = false;
         fixture = TestBed.createComponent(FurtherQuestionsLinkComponent);
         component = fixture.componentInstance;
         component.iconClassName = iconClassName;
@@ -58,7 +58,7 @@ describe('FurtherQuestionsLinkComponent', () => {
 
     it('should show a tick against a complete questionnaire', () => {
         //given
-        completeQuestionnaires = [questionnaireName];
+        questionnaireIsComplete = true;
 
         // when
         fixture.detectChanges();
@@ -70,7 +70,7 @@ describe('FurtherQuestionsLinkComponent', () => {
 
     it('should not show a tick against an incomplete questionnaire', () => {
         //given
-        completeQuestionnaires = [];
+        questionnaireIsComplete = false;
 
         // when
         fixture.detectChanges();
