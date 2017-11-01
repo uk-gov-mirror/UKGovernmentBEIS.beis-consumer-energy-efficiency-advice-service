@@ -10,7 +10,10 @@
   min-height: 300px;
 
   > * {
-    flex: 0 0 50%;
+    padding: 32px;
+    box-sizing: border-box;
+    flex: 1 1 50%;
+    min-height: inherit;
   }
 
   .video-icon-container {
@@ -21,14 +24,12 @@
   }
 
   .text-container {
+    background-color: $light-grey;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
 
-    background-color: $light-grey;
-    padding: 32px;
-    box-sizing: border-box;
 
     .video-text {
       @include card-heading;
