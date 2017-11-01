@@ -11,9 +11,11 @@ import {Epc} from "./model/epc";
 import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
 import {EpcApiService} from "./epc-api-service/epc-api.service";
 import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
+import {PostcodeValidationService} from "../../../../../common/postcode-validation-service/postcode-validation.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
+    const INVALID_POSTCODE = 'invalid';
     const VALID_POSTCODE = 'SW1H 0ET';
 
     let component: PostcodeEpcQuestionComponent;
@@ -34,6 +36,11 @@ describe('PostcodeEpcQuestionComponent', () => {
         fetchFeatureFlags: () => mockFeatureFlagsObservable
     };
 
+    const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
+    const postcodeValidationServiceStub = {
+        isValid: jasmine.createSpy('isValid').and.callFake(mockPostcodeValidator)
+    };
+
     beforeEach(async(() => {
         spyOn(epcApiServiceStub, 'getEpcData').and.callThrough();
         spyOn(postcodeApiServiceStub, 'getPostcodeDetails').and.callThrough();
@@ -48,7 +55,8 @@ describe('PostcodeEpcQuestionComponent', () => {
                     providers: [
                         {provide: FeatureFlagService, useValue: featureFlagServiceStub},
                         {provide: EpcApiService, useValue: epcApiServiceStub},
-                        {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
+                        {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                        {provide: PostcodeValidationService, useValue: postcodeValidationServiceStub},
                     ]
                 }
             })
@@ -93,7 +101,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             expect(component.postcodeInput).toEqual(VALID_POSTCODE);
         });
 
-        it('should recognise a correct postcode as valid', () => {
+        it('should use the postcode validation service to validate the postcode', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -101,62 +109,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
 
             // then
-            expect(component.error).toBeNull();
-        });
-
-        it('should recognise a correct postcode without space as valid', () => {
-            // given
-            component.postcodeInput = 'SW1H0ET';
-
-            // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
-
-            // then
-            expect(component.error).toBeNull();
-        });
-
-        it('should recognise a lowercase postcode as valid', () => {
-            // given
-            component.postcodeInput = 'sw1h 0et';
-
-            // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
-
-            // then
-            expect(component.error).toBeNull();
-        });
-
-        it('should recognise a correct shorter postcode as valid', () => {
-            // given
-            component.postcodeInput = 's1 0et';
-
-            // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
-
-            // then
-            expect(component.error).toBeNull();
-        });
-
-        it('should recognise an incorrect postcode as invalid', () => {
-            // given
-            component.postcodeInput = 's1 0e';
-
-            // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
-
-            // then
-            expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
-        });
-
-        it('should recognise a postcode input with special characters as invalid', () => {
-            // given
-            component.postcodeInput = 'SW!H 0ET';
-
-            // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
-
-            // then
-            expect(component.error).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
+            expect(postcodeValidationServiceStub.isValid).toHaveBeenCalledWith(VALID_POSTCODE);
         });
 
         it('should call epc api if postcode is valid and feature flag is on', async(() => {
@@ -175,7 +128,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
         it('should not call epc api if postcode is not valid', async(() => {
             // given
-            component.postcodeInput = 'invalid';
+            component.postcodeInput = INVALID_POSTCODE;
 
             // when
             fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();

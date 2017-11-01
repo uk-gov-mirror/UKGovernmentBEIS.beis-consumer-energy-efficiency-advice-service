@@ -11,6 +11,7 @@ import {EpcApiService} from "./epc-api-service/epc-api.service";
 import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 import {PostcodeResponse} from "./model/response/postcode/postcode-response";
 import {PostcodeErrorResponse} from "./model/response/postcode/postcode-error-response";
+import {PostcodeValidationService} from "../../../../../common/postcode-validation-service/postcode-validation.service";
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -20,7 +21,6 @@ import {PostcodeErrorResponse} from "./model/response/postcode/postcode-error-re
     animations: [slideInOutAnimation]
 })
 export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<PostcodeEpc> implements OnInit {
-    static readonly POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
     static readonly ERROR_VALIDATION: Error = {
         heading: null,
         message: 'Please enter a full valid UK postcode'
@@ -38,7 +38,8 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     constructor(responseData: ResponseData,
                 private epcApiService: EpcApiService,
                 private postcodeApiService: PostcodeApiService,
-                private featureFlagService: FeatureFlagService) {
+                private featureFlagService: FeatureFlagService,
+                private postcodeValidationService: PostcodeValidationService) {
         super(responseData);
     }
 
@@ -70,12 +71,12 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<Postcode
     handlePostcodeEntered(): void {
         this.trimLeadingOrTrailingSpacesFromPostcodeString();
         this.resetSearchState();
-        let isPostcodeInputValid = PostcodeEpcQuestionComponent.POSTCODE_REGEXP.test(this.postcodeInput);
-        if (!isPostcodeInputValid) {
+
+        if (!this.postcodeValidationService.isValid(this.postcodeInput)) {
             this.displayPostcodeValidationError();
-            return;
+        } else {
+            this.checkFeatureFlagAndLookupAllEpcsForPostcode();
         }
-        this.checkFeatureFlagAndLookupAllEpcsForPostcode();
     }
 
     displayPostcodeValidationError(): void {

@@ -12,7 +12,7 @@ $border-width: 1px;
   font-weight: bold;
 
   &[disabled], &.inactive {
-    background-color: $grey;
+    background-color: $light-medium-grey;
     cursor: default;
   }
 

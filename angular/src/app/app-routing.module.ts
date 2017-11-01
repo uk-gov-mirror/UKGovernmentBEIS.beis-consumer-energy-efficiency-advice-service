@@ -9,7 +9,11 @@ import {ResponseSummaryComponent} from "./response-summary/response-summary.comp
 import {ResultsPageComponent} from "./results-page/results-page.component";
 import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
 import {ResultsPageRouteGuard} from "./results-page/results-page-route-guard.service";
-import {HomePageComponent} from './home-page/home-page.component';
+import {HomePageComponent} from "./home-page/home-page.component";
+import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-improvements.component";
+import {CarbonFootprintComponent} from "./landing-page/carbon-footprint/carbon-footprint.component";
+import {ReduceBillsComponent} from "./landing-page/reduce-bills/reduce-bills.component";
+import {WarmerHomeComponent} from "./landing-page/warmer-home/warmer-home.component";
 
 const routes: Routes = [
     {
@@ -41,6 +45,22 @@ const routes: Routes = [
         path: 'results',
         component: ResultsPageComponent,
         canActivate: [ResultsPageRouteGuard]
+    },
+    {
+        path: 'carbon-footprint',
+        component: CarbonFootprintComponent
+    },
+    {
+        path: 'home-improvements',
+        component: HomeImprovementsComponent
+    },
+    {
+        path: 'reduce-bills',
+        component: ReduceBillsComponent
+    },
+    {
+        path: 'warmer-home',
+        component: WarmerHomeComponent
     },
     {
         path: ':slug',

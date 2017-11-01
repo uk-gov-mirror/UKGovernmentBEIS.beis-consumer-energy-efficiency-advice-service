@@ -1,13 +1,12 @@
-import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
-import {RouterTestingModule} from '@angular/router/testing';
-import {Observable} from 'rxjs/Observable';
-import {HeaderComponent} from './header.component';
-import {WordpressPagesService} from './wordpress-pages-service/wordpress-pages.service';
-import {WordpressPageResponse} from './wordpress-pages-service/wordpress-page-response';
+import {async, ComponentFixture, getTestBed, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
+import {RouterTestingModule} from "@angular/router/testing";
+import {Observable} from "rxjs/Observable";
+import {HeaderComponent} from "./header.component";
+import {WordpressPagesService} from "./wordpress-pages-service/wordpress-pages.service";
+import {WordpressPageResponse} from "./wordpress-pages-service/wordpress-page-response";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import {WordpressPage} from './wordpress-pages-service/wordpress-page';
 
 
 describe('HeaderComponent', () => {

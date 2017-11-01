@@ -9,6 +9,7 @@ import {QuestionContentService} from "../common/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
+import {ResponseData} from "../common/response-data/response-data";
 
 @Component({
     selector: 'app-questionnaire',
@@ -36,7 +37,8 @@ export class QuestionnaireComponent implements OnInit {
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
                 private router: Router,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private responseData: ResponseData) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -44,6 +46,12 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Merge the partial response data, passed in via route params, with the saved responses.
+        const partialResponse = this.route.snapshot.paramMap.get('partialResponse');
+        if (partialResponse !== null) {
+            Object.assign(this.responseData, JSON.parse(partialResponse));
+        }
+
         this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorMessage()

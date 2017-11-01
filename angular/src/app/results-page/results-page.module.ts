@@ -1,5 +1,5 @@
-import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {NgModule} from "@angular/core";
 
 import {ResultsPageComponent} from "./results-page.component";
 import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";

@@ -1,4 +1,5 @@
 @import "~styles/mixins/font";
+@import "~styles/var/colours";
 
 :host {
   display: block;
@@ -7,7 +8,7 @@
 .recommendation-card {
   width: 100%;
   height: 100%;
-  background-color: #F2F2F2;
+  background-color: $lighter-grey;
 
   display: flex;
   flex-direction: column;

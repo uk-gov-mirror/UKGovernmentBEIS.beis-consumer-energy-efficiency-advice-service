@@ -1,0 +1,78 @@
+<div class="landing-page">
+    <app-navigation-bar></app-navigation-bar>
+    <div class="page-heading page-row">
+        <div class="page-row-content">
+            <div class="heading-text">{{heading}}</div>
+        </div>
+    </div>
+    <div class="postcode page-row">
+        <div class="page-row-content">
+            <div class="postcode-input">
+                <span class="enter-postcode-text">Enter your postcode for personalised advice</span>
+                <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
+                    <input class="postcode-input-text" [(ngModel)]="postcodeInput" spellcheck="false" type="text"
+                           name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
+                    <button class="postcode-input-submit" type="submit"
+                            title="Submit" aria-label="Submit">></button>
+                </form>
+            </div>
+            <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
+            <div class="or">Or</div>
+        </div>
+    </div>
+    <div class="browse page-row">
+        <div class="page-row-content">
+            <div class="heading">Browse articles, videos and tips</div>
+            <div class="statistics">
+                <div class="statistic">
+                    <div class="graphic percentage-graphic">
+                        <span class="headline-figure">35%</span>
+                    </div>
+                    <div class="text">of heat loss is through walls</div>
+                </div>
+                <div class="statistic">
+                    <div class="graphic money-graphic">
+                        <span class="headline-figure">£150</span>
+                    </div>
+                    <div class="text">annual saving by implementing loft insulation</div>
+                </div>
+            </div>
+            <div class="full-width-card">
+                <app-large-video-card title="Loft conversions: What you should know"></app-large-video-card>
+            </div>
+            <div class="half-width-cards">
+                <app-article-card title="What are the benefits of installing loft insulation?"
+                                  summary="Loft insulation is well worth considering because if there is little or no
+                                           existing insulation considerable savings can be made. Installing 270mm of
+                                           loft insulation can pay for itself in around 2 years.">
+                </app-article-card>
+                <app-article-card title="What can I do if I don't have cavity walls or a loft?"
+                                  summary="There is plenty you can do to improve the insulation in your home if you
+                                           don't have cavity walls or a loft space. You can find information on
+                                           insulation for solid walls and for flat roofs and floors, as well as
+                                           draught-proofing and replacing windows, on our website
+                                           www.energysavingtrust.org.uk.">
+                </app-article-card>
+            </div>
+        </div>
+    </div>
+    <div class="other-suggestions page-row">
+        <div class="page-row-content">
+            <div class="heading">Other things you might be interested in</div>
+            <div class="latest-news-cards">
+                <app-latest-news-card iconClassName="icon-video-play"
+                                      heading="How to draught-proof your home">
+                </app-latest-news-card>
+                <app-latest-news-card iconClassName="icon-infographic"
+                                      heading="5 simple tips to save energy this winter">
+                </app-latest-news-card>
+                <app-latest-news-card iconClassName="icon-checklist"
+                                      heading="How to choose the right installer">
+                </app-latest-news-card>
+                <app-latest-news-card iconClassName="icon-grant"
+                                      heading="Info on grants">
+                </app-latest-news-card>
+            </div>
+        </div>
+    </div>
+</div>

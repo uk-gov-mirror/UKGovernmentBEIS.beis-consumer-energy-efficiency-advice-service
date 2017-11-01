@@ -1,0 +1,45 @@
+//noinspection CssUnknownTarget
+@import "~styles/var/colours";
+//noinspection CssUnknownTarget
+@import "~styles/mixins/font";
+
+:host {
+  display: block;
+}
+
+.large-video-card {
+  display: flex;
+  min-height: 300px;
+
+  > * {
+    flex: 0 0 50%;
+  }
+
+  .video-icon-container {
+    background-color: $dark-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    background-color: $light-grey;
+    padding: 32px;
+    box-sizing: border-box;
+
+    .video-text {
+      @include card-heading;
+    }
+
+    .title {
+      @include title-text;
+      padding: 32px 0;
+      max-width: 80%;
+    }
+  }
+}
