@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
 import {WordpressPageResponse} from './wordpress-page-response';
+import {WordpressApiService} from "../../../shared/wordpress-api-service/wordpress-api-service";
 
 @Injectable()
 export class WordpressPagesService {
