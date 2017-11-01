@@ -1,11 +1,7 @@
-//noinspection CssUnknownTarget
-@import "~styles/page";
-//noinspection CssUnknownTarget
-@import '~styles/mixins/buttons';
-//noinspection CssUnknownTarget
-@import '~styles/mixins/font';
-//noinspection CssUnknownTarget
-@import "~styles/var/colours";
+@import "styles/page";
+@import 'styles/mixins/buttons';
+@import 'styles/mixins/font';
+@import "styles/var/colours";
 
 .home-page {
   background-color: $light-grey;

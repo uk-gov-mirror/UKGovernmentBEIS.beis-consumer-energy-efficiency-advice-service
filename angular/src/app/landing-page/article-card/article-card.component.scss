@@ -1,7 +1,5 @@
-//noinspection CssUnknownTarget
-@import "~styles/mixins/font";
-//noinspection CssUnknownTarget
-@import "~styles/var/colours";
+@import "styles/mixins/font";
+@import "styles/var/colours";
 
 :host {
   display: block;
