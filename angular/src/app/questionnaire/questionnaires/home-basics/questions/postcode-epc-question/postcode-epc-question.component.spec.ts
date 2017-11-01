@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 import {By} from "@angular/platform-browser";
 import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/defer";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";

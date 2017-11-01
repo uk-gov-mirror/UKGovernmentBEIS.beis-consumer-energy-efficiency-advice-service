@@ -10,6 +10,10 @@ import {getTestBed} from "@angular/core/testing";
 import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angular/platform-browser-dynamic/testing";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 
+// Common rxjs operators
+import "rxjs/add/observable/of";
+import "rxjs/add/observable/defer";
+
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare const __karma__: any;
 declare const require: any;
