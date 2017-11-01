@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from "@angular/common";
 
@@ -12,6 +13,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {NavigationBarComponent} from './navigation-bar/navigation-bar.component';
 import {RoutingModule} from '../app-routing.module';
+import {WordpressPagesService} from './header/wordpress-pages-service/wordpress-pages.service';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import {RoutingModule} from '../app-routing.module';
     imports: [
         HttpClientModule,
         RoutingModule,
-        CommonModule
+        CommonModule,
+        FormsModule
     ],
 })
 export class SharedModule {
@@ -41,7 +44,8 @@ export class SharedModule {
                 WordpressApiService,
                 ResponseData,
                 FeatureFlagService,
-                EnergyCalculationApiService
+                EnergyCalculationApiService,
+                WordpressPagesService
             ]
         };
     }

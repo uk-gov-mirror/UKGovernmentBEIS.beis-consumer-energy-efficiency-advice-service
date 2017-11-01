@@ -1,3 +1,6 @@
+// noinspection CssUnknownTarget
+@import "~styles/mixins/spinner";
+
 .page-loading-container {
   display: flex;
   justify-content: center;
@@ -5,13 +8,11 @@
 }
 
 .loading-spinner {
-  height: 80px;
-  width: 80px;
-  border-radius: 50%;
-  border: 6px solid lightgrey;
-  border-top-color: transparent;
-  animation: spinner 1s linear infinite;
-  margin: 40px;
+  @include spinner(80px);
+}
+
+.loading-spinner-small {
+  @include spinner(20px);
 }
 
 @keyframes spinner {
