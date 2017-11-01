@@ -1,0 +1,6 @@
+<div class="page-row" >
+    <div class="page-row-content page-component">
+        <div class="title" [innerHTML]="(pageData|async)?.title?.rendered"></div>
+        <div class="content" [innerHTML]="(pageData|async)?.content?.rendered"></div>
+    </div>
+</div>

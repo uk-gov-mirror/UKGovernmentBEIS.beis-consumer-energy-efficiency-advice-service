@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
+import {RouterTestingModule} from "@angular/router/testing";
 
 import {RecommendationCardComponent} from "./recommendation-card.component";
 import {EnergySavingRecommendation} from "./energy-saving-recommendation";
@@ -9,17 +10,17 @@ describe('RecommendationCardComponent', () => {
     let fixture: ComponentFixture<RecommendationCardComponent>;
 
     const recommendation: EnergySavingRecommendation = {
-        recommendationType: {
-            iconClassName: 'icon-roofing',
-            description: 'Loft insulation'
-        },
         costSavingPoundsPerYear: 100,
-        energySavingKwhPerYear: 100
+        energySavingKwhPerYear: 100,
+        readMorePath: 'home-improvements/loft-insulation',
+        iconClassName: 'icon-roofing',
+        headline: 'Loft insulation'
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [RecommendationCardComponent]
+            declarations: [RecommendationCardComponent],
+            imports: [RouterTestingModule]
         })
             .compileComponents();
     }));
@@ -37,11 +38,11 @@ describe('RecommendationCardComponent', () => {
 
     it('should display the correct description', () => {
         const recommendationDescriptionElement = fixture.debugElement.query(By.css('.description')).nativeElement;
-        expect(recommendationDescriptionElement.innerText).toBe(recommendation.recommendationType.description);
+        expect(recommendationDescriptionElement.innerText).toBe(recommendation.headline);
     });
 
     it('should display the correct icon', () => {
         const iconElement = fixture.debugElement.query(By.css('.icon')).nativeElement;
-        expect(iconElement.classList).toContain(recommendation.recommendationType.iconClassName);
+        expect(iconElement.classList).toContain(recommendation.iconClassName);
     });
 });

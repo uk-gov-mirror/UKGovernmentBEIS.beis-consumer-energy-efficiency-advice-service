@@ -1,5 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
+import {PageComponent} from "./page/page.component";
 import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {ResultsPageComponent} from "./results-page/results-page.component";
 import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
@@ -40,6 +41,14 @@ const routes: Routes = [
     {
         path: 'warmer-home',
         component: WarmerHomeComponent
+    },
+    {
+        path: ':slug',
+        component: PageComponent
+    },
+    {
+        path: ':section/:slug',
+        component: PageComponent
     },
     {
         path: '**',

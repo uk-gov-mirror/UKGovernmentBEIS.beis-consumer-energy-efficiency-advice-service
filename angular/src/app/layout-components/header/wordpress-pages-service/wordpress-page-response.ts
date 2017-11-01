@@ -1,5 +1,5 @@
 export interface WordpressPageResponse {
-    slug: string;
+    link: string;
     title: {
         rendered: string;
     };

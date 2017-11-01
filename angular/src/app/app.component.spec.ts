@@ -5,6 +5,7 @@ import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./layout-components/header/header.component";
 import {FooterComponent} from "./layout-components/footer/footer.component";
 import {WordpressPagesService} from "./layout-components/header/wordpress-pages-service/wordpress-pages.service";
+import {NavigationBarComponent} from "./common/navigation-bar/navigation-bar.component";
 
 describe('AppComponent', () => {
 
@@ -15,7 +16,8 @@ describe('AppComponent', () => {
             declarations: [
                 AppComponent,
                 HeaderComponent,
-                FooterComponent
+                FooterComponent,
+                NavigationBarComponent
             ],
             imports: [RouterTestingModule, FormsModule],
             providers: [{provide: WordpressPagesService, useValue: mockWordpressPagesService}]

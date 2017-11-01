@@ -55,6 +55,13 @@
   .read-more {
     .read-more-text {
       @include body-uppercase;
+      text-decoration: none;
+      color: black;
+      outline: none;
+
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 }

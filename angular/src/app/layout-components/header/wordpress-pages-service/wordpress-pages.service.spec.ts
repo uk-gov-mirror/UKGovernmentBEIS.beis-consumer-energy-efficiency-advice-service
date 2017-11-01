@@ -45,7 +45,7 @@ describe('WordpressPagesService', () => {
             actualResponse.then((pagesResponse) => {
                 // match data in 'assets/test/search-pages-response.json'
                 expect(pagesResponse.length).toBe(7);
-                expect(pagesResponse[0].slug).toBe('microgen-7');
+                expect(pagesResponse[0].link).toContain('microgen-7');
                 expect(pagesResponse[0].title.rendered).toBe('Microgen 7');
             });
             httpMock.verify();

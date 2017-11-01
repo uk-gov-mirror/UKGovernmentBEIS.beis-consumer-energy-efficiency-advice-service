@@ -14,12 +14,12 @@ describe('HeaderComponent', () => {
     let fixture: ComponentFixture<HeaderComponent>;
     let injector: TestBed;
 
-    const mockSearchResult = [
-        {slug: 'page-1', title: {rendered: 'Test page 1'}},
-        {slug: 'page-2', title: {rendered: 'Test page 2'}},
-        {slug: 'page-3', title: {rendered: 'Test page 3'}},
-        {slug: 'page-3', title: {rendered: 'Test page 4'}},
-        {slug: 'page-3', title: {rendered: 'Test page 5'}}
+    const mockSearchResult: WordpressPageResponse[] = [
+        {link: 'page-1', title: {rendered: 'Test page 1'}},
+        {link: 'page-2', title: {rendered: 'Test page 2'}},
+        {link: 'page-3', title: {rendered: 'Test page 3'}},
+        {link: 'page-3', title: {rendered: 'Test page 4'}},
+        {link: 'page-3', title: {rendered: 'Test page 5'}}
     ];
 
     let mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
