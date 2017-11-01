@@ -1,4 +1,4 @@
-import {EnergyCalculationResponse} from "../../common/energy-calculation-api-service/response/energy-calculation-response";
+import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
 
 export class EnergyCalculations {
     currentEnergyBillPoundsPerYear: number;

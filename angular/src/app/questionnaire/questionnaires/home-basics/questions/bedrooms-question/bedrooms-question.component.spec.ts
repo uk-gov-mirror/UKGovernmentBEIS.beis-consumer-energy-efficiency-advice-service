@@ -3,9 +3,9 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {BedroomsQuestionComponent} from "./bedrooms-question.component";
 import {NumberQuestionComponent} from "../../../../common-questions/number-question/number-question.component";
 import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
-import {TimesPipe} from "../../../../../common/times/times.pipe";
+import {TimesPipe} from "../../../../../shared/times/times.pipe";
 
 describe('BedroomsQuestionComponent', () => {
     let component: BedroomsQuestionComponent;

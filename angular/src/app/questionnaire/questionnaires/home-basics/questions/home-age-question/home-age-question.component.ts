@@ -1,7 +1,7 @@
 import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
 import {HomeAge, HomeAgeUtil} from "./home-age";
 import {Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild} from "@angular/core";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 import keys from "lodash-es/keys";
 
 interface HomeAgeOption {

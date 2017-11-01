@@ -8,13 +8,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionnaireComponent} from "./questionnaire.component";
 import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
-import {QuestionContentService} from "../common/question-content/question-content.service";
-import {AllQuestionsContent} from "../common/question-content/all-questions-content";
+import {QuestionContentService} from "../shared/question-content/question-content.service";
+import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
 import {QuestionType} from "./question-type";
 import {QuestionBaseComponent} from "./base-question/question-base-component";
 import {QuestionMetadata} from "./base-question/question-metadata";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
-import {ResponseData} from "../common/response-data/response-data";
+import {ResponseData} from "../shared/response-data/response-data";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;

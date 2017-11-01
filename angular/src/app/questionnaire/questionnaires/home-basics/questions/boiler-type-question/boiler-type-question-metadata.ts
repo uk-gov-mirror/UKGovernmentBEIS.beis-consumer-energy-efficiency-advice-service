@@ -1,6 +1,6 @@
 import {QuestionMetadata} from "../../../../base-question/question-metadata";
 import {BoilerTypeQuestionComponent} from "./boiler-type-question.component";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {isGasOrOil} from "../fuel-type-question/fuel-type";
 import {QuestionType} from "../../../../question-type";
 

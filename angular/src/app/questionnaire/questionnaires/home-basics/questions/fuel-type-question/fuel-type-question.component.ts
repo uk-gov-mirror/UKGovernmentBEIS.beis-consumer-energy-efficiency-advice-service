@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {FuelType, getFuelTypeDescription} from "./fuel-type";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 
 class FuelTypeOption {
     public readonly name: string;

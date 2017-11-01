@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Questionnaire} from "../../base-questionnaire/questionnaire";
-import {ResponseData} from "../../../common/response-data/response-data";
+import {ResponseData} from "../../../shared/response-data/response-data";
 import {PostcodeEpcQuestionMetadata} from "./questions/postcode-epc-question/postcode-epc-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "./questions/confirm-epc-question/confirm-epc-question-metadata";
 import {HomeTypeQuestionMetadata} from "./questions/home-type-question/home-type-question-metadata";

@@ -2,7 +2,7 @@ import {async, getTestBed, TestBed} from "@angular/core/testing";
 
 import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../../../../../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../../../../../shared/wordpress-api-service/wordpress-api-service";
 import {EpcsResponse} from "../model/response/epc/epcs-response";
 import {HttpRequest} from "@angular/common/http";
 

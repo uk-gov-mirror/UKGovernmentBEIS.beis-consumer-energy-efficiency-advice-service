@@ -1,6 +1,6 @@
 import {ConfirmEpcQuestionComponent} from "./confirm-epc-question.component";
 import {QuestionMetadata} from "../../../../base-question/question-metadata";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {QuestionType} from "../../../../question-type";
 import {EpcConfirmation} from "./epc-confirmation";
 

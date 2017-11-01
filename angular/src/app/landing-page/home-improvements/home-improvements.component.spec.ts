@@ -5,12 +5,12 @@ import {FormsModule} from "@angular/forms";
 
 import {HomeImprovementsComponent} from "./home-improvements.component";
 import {LargeVideoCardComponent} from "../large-video-card/large-video-card.component";
-import {LatestNewsCardComponent} from "../../common/latest-news-card/latest-news-card.component";
+import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news-card.component";
 import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";
-import {NavigationBarComponent} from "../../common/navigation-bar/navigation-bar.component";
-import {ResponseData} from "../../common/response-data/response-data";
-import {PostcodeValidationService} from "../../common/postcode-validation-service/postcode-validation.service";
+import {NavigationBarComponent} from "../../shared/navigation-bar/navigation-bar.component";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {PostcodeValidationService} from "../../shared/postcode-validation-service/postcode-validation.service";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;

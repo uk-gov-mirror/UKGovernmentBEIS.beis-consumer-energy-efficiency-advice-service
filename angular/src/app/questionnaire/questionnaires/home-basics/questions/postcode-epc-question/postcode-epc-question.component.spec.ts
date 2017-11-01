@@ -6,12 +6,12 @@ import "rxjs/add/observable/defer";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {Epc} from "./model/epc";
-import {FeatureFlagService} from "../../../../../common/feature-flag/feature-flag.service";
+import {FeatureFlagService} from "../../../../../shared/feature-flag/feature-flag.service";
 import {EpcApiService} from "./epc-api-service/epc-api.service";
 import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
-import {PostcodeValidationService} from "../../../../../common/postcode-validation-service/postcode-validation.service";
+import {PostcodeValidationService} from "../../../../../shared/postcode-validation-service/postcode-validation.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 

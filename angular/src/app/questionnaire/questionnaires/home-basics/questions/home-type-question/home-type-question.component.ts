@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {getHomeTypeDescription, HomeType} from "./home-type";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-question/question-base-component";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 
 class HomeTypeOption {
     public readonly name: string;

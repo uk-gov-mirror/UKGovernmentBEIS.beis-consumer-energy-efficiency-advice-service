@@ -2,7 +2,7 @@ import {QuestionMetadata} from "../../../../base-question/question-metadata";
 import {FuelType} from "./fuel-type";
 import {FuelTypeQuestionComponent} from "./fuel-type-question.component";
 import {QuestionType} from "../../../../question-type";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 
 export class FuelTypeQuestionMetadata extends QuestionMetadata<FuelType> {
     constructor() {

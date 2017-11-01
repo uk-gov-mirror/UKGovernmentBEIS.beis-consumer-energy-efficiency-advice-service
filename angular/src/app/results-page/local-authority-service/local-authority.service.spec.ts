@@ -3,7 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {HttpRequest} from "@angular/common/http";
 import {LocalAuthorityService} from "./local-authority.service";
 import {LocalAuthorityResponse} from "./local-authority-response";
-import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 
 describe('LocalAuthorityService', () => {
     let httpMock: HttpTestingController;

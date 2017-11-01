@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
 import {StoreysQuestionComponent} from "./storeys-question.component";
 import {By} from "@angular/platform-browser";
-import {ResponseData} from "../../../../../common/response-data/response-data";
+import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {FormsModule} from "@angular/forms";
 import {NumberQuestionComponent} from "../../../../common-questions/number-question/number-question.component";
 

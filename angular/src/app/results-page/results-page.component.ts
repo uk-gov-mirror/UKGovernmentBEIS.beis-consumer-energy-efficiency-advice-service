@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {EnergyCalculationApiService} from "../common/energy-calculation-api-service/energy-calculation-api-service";
-import {ResponseData} from "../common/response-data/response-data";
-import {RdSapInput} from "../common/energy-calculation-api-service/request/rdsap-input";
+import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
+import {ResponseData} from "../shared/response-data/response-data";
+import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap-input";
 import {EnergySavingRecommendation} from "./recommendation-card/energy-saving-recommendation";
-import {EnergyCalculationResponse} from "../common/energy-calculation-api-service/response/energy-calculation-response";
+import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculations} from "./potentials/energy-calculations";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {GrantResponse, LocalAuthorityResponse} from "./local-authority-service/local-authority-response";

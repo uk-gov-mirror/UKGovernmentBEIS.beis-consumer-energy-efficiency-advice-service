@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {QuestionType, QuestionTypeUtil} from "../question-type";
-import {AllQuestionsContent} from "../../common/question-content/all-questions-content";
+import {AllQuestionsContent} from "../../shared/question-content/all-questions-content";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
 import groupBy from "lodash-es/groupBy";
 import sortBy from "lodash-es/sortBy";

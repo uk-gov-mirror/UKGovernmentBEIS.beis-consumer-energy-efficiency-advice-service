@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
-import {ResponseData} from "../common/response-data/response-data";
-import {PostcodeValidationService} from "../common/postcode-validation-service/postcode-validation.service";
+import {ResponseData} from "../shared/response-data/response-data";
+import {PostcodeValidationService} from "../shared/postcode-validation-service/postcode-validation.service";
 
 @Component({
     selector: 'app-landing-page',

@@ -4,9 +4,9 @@ import {By} from "@angular/platform-browser";
 import {ProgressIndicatorComponent} from "./progress-indicator.component";
 import {QuestionType, QuestionTypeUtil} from "../question-type";
 import {DebugElement} from "@angular/core/core";
-import {AllQuestionsContent} from "../../common/question-content/all-questions-content";
+import {AllQuestionsContent} from "../../shared/question-content/all-questions-content";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
-import {ResponseData} from "../../common/response-data/response-data";
+import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionMetadata} from "../base-question/question-metadata";
 import {QuestionBaseComponent} from "../base-question/question-base-component";
 

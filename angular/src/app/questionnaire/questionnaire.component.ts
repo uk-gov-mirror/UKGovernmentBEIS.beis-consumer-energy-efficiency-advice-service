@@ -3,13 +3,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionDirective} from "./question.directive";
 import {QuestionTypeUtil} from "./question-type";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
-import {AllQuestionsContent} from "../common/question-content/all-questions-content";
-import {QuestionContent} from "../common/question-content/question-content";
-import {QuestionContentService} from "../common/question-content/question-content.service";
+import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
+import {QuestionContent} from "../shared/question-content/question-content";
+import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
-import {ResponseData} from "../common/response-data/response-data";
+import {ResponseData} from "../shared/response-data/response-data";
 
 @Component({
     selector: 'app-questionnaire',

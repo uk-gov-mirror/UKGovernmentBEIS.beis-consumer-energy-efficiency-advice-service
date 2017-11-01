@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {WordpressApiService} from "../../../../../../common/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../../../../../shared/wordpress-api-service/wordpress-api-service";
 import {PostcodeResponse} from "../model/response/postcode/postcode-response";
 
 @Injectable()

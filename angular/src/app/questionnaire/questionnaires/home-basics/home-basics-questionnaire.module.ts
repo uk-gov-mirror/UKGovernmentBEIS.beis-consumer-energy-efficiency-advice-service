@@ -12,7 +12,7 @@ import {HomeTypeQuestionComponent} from "./questions/home-type-question/home-typ
 import {PostcodeEpcQuestionComponent} from "./questions/postcode-epc-question/postcode-epc-question.component";
 import {StoreysQuestionComponent} from "./questions/storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../../common-questions/common-questions.module";
-import {SharedModule} from "../../../common/shared.module";
+import {SharedModule} from "../../../shared/shared.module";
 import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
 
 @NgModule({

@@ -1,4 +1,4 @@
-import {EnergySavingMeasureResponse} from "../../common/energy-calculation-api-service/response/energy-saving-measure-response";
+import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
 import {RecommendationType, RecommendationTypeService} from "./recommendation-type.service";
 
 export class EnergySavingRecommendation {
