@@ -4,7 +4,7 @@
 >
     <div class="icon-container">
         <span class="questionnaire-icon" [ngClass]="iconClassName"></span>
-        <span *ngIf="questionnaireComplete" class="icon-circle-tick"></span>
+        <span *ngIf="questionnaireComplete()" class="icon-circle-tick"></span>
     </div>
     <div class="name">{{displayName}}</div>
 </a>

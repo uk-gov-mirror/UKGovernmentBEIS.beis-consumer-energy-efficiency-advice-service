@@ -9,7 +9,7 @@ import {QuestionResponse} from "./question-response";
 
 @Injectable()
 export class QuestionContentService {
-    private static readonly questionsContentEndpoint = 'acf/v3/question';
+    private static readonly questionsContentEndpoint = 'acf/v3/question?per_page=1000';
     private readonly questionsContent: Observable<AllQuestionsContent>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {

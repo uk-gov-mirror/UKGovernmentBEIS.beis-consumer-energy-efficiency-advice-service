@@ -11,13 +11,11 @@ export class FurtherQuestionsLinkComponent {
     @Input() questionnaireName: string;
     @Input() displayName: string;
 
-    questionnaireComplete: boolean;
-
     constructor(private questionnaireService: QuestionnaireService) {
     }
 
-    ngOnInit() {
-        this.questionnaireComplete = this.questionnaireService.isComplete(this.questionnaireName);
+    questionnaireComplete(): boolean {
+        return this.questionnaireService.isComplete(this.questionnaireName);
     }
 
     linkToQuestionnaire(questionnaireName: string): string {

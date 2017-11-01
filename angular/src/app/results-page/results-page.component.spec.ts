@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {DebugElement} from "@angular/core";
+import {RouterTestingModule} from "@angular/router/testing";
 
 import {ResultsPageComponent} from "./results-page.component";
 import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";
@@ -20,6 +21,7 @@ import {FlatPosition} from "../questionnaire/questionnaires/home-basics/question
 import {FuelType} from "../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
 import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
+import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -43,6 +45,10 @@ describe('ResultsPageComponent', () => {
         fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
     };
 
+    const mockQuestionnarieService = {
+        isComplete: (name: string) => false
+    };
+
     const responseData: ResponseData = {
         postcode: 'sw1h0et',
         epc: null,
@@ -55,7 +61,8 @@ describe('ResultsPageComponent', () => {
         numberOfBedrooms: 1,
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
-        electricityTariff: undefined
+        electricityTariff: undefined,
+        numberOfOccupants: 1
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {
@@ -90,10 +97,14 @@ describe('ResultsPageComponent', () => {
                 RecommendationCardComponent,
                 SuggestionCardComponent
             ],
+            imports: [
+                RouterTestingModule.withRoutes([]),
+            ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
-                {provide: LocalAuthorityService, useValue: mockLocalAuthorityService}
+                {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
+                {provide: QuestionnaireService, useValue: mockQuestionnarieService}
             ]
         })
             .compileComponents();
