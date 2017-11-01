@@ -10,6 +10,6 @@ export class HomePage {
     }
 
     clickLandingPageLink() {
-        element(by.cssContainingText('.questionnaire-link', 'Reduce your energy bills')).click();
+        element(by.cssContainingText('.landing-page-link', 'Reduce your energy bills')).click();
     }
 }
