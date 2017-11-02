@@ -17,6 +17,15 @@
   padding: 16px;
   box-sizing: border-box;
 
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    box-shadow: 3px 3px 6px black;
+  }
+
   .heading, .read-more {
     max-width: 100%;
   }

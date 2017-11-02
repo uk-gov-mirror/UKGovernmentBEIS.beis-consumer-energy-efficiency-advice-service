@@ -1,29 +1,30 @@
 import {Injectable} from "@angular/core";
 import {PageError} from './page-error';
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class PageStateService {
-    isLoading: boolean;
-    pageError: PageError;
+    isLoadingChange: Subject<boolean> = new Subject<boolean>();
+    pageErrorChange: Subject<PageError> = new Subject<PageError>();
 
     private static genericError: PageError = {
         heading: 'Oh no!',
         message: 'Something went wrong and we can\'t load this page right now. Please try again later.'
     };
 
-    showLoading() {
-        this.isLoading = true;
-        this.pageError = null;
+    showLoading(): void {
+        this.isLoadingChange.next(true);
+        this.pageErrorChange.next(null);
     }
 
-    showGenericErrorAndLogMessage(errorLog?: any) {
+    showGenericErrorAndLogMessage(errorLog?: any): void {
         console.error(errorLog);
-        this.isLoading = false;
-        this.pageError = PageStateService.genericError;
+        this.isLoadingChange.next(false);
+        this.pageErrorChange.next(PageStateService.genericError);
     }
 
-    showLoadingComplete() {
-        this.isLoading = false;
-        this.pageError = null;
+    showLoadingComplete(): void {
+        this.isLoadingChange.next(false);
+        this.pageErrorChange.next(null);
     }
 }

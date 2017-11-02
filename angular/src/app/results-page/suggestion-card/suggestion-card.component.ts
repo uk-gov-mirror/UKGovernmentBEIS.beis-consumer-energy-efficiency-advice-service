@@ -1,4 +1,5 @@
 import {Component, Input} from "@angular/core";
+import {WordpressPage} from '../../common/wordpress-pages-service/wordpress-page';
 
 @Component({
     selector: 'app-suggestion-card',
@@ -6,5 +7,5 @@ import {Component, Input} from "@angular/core";
     styleUrls: ['./suggestion-card.component.scss']
 })
 export class SuggestionCardComponent {
-    @Input() heading: string;
+    @Input() page: WordpressPage;
 }

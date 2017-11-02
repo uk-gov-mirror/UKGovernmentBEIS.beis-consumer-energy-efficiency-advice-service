@@ -1,8 +1,9 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ChangeDetectorRef} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
 import 'rxjs/add/operator/distinctUntilChanged';
 import {WordpressPagesService} from "./shared/wordpress-pages-service/wordpress-pages.service";
 import {PageStateService} from "./shared/page-state-service/page-state.service";
+import {PageError} from "./shared/page-state-service/page-error";
 
 declare let gtag: any;
 declare const gaId: any;
@@ -14,10 +15,14 @@ declare const gaId: any;
 })
 export class AppComponent implements OnInit {
 
+    isLoading: boolean;
+    pageError: PageError;
+
     constructor(
         router: Router,
         public pageStateService: PageStateService,
-        private wordpressPagesService: WordpressPagesService
+        private wordpressPagesService: WordpressPagesService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {
         // Configure Google Analytics tracking if that's supported in this environment
         if (typeof gtag !== 'undefined' && typeof gaId !== 'undefined') {
@@ -31,6 +36,14 @@ export class AppComponent implements OnInit {
                 gtag('config', gaId, {'page_path': x.url});
             });
         }
+        this.pageStateService.isLoadingChange.subscribe(val => {
+            this.isLoading = val;
+            this.changeDetectorRef.detectChanges();
+        });
+        this.pageStateService.pageErrorChange.subscribe(val => {
+            this.pageError = val;
+            this.changeDetectorRef.detectChanges();
+        });
     }
 
     ngOnInit() {

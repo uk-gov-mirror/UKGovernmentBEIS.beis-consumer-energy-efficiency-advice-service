@@ -2,6 +2,7 @@ import {async, TestBed} from "@angular/core/testing";
 import {RouterTestingModule} from "@angular/router/testing";
 import {FormsModule} from '@angular/forms';
 import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./layout-components/header/header.component";
 import {FooterComponent} from "./layout-components/footer/footer.component";
@@ -17,12 +18,11 @@ describe('AppComponent', () => {
     const mockWordpressPagesService = {fetchTopLevelPages: () => Observable.create([])};
 
     const mockPageStateService = {
-        showLoading: () => {
-        },
-        showGenericErrorAndLogMessage: () => {
-        },
-        showLoadingComplete: () => {
-        }
+        isLoadingChange: new Subject<boolean>(),
+        pageErrorChange: new Subject<PageError>(),
+        showLoading: () => {},
+        showGenericErrorAndLogMessage: () => {},
+        showLoadingComplete: () => {}
     };
 
     beforeEach(async(() => {

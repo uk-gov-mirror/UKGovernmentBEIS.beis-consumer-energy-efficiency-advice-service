@@ -274,7 +274,7 @@ describe('ResultsPageComponent', () => {
         expect(getInjectedRecommendationService().fetchRecommendationDetails).toHaveBeenCalled();
     });
 
-    it('should display an error if recommendations metadat API responds with an error', () => {
+    it('should display an error if recommendations metadata API responds with an error', () => {
         // given
         const errorResponse = ErrorObservable.create('some error text');
 
@@ -283,5 +283,14 @@ describe('ResultsPageComponent', () => {
 
         // when
         expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
+    });
+
+    it('should display all linked pages', () => {
+        // when
+        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
+
+        // when
+        // match data in assets/test/recommendations-response.json
+        expect(component.featuredPages.length).toBe(4);
     });
 });

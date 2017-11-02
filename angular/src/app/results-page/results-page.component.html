@@ -1,12 +1,3 @@
-<div class="page-loading-container" *ngIf="isLoading">
-    <div class="loading-spinner"></div>
-</div>
-<div class="page-error-container" *ngIf="isError">
-    <div class="error">
-        <div class="error-header">Oh no!</div>
-        <div>Something went wrong and we can't load this page right now. Please try again later.</div>
-    </div>
-</div>
 <div class="results-page" *ngIf="!isLoading && !isError">
     <div class="heading main-content">
         <h2>Thank you!</h2>
@@ -54,18 +45,7 @@
         <div class="main-content">
             <div class="subheading">We also suggest</div>
             <div class="suggestion-cards">
-                <app-suggestion-card class="suggestion-card"
-                                     heading="How long will it take to install loft insulation?">
-                </app-suggestion-card>
-                <app-suggestion-card class="suggestion-card"
-                                     heading="Can insulation help with condensation damp?">
-                </app-suggestion-card>
-                <app-suggestion-card class="suggestion-card"
-                                     heading="How do heat pumps perform differently from conventional boilers in a domestic heating system?">
-                </app-suggestion-card>
-                <app-suggestion-card class="suggestion-card"
-                                     heading="What different Solar Photovoltaic (PV) systems are available?">
-                </app-suggestion-card>
+                <app-suggestion-card *ngFor="let page of featuredPages" class="suggestion-card" [page]="page"></app-suggestion-card>
             </div>
         </div>
     </div>

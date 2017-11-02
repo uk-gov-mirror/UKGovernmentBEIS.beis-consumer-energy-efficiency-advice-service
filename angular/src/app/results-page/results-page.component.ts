@@ -15,6 +15,7 @@ import sumBy from "lodash-es/sumBy";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
 import {PageStateService} from '../shared/page-state-service/page-state.service';
+import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 
 @Component({
     selector: 'app-results-page',
@@ -27,6 +28,7 @@ export class ResultsPageComponent implements OnInit {
     localAuthorityName: string;
     availableGrants: GrantResponse[];
     recommendationMetadataResponses: RecommendationMetadataResponse[];
+    featuredPages: WordpressPage[] = [];
 
     private energyCalculationResponse: EnergyCalculationResponse;
 
@@ -77,6 +79,7 @@ export class ResultsPageComponent implements OnInit {
                     this.pageStateService.showGenericErrorAndLogMessage(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
+                this.addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata);
                 return new EnergySavingRecommendation(
                     this.energyCalculationResponse.measures[measureCode],
                     recommendationMetadata,
@@ -90,5 +93,14 @@ export class ResultsPageComponent implements OnInit {
         );
         this.energyCalculations = new EnergyCalculations(this.energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
         this.pageStateService.showLoadingComplete();
+    }
+
+    private addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata: RecommendationMetadataResponse) {
+        recommendationMetadata.acf.linked_pages.forEach(linkedPage => {
+            const linkedWordpressPage = new WordpressPage({link: linkedPage.post_name, title: {rendered: linkedPage.post_title}});
+            if (!this.featuredPages.find(page => page.path === linkedWordpressPage.path)) {
+                this.featuredPages.push(linkedWordpressPage);
+            }
+        });
     }
 }
