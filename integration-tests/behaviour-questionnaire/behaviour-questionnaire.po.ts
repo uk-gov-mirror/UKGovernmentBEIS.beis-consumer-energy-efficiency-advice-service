@@ -1,15 +1,8 @@
-import {browser, by, element} from "protractor";
+import {browser} from "protractor";
+import {QuestionnairePage} from "../questionnaire-page";
 
-export class BehaviourQuestionnairePage {
+export class BehaviourQuestionnairePage extends QuestionnairePage{
     navigateTo() {
         return browser.get('/questionnaire/behaviour');
-    }
-
-    hasError() {
-        return element(by.className('error')).isPresent();
-    }
-
-    getHeading() {
-        return element(by.id('question-heading')).getText();
     }
 }

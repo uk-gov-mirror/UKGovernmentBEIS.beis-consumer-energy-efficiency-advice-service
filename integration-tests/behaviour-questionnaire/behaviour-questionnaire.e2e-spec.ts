@@ -14,9 +14,13 @@ describe('Behaviour questionnaire', () => {
         expect(page.getHeading()).toContain('How many people');
     });
 
-    it('should include core questions', () => {
+    it('should include behaviour questions', () => {
         // Occupants count
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('How many people');
+        page.goForwards();
+
+        // Number of showers
+        CommonPageHelpers.sleep(1000);
+        expect(page.getHeading()).toContain('showers');
     });
 });

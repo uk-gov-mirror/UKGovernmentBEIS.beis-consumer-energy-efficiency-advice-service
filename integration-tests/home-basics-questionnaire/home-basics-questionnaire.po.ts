@@ -1,17 +1,10 @@
 import {browser, by, element, protractor} from "protractor";
 import {CommonPageHelpers} from "../common-page-helpers";
+import {QuestionnairePage} from "../questionnaire-page";
 
-export class HomeBasicsQuestionnairePage {
+export class HomeBasicsQuestionnairePage extends QuestionnairePage {
     navigateTo() {
         return browser.get('/questionnaire/home-basics');
-    }
-
-    hasError() {
-        return element(by.className('error')).isPresent();
-    }
-
-    getHeading() {
-        return element(by.id('question-heading')).getText();
     }
 
     enterPostcode(postcode: string) {
@@ -29,14 +22,6 @@ export class HomeBasicsQuestionnairePage {
 
     selectFirstHomeAge() {
         element(by.css('app-home-age-question .home-age-option:first-child')).click();
-    }
-
-    clickOption(text: string) {
-        element(by.cssContainingText('.multiple-choice-option', text)).element(by.tagName('button')).click();
-    }
-
-    goForwards() {
-        element(by.css('.right-arrow')).click();
     }
 
     workThroughMiniEpcIfExists() {
