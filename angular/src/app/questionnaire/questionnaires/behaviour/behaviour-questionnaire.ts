@@ -4,6 +4,7 @@ import {ResponseData} from "../../../shared/response-data/response-data";
 import {OccupantsQuestionMetadata} from "./questions/occupants-question/occupants-question-metadata";
 import {ShowersQuestionMetadata} from "./questions/showers-question/showers-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./questions/fridge-freezer-question/fridge-freezer-question-metadata";
+import {LivingRoomTemperatureQuestionMetadata} from "./questions/living-room-temperature-question/living-room-temperature-question-metadata";
 
 @Injectable()
 export class BehaviourQuestionnaire extends Questionnaire {
@@ -11,6 +12,7 @@ export class BehaviourQuestionnaire extends Questionnaire {
         super(responseData, [
             new OccupantsQuestionMetadata(),
             new ShowersQuestionMetadata(),
+            new LivingRoomTemperatureQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ]);
     }
