@@ -4,6 +4,7 @@ import {QuestionMetadata} from "../base-question/question-metadata";
 import {ResponseData} from "../../shared/response-data/response-data";
 
 export abstract class Questionnaire {
+
     constructor(private responseData: ResponseData,
                 private readonly questionsMetadata: QuestionMetadata<any>[]) {
     }
@@ -21,6 +22,10 @@ export abstract class Questionnaire {
             this.questionsMetadata[index].isApplicable(this.responseData) &&
             this.questionsMetadata.slice(0, index)
                 .every(q => q.hasBeenAnswered(this.responseData) || !q.isApplicable(this.responseData));
+    }
+
+    public isComplete() {
+        return this.questionsMetadata.every(q => q.hasBeenAnswered(this.responseData) || !q.isApplicable(this.responseData));
     }
 
     public hasBeenAnswered(index: number) {

@@ -1,4 +1,8 @@
-<a class="further-questions-link">
-    <span [ngClass]="iconClassName"></span>
-    <div class="name">{{name}}</div>
+<a [routerLink]="questionnaireName ? linkToQuestionnaire(questionnaireName) : null"
+   routerLinkActive="current-page-link" class="further-questions-link">
+    <div class="icon-container">
+        <span class="questionnaire-icon" [ngClass]="iconClassName"></span>
+        <span *ngIf="questionnaireComplete()" class="icon-circle-tick"></span>
+    </div>
+    <div class="name">{{displayName}}</div>
 </a>

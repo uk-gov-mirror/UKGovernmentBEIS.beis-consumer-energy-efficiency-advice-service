@@ -13,7 +13,7 @@ export class QuestionContentService {
     private readonly questionsContent: Observable<AllQuestionsContent>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
-        const params = new HttpParams().set('per_page', '100');
+        const params = new HttpParams().set('per_page', '1000');
         const url = this.wordpressApiService.getFullApiEndpoint(QuestionContentService.questionsContentEndpoint);
         const questionResponses: Observable<QuestionResponse[]> = this.http.get(url, {params: params});
         this.questionsContent = questionResponses.map(questionResponses => new AllQuestionsContent(questionResponses)).shareReplay(1);

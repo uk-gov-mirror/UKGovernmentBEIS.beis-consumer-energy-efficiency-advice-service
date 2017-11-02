@@ -62,6 +62,10 @@
   content: url('assets/images/topics/windows.svg');
 }
 
+.icon-circle-tick::before {
+  content: url('assets/images/topics/circle-tick.svg');
+}
+
 .icon-search::before {
   content: url('assets/images/controls/search.svg');
 }

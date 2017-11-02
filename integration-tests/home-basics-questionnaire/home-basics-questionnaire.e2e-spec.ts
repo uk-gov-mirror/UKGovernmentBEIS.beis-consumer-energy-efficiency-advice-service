@@ -1,7 +1,7 @@
-import {HomeBasicsQuestionnairePage} from "./questionnaire.po";
+import {HomeBasicsQuestionnairePage} from "./home-basics-questionnaire.po";
 import {CommonPageHelpers} from "../common-page-helpers";
 
-describe('Questionnaire', () => {
+describe('Home basics questionnaire', () => {
     let page: HomeBasicsQuestionnairePage;
 
     beforeEach(() => {

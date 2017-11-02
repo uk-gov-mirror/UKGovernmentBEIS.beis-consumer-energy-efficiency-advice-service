@@ -8,6 +8,7 @@ import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
 import {HomeBasicsQuestionnaireModule} from "./questionnaires/home-basics/home-basics-questionnaire.module";
 import {QuestionnaireGuard} from "./questionnaires/questionnaire.guard";
+import {BehaviourQuestionnaireModule} from "./questionnaires/behaviour/behaviour-questionnaire.module";
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {QuestionnaireGuard} from "./questionnaires/questionnaire.guard";
         CommonModule,
         BrowserAnimationsModule,
         HomeBasicsQuestionnaireModule,
+        BehaviourQuestionnaireModule,
     ]
 })
 export class QuestionnaireModule {
