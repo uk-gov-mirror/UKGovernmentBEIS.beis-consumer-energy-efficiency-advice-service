@@ -22,5 +22,10 @@ describe('Behaviour questionnaire', () => {
         // Number of showers
         CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('showers');
+        page.goForwards();
+
+        // Number of baths
+        CommonPageHelpers.sleep(1000);
+        expect(page.getHeading()).toContain('baths');
     });
 });
