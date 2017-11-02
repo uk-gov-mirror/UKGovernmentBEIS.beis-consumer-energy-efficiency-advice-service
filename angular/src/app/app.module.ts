@@ -32,7 +32,7 @@ import {LayoutComponentsModule} from "./layout-components/layout-components.modu
         ResultsPageModule,
         HomePageModule,
         LandingPageModule,
-        LayoutComponentsModule
+        LayoutComponentsModule.forRoot()
     ],
     bootstrap: [AppComponent],
 })

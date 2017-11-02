@@ -6,6 +6,7 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {SharedModule} from "../shared/shared.module";
 import {RoutingModule} from "../app-routing.module";
+import {WordpressPagesService} from "./header/wordpress-pages-service/wordpress-pages.service";
 
 @NgModule({
     declarations: [
@@ -24,4 +25,10 @@ import {RoutingModule} from "../app-routing.module";
     ],
 })
 export class LayoutComponentsModule {
+    static forRoot() {
+        return {
+            ngModule: LayoutComponentsModule,
+            providers: [WordpressPagesService]
+        }
+    }
 }
