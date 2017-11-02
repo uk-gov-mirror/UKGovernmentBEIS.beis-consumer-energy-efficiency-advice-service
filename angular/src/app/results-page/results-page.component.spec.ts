@@ -62,7 +62,10 @@ describe('ResultsPageComponent', () => {
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
         electricityTariff: undefined,
-        numberOfOccupants: 1
+        numberOfOccupants: 1,
+        numberOfFridgeFreezers: 0,
+        numberOfFridges: 0,
+        numberOfFreezers: 0,
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

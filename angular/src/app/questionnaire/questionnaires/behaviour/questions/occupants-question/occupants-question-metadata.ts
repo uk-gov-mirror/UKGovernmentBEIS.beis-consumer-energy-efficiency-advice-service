@@ -3,7 +3,7 @@ import {OccupantsQuestionComponent} from "./occupants-question.component";
 import {QuestionType} from "../../../../question-type";
 import {ResponseData} from "../../../../../shared/response-data/response-data";
 
-export class OccupantsQuestionMetadata extends QuestionMetadata<number> {
+export class OccupantsQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             OccupantsQuestionComponent,

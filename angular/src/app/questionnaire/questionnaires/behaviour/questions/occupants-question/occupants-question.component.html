@@ -1,9 +1,9 @@
 <div class="occupants-question question-component">
-  <form class="questionnaire-form" (submit)="handleFormSubmit()">
-    <app-number-question [itemsName]="'occupants'"
-                         [(quantity)]="response"></app-number-question>
-  </form>
-  <div class="occupants-icons">
-    <span *ngFor="let i of response | times" class="icon-person" aria-label="person"></span>
-  </div>
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <app-number-question [itemsName]="'occupants'"
+                             [(quantity)]="response"></app-number-question>
+    </form>
+    <div class="occupants-icons">
+        <span *ngFor="let i of response | times" class="icon-person" aria-label="person"></span>
+    </div>
 </div>

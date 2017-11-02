@@ -16,7 +16,7 @@ import {
     styleUrls: ['./confirm-epc-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class ConfirmEpcQuestionComponent extends QuestionBaseComponent<EpcConfirmation> implements OnInit {
+export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     static readonly AVERAGE_EPC_RATING = 'D';
 

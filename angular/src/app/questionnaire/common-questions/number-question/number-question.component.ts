@@ -10,6 +10,8 @@ export class NumberQuestionComponent {
     private _quantity: number;
 
     @Input() itemsName: string;
+    @Input() minQuantity?: number = 1;
+    @Input() maxQuantity?: number = 20;
 
     @Input()
     set quantity(value: number) {
@@ -40,7 +42,7 @@ export class NumberQuestionComponent {
     }
 
     private quantityIsValid() {
-        const isInRange = this.quantity >= 1 && this.quantity <= 20;
+        const isInRange = this.quantity >= this.minQuantity && this.quantity <= this.maxQuantity;
         const isAnInteger = this.quantity % 1 === 0;
         return isInRange && isAnInteger;
     }

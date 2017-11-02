@@ -7,7 +7,7 @@ import {Component, OnInit} from "@angular/core";
     styleUrls: ['./storeys-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class StoreysQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
+export class StoreysQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
         this.response = this.response || 1;

@@ -6,7 +6,7 @@ import {ResponseData} from "../../shared/response-data/response-data";
 export abstract class Questionnaire {
 
     constructor(private responseData: ResponseData,
-                private readonly questionsMetadata: QuestionMetadata<any>[]) {
+                private readonly questionsMetadata: QuestionMetadata[]) {
     }
 
     public getQuestion(index: number) {
@@ -42,7 +42,7 @@ export abstract class Questionnaire {
         return findIndex(this.questionsMetadata, q => q.isApplicable(this.responseData), index + 1);
     }
 
-    public getQuestions(): QuestionMetadata<any>[] {
+    public getQuestions(): QuestionMetadata[] {
         return this.questionsMetadata;
     }
 }

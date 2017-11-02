@@ -33,7 +33,7 @@ describe('QuestionnaireComponent', () => {
         }
     };
 
-    class TestQuestionComponent extends QuestionBaseComponent<void> {
+    class TestQuestionComponent extends QuestionBaseComponent {
         get response(): void {
             return null;
         }
@@ -42,7 +42,7 @@ describe('QuestionnaireComponent', () => {
         }
     }
 
-    class TestQuestion extends QuestionMetadata<void> {
+    class TestQuestion extends QuestionMetadata {
         hasBeenAnswered() {
             return false;
         }

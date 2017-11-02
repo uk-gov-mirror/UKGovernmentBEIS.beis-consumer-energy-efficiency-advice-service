@@ -4,7 +4,7 @@ import {PostcodeEpc} from "./model/postcode-epc";
 import {QuestionType} from "../../../../question-type";
 import {ResponseData} from "../../../../../shared/response-data/response-data";
 
-export class PostcodeEpcQuestionMetadata extends QuestionMetadata<PostcodeEpc> {
+export class PostcodeEpcQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             PostcodeEpcQuestionComponent,

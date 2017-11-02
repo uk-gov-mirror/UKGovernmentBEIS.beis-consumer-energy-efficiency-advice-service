@@ -17,7 +17,7 @@ class HomeTypeOption {
     styleUrls: ['./home-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class HomeTypeQuestionComponent extends QuestionBaseComponent<HomeType> {
+export class HomeTypeQuestionComponent extends QuestionBaseComponent {
     homeTypeOptions: HomeTypeOption[];
 
     constructor(responseData: ResponseData) {

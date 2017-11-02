@@ -15,7 +15,7 @@ interface FlatPositionOption {
     styleUrls: ['./flat-position-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class FlatPositionQuestionComponent extends QuestionBaseComponent<FlatPosition> {
+export class FlatPositionQuestionComponent extends QuestionBaseComponent {
     flatPositionOptions: FlatPositionOption[];
 
     constructor(responseData: ResponseData) {

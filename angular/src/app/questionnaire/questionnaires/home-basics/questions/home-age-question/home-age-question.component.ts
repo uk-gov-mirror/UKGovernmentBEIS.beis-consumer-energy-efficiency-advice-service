@@ -15,7 +15,7 @@ interface HomeAgeOption {
     styleUrls: ['./home-age-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class HomeAgeQuestionComponent extends QuestionBaseComponent<HomeAge> implements OnInit, OnDestroy {
+export class HomeAgeQuestionComponent extends QuestionBaseComponent implements OnInit, OnDestroy {
 
     private homeAges: HomeAge[] = keys(HomeAge)
         .map(x => parseInt(x))

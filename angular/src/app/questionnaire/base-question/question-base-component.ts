@@ -34,14 +34,11 @@ export const slideInOutAnimation = trigger('slideInOut', [
     ])
 ]);
 
-export abstract class QuestionBaseComponent<S> {
+export abstract class QuestionBaseComponent {
 
     constructor(@Inject(ResponseData) protected responseData: ResponseData) {
     }
 
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
     @Output() complete: EventEmitter<void> = new EventEmitter<void>();
-
-    abstract get response(): S;
-    abstract set response(val: S);
 }

@@ -18,7 +18,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 })
 export class QuestionnaireComponent implements OnInit {
 
-    private questionComponent: QuestionBaseComponent<any>;
+    private questionComponent: QuestionBaseComponent;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
 

@@ -20,7 +20,7 @@ import {PostcodeValidationService} from "../../../../../shared/postcode-validati
     providers: [EpcApiService, PostcodeApiService],
     animations: [slideInOutAnimation]
 })
-export class PostcodeEpcQuestionComponent extends QuestionBaseComponent<PostcodeEpc> implements OnInit {
+export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implements OnInit {
     static readonly ERROR_VALIDATION: Error = {
         heading: null,
         message: 'Please enter a full valid UK postcode'

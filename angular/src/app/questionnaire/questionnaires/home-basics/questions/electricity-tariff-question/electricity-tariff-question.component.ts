@@ -8,7 +8,7 @@ import {ElectricityTariff} from "./electricity-tariff";
     styleUrls: ['./electricity-tariff-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class ElectricityTariffQuestionComponent extends QuestionBaseComponent<ElectricityTariff> {
+export class ElectricityTariffQuestionComponent extends QuestionBaseComponent {
     ElectricityTariff: typeof ElectricityTariff = ElectricityTariff;
 
     get response(): ElectricityTariff {

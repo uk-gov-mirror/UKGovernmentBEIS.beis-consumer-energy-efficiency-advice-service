@@ -7,7 +7,7 @@ import {Component, OnInit} from "@angular/core";
     styleUrls: ['./occupants-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class OccupantsQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
+export class OccupantsQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
         this.response = this.response || 1;
