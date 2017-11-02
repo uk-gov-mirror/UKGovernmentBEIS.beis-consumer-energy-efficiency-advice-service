@@ -7,7 +7,7 @@ import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../../../shared/times/times.pipe";
 
-describe('OccupantsQuestionComponent', () => {
+describe('ShowersQuestionComponent', () => {
     let component: ShowersQuestionComponent;
     let fixture: ComponentFixture<ShowersQuestionComponent>;
 
@@ -35,21 +35,21 @@ describe('OccupantsQuestionComponent', () => {
 
     it('should populate with original number of showers in response data', async(() => {
         fixture.whenStable().then(() => {
-            let occupantsInput = fixture.debugElement.query(By.css('input'));
-            expect(occupantsInput.nativeElement.value).toBe(originalNumberOfShowers.toString());
+            let showersInput = fixture.debugElement.query(By.css('input'));
+            expect(showersInput.nativeElement.value).toBe(originalNumberOfShowers.toString());
         });
     }));
 
     it('should set the response given a valid number of showers', () => {
         // given
-        const expectedOccupants = 5;
+        const expectedShowers = 5;
 
         // when
         let occupantsInput = fixture.debugElement.query(By.css('input'));
-        occupantsInput.nativeElement.value = expectedOccupants;
+        occupantsInput.nativeElement.value = expectedShowers;
         occupantsInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(component.response).toBe(expectedOccupants);
+        expect(component.response).toBe(expectedShowers);
     });
 });
