@@ -3,6 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpRequest} from '@angular/common/http';
 import {WordpressPagesService} from './wordpress-pages.service';
 import {WordpressApiService} from "../../../shared/wordpress-api-service/wordpress-api-service";
+import "rxjs/add/operator/toPromise";
 
 describe('WordpressPagesService', () => {
     let httpMock: HttpTestingController;

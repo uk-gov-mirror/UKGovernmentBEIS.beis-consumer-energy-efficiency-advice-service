@@ -1,4 +1,5 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
+import "rxjs/add/operator/toPromise";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpRequest} from "@angular/common/http";
 

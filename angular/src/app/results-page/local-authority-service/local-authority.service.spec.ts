@@ -4,6 +4,7 @@ import {HttpRequest} from "@angular/common/http";
 import {LocalAuthorityService} from "./local-authority.service";
 import {LocalAuthorityResponse} from "./local-authority-response";
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
+import "rxjs/add/operator/toPromise";
 
 describe('LocalAuthorityService', () => {
     let httpMock: HttpTestingController;

@@ -1,4 +1,5 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
+import "rxjs/add/operator/toPromise";
 
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {WordpressApiService} from "../../../../../../shared/wordpress-api-service/wordpress-api-service";
