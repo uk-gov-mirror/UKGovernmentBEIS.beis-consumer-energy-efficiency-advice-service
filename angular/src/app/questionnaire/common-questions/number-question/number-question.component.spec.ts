@@ -9,6 +9,8 @@ describe('NumberQuestionComponent', () => {
     let fixture: ComponentFixture<NumberQuestionComponent>;
 
     const originalQuantity = 5;
+    const minimum = 3;
+    const maximum = 10;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -22,6 +24,9 @@ describe('NumberQuestionComponent', () => {
         fixture = TestBed.createComponent(NumberQuestionComponent);
         component = fixture.componentInstance;
         component.quantity = originalQuantity;
+        component.maximum = maximum;
+        component.minimum = minimum;
+
         fixture.detectChanges();
     });
 
@@ -53,7 +58,7 @@ describe('NumberQuestionComponent', () => {
 
     it('should emit an event with undefined value given an invalid quantity', () => {
         // given
-        const invalidStoreys = 0;
+        const invalidStoreys = minimum - 1;
         let hasEmitted: boolean;
         let emitted: number;
         component.quantityChange.subscribe(quantity => {

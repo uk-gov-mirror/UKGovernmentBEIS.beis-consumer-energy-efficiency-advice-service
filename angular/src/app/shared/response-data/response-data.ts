@@ -21,6 +21,7 @@ interface ResponseDataShape {
     condensingBoiler: any;
     electricityTariff: any;
     numberOfOccupants: any;
+    numberOfShowersPerWeek: number;
 }
 
 @Injectable()
@@ -38,6 +39,7 @@ export class ResponseData implements ResponseDataShape {
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
     public numberOfOccupants: number;
+    public numberOfShowersPerWeek: number;
 }
 
 // This class is *ONLY* used for displaying the summary page of the user's responses.
@@ -60,7 +62,8 @@ export class DisplayableResponseData implements ResponseDataShape {
                 public fuelType: string,
                 public condensingBoiler: boolean,
                 public electricityTariff: string,
-                public numberOfOccupants: number) {
+                public numberOfOccupants: number,
+                public numberOfShowersPerWeek: number) {
     }
 
     static fromResponseData(responseData: ResponseData): DisplayableResponseData {
@@ -77,7 +80,8 @@ export class DisplayableResponseData implements ResponseDataShape {
             FuelType[responseData.fuelType],
             responseData.condensingBoiler,
             ElectricityTariff[responseData.electricityTariff],
-            responseData.numberOfOccupants
+            responseData.numberOfOccupants,
+            responseData.numberOfShowersPerWeek
         );
     }
 }
