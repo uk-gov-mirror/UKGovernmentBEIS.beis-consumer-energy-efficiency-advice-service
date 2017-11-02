@@ -45,9 +45,9 @@ describe('ShowersQuestionComponent', () => {
         const expectedShowers = 5;
 
         // when
-        let occupantsInput = fixture.debugElement.query(By.css('input'));
-        occupantsInput.nativeElement.value = expectedShowers;
-        occupantsInput.nativeElement.dispatchEvent(new Event('input'));
+        let showersInput = fixture.debugElement.query(By.css('input'));
+        showersInput.nativeElement.value = expectedShowers;
+        showersInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
         expect(component.response).toBe(expectedShowers);
