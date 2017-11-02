@@ -9,6 +9,8 @@ describe('NumberQuestionComponent', () => {
     let fixture: ComponentFixture<NumberQuestionComponent>;
 
     const originalQuantity = 5;
+    const minQuantity = 2;
+    const maxQuantity = 19;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -22,6 +24,8 @@ describe('NumberQuestionComponent', () => {
         fixture = TestBed.createComponent(NumberQuestionComponent);
         component = fixture.componentInstance;
         component.quantity = originalQuantity;
+        component.minQuantity = minQuantity;
+        component.maxQuantity = maxQuantity;
         fixture.detectChanges();
     });
 
@@ -51,9 +55,29 @@ describe('NumberQuestionComponent', () => {
         expect(emitted).toBe(expectedQuantity);
     });
 
-    it('should emit an event with undefined value given an invalid quantity', () => {
+    it('should emit an event with undefined value given a too-small quantity', () => {
         // given
-        const invalidStoreys = 0;
+        const invalidStoreys = minQuantity - 1;
+        let hasEmitted: boolean;
+        let emitted: number;
+        component.quantityChange.subscribe(quantity => {
+            hasEmitted = true;
+            emitted = quantity;
+        });
+
+        // when
+        let storeysInput = fixture.debugElement.query(By.css('input'));
+        storeysInput.nativeElement.value = invalidStoreys;
+        storeysInput.nativeElement.dispatchEvent(new Event('input'));
+
+        // then
+        expect(hasEmitted).toBeTruthy();
+        expect(emitted).toBeUndefined();
+    });
+
+    it('should emit an event with undefined value given a too-large quantity', () => {
+        // given
+        const invalidStoreys = maxQuantity + 1;
         let hasEmitted: boolean;
         let emitted: number;
         component.quantityChange.subscribe(quantity => {
