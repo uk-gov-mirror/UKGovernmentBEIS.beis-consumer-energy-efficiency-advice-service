@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {WordpressApiService} from "../../common/wordpress-api-service/wordpress-api-service";
 import {RecommendationMetadataResponse} from './recommendation-metadata-response';
+import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 
 @Injectable()
 export class RecommendationService {

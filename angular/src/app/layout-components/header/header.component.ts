@@ -1,7 +1,7 @@
 import {Component, Renderer2, ViewChild} from "@angular/core";
-import {WordpressPagesService} from "./wordpress-pages-service/wordpress-pages.service";
-import {WordpressPageResponse} from "./wordpress-pages-service/wordpress-page-response";
-import {WordpressPage} from "./wordpress-pages-service/wordpress-page";
+import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {WordpressPageResponse} from "../../shared/wordpress-pages-service/wordpress-page-response";
 
 @Component({
     selector: 'app-header',

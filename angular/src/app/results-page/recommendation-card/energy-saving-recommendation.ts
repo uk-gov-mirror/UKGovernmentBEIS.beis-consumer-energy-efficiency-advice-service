@@ -1,6 +1,6 @@
 import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
-import {RecommendationType, RecommendationTypeService} from "./recommendation-type.service";
 import {UrlParser} from '../../common/url-parser/url-parser';
+import {RecommendationMetadataResponse} from "../recommendation-service/recommendation-metadata-response";
 
 export class EnergySavingRecommendation {
     costSavingPoundsPerYear: number;

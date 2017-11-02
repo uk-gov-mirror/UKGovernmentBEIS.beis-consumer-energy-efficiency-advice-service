@@ -15,6 +15,7 @@ import {QuestionBaseComponent} from "./base-question/question-base-component";
 import {QuestionMetadata} from "./base-question/question-metadata";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
+import {PageStateService} from "../shared/page-state-service/page-state.service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -29,8 +30,13 @@ describe('QuestionnaireComponent', () => {
 
     const questionContentServiceStub = {
         fetchQuestionsContent() {
-            return Observable.of(allQuestionsContent);
+            return Observable.create(allQuestionsContent);
         }
+    };
+    const mockPageStateService = {
+        showLoading: () => {},
+        showGenericErrorAndLogMessage: () => {},
+        showLoadingComplete: () => {}
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
@@ -82,7 +88,7 @@ describe('QuestionnaireComponent', () => {
             paramMap: {get: MockActivatedRoute.paramMapGet}
         };
 
-        public paramMap = Observable.of({
+        public paramMap = Observable.create({
             get: MockActivatedRoute.paramMapGet
         });
     }
@@ -100,7 +106,8 @@ describe('QuestionnaireComponent', () => {
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
-                {provide: ResponseData, useValue: responseDataStub}
+                {provide: ResponseData, useValue: responseDataStub},
+                {provide: PageStateService, useValue: mockPageStateService}
             ],
         })
             .compileComponents();

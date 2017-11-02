@@ -9,10 +9,11 @@ import {WordpressApiService} from "./wordpress-api-service/wordpress-api-service
 import {ResponseData} from "./response-data/response-data";
 import {FeatureFlagService} from "./feature-flag/feature-flag.service";
 import {EnergyCalculationApiService} from "./energy-calculation-api-service/energy-calculation-api-service";
-import {NavigationBarComponent} from "./navigation-bar/navigation-bar.component";
+import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {RoutingModule} from "../app-routing.module";
 import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.component";
 import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
+import {PageStateService} from "./page-state-service/page-state.service";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ export class SharedModule {
                 FeatureFlagService,
                 EnergyCalculationApiService,
                 PostcodeValidationService,
+                PageStateService
             ]
         };
     }

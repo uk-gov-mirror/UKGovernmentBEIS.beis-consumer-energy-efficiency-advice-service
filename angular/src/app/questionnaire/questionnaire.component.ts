@@ -10,6 +10,7 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
 import {ResponseData} from "../shared/response-data/response-data";
+import {PageStateService} from "../shared/page-state-service/page-state.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -23,8 +24,6 @@ export class QuestionnaireComponent implements OnInit {
     private currentQuestionId: string;
 
     questionnaire: Questionnaire;
-    isLoading: boolean;
-    isError: boolean;
     currentQuestionIndex: number;
     allQuestionsContent: AllQuestionsContent;
     currentQuestionContent: QuestionContent;
@@ -38,10 +37,10 @@ export class QuestionnaireComponent implements OnInit {
                 private changeDetectorRef: ChangeDetectorRef,
                 private router: Router,
                 private route: ActivatedRoute,
-                private responseData: ResponseData) {
+                private responseData: ResponseData,
+                private pageStateService: PageStateService
+    ) {
         this.currentQuestionIndex = 0;
-        this.isLoading = true;
-        this.isError = false;
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(route.snapshot.paramMap.get('name'));
     }
 
@@ -51,17 +50,17 @@ export class QuestionnaireComponent implements OnInit {
         if (partialResponse !== null) {
             Object.assign(this.responseData, JSON.parse(partialResponse));
         }
-
+        this.pageStateService.showLoading();
         this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
-            () => this.displayErrorMessage()
+            (error) => this.pageStateService.showGenericErrorAndLogMessage(error)
         );
     }
 
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
-        this.isLoading = false;
         this.allQuestionsContent = questionContent;
         this.jumpToQuestion(this.currentQuestionIndex);
+        this.pageStateService.showLoadingComplete();
     }
 
     private jumpToQuestion(index) {
@@ -83,11 +82,6 @@ export class QuestionnaireComponent implements OnInit {
         const direction = this.getAnimationDirection(index);
         this.currentQuestionIndex = index;
         this.renderQuestion(direction);
-    }
-
-    private displayErrorMessage() {
-        this.isLoading = false;
-        this.isError = true;
     }
 
     previousQuestionExists() {
@@ -134,7 +128,7 @@ export class QuestionnaireComponent implements OnInit {
             this.currentQuestionId = question.questionId;
             this.currentQuestionContent = this.allQuestionsContent[this.currentQuestionId];
             if (!(this.currentQuestionContent && this.currentQuestionContent.questionHeading)) {
-                this.displayErrorMessage();
+                this.pageStateService.showGenericErrorAndLogMessage(`No question content found in Wordpress for question with id ${ this.currentQuestionId }`);
                 return;
             }
 

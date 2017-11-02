@@ -1,7 +1,8 @@
-@import "styles/var/colours";
+@import "../../../styles/var/_colours";
 
 .navigation-bar {
   background-color: $dark-grey;
+  height: 34px;
 
   .page-row-content {
 
@@ -14,6 +15,7 @@
       background: none;
       outline: none;
       color: white;
+      text-decoration: none;
 
       &:focus {
         text-decoration: underline;

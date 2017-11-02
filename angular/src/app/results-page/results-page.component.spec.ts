@@ -24,13 +24,14 @@ import {LocalAuthorityService} from "./local-authority-service/local-authority.s
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
+import {PageStateService} from "../shared/page-state-service/page-state.service";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
     let fixture: ComponentFixture<ResultsPageComponent>;
     let energyCalculationResponse: EnergyCalculationResponse;
     let mockEnergyCalculationApiService = {
-        fetchEnergyCalculation: () => Observable.of(energyCalculationResponse)
+        fetchEnergyCalculation: () => Observable.create(energyCalculationResponse)
     };
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
@@ -44,11 +45,16 @@ describe('ResultsPageComponent', () => {
         ]
     };
     let mockLocalAuthorityService = {
-        fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
+        fetchLocalAuthorityDetails: () => Observable.create(localAuthorityResponse)
     };
     const recommendationsResponse = require('assets/test/recommendations-response.json');
     let mockRecommendationService = {
-        fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
+        fetchRecommendationDetails: () => Observable.create(recommendationsResponse)
+    };
+    const mockPageStateService = {
+        showLoading: () => {},
+        showGenericErrorAndLogMessage: () => {},
+        showLoadingComplete: () => {}
     };
 
     const mockQuestionnarieService = {
@@ -112,6 +118,10 @@ describe('ResultsPageComponent', () => {
     }
 
     beforeEach(async(() => {
+        spyOn(mockPageStateService, 'showLoading');
+        spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
+        spyOn(mockPageStateService, 'showLoadingComplete');
+
         TestBed.configureTestingModule({
             declarations: [
                 ResultsPageComponent,
@@ -129,7 +139,8 @@ describe('ResultsPageComponent', () => {
                 {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
                 {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
                 {provide: QuestionnaireService, useValue: mockQuestionnarieService},
-                {provide: RecommendationService, useValue: mockRecommendationService}
+                {provide: RecommendationService, useValue: mockRecommendationService},
+                {provide: PageStateService, useValue: mockPageStateService}
             ],
             imports: [RouterTestingModule]
         })
@@ -148,7 +159,7 @@ describe('ResultsPageComponent', () => {
 
     it('should call energy calculation API service with response data', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
 
         // then
         expect(getInjectedEnergyCalculationService().fetchEnergyCalculation).toHaveBeenCalled();
@@ -164,13 +175,12 @@ describe('ResultsPageComponent', () => {
         injectMockEnergyCalcApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
+        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
     });
 
     it('should display all recommendations', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
         const expectedMeasures = Object.values(energyCalculationResponse.measures)
             .map(measure => [measure.cost_saving, measure.energy_saving]);
 
@@ -186,7 +196,7 @@ describe('ResultsPageComponent', () => {
 
     it('should sort recommendations by cost saving descending', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
 
         // then
         // match data in assets/test/energy-calculation-response.json
@@ -196,7 +206,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display recommendation details correctly', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
 
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
@@ -208,7 +218,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display energy calculations correctly', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
 
         // then
         // match data in assets/test/energy-calculation-response.json
@@ -219,7 +229,7 @@ describe('ResultsPageComponent', () => {
 
     it('should call local authority API service with code from response data', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.create(localAuthorityResponse));
 
         // then
         expect(getInjectedLocalAuthorityService().fetchLocalAuthorityDetails).toHaveBeenCalled();
@@ -235,13 +245,12 @@ describe('ResultsPageComponent', () => {
         injectMockLocalAuthorityApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
+        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
     });
 
     it('should display correct local authority name', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.create(localAuthorityResponse));
 
         // then
         const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .body-uppercase')).nativeElement;
@@ -250,7 +259,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display all grants', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.create(localAuthorityResponse));
 
         // then
         const grantElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
@@ -259,7 +268,7 @@ describe('ResultsPageComponent', () => {
 
     it('should call recommendations metadata API service', () => {
         // when
-        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
+        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.create(recommendationsResponse));
 
         // when
         expect(getInjectedRecommendationService().fetchRecommendationDetails).toHaveBeenCalled();
@@ -273,7 +282,6 @@ describe('ResultsPageComponent', () => {
         injectMockRecommendationsApiCallbackAndDetectChanges(() => errorResponse);
 
         // when
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
+        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
     });
 });

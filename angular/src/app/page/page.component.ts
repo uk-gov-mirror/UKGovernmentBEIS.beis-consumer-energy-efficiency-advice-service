@@ -2,9 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import "rxjs/add/operator/switchMap";
 
+import {Observable} from "rxjs/Observable";
 import {PageService} from "./page.service";
 import {Page} from "./page";
-import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-page',

@@ -14,6 +14,7 @@ import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
+import {PageStateService} from '../shared/page-state-service/page-state.service';
 
 @Component({
     selector: 'app-results-page',
@@ -26,20 +27,19 @@ export class ResultsPageComponent implements OnInit {
     localAuthorityName: string;
     availableGrants: GrantResponse[];
     recommendationMetadataResponses: RecommendationMetadataResponse[];
-    isLoading: boolean;
-    isError: boolean;
 
     private energyCalculationResponse: EnergyCalculationResponse;
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private localAuthorityService: LocalAuthorityService,
-                private recommendationService: RecommendationService) {
+                private recommendationService: RecommendationService,
+                private pageStateService: PageStateService
+    ) {
     }
 
     ngOnInit() {
-        this.isLoading = true;
-        this.isError = false;
+        this.pageStateService.showLoading();
         Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
             this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode),
@@ -51,7 +51,7 @@ export class ResultsPageComponent implements OnInit {
                     this.handleLocalAuthorityResponse(localAuthority);
                     this.handleRecommendationResponses(recommendations);
                 },
-                () => this.displayErrorMessage(),
+                (error) => this.pageStateService.showGenericErrorAndLogMessage(error),
                 () => this.onLoadingComplete());
     }
 
@@ -68,19 +68,13 @@ export class ResultsPageComponent implements OnInit {
         this.recommendationMetadataResponses = responses;
     }
 
-    private displayErrorMessage(errorLog?: string) {
-        console.error(errorLog);
-        this.isLoading = false;
-        this.isError = true;
-    }
-
     private onLoadingComplete() {
         const allRecommendations = keys(this.energyCalculationResponse.measures)
             .map(measureCode => {
                 const recommendationMetadata: RecommendationMetadataResponse = this.recommendationMetadataResponses
                     .find((recommendationTypeDetail) => recommendationTypeDetail.acf.rdsap_measure_code === measureCode);
                 if (!recommendationMetadata) {
-                    this.displayErrorMessage(`Recommendation with code ${ measureCode } not recognised`);
+                    this.pageStateService.showGenericErrorAndLogMessage(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
                 return new EnergySavingRecommendation(
@@ -95,6 +89,6 @@ export class ResultsPageComponent implements OnInit {
             recommendation => recommendation.costSavingPoundsPerYear
         );
         this.energyCalculations = new EnergyCalculations(this.energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
-        this.isLoading = false;
+        this.pageStateService.showLoadingComplete();
     }
 }

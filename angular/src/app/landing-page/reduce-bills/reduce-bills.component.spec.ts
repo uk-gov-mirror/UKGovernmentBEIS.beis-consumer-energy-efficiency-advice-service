@@ -8,7 +8,7 @@ import {LargeVideoCardComponent} from "../large-video-card/large-video-card.comp
 import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news-card.component";
 import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";
-import {NavigationBarComponent} from "../../shared/navigation-bar/navigation-bar.component";
+import {NavigationBarComponent} from "../../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {PostcodeValidationService} from "../../shared/postcode-validation-service/postcode-validation.service";
 
