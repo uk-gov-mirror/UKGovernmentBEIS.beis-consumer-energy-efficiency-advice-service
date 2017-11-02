@@ -28,7 +28,7 @@ describe('ProgressIndicatorComponent', () => {
         question9: {questionHeading: 'Question 9 heading', helpText: 'Question 9 help text'}
     };
 
-    class TestQuestionComponent extends QuestionBaseComponent<void> {
+    class TestQuestionComponent extends QuestionBaseComponent {
         get response(): void {
             return null;
         }
@@ -37,7 +37,7 @@ describe('ProgressIndicatorComponent', () => {
         }
     }
 
-    class TestQuestion extends QuestionMetadata<void> {
+    class TestQuestion extends QuestionMetadata {
         hasBeenAnswered() {
             return false;
         }

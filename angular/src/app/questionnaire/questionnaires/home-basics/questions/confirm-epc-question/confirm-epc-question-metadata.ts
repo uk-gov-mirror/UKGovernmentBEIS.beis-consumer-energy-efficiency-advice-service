@@ -4,7 +4,7 @@ import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {QuestionType} from "../../../../question-type";
 import {EpcConfirmation} from "./epc-confirmation";
 
-export class ConfirmEpcQuestionMetadata extends QuestionMetadata<EpcConfirmation> {
+export class ConfirmEpcQuestionMetadata extends QuestionMetadata {
 
     constructor() {
         super(

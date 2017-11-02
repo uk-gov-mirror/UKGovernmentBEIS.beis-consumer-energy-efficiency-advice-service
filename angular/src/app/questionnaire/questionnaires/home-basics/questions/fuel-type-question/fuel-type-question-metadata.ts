@@ -4,7 +4,7 @@ import {FuelTypeQuestionComponent} from "./fuel-type-question.component";
 import {QuestionType} from "../../../../question-type";
 import {ResponseData} from "../../../../../shared/response-data/response-data";
 
-export class FuelTypeQuestionMetadata extends QuestionMetadata<FuelType> {
+export class FuelTypeQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             FuelTypeQuestionComponent,

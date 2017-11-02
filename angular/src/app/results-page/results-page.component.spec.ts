@@ -63,7 +63,10 @@ describe('ResultsPageComponent', () => {
         condensingBoiler: false,
         electricityTariff: undefined,
         numberOfOccupants: 1,
-        numberOfShowersPerWeek: 0
+        numberOfShowersPerWeek: 0,
+        numberOfFridgeFreezers: 0,
+        numberOfFridges: 0,
+        numberOfFreezers: 0,
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

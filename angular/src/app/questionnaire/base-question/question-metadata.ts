@@ -3,8 +3,8 @@ import {QuestionBaseComponent} from "./question-base-component";
 import {QuestionType} from "../question-type";
 import {ResponseData} from "../../shared/response-data/response-data";
 
-export abstract class QuestionMetadata<S> {
-    constructor(public componentType: Type<QuestionBaseComponent<S>>,
+export abstract class QuestionMetadata {
+    constructor(public componentType: Type<QuestionBaseComponent>,
                 public questionId: string,
                 public questionType: QuestionType,) {
     }

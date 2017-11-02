@@ -4,7 +4,7 @@ import {HomeType} from "./home-type";
 import {QuestionType} from "../../../../question-type";
 import {ResponseData} from "../../../../../shared/response-data/response-data";
 
-export class HomeTypeQuestionMetadata extends QuestionMetadata<HomeType> {
+export class HomeTypeQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             HomeTypeQuestionComponent,

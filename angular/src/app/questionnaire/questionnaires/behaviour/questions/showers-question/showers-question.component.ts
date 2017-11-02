@@ -6,7 +6,7 @@ import {Component, OnInit} from "@angular/core";
     templateUrl: './showers-question.component.html',
     animations: [slideInOutAnimation]
 })
-export class ShowersQuestionComponent extends QuestionBaseComponent<number> implements OnInit {
+export class ShowersQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
         this.response = this.response || 7;

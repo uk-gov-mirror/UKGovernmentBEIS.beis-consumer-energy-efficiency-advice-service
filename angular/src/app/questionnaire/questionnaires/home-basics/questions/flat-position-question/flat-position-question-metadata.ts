@@ -5,7 +5,7 @@ import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {isFlat} from "../home-type-question/home-type";
 import {QuestionType} from "../../../../question-type";
 
-export class FlatPositionQuestionMetadata extends QuestionMetadata<FlatPosition> {
+export class FlatPositionQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             FlatPositionQuestionComponent,

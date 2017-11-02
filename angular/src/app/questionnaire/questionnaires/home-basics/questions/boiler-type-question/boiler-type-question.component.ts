@@ -7,7 +7,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../../../../base-quest
     styleUrls: ['./boiler-type-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class BoilerTypeQuestionComponent extends QuestionBaseComponent<boolean> {
+export class BoilerTypeQuestionComponent extends QuestionBaseComponent {
     get response(): boolean {
         return this.responseData.condensingBoiler;
     }

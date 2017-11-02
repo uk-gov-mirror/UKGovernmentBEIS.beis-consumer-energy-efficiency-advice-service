@@ -3,13 +3,15 @@ import {Questionnaire} from "../../base-questionnaire/questionnaire";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {OccupantsQuestionMetadata} from "./questions/occupants-question/occupants-question-metadata";
 import {ShowersQuestionMetadata} from "./questions/showers-question/showers-question-metadata";
+import {FridgeFreezerQuestionMetadata} from "./questions/fridge-freezer-question/fridge-freezer-question-metadata";
 
 @Injectable()
 export class BehaviourQuestionnaire extends Questionnaire {
     constructor(responseData: ResponseData) {
         super(responseData, [
             new OccupantsQuestionMetadata(),
-            new ShowersQuestionMetadata()
+            new ShowersQuestionMetadata(),
+            new FridgeFreezerQuestionMetadata(),
         ]);
     }
 }

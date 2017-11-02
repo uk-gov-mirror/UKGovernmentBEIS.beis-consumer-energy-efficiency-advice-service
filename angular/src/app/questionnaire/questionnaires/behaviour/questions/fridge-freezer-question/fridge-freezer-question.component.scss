@@ -1,0 +1,24 @@
+.fridge-freezer-question {
+  .questionnaire-form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .fridge-freezer-input, .fridge-input, .freezer-input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-right: 48px;
+      }
+
+      .name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

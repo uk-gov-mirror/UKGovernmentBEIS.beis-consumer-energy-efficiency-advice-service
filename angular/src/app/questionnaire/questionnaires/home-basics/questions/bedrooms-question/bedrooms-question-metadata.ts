@@ -3,7 +3,7 @@ import {BedroomsQuestionComponent} from "./bedrooms-question.component";
 import {QuestionType} from "../../../../question-type";
 import {ResponseData} from "../../../../../shared/response-data/response-data";
 
-export class BedroomsQuestionMetadata extends QuestionMetadata<number> {
+export class BedroomsQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             BedroomsQuestionComponent,

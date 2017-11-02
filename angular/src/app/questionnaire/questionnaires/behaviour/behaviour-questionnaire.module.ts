@@ -5,15 +5,18 @@ import {BehaviourQuestionnaire} from "./behaviour-questionnaire";
 import {CommonQuestionsModule} from "../../common-questions/common-questions.module";
 import {OccupantsQuestionComponent} from "./questions/occupants-question/occupants-question.component";
 import {ShowersQuestionComponent} from "./questions/showers-question/showers-question.component";
+import {FridgeFreezerQuestionComponent} from "./questions/fridge-freezer-question/fridge-freezer-question.component";
 
 @NgModule({
     declarations: [
         OccupantsQuestionComponent,
-        ShowersQuestionComponent
+        ShowersQuestionComponent,
+        FridgeFreezerQuestionComponent
     ],
     exports: [
         OccupantsQuestionComponent,
-        ShowersQuestionComponent
+        ShowersQuestionComponent,
+        FridgeFreezerQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -22,7 +25,8 @@ import {ShowersQuestionComponent} from "./questions/showers-question/showers-que
     ],
     entryComponents: [
         OccupantsQuestionComponent,
-        ShowersQuestionComponent
+        ShowersQuestionComponent,
+        FridgeFreezerQuestionComponent,
     ],
     providers: [BehaviourQuestionnaire]
 })

@@ -17,7 +17,7 @@ class FuelTypeOption {
     styleUrls: ['./fuel-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class FuelTypeQuestionComponent extends QuestionBaseComponent<FuelType> {
+export class FuelTypeQuestionComponent extends QuestionBaseComponent {
     fuelTypeOptions: FuelTypeOption[];
 
     constructor(responseData: ResponseData) {

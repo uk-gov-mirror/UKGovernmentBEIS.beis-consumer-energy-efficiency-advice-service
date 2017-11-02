@@ -4,7 +4,7 @@ import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {isGasOrOil} from "../fuel-type-question/fuel-type";
 import {QuestionType} from "../../../../question-type";
 
-export class BoilerTypeQuestionMetadata extends QuestionMetadata<boolean> {
+export class BoilerTypeQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             BoilerTypeQuestionComponent,
