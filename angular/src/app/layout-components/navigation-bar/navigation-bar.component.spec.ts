@@ -11,6 +11,8 @@ import {WordpressPageResponse} from "../wordpress-pages-service/wordpress-page-r
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
     let fixture: ComponentFixture<NavigationBarComponent>;
+    let fetchTopLevelPagesSpy: jasmine.Spy;
+    let showGenericErrorSpy: jasmine.Spy;
 
     const mockWordpressPagesService = {
         fetchTopLevelPages: () => Observable.of([])
@@ -22,7 +24,7 @@ describe('NavigationBarComponent', () => {
     };
 
     beforeEach(async(() => {
-        spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
+        showGenericErrorSpy = spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
 
         TestBed.configureTestingModule({
             declarations: [ NavigationBarComponent ],
@@ -50,7 +52,7 @@ describe('NavigationBarComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            expect(fixture.debugElement.injector.get(WordpressPagesService).fetchTopLevelPages).toHaveBeenCalled();
+            expect(fetchTopLevelPagesSpy).toHaveBeenCalled();
         });
     }));
 
@@ -60,7 +62,7 @@ describe('NavigationBarComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
+            expect(showGenericErrorSpy).toHaveBeenCalled();
         });
     }));
 
@@ -88,7 +90,7 @@ describe('NavigationBarComponent', () => {
     function injectMockWordpressPagesCallbackAndDetectChanges(fetchTopLevelPages: () => Observable<WordpressPageResponse[]>) {
         let injectedWordpressPagesService = fixture.debugElement.injector.get(WordpressPagesService);
         injectedWordpressPagesService.fetchTopLevelPages = fetchTopLevelPages;
-        spyOn(injectedWordpressPagesService, 'fetchTopLevelPages').and.callThrough();
+        fetchTopLevelPagesSpy = spyOn(injectedWordpressPagesService, 'fetchTopLevelPages').and.callThrough();
         fixture.detectChanges();
     }
 });

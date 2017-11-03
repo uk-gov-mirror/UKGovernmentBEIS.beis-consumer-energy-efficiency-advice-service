@@ -16,11 +16,11 @@ export class LocalAuthorityService {
     }
 
     fetchLocalAuthorityDetails(localAuthorityCode: string): Observable<LocalAuthorityResponse> {
-        if (this.localAuthorities[localAuthorityCode]) {
-            return this.localAuthorities[localAuthorityCode];
+        if (!this.localAuthorities[localAuthorityCode]) {
+            const endpoint = LocalAuthorityService.localAuthorityEndpoint + localAuthorityCode;
+            this.localAuthorities[localAuthorityCode] = this.http.get(this.wordpressApiService.getFullApiEndpoint(endpoint))
+                .shareReplay(1);
         }
-        const endpoint = LocalAuthorityService.localAuthorityEndpoint + localAuthorityCode;
-        this.localAuthorities[localAuthorityCode] = this.http.get(this.wordpressApiService.getFullApiEndpoint(endpoint)).shareReplay(1);
         return this.localAuthorities[localAuthorityCode];
     }
 }

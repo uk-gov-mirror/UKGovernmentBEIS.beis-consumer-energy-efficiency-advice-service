@@ -13,11 +13,10 @@ export class RecommendationService {
     }
 
     fetchRecommendationDetails(): Observable<RecommendationMetadataResponse[]> {
-        if (this.recommendations) {
-            return this.recommendations;
+        if (!this.recommendations) {
+            this.recommendations = this.http.get(this.wordpressApiService.getFullApiEndpoint(RecommendationService.recommendationsEndpoint))
+                .shareReplay(1);
         }
-        this.recommendations = this.http.get(this.wordpressApiService.getFullApiEndpoint(RecommendationService.recommendationsEndpoint))
-            .shareReplay(1);
         return this.recommendations;
     }
 

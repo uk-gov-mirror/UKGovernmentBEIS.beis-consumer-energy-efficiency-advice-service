@@ -1,6 +1,6 @@
 <div class="page-row" >
-    <div class="page-row-content page-component">
-        <div class="title" [innerHTML]="(pageData|async)?.title?.rendered"></div>
-        <div class="content" [innerHTML]="(pageData|async)?.content?.rendered"></div>
+    <div class="page-row-content page-component" *ngIf="pageData | async as page">
+        <div class="title" [innerHTML]="page.title?.rendered"></div>
+        <div class="content" [innerHTML]="page.content?.rendered"></div>
     </div>
 </div>
