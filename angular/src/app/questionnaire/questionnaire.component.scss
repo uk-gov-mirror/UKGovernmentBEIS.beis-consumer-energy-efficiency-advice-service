@@ -6,13 +6,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 
   .question-type-icon {
     margin-top: 15vh;
     margin-bottom: 20px;
   }
 
-  .question-heading-container, .question {
+  .question-heading-container {
     width: 100%;
     max-width: 1280px;
   }
@@ -46,5 +47,12 @@
   .help-text {
     width: 60vw;
     text-align: center;
+  }
+
+  .question {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 }
