@@ -1,7 +1,7 @@
+import * as parse from "url-parse";
+
 export abstract class UrlParser {
     public static getUrlPath(url: string) {
-        let parser = document.createElement('a');
-        parser.href = url;
-        return parser.pathname;
+        return parse(url).pathname;
     }
 }

@@ -4,9 +4,8 @@ import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
-import {WordpressPagesService} from "../wordpress-pages-service/wordpress-pages.service";
-import {PageStateService} from "../page-state-service/page-state.service";
-import {WordpressPageResponse} from "../wordpress-pages-service/wordpress-page-response";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {PageStateService} from "../../shared/page-state-service/page-state.service";
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
@@ -68,15 +67,15 @@ describe('NavigationBarComponent', () => {
 
     it('should display links to all top level pages returned by the wordpress service', async(() => {
         // given
-        const wordpressPagesResponse = [
-            {link: '/page-zero',  title: {rendered: 'Page zero'}},
-            {link: '/page-one',   title: {rendered: 'Page one'}},
-            {link: '/page-two',   title: {rendered: 'Page two'}},
-            {link: '/page-three', title: {rendered: 'Page three'}},
+        const wordpressPages = [
+            {path: '/page-zero',  title: 'Page zero'},
+            {path: '/page-one',   title: 'Page one'},
+            {path: '/page-two',   title: 'Page two'},
+            {path: '/page-three', title: 'Page three'},
         ];
 
         // when
-        injectMockWordpressPagesCallbackAndDetectChanges(() => Observable.of(wordpressPagesResponse));
+        injectMockWordpressPagesCallbackAndDetectChanges(() => Observable.of(wordpressPages));
 
         // then
         fixture.whenStable().then(() => {
@@ -87,7 +86,7 @@ describe('NavigationBarComponent', () => {
         });
     }));
 
-    function injectMockWordpressPagesCallbackAndDetectChanges(fetchTopLevelPages: () => Observable<WordpressPageResponse[]>) {
+    function injectMockWordpressPagesCallbackAndDetectChanges(fetchTopLevelPages: () => Observable<WordpressPage[]>) {
         let injectedWordpressPagesService = fixture.debugElement.injector.get(WordpressPagesService);
         injectedWordpressPagesService.fetchTopLevelPages = fetchTopLevelPages;
         fetchTopLevelPagesSpy = spyOn(injectedWordpressPagesService, 'fetchTopLevelPages').and.callThrough();
