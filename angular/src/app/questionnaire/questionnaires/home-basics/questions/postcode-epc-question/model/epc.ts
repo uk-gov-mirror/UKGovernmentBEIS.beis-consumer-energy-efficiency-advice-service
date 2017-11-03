@@ -20,7 +20,7 @@ export class Epc {
     public localAuthorityCode: string;
     public constituency: string;
     public county: string;
-    public lodgementDate: string;
+    public epcDate: Date;
     public transactionType: string;
     public environmentImpactCurrent: string;
     public environmentImpactPotential: string;
@@ -113,6 +113,7 @@ export class Epc {
         this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO: watch out - this field is marked as deprecated in some responses
         this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
         this.localAuthorityCode = epcResponse['local-authority'];
+        this.epcDate = new Date(epcResponse['lodgement-date']);
 
         // TODO: These fields are not currently used; maybe we can remove these later on
         this.lmkKey = epcResponse['lmk-key'];
@@ -123,7 +124,6 @@ export class Epc {
         this.inspectionDate = epcResponse['inspection-date'];
         this.constituency = epcResponse['constituency'];
         this.county = epcResponse['county'];
-        this.lodgementDate = epcResponse['lodgement-date'];
         this.transactionType = epcResponse['transaction-type'];
         this.environmentImpactCurrent = epcResponse['environment-impact-current'];
         this.environmentImpactPotential = epcResponse['environment-impact-potential'];

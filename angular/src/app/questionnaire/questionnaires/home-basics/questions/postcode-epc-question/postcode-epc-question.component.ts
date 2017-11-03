@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import "rxjs/add/operator/map";
+import {groupBy, keys, orderBy, head} from "lodash-es";
 
 import {Epc} from "./model/epc";
 import {EpcParserService} from "./epc-parser-service/epc-parser.service";
@@ -115,14 +116,20 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         this.epcApiService.getEpcData(this.postcodeInput)
             .map(result => EpcParserService.parse(result))
             .subscribe(
-                data => this.searchCompleted(data),
+                data => this.epcSearchCompleted(data),
                 err => this.lookupBasicPostcodeDetails()
             );
     }
 
-    searchCompleted(epcs: Epc[]): void {
+    epcSearchCompleted(epcs: Epc[]): void {
         this.shouldDisplayLoadingSpinner = false;
-        this.allEpcsForPostcode = epcs;
+        const epcsByAddress: {[address: string]: Epc[]} = groupBy(epcs, epc => epc.getDisplayAddress());
+        const mostRecentEpcForEachAddress = keys(epcsByAddress)
+            .map(address => {
+                const allEpcsForPostcodeSortedByDate = orderBy(epcsByAddress[address], ['epcDate'], ['desc']);
+                return head(allEpcsForPostcodeSortedByDate)
+            });
+        this.allEpcsForPostcode = mostRecentEpcForEachAddress;
         if (!epcs || epcs.length === 0) {
             this.lookupBasicPostcodeDetails();
         }
