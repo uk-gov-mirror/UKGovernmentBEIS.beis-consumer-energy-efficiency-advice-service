@@ -2,6 +2,7 @@ import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
 import {ResponseData} from "../shared/response-data/response-data";
 import {PostcodeValidationService} from "../shared/postcode-validation-service/postcode-validation.service";
+import {UserJourneyType} from "../shared/response-data/user-journey-type";
 
 @Component({
     selector: 'app-landing-page',
@@ -16,6 +17,7 @@ export class LandingPageComponent {
     }
 
     @Input() heading: string;
+    @Input() userJourneyType: UserJourneyType;
     postcodeInput: string;
     validationError: boolean = false;
 
@@ -23,6 +25,7 @@ export class LandingPageComponent {
         this.postcodeInput = this.postcodeInput.trim();
         if (!(this.validationError = !this.postcodeValidationService.isValid(this.postcodeInput))) {
             this.responseData.postcode = this.postcodeInput;
+            this.responseData.userJourneyType = this.userJourneyType;
             this.router.navigate(['/questionnaire/home-basics']);
         }
     }

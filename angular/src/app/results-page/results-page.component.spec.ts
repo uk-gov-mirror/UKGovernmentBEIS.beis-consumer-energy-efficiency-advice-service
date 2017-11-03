@@ -22,6 +22,7 @@ import {FuelType} from "../questionnaire/questionnaires/home-basics/questions/fu
 import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
+import {UserJourneyType} from "../shared/response-data/user-journey-type";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -50,6 +51,7 @@ describe('ResultsPageComponent', () => {
     };
 
     const responseData: ResponseData = {
+        userJourneyType: UserJourneyType.HomepageLink,
         postcode: 'sw1h0et',
         epc: null,
         localAuthorityCode: localAuthorityCode,
