@@ -122,6 +122,9 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     }
 
     epcSearchCompleted(epcs: Epc[]): void {
+        if (!epcs || epcs.length === 0) {
+            this.lookupBasicPostcodeDetails();
+        }
         this.shouldDisplayLoadingSpinner = false;
         const epcsByAddress: {[address: string]: Epc[]} = groupBy(epcs, epc => epc.getDisplayAddress());
         const mostRecentEpcForEachAddress = keys(epcsByAddress)
@@ -130,9 +133,6 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
                 return head(allEpcsForPostcodeSortedByDate)
             });
         this.allEpcsForPostcode = mostRecentEpcForEachAddress;
-        if (!epcs || epcs.length === 0) {
-            this.lookupBasicPostcodeDetails();
-        }
     }
 
     isSelected(epc: Epc): boolean {
