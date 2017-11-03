@@ -7,19 +7,22 @@ import {OccupantsQuestionComponent} from "./questions/occupants-question/occupan
 import {ShowersQuestionComponent} from "./questions/showers-question/showers-question.component";
 import {FridgeFreezerQuestionComponent} from "./questions/fridge-freezer-question/fridge-freezer-question.component";
 import {LivingRoomTemperatureQuestionComponent} from "./questions/living-room-temperature-question/living-room-temperature-question.component";
+import {BathsQuestionComponent} from "./questions/baths-question/baths-question.component";
 
 @NgModule({
     declarations: [
         OccupantsQuestionComponent,
         ShowersQuestionComponent,
+        BathsQuestionComponent,
         FridgeFreezerQuestionComponent,
-        LivingRoomTemperatureQuestionComponent,
+        LivingRoomTemperatureQuestionComponent
     ],
     exports: [
         OccupantsQuestionComponent,
         ShowersQuestionComponent,
+        BathsQuestionComponent,
         FridgeFreezerQuestionComponent,
-        LivingRoomTemperatureQuestionComponent,
+        LivingRoomTemperatureQuestionComponent
     ],
     imports: [
         CommonModule,
@@ -29,8 +32,9 @@ import {LivingRoomTemperatureQuestionComponent} from "./questions/living-room-te
     entryComponents: [
         OccupantsQuestionComponent,
         ShowersQuestionComponent,
+        BathsQuestionComponent,
         FridgeFreezerQuestionComponent,
-        LivingRoomTemperatureQuestionComponent,
+        LivingRoomTemperatureQuestionComponent
     ],
     providers: [BehaviourQuestionnaire]
 })

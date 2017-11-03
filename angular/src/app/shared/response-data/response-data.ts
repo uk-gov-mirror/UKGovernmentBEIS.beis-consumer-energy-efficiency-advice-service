@@ -27,6 +27,7 @@ export class ResponseData {
     public numberOfFridges: number;
     public numberOfFreezers: number;
     public livingRoomTemperature: number;
+    public numberOfBathsPerWeek: number;
 }
 
 export function isComplete(responseData: ResponseData) {

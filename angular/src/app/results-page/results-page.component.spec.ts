@@ -64,10 +64,11 @@ describe('ResultsPageComponent', () => {
         electricityTariff: undefined,
         numberOfOccupants: 1,
         numberOfShowersPerWeek: 0,
+        numberOfBathsPerWeek: 45,
         numberOfFridgeFreezers: 0,
         numberOfFridges: 0,
         numberOfFreezers: 0,
-        livingRoomTemperature: 20,
+        livingRoomTemperature: 20
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {
