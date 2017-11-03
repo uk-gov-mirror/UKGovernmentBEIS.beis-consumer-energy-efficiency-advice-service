@@ -5,7 +5,6 @@ import {NumberQuestionComponent} from "../../../../common-questions/number-quest
 import {FormsModule} from "@angular/forms";
 import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
-import {TimesPipe} from "../../../../../shared/times/times.pipe";
 
 describe('FridgeFreezerQuestionComponent', () => {
     let component: FridgeFreezerQuestionComponent;
@@ -18,7 +17,7 @@ describe('FridgeFreezerQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FridgeFreezerQuestionComponent, NumberQuestionComponent, TimesPipe],
+            declarations: [FridgeFreezerQuestionComponent, NumberQuestionComponent],
             imports: [FormsModule],
             providers: [ResponseData]
         })
