@@ -1,0 +1,16 @@
+<div class="ownership-status-question question-component">
+    <div class="multiple-choice-options ownership-status-options">
+        <button id="tenant-option"
+                class="multiple-choice-option ownership-status-option"
+                [class.selected]="response === false"
+                (click)="response = false; complete.emit()">
+            No, I am a tenant
+        </button>
+        <button id="homeowner-option"
+                class="multiple-choice-option ownership-status-option"
+                [class.selected]="response === true"
+                (click)="response = true; complete.emit()">
+            Yes, I own my home
+        </button>
+    </div>
+</div>

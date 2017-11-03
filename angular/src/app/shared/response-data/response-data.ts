@@ -13,6 +13,7 @@ export class ResponseData {
     public epc: Epc;
     public localAuthorityCode: string;
     public confirmEpc: boolean;
+    public homeowner: boolean;
     public homeType: HomeType;
     public homeAge: HomeAge;
     public flatPosition: FlatPosition;

@@ -54,6 +54,7 @@ describe('ResultsPageComponent', () => {
         epc: null,
         localAuthorityCode: localAuthorityCode,
         confirmEpc: true,
+        homeowner: true,
         homeType: HomeType.GroundFloorFlat,
         homeAge: HomeAge.pre1900,
         flatPosition: FlatPosition.ThreeSidesExposed,

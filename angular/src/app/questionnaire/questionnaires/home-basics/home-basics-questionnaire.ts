@@ -11,12 +11,14 @@ import {FuelTypeQuestionMetadata} from "./questions/fuel-type-question/fuel-type
 import {StoreysQuestionMetadata} from "./questions/storeys-question/storeys-question-metadata";
 import {BoilerTypeQuestionMetadata} from "./questions/boiler-type-question/boiler-type-question-metadata";
 import {ElectricityTariffQuestionMetadata} from "./questions/electricity-tariff-question/electricity-tariff-question-metadata";
+import {OwnershipStatusQuestionMetadata} from "./questions/ownership-status-question/ownership-status-question-metadata";
 
 @Injectable()
 export class HomeBasicsQuestionnaire extends Questionnaire {
     constructor(responseData: ResponseData) {
         super(responseData, [
             new PostcodeEpcQuestionMetadata(),
+            new OwnershipStatusQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),

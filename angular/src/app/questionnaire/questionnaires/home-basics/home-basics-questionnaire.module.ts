@@ -14,6 +14,7 @@ import {StoreysQuestionComponent} from "./questions/storeys-question/storeys-que
 import {CommonQuestionsModule} from "../../common-questions/common-questions.module";
 import {SharedModule} from "../../../shared/shared.module";
 import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
+import {OwnershipStatusQuestionComponent} from "./questions/ownership-status-question/ownership-status-question.component";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
         HomeTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         StoreysQuestionComponent,
+        OwnershipStatusQuestionComponent,
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -39,6 +41,7 @@ import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
         HomeTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         StoreysQuestionComponent,
+        OwnershipStatusQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -57,6 +60,7 @@ import {HomeBasicsQuestionnaire} from "./home-basics-questionnaire";
         HomeTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         StoreysQuestionComponent,
+        OwnershipStatusQuestionComponent,
     ],
     providers: [HomeBasicsQuestionnaire]
 })
