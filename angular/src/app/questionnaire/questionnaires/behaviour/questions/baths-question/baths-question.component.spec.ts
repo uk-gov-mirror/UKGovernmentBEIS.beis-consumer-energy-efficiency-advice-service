@@ -7,7 +7,7 @@ import {ResponseData} from "../../../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../../../shared/times/times.pipe";
 
-describe('OccupantsQuestionComponent', () => {
+describe('BathsQuestionComponent', () => {
     let component: BathsQuestionComponent;
     let fixture: ComponentFixture<BathsQuestionComponent>;
 
@@ -15,7 +15,7 @@ describe('OccupantsQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [BathsQuestionComponent, NumberQuestionComponent, TimesPipe],
+            declarations: [BathsQuestionComponent, NumberQuestionComponent],
             imports: [FormsModule],
             providers: [ResponseData]
         })

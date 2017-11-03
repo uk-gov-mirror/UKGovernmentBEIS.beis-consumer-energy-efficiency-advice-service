@@ -2,7 +2,7 @@
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
         <app-number-question [itemsName]="'baths'"
                              [(quantity)]="response"
-                             [minimum]="0"
-                             [maximum]="50"></app-number-question>
+                             minQuantity="0"
+                             maxQuantity="50"></app-number-question>
     </form>
 </div>
