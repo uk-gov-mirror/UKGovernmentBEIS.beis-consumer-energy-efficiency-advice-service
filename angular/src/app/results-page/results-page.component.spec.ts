@@ -67,6 +67,7 @@ describe('ResultsPageComponent', () => {
         numberOfFridgeFreezers: 0,
         numberOfFridges: 0,
         numberOfFreezers: 0,
+        livingRoomTemperature: 20,
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

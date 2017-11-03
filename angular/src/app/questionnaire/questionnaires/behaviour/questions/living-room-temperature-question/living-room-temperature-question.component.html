@@ -1,0 +1,12 @@
+<div class="living-room-temperature-question question-component">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="temperature-input">
+            <div class="name">Degrees celsius</div>
+            <app-number-question [itemsName]="'degrees'"
+                                 minQuantity="0"
+                                 maxQuantity="50"
+                                 [(quantity)]="response">
+            </app-number-question>
+        </div>
+    </form>
+</div>

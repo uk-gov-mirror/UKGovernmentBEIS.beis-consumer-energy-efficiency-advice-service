@@ -24,6 +24,11 @@ describe('Behaviour questionnaire', () => {
         expect(page.getHeading()).toContain('showers');
         page.goForwards();
 
+        // Living room temperature
+        CommonPageHelpers.sleep(1000);
+        expect(page.getHeading()).toContain('living room');
+        page.goForwards();
+
         // Number of fridges and freezers
         CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('fridges and freezers');

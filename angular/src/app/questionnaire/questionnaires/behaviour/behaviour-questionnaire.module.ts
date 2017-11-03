@@ -6,17 +6,20 @@ import {CommonQuestionsModule} from "../../common-questions/common-questions.mod
 import {OccupantsQuestionComponent} from "./questions/occupants-question/occupants-question.component";
 import {ShowersQuestionComponent} from "./questions/showers-question/showers-question.component";
 import {FridgeFreezerQuestionComponent} from "./questions/fridge-freezer-question/fridge-freezer-question.component";
+import {LivingRoomTemperatureQuestionComponent} from "./questions/living-room-temperature-question/living-room-temperature-question.component";
 
 @NgModule({
     declarations: [
         OccupantsQuestionComponent,
         ShowersQuestionComponent,
-        FridgeFreezerQuestionComponent
+        FridgeFreezerQuestionComponent,
+        LivingRoomTemperatureQuestionComponent,
     ],
     exports: [
         OccupantsQuestionComponent,
         ShowersQuestionComponent,
         FridgeFreezerQuestionComponent,
+        LivingRoomTemperatureQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -27,6 +30,7 @@ import {FridgeFreezerQuestionComponent} from "./questions/fridge-freezer-questio
         OccupantsQuestionComponent,
         ShowersQuestionComponent,
         FridgeFreezerQuestionComponent,
+        LivingRoomTemperatureQuestionComponent,
     ],
     providers: [BehaviourQuestionnaire]
 })
