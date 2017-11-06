@@ -12,8 +12,6 @@ add_filter('do_parse_request', function($do_parse, $wp) {
         return $carry || !empty($matches);
     });
 
-    echo $isRequestPathMatchingARouteForWordpressRouting;
-
     if ($isRequestPathMatchingARouteForWordpressRouting) {
         // Enable Wordpress routing
         return $do_parse;
