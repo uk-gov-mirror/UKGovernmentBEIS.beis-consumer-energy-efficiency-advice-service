@@ -11,16 +11,8 @@ $grant-card-margin: 24px;
 
   width: 100%;
 
-  .main-content {
-    width: calc(100% - 32px);
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   h2 {
-    font-size: 48px;
-    font-weight: bold;
+    @include page-heading;
   }
 
   .subheading {
@@ -29,51 +21,38 @@ $grant-card-margin: 24px;
     margin-bottom: 8px;
   }
 
-  .body-uppercase {
-    @include body-uppercase;
-  }
-
   > :not(:first-child) {
     padding: 48px 0;
-
-    &.potentials {
-      padding-bottom: 32px;
-    }
-
-    &.potentials, &.recommendations, &.grants {
-      border-top: 1px solid black;
+    &.potentials-container {
+      padding: 0;
     }
   }
 
-  .recommendations {
-    .recommendation-cards {
-      margin-top: 32px;
-      flex-wrap: wrap;
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-      display: flex;
-      align-items: stretch;
-      justify-content: flex-start;
-
-      .recommendation-card {
-        flex-basis: calc((100% - #{$recommendation-cards-per-row - 1} * #{$recommendation-card-margin} - 1px) / #{$recommendation-cards-per-row});
-        margin-bottom: $recommendation-card-margin;
-        &:not(:nth-child(#{$recommendation-cards-per-row}n)) {
-          margin-right: $recommendation-card-margin;
-        }
-      }
+    .heading-text {
+      flex-shrink: 0;
+      margin: 0 32px 0 0;
     }
 
-    .tell-us-more {
-      margin-top: 80px;
-
-      .further-questions {
-        margin-top: 16px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+    .heading-explanation {
+      flex-shrink: 1;
+      font-size: 14px;
     }
+  }
+
+  .potentials-container {
+    background-color: $lighter-grey;
+    .potentials {
+      width: 100%;
+    }
+  }
+
+  .recommendations.page-row-content {
+    display: block;
   }
 
   .grants {

@@ -6,10 +6,10 @@ import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-qu
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
-import {SuggestionCardComponent} from "./suggestion-card/suggestion-card.component";
 import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {RoutingModule} from "../app-routing.module";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -18,7 +18,6 @@ import {RoutingModule} from "../app-routing.module";
         GrantCardComponent,
         PotentialsComponent,
         RecommendationCardComponent,
-        SuggestionCardComponent,
     ],
     exports: [
         ResultsPageComponent,
@@ -26,6 +25,7 @@ import {RoutingModule} from "../app-routing.module";
     imports: [
         CommonModule,
         RoutingModule,
+        SharedModule,
     ],
     providers: [
         EnergyCalculationApiService,

@@ -1,22 +1,28 @@
 <div class="potentials">
-    <div class="savings">
-        <div class="current-bill">
-            <div class="body-uppercase">We estimate your current annual bill is:</div>
-            <div class="headline-figure">£{{energyCalculations.currentEnergyBillPoundsPerYear}}</div>
-        </div>
-        <div class="potential-savings">
-            <div class="body-uppercase">So you could potentially save</div>
-            <div class="headline-figure">£{{energyCalculations.potentialEnergyBillSavingPoundsPerYear}}</div>
+    <div class="box current-score">
+        <div class="box-heading">Your current score is</div>
+        <div class="box-content">
+            <app-radial-percentage class="percentage" [progress]="55"></app-radial-percentage>
         </div>
     </div>
-    <div class="epc">
-        <div class="current-epc">
-            <div class="body-uppercase">Your current EPC rating is</div>
-            <div class="epc-rating">{{energyCalculations.currentEpcRating}}</div>
+    <div class="box potential-score">
+        <div class="box-heading">Your potential score is</div>
+        <div class="box-content">
+          <app-radial-percentage class="percentage" [progress]="78"></app-radial-percentage>
         </div>
-        <div class="potential-epc" *ngIf="energyCalculations.potentialEpcRating">
-            <div class="body-uppercase">Your potential is</div>
-            <div class="epc-rating">{{energyCalculations.potentialEpcRating}}</div>
+    </div>
+    <div class="box average-score">
+        <div class="box-heading">Average score for your type of property</div>
+        <div class="box-content">
+            <app-radial-percentage class="percentage" [progress]="72"></app-radial-percentage>
         </div>
+    </div>
+    <div class="box investment">
+        <div class="box-heading">Total investment required</div>
+        <div class="box-content money">£4,435</div>
+    </div>
+    <div class="box savings">
+        <div class="box-heading">Total savings per year</div>
+        <div class="box-content money">£735</div>
     </div>
 </div>

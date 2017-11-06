@@ -1,13 +1,17 @@
-<a class="recommendation-card" *ngIf="recommendation && recommendation.recommendationType">
-    <div class="heading">
+<div class="recommendation-card">
+    <div class="box description">
         <span class="icon" [ngClass]="recommendation.recommendationType.iconClassName"></span>
-        <div class="description">{{recommendation.recommendationType.description}}</div>
+        <div class="explanation">
+            <div class="heading">{{recommendation.headline}}</div>
+            <div class="summary"></div>
+        </div>
     </div>
-    <div class="savings">
-        <span class="savings-amount">£{{savings}}</span>
-        <span class="savings-text">Potential<br>savings</span>
+    <div class="box investment">
+        <div class="box-heading">Investment required</div>
+        <div class="box-content money">£4,435</div>
     </div>
-    <div class="read-more">
-        <span class="read-more-text">Read more</span>
+    <div class="box savings">
+        <div class="box-heading">Savings per year</div>
+        <div class="box-content money">£735</div>
     </div>
-</a>
+</div>

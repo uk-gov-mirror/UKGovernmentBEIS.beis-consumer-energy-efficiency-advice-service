@@ -1,0 +1,5 @@
+@import "styles/page";
+
+$investment-box-width: 260px;
+$savings-box-width: 260px;
+$remaining-boxes-width: $content-max-width - $investment-box-width - $savings-box-width;

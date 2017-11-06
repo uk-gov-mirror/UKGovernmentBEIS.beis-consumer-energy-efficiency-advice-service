@@ -8,34 +8,29 @@
     </div>
 </div>
 <div class="results-page" *ngIf="!isLoading && !isError">
-    <div class="heading main-content">
-        <h2>Thank you!</h2>
-    </div>
-    <div class="potentials main-content" *ngIf="energyCalculations">
-        <app-potentials class="potentials" [energyCalculations]="energyCalculations">
-        </app-potentials>
-    </div>
-    <div class="recommendations main-content" *ngIf="recommendations && recommendations.length > 0">
-        <div class="subheading">What you can do next</div>
-        <div class="body-uppercase">As a home owner we recommend</div>
-        <div class="recommendation-cards">
-            <app-recommendation-card class="recommendation-card" *ngFor="let recommendation of recommendations"
-                                     [recommendation]="recommendation">
-            </app-recommendation-card>
+    <app-navigation-bar></app-navigation-bar>
+    <div class="page-row">
+        <div class="heading page-row-content">
+            <h2 class="heading-text">Your recommendations</h2>
+            <div class="heading-explanation">
+                Your score is calculated using a combination of the energy efficiency rating of your home and how you
+                use electricity and gas every day
+            </div>
         </div>
-        <div class="tell-us-more">
-            <div class="body-uppercase">If you tell us more about your home we can provide better recommendations</div>
-            <div class="further-questions">
-                <app-further-questions-link iconClassName="icon-home" questionnaireName="home-basics" displayName="Home Basics"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-heating" displayName="Boiler"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-flooring" displayName="Floor"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-walls" displayName="Walls"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-roofing" displayName="Roof"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-windows" displayName="Windows"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-doors" displayName="Doors"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-occupancy" displayName="Occupancy"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-thermometer" displayName="Thermostat"></app-further-questions-link>
-                <app-further-questions-link iconClassName="icon-behaviour" questionnaireName="behaviour" displayName="Behaviour"></app-further-questions-link>
+    </div>
+    <div class="potentials-container page-row">
+        <div class="page-row-content">
+            <app-potentials class="potentials" [energyCalculations]="energyCalculations"></app-potentials>
+        </div>
+    </div>
+    <div class="page-row" *ngIf="recommendations && recommendations.length > 0">
+        <div class="recommendations page-row-content">
+            <div class="subheading">What you can do next</div>
+            <div class="body-uppercase">As a home owner we recommend</div>
+            <div class="recommendation-cards">
+                <app-recommendation-card class="recommendation-card" *ngFor="let recommendation of recommendations"
+                                         [recommendation]="recommendation">
+                </app-recommendation-card>
             </div>
         </div>
     </div>
@@ -48,25 +43,6 @@
                             [grant]="grant">
             </app-grant-card>
 
-        </div>
-    </div>
-    <div class="suggestions">
-        <div class="main-content">
-            <div class="subheading">We also suggest</div>
-            <div class="suggestion-cards">
-                <app-suggestion-card class="suggestion-card"
-                                     heading="How long will it take to install loft insulation?">
-                </app-suggestion-card>
-                <app-suggestion-card class="suggestion-card"
-                                     heading="Can insulation help with condensation damp?">
-                </app-suggestion-card>
-                <app-suggestion-card class="suggestion-card"
-                                     heading="How do heat pumps perform differently from conventional boilers in a domestic heating system?">
-                </app-suggestion-card>
-                <app-suggestion-card class="suggestion-card"
-                                     heading="What different Solar Photovoltaic (PV) systems are available?">
-                </app-suggestion-card>
-            </div>
         </div>
     </div>
 </div>

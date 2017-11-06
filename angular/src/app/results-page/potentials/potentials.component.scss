@@ -1,5 +1,6 @@
 @import "styles/mixins/font";
-@import "styles/mixins/epc-rating";
+@import "styles/var/colours";
+@import "../results-page-sizes";
 
 :host {
   display: block;
@@ -7,45 +8,78 @@
 
 .potentials {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: space-between;
+  width: 100%;
 
-  .body-uppercase {
-    @include body-uppercase;
-  }
-
-  .savings, .epc {
+  .box {
     flex: 1 1 auto;
+    width: $remaining-boxes-width / 3;
+    box-sizing: border-box;
+    padding: 32px;
+
+    &.current-score {
+      background-color: $lighter-medium-grey;
+      font-weight: 800;
+    }
+
+    &.potential-score {
+      background-color: $lighter-grey;
+      padding-left: 48px;
+      padding-right: 0;
+    }
+
+    &.average-score {
+      background-color: $lighter-grey;
+      padding-right: 48px;
+    }
+
+    &.investment {
+      flex: 0 0 auto;
+      width: $investment-box-width;
+      background-color: $light-grey;
+      font-weight: 800;
+    }
+
+    &.savings {
+      flex: 0 0 auto;
+      width: $savings-box-width;
+      background-color: $light-medium-grey;
+      font-weight: 800;
+      color: white;
+    }
+
     display: flex;
+    flex-direction: column;
     align-items: center;
 
-    > :not(:first-child) {
-      margin-left: 80px;
-    }
-  }
-
-  .savings {
-    justify-content: flex-start;
-    border-right: 1px solid black;
-
-    .headline-figure {
-      font-size: 64px;
-      font-weight: bold;
-    }
-  }
-
-  .epc {
-    justify-content: flex-end;
-
-    .epc-rating {
-      @include epc-rating(64px);
-      margin: 8px;
+    .box-heading {
+      @include body-uppercase;
+      text-align: center;
+      height: 48px;
     }
 
-    .current-epc, .potential-epc {
+    .box-content {
+      height: 200px;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+
+      &.money {
+        @include headline-figure;
+      }
+
+      .percentage {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    &.current-score {
+      .box-content .percentage {
+        width: 150px;
+        height: 150px;
+      }
     }
   }
 }

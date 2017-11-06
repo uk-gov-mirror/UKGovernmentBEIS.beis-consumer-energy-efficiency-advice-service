@@ -1,0 +1,74 @@
+// $circle-size must be kept equal to initialCircleSize in the .component.ts file.
+$circle-size: 100px;
+$percentage-text-width: (5 * $circle-size) / 6;
+$percentage-font-size: (5 * $circle-size) / 13;
+
+$circle-background-color: white;
+$circle-color: black;
+$inset-color: #cccccc;
+
+$transition-length: 1s;
+$degrees-per-percent: 180deg / 100;
+
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.radial-percentage {
+  width: $circle-size;
+  height: $circle-size;
+  background: radial-gradient(circle at 50% 50%, transparent 58%, $circle-background-color 59%);
+  border-radius: 50%;
+  transform-origin: top left;
+
+  .circle {
+    .mask, .fill {
+      width: $circle-size;
+      height: $circle-size;
+      position: absolute;
+      border-radius: 50%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: transform $transition-length;
+    }
+
+    .mask {
+      clip: rect(0px, $circle-size / 2, $circle-size, 0);
+
+      .fill {
+        clip: rect(0px, $circle-size, $circle-size, $circle-size / 2);
+        background: radial-gradient(circle at 50% 50%, transparent 58%, $circle-color 59%);
+      }
+    }
+  }
+
+  .percentage {
+    width: $percentage-text-width;
+    position: absolute;
+
+    line-height: 1;
+    text-align: center;
+    top: ($circle-size - $percentage-font-size) / 2;
+    left: ($circle-size - $percentage-text-width) / 2;
+
+    font-weight: bold;
+    font-size: $percentage-font-size;
+  }
+
+  @for $i from 0 through 100 {
+    &[data-progress="#{$i}"] {
+      .circle {
+        .mask.full, .fill {
+          transform: rotate(-$degrees-per-percent * $i);
+        }
+        .fill.fix {
+          transform: rotate(-$degrees-per-percent * $i * 2);
+        }
+      }
+      .percentage::before {
+        content: "#{$i}";
+      }
+    }
+  }
+}

@@ -13,17 +13,20 @@ import {NavigationBarComponent} from "./navigation-bar/navigation-bar.component"
 import {RoutingModule} from "../app-routing.module";
 import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.component";
 import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
+import { RadialPercentageComponent } from './radial-percentage/radial-percentage.component';
 
 @NgModule({
     declarations: [
         TimesPipe,
         NavigationBarComponent,
-        LatestNewsCardComponent
+        LatestNewsCardComponent,
+        RadialPercentageComponent
     ],
     exports: [
         TimesPipe,
         NavigationBarComponent,
-        LatestNewsCardComponent
+        LatestNewsCardComponent,
+        RadialPercentageComponent,
     ],
     imports: [
         HttpClientModule,

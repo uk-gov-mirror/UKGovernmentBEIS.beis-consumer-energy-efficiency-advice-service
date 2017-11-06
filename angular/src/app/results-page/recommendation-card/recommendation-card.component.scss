@@ -1,60 +1,66 @@
 @import "styles/mixins/font";
 @import "styles/var/colours";
+@import "../results-page-sizes";
 
 :host {
   display: block;
 }
 
 .recommendation-card {
-  width: 100%;
-  height: 100%;
-  background-color: $lighter-grey;
-
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
+  align-items: stretch;
+  justify-content: space-between;
 
-  padding: 24px 16px;
-  box-sizing: border-box;
+  margin: 16px 0;
 
-  .heading, .savings, .read-more {
-    max-width: 100%;
+  .box {
+    box-sizing: border-box;
+
+    &.description {
+      flex: 1 1 auto;
+      width: $remaining-boxes-width;
+      background-color: $lighter-grey;
+      border-left: 10px solid $lighter-medium-grey;
+    }
+
+    &.investment {
+      flex: 0 0 auto;
+      width: $investment-box-width;
+      background-color: $light-grey;
+      font-weight: 800;
+    }
+
+    &.savings {
+      flex: 0 0 auto;
+      width: $savings-box-width;
+      background-color: $light-medium-grey;
+      font-weight: 800;
+      color: white;
+    }
+
+    &:not(.description) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 32px 48px;
+
+      .box-heading {
+        @include body-uppercase;
+        text-align: center;
+        height: 48px;
+      }
+
+      .box-content {
+        @include headline-figure;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 
-  .heading {
-    @include card-heading;
-    flex-grow: 1;
-
+  .box.description {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    .icon {
-      margin-top: -16px;
-      margin-left: -16px;
-    }
-  }
-
-  .savings {
-    margin: 36px 0;
-    display: flex;
-    justify-content: flex-start;
-
-    .savings-amount {
-      font-size: 28px;
-      font-weight: bold;
-      margin-right: 8px;
-    }
-
-    .savings-text {
-      @include body-uppercase;
-    }
-  }
-
-  .read-more {
-    .read-more-text {
-      @include body-uppercase;
-    }
+    align-items: center;
   }
 }
