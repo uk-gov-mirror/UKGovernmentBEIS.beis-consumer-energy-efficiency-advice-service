@@ -14,3 +14,4 @@ require_once("functions/local_authority.php");
 require_once("functions/energy_calculation.php");
 require_once("functions/hide_admin_bar.php");
 require_once("functions/limit-page-hierarchy-depth.php");
+require_once("functions/configure-wp-routing.php");

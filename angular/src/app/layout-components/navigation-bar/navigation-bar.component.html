@@ -1,6 +1,6 @@
 <div class="navigation-bar page-row">
     <div class="page-row-content">
         <a class="menu-item" *ngFor="let page of topLevelPages"
-           [routerLink]="page.path" [innerHTML]="page.title"></a>
+           [routerLink]="page.route" [innerHTML]="page.title"></a>
     </div>
 </div>

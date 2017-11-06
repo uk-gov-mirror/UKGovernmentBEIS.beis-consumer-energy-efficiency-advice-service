@@ -1,12 +1,12 @@
 import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
 import {RecommendationMetadataResponse} from "../recommendation-service/recommendation-metadata-response";
-import * as parse from "url-parse";
+import {WordpressPageRoutingService} from "../../shared/wordpress-pages-service/wordpress-page-routing.service";
 
 export class EnergySavingRecommendation {
     investmentPounds: number;
     costSavingPoundsPerYear: number;
     energySavingKwhPerYear: number;
-    readMorePath: string;
+    readMoreRoute: string;
     headline: string;
     summary: string;
 
@@ -18,7 +18,7 @@ export class EnergySavingRecommendation {
         this.investmentPounds = Math.floor(Math.random() * 99) + 1;
         this.costSavingPoundsPerYear = energySavingMeasureResponse.cost_saving;
         this.energySavingKwhPerYear = energySavingMeasureResponse.energy_saving;
-        this.readMorePath = parse(recommendationMetadata.acf.featured_page).pathname;
+        this.readMoreRoute = WordpressPageRoutingService.getRouteForWordpressUrl(recommendationMetadata.acf.featured_page);
         this.headline = recommendationMetadata.acf.headline;
         this.summary = recommendationMetadata.acf.summary;
     }

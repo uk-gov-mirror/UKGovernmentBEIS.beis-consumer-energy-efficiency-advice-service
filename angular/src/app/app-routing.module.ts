@@ -42,12 +42,14 @@ const routes: Routes = [
         path: 'warmer-home',
         component: WarmerHomeComponent
     },
+    // For now we prefix all wordpress page links with 'wp-page' to avoid conflicts with any pure Angular routes.
+    // This is not ideal but we'll most likely change this anyway when we implement a JS-free version of the app.
     {
-        path: ':slug',
+        path: 'wp-page/:slug',
         component: PageComponent
     },
     {
-        path: ':section/:slug',
+        path: 'wp-page/:section/:slug',
         component: PageComponent
     },
     {

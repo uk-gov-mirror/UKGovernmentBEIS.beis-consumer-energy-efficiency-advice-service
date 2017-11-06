@@ -1,12 +1,12 @@
-import * as parse from "url-parse";
 import {WordpressPageResponse} from "./wordpress-page-response";
+import {WordpressPageRoutingService} from "./wordpress-page-routing.service";
 
 export class WordpressPage {
-    public path: string;
+    public route: string;
     public title: string;
 
     constructor(wordpressPageResponse: WordpressPageResponse) {
-        this.path = parse(wordpressPageResponse.link).pathname;
+        this.route = WordpressPageRoutingService.getRouteForWordpressUrl(wordpressPageResponse.link);
         this.title = wordpressPageResponse.title.rendered;
     }
 }

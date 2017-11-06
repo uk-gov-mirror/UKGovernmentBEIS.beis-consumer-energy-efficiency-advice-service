@@ -42,7 +42,7 @@ describe('WordpressPagesService', () => {
             actualResponse.then((pages) => {
                 // match data in 'assets/test/search-pages-response.json'
                 expect(pages.length).toBe(7);
-                expect(pages[0].path).toContain('microgen-7');
+                expect(pages[0].route).toContain('microgen-7');
                 expect(pages[0].title).toBe('Microgen 7');
             });
             httpMock.verify();
@@ -89,7 +89,7 @@ describe('WordpressPagesService', () => {
             actualResponse.then((pagesResponse) => {
                 // match data in 'assets/test/search-pages-response.json'
                 expect(pagesResponse.length).toBe(7);
-                expect(pagesResponse[0].path).toContain('microgen-7');
+                expect(pagesResponse[0].route).toContain('microgen-7');
                 expect(pagesResponse[0].title).toBe('Microgen 7');
             });
             httpMock.verify();
