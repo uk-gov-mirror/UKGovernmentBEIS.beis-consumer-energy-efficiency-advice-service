@@ -1,27 +1,26 @@
-.ownership-status-options {
-  margin-top: 64px;
+.ownership-status-question {
+  .ownership-status-options {
+    margin-top: 64px;
 
-  .ownership-status-option {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    .ownership-status-option {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-    width: 250px;
-    height: 120px;
-    border-radius: 32px;
+      width: 250px;
+      height: 120px;
+      border-radius: 32px;
+      border: 1px solid black;
 
-    padding: 20px 50px;
-    box-sizing: border-box;
+      padding: 20px 50px;
+      box-sizing: border-box;
 
-    font-size: 24px;
-    font-weight: bold;
+      font-size: 24px;
+      font-weight: bold;
 
-    &:not(:last-child) {
-      margin-right: 64px;
+      &:not(:last-child) {
+        margin-right: 64px;
+      }
     }
   }
-}
-
-.ownership-status-question .ownership-status-options .ownership-status-option {
-  border: 1px solid black;
 }
