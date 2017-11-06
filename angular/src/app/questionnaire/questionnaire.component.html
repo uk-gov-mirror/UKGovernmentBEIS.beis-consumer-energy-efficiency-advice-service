@@ -1,12 +1,4 @@
-<div class="page-loading-container" *ngIf="isLoading">
-    <div class="loading-spinner"></div>
-</div>
-<div class="page-error-container" *ngIf="isError">
-    <div class="error">
-        <div class="error-header">Oh no!</div>
-        <div>Something went wrong and we can't load this page right now. Please try again later.</div>
-    </div>
-</div>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
     <progress-indicator [questionnaire]="questionnaire"
                         [currentQuestionIndex]="currentQuestionIndex"

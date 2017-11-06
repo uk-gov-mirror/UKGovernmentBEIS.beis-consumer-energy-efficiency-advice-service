@@ -14,19 +14,22 @@ import {RoutingModule} from "../app-routing.module";
 import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.component";
 import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
+import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
 
 @NgModule({
     declarations: [
         TimesPipe,
         NavigationBarComponent,
         LatestNewsCardComponent,
-        RadialPercentageComponent
+        RadialPercentageComponent,
+        SpinnerAndErrorContainerComponent
     ],
     exports: [
         TimesPipe,
         NavigationBarComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
+        SpinnerAndErrorContainerComponent,
     ],
     imports: [
         HttpClientModule,
