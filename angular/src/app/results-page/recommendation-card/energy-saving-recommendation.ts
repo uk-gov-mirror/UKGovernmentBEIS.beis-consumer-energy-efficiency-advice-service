@@ -1,6 +1,6 @@
 import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
-import {UrlParser} from '../../common/url-parser/url-parser';
 import {RecommendationMetadataResponse} from "../recommendation-service/recommendation-metadata-response";
+import * as parse from "url-parse";
 
 export class EnergySavingRecommendation {
     costSavingPoundsPerYear: number;
@@ -14,7 +14,7 @@ export class EnergySavingRecommendation {
     ) {
         this.costSavingPoundsPerYear = energySavingMeasureResponse.cost_saving;
         this.energySavingKwhPerYear = energySavingMeasureResponse.energy_saving;
-        this.readMorePath = UrlParser.getUrlPath(recommendationMetadata.acf.featured_page);
+        this.readMorePath = parse(recommendationMetadata.acf.featured_page).pathname;
         this.headline = recommendationMetadata.acf.headline;
     }
 }
