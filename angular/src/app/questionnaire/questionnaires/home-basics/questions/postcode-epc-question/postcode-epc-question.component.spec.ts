@@ -153,7 +153,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             });
         }));
 
-        it('should display all epcs which are returned', async(() => {
+        it('should display an epcs for each address returned', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -164,6 +164,21 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
                 // matches data in dummy-epcs-response.json
                 expect(component.allEpcsForPostcode.length).toEqual(3);
+            });
+        }));
+
+        it('should display only the most recent epc for each address', async(() => {
+            // given
+            component.postcodeInput = VALID_POSTCODE;
+
+            // when
+            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+
+            // then
+            fixture.whenStable().then(() => {
+                // matches data in dummy-epcs-response.json
+                const epc = component.allEpcsForPostcode.find(epc => epc.address === 'Apartment 1, 1 Test Street');
+                expect(epc.epcDate).toEqual(new Date('2017-01-01'));
             });
         }));
 
