@@ -97,14 +97,13 @@ export class ResultsPageComponent implements OnInit {
     }
 
     private addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata: RecommendationMetadataResponse) {
-        if (!recommendationMetadata.acf.linked_pages) {
-            return;
+        if (recommendationMetadata.acf.linked_pages && recommendationMetadata.acf.linked_pages.length > 0) {
+            recommendationMetadata.acf.linked_pages.forEach(linkedPage => {
+                const linkedWordpressPage = new WordpressPage({link: linkedPage.post_name, title: {rendered: linkedPage.post_title}});
+                if (!this.featuredPages.find(page => page.path === linkedWordpressPage.path)) {
+                    this.featuredPages.push(linkedWordpressPage);
+                }
+            });
         }
-        recommendationMetadata.acf.linked_pages.forEach(linkedPage => {
-            const linkedWordpressPage = new WordpressPage({link: linkedPage.post_name, title: {rendered: linkedPage.post_title}});
-            if (!this.featuredPages.find(page => page.path === linkedWordpressPage.path)) {
-                this.featuredPages.push(linkedWordpressPage);
-            }
-        });
     }
 }
