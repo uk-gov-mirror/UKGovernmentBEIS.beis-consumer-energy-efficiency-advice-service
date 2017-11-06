@@ -14,7 +14,6 @@ import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
-import {PageStateService} from '../shared/page-state-service/page-state.service';
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 
 @Component({
@@ -30,18 +29,18 @@ export class ResultsPageComponent implements OnInit {
     recommendationMetadataResponses: RecommendationMetadataResponse[];
     featuredPages: WordpressPage[] = [];
 
+    isLoading: boolean = true;
+    isError: boolean = false;
+
     private energyCalculationResponse: EnergyCalculationResponse;
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private localAuthorityService: LocalAuthorityService,
-                private recommendationService: RecommendationService,
-                private pageStateService: PageStateService
-    ) {
+                private recommendationService: RecommendationService) {
     }
 
     ngOnInit() {
-        this.pageStateService.showLoading();
         Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
             this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode),
@@ -53,8 +52,9 @@ export class ResultsPageComponent implements OnInit {
                     this.handleLocalAuthorityResponse(localAuthority);
                     this.handleRecommendationResponses(recommendations);
                 },
-                (error) => this.pageStateService.showGenericErrorAndLogMessage(error),
-                () => this.onLoadingComplete());
+                () => this.displayErrorMessage(),
+                () => this.onLoadingComplete()
+            );
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
@@ -68,6 +68,11 @@ export class ResultsPageComponent implements OnInit {
 
     private handleRecommendationResponses(responses: RecommendationMetadataResponse[]) {
         this.recommendationMetadataResponses = responses;
+    }
+
+    private displayErrorMessage() {
+        this.isLoading = false;
+        this.isError = true;
     }
 
     private onLoadingComplete() {
@@ -93,7 +98,7 @@ export class ResultsPageComponent implements OnInit {
             recommendation => recommendation.costSavingPoundsPerYear
         );
         this.energyCalculations = new EnergyCalculations(this.energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
-        this.pageStateService.showLoadingComplete();
+        this.isLoading = false;
     }
 
     private addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata: RecommendationMetadataResponse) {

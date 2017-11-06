@@ -16,7 +16,6 @@ import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 import {PostcodeResponse} from "./model/response/postcode/postcode-response";
 import {PostcodeErrorResponse} from "./model/response/postcode/postcode-error-response";
 import {PostcodeValidationService} from "../../../../../shared/postcode-validation-service/postcode-validation.service";
-import {PageStateService} from "../../../../../shared/page-state-service/page-state.service";
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -41,7 +40,6 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
                 private postcodeApiService: PostcodeApiService,
                 private featureFlagService: FeatureFlagService,
                 private postcodeValidationService: PostcodeValidationService,
-                private pageStateService: PageStateService
     ) {
         super(responseData);
     }
@@ -174,7 +172,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
             this.displayPostcodeValidationError();
             return;
         }
-        this.pageStateService.showGenericErrorAndLogMessage(err);
+        this.continueWithoutEpcWithLocalAuthorityCode(null);
     }
 
     continueWithoutEpcWithLocalAuthorityCode(localAuthorityCode: string) {

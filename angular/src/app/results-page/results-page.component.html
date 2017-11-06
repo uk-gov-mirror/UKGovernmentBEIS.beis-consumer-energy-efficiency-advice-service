@@ -1,4 +1,13 @@
-<div class="results-page">
+<div class="page-loading-container" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+</div>
+<div class="page-error-container" *ngIf="isError">
+    <div class="error">
+        <div class="error-header">Oh no!</div>
+        <div>Something went wrong and we can't load this page right now. Please try again later.</div>
+    </div>
+</div>
+<div class="results-page" *ngIf="!isLoading && !isError">
     <div class="page-row">
         <div class="heading page-row-content">
             <h2 class="heading-text">Your recommendations</h2>

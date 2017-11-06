@@ -5,12 +5,6 @@
   // IE11 requires a height on a flex-container to facilitate flex-grow
   height: 0;
 
-  .page-loading-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 10vw;
-  }
-
   .page-component {
     flex-grow: 1;
     flex-shrink: 0;
