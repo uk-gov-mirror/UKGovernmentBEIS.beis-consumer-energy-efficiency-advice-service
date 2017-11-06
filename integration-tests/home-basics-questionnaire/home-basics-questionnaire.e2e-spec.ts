@@ -21,7 +21,12 @@ describe('Home basics questionnaire', () => {
         page.workThroughMiniEpcIfExists();
 
         // Home type
-        CommonPageHelpers.sleep(2000);
+        CommonPageHelpers.sleep(1000);
+        expect(page.getHeading()).toContain('own your home');
+        page.clickOption('I am a tenant');
+
+        // Home type
+        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('type of home');
         page.clickOption('ground floor flat');
 

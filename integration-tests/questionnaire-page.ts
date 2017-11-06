@@ -10,7 +10,14 @@ export class QuestionnairePage {
     }
 
     clickOption(text: string) {
-        element(by.cssContainingText('.multiple-choice-option', text)).element(by.tagName('button')).click();
+        let option = element(by.cssContainingText('.multiple-choice-option', text));
+        option.getTagName().then((tagName: string) => {
+            if (tagName === 'button') {
+                option.click();
+            } else {
+                option.element(by.tagName('button')).click();
+            }
+        });
     }
 
     goForwards() {
