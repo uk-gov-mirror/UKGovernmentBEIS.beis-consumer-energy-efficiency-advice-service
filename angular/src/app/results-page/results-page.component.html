@@ -14,7 +14,7 @@
             <app-potentials class="potentials" [energyCalculations]="energyCalculations"></app-potentials>
         </div>
     </div>
-    <div class="page-row" *ngIf="recommendations && recommendations.length > 0">
+    <div class="recommendations-container page-row" *ngIf="recommendations && recommendations.length > 0">
         <div class="recommendations page-row-content">
             <div class="subheading">Your top recommendations</div>
             <div class="recommendation-cards">
@@ -24,15 +24,17 @@
             </div>
         </div>
     </div>
-    <div class="grants main-content" *ngIf="availableGrants && availableGrants.length > 0">
-        <div class="subheading">Things you might be eligible for</div>
-        <div class="body-uppercase">You live in {{localAuthorityName}} and we've found the following:</div>
-        <div class="grant-cards">
-            <app-grant-card class="grant-card"
-                            *ngFor="let grant of availableGrants"
-                            [grant]="grant">
-            </app-grant-card>
+    <div class="page-row" *ngIf="availableGrants && availableGrants.length > 0">
+        <div class="grants page-row-content">
+            <div class="subheading">Local Authority grants you might be eligible for</div>
+            <div class="local-authority">You live in {{localAuthorityName}} and we've found the following:</div>
+            <div class="grant-cards">
+                <app-grant-card class="grant-card"
+                                *ngFor="let grant of availableGrants"
+                                [grant]="grant">
+                </app-grant-card>
 
+            </div>
         </div>
     </div>
 </div>

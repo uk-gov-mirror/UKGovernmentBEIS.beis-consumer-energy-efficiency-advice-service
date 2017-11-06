@@ -16,8 +16,7 @@ $grant-card-margin: 24px;
   }
 
   .subheading {
-    font-size: 36px;
-    font-weight: bold;
+    @include page-subheading;
     margin-bottom: 8px;
   }
 
@@ -25,6 +24,9 @@ $grant-card-margin: 24px;
     padding: 48px 0;
     &.potentials-container {
       padding: 0;
+    }
+    &.recommendations-container {
+      padding-bottom: 0;
     }
   }
 
@@ -53,9 +55,21 @@ $grant-card-margin: 24px;
 
   .recommendations.page-row-content {
     display: block;
+    padding-bottom: 32px;
+    border-bottom: 1px solid $lighter-medium-grey;
+
+    .recommendation-cards {
+      margin-top: 24px;
+    }
   }
 
-  .grants {
+  .grants.page-row-content {
+    display: block;
+
+    .local-authority {
+      @include body-uppercase;
+    }
+
     .grant-cards {
       margin-top: 32px;
       flex-wrap: wrap;
@@ -69,27 +83,6 @@ $grant-card-margin: 24px;
         margin-bottom: $grant-card-margin;
         &:not(:nth-child(#{$grant-cards-per-row}n)) {
           margin-right: $grant-card-margin;
-        }
-      }
-    }
-  }
-
-  .suggestions {
-
-    background-color: $lighter-medium-grey;
-
-    .suggestion-cards {
-      margin-top: 32px;
-
-      display: flex;
-      align-items: stretch;
-      justify-content: space-between;
-
-      .suggestion-card {
-        flex: 1 0 1px;
-
-        &:not(:last-child) {
-          margin-right: 24px;
         }
       }
     }

@@ -62,5 +62,26 @@
   .box.description {
     display: flex;
     align-items: center;
+
+    .icon {
+      margin-right: 16px;
+    }
+
+    .explanation {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      .heading {
+        @include card-heading;
+        margin-bottom: 16px;
+      }
+
+      .summary {
+        font-size: 14px;
+        width: 70%;
+      }
+    }
   }
 }
