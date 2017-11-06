@@ -6,6 +6,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 import {PageStateService} from "../../shared/page-state-service/page-state.service";
+import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;

@@ -4,9 +4,9 @@ import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
 import {HeaderComponent} from "./header.component";
-import {WordpressPagesService} from "./wordpress-pages-service/wordpress-pages.service";
-import {WordpressPageResponse} from "./wordpress-pages-service/wordpress-page-response";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {WordpressPageResponse} from "../../shared/wordpress-pages-service/wordpress-page-response";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
 
 describe('HeaderComponent', () => {

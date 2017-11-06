@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {Router} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
@@ -17,9 +17,6 @@ describe('CarbonFootprintComponent', () => {
     let component: CarbonFootprintComponent;
     let fixture: ComponentFixture<CarbonFootprintComponent>;
 
-    class MockRouter {
-    }
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -33,11 +30,11 @@ describe('CarbonFootprintComponent', () => {
             imports: [
                 CommonModule,
                 FormsModule,
+                RouterTestingModule
             ],
             providers: [
                 ResponseData,
-                PostcodeValidationService,
-                {provide: Router, useClass: MockRouter}
+                PostcodeValidationService
             ]
         })
             .compileComponents();

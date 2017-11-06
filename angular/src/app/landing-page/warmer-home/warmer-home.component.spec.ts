@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {Router} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {RouterTestingModule} from "@angular/router/testing";
 
 import {WarmerHomeComponent} from "./warmer-home.component";
 import {ArticleCardComponent} from "../article-card/article-card.component";
@@ -15,9 +15,6 @@ import {PostcodeValidationService} from "../../shared/postcode-validation-servic
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
     let fixture: ComponentFixture<WarmerHomeComponent>;
-
-    class MockRouter {
-    }
 
     const VALID_POSTCODE = 'PO57 C03';
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
@@ -38,11 +35,11 @@ describe('WarmerHomeComponent', () => {
             imports: [
                 CommonModule,
                 FormsModule,
+                RouterTestingModule
             ],
             providers: [
                 ResponseData,
-                PostcodeValidationService,
-                {provide: Router, useClass: MockRouter}
+                PostcodeValidationService
             ]
         })
             .compileComponents();

@@ -3,7 +3,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
 
 import {SuggestionCardComponent} from "./suggestion-card.component";
-import {WordpressPage} from '../../common/wordpress-pages-service/wordpress-page';
+import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 
 describe('SuggestionCardComponent', () => {
     let component: SuggestionCardComponent;

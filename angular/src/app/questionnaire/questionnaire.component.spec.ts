@@ -30,7 +30,7 @@ describe('QuestionnaireComponent', () => {
 
     const questionContentServiceStub = {
         fetchQuestionsContent() {
-            return Observable.create(allQuestionsContent);
+            return Observable.of(allQuestionsContent);
         }
     };
     const mockPageStateService = {
@@ -88,7 +88,7 @@ describe('QuestionnaireComponent', () => {
             paramMap: {get: MockActivatedRoute.paramMapGet}
         };
 
-        public paramMap = Observable.create({
+        public paramMap = Observable.of({
             get: MockActivatedRoute.paramMapGet
         });
     }

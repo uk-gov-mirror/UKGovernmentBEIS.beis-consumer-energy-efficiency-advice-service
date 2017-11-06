@@ -25,13 +25,13 @@ describe('PostcodeEpcQuestionComponent', () => {
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
     let epcApiServiceStub = {
-        getEpcData: (postcode) => Observable.create(dummyEpcsResponse)
+        getEpcData: (postcode) => Observable.of(dummyEpcsResponse)
     };
     let postcodeApiServiceStub = {
-        getPostcodeDetails: (postcode) => Observable.create(dummyPostcodeResponse)
+        getPostcodeDetails: (postcode) => Observable.of(dummyPostcodeResponse)
     };
 
-    const mockFeatureFlagsObservable = Observable.defer(() => Observable.create({'fetch_epc_data': fetchEpcFeatureFlag}));
+    const mockFeatureFlagsObservable = Observable.defer(() => Observable.of({'fetch_epc_data': fetchEpcFeatureFlag}));
     const featureFlagServiceStub = {
         fetchFeatureFlags: () => mockFeatureFlagsObservable
     };
@@ -239,7 +239,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = (postcode) => Observable.create(null);
+            mockApiService.getEpcData = (postcode) => Observable.of(null);
 
             // when
             fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();

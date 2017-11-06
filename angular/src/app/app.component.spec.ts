@@ -10,12 +10,13 @@ import {PageStateService} from "./shared/page-state-service/page-state.service";
 import {ComponentFixture} from "@angular/core/testing";
 import {NavigationBarComponent} from "./layout-components/navigation-bar/navigation-bar.component";
 import {WordpressPagesService} from "./shared/wordpress-pages-service/wordpress-pages.service";
+import {PageError} from "./shared/page-state-service/page-error";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
     let app: AppComponent;
 
-    const mockWordpressPagesService = {fetchTopLevelPages: () => Observable.create([])};
+    const mockWordpressPagesService = {fetchTopLevelPages: () => Observable.of([])};
 
     const mockPageStateService = {
         isLoadingChange: new Subject<boolean>(),

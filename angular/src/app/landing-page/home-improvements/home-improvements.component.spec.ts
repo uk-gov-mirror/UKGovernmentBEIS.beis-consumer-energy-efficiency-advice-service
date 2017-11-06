@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {Router} from "@angular/router";
+import {RouterTestingModule} from "@angular/router/testing";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
@@ -16,9 +16,6 @@ describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
     let fixture: ComponentFixture<HomeImprovementsComponent>;
 
-    class MockRouter {
-    }
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -32,11 +29,11 @@ describe('HomeImprovementsComponent', () => {
             imports: [
                 CommonModule,
                 FormsModule,
+                RouterTestingModule
             ],
             providers: [
                 ResponseData,
-                PostcodeValidationService,
-                {provide: Router, useClass: MockRouter}
+                PostcodeValidationService
             ]
         })
             .compileComponents();

@@ -31,7 +31,7 @@ describe('ResultsPageComponent', () => {
     let fixture: ComponentFixture<ResultsPageComponent>;
     let energyCalculationResponse: EnergyCalculationResponse;
     let mockEnergyCalculationApiService = {
-        fetchEnergyCalculation: () => Observable.create(energyCalculationResponse)
+        fetchEnergyCalculation: () => Observable.of(energyCalculationResponse)
     };
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
@@ -45,11 +45,11 @@ describe('ResultsPageComponent', () => {
         ]
     };
     let mockLocalAuthorityService = {
-        fetchLocalAuthorityDetails: () => Observable.create(localAuthorityResponse)
+        fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
     };
     const recommendationsResponse = require('assets/test/recommendations-response.json');
     let mockRecommendationService = {
-        fetchRecommendationDetails: () => Observable.create(recommendationsResponse)
+        fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
     };
     const mockPageStateService = {
         showLoading: () => {},
@@ -141,8 +141,7 @@ describe('ResultsPageComponent', () => {
                 {provide: QuestionnaireService, useValue: mockQuestionnarieService},
                 {provide: RecommendationService, useValue: mockRecommendationService},
                 {provide: PageStateService, useValue: mockPageStateService}
-            ],
-            imports: [RouterTestingModule]
+            ]
         })
             .compileComponents();
     }));
@@ -159,7 +158,7 @@ describe('ResultsPageComponent', () => {
 
     it('should call energy calculation API service with response data', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
 
         // then
         expect(getInjectedEnergyCalculationService().fetchEnergyCalculation).toHaveBeenCalled();
@@ -180,7 +179,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display all recommendations', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
         const expectedMeasures = Object.values(energyCalculationResponse.measures)
             .map(measure => [measure.cost_saving, measure.energy_saving]);
 
@@ -196,7 +195,7 @@ describe('ResultsPageComponent', () => {
 
     it('should sort recommendations by cost saving descending', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
 
         // then
         // match data in assets/test/energy-calculation-response.json
@@ -206,7 +205,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display recommendation details correctly', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
 
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
@@ -218,7 +217,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display energy calculations correctly', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.create(energyCalculationResponse));
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
 
         // then
         // match data in assets/test/energy-calculation-response.json
@@ -229,7 +228,7 @@ describe('ResultsPageComponent', () => {
 
     it('should call local authority API service with code from response data', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.create(localAuthorityResponse));
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
 
         // then
         expect(getInjectedLocalAuthorityService().fetchLocalAuthorityDetails).toHaveBeenCalled();
@@ -250,7 +249,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display correct local authority name', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.create(localAuthorityResponse));
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
 
         // then
         const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .body-uppercase')).nativeElement;
@@ -259,7 +258,7 @@ describe('ResultsPageComponent', () => {
 
     it('should display all grants', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.create(localAuthorityResponse));
+        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
 
         // then
         const grantElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
@@ -268,7 +267,7 @@ describe('ResultsPageComponent', () => {
 
     it('should call recommendations metadata API service', () => {
         // when
-        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.create(recommendationsResponse));
+        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
 
         // when
         expect(getInjectedRecommendationService().fetchRecommendationDetails).toHaveBeenCalled();

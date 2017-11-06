@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {WordpressPage} from '../../common/wordpress-pages-service/wordpress-page';
+import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 
 @Component({
     selector: 'app-suggestion-card',
