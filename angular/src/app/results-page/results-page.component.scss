@@ -28,6 +28,10 @@ $grant-card-margin: 24px;
     &.recommendations-container {
       padding-bottom: 0;
     }
+
+    .page-row-content {
+      display: block;
+    }
   }
 
   .heading {
@@ -64,8 +68,6 @@ $grant-card-margin: 24px;
   }
 
   .grants.page-row-content {
-    display: block;
-
     .local-authority {
       @include body-uppercase;
     }
@@ -84,6 +86,25 @@ $grant-card-margin: 24px;
         &:not(:nth-child(#{$grant-cards-per-row}n)) {
           margin-right: $grant-card-margin;
         }
+      }
+    }
+  }
+
+  .whats-next {
+    background-color: $lighter-grey;
+
+    .latest-news-cards {
+      margin-top: 32px;
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+
+      & > * {
+        flex: 1 0 1px;
+      }
+
+      > :not(:last-child) {
+        margin-right: 16px;
       }
     }
   }
