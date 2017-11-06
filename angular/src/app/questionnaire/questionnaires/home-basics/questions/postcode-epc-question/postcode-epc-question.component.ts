@@ -1,6 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import "rxjs/add/operator/map";
-import {groupBy, keys, orderBy, head} from "lodash-es";
+import groupBy from "lodash-es/groupBy";
+import keys from "lodash-es/keys";
+import orderBy from "lodash-es/orderBy";
+import head from "lodash-es/head";
 
 import {Epc} from "./model/epc";
 import {EpcParserService} from "./epc-parser-service/epc-parser.service";
