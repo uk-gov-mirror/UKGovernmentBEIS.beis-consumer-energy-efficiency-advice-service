@@ -1,13 +1,4 @@
-<div class="page-loading-container" *ngIf="isLoading">
-    <div class="loading-spinner"></div>
-</div>
-<div class="page-error-container" *ngIf="isError">
-    <div class="error">
-        <div class="error-header">Oh no!</div>
-        <div>Something went wrong and we can't load this page right now. Please try again later.</div>
-    </div>
-</div>
-<div class="questions-container" *ngIf="!isLoading && !isError && !!currentQuestionContent">
+<div class="questions-container" *ngIf="!!currentQuestionContent">
     <progress-indicator [questionnaire]="questionnaire"
                         [currentQuestionIndex]="currentQuestionIndex"
                         [allQuestionsContent]="allQuestionsContent"
@@ -17,12 +8,12 @@
         <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()"
                 (click)="goBackOneQuestion()" aria-label="Go back"><
         </button>
-        <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
+        <div id="question-heading" class="question-heading">{{currentQuestionContent?.questionHeading}}</div>
         <button class="right-arrow" [class.hidden]="!nextQuestionExists()" [disabled]="!canGoForwards()"
                 (click)="goForwardsOneQuestion()" aria-label="Go forwards">>
         </button>
     </div>
-    <div class="help-text" *ngIf="currentQuestionContent.helpText">{{currentQuestionContent.helpText}}</div>
+    <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>
     <div class="question">
         <ng-template question-host></ng-template>
     </div>

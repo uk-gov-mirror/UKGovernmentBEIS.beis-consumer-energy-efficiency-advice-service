@@ -22,6 +22,9 @@ import {FuelType} from "../questionnaire/questionnaires/home-basics/questions/fu
 import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
+import {RecommendationService} from './recommendation-service/recommendation.service';
+import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
+import {PageStateService} from "../shared/page-state-service/page-state.service";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -43,6 +46,15 @@ describe('ResultsPageComponent', () => {
     };
     let mockLocalAuthorityService = {
         fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
+    };
+    const recommendationsResponse = require('assets/test/recommendations-response.json');
+    let mockRecommendationService = {
+        fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
+    };
+    const mockPageStateService = {
+        showLoading: () => {},
+        showGenericErrorAndLogMessage: () => {},
+        showLoadingComplete: () => {}
     };
 
     const mockQuestionnarieService = {
@@ -86,6 +98,13 @@ describe('ResultsPageComponent', () => {
         fixture.detectChanges();
     }
 
+    function injectMockRecommendationsApiCallbackAndDetectChanges(fetchRecommendationDetails: () => Observable<RecommendationMetadataResponse[]>) {
+        let injectedRecommendationService = getInjectedRecommendationService();
+        injectedRecommendationService.fetchRecommendationDetails = fetchRecommendationDetails;
+        spyOn(injectedRecommendationService, 'fetchRecommendationDetails').and.callThrough();
+        fixture.detectChanges();
+    }
+
     function getInjectedEnergyCalculationService() {
         return fixture.debugElement.injector.get(EnergyCalculationApiService);
     }
@@ -94,7 +113,15 @@ describe('ResultsPageComponent', () => {
         return fixture.debugElement.injector.get(LocalAuthorityService);
     }
 
+    function getInjectedRecommendationService() {
+        return fixture.debugElement.injector.get(RecommendationService);
+    }
+
     beforeEach(async(() => {
+        spyOn(mockPageStateService, 'showLoading');
+        spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
+        spyOn(mockPageStateService, 'showLoadingComplete');
+
         TestBed.configureTestingModule({
             declarations: [
                 ResultsPageComponent,
@@ -111,7 +138,9 @@ describe('ResultsPageComponent', () => {
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
                 {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
-                {provide: QuestionnaireService, useValue: mockQuestionnarieService}
+                {provide: QuestionnaireService, useValue: mockQuestionnarieService},
+                {provide: RecommendationService, useValue: mockRecommendationService},
+                {provide: PageStateService, useValue: mockPageStateService}
             ]
         })
             .compileComponents();
@@ -145,8 +174,7 @@ describe('ResultsPageComponent', () => {
         injectMockEnergyCalcApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
+        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
     });
 
     it('should display all recommendations', () => {
@@ -171,9 +199,20 @@ describe('ResultsPageComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.recommendations[0].recommendationType.description).toBe('Wind turbine on mast');
         expect(component.recommendations[0].costSavingPoundsPerYear).toBe(536.18);
         expect(component.recommendations[0].energySavingKwhPerYear).toBe(0);
+    });
+
+    it('should display recommendation details correctly', () => {
+        // when
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+
+        // then
+        // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
+        // for measure code V2
+        expect(component.recommendations[0].headline).toBe('Wind turbine on mast');
+        expect(component.recommendations[0].readMorePath).toContain('home-improvements/wind-turbine-on-mast');
+        expect(component.recommendations[0].iconClassName).toBe(RecommendationService.recommendationIcons['V2']);
     });
 
     it('should display energy calculations correctly', () => {
@@ -197,7 +236,7 @@ describe('ResultsPageComponent', () => {
             .toHaveBeenCalledWith(localAuthorityCode);
     });
 
-    it('should display an error message if API responds with an error', () => {
+    it('should display an error message if local authority API responds with an error', () => {
         // given
         const errorResponse = ErrorObservable.create('some error text');
 
@@ -205,8 +244,7 @@ describe('ResultsPageComponent', () => {
         injectMockLocalAuthorityApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
+        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
     });
 
     it('should display correct local authority name', () => {
@@ -225,5 +263,33 @@ describe('ResultsPageComponent', () => {
         // then
         const grantElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
         expect(grantElements.map(el => el.componentInstance.grant)).toEqual(localAuthorityResponse.grants);
+    });
+
+    it('should call recommendations metadata API service', () => {
+        // when
+        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
+
+        // when
+        expect(getInjectedRecommendationService().fetchRecommendationDetails).toHaveBeenCalled();
+    });
+
+    it('should display an error if recommendations metadata API responds with an error', () => {
+        // given
+        const errorResponse = ErrorObservable.create('some error text');
+
+        // when
+        injectMockRecommendationsApiCallbackAndDetectChanges(() => errorResponse);
+
+        // when
+        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
+    });
+
+    it('should display all linked pages', () => {
+        // when
+        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
+
+        // when
+        // match data in assets/test/recommendations-response.json
+        expect(component.featuredPages.length).toBe(4);
     });
 });

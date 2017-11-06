@@ -1,13 +1,13 @@
-<a class="recommendation-card" *ngIf="recommendation && recommendation.recommendationType">
+<a class="recommendation-card" *ngIf="recommendation">
     <div class="heading">
-        <span class="icon" [ngClass]="recommendation.recommendationType.iconClassName"></span>
-        <div class="description">{{recommendation.recommendationType.description}}</div>
+        <span class="icon" [ngClass]="recommendation.iconClassName"></span>
+        <div class="description">{{recommendation.headline}}</div>
     </div>
     <div class="savings">
         <span class="savings-amount">£{{savings}}</span>
         <span class="savings-text">Potential<br>savings</span>
     </div>
     <div class="read-more">
-        <span class="read-more-text">Read more</span>
+        <a class="read-more-text" [routerLink]="recommendation.readMorePath">Read more</a>
     </div>
 </a>

@@ -9,13 +9,19 @@ export class EpcApiService {
     private static readonly epcEndpoint = 'angular-theme/v1/epc';
     static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
 
+    private epcs: {[postcode: string]: Observable<EpcsResponse>} = {};
+
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
     getEpcData(postcode: string): Observable<EpcsResponse> {
-        const params = new HttpParams()
-            .set('postcode', postcode)
-            .set('size', EpcApiService.MAX_NUMBER_OF_EPCS_PER_RESPONSE.toString());
-        return this.http.get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.epcEndpoint), {params: params})
+        if (!this.epcs[postcode]) {
+            const params = new HttpParams()
+                .set('postcode', postcode)
+                .set('size', EpcApiService.MAX_NUMBER_OF_EPCS_PER_RESPONSE.toString());
+            this.epcs[postcode] = this.http.get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.epcEndpoint), {params: params})
+                .shareReplay(1);
+        }
+        return this.epcs[postcode];
     }
 }

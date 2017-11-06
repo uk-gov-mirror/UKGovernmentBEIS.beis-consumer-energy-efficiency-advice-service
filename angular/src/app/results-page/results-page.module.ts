@@ -10,6 +10,7 @@ import {SuggestionCardComponent} from "./suggestion-card/suggestion-card.compone
 import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {RoutingModule} from "../app-routing.module";
+import {RecommendationService} from "./recommendation-service/recommendation.service";
 
 @NgModule({
     declarations: [
@@ -25,11 +26,12 @@ import {RoutingModule} from "../app-routing.module";
     ],
     imports: [
         CommonModule,
-        RoutingModule,
+        RoutingModule
     ],
     providers: [
         EnergyCalculationApiService,
-        LocalAuthorityService
+        LocalAuthorityService,
+        RecommendationService
     ]
 })
 export class ResultsPageModule {

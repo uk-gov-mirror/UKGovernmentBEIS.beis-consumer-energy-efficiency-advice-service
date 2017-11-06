@@ -13,6 +13,7 @@ import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 import {PostcodeResponse} from "./model/response/postcode/postcode-response";
 import {PostcodeErrorResponse} from "./model/response/postcode/postcode-error-response";
 import {PostcodeValidationService} from "../../../../../shared/postcode-validation-service/postcode-validation.service";
+import {PageStateService} from "../../../../../shared/page-state-service/page-state.service";
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -22,16 +23,12 @@ import {PostcodeValidationService} from "../../../../../shared/postcode-validati
     animations: [slideInOutAnimation]
 })
 export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implements OnInit {
-    static readonly ERROR_VALIDATION: Error = {
-        heading: null,
-        message: 'Please enter a full valid UK postcode'
-    };
+    static readonly ERROR_VALIDATION: string = 'Please enter a full valid UK postcode';
 
     postcodeInput: string;
     shouldDisplayLoadingSpinner: boolean;
     isNoEpcSelected: boolean;
-
-    error: Error;
+    validationError: string;
 
     allEpcsForPostcode: Epc[];
     selectedEpc: Epc;
@@ -40,7 +37,9 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
                 private epcApiService: EpcApiService,
                 private postcodeApiService: PostcodeApiService,
                 private featureFlagService: FeatureFlagService,
-                private postcodeValidationService: PostcodeValidationService) {
+                private postcodeValidationService: PostcodeValidationService,
+                private pageStateService: PageStateService
+    ) {
         super(responseData);
     }
 
@@ -82,7 +81,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
 
     displayPostcodeValidationError(): void {
         this.resetSearchState();
-        this.error = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
+        this.validationError = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
     }
 
     trimLeadingOrTrailingSpacesFromPostcodeString(): void {
@@ -96,7 +95,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     resetSearchState(): void {
         this.allEpcsForPostcode = [];
         this.shouldDisplayLoadingSpinner = false;
-        this.error = null;
+        this.validationError = null;
         this.isNoEpcSelected = false;
         this.selectedEpc = null;
     }
@@ -172,7 +171,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
             this.displayPostcodeValidationError();
             return;
         }
-        this.continueWithoutEpcWithLocalAuthorityCode(null);
+        this.pageStateService.showGenericErrorAndLogMessage(err);
     }
 
     continueWithoutEpcWithLocalAuthorityCode(localAuthorityCode: string) {
@@ -183,9 +182,4 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         };
         this.complete.emit();
     }
-}
-
-interface Error {
-    heading: string;
-    message: string;
 }

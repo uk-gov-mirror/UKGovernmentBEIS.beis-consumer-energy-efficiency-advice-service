@@ -1,6 +1,16 @@
 <div id="main-content" class="main-content">
     <app-header></app-header>
-    <div class="page-component">
+    <div class="page-loading-container" *ngIf="isLoading">
+        <div class="loading-spinner"></div>
+    </div>
+    <div class="page-error-container" *ngIf="pageError">
+        <div class="error">
+            <div class="error-header">{{pageStateService.pageError.heading}}</div>
+            <div>{{pageStateService.pageError.message}}</div>
+        </div>
+    </div>
+    <div class="page-component" [style.display]="(isLoading || pageError) ? 'none' : 'block'">
+        <app-navigation-bar></app-navigation-bar>
         <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>

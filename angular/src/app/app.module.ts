@@ -12,6 +12,7 @@ import {ResultsPageModule} from "./results-page/results-page.module";
 import {HomePageModule} from "./home-page/home-page.module";
 import {LandingPageModule} from "./landing-page/landing-page.module";
 import {LayoutComponentsModule} from "./layout-components/layout-components.module";
+import {PageModule} from "./page/page.module";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {LayoutComponentsModule} from "./layout-components/layout-components.modu
         QuestionnaireModule.forRoot(),
         ResultsPageModule,
         HomePageModule,
+        PageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot()
     ],

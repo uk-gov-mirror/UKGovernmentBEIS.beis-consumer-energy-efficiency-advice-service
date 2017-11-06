@@ -1,7 +1,8 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 import {HomePageComponent} from "./home-page.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
-import {NavigationBarComponent} from "../shared/navigation-bar/navigation-bar.component";
+import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -9,7 +10,8 @@ describe('HomePageComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ HomePageComponent, LatestNewsCardComponent, NavigationBarComponent ]
+            declarations: [ HomePageComponent, LatestNewsCardComponent, NavigationBarComponent ],
+            imports: [ RouterTestingModule ]
         })
             .compileComponents();
     }));
