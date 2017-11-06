@@ -25,6 +25,7 @@ import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
 import {PageStateService} from "../shared/page-state-service/page-state.service";
+import {UserJourneyType} from "../shared/response-data/user-journey-type";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -62,6 +63,7 @@ describe('ResultsPageComponent', () => {
     };
 
     const responseData: ResponseData = {
+        userJourneyType: UserJourneyType.HomepageLink,
         postcode: 'sw1h0et',
         epc: null,
         localAuthorityCode: localAuthorityCode,
