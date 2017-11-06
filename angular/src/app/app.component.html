@@ -5,8 +5,8 @@
     </div>
     <div class="page-error-container" *ngIf="pageError">
         <div class="error">
-            <div class="error-header">{{pageStateService.pageError.heading}}</div>
-            <div>{{pageStateService.pageError.message}}</div>
+            <div class="error-header">{{pageError.heading}}</div>
+            <div>{{pageError.message}}</div>
         </div>
     </div>
     <div class="page-component" [style.display]="(isLoading || pageError) ? 'none' : 'block'">
