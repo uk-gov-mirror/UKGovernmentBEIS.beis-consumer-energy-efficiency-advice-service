@@ -1,14 +1,4 @@
-<div class="page-loading-container" *ngIf="isLoading">
-    <div class="loading-spinner"></div>
-</div>
-<div class="page-error-container" *ngIf="isError">
-    <div class="error">
-        <div class="error-header">Oh no!</div>
-        <div>Something went wrong and we can't load this page right now. Please try again later.</div>
-    </div>
-</div>
-<div class="results-page" *ngIf="!isLoading && !isError">
-    <app-navigation-bar></app-navigation-bar>
+<div class="results-page">
     <div class="page-row">
         <div class="heading page-row-content">
             <h2 class="heading-text">Your recommendations</h2>
@@ -25,8 +15,7 @@
     </div>
     <div class="page-row" *ngIf="recommendations && recommendations.length > 0">
         <div class="recommendations page-row-content">
-            <div class="subheading">What you can do next</div>
-            <div class="body-uppercase">As a home owner we recommend</div>
+            <div class="subheading">Your top recommendations</div>
             <div class="recommendation-cards">
                 <app-recommendation-card class="recommendation-card" *ngFor="let recommendation of recommendations"
                                          [recommendation]="recommendation">

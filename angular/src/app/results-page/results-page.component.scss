@@ -21,7 +21,7 @@ $grant-card-margin: 24px;
     margin-bottom: 8px;
   }
 
-  > :not(:first-child) {
+  > .page-row {
     padding: 48px 0;
     &.potentials-container {
       padding: 0;
