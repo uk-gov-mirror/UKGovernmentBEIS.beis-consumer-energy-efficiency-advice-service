@@ -23,6 +23,7 @@ import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 })
 export class ResultsPageComponent implements OnInit {
     recommendations: EnergySavingRecommendation[];
+    displayedRecommendations: number;
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
     availableGrants: GrantResponse[];
@@ -38,6 +39,7 @@ export class ResultsPageComponent implements OnInit {
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private localAuthorityService: LocalAuthorityService,
                 private recommendationService: RecommendationService) {
+        this.displayedRecommendations = 4;
     }
 
     ngOnInit() {
@@ -55,6 +57,20 @@ export class ResultsPageComponent implements OnInit {
                 () => this.displayErrorMessage(),
                 () => this.onLoadingComplete()
             );
+    }
+
+    getTotalInvestment(): number {
+        return this.recommendations
+            .slice(0, this.displayedRecommendations)
+            .map(rec => rec.investmentPounds)
+            .reduce((acc, curr) => acc + curr);
+    }
+
+    getTotalSavings(): number {
+        return this.recommendations
+            .slice(0, this.displayedRecommendations)
+            .map(rec => rec.costSavingPoundsPerYear)
+            .reduce((acc, curr) => acc + curr);
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {

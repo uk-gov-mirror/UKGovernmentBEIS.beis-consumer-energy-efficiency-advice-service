@@ -3,6 +3,7 @@ import {RecommendationMetadataResponse} from "../recommendation-service/recommen
 import * as parse from "url-parse";
 
 export class EnergySavingRecommendation {
+    investmentPounds: number;
     costSavingPoundsPerYear: number;
     energySavingKwhPerYear: number;
     readMorePath: string;
@@ -12,6 +13,8 @@ export class EnergySavingRecommendation {
                 recommendationMetadata: RecommendationMetadataResponse,
                 public iconClassName: string
     ) {
+        // TODO: Make this not made up
+        this.investmentPounds = Math.floor(Math.random() * 99) + 1;
         this.costSavingPoundsPerYear = energySavingMeasureResponse.cost_saving;
         this.energySavingKwhPerYear = energySavingMeasureResponse.energy_saving;
         this.readMorePath = parse(recommendationMetadata.acf.featured_page).pathname;

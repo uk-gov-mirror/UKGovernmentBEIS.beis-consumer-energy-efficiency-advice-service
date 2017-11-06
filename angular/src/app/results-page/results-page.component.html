@@ -11,14 +11,18 @@
     </div>
     <div class="potentials-container page-row">
         <div class="page-row-content">
-            <app-potentials class="potentials" [energyCalculations]="energyCalculations"></app-potentials>
+            <app-potentials class="potentials"
+                            [totalInvestment]="getTotalInvestment()"
+                            [totalSavings]="getTotalSavings()">
+            </app-potentials>
         </div>
     </div>
     <div class="recommendations-container page-row" *ngIf="recommendations && recommendations.length > 0">
         <div class="recommendations page-row-content">
             <div class="subheading">Your top recommendations</div>
             <div class="recommendation-cards">
-                <app-recommendation-card class="recommendation-card" *ngFor="let recommendation of recommendations"
+                <app-recommendation-card class="recommendation-card"
+                                         *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations)"
                                          [recommendation]="recommendation">
                 </app-recommendation-card>
             </div>

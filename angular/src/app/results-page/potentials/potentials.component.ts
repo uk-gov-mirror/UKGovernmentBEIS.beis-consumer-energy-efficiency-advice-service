@@ -7,5 +7,6 @@ import {EnergyCalculations} from "./energy-calculations";
     styleUrls: ['./potentials.component.scss']
 })
 export class PotentialsComponent {
-    @Input() energyCalculations: EnergyCalculations;
+    @Input() totalInvestment: number;
+    @Input() totalSavings: number;
 }
