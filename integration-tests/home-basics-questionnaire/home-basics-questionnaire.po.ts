@@ -3,6 +3,8 @@ import {CommonPageHelpers} from "../common-page-helpers";
 import {QuestionnairePage} from "../questionnaire-page";
 
 export class HomeBasicsQuestionnairePage extends QuestionnairePage {
+    miniEpcEnabled: boolean;
+
     navigateTo() {
         return browser.get('/questionnaire/home-basics');
     }
@@ -24,15 +26,23 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         element(by.css('app-home-age-question .home-age-option:first-child')).click();
     }
 
-    workThroughMiniEpcIfExists() {
-        return this.addressListIsPresent().then(isPresent => {
+    selectAddressIfApplicable() {
+        this.addressListIsPresent().then(isPresent => {
+            this.miniEpcEnabled = isPresent;
             if (isPresent) {
                 this.selectFirstAddress();
-                CommonPageHelpers.sleep(1000);
+            }
+        });
+    }
 
+    confirmEpcIfApplicable() {
+        // This must be checked in the control flow, as this.miniEpcEnabled is set asynchronously in #selectAddressIfApplicable.
+        return browser.controlFlow().execute(() => {
+            if (this.miniEpcEnabled) {
                 expect(this.getHeading()).toContain('Here\'s what we know so far...');
                 CommonPageHelpers.clickButton('Yes');
+                CommonPageHelpers.sleep(1000);
             }
-        })
+        });
     }
 }
