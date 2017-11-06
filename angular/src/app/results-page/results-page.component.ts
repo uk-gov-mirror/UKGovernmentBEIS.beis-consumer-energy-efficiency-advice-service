@@ -76,7 +76,7 @@ export class ResultsPageComponent implements OnInit {
                 const recommendationMetadata: RecommendationMetadataResponse = this.recommendationMetadataResponses
                     .find((recommendationTypeDetail) => recommendationTypeDetail.acf.rdsap_measure_code === measureCode);
                 if (!recommendationMetadata) {
-                    this.pageStateService.showGenericErrorAndLogMessage(`Recommendation with code ${ measureCode } not recognised`);
+                    console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
                 this.addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata);
@@ -85,7 +85,8 @@ export class ResultsPageComponent implements OnInit {
                     recommendationMetadata,
                     RecommendationService.recommendationIcons[measureCode]
                 )
-            });
+            })
+            .filter(measure => measure);
         this.recommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
         const potentialEnergyBillSavingPoundsPerYear = sumBy(
             this.recommendations,
