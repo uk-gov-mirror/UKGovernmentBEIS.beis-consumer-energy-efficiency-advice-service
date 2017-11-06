@@ -56,7 +56,7 @@ describe('PageComponent', () => {
     it('should display the page content with data from the PageService', async () => {
         component.pageData.toPromise()
             .then(() => {
-                let pageContent = fixture.debugElement.query(By.css('.page-content'));
+                let pageContent = fixture.debugElement.query(By.css('.page-component .content'));
                 expect(pageContent.nativeElement.textContent).toBe(expectedPage.content.rendered);
             });
     })
