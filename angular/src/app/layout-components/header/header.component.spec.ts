@@ -4,9 +4,9 @@ import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
 import {HeaderComponent} from "./header.component";
-import {WordpressPagesService} from "./wordpress-pages-service/wordpress-pages.service";
-import {WordpressPageResponse} from "./wordpress-pages-service/wordpress-page-response";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {WordpressPageResponse} from "../../shared/wordpress-pages-service/wordpress-page-response";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
 
 describe('HeaderComponent', () => {
@@ -14,12 +14,12 @@ describe('HeaderComponent', () => {
     let fixture: ComponentFixture<HeaderComponent>;
     let injector: TestBed;
 
-    const mockSearchResult = [
-        {slug: 'page-1', title: {rendered: 'Test page 1'}},
-        {slug: 'page-2', title: {rendered: 'Test page 2'}},
-        {slug: 'page-3', title: {rendered: 'Test page 3'}},
-        {slug: 'page-3', title: {rendered: 'Test page 4'}},
-        {slug: 'page-3', title: {rendered: 'Test page 5'}}
+    const mockSearchResult: WordpressPageResponse[] = [
+        {link: 'page-1', title: {rendered: 'Test page 1'}},
+        {link: 'page-2', title: {rendered: 'Test page 2'}},
+        {link: 'page-3', title: {rendered: 'Test page 3'}},
+        {link: 'page-3', title: {rendered: 'Test page 4'}},
+        {link: 'page-3', title: {rendered: 'Test page 5'}}
     ];
 
     let mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};

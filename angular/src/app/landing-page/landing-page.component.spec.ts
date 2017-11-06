@@ -9,9 +9,10 @@ import {LargeVideoCardComponent} from "./large-video-card/large-video-card.compo
 import {ArticleCardComponent} from "./article-card/article-card.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
 import {LandingPageComponent} from "./landing-page.component";
-import {NavigationBarComponent} from "../shared/navigation-bar/navigation-bar.component";
+import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../shared/response-data/response-data";
 import {PostcodeValidationService} from "../shared/postcode-validation-service/postcode-validation.service";
+import {UserJourneyType} from "../shared/response-data/user-journey-type";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -20,6 +21,7 @@ describe('LandingPageComponent', () => {
     let responseData: ResponseData;
 
     const headingText = 'heading';
+    const userJourneyType = UserJourneyType.ReduceCarbonFootprint;
 
     const VALID_POSTCODE = 'PO57 C03';
     const INVALID_POSTCODE = 'invalid';
@@ -106,6 +108,18 @@ describe('LandingPageComponent', () => {
 
         // then
         expect(router.navigate).toHaveBeenCalledWith(['/questionnaire/home-basics']);
+    });
+
+    it('should save the user journey type upon entering a valid postcode', () => {
+        // given
+        component.userJourneyType = userJourneyType;
+        component.postcodeInput = VALID_POSTCODE;
+
+        //when
+        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
+
+        // then
+        expect(responseData.userJourneyType).toBe(userJourneyType);
     });
 
     it('should display an error message upon entering an invalid postcode', () => {

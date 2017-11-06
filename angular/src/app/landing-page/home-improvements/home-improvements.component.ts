@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 
 @Component({
     selector: 'app-home-improvements',
@@ -6,4 +7,5 @@ import {Component} from "@angular/core";
     styleUrls: ['./home-improvements.component.scss']
 })
 export class HomeImprovementsComponent {
+    homeImprovementsJourneyType: UserJourneyType = UserJourneyType.PlanHomeImprovements;
 }

@@ -10,15 +10,17 @@ import {FeatureFlagResponse} from "./feature-flag-response";
 @Injectable()
 export class FeatureFlagService {
     private static readonly featureFlagsEndpoint = 'acf/v3/feature_flag';
-    private readonly featureFlags: Observable<FeatureFlags>;
+    private featureFlags: Observable<FeatureFlags>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
-        const url = this.wordpressApiService.getFullApiEndpoint(FeatureFlagService.featureFlagsEndpoint);
-        const featureFlagResponses: Observable<FeatureFlagResponse[]> = this.http.get(url);
-        this.featureFlags = featureFlagResponses.map(responses => featureFlagsFromResponses(responses)).shareReplay(1);
     }
 
     public fetchFeatureFlags(): Observable<FeatureFlags> {
+        if (!this.featureFlags) {
+            const url = this.wordpressApiService.getFullApiEndpoint(FeatureFlagService.featureFlagsEndpoint);
+            const featureFlagResponses: Observable<FeatureFlagResponse[]> = this.http.get(url);
+            this.featureFlags = featureFlagResponses.map(responses => featureFlagsFromResponses(responses)).shareReplay(1);
+        }
         return this.featureFlags;
     }
 }

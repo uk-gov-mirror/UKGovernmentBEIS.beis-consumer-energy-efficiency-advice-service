@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 
 @Component({
     selector: 'app-warmer-home',
@@ -6,4 +7,5 @@ import {Component} from "@angular/core";
     styleUrls: ['./warmer-home.component.scss']
 })
 export class WarmerHomeComponent {
+    warmerHomeJourneyType: UserJourneyType = UserJourneyType.MakeHomeWarmer;
 }

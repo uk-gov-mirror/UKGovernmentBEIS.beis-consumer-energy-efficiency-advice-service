@@ -1,12 +1,6 @@
 // noinspection CssUnknownTarget
 @import "~styles/mixins/spinner";
 
-.page-loading-container {
-  display: flex;
-  justify-content: center;
-  padding-top: 10vw;
-}
-
 .loading-spinner {
   @include spinner(80px);
 }

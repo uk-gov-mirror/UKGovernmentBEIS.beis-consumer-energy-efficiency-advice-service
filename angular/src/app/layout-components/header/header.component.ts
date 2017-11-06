@@ -1,7 +1,6 @@
 import {Component, Renderer2, ViewChild} from "@angular/core";
-import {WordpressPagesService} from "./wordpress-pages-service/wordpress-pages.service";
-import {WordpressPageResponse} from "./wordpress-pages-service/wordpress-page-response";
-import {WordpressPage} from "./wordpress-pages-service/wordpress-page";
+import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
 @Component({
     selector: 'app-header',
@@ -70,12 +69,12 @@ export class HeaderComponent {
         this.shouldDisplayExpandSearchResultsButton = false;
     }
 
-    handleSearchResponse(results: WordpressPageResponse[]): void {
+    handleSearchResponse(results: WordpressPage[]): void {
         if (results.length === 0) {
             this.searchState = SearchStates.NoResults;
             return;
         }
-        this.allSearchResults = results.map(result => new WordpressPage(result));
+        this.allSearchResults = results;
         if (results.length > HeaderComponent.reducedSearchResultsQuantity) {
             this.shouldDisplayExpandSearchResultsButton = true;
         }

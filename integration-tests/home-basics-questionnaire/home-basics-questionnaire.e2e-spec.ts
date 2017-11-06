@@ -18,46 +18,48 @@ describe('Home basics questionnaire', () => {
         // Sleep 1s between each question to allow for animation
         // Postcode and mini-EPC, if exists
         page.enterPostcode('nw19pq');
-        page.workThroughMiniEpcIfExists();
+        page.selectAddressIfApplicable();
+        CommonPageHelpers.sleep(1000);
 
         // Home type
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('own your home');
         page.clickOption('I am a tenant');
+        CommonPageHelpers.sleep(1000);
+
+        // Mini-EPC
+        page.confirmEpcIfApplicable();
 
         // Home type
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('type of home');
         page.clickOption('ground floor flat');
+        CommonPageHelpers.sleep(1000);
 
         // Flat position
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('its position');
         page.clickOption('1 Side Exposed');
+        CommonPageHelpers.sleep(1000);
 
         // Home age
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('How old');
         page.selectFirstHomeAge();
         page.goForwards();
+        CommonPageHelpers.sleep(1000);
 
         // Storey count
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('How many storeys');
         page.goForwards();
 
         // Bedrooms count
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('How many bedrooms ');
         page.goForwards();
+        CommonPageHelpers.sleep(1000);
 
         // Fuel type
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
+        CommonPageHelpers.sleep(1000);
 
         // Tariff
-        CommonPageHelpers.sleep(1000);
         expect(page.getHeading()).toContain('electricity tariff');
     })
 });

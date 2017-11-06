@@ -6,9 +6,11 @@ import {FlatPosition} from "../../questionnaire/questionnaires/home-basics/quest
 import {HomeAge} from "../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
 import {HomeType} from "../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
+import {UserJourneyType} from "./user-journey-type";
 
 @Injectable()
 export class ResponseData {
+    public userJourneyType: UserJourneyType;
     public postcode: string;
     public epc: Epc;
     public localAuthorityCode: string;

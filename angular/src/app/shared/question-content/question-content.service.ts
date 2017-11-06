@@ -10,16 +10,18 @@ import {QuestionResponse} from "./question-response";
 @Injectable()
 export class QuestionContentService {
     private static readonly questionsContentEndpoint = 'acf/v3/question';
-    private readonly questionsContent: Observable<AllQuestionsContent>;
+    private questionsContent: Observable<AllQuestionsContent>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
-        const params = new HttpParams().set('per_page', '1000');
-        const url = this.wordpressApiService.getFullApiEndpoint(QuestionContentService.questionsContentEndpoint);
-        const questionResponses: Observable<QuestionResponse[]> = this.http.get(url, {params: params});
-        this.questionsContent = questionResponses.map(questionResponses => new AllQuestionsContent(questionResponses)).shareReplay(1);
     }
 
     public fetchQuestionsContent(): Observable<AllQuestionsContent> {
+        if (!this.questionsContent) {
+            const params = new HttpParams().set('per_page', '1000');
+            const url = this.wordpressApiService.getFullApiEndpoint(QuestionContentService.questionsContentEndpoint);
+            const questionResponses: Observable<QuestionResponse[]> = this.http.get(url, {params: params});
+            this.questionsContent = questionResponses.map(questionResponses => new AllQuestionsContent(questionResponses)).shareReplay(1);
+        }
         return this.questionsContent;
     }
 }
