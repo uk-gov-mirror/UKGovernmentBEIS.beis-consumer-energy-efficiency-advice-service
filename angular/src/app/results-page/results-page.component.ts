@@ -97,6 +97,9 @@ export class ResultsPageComponent implements OnInit {
     }
 
     private addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata: RecommendationMetadataResponse) {
+        if (!recommendationMetadata.acf.linked_pages) {
+            return;
+        }
         recommendationMetadata.acf.linked_pages.forEach(linkedPage => {
             const linkedWordpressPage = new WordpressPage({link: linkedPage.post_name, title: {rendered: linkedPage.post_title}});
             if (!this.featuredPages.find(page => page.path === linkedWordpressPage.path)) {
