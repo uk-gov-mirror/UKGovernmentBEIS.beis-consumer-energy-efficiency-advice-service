@@ -7,6 +7,7 @@ import {HomeAge} from "../../questionnaire/questionnaires/home-basics/questions/
 import {HomeType} from "../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {UserJourneyType} from "./user-journey-type";
+import {ShowerType} from "../../questionnaire/questionnaires/behaviour/questions/shower-type-question/shower-type";
 
 @Injectable()
 export class ResponseData {
@@ -26,6 +27,7 @@ export class ResponseData {
     public electricityTariff: ElectricityTariff;
     public numberOfOccupants: number;
     public numberOfShowersPerWeek: number;
+    public showerType: ShowerType;
     public numberOfFridgeFreezers: number;
     public numberOfFridges: number;
     public numberOfFreezers: number;

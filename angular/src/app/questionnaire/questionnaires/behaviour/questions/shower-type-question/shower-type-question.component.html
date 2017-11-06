@@ -1,0 +1,8 @@
+<div class="shower-type-question question-component">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <select name="shower-type" class="dropdown-input text-input" aria-labelledby="question-heading" [(ngModel)]="response">
+            <option [ngValue]="undefined" selected disabled hidden>-- Please select --</option>
+            <option *ngFor="let showerType of showerTypes" [ngValue]="showerType.value">{{showerType.name}}</option>
+        </select>
+    </form>
+</div>

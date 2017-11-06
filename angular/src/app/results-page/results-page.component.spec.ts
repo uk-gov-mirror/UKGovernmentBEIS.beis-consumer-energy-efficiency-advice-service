@@ -26,6 +26,7 @@ import {RecommendationService} from './recommendation-service/recommendation.ser
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
 import {PageStateService} from "../shared/page-state-service/page-state.service";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
+import {ShowerType} from "../questionnaire/questionnaires/behaviour/questions/shower-type-question/shower-type";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -58,7 +59,7 @@ describe('ResultsPageComponent', () => {
         showLoadingComplete: () => {}
     };
 
-    const mockQuestionnarieService = {
+    const mockQuestionnaireService = {
         isComplete: (name: string) => false
     };
 
@@ -78,6 +79,7 @@ describe('ResultsPageComponent', () => {
         condensingBoiler: false,
         electricityTariff: undefined,
         numberOfOccupants: 1,
+        showerType: ShowerType.None,
         numberOfShowersPerWeek: 0,
         numberOfBathsPerWeek: 45,
         numberOfFridgeFreezers: 0,
@@ -140,7 +142,7 @@ describe('ResultsPageComponent', () => {
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
                 {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
-                {provide: QuestionnaireService, useValue: mockQuestionnarieService},
+                {provide: QuestionnaireService, useValue: mockQuestionnaireService},
                 {provide: RecommendationService, useValue: mockRecommendationService},
                 {provide: PageStateService, useValue: mockPageStateService}
             ]

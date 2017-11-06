@@ -8,10 +8,13 @@ import {ShowersQuestionComponent} from "./questions/showers-question/showers-que
 import {FridgeFreezerQuestionComponent} from "./questions/fridge-freezer-question/fridge-freezer-question.component";
 import {LivingRoomTemperatureQuestionComponent} from "./questions/living-room-temperature-question/living-room-temperature-question.component";
 import {BathsQuestionComponent} from "./questions/baths-question/baths-question.component";
+import {ShowerTypeQuestionComponent} from "./questions/shower-type-question/shower-type-question.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
         OccupantsQuestionComponent,
+        ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         BathsQuestionComponent,
         FridgeFreezerQuestionComponent,
@@ -19,6 +22,7 @@ import {BathsQuestionComponent} from "./questions/baths-question/baths-question.
     ],
     exports: [
         OccupantsQuestionComponent,
+        ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         BathsQuestionComponent,
         FridgeFreezerQuestionComponent,
@@ -28,9 +32,11 @@ import {BathsQuestionComponent} from "./questions/baths-question/baths-question.
         CommonModule,
         SharedModule,
         CommonQuestionsModule,
+        FormsModule
     ],
     entryComponents: [
         OccupantsQuestionComponent,
+        ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         BathsQuestionComponent,
         FridgeFreezerQuestionComponent,
