@@ -14,7 +14,7 @@ describe('Home basics questionnaire', () => {
         expect(page.getHeading()).toContain('postcode');
     });
 
-    fit('should include core questions', () => {
+    it('should include core questions', () => {
         // Sleep 1s between each question to allow for animation
         // Postcode and mini-EPC, if exists
         page.enterPostcode('nw19pq');
