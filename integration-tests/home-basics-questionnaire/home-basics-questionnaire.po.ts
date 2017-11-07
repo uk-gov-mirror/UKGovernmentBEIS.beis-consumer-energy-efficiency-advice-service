@@ -6,7 +6,7 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
     miniEpcEnabled: boolean;
 
     navigateTo() {
-        return browser.get('/questionnaire/home-basics');
+        return browser.get('/js/questionnaire/home-basics');
     }
 
     enterPostcode(postcode: string) {
