@@ -35,3 +35,8 @@ $font-family: "nta", Arial, sans-serif;
   font-size: 13px;
   text-transform: uppercase;
 }
+
+@mixin navbar-item {
+  font-size: 14px;
+  font-weight: bold;
+}

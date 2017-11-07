@@ -201,10 +201,10 @@ describe('QuestionnaireComponent', () => {
             };
             component.currentQuestionIndex = 0;
             component.shouldDisplayQuestionReason = false;
+            fixture.detectChanges();
 
             // when
-            component.toggleQuestionReasonDisplay();
-            fixture.detectChanges();
+            clickToggleQuestionReasonButtonAndDetectChanges();
 
             // then
             fixture.whenStable().then(() => {
@@ -225,10 +225,10 @@ describe('QuestionnaireComponent', () => {
             };
             component.currentQuestionIndex = 0;
             component.shouldDisplayQuestionReason = true;
+            fixture.detectChanges();
 
             // when
-            component.toggleQuestionReasonDisplay();
-            fixture.detectChanges();
+            clickToggleQuestionReasonButtonAndDetectChanges();
 
             // then
             fixture.whenStable().then(() => {
@@ -236,5 +236,11 @@ describe('QuestionnaireComponent', () => {
                 expect(questionReasonElement.classes.visible).toBeFalsy();
             });
         }));
+
+        function clickToggleQuestionReasonButtonAndDetectChanges(): void {
+            const toggleQuestionReasonButton = fixture.debugElement.query(By.css('.question-reason-button'));
+            toggleQuestionReasonButton.nativeElement.click();
+            fixture.detectChanges();
+        }
     });
 });

@@ -9,7 +9,7 @@
         <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()"
                 (click)="goBackOneQuestion()" aria-label="Go back"><
         </button>
-        <div id="question-heading" class="question-heading">{{currentQuestionContent?.questionHeading}}</div>
+        <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
         <button class="right-arrow" [class.hidden]="!nextQuestionExists()" [disabled]="!canGoForwards()"
                 (click)="goForwardsOneQuestion()" aria-label="Go forwards">>
         </button>
@@ -18,7 +18,7 @@
     <div class="question">
         <ng-template question-host></ng-template>
     </div>
-    <div class="question-reason-container" *ngIf="currentQuestionContent?.questionReason">
+    <div class="question-reason-container" *ngIf="currentQuestionContent.questionReason">
         <div class="question-reason" [class.visible]="shouldDisplayQuestionReason">{{currentQuestionContent.questionReason}}</div>
         <button (click)="toggleQuestionReasonDisplay()" class="question-reason-button" [title]="currentQuestionContent.questionReason">
             <div class="question-reason-icon">i</div>
