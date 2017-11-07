@@ -8,9 +8,4 @@ import {Component, Input} from "@angular/core";
 export class SpinnerAndErrorContainerComponent {
     @Input() loading: boolean;
     @Input() error: boolean;
-
-    constructor() {
-        console.log(this.loading);
-        console.log(this.error);
-    }
 }

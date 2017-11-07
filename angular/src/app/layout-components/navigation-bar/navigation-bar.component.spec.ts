@@ -1,37 +1,26 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {NavigationBarComponent} from "./navigation-bar.component";
 import {Observable} from "rxjs/Observable";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
-import {PageStateService} from "../../shared/page-state-service/page-state.service";
 import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
     let fixture: ComponentFixture<NavigationBarComponent>;
     let fetchTopLevelPagesSpy: jasmine.Spy;
-    let showGenericErrorSpy: jasmine.Spy;
 
     const mockWordpressPagesService = {
         fetchTopLevelPages: () => Observable.of([])
     };
-    const mockPageStateService = {
-        showLoading: () => {},
-        showGenericErrorAndLogMessage: () => {},
-        showLoadingComplete: () => {}
-    };
 
     beforeEach(async(() => {
-        showGenericErrorSpy = spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
-
         TestBed.configureTestingModule({
             declarations: [ NavigationBarComponent ],
             imports: [RouterTestingModule],
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
-                {provide: PageStateService, useValue: mockPageStateService}
             ]
         })
             .compileComponents();
@@ -53,16 +42,6 @@ describe('NavigationBarComponent', () => {
         // then
         fixture.whenStable().then(() => {
             expect(fetchTopLevelPagesSpy).toHaveBeenCalled();
-        });
-    }));
-
-    it('should display an error if wordpress pages service returns an error', async(() => {
-        // when
-        injectMockWordpressPagesCallbackAndDetectChanges(() => ErrorObservable.create('some error'));
-
-        // then
-        fixture.whenStable().then(() => {
-            expect(showGenericErrorSpy).toHaveBeenCalled();
         });
     }));
 

@@ -4,11 +4,9 @@ import {DebugElement} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {ResultsPageComponent} from "./results-page.component";
-import {FurtherQuestionsLinkComponent} from "./further-questions-link/further-questions-link.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
-import {SuggestionCardComponent} from "./suggestion-card/suggestion-card.component";
 import {ResponseData} from "../shared/response-data/response-data";
 import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
@@ -24,8 +22,10 @@ import {LocalAuthorityService} from "./local-authority-service/local-authority.s
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
-import {PageStateService} from "../shared/page-state-service/page-state.service";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
+import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -51,11 +51,6 @@ describe('ResultsPageComponent', () => {
     const recommendationsResponse = require('assets/test/recommendations-response.json');
     let mockRecommendationService = {
         fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
-    };
-    const mockPageStateService = {
-        showLoading: () => {},
-        showGenericErrorAndLogMessage: () => {},
-        showLoadingComplete: () => {}
     };
 
     const mockQuestionnarieService = {
@@ -120,18 +115,15 @@ describe('ResultsPageComponent', () => {
     }
 
     beforeEach(async(() => {
-        spyOn(mockPageStateService, 'showLoading');
-        spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
-        spyOn(mockPageStateService, 'showLoadingComplete');
-
         TestBed.configureTestingModule({
             declarations: [
                 ResultsPageComponent,
-                FurtherQuestionsLinkComponent,
-                GrantCardComponent,
                 PotentialsComponent,
                 RecommendationCardComponent,
-                SuggestionCardComponent
+                GrantCardComponent,
+                LatestNewsCardComponent,
+                SpinnerAndErrorContainerComponent,
+                RadialPercentageComponent,
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
@@ -142,7 +134,6 @@ describe('ResultsPageComponent', () => {
                 {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
                 {provide: QuestionnaireService, useValue: mockQuestionnarieService},
                 {provide: RecommendationService, useValue: mockRecommendationService},
-                {provide: PageStateService, useValue: mockPageStateService}
             ]
         })
             .compileComponents();
@@ -176,23 +167,8 @@ describe('ResultsPageComponent', () => {
         injectMockEnergyCalcApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
-    });
-
-    it('should display all recommendations', () => {
-        // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
-        const expectedMeasures = Object.values(energyCalculationResponse.measures)
-            .map(measure => [measure.cost_saving, measure.energy_saving]);
-
-        // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
-        const actualMeasures = recommendationElements
-            .map(el => el.componentInstance.recommendation)
-            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
-
-        expect(actualMeasures.length).toBe(expectedMeasures.length);
-        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
+        expect(component.isLoading).toBeFalsy();
+        expect(component.isError).toBeTruthy();
     });
 
     it('should sort recommendations by cost saving descending', () => {
@@ -246,7 +222,8 @@ describe('ResultsPageComponent', () => {
         injectMockLocalAuthorityApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
+        expect(component.isLoading).toBeFalsy();
+        expect(component.isError).toBeTruthy();
     });
 
     it('should display correct local authority name', () => {
@@ -254,7 +231,7 @@ describe('ResultsPageComponent', () => {
         injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
 
         // then
-        const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .body-uppercase')).nativeElement;
+        const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .local-authority')).nativeElement;
         expect(localAuthorityNameElement.innerText.toLowerCase()).toContain(localAuthorityName.toLowerCase());
     });
 
@@ -283,7 +260,8 @@ describe('ResultsPageComponent', () => {
         injectMockRecommendationsApiCallbackAndDetectChanges(() => errorResponse);
 
         // when
-        expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
+        expect(component.isLoading).toBeFalsy();
+        expect(component.isError).toBeTruthy();
     });
 
     it('should display all linked pages', () => {

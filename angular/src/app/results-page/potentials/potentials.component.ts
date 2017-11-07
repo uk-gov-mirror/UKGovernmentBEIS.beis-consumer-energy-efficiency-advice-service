@@ -1,5 +1,4 @@
 import {Component, Input} from "@angular/core";
-import {EnergyCalculations} from "./energy-calculations";
 
 @Component({
     selector: 'app-potentials',

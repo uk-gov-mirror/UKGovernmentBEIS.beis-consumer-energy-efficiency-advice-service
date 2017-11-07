@@ -6,11 +6,9 @@ import {Subject} from "rxjs/Subject";
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./layout-components/header/header.component";
 import {FooterComponent} from "./layout-components/footer/footer.component";
-import {PageStateService} from "./shared/page-state-service/page-state.service";
 import {ComponentFixture} from "@angular/core/testing";
 import {NavigationBarComponent} from "./layout-components/navigation-bar/navigation-bar.component";
 import {WordpressPagesService} from "./shared/wordpress-pages-service/wordpress-pages.service";
-import {PageError} from "./shared/page-state-service/page-error";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -18,17 +16,7 @@ describe('AppComponent', () => {
 
     const mockWordpressPagesService = {fetchTopLevelPages: () => Observable.of([])};
 
-    const mockPageStateService = {
-        isLoadingChange: new Subject<boolean>(),
-        pageErrorChange: new Subject<PageError>(),
-        showLoading: () => {},
-        showGenericErrorAndLogMessage: () => {},
-        showLoadingComplete: () => {}
-    };
-
     beforeEach(async(() => {
-        spyOn(mockWordpressPagesService, 'fetchTopLevelPages').and.callThrough();
-
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
@@ -39,7 +27,6 @@ describe('AppComponent', () => {
             imports: [RouterTestingModule, FormsModule],
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
-                {provide: PageStateService, useValue: mockPageStateService}
             ]
         }).compileComponents();
     }));
@@ -53,9 +40,4 @@ describe('AppComponent', () => {
     it('should create the app', async(() => {
         expect(app).toBeTruthy();
     }));
-
-    it('should fetch top level pages on loading', () => {
-        // then
-        expect(mockWordpressPagesService.fetchTopLevelPages).toHaveBeenCalled();
-    });
 });

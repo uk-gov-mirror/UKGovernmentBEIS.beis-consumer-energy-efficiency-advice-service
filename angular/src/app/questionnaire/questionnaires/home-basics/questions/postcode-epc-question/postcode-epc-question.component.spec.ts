@@ -11,7 +11,6 @@ import {FeatureFlagService} from "../../../../../shared/feature-flag/feature-fla
 import {EpcApiService} from "./epc-api-service/epc-api.service";
 import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 import {PostcodeValidationService} from "../../../../../shared/postcode-validation-service/postcode-validation.service";
-import {PageStateService} from "../../../../../shared/page-state-service/page-state.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -35,11 +34,6 @@ describe('PostcodeEpcQuestionComponent', () => {
     const featureFlagServiceStub = {
         fetchFeatureFlags: () => mockFeatureFlagsObservable
     };
-    const mockPageStateService = {
-        showLoading: () => {},
-        showGenericErrorAndLogMessage: () => {},
-        showLoadingComplete: () => {}
-    };
 
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
     const postcodeValidationServiceStub = {
@@ -49,7 +43,6 @@ describe('PostcodeEpcQuestionComponent', () => {
     beforeEach(async(() => {
         spyOn(epcApiServiceStub, 'getEpcData').and.callThrough();
         spyOn(postcodeApiServiceStub, 'getPostcodeDetails').and.callThrough();
-        spyOn(mockPageStateService, 'showGenericErrorAndLogMessage');
 
         TestBed.configureTestingModule({
             declarations: [PostcodeEpcQuestionComponent],
@@ -63,7 +56,6 @@ describe('PostcodeEpcQuestionComponent', () => {
                         {provide: EpcApiService, useValue: epcApiServiceStub},
                         {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
                         {provide: PostcodeValidationService, useValue: postcodeValidationServiceStub},
-                        {provide: PageStateService, useValue: mockPageStateService}
                     ]
                 }
             })
@@ -373,19 +365,6 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             expect(component.validationError).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
-        });
-
-        it('should display page error if postcode api returns with unknown error', () => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-            let injectedMockPostcodeApiService = fixture.debugElement.injector.get(PostcodeApiService);
-            injectedMockPostcodeApiService.getPostcodeDetails = () => ErrorObservable.create('unknown error');
-
-            // when
-            component.lookupBasicPostcodeDetails();
-
-            // then
-            expect(fixture.debugElement.injector.get(PageStateService).showGenericErrorAndLogMessage).toHaveBeenCalled();
         });
     });
 });

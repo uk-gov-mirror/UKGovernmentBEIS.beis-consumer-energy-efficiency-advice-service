@@ -10,6 +10,7 @@ describe('RecommendationCardComponent', () => {
     let fixture: ComponentFixture<RecommendationCardComponent>;
 
     const recommendation: EnergySavingRecommendation = {
+        investmentPounds: 200,
         costSavingPoundsPerYear: 100,
         energySavingKwhPerYear: 100,
         readMorePath: 'home-improvements/loft-insulation',
@@ -36,8 +37,8 @@ describe('RecommendationCardComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should display the correct description', () => {
-        const recommendationDescriptionElement = fixture.debugElement.query(By.css('.description')).nativeElement;
+    it('should display the correct heading', () => {
+        const recommendationDescriptionElement = fixture.debugElement.query(By.css('.heading')).nativeElement;
         expect(recommendationDescriptionElement.innerText).toBe(recommendation.headline);
     });
 

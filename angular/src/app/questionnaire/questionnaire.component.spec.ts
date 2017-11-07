@@ -15,7 +15,7 @@ import {QuestionBaseComponent} from "./base-question/question-base-component";
 import {QuestionMetadata} from "./base-question/question-metadata";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
-import {PageStateService} from "../shared/page-state-service/page-state.service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -26,17 +26,11 @@ describe('QuestionnaireComponent', () => {
     const questionId = 'test-question-id';
 
     let responseDataStub: ResponseData;
-    const partialResponse = {postcode: 'w11aa'};
 
     const questionContentServiceStub = {
         fetchQuestionsContent() {
             return Observable.of(allQuestionsContent);
         }
-    };
-    const mockPageStateService = {
-        showLoading: () => {},
-        showGenericErrorAndLogMessage: () => {},
-        showLoadingComplete: () => {}
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
@@ -77,8 +71,6 @@ describe('QuestionnaireComponent', () => {
         private static paramMapGet(key) {
             if (key === 'name') {
                 return questionnaireName;
-            } else if (key === 'partialResponse') {
-                return JSON.stringify(partialResponse);
             } else {
                 throw new Error('Unexpected parameter name');
             }
@@ -97,7 +89,7 @@ describe('QuestionnaireComponent', () => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [QuestionnaireComponent, ProgressIndicatorComponent],
+            declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent],
             imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 ComponentFactoryResolver,
@@ -107,7 +99,6 @@ describe('QuestionnaireComponent', () => {
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
                 {provide: ResponseData, useValue: responseDataStub},
-                {provide: PageStateService, useValue: mockPageStateService}
             ],
         })
             .compileComponents();
@@ -172,13 +163,5 @@ describe('QuestionnaireComponent', () => {
                 expect(helpTextElement.nativeElement.innerText).toBe(expectedHelpText);
             });
         }));
-
-        it('should merge the partial response with the current response data', () => {
-            // when
-            fixture.detectChanges();
-
-            // then
-            expect(responseDataStub).toEqual(jasmine.objectContaining(partialResponse));
-        });
     });
 });
