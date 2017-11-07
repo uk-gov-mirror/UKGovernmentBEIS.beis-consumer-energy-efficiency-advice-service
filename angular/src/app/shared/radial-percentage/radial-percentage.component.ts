@@ -25,7 +25,7 @@ export class RadialPercentageComponent implements OnInit, AfterViewInit {
     forceProgressTransition() {
         const oldProgress = this.progress;
         this.progress = 0;
-        setTimeout(() => this.progress = oldProgress, 0);
+        setTimeout(() => this.progress = oldProgress);
     }
 
     setScale() {

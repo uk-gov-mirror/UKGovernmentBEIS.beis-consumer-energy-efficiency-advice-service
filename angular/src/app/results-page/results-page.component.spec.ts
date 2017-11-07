@@ -256,8 +256,7 @@ describe('ResultsPageComponent', () => {
         injectMockLocalAuthorityApiCallbackAndDetectChanges(() => errorResponse);
 
         // then
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('.page-error-container'))).toBeTruthy();
     });
 
     it('should display correct local authority name', () => {

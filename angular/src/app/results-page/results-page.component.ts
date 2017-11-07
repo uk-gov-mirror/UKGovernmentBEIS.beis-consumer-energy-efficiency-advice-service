@@ -24,7 +24,7 @@ import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 })
 export class ResultsPageComponent implements OnInit {
     recommendations: EnergySavingRecommendation[];
-    displayedRecommendations: number;
+    displayedRecommendations: number = 4;
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
     availableGrants: GrantResponse[];
@@ -41,7 +41,6 @@ export class ResultsPageComponent implements OnInit {
                 private localAuthorityService: LocalAuthorityService,
                 private recommendationService: RecommendationService,
                 private questionnaireService: QuestionnaireService) {
-        this.displayedRecommendations = 4;
     }
 
     ngOnInit() {
@@ -62,17 +61,11 @@ export class ResultsPageComponent implements OnInit {
     }
 
     getTotalInvestment(): number {
-        return this.recommendations
-            .slice(0, this.displayedRecommendations)
-            .map(rec => rec.investmentPounds)
-            .reduce((acc, curr) => acc + curr);
+        return sumBy(this.recommendations.slice(0, this.displayedRecommendations), rec => rec.investmentPounds);
     }
 
     getTotalSavings(): number {
-        return this.recommendations
-            .slice(0, this.displayedRecommendations)
-            .map(rec => rec.costSavingPoundsPerYear)
-            .reduce((acc, curr) => acc + curr);
+        return sumBy(this.recommendations.slice(0, this.displayedRecommendations), rec => rec.costSavingPoundsPerYear);
     }
 
     behaviourQuestionnaireComplete(): boolean {

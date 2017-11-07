@@ -26,7 +26,7 @@ import {PageModule} from "./page/page.module";
         FormsModule,
         SharedModule.forRoot(),
         QuestionnaireModule.forRoot(),
-        ResultsPageModule,
+        ResultsPageModule.forRoot(),
         HomePageModule,
         PageModule,
         LandingPageModule,
