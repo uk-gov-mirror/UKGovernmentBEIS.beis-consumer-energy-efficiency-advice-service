@@ -1,14 +1,10 @@
-<div class="progress-indicator-component">
-    <div class="reference-number-container">
-        <div class="arrow-background-cover-up"></div>
-        <div class="arrow"></div>
-    </div>
+<div class="progress-indicator-component page-row-content">
     <div class="progress-indicator">
         <div class="questionnaire-section" *ngFor="let questionnaireSection of questionnaireSections"
              [style.flex-basis]="getFlexBasis(questionnaireSection)">
             <div class="question-type-icon-container">
                 <div class="question-type-icon" [ngClass]="questionnaireSection.className"></div>
-                <div class="horizontal-dotted-line"></div>
+                <div class="horizontal-dashed-line"></div>
             </div>
             <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
                 <button class="step-link"
@@ -18,7 +14,7 @@
                         [class.active]="question.questionIndex === currentQuestionIndex"
                         [class.not-applicable]="!isApplicable(question.questionIndex)"
                         (click)="clickedOnLink.emit(question.questionIndex)"></button>
-                <div class="horizontal-dotted-line"></div>
+                <div class="horizontal-dashed-line"></div>
             </div>
             <div class="arrow-background-cover-up"></div>
             <div class="arrow"></div>

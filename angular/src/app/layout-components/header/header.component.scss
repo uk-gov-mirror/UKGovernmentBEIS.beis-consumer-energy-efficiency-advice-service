@@ -1,5 +1,5 @@
-// noinspection CssUnknownTarget
-@import '~styles/page';
+@import "styles/page";
+@import "styles/var/colours";
 
 $search-container-height: 24px;
 $search-container-vertical-padding: 10px;
@@ -27,7 +27,7 @@ $animation-duration-vertical: 0.5s;
     }
 
     .search-container {
-      background-color: lightgrey;
+      background-color: $lighter-grey;
       padding: $search-container-vertical-padding;
       display: flex;
       align-items: center;

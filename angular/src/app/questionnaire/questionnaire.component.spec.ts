@@ -128,7 +128,8 @@ describe('QuestionnaireComponent', () => {
             allQuestionsContent = {
                 [questionId]: {
                     questionHeading: expectedQuestionHeading,
-                    helpText: 'some help text'
+                    helpText: 'some help text',
+                    questionReason: 'this question helps us show you useful results'
                 }
             };
             component.currentQuestionIndex = 0;
@@ -149,7 +150,8 @@ describe('QuestionnaireComponent', () => {
             allQuestionsContent = {
                 [questionId]: {
                     questionHeading: 'test question heading',
-                    helpText: expectedHelpText
+                    helpText: expectedHelpText,
+                    questionReason: 'this question helps us show you useful results'
                 }
             };
             component.currentQuestionIndex = 0;
@@ -161,6 +163,77 @@ describe('QuestionnaireComponent', () => {
             fixture.whenStable().then(() => {
                 const helpTextElement = fixture.debugElement.query(By.css('.help-text'));
                 expect(helpTextElement.nativeElement.innerText).toBe(expectedHelpText);
+            });
+        }));
+
+        it('should initialise with the question reason hidden', async(() => {
+            // given
+            allQuestionsContent = {
+                [questionId]: {
+                    questionHeading: 'test question heading',
+                    helpText: '',
+                    questionReason: 'this question helps us show you useful results'
+                }
+            };
+            component.currentQuestionIndex = 0;
+
+            // when
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
+                expect(questionReasonElement.classes.visible).toBeFalsy();
+            });
+        }));
+    });
+
+    describe('#toggleQuestionReasonDisplay', () => {
+        it('should display the question reason if currently hidden', async(() => {
+            // given
+            const expectedQuestionReason = 'this question helps us show you useful results';
+            allQuestionsContent = {
+                [questionId]: {
+                    questionHeading: 'test question heading',
+                    helpText: '',
+                    questionReason: expectedQuestionReason
+                }
+            };
+            component.currentQuestionIndex = 0;
+            component.shouldDisplayQuestionReason = false;
+
+            // when
+            component.toggleQuestionReasonDisplay();
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
+                expect(questionReasonElement.classes.visible).toBeTruthy();
+                expect(questionReasonElement.nativeElement.innerText).toBe(expectedQuestionReason);
+            });
+        }));
+
+        it('should hide the question reason if currently displayed', async(() => {
+            // given
+            allQuestionsContent = {
+                [questionId]: {
+                    questionHeading: 'test question heading',
+                    helpText: '',
+                    questionReason: 'this question helps us show you useful results'
+                }
+            };
+            component.currentQuestionIndex = 0;
+            component.shouldDisplayQuestionReason = true;
+
+            // when
+            component.toggleQuestionReasonDisplay();
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
+                expect(questionReasonElement.classes.visible).toBeFalsy();
             });
         }));
     });

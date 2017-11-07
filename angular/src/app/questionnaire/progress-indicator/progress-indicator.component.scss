@@ -1,13 +1,17 @@
+@import "styles/page";
 @import 'styles/var/colours';
 
 $progress-indicator-height: 40px;
-$progress-indicator-border-width: 1px;
+$progress-indicator-border-width: 2px;
+
+:host {
+  background: white;
+}
 
 .progress-indicator-component {
   display: flex;
-  border: $progress-indicator-border-width solid black;
   height: $progress-indicator-height;
-  width: 98vw;
+  padding: 4px 0;
 
   .arrow, .arrow-cover-up, .arrow-background-cover-up {
     position: absolute;
@@ -24,7 +28,7 @@ $progress-indicator-border-width: 1px;
 
   .arrow {
     border: solid 0.5 * $progress-indicator-height + $progress-indicator-border-width transparent;
-    border-left-color: black;
+    border-left-color: $light-medium-grey;
     margin-top: (-0.5) * $progress-indicator-height - $progress-indicator-border-width;
   }
 
@@ -32,27 +36,6 @@ $progress-indicator-border-width: 1px;
     border: solid 0.5 * $progress-indicator-height transparent;
     border-left-color: white;
     margin-top: (-0.5) * $progress-indicator-height;
-  }
-
-  .reference-number-container {
-    width: 60px;
-    text-transform: uppercase;
-    background-color: black;
-    color: white;
-    flex-grow: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 6px 50px 6px 30px;
-
-    .reference-number-label {
-      font-weight: bold;
-    }
-
-    .reference-number, .reference-number-label {
-      font-size: 10px;
-    }
   }
 
   .progress-indicator {
@@ -65,8 +48,8 @@ $progress-indicator-border-width: 1px;
       position: relative;
       align-items: center;
 
-      .horizontal-dotted-line {
-        border-bottom: 1px dotted black;
+      .horizontal-dashed-line {
+        border-bottom: 1px dashed $dark-medium-grey;
         flex: 1;
       }
 

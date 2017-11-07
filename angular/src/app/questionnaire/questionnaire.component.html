@@ -1,6 +1,6 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
-    <progress-indicator [questionnaire]="questionnaire"
+    <progress-indicator class="page-row" [questionnaire]="questionnaire"
                         [currentQuestionIndex]="currentQuestionIndex"
                         [allQuestionsContent]="allQuestionsContent"
                         (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
@@ -17,5 +17,12 @@
     <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>
     <div class="question">
         <ng-template question-host></ng-template>
+    </div>
+    <div class="question-reason-container" *ngIf="currentQuestionContent?.questionReason">
+        <div class="question-reason" [class.visible]="shouldDisplayQuestionReason">{{currentQuestionContent.questionReason}}</div>
+        <button (click)="toggleQuestionReasonDisplay()" class="question-reason-button" [title]="currentQuestionContent.questionReason">
+            <div class="question-reason-icon">i</div>
+            <div class="question-reason-header">Why do we need this</div>
+        </button>
     </div>
 </div>

@@ -29,6 +29,7 @@ export class QuestionnaireComponent implements OnInit {
     allQuestionsContent: AllQuestionsContent;
     currentQuestionContent: QuestionContent;
     questionTypeIconClassName: string;
+    shouldDisplayQuestionReason: boolean;
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
@@ -119,6 +120,10 @@ export class QuestionnaireComponent implements OnInit {
 
     goToResultsPage() {
         this.router.navigate(['/results']);
+    }
+
+    toggleQuestionReasonDisplay() {
+        this.shouldDisplayQuestionReason = !this.shouldDisplayQuestionReason;
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {

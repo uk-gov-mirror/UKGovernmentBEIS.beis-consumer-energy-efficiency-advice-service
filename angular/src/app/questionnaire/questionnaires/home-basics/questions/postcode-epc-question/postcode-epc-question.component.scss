@@ -4,6 +4,22 @@
   align-items: center;
   justify-content: center;
 
+  .icon-search {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin-left: 20px;
+
+    &:focus {
+      height: 36px;
+      width: 36px;
+    }
+  }
+
   .select-address {
     margin: 20px 0;
   }

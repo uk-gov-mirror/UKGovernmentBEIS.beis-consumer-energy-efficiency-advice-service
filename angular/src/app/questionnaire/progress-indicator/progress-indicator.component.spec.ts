@@ -16,16 +16,16 @@ describe('ProgressIndicatorComponent', () => {
     let availableQuestions: number[];
     const question1TitleText = 'Question 1 heading';
     let allQuestionsContent: AllQuestionsContent = {
-        question0: {questionHeading: 'Question 0 heading', helpText: 'Question 0 help text'},
-        question1: {questionHeading: question1TitleText, helpText: 'Question 1 help text'},
-        question2: {questionHeading: 'Question 2 heading', helpText: 'Question 2 help text'},
-        question3: {questionHeading: 'Question 3 heading', helpText: 'Question 3 help text'},
-        question4: {questionHeading: 'Question 4 heading', helpText: 'Question 4 help text'},
-        question5: {questionHeading: 'Question 5 heading', helpText: 'Question 5 help text'},
-        question6: {questionHeading: 'Question 6 heading', helpText: 'Question 6 help text'},
-        question7: {questionHeading: 'Question 7 heading', helpText: 'Question 7 help text'},
-        question8: {questionHeading: 'Question 8 heading', helpText: 'Question 8 help text'},
-        question9: {questionHeading: 'Question 9 heading', helpText: 'Question 9 help text'}
+        question0: {questionHeading: 'Question 0 heading', helpText: 'Question 0 help text', questionReason: ''},
+        question1: {questionHeading: question1TitleText, helpText: 'Question 1 help text', questionReason: ''},
+        question2: {questionHeading: 'Question 2 heading', helpText: 'Question 2 help text', questionReason: ''},
+        question3: {questionHeading: 'Question 3 heading', helpText: 'Question 3 help text', questionReason: ''},
+        question4: {questionHeading: 'Question 4 heading', helpText: 'Question 4 help text', questionReason: ''},
+        question5: {questionHeading: 'Question 5 heading', helpText: 'Question 5 help text', questionReason: ''},
+        question6: {questionHeading: 'Question 6 heading', helpText: 'Question 6 help text', questionReason: ''},
+        question7: {questionHeading: 'Question 7 heading', helpText: 'Question 7 help text', questionReason: ''},
+        question8: {questionHeading: 'Question 8 heading', helpText: 'Question 8 help text', questionReason: ''},
+        question9: {questionHeading: 'Question 9 heading', helpText: 'Question 9 help text', questionReason: ''}
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
