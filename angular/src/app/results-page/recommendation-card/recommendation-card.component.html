@@ -1,10 +1,16 @@
 <div class="recommendation-card">
     <div class="box description">
-        <span class="icon" [ngClass]="recommendation.iconClassName"></span>
-        <div class="explanation">
-            <div class="heading">{{recommendation.headline}}</div>
-            <div class="summary">{{recommendation.summary}}</div>
+        <div class="content">
+            <span class="icon" [ngClass]="recommendation.iconClassName"></span>
+            <div class="explanation">
+                <div class="heading">{{recommendation.headline}}</div>
+                <div class="summary">{{recommendation.summary}}</div>
+            </div>
         </div>
+        <a class="read-more" [routerLink]="recommendation.readMorePath">
+            <span class="read-more-text">Read more</span>
+            <span class="icon-caret-down"></span>
+        </a>
     </div>
     <div class="box investment">
         <div class="box-heading">Investment required</div>
