@@ -8,6 +8,7 @@ export class EnergySavingRecommendation {
     energySavingKwhPerYear: number;
     readMorePath: string;
     headline: string;
+    summary: string;
 
     constructor(energySavingMeasureResponse: EnergySavingMeasureResponse,
                 recommendationMetadata: RecommendationMetadataResponse,
@@ -19,5 +20,6 @@ export class EnergySavingRecommendation {
         this.energySavingKwhPerYear = energySavingMeasureResponse.energy_saving;
         this.readMorePath = parse(recommendationMetadata.acf.featured_page).pathname;
         this.headline = recommendationMetadata.acf.headline;
+        this.summary = recommendationMetadata.acf.summary;
     }
 }
