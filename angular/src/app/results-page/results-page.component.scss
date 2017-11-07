@@ -65,6 +65,45 @@ $grant-card-margin: 24px;
     .recommendation-cards {
       margin-top: 24px;
     }
+
+    .further-actions {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+
+      .see-more {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        .see-more-text {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .icon-caret-down {
+          margin-left: 8px;
+          margin-top: 6px;
+        }
+      }
+
+      .further-questions {
+        float: right;
+        flex: 0 0 auto;
+        padding: 16px 32px;
+
+        background: $lighter-grey;
+        border: none;
+        cursor: pointer;
+      }
+    }
   }
 
   .grants.page-row-content {

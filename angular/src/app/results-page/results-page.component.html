@@ -22,9 +22,22 @@
             <div class="subheading">Your top recommendations</div>
             <div class="recommendation-cards">
                 <app-recommendation-card class="recommendation-card"
-                                         *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations)"
+                                         *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations) trackBy $index"
                                          [recommendation]="recommendation">
                 </app-recommendation-card>
+            </div>
+            <div class="further-actions">
+                <button class="see-more"
+                        [style.visibility]="displayedRecommendations < recommendations.length ? 'visible' : 'hidden'"
+                        (click)="displayedRecommendations = recommendations.length">
+                    <span class="see-more-text">See all recommendations ({{recommendations.length}})</span>
+                    <span class="icon-caret-down"></span>
+                </button>
+                <button class="further-questions"
+                        [style.visibility]="behaviourQuestionnaireComplete() ? 'hidden' : 'visible'"
+                        routerLink="/questionnaire/behaviour">
+                    Answer a few more questions to narrow down additional results for you
+                </button>
             </div>
         </div>
     </div>

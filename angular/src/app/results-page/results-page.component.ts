@@ -15,6 +15,7 @@ import sumBy from "lodash-es/sumBy";
 import {RecommendationService} from './recommendation-service/recommendation.service';
 import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
+import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 
 @Component({
     selector: 'app-results-page',
@@ -38,7 +39,8 @@ export class ResultsPageComponent implements OnInit {
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private localAuthorityService: LocalAuthorityService,
-                private recommendationService: RecommendationService) {
+                private recommendationService: RecommendationService,
+                private questionnaireService: QuestionnaireService) {
         this.displayedRecommendations = 4;
     }
 
@@ -71,6 +73,10 @@ export class ResultsPageComponent implements OnInit {
             .slice(0, this.displayedRecommendations)
             .map(rec => rec.costSavingPoundsPerYear)
             .reduce((acc, curr) => acc + curr);
+    }
+
+    behaviourQuestionnaireComplete(): boolean {
+        return this.questionnaireService.isComplete('behaviour');
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
