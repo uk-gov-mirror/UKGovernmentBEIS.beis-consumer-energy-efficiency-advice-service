@@ -24,7 +24,7 @@ describe('HomePageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [HomePageComponent, LatestNewsCardComponent, NavigationBarComponent],
             imports: [RouterTestingModule.withRoutes([
-                {path: 'questionnaire/home-basics', component: DummyComponent},
+                {path: 'js/questionnaire/home-basics', component: DummyComponent},
                 {path: 'results', component: DummyComponent}
             ])],
             providers: [
@@ -59,7 +59,7 @@ describe('HomePageComponent', () => {
         expect(responseDataStub.userJourneyType).toBe(UserJourneyType.HomepageLink);
         fixture.whenStable().then(() => {
             const location = fixture.debugElement.injector.get(Location);
-            expect(location.path()).toBe('/questionnaire/home-basics');
+            expect(location.path()).toBe('/js/questionnaire/home-basics');
         });
     });
 

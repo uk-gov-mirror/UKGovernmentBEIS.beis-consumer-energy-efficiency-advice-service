@@ -17,39 +17,37 @@ const routes: Routes = [
         component: HomePageComponent
     },
     {
-        path: 'questionnaire/:name',
+        path: 'js/questionnaire/:name',
         component: QuestionnaireComponent,
         canActivate: [QuestionnaireGuard],
     },
     {
-        path: 'results',
+        path: 'js/results',
         component: ResultsPageComponent,
         canActivate: [ResultsPageRouteGuard]
     },
     {
-        path: 'carbon-footprint',
+        path: 'js/carbon-footprint',
         component: CarbonFootprintComponent
     },
     {
-        path: 'home-improvements',
+        path: 'js/home-improvements',
         component: HomeImprovementsComponent
     },
     {
-        path: 'reduce-bills',
+        path: 'js/reduce-bills',
         component: ReduceBillsComponent
     },
     {
-        path: 'warmer-home',
+        path: 'js/warmer-home',
         component: WarmerHomeComponent
     },
-    // For now we prefix all wordpress page links with 'wp-page' to avoid conflicts with any pure Angular routes.
-    // This is not ideal but we'll most likely change this anyway when we implement a JS-free version of the app.
     {
-        path: 'wp-page/:slug',
+        path: ':slug',
         component: PageComponent
     },
     {
-        path: 'wp-page/:section/:slug',
+        path: ':section/:slug',
         component: PageComponent
     },
     {

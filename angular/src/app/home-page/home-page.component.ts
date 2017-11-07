@@ -17,7 +17,7 @@ export class HomePageComponent {
 
     onEnergyCalculatorButtonClick() {
         this.responseData.userJourneyType = UserJourneyType.HomepageLink;
-        const route = this.questionnaireService.isComplete('home-basics') ? '/results' : '/questionnaire/home-basics';
+        const route = this.questionnaireService.isComplete('home-basics') ? '/js/results' : '/js/questionnaire/home-basics';
         this.router.navigate([route]);
     }
 }

@@ -4,7 +4,6 @@ import {RouterTestingModule} from "@angular/router/testing";
 
 import {RecommendationCardComponent} from "./recommendation-card.component";
 import {EnergySavingRecommendation} from "./energy-saving-recommendation";
-import {WordpressPageRoutingService} from "../../shared/wordpress-pages-service/wordpress-page-routing.service";
 
 describe('RecommendationCardComponent', () => {
     let component: RecommendationCardComponent;
@@ -14,7 +13,7 @@ describe('RecommendationCardComponent', () => {
         investmentPounds: 200,
         costSavingPoundsPerYear: 100,
         energySavingKwhPerYear: 100,
-        readMoreRoute: WordpressPageRoutingService.getRouteForWordpressUrl('home-improvements/loft-insulation'),
+        readMoreRoute: ('home-improvements/loft-insulation'),
         iconClassName: 'icon-roofing',
         headline: 'Loft insulation',
         summary: 'No description available'

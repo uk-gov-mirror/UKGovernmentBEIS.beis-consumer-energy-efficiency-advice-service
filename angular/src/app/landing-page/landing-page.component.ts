@@ -26,7 +26,7 @@ export class LandingPageComponent {
         if (!(this.validationError = !this.postcodeValidationService.isValid(this.postcodeInput))) {
             this.responseData.postcode = this.postcodeInput;
             this.responseData.userJourneyType = this.userJourneyType;
-            this.router.navigate(['/questionnaire/home-basics']);
+            this.router.navigate(['/js/questionnaire/home-basics']);
         }
     }
 }
