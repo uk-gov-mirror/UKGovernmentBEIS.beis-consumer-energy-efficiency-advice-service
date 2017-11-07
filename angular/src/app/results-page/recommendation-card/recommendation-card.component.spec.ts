@@ -15,7 +15,8 @@ describe('RecommendationCardComponent', () => {
         energySavingKwhPerYear: 100,
         readMorePath: 'home-improvements/loft-insulation',
         iconClassName: 'icon-roofing',
-        headline: 'Loft insulation'
+        headline: 'Loft insulation',
+        summary: 'No description available'
     };
 
     beforeEach(async(() => {
