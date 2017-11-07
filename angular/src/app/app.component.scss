@@ -8,6 +8,8 @@
   .page-component {
     flex-grow: 1;
     flex-shrink: 0;
+    flex-direction: column;
+    display: flex;
   }
 
   & > :last-child {

@@ -64,6 +64,19 @@ function setup_question_acf_group() {
                     'append' => '',
                     'formatting' => 'html',
                     'maxlength' => '',
+                ),
+                array (
+                    'key' => 'field_5a0179b00e182',
+                    'label' => 'Why are we asking this question?',
+                    'name' => 'questionReason',
+                    'type' => 'text',
+                    'instructions' => 'Appears at the bottom of a question for more info on why we need this data',
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'html',
+                    'maxlength' => '',
                 )
             ),
             'location' => array (

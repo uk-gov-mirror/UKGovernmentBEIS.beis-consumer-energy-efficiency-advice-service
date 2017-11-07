@@ -1,14 +1,13 @@
-@import "../../../styles/var/_colours";
+@import "styles/var/_colours";
+@import "styles/mixins/_font";
 
 .navigation-bar {
   background-color: $dark-grey;
-  height: 34px;
+  height: 36px;
 
   .page-row-content {
 
     .menu-item {
-      font-size: 12px;
-      font-weight: bold;
       padding: 10px 15px;
       cursor: pointer;
       border: none;
@@ -18,6 +17,7 @@
       text-decoration: none;
 
       &:focus {
+        @include navbar-item;
         text-decoration: underline;
       }
     }

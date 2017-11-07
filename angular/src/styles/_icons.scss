@@ -70,6 +70,10 @@
   content: url('assets/images/controls/search.svg');
 }
 
+.icon-search-white::before {
+  content: url('assets/images/controls/search-white.svg');
+}
+
 .icon-phone::before {
   content: url('assets/images/controls/phone.svg');
 }

@@ -83,7 +83,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = '   ' + VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             expect(component.postcodeInput).toEqual(VALID_POSTCODE);
@@ -94,7 +94,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE + '   ';
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             expect(component.postcodeInput).toEqual(VALID_POSTCODE);
@@ -105,7 +105,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             expect(postcodeValidationServiceStub.isValid).toHaveBeenCalledWith(VALID_POSTCODE);
@@ -116,7 +116,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -130,7 +130,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = INVALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -144,7 +144,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
             fixture.detectChanges();
 
             // then
@@ -158,7 +158,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -172,7 +172,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -187,7 +187,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -203,7 +203,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -219,7 +219,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             mockApiService.getEpcData = () => ErrorObservable.create('error');
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
@@ -234,7 +234,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             mockApiService.getEpcData = (postcode) => Observable.of(null);
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
             fixture.detectChanges();
 
             // then
@@ -249,7 +249,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
             fixture.detectChanges();
 
             // then
@@ -267,7 +267,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             const expectedLocalAuthorityCode = dummyEpcsResponse.rows[0]['local-authority'];
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
             fixture.detectChanges();
             fixture.whenStable().then(() => {
                 const allEpcs = fixture.debugElement.query(By.css('.list-select')).children;
@@ -285,7 +285,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
             fixture.detectChanges();
             fixture.whenStable().then(() => {
                 const allEpcs = fixture.debugElement.query(By.css('.list-select')).children;
@@ -301,7 +301,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            fixture.debugElement.query(By.css('.submit-button')).nativeElement.click();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
             fixture.detectChanges();
             fixture.whenStable().then(() => {
                 fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();

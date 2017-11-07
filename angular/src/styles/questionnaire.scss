@@ -24,24 +24,19 @@
         }
 
         .text-input {
+          font-weight: bold;
           font-size: 24px;
-          border: 1px solid black;
           border-radius: 30px;
           padding: 10px;
           margin: 2px;
           text-align: center;
           text-transform: uppercase;
           outline: none;
+          border: none;
 
           &:focus {
             box-shadow: 0 0 10px 4px grey;
           }
-        }
-
-        .submit-button {
-          @include round-button(60px);
-          margin-left: 10px;
-          font-size: 36px;
         }
       }
 
