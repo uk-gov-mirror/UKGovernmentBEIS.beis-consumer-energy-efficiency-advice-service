@@ -68,9 +68,8 @@
     align-items: stretch;
 
     .content {
-      display: flex;
       flex: 1 1 auto;
-
+      display: flex;
       align-items: center;
 
       .icon {
@@ -82,15 +81,17 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+        width: 100%;
 
         .heading {
           @include card-heading;
           margin-bottom: 16px;
+          width: 100%;
         }
 
         .summary {
           font-size: 14px;
-          width: 70%;
+          width: 100%;
         }
       }
     }
