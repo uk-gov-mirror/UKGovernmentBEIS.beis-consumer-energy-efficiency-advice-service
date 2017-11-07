@@ -4,16 +4,25 @@ import {WordpressApiService} from "../wordpress-api-service/wordpress-api-servic
 import {RdSapInput} from "./request/rdsap-input";
 import {Observable} from "rxjs/Observable";
 import {EnergyCalculationResponse} from "./response/energy-calculation-response";
+import isEqual from "lodash-es/isEqual";
+import clone from "lodash-es/clone";
 
 @Injectable()
 export class EnergyCalculationApiService {
     private static readonly breEndpoint = 'angular-theme/v1/energy-calculation';
 
+    private cachedInput: RdSapInput;
+    private cachedResults: Observable<EnergyCalculationResponse>;
+
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
     fetchEnergyCalculation(rdSapInput: RdSapInput): Observable<EnergyCalculationResponse> {
-        const endpoint = this.wordpressApiService.getFullApiEndpoint(EnergyCalculationApiService.breEndpoint);
-        return this.http.post(endpoint, rdSapInput);
+        if (!isEqual(rdSapInput, this.cachedInput) || !this.cachedResults) {
+            const endpoint = this.wordpressApiService.getFullApiEndpoint(EnergyCalculationApiService.breEndpoint);
+            this.cachedInput = clone(rdSapInput);
+            this.cachedResults = this.http.post(endpoint, rdSapInput).shareReplay(1);
+        }
+        return this.cachedResults;
     }
 }
