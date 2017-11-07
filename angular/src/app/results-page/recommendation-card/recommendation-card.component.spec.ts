@@ -43,8 +43,23 @@ describe('RecommendationCardComponent', () => {
         expect(recommendationDescriptionElement.innerText).toBe(recommendation.headline);
     });
 
+    it('should display the correct summary', () => {
+       const summaryElement = fixture.debugElement.query(By.css('.summary')).nativeElement;
+       expect(summaryElement.innerText).toBe(recommendation.summary);
+    });
+
     it('should display the correct icon', () => {
         const iconElement = fixture.debugElement.query(By.css('.icon')).nativeElement;
         expect(iconElement.classList).toContain(recommendation.iconClassName);
+    });
+
+    it('should display the correct investment amount', () => {
+        const investmentElement = fixture.debugElement.query(By.css('.investment .box-content')).nativeElement;
+        expect(investmentElement.innerText).toEqual(`£${recommendation.investmentPounds}`);
+    });
+
+    it('should display the correct savings amount', () => {
+        const savingsElement = fixture.debugElement.query(By.css('.savings .box-content')).nativeElement;
+        expect(savingsElement.innerText).toEqual(`£${recommendation.costSavingPoundsPerYear.toFixed(2)}`);
     });
 });

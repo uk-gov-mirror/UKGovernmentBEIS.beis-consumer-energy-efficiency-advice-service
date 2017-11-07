@@ -171,6 +171,40 @@ describe('ResultsPageComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
+    it('should display the correct number of recommendations', () => {
+        // when
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        const expectedMeasures = Object.values(energyCalculationResponse.measures)
+            .map(measure => [measure.cost_saving, measure.energy_saving]);
+
+        // then
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
+        const actualMeasures = recommendationElements
+            .map(el => el.componentInstance.recommendation)
+            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
+
+        expect(actualMeasures.length).toBe(component.displayedRecommendations);
+        actualMeasures.forEach(measure => expect(expectedMeasures).toContain(measure));
+    });
+
+    it('should display all recommendations when the see more button is clicked', () => {
+        // when
+        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        const expectedMeasures = Object.values(energyCalculationResponse.measures)
+            .map(measure => [measure.cost_saving, measure.energy_saving]);
+        fixture.debugElement.query(By.css('button.see-more')).nativeElement.click();
+        fixture.detectChanges();
+
+        // then
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
+        const actualMeasures = recommendationElements
+            .map(el => el.componentInstance.recommendation)
+            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
+
+        expect(actualMeasures.length).toBe(expectedMeasures.length);
+        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
+    });
+
     it('should sort recommendations by cost saving descending', () => {
         // when
         injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
