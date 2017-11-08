@@ -34,7 +34,7 @@ describe('ShowerTypeQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should populate with original number of baths in response data', async(() => {
+    it('should populate with original type of shower in response data', async(() => {
         fixture.whenStable().then(() => {
             let selectedOption = fixture.debugElement.query(By.css('select option:checked'));
             expect(selectedOption.nativeElement.text).toBe(originalShowerType.name);
