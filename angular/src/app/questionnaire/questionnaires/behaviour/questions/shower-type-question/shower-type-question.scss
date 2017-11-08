@@ -1,5 +1,14 @@
 .shower-type-question.question-component .questionnaire-form select.dropdown-input {
   text-transform: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 30px;
+  background: white url('/assets/images/controls/caret-down.svg') no-repeat right;
+
+  &::-ms-expand {
+    display: none;
+  }
 
   option {
     font-size: medium;
