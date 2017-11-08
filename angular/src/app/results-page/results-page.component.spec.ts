@@ -26,6 +26,7 @@ import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
+import {ShowerType} from "../questionnaire/questionnaires/behaviour/questions/shower-type-question/shower-type";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -53,7 +54,7 @@ describe('ResultsPageComponent', () => {
         fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
     };
 
-    const mockQuestionnarieService = {
+    const mockQuestionnaireService = {
         isComplete: (name: string) => false
     };
 
@@ -73,6 +74,7 @@ describe('ResultsPageComponent', () => {
         condensingBoiler: false,
         electricityTariff: undefined,
         numberOfOccupants: 1,
+        showerType: ShowerType.None,
         numberOfShowersPerWeek: 0,
         numberOfBathsPerWeek: 45,
         numberOfFridgeFreezers: 0,
@@ -132,7 +134,7 @@ describe('ResultsPageComponent', () => {
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
                 {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
-                {provide: QuestionnaireService, useValue: mockQuestionnarieService},
+                {provide: QuestionnaireService, useValue: mockQuestionnaireService},
                 {provide: RecommendationService, useValue: mockRecommendationService},
             ]
         })

@@ -6,12 +6,14 @@ import {ShowersQuestionMetadata} from "./questions/showers-question/showers-ques
 import {FridgeFreezerQuestionMetadata} from "./questions/fridge-freezer-question/fridge-freezer-question-metadata";
 import {LivingRoomTemperatureQuestionMetadata} from "./questions/living-room-temperature-question/living-room-temperature-question-metadata";
 import {BathsQuestionMetadata} from "./questions/baths-question/baths-question-metadata";
+import {ShowerTypeQuestionMetadata} from "./questions/shower-type-question/shower-type-question-metadata";
 
 @Injectable()
 export class BehaviourQuestionnaire extends Questionnaire {
     constructor(responseData: ResponseData) {
         super(responseData, [
             new OccupantsQuestionMetadata(),
+            new ShowerTypeQuestionMetadata(),
             new ShowersQuestionMetadata(),
             new BathsQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
