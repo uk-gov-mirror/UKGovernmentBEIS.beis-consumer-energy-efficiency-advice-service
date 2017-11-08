@@ -3,7 +3,7 @@ import {QuestionnairePage} from "../questionnaire-page";
 
 export class BehaviourQuestionnairePage extends QuestionnairePage{
     navigateTo() {
-        return browser.get('/questionnaire/behaviour');
+        return browser.get('/js/questionnaire/behaviour');
     }
 
     selectShowerType() {

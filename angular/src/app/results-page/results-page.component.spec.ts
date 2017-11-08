@@ -225,7 +225,7 @@ describe('ResultsPageComponent', () => {
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
         // for measure code V2
         expect(component.recommendations[0].headline).toBe('Wind turbine on mast');
-        expect(component.recommendations[0].readMorePath).toContain('home-improvements/wind-turbine-on-mast');
+        expect(component.recommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
         expect(component.recommendations[0].iconClassName).toBe(RecommendationService.recommendationIcons['V2']);
     });
 

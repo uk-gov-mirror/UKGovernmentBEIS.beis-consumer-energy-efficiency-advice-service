@@ -17,29 +17,29 @@ const routes: Routes = [
         component: HomePageComponent
     },
     {
-        path: 'questionnaire/:name',
+        path: 'js/questionnaire/:name',
         component: QuestionnaireComponent,
         canActivate: [QuestionnaireGuard],
     },
     {
-        path: 'results',
+        path: 'js/results',
         component: ResultsPageComponent,
         canActivate: [ResultsPageRouteGuard]
     },
     {
-        path: 'carbon-footprint',
+        path: 'js/carbon-footprint',
         component: CarbonFootprintComponent
     },
     {
-        path: 'home-improvements',
+        path: 'js/home-improvements',
         component: HomeImprovementsComponent
     },
     {
-        path: 'reduce-bills',
+        path: 'js/reduce-bills',
         component: ReduceBillsComponent
     },
     {
-        path: 'warmer-home',
+        path: 'js/warmer-home',
         component: WarmerHomeComponent
     },
     {

@@ -13,7 +13,7 @@ describe('RecommendationCardComponent', () => {
         investmentPounds: 200,
         costSavingPoundsPerYear: 100,
         energySavingKwhPerYear: 100,
-        readMorePath: 'home-improvements/loft-insulation',
+        readMoreRoute: ('home-improvements/loft-insulation'),
         iconClassName: 'icon-roofing',
         headline: 'Loft insulation',
         summary: 'No description available'

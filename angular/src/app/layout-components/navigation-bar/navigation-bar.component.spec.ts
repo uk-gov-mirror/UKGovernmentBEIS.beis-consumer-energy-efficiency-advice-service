@@ -48,10 +48,10 @@ describe('NavigationBarComponent', () => {
     it('should display links to all top level pages returned by the wordpress service', async(() => {
         // given
         const wordpressPages = [
-            {path: '/page-zero',  title: 'Page zero'},
-            {path: '/page-one',   title: 'Page one'},
-            {path: '/page-two',   title: 'Page two'},
-            {path: '/page-three', title: 'Page three'},
+            {route: 'wp-page/page-zero',  title: 'Page zero'},
+            {route: 'wp-page/page-one',   title: 'Page one'},
+            {route: 'wp-page/page-two',   title: 'Page two'},
+            {route: 'wp-page/page-three', title: 'Page three'},
         ];
 
         // when
