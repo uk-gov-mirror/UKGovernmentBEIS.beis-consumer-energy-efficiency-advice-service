@@ -1,5 +1,5 @@
 export enum UserJourneyType {
-    HomepageLink,
+    Calculator,
     ReduceEnergyBills,
     MakeHomeWarmer,
     PlanHomeImprovements,

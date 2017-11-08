@@ -4,11 +4,9 @@ import {QuestionnaireService} from "../questionnaire.service";
 
 @Injectable()
 export class QuestionnaireGuard implements CanActivate {
-    constructor(private questionnaireService: QuestionnaireService) {
-    }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const questionnaireName = route.paramMap.get('name');
-        return questionnaireName !== null && this.questionnaireService.hasQuestionnaireWithName(questionnaireName);
+        return questionnaireName !== null && QuestionnaireService.hasQuestionnaireWithName(questionnaireName);
     }
 }

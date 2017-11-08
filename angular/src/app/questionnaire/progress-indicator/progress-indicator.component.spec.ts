@@ -2,13 +2,14 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {ProgressIndicatorComponent} from "./progress-indicator.component";
-import {QuestionType, QuestionTypeUtil} from "../question-type";
+import {QuestionType, QuestionTypeUtil} from "../questions/question-type";
 import {DebugElement} from "@angular/core/core";
 import {AllQuestionsContent} from "../../shared/question-content/all-questions-content";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionMetadata} from "../base-question/question-metadata";
 import {QuestionBaseComponent} from "../base-question/question-base-component";
+import groupBy from "lodash-es/groupBy";
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
@@ -120,9 +121,7 @@ describe('ProgressIndicatorComponent', () => {
 
     it('should display the correct number of sections', () => {
         // given
-        // Typescript implements an enum as an object which has each member as a property twice (as 'index: value'
-        // and 'value: index') so we need to divide the keyset by 2 to get the number of members of the enum
-        const expectedNumberOfQuestionnaireSections = Object.keys(QuestionType).length / 2;
+        const expectedNumberOfQuestionnaireSections = Object.keys(groupBy(TestQuestionnaire.questions, q => q.questionType)).length;
 
         // when
         const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));

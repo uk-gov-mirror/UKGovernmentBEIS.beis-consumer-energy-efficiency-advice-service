@@ -13,10 +13,10 @@ import {EnergyCalculationApiService} from "../shared/energy-calculation-api-serv
 import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap-input";
-import {HomeType} from "../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
-import {HomeAge} from "../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
-import {FlatPosition} from "../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position";
-import {FuelType} from "../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
+import {HomeType} from "../questionnaire/questions/home-type-question/home-type";
+import {HomeAge} from "../questionnaire/questions/home-age-question/home-age";
+import {FlatPosition} from "../questionnaire/questions/flat-position-question/flat-position";
+import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type";
 import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
@@ -26,7 +26,7 @@ import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
-import {ShowerType} from "../questionnaire/questionnaires/behaviour/questions/shower-type-question/shower-type";
+import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -59,7 +59,7 @@ describe('ResultsPageComponent', () => {
     };
 
     const responseData: ResponseData = {
-        userJourneyType: UserJourneyType.HomepageLink,
+        userJourneyType: UserJourneyType.Calculator,
         postcode: 'sw1h0et',
         epc: null,
         localAuthorityCode: localAuthorityCode,

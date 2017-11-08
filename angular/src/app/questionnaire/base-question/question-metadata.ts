@@ -1,6 +1,6 @@
 import {Type} from "@angular/core";
 import {QuestionBaseComponent} from "./question-base-component";
-import {QuestionType} from "../question-type";
+import {QuestionType} from "../questions/question-type";
 import {ResponseData} from "../../shared/response-data/response-data";
 
 export abstract class QuestionMetadata {

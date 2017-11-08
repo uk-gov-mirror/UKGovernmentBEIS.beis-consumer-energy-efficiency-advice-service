@@ -11,37 +11,37 @@ describe('Behaviour questionnaire', () => {
 
     it('should display with no errors', () => {
         expect(page.hasError()).toBeFalsy();
-        expect(page.getHeading()).toContain('How many people');
+        expect(page.getHeading()).toContain('What temperature');
     });
 
     it('should include behaviour questions', () => {
-        // Occupants count
-        expect(page.getHeading()).toContain('How many people');
+        // Living room temperature
+        expect(page.getHeading()).toContain('What temperature');
         page.goForwards();
 
-        // Type of shower
+        // Occupants count
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('type of shower');
-        page.selectShowerType();
+        expect(page.getHeading()).toContain('How many people');
         page.goForwards();
 
         // Number of showers
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('showers');
+        expect(page.getHeading()).toContain('How many showers');
         page.goForwards();
 
         // Number of baths
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('baths');
+        expect(page.getHeading()).toContain('How many baths');
         page.goForwards();
 
-        // Living room temperature
+        // Type of shower
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('living room');
+        expect(page.getHeading()).toContain('What type of shower');
+        page.selectShowerType();
         page.goForwards();
 
         // Number of fridges and freezers
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('fridges and freezers');
+        expect(page.getHeading()).toContain('How many fridges and freezers');
     });
 });

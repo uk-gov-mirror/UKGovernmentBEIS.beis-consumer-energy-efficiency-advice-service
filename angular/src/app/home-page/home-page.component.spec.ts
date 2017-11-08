@@ -56,7 +56,7 @@ describe('HomePageComponent', () => {
         button.nativeElement.click();
 
         // then
-        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.HomepageLink);
+        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Calculator);
         fixture.whenStable().then(() => {
             const location = fixture.debugElement.injector.get(Location);
             expect(location.path()).toBe('/js/questionnaire/home-basics');
@@ -72,7 +72,7 @@ describe('HomePageComponent', () => {
         button.nativeElement.click();
 
         // then
-        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.HomepageLink);
+        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Calculator);
         fixture.whenStable().then(() => {
             const location = fixture.debugElement.injector.get(Location);
             expect(location.path()).toBe('/js/results');

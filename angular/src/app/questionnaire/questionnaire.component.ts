@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionDirective} from "./question.directive";
-import {QuestionTypeUtil} from "./question-type";
+import {QuestionTypeUtil} from "./questions/question-type";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
 import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
 import {QuestionContent} from "../shared/question-content/question-content";
@@ -119,7 +119,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     goToResultsPage() {
-        this.router.navigate(['/results']);
+        this.router.navigate(['/js/results']);
     }
 
     toggleQuestionReasonDisplay() {

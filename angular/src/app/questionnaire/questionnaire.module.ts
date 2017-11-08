@@ -6,10 +6,9 @@ import {QuestionnaireComponent} from "./questionnaire.component";
 import {QuestionDirective} from "./question.directive";
 import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
-import {HomeBasicsQuestionnaireModule} from "./questionnaires/home-basics/home-basics-questionnaire.module";
 import {QuestionnaireGuard} from "./questionnaires/questionnaire.guard";
-import {BehaviourQuestionnaireModule} from "./questionnaires/behaviour/behaviour-questionnaire.module";
 import {SharedModule} from "../shared/shared.module";
+import {QuestionsModule} from "./questions/questions.module";
 
 @NgModule({
     declarations: [
@@ -23,9 +22,8 @@ import {SharedModule} from "../shared/shared.module";
     imports: [
         CommonModule,
         BrowserAnimationsModule,
-        HomeBasicsQuestionnaireModule,
-        BehaviourQuestionnaireModule,
         SharedModule,
+        QuestionsModule,
     ]
 })
 export class QuestionnaireModule {
