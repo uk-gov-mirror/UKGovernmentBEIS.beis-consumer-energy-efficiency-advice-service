@@ -121,6 +121,14 @@ export class QuestionnaireComponent implements OnInit {
         }
     }
 
+    goForwards() {
+        if (this.nextQuestionExists()) {
+            this.goForwardsOneQuestion();
+        } else {
+            this.goToResultsPage();
+        }
+    }
+
     goToResultsPage() {
         this.router.navigate(['/js/results']);
     }
@@ -163,11 +171,7 @@ export class QuestionnaireComponent implements OnInit {
                 this.onQuestionCompleteSubscription.unsubscribe();
             }
             this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() => {
-                if (this.nextQuestionExists()) {
-                    this.goForwardsOneQuestion()
-                } else {
-                    this.goToResultsPage();
-                }
+                this.goForwards();
             });
         }
     }

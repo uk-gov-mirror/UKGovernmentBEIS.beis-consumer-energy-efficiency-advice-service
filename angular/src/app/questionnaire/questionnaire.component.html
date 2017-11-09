@@ -11,7 +11,7 @@
         </button>
         <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
         <button class="right-arrow" [disabled]="!hasBeenAnswered()"
-                (click)="goForwardsOneQuestion()" aria-label="Go forwards">>
+                (click)="goForwards()" aria-label="Go forwards">>
         </button>
     </div>
     <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>

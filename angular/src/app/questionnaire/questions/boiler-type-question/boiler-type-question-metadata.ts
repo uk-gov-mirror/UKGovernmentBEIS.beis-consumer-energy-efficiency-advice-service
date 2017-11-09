@@ -14,10 +14,10 @@ export class BoilerTypeQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.fuelType == null || isGasOrOil(responseData.fuelType);
+        return responseData.fuelType == undefined || isGasOrOil(responseData.fuelType);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.fuelType != null;
+        return responseData.condensingBoiler !== undefined;
     }
 }
