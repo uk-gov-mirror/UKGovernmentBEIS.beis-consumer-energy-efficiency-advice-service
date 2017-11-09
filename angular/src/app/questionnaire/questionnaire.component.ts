@@ -119,7 +119,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     goToResultsPage() {
-        this.router.navigate(['/results']);
+        this.router.navigate(['/js/results']);
     }
 
     toggleQuestionReasonDisplay() {
