@@ -93,13 +93,16 @@ export class QuestionnaireComponent implements OnInit {
         return this.questionnaire.getNextQuestionIndex(this.currentQuestionIndex) !== -1;
     }
 
+    hasBeenAnswered() {
+        return this.questionnaire.hasBeenAnswered(this.currentQuestionIndex);
+    }
+
     canGoBack() {
         return this.previousQuestionExists();
     }
 
     canGoForwards() {
-        return this.nextQuestionExists() &&
-            this.questionnaire.hasBeenAnswered(this.currentQuestionIndex);
+        return this.nextQuestionExists() && this.hasBeenAnswered();
     }
 
     goBackOneQuestion() {
