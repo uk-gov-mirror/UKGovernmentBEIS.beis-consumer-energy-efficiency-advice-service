@@ -4,15 +4,13 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics-questionnaire";
 import {BehaviourQuestionnaire} from "./questionnaires/behaviour-questionnaire";
 
-type QuestionnaireClass = {
-    new(responseData: ResponseData): Questionnaire
-};
+type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 
 @Injectable()
 export class QuestionnaireService {
-    private static readonly QUESTIONNAIRES: {[s: string]: QuestionnaireClass} = {
-        'home-basics': HomeBasicsQuestionnaire,
-        'behaviour': BehaviourQuestionnaire
+    private static readonly QUESTIONNAIRES: {[s: string]: QuestionnaireFactory} = {
+        'home-basics': HomeBasicsQuestionnaire.getInstance,
+        'behaviour': BehaviourQuestionnaire.getInstance,
     };
 
     constructor(private responseData: ResponseData) {
@@ -24,7 +22,7 @@ export class QuestionnaireService {
 
     public getQuestionnaireWithName(name: string): Questionnaire {
         return QuestionnaireService.hasQuestionnaireWithName(name)
-            ? new QuestionnaireService.QUESTIONNAIRES[name](this.responseData)
+            ? QuestionnaireService.QUESTIONNAIRES[name](this.responseData)
             : null;
     }
 

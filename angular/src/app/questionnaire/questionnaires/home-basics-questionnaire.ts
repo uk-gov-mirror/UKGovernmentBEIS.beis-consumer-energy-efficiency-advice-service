@@ -1,6 +1,4 @@
-import {Injectable} from "@angular/core";
 import {Questionnaire} from "../base-questionnaire/questionnaire";
-import {ResponseData} from "../../shared/response-data/response-data";
 import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {QuestionMetadata} from "../base-question/question-metadata";
 import {
@@ -8,11 +6,22 @@ import {
     CORE_BRE_QUESTIONS
 } from "../questions/question-groups";
 import concat from 'lodash-es/concat';
+import {ResponseData} from "../../shared/response-data/response-data";
 
-@Injectable()
 export class HomeBasicsQuestionnaire extends Questionnaire {
-    constructor(responseData: ResponseData) {
-        super(responseData, HomeBasicsQuestionnaire.questionsForJourneyType(responseData.userJourneyType));
+
+    private static currentJourneyType: UserJourneyType;
+    private static currentInstance: HomeBasicsQuestionnaire;
+
+    public static getInstance(responseData: ResponseData) {
+        const journeyType = responseData.userJourneyType;
+        if (HomeBasicsQuestionnaire.currentInstance !== undefined && journeyType === HomeBasicsQuestionnaire.currentJourneyType) {
+            return HomeBasicsQuestionnaire.currentInstance;
+        } else {
+            HomeBasicsQuestionnaire.currentJourneyType = journeyType;
+            HomeBasicsQuestionnaire.currentInstance = new HomeBasicsQuestionnaire(responseData, HomeBasicsQuestionnaire.questionsForJourneyType(journeyType));
+            return HomeBasicsQuestionnaire.currentInstance;
+        }
     }
 
     private static questionsForJourneyType(journeyType: UserJourneyType): QuestionMetadata[] {
