@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
-import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics-questionnaire";
-import {BehaviourQuestionnaire} from "./questionnaires/behaviour-questionnaire";
+import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-questionnaire";
+import {BehaviourQuestionnaire} from "./questionnaires/behaviour/behaviour-questionnaire";
 
 type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 

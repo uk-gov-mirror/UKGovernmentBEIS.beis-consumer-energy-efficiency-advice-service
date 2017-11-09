@@ -1,12 +1,12 @@
-import {Questionnaire} from "../base-questionnaire/questionnaire";
-import {UserJourneyType} from "../../shared/response-data/user-journey-type";
-import {QuestionMetadata} from "../base-question/question-metadata";
+import {Questionnaire} from "../../base-questionnaire/questionnaire";
+import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
+import {QuestionMetadata} from "../../base-question/question-metadata";
 import {
     ADDRESS_AND_OWNERSHIP_STATUS, BASIC_BEHAVIOURAL_QUESTIONS,
     CORE_BRE_QUESTIONS
-} from "../questions/question-groups";
+} from "../../questions/question-groups";
 import concat from 'lodash-es/concat';
-import {ResponseData} from "../../shared/response-data/response-data";
+import {ResponseData} from "../../../shared/response-data/response-data";
 
 export class HomeBasicsQuestionnaire extends Questionnaire {
 
