@@ -10,7 +10,7 @@
                 (click)="goBackOneQuestion()" aria-label="Go back"><
         </button>
         <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
-        <button class="right-arrow" [class.hidden]="!nextQuestionExists()" [disabled]="!canGoForwards()"
+        <button class="right-arrow" [disabled]="!canGoForwards()"
                 (click)="goForwardsOneQuestion()" aria-label="Go forwards">>
         </button>
     </div>

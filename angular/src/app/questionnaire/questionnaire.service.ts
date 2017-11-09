@@ -1,29 +1,35 @@
 import {Injectable} from "@angular/core";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
-import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-questionnaire";
-import {BehaviourQuestionnaire} from "./questionnaires/behaviour/behaviour-questionnaire";
+import {ResponseData} from "../shared/response-data/response-data";
+import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics-questionnaire";
+import {BehaviourQuestionnaire} from "./questionnaires/behaviour-questionnaire";
+
+type QuestionnaireClass = {
+    new(responseData: ResponseData): Questionnaire
+};
 
 @Injectable()
 export class QuestionnaireService {
-    private readonly questionnaires: { [s: string]: Questionnaire };
+    private static readonly QUESTIONNAIRES: {[s: string]: QuestionnaireClass} = {
+        'home-basics': HomeBasicsQuestionnaire,
+        'behaviour': BehaviourQuestionnaire
+    };
 
-    constructor(homeBasicsQuestionnaire: HomeBasicsQuestionnaire,
-                behaviourQuestionnaire: BehaviourQuestionnaire) {
-        this.questionnaires = {
-            'home-basics': homeBasicsQuestionnaire,
-            'behaviour': behaviourQuestionnaire
-        };
+    constructor(private responseData: ResponseData) {
     }
 
-    public hasQuestionnaireWithName(name: string): boolean {
-        return this.questionnaires.hasOwnProperty(name);
+    public static hasQuestionnaireWithName(name: string): boolean {
+        return QuestionnaireService.QUESTIONNAIRES.hasOwnProperty(name);
     }
 
     public getQuestionnaireWithName(name: string): Questionnaire {
-        return this.questionnaires[name];
+        return QuestionnaireService.hasQuestionnaireWithName(name)
+            ? new QuestionnaireService.QUESTIONNAIRES[name](this.responseData)
+            : null;
     }
 
     public isComplete(name: string): boolean {
-        return this.questionnaires[name] && this.questionnaires[name].isComplete();
+        const questionnaire = this.getQuestionnaireWithName(name);
+        return questionnaire && questionnaire.isComplete();
     }
 }

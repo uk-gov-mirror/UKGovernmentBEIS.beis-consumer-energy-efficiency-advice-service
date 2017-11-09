@@ -21,7 +21,7 @@ describe('Home basics questionnaire', () => {
         page.selectAddressIfApplicable();
         CommonPageHelpers.sleep(1000);
 
-        // Home type
+        // Ownership status
         expect(page.getHeading()).toContain('own your home');
         page.clickOption('I am a tenant');
         CommonPageHelpers.sleep(1000);

@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
-import {Epc} from "../../questionnaire/questionnaires/home-basics/questions/postcode-epc-question/model/epc";
-import {FuelType} from "../../questionnaire/questionnaires/home-basics/questions/fuel-type-question/fuel-type";
-import {ElectricityTariff} from "../../questionnaire/questionnaires/home-basics/questions/electricity-tariff-question/electricity-tariff";
-import {FlatPosition} from "../../questionnaire/questionnaires/home-basics/questions/flat-position-question/flat-position";
-import {HomeAge} from "../../questionnaire/questionnaires/home-basics/questions/home-age-question/home-age";
-import {HomeType} from "../../questionnaire/questionnaires/home-basics/questions/home-type-question/home-type";
+import {Epc} from "../../questionnaire/questions/postcode-epc-question/model/epc";
+import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
+import {ElectricityTariff} from "../../questionnaire/questions/electricity-tariff-question/electricity-tariff";
+import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
+import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {UserJourneyType} from "./user-journey-type";
-import {ShowerType} from "../../questionnaire/questionnaires/behaviour/questions/shower-type-question/shower-type";
+import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
 
 @Injectable()
 export class ResponseData {

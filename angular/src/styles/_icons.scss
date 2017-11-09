@@ -22,6 +22,10 @@
   content: url('assets/images/question-types/thermostat.svg');
 }
 
+.icon-person-showering::before {
+  content: url('assets/images/question-types/behaviour.svg');
+}
+
 .icon-behaviour::before {
   content: url('assets/images/topics/behaviour.svg');
 }

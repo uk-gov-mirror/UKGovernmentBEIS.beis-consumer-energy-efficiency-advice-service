@@ -10,7 +10,7 @@ import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
-import {QuestionType} from "./question-type";
+import {QuestionType} from "./questions/question-type";
 import {QuestionBaseComponent} from "./base-question/question-base-component";
 import {QuestionMetadata} from "./base-question/question-metadata";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
