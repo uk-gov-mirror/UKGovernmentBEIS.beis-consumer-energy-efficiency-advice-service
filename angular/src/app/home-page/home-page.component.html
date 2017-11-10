@@ -8,14 +8,14 @@
     </div>
     <div class="landing-page-links page-row">
         <div class="page-row-content">
-            <button routerLink="/js/reduce-bills" class="landing-page-link">Reduce your energy bills</button>
-            <button routerLink="/js/home-improvements" class="landing-page-link">Plan home improvements</button>
-            <button routerLink="/js/carbon-footprint" class="landing-page-link">Reduce your home carbon footprint</button>
+            <a routerLink="/js/reduce-bills" class="landing-page-link">Reduce your energy bills</a>
+            <a routerLink="/js/home-improvements" class="landing-page-link">Plan home improvements</a>
+            <a routerLink="/js/carbon-footprint" class="landing-page-link">Reduce your home carbon footprint</a>
         </div>
     </div>
     <div class="page-row">
         <div class="quick-links page-row-content">
-            <a class="quick-link calculator-button" (click)="onEnergyCalculatorButtonClick()">
+            <a class="quick-link calculator-button" (click)="onEnergyCalculatorButtonClick()" tabindex="0">
                 <div class="text">
                     <div class="content">
                         <div class="heading">Try our energy efficiency calculator</div>
@@ -27,7 +27,7 @@
                     <div class="icon-house-layers"></div>
                 </div>
             </a>
-            <a class="quick-link">
+            <a class="quick-link" tabindex="0">
                 <div class="text">
                     <div class="content">
                         <div class="heading">Learn about home energy grants</div>
@@ -38,7 +38,7 @@
                     <div class="arrow-button">Find out more</div>
                 </div>
             </a>
-            <a class="quick-link">
+            <a class="quick-link" tabindex="0">
                 <div class="text">
                     <div class="content">
                         <div class="heading">Let's talk boilers</div>

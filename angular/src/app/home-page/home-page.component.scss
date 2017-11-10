@@ -29,6 +29,7 @@
         flex: 1;
         font-size: 22px;
         font-weight: bold;
+        color: black;
         background-color: white;
         display: flex;
         align-items: center;
@@ -37,8 +38,9 @@
         border: none;
         outline: none;
         cursor: pointer;
+        text-decoration: none;
 
-        &:focus {
+        &:focus, &:hover {
           box-shadow: 3px 3px 6px black;
         }
       }
@@ -72,7 +74,7 @@
       display: flex;
       align-items: stretch;
 
-      &:focus {
+      &:focus, &:hover {
         box-shadow: 3px 3px 6px black;
       }
 
