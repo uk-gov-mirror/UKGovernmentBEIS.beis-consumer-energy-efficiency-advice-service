@@ -3,6 +3,10 @@ module.exports = [
         tableName: 'gas-and-oil-boiler.json',
         tableNumber: 105,
         dataFormatNumber: 210,
+        // The JSON file for the whole table is large (11MB). For the Alpha PoC we truncate the table to keep the file
+        // size below 1MB, and only use a subset of boilers. In the Beta we will have one endpoint exposing very basic
+        // details for all boilers, and then another endpoint exposing full details for one boiler type.
+        maxRows: 500,
         columnHeadings: [
             'productIndexNumber',
             'manufacturerRefNo',

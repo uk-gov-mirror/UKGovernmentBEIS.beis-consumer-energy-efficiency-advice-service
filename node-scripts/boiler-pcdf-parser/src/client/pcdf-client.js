@@ -15,10 +15,9 @@ client.getPcdf = function(success) {
             .on('end', function() {
                 var body = Buffer.concat(bodyChunks).toString();
                 success(body);
-            });
-
-        result.on('error', function(e) {
-            console.log('ERROR: ' + e.message);
+            })
+            .on('error', function(e) {
+                throw e.message;
         })
     });
 };

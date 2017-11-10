@@ -2,36 +2,41 @@ var csvParser = require('csvtojson');
 
 var pcdfParser = {};
 
-var commentLineRegex = /(?:\s*#)(.*)/g;
-var fileEndRegex = /(?:\s*\$999)([\s\S]?.*)*/g;
+pcdfParser.getPcdfWithIgnoredLinesStripped = function (pcdf) {
+    // Match anything up to and including the first line which begins "$001"
+    var matchIgnoredLinesBeforeStartOfData = /^[\s\S]*\s+\$001.*\s+/;
+    // Match anything from the first line which begins "$999" onwards
+    var matchIgnoredLinesAfterEndOfData = /\$999.*[\s\S]*$/;
+    // Match any line which begins with #
+    var matchCommentLines = /\s*#(.*)/g;
+    return pcdf
+        .replace(matchIgnoredLinesBeforeStartOfData, '')
+        .replace(matchIgnoredLinesAfterEndOfData, '')
+        .replace(matchCommentLines, '');
+};
 
-pcdfParser.getTableBodyJson = function(pcdf, table, success) {
-    const tableCsvString = getTableBodyCsvString(pcdf, table.tableNumber, table.dataFormatNumber);
+pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
+    const tableCsvString = getTableBodyCsvString(pcdf, tableMetadata.tableNumber, tableMetadata.dataFormatNumber);
     var tableRows = [];
     csvParser({noheader: true})
         .fromString(tableCsvString)
-        .on('csv', function(csvRow) {
-            var columnIndex = 0;
-            var jsonRow = table.columnHeadings.reduce(function(result, columnHeading) {
-                if (columnHeading) {
-                    result[columnHeading] = csvRow[columnIndex];
-                }
-                columnIndex++;
-                return result;
-            }, {});
+        .on('csv', function (csvRow) {
+            var jsonRow = {};
+            tableMetadata.columnHeadings.forEach(function (columnHeading, columnIndex) {
+                jsonRow[columnHeading] = csvRow[columnIndex];
+            });
             tableRows.push(jsonRow);
         })
-        .on('done', function() {
+        .on('done', function () {
             success(tableRows);
         });
 };
 
 function getTableBodyCsvString(pcdf, tableNumber, expectedDataFormatNumber) {
-    var strippedPcdf = getPcdfWithCommentsStripped(pcdf);
     var tableRegex = getRegexForTableNumber(tableNumber);
     var tableSegments = [];
     var match;
-    while (match = tableRegex.exec(strippedPcdf)) {
+    while (match = tableRegex.exec(pcdf)) {
         var dataFormatNumber = match[1];
         verifyDataFormatNumber(expectedDataFormatNumber, dataFormatNumber, tableNumber);
         var tableSegment = match[2];
@@ -40,16 +45,15 @@ function getTableBodyCsvString(pcdf, tableNumber, expectedDataFormatNumber) {
     return tableSegments.join('\r\n');
 }
 
-function getPcdfWithCommentsStripped(pcdf) {
-    return pcdf
-        .replace(commentLineRegex, '')
-        .replace(fileEndRegex, '');
-}
-
 function getRegexForTableNumber(tableNumber) {
-    var regexSourceForTableControlLine = '(?:\\\s*\\\$' + tableNumber + ',)(\\\d+)(?:.*[\\\s]*)';
-    var regexSourceForNonControlLines = '([^\$]*)';
-    return new RegExp(regexSourceForTableControlLine + regexSourceForNonControlLines, "g");
+    // The start of table is indicated by a 'control line' which begins with $X,Y
+    // where X is the table number and Y is the data format number
+    var regexSourceForTableStartLine = '\\\s*\\\$' + tableNumber + ',(\\\d+).*\\\s*';
+    // The succeeding lines (which do not begin with $) form the table body
+    var regexSourceForTableBodyLines = '((?:[^\\\$]\\\S*\\\s*)*)';
+    // The table is terminated by the next line which begins with $
+    var regexSourceForTableEndLine = '\\\s*\\\$';
+    return new RegExp(regexSourceForTableStartLine + regexSourceForTableBodyLines + regexSourceForTableEndLine, "g");
 }
 
 function verifyDataFormatNumber(expectedDataFormatNumber, actualDataFormatNumber, tableNumber) {
