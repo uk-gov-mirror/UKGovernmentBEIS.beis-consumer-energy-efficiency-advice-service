@@ -6,19 +6,34 @@ import {HomeType} from "../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import toString from "lodash-es/toString";
+import {Epc} from "../../../questionnaire/questions/postcode-epc-question/model/epc";
+import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
+import {isUndefined} from "util";
 
 export class RdSapInput {
-    property_type: string;
-    built_form: string;
-    flat_level: string;
-    construction_date: string;
-    floor_area: string;
-    num_storeys: number;
-    num_bedrooms: number;
-    heating_fuel: string;
-    measures: string;
+    readonly epc: Epc;
+    readonly property_type: string;
+    readonly built_form: string;
+    readonly flat_level: string;
+    readonly construction_date: string;
+    readonly floor_area: string;
+    readonly num_storeys: number;
+    readonly num_bedrooms: number;
+    readonly heating_fuel: string;
+    readonly measures: string;
+
+    readonly living_room_temperature: number;
+    readonly occupants: number;
+    readonly showers_per_week: number;
+    readonly baths_per_week: number;
+    readonly shower_type: string;
+    readonly fridge_freezers: number;
+    readonly fridges: number;
+    readonly freezers: number;
 
     constructor(responseData: ResponseData) {
+        this.epc = responseData.epc;
+
         // TODO: This is not currently a full correct mapping to RdSAP. For a full mapping, the homeType question needs to be changed.
         // This is a 'best possible' mapping based on the current questions, to enable a PoC connection to the BRE API.
         // See BEISDEAS-28 for updating the questions to allow a correct mapping.
@@ -31,6 +46,17 @@ export class RdSapInput {
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
         this.measures = 'Y';
+
+        // Habit data+
+        this.living_room_temperature = responseData.livingRoomTemperature;
+        this.occupants = responseData.numberOfOccupants;
+        this.showers_per_week = responseData.numberOfShowersPerWeek;
+        this.baths_per_week = responseData.numberOfBathsPerWeek;
+        if (responseData.showerType)
+        this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
+        this.fridge_freezers = responseData.numberOfFridgeFreezers;
+        this.fridges = responseData.numberOfFridges;
+        this.freezers = responseData.numberOfFreezers;
     }
 
     public isMinimalDataSet() {
@@ -105,5 +131,12 @@ export class RdSapInput {
             case FuelType.HeatingOil:  { return '28'; }
             case FuelType.Electricity: { return '29'; }
         }
+    }
+
+    private static getShowerTypeEncoding(showerType: ShowerType): string {
+        if (showerType !== undefined) {
+            return showerType.toString(10);
+        }
+        return undefined;
     }
 }
