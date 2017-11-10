@@ -1,0 +1,12 @@
+{
+  "name": "beis-dceas-boiler-pcdf-parser",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "csvtojson": "^1.1.9",
+    "jsonfile": "^4.0.0"
+  }
+}
