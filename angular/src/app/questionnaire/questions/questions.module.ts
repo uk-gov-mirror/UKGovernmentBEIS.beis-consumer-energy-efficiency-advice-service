@@ -21,11 +21,13 @@ import {ShowerTypeQuestionComponent} from "./shower-type-question/shower-type-qu
 import {ShowersQuestionComponent} from "./showers-question/showers-question.component";
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
+import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 
 @NgModule({
     declarations: [
         BathsQuestionComponent,
         BedroomsQuestionComponent,
+        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -45,6 +47,7 @@ import {CommonQuestionsModule} from "../common-questions/common-questions.module
     exports: [
         BathsQuestionComponent,
         BedroomsQuestionComponent,
+        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -70,6 +73,7 @@ import {CommonQuestionsModule} from "../common-questions/common-questions.module
     entryComponents: [
         BathsQuestionComponent,
         BedroomsQuestionComponent,
+        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,

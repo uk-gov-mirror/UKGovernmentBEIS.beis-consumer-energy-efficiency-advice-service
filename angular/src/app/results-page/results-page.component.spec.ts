@@ -27,6 +27,7 @@ import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-con
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
 import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
+import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -80,7 +81,8 @@ describe('ResultsPageComponent', () => {
         numberOfFridgeFreezers: 0,
         numberOfFridges: 0,
         numberOfFreezers: 0,
-        livingRoomTemperature: 20
+        livingRoomTemperature: 20,
+        benefits: Benefits.None
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

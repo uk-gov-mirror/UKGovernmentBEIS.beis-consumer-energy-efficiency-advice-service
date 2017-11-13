@@ -8,6 +8,7 @@ import {HomeType} from "../../questionnaire/questions/home-type-question/home-ty
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {UserJourneyType} from "./user-journey-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
+import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
 
 @Injectable()
 export class ResponseData {
@@ -33,6 +34,8 @@ export class ResponseData {
     public numberOfFreezers: number;
     public livingRoomTemperature: number;
     public numberOfBathsPerWeek: number;
+
+    public benefits: Benefits;
 }
 
 export function isComplete(responseData: ResponseData) {
