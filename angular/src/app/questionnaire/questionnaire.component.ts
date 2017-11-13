@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild} from "@angular/core";
+import {ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, OnDestroy, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionDirective} from "./question.directive";
 import {QuestionTypeUtil} from "./questions/question-type";
@@ -16,9 +16,10 @@ import {ResponseData} from "../shared/response-data/response-data";
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss']
 })
-export class QuestionnaireComponent implements OnInit {
+export class QuestionnaireComponent implements OnInit, OnDestroy {
 
     private questionComponent: QuestionBaseComponent;
+    private questionContentSubscription: Subscription;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
 
@@ -47,10 +48,16 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.questionContentService.fetchQuestionsContent().subscribe(
+        this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorMessage()
         );
+    }
+
+    ngOnDestroy() {
+        if (!this.questionContentSubscription.closed) {
+            this.questionContentSubscription.unsubscribe();
+        }
     }
 
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
