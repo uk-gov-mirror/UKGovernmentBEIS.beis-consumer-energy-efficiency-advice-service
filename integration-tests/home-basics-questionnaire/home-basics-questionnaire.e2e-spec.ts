@@ -1,5 +1,6 @@
 import {HomeBasicsQuestionnairePage} from "./home-basics-questionnaire.po";
 import {CommonPageHelpers} from "../common-page-helpers";
+import {by, element} from "protractor";
 
 describe('Home basics questionnaire', () => {
     let page: HomeBasicsQuestionnairePage;
@@ -21,8 +22,11 @@ describe('Home basics questionnaire', () => {
         page.selectAddressIfApplicable();
         CommonPageHelpers.sleep(1000);
 
-        // Ownership status
-        expect(page.getHeading()).toContain('circumstance');
+        // Tenure type
+        // Not testing the page heading because this is likely to be changed completely in wordpress
+        expect(element(by.css('owner-occupancy-option'))).toBeTruthy();
+        expect(element(by.css('private-tenancy-option'))).toBeTruthy();
+        expect(element(by.css('social-tenancy-option'))).toBeTruthy();
         page.clickOption('I own my own home');
         CommonPageHelpers.sleep(1000);
 
