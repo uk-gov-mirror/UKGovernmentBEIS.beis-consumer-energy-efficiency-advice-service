@@ -22,8 +22,8 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // Ownership status
-        expect(page.getHeading()).toContain('own your home');
-        page.clickOption('I am a tenant');
+        expect(page.getHeading()).toContain('circumstance');
+        page.clickOption('I own my own home');
         CommonPageHelpers.sleep(1000);
 
         // Mini-EPC

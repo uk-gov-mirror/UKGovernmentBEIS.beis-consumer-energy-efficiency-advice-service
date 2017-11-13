@@ -27,6 +27,7 @@ import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-con
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
 import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
+import {TenureType} from "../questionnaire/questions/ownership-status-question/tenure-type";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -64,7 +65,7 @@ describe('ResultsPageComponent', () => {
         epc: null,
         localAuthorityCode: localAuthorityCode,
         confirmEpc: true,
-        homeowner: true,
+        tenureType: TenureType.OwnerOccupancy,
         homeType: HomeType.GroundFloorFlat,
         homeAge: HomeAge.pre1900,
         flatPosition: FlatPosition.ThreeSidesExposed,

@@ -12,8 +12,8 @@ import {HomeAgeQuestionMetadata} from "../../questions/home-age-question/home-ag
 import {FlatPositionQuestionMetadata} from "../../questions/flat-position-question/flat-position-question-metadata";
 import {HomeTypeQuestionMetadata} from "../../questions/home-type-question/home-type-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "../../questions/confirm-epc-question/confirm-epc-question-metadata";
-import {OwnershipStatusQuestionMetadata} from "../../questions/ownership-status-question/ownership-status-question-metadata";
 import {PostcodeEpcQuestionMetadata} from "../../questions/postcode-epc-question/postcode-epc-question-metadata";
+import {TenureTypeQuestionMetadata} from "../../questions/ownership-status-question/tenure-type-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -28,7 +28,7 @@ describe('HomeBasicsQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.Calculator;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
-            new OwnershipStatusQuestionMetadata(),
+            new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),
@@ -54,7 +54,7 @@ describe('HomeBasicsQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.ReduceEnergyBills;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
-            new OwnershipStatusQuestionMetadata(),
+            new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),
@@ -80,7 +80,7 @@ describe('HomeBasicsQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
-            new OwnershipStatusQuestionMetadata(),
+            new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),
@@ -106,7 +106,7 @@ describe('HomeBasicsQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.MakeHomeWarmer;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
-            new OwnershipStatusQuestionMetadata(),
+            new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),
@@ -130,7 +130,7 @@ describe('HomeBasicsQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
-            new OwnershipStatusQuestionMetadata(),
+            new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
             new FlatPositionQuestionMetadata(),
