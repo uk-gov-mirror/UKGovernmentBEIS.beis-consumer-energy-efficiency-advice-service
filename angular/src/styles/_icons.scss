@@ -18,6 +18,10 @@
   content: url('assets/images/question-types/person.svg');
 }
 
+.icon-person-large::before {
+  content: url('assets/images/question-types/person-large.svg');
+}
+
 .icon-thermostat::before {
   content: url('assets/images/question-types/thermostat.svg');
 }

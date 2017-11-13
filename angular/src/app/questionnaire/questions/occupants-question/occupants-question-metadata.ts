@@ -13,6 +13,7 @@ export class OccupantsQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.numberOfOccupants !== undefined;
+        return responseData.numberOfAdults !== undefined &&
+            responseData.numberOfChildren !== undefined;
     }
 }
