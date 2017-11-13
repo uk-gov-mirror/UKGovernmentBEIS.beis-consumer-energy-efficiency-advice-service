@@ -13,6 +13,7 @@ describe('EnergyCalculationApiService', () => {
     let service: EnergyCalculationApiService;
 
     const rdSapInput: RdSapInput = {
+        epc: undefined,
         property_type: "2",
         built_form: "4",
         flat_level: "1",
@@ -22,6 +23,14 @@ describe('EnergyCalculationApiService', () => {
         heating_fuel: "26",
         measures: "Y",
         floor_area: undefined,
+        occupants: 1,
+        living_room_temperature: 25,
+        baths_per_week: 0,
+        showers_per_week: 123,
+        shower_type: '4',
+        fridge_freezers: 5,
+        fridges: 0,
+        freezers: 26,
         isMinimalDataSet: () => true
     };
 

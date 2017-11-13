@@ -49,7 +49,7 @@ describe('ShowerTypeQuestionComponent', () => {
         fixture.whenStable().then(() => {
             let showerTypeSelect = fixture.debugElement.query(By.css('select'))
             // Angular syntax for custom ngValue
-            showerTypeSelect.nativeElement.value = "1: 0";
+            showerTypeSelect.nativeElement.value = "1: 1";
             showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
             // then
