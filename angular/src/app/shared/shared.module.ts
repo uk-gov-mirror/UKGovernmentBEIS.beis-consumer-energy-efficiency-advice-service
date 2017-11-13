@@ -15,6 +15,7 @@ import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.compo
 import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
+import { NeedHelpComponent } from './need-help/need-help.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/s
         NavigationBarComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
-        SpinnerAndErrorContainerComponent
+        SpinnerAndErrorContainerComponent,
+        NeedHelpComponent
     ],
     exports: [
         TimesPipe,
@@ -30,6 +32,7 @@ import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/s
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
+        NeedHelpComponent,
     ],
     imports: [
         HttpClientModule,

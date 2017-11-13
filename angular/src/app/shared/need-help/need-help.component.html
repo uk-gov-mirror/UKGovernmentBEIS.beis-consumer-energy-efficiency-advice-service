@@ -1,0 +1,7 @@
+<button #needHelp tabindex="0" class="need-help" [style.visibility]="visible ? 'visible' : 'hidden'" (click)="expanded = !expanded; adjustForFooter()">
+    <div class="header-bar">Need any help?</div>
+    <div class="contents" *ngIf="expanded">
+        If you are having any problems using the site, or would like any further assistance, please call 0800 1234567,
+        and quote reference ABCDEF.
+    </div>
+</button>
