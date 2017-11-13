@@ -8,6 +8,7 @@ import {HomeType} from "../../questionnaire/questions/home-type-question/home-ty
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {UserJourneyType} from "./user-journey-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
+import {TenureType} from "../../questionnaire/questions/ownership-status-question/tenure-type";
 
 @Injectable()
 export class ResponseData {
@@ -16,7 +17,7 @@ export class ResponseData {
     public epc: Epc;
     public localAuthorityCode: string;
     public confirmEpc: boolean;
-    public homeowner: boolean;
+    public tenureType: TenureType;
     public homeType: HomeType;
     public homeAge: HomeAge;
     public flatPosition: FlatPosition;
