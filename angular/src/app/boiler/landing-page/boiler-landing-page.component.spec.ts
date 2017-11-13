@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { BoilerLandingPageComponent } from "./landing-page.component";
+import { BoilerLandingPageComponent } from "./boiler-landing-page.component";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;

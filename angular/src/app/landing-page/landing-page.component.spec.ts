@@ -14,7 +14,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {PostcodeValidationService} from "../shared/postcode-validation-service/postcode-validation.service";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 
-describe('LandingPageComponent', () => {
+describe('BoilerLandingPageComponent', () => {
     let component: LandingPageComponent;
     let fixture: ComponentFixture<LandingPageComponent>;
     let router: Router;

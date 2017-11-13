@@ -3,5 +3,6 @@ export enum UserJourneyType {
     ReduceEnergyBills,
     MakeHomeWarmer,
     PlanHomeImprovements,
-    ReduceCarbonFootprint
+    ReduceCarbonFootprint,
+    Boiler,
 }

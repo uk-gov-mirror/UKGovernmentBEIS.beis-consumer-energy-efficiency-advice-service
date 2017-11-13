@@ -1,0 +1,70 @@
+@import "styles/var/colours";
+@import "styles/mixins/font";
+@import "styles/mixins/buttons";
+
+.boiler-landing-page {
+
+  .page-row-content {
+    padding: 48px 0;
+  }
+
+  .heading {
+    @include page-subheading;
+    margin-bottom: 16px;
+  }
+
+  .body-text {
+    font-size: 18px;
+  }
+
+  .link-button {
+    @include body-uppercase;
+    color: white;
+    text-align: left;
+
+    cursor: pointer;
+    border: none;
+    background-color: $dark-grey;
+    &:hover, &:focus {
+      background-color: black;
+    }
+
+    padding: 24px 16px;
+    box-sizing: border-box;
+  }
+
+  .page-heading {
+    background-color: $light-grey;
+
+    .heading-text {
+      @include page-heading;
+    }
+  }
+
+  .troubleshooting {
+    display: block;
+
+    .tips {
+      margin-top: 32px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .carousel {
+        flex: 1 1 auto;
+        padding-right: 24px;
+        border-right: 1px solid $light-medium-grey;
+      }
+
+      .still-not-working {
+        flex: 0 0 250px;
+        padding-left: 48px;
+
+        .link-button {
+          margin-top: 24px;
+        }
+      }
+    }
+  }
+}

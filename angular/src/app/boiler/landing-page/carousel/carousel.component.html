@@ -1,0 +1,27 @@
+<div class="carousel">
+    <div class="content">
+        <button class="arrow left icon-chevron-left"
+                [disabled]="!canScrollBackwards()"
+                (click)="scrollBackwards()"
+                title="Scroll left to see earlier tips"
+                aria-label="Scroll left to see earlier tips"></button>
+        <div class="mask">
+            <div class="carousel-items" [attr.data-first-item]="currentItem">
+                <app-carousel-item class="carousel-item"
+                                   *ngFor="let item of carouselItems; let idx = index"
+                                   [number]="idx + 1"
+                                   [summary]="item.summary"
+                                   [details]="item.details">
+                </app-carousel-item>
+            </div>
+        </div>
+        <button class="arrow right icon-chevron-right"
+                [disabled]="!canScrollForwards()"
+                (click)="scrollForwards()"
+                title="Scroll right to see later tips"
+                aria-label="Scroll right to see later tips"></button>
+    </div>
+    <div class="dots">
+        <div class="dot" *ngFor="let idx of carouselItems.length - 2 | times" [class.active]="currentItem === idx"></div>
+    </div>
+</div>

@@ -10,6 +10,7 @@ import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-i
 import {CarbonFootprintComponent} from "./landing-page/carbon-footprint/carbon-footprint.component";
 import {ReduceBillsComponent} from "./landing-page/reduce-bills/reduce-bills.component";
 import {WarmerHomeComponent} from "./landing-page/warmer-home/warmer-home.component";
+import {BoilerLandingPageComponent} from "./boiler/landing-page/boiler-landing-page.component";
 
 const routes: Routes = [
     {
@@ -41,6 +42,10 @@ const routes: Routes = [
     {
         path: 'js/warmer-home',
         component: WarmerHomeComponent
+    },
+    {
+        path: 'js/boiler',
+        component: BoilerLandingPageComponent
     },
     {
         path: ':slug',

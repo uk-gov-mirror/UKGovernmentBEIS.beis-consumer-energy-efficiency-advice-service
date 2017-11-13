@@ -13,6 +13,7 @@ import {HomePageModule} from "./home-page/home-page.module";
 import {LandingPageModule} from "./landing-page/landing-page.module";
 import {LayoutComponentsModule} from "./layout-components/layout-components.module";
 import {PageModule} from "./page/page.module";
+import {BoilerModule} from "./boiler/boiler.module";
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {PageModule} from "./page/page.module";
         HomePageModule,
         PageModule,
         LandingPageModule,
-        LayoutComponentsModule.forRoot()
+        LayoutComponentsModule.forRoot(),
+        BoilerModule,
     ],
     bootstrap: [AppComponent],
 })

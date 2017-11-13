@@ -20,4 +20,9 @@ export class HomePageComponent {
         const route = this.questionnaireService.isComplete('home-basics') ? '/js/results' : '/js/questionnaire/home-basics';
         this.router.navigate([route]);
     }
+
+    onBoilerButtonClick() {
+        this.responseData.userJourneyType = UserJourneyType.Boiler;
+        this.router.navigate(['/js/boiler']);
+    }
 }

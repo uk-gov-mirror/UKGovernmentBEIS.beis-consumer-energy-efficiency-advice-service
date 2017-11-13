@@ -1,0 +1,83 @@
+@import "styles/var/colours";
+
+$item-margin: 16px;
+
+:host {
+  display: block;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .content {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+
+    .arrow {
+      border: none;
+      background: none;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.left {
+        margin-right: 16px;
+      }
+
+      &.right {
+        margin-left: 16px;
+      }
+    }
+
+    .mask {
+      overflow-x: hidden;
+      flex: 1 1 auto;
+
+      .carousel-items {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        transition: left 500ms;
+
+        .carousel-item {
+          flex: 0 0 auto;
+          width: calc((100% - 2 * #{$item-margin}) / 3);
+          margin-right: $item-margin;
+        }
+
+        @for $i from 0 through 100 {
+          &[data-first-item="#{$i}"] {
+            left: calc(-#{$i} * (100% + #{$item-margin}) / 3);
+          }
+        }
+      }
+    }
+  }
+
+  .dots {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $lighter-medium-grey;
+
+      &.active {
+        background-color: $dark-medium-grey;
+      }
+
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+  }
+}

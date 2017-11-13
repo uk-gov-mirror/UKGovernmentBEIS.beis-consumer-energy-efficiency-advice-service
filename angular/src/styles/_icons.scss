@@ -113,3 +113,21 @@
 .icon-caret-down::before {
   content: url('assets/images/controls/caret-down.svg');
 }
+
+.icon-chevron-left {
+  &::before {
+    content: url('assets/images/controls/chevron-left.svg');
+  }
+  &[disabled]::before {
+    content: url('assets/images/controls/chevron-left-grey.svg');
+  }
+}
+
+.icon-chevron-right {
+  &::before {
+    content: url('assets/images/controls/chevron-right.svg');
+  }
+  &[disabled]::before {
+    content: url('assets/images/controls/chevron-right-grey.svg');
+  }
+}
