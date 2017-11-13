@@ -11,9 +11,96 @@
             <div class="tips">
                 <app-carousel class="carousel"></app-carousel>
                 <div class="still-not-working">
-                    <div class="body-text">Still not working?</div>
+                    <div class="body-large">Still not working?</div>
                     <button class="link-button">Check out our list of certified repairers</button>
                     <button class="link-button">Find out about your landlord's obligations</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="replacing page-row">
+        <div class="page-row-content">
+            <div class="heading">Thinking about replacing your boiler?</div>
+            <div class="boiler-options">
+                <div class="body-text">
+                    If you're replacing your boiler or heating system, there are many options to choose from.<br>
+                    Review all the different types or use our heating system calculator to find the right option for your home.
+                </div>
+                <button class="link-button">Yes, let's look at some boiler options</button>
+            </div>
+            <div class="not-sure-if">
+                <div class="heading">Not sure if your boiler needs replacing?</div>
+                <div class="body">
+                    <div class="make-and-model">
+                        <div class="body-text">
+                            Select the make and the model of your boiler so we can check whether it needs replacing
+                        </div>
+                        <form class="boiler-input" (ngSubmit)="{}">
+                            <input class="boiler-input-text"spellcheck="false" type="text"
+                                   name="make-model-input" aria-label="Enter your boiler's make and model"
+                                   title="Enter your boiler's make and model">
+                            <button class="boiler-input-submit" type="submit"
+                                    title="Submit" aria-label="Submit">></button>
+                        </form>
+                        <div class="dont-know-buttons">
+                            <button class="image-rec-button">
+                                <span class="icon-camera"></span>
+                                <span>Try our image recognition tool</span>
+                            </button>
+                            <button class="link-button">I don't know my boiler make</button>
+                        </div>
+                    </div>
+                    <div class="postcode-epc">
+                        <div class="body-text">
+                            We can also try your postcode to see if your EPC has any information on your boiler
+                        </div>
+                        <form class="postcode-input" (ngSubmit)="{}">
+                            <input class="postcode-input-text"spellcheck="false" type="text"
+                                   name="make-model-input" aria-label="Enter your postcode" title="Enter your postcode">
+                            <button class="postcode-input-submit" type="submit"
+                                    title="Submit" aria-label="Submit">></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="grants page-row-content">
+            <div class="heading">Grants & incentives</div>
+            <div class="body">
+                <div class="body-text">
+                    Find out if you are eligible to receive financial support from the government if you are struggling
+                    to replace your boiler. There are also incentives available if you are using a renewable energy source
+                </div>
+                <div class="links">
+                    <button class="link-button">Find out about boiler grants</button>
+                    <button class="link-button">Earn money via the renewable heat incentive</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="find-installer page-row">
+        <div class="page-row-content">
+            <div class="heading">Find a trustworthy installer</div>
+            <div class="installers">
+                <div class="installer">
+                    <div class="installer-section">For plumbing</div>
+                    <a class="installer-link">Competent Persons Register</a>
+                </div>
+                <div class="installer">
+                    <a class="installer-link">Scottish & Northern Ireland Plumbing Employers' Federation</a>
+                </div>
+                <div class="installer">
+                    <a class="installer-link">Heating and Hotwater Industry Council</a>
+                </div>
+                <div class="installer">
+                    <div class="installer-section">For oil boilers</div>
+                    <a class="installer-link">Oil Firing Technical Association</a>
+                </div>
+                <div class="installer">
+                    <div class="installer-section">For gas and LPG boilers</div>
+                    <a class="installer-link">Gas Safe Register</a>
                 </div>
             </div>
         </div>
