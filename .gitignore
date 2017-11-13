@@ -46,6 +46,9 @@ testem.log
 angular/e2e/*.js
 angular/e2e/*.map
 
+# outputs from node scripts
+node-scripts/boiler-pcdf-parser/outputs
+
 # System Files
 .DS_Store
 Thumbs.db
