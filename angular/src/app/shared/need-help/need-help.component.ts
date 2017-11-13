@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, OnDestroy, AfterViewChecked } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewChecked } from "@angular/core";
 
 @Component({
     selector: 'app-need-help',
@@ -6,9 +6,9 @@ import { Component, ViewChild, OnInit, OnDestroy, AfterViewChecked } from "@angu
     styleUrls: ['./need-help.component.scss']
 })
 export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewChecked {
-    @ViewChild('needHelp') container;
     visible: boolean = false;
     expanded: boolean = false;
+    margin: number = 0;
 
     ngOnInit() {
         document.addEventListener('scroll', this.adjustForFooter, true);
@@ -28,10 +28,9 @@ export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewChecked {
     private adjustForFooter = () => {
         const footer = document.querySelector('#page-footer');
         if (!!footer && footer.getBoundingClientRect().top < window.innerHeight) {
-            const footerVisibleHeight = window.innerHeight - footer.getBoundingClientRect().top;
-            this.container.nativeElement.style['margin-bottom'] = `${footerVisibleHeight}px`;
+            this.margin = window.innerHeight - footer.getBoundingClientRect().top;
         } else {
-            this.container.nativeElement.style['margin-bottom'] = '0';
+            this.margin = 0;
         }
     }
 }
