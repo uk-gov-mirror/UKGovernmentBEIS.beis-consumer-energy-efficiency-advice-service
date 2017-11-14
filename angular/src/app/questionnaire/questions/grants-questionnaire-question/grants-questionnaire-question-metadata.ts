@@ -13,8 +13,6 @@ export class GrantsQuestionnaireQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.numberOfFridgeFreezers !== undefined &&
-               responseData.numberOfFridges !== undefined &&
-               responseData.numberOfFreezers !== undefined;
+        return responseData.shouldIncludeGrantsQuestionnaire !== undefined;
     }
 }
