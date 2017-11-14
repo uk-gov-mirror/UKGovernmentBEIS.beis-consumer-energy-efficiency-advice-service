@@ -44,3 +44,11 @@ export const OTHER_BEHAVIOURAL_QUESTIONS = [
     new ShowerTypeQuestionMetadata(),
     new FridgeFreezerQuestionMetadata(),
 ];
+
+export const GRANTS_QUESTIONS = [
+    new PostcodeEpcQuestionMetadata(),
+    new TenureTypeQuestionMetadata(),
+    // TODO: add benefits question when this is done
+    new OccupantsQuestionMetadata()
+    // TODO: add annual income question when this is done
+];
