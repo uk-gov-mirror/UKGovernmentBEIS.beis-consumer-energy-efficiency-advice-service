@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
+import {Component, OnInit, OnDestroy, DoCheck, AfterViewInit} from "@angular/core";
 
 @Component({
     selector: 'app-need-help',
     templateUrl: './need-help.component.html',
     styleUrls: ['./need-help.component.scss']
 })
-export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewInit {
+export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewInit, DoCheck {
     visible: boolean = false;
     expanded: boolean = false;
     margin: number = 0;
@@ -17,9 +17,12 @@ export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            this.adjustForFooter();
             this.visible = true;
         });
+    }
+
+    ngDoCheck() {
+        this.adjustForFooter();
     }
 
     ngOnDestroy() {

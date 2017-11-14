@@ -107,7 +107,7 @@ describe('BoilerLandingPageComponent', () => {
         fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/questionnaire/home-basics']);
+        expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/questionnaire/home-basics']);
     });
 
     it('should save the user journey type upon entering a valid postcode', () => {

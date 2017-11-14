@@ -49,7 +49,7 @@ export class RdSapInput {
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;
-        this.occupants = responseData.numberOfOccupants;
+        this.occupants = responseData.numberOfAdults + responseData.numberOfChildren;
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
         if (responseData.showerType)
