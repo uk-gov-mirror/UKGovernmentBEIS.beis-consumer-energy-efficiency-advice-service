@@ -5,6 +5,7 @@ import {PostcodeEpcQuestionMetadata} from "../../questions/postcode-epc-question
 import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occupants-question-metadata";
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
 import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
+import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
 
 describe('GrantsQuestionnaire', () => {
 
@@ -23,6 +24,7 @@ describe('GrantsQuestionnaire', () => {
         responseData.numberOfAdults = undefined;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
+            new BenefitsQuestionMetadata(),
             new OccupantsQuestionMetadata()
         ];
 
@@ -44,6 +46,7 @@ describe('GrantsQuestionnaire', () => {
         GrantsQuestionnaire.getInstance(responseData);
         const expectedQuestions = [
             new TenureTypeQuestionMetadata(),
+            new BenefitsQuestionMetadata(),
             new OccupantsQuestionMetadata()
         ];
 
