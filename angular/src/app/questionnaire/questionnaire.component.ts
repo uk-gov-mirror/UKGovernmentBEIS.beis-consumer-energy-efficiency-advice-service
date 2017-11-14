@@ -9,7 +9,6 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
-import {ResponseData} from "../shared/response-data/response-data";
 
 @Component({
     selector: 'app-questionnaire',
@@ -55,7 +54,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (!this.questionContentSubscription.closed) {
+        if (this.questionContentSubscription && !this.questionContentSubscription.closed) {
             this.questionContentSubscription.unsubscribe();
         }
     }
