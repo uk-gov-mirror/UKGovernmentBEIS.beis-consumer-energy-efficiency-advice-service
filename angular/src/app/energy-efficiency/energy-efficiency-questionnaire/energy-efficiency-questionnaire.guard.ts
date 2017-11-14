@@ -1,18 +1,20 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router} from "@angular/router";
-import {QuestionnaireService} from "../questionnaire.service";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 
 @Injectable()
-export class QuestionnaireGuard implements CanActivate {
+export class EnergyEfficiencyQuestionnaireGuard implements CanActivate {
+
+    private static energyEfficiencyQuestionnaires = ['home-basics', 'behaviour'];
 
     constructor(private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const questionnaireName = route.paramMap.get('name');
-        // Grants questionnaire should not be accessible as a route, it will only ever be loaded into the grants component
-        if (questionnaireName !== null &&
+        const isAllowedQuestionnaire = (questionnaireName !== null) &&
             QuestionnaireService.hasQuestionnaireWithName(questionnaireName) &&
-            questionnaireName !== 'grants') {
+            EnergyEfficiencyQuestionnaireGuard.energyEfficiencyQuestionnaires.indexOf(questionnaireName) > -1;
+        if (isAllowedQuestionnaire) {
             return true;
         }
         this.router.navigate(['/']);

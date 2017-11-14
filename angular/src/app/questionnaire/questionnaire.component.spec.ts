@@ -25,6 +25,7 @@ describe('QuestionnaireComponent', () => {
 
     const questionnaireName = 'test';
     const questionId = 'test-question-id';
+    const anotherQuestionId = 'another-test-question-id';
 
     let responseDataStub: ResponseData;
 
@@ -51,7 +52,13 @@ describe('QuestionnaireComponent', () => {
 
     class TestQuestionnaire extends Questionnaire {
         constructor() {
-            super(new ResponseData(), [new TestQuestion(TestQuestionComponent, questionId, QuestionType.User)]);
+            super(
+                new ResponseData(),
+                [
+                    new TestQuestion(TestQuestionComponent, questionId, QuestionType.User),
+                    new TestQuestion(TestQuestionComponent, anotherQuestionId, QuestionType.User)
+                ]
+            );
         }
     }
 
@@ -108,6 +115,7 @@ describe('QuestionnaireComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(QuestionnaireComponent);
         component = fixture.componentInstance;
+        spyOn(component.onQuestionnaireComplete, 'emit');
     });
 
     describe('#construct', () => {
@@ -187,6 +195,40 @@ describe('QuestionnaireComponent', () => {
                 expect(questionReasonElement.classes.visible).toBeFalsy();
             });
         }));
+    });
+
+    describe('#goForwards', () => {
+        it('should not emit completion event if there is another question', () => {
+            // given
+            allQuestionsContent = {
+                [questionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''},
+                [anotherQuestionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''}
+            };
+            component.currentQuestionIndex = 0;
+            fixture.detectChanges();
+
+            // when
+            component.goForwards();
+
+            // then
+            expect(component.onQuestionnaireComplete.emit).not.toHaveBeenCalled();
+        });
+
+        it('should emit completion event if on the last question', () => {
+            // given
+            allQuestionsContent = {
+                [questionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''},
+                [anotherQuestionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''}
+            };
+            component.currentQuestionIndex = 1;
+            fixture.detectChanges();
+
+            // when
+            component.goForwards();
+
+            // then
+            expect(component.onQuestionnaireComplete.emit).toHaveBeenCalled();
+        });
     });
 
     describe('#toggleQuestionReasonDisplay', () => {

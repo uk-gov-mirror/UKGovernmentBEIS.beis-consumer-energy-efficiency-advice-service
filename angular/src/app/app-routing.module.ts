@@ -1,9 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {PageComponent} from "./page/page.component";
-import {QuestionnaireComponent} from "./questionnaire/questionnaire.component";
 import {ResultsPageComponent} from "./results-page/results-page.component";
-import {QuestionnaireGuard} from "./questionnaire/questionnaires/questionnaire.guard";
 import {ResultsPageRouteGuard} from "./results-page/results-page-route-guard.service";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-improvements.component";
@@ -11,6 +9,9 @@ import {CarbonFootprintComponent} from "./landing-page/carbon-footprint/carbon-f
 import {ReduceBillsComponent} from "./landing-page/reduce-bills/reduce-bills.component";
 import {WarmerHomeComponent} from "./landing-page/warmer-home/warmer-home.component";
 import {BoilerLandingPageComponent} from "./boiler/landing-page/boiler-landing-page.component";
+import {GrantsQuestionnaireComponent} from "./grants/grants-questionnaire/grants-questionnaire.component";
+import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.component";
+import {EnergyEfficiencyQuestionnaireGuard} from "./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard";
 
 const routes: Routes = [
     {
@@ -18,14 +19,18 @@ const routes: Routes = [
         component: HomePageComponent
     },
     {
-        path: 'js/questionnaire/:name',
-        component: QuestionnaireComponent,
-        canActivate: [QuestionnaireGuard],
+        path: 'js/energy-efficiency/questionnaire/:name',
+        component: EnergyEfficiencyQuestionnaireComponent,
+        canActivate: [EnergyEfficiencyQuestionnaireGuard],
     },
     {
-        path: 'js/results',
+        path: 'js/energy-efficiency/results',
         component: ResultsPageComponent,
         canActivate: [ResultsPageRouteGuard]
+    },
+    {
+        path: 'js/grants/questionnaire',
+        component: GrantsQuestionnaireComponent
     },
     {
         path: 'js/carbon-footprint',
