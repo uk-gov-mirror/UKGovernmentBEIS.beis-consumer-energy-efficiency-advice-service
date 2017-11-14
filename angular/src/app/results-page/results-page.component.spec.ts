@@ -84,7 +84,8 @@ describe('ResultsPageComponent', () => {
         numberOfFridges: 0,
         numberOfFreezers: 0,
         livingRoomTemperature: 20,
-        benefits: Benefits.None
+        benefits: Benefits.None,
+        income: 1234567
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

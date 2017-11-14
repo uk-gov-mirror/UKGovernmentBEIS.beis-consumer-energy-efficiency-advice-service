@@ -2,20 +2,23 @@
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
         <div class="fridge-freezer-input">
             <div class="name">Fridge-freezers</div>
-            <app-number-question [itemsName]="'fridge-freezers'"
-                                 minQuantity="0"
+            <app-number-question itemsName="'ridge-freezers"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="20"
                                  [(quantity)]="fridgeFreezers"></app-number-question>
         </div>
         <div class="fridge-input">
             <div class="name">Fridges</div>
-            <app-number-question [itemsName]="'fridges'"
-                                 minQuantity="0"
+            <app-number-question itemsName="fridges"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="20"
                                  [(quantity)]="fridges"></app-number-question>
         </div>
         <div class="freezer-input">
             <div class="name">Freezers</div>
-            <app-number-question [itemsName]="'freezers'"
-                                 minQuantity="0"
+            <app-number-question itemsName="freezers"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="20"
                                  [(quantity)]="freezers"></app-number-question>
         </div>
     </form>

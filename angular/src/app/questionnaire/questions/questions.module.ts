@@ -22,6 +22,7 @@ import {StoreysQuestionComponent} from "./storeys-question/storeys-question.comp
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
 import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-type-question.component";
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
+import {IncomeQuestionComponent} from "./income-question/income-question.component";
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         FuelTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         TenureTypeQuestionComponent,
@@ -56,6 +58,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         FuelTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         TenureTypeQuestionComponent,
@@ -82,6 +85,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         FuelTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         TenureTypeQuestionComponent,

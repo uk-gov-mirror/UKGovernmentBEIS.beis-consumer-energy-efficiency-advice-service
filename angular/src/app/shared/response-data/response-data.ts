@@ -37,6 +37,7 @@ export class ResponseData {
     public numberOfBathsPerWeek: number;
 
     public benefits: Benefits;
+    public income: number;
 }
 
 export function isComplete(responseData: ResponseData) {

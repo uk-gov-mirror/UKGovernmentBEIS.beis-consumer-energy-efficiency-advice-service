@@ -1,7 +1,9 @@
 <div class="storeys-question question-component">
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
-        <app-number-question [itemsName]="'storeys'"
-                             [(quantity)]="response"></app-number-question>
+        <app-number-question itemsName="storeys"
+                             [(quantity)]="response"
+                             [minQuantity]="1"
+                             [maxQuantity]="10"></app-number-question>
     </form>
     <div class="storeys-icons">
         <span class="icon-tree" aria-label="tree"></span>
