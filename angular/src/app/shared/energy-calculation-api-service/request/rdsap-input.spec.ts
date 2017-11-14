@@ -7,6 +7,7 @@ import {FlatPosition} from "../../../questionnaire/questions/flat-position-quest
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
 import {TenureType} from "../../../questionnaire/questions/ownership-status-question/tenure-type";
+import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
 
 describe('RdsapInput', () => {
 
@@ -38,7 +39,8 @@ describe('RdsapInput', () => {
             numberOfFridgeFreezers: 0,
             numberOfFridges: 0,
             numberOfFreezers: 0,
-            livingRoomTemperature: 20
+            livingRoomTemperature: 20,
+            benefits: Benefits.None
         };
 
         it('should calculate the number of occupants correctly', () => {
