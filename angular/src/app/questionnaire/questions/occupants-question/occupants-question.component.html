@@ -2,13 +2,13 @@
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
         <div class="adults-input">
             <div class="name">Adults</div>
-            <app-number-question [itemsName]="'adults'"
+            <app-number-question itemsName="adults"
                                  [(quantity)]="adults"></app-number-question>
         </div>
         <div class="children-input">
             <div class="name">Children</div>
-            <app-number-question [itemsName]="'children'"
-                                 minQuantity="0"
+            <app-number-question itemsName="children"
+                                 [minQuantity]="0"
                                  [(quantity)]="children"></app-number-question>
         </div>
     </form>
