@@ -1,15 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-boiler-landing-page',
     templateUrl: './boiler-landing-page.component.html',
     styleUrls: ['./boiler-landing-page.component.scss']
 })
-export class BoilerLandingPageComponent implements OnInit {
+export class BoilerLandingPageComponent {
 
-    constructor() { }
-
-    ngOnInit() {
+    constructor() {
     }
-
 }
