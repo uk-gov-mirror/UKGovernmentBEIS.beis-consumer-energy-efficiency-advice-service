@@ -12,6 +12,7 @@ $item-margin: 16px;
   align-items: center;
 
   .content {
+    width: 100%;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -40,13 +41,14 @@ $item-margin: 16px;
 
       .carousel-items {
         position: relative;
+        width: 100%;
         display: flex;
         align-items: stretch;
         transition: left 500ms;
 
         .carousel-item {
           flex: 0 0 auto;
-          width: calc((100% - 2 * #{$item-margin}) / 3);
+          flex-basis: calc((100% - 2 * #{$item-margin}) / 3);
           margin-right: $item-margin;
         }
 
