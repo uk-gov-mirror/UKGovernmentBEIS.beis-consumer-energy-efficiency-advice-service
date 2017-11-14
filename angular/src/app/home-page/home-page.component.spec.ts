@@ -24,8 +24,8 @@ describe('HomePageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [HomePageComponent, LatestNewsCardComponent, NavigationBarComponent],
             imports: [RouterTestingModule.withRoutes([
-                {path: 'js/questionnaire/home-basics', component: DummyComponent},
-                {path: 'js/results', component: DummyComponent}
+                {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
+                {path: 'js/energy-efficiency/results', component: DummyComponent}
             ])],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},
@@ -59,7 +59,7 @@ describe('HomePageComponent', () => {
         expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Calculator);
         fixture.whenStable().then(() => {
             const location = fixture.debugElement.injector.get(Location);
-            expect(location.path()).toBe('/js/questionnaire/home-basics');
+            expect(location.path()).toBe('/js/energy-efficiency/questionnaire/home-basics');
         });
     });
 
@@ -75,7 +75,7 @@ describe('HomePageComponent', () => {
         expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Calculator);
         fixture.whenStable().then(() => {
             const location = fixture.debugElement.injector.get(Location);
-            expect(location.path()).toBe('/js/results');
+            expect(location.path()).toBe('/js/energy-efficiency/results');
         });
     });
 });

@@ -14,6 +14,8 @@ import {LandingPageModule} from "./landing-page/landing-page.module";
 import {LayoutComponentsModule} from "./layout-components/layout-components.module";
 import {PageModule} from "./page/page.module";
 import {BoilerModule} from "./boiler/boiler.module";
+import {GrantsModule} from "./grants/grants.module";
+import {EnergyEfficiencyQuestionnaireModule} from "./energy-efficiency/energy-efficiency.module";
 
 @NgModule({
     declarations: [
@@ -27,9 +29,11 @@ import {BoilerModule} from "./boiler/boiler.module";
         FormsModule,
         SharedModule.forRoot(),
         QuestionnaireModule.forRoot(),
+        EnergyEfficiencyQuestionnaireModule.forRoot(),
         ResultsPageModule.forRoot(),
         HomePageModule,
-        PageModule,
+        GrantsModule,
+        PageModule.forRoot(),
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
         BoilerModule,
