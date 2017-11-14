@@ -10,20 +10,27 @@ import {Component, OnInit} from "@angular/core";
 export class OccupantsQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
-        this.response = this.response || 1;
+        this.adults = this.responseData.numberOfAdults || 1;
+        this.children = this.responseData.numberOfChildren || 0;
     }
 
-    get response(): number {
-        return this.responseData.numberOfOccupants;
+    get adults(): number {
+        return this.responseData.numberOfAdults;
     }
 
-    set response(val: number) {
-        this.responseData.numberOfOccupants = val;
+    set adults(val: number) {
+        this.responseData.numberOfAdults = val;
+    }
+
+    get children(): number {
+        return this.responseData.numberOfChildren;
+    }
+
+    set children(val: number) {
+        this.responseData.numberOfChildren = val;
     }
 
     handleFormSubmit() {
-        if (this.response) {
-            this.complete.emit();
-        }
+        this.complete.emit();
     }
 }
