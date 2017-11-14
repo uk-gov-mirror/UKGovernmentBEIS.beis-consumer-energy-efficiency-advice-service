@@ -1,0 +1,8 @@
+<div class="benefits-question question-component">
+    <form class="questionnaire-form" (submit)="complete.emit()">
+        <label *ngFor="let option of options">
+            <input [name]="Benefits[option.value]" id="benefits-checkbox-{{Benefits[option.value]}}" type="checkbox" [ngModel]="getBenefitsValue(option)" (ngModelChange)="toggleBenefit(option)">
+            <span>{{option.name}}</span>
+        </label>
+    </form>
+</div>

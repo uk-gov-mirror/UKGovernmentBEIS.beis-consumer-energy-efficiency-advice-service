@@ -29,6 +29,7 @@ import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-ca
 import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
 import {TenureType} from "../questionnaire/questions/ownership-status-question/tenure-type";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
+import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -82,7 +83,8 @@ describe('ResultsPageComponent', () => {
         numberOfFridgeFreezers: 0,
         numberOfFridges: 0,
         numberOfFreezers: 0,
-        livingRoomTemperature: 20
+        livingRoomTemperature: 20,
+        benefits: Benefits.None
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

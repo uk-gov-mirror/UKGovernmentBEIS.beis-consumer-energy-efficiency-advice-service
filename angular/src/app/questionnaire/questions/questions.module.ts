@@ -21,11 +21,13 @@ import {ShowersQuestionComponent} from "./showers-question/showers-question.comp
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
 import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-type-question.component";
+import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 
 @NgModule({
     declarations: [
         BathsQuestionComponent,
         BedroomsQuestionComponent,
+        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -45,6 +47,7 @@ import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-ty
     exports: [
         BathsQuestionComponent,
         BedroomsQuestionComponent,
+        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -70,6 +73,7 @@ import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-ty
     entryComponents: [
         BathsQuestionComponent,
         BedroomsQuestionComponent,
+        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
