@@ -4,59 +4,74 @@
   "Total-Lighting-Cost": 102.01,
   "Total-Heating-Cost": 601.81,
   "Total-Hot-Water-Cost": 82.56,
-  "SAP-Band": "B",
+  "Total-Energy-Cost": 795.4,
+  "Current-SAP-Band": "B",
+  "Potential-SAP-Band": "C",
   "measures": {
     "A3": {
       "cost_saving": 54.63,
-      "energy_saving": 1322.69
+      "energy_saving": 1322.69,
+      "number": "10"
     },
     "B": {
       "cost_saving": 61.61,
-      "energy_saving": 1721.09
+      "energy_saving": 1721.09,
+      "number": "11"
     },
     "D": {
       "cost_saving": 11.03,
-      "energy_saving": 235.69
+      "energy_saving": 235.69,
+      "number": "12"
     },
     "C": {
       "cost_saving": 157.9,
-      "energy_saving": 4117.59
+      "energy_saving": 4117.59,
+      "number": "13"
     },
     "F": {
       "cost_saving": 52.19,
-      "energy_saving": 1305.12
+      "energy_saving": 1305.12,
+      "number": "14"
     },
     "G": {
       "cost_saving": 0.69,
-      "energy_saving": 9
+      "energy_saving": 9,
+      "number": "15"
     },
     "T": {
       "cost_saving": 499.54,
-      "energy_saving": 9730.4
+      "energy_saving": 9730.4,
+      "number": "16"
     },
     "T2": {
       "cost_saving": 15.88,
-      "energy_saving": 459.49
+      "energy_saving": 459.49,
+      "number": "17"
     },
     "N": {
       "cost_saving": 57.45,
-      "energy_saving": 1649.61
+      "energy_saving": 1649.61,
+      "number": "18"
     },
     "O2": {
       "cost_saving": 29.89,
-      "energy_saving": 848.71
+      "energy_saving": 848.71,
+      "number": "19"
     },
     "X": {
       "cost_saving": 2.63,
-      "energy_saving": 74.75
+      "energy_saving": 74.75,
+      "number": "20"
     },
     "U": {
       "cost_saving": 409.7,
-      "energy_saving": 0
+      "energy_saving": 0,
+      "number": "21"
     },
     "V2": {
       "cost_saving": 536.18,
-      "energy_saving": 0
+      "energy_saving": 0,
+      "number": "22"
     }
   }
 }

@@ -13,7 +13,7 @@ export class EnergyCalculations {
             energyCalculationResponse['Total-Heating-Cost'] +
             energyCalculationResponse['Total-Hot-Water-Cost']);
         this.potentialEnergyBillSavingPoundsPerYear = Math.round(potentialEnergyBillSavingPoundsPerYear);
-        this.currentEpcRating = energyCalculationResponse['SAP-Band'];
+        this.currentEpcRating = energyCalculationResponse['Current-SAP-Band'];
         // TODO: get potential EPC rating from Energy Calculation API too
         this.potentialEpcRating = null;
     }
