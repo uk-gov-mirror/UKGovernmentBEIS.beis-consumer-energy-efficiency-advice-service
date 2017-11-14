@@ -3,7 +3,7 @@ import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
 import {QuestionMetadata} from "../../base-question/question-metadata";
 import {
     ADDRESS_AND_OWNERSHIP_STATUS, BASIC_BEHAVIOURAL_QUESTIONS,
-    CORE_BRE_QUESTIONS
+    CORE_BRE_QUESTIONS, GRANTS_QUESTIONNAIRE_QUESTION
 } from "../../questions/question-groups";
 import concat from 'lodash-es/concat';
 import {ResponseData} from "../../../shared/response-data/response-data";
@@ -29,11 +29,20 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
             case UserJourneyType.Calculator:
             case UserJourneyType.ReduceEnergyBills:
             case UserJourneyType.ReduceCarbonFootprint:
-                return concat(ADDRESS_AND_OWNERSHIP_STATUS, CORE_BRE_QUESTIONS, BASIC_BEHAVIOURAL_QUESTIONS);
+                return concat(
+                    ADDRESS_AND_OWNERSHIP_STATUS,
+                    CORE_BRE_QUESTIONS,
+                    BASIC_BEHAVIOURAL_QUESTIONS,
+                    GRANTS_QUESTIONNAIRE_QUESTION
+                );
             case UserJourneyType.MakeHomeWarmer:
             case UserJourneyType.PlanHomeImprovements:
             default:
-                return concat(ADDRESS_AND_OWNERSHIP_STATUS, CORE_BRE_QUESTIONS);
+                return concat(
+                    ADDRESS_AND_OWNERSHIP_STATUS,
+                    CORE_BRE_QUESTIONS,
+                    GRANTS_QUESTIONNAIRE_QUESTION
+                );
         }
     }
 }

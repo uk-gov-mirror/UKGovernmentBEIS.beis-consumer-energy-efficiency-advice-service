@@ -18,6 +18,7 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
+import {ResponseData} from "../shared/response-data/response-data";
 
 @Component({
     selector: 'app-questionnaire',
@@ -59,6 +60,10 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
         if (!this.questionnaire) {
             this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);
+        }
+        if (this.questionnaire.getQuestions().length === 0) {
+            console.log(`Questionnaire "${ this.questionnaireName } is empty"`);
+            this.onQuestionnaireComplete.emit();
         }
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),

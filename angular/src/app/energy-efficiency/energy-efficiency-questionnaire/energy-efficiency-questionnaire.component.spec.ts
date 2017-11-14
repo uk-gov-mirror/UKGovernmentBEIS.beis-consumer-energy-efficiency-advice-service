@@ -1,16 +1,18 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
-import {async, ComponentFixture, getTestBed, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency-questionnaire.component";
 import {Observable} from "rxjs/Observable";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ResponseData} from "../../shared/response-data/response-data";
 
 describe('EnergyEfficiencyQuestionnaireComponent', () => {
     let component: EnergyEfficiencyQuestionnaireComponent;
     let fixture: ComponentFixture<EnergyEfficiencyQuestionnaireComponent>;
     let router: Router;
+    let responseData: ResponseData;
     let mockQuestionnaireElement;
     let mockQuestionnaireComponent: MockQuestionnaireComponent;
 
@@ -42,6 +44,7 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
             ],
             imports: [RouterTestingModule.withRoutes([])],
             providers: [
+                ResponseData,
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
             ]
         })
@@ -51,6 +54,7 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(EnergyEfficiencyQuestionnaireComponent);
         router = TestBed.get(Router);
+        responseData = TestBed.get(ResponseData);
         spyOn(router, 'navigate');
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -67,13 +71,29 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
         expect(mockQuestionnaireComponent.questionnaireName).toBe(questionnaireName);
     });
 
-    it('should navigate to results page when questionnaire is completed', async(() => {
+    it('should navigate to results page when questionnaire is completed if grants journey not selected', async(() => {
+        // given
+        responseData.shouldIncludeGrantsQuestionnaire = false;
+
         // when
         mockQuestionnaireComponent.onQuestionnaireComplete.emit();
 
         // then
         fixture.whenStable().then(() => {
             expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/results']);
+        });
+    }));
+
+    it('should navigate to grants questionnaire when questionnaire is completed if grants journey not selected', async(() => {
+        // given
+        responseData.shouldIncludeGrantsQuestionnaire = true;
+
+        // when
+        mockQuestionnaireComponent.onQuestionnaireComplete.emit();
+
+        // then
+        fixture.whenStable().then(() => {
+            expect(router.navigate).toHaveBeenCalledWith(['/js/grants/questionnaire']);
         });
     }));
 });

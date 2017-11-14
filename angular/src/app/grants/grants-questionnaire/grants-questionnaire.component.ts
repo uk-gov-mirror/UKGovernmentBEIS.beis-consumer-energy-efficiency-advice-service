@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-grants-questionnaire',
@@ -7,8 +8,11 @@ import {Component} from "@angular/core";
 })
 export class GrantsQuestionnaireComponent {
 
+    constructor(private router: Router) {
+    }
+
     onQuestionnaireComplete() {
         // TODO: add grants eligibility calculations here
-        console.log('Questionnaire complete');
+        this.router.navigate(['/js/energy-efficiency/results']);
     }
 }
