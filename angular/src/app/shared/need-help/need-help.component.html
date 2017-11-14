@@ -1,6 +1,6 @@
 <button class="need-help"
         [style.visibility]="visible ? 'visible' : 'hidden'"
-        [style.margin-bottom]="margin + 'px'"
+        [style.margin-bottom]="margin - 1 + 'px'"
         (click)="expanded = !expanded; adjustForFooter()">
     <div class="header-bar">Need any help?</div>
     <div class="contents" *ngIf="expanded">

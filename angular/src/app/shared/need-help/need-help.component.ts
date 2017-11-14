@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 
 @Component({
     selector: 'app-need-help',
     templateUrl: './need-help.component.html',
     styleUrls: ['./need-help.component.scss']
 })
-export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewInit {
     visible: boolean = false;
     expanded: boolean = false;
     margin: number = 0;
@@ -15,9 +15,11 @@ export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewChecked {
         window.addEventListener('resize', this.adjustForFooter, true);
     }
 
-    ngAfterViewChecked() {
-        this.adjustForFooter();
-        setTimeout(() => this.visible = true);
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.adjustForFooter();
+            this.visible = true;
+        });
     }
 
     ngOnDestroy() {
@@ -32,5 +34,5 @@ export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewChecked {
         } else {
             this.margin = 0;
         }
-    }
+    };
 }
