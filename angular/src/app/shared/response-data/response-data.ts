@@ -8,7 +8,7 @@ import {HomeType} from "../../questionnaire/questions/home-type-question/home-ty
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {UserJourneyType} from "./user-journey-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../../questionnaire/questions/ownership-status-question/tenure-type";
+import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
 
 @Injectable()

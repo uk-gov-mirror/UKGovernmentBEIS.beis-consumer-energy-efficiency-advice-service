@@ -2,7 +2,7 @@
     <div class="multiple-choice-options tenure-type-options">
         <button *ngFor="let tenureTypeOption of tenureTypeOptions"
                 [id]="tenureTypeOption.id + '-option'"
-                class="multiple-choice-option grants-questionnaire-option"
+                class="multiple-choice-option tenure-type-option"
                 [class.selected]="response === tenureTypeOption.value"
                 (click)="response = tenureTypeOption.value; complete.emit()">
             {{tenureTypeOption.description}}

@@ -14,7 +14,7 @@ import {ShowerTypeQuestionMetadata} from "./shower-type-question/shower-type-que
 import {ShowersQuestionMetadata} from "./showers-question/showers-question-metadata";
 import {BathsQuestionMetadata} from "./baths-question/baths-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-freezer-question-metadata";
-import {TenureTypeQuestionMetadata} from "./ownership-status-question/tenure-type-question-metadata";
+import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-question-metadata";
 import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [

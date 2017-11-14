@@ -6,7 +6,7 @@ import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-a
 import {FlatPosition} from "../../../questionnaire/questions/flat-position-question/flat-position";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../../../questionnaire/questions/ownership-status-question/tenure-type";
+import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
 
 describe('RdsapInput', () => {

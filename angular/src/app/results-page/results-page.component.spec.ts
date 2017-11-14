@@ -27,7 +27,7 @@ import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-con
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
 import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../questionnaire/questions/ownership-status-question/tenure-type";
+import {TenureType} from "../questionnaire/questions/tenure-type-question/tenure-type";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
 

@@ -20,7 +20,7 @@ import {ShowerTypeQuestionComponent} from "./shower-type-question/shower-type-qu
 import {ShowersQuestionComponent} from "./showers-question/showers-question.component";
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
-import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-type-question.component";
+import {TenureTypeQuestionComponent} from "./tenure-type-question/tenure-type-question.component";
 import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-question/grants-questionnaire-question.component";
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 
