@@ -28,6 +28,7 @@ import {RadialPercentageComponent} from "../shared/radial-percentage/radial-perc
 import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
 import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
 import {TenureType} from "../questionnaire/questions/ownership-status-question/tenure-type";
+import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -127,6 +128,7 @@ describe('ResultsPageComponent', () => {
                 LatestNewsCardComponent,
                 SpinnerAndErrorContainerComponent,
                 RadialPercentageComponent,
+                NeedHelpComponent,
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
