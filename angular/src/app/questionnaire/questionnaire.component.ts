@@ -9,7 +9,6 @@ import {
     Output,
     ViewChild
 } from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
 import {QuestionDirective} from "./question.directive";
 import {QuestionTypeUtil} from "./questions/question-type";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
@@ -49,8 +48,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef,
-                private route: ActivatedRoute
+                private changeDetectorRef: ChangeDetectorRef
     ) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
@@ -58,7 +56,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.questionnaireName = this.questionnaireName || this.route.snapshot.paramMap.get('name');
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
         if (!this.questionnaire) {
             this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);

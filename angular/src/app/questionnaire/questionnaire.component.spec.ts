@@ -3,7 +3,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {Observable} from "rxjs/Observable";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 import {QuestionnaireComponent} from "./questionnaire.component";
 import {QuestionnaireService} from "./questionnaire.service";
@@ -72,9 +72,6 @@ describe('QuestionnaireComponent', () => {
         }
     }
 
-    class MockRouter {
-    }
-
     class MockActivatedRoute {
         private static paramMapGet(key) {
             if (key === 'name') {
@@ -102,7 +99,6 @@ describe('QuestionnaireComponent', () => {
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,
-                {provide: Router, useClass: MockRouter},
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
@@ -115,6 +111,7 @@ describe('QuestionnaireComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(QuestionnaireComponent);
         component = fixture.componentInstance;
+        component.questionnaireName = questionnaireName;
         spyOn(component.onQuestionnaireComplete, 'emit');
     });
 
