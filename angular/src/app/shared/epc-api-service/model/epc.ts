@@ -1,5 +1,5 @@
 import {EpcRating} from "./epc-rating";
-import {EpcResponse} from "./response/epc/epc-response";
+import {EpcResponse} from "./response/epc-response";
 
 export class Epc {
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data

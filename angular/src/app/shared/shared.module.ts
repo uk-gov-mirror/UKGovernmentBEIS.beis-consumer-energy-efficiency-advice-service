@@ -16,6 +16,7 @@ import {PostcodeValidationService} from "./postcode-validation-service/postcode-
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
 import { NeedHelpComponent } from './need-help/need-help.component';
+import {EpcApiService} from "./epc-api-service/epc-api.service";
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ export class SharedModule {
                 FeatureFlagService,
                 EnergyCalculationApiService,
                 PostcodeValidationService,
+                EpcApiService,
             ]
         };
     }
