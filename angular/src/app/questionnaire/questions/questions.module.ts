@@ -21,6 +21,7 @@ import {ShowersQuestionComponent} from "./showers-question/showers-question.comp
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
 import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-type-question.component";
+import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-question/grants-questionnaire-question.component";
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 
 @NgModule({
@@ -43,6 +44,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         StoreysQuestionComponent,
+        GrantsQuestionnaireQuestionComponent
     ],
     exports: [
         BathsQuestionComponent,
@@ -63,6 +65,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         StoreysQuestionComponent,
+        GrantsQuestionnaireQuestionComponent
     ],
     imports: [
         CommonModule,
@@ -89,6 +92,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         StoreysQuestionComponent,
+        GrantsQuestionnaireQuestionComponent
     ]
 })
 export class QuestionsModule {

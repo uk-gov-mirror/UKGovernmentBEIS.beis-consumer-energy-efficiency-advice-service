@@ -14,6 +14,7 @@ import {Benefits} from "../../questionnaire/questions/benefits-question/benefits
 @Injectable()
 export class ResponseData {
     public userJourneyType: UserJourneyType;
+    public shouldIncludeGrantsQuestionnaire: boolean;
     public postcode: string;
     public epc: Epc;
     public localAuthorityCode: string;

@@ -15,6 +15,7 @@ import {ShowersQuestionMetadata} from "./showers-question/showers-question-metad
 import {BathsQuestionMetadata} from "./baths-question/baths-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-freezer-question-metadata";
 import {TenureTypeQuestionMetadata} from "./ownership-status-question/tenure-type-question-metadata";
+import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -43,6 +44,10 @@ export const OTHER_BEHAVIOURAL_QUESTIONS = [
     new BathsQuestionMetadata(),
     new ShowerTypeQuestionMetadata(),
     new FridgeFreezerQuestionMetadata(),
+];
+
+export const GRANTS_QUESTIONNAIRE_QUESTION = [
+    new GrantsQuestionnaireQuestionMetadata()
 ];
 
 export const GRANTS_QUESTIONS = [
