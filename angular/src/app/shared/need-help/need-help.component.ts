@@ -25,7 +25,7 @@ export class NeedHelpComponent implements OnInit, OnDestroy, AfterViewChecked {
         window.removeEventListener('resize', this.adjustForFooter, true);
     }
 
-    private adjustForFooter = () => {
+    adjustForFooter = () => {
         const footer = document.querySelector('#page-footer');
         if (!!footer && footer.getBoundingClientRect().top < window.innerHeight) {
             this.margin = window.innerHeight - footer.getBoundingClientRect().top;
