@@ -1,4 +1,5 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-need-help></app-need-help>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
     <progress-indicator class="page-row" [questionnaire]="questionnaire"
                         [currentQuestionIndex]="currentQuestionIndex"

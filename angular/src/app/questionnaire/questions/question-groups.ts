@@ -1,6 +1,5 @@
 import {PostcodeEpcQuestionMetadata} from "./postcode-epc-question/postcode-epc-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "./confirm-epc-question/confirm-epc-question-metadata";
-import {OwnershipStatusQuestionMetadata} from "./ownership-status-question/ownership-status-question-metadata";
 import {FlatPositionQuestionMetadata} from "./flat-position-question/flat-position-question-metadata";
 import {HomeAgeQuestionMetadata} from "./home-age-question/home-age-question-metadata";
 import {HomeTypeQuestionMetadata} from "./home-type-question/home-type-question-metadata";
@@ -15,10 +14,11 @@ import {ShowerTypeQuestionMetadata} from "./shower-type-question/shower-type-que
 import {ShowersQuestionMetadata} from "./showers-question/showers-question-metadata";
 import {BathsQuestionMetadata} from "./baths-question/baths-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-freezer-question-metadata";
+import {TenureTypeQuestionMetadata} from "./ownership-status-question/tenure-type-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
-    new OwnershipStatusQuestionMetadata(),
+    new TenureTypeQuestionMetadata(),
     new ConfirmEpcQuestionMetadata(),
 ];
 

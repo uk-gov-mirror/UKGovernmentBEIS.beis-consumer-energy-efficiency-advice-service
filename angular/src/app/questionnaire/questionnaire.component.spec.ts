@@ -16,6 +16,7 @@ import {QuestionMetadata} from "./base-question/question-metadata";
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -89,7 +90,7 @@ describe('QuestionnaireComponent', () => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent],
+            declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent, NeedHelpComponent],
             imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 ComponentFactoryResolver,

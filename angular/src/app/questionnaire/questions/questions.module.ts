@@ -15,12 +15,12 @@ import {HomeAgeQuestionComponent} from "./home-age-question/home-age-question.co
 import {HomeTypeQuestionComponent} from "./home-type-question/home-type-question.component";
 import {LivingRoomTemperatureQuestionComponent} from "./living-room-temperature-question/living-room-temperature-question.component";
 import {OccupantsQuestionComponent} from "./occupants-question/occupants-question.component";
-import {OwnershipStatusQuestionComponent} from "./ownership-status-question/ownership-status-question.component";
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question/postcode-epc-question.component";
 import {ShowerTypeQuestionComponent} from "./shower-type-question/shower-type-question.component";
 import {ShowersQuestionComponent} from "./showers-question/showers-question.component";
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
+import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-type-question.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +36,7 @@ import {CommonQuestionsModule} from "../common-questions/common-questions.module
         HomeTypeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
-        OwnershipStatusQuestionComponent,
+        TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
@@ -55,7 +55,7 @@ import {CommonQuestionsModule} from "../common-questions/common-questions.module
         HomeTypeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
-        OwnershipStatusQuestionComponent,
+        TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
@@ -80,7 +80,7 @@ import {CommonQuestionsModule} from "../common-questions/common-questions.module
         HomeTypeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
-        OwnershipStatusQuestionComponent,
+        TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,

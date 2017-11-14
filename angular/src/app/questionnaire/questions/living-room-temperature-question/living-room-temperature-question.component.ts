@@ -10,7 +10,7 @@ import {Component, OnInit} from "@angular/core";
 export class LivingRoomTemperatureQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
-        this.response = this.response || 20;
+        this.response = this.response || 21;
     }
 
     get response(): number {
