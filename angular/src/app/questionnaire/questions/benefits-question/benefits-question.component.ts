@@ -10,6 +10,7 @@ interface BenefitsOption {
 @Component({
     selector: 'app-benefits-question',
     templateUrl: './benefits-question.component.html',
+    styleUrls: ['./benefits-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class BenefitsQuestionComponent extends QuestionBaseComponent implements OnInit {
