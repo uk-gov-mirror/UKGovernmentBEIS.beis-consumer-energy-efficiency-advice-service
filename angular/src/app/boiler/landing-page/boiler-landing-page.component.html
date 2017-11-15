@@ -54,12 +54,21 @@
                         <div class="body-text">
                             We can also try your postcode to see if your EPC has any information on your boiler
                         </div>
-                        <form class="postcode-input" (ngSubmit)="lookupAddressesForPostcode()">
-                            <input class="postcode-input-text"spellcheck="false" type="text"
+                        <form class="postcode-input" (ngSubmit)="lookupAllEpcsForPostcode(postcodeInput)">
+                            <input class="postcode-input-text"spellcheck="false" type="text" [(ngModel)]="postcodeInput"
                                    name="make-model-input" aria-label="Enter your postcode" title="Enter your postcode">
                             <button class="postcode-input-submit" type="submit"
                                     title="Submit" aria-label="Submit">></button>
                         </form>
+                        <div class="loading-spinner" *ngIf="loadingEpcs"></div>
+                        <div class="address-select" *ngIf="epcs !== undefined && !loadingEpcs">
+                            <select class="address-dropdown" [(ngModel)]="selectedEpc" >
+                                <option class="address-option" [ngValue]="undefined" selected disabled hidden>-- Please select your address --</option>
+                                <option class="address-option" [ngValue]="undefined">-- My address is not listed --</option>
+                                <option class="address-option" *ngFor="let epc of epcs" [ngValue]="epc">{{epc.address}}</option>
+                            </select>
+                            <button class="go-button" (click)="onEpcSelected()">Go</button>
+                        </div>
                     </div>
                 </div>
             </div>
