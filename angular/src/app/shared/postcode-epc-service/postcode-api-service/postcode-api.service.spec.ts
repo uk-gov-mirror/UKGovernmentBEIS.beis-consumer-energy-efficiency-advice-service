@@ -2,10 +2,10 @@ import {async, getTestBed, TestBed} from "@angular/core/testing";
 import "rxjs/add/operator/toPromise";
 
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../../../shared/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
 import {HttpRequest} from "@angular/common/http";
 import {PostcodeApiService} from "./postcode-api.service";
-import {PostcodeResponse} from "../model/response/postcode/postcode-response";
+import {PostcodeBasicDetailsResponse} from "../model/response/postcode-basic-details-response";
 
 describe('PostcodeApiService', () => {
     let httpMock: HttpTestingController;
@@ -29,14 +29,14 @@ describe('PostcodeApiService', () => {
         });
     });
 
-    describe('#getPostcodeDetails', () => {
+    describe('#fetchBasicPostcodeDetails', () => {
 
         const postcode = 'SW1H 0ET';
         const postcodeWithoutSpaces = 'SW1H0ET';
 
         it('returns data from the API endpoint', async(() => {
             // given
-            const expectedResponse: PostcodeResponse = {
+            const expectedResponse: PostcodeBasicDetailsResponse = {
                 status: 200,
                 result: {
                     postcode: postcode,
@@ -47,7 +47,7 @@ describe('PostcodeApiService', () => {
             };
 
             // when
-            const actualResponse = service.getPostcodeDetails(postcode).toPromise();
+            const actualResponse = service.fetchBasicPostcodeDetails(postcode).toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(expectedResponse);
 
             // then

@@ -1,4 +1,4 @@
-export interface PostcodeResponse {
+export interface PostcodeBasicDetailsResponse {
     status: number;
     result: {
         postcode: string;

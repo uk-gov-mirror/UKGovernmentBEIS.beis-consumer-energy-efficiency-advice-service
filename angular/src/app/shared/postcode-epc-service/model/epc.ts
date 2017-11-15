@@ -115,6 +115,7 @@ export class Epc {
         this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
         this.localAuthorityCode = epcResponse['local-authority'];
         this.epcDate = new Date(epcResponse['lodgement-date']);
+        this.certificateHash = epcResponse['certificate-hash'];
 
         // TODO: These fields are not currently used; maybe we can remove these later on
         this.buildingReferenceNumber = epcResponse['building-reference-number'];
@@ -183,7 +184,6 @@ export class Epc {
         this.mechanicalVentilation = epcResponse['mechanical-ventilation'];
         this.address = epcResponse['address'];
         this.constituencyLabel = epcResponse['constituency-label'];
-        this.certificateHash = epcResponse['certificate-hash'];
     }
 
     public getDisplayAddress(): string {

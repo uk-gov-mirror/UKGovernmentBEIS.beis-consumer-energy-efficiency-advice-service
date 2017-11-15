@@ -12,11 +12,12 @@ import {EnergyCalculationApiService} from "./energy-calculation-api-service/ener
 import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {RoutingModule} from "../app-routing.module";
 import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.component";
-import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "./need-help/need-help.component";
-import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
+import {PostcodeEpcService} from "./postcode-epc-service/postcode-epc.service";
+import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/postcode-api.service";
 
 @NgModule({
     declarations: [
@@ -52,8 +53,9 @@ export class SharedModule {
                 ResponseData,
                 FeatureFlagService,
                 EnergyCalculationApiService,
-                PostcodeValidationService,
                 EpcApiService,
+                PostcodeEpcService,
+                PostcodeApiService
             ]
         };
     }

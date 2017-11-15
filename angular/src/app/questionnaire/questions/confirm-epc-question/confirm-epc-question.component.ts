@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {EpcRating} from "../../../shared/epc-api-service/model/epc-rating";
+import {EpcRating} from "../../../shared/postcode-epc-service/model/epc-rating";
 import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from "../home-type-question/home-type";
 import {EpcConfirmation} from "./epc-confirmation";
 import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from "../fuel-type-question/fuel-type";

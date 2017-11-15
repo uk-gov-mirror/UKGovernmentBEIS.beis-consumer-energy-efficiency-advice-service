@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 
 import {ResponseData} from "../../shared/response-data/response-data";
 import {UserJourneyType} from "../../shared/response-data/user-journey-type";
-import {PostcodeValidationService} from "../../shared/postcode-validation-service/postcode-validation.service";
+import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 
 @Component({
     selector: 'app-grants-landing-page',
@@ -14,20 +14,22 @@ export class GrantsLandingPageComponent {
 
     postcodeInput: string;
     validationError: boolean = false;
+    isLoading: boolean = false;
+    isError: boolean = false;
 
     constructor(
         private responseData: ResponseData,
         private router: Router,
-        private postcodeValidationService: PostcodeValidationService
+        private postcodeEpcService: PostcodeEpcService
     ) {
     }
 
     onPostcodeSubmit(): void {
         this.postcodeInput = this.postcodeInput.trim();
-        this.validationError = !this.postcodeValidationService.isValid(this.postcodeInput);
+        this.validationError = !PostcodeEpcService.isValidPostcode(this.postcodeInput);
         if (!this.validationError) {
             this.responseData.postcode = this.postcodeInput;
-            // TODO: add local authority grant-fetching logic here
+            this.isLoading = true;
             console.log(`Search for postcode "${ this.postcodeInput }"`);
         }
     }

@@ -108,7 +108,7 @@
             </div>
         </div>
     </div>
-    <div class="local-grants page-row">
+    <div class="postcode-row page-row">
         <div class="page-row-content">
             <div class="postcode-input">
                 <span class="enter-postcode-text">Enter your postcode to see other grants that might be available in your area</span>
@@ -120,6 +120,14 @@
                 </form>
             </div>
             <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
+            <div class="loading-grants" *ngIf="isLoading"></div>
+            <div class="network-error" *ngIf="isError">
+                Something went wrong and we can't load this information right now. Please try again later.
+            </div>
+        </div>
+    </div>
+    <div class="local-grants page-row">
+        <div class="page-row-content">
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
-import {Epc} from "./model/epc";
-import {EpcsResponse} from "./model/response/epcs-response";
+import {Epc} from "../model/epc";
+import {EpcsResponse} from "../model/response/epcs-response";
 
 export abstract class EpcParserService {
 

@@ -1,4 +1,5 @@
 @import "styles/mixins/font";
+@import "styles/mixins/spinner";
 @import "styles/var/colours";
 
 .grants-landing-page {
@@ -101,7 +102,7 @@
     }
   }
 
-  .local-grants {
+  .postcode-row {
     .page-row-content {
       border-top: 1px solid black;
       display: flex;
@@ -153,7 +154,7 @@
         }
       }
 
-      .validation-error {
+      .validation-error, .network-error {
         margin-top: 20px;
         background-color: crimson;
         padding: 10px;
@@ -166,6 +167,15 @@
         justify-content: center;
         align-self: flex-end;
       }
+
+      .loading-grants {
+        @include spinner(20px);
+        align-self: center;
+      }
     }
+  }
+
+  .local-grants {
+
   }
 }

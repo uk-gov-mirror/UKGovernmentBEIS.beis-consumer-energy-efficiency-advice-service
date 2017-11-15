@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {EpcsResponse} from "./model/response/epcs-response";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {Epc} from "./model/epc";
+import {EpcsResponse} from "../model/response/epcs-response";
+import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
+import {Epc} from "../model/epc";
 import {EpcParserService} from "./epc-parser.service";
 import groupBy from "lodash-es/groupBy";
 import keys from "lodash-es/keys";
@@ -21,7 +21,7 @@ export class EpcApiService {
                 private wordpressApiService: WordpressApiService) {
     }
 
-    getEpcData(postcode: string): Observable<Epc[]> {
+    fetchEpcsForPostcode(postcode: string): Observable<Epc[]> {
         if (!this.epcs[postcode]) {
             const params = new HttpParams()
                 .set('postcode', postcode)

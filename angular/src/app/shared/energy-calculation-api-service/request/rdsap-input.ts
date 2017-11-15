@@ -6,7 +6,7 @@ import {HomeType} from "../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import toString from "lodash-es/toString";
-import {Epc} from "../../epc-api-service/model/epc";
+import {Epc} from "../../postcode-epc-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
 import {isUndefined} from "util";
 

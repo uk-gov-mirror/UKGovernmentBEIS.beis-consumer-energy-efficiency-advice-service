@@ -3,10 +3,10 @@ import "rxjs/add/operator/toPromise";
 
 import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {EpcsResponse} from "./model/response/epcs-response";
+import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
+import {EpcsResponse} from "../model/response/epcs-response";
 import {HttpRequest} from "@angular/common/http";
-import {Epc} from "./model/epc";
+import {Epc} from "../model/epc";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -30,7 +30,7 @@ describe('EpcApiService', () => {
         });
     });
 
-    describe('#getEpcData', () => {
+    describe('#fetchEpcsForPostcode', () => {
 
         const postcode = 'SW1H 0ET';
 
@@ -43,7 +43,7 @@ describe('EpcApiService', () => {
             };
 
             // when
-            const actualResponse = service.getEpcData(postcode).toPromise();
+            const actualResponse = service.fetchEpcsForPostcode(postcode).toPromise();
             let request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(expectedResponse);
 
@@ -59,7 +59,7 @@ describe('EpcApiService', () => {
             const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
 
             // when
-            const actualResponse = service.getEpcData(postcode).toPromise();
+            const actualResponse = service.fetchEpcsForPostcode(postcode).toPromise();
             let request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(dummyEpcsResponse);
 

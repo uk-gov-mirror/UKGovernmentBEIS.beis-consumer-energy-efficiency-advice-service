@@ -1,4 +1,4 @@
-import {Epc} from "../../../shared/epc-api-service/model/epc";
+import {Epc} from "../../../shared/postcode-epc-service/model/epc";
 export enum ElectricityTariff {
     Standard,
     OffPeak,

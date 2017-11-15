@@ -6,12 +6,10 @@ import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
-import {Epc} from "../../../shared/epc-api-service/model/epc";
-import {FeatureFlagService} from "../../../shared/feature-flag/feature-flag.service";
-import {EpcApiService} from "../../../shared/epc-api-service/epc-api.service";
-import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
-import {PostcodeValidationService} from "../../../shared/postcode-validation-service/postcode-validation.service";
-import {EpcParserService} from "../../../shared/epc-api-service/epc-parser.service";
+import {Epc} from "../../../shared/postcode-epc-service/model/epc";
+import {EpcParserService} from "../../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {PostcodeEpcService} from "../../../shared/postcode-epc-service/postcode-epc.service";
+import {PostcodeDetails} from "../../../shared/postcode-epc-service/model/postcode-details";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -20,55 +18,40 @@ describe('PostcodeEpcQuestionComponent', () => {
 
     let component: PostcodeEpcQuestionComponent;
     let fixture: ComponentFixture<PostcodeEpcQuestionComponent>;
-    let fetchEpcFeatureFlag: boolean;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
-    const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
-    let epcApiServiceStub = {
-        getEpcData: (postcode) => Observable.of(EpcParserService.parse(dummyEpcsResponse))
-    };
-    let postcodeApiServiceStub = {
-        getPostcodeDetails: (postcode) => Observable.of(dummyPostcodeResponse)
-    };
+    const expectedLocalAuthorityCode = dummyEpcsResponse.rows[1]['local-authority'];
 
-    const mockFeatureFlagsObservable = Observable.defer(() => Observable.of({'fetch_epc_data': fetchEpcFeatureFlag}));
-    const featureFlagServiceStub = {
-        fetchFeatureFlags: () => mockFeatureFlagsObservable
-    };
+    let postcodeEpcResponse: Observable<PostcodeDetails>;
 
-    const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
-    const postcodeValidationServiceStub = {
-        isValid: jasmine.createSpy('isValid').and.callFake(mockPostcodeValidator)
+    let postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (postcode) => postcodeEpcResponse
     };
 
     beforeEach(async(() => {
-        spyOn(epcApiServiceStub, 'getEpcData').and.callThrough();
-        spyOn(postcodeApiServiceStub, 'getPostcodeDetails').and.callThrough();
+        postcodeEpcResponse = Observable.of({
+            postcode: VALID_POSTCODE,
+            allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
+            localAuthorityCode: expectedLocalAuthorityCode
+        });
+
+        spyOn(postcodeEpcServiceStub, 'fetchPostcodeDetails').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [PostcodeEpcQuestionComponent],
             imports: [FormsModule],
-            providers: [ResponseData]
+            providers: [
+                ResponseData,
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub}
+            ]
         })
-            .overrideComponent(PostcodeEpcQuestionComponent, {
-                set: {
-                    providers: [
-                        {provide: FeatureFlagService, useValue: featureFlagServiceStub},
-                        {provide: EpcApiService, useValue: epcApiServiceStub},
-                        {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
-                        {provide: PostcodeValidationService, useValue: postcodeValidationServiceStub},
-                    ]
-                }
-            })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fetchEpcFeatureFlag = true;
         fixture = TestBed.createComponent(PostcodeEpcQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
-        spyOn(component, 'lookupBasicPostcodeDetails').and.callThrough();
         fixture.detectChanges();
     });
 
@@ -79,70 +62,21 @@ describe('PostcodeEpcQuestionComponent', () => {
     });
 
     describe('#handlePostcodeEntered', () => {
-        it('should trim leading spaces from the postcode input', () => {
+        it('should trim spaces from the postcode input', () => {
             // given
-            component.postcodeInput = '   ' + VALID_POSTCODE;
+            component.postcodeInput = '  S W 1   A 1A    A    ';
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
-            expect(component.postcodeInput).toEqual(VALID_POSTCODE);
+            expect(component.postcodeInput).toEqual('SW1A1AA');
         });
 
-        it('should trim trailing spaces from the postcode input', () => {
-            // given
-            component.postcodeInput = VALID_POSTCODE + '   ';
-
-            // when
-            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-
-            // then
-            expect(component.postcodeInput).toEqual(VALID_POSTCODE);
-        });
-
-        it('should use the postcode validation service to validate the postcode', () => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-
-            // when
-            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-
-            // then
-            expect(postcodeValidationServiceStub.isValid).toHaveBeenCalledWith(VALID_POSTCODE);
-        });
-
-        it('should call epc api if postcode is valid and feature flag is on', async(() => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-
-            // when
-            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).toHaveBeenCalledTimes(1);
-                expect(epcApiServiceStub.getEpcData).toHaveBeenCalledWith(VALID_POSTCODE);
-            });
-        }));
-
-        it('should not call epc api if postcode is not valid', async(() => {
+        it('should display a validation error message if postcode is invalid or not found', async(() => {
             // given
             component.postcodeInput = INVALID_POSTCODE;
-
-            // when
-            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).not.toHaveBeenCalled();
-            });
-        }));
-
-        it('should not call epc api if feature flag is turned off', async(() => {
-            // given
-            fetchEpcFeatureFlag = false;
-            component.postcodeInput = VALID_POSTCODE;
+            postcodeEpcResponse = ErrorObservable.create(PostcodeEpcService.POSTCODE_NOT_FOUND);
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
@@ -150,11 +84,12 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).not.toHaveBeenCalled();
+                const validationErrorMessage = fixture.debugElement.query(By.css('.error-message')).nativeElement.innerText;
+                expect(validationErrorMessage).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
             });
         }));
 
-        it('should display an epcs for each address returned', async(() => {
+        it('should display an epc for each address returned', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -199,49 +134,40 @@ describe('PostcodeEpcQuestionComponent', () => {
             });
         }));
 
-        it('should lookup basic postcode details if epc api returns an error', async(() => {
+        it('should set the response for postcode and local authority if no epcs are returned', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
-            let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = () => ErrorObservable.create('error');
+            postcodeEpcResponse = Observable.of({
+                postcode: VALID_POSTCODE,
+                allEpcsForPostcode: [],
+                localAuthorityCode: expectedLocalAuthorityCode
+            });
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
 
             // then
             fixture.whenStable().then(() => {
-                expect(component.lookupBasicPostcodeDetails).toHaveBeenCalled();
+                expect(component.postcode).toEqual(VALID_POSTCODE);
+                expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
             });
         }));
 
-        it('should lookup basic postcode details if no epcs are returned', async(() => {
+        it('should notify of completion if no epcs are returned', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
-            let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = (postcode) => Observable.of([]);
-
-            // when
-            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.lookupBasicPostcodeDetails).toHaveBeenCalled();
+            postcodeEpcResponse = Observable.of({
+                postcode: VALID_POSTCODE,
+                allEpcsForPostcode: [],
+                localAuthorityCode: expectedLocalAuthorityCode
             });
-        }));
-
-        it('should lookup basic postcode details if feature flag is turned off', async(() => {
-            // given
-            fetchEpcFeatureFlag = false;
-            component.postcodeInput = VALID_POSTCODE;
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-            fixture.detectChanges();
 
             // then
             fixture.whenStable().then(() => {
-                expect(component.lookupBasicPostcodeDetails).toHaveBeenCalled();
+                expect(component.complete.emit).toHaveBeenCalled();
             });
         }));
     });
@@ -251,7 +177,6 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             const expectedEpc = new Epc(dummyEpcsResponse.rows[1]);
-            const expectedLocalAuthorityCode = dummyEpcsResponse.rows[1]['local-authority'];
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
@@ -261,9 +186,9 @@ describe('PostcodeEpcQuestionComponent', () => {
                 allEpcs[0].nativeElement.click();
 
                 // then
-                expect(component.response.postcode).toEqual(VALID_POSTCODE);
-                expect(component.response.epc).toEqual(expectedEpc);
-                expect(component.response.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
+                expect(component.postcode).toEqual(VALID_POSTCODE);
+                expect(component.epc).toEqual(expectedEpc);
+                expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
             });
         }));
 
@@ -283,7 +208,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             });
         }));
 
-        it('should lookup basic postcode details when address-not-listed is selected', async(() => {
+        it('should set the response for postcode and local authority code when address-not-listed is selected', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
@@ -294,64 +219,25 @@ describe('PostcodeEpcQuestionComponent', () => {
                 fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
 
                 // then
-                expect(component.lookupBasicPostcodeDetails).toHaveBeenCalled();
+                expect(component.postcode).toEqual(VALID_POSTCODE);
+                expect(component.epc).toBeNull();
+                expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
             });
         }));
-    });
 
-    describe('#lookupBasicPostcodeDetails', () => {
-        it('should lookup the postcode details', () => {
+        it('should notify of completion when address-not-listed is selected', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
 
             // when
-            component.lookupBasicPostcodeDetails();
+            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+                fixture.debugElement.query(By.css('.address-not-listed')).nativeElement.click();
 
-            // then
-            expect(postcodeApiServiceStub.getPostcodeDetails).toHaveBeenCalled();
-            expect(postcodeApiServiceStub.getPostcodeDetails).toHaveBeenCalledWith(VALID_POSTCODE);
-        });
-
-        it('should set the response if postcode details are returned', () => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-
-            // when
-            component.lookupBasicPostcodeDetails();
-
-            // then
-            // Match data in 'assets/test/dummy-postcode-repsonse.json'
-            const expectedLocalAuthorityCode = 'E09000033';
-            expect(component.response.postcode).toEqual(VALID_POSTCODE);
-            expect(component.response.epc).toBeNull();
-            expect(component.response.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
-        });
-
-        it('should notify of completion if postcode details are returned', () => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-
-            // when
-            component.lookupBasicPostcodeDetails();
-
-            // then
-            expect(component.complete.emit).toHaveBeenCalled();
-        });
-
-        it('should display validation error message if postcode api returns with postcode-not-found', () => {
-            // given
-            component.postcodeInput = 'W11AA';
-            let injectedMockPostcodeApiService = fixture.debugElement.injector.get(PostcodeApiService);
-            injectedMockPostcodeApiService.getPostcodeDetails = () => ErrorObservable.create({
-                status: 404,
-                error: 'Postcode not found'
+                // then
+                expect(component.complete.emit).toHaveBeenCalled();
             });
-
-            // when
-            component.lookupBasicPostcodeDetails();
-
-            // then
-            expect(component.validationError).toEqual(PostcodeEpcQuestionComponent.ERROR_VALIDATION);
-        });
+        }));
     });
 });

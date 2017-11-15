@@ -1,7 +1,9 @@
 import {Component} from "@angular/core";
-import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
-import {Epc} from "../../shared/epc-api-service/model/epc";
-import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
+import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
+import {Epc} from "../../shared/postcode-epc-service/model/epc";
+import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
+import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 
 @Component({
     selector: 'app-boiler-landing-page',
@@ -15,21 +17,25 @@ export class BoilerLandingPageComponent {
     epcs: Epc[];
     selectedEpc: Epc;
 
-    constructor(private epcApiService: EpcApiService) {
+    constructor(private postcodeEpcService: PostcodeEpcService) {
     }
 
     lookupAllEpcsForPostcode(): void {
         this.loadingEpcs = true;
-        this.epcApiService.getEpcData(this.postcodeInput.replace(/\s/g, ''))
+        this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
-                epcs => this.epcSearchCompleted(epcs),
-                err => this.epcSearchCompleted([])
+                postcodeDetails => this.epcSearchCompleted(postcodeDetails),
+                err => this.epcSearchCompleted({
+                    postcode: this.postcodeInput,
+                    allEpcsForPostcode: [],
+                    localAuthorityCode: null
+                })
             );
     }
 
-    private epcSearchCompleted(epcs: Epc[]) {
+    private epcSearchCompleted(postcodeDetails: PostcodeDetails) {
         this.loadingEpcs = false;
-        this.epcs = epcs.sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
+        this.epcs = postcodeDetails.allEpcsForPostcode.sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
     }
 
     onEpcSelected() {
