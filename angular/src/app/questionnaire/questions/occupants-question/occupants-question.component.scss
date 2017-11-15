@@ -6,13 +6,15 @@
   .questionnaire-form {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: space-between;
 
-    .adults-input, .children-input {
+    & > * {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 260px;
+      justify-content: space-between;
 
       &:not(:last-child) {
         margin-right: 48px;
