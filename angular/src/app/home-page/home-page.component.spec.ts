@@ -25,7 +25,8 @@ describe('HomePageComponent', () => {
             declarations: [HomePageComponent, LatestNewsCardComponent, NavigationBarComponent],
             imports: [RouterTestingModule.withRoutes([
                 {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
-                {path: 'js/energy-efficiency/results', component: DummyComponent}
+                {path: 'js/energy-efficiency/results', component: DummyComponent},
+                {path: 'js/grants', component: DummyComponent}
             ])],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},
@@ -76,6 +77,21 @@ describe('HomePageComponent', () => {
         fixture.whenStable().then(() => {
             const location = fixture.debugElement.injector.get(Location);
             expect(location.path()).toBe('/js/energy-efficiency/results');
+        });
+    });
+
+    it('should set the user journey type and move to the grants page when the appropriate button is clicked', () => {
+        // given
+        const button = fixture.debugElement.query(By.css('.grants-button'));
+
+        // when
+        button.nativeElement.click();
+
+        // then
+        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Grants);
+        fixture.whenStable().then(() => {
+            const location = fixture.debugElement.injector.get(Location);
+            expect(location.path()).toBe('/js/grants');
         });
     });
 });

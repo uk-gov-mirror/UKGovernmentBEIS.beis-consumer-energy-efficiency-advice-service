@@ -25,4 +25,9 @@ export class HomePageComponent {
         this.responseData.userJourneyType = UserJourneyType.Boiler;
         this.router.navigate(['/js/boiler']);
     }
+
+    onGrantsButtonClick() {
+        this.responseData.userJourneyType = UserJourneyType.Grants;
+        this.router.navigate(['/js/grants']);
+    }
 }
