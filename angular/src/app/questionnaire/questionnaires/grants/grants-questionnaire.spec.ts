@@ -6,6 +6,7 @@ import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occu
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
 import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
 import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
+import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
 
 describe('GrantsQuestionnaire', () => {
 
@@ -25,7 +26,8 @@ describe('GrantsQuestionnaire', () => {
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
             new BenefitsQuestionMetadata(),
-            new OccupantsQuestionMetadata()
+            new OccupantsQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
@@ -47,7 +49,8 @@ describe('GrantsQuestionnaire', () => {
         const expectedQuestions = [
             new TenureTypeQuestionMetadata(),
             new BenefitsQuestionMetadata(),
-            new OccupantsQuestionMetadata()
+            new OccupantsQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when

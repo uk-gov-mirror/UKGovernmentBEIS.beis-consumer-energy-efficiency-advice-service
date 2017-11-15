@@ -41,7 +41,8 @@ describe('RdsapInput', () => {
             numberOfFridges: 0,
             numberOfFreezers: 0,
             livingRoomTemperature: 20,
-            benefits: Benefits.None
+            benefits: Benefits.None,
+            income: 123
         };
 
         it('should calculate the number of occupants correctly', () => {
