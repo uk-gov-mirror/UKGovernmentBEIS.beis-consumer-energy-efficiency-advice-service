@@ -6,6 +6,8 @@ import {CarouselComponent} from "./landing-page/carousel/carousel.component";
 import {CarouselItemComponent} from "./landing-page/carousel/carousel-item/carousel-item.component";
 import {SharedModule} from "../shared/shared.module";
 import {BoilerEpcReplaceComponent} from "./epc-replace/boiler-epc-replace.component";
+import {BoilerPostcodeLookupComponent} from './postcode-lookup/boiler-postcode-lookup.component';
+import {BoilerMakeModelLookupComponent} from './make-model-lookup/boiler-make-model-lookup.component';
 
 @NgModule({
     declarations: [
@@ -13,6 +15,8 @@ import {BoilerEpcReplaceComponent} from "./epc-replace/boiler-epc-replace.compon
         CarouselComponent,
         CarouselItemComponent,
         BoilerEpcReplaceComponent,
+        BoilerPostcodeLookupComponent,
+        BoilerMakeModelLookupComponent,
     ],
     imports: [
         CommonModule,
