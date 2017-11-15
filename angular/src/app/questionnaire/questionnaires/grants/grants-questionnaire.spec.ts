@@ -22,7 +22,7 @@ describe('GrantsQuestionnaire', () => {
         responseData.localAuthorityCode = undefined;
         responseData.tenureType = TenureType.PrivateTenancy;
         responseData.numberOfChildren = undefined;
-        responseData.numberOfAdults = undefined;
+        responseData.numberOfAdultsAgedUnder64 = undefined;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
             new BenefitsQuestionMetadata(),
@@ -43,7 +43,7 @@ describe('GrantsQuestionnaire', () => {
         responseData.localAuthorityCode = 'E09000033';
         responseData.tenureType = undefined;
         responseData.numberOfChildren = undefined;
-        responseData.numberOfAdults = undefined;
+        responseData.numberOfAdultsAgedUnder64 = undefined;
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         GrantsQuestionnaire.getInstance(responseData);
         const expectedQuestions = [
@@ -55,7 +55,7 @@ describe('GrantsQuestionnaire', () => {
 
         // when
         responseData.tenureType = TenureType.PrivateTenancy;
-        responseData.numberOfAdults = 2;
+        responseData.numberOfAdultsAgedUnder64 = 2;
         responseData.numberOfChildren = 3;
         const grantsQuestionnaire = GrantsQuestionnaire.getInstance(responseData);
 
