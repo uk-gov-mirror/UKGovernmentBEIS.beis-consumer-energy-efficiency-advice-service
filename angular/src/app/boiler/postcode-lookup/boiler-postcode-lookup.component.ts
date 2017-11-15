@@ -20,9 +20,9 @@ export class BoilerPostcodeLookupComponent {
                 private router: Router) {
     }
 
-    lookupAllEpcsForPostcode(): void {
+    lookupAllEpcsForPostcode(postcode: string): void {
         this.loadingEpcs = true;
-        this.epcApiService.getEpcsForPostcode(this.postcodeInput.replace(/\s/g, ''))
+        this.epcApiService.getEpcsForPostcode(postcode.replace(/\s/g, ''))
             .subscribe(
                 epcs => this.epcSearchCompleted(epcs),
                 err => this.epcSearchCompleted([])
