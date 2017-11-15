@@ -122,6 +122,13 @@
             flex: 1 1 auto;
             flex-basis: calc(50% - 96px);
 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .body-text {
+              width: 100%;
+            }
 
             .boiler-input, .postcode-input {
               width: 100%;
@@ -147,8 +154,8 @@
                 color: white;
 
                 flex: 0 0 72px;
-                outline: none;
                 border: none;
+                cursor: pointer;
 
                 font-size: 30px;
                 font-weight: bold;
@@ -160,11 +167,58 @@
             }
           }
 
+          .postcode-epc {
+            .loading-spinner {
+              height: 50px;
+              width: 50px;
+              margin-bottom: 0;
+            }
+
+            .address-select {
+              width: 100%;
+              height: 50px;
+              margin-top: 24px;
+              display: flex;
+              align-items: stretch;
+              justify-content: space-between;
+
+              .address-dropdown {
+                flex: 1 1 auto;
+                padding: 8px;
+                box-sizing: border-box;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+
+                .address-option {
+                  font-size: 18px;
+                }
+              }
+            }
+
+            .go-button {
+              background-color: black;
+              color: white;
+
+              flex: 0 0 50px;
+              border: none;
+              cursor: pointer;
+
+              font-size: 18px;
+              font-weight: bold;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+
           .make-and-model {
             padding-right: 96px;
             border-right: 1px solid $light-medium-grey;
 
             .dont-know-buttons {
+              width: 100%;
               display: flex;
               align-items: stretch;
               justify-content: space-between;

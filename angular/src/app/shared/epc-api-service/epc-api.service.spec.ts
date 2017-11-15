@@ -3,9 +3,10 @@ import "rxjs/add/operator/toPromise";
 
 import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../../../shared/wordpress-api-service/wordpress-api-service";
-import {EpcsResponse} from "../model/response/epc/epcs-response";
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {EpcsResponse} from "./model/response/epcs-response";
 import {HttpRequest} from "@angular/common/http";
+import {Epc} from "./model/epc";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -35,9 +36,10 @@ describe('EpcApiService', () => {
 
         it('returns data from the API endpoint', async(() => {
             // given
+            const dummyEpcResponse = require('assets/test/dummy-epc-response.json');
             const expectedResponse: EpcsResponse = {
                 'column-names': ['dummy-column'],
-                'rows': []
+                'rows': [dummyEpcResponse]
             };
 
             // when
@@ -47,9 +49,25 @@ describe('EpcApiService', () => {
 
             // then
             actualResponse.then((response) => {
-                expect(response).toEqual(expectedResponse);
+                expect(response).toEqual([new Epc(dummyEpcResponse)]);
             });
             httpMock.verify();
+        }));
+
+        it('should return only the most recent epc for each address', async(() => {
+            // given
+            const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
+
+            // when
+            const actualResponse = service.getEpcData(postcode).toPromise();
+            let request = httpMock.expectOne(matchesExpectedRequest);
+            request.flush(dummyEpcsResponse);
+
+            // then
+            actualResponse.then(epcs => {
+                const epc = epcs.find(epc => epc.address === 'Apartment 1, 1 Test Street');
+                expect(epc.epcDate).toEqual(new Date('2017-01-01'));
+            });
         }));
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
@@ -60,4 +78,6 @@ describe('EpcApiService', () => {
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });
+
+
 });

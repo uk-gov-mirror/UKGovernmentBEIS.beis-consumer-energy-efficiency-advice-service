@@ -20,8 +20,8 @@ import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type"
 import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {RecommendationService} from './recommendation-service/recommendation.service';
-import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
+import {RecommendationService} from "./recommendation-service/recommendation.service";
+import {RecommendationMetadataResponse} from "./recommendation-service/recommendation-metadata-response";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";

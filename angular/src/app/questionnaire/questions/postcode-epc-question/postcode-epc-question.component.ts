@@ -5,13 +5,13 @@ import keys from "lodash-es/keys";
 import orderBy from "lodash-es/orderBy";
 import head from "lodash-es/head";
 
-import {Epc} from "./model/epc";
-import {EpcParserService} from "./epc-parser-service/epc-parser.service";
+import {Epc} from "../../../shared/epc-api-service/model/epc";
+import {EpcParserService} from "../../../shared/epc-api-service/epc-parser.service";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {PostcodeEpc} from "./model/postcode-epc";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FeatureFlagService} from "../../../shared/feature-flag/feature-flag.service";
-import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {EpcApiService} from "../../../shared/epc-api-service/epc-api.service";
 import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 import {PostcodeResponse} from "./model/response/postcode/postcode-response";
 import {PostcodeErrorResponse} from "./model/response/postcode/postcode-error-response";
@@ -114,7 +114,6 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
 
     lookupAllEpcsForPostcode(): void {
         this.epcApiService.getEpcData(this.postcodeInput)
-            .map(result => EpcParserService.parse(result))
             .subscribe(
                 data => this.epcSearchCompleted(data),
                 err => this.lookupBasicPostcodeDetails()
@@ -126,13 +125,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
             this.lookupBasicPostcodeDetails();
         }
         this.shouldDisplayLoadingSpinner = false;
-        const epcsByAddress: {[address: string]: Epc[]} = groupBy(epcs, epc => epc.getDisplayAddress());
-        const mostRecentEpcForEachAddress = keys(epcsByAddress)
-            .map(address => {
-                const allEpcsForPostcodeSortedByDate = orderBy(epcsByAddress[address], ['epcDate'], ['desc']);
-                return head(allEpcsForPostcodeSortedByDate)
-            });
-        this.allEpcsForPostcode = mostRecentEpcForEachAddress;
+        this.allEpcsForPostcode = epcs.sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
     }
 
     isSelected(epc: Epc): boolean {

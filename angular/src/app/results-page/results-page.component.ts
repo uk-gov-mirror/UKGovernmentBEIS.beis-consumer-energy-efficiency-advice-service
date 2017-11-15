@@ -12,8 +12,8 @@ import "rxjs/add/observable/forkJoin";
 import keys from "lodash-es/keys";
 import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
-import {RecommendationService} from './recommendation-service/recommendation.service';
-import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
+import {RecommendationService} from "./recommendation-service/recommendation.service";
+import {RecommendationMetadataResponse} from "./recommendation-service/recommendation-metadata-response";
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 

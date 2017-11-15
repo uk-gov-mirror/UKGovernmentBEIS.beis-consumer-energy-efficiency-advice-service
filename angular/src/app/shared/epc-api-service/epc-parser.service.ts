@@ -1,5 +1,5 @@
-import {Epc} from "../model/epc";
-import {EpcsResponse} from "../model/response/epc/epcs-response";
+import {Epc} from "./model/epc";
+import {EpcsResponse} from "./model/response/epcs-response";
 
 export abstract class EpcParserService {
 
@@ -8,8 +8,7 @@ export abstract class EpcParserService {
             return [];
         }
         return epcApiResponse.rows
-            .map(epcResponse => new Epc(epcResponse))
-            .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
+            .map(epcResponse => new Epc(epcResponse));
     }
 
     static sortEpcsByHouseNumberOrAlphabetically(a: Epc, b: Epc): number {
