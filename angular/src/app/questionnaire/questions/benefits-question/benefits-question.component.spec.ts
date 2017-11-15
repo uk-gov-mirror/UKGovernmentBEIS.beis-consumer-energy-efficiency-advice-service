@@ -7,7 +7,7 @@ import {BenefitsQuestionComponent} from "./benefits-question.component";
 import {Benefits} from "./benefits";
 import keys from "lodash-es/keys";
 
-describe('IncomeQuestionComponent', () => {
+describe('BenefitsQuestionComponent', () => {
     let component: BenefitsQuestionComponent;
     let fixture: ComponentFixture<BenefitsQuestionComponent>;
 
