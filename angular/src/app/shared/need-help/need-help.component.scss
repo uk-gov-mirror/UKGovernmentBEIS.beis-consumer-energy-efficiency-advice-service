@@ -1,6 +1,6 @@
 @import "styles/page";
 
-$width: 250px;
+$width: 282px;
 
 .need-help {
   cursor: pointer;
@@ -9,9 +9,10 @@ $width: 250px;
   position: fixed;
   bottom: 0;
   width: $width;
+  padding: 0 16px;
 
   left: 50%;
-  margin-left: ($content-max-width / 2 - $width / 2 - $side-margin);
+  margin-left: ($content-max-width / 2 - $width);
 
   .header-bar {
     width: 100%;
