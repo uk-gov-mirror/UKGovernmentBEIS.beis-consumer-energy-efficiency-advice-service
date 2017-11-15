@@ -1,0 +1,89 @@
+[{
+  "id": 3239,
+  "acf": {
+    "name": "Biomass Boiler",
+    "description": "Wood-fuelled heating systems, or biomass systems, burn varieties of wood to either warm a single room or to provide central heating and hot water.",
+    "installation_cost_lower_bound": "10000",
+    "installation_cost_upper_bound": "19000",
+    "lifetime": "15",
+    "running_cost": "1200",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3237,
+  "acf": {
+    "name": "Micro CHP Boiler",
+    "description": "Micro combined heat and power (micro-CHP) is a technology which generates heat and electricity simultaneously.",
+    "installation_cost_lower_bound": "4500",
+    "installation_cost_upper_bound": "9000",
+    "lifetime": "20",
+    "running_cost": "1300",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3235,
+  "acf": {
+    "name": "Solar water heater",
+    "description": "Solar water heating systems, or 'solar thermal' systems, use free heat from the sun to warm domestic hot water.",
+    "installation_cost_lower_bound": "4000",
+    "installation_cost_upper_bound": "5000",
+    "lifetime": "20",
+    "running_cost": "0",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3233,
+  "acf": {
+    "name": "Ground source heat pump",
+    "description": "Ground source heat pumps (GSHPs) use pipes that are buried in the garden to extract heat from the ground.",
+    "installation_cost_lower_bound": "10000",
+    "installation_cost_upper_bound": "18000",
+    "lifetime": "50",
+    "running_cost": "750",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3231,
+  "acf": {
+    "name": "Air source heat pump",
+    "description": "Air source heat pumps (ASHPs) absorb heat from the outside air and use it to heat your home.",
+    "installation_cost_lower_bound": "7000",
+    "installation_cost_upper_bound": "11000",
+    "lifetime": "20",
+    "running_cost": "950",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3229,
+  "acf": {
+    "name": "Regular Boiler",
+    "description": "Regular boilers (also known as 'conventional' boilers) heat your central heating system directly and produce hot water for your cylinder.",
+    "installation_cost_lower_bound": "499",
+    "installation_cost_upper_bound": "825",
+    "lifetime": "15",
+    "running_cost": "1100",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3226,
+  "acf": {
+    "name": "System Boiler",
+    "description": "A system boiler has components housed externally from the boiler and will normally require cold water, as well as feed and expansion tanks in the loft.",
+    "installation_cost_lower_bound": "521",
+    "installation_cost_upper_bound": "910",
+    "lifetime": "15",
+    "running_cost": "1000",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}, {
+  "id": 3223,
+  "acf": {
+    "name": "Combi Boiler",
+    "description": "A combi boiler provide heat for your radiators and domestic hot water on demand.",
+    "installation_cost_lower_bound": "499",
+    "installation_cost_upper_bound": "825",
+    "lifetime": "15",
+    "running_cost": "1300",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  }
+}]

@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {MakeModelLookupComponent} from "./make-model-lookup.component";
+import {BoilerMakeModelLookupComponent} from "./boiler-make-model-lookup.component";
 
 describe('BoilerMakeModelLookupComponent', () => {
-    let component: MakeModelLookupComponent;
-    let fixture: ComponentFixture<MakeModelLookupComponent>;
+    let component: BoilerMakeModelLookupComponent;
+    let fixture: ComponentFixture<BoilerMakeModelLookupComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ MakeModelLookupComponent ]
+            declarations: [ BoilerMakeModelLookupComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MakeModelLookupComponent);
+        fixture = TestBed.createComponent(BoilerMakeModelLookupComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
