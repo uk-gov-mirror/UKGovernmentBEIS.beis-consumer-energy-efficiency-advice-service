@@ -19,7 +19,6 @@ describe('BehaviourQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.Calculator;
         const expectedQuestions = [
-            new ShowersAndBathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
@@ -35,7 +34,6 @@ describe('BehaviourQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.ReduceEnergyBills;
         const expectedQuestions = [
-            new ShowersAndBathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
@@ -51,7 +49,6 @@ describe('BehaviourQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         const expectedQuestions = [
-            new ShowersAndBathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
