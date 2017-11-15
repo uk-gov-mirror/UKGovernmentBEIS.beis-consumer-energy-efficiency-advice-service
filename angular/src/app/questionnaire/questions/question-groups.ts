@@ -17,6 +17,7 @@ import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-fr
 import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-question-metadata";
 import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
+import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -55,6 +56,6 @@ export const GRANTS_QUESTIONS = [
     new PostcodeEpcQuestionMetadata(),
     new TenureTypeQuestionMetadata(),
     new BenefitsQuestionMetadata(),
-    new OccupantsQuestionMetadata()
-    // TODO: add annual income question when this is done
+    new OccupantsQuestionMetadata(),
+    new IncomeQuestionMetadata()
 ];
