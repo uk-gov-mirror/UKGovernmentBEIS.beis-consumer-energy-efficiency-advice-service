@@ -94,8 +94,12 @@
   content: url('assets/images/icons/timer.svg');
 }
 
-.icon-boiler::before {
-  content: url('assets/images/icons/boiler.svg');
+.icon-boiler {
+  width: 103px;
+  height: 239px;
+  &::before {
+    content: url('assets/images/icons/boiler.svg');
+  }
 }
 
 .icon-video-play::before {
