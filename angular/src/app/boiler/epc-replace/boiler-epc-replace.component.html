@@ -1,2 +1,67 @@
-<div class="loading-spinner" *ngIf="loadingRecommendations"></div>
-<div *ngIf="!loadingRecommendations">{{recommendationsString}}</div>
+<app-spinner-and-error-container [loading]="loading" [error]="false"></app-spinner-and-error-container>
+<div class="boiler-epc-replace" *ngIf="!loading">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <div class="heading-text">Replacing your boiler</div>
+        </div>
+    </div>
+    <div class="page-row found-epc" *ngIf="recommendations !== undefined">
+        <div class="page-row-content">
+            <div class="heading">We've found your EPC!</div>
+            <div class="body-text">This recommends that:</div>
+            <div class="no-replace" *ngIf="!boilerNeedsReplacing()">
+                <div class="summary">
+                    <div class="icon icon-tick"></div>
+                    <div class="large-body-text">
+                        Your boiler is reasonably new, probably running efficiently and saving you money
+                    </div>
+                </div>
+                <button class="link-button">See ways to keep your boiler running efficiently</button>
+            </div>
+            <div class="replace" *ngIf="boilerNeedsReplacing()">
+                <div class="summary">
+                    <div class="icon icon-cross"></div>
+                    <div class="large-body-text">
+                        Your boiler is getting old and needs replacing. A new boiler will be more energy efficient and
+                        will save you money
+                    </div>
+                </div>
+                <button class="link-button">Answer a few more questions so we can suggest some boilers to suit you</button>
+            </div>
+        </div>
+    </div>
+    <div class="page-row sorry" *ngIf="recommendations === undefined">
+        <div class="page-row-content">
+            <div class="heading">Sorry, we couldn't find anything based on your EPC!</div>
+            <div class="body">
+                <app-boiler-make-model-lookup class="make-and-model"></app-boiler-make-model-lookup>
+                <div class="not-sure">
+                    <div class="body-text">
+                        If you are not sure or don't have access to your boiler we can ask a few questions in order to
+                        give you some personalised recommendations
+                    </div>
+                    <button class="link-button">
+                        Answer a few more questions so we could suggest the right boiler for you
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row" *ngIf="!boilerNeedsReplacing()">
+        <div class="recommendations page-row-content">
+            <div class="heading">There's probably more you can do!</div>
+            <div class="body">
+                <div class="body-text">
+                    While your boiler is fine, perhaps there are other things you can do to help save money on your energy bills
+                </div>
+                <button class="link-button">Answer a few more questions to help you save on energy</button>
+            </div>
+            <div class="recommendation-cards">
+                <app-recommendation-card class="recommendation-card"
+                                         *ngFor="let measure of staticPartialMeasuresWithCodes trackBy $index"
+                                         [recommendation]="measure.measure">
+                </app-recommendation-card>
+            </div>
+        </div>
+    </div>
+</div>

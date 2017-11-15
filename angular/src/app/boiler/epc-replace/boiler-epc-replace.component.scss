@@ -1,0 +1,156 @@
+@import "styles/mixins/font";
+@import "styles/mixins/buttons";
+@import "styles/var/colours";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.boiler-epc-replace {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .page-row {
+    padding: 48px 0;
+  }
+
+  .heading {
+    @include page-subheading;
+    margin-bottom: 16px;
+  }
+
+  .body-text {
+    font-size: 18px;
+  }
+
+  .link-button {
+    @include boiler-link-button;
+  }
+
+  .large-body-text {
+    font-size: 24px;
+  }
+
+  .page-heading {
+    background-color: $light-grey;
+
+    .heading-text {
+      @include page-heading;
+    }
+  }
+
+  .found-epc {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      display: block;
+
+      .no-replace, .replace {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .summary {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .icon {
+            flex: 0 0 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .large-body-text {
+            flex: 1 1 auto;
+            font-weight: bold;
+            margin-right: 96px;
+          }
+        }
+
+        .link-button {
+          flex: 0 0 350px;
+          padding: 16px;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  .sorry {
+    background-color: $lighter-grey;
+    flex-grow: 1;
+
+    .page-row-content {
+      display: block;
+
+      .body {
+        margin-top: 64px;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+
+        .make-and-model, .not-sure {
+          flex: 1 1 auto;
+          flex-basis: calc(50% - 96px);
+        }
+
+        .make-and-model {
+          padding-right: 96px;
+          border-right: 1px solid $light-medium-grey;
+        }
+
+        .not-sure {
+          padding-left: 96px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+
+          .body-text {
+            width: 80%;
+          }
+
+          .link-button {
+            width: 80%;
+            height: 50px;
+            padding: 8px 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .recommendations {
+    display: block;
+
+    .body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .body-text {
+        flex: 0 1 40%;
+      }
+
+      .link-button {
+        flex: 0 0 350px;
+      }
+    }
+
+    .recommendation-cards {
+      margin-top: 48px;
+    }
+  }
+}

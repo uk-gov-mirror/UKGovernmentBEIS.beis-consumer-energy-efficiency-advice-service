@@ -4,9 +4,10 @@ import "rxjs/add/operator/toPromise";
 import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {EpcsResponse} from "./model/response/epcs-response";
+import {JsonApiResponse} from "./model/response/json-api-response";
 import {HttpRequest} from "@angular/common/http";
 import {Epc} from "./model/epc";
+import {EpcResponse} from "./model/response/epc-response";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -37,7 +38,7 @@ describe('EpcApiService', () => {
         it('returns data from the API endpoint', async(() => {
             // given
             const dummyEpcResponse = require('assets/test/dummy-epc-response.json');
-            const expectedResponse: EpcsResponse = {
+            const expectedResponse: JsonApiResponse<EpcResponse> = {
                 'column-names': ['dummy-column'],
                 'rows': [dummyEpcResponse]
             };

@@ -17,6 +17,8 @@ import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.c
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "./need-help/need-help.component";
 import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
+import {RecommendationService} from "./recommendation-service/recommendation.service";
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import {EpcApiService} from "./epc-api-service/epc-api.service";
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
-        NeedHelpComponent
+        NeedHelpComponent,
+        RecommendationCardComponent,
     ],
     exports: [
         TimesPipe,
@@ -34,6 +37,7 @@ import {EpcApiService} from "./epc-api-service/epc-api.service";
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
+        RecommendationCardComponent,
     ],
     imports: [
         HttpClientModule,
@@ -54,6 +58,7 @@ export class SharedModule {
                 EnergyCalculationApiService,
                 PostcodeValidationService,
                 EpcApiService,
+                RecommendationService,
             ]
         };
     }
