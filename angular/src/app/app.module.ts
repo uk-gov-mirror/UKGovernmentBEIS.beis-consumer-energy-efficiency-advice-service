@@ -36,7 +36,7 @@ import {EnergyEfficiencyQuestionnaireModule} from "./energy-efficiency/energy-ef
         PageModule.forRoot(),
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
-        BoilerModule,
+        BoilerModule.forRoot(),
     ],
     bootstrap: [AppComponent],
 })

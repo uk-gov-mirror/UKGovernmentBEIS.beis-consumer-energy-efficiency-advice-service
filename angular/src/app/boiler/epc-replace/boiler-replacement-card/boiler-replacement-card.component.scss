@@ -1,12 +1,17 @@
 @import "styles/mixins/font";
 @import "styles/var/colours";
-@import "../../results-page/results-page-sizes";
+@import "styles/page";
+
+$running-cost-box-width: 220px;
+$lifetime-box-width: 220px;
+$installation-cost-box-width: 220px;
+$remaining-boxes-width: $content-max-width - $running-cost-box-width - $lifetime-box-width - $installation-cost-box-width;
 
 :host {
   display: block;
 }
 
-.recommendation-card {
+.boiler-replacement-card {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -17,22 +22,25 @@
     box-sizing: border-box;
 
     &.description {
-      flex: 1 1 auto;
-      width: $remaining-boxes-width;
+      flex: 1 1 $remaining-boxes-width;
       background-color: $lighter-grey;
       border-left: 10px solid $lighter-medium-grey;
     }
 
-    &.investment {
-      flex: 0 0 auto;
-      width: $investment-box-width;
+    &.installation {
+      flex: 0 0 $installation-cost-box-width;
+      background-color: white;
+      font-weight: 800;
+    }
+
+    &.lifetime {
+      flex: 0 0 $lifetime-box-width;
       background-color: $light-grey;
       font-weight: 800;
     }
 
-    &.savings {
-      flex: 0 0 auto;
-      width: $savings-box-width;
+    &.running-cost {
+      flex: 0 0 $running-cost-box-width;
       background-color: $dark-medium-grey;
       font-weight: 800;
       color: white;
@@ -42,7 +50,8 @@
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      padding: 32px 48px;
+      justify-content: space-between;
+      padding: 16px 24px;
 
       .box-heading {
         @include body-uppercase;
@@ -52,10 +61,21 @@
       }
 
       .box-content {
-        @include focus-text;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+    }
+
+    &:not(.description), &:not(.running-cost) {
+      .box-content {
+        @include focus-text;
+      }
+    }
+
+    &.installation {
+      .box-content {
+        font-size: 22px;
       }
     }
   }

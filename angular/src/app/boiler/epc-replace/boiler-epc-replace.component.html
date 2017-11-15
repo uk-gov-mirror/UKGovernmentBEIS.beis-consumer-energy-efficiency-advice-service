@@ -64,4 +64,16 @@
             </div>
         </div>
     </div>
+    <div class="page-row" *ngIf="boilerNeedsReplacing()">
+        <div class="page-row-content boiler-types">
+            <div class="heading">Different types of boilers and heating systems</div>
+            <div class="body-text">
+                There are many different types of boilers and heating systems available. Browse through the options
+                below to compare the specifications
+            </div>
+            <div class="boiler-replacement-cards">
+                <app-boiler-replacement-card *ngFor="let boilerType of boilerTypes trackBy $index" [boilerType]="boilerType"></app-boiler-replacement-card>
+            </div>
+        </div>
+    </div>
 </div>

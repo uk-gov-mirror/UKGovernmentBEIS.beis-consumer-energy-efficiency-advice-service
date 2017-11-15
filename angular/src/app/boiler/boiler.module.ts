@@ -6,8 +6,11 @@ import {CarouselComponent} from "./landing-page/carousel/carousel.component";
 import {CarouselItemComponent} from "./landing-page/carousel/carousel-item/carousel-item.component";
 import {SharedModule} from "../shared/shared.module";
 import {BoilerEpcReplaceComponent} from "./epc-replace/boiler-epc-replace.component";
-import {BoilerPostcodeLookupComponent} from './postcode-lookup/boiler-postcode-lookup.component';
-import {BoilerMakeModelLookupComponent} from './make-model-lookup/boiler-make-model-lookup.component';
+import {BoilerPostcodeLookupComponent} from "./postcode-lookup/boiler-postcode-lookup.component";
+import {BoilerMakeModelLookupComponent} from "./make-model-lookup/boiler-make-model-lookup.component";
+import {BoilerReplacementCardComponent} from "./epc-replace/boiler-replacement-card/boiler-replacement-card.component";
+import {RoutingModule} from "../app-routing.module";
+import {BoilerTypesService} from "./boiler-types-service/boiler-types.service";
 
 @NgModule({
     declarations: [
@@ -17,11 +20,13 @@ import {BoilerMakeModelLookupComponent} from './make-model-lookup/boiler-make-mo
         BoilerEpcReplaceComponent,
         BoilerPostcodeLookupComponent,
         BoilerMakeModelLookupComponent,
+        BoilerReplacementCardComponent,
     ],
     imports: [
         CommonModule,
         SharedModule,
         FormsModule,
+        RoutingModule,
     ],
     exports: [
         BoilerLandingPageComponent,
@@ -29,4 +34,12 @@ import {BoilerMakeModelLookupComponent} from './make-model-lookup/boiler-make-mo
     ]
 })
 export class BoilerModule {
+    static forRoot() {
+        return {
+            ngModule: BoilerModule,
+            providers: [
+                BoilerTypesService,
+            ]
+        };
+    }
 }
