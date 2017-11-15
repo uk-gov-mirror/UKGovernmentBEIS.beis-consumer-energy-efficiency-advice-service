@@ -27,18 +27,16 @@ export class GrantsLandingPageComponent {
         this.validationError = !this.postcodeValidationService.isValid(this.postcodeInput);
         if (!this.validationError) {
             this.responseData.postcode = this.postcodeInput;
-            // TODO: add local authority grant-fetching logic here
+            // TODO: add local authority grant-fetching logic here (BEISDEAS-88)
             console.log(`Search for postcode "${ this.postcodeInput }"`);
         }
     }
 
-    enterBoilerJourney(): void {
+    setJourneyTypeToBoiler(): void {
         this.responseData.userJourneyType = UserJourneyType.Boiler;
-        this.router.navigate(['/js/boiler']);
     }
 
-    enterHomeImprovementsJourney(): void {
+    setJourneyTypeToHomeImprovements(): void {
         this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
-        this.router.navigate(['/js/energy-efficiency/questionnaire/home-basics']);
     }
 }
