@@ -17,7 +17,7 @@ import {LivingRoomTemperatureQuestionComponent} from "./living-room-temperature-
 import {OccupantsQuestionComponent} from "./occupants-question/occupants-question.component";
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question/postcode-epc-question.component";
 import {ShowerTypeQuestionComponent} from "./shower-type-question/shower-type-question.component";
-import {ShowersQuestionComponent} from "./showers-question/showers-question.component";
+import {ShowersAndBathsQuestionComponent} from "./showers-and-baths-question/showers-and-baths-question.component";
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
 import {TenureTypeQuestionComponent} from "./tenure-type-question/tenure-type-question.component";
@@ -44,7 +44,7 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
-        ShowersQuestionComponent,
+        ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ],
@@ -66,7 +66,7 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
-        ShowersQuestionComponent,
+        ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ],
@@ -94,7 +94,7 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
-        ShowersQuestionComponent,
+        ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ]

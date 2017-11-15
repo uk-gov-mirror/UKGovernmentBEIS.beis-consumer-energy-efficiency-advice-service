@@ -11,7 +11,7 @@ import {FuelTypeQuestionMetadata} from "./fuel-type-question/fuel-type-question-
 import {LivingRoomTemperatureQuestionMetadata} from "./living-room-temperature-question/living-room-temperature-question-metadata";
 import {OccupantsQuestionMetadata} from "./occupants-question/occupants-question-metadata";
 import {ShowerTypeQuestionMetadata} from "./shower-type-question/shower-type-question-metadata";
-import {ShowersQuestionMetadata} from "./showers-question/showers-question-metadata";
+import {ShowersAndBathsQuestionMetadata} from "./showers-and-baths-question/showers-and-baths-question-metadata";
 import {BathsQuestionMetadata} from "./baths-question/baths-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-freezer-question-metadata";
 import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-question-metadata";
@@ -42,7 +42,7 @@ export const BASIC_BEHAVIOURAL_QUESTIONS = [
 ];
 
 export const OTHER_BEHAVIOURAL_QUESTIONS = [
-    new ShowersQuestionMetadata(),
+    new ShowersAndBathsQuestionMetadata(),
     new BathsQuestionMetadata(),
     new ShowerTypeQuestionMetadata(),
     new FridgeFreezerQuestionMetadata(),

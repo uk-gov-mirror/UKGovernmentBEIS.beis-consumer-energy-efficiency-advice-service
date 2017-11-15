@@ -1,0 +1,18 @@
+<div class="showers-and-baths-question question-component">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="form-row">
+            <label for="showers">Showers</label>
+            <app-number-question itemsName="showers"
+                                 [(quantity)]="responseData.numberOfShowersPerWeek"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="50"></app-number-question>
+        </div>
+        <div class="form-row">
+            <label for="baths">Baths</label>
+            <app-number-question itemsName="baths"
+                                 [(quantity)]="responseData.numberOfBathsPerWeek"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="50"></app-number-question>
+        </div>
+    </form>
+</div>
