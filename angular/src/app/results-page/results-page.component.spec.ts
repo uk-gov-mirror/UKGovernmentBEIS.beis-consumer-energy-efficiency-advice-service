@@ -77,7 +77,9 @@ describe('ResultsPageComponent', () => {
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
         electricityTariff: undefined,
-        numberOfAdults: 1,
+        numberOfAdultsAgedUnder64: 1,
+        numberOfAdultsAged64To80: 0,
+        numberOfAdultsAgedOver80: 0,
         numberOfChildren: 2,
         showerType: ShowerType.None,
         numberOfShowersPerWeek: 0,
@@ -86,7 +88,8 @@ describe('ResultsPageComponent', () => {
         numberOfFridges: 0,
         numberOfFreezers: 0,
         livingRoomTemperature: 20,
-        benefits: Benefits.None
+        benefits: Benefits.None,
+        income: 1234567
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {
