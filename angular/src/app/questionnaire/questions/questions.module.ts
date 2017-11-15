@@ -3,7 +3,6 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 import {SharedModule} from "../../shared/shared.module";
-import {BathsQuestionComponent} from "./baths-question/baths-question.component";
 import {BedroomsQuestionComponent} from "./bedrooms-question/bedrooms-question.component";
 import {BoilerTypeQuestionComponent} from "./boiler-type-question/boiler-type-question.component";
 import {ConfirmEpcQuestionComponent} from "./confirm-epc-question/confirm-epc-question.component";
@@ -27,7 +26,6 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
 
 @NgModule({
     declarations: [
-        BathsQuestionComponent,
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
@@ -49,7 +47,6 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         GrantsQuestionnaireQuestionComponent
     ],
     exports: [
-        BathsQuestionComponent,
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
@@ -77,7 +74,6 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         CommonQuestionsModule,
     ],
     entryComponents: [
-        BathsQuestionComponent,
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,

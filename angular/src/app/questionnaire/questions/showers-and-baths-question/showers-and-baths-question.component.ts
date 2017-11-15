@@ -4,6 +4,7 @@ import {Component, OnInit} from "@angular/core";
 @Component({
     selector: 'app-showers-question',
     templateUrl: './showers-and-baths-question.component.html',
+    styleUrls: ['./showers-and-baths-question.scss'],
     animations: [slideInOutAnimation]
 })
 export class ShowersAndBathsQuestionComponent extends QuestionBaseComponent implements OnInit {

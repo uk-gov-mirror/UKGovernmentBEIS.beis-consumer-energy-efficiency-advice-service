@@ -4,7 +4,6 @@ import {BehaviourQuestionnaire} from "./behaviour-questionnaire";
 import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths-question/showers-and-baths-question-metadata";
 import {ShowerTypeQuestionMetadata} from "../../questions/shower-type-question/shower-type-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "../../questions/fridge-freezer-question/fridge-freezer-question-metadata";
-import {BathsQuestionMetadata} from "../../questions/baths-question/baths-question-metadata";
 import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occupants-question-metadata";
 import {LivingRoomTemperatureQuestionMetadata} from "../../questions/living-room-temperature-question/living-room-temperature-question-metadata";
 
@@ -21,7 +20,6 @@ describe('BehaviourQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.Calculator;
         const expectedQuestions = [
             new ShowersAndBathsQuestionMetadata(),
-            new BathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
@@ -38,7 +36,6 @@ describe('BehaviourQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.ReduceEnergyBills;
         const expectedQuestions = [
             new ShowersAndBathsQuestionMetadata(),
-            new BathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
@@ -55,7 +52,6 @@ describe('BehaviourQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         const expectedQuestions = [
             new ShowersAndBathsQuestionMetadata(),
-            new BathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
@@ -74,7 +70,6 @@ describe('BehaviourQuestionnaire', () => {
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
-            new BathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
@@ -93,7 +88,6 @@ describe('BehaviourQuestionnaire', () => {
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
-            new BathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
