@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { BoilerLandingPageComponent } from "./boiler-landing-page.component";
+import {BoilerLandingPageComponent} from "./boiler-landing-page.component";
 import {CarouselComponent} from "./carousel/carousel.component";
 import {CarouselItemComponent} from "./carousel/carousel-item/carousel-item.component";
 import {TimesPipe} from "../../shared/times/times.pipe";

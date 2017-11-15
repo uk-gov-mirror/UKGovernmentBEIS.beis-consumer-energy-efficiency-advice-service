@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component} from "@angular/core";
 import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
 import {Epc} from "../../shared/epc-api-service/model/epc";
 import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";

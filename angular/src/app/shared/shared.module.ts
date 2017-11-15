@@ -15,7 +15,7 @@ import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.compo
 import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
-import { NeedHelpComponent } from './need-help/need-help.component';
+import {NeedHelpComponent} from "./need-help/need-help.component";
 import {EpcApiService} from "./epc-api-service/epc-api.service";
 
 @NgModule({
