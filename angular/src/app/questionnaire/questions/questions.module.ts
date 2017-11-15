@@ -20,7 +20,8 @@ import {ShowerTypeQuestionComponent} from "./shower-type-question/shower-type-qu
 import {ShowersQuestionComponent} from "./showers-question/showers-question.component";
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
-import {TenureTypeQuestionComponent} from "./ownership-status-question/tenure-type-question.component";
+import {TenureTypeQuestionComponent} from "./tenure-type-question/tenure-type-question.component";
+import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-question/grants-questionnaire-question.component";
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
 
@@ -45,6 +46,7 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         StoreysQuestionComponent,
+        GrantsQuestionnaireQuestionComponent
     ],
     exports: [
         BathsQuestionComponent,
@@ -66,6 +68,7 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         StoreysQuestionComponent,
+        GrantsQuestionnaireQuestionComponent
     ],
     imports: [
         CommonModule,
@@ -93,6 +96,7 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         ShowerTypeQuestionComponent,
         ShowersQuestionComponent,
         StoreysQuestionComponent,
+        GrantsQuestionnaireQuestionComponent
     ]
 })
 export class QuestionsModule {

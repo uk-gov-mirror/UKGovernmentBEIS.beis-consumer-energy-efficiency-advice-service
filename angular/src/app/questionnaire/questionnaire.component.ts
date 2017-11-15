@@ -1,5 +1,14 @@
-import {ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, OnDestroy, ViewChild} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {
+    ChangeDetectorRef,
+    Component,
+    ComponentFactoryResolver,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild
+} from "@angular/core";
 import {QuestionDirective} from "./question.directive";
 import {QuestionTypeUtil} from "./questions/question-type";
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
@@ -9,6 +18,7 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
+import {ResponseData} from "../shared/response-data/response-data";
 
 @Component({
     selector: 'app-questionnaire',
@@ -31,25 +41,33 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     questionTypeIconClassName: string;
     shouldDisplayQuestionReason: boolean;
 
+    @Input() questionnaireName: string;
+    @Output() onQuestionnaireComplete = new EventEmitter<void>();
+
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
 
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef,
-                private router: Router,
-                private route: ActivatedRoute
+                private changeDetectorRef: ChangeDetectorRef
     ) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
-        this.questionnaire = this.questionnaireService.getQuestionnaireWithName(route.snapshot.paramMap.get('name'));
     }
 
     ngOnInit() {
+        this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
+        if (!this.questionnaire) {
+            this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);
+        }
+        if (this.questionnaire.getQuestions().length === 0) {
+            console.log(`Questionnaire "${ this.questionnaireName } is empty"`);
+            this.onQuestionnaireComplete.emit();
+        }
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
-            () => this.displayErrorMessage()
+            () => this.displayErrorAndLogMessage('Error when loading question content')
         );
     }
 
@@ -86,7 +104,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         this.renderQuestion(direction);
     }
 
-    private displayErrorMessage() {
+    private displayErrorAndLogMessage(err: any) {
+        console.error(err);
         this.isLoading = false;
         this.isError = true;
     }
@@ -131,12 +150,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (this.nextQuestionExists()) {
             this.goForwardsOneQuestion();
         } else {
-            this.goToResultsPage();
+            this.onQuestionnaireComplete.emit();
         }
-    }
-
-    goToResultsPage() {
-        this.router.navigate(['/js/results']);
     }
 
     toggleQuestionReasonDisplay() {
@@ -150,7 +165,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.currentQuestionId = question.questionId;
             this.currentQuestionContent = this.allQuestionsContent[this.currentQuestionId];
             if (!(this.currentQuestionContent && this.currentQuestionContent.questionHeading)) {
-                this.displayErrorMessage();
+                this.displayErrorAndLogMessage(`Missing question content for question with id "${ this.currentQuestionId }"`);
                 return;
             }
 

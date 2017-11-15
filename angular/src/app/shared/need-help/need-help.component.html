@@ -1,7 +1,7 @@
 <button class="need-help"
         [style.visibility]="visible ? 'visible' : 'hidden'"
-        [style.margin-bottom]="margin + 'px'"
-        (click)="expanded = !expanded; adjustForFooter()">
+        [style.margin-bottom]="margin - 1 + 'px'"
+        (click)="expanded = !expanded">
     <div class="header-bar">Need any help?</div>
     <div class="contents" *ngIf="expanded">
         If you are having any problems using the site, or would like any further assistance, please call 0800 1234567,

@@ -14,7 +14,9 @@ import {ShowerTypeQuestionMetadata} from "./shower-type-question/shower-type-que
 import {ShowersQuestionMetadata} from "./showers-question/showers-question-metadata";
 import {BathsQuestionMetadata} from "./baths-question/baths-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-freezer-question-metadata";
-import {TenureTypeQuestionMetadata} from "./ownership-status-question/tenure-type-question-metadata";
+import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-question-metadata";
+import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
+import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -43,4 +45,16 @@ export const OTHER_BEHAVIOURAL_QUESTIONS = [
     new BathsQuestionMetadata(),
     new ShowerTypeQuestionMetadata(),
     new FridgeFreezerQuestionMetadata(),
+];
+
+export const GRANTS_QUESTIONNAIRE_QUESTION = [
+    new GrantsQuestionnaireQuestionMetadata()
+];
+
+export const GRANTS_QUESTIONS = [
+    new PostcodeEpcQuestionMetadata(),
+    new TenureTypeQuestionMetadata(),
+    new BenefitsQuestionMetadata(),
+    new OccupantsQuestionMetadata()
+    // TODO: add annual income question when this is done
 ];

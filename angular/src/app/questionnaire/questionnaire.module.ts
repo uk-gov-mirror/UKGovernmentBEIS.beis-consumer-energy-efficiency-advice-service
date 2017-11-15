@@ -6,7 +6,6 @@ import {QuestionnaireComponent} from "./questionnaire.component";
 import {QuestionDirective} from "./question.directive";
 import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
-import {QuestionnaireGuard} from "./questionnaires/questionnaire.guard";
 import {SharedModule} from "../shared/shared.module";
 import {QuestionsModule} from "./questions/questions.module";
 
@@ -30,7 +29,7 @@ export class QuestionnaireModule {
     static forRoot() {
         return {
             ngModule: QuestionnaireModule,
-            providers: [QuestionnaireService, QuestionnaireGuard]
+            providers: [QuestionnaireService]
         };
     }
 }

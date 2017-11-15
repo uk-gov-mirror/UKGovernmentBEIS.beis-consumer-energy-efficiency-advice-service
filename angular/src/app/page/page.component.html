@@ -1,5 +1,6 @@
-<div class="page-row" >
-    <div class="page-row-content page-component" *ngIf="pageData | async as page">
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<div class="page-row" *ngIf="!isLoading && !isError" >
+    <div class="page-row-content page-component" *ngIf="pageData as page">
         <div class="title" [innerHTML]="page.title?.rendered"></div>
         <div class="content" [innerHTML]="page.content?.rendered"></div>
     </div>

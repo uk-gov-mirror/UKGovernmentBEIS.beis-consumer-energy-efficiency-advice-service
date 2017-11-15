@@ -8,12 +8,13 @@ import {HomeType} from "../../questionnaire/questions/home-type-question/home-ty
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {UserJourneyType} from "./user-journey-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../../questionnaire/questions/ownership-status-question/tenure-type";
+import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
 
 @Injectable()
 export class ResponseData {
     public userJourneyType: UserJourneyType;
+    public shouldIncludeGrantsQuestionnaire: boolean;
     public postcode: string;
     public epc: Epc;
     public localAuthorityCode: string;
@@ -27,7 +28,8 @@ export class ResponseData {
     public fuelType: FuelType;
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
-    public numberOfOccupants: number;
+    public numberOfAdults: number;
+    public numberOfChildren: number;
     public numberOfShowersPerWeek: number;
     public showerType: ShowerType;
     public numberOfFridgeFreezers: number;
