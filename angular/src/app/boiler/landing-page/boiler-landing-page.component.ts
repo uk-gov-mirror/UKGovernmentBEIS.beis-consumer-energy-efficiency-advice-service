@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {Router} from "@angular/router";
 import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
 import {Epc} from "../../shared/epc-api-service/model/epc";
 import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
@@ -12,15 +13,16 @@ export class BoilerLandingPageComponent {
 
     postcodeInput: string;
     loadingEpcs: boolean = false;
-    epcs: Epc[];
-    selectedEpc: Epc;
+    addresses: {address: string, lmkKey: string}[];
+    selectedLmkKey: string;
 
-    constructor(private epcApiService: EpcApiService) {
+    constructor(private epcApiService: EpcApiService,
+                private router: Router) {
     }
 
     lookupAllEpcsForPostcode(): void {
         this.loadingEpcs = true;
-        this.epcApiService.getEpcData(this.postcodeInput.replace(/\s/g, ''))
+        this.epcApiService.getEpcsForPostcode(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 epcs => this.epcSearchCompleted(epcs),
                 err => this.epcSearchCompleted([])
@@ -29,10 +31,12 @@ export class BoilerLandingPageComponent {
 
     private epcSearchCompleted(epcs: Epc[]) {
         this.loadingEpcs = false;
-        this.epcs = epcs.sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
+        this.addresses = epcs
+            .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically)
+            .map(epc => ({address: epc.address, lmkKey: epc.lmkKey}));
     }
 
-    onEpcSelected() {
-        console.log(this.selectedEpc);
+    onAddressSelected() {
+        this.router.navigate([`/js/boiler/epc-replace/${this.selectedLmkKey}`]);
     }
 }

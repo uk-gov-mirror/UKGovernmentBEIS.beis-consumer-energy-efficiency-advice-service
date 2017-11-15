@@ -113,7 +113,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     }
 
     lookupAllEpcsForPostcode(): void {
-        this.epcApiService.getEpcData(this.postcodeInput)
+        this.epcApiService.getEpcsForPostcode(this.postcodeInput)
             .subscribe(
                 data => this.epcSearchCompleted(data),
                 err => this.lookupBasicPostcodeDetails()

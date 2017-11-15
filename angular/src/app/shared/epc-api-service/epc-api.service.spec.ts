@@ -30,7 +30,7 @@ describe('EpcApiService', () => {
         });
     });
 
-    describe('#getEpcData', () => {
+    describe('#getEpcsForPostcode', () => {
 
         const postcode = 'SW1H 0ET';
 
@@ -43,7 +43,7 @@ describe('EpcApiService', () => {
             };
 
             // when
-            const actualResponse = service.getEpcData(postcode).toPromise();
+            const actualResponse = service.getEpcsForPostcode(postcode).toPromise();
             let request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(expectedResponse);
 
@@ -59,7 +59,7 @@ describe('EpcApiService', () => {
             const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
 
             // when
-            const actualResponse = service.getEpcData(postcode).toPromise();
+            const actualResponse = service.getEpcsForPostcode(postcode).toPromise();
             let request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(dummyEpcsResponse);
 

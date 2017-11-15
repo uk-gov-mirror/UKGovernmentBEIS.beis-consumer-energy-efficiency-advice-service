@@ -12,27 +12,39 @@ import head from "lodash-es/head";
 
 @Injectable()
 export class EpcApiService {
-    private static readonly epcEndpoint = 'angular-theme/v1/epc';
+    private static readonly epcSearchEndpoint = 'angular-theme/v1/epc';
+    private static readonly recommendationEndpoint = 'angular-theme/v1/epc-recommendations';
     static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
 
     private epcs: {[postcode: string]: Observable<Epc[]>} = {};
+    private recommendations: {[lmkKey: string]: Observable<any>} = {};
 
     constructor(private http: HttpClient,
                 private wordpressApiService: WordpressApiService) {
     }
 
-    getEpcData(postcode: string): Observable<Epc[]> {
+    getEpcsForPostcode(postcode: string): Observable<Epc[]> {
         if (!this.epcs[postcode]) {
             const params = new HttpParams()
                 .set('postcode', postcode)
                 .set('size', EpcApiService.MAX_NUMBER_OF_EPCS_PER_RESPONSE.toString());
             this.epcs[postcode] = this.http
-                .get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.epcEndpoint), {params: params})
+                .get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.epcSearchEndpoint), {params: params})
                 .map(result => EpcParserService.parse(result as EpcsResponse))
                 .map(epcs => this.getMostRecentEpcs(epcs))
                 .shareReplay(1);
         }
         return this.epcs[postcode];
+    }
+
+    getRecommendationsForLmkKey(lmkKey: string): Observable<any> {
+        if (!this.recommendations[lmkKey]) {
+            const params = new HttpParams().set('lmkKey', lmkKey);
+            this.recommendations[lmkKey] = this.http
+                .get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.recommendationEndpoint), {params: params})
+                .shareReplay(1);
+        }
+        return this.recommendations[lmkKey];
     }
 
     private getMostRecentEpcs(epcs: Epc[]): Epc[] {

@@ -25,7 +25,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
     let epcApiServiceStub = {
-        getEpcData: (postcode) => Observable.of(EpcParserService.parse(dummyEpcsResponse))
+        getEpcsForPostcode: (postcode) => Observable.of(EpcParserService.parse(dummyEpcsResponse))
     };
     let postcodeApiServiceStub = {
         getPostcodeDetails: (postcode) => Observable.of(dummyPostcodeResponse)
@@ -42,7 +42,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     };
 
     beforeEach(async(() => {
-        spyOn(epcApiServiceStub, 'getEpcData').and.callThrough();
+        spyOn(epcApiServiceStub, 'getEpcsForPostcode').and.callThrough();
         spyOn(postcodeApiServiceStub, 'getPostcodeDetails').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -121,8 +121,8 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).toHaveBeenCalledTimes(1);
-                expect(epcApiServiceStub.getEpcData).toHaveBeenCalledWith(VALID_POSTCODE);
+                expect(epcApiServiceStub.getEpcsForPostcode).toHaveBeenCalledTimes(1);
+                expect(epcApiServiceStub.getEpcsForPostcode).toHaveBeenCalledWith(VALID_POSTCODE);
             });
         }));
 
@@ -135,7 +135,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).not.toHaveBeenCalled();
+                expect(epcApiServiceStub.getEpcsForPostcode).not.toHaveBeenCalled();
             });
         }));
 
@@ -150,7 +150,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).not.toHaveBeenCalled();
+                expect(epcApiServiceStub.getEpcsForPostcode).not.toHaveBeenCalled();
             });
         }));
 
@@ -203,7 +203,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = () => ErrorObservable.create('error');
+            mockApiService.getEpcsForPostcode = () => ErrorObservable.create('error');
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
@@ -218,7 +218,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = (postcode) => Observable.of([]);
+            mockApiService.getEpcsForPostcode = (postcode) => Observable.of([]);
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
