@@ -186,6 +186,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
             this.questionComponent = componentRef.instance;
             this.questionComponent.slideInOut = slideInFrom;
+            this.shouldDisplayQuestionReason = this.currentQuestionContent.autoOpenQuestionReason;
 
             // Subscribe to the question's completion event, and unsubscribe from the previous one.
             if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
