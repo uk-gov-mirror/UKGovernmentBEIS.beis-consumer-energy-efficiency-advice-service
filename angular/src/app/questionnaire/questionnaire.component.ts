@@ -18,7 +18,7 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
-import {ResponseData} from "../shared/response-data/response-data";
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -49,7 +49,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef
+                private changeDetectorRef: ChangeDetectorRef,
+                private googleAnalyticsService: GoogleAnalyticsService
     ) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
@@ -186,7 +187,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
             this.questionComponent = componentRef.instance;
             this.questionComponent.slideInOut = slideInFrom;
+
             this.shouldDisplayQuestionReason = this.currentQuestionContent.autoOpenQuestionReason;
+            this.googleAnalyticsService.recordPageView(question.questionId);
 
             // Subscribe to the question's completion event, and unsubscribe from the previous one.
             if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
