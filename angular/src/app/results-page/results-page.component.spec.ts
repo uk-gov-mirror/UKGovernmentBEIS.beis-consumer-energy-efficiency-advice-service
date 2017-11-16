@@ -17,8 +17,8 @@ import {HomeType} from "../questionnaire/questions/home-type-question/home-type"
 import {HomeAge} from "../questionnaire/questions/home-age-question/home-age";
 import {FlatPosition} from "../questionnaire/questions/flat-position-question/flat-position";
 import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type";
-import {LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
-import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
+import {LocalAuthorityResponse} from "../shared/local-authority-service/local-authority-response";
+import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 import {RecommendationService} from "./recommendation-service/recommendation.service";
 import {RecommendationMetadataResponse} from "./recommendation-service/recommendation-metadata-response";

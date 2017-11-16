@@ -5,8 +5,7 @@ import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap
 import {EnergySavingRecommendation} from "./recommendation-card/energy-saving-recommendation";
 import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculations} from "./potentials/energy-calculations";
-import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
-import {GrantResponse, LocalAuthorityResponse} from "./local-authority-service/local-authority-response";
+import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import keys from "lodash-es/keys";
@@ -16,6 +15,8 @@ import {RecommendationService} from "./recommendation-service/recommendation.ser
 import {RecommendationMetadataResponse} from "./recommendation-service/recommendation-metadata-response";
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
+import {GrantsEligibilityService} from "../shared/grants-eligibility/grants-eligibility.service";
+import {GrantViewModel} from "../shared/grant/grant-view-model";
 
 @Component({
     selector: 'app-results-page',
@@ -23,11 +24,13 @@ import {QuestionnaireService} from "../questionnaire/questionnaire.service";
     styleUrls: ['./results-page.component.scss']
 })
 export class ResultsPageComponent implements OnInit {
+
+    availableGrants: GrantViewModel[];
+
     recommendations: EnergySavingRecommendation[];
     displayedRecommendations: number = 4;
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
-    availableGrants: GrantResponse[];
     recommendationMetadataResponses: RecommendationMetadataResponse[];
     featuredPages: WordpressPage[] = [];
 
@@ -40,22 +43,26 @@ export class ResultsPageComponent implements OnInit {
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private localAuthorityService: LocalAuthorityService,
                 private recommendationService: RecommendationService,
-                private questionnaireService: QuestionnaireService) {
+                private questionnaireService: QuestionnaireService,
+                private grantsEligibilityService: GrantsEligibilityService
+    ) {
     }
 
     ngOnInit() {
         Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
-            this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode),
-            this.recommendationService.fetchRecommendationDetails()
+            this.localAuthorityService.fetchLocalAuthorityName(this.responseData.localAuthorityCode),
+            this.recommendationService.fetchRecommendationDetails(),
+            this.grantsEligibilityService.getApplicableGrants()
         )
             .subscribe(
-                ([energyCalculation, localAuthority, recommendations]) => {
+                ([energyCalculation, localAuthorityName, recommendations, applicableGrants]) => {
                     this.handleEnergyCalculationResponse(energyCalculation);
-                    this.handleLocalAuthorityResponse(localAuthority);
+                    this.handleLocalAuthorityName(localAuthorityName);
                     this.handleRecommendationResponses(recommendations);
+                    this.handleGrantsResponses(applicableGrants);
                 },
-                () => this.displayErrorMessage(),
+                (err) => this.displayErrorMessage(err),
                 () => this.onLoadingComplete()
             );
     }
@@ -76,16 +83,20 @@ export class ResultsPageComponent implements OnInit {
         this.energyCalculationResponse = response;
     }
 
-    private handleLocalAuthorityResponse(response: LocalAuthorityResponse) {
-        this.localAuthorityName = response.display_name;
-        this.availableGrants = response.grants;
+    private handleLocalAuthorityName(name: string) {
+        this.localAuthorityName = name;
     }
 
     private handleRecommendationResponses(responses: RecommendationMetadataResponse[]) {
         this.recommendationMetadataResponses = responses;
     }
 
-    private displayErrorMessage() {
+    private handleGrantsResponses(grants: GrantViewModel[]) {
+        this.availableGrants = grants;
+    }
+
+    private displayErrorMessage(err: any): void {
+        console.error(err);
         this.isLoading = false;
         this.isError = true;
     }

@@ -19,6 +19,10 @@ import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.serv
 import {PostcodeEpcService} from "./postcode-epc-service/postcode-epc.service";
 import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/postcode-api.service";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
+import {GrantsEligibilityService} from "./grants-eligibility/grants-eligibility.service";
+import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
+import {NationalGrantsService} from "./national-grants-service/national-grants.service";
+import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-factory";
 
 @NgModule({
     declarations: [
@@ -58,7 +62,11 @@ export class SharedModule {
                 EnergyCalculationApiService,
                 EpcApiService,
                 PostcodeEpcService,
-                PostcodeApiService
+                PostcodeApiService,
+                GrantsEligibilityService,
+                LocalAuthorityService,
+                NationalGrantsService,
+                NationalGrantMetadataFactory
             ]
         };
     }

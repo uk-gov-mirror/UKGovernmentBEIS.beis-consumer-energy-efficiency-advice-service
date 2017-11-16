@@ -1,17 +1,17 @@
 <?php
 
-add_action( 'init', 'create_grant_post_type' );
-add_action( 'init', 'setup_grant_acf_group' );
+add_action( 'init', 'create_local_authority_grant_post_type' );
+add_action( 'init', 'setup_local_authority_grant_acf_group' );
 
-function create_grant_post_type() {
+function create_local_authority_grant_post_type() {
 
-    register_post_type('grant',
+    register_post_type('local_grant',
         array(
             'labels'                => array(
-                'name' => __( 'Grants' ),
-                'singular_name' => __( 'Grant' )
+                'name' => __( 'Local Authority Grants' ),
+                'singular_name' => __( 'Local Authority Grant' )
             ),
-            'description'           => 'Available energy-saving grants',
+            'description'           => 'Energy grants run by a Local Authority',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,
             'show_in_nav_menus'     => false,
@@ -24,13 +24,13 @@ function create_grant_post_type() {
         ));
 }
 
-function setup_grant_acf_group() {
+function setup_local_authority_grant_acf_group() {
 
     if(function_exists("register_field_group"))
     {
         register_field_group(array (
-            'id' => 'acf_grant',
-            'title' => 'Grant',
+            'id' => 'acf_local_grant',
+            'title' => 'Local Authority Grant',
             'fields' => array (
                 array (
                     'key' => 'field_59f1e04695d2c',

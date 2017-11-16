@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {GrantResponse} from "../../results-page/local-authority-service/local-authority-response";
+import {GrantViewModel} from "../grant/grant-view-model";
 
 @Component({
     selector: 'app-grant-card',
@@ -7,5 +7,5 @@ import {GrantResponse} from "../../results-page/local-authority-service/local-au
     styleUrls: ['./grant-card.component.scss']
 })
 export class GrantCardComponent {
-    @Input() grant: GrantResponse;
+    @Input() grant: GrantViewModel;
 }

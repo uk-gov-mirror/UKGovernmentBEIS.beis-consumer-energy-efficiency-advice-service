@@ -3,7 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {HttpRequest} from "@angular/common/http";
 import {LocalAuthorityService} from "./local-authority.service";
 import {LocalAuthorityResponse} from "./local-authority-response";
-import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
 import "rxjs/add/operator/toPromise";
 
 describe('LocalAuthorityService', () => {

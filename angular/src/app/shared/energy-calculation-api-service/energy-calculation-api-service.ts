@@ -19,8 +19,12 @@ export class EnergyCalculationApiService {
 
     fetchEnergyCalculation(rdSapInput: RdSapInput): Observable<EnergyCalculationResponse> {
         if (!isEqual(rdSapInput, this.cachedInput) || !this.cachedResults) {
-            const endpoint = this.wordpressApiService.getFullApiEndpoint(EnergyCalculationApiService.breEndpoint);
             this.cachedInput = clone(rdSapInput);
+            if (!rdSapInput.isMinimalDataSet()) {
+                console.warn('Cannot fetch energy calculation because missing some required responses');
+                this.cachedResults = Observable.of(null);
+            }
+            const endpoint = this.wordpressApiService.getFullApiEndpoint(EnergyCalculationApiService.breEndpoint);
             this.cachedResults = this.http.post(endpoint, rdSapInput).shareReplay(1);
         }
         return this.cachedResults;

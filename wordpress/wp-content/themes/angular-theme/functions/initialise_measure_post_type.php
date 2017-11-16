@@ -1,20 +1,20 @@
 <?php
 
-add_action( 'init', 'create_recommendation_post_type' );
-add_action( 'init', 'setup_recommendation_acf_group');
+add_action( 'init', 'create_measure_post_type' );
+add_action( 'init', 'setup_measure_acf_group');
 
-// Disable the quick-edit link to prevent users editing the slug for a recommendation
-add_filter( 'post_row_actions', disable_quick_edit_for('recommendation'), 10, 2 );
+// Disable the quick-edit link to prevent users editing the slug for a measure
+add_filter( 'post_row_actions', disable_quick_edit_for('measure'), 10, 2 );
 
-function create_recommendation_post_type() {
+function create_measure_post_type() {
 
-    register_post_type('recommendation',
+    register_post_type('measure',
         array(
             'labels'                => array(
-                'name' => __( 'Recommendations' ),
-                'singular_name' => __( 'Recommendation' )
+                'name' => __( 'Measures' ),
+                'singular_name' => __( 'Measure' )
             ),
-            'description'           => 'Energy saving recommendations',
+            'description'           => 'Energy saving measures',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,
             'show_in_nav_menus'     => false,
@@ -27,13 +27,13 @@ function create_recommendation_post_type() {
         ));
 }
 
-function setup_recommendation_acf_group() {
+function setup_measure_acf_group() {
 
     if(function_exists("register_field_group"))
     {
         register_field_group(array (
-            'id' => 'acf_recommendation',
-            'title' => 'Recommendations',
+            'id' => 'acf_measure',
+            'title' => 'Measures',
             'fields' => array (
                 array (
                     'key' => 'field_59f9e731d5484',
@@ -54,7 +54,7 @@ function setup_recommendation_acf_group() {
                     'label' => 'Summary',
                     'name' => 'summary',
                     'type' => 'text',
-                    'instructions' => 'A short summary of this recommendation',
+                    'instructions' => 'A short summary of this measure',
                     'required' => 1,
                     'default_value' => 'No description available',
                     'placeholder' => '',
@@ -119,7 +119,7 @@ function setup_recommendation_acf_group() {
                     array (
                         'param' => 'post_type',
                         'operator' => '==',
-                        'value' => 'recommendation',
+                        'value' => 'measure',
                         'order_no' => 0,
                         'group_no' => 0,
                     ),

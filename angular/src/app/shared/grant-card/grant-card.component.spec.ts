@@ -2,13 +2,13 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {GrantCardComponent} from "./grant-card.component";
-import {GrantResponse} from "../../results-page/local-authority-service/local-authority-response";
+import {LocalGrantResponse} from "../local-authority-service/local-authority-response";
 
 describe('GrantCardComponent', () => {
     let component: GrantCardComponent;
     let fixture: ComponentFixture<GrantCardComponent>;
 
-    const grant: GrantResponse = {
+    const grant: LocalGrantResponse = {
         display_name: 'Name',
         description: 'Description'
     };

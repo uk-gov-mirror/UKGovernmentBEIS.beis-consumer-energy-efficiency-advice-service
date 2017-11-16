@@ -1,15 +1,14 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs/Observable";
 
 import {ResponseData} from "../../shared/response-data/response-data";
 import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
-import {LocalAuthorityService} from "../../results-page/local-authority-service/local-authority.service";
-import {
-    GrantResponse,
-    LocalAuthorityResponse
-} from "../../results-page/local-authority-service/local-authority-response";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
+import {GrantsEligibilityService} from "../../shared/grants-eligibility/grants-eligibility.service";
+import {GrantViewModel} from "../../shared/grant/grant-view-model";
 
 @Component({
     selector: 'app-grants-landing-page',
@@ -20,7 +19,7 @@ export class GrantsLandingPageComponent {
 
     postcodeInput: string = '';
     localAuthorityName: string = null;
-    localAuthorityGrants: GrantResponse[];
+    availableGrants: GrantViewModel[];
     validationError: boolean = false;
     isLoading: boolean = false;
     isError: boolean = false;
@@ -29,13 +28,14 @@ export class GrantsLandingPageComponent {
         private responseData: ResponseData,
         private router: Router,
         private postcodeEpcService: PostcodeEpcService,
+        private grantsEligibilityService: GrantsEligibilityService,
         private localAuthorityService: LocalAuthorityService
     ) {
     }
 
     onPostcodeSubmit(): void {
         this.localAuthorityName = null;
-        this.localAuthorityGrants = null;
+        this.availableGrants = null;
         this.validationError = false;
         this.isError = false;
         this.isLoading = true;
@@ -54,20 +54,21 @@ export class GrantsLandingPageComponent {
         }
         this.responseData.postcode = postcodeDetails.postcode;
         this.responseData.localAuthorityCode = postcodeDetails.localAuthorityCode;
-        this.localAuthorityService.fetchLocalAuthorityDetails(localAuthorityCode)
+        Observable.forkJoin(
+            this.grantsEligibilityService.getApplicableGrants(),
+            this.localAuthorityService.fetchLocalAuthorityName(this.responseData.localAuthorityCode)
+        )
             .subscribe(
-                localAuthorityResponse => this.handleLocalAuthorityResponse(localAuthorityResponse),
-                err => this.handleLocalAuthoritySearchError(err)
+                ([grants, localAuthorityName]) => {
+                    this.availableGrants = grants;
+                    this.localAuthorityName = localAuthorityName;
+                },
+                err => this.handleGrantsCalculationError(err),
+                () => this.isLoading = false
             )
     }
 
-    private handleLocalAuthorityResponse(localAuthorityResponse: LocalAuthorityResponse): void {
-        this.isLoading = false;
-        this.localAuthorityName = localAuthorityResponse.display_name;
-        this.localAuthorityGrants = localAuthorityResponse.grants;
-    }
-
-    private handleLocalAuthoritySearchError(err): void {
+    private handleGrantsCalculationError(err): void {
         this.isError = true;
         console.error(err);
     }

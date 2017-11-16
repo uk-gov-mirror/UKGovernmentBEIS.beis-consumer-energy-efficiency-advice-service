@@ -12,8 +12,8 @@ import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
 import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
-import {LocalAuthorityResponse} from "../../results-page/local-authority-service/local-authority-response";
-import {LocalAuthorityService} from "../../results-page/local-authority-service/local-authority.service";
+import {LocalAuthorityResponse} from "../../shared/local-authority-service/local-authority-response";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 
 describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;

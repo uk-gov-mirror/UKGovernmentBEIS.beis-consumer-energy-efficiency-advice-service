@@ -6,7 +6,7 @@ import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-
 
 @Injectable()
 export class RecommendationService {
-    private static readonly recommendationsEndpoint = 'acf/v3/recommendation?per_page=1000';
+    private static readonly recommendationsEndpoint = 'acf/v3/measure?per_page=1000';
     private recommendations: Observable<RecommendationMetadataResponse[]>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
