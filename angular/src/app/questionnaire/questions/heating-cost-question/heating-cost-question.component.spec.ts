@@ -47,7 +47,6 @@ describe('HeatingCostQuestionComponent', () => {
     it('should set value to 0 and notify of completion when clicking "I don\'t know".', () => {
         // given
         let expectedCost = 0;
-        // responseData.heatingCost = undefined;
 
         // when
         let button = fixture.debugElement.query(By.css('#do-not-know-button'));

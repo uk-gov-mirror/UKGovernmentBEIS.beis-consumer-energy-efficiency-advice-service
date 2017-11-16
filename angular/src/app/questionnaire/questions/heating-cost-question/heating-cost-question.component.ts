@@ -11,7 +11,6 @@ export class HeatingCostQuestionComponent extends QuestionBaseComponent {
     isInvalid: boolean;
 
     get response(): number {
-        // this.responseData.fuelType
         return this.responseData.heatingCost;
     }
 
