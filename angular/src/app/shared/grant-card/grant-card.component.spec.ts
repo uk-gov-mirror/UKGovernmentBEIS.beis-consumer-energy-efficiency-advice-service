@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {GrantCardComponent} from "./grant-card.component";
-import {GrantResponse} from "../local-authority-service/local-authority-response";
+import {GrantResponse} from "../../results-page/local-authority-service/local-authority-response";
 
 describe('GrantCardComponent', () => {
     let component: GrantCardComponent;

@@ -116,7 +116,8 @@
                     <input class="postcode-input-text" [(ngModel)]="postcodeInput" spellcheck="false" type="text"
                            name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
                     <button class="postcode-input-submit" type="submit"
-                            title="Submit" aria-label="Submit">></button>
+                            title="Submit" aria-label="Submit">>
+                    </button>
                 </form>
             </div>
             <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
@@ -124,10 +125,20 @@
             <div class="network-error" *ngIf="isError">
                 Something went wrong and we can't load this information right now. Please try again later.
             </div>
-        </div>
-    </div>
-    <div class="local-grants page-row">
-        <div class="page-row-content">
+            <div class="local-grants" *ngIf="localAuthorityName && localAuthorityGrants && localAuthorityGrants.length > 0">
+                <div class="local-authority-name">You live in {{localAuthorityName}} and we've found the following:</div>
+                <div class="grant-cards">
+                    <app-grant-card class="grant-card"
+                                    *ngFor="let grant of localAuthorityGrants"
+                                    [grant]="grant">
+                    </app-grant-card>
+                </div>
+            </div>
+            <div class="no-local-grants" *ngIf="localAuthorityName && localAuthorityGrants && localAuthorityGrants.length === 0">
+                <div class="local-authority-name">You live in {{localAuthorityName}}. We can't find any grants available
+                    from your local authority.
+                </div>
+            </div>
         </div>
     </div>
 </div>

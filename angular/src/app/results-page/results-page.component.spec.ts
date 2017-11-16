@@ -4,7 +4,7 @@ import {DebugElement} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {ResultsPageComponent} from "./results-page.component";
-import {GrantCardComponent} from "./grant-card/grant-card.component";
+import {GrantCardComponent} from "../shared/grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {ResponseData} from "../shared/response-data/response-data";

@@ -1,39 +1,70 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {RouterTestingModule} from "@angular/router/testing";
+import {By} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
+
 import {GrantsLandingPageComponent} from "./grants-landing-page.component";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
+import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
+import {LocalAuthorityResponse} from "../../results-page/local-authority-service/local-authority-response";
+import {LocalAuthorityService} from "../../results-page/local-authority-service/local-authority.service";
 
 describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;
     let fixture: ComponentFixture<GrantsLandingPageComponent>;
+    let responseData: ResponseData;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
+    const postcode = "SW1A1AA";
+    const localAuthorityCode = "E09000033";
+    const localAuthorityName = "Westminster";
+    const localAuthorityDetails: LocalAuthorityResponse = {
+        local_authority_code: localAuthorityCode,
+        display_name: localAuthorityName,
+        grants: [
+            {display_name: 'Grant 1', description: 'Grant 1'},
+            {display_name: 'Grant 2', description: 'Grant 2'},
+            {display_name: 'Grant 3', description: 'Grant 3'},
+        ]
+    };
 
     let postcodeEpcResponse: Observable<PostcodeDetails>;
+    let localAuthorityResponse: Observable<LocalAuthorityResponse>;
 
     let postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => postcodeEpcResponse
     };
 
+    let localAuthorityServiceStub = {
+        fetchLocalAuthorityDetails: () => localAuthorityResponse
+    };
+
     beforeEach(async(() => {
         postcodeEpcResponse = Observable.of({
             allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
-            postcode: 'SW1A1AA',
-            localAuthorityCode: 'E09000033'
+            postcode: postcode,
+            localAuthorityCode: localAuthorityCode
         });
+        localAuthorityResponse = Observable.of(localAuthorityDetails);
+
+        spyOn(postcodeEpcServiceStub, 'fetchPostcodeDetails').and.callThrough();
+        spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
 
         TestBed.configureTestingModule({
-            declarations: [GrantsLandingPageComponent],
+            declarations: [GrantsLandingPageComponent, GrantCardComponent],
             providers: [
                 ResponseData,
-                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub}
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
+                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
             ],
             imports: [
+                CommonModule,
                 RouterTestingModule,
                 FormsModule
             ]
@@ -44,9 +75,153 @@ describe('GrantsLandingPageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(GrantsLandingPageComponent);
         component = fixture.componentInstance;
+        responseData = TestBed.get(ResponseData);
+        fixture.detectChanges();
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    describe('#construct', () => {
+        it('should create', () => {
+            expect(component).toBeTruthy();
+        });
+    });
+
+    describe('#onPostcodeSubmit', () => {
+        it('should strip spaces and lookup the postcode details', async(() => {
+            // given
+            component.postcodeInput = 'sw1a 1aa  ';
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(postcodeEpcServiceStub.fetchPostcodeDetails).toHaveBeenCalledWith('sw1a1aa');
+            });
+        }));
+
+        it('should display a validation error if postcode is not found', async(() => {
+            // given
+            component.postcodeInput = postcode;
+            postcodeEpcResponse = ErrorObservable.create(PostcodeEpcService.POSTCODE_NOT_FOUND);
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                const validationErrorElement = fixture.debugElement.query(By.css('.validation-error'));
+                expect(validationErrorElement).toBeTruthy();
+            });
+        }));
+
+        it('should display a generic error if there is a network error when fetching postcode details', async(() => {
+            // given
+            component.postcodeInput = postcode;
+            postcodeEpcResponse = ErrorObservable.create('test network error fetching postcode details');
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                const genericErrorElement = fixture.debugElement.query(By.css('.network-error'));
+                expect(genericErrorElement).toBeTruthy();
+            });
+        }));
+
+        it('should save the postcode and local authority code to response data', async(() => {
+            // given
+            component.postcodeInput = postcode;
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(responseData.postcode).toEqual(postcode);
+                expect(responseData.localAuthorityCode).toEqual(localAuthorityCode);
+            });
+        }));
+
+        it('should fetch the local authority details', async(() => {
+            // given
+            component.postcodeInput = postcode;
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(localAuthorityServiceStub.fetchLocalAuthorityDetails).toHaveBeenCalledWith(localAuthorityCode);
+            });
+        }));
+
+        it('should display the local authority name', async(() => {
+            // given
+            component.postcodeInput = postcode;
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                const localAuthorityNameElement = fixture.debugElement.query(By.css('.local-grants .local-authority-name')).nativeElement;
+                expect(localAuthorityNameElement.innerText).toContain(localAuthorityName);
+            });
+        }));
+
+        it('should display all grants returned', async(() => {
+            // given
+            component.postcodeInput = postcode;
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                const grantsCards = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
+                expect(grantsCards.length).toEqual(localAuthorityDetails.grants.length);
+            });
+        }));
+
+        it('should display a message if no grants are returned', async(() => {
+            // given
+            component.postcodeInput = postcode;
+            localAuthorityResponse = Observable.of({
+                local_authority_code: localAuthorityCode,
+                display_name: localAuthorityName,
+                grants: []
+            });
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                const localAuthorityMessageElement = fixture.debugElement.query(By.css('.no-local-grants .local-authority-name')).nativeElement;
+                expect(localAuthorityMessageElement.innerText).toContain(localAuthorityName);
+            });
+        }));
+
+        it('should display a generic message if there is an error fetching local authority details', async(() => {
+            // given
+            component.postcodeInput = postcode;
+            localAuthorityResponse = ErrorObservable.create('test network error fetching local authority details');
+
+            // when
+            clickSubmitPostcodeButton();
+
+            // then
+            fixture.whenStable().then(() => {
+                const networkErrorElement = fixture.debugElement.query(By.css('.network-error'));
+                expect(networkErrorElement).toBeTruthy();
+            });
+        }));
+
+        function clickSubmitPostcodeButton() {
+            const submitPostcodeButton = fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement;
+            submitPostcodeButton.click();
+            fixture.detectChanges();
+        }
     });
 });

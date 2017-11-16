@@ -18,6 +18,7 @@ import {NeedHelpComponent} from "./need-help/need-help.component";
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {PostcodeEpcService} from "./postcode-epc-service/postcode-epc.service";
 import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/postcode-api.service";
+import {GrantCardComponent} from "./grant-card/grant-card.component";
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/po
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
-        NeedHelpComponent
+        NeedHelpComponent,
+        GrantCardComponent
     ],
     exports: [
         TimesPipe,
@@ -35,6 +37,7 @@ import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/po
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
+        GrantCardComponent
     ],
     imports: [
         HttpClientModule,
