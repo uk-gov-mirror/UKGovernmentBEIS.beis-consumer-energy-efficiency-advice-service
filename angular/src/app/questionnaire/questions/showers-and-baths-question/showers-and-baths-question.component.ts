@@ -10,8 +10,8 @@ import {Component, OnInit} from "@angular/core";
 export class ShowersAndBathsQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
-        this.showers = this.showers || 7;
-        this.baths = this.baths || 7;
+        this.showers = this.showers || 0;
+        this.baths = this.baths || 0;
     }
 
     get showers(): number {
