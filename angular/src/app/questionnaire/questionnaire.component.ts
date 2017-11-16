@@ -20,6 +20,7 @@ import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
 import {ResponseData} from "../shared/response-data/response-data";
 import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
+import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -27,8 +28,6 @@ import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
     styleUrls: ['./questionnaire.component.scss']
 })
 export class QuestionnaireComponent implements OnInit, OnDestroy {
-
-    readonly FUEL_TYPE_PLACEHOLDER = '{{fuel_type}}';
 
     private questionComponent: QuestionBaseComponent;
     private questionContentSubscription: Subscription;
@@ -53,7 +52,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
-                private responseData: ResponseData
+                private responseData: ResponseData,
+                private questionHeadingProcessor: QuestionHeadingProcessor
     ) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
@@ -173,7 +173,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 return;
             }
 
-            this.updateFuelTypePlaceholder();
+            this.currentQuestionContent.questionHeading =
+                this.questionHeadingProcessor.replaceFuelTypePlaceholder(this.currentQuestionContent.questionHeading);
 
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
@@ -202,10 +203,5 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 this.goForwards();
             });
         }
-    }
-
-    private updateFuelTypePlaceholder() {
-        this.currentQuestionContent.questionHeading =
-            this.currentQuestionContent.questionHeading.replace(this.FUEL_TYPE_PLACEHOLDER, getFuelTypeDescription(this.responseData.fuelType));
     }
 }

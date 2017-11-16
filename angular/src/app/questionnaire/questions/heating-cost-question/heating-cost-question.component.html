@@ -1,11 +1,11 @@
 <div class="question-component heating-cost-question">
     <div class="question-content">
-        <div class="questionnaire-form">
+        <form class="questionnaire-form" (submit)="handleFormSubmit()">
             <div class="form-element">
                 <input class="text-input" id="heating-cost-input" name="heating-cost-input" type="number"
-                       aria-labelledby="question-heading" [ngModel]="response" (ngModelChange)="validateHeatingCost($event)">
+                       aria-labelledby="question-heading" [ngModel]="heatingCostDisplay" (ngModelChange)="validateHeatingCost($event)">
             </div>
-        </div>
+        </form>
         <button class="do-not-know-button" id="do-not-know-button" (click)="response = 0; complete.emit();">I don't know</button>
     </div>
     <div class="error" *ngIf="isInvalid">

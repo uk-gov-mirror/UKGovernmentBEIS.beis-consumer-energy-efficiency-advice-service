@@ -8,6 +8,7 @@ import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
 import {SharedModule} from "../shared/shared.module";
 import {QuestionsModule} from "./questions/questions.module";
+import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
 
 @NgModule({
     declarations: [
@@ -29,7 +30,7 @@ export class QuestionnaireModule {
     static forRoot() {
         return {
             ngModule: QuestionnaireModule,
-            providers: [QuestionnaireService]
+            providers: [QuestionnaireService, QuestionHeadingProcessor]
         };
     }
 }

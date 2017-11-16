@@ -9,22 +9,25 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/qu
 })
 export class HeatingCostQuestionComponent extends QuestionBaseComponent {
     isInvalid: boolean;
+    heatingCostDisplay: number;
 
-    get response(): number {
-        return this.responseData.heatingCost;
-    }
-
-    set response(val: number) {
-        this.responseData.heatingCost = val;
+    ngOnInit() {
+        this.heatingCostDisplay = this.responseData.heatingCost;
     }
 
     validateHeatingCost(value) {
-        if (this.response < 0) {
+        if (value < 0) {
             this.isInvalid = true;
-            this.response = undefined;
+            this.responseData.heatingCost = undefined;
         } else {
             this.isInvalid = false;
-            this.response = value;
+            this.responseData.heatingCost = value;
+        }
+    }
+
+    handleFormSubmit() {
+        if (this.responseData.heatingCost) {
+            this.complete.emit();
         }
     }
 }
