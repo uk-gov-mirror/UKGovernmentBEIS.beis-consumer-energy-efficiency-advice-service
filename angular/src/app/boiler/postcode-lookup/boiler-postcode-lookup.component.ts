@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
 import {Epc} from "../../shared/epc-api-service/model/epc";
 import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
+import {ResponseData} from "../../shared/response-data/response-data";
 
 @Component({
     selector: 'app-boiler-postcode-lookup',
@@ -13,10 +14,11 @@ export class BoilerPostcodeLookupComponent {
 
     postcodeInput: string;
     loadingEpcs: boolean = false;
-    addresses: {address: string, lmkKey: string}[];
-    selectedLmkKey: string;
+    epcs: Epc[];
+    selectedEpc: Epc;
 
     constructor(private epcApiService: EpcApiService,
+                private responseData: ResponseData,
                 private router: Router) {
     }
 
@@ -31,12 +33,14 @@ export class BoilerPostcodeLookupComponent {
 
     private epcSearchCompleted(epcs: Epc[]) {
         this.loadingEpcs = false;
-        this.addresses = epcs
-            .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically)
-            .map(epc => ({address: epc.address, lmkKey: epc.lmkKey}));
+        this.epcs = epcs.sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
     }
 
     onAddressSelected() {
-        this.router.navigate([`/js/boiler/epc-replace/${this.selectedLmkKey}`]);
+        if (this.selectedEpc !== undefined) {
+            this.responseData.postcode = this.postcodeInput.replace(/\s/g, '');
+            this.responseData.epc = this.selectedEpc;
+        }
+        this.router.navigate(['/js/boiler/epc-replace', this.selectedEpc.lmkKey]);
     }
 }

@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 import {BoilerPostcodeLookupComponent} from "./boiler-postcode-lookup.component";
 import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
 import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
+import {ResponseData} from "../../shared/response-data/response-data";
 
 describe('BoilerPostcodeLookupComponent', () => {
     let component: BoilerPostcodeLookupComponent;
@@ -20,7 +21,7 @@ describe('BoilerPostcodeLookupComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [BoilerPostcodeLookupComponent],
-            providers: [{provide: EpcApiService, useValue: epcApiServiceStub}],
+            providers: [{provide: EpcApiService, useValue: epcApiServiceStub}, ResponseData],
             imports: [FormsModule, RouterTestingModule]
         })
             .compileComponents();

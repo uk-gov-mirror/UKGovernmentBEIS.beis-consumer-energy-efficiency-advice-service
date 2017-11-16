@@ -74,9 +74,9 @@ export class BoilerEpcReplaceComponent implements OnInit {
             this.boilerTypesService.fetchBoilerTypes(),
         )
             .subscribe(
-                ([epcRecommendations, measures, boilerTypes]) => {
-                    this.handleRecommendationsResponse(epcRecommendations);
-                    this.handleMeasuresResponse(measures);
+                ([epcRecommendations, recommendationDetails, boilerTypes]) => {
+                    this.handleEpcRecommendationsResponse(epcRecommendations);
+                    this.handleRecommendationDetailsResponse(recommendationDetails);
                     this.boilerTypes = sortBy(boilerTypes, type => +(type.installationCostLower));
                 },
                 () => this.handleError(),
@@ -84,14 +84,14 @@ export class BoilerEpcReplaceComponent implements OnInit {
             );
     }
 
-    private handleRecommendationsResponse(response) {
+    private handleEpcRecommendationsResponse(response) {
         this.recommendations = response;
     }
 
-    private handleMeasuresResponse(measures) {
+    private handleRecommendationDetailsResponse(response) {
         this.staticPartialMeasuresWithCodes.forEach(measureAndCode => {
             if (measureAndCode.code !== undefined) {
-                const measureDetails = measures.find(measure => measure.acf.rdsap_measure_code === measureAndCode.code);
+                const measureDetails = response.find(measure => measure.acf.rdsap_measure_code === measureAndCode.code);
                 if (measureDetails !== undefined) {
                     measureAndCode.measure.readMoreRoute = parse(measureDetails.acf.featured_page).pathname;
                     measureAndCode.measure.headline = measureDetails.acf.headline;

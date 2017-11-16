@@ -11,6 +11,7 @@ import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-m
 import {BoilerPostcodeLookupComponent} from "../postcode-lookup/boiler-postcode-lookup.component";
 import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
 import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
+import {ResponseData} from "../../shared/response-data/response-data";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
@@ -36,7 +37,8 @@ describe('BoilerLandingPageComponent', () => {
                 RouterTestingModule,
             ],
             providers: [
-                {provide: EpcApiService, useValue: epcApiServiceStub}
+                {provide: EpcApiService, useValue: epcApiServiceStub},
+                ResponseData,
             ]
         })
             .compileComponents();

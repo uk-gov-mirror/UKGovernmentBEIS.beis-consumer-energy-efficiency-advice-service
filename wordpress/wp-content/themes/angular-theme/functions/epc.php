@@ -1,14 +1,19 @@
 <?php require_once('api_error_handling.php');
 
-// Add Wordpress API function for getting EPC
-function get_epc(WP_REST_Request $request)
+function getRequestArgs()
 {
-    $args = array(
+    return array(
         'headers' => array(
             'Authorization' => 'Basic ' . $_SERVER['EPC_API_TOKEN'],
             'Accept' => 'application/json'
         )
     );
+}
+
+// Add Wordpress API function for getting EPC
+function get_epc(WP_REST_Request $request)
+{
+    $args = getRequestArgs();
     $url = add_query_arg( array(
         'postcode' => $request['postcode'],
         'address' => $request['address'],
@@ -20,12 +25,7 @@ function get_epc(WP_REST_Request $request)
 // Add Wordpress API function for getting EPC recommendations
 function get_epc_recommendations(WP_REST_Request $request)
 {
-    $args = array(
-        'headers' => array(
-            'Authorization' => 'Basic ' . 'YW5nZWxhLnh1QHNvZnR3aXJlLmNvbTplNzMxNTI3YmRlMzc1NTc1OWFjNTlmMTBlZTRjZGRkZGJiYWNmMjU4',
-            'Accept' => 'application/json'
-        )
-    );
+    $args = getRequestArgs();
     $lmkKey = $request['lmkKey'];
     $url = "https://epc.opendatacommunities.org/api/v1/domestic/recommendations/$lmkKey";
     return response_body_or_else_error(wp_remote_get($url, $args), 'EPC_RECOMMENDATIONS_API_ERROR');
