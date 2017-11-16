@@ -6,11 +6,12 @@ import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
-import {Epc} from "./model/epc";
+import {Epc} from "../../../shared/epc-api-service/model/epc";
 import {FeatureFlagService} from "../../../shared/feature-flag/feature-flag.service";
-import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {EpcApiService} from "../../../shared/epc-api-service/epc-api.service";
 import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
 import {PostcodeValidationService} from "../../../shared/postcode-validation-service/postcode-validation.service";
+import {EpcParserService} from "../../../shared/epc-api-service/epc-parser.service";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -24,7 +25,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
     let epcApiServiceStub = {
-        getEpcData: (postcode) => Observable.of(dummyEpcsResponse)
+        getEpcsForPostcode: (postcode) => Observable.of(EpcParserService.parse(dummyEpcsResponse))
     };
     let postcodeApiServiceStub = {
         getPostcodeDetails: (postcode) => Observable.of(dummyPostcodeResponse)
@@ -41,7 +42,7 @@ describe('PostcodeEpcQuestionComponent', () => {
     };
 
     beforeEach(async(() => {
-        spyOn(epcApiServiceStub, 'getEpcData').and.callThrough();
+        spyOn(epcApiServiceStub, 'getEpcsForPostcode').and.callThrough();
         spyOn(postcodeApiServiceStub, 'getPostcodeDetails').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -120,8 +121,8 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).toHaveBeenCalledTimes(1);
-                expect(epcApiServiceStub.getEpcData).toHaveBeenCalledWith(VALID_POSTCODE);
+                expect(epcApiServiceStub.getEpcsForPostcode).toHaveBeenCalledTimes(1);
+                expect(epcApiServiceStub.getEpcsForPostcode).toHaveBeenCalledWith(VALID_POSTCODE);
             });
         }));
 
@@ -134,7 +135,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).not.toHaveBeenCalled();
+                expect(epcApiServiceStub.getEpcsForPostcode).not.toHaveBeenCalled();
             });
         }));
 
@@ -149,7 +150,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(epcApiServiceStub.getEpcData).not.toHaveBeenCalled();
+                expect(epcApiServiceStub.getEpcsForPostcode).not.toHaveBeenCalled();
             });
         }));
 
@@ -163,22 +164,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 // matches data in dummy-epcs-response.json
-                expect(component.allEpcsForPostcode.length).toEqual(3);
-            });
-        }));
-
-        it('should display only the most recent epc for each address', async(() => {
-            // given
-            component.postcodeInput = VALID_POSTCODE;
-
-            // when
-            fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
-
-            // then
-            fixture.whenStable().then(() => {
-                // matches data in dummy-epcs-response.json
-                const epc = component.allEpcsForPostcode.find(epc => epc.address === 'Apartment 1, 1 Test Street');
-                expect(epc.epcDate).toEqual(new Date('2017-01-01'));
+                expect(component.allEpcsForPostcode.length).toEqual(4);
             });
         }));
 
@@ -193,8 +179,9 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
                 // matches data in dummy-epcs-response.json
                 expect(component.allEpcsForPostcode[0].address1).toEqual('Apartment 1');
-                expect(component.allEpcsForPostcode[1].address1).toEqual('Apartment 2');
-                expect(component.allEpcsForPostcode[2].address1).toEqual('Apartment 3');
+                expect(component.allEpcsForPostcode[1].address1).toEqual('Apartment 1');
+                expect(component.allEpcsForPostcode[2].address1).toEqual('Apartment 2');
+                expect(component.allEpcsForPostcode[3].address1).toEqual('Apartment 3');
             });
         }));
 
@@ -216,7 +203,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = () => ErrorObservable.create('error');
+            mockApiService.getEpcsForPostcode = () => ErrorObservable.create('error');
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
@@ -231,7 +218,7 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             let mockApiService = fixture.debugElement.injector.get(EpcApiService);
-            mockApiService.getEpcData = (postcode) => Observable.of(null);
+            mockApiService.getEpcsForPostcode = (postcode) => Observable.of([]);
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();
@@ -263,8 +250,8 @@ describe('PostcodeEpcQuestionComponent', () => {
         it('should set the response when an epc is selected', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
-            const expectedEpc = new Epc(dummyEpcsResponse.rows[0]);
-            const expectedLocalAuthorityCode = dummyEpcsResponse.rows[0]['local-authority'];
+            const expectedEpc = new Epc(dummyEpcsResponse.rows[1]);
+            const expectedLocalAuthorityCode = dummyEpcsResponse.rows[1]['local-authority'];
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();

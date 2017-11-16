@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component} from "@angular/core";
 
 @Component({
     selector: 'app-boiler-landing-page',
@@ -6,7 +6,4 @@ import { Component } from "@angular/core";
     styleUrls: ['./boiler-landing-page.component.scss']
 })
 export class BoilerLandingPageComponent {
-
-    constructor() {
-    }
 }

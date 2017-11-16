@@ -15,7 +15,10 @@ import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.compo
 import {PostcodeValidationService} from "./postcode-validation-service/postcode-validation.service";
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
-import { NeedHelpComponent } from './need-help/need-help.component';
+import {NeedHelpComponent} from "./need-help/need-help.component";
+import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
+import {RecommendationService} from "./recommendation-service/recommendation.service";
 
 @NgModule({
     declarations: [
@@ -24,7 +27,8 @@ import { NeedHelpComponent } from './need-help/need-help.component';
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
-        NeedHelpComponent
+        NeedHelpComponent,
+        RecommendationCardComponent,
     ],
     exports: [
         TimesPipe,
@@ -33,6 +37,7 @@ import { NeedHelpComponent } from './need-help/need-help.component';
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
+        RecommendationCardComponent,
     ],
     imports: [
         HttpClientModule,
@@ -52,6 +57,8 @@ export class SharedModule {
                 FeatureFlagService,
                 EnergyCalculationApiService,
                 PostcodeValidationService,
+                EpcApiService,
+                RecommendationService,
             ]
         };
     }

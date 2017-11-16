@@ -3,7 +3,7 @@ import {ResponseData} from "../../../shared/response-data/response-data";
 import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
 import {QuestionMetadata} from "../../base-question/question-metadata";
 import {BASIC_BEHAVIOURAL_QUESTIONS, OTHER_BEHAVIOURAL_QUESTIONS} from "../../questions/question-groups";
-import concat from 'lodash-es/concat';
+import concat from "lodash-es/concat";
 
 export class BehaviourQuestionnaire extends Questionnaire {
 
