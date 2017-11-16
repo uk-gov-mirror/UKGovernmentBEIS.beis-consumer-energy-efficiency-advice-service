@@ -103,6 +103,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
 
     private handleError() {
         this.recommendations = undefined;
+        this.loading = false;
     }
 
     boilerNeedsReplacing() {

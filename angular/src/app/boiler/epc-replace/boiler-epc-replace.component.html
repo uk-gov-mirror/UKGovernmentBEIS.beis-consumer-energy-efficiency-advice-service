@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="page-row" *ngIf="!boilerNeedsReplacing()">
+    <div class="page-row" *ngIf="recommendations !== undefined && !boilerNeedsReplacing()">
         <div class="recommendations page-row-content">
             <div class="heading">There's probably more you can do!</div>
             <div class="body">

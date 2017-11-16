@@ -22,25 +22,29 @@ $remaining-boxes-width: $content-max-width - $running-cost-box-width - $lifetime
     box-sizing: border-box;
 
     &.description {
-      flex: 1 1 $remaining-boxes-width;
+      flex: 1 1 auto;
+      width: $remaining-boxes-width;
       background-color: $lighter-grey;
       border-left: 10px solid $lighter-medium-grey;
     }
 
     &.installation {
-      flex: 0 0 $installation-cost-box-width;
+      flex: 0 0 auto;
+      width: $installation-cost-box-width;
       background-color: white;
       font-weight: 800;
     }
 
     &.lifetime {
-      flex: 0 0 $lifetime-box-width;
+      flex: 0 0 auto;
+      width: $lifetime-box-width;
       background-color: $light-grey;
       font-weight: 800;
     }
 
     &.running-cost {
-      flex: 0 0 $running-cost-box-width;
+      flex: 0 0 auto;
+      width: $running-cost-box-width;
       background-color: $dark-medium-grey;
       font-weight: 800;
       color: white;
@@ -58,12 +62,14 @@ $remaining-boxes-width: $content-max-width - $running-cost-box-width - $lifetime
         font-weight: normal;
         text-align: center;
         height: 48px;
+        width: 100%;
       }
 
       .box-content {
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 100%;
       }
     }
 
