@@ -77,6 +77,15 @@ function setup_question_acf_group() {
                     'append' => '',
                     'formatting' => 'html',
                     'maxlength' => '',
+                ),
+                array (
+                    'key' => 'field_5a0c5ddf40b11',
+                    'label' => 'Auto-open question reason?',
+                    'name' => 'autoOpenQuestionReason',
+                    'type' => 'true_false',
+                    'instructions' => 'Whether the question reason should be displayed or hidden when the question is loaded',
+                    'message' => '',
+                    'default_value' => 0,
                 )
             ),
             'location' => array (

@@ -13,7 +13,9 @@ describe('RdsapInput', () => {
 
     describe('#construct', () => {
 
-        const numberOfAdults = 2;
+        const numberOfAdultsUnder64 = 1;
+        const numberOfAdults64To80 = 2;
+        const numberOfAdultsOver80 = 3;
         const numberOfChildren = 3;
 
         const responseData: ResponseData = {
@@ -33,7 +35,9 @@ describe('RdsapInput', () => {
             condensingBoiler: false,
             electricityTariff: undefined,
             heatingCost: undefined,
-            numberOfAdults: numberOfAdults,
+            numberOfAdultsAgedUnder64: numberOfAdultsUnder64,
+            numberOfAdultsAged64To80: numberOfAdults64To80,
+            numberOfAdultsAgedOver80: numberOfAdultsOver80,
             numberOfChildren: numberOfChildren,
             showerType: ShowerType.None,
             numberOfShowersPerWeek: 0,
@@ -42,12 +46,15 @@ describe('RdsapInput', () => {
             numberOfFridges: 0,
             numberOfFreezers: 0,
             livingRoomTemperature: 20,
-            benefits: Benefits.None
+            benefits: Benefits.None,
+            income: 123
         };
 
         it('should calculate the number of occupants correctly', () => {
             // given
-            const expectedNumberOfOccupants = numberOfChildren + numberOfAdults;
+            const expectedNumberOfOccupants = numberOfChildren + numberOfAdultsUnder64 +
+                numberOfAdults64To80 + numberOfAdultsOver80;
+
 
             // when
             const rdSapInput = new RdSapInput(responseData);

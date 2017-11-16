@@ -49,11 +49,12 @@ export class RdSapInput {
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;
-        this.occupants = responseData.numberOfAdults + responseData.numberOfChildren;
+        this.occupants = responseData.numberOfChildren + responseData.numberOfAdultsAgedUnder64 +
+            responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
         if (responseData.showerType)
-        this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
+            this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
         this.fridge_freezers = responseData.numberOfFridgeFreezers;
         this.fridges = responseData.numberOfFridges;
         this.freezers = responseData.numberOfFreezers;
@@ -79,42 +80,92 @@ export class RdSapInput {
     }
 
     private static getPropertyType(homeType: HomeType): PropertyType {
-        switch(homeType) {
-            case HomeType.DetachedHouse:         { return PropertyType.House; }
-            case HomeType.SemiDetachedHouse:     { return PropertyType.House; }
-            case HomeType.EndTerraceHouse:       { return PropertyType.House; }
-            case HomeType.MidTerraceHouse:       { return PropertyType.House; }
-            case HomeType.GroundFloorFlat:       { return PropertyType.Flat; }
-            case HomeType.MidFloorFlat:          { return PropertyType.Flat; }
-            case HomeType.TopFloorFlat:          { return PropertyType.Flat; }
-            case HomeType.BungalowDetached:      { return PropertyType.Bungalow; }
-            case HomeType.BungalowAttached:      { return PropertyType.Bungalow; }
-            case HomeType.ParkHome:              { return PropertyType.ParkHome; }
-            default:                             { return null; }
+        switch (homeType) {
+            case HomeType.DetachedHouse: {
+                return PropertyType.House;
+            }
+            case HomeType.SemiDetachedHouse: {
+                return PropertyType.House;
+            }
+            case HomeType.EndTerraceHouse: {
+                return PropertyType.House;
+            }
+            case HomeType.MidTerraceHouse: {
+                return PropertyType.House;
+            }
+            case HomeType.GroundFloorFlat: {
+                return PropertyType.Flat;
+            }
+            case HomeType.MidFloorFlat: {
+                return PropertyType.Flat;
+            }
+            case HomeType.TopFloorFlat: {
+                return PropertyType.Flat;
+            }
+            case HomeType.BungalowDetached: {
+                return PropertyType.Bungalow;
+            }
+            case HomeType.BungalowAttached: {
+                return PropertyType.Bungalow;
+            }
+            case HomeType.ParkHome: {
+                return PropertyType.ParkHome;
+            }
+            default: {
+                return null;
+            }
         }
     }
 
     private static getBuiltForm(homeType: HomeType): BuiltForm {
-        switch(homeType) {
-            case HomeType.DetachedHouse:         { return BuiltForm.Detached; }
-            case HomeType.SemiDetachedHouse:     { return BuiltForm.SemiDetached; }
-            case HomeType.EndTerraceHouse:       { return BuiltForm.EndTerrace }
-            case HomeType.MidTerraceHouse:       { return BuiltForm.MidTerrace }
-            case HomeType.GroundFloorFlat:       { return BuiltForm.MidTerrace; }
-            case HomeType.MidFloorFlat:          { return BuiltForm.MidTerrace; }
-            case HomeType.TopFloorFlat:          { return BuiltForm.MidTerrace; }
-            case HomeType.BungalowDetached:      { return BuiltForm.Detached; }
-            case HomeType.BungalowAttached:      { return BuiltForm.SemiDetached; }
-            case HomeType.ParkHome:              { return BuiltForm.Detached; }
-            default:                             { return null; }
+        switch (homeType) {
+            case HomeType.DetachedHouse: {
+                return BuiltForm.Detached;
+            }
+            case HomeType.SemiDetachedHouse: {
+                return BuiltForm.SemiDetached;
+            }
+            case HomeType.EndTerraceHouse: {
+                return BuiltForm.EndTerrace
+            }
+            case HomeType.MidTerraceHouse: {
+                return BuiltForm.MidTerrace
+            }
+            case HomeType.GroundFloorFlat: {
+                return BuiltForm.MidTerrace;
+            }
+            case HomeType.MidFloorFlat: {
+                return BuiltForm.MidTerrace;
+            }
+            case HomeType.TopFloorFlat: {
+                return BuiltForm.MidTerrace;
+            }
+            case HomeType.BungalowDetached: {
+                return BuiltForm.Detached;
+            }
+            case HomeType.BungalowAttached: {
+                return BuiltForm.SemiDetached;
+            }
+            case HomeType.ParkHome: {
+                return BuiltForm.Detached;
+            }
+            default: {
+                return null;
+            }
         }
     }
 
     private static getFlatLevel(homeType: HomeType): FlatLevel {
-        switch(homeType) {
-            case HomeType.GroundFloorFlat:  { return FlatLevel.GroundFloor; }
-            case HomeType.MidFloorFlat:     { return FlatLevel.MidFloor; }
-            case HomeType.TopFloorFlat:     { return FlatLevel.TopFloor; }
+        switch (homeType) {
+            case HomeType.GroundFloorFlat: {
+                return FlatLevel.GroundFloor;
+            }
+            case HomeType.MidFloorFlat: {
+                return FlatLevel.MidFloor;
+            }
+            case HomeType.TopFloorFlat: {
+                return FlatLevel.TopFloor;
+            }
         }
     }
 
@@ -124,12 +175,22 @@ export class RdSapInput {
     }
 
     private static getFuelTypeEncoding(fuelType: FuelType): string {
-        switch(fuelType) {
-            case FuelType.SolidFuel:   { return '9'; }
-            case FuelType.MainsGas:    { return '26'; }
-            case FuelType.LPGGas:      { return '27'; }
-            case FuelType.HeatingOil:  { return '28'; }
-            case FuelType.Electricity: { return '29'; }
+        switch (fuelType) {
+            case FuelType.SolidFuel: {
+                return '9';
+            }
+            case FuelType.MainsGas: {
+                return '26';
+            }
+            case FuelType.LPGGas: {
+                return '27';
+            }
+            case FuelType.HeatingOil: {
+                return '28';
+            }
+            case FuelType.Electricity: {
+                return '29';
+            }
         }
     }
 

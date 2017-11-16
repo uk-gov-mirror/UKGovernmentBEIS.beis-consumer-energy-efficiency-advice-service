@@ -9,6 +9,7 @@ require_once("functions/initialise_feature_flag_post_type.php");
 require_once("functions/initialise_local_authority_post_type.php");
 require_once("functions/initialise_grant_post_type.php");
 require_once("functions/initialise_recommendation_post_type.php");
+require_once("functions/initialise_income_thresholds.php");
 require_once("functions/configure_api_caching.php");
 require_once("functions/local_authority.php");
 require_once("functions/energy_calculation.php");

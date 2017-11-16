@@ -11,12 +11,12 @@ import {FuelTypeQuestionMetadata} from "./fuel-type-question/fuel-type-question-
 import {LivingRoomTemperatureQuestionMetadata} from "./living-room-temperature-question/living-room-temperature-question-metadata";
 import {OccupantsQuestionMetadata} from "./occupants-question/occupants-question-metadata";
 import {ShowerTypeQuestionMetadata} from "./shower-type-question/shower-type-question-metadata";
-import {ShowersQuestionMetadata} from "./showers-question/showers-question-metadata";
-import {BathsQuestionMetadata} from "./baths-question/baths-question-metadata";
+import {ShowersAndBathsQuestionMetadata} from "./showers-and-baths-question/showers-and-baths-question-metadata";
 import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-freezer-question-metadata";
 import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-question-metadata";
 import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
+import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
 import {HeatingCostQuestionMetadata} from "./heating-cost-question/heating-cost-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
@@ -40,11 +40,10 @@ export const CORE_BRE_QUESTIONS = [
 export const BASIC_BEHAVIOURAL_QUESTIONS = [
     new LivingRoomTemperatureQuestionMetadata(),
     new OccupantsQuestionMetadata(),
+    new ShowersAndBathsQuestionMetadata()
 ];
 
 export const OTHER_BEHAVIOURAL_QUESTIONS = [
-    new ShowersQuestionMetadata(),
-    new BathsQuestionMetadata(),
     new ShowerTypeQuestionMetadata(),
     new FridgeFreezerQuestionMetadata(),
 ];
@@ -57,6 +56,6 @@ export const GRANTS_QUESTIONS = [
     new PostcodeEpcQuestionMetadata(),
     new TenureTypeQuestionMetadata(),
     new BenefitsQuestionMetadata(),
-    new OccupantsQuestionMetadata()
-    // TODO: add annual income question when this is done
+    new OccupantsQuestionMetadata(),
+    new IncomeQuestionMetadata()
 ];

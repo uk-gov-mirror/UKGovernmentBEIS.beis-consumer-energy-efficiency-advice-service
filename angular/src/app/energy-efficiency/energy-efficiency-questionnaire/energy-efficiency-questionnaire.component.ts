@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseData} from "../../shared/response-data/response-data";
 
 @Component({
-    selector: 'app-grants-questionnaire',
+    selector: 'app-energy-efficiency-questionnaire',
     templateUrl: './energy-efficiency-questionnaire.component.html',
     styleUrls: ['./energy-efficiency-questionnaire.component.scss']
 })
