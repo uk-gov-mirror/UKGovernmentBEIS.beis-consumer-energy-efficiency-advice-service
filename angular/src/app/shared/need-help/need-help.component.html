@@ -1,10 +1,8 @@
 <button class="need-help"
-        [style.visibility]="visible ? 'visible' : 'hidden'"
-        [style.margin-bottom]="margin - 1 + 'px'"
         (click)="expanded = !expanded">
     <div class="header-bar">Need any help?</div>
     <div class="contents" *ngIf="expanded">
-        If you are having any problems using the site, or would like any further assistance, please call 0800 1234567,
-        and quote reference ABCDEF.
+        If you would like some help using the site, call 0800 9374805 for free to talk to one of our trained advisors.
+        Quote this reference to pick up where you left off: REF172635
     </div>
 </button>

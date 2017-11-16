@@ -44,7 +44,7 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // Home age
-        expect(page.getHeading()).toContain('How old');
+        expect(page.getHeading()).toContain('When was your home built');
         page.selectFirstHomeAge();
         page.goForwards();
         CommonPageHelpers.sleep(1000);

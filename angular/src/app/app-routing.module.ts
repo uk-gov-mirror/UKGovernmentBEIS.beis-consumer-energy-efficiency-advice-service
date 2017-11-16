@@ -13,6 +13,7 @@ import {GrantsQuestionnaireComponent} from "./grants/grants-questionnaire/grants
 import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.component";
 import {EnergyEfficiencyQuestionnaireGuard} from "./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard";
 import {BoilerEpcReplaceComponent} from "./boiler/epc-replace/boiler-epc-replace.component";
+import {GrantsLandingPageComponent} from "./grants/landing-page/grants-landing-page.component";
 
 const routes: Routes = [
     {
@@ -28,6 +29,10 @@ const routes: Routes = [
         path: 'js/energy-efficiency/results',
         component: ResultsPageComponent,
         canActivate: [ResultsPageRouteGuard]
+    },
+    {
+        path: 'js/grants',
+        component: GrantsLandingPageComponent
     },
     {
         path: 'js/grants/questionnaire',

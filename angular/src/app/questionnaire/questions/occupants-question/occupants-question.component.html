@@ -1,24 +1,24 @@
 <div class="occupants-question question-component">
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
         <div class="adults-under-64-input">
-            <div class="name">Adults born after 5 August 1953</div>
+            <div class="name">Adults born after 05/08/1953 (aged under 64)</div>
             <app-number-question itemsName="adults under 64"
                                  [(quantity)]="adultsAgedUnder64"
-                                 [minQuantity]="1"
+                                 [minQuantity]="0"
                                  [maxQuantity]="20"></app-number-question>
         </div>
         <div class="adults-64-to-80-input">
-            <div class="name">Adults born between 25 September 1937 and 5 August 1953</div>
+            <div class="name">Adults born between 25/09/1937 and 05/08/1953 (aged 64 to 80)</div>
             <app-number-question itemsName="adults aged 64 to 80"
                                  [(quantity)]="adultsAged64To80"
-                                 [minQuantity]="1"
+                                 [minQuantity]="0"
                                  [maxQuantity]="20"></app-number-question>
         </div>
         <div class="adults-over-80-input">
-            <div class="name">Adults born on or before 24 September 1937</div>
+            <div class="name">Adults born on or before 24/09/1937 (aged 80 or over)</div>
             <app-number-question itemsName="adults aged over 80"
                                  [(quantity)]="adultsAgedOver80"
-                                 [minQuantity]="1"
+                                 [minQuantity]="0"
                                  [maxQuantity]="20"></app-number-question>
         </div>
         <div class="children-input">

@@ -10,7 +10,7 @@ import {Component, OnInit} from "@angular/core";
 export class OccupantsQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     ngOnInit() {
-        this.adultsAgedUnder64 = this.responseData.numberOfAdultsAgedUnder64 || 1;
+        this.adultsAgedUnder64 = this.responseData.numberOfAdultsAgedUnder64 || 0;
         this.adultsAged64To80 = this.responseData.numberOfAdultsAged64To80 || 0;
         this.adultsAgedOver80 = this.responseData.numberOfAdultsAgedOver80 || 0;
         this.children = this.responseData.numberOfChildren || 0;

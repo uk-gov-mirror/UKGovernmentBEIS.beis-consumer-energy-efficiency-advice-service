@@ -1,31 +1,27 @@
 @import "styles/page";
 
-$width: 282px;
+$width: 204px;
+$height: 60px;
 
 .need-help {
   cursor: pointer;
   border: none;
   background: none;
   position: fixed;
-  bottom: 0;
-  width: $width;
-  padding: 0 16px;
-
-  left: 50%;
-  margin-left: ($content-max-width / 2 - $width);
+  padding: 0;
+  right: 0;
+  top: 182px;
+  width: 204px;
 
   .header-bar {
     width: 100%;
-    height: 32px;
-    background-color: darkred;
+    height: 60px;
+    background-color: #D0021B;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     padding: 8px;
     box-sizing: border-box;
-
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
 
     display: flex;
     align-items: center;

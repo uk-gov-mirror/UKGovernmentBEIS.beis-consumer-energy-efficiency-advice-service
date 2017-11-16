@@ -1,0 +1,128 @@
+<div class="grants-landing-page">
+    <div class="page-heading page-row">
+        <div class="page-row-content">
+            <div class="heading-text">Learn about home energy grants</div>
+        </div>
+    </div>
+    <div class="national-grants page-row">
+        <div class="page-row-content">
+            <div class="grants-row">
+                <div class="grant-card">
+                    <div class="grant-info-column icon">
+                        <div class="icon-heating"></div>
+                    </div>
+                    <div class="grant-info-column">
+                        <div class="grant-heading">Energy Company Obligation</div>
+                        <div class="grant-subheading">Grants for energy efficiency home improvements</div>
+                        <div class="grant-description">
+                            The Energy Companies Obligation (ECO) could help you get financial support from your
+                            supplier with insulation, replacing or repairing your boiler, or other upgrades to your
+                            heating.
+                        </div>
+                    </div>
+                    <div class="grant-info-column">
+                        <a class="link-button" (click)="setJourneyTypeToHomeImprovements()"
+                           routerLink="/js/energy-efficiency/questionnaire/home-basics">
+                            Check if you are eligible for a grant
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="grants-row">
+                <div class="grant-card">
+                    <div class="grant-info-column icon">
+                        <div class="icon-boiler"></div>
+                    </div>
+                    <div class="grant-info-column">
+                        <div class="grant-heading">Renewable Heat Incentive</div>
+                        <div class="grant-description">
+                            The Renewable Heat Incentive (RHI) is a scheme designed to financially reward you if you use
+                            renewable energy to heat your home.
+                        </div>
+                        <a class="link-button" (click)="setJourneyTypeToBoiler()" routerLink="/js/boiler">
+                            Are you eligible to receive cash as part of RHI?
+                        </a>
+                    </div>
+                </div>
+                <div class="grant-card">
+                    <div class="grant-info-column icon">
+                        <div class="icon-heating"></div>
+                    </div>
+                    <div class="grant-info-column">
+                        <div class="grant-heading">Feed-In Tariff</div>
+                        <div class="grant-description">
+                            The feed-in tariff (FIT) scheme offers guaranteed cash payments to households that produce
+                            their own electricity using renewable technologies, such as solar photovoltaic (PV) panels
+                            or wind turbines.
+                        </div>
+                        <a class="link-button" (click)="setJourneyTypeToHomeImprovements()"
+                           routerLink="/js/energy-efficiency/questionnaire/home-basics">
+                            See if you could get paid for generating energy
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="grants-row">
+                <div class="grant-card">
+                    <div class="grant-info-column icon">
+                        <div class="icon-grant"></div>
+                    </div>
+                    <div class="grant-info-column">
+                        <div class="grant-heading">Winter Fuel Payments</div>
+                        <div class="grant-description">
+                            If you were born on or before 5 August 1953 you could get between £100 and £300 to help you
+                            pay your heating bills
+                        </div>
+                        <button class="link-button">
+                            Find out more
+                        </button>
+                    </div>
+                </div>
+                <div class="grant-card">
+                    <div class="grant-info-column icon">
+                        <div class="icon-grant"></div>
+                    </div>
+                    <div class="grant-info-column">
+                        <div class="grant-heading">Warm Home Discount</div>
+                        <div class="grant-description">
+                            If you're receiving certain benefits, you could get £140 off your electricity bill for
+                            winter 2017 to 2018
+                        </div>
+                        <button class="link-button">
+                            Find out more
+                        </button>
+                    </div>
+                </div>
+                <div class="grant-card">
+                    <div class="grant-info-column icon">
+                        <div class="icon-grant"></div>
+                    </div>
+                    <div class="grant-info-column">
+                        <div class="grant-heading">Cold Weather Payments</div>
+                        <div class="grant-description">
+                            If you're receiving certain benefits, you may get a payment when the weather is cold
+                        </div>
+                        <button class="link-button">
+                            Find out more
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="local-grants page-row">
+        <div class="page-row-content">
+            <div class="postcode-input">
+                <span class="enter-postcode-text">Enter your postcode to see other grants that might be available in your area</span>
+                <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
+                    <input class="postcode-input-text" [(ngModel)]="postcodeInput" spellcheck="false" type="text"
+                           name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
+                    <button class="postcode-input-submit" type="submit"
+                            title="Submit" aria-label="Submit">>
+                    </button>
+                </form>
+            </div>
+            <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
+        </div>
+    </div>
+</div>
