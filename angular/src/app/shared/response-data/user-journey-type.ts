@@ -5,4 +5,5 @@ export enum UserJourneyType {
     PlanHomeImprovements,
     ReduceCarbonFootprint,
     Boiler,
+    Grants
 }

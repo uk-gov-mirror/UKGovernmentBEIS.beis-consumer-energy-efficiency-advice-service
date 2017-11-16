@@ -1,0 +1,172 @@
+@import "styles/mixins/font";
+@import "styles/var/colours";
+
+.grants-landing-page {
+
+  .page-row-content {
+    padding: 48px 0;
+  }
+
+  .page-heading {
+    background-color: $light-grey;
+
+    .page-row-content {
+      padding: 60px 0;
+
+      .heading-text {
+        @include page-heading;
+      }
+    }
+  }
+
+  .national-grants {
+    .page-row-content {
+      display: flex;
+      flex-direction: column;
+
+      .heading {
+        @include page-subheading;
+        margin-bottom: 16px;
+      }
+
+      .grants-row {
+        display: flex;
+
+        &:not(:first-child) {
+          margin-top: 20px;
+        }
+
+        .grant-card {
+          background-color: $light-grey;
+          flex: 1 0 1px;
+          display: flex;
+          align-items: stretch;
+          padding: 20px;
+          justify-content: space-between;
+
+          &:not(:first-child) {
+            margin-left: 20px;
+          }
+
+          .grant-heading {
+            @include focus-text;
+          }
+
+          .grant-subheading {
+            @include card-heading;
+          }
+
+          .link-button {
+            @include body-uppercase;
+            color: white;
+            text-align: left;
+            text-decoration: none;
+
+            cursor: pointer;
+            border: none;
+            background-color: $dark-grey;
+            &:hover, &:focus {
+              background-color: black;
+            }
+
+            padding: 24px 16px;
+            box-sizing: border-box;
+          }
+
+          .grant-info-column {
+            display: flex;
+            align-items: stretch;
+            flex-direction: column;
+            justify-content: space-between;
+
+            &:not(:first-child) {
+              margin-left: 10px;
+            }
+
+            & > :not(:first-child) {
+              margin-top: 20px;
+            }
+
+            &.icon {
+              flex: 1 0 140px;
+              justify-content: center;
+              align-items: center;
+
+              & > * {
+                max-width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .local-grants {
+    .page-row-content {
+      border-top: 1px solid black;
+      display: flex;
+      flex-direction: column;
+
+      .postcode-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .enter-postcode-text {
+          @include page-subheading;
+        }
+
+        .postcode-input {
+          height: 50px;
+          display: flex;
+          align-items: stretch;
+          justify-content: flex-end;
+
+          .postcode-input-text {
+            background-color: $light-grey;
+            outline: none;
+            border: none;
+
+            width: 250px;
+            padding: 0 24px;
+
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+
+          .postcode-input-submit {
+            background-color: black;
+            color: white;
+
+            width: 50px;
+            outline: none;
+            border: none;
+
+            font-size: 30px;
+            font-weight: bold;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+
+      .validation-error {
+        margin-top: 20px;
+        background-color: crimson;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        color: white;
+        width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: flex-end;
+      }
+    }
+  }
+}
