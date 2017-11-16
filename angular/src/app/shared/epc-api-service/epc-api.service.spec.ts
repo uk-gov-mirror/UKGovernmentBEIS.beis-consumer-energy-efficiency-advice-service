@@ -8,6 +8,7 @@ import {JsonApiResponse} from "./model/response/json-api-response";
 import {HttpRequest} from "@angular/common/http";
 import {Epc} from "./model/epc";
 import {EpcResponse} from "./model/response/epc-response";
+import {EpcRecommendation} from "./model/response/epc-recommendation";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -76,6 +77,33 @@ describe('EpcApiService', () => {
             const encodedPostcode = encodeURI(postcode);
             const matchesExpectedUrlWithParams =
                 (request.urlWithParams === 'angular-theme/v1/epc?postcode=' + encodedPostcode + '&size=100');
+            return matchesExpectedMethod && matchesExpectedUrlWithParams;
+        }
+    });
+
+    describe('#getRecommendationsForLmkKey', () => {
+        const lmkKey = 'fakeKey';
+
+        it('returns recommendations from the EPC recommendations API', () => {
+            // given
+            const dummyEpcRecommendationsResponse = require('assets/test/dummy-epc-recommendations-response.json');
+
+            // when
+            const actualResponse = service.getRecommendationsForLmkKey(lmkKey).toPromise();
+            let request = httpMock.expectOne(matchesExpectedRequest);
+            request.flush(dummyEpcRecommendationsResponse);
+
+            // then
+            actualResponse.then(response =>
+               expect(response).toEqual(dummyEpcRecommendationsResponse.rows.map(rec => new EpcRecommendation(rec)))
+            );
+        });
+
+        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
+            const matchesExpectedMethod = request.method === 'GET';
+            const encodedLmkKey = encodeURI(lmkKey);
+            const matchesExpectedUrlWithParams =
+                (request.urlWithParams === 'angular-theme/v1/epc-recommendations?lmkKey=' + encodedLmkKey);
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });

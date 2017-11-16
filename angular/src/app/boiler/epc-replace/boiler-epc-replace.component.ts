@@ -16,7 +16,7 @@ import sortBy from "lodash-es/sortBy";
     styleUrls: ['./boiler-epc-replace.component.scss']
 })
 export class BoilerEpcReplaceComponent implements OnInit {
-    private lmkKey: string;
+    lmkKey: string;
     loading: boolean = true;
     recommendations: EpcRecommendation[];
     boilerTypes: BoilerType[];
