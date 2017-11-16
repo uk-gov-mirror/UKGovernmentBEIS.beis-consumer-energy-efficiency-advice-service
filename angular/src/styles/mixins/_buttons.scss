@@ -80,3 +80,17 @@ $border-width: 1px;
     }
   }
 }
+
+// Hide the up and down spin buttons in <input> with type 'number'
+@mixin with-no-spin-buttons {
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    margin: 0 8px;
+  }
+}

@@ -19,6 +19,7 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
 import {ResponseData} from "../shared/response-data/response-data";
+import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
 
 @Component({
     selector: 'app-questionnaire',
@@ -26,6 +27,8 @@ import {ResponseData} from "../shared/response-data/response-data";
     styleUrls: ['./questionnaire.component.scss']
 })
 export class QuestionnaireComponent implements OnInit, OnDestroy {
+
+    readonly FUEL_TYPE_PLACEHOLDER = '{{fuel_type}}';
 
     private questionComponent: QuestionBaseComponent;
     private questionContentSubscription: Subscription;
@@ -49,7 +52,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef
+                private changeDetectorRef: ChangeDetectorRef,
+                private responseData: ResponseData
     ) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
@@ -169,6 +173,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 return;
             }
 
+            this.updateFuelTypePlaceholder();
+
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
             // Set the current question to slide out in the opposite direction. Manual change
@@ -195,5 +201,10 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 this.goForwards();
             });
         }
+    }
+
+    private updateFuelTypePlaceholder() {
+        this.currentQuestionContent.questionHeading =
+            this.currentQuestionContent.questionHeading.replace(this.FUEL_TYPE_PLACEHOLDER, getFuelTypeDescription(this.responseData.fuelType));
     }
 }

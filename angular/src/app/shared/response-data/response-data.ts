@@ -28,6 +28,7 @@ export class ResponseData {
     public fuelType: FuelType;
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
+    public heatingCost: number;
     public numberOfAdults: number;
     public numberOfChildren: number;
     public numberOfShowersPerWeek: number;

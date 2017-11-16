@@ -32,6 +32,7 @@ describe('RdsapInput', () => {
             fuelType: FuelType.MainsGas,
             condensingBoiler: false,
             electricityTariff: undefined,
+            heatingCost: undefined,
             numberOfAdults: numberOfAdults,
             numberOfChildren: numberOfChildren,
             showerType: ShowerType.None,

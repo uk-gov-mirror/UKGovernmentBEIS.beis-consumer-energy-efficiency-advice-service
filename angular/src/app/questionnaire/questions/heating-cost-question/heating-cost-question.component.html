@@ -1,0 +1,14 @@
+<div class="question-component heating-cost-question">
+    <div class="question-content">
+        <div class="questionnaire-form">
+            <div class="form-element">
+                <input class="text-input" id="heating-cost-input" name="heating-cost-input" type="number"
+                       aria-labelledby="question-heading" [ngModel]="response" (ngModelChange)="validateHeatingCost($event)">
+            </div>
+        </div>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="response = 0; complete.emit();">I don't know</button>
+    </div>
+    <div class="error" *ngIf="isInvalid">
+        <div class="error-message">Please enter a valid value.</div>
+    </div>
+</div>

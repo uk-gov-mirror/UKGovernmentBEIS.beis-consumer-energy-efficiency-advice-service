@@ -17,6 +17,7 @@ import {FridgeFreezerQuestionMetadata} from "./fridge-freezer-question/fridge-fr
 import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-question-metadata";
 import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
+import {HeatingCostQuestionMetadata} from "./heating-cost-question/heating-cost-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -33,6 +34,7 @@ export const CORE_BRE_QUESTIONS = [
     new FuelTypeQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
+    new HeatingCostQuestionMetadata()
 ];
 
 export const BASIC_BEHAVIOURAL_QUESTIONS = [

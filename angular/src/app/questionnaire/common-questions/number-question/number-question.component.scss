@@ -6,15 +6,9 @@
   align-items: center;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+@include with-no-spin-buttons;
 
 input[type="number"] {
-  -moz-appearance: textfield;
-  margin: 0 8px;
   width: 48px;
 }
 
