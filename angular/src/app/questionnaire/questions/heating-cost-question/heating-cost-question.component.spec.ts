@@ -19,30 +19,34 @@ describe('HeatingCostQuestionComponent', () => {
             .compileComponents();
     }));
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         responseData = TestBed.get(ResponseData);
         fixture = TestBed.createComponent(HeatingCostQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
-    }));
+    });
 
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set the response when inputting a value', () => {
-        // given
-        const expectedCost = 1000;
+    it('should set the response when inputting a value', async(() => {
+        // The whole test needs to be wrapped in fixture.whenStable as an <input> in a <form> is initialised asynchronously
+        // by angular.
+        fixture.whenStable().then(() => {
+            // given
+            const expectedCost = 1000;
 
-        // when
-        let input = fixture.debugElement.query(By.css('#heating-cost-input'));
-        input.nativeElement.value = expectedCost;
-        input.nativeElement.dispatchEvent(new Event('input'));
+            // when
+            let input = fixture.debugElement.query(By.css('#heating-cost-input'));
+            input.nativeElement.value = expectedCost;
+            input.nativeElement.dispatchEvent(new Event('input'));
 
-        // then
-        expect(responseData.heatingCost).toBe(expectedCost);
-    });
+            // then
+            expect(responseData.heatingCost).toBe(expectedCost);
+        })
+    }));
 
     it('should set value to 0 and notify of completion when clicking "I don\'t know".', () => {
         // given

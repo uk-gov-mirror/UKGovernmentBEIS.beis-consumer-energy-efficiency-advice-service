@@ -74,7 +74,7 @@ describe('QuestionnaireComponent', () => {
     }
 
     class MockQuestionHeadingProcessor {
-        replaceFuelTypePlaceholder(questionHeading) {
+        replacePlaceholders(questionHeading) {
             return questionHeading;
         }
     }
