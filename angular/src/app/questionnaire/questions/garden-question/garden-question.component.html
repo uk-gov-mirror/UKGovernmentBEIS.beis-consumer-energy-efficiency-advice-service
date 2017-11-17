@@ -1,0 +1,11 @@
+<div class="garden-question question-component">
+  <div class="multiple-choice-options garden-options">
+    <div class="garden-option" *ngFor="let accessibilityOption of accessibilityOptions">
+      <button class="multiple-choice-option garden-button"
+              [class.selected]="accessibility === accessibilityOption.value"
+              (click)="updateAccessibilityAndMaybeComplete(accessibilityOption.value)">
+        {{accessibilityOption.name}}
+      </button>
+    </div>
+  </div>
+</div>
