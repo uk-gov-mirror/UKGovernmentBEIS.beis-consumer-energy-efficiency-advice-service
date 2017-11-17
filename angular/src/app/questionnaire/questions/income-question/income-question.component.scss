@@ -6,7 +6,7 @@
   }
 
   // TODO: Remove when deprecated fully
-  ::ng-deep input[type="number"] {
+  ::ng-deep .number-question-component {
     width: 300px;
   }
 }
