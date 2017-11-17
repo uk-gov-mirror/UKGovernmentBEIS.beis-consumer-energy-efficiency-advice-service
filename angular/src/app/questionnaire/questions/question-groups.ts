@@ -61,4 +61,5 @@ export const GRANTS_QUESTIONS = [
 
 export const BOILER_QUESTIONS = [
     new InsulationQuestionMetadata(),
+    new FuelTypeQuestionMetadata(),
 ];
