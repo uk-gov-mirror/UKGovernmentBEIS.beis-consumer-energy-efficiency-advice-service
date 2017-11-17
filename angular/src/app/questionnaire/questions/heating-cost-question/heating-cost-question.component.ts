@@ -26,7 +26,7 @@ export class HeatingCostQuestionComponent extends QuestionBaseComponent {
     }
 
     handleFormSubmit() {
-        if (this.responseData.heatingCost) {
+        if (this.responseData.heatingCost !== undefined) {
             this.complete.emit();
         }
     }

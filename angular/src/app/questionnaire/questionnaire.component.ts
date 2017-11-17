@@ -174,7 +174,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             }
 
             this.currentQuestionContent.questionHeading =
-                this.questionHeadingProcessor.replaceFuelTypePlaceholder(this.currentQuestionContent.questionHeading);
+                this.questionHeadingProcessor.replacePlaceholders(this.currentQuestionContent.questionHeading);
 
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
