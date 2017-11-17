@@ -28,7 +28,9 @@ export class ResponseData {
     public fuelType: FuelType;
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
-    public numberOfAdults: number;
+    public numberOfAdultsAgedUnder64: number;
+    public numberOfAdultsAged64To80: number;
+    public numberOfAdultsAgedOver80: number;
     public numberOfChildren: number;
     public numberOfShowersPerWeek: number;
     public showerType: ShowerType;
@@ -39,6 +41,7 @@ export class ResponseData {
     public numberOfBathsPerWeek: number;
 
     public benefits: Benefits;
+    public income: number;
 }
 
 export function isComplete(responseData: ResponseData) {

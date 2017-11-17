@@ -6,6 +6,7 @@ import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occu
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
 import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
 import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
+import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
 
 describe('GrantsQuestionnaire', () => {
 
@@ -22,11 +23,12 @@ describe('GrantsQuestionnaire', () => {
         responseData.epc = null;
         responseData.tenureType = TenureType.PrivateTenancy;
         responseData.numberOfChildren = undefined;
-        responseData.numberOfAdults = undefined;
+        responseData.numberOfAdultsAgedUnder64 = undefined;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
             new BenefitsQuestionMetadata(),
-            new OccupantsQuestionMetadata()
+            new OccupantsQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
@@ -43,18 +45,19 @@ describe('GrantsQuestionnaire', () => {
         responseData.epc = null;
         responseData.tenureType = undefined;
         responseData.numberOfChildren = undefined;
-        responseData.numberOfAdults = undefined;
+        responseData.numberOfAdultsAgedUnder64 = undefined;
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         GrantsQuestionnaire.getInstance(responseData);
         const expectedQuestions = [
             new TenureTypeQuestionMetadata(),
             new BenefitsQuestionMetadata(),
-            new OccupantsQuestionMetadata()
+            new OccupantsQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
         responseData.tenureType = TenureType.PrivateTenancy;
-        responseData.numberOfAdults = 2;
+        responseData.numberOfAdultsAgedUnder64 = 2;
         responseData.numberOfChildren = 3;
         const grantsQuestionnaire = GrantsQuestionnaire.getInstance(responseData);
 

@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {Router} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 
 import {ResponseData} from "../../shared/response-data/response-data";
@@ -26,7 +25,6 @@ export class GrantsLandingPageComponent {
 
     constructor(
         private responseData: ResponseData,
-        private router: Router,
         private postcodeEpcService: PostcodeEpcService,
         private grantsEligibilityService: GrantsEligibilityService,
         private localAuthorityService: LocalAuthorityService
@@ -83,13 +81,11 @@ export class GrantsLandingPageComponent {
         }
     }
 
-    enterBoilerJourney(): void {
+    setJourneyTypeToBoiler(): void {
         this.responseData.userJourneyType = UserJourneyType.Boiler;
-        this.router.navigate(['/js/boiler']);
     }
 
-    enterHomeImprovementsJourney(): void {
+    setJourneyTypeToHomeImprovements(): void {
         this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
-        this.router.navigate(['/js/energy-efficiency/questionnaire/home-basics']);
     }
 }

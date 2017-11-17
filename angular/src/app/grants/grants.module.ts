@@ -6,6 +6,7 @@ import {SharedModule} from "../shared/shared.module";
 import {GrantsQuestionnaireComponent} from "./grants-questionnaire/grants-questionnaire.component";
 import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
 import {GrantsLandingPageComponent} from "./landing-page/grants-landing-page.component";
+import {RoutingModule} from "../app-routing.module";
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {GrantsLandingPageComponent} from "./landing-page/grants-landing-page.com
         SharedModule,
         CommonModule,
         QuestionnaireModule,
-        FormsModule
+        FormsModule,
+        RoutingModule
     ]
 })
 export class GrantsModule {

@@ -3,16 +3,14 @@ import {NgModule} from "@angular/core";
 
 import {ResultsPageComponent} from "./results-page.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
-import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {RoutingModule} from "../app-routing.module";
 import {SharedModule} from "../shared/shared.module";
-import {RecommendationService} from "./recommendation-service/recommendation.service";
+import {RecommendationService} from "../shared/recommendation-service/recommendation.service";
 
 @NgModule({
     declarations: [
         ResultsPageComponent,
         PotentialsComponent,
-        RecommendationCardComponent,
     ],
     exports: [
         ResultsPageComponent,
@@ -28,7 +26,7 @@ export class ResultsPageModule {
         return {
             ngModule: ResultsPageModule,
             providers: [
-                RecommendationService,
+                RecommendationService
             ]
         };
     }

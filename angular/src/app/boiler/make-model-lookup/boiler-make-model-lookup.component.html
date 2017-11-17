@@ -1,0 +1,19 @@
+<div class="make-and-model">
+  <div class="body-text">
+    Select the make and the model of your boiler so we can check whether it needs replacing
+  </div>
+  <form class="boiler-input" (ngSubmit)="{}">
+    <input class="boiler-input-text"spellcheck="false" type="text"
+           name="make-model-input" aria-label="Enter your boiler's make and model"
+           title="Enter your boiler's make and model">
+    <button class="boiler-input-submit" type="submit"
+            title="Submit" aria-label="Submit">></button>
+  </form>
+  <div class="dont-know-buttons">
+    <button class="image-rec-button">
+      <span class="icon-camera"></span>
+      <span>Try our image recognition tool</span>
+    </button>
+    <button class="link-button">I don't know my boiler make</button>
+  </div>
+</div>

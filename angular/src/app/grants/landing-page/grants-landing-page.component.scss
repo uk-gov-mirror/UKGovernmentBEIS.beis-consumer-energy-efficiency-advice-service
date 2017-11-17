@@ -64,6 +64,7 @@ $grant-card-margin: 24px;
             @include body-uppercase;
             color: white;
             text-align: left;
+            text-decoration: none;
 
             cursor: pointer;
             border: none;
@@ -105,7 +106,7 @@ $grant-card-margin: 24px;
     }
   }
 
-  .postcode-row {
+  .local-grants {
     .page-row-content {
       border-top: 1px solid black;
       display: flex;

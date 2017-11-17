@@ -15,7 +15,6 @@ import {LatestNewsCardComponent} from "./latest-news-card/latest-news-card.compo
 import {RadialPercentageComponent} from "./radial-percentage/radial-percentage.component";
 import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "./need-help/need-help.component";
-import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {PostcodeEpcService} from "./postcode-epc-service/postcode-epc.service";
 import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/postcode-api.service";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
@@ -23,6 +22,9 @@ import {GrantsEligibilityService} from "./grants-eligibility/grants-eligibility.
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {NationalGrantsService} from "./national-grants-service/national-grants.service";
 import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-factory";
+import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
+import {RecommendationService} from "./recommendation-service/recommendation.service";
+import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 
 @NgModule({
     declarations: [
@@ -32,7 +34,8 @@ import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-fact
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
-        GrantCardComponent
+        GrantCardComponent,
+        RecommendationCardComponent,
     ],
     exports: [
         TimesPipe,
@@ -41,6 +44,7 @@ import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-fact
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
+        RecommendationCardComponent,
         GrantCardComponent
     ],
     imports: [
@@ -66,7 +70,8 @@ export class SharedModule {
                 GrantsEligibilityService,
                 LocalAuthorityService,
                 NationalGrantsService,
-                NationalGrantMetadataFactory
+                NationalGrantMetadataFactory,
+                RecommendationService
             ]
         };
     }

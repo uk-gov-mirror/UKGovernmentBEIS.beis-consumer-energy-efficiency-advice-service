@@ -1,9 +1,11 @@
+
+import {JsonApiResponse} from "../../epc-api-service/model/response/json-api-response";
 import {Epc} from "../model/epc";
-import {EpcsResponse} from "../model/response/epcs-response";
+import {EpcResponse} from "../model/response/epc-response";
 
 export abstract class EpcParserService {
 
-    public static parse(epcApiResponse: EpcsResponse): Epc[] {
+    public static parse(epcApiResponse: JsonApiResponse<EpcResponse>): Epc[] {
         if (!epcApiResponse) {
             return [];
         }

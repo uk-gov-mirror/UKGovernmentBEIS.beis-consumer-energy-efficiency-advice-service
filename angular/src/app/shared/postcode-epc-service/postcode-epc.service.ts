@@ -35,7 +35,7 @@ export class PostcodeEpcService {
     }
 
     private fetchEpcsForPostcode(postcode: string): Observable<PostcodeDetails> {
-        return this.epcApiService.fetchEpcsForPostcode(postcode)
+        return this.epcApiService.getEpcsForPostcode(postcode)
             .switchMap(epcs => Observable.of(new PostcodeDetails(postcode, epcs)))
             .catch(() => this.fetchBasicPostcodeDetails(postcode));
     }

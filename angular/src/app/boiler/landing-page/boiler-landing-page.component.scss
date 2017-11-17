@@ -21,29 +21,8 @@
     font-size: 22px;
   }
 
-  .link-button, .image-rec-button {
-    @include body-uppercase;
-    color: white;
-    text-align: left;
-
-    cursor: pointer;
-    border: none;
-    background-color: $dark-grey;
-    &:hover, &:focus {
-      background-color: black;
-    }
-
-    padding: 24px 16px;
-    box-sizing: border-box;
-  }
-
-  .image-rec-button {
-    background-color: white;
-    color: $dark-grey;
-    &:hover, &:focus {
-      background-color: $light-grey;
-      color: black;
-    }
+  .link-button {
+    @include boiler-link-button;
   }
 
   .page-heading {
@@ -121,128 +100,11 @@
           .make-and-model, .postcode-epc {
             flex: 1 1 auto;
             flex-basis: calc(50% - 96px);
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .body-text {
-              width: 100%;
-            }
-
-            .boiler-input, .postcode-input {
-              width: 100%;
-              height: 72px;
-              display: flex;
-              margin-top: 48px;
-
-              .boiler-input-text, .postcode-input-text {
-                background-color: white;
-                outline: none;
-                border: none;
-
-                flex: 1 1 auto;
-                padding: 0 24px;
-
-                font-size: 24px;
-                font-weight: bold;
-                text-transform: uppercase;
-              }
-
-              .boiler-input-submit, .postcode-input-submit {
-                background-color: black;
-                color: white;
-
-                flex: 0 0 72px;
-                border: none;
-                cursor: pointer;
-
-                font-size: 30px;
-                font-weight: bold;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-            }
-          }
-
-          .postcode-epc {
-            .loading-spinner {
-              height: 50px;
-              width: 50px;
-              margin-bottom: 0;
-            }
-
-            .address-select {
-              width: 100%;
-              height: 50px;
-              margin-top: 24px;
-              display: flex;
-              align-items: stretch;
-              justify-content: space-between;
-
-              .address-dropdown {
-                flex: 1 1 auto;
-                padding: 8px;
-                box-sizing: border-box;
-                font-size: 20px;
-                font-weight: bold;
-                text-align: center;
-
-                .address-option {
-                  font-size: 18px;
-                }
-              }
-            }
-
-            .go-button {
-              background-color: black;
-              color: white;
-
-              flex: 0 0 50px;
-              border: none;
-              cursor: pointer;
-
-              font-size: 18px;
-              font-weight: bold;
-
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
           }
 
           .make-and-model {
             padding-right: 96px;
             border-right: 1px solid $light-medium-grey;
-
-            .dont-know-buttons {
-              width: 100%;
-              display: flex;
-              align-items: stretch;
-              justify-content: space-between;
-
-              margin-top: 32px;
-
-              .image-rec-button, .link-button {
-                padding: 8px 16px;
-              }
-
-              .image-rec-button {
-                display: flex;
-                align-items: center;
-                margin-right: 24px;
-
-                .icon-camera {
-                  margin-right: 8px;
-                }
-              }
-
-              .link-button {
-                text-align: center;
-              }
-            }
           }
 
           .postcode-epc {

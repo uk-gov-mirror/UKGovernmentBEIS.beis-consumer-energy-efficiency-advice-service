@@ -6,7 +6,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {ResultsPageComponent} from "./results-page.component";
 import {GrantCardComponent} from "../shared/grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
-import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
+import {RecommendationCardComponent} from "../shared/recommendation-card/recommendation-card.component";
 import {ResponseData} from "../shared/response-data/response-data";
 import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
@@ -20,8 +20,8 @@ import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type"
 import {LocalAuthorityResponse} from "../shared/local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {RecommendationService} from "./recommendation-service/recommendation.service";
-import {RecommendationMetadataResponse} from "./recommendation-service/recommendation-metadata-response";
+import {RecommendationService} from "../shared/recommendation-service/recommendation.service";
+import {RecommendationMetadataResponse} from "../shared/recommendation-service/recommendation-metadata-response";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
@@ -77,7 +77,9 @@ describe('ResultsPageComponent', () => {
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
         electricityTariff: undefined,
-        numberOfAdults: 1,
+        numberOfAdultsAgedUnder64: 1,
+        numberOfAdultsAged64To80: 0,
+        numberOfAdultsAgedOver80: 0,
         numberOfChildren: 2,
         showerType: ShowerType.None,
         numberOfShowersPerWeek: 0,
@@ -86,7 +88,8 @@ describe('ResultsPageComponent', () => {
         numberOfFridges: 0,
         numberOfFreezers: 0,
         livingRoomTemperature: 20,
-        benefits: Benefits.None
+        benefits: Benefits.None,
+        income: 1234567
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

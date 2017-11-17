@@ -3,7 +3,6 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 import {SharedModule} from "../../shared/shared.module";
-import {BathsQuestionComponent} from "./baths-question/baths-question.component";
 import {BedroomsQuestionComponent} from "./bedrooms-question/bedrooms-question.component";
 import {BoilerTypeQuestionComponent} from "./boiler-type-question/boiler-type-question.component";
 import {ConfirmEpcQuestionComponent} from "./confirm-epc-question/confirm-epc-question.component";
@@ -17,16 +16,16 @@ import {LivingRoomTemperatureQuestionComponent} from "./living-room-temperature-
 import {OccupantsQuestionComponent} from "./occupants-question/occupants-question.component";
 import {PostcodeEpcQuestionComponent} from "./postcode-epc-question/postcode-epc-question.component";
 import {ShowerTypeQuestionComponent} from "./shower-type-question/shower-type-question.component";
-import {ShowersQuestionComponent} from "./showers-question/showers-question.component";
+import {ShowersAndBathsQuestionComponent} from "./showers-and-baths-question/showers-and-baths-question.component";
 import {StoreysQuestionComponent} from "./storeys-question/storeys-question.component";
 import {CommonQuestionsModule} from "../common-questions/common-questions.module";
 import {TenureTypeQuestionComponent} from "./tenure-type-question/tenure-type-question.component";
 import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-question/grants-questionnaire-question.component";
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
+import {IncomeQuestionComponent} from "./income-question/income-question.component";
 
 @NgModule({
     declarations: [
-        BathsQuestionComponent,
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
@@ -37,17 +36,17 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         FuelTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
-        ShowersQuestionComponent,
+        ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ],
     exports: [
-        BathsQuestionComponent,
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
@@ -58,12 +57,13 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         FuelTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
-        ShowersQuestionComponent,
+        ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ],
@@ -74,7 +74,6 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         CommonQuestionsModule,
     ],
     entryComponents: [
-        BathsQuestionComponent,
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
@@ -85,12 +84,13 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
         FuelTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
-        ShowersQuestionComponent,
+        ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ]

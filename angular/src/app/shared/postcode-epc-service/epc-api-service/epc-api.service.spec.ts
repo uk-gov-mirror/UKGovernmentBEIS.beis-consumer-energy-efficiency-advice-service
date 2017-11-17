@@ -3,10 +3,12 @@ import "rxjs/add/operator/toPromise";
 
 import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
-import {EpcsResponse} from "../model/response/epcs-response";
+import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {JsonApiResponse} from "./model/response/json-api-response";
 import {HttpRequest} from "@angular/common/http";
-import {Epc} from "../model/epc";
+import {Epc} from "./model/epc";
+import {EpcResponse} from "./model/response/epc-response";
+import {EpcRecommendation} from "./model/response/epc-recommendation";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -30,20 +32,20 @@ describe('EpcApiService', () => {
         });
     });
 
-    describe('#fetchEpcsForPostcode', () => {
+    describe('#getEpcsForPostcode', () => {
 
         const postcode = 'SW1H 0ET';
 
         it('returns data from the API endpoint', async(() => {
             // given
             const dummyEpcResponse = require('assets/test/dummy-epc-response.json');
-            const expectedResponse: EpcsResponse = {
+            const expectedResponse: JsonApiResponse<EpcResponse> = {
                 'column-names': ['dummy-column'],
                 'rows': [dummyEpcResponse]
             };
 
             // when
-            const actualResponse = service.fetchEpcsForPostcode(postcode).toPromise();
+            const actualResponse = service.getEpcsForPostcode(postcode).toPromise();
             let request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(expectedResponse);
 
@@ -59,7 +61,7 @@ describe('EpcApiService', () => {
             const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
 
             // when
-            const actualResponse = service.fetchEpcsForPostcode(postcode).toPromise();
+            const actualResponse = service.getEpcsForPostcode(postcode).toPromise();
             let request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(dummyEpcsResponse);
 
@@ -75,6 +77,33 @@ describe('EpcApiService', () => {
             const encodedPostcode = encodeURI(postcode);
             const matchesExpectedUrlWithParams =
                 (request.urlWithParams === 'angular-theme/v1/epc?postcode=' + encodedPostcode + '&size=100');
+            return matchesExpectedMethod && matchesExpectedUrlWithParams;
+        }
+    });
+
+    describe('#getRecommendationsForLmkKey', () => {
+        const lmkKey = 'fakeKey';
+
+        it('returns recommendations from the EPC recommendations API', () => {
+            // given
+            const dummyEpcRecommendationsResponse = require('assets/test/dummy-epc-recommendations-response.json');
+
+            // when
+            const actualResponse = service.getRecommendationsForLmkKey(lmkKey).toPromise();
+            let request = httpMock.expectOne(matchesExpectedRequest);
+            request.flush(dummyEpcRecommendationsResponse);
+
+            // then
+            actualResponse.then(response =>
+               expect(response).toEqual(dummyEpcRecommendationsResponse.rows.map(rec => new EpcRecommendation(rec)))
+            );
+        });
+
+        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
+            const matchesExpectedMethod = request.method === 'GET';
+            const encodedLmkKey = encodeURI(lmkKey);
+            const matchesExpectedUrlWithParams =
+                (request.urlWithParams === 'angular-theme/v1/epc-recommendations?lmkKey=' + encodedLmkKey);
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });

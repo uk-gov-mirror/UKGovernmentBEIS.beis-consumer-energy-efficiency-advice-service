@@ -10,8 +10,9 @@ export class NumberQuestionComponent {
     private _quantity: number;
 
     @Input() itemsName: string;
-    @Input() minQuantity?: number = 1;
-    @Input() maxQuantity?: number = 20;
+    @Input() minQuantity?: number;
+    @Input() maxQuantity?: number;
+    @Input() step?: number = 1;
 
     @Input()
     set quantity(value: number) {
@@ -27,7 +28,14 @@ export class NumberQuestionComponent {
     @Output() quantityChange = new EventEmitter<number>();
 
     increaseQuantity(amount: number): void {
-        this.quantity += amount;
+        let potentialQuantity = this.quantity + amount;
+        if (!this.isValidForMinimum(potentialQuantity)) {
+            potentialQuantity = this.minQuantity;
+        }
+        if (!this.isValidForMaximum(potentialQuantity)) {
+            potentialQuantity = this.maxQuantity;
+        }
+        this.quantity = potentialQuantity;
         this.updateQuantity();
     }
 
@@ -41,9 +49,18 @@ export class NumberQuestionComponent {
         }
     }
 
+    isValidForMinimum(amount: number) {
+        return this.minQuantity === undefined || amount >= this.minQuantity;
+    }
+
+    isValidForMaximum(amount: number) {
+        return this.maxQuantity === undefined || amount <= this.maxQuantity;
+    }
+
     private quantityIsValid() {
-        const isInRange = this.quantity >= this.minQuantity && this.quantity <= this.maxQuantity;
+        const isNumber = typeof this.quantity === 'number';
+        const isInRange = this.isValidForMinimum(this.quantity) && this.isValidForMaximum(this.quantity);
         const isAnInteger = this.quantity % 1 === 0;
-        return isInRange && isAnInteger;
+        return isNumber && isInRange && isAnInteger;
     }
 }

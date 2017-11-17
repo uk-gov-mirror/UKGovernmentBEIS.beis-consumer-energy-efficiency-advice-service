@@ -24,14 +24,9 @@ describe('Behaviour questionnaire', () => {
         expect(page.getHeading()).toContain('How many people');
         page.goForwards();
 
-        // Number of showers
+        // Number of showers and baths
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('How many showers');
-        page.goForwards();
-
-        // Number of baths
-        CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain('How many baths');
+        expect(page.getHeading()).toContain('How many showers and baths');
         page.goForwards();
 
         // Type of shower

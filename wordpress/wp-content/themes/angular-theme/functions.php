@@ -7,6 +7,8 @@ require_once("functions/postcode.php");
 require_once("functions/initialise_question_post_type.php");
 require_once("functions/initialise_feature_flag_post_type.php");
 require_once("functions/initialise_local_authority_post_type.php");
+require_once("functions/initialise_boiler_post_type.php");
+require_once("functions/initialise_income_thresholds.php");
 require_once("functions/initialise_local_grant_post_type.php");
 require_once("functions/initialise_national_grant_post_type.php");
 require_once("functions/initialise_measure_post_type.php");
