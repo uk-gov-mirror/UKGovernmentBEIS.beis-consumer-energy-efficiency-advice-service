@@ -19,13 +19,13 @@ describe('HeatingCostQuestionComponent', () => {
             .compileComponents();
     }));
 
-    beforeEach(() => {
+    beforeEach(async(() => {
         responseData = TestBed.get(ResponseData);
         fixture = TestBed.createComponent(HeatingCostQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
-    });
+    }));
 
     it('should create', () => {
         expect(component).toBeTruthy();

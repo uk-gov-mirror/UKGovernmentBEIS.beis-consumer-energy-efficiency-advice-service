@@ -6,7 +6,7 @@
                        aria-labelledby="question-heading" [ngModel]="heatingCostDisplay" (ngModelChange)="validateHeatingCost($event)">
             </div>
         </form>
-        <button class="do-not-know-button" id="do-not-know-button" (click)="response = 0; complete.emit();">I don't know</button>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="responseData.heatingCost = 0; complete.emit();">I don't know</button>
     </div>
     <div class="error" *ngIf="isInvalid">
         <div class="error-message">Please enter a valid value.</div>

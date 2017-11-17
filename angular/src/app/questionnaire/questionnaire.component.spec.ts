@@ -17,6 +17,7 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
+import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -72,6 +73,12 @@ describe('QuestionnaireComponent', () => {
         }
     }
 
+    class MockQuestionHeadingProcessor {
+        replaceFuelTypePlaceholder(questionHeading) {
+            return questionHeading;
+        }
+    }
+
     class MockActivatedRoute {
         private static paramMapGet(key) {
             if (key === 'name') {
@@ -101,6 +108,7 @@ describe('QuestionnaireComponent', () => {
                 ChangeDetectorRef,
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
+                {provide: QuestionHeadingProcessor, useClass: MockQuestionHeadingProcessor},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
                 {provide: ResponseData, useValue: responseDataStub},
             ],
