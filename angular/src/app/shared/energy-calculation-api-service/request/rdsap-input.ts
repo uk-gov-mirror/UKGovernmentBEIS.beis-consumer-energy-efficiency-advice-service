@@ -8,7 +8,6 @@ import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel
 import toString from "lodash-es/toString";
 import {Epc} from "../../epc-api-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
-import {isUndefined} from "util";
 
 export class RdSapInput {
     readonly epc: Epc;
@@ -199,10 +198,7 @@ export class RdSapInput {
     }
 
     private static getShowerTypeEncoding(showerType: ShowerType): string {
-        if (showerType !== undefined) {
-            return showerType.toString(10);
-        }
-        return undefined;
+        return toString(showerType);
     }
 
     private static getNumberOfHeatingOffHoursNormal(lengthOfHeatingOn: number): number[] {

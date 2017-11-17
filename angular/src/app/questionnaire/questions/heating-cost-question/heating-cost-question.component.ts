@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
+import toString from "lodash-es/toString";
 
 @Component({
     selector: 'app-heating-cost-question',
@@ -12,7 +13,7 @@ export class HeatingCostQuestionComponent extends QuestionBaseComponent {
     heatingCostDisplay: number;
 
     get responseForAnalytics(): string {
-        return this.responseData.heatingCost.toString(10);
+        return toString(this.responseData.heatingCost);
     }
 
     ngOnInit() {

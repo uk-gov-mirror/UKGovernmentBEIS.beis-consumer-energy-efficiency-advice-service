@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
+import toString from "lodash-es/toString";
 
 @Component({
     selector: 'app-length-of-heating-on-question',
@@ -12,7 +13,7 @@ export class LengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
     lengthOfHeatingOnDisplay: number;
 
     get responseForAnalytics(): string {
-        return this.responseData.lengthOfHeatingOn.toString(10);
+        return toString(this.responseData.lengthOfHeatingOn);
     }
 
     ngOnInit() {
