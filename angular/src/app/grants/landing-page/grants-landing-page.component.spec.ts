@@ -12,10 +12,12 @@ import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
 import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
-import {LocalAuthorityResponse} from "../../shared/local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
+import {GrantEligibility} from "../../shared/grants-eligibility/grant-eligibility";
+import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
+import {LocalAuthorityGrantViewModel} from "../../shared/grant/local-authority-grant-view-model";
 
-describe('GrantsLandingPageComponent', () => {
+fdescribe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;
     let fixture: ComponentFixture<GrantsLandingPageComponent>;
     let responseData: ResponseData;
@@ -24,23 +26,25 @@ describe('GrantsLandingPageComponent', () => {
     const postcode = "SW1A1AA";
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
-    const localAuthorityDetails: LocalAuthorityResponse = {
-        local_authority_code: localAuthorityCode,
-        display_name: localAuthorityName,
-        grants: [
-            {display_name: 'Grant 1', description: 'Grant 1'},
-            {display_name: 'Grant 2', description: 'Grant 2'},
-            {display_name: 'Grant 3', description: 'Grant 3'},
-        ]
-    };
+    const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
+        {
+            name: 'Grant 1',
+            description: 'some grant',
+            eligibility: GrantEligibility.MayBeEligible
+        },
+        {
+            name: 'Grant 2',
+            description: 'another grant',
+            eligibility: GrantEligibility.MayBeEligible
+        }
+    ];
 
     let postcodeEpcResponse: Observable<PostcodeDetails>;
-    let localAuthorityResponse: Observable<LocalAuthorityResponse>;
-
     let postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => postcodeEpcResponse
     };
 
+    let localAuthorityResponse: Observable<LocalAuthority>;
     let localAuthorityServiceStub = {
         fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
@@ -51,7 +55,12 @@ describe('GrantsLandingPageComponent', () => {
             postcode: postcode,
             localAuthorityCode: localAuthorityCode
         });
-        localAuthorityResponse = Observable.of(localAuthorityDetails);
+        localAuthorityResponse = Observable.of({
+            name: localAuthorityName,
+            isEcoFlexActive: true,
+            ecoFlexMoreInfoLink: 'http://www.example.com',
+            grants: localAuthorityGrants
+        });
 
         spyOn(postcodeEpcServiceStub, 'fetchPostcodeDetails').and.callThrough();
         spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
@@ -61,7 +70,7 @@ describe('GrantsLandingPageComponent', () => {
             providers: [
                 ResponseData,
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
-                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
+                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
             ],
             imports: [
                 CommonModule,
@@ -135,7 +144,7 @@ describe('GrantsLandingPageComponent', () => {
             });
         }));
 
-        it('should fetch the local authority details', async(() => {
+        it('should fetch the local authority name', async(() => {
             // when
             submitPostcode(postcode);
 
@@ -163,15 +172,16 @@ describe('GrantsLandingPageComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 const grantsCards = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
-                expect(grantsCards.length).toEqual(localAuthorityDetails.grants.length);
+                expect(grantsCards.length).toEqual(2);
             });
         }));
 
         it('should display a message if no grants are returned', async(() => {
             // given
             localAuthorityResponse = Observable.of({
-                local_authority_code: localAuthorityCode,
-                display_name: localAuthorityName,
+                name: localAuthorityName,
+                isEcoFlexActive: true,
+                ecoFlexMoreInfoLink: 'http://www.example.com',
                 grants: []
             });
 

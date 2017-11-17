@@ -2,15 +2,17 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {GrantCardComponent} from "./grant-card.component";
-import {LocalGrantResponse} from "../local-authority-service/local-authority-response";
+import {GrantViewModel} from "../grant/grant-view-model";
+import {GrantEligibility} from "../grants-eligibility/grant-eligibility";
 
 describe('GrantCardComponent', () => {
     let component: GrantCardComponent;
     let fixture: ComponentFixture<GrantCardComponent>;
 
-    const grant: LocalGrantResponse = {
-        display_name: 'Name',
-        description: 'Description'
+    const grant: GrantViewModel = {
+        name: 'Name',
+        description: 'Description',
+        eligibility: GrantEligibility.MayBeEligible
     };
 
     beforeEach(async(() => {
@@ -33,7 +35,7 @@ describe('GrantCardComponent', () => {
 
     it('should display the correct heading', () => {
         const recommendationDescriptionElement = fixture.debugElement.query(By.css('.heading')).nativeElement;
-        expect(recommendationDescriptionElement.innerText).toBe(grant.display_name);
+        expect(recommendationDescriptionElement.innerText).toBe(grant.name);
     });
 
     it('should display the correct description', () => {

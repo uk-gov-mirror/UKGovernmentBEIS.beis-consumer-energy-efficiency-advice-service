@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed, getTestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {DebugElement} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
@@ -17,11 +17,8 @@ import {HomeType} from "../questionnaire/questions/home-type-question/home-type"
 import {HomeAge} from "../questionnaire/questions/home-age-question/home-age";
 import {FlatPosition} from "../questionnaire/questions/flat-position-question/flat-position";
 import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type";
-import {LocalAuthorityResponse} from "../shared/local-authority-service/local-authority-response";
 import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {RecommendationService} from "../shared/recommendation-service/recommendation.service";
-import {RecommendationMetadataResponse} from "../shared/recommendation-service/recommendation-metadata-response";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
@@ -30,31 +27,67 @@ import {ShowerType} from "../questionnaire/questions/shower-type-question/shower
 import {TenureType} from "../questionnaire/questions/tenure-type-question/tenure-type";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
+import {MeasureService} from "../shared/recommendation-service/measure.service";
+import {MeasureMetadataResponse} from "../shared/recommendation-service/measure-metadata-response";
+import {GrantEligibility} from "../shared/grants-eligibility/grant-eligibility";
+import {LocalAuthority} from "../shared/local-authority-service/local-authority";
+import {LocalAuthorityGrantViewModel} from "../shared/grant/local-authority-grant-view-model";
+import {NationalGrantViewModel} from "../shared/grant/national-grant-view-model";
+import {GrantViewModel} from "../shared/grant/grant-view-model";
+import {GrantsEligibilityService} from "../shared/grants-eligibility/grants-eligibility.service";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
+    let injector: TestBed;
     let fixture: ComponentFixture<ResultsPageComponent>;
-    let energyCalculationResponse: EnergyCalculationResponse;
-    let mockEnergyCalculationApiService = {
-        fetchEnergyCalculation: () => Observable.of(energyCalculationResponse)
+    const dummyEnergyCalculations = require('assets/test/energy-calculation-response.json');
+    let energyCalculationResponse: Observable<EnergyCalculationResponse>;
+    let energyCalculationApiServiceStub = {
+        fetchEnergyCalculation: () => energyCalculationResponse
     };
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
-    const localAuthorityResponse: LocalAuthorityResponse = {
-        local_authority_code: localAuthorityCode,
-        display_name: localAuthorityName,
-        grants: [
-            {display_name: 'Grant 1', description: 'Grant 1'},
-            {display_name: 'Grant 2', description: 'Grant 2'},
-            {display_name: 'Grant 3', description: 'Grant 3'},
-        ]
+    const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
+        {
+            name: 'LA Grant 1',
+            description: 'some local grant',
+            eligibility: GrantEligibility.MayBeEligible
+        },
+        {
+            name: 'LA Grant 2',
+            description: 'another local grant',
+            eligibility: GrantEligibility.MayBeEligible
+        }
+    ];
+
+    const nationalGrants: NationalGrantViewModel[] = [
+        {
+            name: 'National Grant 1',
+            description: 'some national grant',
+            eligibility: GrantEligibility.MayBeEligible
+        },
+        {
+            name: 'National Grant 2',
+            description: 'another national grant',
+            eligibility: GrantEligibility.MayBeEligible
+        }
+    ];
+
+    let grantsResponse: Observable<GrantViewModel[]>;
+    const grantsEligibilityServiceStub = {
+        getApplicableGrants: () => grantsResponse
     };
-    let mockLocalAuthorityService = {
-        fetchLocalAuthorityDetails: () => Observable.of(localAuthorityResponse)
+
+
+    let localAuthorityResponse: Observable<LocalAuthority>;
+    let localAuthorityServiceStub = {
+        fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
-    const recommendationsResponse = require('assets/test/recommendations-response.json');
-    let mockRecommendationService = {
-        fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
+
+    const dummyMeasures = require('assets/test/measures-response.json');
+    let measuresResponse: Observable<MeasureMetadataResponse[]>;
+    let measuresServiceStub = {
+        fetchMeasureDetails: () => measuresResponse
     };
 
     const mockQuestionnaireService = {
@@ -92,40 +125,22 @@ describe('ResultsPageComponent', () => {
         income: 1234567
     };
 
-    function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {
-        let injectedEnergyCalcService = getInjectedEnergyCalculationService();
-        injectedEnergyCalcService.fetchEnergyCalculation = fetchEnergyCalculation;
-        spyOn(injectedEnergyCalcService, 'fetchEnergyCalculation').and.callThrough();
-        fixture.detectChanges();
-    }
-
-    function injectMockLocalAuthorityApiCallbackAndDetectChanges(fetchLocalAuthorityDetails: () => Observable<LocalAuthorityResponse>) {
-        let injectedLocalAuthorityService = getInjectedLocalAuthorityService();
-        injectedLocalAuthorityService.fetchLocalAuthorityDetails = fetchLocalAuthorityDetails;
-        spyOn(injectedLocalAuthorityService, 'fetchLocalAuthorityDetails').and.callThrough();
-        fixture.detectChanges();
-    }
-
-    function injectMockRecommendationsApiCallbackAndDetectChanges(fetchRecommendationDetails: () => Observable<RecommendationMetadataResponse[]>) {
-        let injectedRecommendationService = getInjectedRecommendationService();
-        injectedRecommendationService.fetchRecommendationDetails = fetchRecommendationDetails;
-        spyOn(injectedRecommendationService, 'fetchRecommendationDetails').and.callThrough();
-        fixture.detectChanges();
-    }
-
-    function getInjectedEnergyCalculationService() {
-        return fixture.debugElement.injector.get(EnergyCalculationApiService);
-    }
-
-    function getInjectedLocalAuthorityService() {
-        return fixture.debugElement.injector.get(LocalAuthorityService);
-    }
-
-    function getInjectedRecommendationService() {
-        return fixture.debugElement.injector.get(RecommendationService);
-    }
-
     beforeEach(async(() => {
+        measuresResponse = Observable.of(dummyMeasures);
+        localAuthorityResponse = Observable.of({
+            name: localAuthorityName,
+            isEcoFlexActive: true,
+            ecoFlexMoreInfoLink: 'http://www.example.com',
+            grants: localAuthorityGrants
+        });
+        energyCalculationResponse = Observable.of(dummyEnergyCalculations);
+        grantsResponse = Observable.of(nationalGrants);
+
+        spyOn(grantsEligibilityServiceStub, 'getApplicableGrants').and.callThrough();
+        spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
+        spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
+        spyOn(measuresServiceStub, 'fetchMeasureDetails').and.callThrough();
+
         TestBed.configureTestingModule({
             declarations: [
                 ResultsPageComponent,
@@ -142,10 +157,11 @@ describe('ResultsPageComponent', () => {
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
-                {provide: EnergyCalculationApiService, useValue: mockEnergyCalculationApiService},
-                {provide: LocalAuthorityService, useValue: mockLocalAuthorityService},
+                {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
+                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: QuestionnaireService, useValue: mockQuestionnaireService},
-                {provide: RecommendationService, useValue: mockRecommendationService},
+                {provide: MeasureService, useValue: measuresServiceStub},
+                {provide: GrantsEligibilityService, useValue: grantsEligibilityServiceStub}
             ]
         })
             .compileComponents();
@@ -153,8 +169,8 @@ describe('ResultsPageComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResultsPageComponent);
+        injector = getTestBed();
         component = fixture.componentInstance;
-        energyCalculationResponse = require('assets/test/energy-calculation-response.json');
     });
 
     it('should create', () => {
@@ -162,21 +178,23 @@ describe('ResultsPageComponent', () => {
     });
 
     it('should call energy calculation API service with response data', () => {
+        // given
+        const energyCalculationService = injector.get(EnergyCalculationApiService);
+
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        fixture.detectChanges();
 
         // then
-        expect(getInjectedEnergyCalculationService().fetchEnergyCalculation).toHaveBeenCalled();
-        expect(getInjectedEnergyCalculationService().fetchEnergyCalculation)
+        expect(energyCalculationService.fetchEnergyCalculation)
             .toHaveBeenCalledWith(new RdSapInput(responseData));
     });
 
     it('should display an error message if API responds with an error', () => {
         // given
-        const errorResponse = ErrorObservable.create('some error text');
+        energyCalculationResponse = ErrorObservable.create('some error text');
 
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => errorResponse);
+        fixture.detectChanges();
 
         // then
         expect(component.isLoading).toBeFalsy();
@@ -184,10 +202,12 @@ describe('ResultsPageComponent', () => {
     });
 
     it('should display the correct number of recommendations', () => {
-        // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
-        const expectedMeasures = Object.values(energyCalculationResponse.measures)
+        // given
+        const expectedMeasures = Object.values(dummyEnergyCalculations.measures)
             .map(measure => [measure.cost_saving, measure.energy_saving]);
+
+        // when
+        fixture.detectChanges();
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
@@ -199,27 +219,9 @@ describe('ResultsPageComponent', () => {
         actualMeasures.forEach(measure => expect(expectedMeasures).toContain(measure));
     });
 
-    it('should display all recommendations when the see more button is clicked', () => {
-        // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
-        const expectedMeasures = Object.values(energyCalculationResponse.measures)
-            .map(measure => [measure.cost_saving, measure.energy_saving]);
-        fixture.debugElement.query(By.css('button.see-more')).nativeElement.click();
-        fixture.detectChanges();
-
-        // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
-        const actualMeasures = recommendationElements
-            .map(el => el.componentInstance.recommendation)
-            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
-
-        expect(actualMeasures.length).toBe(expectedMeasures.length);
-        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
-    });
-
     it('should sort recommendations by cost saving descending', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        fixture.detectChanges();
 
         // then
         // match data in assets/test/energy-calculation-response.json
@@ -229,19 +231,19 @@ describe('ResultsPageComponent', () => {
 
     it('should display recommendation details correctly', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        fixture.detectChanges();
 
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
         // for measure code V2
         expect(component.recommendations[0].headline).toBe('Wind turbine on mast');
         expect(component.recommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
-        expect(component.recommendations[0].iconClassName).toBe(RecommendationService.recommendationIcons['V2']);
+        expect(component.recommendations[0].iconClassName).toBe(MeasureService.measureIcons['V2']);
     });
 
     it('should display energy calculations correctly', () => {
         // when
-        injectMockEnergyCalcApiCallbackAndDetectChanges(() => Observable.of(energyCalculationResponse));
+        fixture.detectChanges();
 
         // then
         // match data in assets/test/energy-calculation-response.json
@@ -252,20 +254,19 @@ describe('ResultsPageComponent', () => {
 
     it('should call local authority API service with code from response data', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+        fixture.detectChanges();
 
         // then
-        expect(getInjectedLocalAuthorityService().fetchLocalAuthorityDetails).toHaveBeenCalled();
-        expect(getInjectedLocalAuthorityService().fetchLocalAuthorityDetails)
+        expect(injector.get(LocalAuthorityService).fetchLocalAuthorityDetails)
             .toHaveBeenCalledWith(localAuthorityCode);
     });
 
     it('should display an error message if local authority API responds with an error', () => {
         // given
-        const errorResponse = ErrorObservable.create('some error text');
+        localAuthorityResponse = ErrorObservable.create('some error text');
 
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => errorResponse);
+        fixture.detectChanges();
 
         // then
         expect(fixture.debugElement.query(By.css('.page-error-container'))).toBeTruthy();
@@ -273,36 +274,27 @@ describe('ResultsPageComponent', () => {
 
     it('should display correct local authority name', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+        fixture.detectChanges();
 
         // then
         const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .local-authority')).nativeElement;
         expect(localAuthorityNameElement.innerText.toLowerCase()).toContain(localAuthorityName.toLowerCase());
     });
 
-    it('should display all grants', () => {
+    it('should call measures metadata API service', () => {
         // when
-        injectMockLocalAuthorityApiCallbackAndDetectChanges(() => Observable.of(localAuthorityResponse));
+        fixture.detectChanges();
 
         // then
-        const grantElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
-        expect(grantElements.map(el => el.componentInstance.grant)).toEqual(localAuthorityResponse.grants);
+        expect(injector.get(MeasureService).fetchMeasureDetails).toHaveBeenCalled();
     });
 
-    it('should call recommendations metadata API service', () => {
-        // when
-        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
-
-        // when
-        expect(getInjectedRecommendationService().fetchRecommendationDetails).toHaveBeenCalled();
-    });
-
-    it('should display an error if recommendations metadata API responds with an error', () => {
+    it('should display an error if measures metadata API responds with an error', () => {
         // given
-        const errorResponse = ErrorObservable.create('some error text');
+        measuresResponse = ErrorObservable.create('some error text');
 
         // when
-        injectMockRecommendationsApiCallbackAndDetectChanges(() => errorResponse);
+        fixture.detectChanges();
 
         // when
         expect(component.isLoading).toBeFalsy();
@@ -311,9 +303,8 @@ describe('ResultsPageComponent', () => {
 
     it('should display all linked pages', () => {
         // when
-        injectMockRecommendationsApiCallbackAndDetectChanges(() => Observable.of(recommendationsResponse));
+        fixture.detectChanges();
 
-        // when
         // match data in assets/test/recommendations-response.json
         expect(component.featuredPages.length).toBe(4);
     });

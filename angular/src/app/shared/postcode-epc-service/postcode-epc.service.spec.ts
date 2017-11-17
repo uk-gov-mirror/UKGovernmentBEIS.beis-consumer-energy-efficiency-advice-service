@@ -31,7 +31,7 @@ describe('PostcodeEpcService', () => {
         fetchFeatureFlags: () => featureFlagResponse
     };
     let epcApiServiceStub = {
-        fetchEpcsForPostcode: () => epcsResponse
+        getEpcsForPostcode: () => epcsResponse
     };
     let postcodeApiServiceStub = {
         fetchBasicPostcodeDetails: () => postcodeBasicDetailsResponse
@@ -43,7 +43,7 @@ describe('PostcodeEpcService', () => {
         postcodeBasicDetailsResponse = Observable.of(dummyPostcodeBasicDetails);
 
         spyOn(postcodeApiServiceStub, 'fetchBasicPostcodeDetails').and.callThrough();
-        spyOn(epcApiServiceStub, 'fetchEpcsForPostcode').and.callThrough();
+        spyOn(epcApiServiceStub, 'getEpcsForPostcode').and.callThrough();
         spyOn(featureFlagServiceStub, 'fetchFeatureFlags').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -80,7 +80,7 @@ describe('PostcodeEpcService', () => {
                 .toPromise().then(() => {
 
                 // then
-                expect(epcApiServiceStub.fetchEpcsForPostcode).toHaveBeenCalledWith(postcode);
+                expect(epcApiServiceStub.getEpcsForPostcode).toHaveBeenCalledWith(postcode);
             });
         }));
 
@@ -121,7 +121,7 @@ describe('PostcodeEpcService', () => {
                 .toPromise().then(() => {
 
                 // then
-                expect(epcApiServiceStub.fetchEpcsForPostcode).not.toHaveBeenCalled();
+                expect(epcApiServiceStub.getEpcsForPostcode).not.toHaveBeenCalled();
             });
         }));
 
@@ -150,7 +150,7 @@ describe('PostcodeEpcService', () => {
                 .toPromise().then(() => {
 
                 // then
-                expect(epcApiServiceStub.fetchEpcsForPostcode).not.toHaveBeenCalled();
+                expect(epcApiServiceStub.getEpcsForPostcode).not.toHaveBeenCalled();
             });
         }));
 

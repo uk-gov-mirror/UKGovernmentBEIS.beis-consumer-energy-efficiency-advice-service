@@ -1,14 +1,14 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
 import "rxjs/add/operator/toPromise";
+import {HttpRequest} from "@angular/common/http";
 
 import {EpcApiService} from "./epc-api.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {JsonApiResponse} from "./model/response/json-api-response";
-import {HttpRequest} from "@angular/common/http";
-import {Epc} from "./model/epc";
-import {EpcResponse} from "./model/response/epc-response";
-import {EpcRecommendation} from "./model/response/epc-recommendation";
+import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
+import {JsonApiResponse} from "../../epc-api-service/model/response/json-api-response";
+import {Epc} from "../model/epc";
+import {EpcResponse} from "../model/response/epc-response";
+import {EpcRecommendation} from "../../epc-api-service/model/response/epc-recommendation";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;

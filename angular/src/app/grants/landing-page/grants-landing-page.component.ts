@@ -6,8 +6,8 @@ import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {GrantsEligibilityService} from "../../shared/grants-eligibility/grants-eligibility.service";
 import {GrantViewModel} from "../../shared/grant/grant-view-model";
+import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 
 @Component({
     selector: 'app-grants-landing-page',
@@ -18,7 +18,7 @@ export class GrantsLandingPageComponent {
 
     postcodeInput: string = '';
     localAuthorityName: string = null;
-    availableGrants: GrantViewModel[];
+    localAuthorityGrants: GrantViewModel[];
     validationError: boolean = false;
     isLoading: boolean = false;
     isError: boolean = false;
@@ -26,14 +26,13 @@ export class GrantsLandingPageComponent {
     constructor(
         private responseData: ResponseData,
         private postcodeEpcService: PostcodeEpcService,
-        private grantsEligibilityService: GrantsEligibilityService,
         private localAuthorityService: LocalAuthorityService
     ) {
     }
 
     onPostcodeSubmit(): void {
         this.localAuthorityName = null;
-        this.availableGrants = null;
+        this.localAuthorityGrants = null;
         this.validationError = false;
         this.isError = false;
         this.isLoading = true;
@@ -52,21 +51,20 @@ export class GrantsLandingPageComponent {
         }
         this.responseData.postcode = postcodeDetails.postcode;
         this.responseData.localAuthorityCode = postcodeDetails.localAuthorityCode;
-        Observable.forkJoin(
-            this.grantsEligibilityService.getApplicableGrants(),
-            this.localAuthorityService.fetchLocalAuthorityName(this.responseData.localAuthorityCode)
-        )
+        this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
             .subscribe(
-                ([grants, localAuthorityName]) => {
-                    this.availableGrants = grants;
-                    this.localAuthorityName = localAuthorityName;
-                },
-                err => this.handleGrantsCalculationError(err),
-                () => this.isLoading = false
+                response => this.handleLocalAuthorityResponse(response),
+                err => this.handleLocalAuthorityServiceError(err),
             )
     }
 
-    private handleGrantsCalculationError(err): void {
+    private handleLocalAuthorityResponse(localAuthority: LocalAuthority): void {
+        this.localAuthorityGrants = localAuthority.grants;
+        this.localAuthorityName = localAuthority.name;
+        this.isLoading = false;
+    }
+
+    private handleLocalAuthorityServiceError(err): void {
         this.isError = true;
         console.error(err);
     }

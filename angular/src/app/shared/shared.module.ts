@@ -23,8 +23,8 @@ import {LocalAuthorityService} from "./local-authority-service/local-authority.s
 import {NationalGrantsService} from "./national-grants-service/national-grants.service";
 import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-factory";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
-import {RecommendationService} from "./recommendation-service/recommendation.service";
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
+import {MeasureService} from "./recommendation-service/measure.service";
 
 @NgModule({
     declarations: [
@@ -71,7 +71,7 @@ export class SharedModule {
                 LocalAuthorityService,
                 NationalGrantsService,
                 NationalGrantMetadataFactory,
-                RecommendationService
+                MeasureService
             ]
         };
     }

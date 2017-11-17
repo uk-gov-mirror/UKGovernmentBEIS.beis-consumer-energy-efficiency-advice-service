@@ -19,7 +19,9 @@ describe('LocalAuthorityService', () => {
             {display_name: 'Grant 1', description: 'Grant 1'},
             {display_name: 'Grant 2', description: 'Grant 2'},
             {display_name: 'Grant 3', description: 'Grant 3'},
-        ]
+        ],
+        is_eco_flex_active: true,
+        eco_flex_further_info_link: 'http://www.example.com'
     };
 
     beforeEach(() => {
@@ -40,17 +42,19 @@ describe('LocalAuthorityService', () => {
     });
 
     describe('#fetchLocalAuthorityDetails', () => {
-
         it('calls API and returns data correctly', async(() => {
             // when
             const actualResponse = service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
-            actualResponse.then((localAuthorityResponse) => {
-                expect(localAuthorityResponse.local_authority_code).toBe(localAuthorityCode);
-                expect(localAuthorityResponse.display_name).toBe(mockApiResponse.display_name);
-                expect(localAuthorityResponse.grants).toBe(mockApiResponse.grants);
+            actualResponse.then((response) => {
+                expect(response.name).toBe('Westminster');
+                expect(response.isEcoFlexActive).toBeTruthy();
+                expect(response.ecoFlexMoreInfoLink).toEqual('http://www.example.com');
+                expect(response.grants.length).toBe(3);
+                expect(response.grants[0].name).toBe('Grant 1');
+                expect(response.grants[0].description).toBe('Grant 1');
             });
             httpMock.verify();
         }));
@@ -92,11 +96,11 @@ describe('LocalAuthorityService', () => {
             });
             httpMock.verify();
         }));
-
-        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
-            const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === `angular-theme/v1/local-authority/${ localAuthorityCode }`;
-            return matchesExpectedMethod && matchesExpectedUrl;
-        }
     });
+
+    function matchesExpectedRequest(request: HttpRequest<any>): boolean {
+        const matchesExpectedMethod = request.method === 'GET';
+        const matchesExpectedUrl = request.urlWithParams === `angular-theme/v1/local-authority/${ localAuthorityCode }`;
+        return matchesExpectedMethod && matchesExpectedUrl;
+    }
 });

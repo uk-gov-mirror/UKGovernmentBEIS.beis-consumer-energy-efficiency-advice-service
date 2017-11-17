@@ -1,26 +1,26 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {RecommendationMetadataResponse} from "./recommendation-metadata-response";
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
+import {MeasureMetadataResponse} from "./measure-metadata-response";
 
 @Injectable()
-export class RecommendationService {
-    private static readonly recommendationsEndpoint = 'acf/v3/measure?per_page=1000';
-    private recommendations: Observable<RecommendationMetadataResponse[]>;
+export class MeasureService {
+    private static readonly measuresEndpoint = 'acf/v3/measure?per_page=1000';
+    private measures: Observable<MeasureMetadataResponse[]>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
-    fetchRecommendationDetails(): Observable<RecommendationMetadataResponse[]> {
-        if (!this.recommendations) {
-            this.recommendations = this.http.get(this.wordpressApiService.getFullApiEndpoint(RecommendationService.recommendationsEndpoint))
+    fetchMeasureDetails(): Observable<MeasureMetadataResponse[]> {
+        if (!this.measures) {
+            this.measures = this.http.get(this.wordpressApiService.getFullApiEndpoint(MeasureService.measuresEndpoint))
                 .shareReplay(1);
         }
-        return this.recommendations;
+        return this.measures;
     }
 
-    public static recommendationIcons: { [rdsapMeasureCode: string]: string } = {
+    public static measureIcons: { [rdsapMeasureCode: string]: string } = {
         A:  'icon-roofing',
         A2: 'icon-roofing',
         A3: 'icon-roofing',

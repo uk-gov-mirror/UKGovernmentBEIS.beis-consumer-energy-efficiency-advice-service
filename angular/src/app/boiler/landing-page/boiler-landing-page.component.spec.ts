@@ -9,9 +9,9 @@ import {CarouselItemComponent} from "./carousel/carousel-item/carousel-item.comp
 import {TimesPipe} from "../../shared/times/times.pipe";
 import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-model-lookup.component";
 import {BoilerPostcodeLookupComponent} from "../postcode-lookup/boiler-postcode-lookup.component";
-import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
-import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;

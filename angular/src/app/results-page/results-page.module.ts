@@ -5,7 +5,6 @@ import {ResultsPageComponent} from "./results-page.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RoutingModule} from "../app-routing.module";
 import {SharedModule} from "../shared/shared.module";
-import {RecommendationService} from "../shared/recommendation-service/recommendation.service";
 
 @NgModule({
     declarations: [
@@ -22,12 +21,4 @@ import {RecommendationService} from "../shared/recommendation-service/recommenda
     ]
 })
 export class ResultsPageModule {
-    static forRoot() {
-        return {
-            ngModule: ResultsPageModule,
-            providers: [
-                RecommendationService
-            ]
-        };
-    }
 }

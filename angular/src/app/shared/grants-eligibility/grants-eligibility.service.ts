@@ -69,8 +69,8 @@ export class GrantsEligibilityService {
             grantViewModel.eligibility === GrantEligibility.MayBeEligible;
     }
 
-    private getLocalAuthorityGrantViewModels(): Observable<LocalAuthorityGrantViewModel[]> {
-        return this.localAuthorityService.fetchLocalAuthorityGrants(this.responseData.localAuthorityCode)
-            .map(response => response.map(grant => new LocalAuthorityGrantViewModel(grant)));
+    getLocalAuthorityGrantViewModels(): Observable<LocalAuthorityGrantViewModel[]> {
+        return this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
+            .map(response => response.grants);
     }
 }

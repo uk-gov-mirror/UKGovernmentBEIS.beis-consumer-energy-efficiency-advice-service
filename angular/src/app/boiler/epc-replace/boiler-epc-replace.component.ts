@@ -3,12 +3,12 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
 import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
-import {RecommendationService} from "../../shared/recommendation-service/recommendation.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import * as parse from "url-parse";
 import sortBy from "lodash-es/sortBy";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
+import {MeasureService} from "../../shared/recommendation-service/measure.service";
 
 @Component({
     selector: 'app-boiler-epc-replace',
@@ -31,7 +31,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
                 undefined,
                 undefined,
                 undefined,
-                RecommendationService.recommendationIcons['G'],
+                MeasureService.measureIcons['G'],
             ),
         },
         {
@@ -43,7 +43,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
                 undefined,
                 undefined,
                 undefined,
-                RecommendationService.recommendationIcons['C'],
+                MeasureService.measureIcons['C'],
             ),
         },
         {
@@ -61,7 +61,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
     ];
 
     constructor(private epcApiService: EpcApiService,
-                private recommendationService: RecommendationService,
+                private recommendationService: MeasureService,
                 private boilerTypesService: BoilerTypesService,
                 private route: ActivatedRoute) {
         this.lmkKey = this.route.snapshot.paramMap.get('lmkKey');
@@ -70,7 +70,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
     ngOnInit() {
         Observable.forkJoin(
             this.epcApiService.getRecommendationsForLmkKey(this.lmkKey),
-            this.recommendationService.fetchRecommendationDetails(),
+            this.recommendationService.fetchMeasureDetails(),
             this.boilerTypesService.fetchBoilerTypes(),
         )
             .subscribe(
