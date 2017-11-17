@@ -3,10 +3,10 @@
         <form class="questionnaire-form" (submit)="handleFormSubmit()">
             <div class="form-element">
                 <input class="text-input" id="heating-cost-input" name="heating-cost-input" type="number"
-                       aria-labelledby="question-heading" [ngModel]="heatingCostDisplay" (ngModelChange)="validateHeatingCost($event)">
+                       aria-labelledby="question-heading" [ngModel]="heatingCostDisplay" (ngModelChange)="updateResponseData($event)">
             </div>
         </form>
-        <button class="do-not-know-button" id="do-not-know-button" (click)="responseData.heatingCost = 0; complete.emit();">I don't know</button>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="updateResponseData(0); complete.emit();">I don't know</button>
     </div>
     <div class="error" *ngIf="isInvalid">
         <div class="error-message">Please enter a valid value.</div>

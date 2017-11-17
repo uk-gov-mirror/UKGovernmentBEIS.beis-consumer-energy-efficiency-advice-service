@@ -15,7 +15,7 @@ export class HeatingCostQuestionComponent extends QuestionBaseComponent {
         this.heatingCostDisplay = this.responseData.heatingCost;
     }
 
-    validateHeatingCost(value) {
+    updateResponseData(value) {
         if (value < 0) {
             this.isInvalid = true;
             this.responseData.heatingCost = undefined;
