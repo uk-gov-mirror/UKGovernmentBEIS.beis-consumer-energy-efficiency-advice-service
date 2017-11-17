@@ -36,6 +36,8 @@ import {NationalGrantViewModel} from "../shared/grant/national-grant-view-model"
 import {GrantViewModel} from "../shared/grant/grant-view-model";
 import {GrantsEligibilityService} from "../shared/grants-eligibility/grants-eligibility.service";
 
+// TODO: this is not currently thoroughly tested because it's all about to change in BEISDEAS-79
+
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
     let injector: TestBed;

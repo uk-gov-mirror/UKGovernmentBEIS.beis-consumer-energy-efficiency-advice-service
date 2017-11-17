@@ -132,7 +132,7 @@
                     <div class="local-authority-name">You live in {{localAuthorityName}} and we've found the following:</div>
                     <div class="grant-cards">
                         <app-grant-card class="grant-card"
-                                        *ngFor="let grant of availableGrants"
+                                        *ngFor="let grant of localAuthorityGrants"
                                         [grant]="grant">
                         </app-grant-card>
                     </div>

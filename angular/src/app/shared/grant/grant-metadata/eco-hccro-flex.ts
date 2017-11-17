@@ -11,7 +11,7 @@ export class EcoHhcroFlex extends NationalGrantMetadata {
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
-        return this.localAuthorityService.fetchLocalAuthorityEcoFlexStatus(responseData.localAuthorityCode)
-            .map(isEcoFlexActive => isEcoFlexActive ? GrantEligibility.MayBeEligible : GrantEligibility.Ineligible);
+        return this.localAuthorityService.fetchLocalAuthorityDetails(responseData.localAuthorityCode)
+            .map(response => response.isEcoFlexActive ? GrantEligibility.MayBeEligible : GrantEligibility.Ineligible);
     }
 }

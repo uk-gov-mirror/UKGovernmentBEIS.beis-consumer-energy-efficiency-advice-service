@@ -17,7 +17,7 @@ import {GrantEligibility} from "../../shared/grants-eligibility/grant-eligibilit
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityGrantViewModel} from "../../shared/grant/local-authority-grant-view-model";
 
-fdescribe('GrantsLandingPageComponent', () => {
+describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;
     let fixture: ComponentFixture<GrantsLandingPageComponent>;
     let responseData: ResponseData;
