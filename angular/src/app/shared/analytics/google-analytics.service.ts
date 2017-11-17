@@ -27,7 +27,7 @@ export class GoogleAnalyticsService {
         if (GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
             gtag('event', questionId, {
                 event_label: answer,
-                event_category: 'question'
+                event_category: 'question_answered'
             });
         }
     }
