@@ -1,0 +1,28 @@
+<div class="insulation-question question-component">
+    <form class="questionnaire-form" (submit)="complete.emit()">
+        <div class="insulation-type-row">
+            <span class="question">What type of roof insulation?</span>
+            <select name="insulation-type" class="dropdown-input text-input" aria-labelledby="question-heading" [(ngModel)]="roofInsulation">
+                <option *ngFor="let insulationType of insulationTypes" [ngValue]="insulationType.value">{{insulationType.name}}</option>
+            </select>
+        </div>
+        <div class="insulation-type-row">
+            <span class="question">What type of wall insulation?</span>
+            <select name="insulation-type" class="dropdown-input text-input" aria-labelledby="question-heading" [(ngModel)]="wallInsulation">
+                <option *ngFor="let insulationType of insulationTypes" [ngValue]="insulationType.value">{{insulationType.name}}</option>
+            </select>
+        </div>
+        <div class="insulation-type-row">
+            <span class="question">What type of floor insulation?</span>
+            <select name="insulation-type" class="dropdown-input text-input" aria-labelledby="question-heading" [(ngModel)]="floorInsulation">
+                <option *ngFor="let insulationType of insulationTypes" [ngValue]="insulationType.value">{{insulationType.name}}</option>
+            </select>
+        </div>
+        <div class="insulation-type-row">
+            <span class="question">What sort of glazing?</span>
+            <select name="insulation-type" class="dropdown-input text-input" aria-labelledby="question-heading" [(ngModel)]="glazingType">
+                <option *ngFor="let insulationType of insulationTypes" [ngValue]="insulationType.value">{{insulationType.name}}</option>
+            </select>
+        </div>
+    </form>
+</div>

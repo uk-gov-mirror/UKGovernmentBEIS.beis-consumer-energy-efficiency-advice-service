@@ -1,0 +1,29 @@
+.insulation-question.question-component {
+  .questionnaire-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .insulation-type-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+
+      .question {
+        font-size: 22px;
+        margin-right: 64px;
+      }
+
+      .dropdown-input {
+        min-width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

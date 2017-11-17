@@ -37,6 +37,23 @@
           &:focus {
             box-shadow: 0 0 10px 4px grey;
           }
+
+          &.dropdown-input {
+            text-transform: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            padding: 12px 36px 12px 24px;
+            background: white url('/assets/images/controls/caret-down.svg') no-repeat right;
+
+            &::-ms-expand {
+              display: none;
+            }
+
+            option {
+              font-size: medium;
+            }
+          }
         }
       }
 

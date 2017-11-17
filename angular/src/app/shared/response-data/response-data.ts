@@ -10,6 +10,8 @@ import {UserJourneyType} from "./user-journey-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
+import {InsulationType} from "../../questionnaire/questions/insulation-question/insulation-type";
+import {GlazingType} from "../../questionnaire/questions/insulation-question/glazing-type";
 
 @Injectable()
 export class ResponseData {
@@ -39,6 +41,10 @@ export class ResponseData {
     public numberOfFreezers: number;
     public livingRoomTemperature: number;
     public numberOfBathsPerWeek: number;
+    public roofInsulationType: InsulationType;
+    public wallInsulationType: InsulationType;
+    public floorInsulationType: InsulationType;
+    public glazingType: GlazingType;
 
     public benefits: Benefits;
     public income: number;
