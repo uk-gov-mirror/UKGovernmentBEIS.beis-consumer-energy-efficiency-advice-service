@@ -1,4 +1,4 @@
-.insulation-question.question-component {
+.construction-question.question-component {
   .questionnaire-form {
     display: flex;
     flex-direction: column;
@@ -15,10 +15,12 @@
 
       .question {
         font-size: 22px;
+        width: 300px;
         margin-right: 64px;
       }
 
       .dropdown-input {
+        flex-grow: 1;
         min-width: 250px;
         display: flex;
         align-items: center;
