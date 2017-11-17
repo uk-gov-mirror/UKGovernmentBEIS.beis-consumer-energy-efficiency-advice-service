@@ -18,6 +18,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -37,6 +38,8 @@ describe('QuestionnaireComponent', () => {
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
+        responseForAnalytics: string;
+
         get response(): void {
             return null;
         }
@@ -106,11 +109,12 @@ describe('QuestionnaireComponent', () => {
             providers: [
                 ComponentFactoryResolver,
                 ChangeDetectorRef,
+                GoogleAnalyticsService,
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionHeadingProcessor, useClass: MockQuestionHeadingProcessor},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
-                {provide: ResponseData, useValue: responseDataStub},
+                {provide: ResponseData, useValue: responseDataStub}
             ],
         })
             .compileComponents();
@@ -186,7 +190,8 @@ describe('QuestionnaireComponent', () => {
                 [questionId]: {
                     questionHeading: 'test question heading',
                     helpText: '',
-                    questionReason: 'this question helps us show you useful results'
+                    questionReason: 'this question helps us show you useful results',
+                    autoOpenQuestionReason: false
                 }
             };
             component.currentQuestionIndex = 0;

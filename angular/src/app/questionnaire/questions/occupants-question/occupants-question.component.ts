@@ -8,6 +8,14 @@ import {Component, OnInit} from "@angular/core";
     animations: [slideInOutAnimation]
 })
 export class OccupantsQuestionComponent extends QuestionBaseComponent implements OnInit {
+    get responseForAnalytics(): string {
+        return JSON.stringify({
+            adultsAgedUnder64: this.adultsAgedUnder64,
+            adultsAged64To80: this.adultsAged64To80,
+            adultsAgedOver80: this.adultsAgedOver80,
+            children: this.children
+        });
+    }
 
     ngOnInit() {
         this.adultsAgedUnder64 = this.responseData.numberOfAdultsAgedUnder64 || 0;

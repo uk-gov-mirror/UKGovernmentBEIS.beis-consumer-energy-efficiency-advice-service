@@ -35,6 +35,10 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     allEpcsForPostcode: Epc[];
     selectedEpc: Epc;
 
+    get responseForAnalytics(): string {
+        return this.responseData.epc ? 'EPC found' : 'EPC not found';
+    }
+
     constructor(responseData: ResponseData,
                 private epcApiService: EpcApiService,
                 private postcodeApiService: PostcodeApiService,

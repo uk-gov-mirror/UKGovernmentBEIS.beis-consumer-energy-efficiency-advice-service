@@ -19,6 +19,7 @@ import {NeedHelpComponent} from "./need-help/need-help.component";
 import {EpcApiService} from "./epc-api-service/epc-api.service";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {RecommendationService} from "./recommendation-service/recommendation.service";
+import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ export class SharedModule {
                 PostcodeValidationService,
                 EpcApiService,
                 RecommendationService,
+                GoogleAnalyticsService
             ]
         };
     }

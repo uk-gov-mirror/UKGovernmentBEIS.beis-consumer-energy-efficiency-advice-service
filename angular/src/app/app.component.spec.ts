@@ -9,6 +9,7 @@ import {FooterComponent} from "./layout-components/footer/footer.component";
 import {ComponentFixture} from "@angular/core/testing";
 import {NavigationBarComponent} from "./layout-components/navigation-bar/navigation-bar.component";
 import {WordpressPagesService} from "./shared/wordpress-pages-service/wordpress-pages.service";
+import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -27,6 +28,7 @@ describe('AppComponent', () => {
             imports: [RouterTestingModule, FormsModule],
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
+                GoogleAnalyticsService
             ]
         }).compileComponents();
     }));

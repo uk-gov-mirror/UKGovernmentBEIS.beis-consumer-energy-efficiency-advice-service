@@ -24,6 +24,12 @@ export class BenefitsQuestionComponent extends QuestionBaseComponent implements 
     ];
     readonly Benefits = Benefits;
 
+    get responseForAnalytics(): string {
+        const benefits = this.options.filter(option => this.getBenefitsValue(option))
+            .map(option => Benefits[option.value]);
+        return benefits.length ? benefits.join(', ') : 'None';
+    };
+
     ngOnInit() {
         this.response = this.response || Benefits.None;
     }

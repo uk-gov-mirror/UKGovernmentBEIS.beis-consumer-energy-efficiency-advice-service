@@ -12,6 +12,10 @@ import {ResponseData} from "../../../shared/response-data/response-data";
 export class TenureTypeQuestionComponent extends QuestionBaseComponent {
     tenureTypeOptions: TenureTypeOption[];
 
+    get responseForAnalytics(): string {
+        return TenureType[this.response];
+    }
+
     constructor(responseData: ResponseData) {
         super(responseData);
         this.tenureTypeOptions = [
