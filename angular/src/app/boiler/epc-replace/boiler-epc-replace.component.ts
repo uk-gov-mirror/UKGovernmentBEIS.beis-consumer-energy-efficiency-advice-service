@@ -37,8 +37,8 @@ export class BoilerEpcReplaceComponent implements OnInit {
         {
             code: 'C',
             measure: new EnergySavingRecommendation(
-                80,
-                10,
+                15,
+                85,
                 undefined,
                 undefined,
                 undefined,
