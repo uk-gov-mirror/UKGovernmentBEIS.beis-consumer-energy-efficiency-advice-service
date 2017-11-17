@@ -22,6 +22,7 @@ describe('EnergyCalculationApiService', () => {
         num_bedrooms: 1,
         heating_fuel: "26",
         heating_cost: 1000,
+        number_of_heating_off_hours_normal: [4, 4],
         measures: "Y",
         floor_area: undefined,
         occupants: 1,
