@@ -87,12 +87,16 @@ describe('GrantsLandingPageComponent', () => {
 
     describe('#onPostcodeSubmit', () => {
         it('should strip spaces and lookup the postcode details', async(() => {
-            // when
-            submitPostcode('sw1a 1aa  ');
-
-            // then
+            // This test needs to be wrapped in fixture.whenStable as an <input> in a <form> is initialised asynchronously
+            // by angular.
             fixture.whenStable().then(() => {
-                expect(postcodeEpcServiceStub.fetchPostcodeDetails).toHaveBeenCalledWith('sw1a1aa');
+                // when
+                submitPostcode('sw1a 1aa  ');
+
+                // then
+                fixture.whenStable().then(() => {
+                    expect(postcodeEpcServiceStub.fetchPostcodeDetails).toHaveBeenCalledWith('sw1a1aa');
+                });
             });
         }));
 
@@ -200,7 +204,10 @@ describe('GrantsLandingPageComponent', () => {
         }));
 
         function submitPostcode(postcode: string) {
-            component.postcodeInput = postcode;
+            const postcodeInputElement = fixture.debugElement.query(By.css('.postcode-input-text')).nativeElement;
+            postcodeInputElement.value = postcode;
+            postcodeInputElement.dispatchEvent(new Event('input'));
+            fixture.detectChanges();
             const submitPostcodeButton = fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement;
             submitPostcodeButton.click();
             fixture.detectChanges();
