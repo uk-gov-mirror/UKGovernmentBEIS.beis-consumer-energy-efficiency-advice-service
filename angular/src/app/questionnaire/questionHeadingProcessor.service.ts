@@ -4,12 +4,13 @@ import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
 
 @Injectable()
 export class QuestionHeadingProcessor {
-    private static readonly FUEL_TYPE_PLACEHOLDER = '/{{fuel_type}}/g';
+    private static readonly FUEL_TYPE_PLACEHOLDER = '{{fuel_type}}';
 
     constructor(private responseData: ResponseData) {
     }
 
     public replacePlaceholders(questionHeading) {
-        return questionHeading.replace(QuestionHeadingProcessor.FUEL_TYPE_PLACEHOLDER, getFuelTypeDescription(this.responseData.fuelType))
+        const regex = new RegExp(QuestionHeadingProcessor.FUEL_TYPE_PLACEHOLDER, 'g');
+        return questionHeading.replace(regex, getFuelTypeDescription(this.responseData.fuelType))
     }
 }
