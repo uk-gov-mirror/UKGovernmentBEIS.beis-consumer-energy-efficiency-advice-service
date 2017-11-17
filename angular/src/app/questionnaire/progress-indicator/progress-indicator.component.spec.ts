@@ -33,7 +33,7 @@ describe('ProgressIndicatorComponent', () => {
         get responseForAnalytics(): string {
             return undefined;
         }
-        
+
         get response(): void {
             return null;
         }

@@ -163,7 +163,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     private recordQuestionAnswer() {
-        this.googleAnalyticsService.recordQuestionAnswer(this.currentQuestionId, this.questionComponent.responseForAnalytics);
+        if (this.currentQuestionId && this.questionComponent) {
+            this.googleAnalyticsService.recordQuestionAnswer(this.currentQuestionId, this.questionComponent.responseForAnalytics);
+        }
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
