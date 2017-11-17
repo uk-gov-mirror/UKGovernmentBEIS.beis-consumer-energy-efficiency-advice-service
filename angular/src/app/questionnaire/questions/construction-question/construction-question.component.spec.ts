@@ -3,15 +3,15 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
-import {InsulationQuestionComponent} from "./insulation-question.component";
+import {ConstructionQuestionComponent} from "./construction-question.component";
 
 describe('ShowerTypeQuestionComponent', () => {
-    let component: InsulationQuestionComponent;
-    let fixture: ComponentFixture<InsulationQuestionComponent>;
+    let component: ConstructionQuestionComponent;
+    let fixture: ComponentFixture<ConstructionQuestionComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [InsulationQuestionComponent],
+            declarations: [ConstructionQuestionComponent],
             imports: [FormsModule],
             providers: [ResponseData]
         })
@@ -19,7 +19,7 @@ describe('ShowerTypeQuestionComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(InsulationQuestionComponent);
+        fixture = TestBed.createComponent(ConstructionQuestionComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

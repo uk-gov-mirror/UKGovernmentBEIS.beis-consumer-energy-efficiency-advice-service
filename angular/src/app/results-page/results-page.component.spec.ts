@@ -30,6 +30,8 @@ import {ShowerType} from "../questionnaire/questions/shower-type-question/shower
 import {TenureType} from "../questionnaire/questions/tenure-type-question/tenure-type";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
+import {GlazingType, RoofType, WallType} from "../questionnaire/questions/construction-question/construction-types";
+import {WaterTankSpace} from "../questionnaire/questions/water-tank-question/water-tank-space";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -89,7 +91,11 @@ describe('ResultsPageComponent', () => {
         numberOfFreezers: 0,
         livingRoomTemperature: 20,
         benefits: Benefits.None,
-        income: 1234567
+        income: 1234567,
+        roofType: RoofType.DontKnow,
+        wallType: WallType.DontKnow,
+        glazingType: GlazingType.Double,
+        waterTankSpace: WaterTankSpace.Sufficient,
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {
