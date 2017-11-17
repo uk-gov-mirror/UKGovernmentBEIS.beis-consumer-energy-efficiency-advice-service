@@ -20,6 +20,7 @@ export class RdSapInput {
     readonly num_storeys: number;
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
+    readonly heating_cost: number;
     readonly measures: string;
 
     readonly living_room_temperature: number;
@@ -45,6 +46,7 @@ export class RdSapInput {
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
+        this.heating_cost = responseData.heatingCost;
         this.measures = 'Y';
 
         // Habit data+

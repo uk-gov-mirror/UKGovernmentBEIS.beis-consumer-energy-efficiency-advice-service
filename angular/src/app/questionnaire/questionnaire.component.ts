@@ -19,6 +19,8 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
 import {ResponseData} from "../shared/response-data/response-data";
+import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
+import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -49,7 +51,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef
+                private changeDetectorRef: ChangeDetectorRef,
+                private responseData: ResponseData,
+                private questionHeadingProcessor: QuestionHeadingProcessor
     ) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
@@ -168,6 +172,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 this.displayErrorAndLogMessage(`Missing question content for question with id "${ this.currentQuestionId }"`);
                 return;
             }
+
+            this.currentQuestionContent.questionHeading =
+                this.questionHeadingProcessor.replacePlaceholders(this.currentQuestionContent.questionHeading);
 
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 

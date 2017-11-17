@@ -1,5 +1,12 @@
 [
   {
+    "id": 45,
+    "acf": {
+      "questionHeading": "What do you pay a month for your {{fuel_type}}?"
+    },
+    "slug": "heating_cost"
+  },
+  {
     "id": 44,
     "acf": {
       "questionHeading": "How many storeys does your home have?"

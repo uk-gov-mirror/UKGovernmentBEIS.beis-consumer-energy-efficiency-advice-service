@@ -16,6 +16,7 @@ import {PostcodeEpcQuestionMetadata} from "../../questions/postcode-epc-question
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
 import {GrantsQuestionnaireQuestionMetadata} from "../../questions/grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths-question/showers-and-baths-question-metadata";
+import {HeatingCostQuestionMetadata} from "../../questions/heating-cost-question/heating-cost-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -40,6 +41,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
+            new HeatingCostQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -68,6 +70,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
+            new HeatingCostQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -96,6 +99,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
+            new HeatingCostQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -124,6 +128,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
+            new HeatingCostQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata()
         ];
 
@@ -149,6 +154,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
+            new HeatingCostQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata()
         ];
 

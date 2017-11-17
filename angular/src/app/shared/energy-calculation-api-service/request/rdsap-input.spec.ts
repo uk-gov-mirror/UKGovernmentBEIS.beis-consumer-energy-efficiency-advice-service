@@ -34,6 +34,7 @@ describe('RdsapInput', () => {
             fuelType: FuelType.MainsGas,
             condensingBoiler: false,
             electricityTariff: undefined,
+            heatingCost: undefined,
             numberOfAdultsAgedUnder64: numberOfAdultsUnder64,
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,

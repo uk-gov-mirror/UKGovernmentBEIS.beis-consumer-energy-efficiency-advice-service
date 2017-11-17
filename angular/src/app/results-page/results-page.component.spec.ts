@@ -77,6 +77,7 @@ describe('ResultsPageComponent', () => {
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
         electricityTariff: undefined,
+        heatingCost: undefined,
         numberOfAdultsAgedUnder64: 1,
         numberOfAdultsAged64To80: 0,
         numberOfAdultsAgedOver80: 0,
