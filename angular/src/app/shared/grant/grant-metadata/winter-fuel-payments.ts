@@ -9,9 +9,8 @@ export class WinterFuelPayments extends NationalGrantMetadata {
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
-        let eligibility: GrantEligibility;
-        // TODO: needs adult ages once everything's rebased on master
-        eligibility = GrantEligibility.MayBeEligible;
-        return Observable.of(eligibility);
+        const isEligible = responseData.numberOfAdultsAged64To80 > 0 ||
+            responseData.numberOfAdultsAgedOver80 > 0;
+        return Observable.of(isEligible ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
     }
 }

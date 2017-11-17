@@ -14,14 +14,13 @@ export class EcoHhcroHelpToHeat extends NationalGrantMetadata {
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
+        // TODO: Improve this calculation (BEISDEAS-95)
         let eligibility: GrantEligibility;
         if (responseData.benefits & EcoHhcroHelpToHeat.AUTOMATICALLY_QUALIFYING_BENEFITS) {
             eligibility = GrantEligibility.LikelyEligible;
         } else if (responseData.benefits & Benefits.TaxCredits) {
-            // TODO: get income thresholds (when BEISDEAS-84 is done)
             eligibility = GrantEligibility.MayBeEligible;
         } else if (responseData.benefits & Benefits.UniversalCredit) {
-            // TODO: get income thresholds!
             eligibility = GrantEligibility.MayBeEligible;
         }
         return Observable.of(eligibility);

@@ -18,7 +18,7 @@ export class WarmHomeDiscount extends NationalGrantMetadata {
             eligibility = GrantEligibility.LikelyEligible;
         } else {
             eligibility = GrantEligibility.MayBeEligible;
-            // TODO: depends on your energy supplier
+            // TODO: improve this (BEISDEAS-96)
         }
         return Observable.of(eligibility);
     }
