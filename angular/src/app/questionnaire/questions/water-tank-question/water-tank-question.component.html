@@ -6,6 +6,7 @@
                     (click)="response = spaceOption.value; complete.emit()">
                 {{spaceOption.name}}
             </button>
+            <div *ngIf="spaceOption.helpText" class="help-text">{{spaceOption.helpText}}</div>
         </div>
     </div>
 </div>

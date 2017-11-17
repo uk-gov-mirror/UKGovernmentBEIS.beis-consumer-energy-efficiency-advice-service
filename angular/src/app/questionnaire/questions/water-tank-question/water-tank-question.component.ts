@@ -4,6 +4,7 @@ import {WaterTankSpace} from "./water-tank-space";
 
 interface SpaceOption {
     name: string;
+    helpText?: string;
     value: WaterTankSpace;
 }
 
@@ -17,7 +18,7 @@ export class WaterTankQuestionComponent extends QuestionBaseComponent {
 
     readonly spaceOptions: SpaceOption[] = [
         {name: 'No space', value: WaterTankSpace.None},
-        {name: 'About 4.5m³', value: WaterTankSpace.Sufficient},
+        {name: 'About 4.5m³', helpText: 'You could fit a large fridge-freezer in it', value: WaterTankSpace.Sufficient},
         {name: 'Bigger', value: WaterTankSpace.Bigger},
     ];
 

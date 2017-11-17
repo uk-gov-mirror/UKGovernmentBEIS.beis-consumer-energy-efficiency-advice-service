@@ -24,6 +24,12 @@
         background-color: white;
       }
 
+      .help-text {
+        font-size: 14px;
+        margin-top: 16px;
+        text-align: center;
+      }
+
       &:not(:last-child) {
         margin-right: 64px;
       }
