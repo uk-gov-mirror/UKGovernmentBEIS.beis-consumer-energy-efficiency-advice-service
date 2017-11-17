@@ -7,12 +7,12 @@
                 <div class="summary">{{recommendation.summary}}</div>
             </div>
         </div>
-        <a class="read-more" [routerLink]="recommendation.readMoreRoute">
+        <a class="read-more" *ngIf="recommendation.readMoreRoute !== undefined" [routerLink]="recommendation.readMoreRoute">
             <span class="read-more-text">Read more</span>
             <span class="icon-caret-down"></span>
         </a>
     </div>
-    <div class="box investment">
+    <div class="box investment" *ngIf="recommendation.investmentPounds !== undefined">
         <div class="box-heading">Investment required</div>
         <div class="box-content money">£{{recommendation.investmentPounds}}</div>
     </div>

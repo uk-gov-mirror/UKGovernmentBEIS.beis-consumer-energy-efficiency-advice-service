@@ -1,5 +1,5 @@
 import {EpcRating} from "./epc-rating";
-import {EpcResponse} from "./response/epc/epc-response";
+import {EpcResponse} from "./response/epc-response";
 
 export class Epc {
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
@@ -96,6 +96,7 @@ export class Epc {
         // TODO: We may not use all these fields and may be able to remove some. We currently use the following fields:
         // NB The data quality is mixed. Any field that we use should be escaped/parsed appropriately and we should be able to deal with
         // a missing or bad field.
+        this.lmkKey = epcResponse['lmk-key'];
         this.address1 = epcResponse['address1'];
         this.address2 = epcResponse['address2'];
         this.address3 = epcResponse['address3'];
@@ -116,7 +117,6 @@ export class Epc {
         this.epcDate = new Date(epcResponse['lodgement-date']);
 
         // TODO: These fields are not currently used; maybe we can remove these later on
-        this.lmkKey = epcResponse['lmk-key'];
         this.buildingReferenceNumber = epcResponse['building-reference-number'];
         this.potentialEnergyRating = epcResponse['potential-energy-rating'];
         this.currentEnergyEfficiency = epcResponse['current-energy-efficiency'];

@@ -5,7 +5,7 @@ import {
     ADDRESS_AND_OWNERSHIP_STATUS, BASIC_BEHAVIOURAL_QUESTIONS,
     CORE_BRE_QUESTIONS, GRANTS_QUESTIONNAIRE_QUESTION
 } from "../../questions/question-groups";
-import concat from 'lodash-es/concat';
+import concat from "lodash-es/concat";
 import {ResponseData} from "../../../shared/response-data/response-data";
 
 export class HomeBasicsQuestionnaire extends Questionnaire {

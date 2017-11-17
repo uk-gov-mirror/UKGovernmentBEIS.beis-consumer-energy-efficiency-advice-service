@@ -1,8 +1,8 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpRequest} from "@angular/common/http";
-import {RecommendationService} from './recommendation.service';
-import {RecommendationMetadataResponse} from './recommendation-metadata-response';
+import {RecommendationService} from "./recommendation.service";
+import {RecommendationMetadataResponse} from "./recommendation-metadata-response";
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 
 describe('RecommendationService', () => {

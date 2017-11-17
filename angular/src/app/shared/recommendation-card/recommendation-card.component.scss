@@ -1,6 +1,6 @@
 @import "styles/mixins/font";
 @import "styles/var/colours";
-@import "../results-page-sizes";
+@import "../../results-page/results-page-sizes";
 
 :host {
   display: block;
@@ -33,7 +33,7 @@
     &.savings {
       flex: 0 0 auto;
       width: $savings-box-width;
-      background-color: $light-medium-grey;
+      background-color: $dark-medium-grey;
       font-weight: 800;
       color: white;
     }
@@ -46,12 +46,13 @@
 
       .box-heading {
         @include body-uppercase;
+        font-weight: normal;
         text-align: center;
         height: 48px;
       }
 
       .box-content {
-        @include headline-figure;
+        @include focus-text;
         display: flex;
         align-items: center;
         justify-content: center;

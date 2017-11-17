@@ -1,0 +1,146 @@
+@import "styles/mixins/font";
+@import "styles/var/colours";
+@import "styles/page";
+
+$running-cost-box-width: 220px;
+$lifetime-box-width: 180px;
+$installation-cost-box-width: 220px;
+$remaining-boxes-width: $content-max-width - $running-cost-box-width - $lifetime-box-width - $installation-cost-box-width;
+
+:host {
+  display: block;
+}
+
+.boiler-replacement-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  margin: 16px 0;
+
+  .box {
+    box-sizing: border-box;
+
+    &.description {
+      flex: 1 1 auto;
+      width: $remaining-boxes-width;
+      background-color: $lighter-grey;
+      border-left: 10px solid $lighter-medium-grey;
+    }
+
+    &.installation {
+      flex: 0 0 auto;
+      width: $installation-cost-box-width;
+      background-color: white;
+      font-weight: 800;
+    }
+
+    &.lifetime {
+      flex: 0 0 auto;
+      width: $lifetime-box-width;
+      background-color: $light-grey;
+      font-weight: 800;
+    }
+
+    &.running-cost {
+      flex: 0 0 auto;
+      width: $running-cost-box-width;
+      background-color: $dark-medium-grey;
+      font-weight: 800;
+      color: white;
+    }
+
+    &:not(.description) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+      padding: 16px 24px;
+
+      .box-heading {
+        @include body-uppercase;
+        font-weight: normal;
+        text-align: center;
+        height: 48px;
+        width: 100%;
+      }
+
+      .box-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    &:not(.description), &:not(.running-cost) {
+      .box-content {
+        @include focus-text;
+      }
+    }
+
+    &.installation {
+      .box-content {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .box.description {
+
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+
+    .content {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-right: 16px;
+      }
+
+      .explanation {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+
+        .heading {
+          @include card-heading;
+          margin-bottom: 16px;
+          width: 100%;
+        }
+
+        .summary {
+          font-size: 14px;
+          width: 100%;
+        }
+      }
+    }
+
+    .read-more {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: flex-end;
+
+      text-decoration: none;
+      cursor: pointer;
+      color: black;
+
+      .read-more-text {
+        @include body-uppercase;
+      }
+
+      .icon-caret-down {
+        position: relative;
+        top: 6px;
+        margin-left: 8px;
+      }
+    }
+  }
+}

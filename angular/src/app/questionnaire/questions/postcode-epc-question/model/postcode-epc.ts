@@ -1,4 +1,4 @@
-import {Epc} from "./epc";
+import {Epc} from "../../../../shared/epc-api-service/model/epc";
 
 export interface PostcodeEpc {
     epc: Epc;

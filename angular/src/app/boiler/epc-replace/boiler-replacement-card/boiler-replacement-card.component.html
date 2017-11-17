@@ -1,0 +1,27 @@
+<div class="boiler-replacement-card">
+    <div class="box description">
+        <div class="content">
+            <span class="icon icon-heating"></span>
+            <div class="explanation">
+                <div class="heading">{{boilerType.name}}</div>
+                <div class="summary">{{boilerType.description}}</div>
+            </div>
+        </div>
+        <a class="read-more" [routerLink]="boilerType.readMorePath">
+            <span class="read-more-text">Read more</span>
+            <span class="icon-caret-down"></span>
+        </a>
+    </div>
+    <div class="box installation">
+        <div class="box-heading">Average installation cost</div>
+        <div class="box-content">£{{boilerType.installationCostLower}}-£{{boilerType.installationCostUpper}}</div>
+    </div>
+    <div class="box lifetime">
+        <div class="box-heading">Average lifetime up to</div>
+        <div class="box-content">{{boilerType.lifetimeYears}} yrs</div>
+    </div>
+    <div class="box running-cost">
+        <div class="box-heading">Average running cost per year</div>
+        <div class="box-content">£{{boilerType.runningCostPerYear}}</div>
+    </div>
+</div>

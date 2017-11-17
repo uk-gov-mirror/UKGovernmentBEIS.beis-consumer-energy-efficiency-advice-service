@@ -1,15 +1,15 @@
-import {Epc} from "../model/epc";
-import {EpcsResponse} from "../model/response/epc/epcs-response";
+import {Epc} from "./model/epc";
+import {JsonApiResponse} from "./model/response/json-api-response";
+import {EpcResponse} from "./model/response/epc-response";
 
 export abstract class EpcParserService {
 
-    public static parse(epcApiResponse: EpcsResponse): Epc[] {
+    public static parse(epcApiResponse: JsonApiResponse<EpcResponse>): Epc[] {
         if (!epcApiResponse) {
             return [];
         }
         return epcApiResponse.rows
-            .map(epcResponse => new Epc(epcResponse))
-            .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
+            .map(epcResponse => new Epc(epcResponse));
     }
 
     static sortEpcsByHouseNumberOrAlphabetically(a: Epc, b: Epc): number {

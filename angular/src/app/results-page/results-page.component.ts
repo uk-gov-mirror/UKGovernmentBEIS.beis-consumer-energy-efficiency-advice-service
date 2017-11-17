@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {ResponseData} from "../shared/response-data/response-data";
 import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap-input";
-import {EnergySavingRecommendation} from "./recommendation-card/energy-saving-recommendation";
+import {EnergySavingRecommendation} from "../shared/recommendation-card/energy-saving-recommendation";
 import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculations} from "./potentials/energy-calculations";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
@@ -12,8 +12,8 @@ import "rxjs/add/observable/forkJoin";
 import keys from "lodash-es/keys";
 import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
-import {RecommendationService} from './recommendation-service/recommendation.service';
-import {RecommendationMetadataResponse} from './recommendation-service/recommendation-metadata-response';
+import {RecommendationService} from "../shared/recommendation-service/recommendation.service";
+import {RecommendationMetadataResponse} from "../shared/recommendation-service/recommendation-metadata-response";
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 
@@ -100,7 +100,7 @@ export class ResultsPageComponent implements OnInit {
                     return null;
                 }
                 this.addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata);
-                return new EnergySavingRecommendation(
+                return EnergySavingRecommendation.fromResponseData(
                     this.energyCalculationResponse.measures[measureCode],
                     recommendationMetadata,
                     RecommendationService.recommendationIcons[measureCode]
