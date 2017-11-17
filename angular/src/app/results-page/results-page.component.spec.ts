@@ -78,6 +78,7 @@ describe('ResultsPageComponent', () => {
         condensingBoiler: false,
         electricityTariff: undefined,
         heatingCost: undefined,
+        lengthOfHeatingOn: undefined,
         numberOfAdultsAgedUnder64: 1,
         numberOfAdultsAged64To80: 0,
         numberOfAdultsAgedOver80: 0,

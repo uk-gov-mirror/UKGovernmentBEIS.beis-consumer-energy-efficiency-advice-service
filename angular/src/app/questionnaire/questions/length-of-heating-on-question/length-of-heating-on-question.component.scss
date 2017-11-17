@@ -1,0 +1,10 @@
+@import 'styles/mixins/buttons';
+
+.length-of-heating-on-question {
+
+  @include with-no-spin-buttons;
+  input[type="number"] {
+    width: 200px;
+  }
+}
+

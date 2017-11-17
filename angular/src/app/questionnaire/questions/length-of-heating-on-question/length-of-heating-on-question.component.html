@@ -1,0 +1,11 @@
+<div class="question-component length-of-heating-on-question">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="form-element">
+            <input class="text-input" id="length-of-heating-on-input" name="length-of-heating-on-input" type="number"
+                   aria-labelledby="question-heading" [ngModel]="lengthOfHeatingOnDisplay" (ngModelChange)="validateLengthOfHeatingOn($event)">
+        </div>
+    </form>
+    <div class="error" *ngIf="isInvalid">
+        <div class="error-message">Please enter a valid value between 0 and 24 (inclusive).</div>
+    </div>
+</div>

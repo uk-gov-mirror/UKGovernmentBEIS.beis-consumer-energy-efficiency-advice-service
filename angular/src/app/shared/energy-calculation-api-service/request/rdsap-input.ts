@@ -21,6 +21,7 @@ export class RdSapInput {
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
     readonly heating_cost: number;
+    readonly number_of_heating_off_hours_normal: number[];
     readonly measures: string;
 
     readonly living_room_temperature: number;
@@ -47,6 +48,7 @@ export class RdSapInput {
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
         this.heating_cost = responseData.heatingCost;
+        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData.lengthOfHeatingOn);
         this.measures = 'Y';
 
         // Habit data+
@@ -201,5 +203,13 @@ export class RdSapInput {
             return showerType.toString(10);
         }
         return undefined;
+    }
+
+    private static getNumberOfHeatingOffHoursNormal(lengthOfHeatingOn: number): number[] {
+        // For now, we arbitrarily assume the user has heating off twice a day.
+        const numberOfHeatingOffHoursPerDay = 24 - lengthOfHeatingOn;
+        const numberOfHeatingOffHoursPer12Hours = numberOfHeatingOffHoursPerDay / 2;
+
+        return [numberOfHeatingOffHoursPer12Hours, numberOfHeatingOffHoursPer12Hours];
     }
 }
