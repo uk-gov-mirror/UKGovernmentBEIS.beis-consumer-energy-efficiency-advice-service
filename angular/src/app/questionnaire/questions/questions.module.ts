@@ -24,6 +24,7 @@ import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-quest
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
 import {ConstructionQuestionComponent} from "./construction-question/construction-question.component";
+import { WaterTankQuestionComponent } from './water-tank-question/water-tank-question.component';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import {ConstructionQuestionComponent} from "./construction-question/constructio
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent,
         ConstructionQuestionComponent,
+        WaterTankQuestionComponent,
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -69,6 +71,7 @@ import {ConstructionQuestionComponent} from "./construction-question/constructio
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent,
         ConstructionQuestionComponent,
+        WaterTankQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -97,6 +100,7 @@ import {ConstructionQuestionComponent} from "./construction-question/constructio
         StoreysQuestionComponent,
         GrantsQuestionnaireQuestionComponent,
         ConstructionQuestionComponent,
+        WaterTankQuestionComponent,
     ]
 })
 export class QuestionsModule {

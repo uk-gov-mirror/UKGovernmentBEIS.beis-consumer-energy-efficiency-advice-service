@@ -11,6 +11,7 @@ import {ShowerType} from "../../questionnaire/questions/shower-type-question/sho
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
 import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
+import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
 
 @Injectable()
 export class ResponseData {
@@ -43,6 +44,7 @@ export class ResponseData {
     public roofType: RoofType;
     public wallType: WallType;
     public glazingType: GlazingType;
+    public waterTankSpace: WaterTankSpace;
 
     public benefits: Benefits;
     public income: number;

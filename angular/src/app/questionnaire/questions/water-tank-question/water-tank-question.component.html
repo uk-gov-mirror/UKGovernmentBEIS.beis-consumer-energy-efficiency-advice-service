@@ -1,0 +1,11 @@
+<div class="water-tank-question question-component">
+    <div class="multiple-choice-options water-tank-options">
+        <div class="water-tank-option" *ngFor="let spaceOption of spaceOptions">
+            <button class="multiple-choice-option water-tank-button"
+                    [class.selected]="response === spaceOption.value"
+                    (click)="response = spaceOption.value; complete.emit()">
+                {{spaceOption.name}}
+            </button>
+        </div>
+    </div>
+</div>

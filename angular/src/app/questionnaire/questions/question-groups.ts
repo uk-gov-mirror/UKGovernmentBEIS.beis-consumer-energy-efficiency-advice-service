@@ -18,6 +18,7 @@ import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-questi
 import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
 import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
 import {ConstructionQuestionMetadata} from "./construction-question/construction-question-metadata";
+import {WaterTankQuestionMetadata} from "./water-tank-question/water-tank-question.metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -61,6 +62,7 @@ export const GRANTS_QUESTIONS = [
 
 export const BOILER_QUESTIONS = [
     new ConstructionQuestionMetadata(),
+    new WaterTankQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new ShowersAndBathsQuestionMetadata(),

@@ -1,0 +1,32 @@
+.water-tank-question {
+  .water-tank-options {
+    margin-top: 64px;
+
+    .water-tank-option {
+
+      .water-tank-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 240px;
+        border-radius: 240px;
+        border: 1px solid black;
+
+        padding: 16px 32px;
+        box-sizing: border-box;
+
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .water-tank-button:not(:hover):not(:focus):not(.selected) {
+        background-color: white;
+      }
+
+      &:not(:last-child) {
+        margin-right: 64px;
+      }
+    }
+  }
+}
