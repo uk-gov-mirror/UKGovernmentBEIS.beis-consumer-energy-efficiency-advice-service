@@ -19,28 +19,30 @@ describe('LengthOfHeatingOnQuestionComponent', () => {
             .compileComponents();
     }));
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         responseData = TestBed.get(ResponseData);
         fixture = TestBed.createComponent(LengthOfHeatingOnQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
-    }));
+    });
 
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set the response when inputting a value', () => {
-        // given
-        const expectedLength = 8;
+    it('should set the response when inputting a value', async(() => {
+        fixture.whenStable().then(() => {
+            // given
+            const expectedLength = 8;
 
-        // when
-        let input = fixture.debugElement.query(By.css('#length-of-heating-on-input'));
-        input.nativeElement.value = expectedLength;
-        input.nativeElement.dispatchEvent(new Event('input'));
+            // when
+            let input = fixture.debugElement.query(By.css('#length-of-heating-on-input'));
+            input.nativeElement.value = expectedLength;
+            input.nativeElement.dispatchEvent(new Event('input'));
 
-        // then
-        expect(responseData.lengthOfHeatingOn).toBe(expectedLength);
-    });
+            // then
+            expect(responseData.lengthOfHeatingOn).toBe(expectedLength);
+        })
+    }));
 });

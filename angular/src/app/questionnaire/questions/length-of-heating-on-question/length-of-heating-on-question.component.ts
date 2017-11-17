@@ -15,7 +15,7 @@ export class LengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
         this.lengthOfHeatingOnDisplay = this.responseData.lengthOfHeatingOn;
     }
 
-    validateLengthOfHeatingOn(value) {
+    updateResponseData(value) {
         if (value < 0 || value > 24) {
             this.isInvalid = true;
             this.responseData.lengthOfHeatingOn = undefined;
@@ -26,7 +26,7 @@ export class LengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
     }
 
     handleFormSubmit() {
-        if (this.responseData.lengthOfHeatingOn) {
+        if (this.responseData.lengthOfHeatingOn !== undefined) {
             this.complete.emit();
         }
     }

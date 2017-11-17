@@ -2,7 +2,7 @@
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
         <div class="form-element">
             <input class="text-input" id="length-of-heating-on-input" name="length-of-heating-on-input" type="number"
-                   aria-labelledby="question-heading" [ngModel]="lengthOfHeatingOnDisplay" (ngModelChange)="validateLengthOfHeatingOn($event)">
+                   aria-labelledby="question-heading" [ngModel]="lengthOfHeatingOnDisplay" (ngModelChange)="updateResponseData($event)">
         </div>
     </form>
     <div class="error" *ngIf="isInvalid">
