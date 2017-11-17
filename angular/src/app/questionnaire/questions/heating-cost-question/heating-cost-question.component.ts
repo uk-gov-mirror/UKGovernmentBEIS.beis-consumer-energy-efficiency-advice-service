@@ -11,6 +11,10 @@ export class HeatingCostQuestionComponent extends QuestionBaseComponent {
     isInvalid: boolean;
     heatingCostDisplay: number;
 
+    get responseForAnalytics(): string {
+        return this.responseData.heatingCost.toString(10);
+    }
+
     ngOnInit() {
         this.heatingCostDisplay = this.responseData.heatingCost;
     }

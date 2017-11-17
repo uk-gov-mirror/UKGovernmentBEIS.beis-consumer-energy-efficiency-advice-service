@@ -11,6 +11,10 @@ export class LengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
     isInvalid: boolean;
     lengthOfHeatingOnDisplay: number;
 
+    get responseForAnalytics(): string {
+        return this.responseData.lengthOfHeatingOn.toString(10);
+    }
+
     ngOnInit() {
         this.lengthOfHeatingOnDisplay = this.responseData.lengthOfHeatingOn;
     }
