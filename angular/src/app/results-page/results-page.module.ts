@@ -2,7 +2,6 @@ import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 
 import {ResultsPageComponent} from "./results-page.component";
-import {GrantCardComponent} from "../shared/grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";

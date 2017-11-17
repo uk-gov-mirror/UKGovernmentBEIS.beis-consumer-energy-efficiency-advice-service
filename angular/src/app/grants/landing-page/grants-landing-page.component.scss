@@ -176,27 +176,29 @@ $grant-card-margin: 24px;
         align-self: center;
       }
 
-      .local-grants, .no-local-grants {
-        margin-top: 20px;
-      }
-
-      .local-grants {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-
-        .grant-cards {
+      .grants-container {
+        .local-grants, .no-local-grants {
           margin-top: 20px;
-          flex-wrap: wrap;
-          display: flex;
-          align-items: stretch;
-          justify-content: space-between;
+        }
 
-          .grant-card {
-            flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
-            margin-bottom: $grant-card-margin;
-            &:not(:nth-child(#{$grant-cards-per-row}n)) {
-              margin-right: $grant-card-margin;
+        .local-grants {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+
+          .grant-cards {
+            margin-top: 20px;
+            flex-wrap: wrap;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+
+            .grant-card {
+              flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
+              margin-bottom: $grant-card-margin;
+              &:not(:nth-child(#{$grant-cards-per-row}n)) {
+                margin-right: $grant-card-margin;
+              }
             }
           }
         }

@@ -87,11 +87,8 @@ describe('GrantsLandingPageComponent', () => {
 
     describe('#onPostcodeSubmit', () => {
         it('should strip spaces and lookup the postcode details', async(() => {
-            // given
-            component.postcodeInput = 'sw1a 1aa  ';
-
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode('sw1a 1aa  ');
 
             // then
             fixture.whenStable().then(() => {
@@ -101,11 +98,10 @@ describe('GrantsLandingPageComponent', () => {
 
         it('should display a validation error if postcode is not found', async(() => {
             // given
-            component.postcodeInput = postcode;
             postcodeEpcResponse = ErrorObservable.create(PostcodeEpcService.POSTCODE_NOT_FOUND);
 
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -116,11 +112,10 @@ describe('GrantsLandingPageComponent', () => {
 
         it('should display a generic error if there is a network error when fetching postcode details', async(() => {
             // given
-            component.postcodeInput = postcode;
             postcodeEpcResponse = ErrorObservable.create('test network error fetching postcode details');
 
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -130,11 +125,8 @@ describe('GrantsLandingPageComponent', () => {
         }));
 
         it('should save the postcode and local authority code to response data', async(() => {
-            // given
-            component.postcodeInput = postcode;
-
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -144,11 +136,8 @@ describe('GrantsLandingPageComponent', () => {
         }));
 
         it('should fetch the local authority details', async(() => {
-            // given
-            component.postcodeInput = postcode;
-
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -157,11 +146,8 @@ describe('GrantsLandingPageComponent', () => {
         }));
 
         it('should display the local authority name', async(() => {
-            // given
-            component.postcodeInput = postcode;
-
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -171,11 +157,8 @@ describe('GrantsLandingPageComponent', () => {
         }));
 
         it('should display all grants returned', async(() => {
-            // given
-            component.postcodeInput = postcode;
-
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -186,7 +169,6 @@ describe('GrantsLandingPageComponent', () => {
 
         it('should display a message if no grants are returned', async(() => {
             // given
-            component.postcodeInput = postcode;
             localAuthorityResponse = Observable.of({
                 local_authority_code: localAuthorityCode,
                 display_name: localAuthorityName,
@@ -194,7 +176,7 @@ describe('GrantsLandingPageComponent', () => {
             });
 
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -205,11 +187,10 @@ describe('GrantsLandingPageComponent', () => {
 
         it('should display a generic message if there is an error fetching local authority details', async(() => {
             // given
-            component.postcodeInput = postcode;
             localAuthorityResponse = ErrorObservable.create('test network error fetching local authority details');
 
             // when
-            clickSubmitPostcodeButton();
+            submitPostcode(postcode);
 
             // then
             fixture.whenStable().then(() => {
@@ -218,7 +199,8 @@ describe('GrantsLandingPageComponent', () => {
             });
         }));
 
-        function clickSubmitPostcodeButton() {
+        function submitPostcode(postcode: string) {
+            component.postcodeInput = postcode;
             const submitPostcodeButton = fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement;
             submitPostcodeButton.click();
             fixture.detectChanges();

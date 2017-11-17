@@ -18,7 +18,7 @@ import {
 })
 export class GrantsLandingPageComponent {
 
-    postcodeInput: string = null;
+    postcodeInput: string = '';
     localAuthorityName: string = null;
     localAuthorityGrants: GrantResponse[];
     validationError: boolean = false;

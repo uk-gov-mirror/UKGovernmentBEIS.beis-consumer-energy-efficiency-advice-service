@@ -5,8 +5,6 @@ import {Epc} from "../../../shared/postcode-epc-service/model/epc";
 import {EpcParserService} from "../../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {ResponseData} from "../../../shared/response-data/response-data";
-import {EpcApiService} from "../../../shared/postcode-epc-service/epc-api-service/epc-api.service";
-import {PostcodeApiService} from "../../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {PostcodeEpcService} from "../../../shared/postcode-epc-service/postcode-epc.service";
 import {PostcodeDetails} from "../../../shared/postcode-epc-service/model/postcode-details";
 
@@ -14,7 +12,6 @@ import {PostcodeDetails} from "../../../shared/postcode-epc-service/model/postco
     selector: 'app-postcode-epc-question',
     templateUrl: './postcode-epc-question.component.html',
     styleUrls: ['./postcode-epc-question.component.scss'],
-    providers: [EpcApiService, PostcodeApiService],
     animations: [slideInOutAnimation]
 })
 export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implements OnInit {
