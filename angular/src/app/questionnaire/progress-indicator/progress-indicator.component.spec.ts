@@ -30,6 +30,10 @@ describe('ProgressIndicatorComponent', () => {
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
+        get responseForAnalytics(): string {
+            return undefined;
+        }
+        
         get response(): void {
             return null;
         }

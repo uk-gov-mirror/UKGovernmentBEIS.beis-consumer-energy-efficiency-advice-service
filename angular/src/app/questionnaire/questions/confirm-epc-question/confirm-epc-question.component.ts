@@ -32,6 +32,10 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
 
+    get responseForAnalytics(): string {
+        return this.responseData.confirmEpc ? 'EPC data confirmed' : 'EPC data rejected';
+    };
+
     ngOnInit() {
         this.getDetailsFromResponseData();
     }

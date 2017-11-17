@@ -8,6 +8,10 @@ import {Component, OnInit} from "@angular/core";
     animations: [slideInOutAnimation]
 })
 export class IncomeQuestionComponent extends QuestionBaseComponent implements OnInit {
+    get responseForAnalytics(): string {
+        return this.response.toString(10);
+    }
+
     ngOnInit() {
         this.response = this.response|| 0;
     }

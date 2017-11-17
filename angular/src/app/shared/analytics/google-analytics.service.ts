@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 
 declare const gtag: any;
 declare const gaId: any;
@@ -21,5 +21,14 @@ export class GoogleAnalyticsService {
             path = Location.joinWithSlash(path, virtualPath);
         }
         gtag('config', gaId, {'page_path': path});
+    }
+
+    recordQuestionAnswer(questionId: string, answer: string) {
+        if (GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
+            gtag('event', questionId, {
+                event_label: answer,
+                event_category: 'question'
+            });
+        }
     }
 }

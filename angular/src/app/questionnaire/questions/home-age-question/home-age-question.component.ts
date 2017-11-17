@@ -41,6 +41,10 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
     @ViewChild('timeline') timeline;
     @ViewChild('option') option;
 
+    get responseForAnalytics(): string {
+        return HomeAge[this.response];
+    }
+
     constructor(responseData: ResponseData, private renderer: Renderer2) {
         super(responseData);
     }

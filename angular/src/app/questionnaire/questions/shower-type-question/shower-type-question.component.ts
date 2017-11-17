@@ -24,6 +24,10 @@ export class ShowerTypeQuestionComponent extends QuestionBaseComponent {
         {name: 'I don\'t know', value: ShowerType.DoNotKnow},
     ];
 
+    get responseForAnalytics(): string {
+        return ShowerType[this.response];
+    }
+
     get response(): number {
         return this.responseData.showerType;
     }

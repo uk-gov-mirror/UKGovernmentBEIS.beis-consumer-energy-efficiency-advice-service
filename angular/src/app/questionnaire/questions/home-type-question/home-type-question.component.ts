@@ -20,6 +20,10 @@ class HomeTypeOption {
 export class HomeTypeQuestionComponent extends QuestionBaseComponent {
     homeTypeOptions: HomeTypeOption[];
 
+    get responseForAnalytics(): string {
+        return HomeType[this.response];
+    }
+
     constructor(responseData: ResponseData) {
         super(responseData);
         this.homeTypeOptions = [

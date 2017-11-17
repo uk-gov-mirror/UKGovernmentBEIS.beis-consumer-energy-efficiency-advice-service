@@ -19,6 +19,7 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {QuestionMetadata} from "./base-question/question-metadata";
 
 @Component({
     selector: 'app-questionnaire',
@@ -50,8 +51,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
-                private googleAnalyticsService: GoogleAnalyticsService
-    ) {
+                private googleAnalyticsService: GoogleAnalyticsService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -100,6 +100,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     animateToQuestion(index) {
+        this.recordQuestionAnswer();
         const direction = this.getAnimationDirection(index);
         this.currentQuestionIndex = index;
         this.renderQuestion(direction);
@@ -132,6 +133,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     goBackOneQuestion() {
+        this.recordQuestionAnswer();
         const prevIndex = this.questionnaire.getPreviousQuestionIndex(this.currentQuestionIndex);
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
@@ -148,6 +150,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     goForwards() {
+        this.recordQuestionAnswer();
         if (this.nextQuestionExists()) {
             this.goForwardsOneQuestion();
         } else {
@@ -157,6 +160,10 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
 
     toggleQuestionReasonDisplay() {
         this.shouldDisplayQuestionReason = !this.shouldDisplayQuestionReason;
+    }
+
+    private recordQuestionAnswer() {
+        this.googleAnalyticsService.recordQuestionAnswer(this.currentQuestionId, this.questionComponent.responseForAnalytics);
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
@@ -195,7 +202,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
                 this.onQuestionCompleteSubscription.unsubscribe();
             }
-            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() => {
+            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe((answer) => {
                 this.goForwards();
             });
         }

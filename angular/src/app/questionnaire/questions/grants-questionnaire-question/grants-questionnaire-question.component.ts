@@ -9,6 +9,9 @@ import {ResponseData} from "../../../shared/response-data/response-data";
     animations: [slideInOutAnimation]
 })
 export class GrantsQuestionnaireQuestionComponent extends QuestionBaseComponent {
+    get responseForAnalytics(): string {
+        return this.response ? 'Do grants' : 'Do not do grants';
+    }
 
     constructor(responseData: ResponseData) {
         super(responseData);

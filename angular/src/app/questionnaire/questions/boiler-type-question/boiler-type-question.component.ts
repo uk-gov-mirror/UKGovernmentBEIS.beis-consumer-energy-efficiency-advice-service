@@ -8,6 +8,10 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/qu
     animations: [slideInOutAnimation],
 })
 export class BoilerTypeQuestionComponent extends QuestionBaseComponent {
+    get responseForAnalytics(): string {
+        return this.response ? 'Condensing' : 'Non-condensing';
+    };
+
     get response(): boolean {
         return this.responseData.condensingBoiler;
     }

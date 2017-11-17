@@ -18,6 +18,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {QuestionDirective} from "./question.directive";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -37,6 +38,8 @@ describe('QuestionnaireComponent', () => {
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
+        responseForAnalytics: string;
+
         get response(): void {
             return null;
         }
