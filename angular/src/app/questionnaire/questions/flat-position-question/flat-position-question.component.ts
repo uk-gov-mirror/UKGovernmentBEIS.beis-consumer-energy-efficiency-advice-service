@@ -28,6 +28,10 @@ export class FlatPositionQuestionComponent extends QuestionBaseComponent {
         ];
     }
 
+    get responseForAnalytics(): string {
+        return FlatPosition[this.response];
+    }
+
     get response(): FlatPosition {
         return this.responseData.flatPosition;
     }

@@ -9,9 +9,13 @@ import {Component, OnInit} from "@angular/core";
 })
 export class ShowersAndBathsQuestionComponent extends QuestionBaseComponent implements OnInit {
 
+    get responseForAnalytics(): string {
+        return JSON.stringify({showers: this.showers, baths: this.baths});
+    }
+
     ngOnInit() {
-        this.showers = this.showers || 7;
-        this.baths = this.baths || 7;
+        this.showers = this.showers || 0;
+        this.baths = this.baths || 0;
     }
 
     get showers(): number {

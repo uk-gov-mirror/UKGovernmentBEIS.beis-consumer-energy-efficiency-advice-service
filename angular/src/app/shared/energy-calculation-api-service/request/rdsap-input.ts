@@ -8,7 +8,6 @@ import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel
 import toString from "lodash-es/toString";
 import {Epc} from "../../postcode-epc-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
-import {isUndefined} from "util";
 
 export class RdSapInput {
     readonly epc: Epc;
@@ -20,6 +19,8 @@ export class RdSapInput {
     readonly num_storeys: number;
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
+    readonly heating_cost: number;
+    readonly number_of_heating_off_hours_normal: number[];
     readonly measures: string;
 
     readonly living_room_temperature: number;
@@ -45,6 +46,8 @@ export class RdSapInput {
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
+        this.heating_cost = responseData.heatingCost;
+        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData.lengthOfHeatingOn);
         this.measures = 'Y';
 
         // Habit data+
@@ -195,9 +198,14 @@ export class RdSapInput {
     }
 
     private static getShowerTypeEncoding(showerType: ShowerType): string {
-        if (showerType !== undefined) {
-            return showerType.toString(10);
-        }
-        return undefined;
+        return toString(showerType);
+    }
+
+    private static getNumberOfHeatingOffHoursNormal(lengthOfHeatingOn: number): number[] {
+        // For now, we arbitrarily assume the user has heating off twice a day.
+        const numberOfHeatingOffHoursPerDay = 24 - lengthOfHeatingOn;
+        const numberOfHeatingOffHoursPer12Hours = numberOfHeatingOffHoursPerDay / 2;
+
+        return [numberOfHeatingOffHoursPer12Hours, numberOfHeatingOffHoursPer12Hours];
     }
 }

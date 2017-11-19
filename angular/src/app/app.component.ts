@@ -1,9 +1,7 @@
 import {Component} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
 import 'rxjs/add/operator/distinctUntilChanged';
-
-declare let gtag: any;
-declare const gaId: any;
+import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-root',
@@ -11,18 +9,16 @@ declare const gaId: any;
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-    constructor(router: Router) {
+    constructor(private router: Router, private googleAnalyticsService: GoogleAnalyticsService) {
         // Configure Google Analytics tracking if that's supported in this environment
-        if (typeof gtag !== 'undefined' && typeof gaId !== 'undefined') {
+        if (GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
             router.events.distinctUntilChanged((previous: any, current: any) => {
                 if (current instanceof NavigationEnd) {
                     return previous.url === current.url;
                 }
                 return true;
-            }).subscribe((x: any) => {
-                console.log('router.change', x);
-                gtag('config', gaId, {'page_path': x.url});
+            }).subscribe(() => {
+                this.googleAnalyticsService.recordPageView();
             });
         }
     }

@@ -22,7 +22,9 @@ import {CommonQuestionsModule} from "../common-questions/common-questions.module
 import {TenureTypeQuestionComponent} from "./tenure-type-question/tenure-type-question.component";
 import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-question/grants-questionnaire-question.component";
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
+import {HeatingCostQuestionComponent} from "./heating-cost-question/heating-cost-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
+import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-question/length-of-heating-on-question.component";
 
 @NgModule({
     declarations: [
@@ -34,6 +36,8 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         FlatPositionQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
+        HeatingCostQuestionComponent,
+        LengthOfHeatingOnQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         IncomeQuestionComponent,
@@ -55,6 +59,8 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         FlatPositionQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
+        HeatingCostQuestionComponent,
+        LengthOfHeatingOnQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         IncomeQuestionComponent,
@@ -82,6 +88,8 @@ import {IncomeQuestionComponent} from "./income-question/income-question.compone
         FlatPositionQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
+        HeatingCostQuestionComponent,
+        LengthOfHeatingOnQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         IncomeQuestionComponent,

@@ -8,6 +8,9 @@ import {Component, OnInit} from "@angular/core";
     animations: [slideInOutAnimation]
 })
 export class FridgeFreezerQuestionComponent extends QuestionBaseComponent implements OnInit {
+    get responseForAnalytics(): string {
+        return JSON.stringify({fridgeFreezers: this.fridgeFreezers, fridges: this.fridges, freezers: this.freezers});
+    }
 
     ngOnInit() {
         this.fridgeFreezers = this.fridgeFreezers || 0;

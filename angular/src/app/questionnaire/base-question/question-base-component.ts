@@ -37,6 +37,7 @@ export const slideInOutAnimation = trigger('slideInOut', [
 ]);
 
 export abstract class QuestionBaseComponent {
+    abstract get responseForAnalytics(): string;
 
     constructor(@Inject(ResponseData) protected responseData: ResponseData) {
     }

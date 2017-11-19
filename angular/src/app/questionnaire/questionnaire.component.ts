@@ -18,7 +18,8 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
-import {ResponseData} from "../shared/response-data/response-data";
+import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -49,8 +50,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
-                private changeDetectorRef: ChangeDetectorRef
-    ) {
+                private changeDetectorRef: ChangeDetectorRef,
+                private questionHeadingProcessor: QuestionHeadingProcessor,
+                private googleAnalyticsService: GoogleAnalyticsService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -99,6 +101,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     animateToQuestion(index) {
+        this.recordQuestionAnswer();
         const direction = this.getAnimationDirection(index);
         this.currentQuestionIndex = index;
         this.renderQuestion(direction);
@@ -131,6 +134,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     goBackOneQuestion() {
+        this.recordQuestionAnswer();
         const prevIndex = this.questionnaire.getPreviousQuestionIndex(this.currentQuestionIndex);
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
@@ -147,6 +151,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     goForwards() {
+        this.recordQuestionAnswer();
         if (this.nextQuestionExists()) {
             this.goForwardsOneQuestion();
         } else {
@@ -156,6 +161,12 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
 
     toggleQuestionReasonDisplay() {
         this.shouldDisplayQuestionReason = !this.shouldDisplayQuestionReason;
+    }
+
+    private recordQuestionAnswer() {
+        if (this.currentQuestionId && this.questionComponent) {
+            this.googleAnalyticsService.recordQuestionAnswer(this.currentQuestionId, this.questionComponent.responseForAnalytics);
+        }
     }
 
     private renderQuestion(slideInFrom: SlideInFrom) {
@@ -168,6 +179,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 this.displayErrorAndLogMessage(`Missing question content for question with id "${ this.currentQuestionId }"`);
                 return;
             }
+
+            this.currentQuestionContent.questionHeading =
+                this.questionHeadingProcessor.replacePlaceholders(this.currentQuestionContent.questionHeading);
 
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(question.componentType);
 
@@ -186,13 +200,15 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             const componentRef = this.questionHost.viewContainerRef.createComponent(componentFactory);
             this.questionComponent = componentRef.instance;
             this.questionComponent.slideInOut = slideInFrom;
+
             this.shouldDisplayQuestionReason = this.currentQuestionContent.autoOpenQuestionReason;
+            this.googleAnalyticsService.recordPageView(question.questionId);
 
             // Subscribe to the question's completion event, and unsubscribe from the previous one.
             if (this.onQuestionCompleteSubscription !== undefined && !this.onQuestionCompleteSubscription.closed) {
                 this.onQuestionCompleteSubscription.unsubscribe();
             }
-            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe(() => {
+            this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe((answer) => {
                 this.goForwards();
             });
         }

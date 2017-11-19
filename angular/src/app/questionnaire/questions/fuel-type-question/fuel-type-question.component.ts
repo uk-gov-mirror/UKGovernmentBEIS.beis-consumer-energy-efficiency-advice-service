@@ -31,6 +31,10 @@ export class FuelTypeQuestionComponent extends QuestionBaseComponent {
         ]
     }
 
+    get responseForAnalytics(): string {
+        return FuelType[this.response];
+    }
+
     get response(): FuelType {
         return this.responseData.fuelType;
     }

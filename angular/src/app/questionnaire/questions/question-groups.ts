@@ -17,6 +17,8 @@ import {TenureTypeQuestionMetadata} from "./tenure-type-question/tenure-type-que
 import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
 import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
+import {HeatingCostQuestionMetadata} from "./heating-cost-question/heating-cost-question-metadata";
+import {LengthOfHeatingOnQuestionMetadata} from "./length-of-heating-on-question/length-of-heating-on-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -33,6 +35,8 @@ export const CORE_BRE_QUESTIONS = [
     new FuelTypeQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
+    new HeatingCostQuestionMetadata(),
+    new LengthOfHeatingOnQuestionMetadata()
 ];
 
 export const BASIC_BEHAVIOURAL_QUESTIONS = [

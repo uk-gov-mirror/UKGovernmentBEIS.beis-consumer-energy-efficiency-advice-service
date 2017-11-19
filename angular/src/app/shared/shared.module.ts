@@ -25,6 +25,7 @@ import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-fact
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {MeasureService} from "./recommendation-service/measure.service";
+import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 
 @NgModule({
     declarations: [
@@ -71,7 +72,8 @@ export class SharedModule {
                 LocalAuthorityService,
                 NationalGrantsService,
                 NationalGrantMetadataFactory,
-                MeasureService
+                MeasureService,
+                GoogleAnalyticsService
             ]
         };
     }

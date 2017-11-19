@@ -1,9 +1,9 @@
-<div class="form-element">
-    <button type="button" (click)="increaseQuantity(-step)" [disabled]="isInvalid || !isValidForMinimum(quantity)"
+<div class="form-element number-question-component">
+    <button type="button" (click)="increaseQuantity(-step)" [disabled]="quantity == undefined || !isValidForMinimum(quantity)"
             class="increase-button">-</button>
     <input [id]="itemsName" class="text-input" type="number" [(ngModel)]="quantity" (ngModelChange)="updateQuantity()"
            aria-labelledby="question-heading" [min]="minQuantity" [max]="maxQuantity">
-    <button type="button" (click)="increaseQuantity(step)" [disabled]="isInvalid || !isValidForMaximum(quantity)"
+    <button type="button" (click)="increaseQuantity(step)" [disabled]="quantity == undefined || !isValidForMaximum(quantity)"
             class="increase-button">+</button>
 </div>
 <div *ngIf="isInvalid" class="error">
