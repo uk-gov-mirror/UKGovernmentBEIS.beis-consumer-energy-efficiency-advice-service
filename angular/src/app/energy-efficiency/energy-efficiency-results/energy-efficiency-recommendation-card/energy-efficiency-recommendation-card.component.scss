@@ -1,0 +1,206 @@
+@import "../_energy-efficiency-results-page-sizes.scss";
+@import "styles/mixins/_font";
+@import "styles/mixins/_buttons";
+@import "styles/var/_colours";
+
+$column-side-padding: 20px;
+$icon-column-width: 100px;
+
+.energy-efficiency-recommendation-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+
+  margin: 16px 0;
+
+  .summary-row {
+    display: flex;
+
+    .recommendation-icon {
+      flex: 0 0 $icon-column-width;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .recommendation-basic-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 4px;
+
+      & > :not(:first-child) {
+        margin-top: 8px;
+      }
+
+      .tag {
+        background-color: turquoise;
+        color: white;
+        padding: 5px 14px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .heading {
+        @include focus-text;
+      }
+
+      .description-row {
+        display: flex;
+
+        .description {
+          margin-right: 20px;
+        }
+
+        .read-more-button {
+          @include arrow-button(200px, 40px);
+          text-transform: uppercase;
+          margin-right: 30px;
+        }
+      }
+
+      .more-detail-row {
+        width: 100%;
+        border-top: 1px solid $light-grey;
+        padding: 10px 0;
+        display: flex;
+
+        .more-detail-button {
+          background: none;
+          outline: none;
+          border: none;
+          text-transform: uppercase;
+          cursor: pointer;
+          padding: 0;
+
+          &:focus, &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .investment-required-card, .monthly-savings-card {
+      border-left: 2px solid $light-grey;
+    }
+
+    .add-to-plan-column {
+      flex: 0 0 calc(#{$add-to-plan-column-width} - 2 * #{$column-side-padding});
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: $lighter-medium-grey;
+      padding: $column-side-padding;
+
+      .add-to-plan-text {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .add-to-plan-plus {
+        font-size: 72px;
+        line-height: 0.4;
+        outline: none;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        &:focus, &:hover {
+          text-shadow: 3px 3px 1px $light-grey;
+        }
+      }
+    }
+  }
+
+  .expanded-view-row {
+    display: none;
+    border-top: 2px solid $light-grey;
+    padding: 20px 0;
+
+    &.expanded {
+      display: flex;
+    }
+
+    & > :first-child {
+      margin-left: $icon-column-width;
+    }
+
+    & > :not(:last-child) {
+      margin-right: 40px;
+    }
+
+    .grants {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 $data-card-width;
+
+      .grant-info-card {
+        background-color: $light-grey;
+        padding: 10px;
+
+        .grant-name {
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .grant-description {
+          margin-bottom: 10px;
+        }
+
+        .grant-more-info-link-row {
+          display: flex;
+
+          .grant-more-info-link {
+            outline: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+
+            &:focus, &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          .chevron {
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+
+    .grants, .benefits {
+      .heading {
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .benefits {
+      flex: 1;
+
+      .benefits-list {
+        padding: 0 20px;
+      }
+    }
+
+    .action-button-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 0 0 calc(2 * #{$data-card-width} + #{$add-to-plan-column-width});
+
+      .action-button {
+        @include arrow-button(200px, 60px);
+        text-transform: uppercase;
+      }
+    }
+  }
+}

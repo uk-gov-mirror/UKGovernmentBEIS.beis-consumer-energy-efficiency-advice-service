@@ -1,35 +1,37 @@
 import {Component, OnInit} from "@angular/core";
-import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {ResponseData} from "../shared/response-data/response-data";
-import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap-input";
-import {EnergySavingRecommendation} from "../shared/recommendation-card/energy-saving-recommendation";
-import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
-import {EnergyCalculations} from "./potentials/energy-calculations";
-import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
+import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
+import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
+import {EnergyCalculations} from "../../results-page/potentials/energy-calculations";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import keys from "lodash-es/keys";
 import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
-import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
-import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {GrantViewModel} from "../grants/model/grant-view-model";
-import {MeasureMetadataResponse} from "../shared/recommendation-service/measure-metadata-response";
-import {MeasureService} from "../shared/recommendation-service/measure.service";
-import {LocalAuthority} from "../shared/local-authority-service/local-authority";
-import {GrantEligibilityService} from "../grants/grant-eligibility-service/grant-eligibility.service";
+import {GrantViewModel} from "../../grants/model/grant-view-model";
+import {MeasureMetadataResponse} from "../../shared/recommendation-service/measure-metadata-response";
+import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {MeasureService} from "../../shared/recommendation-service/measure.service";
+import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
+import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 
 @Component({
-    selector: 'app-results-page',
-    templateUrl: './results-page.component.html',
-    styleUrls: ['./results-page.component.scss']
+    selector: 'app-energy-efficiency-results-page',
+    templateUrl: './energy-efficiency-results.component.html',
+    styleUrls: ['./energy-efficiency-results.component.scss']
 })
-export class ResultsPageComponent implements OnInit {
+export class EnergyEfficiencyResultsComponent implements OnInit {
+
+    private static RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED: number = 5;
 
     availableGrants: GrantViewModel[];
 
-    recommendations: EnergySavingRecommendation[];
-    displayedRecommendations: number = 4;
+    recommendations: EnergySavingRecommendation[] = [];
+    displayedRecommendations: number = EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
     measureMetadataResponses: MeasureMetadataResponse[];
@@ -66,6 +68,28 @@ export class ResultsPageComponent implements OnInit {
                 (err) => this.displayErrorMessage(err),
                 () => this.onLoadingComplete()
             );
+    }
+
+    toggleDisplayAllRecommendations(): void {
+        const canDisplayMoreRecommendations = this.recommendations.length > this.displayedRecommendations;
+        this.displayedRecommendations = canDisplayMoreRecommendations ?
+            this.recommendations.length :
+            EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
+    }
+
+    getExpandRecommendationsListButtonText(): string {
+        const extraRecommendationsAvailable = this.recommendations.length - this.displayedRecommendations;
+        if (extraRecommendationsAvailable > 1) {
+            return `There are ${extraRecommendationsAvailable} more recommendations available. See all ▼`;
+        } else if (extraRecommendationsAvailable === 1) {
+            return 'There is 1 more recommendation available. See all ▼';
+        } else {
+            return 'Show fewer ▲';
+        }
+    }
+
+    shouldDisplayExpandRecommendationsListButton(): boolean {
+        return this.recommendations.length > EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
     }
 
     getTotalInvestment(): number {
