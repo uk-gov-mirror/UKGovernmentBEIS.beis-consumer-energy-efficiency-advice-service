@@ -1,10 +1,10 @@
-import {Epc} from "../../../shared/epc-api-service/model/epc";
+import {Epc} from "../../../shared/postcode-epc-service/model/epc";
 export enum FuelType {
-    Electricity,
-    MainsGas,
-    LPGGas,
-    HeatingOil,
-    SolidFuel
+    Electricity = 29,
+    MainsGas = 26,
+    LPGGas = 27,
+    HeatingOil = 28,
+    SolidFuel = 9
 }
 
 export function isGasOrOil(fuelType: FuelType) {

@@ -113,7 +113,7 @@ function setup_local_authority_acf_group() {
                     'required' => 1,
                     'return_format' => 'id',
                     'post_type' => array (
-                        0 => 'grant',
+                        0 => 'local_grant',
                     ),
                     'taxonomy' => array (
                         0 => 'all',

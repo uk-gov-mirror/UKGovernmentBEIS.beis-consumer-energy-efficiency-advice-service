@@ -1,7 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
-import {FormsModule} from "@angular/forms";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-question.component";

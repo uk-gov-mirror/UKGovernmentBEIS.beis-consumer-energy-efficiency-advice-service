@@ -12,7 +12,6 @@ export class GrantsQuestionnaireComponent {
     }
 
     onQuestionnaireComplete() {
-        // TODO: add grants eligibility calculations here
         this.router.navigate(['/js/energy-efficiency/results']);
     }
 }

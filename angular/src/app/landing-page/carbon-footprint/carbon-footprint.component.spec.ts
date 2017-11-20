@@ -10,7 +10,6 @@ import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {PostcodeValidationService} from "../../shared/postcode-validation-service/postcode-validation.service";
 
 describe('CarbonFootprintComponent', () => {
 
@@ -33,8 +32,7 @@ describe('CarbonFootprintComponent', () => {
                 RouterTestingModule
             ],
             providers: [
-                ResponseData,
-                PostcodeValidationService
+                ResponseData
             ]
         })
             .compileComponents();
