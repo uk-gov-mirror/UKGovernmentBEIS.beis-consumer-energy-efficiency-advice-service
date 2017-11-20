@@ -3,7 +3,7 @@
         <div class="garden-option" *ngFor="let accessibilityOption of accessibilityOptions">
             <button class="multiple-choice-option garden-button"
                     [class.selected]="accessibility === accessibilityOption.value"
-                    (click)="updateAccessibilityAndMaybeComplete(accessibilityOption.value)">
+                    (click)="handleOptionClicked(accessibilityOption.value)">
                 {{accessibilityOption.name}}
             </button>
         </div>

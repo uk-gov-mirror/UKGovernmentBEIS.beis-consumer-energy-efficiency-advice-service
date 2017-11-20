@@ -16,7 +16,7 @@ interface DropdownOption<T> {
 export class ConstructionQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     readonly roofTypes: DropdownOption<RoofType>[] = [
-        {name: 'I don\'t know', value: RoofType.DontKnow},
+        {name: 'I don\'t know', value: RoofType.DoNotKnow},
         {name: 'Pitched roof - no insulation', value: RoofType.PitchedNoInsulation},
         {name: 'Pitched roof - insulated', value: RoofType.PitchedInsulated},
         {name: 'Flat roof - no insulation', value: RoofType.FlatNoInsulation},
@@ -24,24 +24,24 @@ export class ConstructionQuestionComponent extends QuestionBaseComponent impleme
     ];
 
     readonly wallTypes: DropdownOption<WallType>[] = [
-        {name: 'I don\'t know', value: WallType.DontKnow},
-        {name: 'Cavity wall - no insulation', value: WallType.CavityNoInsualation},
+        {name: 'I don\'t know', value: WallType.DoNotKnow},
+        {name: 'Cavity wall - no insulation', value: WallType.CavityNoInsulation},
         {name: 'Cavity wall - insulated', value: WallType.CavityInsulated},
         {name: 'Solid wall - no insulation', value: WallType.SolidNoInsulation},
         {name: 'Solid wall - insulated', value: WallType.SolidInsulated},
     ];
 
     readonly glazingTypes: DropdownOption<GlazingType>[] = [
-        {name: 'I don\'t know', value: GlazingType.DontKnow},
+        {name: 'I don\'t know', value: GlazingType.DoNotKnow},
         {name: 'Single glazing', value: GlazingType.Single},
         {name: 'Double glazing', value: GlazingType.Double},
         {name: 'Triple glazing', value: GlazingType.Triple},
     ];
 
     ngOnInit() {
-        this.roofType = RoofType.DontKnow;
-        this.wallType = WallType.DontKnow;
-        this.glazingType = GlazingType.DontKnow;
+        this.roofType = RoofType.DoNotKnow;
+        this.wallType = WallType.DoNotKnow;
+        this.glazingType = GlazingType.DoNotKnow;
     }
 
     get responseForAnalytics(): string {

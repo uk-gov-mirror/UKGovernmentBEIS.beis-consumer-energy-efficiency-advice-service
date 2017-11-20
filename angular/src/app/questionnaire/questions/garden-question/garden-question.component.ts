@@ -47,7 +47,7 @@ export class GardenQuestionComponent extends QuestionBaseComponent implements On
         });
     }
 
-    updateAccessibilityAndMaybeComplete(val: GardenAccessibility) {
+    handleOptionClicked(val: GardenAccessibility) {
         this.accessibility = val;
         if (val !== GardenAccessibility.Accessible) {
             this.complete.emit();
@@ -75,7 +75,6 @@ export class GardenQuestionComponent extends QuestionBaseComponent implements On
     }
 
     set size(val: number) {
-        console.log(val);
         this.responseData.gardenSizeSquareMetres = val;
     }
 }

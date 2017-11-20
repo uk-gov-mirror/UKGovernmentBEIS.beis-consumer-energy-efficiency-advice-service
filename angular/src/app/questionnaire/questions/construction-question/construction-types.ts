@@ -1,13 +1,13 @@
 export enum WallType {
-    DontKnow,
-    CavityNoInsualation,
+    DoNotKnow,
+    CavityNoInsulation,
     CavityInsulated,
     SolidNoInsulation,
     SolidInsulated,
 }
 
 export enum RoofType {
-    DontKnow,
+    DoNotKnow,
     PitchedNoInsulation,
     PitchedInsulated,
     FlatNoInsulation,
@@ -15,7 +15,7 @@ export enum RoofType {
 }
 
 export enum GlazingType {
-    DontKnow,
+    DoNotKnow,
     Single,
     Double,
     Triple,
