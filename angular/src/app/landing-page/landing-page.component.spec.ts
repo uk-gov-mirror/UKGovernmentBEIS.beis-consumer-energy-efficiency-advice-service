@@ -11,8 +11,8 @@ import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-ca
 import {LandingPageComponent} from "./landing-page.component";
 import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../shared/response-data/response-data";
-import {PostcodeValidationService} from "../shared/postcode-validation-service/postcode-validation.service";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
+import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
 
 describe('BoilerLandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -26,11 +26,10 @@ describe('BoilerLandingPageComponent', () => {
     const VALID_POSTCODE = 'PO57 C03';
     const INVALID_POSTCODE = 'invalid';
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
-    const postcodeValidationServiceStub = {
-        isValid: jasmine.createSpy('isValid').and.callFake(mockPostcodeValidator)
-    };
 
     beforeEach(async(() => {
+        spyOn(PostcodeEpcService, 'isValidPostcode').and.callFake(mockPostcodeValidator);
+
         TestBed.configureTestingModule({
             declarations: [
                 LandingPageComponent,
@@ -44,10 +43,7 @@ describe('BoilerLandingPageComponent', () => {
                 FormsModule,
                 RouterTestingModule.withRoutes([]),
             ],
-            providers: [
-                ResponseData,
-                {provide: PostcodeValidationService, useValue: postcodeValidationServiceStub}
-            ]
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -85,7 +81,7 @@ describe('BoilerLandingPageComponent', () => {
         fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
 
         // then
-        expect(postcodeValidationServiceStub.isValid).toHaveBeenCalledWith(VALID_POSTCODE);
+        expect(PostcodeEpcService.isValidPostcode).toHaveBeenCalledWith(VALID_POSTCODE);
     });
 
     it('should set the postcode response upon entering a valid postcode', () => {

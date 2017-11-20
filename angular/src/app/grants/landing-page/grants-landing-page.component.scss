@@ -1,5 +1,9 @@
 @import "styles/mixins/font";
+@import "styles/mixins/spinner";
 @import "styles/var/colours";
+
+$grant-cards-per-row: 4;
+$grant-card-margin: 24px;
 
 .grants-landing-page {
 
@@ -154,7 +158,7 @@
         }
       }
 
-      .validation-error {
+      .validation-error, .network-error {
         margin-top: 20px;
         background-color: crimson;
         padding: 10px;
@@ -166,6 +170,39 @@
         align-items: center;
         justify-content: center;
         align-self: flex-end;
+      }
+
+      .loading-grants {
+        @include spinner(20px);
+        align-self: center;
+      }
+
+      .grants-container {
+        .local-grants, .no-local-grants {
+          margin-top: 20px;
+        }
+
+        .local-grants {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+
+          .grant-cards {
+            margin-top: 20px;
+            flex-wrap: wrap;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+
+            .grant-card {
+              flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
+              margin-bottom: $grant-card-margin;
+              &:not(:nth-child(#{$grant-cards-per-row}n)) {
+                margin-right: $grant-card-margin;
+              }
+            }
+          }
+        }
       }
     }
   }

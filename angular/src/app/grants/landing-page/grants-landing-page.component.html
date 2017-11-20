@@ -123,6 +123,26 @@
                 </form>
             </div>
             <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
+            <div class="loading-grants" *ngIf="isLoading"></div>
+            <div class="network-error" *ngIf="isError">
+                Something went wrong and we can't load this information right now. Please try again later.
+            </div>
+            <div class="grants-container" *ngIf="!isLoading && !isError && localAuthority">
+                <div class="local-grants" *ngIf="localAuthority.grants.length > 0">
+                    <div class="local-authority-name">You live in {{localAuthority.name}} and we've found the following:</div>
+                    <div class="grant-cards">
+                        <app-grant-card class="grant-card"
+                                        *ngFor="let grant of localAuthority.grants"
+                                        [grant]="grant">
+                        </app-grant-card>
+                    </div>
+                </div>
+                <div class="no-local-grants" *ngIf="localAuthority.grants.length === 0">
+                    <div class="local-authority-name">You live in {{localAuthority.name}}. We can't find any grants available
+                        from your local authority.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

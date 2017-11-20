@@ -20,6 +20,7 @@ describe('GrantsQuestionnaire', () => {
         // given
         responseData.postcode = undefined;
         responseData.localAuthorityCode = undefined;
+        responseData.epc = null;
         responseData.tenureType = TenureType.PrivateTenancy;
         responseData.numberOfChildren = undefined;
         responseData.numberOfAdultsAgedUnder64 = undefined;
@@ -41,6 +42,7 @@ describe('GrantsQuestionnaire', () => {
         // given
         responseData.postcode = 'SW1A1AA';
         responseData.localAuthorityCode = 'E09000033';
+        responseData.epc = null;
         responseData.tenureType = undefined;
         responseData.numberOfChildren = undefined;
         responseData.numberOfAdultsAgedUnder64 = undefined;

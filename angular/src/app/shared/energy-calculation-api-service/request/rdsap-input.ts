@@ -6,7 +6,7 @@ import {HomeType} from "../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import toString from "lodash-es/toString";
-import {Epc} from "../../epc-api-service/model/epc";
+import {Epc} from "../../postcode-epc-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
 
 export class RdSapInput {
@@ -178,23 +178,10 @@ export class RdSapInput {
     }
 
     private static getFuelTypeEncoding(fuelType: FuelType): string {
-        switch (fuelType) {
-            case FuelType.SolidFuel: {
-                return '9';
-            }
-            case FuelType.MainsGas: {
-                return '26';
-            }
-            case FuelType.LPGGas: {
-                return '27';
-            }
-            case FuelType.HeatingOil: {
-                return '28';
-            }
-            case FuelType.Electricity: {
-                return '29';
-            }
+        if (fuelType !== undefined) {
+            return fuelType.toString(10);
         }
+        return undefined;
     }
 
     private static getShowerTypeEncoding(showerType: ShowerType): string {

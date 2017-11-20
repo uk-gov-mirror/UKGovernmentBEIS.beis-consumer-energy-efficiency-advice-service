@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Epc} from "../epc-api-service/model/epc";
+import {Epc} from "../postcode-epc-service/model/epc";
 import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../../questionnaire/questions/electricity-tariff-question/electricity-tariff";
 import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
