@@ -62,9 +62,9 @@ export const GRANTS_QUESTIONS = [
 ];
 
 export const BOILER_QUESTIONS = [
+    new GardenQuestionMetadata(),
     new ConstructionQuestionMetadata(),
     new WaterTankQuestionMetadata(),
-    new GardenQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new ShowersAndBathsQuestionMetadata(),

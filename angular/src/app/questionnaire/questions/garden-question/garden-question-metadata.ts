@@ -15,6 +15,6 @@ export class GardenQuestionMetadata extends QuestionMetadata {
 
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.gardenAccessibility !== undefined &&
-            (responseData.gardenAccessibility !== GardenAccessibility.Accessible || responseData.gardenSizeCubicMetres !== undefined);
+            (responseData.gardenAccessibility !== GardenAccessibility.Accessible || responseData.gardenSizeSquareMetres !== undefined);
     }
 }

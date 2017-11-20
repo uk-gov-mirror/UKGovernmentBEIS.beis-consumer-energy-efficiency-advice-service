@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { WaterTankQuestionComponent } from './water-tank-question.component';
+import {WaterTankQuestionComponent} from "./water-tank-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 
 describe('WaterTankQuestionComponent', () => {

@@ -47,7 +47,7 @@ export class ResponseData {
     public glazingType: GlazingType;
     public waterTankSpace: WaterTankSpace;
     public gardenAccessibility: GardenAccessibility;
-    public gardenSizeCubicMetres: number;
+    public gardenSizeSquareMetres: number;
 
     public benefits: Benefits;
     public income: number;

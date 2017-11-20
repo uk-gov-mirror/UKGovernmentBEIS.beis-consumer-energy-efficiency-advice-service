@@ -1,5 +1,5 @@
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {GardenAccessibility} from "./garden-accessibility";
 
 interface AccessibilityOption {
@@ -13,18 +13,45 @@ interface AccessibilityOption {
     styleUrls: ['./garden-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class GardenQuestionComponent extends QuestionBaseComponent {
+export class GardenQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     readonly accessibilityOptions: AccessibilityOption[] = [
         {name: 'No garden', value: GardenAccessibility.NoGarden},
         {name: 'Not accessible', value: GardenAccessibility.NotAccessible},
         {name: 'Accessible', value: GardenAccessibility.Accessible},
     ];
+    readonly ACCESSIBLE = GardenAccessibility.Accessible;
+
+    readonly SLIDER_CONFIG = {
+        range: {
+            min: 100,
+            max: 1600,
+        },
+        start: [100],
+        step: 100,
+        tooltips: [true],
+        format: {
+            to: value => (+value).toFixed(0) + 'm²',
+            from: value => +value.slice(0, -2),
+        }
+    };
+
+    ngOnInit() {
+        this.size = 100;
+    }
 
     updateAccessibilityAndMaybeComplete(val: GardenAccessibility) {
         this.accessibility = val;
         if (val !== GardenAccessibility.Accessible) {
             this.complete.emit();
+        }
+    }
+
+    getTennisCourts() {
+        if (this.size % 200 === 100) {
+            return (this.size / 200).toFixed(1);
+        } else {
+            return (this.size / 200).toFixed(0);
         }
     }
 
@@ -37,10 +64,11 @@ export class GardenQuestionComponent extends QuestionBaseComponent {
     }
 
     get size(): number {
-        return this.responseData.gardenSizeCubicMetres;
+        return this.responseData.gardenSizeSquareMetres;
     }
 
     set size(val: number) {
-        this.responseData.gardenSizeCubicMetres = val;
+        console.log(val);
+        this.responseData.gardenSizeSquareMetres = val;
     }
 }

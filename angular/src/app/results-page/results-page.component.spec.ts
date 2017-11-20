@@ -32,6 +32,7 @@ import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
 import {GlazingType, RoofType, WallType} from "../questionnaire/questions/construction-question/construction-types";
 import {WaterTankSpace} from "../questionnaire/questions/water-tank-question/water-tank-space";
+import {GardenAccessibility} from "../questionnaire/questions/garden-question/garden-accessibility";
 
 describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
@@ -96,6 +97,8 @@ describe('ResultsPageComponent', () => {
         wallType: WallType.DontKnow,
         glazingType: GlazingType.Double,
         waterTankSpace: WaterTankSpace.Sufficient,
+        gardenAccessibility: GardenAccessibility.NotAccessible,
+        gardenSizeSquareMetres: 100,
     };
 
     function injectMockEnergyCalcApiCallbackAndDetectChanges(fetchEnergyCalculation: () => Observable<EnergyCalculationResponse>) {

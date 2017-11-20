@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {NouisliderModule} from "ng2-nouislider";
 
 import {SharedModule} from "../../shared/shared.module";
 import {BedroomsQuestionComponent} from "./bedrooms-question/bedrooms-question.component";
@@ -24,8 +25,8 @@ import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-quest
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
 import {ConstructionQuestionComponent} from "./construction-question/construction-question.component";
-import { WaterTankQuestionComponent } from './water-tank-question/water-tank-question.component';
-import { GardenQuestionComponent } from './garden-question/garden-question.component';
+import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-question.component";
+import {GardenQuestionComponent} from "./garden-question/garden-question.component";
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import { GardenQuestionComponent } from './garden-question/garden-question.compo
         FormsModule,
         SharedModule,
         CommonQuestionsModule,
+        NouisliderModule,
     ],
     entryComponents: [
         BedroomsQuestionComponent,
