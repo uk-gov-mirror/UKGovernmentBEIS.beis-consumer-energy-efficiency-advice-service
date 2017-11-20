@@ -1,17 +1,17 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpRequest} from "@angular/common/http";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 import "rxjs/add/operator/toPromise";
-import {NationalGrantsService} from "./national-grants.service";
-import {NationalGrantResponse} from "./national-grants-response";
+import {NationalGrantsContentService} from "./national-grants-content.service";
+import {NationalGrantContent} from "./national-grants-content";
 
-describe('NationalGrantsService', () => {
+describe('NationalGrantsContentService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
-    let service: NationalGrantsService;
+    let service: NationalGrantsContentService;
 
-    const mockApiResponse: NationalGrantResponse[] = [
+    const mockApiResponse: NationalGrantContent[] = [
         {
             acf: {
                 heading: "Eligible grant 1",
@@ -40,13 +40,13 @@ describe('NationalGrantsService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [LocalAuthorityService,
+            providers: [NationalGrantsContentService,
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
-        service = injector.get(NationalGrantsService);
+        service = injector.get(NationalGrantsContentService);
     });
 
     describe('#construct', () => {

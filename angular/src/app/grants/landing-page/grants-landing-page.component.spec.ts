@@ -11,11 +11,11 @@ import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
+import {GrantCardComponent} from "../grant-card/grant-card.component";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {GrantEligibility} from "../../shared/grants-eligibility/grant-eligibility";
+import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
-import {LocalAuthorityGrantViewModel} from "../../shared/grant/local-authority-grant-view-model";
+import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-model";
 
 describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;

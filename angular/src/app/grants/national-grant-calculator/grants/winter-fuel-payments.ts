@@ -1,9 +1,9 @@
-import {NationalGrantMetadata} from "../national-grant-metadata";
-import {GrantEligibility} from "../../grants-eligibility/grant-eligibility";
-import {ResponseData} from "../../response-data/response-data";
+import {NationalGrantCalculator} from "../national-grant-calculator";
+import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
+import {ResponseData} from "../../../shared/response-data/response-data";
 import {Observable} from "rxjs/Observable";
 
-export class WinterFuelPayments extends NationalGrantMetadata {
+export class WinterFuelPayments extends NationalGrantCalculator {
     constructor() {
         super('winter-fuel-payments');
     }

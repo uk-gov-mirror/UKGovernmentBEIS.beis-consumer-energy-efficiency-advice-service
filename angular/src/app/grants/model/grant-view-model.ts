@@ -1,4 +1,4 @@
-import {GrantEligibility} from "../grants-eligibility/grant-eligibility";
+import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 
 export interface GrantViewModel {
     name: string;

@@ -4,7 +4,7 @@ import {DebugElement} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {ResultsPageComponent} from "./results-page.component";
-import {GrantCardComponent} from "../shared/grant-card/grant-card.component";
+import {GrantCardComponent} from "../grants/grant-card/grant-card.component";
 import {PotentialsComponent} from "./potentials/potentials.component";
 import {RecommendationCardComponent} from "../shared/recommendation-card/recommendation-card.component";
 import {ResponseData} from "../shared/response-data/response-data";
@@ -29,12 +29,12 @@ import {NeedHelpComponent} from "../shared/need-help/need-help.component";
 import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
 import {MeasureService} from "../shared/recommendation-service/measure.service";
 import {MeasureMetadataResponse} from "../shared/recommendation-service/measure-metadata-response";
-import {GrantEligibility} from "../shared/grants-eligibility/grant-eligibility";
+import {GrantEligibility} from "../grants/grant-eligibility-service/grant-eligibility";
 import {LocalAuthority} from "../shared/local-authority-service/local-authority";
-import {LocalAuthorityGrantViewModel} from "../shared/grant/local-authority-grant-view-model";
-import {NationalGrantViewModel} from "../shared/grant/national-grant-view-model";
-import {GrantViewModel} from "../shared/grant/grant-view-model";
-import {GrantsEligibilityService} from "../shared/grants-eligibility/grants-eligibility.service";
+import {LocalAuthorityGrantViewModel} from "../grants/model/local-authority-grant-view-model";
+import {NationalGrantViewModel} from "../grants/model/national-grant-view-model";
+import {GrantViewModel} from "../grants/model/grant-view-model";
+import {GrantEligibilityService} from "../grants/grant-eligibility-service/grant-eligibility.service";
 
 // TODO: this is not currently thoroughly tested because it's all about to change in BEISDEAS-79
 
@@ -163,7 +163,7 @@ describe('ResultsPageComponent', () => {
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: QuestionnaireService, useValue: mockQuestionnaireService},
                 {provide: MeasureService, useValue: measuresServiceStub},
-                {provide: GrantsEligibilityService, useValue: grantsEligibilityServiceStub}
+                {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub}
             ]
         })
             .compileComponents();

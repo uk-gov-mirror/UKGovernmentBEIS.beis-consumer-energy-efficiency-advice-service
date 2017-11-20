@@ -1,23 +1,23 @@
 import {async, getTestBed, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/toPromise";
-import {GrantsEligibilityService} from "./grants-eligibility.service";
-import {LocalAuthority} from "../local-authority-service/local-authority";
-import {ResponseData} from "../response-data/response-data";
-import {NationalGrantResponse} from "../national-grants-service/national-grants-response";
-import {NationalGrantsService} from "../national-grants-service/national-grants.service";
-import {NationalGrantMetadataFactory} from "../grant/national-grant-metadata-factory";
-import {NationalGrantMetadata} from "../grant/national-grant-metadata";
-import {LocalAuthorityService} from "../local-authority-service/local-authority.service";
-import {LocalAuthorityGrantViewModel} from "../grant/local-authority-grant-view-model";
+import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {NationalGrantCalculatorFactory} from "../national-grant-calculator/national-grant-calculator-factory";
+import {NationalGrantCalculator} from "../national-grant-calculator/national-grant-calculator";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
+import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-model";
 import {GrantEligibility} from "./grant-eligibility";
+import {GrantEligibilityService} from "./grant-eligibility.service";
+import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
+import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
 
-describe('GrantsEligibilityService', () => {
+describe('GrantEligibilityService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
-    let service: GrantsEligibilityService;
+    let service: GrantEligibilityService;
 
     const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
         {
@@ -32,7 +32,7 @@ describe('GrantsEligibilityService', () => {
         }
     ];
 
-    const nationalGrants: NationalGrantResponse[] = [
+    const nationalGrantsContent: NationalGrantContent[] = [
         {
             acf: {
                 heading: "Eligible grant 1",
@@ -59,13 +59,13 @@ describe('GrantsEligibilityService', () => {
         }
     ];
 
-    class EligibleNationalGrant extends NationalGrantMetadata {
+    class EligibleNationalGrant extends NationalGrantCalculator {
         getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
             return Observable.of(GrantEligibility.LikelyEligible);
         }
     }
 
-    class IneligibleNationalGrant extends NationalGrantMetadata {
+    class IneligibleNationalGrant extends NationalGrantCalculator {
         getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
             return Observable.of(GrantEligibility.Ineligible);
         }
@@ -76,13 +76,13 @@ describe('GrantsEligibilityService', () => {
         fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
 
-    let nationalGrantsResponse: Observable<NationalGrantResponse[]>;
-    const nationalGrantsServiceStub = {
+    let nationalGrantsResponse: Observable<NationalGrantContent[]>;
+    const nationalGrantsContentServiceStub = {
         fetchNationalGrants: () => nationalGrantsResponse
     };
 
-    let nationalGrantsMetadata: NationalGrantMetadata[];
-    const nationalGrantMetadataFactoryStub = {
+    let nationalGrantCalculators: NationalGrantCalculator[];
+    const nationalGrantCalculatorFactoryStub = {
         nationalGrants: [
             new EligibleNationalGrant('an-eligible-grant'),
             new EligibleNationalGrant('another-eligible-grant'),
@@ -97,15 +97,15 @@ describe('GrantsEligibilityService', () => {
             ecoFlexMoreInfoLink: 'http://www.example.com',
             grants: localAuthorityGrants
         });
-        nationalGrantsResponse = Observable.of(nationalGrants);
+        nationalGrantsResponse = Observable.of(nationalGrantsContent);
 
         TestBed.configureTestingModule({
-            providers: [GrantsEligibilityService,
+            providers: [GrantEligibilityService,
                 ResponseData,
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
-                {provide: NationalGrantsService, useValue: nationalGrantsServiceStub},
-                {provide: NationalGrantMetadataFactory, useValue: nationalGrantMetadataFactoryStub}
+                {provide: NationalGrantsContentService, useValue: nationalGrantsContentServiceStub},
+                {provide: NationalGrantCalculatorFactory, useValue: nationalGrantCalculatorFactoryStub}
             ],
             imports: [HttpClientTestingModule]
         })
@@ -115,7 +115,7 @@ describe('GrantsEligibilityService', () => {
     beforeEach(() => {
         injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
-        service = injector.get(GrantsEligibilityService);
+        service = injector.get(GrantEligibilityService);
     });
 
     describe('#construct', () => {
