@@ -45,6 +45,7 @@ export class ResponseData {
     public numberOfFreezers: number;
     public livingRoomTemperature: number;
     public numberOfBathsPerWeek: number;
+    public tumbleDryPercentage: number;
     public roofType: RoofType;
     public wallType: WallType;
     public glazingType: GlazingType;

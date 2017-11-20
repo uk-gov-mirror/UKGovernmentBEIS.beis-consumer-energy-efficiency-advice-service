@@ -6,6 +6,7 @@ import {ShowerTypeQuestionMetadata} from "../../questions/shower-type-question/s
 import {FridgeFreezerQuestionMetadata} from "../../questions/fridge-freezer-question/fridge-freezer-question-metadata";
 import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occupants-question-metadata";
 import {LivingRoomTemperatureQuestionMetadata} from "../../questions/living-room-temperature-question/living-room-temperature-question-metadata";
+import {TumbleDryQuestionMetadata} from "../../questions/tumble-dry-question/tumble-dry-question-metadata";
 
 describe('BehaviourQuestionnaire', () => {
 
@@ -20,6 +21,7 @@ describe('BehaviourQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.Calculator;
         const expectedQuestions = [
             new ShowerTypeQuestionMetadata(),
+            new TumbleDryQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
 
@@ -35,6 +37,7 @@ describe('BehaviourQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.ReduceEnergyBills;
         const expectedQuestions = [
             new ShowerTypeQuestionMetadata(),
+            new TumbleDryQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
 
@@ -50,6 +53,7 @@ describe('BehaviourQuestionnaire', () => {
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         const expectedQuestions = [
             new ShowerTypeQuestionMetadata(),
+            new TumbleDryQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
 
@@ -68,6 +72,7 @@ describe('BehaviourQuestionnaire', () => {
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
+            new TumbleDryQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
 
@@ -86,6 +91,7 @@ describe('BehaviourQuestionnaire', () => {
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
             new ShowerTypeQuestionMetadata(),
+            new TumbleDryQuestionMetadata(),
             new FridgeFreezerQuestionMetadata(),
         ];
 
