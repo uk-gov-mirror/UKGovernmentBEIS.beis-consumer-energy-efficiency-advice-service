@@ -2,8 +2,8 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {GrantCardComponent} from "./grant-card.component";
-import {GrantViewModel} from "../grant/grant-view-model";
-import {GrantEligibility} from "../grants-eligibility/grant-eligibility";
+import {GrantViewModel} from "../model/grant-view-model";
+import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 
 describe('GrantCardComponent', () => {
     let component: GrantCardComponent;

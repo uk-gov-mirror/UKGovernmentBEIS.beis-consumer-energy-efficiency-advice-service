@@ -6,7 +6,7 @@ import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {GrantViewModel} from "../../shared/grant/grant-view-model";
+import {GrantViewModel} from "../model/grant-view-model";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 
 @Component({
@@ -17,8 +17,7 @@ import {LocalAuthority} from "../../shared/local-authority-service/local-authori
 export class GrantsLandingPageComponent {
 
     postcodeInput: string = '';
-    localAuthorityName: string = null;
-    localAuthorityGrants: GrantViewModel[];
+    localAuthority: LocalAuthority = null;
     validationError: boolean = false;
     isLoading: boolean = false;
     isError: boolean = false;
@@ -31,8 +30,7 @@ export class GrantsLandingPageComponent {
     }
 
     onPostcodeSubmit(): void {
-        this.localAuthorityName = null;
-        this.localAuthorityGrants = null;
+        this.localAuthority = null;
         this.validationError = false;
         this.isError = false;
         this.isLoading = true;
@@ -59,8 +57,7 @@ export class GrantsLandingPageComponent {
     }
 
     private handleLocalAuthorityResponse(localAuthority: LocalAuthority): void {
-        this.localAuthorityGrants = localAuthority.grants;
-        this.localAuthorityName = localAuthority.name;
+        this.localAuthority = localAuthority;
         this.isLoading = false;
     }
 

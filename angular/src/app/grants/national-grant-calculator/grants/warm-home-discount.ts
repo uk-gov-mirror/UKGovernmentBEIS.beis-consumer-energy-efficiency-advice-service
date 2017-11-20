@@ -1,10 +1,10 @@
-import {NationalGrantMetadata} from "../national-grant-metadata";
+import {NationalGrantCalculator} from "../national-grant-calculator";
 import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
-import {GrantEligibility} from "../../grants-eligibility/grant-eligibility";
-import {ResponseData} from "../../response-data/response-data";
+import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
+import {ResponseData} from "../../../shared/response-data/response-data";
 import {Observable} from "rxjs/Observable";
 
-export class WarmHomeDiscount extends NationalGrantMetadata {
+export class WarmHomeDiscount extends NationalGrantCalculator {
 
     private static readonly QUALIFYING_BENEFIT = Benefits.PensionGuaranteeCredit;
 

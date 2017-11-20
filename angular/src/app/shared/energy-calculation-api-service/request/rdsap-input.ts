@@ -178,23 +178,10 @@ export class RdSapInput {
     }
 
     private static getFuelTypeEncoding(fuelType: FuelType): string {
-        switch (fuelType) {
-            case FuelType.SolidFuel: {
-                return '9';
-            }
-            case FuelType.MainsGas: {
-                return '26';
-            }
-            case FuelType.LPGGas: {
-                return '27';
-            }
-            case FuelType.HeatingOil: {
-                return '28';
-            }
-            case FuelType.Electricity: {
-                return '29';
-            }
+        if (fuelType !== undefined) {
+            return fuelType.toString(10);
         }
+        return undefined;
     }
 
     private static getShowerTypeEncoding(showerType: ShowerType): string {

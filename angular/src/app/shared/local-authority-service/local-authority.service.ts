@@ -4,7 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
 import {LocalAuthorityResponse, LocalGrantResponse} from "./local-authority-response";
 import {LocalAuthority} from "./local-authority";
-import {LocalAuthorityGrantViewModel} from "../grant/local-authority-grant-view-model";
+import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 
 @Injectable()
 export class LocalAuthorityService {

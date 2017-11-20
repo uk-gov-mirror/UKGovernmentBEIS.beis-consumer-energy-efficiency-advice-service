@@ -17,11 +17,7 @@ import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container/s
 import {NeedHelpComponent} from "./need-help/need-help.component";
 import {PostcodeEpcService} from "./postcode-epc-service/postcode-epc.service";
 import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/postcode-api.service";
-import {GrantCardComponent} from "./grant-card/grant-card.component";
-import {GrantsEligibilityService} from "./grants-eligibility/grants-eligibility.service";
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
-import {NationalGrantsService} from "./national-grants-service/national-grants.service";
-import {NationalGrantMetadataFactory} from "./grant/national-grant-metadata-factory";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {MeasureService} from "./recommendation-service/measure.service";
@@ -35,7 +31,6 @@ import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
-        GrantCardComponent,
         RecommendationCardComponent,
     ],
     exports: [
@@ -46,7 +41,6 @@ import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
         RecommendationCardComponent,
-        GrantCardComponent
     ],
     imports: [
         HttpClientModule,
@@ -68,10 +62,7 @@ export class SharedModule {
                 EpcApiService,
                 PostcodeEpcService,
                 PostcodeApiService,
-                GrantsEligibilityService,
                 LocalAuthorityService,
-                NationalGrantsService,
-                NationalGrantMetadataFactory,
                 MeasureService,
                 GoogleAnalyticsService
             ]

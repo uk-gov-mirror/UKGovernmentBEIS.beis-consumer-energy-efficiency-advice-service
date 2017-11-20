@@ -1,6 +1,6 @@
-import {GrantEligibility} from "../grants-eligibility/grant-eligibility";
+import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 import {GrantViewModel} from "./grant-view-model";
-import {NationalGrantResponse} from "../national-grants-service/national-grants-response";
+import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
 
 export class NationalGrantViewModel implements GrantViewModel {
 
@@ -8,7 +8,7 @@ export class NationalGrantViewModel implements GrantViewModel {
     public description: string;
     public eligibility: GrantEligibility;
 
-    constructor(nationalGrantResponse: NationalGrantResponse, grantEligibility: GrantEligibility) {
+    constructor(nationalGrantResponse: NationalGrantContent, grantEligibility: GrantEligibility) {
         this.name = nationalGrantResponse.acf.heading;
         this.description = nationalGrantResponse.acf.description;
         this.eligibility = grantEligibility;

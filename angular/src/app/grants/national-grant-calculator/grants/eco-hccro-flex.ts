@@ -1,10 +1,10 @@
-import {NationalGrantMetadata} from "../national-grant-metadata";
-import {ResponseData} from "../../response-data/response-data";
-import {GrantEligibility} from "../../grants-eligibility/grant-eligibility";
-import {LocalAuthorityService} from "../../local-authority-service/local-authority.service";
+import {NationalGrantCalculator} from "../national-grant-calculator";
+import {ResponseData} from "../../../shared/response-data/response-data";
+import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
+import {LocalAuthorityService} from "../../../shared/local-authority-service/local-authority.service";
 import {Observable} from "rxjs/Observable";
 
-export class EcoHhcroFlex extends NationalGrantMetadata {
+export class EcoHhcroFlex extends NationalGrantCalculator {
 
     constructor(private localAuthorityService: LocalAuthorityService) {
         super('eco-hhcro-flex');

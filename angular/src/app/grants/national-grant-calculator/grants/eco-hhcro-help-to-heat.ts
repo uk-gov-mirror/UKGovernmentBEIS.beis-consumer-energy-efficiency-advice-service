@@ -1,10 +1,10 @@
-import {NationalGrantMetadata} from "../national-grant-metadata";
-import {ResponseData} from "../../response-data/response-data";
-import {GrantEligibility} from "../../grants-eligibility/grant-eligibility";
+import {NationalGrantCalculator} from "../national-grant-calculator";
+import {ResponseData} from "../../../shared/response-data/response-data";
+import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
 import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
 import {Observable} from "rxjs/Observable";
 
-export class EcoHhcroHelpToHeat extends NationalGrantMetadata {
+export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
 
     private static readonly AUTOMATICALLY_QUALIFYING_BENEFITS: Benefits = Benefits.ESA | Benefits.JobseekersAllowance |
         Benefits.IncomeSupport | Benefits.PensionGuaranteeCredit;

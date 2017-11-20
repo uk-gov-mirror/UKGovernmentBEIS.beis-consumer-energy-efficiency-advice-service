@@ -13,11 +13,11 @@ import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {GrantsEligibilityService} from "../shared/grants-eligibility/grants-eligibility.service";
-import {GrantViewModel} from "../shared/grant/grant-view-model";
+import {GrantViewModel} from "../grants/model/grant-view-model";
 import {MeasureMetadataResponse} from "../shared/recommendation-service/measure-metadata-response";
 import {MeasureService} from "../shared/recommendation-service/measure.service";
 import {LocalAuthority} from "../shared/local-authority-service/local-authority";
+import {GrantEligibilityService} from "../grants/grant-eligibility-service/grant-eligibility.service";
 
 @Component({
     selector: 'app-results-page',
@@ -45,7 +45,7 @@ export class ResultsPageComponent implements OnInit {
                 private localAuthorityService: LocalAuthorityService,
                 private measureService: MeasureService,
                 private questionnaireService: QuestionnaireService,
-                private grantsEligibilityService: GrantsEligibilityService
+                private grantsEligibilityService: GrantEligibilityService
     ) {
     }
 
