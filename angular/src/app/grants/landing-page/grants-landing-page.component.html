@@ -127,7 +127,7 @@
             <div class="network-error" *ngIf="isError">
                 Something went wrong and we can't load this information right now. Please try again later.
             </div>
-            <div class="grants-container" *ngIf="!isLoading && !isError && localAuthority">
+            <div class="grants-container" *ngIf="!isLoading && !isError && !!localAuthority">
                 <div class="local-grants" *ngIf="localAuthority.grants.length > 0">
                     <div class="local-authority-name">You live in {{localAuthority.name}} and we've found the following:</div>
                     <div class="grant-cards">
