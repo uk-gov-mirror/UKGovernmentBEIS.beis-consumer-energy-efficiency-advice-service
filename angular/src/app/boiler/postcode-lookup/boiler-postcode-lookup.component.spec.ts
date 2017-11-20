@@ -5,9 +5,9 @@ import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 
 import {BoilerPostcodeLookupComponent} from "./boiler-postcode-lookup.component";
-import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
-import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 
 describe('BoilerPostcodeLookupComponent', () => {
     let component: BoilerPostcodeLookupComponent;

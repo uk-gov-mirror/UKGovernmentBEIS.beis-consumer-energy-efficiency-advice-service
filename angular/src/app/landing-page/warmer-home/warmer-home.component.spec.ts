@@ -10,7 +10,6 @@ import {LargeVideoCardComponent} from "../large-video-card/large-video-card.comp
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {PostcodeValidationService} from "../../shared/postcode-validation-service/postcode-validation.service";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -38,8 +37,7 @@ describe('WarmerHomeComponent', () => {
                 RouterTestingModule
             ],
             providers: [
-                ResponseData,
-                PostcodeValidationService
+                ResponseData
             ]
         })
             .compileComponents();

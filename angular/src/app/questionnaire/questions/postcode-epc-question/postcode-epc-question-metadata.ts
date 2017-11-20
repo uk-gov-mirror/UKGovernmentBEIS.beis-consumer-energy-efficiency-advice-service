@@ -13,6 +13,8 @@ export class PostcodeEpcQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.postcode !== undefined && responseData.localAuthorityCode !== undefined;
+        return responseData.postcode !== undefined &&
+            responseData.localAuthorityCode !== undefined &&
+            responseData.epc !== undefined;
     }
 }

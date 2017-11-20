@@ -4,6 +4,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-questionnaire";
 import {BehaviourQuestionnaire} from "./questionnaires/behaviour/behaviour-questionnaire";
 import {GrantsQuestionnaire} from "./questionnaires/grants/grants-questionnaire";
+import {BoilerQuestionnaire} from "./questionnaires/boiler/boiler-questionnaire";
 
 type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 
@@ -12,7 +13,8 @@ export class QuestionnaireService {
     private static readonly QUESTIONNAIRES: {[s: string]: QuestionnaireFactory} = {
         'home-basics': HomeBasicsQuestionnaire.getInstance,
         'behaviour': BehaviourQuestionnaire.getInstance,
-        'grants': GrantsQuestionnaire.getInstance
+        'grants': GrantsQuestionnaire.getInstance,
+        'boiler': BoilerQuestionnaire.getInstance,
     };
 
     constructor(private responseData: ResponseData) {

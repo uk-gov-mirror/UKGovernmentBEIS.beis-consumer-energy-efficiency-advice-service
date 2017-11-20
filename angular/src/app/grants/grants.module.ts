@@ -7,15 +7,21 @@ import {GrantsQuestionnaireComponent} from "./grants-questionnaire/grants-questi
 import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
 import {GrantsLandingPageComponent} from "./landing-page/grants-landing-page.component";
 import {RoutingModule} from "../app-routing.module";
+import {GrantEligibilityService} from "./grant-eligibility-service/grant-eligibility.service";
+import {NationalGrantsContentService} from "./national-grants-content-service/national-grants-content.service";
+import {NationalGrantCalculatorFactory} from "./national-grant-calculator/national-grant-calculator-factory";
+import {GrantCardComponent} from "./grant-card/grant-card.component";
 
 @NgModule({
     declarations: [
         GrantsQuestionnaireComponent,
-        GrantsLandingPageComponent
+        GrantsLandingPageComponent,
+        GrantCardComponent
     ],
     exports: [
         GrantsQuestionnaireComponent,
-        GrantsLandingPageComponent
+        GrantsLandingPageComponent,
+        GrantCardComponent
     ],
     imports: [
         SharedModule,
@@ -26,4 +32,14 @@ import {RoutingModule} from "../app-routing.module";
     ]
 })
 export class GrantsModule {
+    static forRoot() {
+        return {
+            ngModule: GrantsModule,
+            providers: [
+                GrantEligibilityService,
+                NationalGrantsContentService,
+                NationalGrantCalculatorFactory
+            ]
+        };
+    }
 }

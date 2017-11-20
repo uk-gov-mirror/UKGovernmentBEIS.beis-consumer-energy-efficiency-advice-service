@@ -8,12 +8,12 @@ import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-m
 import {BoilerReplacementCardComponent} from "./boiler-replacement-card/boiler-replacement-card.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
-import {RecommendationService} from "../../shared/recommendation-service/recommendation.service";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {BoilerType} from "../boiler-types-service/boiler-type";
+import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
+import {MeasureService} from "../../shared/recommendation-service/measure.service";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -43,9 +43,9 @@ describe('BoilerEpcReplaceComponent', () => {
         getRecommendationsForLmkKey: (lmkKey) => Observable.of(dummyEpcRecommendationsResponse.rows.map(rec => new EpcRecommendation(rec)))
     };
 
-    const recommendationsResponse = require('assets/test/recommendations-response.json');
-    const recommendationsServiceStub = {
-        fetchRecommendationDetails: () => Observable.of(recommendationsResponse)
+    const measuresResponse = require('assets/test/measures-response.json');
+    const measureServiceStub = {
+        fetchMeasureDetails: () => Observable.of(measuresResponse)
     };
 
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
@@ -68,7 +68,7 @@ describe('BoilerEpcReplaceComponent', () => {
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},
-                {provide: RecommendationService, useValue: recommendationsServiceStub},
+                {provide: MeasureService, useValue: measureServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
             ],
         })
@@ -79,7 +79,7 @@ describe('BoilerEpcReplaceComponent', () => {
         fixture = TestBed.createComponent(BoilerEpcReplaceComponent);
         component = fixture.componentInstance;
         spyOn(TestBed.get(EpcApiService), 'getRecommendationsForLmkKey').and.callThrough();
-        spyOn(TestBed.get(RecommendationService), 'fetchRecommendationDetails').and.callThrough();
+        spyOn(TestBed.get(MeasureService), 'fetchMeasureDetails').and.callThrough();
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
 
         component.lmkKey = lmkKey;
@@ -101,7 +101,7 @@ describe('BoilerEpcReplaceComponent', () => {
     });
 
     it('should call recommendations API service', () => {
-        expect(TestBed.get(RecommendationService).fetchRecommendationDetails).toHaveBeenCalledWith();
+        expect(TestBed.get(MeasureService).fetchMeasureDetails).toHaveBeenCalledWith();
     });
 
     it('should call boiler types API service', () => {

@@ -6,7 +6,7 @@ import {HomeType} from "../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import toString from "lodash-es/toString";
-import {Epc} from "../../epc-api-service/model/epc";
+import {Epc} from "../../postcode-epc-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
 
 export class RdSapInput {
@@ -28,6 +28,7 @@ export class RdSapInput {
     readonly showers_per_week: number;
     readonly baths_per_week: number;
     readonly shower_type: string;
+    readonly tumble_dry_percentage: number;
     readonly fridge_freezers: number;
     readonly fridges: number;
     readonly freezers: number;
@@ -58,6 +59,7 @@ export class RdSapInput {
         this.baths_per_week = responseData.numberOfBathsPerWeek;
         if (responseData.showerType)
             this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
+        this.tumble_dry_percentage = responseData.tumbleDryPercentage;
         this.fridge_freezers = responseData.numberOfFridgeFreezers;
         this.fridges = responseData.numberOfFridges;
         this.freezers = responseData.numberOfFreezers;
@@ -178,23 +180,10 @@ export class RdSapInput {
     }
 
     private static getFuelTypeEncoding(fuelType: FuelType): string {
-        switch (fuelType) {
-            case FuelType.SolidFuel: {
-                return '9';
-            }
-            case FuelType.MainsGas: {
-                return '26';
-            }
-            case FuelType.LPGGas: {
-                return '27';
-            }
-            case FuelType.HeatingOil: {
-                return '28';
-            }
-            case FuelType.Electricity: {
-                return '29';
-            }
+        if (fuelType !== undefined) {
+            return fuelType.toString(10);
         }
+        return undefined;
     }
 
     private static getShowerTypeEncoding(showerType: ShowerType): string {

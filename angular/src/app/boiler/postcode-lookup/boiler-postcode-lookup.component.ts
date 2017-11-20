@@ -1,9 +1,9 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
-import {EpcApiService} from "../../shared/epc-api-service/epc-api.service";
-import {Epc} from "../../shared/epc-api-service/model/epc";
-import {EpcParserService} from "../../shared/epc-api-service/epc-parser.service";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
+import {Epc} from "../../shared/postcode-epc-service/model/epc";
+import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
 
 @Component({
     selector: 'app-boiler-postcode-lookup',

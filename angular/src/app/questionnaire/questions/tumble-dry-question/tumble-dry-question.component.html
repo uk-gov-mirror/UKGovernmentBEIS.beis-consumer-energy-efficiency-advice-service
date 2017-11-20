@@ -1,0 +1,15 @@
+<div class="question-component tumble-dry-question">
+    <div class="question-content">
+        <button class="no-tumble-dryer-button" id="no-tumble-dryer-button" (click)="updateResponseData(0); complete.emit();">No tumble dryer</button>
+        <form class="questionnaire-form" (submit)="handleFormSubmit()">
+            <div class="form-element">
+                <input class="text-input" id="tumble-dry-input" name="tumble-dry-input" type="number"
+                       aria-labelledby="question-heading" [ngModel]="tumbleDryPercentageDisplay" (ngModelChange)="updateResponseData($event)">
+                <span class="percentage-sign">%</span>
+            </div>
+        </form>
+    </div>
+    <div class="error" *ngIf="isInvalid">
+        <div class="error-message">Please enter a valid value between 0 and 100 (inclusive).</div>
+    </div>
+</div>
