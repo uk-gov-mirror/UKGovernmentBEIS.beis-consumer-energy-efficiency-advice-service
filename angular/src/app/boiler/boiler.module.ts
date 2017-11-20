@@ -11,6 +11,8 @@ import {BoilerMakeModelLookupComponent} from "./make-model-lookup/boiler-make-mo
 import {BoilerReplacementCardComponent} from "./epc-replace/boiler-replacement-card/boiler-replacement-card.component";
 import {RoutingModule} from "../app-routing.module";
 import {BoilerTypesService} from "./boiler-types-service/boiler-types.service";
+import {BoilerQuestionnaireComponent} from "./boiler-questionnaire/boiler-questionnaire.component";
+import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
 
 @NgModule({
     declarations: [
@@ -21,16 +23,19 @@ import {BoilerTypesService} from "./boiler-types-service/boiler-types.service";
         BoilerPostcodeLookupComponent,
         BoilerMakeModelLookupComponent,
         BoilerReplacementCardComponent,
+        BoilerQuestionnaireComponent,
     ],
     imports: [
         CommonModule,
         SharedModule,
         FormsModule,
         RoutingModule,
+        QuestionnaireModule,
     ],
     exports: [
         BoilerLandingPageComponent,
         BoilerEpcReplaceComponent,
+        BoilerQuestionnaireComponent,
     ]
 })
 export class BoilerModule {

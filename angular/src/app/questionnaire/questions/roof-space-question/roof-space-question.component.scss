@@ -1,0 +1,38 @@
+.roof-space-question {
+  .roof-space-options {
+    margin-top: 64px;
+
+    .roof-space-option {
+
+      .roof-space-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 240px;
+        border-radius: 240px;
+        border: 1px solid black;
+
+        padding: 16px 32px;
+        box-sizing: border-box;
+
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .roof-space-button:not(:hover):not(:focus):not(.selected) {
+        background-color: white;
+      }
+
+      .help-text {
+        font-size: 14px;
+        margin-top: 16px;
+        text-align: center;
+      }
+
+      &:not(:last-child) {
+        margin-right: 64px;
+      }
+    }
+  }
+}

@@ -10,6 +10,10 @@ import {UserJourneyType} from "./user-journey-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
+import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
+import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
+import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
+import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
 
 @Injectable()
 export class ResponseData {
@@ -41,6 +45,13 @@ export class ResponseData {
     public numberOfFreezers: number;
     public livingRoomTemperature: number;
     public numberOfBathsPerWeek: number;
+    public roofType: RoofType;
+    public wallType: WallType;
+    public glazingType: GlazingType;
+    public waterTankSpace: WaterTankSpace;
+    public gardenAccessibility: GardenAccessibility;
+    public gardenSizeSquareMetres: number;
+    public roofSpace: RoofSpace;
 
     public benefits: Benefits;
     public income: number;

@@ -19,6 +19,10 @@ import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-me
 import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
 import {HeatingCostQuestionMetadata} from "./heating-cost-question/heating-cost-question-metadata";
 import {LengthOfHeatingOnQuestionMetadata} from "./length-of-heating-on-question/length-of-heating-on-question-metadata";
+import {ConstructionQuestionMetadata} from "./construction-question/construction-question-metadata";
+import {WaterTankQuestionMetadata} from "./water-tank-question/water-tank-question-metadata";
+import {GardenQuestionMetadata} from "./garden-question/garden-question-metadata";
+import {RoofSpaceQuestionMetadata} from "./roof-space-question/roof-space-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -60,4 +64,14 @@ export const GRANTS_QUESTIONS = [
     new BenefitsQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()
+];
+
+export const BOILER_QUESTIONS = [
+    new ConstructionQuestionMetadata(),
+    new WaterTankQuestionMetadata(),
+    new GardenQuestionMetadata(),
+    new RoofSpaceQuestionMetadata(),
+    new FuelTypeQuestionMetadata(),
+    new OccupantsQuestionMetadata(),
+    new ShowersAndBathsQuestionMetadata(),
 ];

@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {NouisliderModule} from "ng2-nouislider";
 
 import {SharedModule} from "../../shared/shared.module";
 import {BedroomsQuestionComponent} from "./bedrooms-question/bedrooms-question.component";
@@ -25,6 +26,10 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
 import {HeatingCostQuestionComponent} from "./heating-cost-question/heating-cost-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
 import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-question/length-of-heating-on-question.component";
+import {ConstructionQuestionComponent} from "./construction-question/construction-question.component";
+import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-question.component";
+import {GardenQuestionComponent} from "./garden-question/garden-question.component";
+import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-question.component";
 
 @NgModule({
     declarations: [
@@ -48,7 +53,11 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         ShowerTypeQuestionComponent,
         ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
-        GrantsQuestionnaireQuestionComponent
+        GrantsQuestionnaireQuestionComponent,
+        ConstructionQuestionComponent,
+        WaterTankQuestionComponent,
+        GardenQuestionComponent,
+        RoofSpaceQuestionComponent,
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -71,13 +80,18 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         ShowerTypeQuestionComponent,
         ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
-        GrantsQuestionnaireQuestionComponent
+        GrantsQuestionnaireQuestionComponent,
+        ConstructionQuestionComponent,
+        WaterTankQuestionComponent,
+        GardenQuestionComponent,
+        RoofSpaceQuestionComponent,
     ],
     imports: [
         CommonModule,
         FormsModule,
         SharedModule,
         CommonQuestionsModule,
+        NouisliderModule,
     ],
     entryComponents: [
         BedroomsQuestionComponent,
@@ -100,7 +114,11 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         ShowerTypeQuestionComponent,
         ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
-        GrantsQuestionnaireQuestionComponent
+        GrantsQuestionnaireQuestionComponent,
+        ConstructionQuestionComponent,
+        WaterTankQuestionComponent,
+        GardenQuestionComponent,
+        RoofSpaceQuestionComponent,
     ]
 })
 export class QuestionsModule {
