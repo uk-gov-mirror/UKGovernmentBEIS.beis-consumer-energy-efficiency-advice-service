@@ -20,7 +20,8 @@ $epc-rating-width: 40px;
     margin: $section-break-margin 0;
 
     .epc-rating-column {
-      flex: 1 1 50%;
+      width: 1px;
+      flex-grow: 1;
       margin-right: 40px;
     }
 
