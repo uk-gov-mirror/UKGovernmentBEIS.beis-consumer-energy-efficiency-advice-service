@@ -13,6 +13,7 @@ import {RoutingModule} from "../app-routing.module";
 import {BoilerTypesService} from "./boiler-types-service/boiler-types.service";
 import {BoilerQuestionnaireComponent} from "./boiler-questionnaire/boiler-questionnaire.component";
 import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
+import {BoilerResultsPageComponent} from "./results-page/boiler-results-page.component";
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
         BoilerMakeModelLookupComponent,
         BoilerReplacementCardComponent,
         BoilerQuestionnaireComponent,
+        BoilerResultsPageComponent,
     ],
     imports: [
         CommonModule,
@@ -36,6 +38,7 @@ import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
         BoilerLandingPageComponent,
         BoilerEpcReplaceComponent,
         BoilerQuestionnaireComponent,
+        BoilerResultsPageComponent,
     ]
 })
 export class BoilerModule {
