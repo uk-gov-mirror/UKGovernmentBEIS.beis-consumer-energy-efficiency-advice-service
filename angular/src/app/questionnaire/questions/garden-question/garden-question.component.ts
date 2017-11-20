@@ -40,6 +40,13 @@ export class GardenQuestionComponent extends QuestionBaseComponent implements On
         this.size = 100;
     }
 
+    get responseForAnalytics(): string {
+        return JSON.stringify({
+            accessibility: GardenAccessibility[this.accessibility],
+            size: this.size.toString(10),
+        });
+    }
+
     updateAccessibilityAndMaybeComplete(val: GardenAccessibility) {
         this.accessibility = val;
         if (val !== GardenAccessibility.Accessible) {

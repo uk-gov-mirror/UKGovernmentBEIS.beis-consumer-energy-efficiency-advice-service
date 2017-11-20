@@ -22,6 +22,10 @@ export class WaterTankQuestionComponent extends QuestionBaseComponent {
         {name: 'Bigger', value: WaterTankSpace.Bigger},
     ];
 
+    get responseForAnalytics(): string {
+        return WaterTankSpace[this.response];
+    }
+
     get response(): WaterTankSpace {
         return this.responseData.waterTankSpace;
     }

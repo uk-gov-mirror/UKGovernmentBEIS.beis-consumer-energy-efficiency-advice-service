@@ -23,6 +23,10 @@ export class RoofSpaceQuestionComponent extends QuestionBaseComponent {
         {name: 'Other', value: RoofSpace.Other},
     ];
 
+    get responseForAnalytics(): string {
+        return RoofSpace[this.response];
+    }
+
     get response(): RoofSpace {
         return this.responseData.roofSpace;
     }

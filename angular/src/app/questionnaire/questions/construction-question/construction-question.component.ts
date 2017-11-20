@@ -44,6 +44,14 @@ export class ConstructionQuestionComponent extends QuestionBaseComponent impleme
         this.glazingType = GlazingType.DontKnow;
     }
 
+    get responseForAnalytics(): string {
+        return JSON.stringify({
+            roofType: RoofType[this.roofType],
+            wallType: WallType[this.wallType],
+            glazingType: GlazingType[this.glazingType],
+        });
+    }
+
     get roofType(): RoofType {
         return this.responseData.roofType;
     }
