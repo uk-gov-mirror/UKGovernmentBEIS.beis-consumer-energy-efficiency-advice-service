@@ -61,45 +61,38 @@ $grant-card-margin: 24px;
           text-transform: uppercase;
         }
       }
+    }
+  }
 
-      .further-actions {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 40px;
+  .local-grants.page-row-content {
+    flex-direction: column;
+    margin-top: 30px;
 
-        .see-more {
-          flex: 0 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
+    .subheading {
+      @include page-subheading;
+      margin-bottom: 8px;
+    }
 
-          background: none;
-          border: none;
-          cursor: pointer;
+    .local-authority {
+      @include body-uppercase;
+    }
 
-          .see-more-text {
-            font-size: 20px;
-            font-weight: bold;
-          }
+    .grant-cards {
+      margin-top: 32px;
+      flex-wrap: wrap;
 
-          .icon-caret-down {
-            margin-left: 8px;
-            margin-top: 6px;
-          }
-        }
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
 
-        .further-questions {
-          float: right;
-          flex: 0 0 auto;
-          padding: 16px 32px;
-
-          background: $lighter-grey;
-          border: none;
-          cursor: pointer;
+      .grant-card {
+        flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
+        margin-bottom: $grant-card-margin;
+        &:not(:nth-child(#{$grant-cards-per-row}n)) {
+          margin-right: $grant-card-margin;
         }
       }
     }
   }
+
 }

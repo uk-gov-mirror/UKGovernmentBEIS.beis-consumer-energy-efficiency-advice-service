@@ -30,12 +30,14 @@ describe('GrantsLandingPageComponent', () => {
         {
             name: 'Grant 1',
             description: 'some grant',
-            eligibility: GrantEligibility.MayBeEligible
+            eligibility: GrantEligibility.MayBeEligible,
+            shouldDisplayWithoutMeasures: false
         },
         {
             name: 'Grant 2',
             description: 'another grant',
-            eligibility: GrantEligibility.MayBeEligible
+            eligibility: GrantEligibility.MayBeEligible,
+            shouldDisplayWithoutMeasures: false
         }
     ];
 

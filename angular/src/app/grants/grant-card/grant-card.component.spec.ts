@@ -12,7 +12,8 @@ describe('GrantCardComponent', () => {
     const grant: GrantViewModel = {
         name: 'Name',
         description: 'Description',
-        eligibility: GrantEligibility.MayBeEligible
+        eligibility: GrantEligibility.MayBeEligible,
+        shouldDisplayWithoutMeasures: false
     };
 
     beforeEach(async(() => {

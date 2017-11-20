@@ -2,6 +2,7 @@ import {EnergySavingMeasureResponse} from "../../../shared/energy-calculation-ap
 import * as parse from "url-parse";
 import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
 import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-tag";
+import {GrantViewModel} from "../../../grants/model/grant-view-model";
 
 export class EnergyEfficiencyRecommendation {
 
@@ -12,16 +13,16 @@ export class EnergyEfficiencyRecommendation {
                 public headline: string,
                 public summary: string,
                 public iconClassName: string,
-                public tags: EnergyEfficiencyRecommendationTag
-    ) {
+                public tags: EnergyEfficiencyRecommendationTag) {
     }
 
-    static fromMeasure(energySavingMeasureResponse: EnergySavingMeasureResponse,
-                       measureContent: MeasureContent,
-                       iconClassName: string
+    static fromMeasure(
+        energySavingMeasureResponse: EnergySavingMeasureResponse,
+       measureContent: MeasureContent,
+       iconClassName: string
     ): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
-            0,
+            Math.floor(Math.random() * 99) + 1, // TODO: investment required for measures (BEISDEAS-56)
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
             parse(measureContent.acf.featured_page).pathname,
@@ -30,5 +31,21 @@ export class EnergyEfficiencyRecommendation {
             iconClassName,
             EnergyEfficiencyRecommendationTag.LongerTerm
         )
+    }
+
+    static fromGrant(
+        grantViewModel: GrantViewModel,
+        iconClassName: string
+    ): EnergyEfficiencyRecommendation {
+        return new EnergyEfficiencyRecommendation(
+            0, // No investment cost for a grant
+            0, // TODO: calculate cost saving pounds per year (BEISDEAS-104)
+            0, // No energy saving from a grant
+            '', // TODO: router link for more info (BEISDEAS-103)
+            grantViewModel.name,
+            grantViewModel.description,
+            iconClassName,
+            EnergyEfficiencyRecommendationTag.Grant
+        );
     }
 }

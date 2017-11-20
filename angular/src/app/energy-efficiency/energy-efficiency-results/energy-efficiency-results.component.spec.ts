@@ -34,6 +34,10 @@ import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
+import {GrantCardComponent} from "../../grants/grant-card/grant-card.component";
+import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
+import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-tag";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -46,31 +50,26 @@ describe('EnergyEfficiencyResultsComponent', () => {
     };
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
-    const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
-        {
-            name: 'LA Grant 1',
-            description: 'some local grant',
-            eligibility: GrantEligibility.MayBeEligible
-        },
-        {
-            name: 'LA Grant 2',
-            description: 'another local grant',
-            eligibility: GrantEligibility.MayBeEligible
-        }
-    ];
 
     const nationalGrants: NationalGrantViewModel[] = [
         {
             name: 'National Grant 1',
             description: 'some national grant',
-            eligibility: GrantEligibility.MayBeEligible
+            eligibility: GrantEligibility.MayBeEligible,
+            shouldDisplayWithoutMeasures: true
         },
         {
             name: 'National Grant 2',
             description: 'another national grant',
-            eligibility: GrantEligibility.MayBeEligible
+            eligibility: GrantEligibility.MayBeEligible,
+            shouldDisplayWithoutMeasures: true
         }
     ];
+
+    let localAuthorityResponse: Observable<LocalAuthority>;
+    const localAuthorityServiceStub = {
+        fetchLocalAuthorityDetails: () => localAuthorityResponse
+    };
 
     let grantsResponse: Observable<GrantViewModel[]>;
     const grantsEligibilityServiceStub = {
@@ -131,10 +130,26 @@ describe('EnergyEfficiencyResultsComponent', () => {
         measuresResponse = Observable.of(dummyMeasures);
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
         grantsResponse = Observable.of(nationalGrants);
+        localAuthorityResponse = Observable.of({
+            name: localAuthorityName,
+            isEcoFlexActive: true,
+            ecoFlexMoreInfoLink: 'http://www.example.com',
+            grants: [
+                new LocalAuthorityGrantViewModel({
+                    display_name: 'LA Grant 1',
+                    description: 'some local grant'
+                }),
+                new LocalAuthorityGrantViewModel({
+                    display_name: 'LA Grant 2',
+                    description: 'another local grant'
+                })
+            ]
+        });
 
         spyOn(grantsEligibilityServiceStub, 'getApplicableGrants').and.callThrough();
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
         spyOn(measuresServiceStub, 'fetchMeasureDetails').and.callThrough();
+        spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
@@ -143,6 +158,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
                 NeedHelpComponent,
+                GrantCardComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
@@ -152,7 +168,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
                 {provide: QuestionnaireService, useValue: mockQuestionnaireService},
                 {provide: EnergySavingMeasureContentService, useValue: measuresServiceStub},
-                {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub}
+                {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
+                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
             ]
         })
             .compileComponents();
@@ -207,6 +224,23 @@ describe('EnergyEfficiencyResultsComponent', () => {
             .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
 
         expect(actualMeasures.length).toBe(component.displayedRecommendations);
+    });
+
+    it('should display home improvement measures correctly', () => {
+        // given
+        const expectedMeasures = Object.values(dummyEnergyCalculations.measures)
+            .map(measure => [measure.cost_saving, measure.energy_saving]);
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
+        const actualMeasures = recommendationElements
+            .map(el => el.componentInstance.recommendation)
+            .filter(rec => rec.tags & EnergyEfficiencyRecommendationTag.LongerTerm)
+            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
+
         actualMeasures.forEach(measure => expect(expectedMeasures).toContain(measure));
     });
 
@@ -241,6 +275,26 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.energyCalculations.currentEpcRating).toBe('B');
         expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(786);
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(1889);
+    });
+
+    it('should call local authority API service with code from response data', () => {
+        // when
+        fixture.detectChanges();
+
+        // then
+        expect(injector.get(LocalAuthorityService).fetchLocalAuthorityDetails)
+            .toHaveBeenCalledWith(localAuthorityCode);
+    });
+
+    it('should display an error message if local authority API responds with an error', () => {
+        // given
+        localAuthorityResponse = ErrorObservable.create('some error text');
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        expect(fixture.debugElement.query(By.css('.page-error-container'))).toBeTruthy();
     });
 
     it('should call measures metadata API service', () => {

@@ -4,7 +4,6 @@ import {ResponseData} from "../../shared/response-data/response-data";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculations} from "../../results-page/potentials/energy-calculations";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import keys from "lodash-es/keys";
@@ -16,6 +15,9 @@ import {GrantEligibilityService} from "../../grants/grant-eligibility-service/gr
 import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation";
+import {concat} from "lodash-es";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
+import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -27,11 +29,12 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     private static RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED: number = 5;
 
     availableGrants: GrantViewModel[];
-
+    localGrants: GrantViewModel[];
     recommendations: EnergyEfficiencyRecommendation[] = [];
     displayedRecommendations: number = EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
     energyCalculations: EnergyCalculations;
     measuresContent: MeasureContent[];
+    localAuthorityName: string;
 
     isLoading: boolean = true;
     isError: boolean = false;
@@ -42,7 +45,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private measureService: EnergySavingMeasureContentService,
                 private questionnaireService: QuestionnaireService,
-                private grantsEligibilityService: GrantEligibilityService
+                private grantsEligibilityService: GrantEligibilityService,
+                private localAuthorityService: LocalAuthorityService
     ) {
     }
 
@@ -50,13 +54,15 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
             this.measureService.fetchMeasureDetails(),
-            this.grantsEligibilityService.getApplicableGrants()
+            this.grantsEligibilityService.getApplicableGrants(),
+            this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
         )
             .subscribe(
-                ([energyCalculation, recommendations, applicableGrants]) => {
+                ([energyCalculation, recommendations, applicableGrants, localAuthority]) => {
                     this.handleEnergyCalculationResponse(energyCalculation);
                     this.handleMeasureResponses(recommendations);
                     this.handleGrantsResponses(applicableGrants);
+                    this.handleLocalAuthorityResponse(localAuthority);
                 },
                 (err) => this.displayErrorMessage(err),
                 () => this.onLoadingComplete()
@@ -105,6 +111,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.measuresContent = responses;
     }
 
+    private handleLocalAuthorityResponse(response: LocalAuthority) {
+        this.localAuthorityName = response.name;
+    }
+
     private handleGrantsResponses(grants: GrantViewModel[]) {
         this.availableGrants = grants;
     }
@@ -116,7 +126,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private onLoadingComplete() {
-        const allRecommendations = keys(this.energyCalculationResponse.measures)
+        const energyEfficiencyRecommendations = keys(this.energyCalculationResponse.measures)
             .map(measureCode => {
                 const recommendationMetadata: MeasureContent = this.measuresContent
                     .find((recommendationTypeDetail) => recommendationTypeDetail.acf.rdsap_measure_code === measureCode);
@@ -131,12 +141,21 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 )
             })
             .filter(measure => measure);
+        const grantRecommendations = this.availableGrants
+            .filter(grant => grant.shouldDisplayWithoutMeasures)
+            .map(grant => EnergyEfficiencyRecommendation.fromGrant(grant, 'icon-grant'));
+        const allRecommendations = concat(energyEfficiencyRecommendations, grantRecommendations);
         this.recommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
         const potentialEnergyBillSavingPoundsPerYear = sumBy(
             this.recommendations,
             recommendation => recommendation.costSavingPoundsPerYear
         );
         this.energyCalculations = new EnergyCalculations(this.energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
+        this.localGrants = this.availableGrants.filter(grant => {
+            console.log(grant.constructor.name);
+            return grant.constructor.name === 'LocalAuthorityGrantViewModel';
+        });
         this.isLoading = false;
+        console.log(this.localGrants);
     }
 }
