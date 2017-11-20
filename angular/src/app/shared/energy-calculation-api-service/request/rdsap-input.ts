@@ -29,6 +29,7 @@ export class RdSapInput {
     readonly showers_per_week: number;
     readonly baths_per_week: number;
     readonly shower_type: string;
+    readonly tumble_dry_percentage: number;
     readonly fridge_freezers: number;
     readonly fridges: number;
     readonly freezers: number;
@@ -59,6 +60,7 @@ export class RdSapInput {
         this.baths_per_week = responseData.numberOfBathsPerWeek;
         if (responseData.showerType)
             this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
+        this.tumble_dry_percentage = responseData.tumbleDryPercentage;
         this.fridge_freezers = responseData.numberOfFridgeFreezers;
         this.fridges = responseData.numberOfFridges;
         this.freezers = responseData.numberOfFreezers;

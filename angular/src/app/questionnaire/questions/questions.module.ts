@@ -25,6 +25,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
 import {HeatingCostQuestionComponent} from "./heating-cost-question/heating-cost-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
 import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-question/length-of-heating-on-question.component";
+import {TumbleDryQuestionComponent} from "./tumble-dry-question/tumble-dry-question.component";
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         ShowerTypeQuestionComponent,
         ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
+        TumbleDryQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ],
     exports: [
@@ -71,6 +73,7 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         ShowerTypeQuestionComponent,
         ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
+        TumbleDryQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ],
     imports: [
@@ -100,6 +103,7 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         ShowerTypeQuestionComponent,
         ShowersAndBathsQuestionComponent,
         StoreysQuestionComponent,
+        TumbleDryQuestionComponent,
         GrantsQuestionnaireQuestionComponent
     ]
 })

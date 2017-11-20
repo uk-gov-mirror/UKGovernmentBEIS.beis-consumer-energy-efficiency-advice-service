@@ -30,6 +30,7 @@ describe('EnergyCalculationApiService', () => {
         baths_per_week: 0,
         showers_per_week: 123,
         shower_type: '4',
+        tumble_dry_percentage: 50,
         fridge_freezers: 5,
         fridges: 0,
         freezers: 26,
