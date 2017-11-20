@@ -1,16 +1,20 @@
 <div class="energy-efficiency-recommendation-card">
-    <div class="summary-row">
+    <div class="main-row">
         <div class="recommendation-icon">
-            <div class="icon-house"></div>
+            <div [ngClass]="recommendation.iconClassName" class="icon"></div>
         </div>
         <div class="recommendation-basic-details">
-            <div class="tag">Grants</div>
-            <div class="heading">Loft insulation</div>
-            <div class="description-row">
-                <div class="description">
-                    You may be eligible for free loft insulation under the ECO scheme which provides funding for energy efficiency measures
+            <div class="tags">
+                <div *ngFor="let tag of tags"
+                     [ngClass]="getTagClassName(tag)"
+                        class="tag">{{getTagDescription(tag)}}</div>
+            </div>
+            <div class="heading">{{recommendation.headline}}</div>
+            <div class="summary-row">
+                <div class="summary">
+                    {{recommendation.summary}}
                 </div>
-                <button class="read-more-button">Read more</button>
+                <a class="read-more-button" [routerLink]="recommendation.readMoreRoute">Read more</a>
             </div>
             <div class="more-detail-row">
                 <button class="more-detail-button" (click)="toggleExpandedView()">See more detail</button>
@@ -23,7 +27,7 @@
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
                 heading="Savings per month up to"
-                value="£20"
+                [value]="roundedMonthlySaving"
         ></app-data-card>
         <div class="add-to-plan-column">
             <div class="add-to-plan-text">Add to plan</div>

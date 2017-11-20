@@ -1,51 +1,44 @@
-import {async, ComponentFixture, TestBed, getTestBed} from "@angular/core/testing";
+import {async, ComponentFixture, getTestBed, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {DebugElement} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
-
-import {ResultsPageComponent} from "./results-page.component";
-import {GrantCardComponent} from "../grants/grant-card/grant-card.component";
-import {PotentialsComponent} from "./potentials/potentials.component";
-import {RecommendationCardComponent} from "../shared/recommendation-card/recommendation-card.component";
-import {ResponseData} from "../shared/response-data/response-data";
-import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
-import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap-input";
-import {HomeType} from "../questionnaire/questions/home-type-question/home-type";
-import {HomeAge} from "../questionnaire/questions/home-age-question/home-age";
-import {FlatPosition} from "../questionnaire/questions/flat-position-question/flat-position";
-import {FuelType} from "../questionnaire/questions/fuel-type-question/fuel-type";
-import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
-import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {UserJourneyType} from "../shared/response-data/user-journey-type";
-import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {RadialPercentageComponent} from "../shared/radial-percentage/radial-percentage.component";
-import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
-import {ShowerType} from "../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../questionnaire/questions/tenure-type-question/tenure-type";
-import {NeedHelpComponent} from "../shared/need-help/need-help.component";
-import {Benefits} from "../questionnaire/questions/benefits-question/benefits";
-import {MeasureService} from "../shared/recommendation-service/measure.service";
-import {MeasureMetadataResponse} from "../shared/recommendation-service/measure-metadata-response";
-import {GrantEligibility} from "../grants/grant-eligibility-service/grant-eligibility";
-import {LocalAuthority} from "../shared/local-authority-service/local-authority";
-import {LocalAuthorityGrantViewModel} from "../grants/model/local-authority-grant-view-model";
-import {NationalGrantViewModel} from "../grants/model/national-grant-view-model";
-import {GrantViewModel} from "../grants/model/grant-view-model";
-import {GrantEligibilityService} from "../grants/grant-eligibility-service/grant-eligibility.service";
-import {GlazingType, RoofType, WallType} from "../questionnaire/questions/construction-question/construction-types";
-import {WaterTankSpace} from "../questionnaire/questions/water-tank-question/water-tank-space";
-import {GardenAccessibility} from "../questionnaire/questions/garden-question/garden-accessibility";
-import {RoofSpace} from "../questionnaire/questions/roof-space-question/roof-space";
 
-// TODO: this is not currently thoroughly tested because it's all about to change in BEISDEAS-79
+import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
+import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
+import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
+import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
+import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
+import {GrantViewModel} from "../../grants/model/grant-view-model";
+import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {UserJourneyType} from "../../shared/response-data/user-journey-type";
+import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
+import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
+import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
+import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
+import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
+import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
+import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
+import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
+import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
+import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
+import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
+import {DataCardComponent} from "./data-card/data-card.component";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
+import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 
 describe('EnergyEfficiencyResultsComponent', () => {
-    let component: ResultsPageComponent;
+    let component: EnergyEfficiencyResultsComponent;
     let injector: TestBed;
-    let fixture: ComponentFixture<ResultsPageComponent>;
+    let fixture: ComponentFixture<EnergyEfficiencyResultsComponent>;
     const dummyEnergyCalculations = require('assets/test/energy-calculation-response.json');
     let energyCalculationResponse: Observable<EnergyCalculationResponse>;
     let energyCalculationApiServiceStub = {
@@ -84,14 +77,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         getApplicableGrants: () => grantsResponse
     };
 
-
-    let localAuthorityResponse: Observable<LocalAuthority>;
-    let localAuthorityServiceStub = {
-        fetchLocalAuthorityDetails: () => localAuthorityResponse
-    };
-
     const dummyMeasures = require('assets/test/measures-response.json');
-    let measuresResponse: Observable<MeasureMetadataResponse[]>;
+    let measuresResponse: Observable<MeasureContent[]>;
     let measuresServiceStub = {
         fetchMeasureDetails: () => measuresResponse
     };
@@ -142,29 +129,19 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     beforeEach(async(() => {
         measuresResponse = Observable.of(dummyMeasures);
-        localAuthorityResponse = Observable.of({
-            name: localAuthorityName,
-            isEcoFlexActive: true,
-            ecoFlexMoreInfoLink: 'http://www.example.com',
-            grants: localAuthorityGrants
-        });
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
         grantsResponse = Observable.of(nationalGrants);
 
         spyOn(grantsEligibilityServiceStub, 'getApplicableGrants').and.callThrough();
-        spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
         spyOn(measuresServiceStub, 'fetchMeasureDetails').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
-                ResultsPageComponent,
-                PotentialsComponent,
-                RecommendationCardComponent,
-                GrantCardComponent,
-                LatestNewsCardComponent,
+                EnergyEfficiencyResultsComponent,
+                EnergyEfficiencyRecommendationCardComponent,
+                DataCardComponent,
                 SpinnerAndErrorContainerComponent,
-                RadialPercentageComponent,
                 NeedHelpComponent,
             ],
             imports: [
@@ -173,9 +150,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
-                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: QuestionnaireService, useValue: mockQuestionnaireService},
-                {provide: MeasureService, useValue: measuresServiceStub},
+                {provide: EnergySavingMeasureContentService, useValue: measuresServiceStub},
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub}
             ]
         })
@@ -183,7 +159,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ResultsPageComponent);
+        fixture = TestBed.createComponent(EnergyEfficiencyResultsComponent);
         injector = getTestBed();
         component = fixture.componentInstance;
     });
@@ -225,7 +201,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
         const actualMeasures = recommendationElements
             .map(el => el.componentInstance.recommendation)
             .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
@@ -253,7 +229,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // for measure code V2
         expect(component.recommendations[0].headline).toBe('Wind turbine on mast');
         expect(component.recommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
-        expect(component.recommendations[0].iconClassName).toBe(MeasureService.measureIcons['V2']);
+        expect(component.recommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
     });
 
     it('should display energy calculations correctly', () => {
@@ -267,41 +243,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(1889);
     });
 
-    it('should call local authority API service with code from response data', () => {
-        // when
-        fixture.detectChanges();
-
-        // then
-        expect(injector.get(LocalAuthorityService).fetchLocalAuthorityDetails)
-            .toHaveBeenCalledWith(localAuthorityCode);
-    });
-
-    it('should display an error message if local authority API responds with an error', () => {
-        // given
-        localAuthorityResponse = ErrorObservable.create('some error text');
-
-        // when
-        fixture.detectChanges();
-
-        // then
-        expect(fixture.debugElement.query(By.css('.page-error-container'))).toBeTruthy();
-    });
-
-    it('should display correct local authority name', () => {
-        // when
-        fixture.detectChanges();
-
-        // then
-        const localAuthorityNameElement = fixture.debugElement.query(By.css('.grants .local-authority')).nativeElement;
-        expect(localAuthorityNameElement.innerText.toLowerCase()).toContain(localAuthorityName.toLowerCase());
-    });
-
     it('should call measures metadata API service', () => {
         // when
         fixture.detectChanges();
 
         // then
-        expect(injector.get(MeasureService).fetchMeasureDetails).toHaveBeenCalled();
+        expect(injector.get(EnergySavingMeasureContentService).fetchMeasureDetails).toHaveBeenCalled();
     });
 
     it('should display an error if measures metadata API responds with an error', () => {
@@ -314,13 +261,5 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // when
         expect(component.isLoading).toBeFalsy();
         expect(component.isError).toBeTruthy();
-    });
-
-    it('should display all linked pages', () => {
-        // when
-        fixture.detectChanges();
-
-        // match data in assets/test/recommendations-response.json
-        expect(component.featuredPages.length).toBe(4);
     });
 });

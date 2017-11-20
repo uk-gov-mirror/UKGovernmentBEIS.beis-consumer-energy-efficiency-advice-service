@@ -13,7 +13,7 @@ import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
-import {MeasureService} from "../../shared/recommendation-service/measure.service";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -68,7 +68,7 @@ describe('BoilerEpcReplaceComponent', () => {
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},
-                {provide: MeasureService, useValue: measureServiceStub},
+                {provide: EnergySavingMeasureContentService, useValue: measureServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
             ],
         })
@@ -79,7 +79,7 @@ describe('BoilerEpcReplaceComponent', () => {
         fixture = TestBed.createComponent(BoilerEpcReplaceComponent);
         component = fixture.componentInstance;
         spyOn(TestBed.get(EpcApiService), 'getRecommendationsForLmkKey').and.callThrough();
-        spyOn(TestBed.get(MeasureService), 'fetchMeasureDetails').and.callThrough();
+        spyOn(TestBed.get(EnergySavingMeasureContentService), 'fetchMeasureDetails').and.callThrough();
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
 
         component.lmkKey = lmkKey;
@@ -101,7 +101,7 @@ describe('BoilerEpcReplaceComponent', () => {
     });
 
     it('should call recommendations API service', () => {
-        expect(TestBed.get(MeasureService).fetchMeasureDetails).toHaveBeenCalledWith();
+        expect(TestBed.get(EnergySavingMeasureContentService).fetchMeasureDetails).toHaveBeenCalledWith();
     });
 
     it('should call boiler types API service', () => {

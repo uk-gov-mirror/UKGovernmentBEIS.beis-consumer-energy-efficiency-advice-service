@@ -8,7 +8,7 @@ import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import * as parse from "url-parse";
 import sortBy from "lodash-es/sortBy";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
-import {MeasureService} from "../../shared/recommendation-service/measure.service";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 @Component({
     selector: 'app-boiler-epc-replace',
@@ -31,7 +31,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
                 undefined,
                 undefined,
                 undefined,
-                MeasureService.measureIcons['G'],
+                EnergySavingMeasureContentService.measureIcons['G'],
             ),
         },
         {
@@ -43,7 +43,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
                 undefined,
                 undefined,
                 undefined,
-                MeasureService.measureIcons['C'],
+                EnergySavingMeasureContentService.measureIcons['C'],
             ),
         },
         {
@@ -61,7 +61,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
     ];
 
     constructor(private epcApiService: EpcApiService,
-                private recommendationService: MeasureService,
+                private recommendationService: EnergySavingMeasureContentService,
                 private boilerTypesService: BoilerTypesService,
                 private route: ActivatedRoute) {
         this.lmkKey = this.route.snapshot.paramMap.get('lmkKey');

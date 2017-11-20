@@ -11,11 +11,11 @@
             ></app-data-card>
             <app-data-card
                     heading="Your estimated monthly bills are"
-                    value="£27.50"
+                    [value]="'£' + energyCalculations.currentMonthlyBillPoundsRounded"
             ></app-data-card>
             <app-data-card
                     heading="CO2 emissions per year (tonnes)"
-                    value="6.2"
+                    [value]="energyCalculations.currentCo2EmissionsPerYearTonnes"
             ></app-data-card>
         </div>
     </div>
@@ -28,7 +28,9 @@
                 Based on your answers we've found a range of measures you can add to your plan
             </div>
             <div class="recommendation-cards">
-                <app-energy-efficiency-recommendation-card *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations) trackBy $index"
+                <app-energy-efficiency-recommendation-card
+                        *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations) trackBy $index"
+                        [recommendation]="recommendation"
                     ></app-energy-efficiency-recommendation-card>
                 <button class="expand-recommendations-list" *ngIf="shouldDisplayExpandRecommendationsListButton()"
                         (click)="toggleDisplayAllRecommendations()">
