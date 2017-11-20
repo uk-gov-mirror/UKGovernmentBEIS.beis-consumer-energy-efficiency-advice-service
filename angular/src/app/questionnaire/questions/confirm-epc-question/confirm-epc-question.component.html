@@ -13,12 +13,10 @@
                 </p>
                 <p>
                     The average cost of energy for a property in your band is £{{getAverageEnergyCost(epcRating)}}.
-                    <span *ngIf="epcRatingWorseThanAverage; else goodEpcRating">
-                    For reference, for a Band {{EpcRating[averageEpcRating]}} this is around £{{getAverageEnergyCost(averageEpcRating)}}.
-                </span>
-                    <ng-template #goodEpcRating>
-                        Continue this questionnaire to find out ways this could be improved.
-                    </ng-template>
+                    <span *ngIf="epcRatingWorseThanAverage">
+                        For reference, for a Band {{EpcRating[averageEpcRating]}} this is around £{{getAverageEnergyCost(averageEpcRating)}}.
+                    </span>
+                    Continue this questionnaire to find out ways this could be improved.
                 </p>
             </div>
         </div>
