@@ -14,6 +14,7 @@ import {
 } from "../../../questionnaire/questions/construction-question/construction-types";
 import {WaterTankSpace} from "../../../questionnaire/questions/water-tank-question/water-tank-space";
 import {GardenAccessibility} from "../../../questionnaire/questions/garden-question/garden-accessibility";
+import {RoofSpace} from "../../../questionnaire/questions/roof-space-question/roof-space";
 
 describe('RdsapInput', () => {
 
@@ -59,6 +60,7 @@ describe('RdsapInput', () => {
             waterTankSpace: WaterTankSpace.Sufficient,
             gardenAccessibility: GardenAccessibility.NotAccessible,
             gardenSizeSquareMetres: 100,
+            roofSpace: RoofSpace.NoSpace,
         };
 
         it('should calculate the number of occupants correctly', () => {

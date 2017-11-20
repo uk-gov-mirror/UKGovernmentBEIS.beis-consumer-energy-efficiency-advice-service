@@ -13,6 +13,7 @@ import {Benefits} from "../../questionnaire/questions/benefits-question/benefits
 import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
 import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
+import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
 
 @Injectable()
 export class ResponseData {
@@ -48,6 +49,7 @@ export class ResponseData {
     public waterTankSpace: WaterTankSpace;
     public gardenAccessibility: GardenAccessibility;
     public gardenSizeSquareMetres: number;
+    public roofSpace: RoofSpace;
 
     public benefits: Benefits;
     public income: number;
