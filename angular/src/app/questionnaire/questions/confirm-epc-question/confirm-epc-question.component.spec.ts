@@ -6,6 +6,7 @@ import {HomeType} from "../home-type-question/home-type";
 import {FuelType} from "../fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../electricity-tariff-question/electricity-tariff";
 import {EpcResponse} from "../../../shared/epc-api-service/model/response/epc-response";
+import {EpcRating} from "../../../shared/epc-api-service/model/epc-rating";
 
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;
@@ -61,8 +62,8 @@ describe('ConfirmEpcQuestionComponent', () => {
 
     it('should display the EPC rating', async(() => {
         // given
-        const expectedEpcRating = 'C';
-        epcResponse['current-energy-rating'] = expectedEpcRating;
+        const expectedEpcRating = EpcRating.C;
+        epcResponse['current-energy-rating'] = EpcRating[expectedEpcRating];
 
         // when
         injectEpcAndDetectChanges(new Epc(epcResponse));
