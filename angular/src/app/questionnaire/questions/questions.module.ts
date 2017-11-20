@@ -25,6 +25,7 @@ import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.c
 import {HeatingCostQuestionComponent} from "./heating-cost-question/heating-cost-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
 import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-question/length-of-heating-on-question.component";
+import {OptionalPropertyQuestionComponent} from "./optional-property-question/optional-property-question.component";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
@@ -66,6 +68,7 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
@@ -95,6 +98,7 @@ import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-questio
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,

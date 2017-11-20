@@ -15,6 +15,7 @@ import {Benefits} from "../../questionnaire/questions/benefits-question/benefits
 export class ResponseData {
     public userJourneyType: UserJourneyType;
     public shouldIncludeGrantsQuestionnaire: boolean;
+    public shouldIncludeOptionalPropertyQuestions: boolean;
     public postcode: string;
     public epc: Epc;
     public localAuthorityCode: string;

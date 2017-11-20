@@ -19,6 +19,7 @@ import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-me
 import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
 import {HeatingCostQuestionMetadata} from "./heating-cost-question/heating-cost-question-metadata";
 import {LengthOfHeatingOnQuestionMetadata} from "./length-of-heating-on-question/length-of-heating-on-question-metadata";
+import {OptionalPropertyQuestionMetadata} from "./optional-property-question/optional-property-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -32,6 +33,7 @@ export const CORE_BRE_QUESTIONS = [
     new HomeAgeQuestionMetadata(),
     new StoreysQuestionMetadata(),
     new BedroomsQuestionMetadata(),
+    new OptionalPropertyQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
