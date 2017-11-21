@@ -56,13 +56,15 @@ describe('EnergyEfficiencyResultsComponent', () => {
             name: 'National Grant 1',
             description: 'some national grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: true
+            shouldDisplayWithoutMeasures: true,
+            annualPaymentPounds: 120
         },
         {
             name: 'National Grant 2',
             description: 'another national grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: true
+            shouldDisplayWithoutMeasures: true,
+            annualPaymentPounds: 120
         }
     ];
 
@@ -271,10 +273,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        // match data in assets/test/energy-calculation-response.json
+        // match data in assets/test/energy-calculation-response.json, and annual savings from national grants above
         expect(component.energyCalculations.currentEpcRating).toBe('B');
         expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(786);
-        expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(1889);
+        expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(2129);
     });
 
     it('should call local authority API service with code from response data', () => {

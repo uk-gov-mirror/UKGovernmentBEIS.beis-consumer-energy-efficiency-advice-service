@@ -24,13 +24,15 @@ describe('GrantEligibilityService', () => {
             name: 'LA Grant 1',
             description: 'some LA grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false
+            shouldDisplayWithoutMeasures: false,
+            annualPaymentPounds: null
         },
         {
             name: 'LA Grant 2',
             description: 'another LA grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false
+            shouldDisplayWithoutMeasures: false,
+            annualPaymentPounds: null
         }
     ];
 
@@ -71,11 +73,19 @@ describe('GrantEligibilityService', () => {
         getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
             return Observable.of(GrantEligibility.LikelyEligible);
         }
+
+        getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+            return Observable.of(120);
+        }
     }
 
     class IneligibleNationalGrant extends NationalGrantCalculator {
         getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
             return Observable.of(GrantEligibility.Ineligible);
+        }
+
+        getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+            return Observable.of(null);
         }
     }
 
