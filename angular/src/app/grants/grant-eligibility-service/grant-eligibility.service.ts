@@ -57,7 +57,7 @@ export class GrantEligibilityService {
         const grantResponse = grantsContent.find(grant => grant.slug === grantCalculator.grantId);
         if (!grantResponse) {
             console.error(`No grant info found in wordpress for grant with slug "${ grantCalculator.grantId }"`);
-            return null;
+            return Observable.of(null);
         }
         return grantCalculator.getEligibility(this.responseData)
             .map(eligiblity => new NationalGrantViewModel(grantResponse, eligiblity));
