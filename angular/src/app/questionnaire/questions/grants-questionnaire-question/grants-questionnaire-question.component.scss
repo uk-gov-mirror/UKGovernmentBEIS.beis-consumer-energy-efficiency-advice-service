@@ -1,23 +1,11 @@
+@import 'styles/mixins/buttons';
+
 .grants-questionnaire-question {
   .grants-questionnaire-options {
     margin-top: 64px;
 
     .grants-questionnaire-option {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 240px;
-      height: 120px;
-      border-radius: 32px;
-      border: 1px solid black;
-
-      padding: 20px 50px;
-      box-sizing: border-box;
-
-      font-size: 24px;
-      font-weight: bold;
-
+      @include big-rounded-button;
       &:not(:last-child) {
         margin-right: 64px;
       }
