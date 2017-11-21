@@ -31,7 +31,7 @@ describe('FloorAreaQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set the floor area when inputting a value', async(() => {
+    it('should set floor area when inputting a value', async(() => {
         fixture.whenStable().then(() => {
             // given
             const expectedArea = 100;
