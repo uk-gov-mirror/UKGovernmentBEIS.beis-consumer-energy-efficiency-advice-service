@@ -1,5 +1,5 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
-<div class="boiler-results-page">
+<div class="boiler-results-page" *ngIf="!isLoading && !isError">
     <div class="page-row page-heading">
         <div class="page-row-content">
             <div class="heading-text">Replacing your boiler</div>
@@ -9,9 +9,9 @@
         <div class="page-row-content">
             <div class="heading">Thanks! We've found the following options for you</div>
             <div class="boiler-options">
-                <app-boiler-option-card class="boiler-option"></app-boiler-option-card>
-                <app-boiler-option-card class="boiler-option" [longDescription]="true"></app-boiler-option-card>
-                <app-boiler-option-card class="boiler-option"></app-boiler-option-card>
+                <app-boiler-option-card class="boiler-option"
+                                        *ngFor="let boiler of boilerTypes.slice(0, 3)"
+                                        [boiler]="boiler"></app-boiler-option-card>
             </div>
         </div>
     </div>

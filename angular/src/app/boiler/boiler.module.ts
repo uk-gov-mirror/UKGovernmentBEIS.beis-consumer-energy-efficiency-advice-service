@@ -41,7 +41,7 @@ import { BoilerOptionCardComponent } from './results-page/boiler-option-card/boi
         BoilerEpcReplaceComponent,
         BoilerQuestionnaireComponent,
         BoilerResultsPageComponent,
-    ]
+    ],
 })
 export class BoilerModule {
     static forRoot() {

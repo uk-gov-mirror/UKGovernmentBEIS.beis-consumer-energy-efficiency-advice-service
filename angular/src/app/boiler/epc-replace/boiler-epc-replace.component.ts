@@ -61,7 +61,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
     ];
 
     constructor(private epcApiService: EpcApiService,
-                private recommendationService: MeasureService,
+                private measureService: MeasureService,
                 private boilerTypesService: BoilerTypesService,
                 private route: ActivatedRoute) {
         this.lmkKey = this.route.snapshot.paramMap.get('lmkKey');
@@ -70,13 +70,13 @@ export class BoilerEpcReplaceComponent implements OnInit {
     ngOnInit() {
         Observable.forkJoin(
             this.epcApiService.getRecommendationsForLmkKey(this.lmkKey),
-            this.recommendationService.fetchMeasureDetails(),
+            this.measureService.fetchMeasureDetails(),
             this.boilerTypesService.fetchBoilerTypes(),
         )
             .subscribe(
-                ([epcRecommendations, recommendationDetails, boilerTypes]) => {
+                ([epcRecommendations, measureDetails, boilerTypes]) => {
                     this.handleEpcRecommendationsResponse(epcRecommendations);
-                    this.handleRecommendationDetailsResponse(recommendationDetails);
+                    this.handleMeasureDetailsResponse(measureDetails);
                     this.boilerTypes = sortBy(boilerTypes, type => +(type.installationCostLower));
                 },
                 () => this.handleError(),
@@ -88,7 +88,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
         this.recommendations = response;
     }
 
-    private handleRecommendationDetailsResponse(response) {
+    private handleMeasureDetailsResponse(response) {
         this.staticPartialMeasuresWithCodes.forEach(measureAndCode => {
             if (measureAndCode.code !== undefined) {
                 const measureDetails = response.find(measure => measure.acf.rdsap_measure_code === measureAndCode.code);
