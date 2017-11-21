@@ -34,7 +34,7 @@ export class QuestionHeadingProcessor {
 
     public replacePlaceholders(questionHeading) {
         QuestionHeadingProcessor.QUESTION_HEADING_REPLACEMENTS.forEach(
-            replacement => {
+            (replacement: QuestionHeadingReplacement): void => {
                 questionHeading = questionHeading.replace(replacement.placeholder, replacement.replacementFinder(this.responseData))
             }
         );
