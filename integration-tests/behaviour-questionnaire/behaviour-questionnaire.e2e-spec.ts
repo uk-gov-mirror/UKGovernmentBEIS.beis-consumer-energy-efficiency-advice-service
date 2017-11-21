@@ -36,7 +36,8 @@ describe('Behaviour questionnaire', () => {
         page.goForwards();
 
         CommonPageHelpers.sleep(1000);
-        expect(page.getHeading()).toContain("What percentage of your washing");
+        expect(page.getHeading()).toContain('What percentage of your washing');
+        CommonPageHelpers.clickButton('No tumble dryer');
         page.inputTumbleDryPercentage();
 
         // Number of fridges and freezers
