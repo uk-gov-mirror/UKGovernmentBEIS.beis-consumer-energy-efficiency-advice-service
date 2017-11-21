@@ -51,6 +51,20 @@
           }
         }
       }
+
+      .installer-links {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        margin-top: 32px;
+
+        .link-button {
+          flex: 1 0 1px;
+          &:not(:last-child) {
+            margin-right: 24px;
+          }
+        }
+      }
     }
   }
 }

@@ -11,7 +11,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
 
     isLoading: boolean = true;
     isError: boolean = false;
-    boilerTypes: BoilerType[];
+    applicableBoilerTypes: BoilerType[];
 
     constructor(private boilerTypesService: BoilerTypesService) {
     }
@@ -32,7 +32,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
     }
 
     private handleBoilerTypesResponse(boilerTypes: BoilerType[]) {
-        this.boilerTypes = boilerTypes;
+        this.applicableBoilerTypes = boilerTypes.slice(0, 3);
         this.isLoading = false;
     }
 

@@ -10,8 +10,14 @@
             <div class="heading">Thanks! We've found the following options for you</div>
             <div class="boiler-options">
                 <app-boiler-option-card class="boiler-option"
-                                        *ngFor="let boiler of boilerTypes.slice(0, 3)"
+                                        *ngFor="let boiler of applicableBoilerTypes"
                                         [boiler]="boiler"></app-boiler-option-card>
+            </div>
+            <div class="installer-links">
+                <button class="link-button"
+                        *ngFor="let boiler of applicableBoilerTypes">
+                    Find a trustworthy {{boiler.name}} installer
+                </button>
             </div>
         </div>
     </div>
