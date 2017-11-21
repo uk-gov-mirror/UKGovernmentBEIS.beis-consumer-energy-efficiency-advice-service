@@ -1,6 +1,9 @@
 import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core";
+import {Observable} from "rxjs/Observable";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
+import {EnergySavingMeasure} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 
 @Component({
     selector: 'app-boiler-results-page',
@@ -12,15 +15,25 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
     isLoading: boolean = true;
     isError: boolean = false;
     applicableBoilerTypes: BoilerType[];
+    measures: EnergySavingMeasure[];
 
-    constructor(private boilerTypesService: BoilerTypesService) {
+    constructor(private boilerTypesService: BoilerTypesService,
+                private boilerPageMeasuresService: BoilerPageMeasuresService) {
     }
 
     ngOnInit() {
-        this.boilerTypesService.fetchBoilerTypes().subscribe(
-            boilerTypes => this.handleBoilerTypesResponse(boilerTypes),
-            err => this.handleError(),
-        );
+        Observable.forkJoin(
+            this.boilerTypesService.fetchBoilerTypes(),
+            this.boilerPageMeasuresService.fetchMeasuresForBoilerPages(),
+        )
+            .subscribe(
+                ([boilerTypes, measures]) => {
+                    this.handleBoilerTypesResponse(boilerTypes);
+                    this.measures = measures;
+                },
+                () => this.handleError(),
+                () => this.isLoading = false,
+            );
     }
 
     ngAfterViewInit() {
@@ -33,7 +46,6 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
 
     private handleBoilerTypesResponse(boilerTypes: BoilerType[]) {
         this.applicableBoilerTypes = boilerTypes.slice(0, 3);
-        this.isLoading = false;
     }
 
     private handleError() {
