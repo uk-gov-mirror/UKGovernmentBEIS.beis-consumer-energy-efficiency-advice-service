@@ -8,6 +8,7 @@ import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel
 import toString from "lodash-es/toString";
 import {Epc} from "../../postcode-epc-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
+import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 
 export class RdSapInput {
     readonly epc: Epc;
@@ -15,7 +16,7 @@ export class RdSapInput {
     readonly built_form: string;
     readonly flat_level: string;
     readonly construction_date: string;
-    readonly floor_area: string;
+    readonly floor_area: number;
     readonly num_storeys: number;
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
@@ -43,7 +44,7 @@ export class RdSapInput {
         this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
         this.flat_level = toString(RdSapInput.getFlatLevel(responseData.homeType));
         this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
-        this.floor_area = undefined;
+        this.floor_area = RdSapInput.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
@@ -198,4 +199,13 @@ export class RdSapInput {
 
         return [numberOfHeatingOffHoursPer12Hours, numberOfHeatingOffHoursPer12Hours];
     }
-}
+
+    private static getFloorArea(area: number, unit: FloorAreaUnit): number {
+        const SQUARE_FOOT_PER_SQUARE_METRE = 10.7639;
+        if (unit === FloorAreaUnit.SquareMetre) {
+            return area;
+        } else {
+            return area / SQUARE_FOOT_PER_SQUARE_METRE;
+        }
+    }
+ }

@@ -39,6 +39,7 @@ import {GlazingType, RoofType, WallType} from "../questionnaire/questions/constr
 import {WaterTankSpace} from "../questionnaire/questions/water-tank-question/water-tank-space";
 import {GardenAccessibility} from "../questionnaire/questions/garden-question/garden-accessibility";
 import {RoofSpace} from "../questionnaire/questions/roof-space-question/roof-space";
+import {FloorAreaUnit} from "../questionnaire/questions/floor-area-question/floor-area-unit";
 
 // TODO: this is not currently thoroughly tested because it's all about to change in BEISDEAS-79
 
@@ -114,6 +115,8 @@ describe('ResultsPageComponent', () => {
         flatPosition: FlatPosition.ThreeSidesExposed,
         numberOfStoreys: 1,
         numberOfBedrooms: 1,
+        floorArea: undefined,
+        floorAreaUnit: FloorAreaUnit.SquareMetre,
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
         electricityTariff: undefined,
