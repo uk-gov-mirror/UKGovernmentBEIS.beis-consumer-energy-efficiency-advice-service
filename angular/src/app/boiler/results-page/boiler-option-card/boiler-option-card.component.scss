@@ -1,0 +1,84 @@
+@import "styles/mixins/font";
+@import "styles/var/colours";
+
+.boiler-option-card {
+  .detailed-information {
+    background-color: white;
+    padding: 24px 16px;
+
+    .card-section {
+      &:not(:last-child) {
+        border-bottom: 1px solid $light-medium-grey;
+      }
+
+      padding: 24px 0;
+      box-sizing: border-box;
+      font-size: 18px;
+
+      display: flex;
+      align-items: flex-start;
+
+      .section-name {
+        flex: 1 0 1px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .section-content {
+        flex: 1 0 1px;
+      }
+    }
+
+    .card-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      .boiler-name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 64px;
+
+        .name-text {
+          margin-bottom: 16px;
+          @include focus-text;
+        }
+
+        .read-more {
+          text-decoration: none;
+          color: black;
+          @include body-uppercase;
+        }
+      }
+    }
+  }
+
+  .cost-section {
+    height: 32px;
+    padding: 16px;
+
+    display: flex;
+
+    .section-name {
+      @include body-uppercase;
+      flex: 1 0 1px;
+    }
+
+    .section-content {
+      font-size: 32px;
+      font-weight: bold;
+      flex: 1 0 1px;
+      text-align: center;
+    }
+
+    &.installation {
+      background-color: $light-grey;
+    }
+
+    &.running {
+      background-color: $dark-grey;
+      color: white;
+    }
+  }
+}

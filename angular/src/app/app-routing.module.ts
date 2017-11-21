@@ -15,6 +15,7 @@ import {EnergyEfficiencyQuestionnaireGuard} from "./energy-efficiency/energy-eff
 import {BoilerEpcReplaceComponent} from "./boiler/epc-replace/boiler-epc-replace.component";
 import {GrantsLandingPageComponent} from "./grants/landing-page/grants-landing-page.component";
 import {BoilerQuestionnaireComponent} from "./boiler/boiler-questionnaire/boiler-questionnaire.component";
+import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-page.component";
 
 const routes: Routes = [
     {
@@ -66,6 +67,10 @@ const routes: Routes = [
     {
       path: 'js/boiler/questionnaire',
       component: BoilerQuestionnaireComponent
+    },
+    {
+        path: 'js/boiler/results',
+        component: BoilerResultsPageComponent
     },
     {
         path: ':slug',

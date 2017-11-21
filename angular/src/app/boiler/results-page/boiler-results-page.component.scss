@@ -1,0 +1,56 @@
+@import "styles/mixins/font";
+@import "styles/mixins/buttons";
+@import "styles/var/colours";
+
+.boiler-results-page {
+  .page-row {
+    padding: 48px 0;
+  }
+
+  .heading {
+    @include page-subheading;
+    margin-bottom: 16px;
+  }
+
+  .body-text {
+    font-size: 18px;
+  }
+
+  .link-button {
+    @include boiler-link-button;
+  }
+
+  .large-body-text {
+    font-size: 24px;
+  }
+
+  .page-heading {
+    background-color: $light-grey;
+
+    .heading-text {
+      @include page-heading;
+    }
+  }
+
+  .found-options {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      display: block;
+
+      .boiler-options {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        margin-top: 48px;
+
+        .boiler-option {
+          flex: 1 0 1px;
+          &:not(:last-child) {
+            margin-right: 24px;
+          }
+        }
+      }
+    }
+  }
+}
