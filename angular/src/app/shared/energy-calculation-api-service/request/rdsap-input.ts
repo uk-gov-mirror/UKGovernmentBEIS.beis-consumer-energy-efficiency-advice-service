@@ -57,8 +57,9 @@ export class RdSapInput {
             responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
-        if (responseData.showerType)
+        if (responseData.showerType) {
             this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
+        }
         this.tumble_dry_percentage = responseData.tumbleDryPercentage;
         this.fridge_freezers = responseData.numberOfFridgeFreezers;
         this.fridges = responseData.numberOfFridges;
