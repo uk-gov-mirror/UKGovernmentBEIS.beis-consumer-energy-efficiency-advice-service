@@ -2,6 +2,22 @@
 @import "styles/var/colours";
 @import "styles/boiler";
 
+@mixin flex-n-per-row($n, $margin) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  > * {
+    flex: 0 0 auto;
+    flex-basis: calc((100% - #{$n * $margin} - 1px) / 3);
+    margin-bottom: $margin;
+    &:not(:nth-child(#{$n}n)) {
+      margin-right: $margin;
+    }
+  }
+}
+
 .boiler-results-page {
 
   .found-options {
@@ -11,31 +27,13 @@
       display: block;
 
       .boiler-options {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
+        @include flex-n-per-row(3, 24px);
         margin-top: 48px;
-
-        .boiler-option {
-          flex: 1 0 1px;
-          &:not(:last-child) {
-            margin-right: 24px;
-          }
-        }
       }
 
       .installer-links {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-        margin-top: 32px;
-
-        .link-button {
-          flex: 1 0 1px;
-          &:not(:last-child) {
-            margin-right: 24px;
-          }
-        }
+        @include flex-n-per-row(3, 12px);
+        margin-top: 48px;
       }
     }
   }

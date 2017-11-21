@@ -42,7 +42,10 @@
 
         .name-text {
           margin-bottom: 16px;
-          @include focus-text;
+          font-size: 32px;
+          font-weight: bold;
+          line-height: 1;
+          height: 64px;
         }
 
         .read-more {
