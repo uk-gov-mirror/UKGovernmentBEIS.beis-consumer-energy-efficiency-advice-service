@@ -14,6 +14,8 @@ import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-me
 import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 import {MeasureService} from "../../shared/recommendation-service/measure.service";
+import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
+import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -43,9 +45,9 @@ describe('BoilerEpcReplaceComponent', () => {
         getRecommendationsForLmkKey: (lmkKey) => Observable.of(dummyEpcRecommendationsResponse.rows.map(rec => new EpcRecommendation(rec)))
     };
 
-    const measuresResponse = require('assets/test/measures-response.json');
-    const measureServiceStub = {
-        fetchMeasureDetails: () => Observable.of(measuresResponse)
+    const boilerPageMeasures = require('assets/test/boiler-page-measures.json');
+    const boilerPageMeasuresServiceStub = {
+        fetchMeasuresForBoilerPages: () => Observable.of(boilerPageMeasures)
     };
 
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
@@ -60,6 +62,7 @@ describe('BoilerEpcReplaceComponent', () => {
                 BoilerEpcReplaceComponent,
                 BoilerMakeModelLookupComponent,
                 BoilerReplacementCardComponent,
+                BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
             ],
@@ -68,7 +71,7 @@ describe('BoilerEpcReplaceComponent', () => {
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},
-                {provide: MeasureService, useValue: measureServiceStub},
+                {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
             ],
         })
@@ -79,7 +82,7 @@ describe('BoilerEpcReplaceComponent', () => {
         fixture = TestBed.createComponent(BoilerEpcReplaceComponent);
         component = fixture.componentInstance;
         spyOn(TestBed.get(EpcApiService), 'getRecommendationsForLmkKey').and.callThrough();
-        spyOn(TestBed.get(MeasureService), 'fetchMeasureDetails').and.callThrough();
+        spyOn(TestBed.get(BoilerPageMeasuresService), 'fetchMeasuresForBoilerPages').and.callThrough();
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
 
         component.lmkKey = lmkKey;
@@ -101,7 +104,7 @@ describe('BoilerEpcReplaceComponent', () => {
     });
 
     it('should call recommendations API service', () => {
-        expect(TestBed.get(MeasureService).fetchMeasureDetails).toHaveBeenCalledWith();
+        expect(TestBed.get(BoilerPageMeasuresService).fetchMeasuresForBoilerPages).toHaveBeenCalledWith();
     });
 
     it('should call boiler types API service', () => {
@@ -110,8 +113,8 @@ describe('BoilerEpcReplaceComponent', () => {
 
     it('should store the boiler types returned from the API', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(boilerTypes => {
-            expect(component.boilerTypes.length).toBe(boilerTypes.length);
-            boilerTypes.forEach(boiler => expect(component.boilerTypes).toContain(boiler));
+            expect(component.boilerTypes.length).toBe(Object.values(boilerTypes).length);
+            Object.values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
         });
     });
 
@@ -145,17 +148,18 @@ describe('BoilerEpcReplaceComponent', () => {
 
     it('should show energy saving measures if the boiler does not need replacing', () => {
         // when
-        const expectedMeasures = component.staticPartialMeasuresWithCodes.map(m => m.measure);
         component.recommendations = [noReplaceRecommendation];
         fixture.detectChanges();
 
         // then
-        const recommendationCards = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
-        const actualMeasures = recommendationCards
-            .map(el => el.componentInstance.recommendation);
+        boilerPageMeasuresServiceStub.fetchMeasuresForBoilerPages().toPromise().then(expectedMeasures => {
+            const recommendationCards = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
+            const actualMeasures = recommendationCards
+                .map(el => el.componentInstance.recommendation);
 
-        expect(actualMeasures.length).toBe(expectedMeasures.length);
-        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
+            expect(actualMeasures.length).toBe(expectedMeasures.length);
+            expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
+        });
     });
 
     it('should show the replace section if the boiler needs replacing', () => {

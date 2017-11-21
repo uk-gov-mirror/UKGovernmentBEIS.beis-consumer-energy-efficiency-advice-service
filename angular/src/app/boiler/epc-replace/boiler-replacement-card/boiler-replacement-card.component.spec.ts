@@ -12,6 +12,7 @@ describe('BoilerReplacementCardComponent', () => {
         'Fake boiler',
         'This is not a real boiler',
         '/fake-page',
+        'No space requirements',
         100,
         300,
         20,

@@ -1,0 +1,19 @@
+[{
+  "investmentPounds": 80,
+  "costSavingPoundsPerYear": 10,
+  "readMoreRoute": "/home-improvements/heating-controls-wet-system/",
+  "headline": "Heating controls(wet system)",
+  "summary": "No description available",
+  "iconClassName": "icon-heating"
+}, {
+  "investmentPounds": 15,
+  "costSavingPoundsPerYear": 85,
+  "readMoreRoute": "/home-improvements/hot-water-cylinder-insulation/",
+  "headline": "Hot water cylinder insulation",
+  "summary": "Insulating your water cylinder is a simple and effective way of saving money on your energy bills",
+  "iconClassName": "icon-heating"
+}, {
+  "costSavingPoundsPerYear": 120,
+  "headline": "Drop the thermostat by 1 degree",
+  "iconClassName": "icon-thermometer"
+}]

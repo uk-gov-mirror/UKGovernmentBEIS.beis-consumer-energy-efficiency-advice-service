@@ -52,7 +52,7 @@ export class BoilerPageMeasuresService {
     constructor(private measuresService: MeasureService) {
     }
 
-    private combinedMeasure(partialMeasure: EnergySavingMeasure, apiResponse: MeasureMetadataResponse) {
+    private static combinedMeasure(partialMeasure: EnergySavingMeasure, apiResponse: MeasureMetadataResponse) {
         if (apiResponse !== undefined) {
             return {
                 ...partialMeasure,
@@ -70,11 +70,11 @@ export class BoilerPageMeasuresService {
             BoilerPageMeasuresService.partialMeasuresToShowOnBoilerPages.map(measureAndCode => {
                 if (measureAndCode.code !== undefined) {
                     const measureResponse = measures.find(measure => measure.acf.rdsap_measure_code === measureAndCode.code);
-                    return this.combinedMeasure(measureAndCode.measure, measureResponse);
+                    return BoilerPageMeasuresService.combinedMeasure(measureAndCode.measure, measureResponse);
                 } else {
                     return measureAndCode.measure;
                 }
             })
-        );
+        ).shareReplay(1);
     }
 }
