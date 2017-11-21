@@ -18,6 +18,7 @@ import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation
 import {concat} from "lodash-es";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
+import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -135,7 +136,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             this.recommendations
         );
         this.localGrants = this.availableGrants.filter(grant => {
-            return grant.constructor.name === 'LocalAuthorityGrantViewModel';
+            return grant instanceof LocalAuthorityGrantViewModel;
         });
         this.isLoading = false;
     }
