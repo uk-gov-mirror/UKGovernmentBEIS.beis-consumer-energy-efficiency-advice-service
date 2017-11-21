@@ -58,6 +58,11 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
+        // The start of optional property questions
+        expect(page.getHeading()).toContain('The next set of property questions are optional');
+        CommonPageHelpers.clickButton('Yes');
+        CommonPageHelpers.sleep(1000);
+
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
