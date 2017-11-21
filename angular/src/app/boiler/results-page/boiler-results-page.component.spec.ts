@@ -11,6 +11,8 @@ import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -27,6 +29,10 @@ describe('BoilerResultsPageComponent', () => {
             .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
     };
 
+    const questionnaireServiceStub = {
+        isComplete: () => true
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -40,8 +46,10 @@ describe('BoilerResultsPageComponent', () => {
                 RouterTestingModule,
             ],
             providers: [
+                ResponseData,
                 {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
+                {provide: QuestionnaireService, useValue: questionnaireServiceStub},
             ],
         })
             .compileComponents();

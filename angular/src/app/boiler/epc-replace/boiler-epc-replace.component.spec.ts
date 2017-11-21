@@ -16,6 +16,7 @@ import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/e
 import {MeasureService} from "../../shared/recommendation-service/measure.service";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -56,6 +57,10 @@ describe('BoilerEpcReplaceComponent', () => {
             .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
     };
 
+    const questionnaireServiceStub = {
+        isComplete: () => true
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -73,6 +78,7 @@ describe('BoilerEpcReplaceComponent', () => {
                 {provide: EpcApiService, useValue: epcApiServiceStub},
                 {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
+                {provide: QuestionnaireService, useValue: questionnaireServiceStub},
             ],
         })
             .compileComponents();
