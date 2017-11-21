@@ -5,4 +5,5 @@ export interface GrantViewModel {
     description: string;
     eligibility: GrantEligibility
     shouldDisplayWithoutMeasures: boolean;
+    annualPaymentPounds: number;
 }

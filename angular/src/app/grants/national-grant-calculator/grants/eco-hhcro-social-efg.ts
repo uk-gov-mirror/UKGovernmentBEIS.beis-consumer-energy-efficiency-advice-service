@@ -31,6 +31,10 @@ export class EcoHhcroSocialEfg extends NationalGrantCalculator {
         return isApplicableEpcRating.map(isApplicableEpcRating => isApplicableEpcRating ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
     }
 
+    getAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
+        return Observable.of(null);
+    }
+
     private getEstimatedEpc(responseData: ResponseData): Observable<EpcRating> {
         return this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(responseData))
             .map(response => response ? response['Current-SAP-Band'] : null)

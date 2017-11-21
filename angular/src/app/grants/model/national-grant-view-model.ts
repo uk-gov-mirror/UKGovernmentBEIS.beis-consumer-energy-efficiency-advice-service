@@ -9,7 +9,11 @@ export class NationalGrantViewModel implements GrantViewModel {
     public eligibility: GrantEligibility;
     public shouldDisplayWithoutMeasures: boolean;
 
-    constructor(nationalGrantResponse: NationalGrantContent, grantEligibility: GrantEligibility) {
+    constructor(
+        nationalGrantResponse: NationalGrantContent,
+        grantEligibility: GrantEligibility,
+        public annualPaymentPounds: number
+    ) {
         this.name = nationalGrantResponse.acf.heading;
         this.description = nationalGrantResponse.acf.description;
         this.eligibility = grantEligibility;

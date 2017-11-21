@@ -39,7 +39,7 @@ export class EnergyEfficiencyRecommendation {
     ): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant
-            0, // TODO: calculate cost saving pounds per year (BEISDEAS-104)
+            grantViewModel.annualPaymentPounds || 0,
             0, // No energy saving from a grant
             '', // TODO: router link for more info (BEISDEAS-103)
             grantViewModel.name,

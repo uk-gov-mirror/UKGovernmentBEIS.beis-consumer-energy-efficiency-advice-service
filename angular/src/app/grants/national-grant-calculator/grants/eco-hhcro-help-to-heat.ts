@@ -25,4 +25,8 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
         }
         return Observable.of(eligibility);
     }
+
+    getAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
+        return Observable.of(null);
+    }
 }

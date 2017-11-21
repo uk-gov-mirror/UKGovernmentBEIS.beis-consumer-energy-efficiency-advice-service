@@ -59,8 +59,12 @@ export class GrantEligibilityService {
             console.error(`No grant info found in wordpress for grant with slug "${ grantCalculator.grantId }"`);
             return null;
         }
-        return grantCalculator.getEligibility(this.responseData)
-            .map(eligiblity => new NationalGrantViewModel(grantResponse, eligiblity));
+        return Observable.forkJoin(
+            grantCalculator.getEligibility(this.responseData),
+            grantCalculator.getAnnualPaymentPounds(this.responseData)
+        )
+            .map(([eligibility, annualPaymentPounds]) =>
+                new NationalGrantViewModel(grantResponse, eligibility, annualPaymentPounds));
     }
 
     private static isEligible(grantViewModel: GrantViewModel) {
