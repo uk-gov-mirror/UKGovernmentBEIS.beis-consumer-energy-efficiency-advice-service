@@ -3,13 +3,13 @@ import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {RecommendationCardComponent} from "./recommendation-card.component";
-import {EnergySavingRecommendation} from "./energy-saving-recommendation";
+import {EnergySavingMeasure} from "./energy-saving-recommendation";
 
 describe('RecommendationCardComponent', () => {
     let component: RecommendationCardComponent;
     let fixture: ComponentFixture<RecommendationCardComponent>;
 
-    const recommendation: EnergySavingRecommendation = {
+    const recommendation: EnergySavingMeasure = {
         investmentPounds: 200,
         costSavingPoundsPerYear: 100,
         energySavingKwhPerYear: 100,

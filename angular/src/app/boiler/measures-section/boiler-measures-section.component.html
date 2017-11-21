@@ -1,0 +1,15 @@
+<div class="boiler-measures-section">
+  <div class="heading">There's probably more you can do!</div>
+  <div class="body">
+    <div class="body-text">
+      While your boiler is fine, perhaps there are other things you can do to help save money on your energy bills
+    </div>
+    <button class="link-button">Answer a few more questions to help you save on energy</button>
+  </div>
+  <div class="recommendation-cards">
+    <app-recommendation-card class="recommendation-card"
+                             *ngFor="let measure of measures"
+                             [recommendation]="measure">
+    </app-recommendation-card>
+  </div>
+</div>

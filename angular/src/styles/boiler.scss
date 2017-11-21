@@ -1,0 +1,47 @@
+@import "mixins/font";
+@import "var/colours";
+
+@mixin boiler-link-button {
+  @include body-uppercase;
+  color: white;
+  text-align: left;
+
+  cursor: pointer;
+  border: none;
+  background-color: $dark-grey;
+  &:hover, &:focus {
+    background-color: black;
+  }
+
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.page-row {
+  padding: 48px 0;
+}
+
+.heading {
+  @include page-subheading;
+  margin-bottom: 16px;
+}
+
+.body-text {
+  font-size: 18px;
+}
+
+.body-large {
+  font-size: 22px;
+}
+
+.link-button {
+  @include boiler-link-button;
+}
+
+.page-heading {
+  background-color: $light-grey;
+
+  .heading-text {
+    @include page-heading;
+  }
+}

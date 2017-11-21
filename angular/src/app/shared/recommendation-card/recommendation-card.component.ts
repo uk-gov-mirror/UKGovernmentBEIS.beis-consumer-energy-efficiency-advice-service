@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {EnergySavingRecommendation} from "./energy-saving-recommendation";
+import {EnergySavingMeasure} from "./energy-saving-recommendation";
 
 @Component({
     selector: 'app-recommendation-card',
@@ -9,7 +9,7 @@ import {EnergySavingRecommendation} from "./energy-saving-recommendation";
 export class RecommendationCardComponent implements OnInit {
     savings: string;
 
-    @Input() recommendation: EnergySavingRecommendation;
+    @Input() recommendation: EnergySavingMeasure;
 
     ngOnInit() {
         this.savings = Math.round(this.recommendation.costSavingPoundsPerYear).toString();

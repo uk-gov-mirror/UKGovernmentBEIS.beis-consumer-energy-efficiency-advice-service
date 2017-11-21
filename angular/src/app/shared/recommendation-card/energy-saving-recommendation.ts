@@ -2,7 +2,7 @@ import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-s
 import * as parse from "url-parse";
 import {MeasureMetadataResponse} from "../recommendation-service/measure-metadata-response";
 
-export class EnergySavingRecommendation {
+export class EnergySavingMeasure {
 
     constructor(public investmentPounds: number,
                 public costSavingPoundsPerYear: number,
@@ -15,8 +15,8 @@ export class EnergySavingRecommendation {
 
     static fromResponseData(energySavingMeasureResponse: EnergySavingMeasureResponse,
                             recommendationMetadata: MeasureMetadataResponse,
-                            iconClassName: string): EnergySavingRecommendation {
-        return new EnergySavingRecommendation(
+                            iconClassName: string): EnergySavingMeasure {
+        return new EnergySavingMeasure(
             Math.floor(Math.random() * 99) + 1,
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,

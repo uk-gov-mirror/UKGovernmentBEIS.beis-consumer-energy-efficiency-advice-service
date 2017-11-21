@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {EnergyCalculationApiService} from "../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {ResponseData} from "../shared/response-data/response-data";
 import {RdSapInput} from "../shared/energy-calculation-api-service/request/rdsap-input";
-import {EnergySavingRecommendation} from "../shared/recommendation-card/energy-saving-recommendation";
+import {EnergySavingMeasure} from "../shared/recommendation-card/energy-saving-recommendation";
 import {EnergyCalculationResponse} from "../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculations} from "./potentials/energy-calculations";
 import {LocalAuthorityService} from "../shared/local-authority-service/local-authority.service";
@@ -28,7 +28,7 @@ export class ResultsPageComponent implements OnInit {
 
     availableGrants: GrantViewModel[];
 
-    recommendations: EnergySavingRecommendation[];
+    recommendations: EnergySavingMeasure[];
     displayedRecommendations: number = 4;
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
@@ -112,7 +112,7 @@ export class ResultsPageComponent implements OnInit {
                     return null;
                 }
                 this.addLinkedPagesIfNotAlreadyFeatured(recommendationMetadata);
-                return EnergySavingRecommendation.fromResponseData(
+                return EnergySavingMeasure.fromResponseData(
                     this.energyCalculationResponse.measures[measureCode],
                     recommendationMetadata,
                     MeasureService.measureIcons[measureCode]
