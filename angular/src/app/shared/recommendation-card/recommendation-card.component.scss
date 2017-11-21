@@ -1,6 +1,10 @@
 @import "styles/mixins/font";
 @import "styles/var/colours";
-@import "../../results-page/results-page-sizes";
+@import "styles/page";
+
+$investment-box-width: 180px;
+$savings-box-width: 180px;
+$remaining-boxes-width: $content-max-width - $investment-box-width - $savings-box-width;
 
 :host {
   display: block;

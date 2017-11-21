@@ -16,7 +16,9 @@ describe('NationalGrantsContentService', () => {
             acf: {
                 heading: "Eligible grant 1",
                 description: "Get paid for creating your own green energy.",
-                measures: []
+                measures: [],
+                display_without_measures: false,
+                link_to_measures: true
             },
             slug: "an-eligible-grant"
         },
@@ -24,7 +26,9 @@ describe('NationalGrantsContentService', () => {
             acf: {
                 heading: "Eligible grant 2",
                 description: "Get cash if you install or have already installed an eligible renewable heating technology.",
-                measures: []
+                measures: [],
+                display_without_measures: false,
+                link_to_measures: true
             },
             slug: "another-eligible-grant"
         },
@@ -32,7 +36,9 @@ describe('NationalGrantsContentService', () => {
             acf: {
                 heading: "Ineligible grant",
                 description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
-                measures: []
+                measures: [],
+                display_without_measures: false,
+                link_to_measures: true
             },
             slug: "ineligible-grant"
         }

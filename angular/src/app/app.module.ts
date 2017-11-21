@@ -8,14 +8,13 @@ import {FormsModule} from "@angular/forms";
 import {AppComponent} from "./app.component";
 import {QuestionnaireModule} from "./questionnaire/questionnaire.module";
 import {SharedModule} from "./shared/shared.module";
-import {ResultsPageModule} from "./results-page/results-page.module";
 import {HomePageModule} from "./home-page/home-page.module";
 import {LandingPageModule} from "./landing-page/landing-page.module";
 import {LayoutComponentsModule} from "./layout-components/layout-components.module";
 import {PageModule} from "./page/page.module";
 import {BoilerModule} from "./boiler/boiler.module";
 import {GrantsModule} from "./grants/grants.module";
-import {EnergyEfficiencyQuestionnaireModule} from "./energy-efficiency/energy-efficiency.module";
+import {EnergyEfficiencyModule} from "./energy-efficiency/energy-efficiency.module";
 
 @NgModule({
     declarations: [
@@ -29,8 +28,7 @@ import {EnergyEfficiencyQuestionnaireModule} from "./energy-efficiency/energy-ef
         FormsModule,
         SharedModule.forRoot(),
         QuestionnaireModule.forRoot(),
-        EnergyEfficiencyQuestionnaireModule.forRoot(),
-        ResultsPageModule,
+        EnergyEfficiencyModule.forRoot(),
         HomePageModule,
         GrantsModule.forRoot(),
         PageModule.forRoot(),

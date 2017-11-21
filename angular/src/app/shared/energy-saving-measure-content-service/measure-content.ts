@@ -1,6 +1,6 @@
 import {AcfPageResponse} from "./acf-page-response";
 
-export interface MeasureMetadataResponse {
+export interface MeasureContent {
     acf: {
         rdsap_measure_code: string;
         headline: string;

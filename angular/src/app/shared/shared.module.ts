@@ -20,8 +20,8 @@ import {PostcodeApiService} from "./postcode-epc-service/postcode-api-service/po
 import {LocalAuthorityService} from "./local-authority-service/local-authority.service";
 import {RecommendationCardComponent} from "./recommendation-card/recommendation-card.component";
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
-import {MeasureService} from "./recommendation-service/measure.service";
 import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
+import {EnergySavingMeasureContentService} from "./energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 @NgModule({
     declarations: [
@@ -63,7 +63,7 @@ export class SharedModule {
                 PostcodeEpcService,
                 PostcodeApiService,
                 LocalAuthorityService,
-                MeasureService,
+                EnergySavingMeasureContentService,
                 GoogleAnalyticsService
             ]
         };

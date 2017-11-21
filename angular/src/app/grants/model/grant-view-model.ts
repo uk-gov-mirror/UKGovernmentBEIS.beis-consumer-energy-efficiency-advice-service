@@ -4,4 +4,5 @@ export interface GrantViewModel {
     name: string;
     description: string;
     eligibility: GrantEligibility
+    shouldDisplayWithoutMeasures: boolean;
 }

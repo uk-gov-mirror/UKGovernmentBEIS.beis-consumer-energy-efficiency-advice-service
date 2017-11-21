@@ -67,6 +67,14 @@ function setup_national_grant_acf_group() {
                     'maxlength' => '',
                 ),
                 array (
+                    'key' => 'field_5a130423bd41e',
+                    'label' => 'Link to measures?',
+                    'name' => 'link_to_measures',
+                    'type' => 'true_false',
+                    'instructions' => 'Can this grant be used to fund specific recommended home improvement measures?',
+                    'default_value' => ''
+                ),
+                array (
                     'key' => 'field_5a0d96a77de6d',
                     'label' => 'Measures',
                     'name' => 'measures',
@@ -87,6 +95,25 @@ function setup_national_grant_acf_group() {
                         1 => 'post_title',
                     ),
                     'max' => '',
+                    'conditional_logic' => array (
+                        'status' => 1,
+                        'rules' => array (
+                            array (
+                                'field' => 'field_5a130423bd41e',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                        'allorany' => 'all',
+                    )
+                ),
+                array (
+                    'key' => 'field_5a13037c70fa5',
+                    'label' => 'Display without matching measures?',
+                    'name' => 'display_without_measures',
+                    'type' => 'true_false',
+                    'instructions' => 'Should this grant be included as a standalone recommendation on the results page without any matching measures?',
+                    'default_value' => ''
                 )
             ),
             'location' => array (

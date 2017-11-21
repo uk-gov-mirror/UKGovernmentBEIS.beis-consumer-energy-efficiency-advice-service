@@ -51,6 +51,8 @@ $border-width: 1px;
 @mixin arrow-button($width, $height) {
   @include default-button($width, $height);
   position: relative;
+  box-sizing: content-box;
+  padding: 0;
 
   &:after {
     right: -$height - 3 * $border-width;

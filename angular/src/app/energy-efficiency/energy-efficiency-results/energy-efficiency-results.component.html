@@ -1,0 +1,55 @@
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-need-help></app-need-help>
+<div class="results-page" *ngIf="!isLoading && !isError">
+    <div class="page-row results-header-row">
+        <div class="page-row-content">
+            <div class="heading-text">Your energy recommendations</div>
+            <app-data-card
+                    heading="Your current score is"
+                    value="55"
+                    includeColourCircle="true"
+            ></app-data-card>
+            <app-data-card
+                    heading="Your estimated monthly bills are"
+                    [value]="'£' + energyCalculations.currentMonthlyBillPoundsRounded"
+            ></app-data-card>
+            <app-data-card
+                    heading="CO2 emissions per year (tonnes)"
+                    [value]="energyCalculations.currentCo2EmissionsPerYearTonnes"
+            ></app-data-card>
+        </div>
+    </div>
+    <div class="page-row recommendations">
+        <div class="page-row-content">
+            <div class="recommendations-heading">
+                Our top {{displayedRecommendations}} recommendations for you
+            </div>
+            <div class="recommendations-subheading">
+                Based on your answers we've found a range of measures you can add to your plan
+            </div>
+            <div class="recommendation-cards">
+                <app-energy-efficiency-recommendation-card
+                        *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations) trackBy $index"
+                        [recommendation]="recommendation"
+                    ></app-energy-efficiency-recommendation-card>
+                <button class="expand-recommendations-list" *ngIf="shouldDisplayExpandRecommendationsListButton()"
+                        (click)="toggleDisplayAllRecommendations()">
+                    {{getExpandRecommendationsListButtonText()}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="page-row" *ngIf="localGrants && localGrants.length > 0">
+        <div class="local-grants page-row-content">
+            <div class="subheading">Local Authority grants you might be eligible for</div>
+            <div class="local-authority">You live in {{localAuthorityName}} and we've found the following:</div>
+            <div class="grant-cards">
+                <app-grant-card class="grant-card"
+                                *ngFor="let grant of localGrants"
+                                [grant]="grant">
+                </app-grant-card>
+
+            </div>
+        </div>
+    </div>
+</div>

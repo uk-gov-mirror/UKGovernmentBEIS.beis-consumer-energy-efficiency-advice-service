@@ -3,6 +3,8 @@ export interface NationalGrantContent {
     acf: {
         heading: string;
         description: string;
-        measures: any[]
+        measures: any[];
+        link_to_measures: boolean;
+        display_without_measures: boolean;
     }
 }
