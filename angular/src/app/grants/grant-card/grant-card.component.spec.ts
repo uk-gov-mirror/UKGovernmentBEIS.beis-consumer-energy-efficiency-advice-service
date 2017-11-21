@@ -13,7 +13,8 @@ describe('GrantCardComponent', () => {
         name: 'Name',
         description: 'Description',
         eligibility: GrantEligibility.MayBeEligible,
-        shouldDisplayWithoutMeasures: false
+        shouldDisplayWithoutMeasures: false,
+        annualPaymentPounds: 120
     };
 
     beforeEach(async(() => {

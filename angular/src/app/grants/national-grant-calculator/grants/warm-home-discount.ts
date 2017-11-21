@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 export class WarmHomeDiscount extends NationalGrantCalculator {
 
     private static readonly QUALIFYING_BENEFIT = Benefits.PensionGuaranteeCredit;
+    private static readonly ANNUAL_PAYMENT_POUNDS = 140;
 
     constructor() {
         super('warm-home-discount');
@@ -21,5 +22,9 @@ export class WarmHomeDiscount extends NationalGrantCalculator {
             // TODO: improve this (BEISDEAS-96)
         }
         return Observable.of(eligibility);
+    }
+
+    getAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
+        return Observable.of(WarmHomeDiscount.ANNUAL_PAYMENT_POUNDS);
     }
 }
