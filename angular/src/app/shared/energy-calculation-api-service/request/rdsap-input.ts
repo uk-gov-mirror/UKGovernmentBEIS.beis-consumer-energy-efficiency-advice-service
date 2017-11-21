@@ -11,6 +11,8 @@ import {ShowerType} from "../../../questionnaire/questions/shower-type-question/
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 
 export class RdSapInput {
+    public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
+
     readonly epc: Epc;
     readonly property_type: string;
     readonly built_form: string;
@@ -201,11 +203,10 @@ export class RdSapInput {
     }
 
     private static getFloorArea(area: number, unit: FloorAreaUnit): number {
-        const SQUARE_FOOT_PER_SQUARE_METRE = 10.7639;
         if (unit === FloorAreaUnit.SquareMetre) {
             return area;
         } else {
-            return area / SQUARE_FOOT_PER_SQUARE_METRE;
+            return area / RdSapInput.SQUARE_FOOT_PER_SQUARE_METRE;
         }
     }
  }

@@ -19,7 +19,8 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent {
     floorAreaDisplay: number;
 
     floorAreaUnits: FloorAreaUnitOption[] = [
-        {basicUnitDisplay: 'm', value: FloorAreaUnit.SquareMetre},{basicUnitDisplay: 'ft', value: FloorAreaUnit.SquareFoot}
+        {basicUnitDisplay: 'm', value: FloorAreaUnit.SquareMetre},
+        {basicUnitDisplay: 'ft', value: FloorAreaUnit.SquareFoot}
     ];
 
     get responseForAnalytics(): string {
@@ -36,6 +37,9 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent {
 
     ngOnInit() {
         this.floorAreaDisplay = this.responseData.floorArea;
+        if (this.responseData.floorAreaUnit === undefined) {
+            this.responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
+        }
     }
 
     updateResponseData(value) {

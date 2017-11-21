@@ -43,6 +43,7 @@ describe('FloorAreaQuestionComponent', () => {
 
             // then
             expect(responseData.floorArea).toBe(expectedArea);
+            expect(responseData.floorAreaUnit).toBe(component.floorAreaUnits[0].value)
         })
     }));
 
