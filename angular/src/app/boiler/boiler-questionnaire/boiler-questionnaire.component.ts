@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-boiler-questionnaire',
@@ -7,9 +8,10 @@ import {Component} from "@angular/core";
 })
 export class BoilerQuestionnaireComponent {
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     onQuestionnaireComplete() {
+        this.router.navigate(['/js/boiler/results']);
     }
 }

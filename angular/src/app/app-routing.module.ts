@@ -16,6 +16,7 @@ import {BoilerEpcReplaceComponent} from "./boiler/epc-replace/boiler-epc-replace
 import {GrantsLandingPageComponent} from "./grants/landing-page/grants-landing-page.component";
 import {BoilerQuestionnaireComponent} from "./boiler/boiler-questionnaire/boiler-questionnaire.component";
 import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-page.component";
+import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-page.guard";
 
 const routes: Routes = [
     {
@@ -65,12 +66,13 @@ const routes: Routes = [
         component: BoilerEpcReplaceComponent
     },
     {
-      path: 'js/boiler/questionnaire',
-      component: BoilerQuestionnaireComponent
+        path: 'js/boiler/questionnaire',
+        component: BoilerQuestionnaireComponent
     },
     {
         path: 'js/boiler/results',
-        component: BoilerResultsPageComponent
+        component: BoilerResultsPageComponent,
+        canActivate: [BoilerResultsPageRouteGuard]
     },
     {
         path: ':slug',
