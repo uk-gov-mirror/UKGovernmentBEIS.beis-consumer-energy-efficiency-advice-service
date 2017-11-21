@@ -35,14 +35,14 @@ describe('OptionalPropertyQuestionComponent', () => {
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {
-            let yesOption = fixture.debugElement.query(By.css('#yes-option'));
+            const yesOption = fixture.debugElement.query(By.css('#yes-option'));
             expect(yesOption.classes.selected).toBeTruthy();
         });
     }));
 
     it('should set the response', () => {
         // when
-        let yesOption = fixture.debugElement.query(By.css('#yes-option')).nativeElement;
+        const yesOption = fixture.debugElement.query(By.css('#yes-option')).nativeElement;
         yesOption.click();
 
         // then

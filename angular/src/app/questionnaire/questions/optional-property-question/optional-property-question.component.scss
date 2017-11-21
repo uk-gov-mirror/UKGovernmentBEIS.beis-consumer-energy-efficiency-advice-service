@@ -1,17 +1,15 @@
 @import 'styles/mixins/buttons';
 
 .optional-property-question {
-  .optional-property-question-options .optional-property-question-option {
-    @include capsule-button(200px, 50px);
-    font-size: 20px;
-    background-color: white;
-    border: none;
-    width: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+  .optional-property-question-options {
+    margin-top: 64px;
 
-    &:not(:last-child) {
-      margin-right: 64px;
+    .optional-property-question-option {
+      @include big-rounded-button;
+
+      &:not(:last-child) {
+        margin-right: 64px;
+      }
     }
   }
 }
