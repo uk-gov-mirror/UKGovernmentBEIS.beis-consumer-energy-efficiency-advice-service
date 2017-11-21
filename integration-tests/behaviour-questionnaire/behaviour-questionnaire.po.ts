@@ -9,4 +9,8 @@ export class BehaviourQuestionnairePage extends QuestionnairePage{
     selectShowerType() {
         browser.element(By.cssContainingText('option', 'I don\'t know')).click();
     }
+
+    inputTumbleDryPercentage() {
+        browser.element(By.css('.no-tumble-dryer-button')).click();
+    }
 }

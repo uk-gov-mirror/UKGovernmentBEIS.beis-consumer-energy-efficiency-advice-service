@@ -18,10 +18,22 @@ import {
 })
 export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implements OnInit {
 
-    static readonly AVERAGE_EPC_RATING = 'D';
+    private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
+
+    private static readonly AVERAGE_ENERGY_COSTS: { [epcRating: number]: number } = {
+        [EpcRating.A]: 700,
+        [EpcRating.B]: 700,
+        [EpcRating.C]: 1000,
+        [EpcRating.D]: 1400,
+        [EpcRating.E]: 1650,
+        [EpcRating.F]: 2200,
+        [EpcRating.G]: 2850
+    };
+
+    EpcRating = EpcRating;
 
     isEpcAvailable: boolean;
-    epcRating: string;
+    epcRating: EpcRating;
     epcRatingRelativeDescription: string;
     homeType: HomeType;
     homeTypeDescription: string;
@@ -38,6 +50,18 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     ngOnInit() {
         this.getDetailsFromResponseData();
+    }
+
+    get averageEpcRating(): EpcRating {
+        return ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
+    }
+
+    get epcRatingWorseThanAverage(): boolean {
+        return this.epcRating > ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
+    }
+
+    getAverageEnergyCost(epcRating: EpcRating): number {
+        return ConfirmEpcQuestionComponent.AVERAGE_ENERGY_COSTS[epcRating];
     }
 
     get response(): EpcConfirmation {
@@ -65,7 +89,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         }
         this.isEpcAvailable = true;
 
-        this.epcRating = EpcRating[epc.currentEnergyRating];
+        this.epcRating = epc.currentEnergyRating;
         this.epcRatingRelativeDescription = ConfirmEpcQuestionComponent.getEpcRatingRelativeDescription(this.epcRating);
 
         this.homeType = (this.response && this.response.homeType) || getHomeTypeFromEpc(epc);
@@ -98,12 +122,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.confirmEpcDetails();
     }
 
-
-    getAverageEpcRating(): string {
-        return ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
-    }
-
-    static getEpcRatingRelativeDescription(epcRating: string): string {
+    static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
         if (epcRating === ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING) {
             return 'This means your home\'s efficiency is about average.'
         }

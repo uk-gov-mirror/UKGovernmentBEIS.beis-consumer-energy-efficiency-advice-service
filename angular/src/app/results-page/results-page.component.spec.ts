@@ -125,6 +125,7 @@ describe('BoilerResultsPageComponent', () => {
         showerType: ShowerType.None,
         numberOfShowersPerWeek: 0,
         numberOfBathsPerWeek: 45,
+        tumbleDryPercentage: undefined,
         numberOfFridgeFreezers: 0,
         numberOfFridges: 0,
         numberOfFreezers: 0,
