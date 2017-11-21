@@ -1,10 +1,7 @@
 @import "styles/mixins/epc-rating";
 
-$left-column-width: 50%;
-$right-column-width: 100% - $left-column-width;
 $section-break-margin: 40px;
 $epc-rating-width: 40px;
-$epc-rating-margin: 40px;
 
 .confirm-epc-question {
   display: flex;
@@ -22,23 +19,20 @@ $epc-rating-margin: 40px;
     flex-direction: row;
     margin: $section-break-margin 0;
 
-    .epc-rating-header, .epc-rating-description {
+    .epc-rating-column {
+      width: 1px;
       flex-grow: 1;
+      margin-right: 40px;
     }
 
-    .epc-rating-header {
+    .epc-rating-row {
       display: flex;
-      flex-basis: calc(#{$right-column-width} - #{$epc-rating-width} - 2 * #{$epc-rating-margin});
-    }
+      align-items: center;
 
-    .epc-rating {
-      @include epc-rating($epc-rating-width);
-      margin: 0 $epc-rating-margin;
-    }
-
-    .epc-rating-description {
-      align-items: left;
-      flex-basis: $right-column-width;
+      .epc-rating {
+        @include epc-rating($epc-rating-width);
+        margin-left: 40px;
+      }
     }
   }
 
@@ -51,7 +45,7 @@ $epc-rating-margin: 40px;
     .epc-details-container {
       display: flex;
       flex-direction: column;
-      flex-basis: $left-column-width;
+      flex-basis: 50%;
 
       .epc-details-header {
         font-weight: bold;
@@ -71,7 +65,7 @@ $epc-rating-margin: 40px;
       display: flex;
       flex-direction: column;
       font-weight: bold;
-      flex-basis: $right-column-width;
+      flex-basis: 50%;
       justify-content: space-between;
 
       .confirm-epc-details-row {

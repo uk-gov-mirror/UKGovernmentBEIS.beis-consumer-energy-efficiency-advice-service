@@ -1,11 +1,29 @@
 <div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
     <div class="horizontal-line" *ngIf="epcRating"></div>
     <div class="epc-rating-container" *ngIf="epcRating">
-        <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
-        <div class="epc-rating">{{epcRating}}</div>
-        <div class="epc-rating-description">
-            <span>{{epcRatingRelativeDescription}}</span><br>
-            <span>Most homes appear around grade </span><span>{{getAverageEpcRating()}}</span><span>.</span>
+        <div class="epc-rating-column">
+            <div class="epc-rating-row">
+                <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
+                <div class="epc-rating">{{EpcRating[epcRating]}}</div>
+            </div>
+            <div class="epc-rating-description">
+                <p>
+                    {{epcRatingRelativeDescription}}<br>
+                    Most homes appear around grade {{EpcRating[averageEpcRating]}}.
+                </p>
+                <p>
+                    The average cost of energy for a property in your band is £{{getAverageEnergyCost(epcRating)}}.
+                    <span *ngIf="epcRatingWorseThanAverage">
+                        For reference, for a Band {{EpcRating[averageEpcRating]}} this is around £{{getAverageEnergyCost(averageEpcRating)}}.
+                    </span>
+                </p>
+                <p>
+                    Continue this questionnaire to find out ways this could be improved.
+                </p>
+            </div>
+        </div>
+        <div class="epc-rating-column">
+            <img src="wp-content/themes/angular-theme/dist/assets/images/epc-ratings/EPC_Image-{{EpcRating[epcRating]}}.png">
         </div>
     </div>
     <div class="horizontal-line"></div>
