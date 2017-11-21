@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
+import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
 import {EnergySavingMeasure} from "../../shared/recommendation-card/energy-saving-recommendation";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 
@@ -44,8 +44,8 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         this.setEqualHeightsOnOptionCardSections();
     }
 
-    private handleBoilerTypesResponse(boilerTypes: BoilerType[]) {
-        this.applicableBoilerTypes = boilerTypes.slice(0, 3);
+    private handleBoilerTypesResponse(boilerTypes: AllBoilerTypes) {
+        this.applicableBoilerTypes = [boilerTypes['combi-boiler'], boilerTypes['regular-boiler'], boilerTypes['ground-source-heat-pump']];
     }
 
     private handleError() {

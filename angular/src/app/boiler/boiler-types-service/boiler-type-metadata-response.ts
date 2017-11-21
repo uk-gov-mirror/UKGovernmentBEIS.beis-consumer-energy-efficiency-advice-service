@@ -1,4 +1,5 @@
 export interface BoilerTypeMetadataResponse {
+    slug: string;
     acf: {
         name: string;
         description: string;

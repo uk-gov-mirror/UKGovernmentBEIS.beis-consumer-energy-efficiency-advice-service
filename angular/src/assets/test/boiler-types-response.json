@@ -1,4 +1,17 @@
 [{
+  "id": 3607,
+  "acf": {
+    "name": "Combi Boiler",
+    "description": "A combi boiler provides heat for your radiators and domestic hot water on demand.",
+    "space_requirement": "Boiler only (a small cupboard)",
+    "installation_cost_lower_bound": "499",
+    "installation_cost_upper_bound": "825",
+    "lifetime": "15",
+    "running_cost": "1300",
+    "featured_page": "http:\/\/localhost:81\/about\/"
+  },
+  "slug": "combi-boiler"
+}, {
   "id": 3239,
   "acf": {
     "name": "Biomass Boiler",
@@ -7,8 +20,10 @@
     "installation_cost_upper_bound": "19000",
     "lifetime": "15",
     "running_cost": "1200",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "No information available"
+  },
+  "slug": "biomass-boiler"
 }, {
   "id": 3237,
   "acf": {
@@ -18,8 +33,10 @@
     "installation_cost_upper_bound": "9000",
     "lifetime": "20",
     "running_cost": "1300",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "No information available"
+  },
+  "slug": "micro-chp-boiler"
 }, {
   "id": 3235,
   "acf": {
@@ -29,8 +46,10 @@
     "installation_cost_upper_bound": "5000",
     "lifetime": "20",
     "running_cost": "0",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "No information available"
+  },
+  "slug": "solar-water-heater"
 }, {
   "id": 3233,
   "acf": {
@@ -40,8 +59,10 @@
     "installation_cost_upper_bound": "18000",
     "lifetime": "50",
     "running_cost": "750",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "Space for the pipes (underground in a garden of at least 400 square metres) and the heat pump (a small room or outbuilding)"
+  },
+  "slug": "ground-source-heat-pump"
 }, {
   "id": 3231,
   "acf": {
@@ -51,8 +72,10 @@
     "installation_cost_upper_bound": "11000",
     "lifetime": "20",
     "running_cost": "950",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "No information available"
+  },
+  "slug": "air-source-heat-pump"
 }, {
   "id": 3229,
   "acf": {
@@ -62,8 +85,10 @@
     "installation_cost_upper_bound": "825",
     "lifetime": "15",
     "running_cost": "1100",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "Room for cylinder (a full-length cupboard) and tank (a loft or very large cupboard)"
+  },
+  "slug": "regular-boiler"
 }, {
   "id": 3226,
   "acf": {
@@ -73,17 +98,8 @@
     "installation_cost_upper_bound": "910",
     "lifetime": "15",
     "running_cost": "1000",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
-}, {
-  "id": 3223,
-  "acf": {
-    "name": "Combi Boiler",
-    "description": "A combi boiler provide heat for your radiators and domestic hot water on demand.",
-    "installation_cost_lower_bound": "499",
-    "installation_cost_upper_bound": "825",
-    "lifetime": "15",
-    "running_cost": "1300",
-    "featured_page": "http:\/\/localhost:81\/about\/"
-  }
+    "featured_page": "http:\/\/localhost:81\/about\/",
+    "space_requirement": "No information available"
+  },
+  "slug": "system-boiler"
 }]

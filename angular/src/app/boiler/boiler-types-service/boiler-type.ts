@@ -29,3 +29,11 @@ export class BoilerType {
         );
     }
 }
+
+export class AllBoilerTypes {
+    [slug: string]: BoilerType;
+
+    constructor(boilerApiResponse: BoilerTypeMetadataResponse[]) {
+        boilerApiResponse.forEach(boiler => this[boiler.slug] = BoilerType.fromMetadata(boiler));
+    }
+}
