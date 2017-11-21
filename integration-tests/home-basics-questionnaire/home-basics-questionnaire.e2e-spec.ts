@@ -68,6 +68,16 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.clickButton('I don\'t know');
         CommonPageHelpers.sleep(1000);
 
+        // Construction insulation
+        expect(page.getHeading()).toContain('What best describes the construction');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Garden
+        expect(page.getHeading()).toContain('Do you have a garden');
+        CommonPageHelpers.clickButton('No garden');
+        CommonPageHelpers.sleep(1000);
+
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
