@@ -1,7 +1,6 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 
-import {PotentialsComponent} from "../../results-page/potentials/potentials.component";
 import {RoutingModule} from "../../app-routing.module";
 import {SharedModule} from "../../shared/shared.module";
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
@@ -12,7 +11,6 @@ import {GrantsModule} from "../../grants/grants.module";
 @NgModule({
     declarations: [
         EnergyEfficiencyResultsComponent,
-        PotentialsComponent,
         EnergyEfficiencyRecommendationCardComponent,
         DataCardComponent
     ],

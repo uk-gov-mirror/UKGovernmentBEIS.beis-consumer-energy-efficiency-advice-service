@@ -3,7 +3,7 @@ import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-s
 import {ResponseData} from "../../shared/response-data/response-data";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
-import {EnergyCalculations} from "../../results-page/potentials/energy-calculations";
+import {EnergyCalculations} from "./energy-calculations";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import keys from "lodash-es/keys";
@@ -46,8 +46,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private measureService: EnergySavingMeasureContentService,
                 private questionnaireService: QuestionnaireService,
                 private grantsEligibilityService: GrantEligibilityService,
-                private localAuthorityService: LocalAuthorityService
-    ) {
+                private localAuthorityService: LocalAuthorityService) {
     }
 
     ngOnInit() {
@@ -126,36 +125,62 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private onLoadingComplete() {
-        const energyEfficiencyRecommendations = keys(this.energyCalculationResponse.measures)
+        this.recommendations = EnergyEfficiencyResultsComponent.getAllRecommendationsOrderedBySaving(
+            this.energyCalculationResponse,
+            this.availableGrants,
+            this.measuresContent
+        );
+        this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
+            this.energyCalculationResponse,
+            this.recommendations
+        );
+        this.localGrants = this.availableGrants.filter(grant => {
+            return grant.constructor.name === 'LocalAuthorityGrantViewModel';
+        });
+        this.isLoading = false;
+    }
+
+    private static getAllRecommendationsOrderedBySaving(energyCalculationResponse: EnergyCalculationResponse,
+                                                        availableGrants: GrantViewModel[],
+                                                        measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+        const homeImprovementRecommendations = EnergyEfficiencyResultsComponent
+            .getHomeImprovementRecommendations(energyCalculationResponse, measuresContent);
+        const grantRecommendations = EnergyEfficiencyResultsComponent.getGrantRecommendations(availableGrants);
+        const allRecommendations = concat(homeImprovementRecommendations, grantRecommendations);
+        return orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+    }
+
+    private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,
+                                         recommendations: EnergyEfficiencyRecommendation[]): EnergyCalculations {
+        const potentialEnergyBillSavingPoundsPerYear = sumBy(
+            recommendations,
+            recommendation => recommendation.costSavingPoundsPerYear
+        );
+        return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
+    }
+
+    private static getHomeImprovementRecommendations(energyCalculationResponse: EnergyCalculationResponse,
+                                                     measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+        return keys(energyCalculationResponse.measures)
             .map(measureCode => {
-                const recommendationMetadata: MeasureContent = this.measuresContent
+                const recommendationMetadata: MeasureContent = measuresContent
                     .find((recommendationTypeDetail) => recommendationTypeDetail.acf.rdsap_measure_code === measureCode);
                 if (!recommendationMetadata) {
                     console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
                 return EnergyEfficiencyRecommendation.fromMeasure(
-                    this.energyCalculationResponse.measures[measureCode],
+                    energyCalculationResponse.measures[measureCode],
                     recommendationMetadata,
                     EnergySavingMeasureContentService.measureIcons[measureCode]
                 )
             })
             .filter(measure => measure);
-        const grantRecommendations = this.availableGrants
+    }
+
+    private static getGrantRecommendations(grants: GrantViewModel[]): EnergyEfficiencyRecommendation[] {
+        return grants
             .filter(grant => grant.shouldDisplayWithoutMeasures)
             .map(grant => EnergyEfficiencyRecommendation.fromGrant(grant, 'icon-grant'));
-        const allRecommendations = concat(energyEfficiencyRecommendations, grantRecommendations);
-        this.recommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
-        const potentialEnergyBillSavingPoundsPerYear = sumBy(
-            this.recommendations,
-            recommendation => recommendation.costSavingPoundsPerYear
-        );
-        this.energyCalculations = new EnergyCalculations(this.energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
-        this.localGrants = this.availableGrants.filter(grant => {
-            console.log(grant.constructor.name);
-            return grant.constructor.name === 'LocalAuthorityGrantViewModel';
-        });
-        this.isLoading = false;
-        console.log(this.localGrants);
     }
 }

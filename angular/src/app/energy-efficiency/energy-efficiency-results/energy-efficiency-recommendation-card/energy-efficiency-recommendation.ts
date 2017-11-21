@@ -17,7 +17,7 @@ export class EnergyEfficiencyRecommendation {
     }
 
     static fromMeasure(
-        energySavingMeasureResponse: EnergySavingMeasureResponse,
+       energySavingMeasureResponse: EnergySavingMeasureResponse,
        measureContent: MeasureContent,
        iconClassName: string
     ): EnergyEfficiencyRecommendation {

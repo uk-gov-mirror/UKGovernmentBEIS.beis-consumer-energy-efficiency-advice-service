@@ -15,7 +15,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     private static readonly MONTHLY_SAVING_POUNDS_ROUNDING = 5;
 
     isExpandedView: boolean = false;
-    roundedMonthlySaving: string;
+    roundedMonthlySaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
@@ -37,12 +37,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.isExpandedView = !this.isExpandedView;
     }
 
-    private static getMonthlySaving(recommendation: EnergyEfficiencyRecommendation): string {
+    private static getMonthlySaving(recommendation: EnergyEfficiencyRecommendation): number {
         const costSavingPoundsPerMonth = recommendation.costSavingPoundsPerYear/12;
         const roundingValue = costSavingPoundsPerMonth > EnergyEfficiencyRecommendationCardComponent.MONTHLY_SAVING_POUNDS_ROUNDING ?
             EnergyEfficiencyRecommendationCardComponent.MONTHLY_SAVING_POUNDS_ROUNDING :
             1;
-        const roundedMonthlySaving = Math.round(costSavingPoundsPerMonth/roundingValue) * roundingValue;
-        return `£${roundedMonthlySaving}`;
+        return Math.round(costSavingPoundsPerMonth/roundingValue) * roundingValue;
     }
 }

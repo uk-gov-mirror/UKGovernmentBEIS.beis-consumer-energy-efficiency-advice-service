@@ -5,7 +5,7 @@ export enum EnergyEfficiencyRecommendationTag {
     QuickWin = 1,
     SmallSpend = 1 << 1,
     LongerTerm = 1 << 2,
-    Grant = 1<< 3
+    Grant = 1 << 3
 }
 
 export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEfficiencyRecommendationTag) {
