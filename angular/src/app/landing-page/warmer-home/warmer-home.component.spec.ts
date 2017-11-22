@@ -42,8 +42,8 @@ describe('WarmerHomeComponent', () => {
             ],
             providers: [
                 ResponseData,
-        {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.of(null)}}
-    ]
+                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}}
+            ]
         })
             .compileComponents();
     }));
