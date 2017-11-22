@@ -23,8 +23,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     ngOnInit() {
         this.roundedMonthlySaving = EnergyEfficiencyRecommendationCardComponent.getMonthlySaving(this.recommendation);
         this.tags = getActiveTags(this.recommendation.tags);
-        console.log(this.recommendation.headline);
-        console.log(this.recommendation.grants);
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
