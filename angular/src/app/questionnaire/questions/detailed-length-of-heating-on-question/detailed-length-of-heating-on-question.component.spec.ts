@@ -45,7 +45,7 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
         const expectedEarlyHours = 5;
 
         // when
-        let earlyHoursInput = fixture.debugElement.query(By.css('.early-hours-input input'));
+        const earlyHoursInput = fixture.debugElement.query(By.css('.early-hours-input input'));
         earlyHoursInput.nativeElement.value = expectedEarlyHours;
         earlyHoursInput.nativeElement.dispatchEvent(new Event('input'));
 

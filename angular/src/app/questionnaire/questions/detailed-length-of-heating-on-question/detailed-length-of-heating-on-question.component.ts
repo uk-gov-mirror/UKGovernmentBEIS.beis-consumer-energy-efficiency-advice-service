@@ -11,7 +11,12 @@ import toString from "lodash-es/toString";
 export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
 
     get responseForAnalytics(): string {
-        return toString(this.responseData.lengthOfHeatingOn);
+        return JSON.stringify({
+            earlyHours: this.earlyHours,
+            morning: this.morning,
+            afternoon: this.afternoon,
+            evening: this.evening
+        })
     }
 
     get earlyHours(): number {
