@@ -3,7 +3,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
 import {getHomeTypeDescription} from "./questions/home-type-question/home-type";
 
-export interface QuestionHeadingReplacement {
+export interface ReplacementProcedures {
     placeholder: RegExp,
     replacementFinder: (ResponseData) => string
 }
@@ -13,7 +13,7 @@ export class QuestionHeadingProcessor {
     private static readonly FUEL_TYPE_PLACEHOLDER = '{{fuel_type}}';
     private static readonly PROPERTY_PLACEHOLDER = '{{property}}';
 
-    private static readonly QUESTION_HEADING_REPLACEMENTS: QuestionHeadingReplacement[] =
+    private static readonly REPLACEMENT_PROCEDURES: ReplacementProcedures[] =
         [
             {
                 placeholder: new RegExp(QuestionHeadingProcessor.FUEL_TYPE_PLACEHOLDER, 'g'),
@@ -33,8 +33,8 @@ export class QuestionHeadingProcessor {
     }
 
     public replacePlaceholders(questionHeading) {
-        QuestionHeadingProcessor.QUESTION_HEADING_REPLACEMENTS.forEach(
-            (replacement: QuestionHeadingReplacement): void => {
+        QuestionHeadingProcessor.REPLACEMENT_PROCEDURES.forEach(
+            (replacement: ReplacementProcedures): void => {
                 questionHeading = questionHeading.replace(replacement.placeholder, replacement.replacementFinder(this.responseData))
             }
         );
