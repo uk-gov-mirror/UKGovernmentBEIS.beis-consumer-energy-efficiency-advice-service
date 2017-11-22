@@ -42,7 +42,7 @@ import {RoofSpace} from "../questionnaire/questions/roof-space-question/roof-spa
 
 // TODO: this is not currently thoroughly tested because it's all about to change in BEISDEAS-79
 
-describe('BoilerResultsPageComponent', () => {
+describe('ResultsPageComponent', () => {
     let component: ResultsPageComponent;
     let injector: TestBed;
     let fixture: ComponentFixture<ResultsPageComponent>;
