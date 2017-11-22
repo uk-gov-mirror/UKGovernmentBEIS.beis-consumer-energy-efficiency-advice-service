@@ -6,7 +6,7 @@ import {NationalGrantContent} from "./national-grants-content";
 
 @Injectable()
 export class NationalGrantsContentService {
-    private static readonly nationalGrantsEndpoint = 'acf/v3/national_grant';
+    private static readonly nationalGrantsEndpoint = 'angular-theme/v1/national-grants';
     private nationalGrants: Observable<NationalGrantContent[]>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {

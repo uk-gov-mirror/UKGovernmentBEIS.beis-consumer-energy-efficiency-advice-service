@@ -25,46 +25,42 @@ describe('GrantEligibilityService', () => {
             description: 'some LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null
+            annualPaymentPounds: null,
+            linkedMeasureCodes: null
         },
         {
             name: 'LA Grant 2',
             description: 'another LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null
+            annualPaymentPounds: null,
+            linkedMeasureCodes: null
         }
     ];
 
     const nationalGrantsContent: NationalGrantContent[] = [
         {
-            acf: {
-                heading: "Eligible grant 1",
-                description: "Get paid for creating your own green energy.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Eligible grant 1",
+            description: "Get paid for creating your own green energy.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "an-eligible-grant"
         },
         {
-            acf: {
-                heading: "Eligible grant 2",
-                description: "Get cash if you install or have already installed an eligible renewable heating technology.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Eligible grant 2",
+            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "another-eligible-grant"
         },
         {
-            acf: {
-                heading: "Ineligible grant",
-                description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Ineligible grant",
+            description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "ineligible-grant"
         }
     ];

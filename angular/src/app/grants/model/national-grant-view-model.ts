@@ -7,14 +7,16 @@ export class NationalGrantViewModel implements GrantViewModel {
     public name: string;
     public description: string;
     public shouldDisplayWithoutMeasures: boolean;
+    public linkedMeasureCodes: string[];
 
     constructor(
         nationalGrantResponse: NationalGrantContent,
         public eligibility: GrantEligibility,
         public annualPaymentPounds: number
     ) {
-        this.name = nationalGrantResponse.acf.heading;
-        this.description = nationalGrantResponse.acf.description;
-        this.shouldDisplayWithoutMeasures = nationalGrantResponse.acf.display_without_measures;
+        this.name = nationalGrantResponse.heading;
+        this.description = nationalGrantResponse.description;
+        this.shouldDisplayWithoutMeasures = nationalGrantResponse.display_without_measures;
+        this.linkedMeasureCodes = nationalGrantResponse.linked_measure_codes;
     }
 }

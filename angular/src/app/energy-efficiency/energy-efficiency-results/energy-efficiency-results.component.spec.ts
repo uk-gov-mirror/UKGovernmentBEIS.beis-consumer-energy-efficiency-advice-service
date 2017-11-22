@@ -57,14 +57,16 @@ describe('EnergyEfficiencyResultsComponent', () => {
             description: 'some national grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
-            annualPaymentPounds: 120
+            annualPaymentPounds: 120,
+            linkedMeasureCodes: ['V2']
         },
         {
             name: 'National Grant 2',
             description: 'another national grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
-            annualPaymentPounds: 120
+            annualPaymentPounds: 120,
+            linkedMeasureCodes: []
         }
     ];
 
@@ -267,6 +269,17 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.recommendations[0].headline).toBe('Wind turbine on mast');
         expect(component.recommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
         expect(component.recommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
+    });
+
+    it('should link recommendation to available grant', () => {
+        // when
+        fixture.detectChanges();
+
+        // then
+        // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
+        // for measure code V2
+        expect(component.recommendations[0].grants.length).toBe(1);
+        expect(component.recommendations[0].grants[0].name).toBe('National Grant 1');
     });
 
     it('should display energy calculations correctly', () => {

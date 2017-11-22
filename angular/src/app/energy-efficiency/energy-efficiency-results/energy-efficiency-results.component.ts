@@ -145,7 +145,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                                                         availableGrants: GrantViewModel[],
                                                         measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
         const homeImprovementRecommendations = EnergyEfficiencyResultsComponent
-            .getHomeImprovementRecommendations(energyCalculationResponse, measuresContent);
+            .getHomeImprovementRecommendations(energyCalculationResponse, measuresContent, availableGrants);
         const grantRecommendations = EnergyEfficiencyResultsComponent.getGrantRecommendations(availableGrants);
         const allRecommendations = concat(homeImprovementRecommendations, grantRecommendations);
         return orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
@@ -161,7 +161,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private static getHomeImprovementRecommendations(energyCalculationResponse: EnergyCalculationResponse,
-                                                     measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+                                                     measuresContent: MeasureContent[],
+                                                     availableGrants: GrantViewModel[]): EnergyEfficiencyRecommendation[] {
         return keys(energyCalculationResponse.measures)
             .map(measureCode => {
                 const recommendationMetadata: MeasureContent = measuresContent
@@ -170,10 +171,13 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                     console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
+                const linkedAvailableGrants = availableGrants
+                    .filter(grant => grant.linkedMeasureCodes && grant.linkedMeasureCodes.indexOf(measureCode) > -1)
                 return EnergyEfficiencyRecommendation.fromMeasure(
                     energyCalculationResponse.measures[measureCode],
                     recommendationMetadata,
-                    EnergySavingMeasureContentService.measureIcons[measureCode]
+                    EnergySavingMeasureContentService.measureIcons[measureCode],
+                    linkedAvailableGrants
                 )
             })
             .filter(measure => measure);

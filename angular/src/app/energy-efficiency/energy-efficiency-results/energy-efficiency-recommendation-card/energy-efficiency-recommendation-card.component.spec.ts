@@ -19,7 +19,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         iconClassName: 'icon-roofing',
         headline: 'Loft insulation',
         summary: 'No description available',
-        tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant
+        tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
+        grants: []
     };
 
     beforeEach(async(() => {
