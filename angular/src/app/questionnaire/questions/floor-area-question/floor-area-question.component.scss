@@ -1,0 +1,26 @@
+@import 'styles/mixins/buttons';
+
+.floor-area-question {
+
+  @include with-no-spin-buttons;
+  input[type="number"] {
+    width: 200px;
+  }
+
+  .question-content {
+    display: flex;
+
+    .floor-area-input {
+      margin-right: 10px;
+    }
+
+    .do-not-know-button {
+      @include capsule-button(200px, 50px);
+      font-size: 20px;
+      background-color: white;
+      border: none;
+      margin-left: 50px;
+    }
+  }
+}
+

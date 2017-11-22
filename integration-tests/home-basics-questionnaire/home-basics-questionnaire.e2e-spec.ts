@@ -63,6 +63,11 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.clickButton('Yes');
         CommonPageHelpers.sleep(1000);
 
+        // Floor area
+        expect(page.getHeading()).toContain('What\'s the floor area of your');
+        CommonPageHelpers.clickButton('I don\'t know');
+        CommonPageHelpers.sleep(1000);
+
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');

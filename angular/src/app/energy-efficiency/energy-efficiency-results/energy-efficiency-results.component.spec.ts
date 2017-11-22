@@ -6,38 +6,39 @@ import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 
 import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
-import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
-import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
-import {GrantViewModel} from "../../grants/model/grant-view-model";
-import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {UserJourneyType} from "../../shared/response-data/user-journey-type";
-import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
-import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
-import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
-import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
-import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
-import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
-import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
-import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
-import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
-import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
-import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
-import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "./data-card/data-card.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
-import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
-import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {GrantCardComponent} from "../../grants/grant-card/grant-card.component";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-tag";
+import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
+import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
+import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
+import {GrantViewModel} from "../../grants/model/grant-view-model";
+import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
+import {UserJourneyType} from "../../shared/response-data/user-journey-type";
+import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
+import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
+import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
+import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
+import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
+import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
+import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
+import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
+import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
+import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
+import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
+import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
+import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
+import {DataCardComponent} from "./data-card/data-card.component";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
+import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -104,6 +105,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         flatPosition: FlatPosition.ThreeSidesExposed,
         numberOfStoreys: 1,
         numberOfBedrooms: 1,
+        floorArea: undefined,
+        floorAreaUnit: FloorAreaUnit.SquareMetre,
         fuelType: FuelType.MainsGas,
         condensingBoiler: false,
         electricityTariff: undefined,

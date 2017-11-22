@@ -32,6 +32,7 @@ import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-quest
 import {GardenQuestionComponent} from "./garden-question/garden-question.component";
 import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-question.component";
 import {OptionalPropertyQuestionComponent} from "./optional-property-question/optional-property-question.component";
+import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-question.component";
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import {OptionalPropertyQuestionComponent} from "./optional-property-question/op
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -70,6 +72,7 @@ import {OptionalPropertyQuestionComponent} from "./optional-property-question/op
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -106,6 +109,7 @@ import {OptionalPropertyQuestionComponent} from "./optional-property-question/op
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,

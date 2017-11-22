@@ -1,0 +1,18 @@
+<div class="question-component floor-area-question">
+    <div class="question-content">
+        <form class="questionnaire-form" (submit)="handleFormSubmit()">
+            <div class="form-element">
+                <input class="floor-area-input text-input" id="floor-area-input" name="floor-area-input" type="number"
+                       aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateResponseData($event)">
+                <select name="floor-area-unit" class="dropdown-input text-input" aria-labelledby="question-heading" [(ngModel)]="selectedFloorAreaUnit">
+                    <option *ngFor="let floorAreaUnit of floorAreaUnits"
+                            [ngValue]="floorAreaUnit.value">{{floorAreaUnit.basicUnitDisplay}}&#xb2;</option>
+                </select>
+            </div>
+        </form>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="updateResponseData(0); complete.emit();">I don't know</button>
+    </div>
+    <div class="error" *ngIf="isInvalid">
+        <div class="error-message">Please enter a valid value.</div>
+    </div>
+</div>

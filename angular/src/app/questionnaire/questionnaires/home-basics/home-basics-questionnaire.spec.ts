@@ -19,6 +19,7 @@ import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths
 import {HeatingCostQuestionMetadata} from "../../questions/heating-cost-question/heating-cost-question-metadata";
 import {LengthOfHeatingOnQuestionMetadata} from "../../questions/length-of-heating-on-question/length-of-heating-on-question-metadata";
 import {OptionalPropertyQuestionMetadata} from "../../questions/optional-property-question/optional-property-question-metadata";
+import {FloorAreaQuestionMetadata} from "../../questions/floor-area-question/floor-area-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -41,6 +42,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -72,6 +74,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -103,6 +106,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -134,6 +138,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -162,6 +167,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
