@@ -74,7 +74,7 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // Garden
-        expect(page.getHeading()).toContain('Do you have a garden');
+        expect(page.getHeading()).toContain('Is your garden accessible to digging machinery');
         CommonPageHelpers.clickButton('No garden');
         CommonPageHelpers.sleep(1000);
 
