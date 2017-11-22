@@ -1,8 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {PageComponent} from "./page/page.component";
-import {ResultsPageComponent} from "./results-page/results-page.component";
-import {ResultsPageRouteGuard} from "./results-page/results-page-route-guard.service";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-improvements.component";
 import {CarbonFootprintComponent} from "./landing-page/carbon-footprint/carbon-footprint.component";
@@ -14,6 +12,8 @@ import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency/energy
 import {EnergyEfficiencyQuestionnaireGuard} from "./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard";
 import {BoilerEpcReplaceComponent} from "./boiler/epc-replace/boiler-epc-replace.component";
 import {GrantsLandingPageComponent} from "./grants/landing-page/grants-landing-page.component";
+import {EnergyEfficiencyResultsComponent} from "./energy-efficiency/energy-efficiency-results/energy-efficiency-results.component";
+import {EnergyEfficiencyResultsRouteGuard} from "./energy-efficiency/energy-efficiency-results/energy-efficiency-results.guard";
 import {BoilerQuestionnaireComponent} from "./boiler/boiler-questionnaire/boiler-questionnaire.component";
 import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-page.component";
 import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-page.guard";
@@ -30,8 +30,8 @@ const routes: Routes = [
     },
     {
         path: 'js/energy-efficiency/results',
-        component: ResultsPageComponent,
-        canActivate: [ResultsPageRouteGuard]
+        component: EnergyEfficiencyResultsComponent,
+        canActivate: [EnergyEfficiencyResultsRouteGuard]
     },
     {
         path: 'js/grants',
@@ -92,7 +92,7 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ResultsPageRouteGuard]
+    providers: [EnergyEfficiencyResultsRouteGuard]
 })
 export class RoutingModule {
 }

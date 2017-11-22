@@ -2,7 +2,7 @@ import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core"
 import {Observable} from "rxjs/Observable";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
-import {EnergySavingMeasure} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {isGasOrOil} from "../../questionnaire/questions/fuel-type-question/fuel-type";
@@ -21,7 +21,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
     isLoading: boolean = true;
     isError: boolean = false;
     applicableBoilerTypes: BoilerType[];
-    measures: EnergySavingMeasure[];
+    measures: EnergySavingRecommendation[];
 
     constructor(private boilerTypesService: BoilerTypesService,
                 private boilerPageMeasuresService: BoilerPageMeasuresService,

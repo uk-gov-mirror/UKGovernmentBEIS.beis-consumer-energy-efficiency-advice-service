@@ -5,6 +5,7 @@ import {SharedModule} from "../shared/shared.module";
 import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
 import {EnergyEfficiencyQuestionnaireGuard} from "./energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard";
 import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency-questionnaire/energy-efficiency-questionnaire.component";
+import {EnergyEfficiencyResultsModule} from "./energy-efficiency-results/energy-efficiency-results.module";
 
 @NgModule({
     declarations: [
@@ -16,13 +17,14 @@ import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency-questi
     imports: [
         SharedModule,
         CommonModule,
-        QuestionnaireModule
+        QuestionnaireModule,
+        EnergyEfficiencyResultsModule
     ]
 })
-export class EnergyEfficiencyQuestionnaireModule {
+export class EnergyEfficiencyModule {
     static forRoot() {
         return {
-            ngModule: EnergyEfficiencyQuestionnaireModule,
+            ngModule: EnergyEfficiencyModule,
             providers: [EnergyEfficiencyQuestionnaireGuard]
         };
     }

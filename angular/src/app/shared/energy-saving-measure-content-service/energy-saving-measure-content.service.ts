@@ -2,19 +2,19 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
-import {MeasureMetadataResponse} from "./measure-metadata-response";
+import {MeasureContent} from "./measure-content";
 
 @Injectable()
-export class MeasureService {
+export class EnergySavingMeasureContentService {
     private static readonly measuresEndpoint = 'acf/v3/measure?per_page=1000';
-    private measures: Observable<MeasureMetadataResponse[]>;
+    private measures: Observable<MeasureContent[]>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
-    fetchMeasureDetails(): Observable<MeasureMetadataResponse[]> {
+    fetchMeasureDetails(): Observable<MeasureContent[]> {
         if (!this.measures) {
-            this.measures = this.http.get(this.wordpressApiService.getFullApiEndpoint(MeasureService.measuresEndpoint))
+            this.measures = this.http.get(this.wordpressApiService.getFullApiEndpoint(EnergySavingMeasureContentService.measuresEndpoint))
                 .shareReplay(1);
         }
         return this.measures;

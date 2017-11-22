@@ -2,42 +2,42 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import * as parse from "url-parse";
-import {EnergySavingMeasure} from "../../shared/recommendation-card/energy-saving-recommendation";
-import {MeasureService} from "../../shared/recommendation-service/measure.service";
-import {MeasureMetadataResponse} from "../../shared/recommendation-service/measure-metadata-response";
+import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
 
 
 @Injectable()
 export class BoilerPageMeasuresService {
 
-    private static readonly partialMeasuresToShowOnBoilerPages: {code: string, measure: EnergySavingMeasure}[] = [
+    private static readonly partialMeasuresToShowOnBoilerPages: {code: string, measure: EnergySavingRecommendation}[] = [
         {
             code: 'G',
-            measure: new EnergySavingMeasure(
+            measure: new EnergySavingRecommendation(
                 80,
                 10,
                 undefined,
                 undefined,
                 undefined,
                 undefined,
-                MeasureService.measureIcons['G'],
+                EnergySavingMeasureContentService.measureIcons['G'],
             ),
         },
         {
             code: 'C',
-            measure: new EnergySavingMeasure(
+            measure: new EnergySavingRecommendation(
                 15,
                 85,
                 undefined,
                 undefined,
                 undefined,
                 undefined,
-                MeasureService.measureIcons['C'],
+                EnergySavingMeasureContentService.measureIcons['C'],
             ),
         },
         {
             code: undefined,
-            measure: new EnergySavingMeasure(
+            measure: new EnergySavingRecommendation(
                 undefined,
                 120,
                 undefined,
@@ -49,23 +49,23 @@ export class BoilerPageMeasuresService {
         },
     ];
 
-    constructor(private measuresService: MeasureService) {
+    constructor(private measuresService: EnergySavingMeasureContentService) {
     }
 
-    private static combinedMeasure(partialMeasure: EnergySavingMeasure, apiResponse: MeasureMetadataResponse) {
-        if (apiResponse !== undefined) {
+    private static combinedMeasure(partialMeasure: EnergySavingRecommendation, measureContent: MeasureContent) {
+        if (measureContent !== undefined) {
             return {
                 ...partialMeasure,
-                readMoreRoute: parse(apiResponse.acf.featured_page).pathname,
-                headline: apiResponse.acf.headline,
-                summary: apiResponse.acf.summary,
+                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
+                headline: measureContent.acf.headline,
+                summary: measureContent.acf.summary,
             };
         } else {
             return partialMeasure;
         }
     }
 
-    fetchMeasuresForBoilerPages(): Observable<EnergySavingMeasure[]> {
+    fetchMeasuresForBoilerPages(): Observable<EnergySavingRecommendation[]> {
         return this.measuresService.fetchMeasureDetails().map(measures =>
             BoilerPageMeasuresService.partialMeasuresToShowOnBoilerPages.map(measureAndCode => {
                 if (measureAndCode.code !== undefined) {

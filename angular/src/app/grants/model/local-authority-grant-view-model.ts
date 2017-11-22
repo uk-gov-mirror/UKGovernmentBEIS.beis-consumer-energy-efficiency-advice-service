@@ -7,6 +7,8 @@ export class LocalAuthorityGrantViewModel implements GrantViewModel {
     public name: string;
     public description: string;
     public eligibility: GrantEligibility = GrantEligibility.MayBeEligible;
+    public shouldDisplayWithoutMeasures = false;
+    public annualPaymentPounds: number = null;
 
     constructor(localGrantResponse: LocalGrantResponse) {
         this.name = localGrantResponse.display_name;

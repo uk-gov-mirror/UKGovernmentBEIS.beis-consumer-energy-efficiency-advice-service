@@ -2,25 +2,25 @@ import {async, getTestBed, TestBed} from "@angular/core/testing";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpRequest} from "@angular/common/http";
 import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {MeasureMetadataResponse} from "./measure-metadata-response";
-import {MeasureService} from "./measure.service";
+import {EnergySavingMeasureContentService} from "./energy-saving-measure-content.service";
+import {MeasureContent} from "./measure-content";
 
-describe('MeasureService', () => {
+describe('EnergySavingMeasureContentService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
-    let service: MeasureService;
+    let service: EnergySavingMeasureContentService;
 
-    const mockApiResponse: MeasureMetadataResponse[] = require('assets/test/measures-response.json');
+    const mockApiResponse: MeasureContent[] = require('assets/test/measures-response.json');
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [MeasureService,
+            providers: [EnergySavingMeasureContentService,
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
         httpMock = injector.get(HttpTestingController);
-        service = injector.get(MeasureService);
+        service = injector.get(EnergySavingMeasureContentService);
     });
 
     describe('#construct', () => {

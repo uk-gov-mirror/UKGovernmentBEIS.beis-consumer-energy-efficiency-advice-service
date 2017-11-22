@@ -1,6 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {Router} from "@angular/router";
-import {EnergySavingMeasure} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
     styleUrls: ['./boiler-measures-section.component.scss']
 })
 export class BoilerMeasuresSectionComponent {
-    @Input() measures: EnergySavingMeasure[];
+    @Input() measures: EnergySavingRecommendation[];
 
     constructor(private questionnaireService: QuestionnaireService,
                 private router: Router) {

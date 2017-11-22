@@ -13,7 +13,6 @@ import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
-import {MeasureService} from "../../shared/recommendation-service/measure.service";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
