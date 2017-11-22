@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {RouterTestingModule} from "@angular/router/testing";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {Observable} from "rxjs/Observable"
 
 import {CarbonFootprintComponent} from "./carbon-footprint.component";
 import {LargeVideoCardComponent} from "../large-video-card/large-video-card.component";
@@ -10,6 +11,8 @@ import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {QuestionContentService} from "../../shared/question-content/question-content.service";
+import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
 
 describe('CarbonFootprintComponent', () => {
 
@@ -24,7 +27,8 @@ describe('CarbonFootprintComponent', () => {
                 NavigationBarComponent,
                 LargeVideoCardComponent,
                 ArticleCardComponent,
-                LatestNewsCardComponent
+                LatestNewsCardComponent,
+                QuestionReasonComponent
             ],
             imports: [
                 CommonModule,
@@ -32,7 +36,8 @@ describe('CarbonFootprintComponent', () => {
                 RouterTestingModule
             ],
             providers: [
-                ResponseData
+                ResponseData,
+                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}}
             ]
         })
             .compileComponents();

@@ -19,11 +19,7 @@
     <div class="question">
         <ng-template question-host></ng-template>
     </div>
-    <div class="question-reason-container" *ngIf="currentQuestionContent.questionReason">
-        <div class="question-reason" [class.visible]="shouldDisplayQuestionReason">{{currentQuestionContent.questionReason}}</div>
-        <button (click)="toggleQuestionReasonDisplay()" class="question-reason-button" [title]="currentQuestionContent.questionReason">
-            <div class="question-reason-icon">i</div>
-            <div class="question-reason-header">Why do we need this</div>
-        </button>
-    </div>
+    <app-question-reason *ngIf="currentQuestionContent.questionReason"
+                     [isExpanded]="currentQuestionContent.autoOpenQuestionReason"
+                     [questionReason]="currentQuestionContent.questionReason"></app-question-reason>
 </div>
