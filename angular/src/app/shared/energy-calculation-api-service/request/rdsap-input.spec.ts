@@ -28,6 +28,7 @@ describe('RdsapInput', () => {
         const responseData: ResponseData = {
             userJourneyType: UserJourneyType.Calculator,
             shouldIncludeGrantsQuestionnaire: false,
+            shouldIncludeOptionalPropertyQuestions: false,
             postcode: 'sw1h0et',
             epc: null,
             localAuthorityCode: 'E09000033',

@@ -19,6 +19,7 @@ import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-
 export class ResponseData {
     public userJourneyType: UserJourneyType;
     public shouldIncludeGrantsQuestionnaire: boolean;
+    public shouldIncludeOptionalPropertyQuestions: boolean;
     public postcode: string;
     public epc: Epc;
     public localAuthorityCode: string;
