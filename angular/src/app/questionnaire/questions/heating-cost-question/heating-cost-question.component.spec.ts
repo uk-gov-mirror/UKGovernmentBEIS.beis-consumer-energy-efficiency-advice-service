@@ -4,15 +4,18 @@ import {By} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms"
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {HeatingCostQuestionComponent} from "./heating-cost-question.component";
+import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
 
 describe('HeatingCostQuestionComponent', () => {
     let component: HeatingCostQuestionComponent;
     let fixture: ComponentFixture<HeatingCostQuestionComponent>;
     let responseData: ResponseData;
 
+    const originalHeatingCost = 30;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [HeatingCostQuestionComponent],
+            declarations: [HeatingCostQuestionComponent, NumberQuestionComponent],
             imports: [FormsModule],
             providers: [ResponseData]
         })
@@ -24,6 +27,7 @@ describe('HeatingCostQuestionComponent', () => {
         fixture = TestBed.createComponent(HeatingCostQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
+        component.response = originalHeatingCost;
         fixture.detectChanges();
     });
 
@@ -31,28 +35,34 @@ describe('HeatingCostQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set the response when inputting a value', async(() => {
-        // The whole test needs to be wrapped in fixture.whenStable as an <input> in a <form> is initialised asynchronously
-        // by angular.
+    it('should populate with original heating cost in response data', async(() => {
         fixture.whenStable().then(() => {
-            // given
-            const expectedCost = 1000;
-
-            // when
-            let input = fixture.debugElement.query(By.css('#heating-cost-input'));
-            input.nativeElement.value = expectedCost;
-            input.nativeElement.dispatchEvent(new Event('input'));
-
-            // then
-            expect(responseData.heatingCost).toBe(expectedCost);
-        })
+            const heatingCostInput = fixture.debugElement.query(By.css('input'));
+            expect(heatingCostInput.nativeElement.value).toBe(originalHeatingCost.toString());
+        });
     }));
+
+    it('should set the heating cost given a valid heating cost', () => {
+        // given
+        const expectedHeatingCost = 15;
+
+        // when
+        const heatingCostInput = fixture.debugElement.query(By.css('input'));
+        heatingCostInput.nativeElement.value = expectedHeatingCost;
+        heatingCostInput.nativeElement.dispatchEvent(new Event('input'));
+
+        fixture.detectChanges();
+
+        // then
+        expect(component.response).toBe(expectedHeatingCost);
+        expect(responseData.heatingCost).toBe(expectedHeatingCost);
+    });
 
     it('should set value to 0 and notify of completion when clicking "I don\'t know".', () => {
         // given
 
         // when
-        let button = fixture.debugElement.query(By.css('#do-not-know-button'));
+        const button = fixture.debugElement.query(By.css('#do-not-know-button'));
         button.nativeElement.click();
 
         // then

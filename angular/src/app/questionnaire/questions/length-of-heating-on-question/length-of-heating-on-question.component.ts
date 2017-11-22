@@ -5,33 +5,27 @@ import toString from "lodash-es/toString";
 @Component({
     selector: 'app-length-of-heating-on-question',
     templateUrl: './length-of-heating-on-question.component.html',
-    styleUrls: ['./length-of-heating-on-question.component.scss'],
     animations: [slideInOutAnimation],
 })
 export class LengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
-    isInvalid: boolean;
-    lengthOfHeatingOnDisplay: number;
-
     get responseForAnalytics(): string {
-        return toString(this.responseData.lengthOfHeatingOn);
+        return toString(this.response);
     }
 
     ngOnInit() {
-        this.lengthOfHeatingOnDisplay = this.responseData.lengthOfHeatingOn;
+        this.response = this.response || 0;
     }
 
-    updateResponseData(value) {
-        if (value < 0 || value > 24) {
-            this.isInvalid = true;
-            this.responseData.lengthOfHeatingOn = undefined;
-        } else {
-            this.isInvalid = false;
-            this.responseData.lengthOfHeatingOn = value;
-        }
+    get response(): number {
+        return this.responseData.lengthOfHeatingOn;
+    }
+
+    set response(val: number) {
+        this.responseData.lengthOfHeatingOn = val;
     }
 
     handleFormSubmit() {
-        if (this.responseData.lengthOfHeatingOn !== undefined) {
+        if (this.response) {
             this.complete.emit();
         }
     }
