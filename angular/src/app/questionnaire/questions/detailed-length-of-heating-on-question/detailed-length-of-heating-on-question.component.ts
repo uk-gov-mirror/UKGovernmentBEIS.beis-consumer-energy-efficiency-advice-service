@@ -59,7 +59,10 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
     }
 
     handleFormSubmit() {
-        if (this.responseData.lengthOfHeatingOn !== undefined) {
+        if (this.responseData.detailedLengthOfHeatingOnEarlyHours !== undefined &&
+            this.responseData.detailedLengthOfHeatingOnMorning !== undefined &&
+            this.responseData.detailedLengthOfHeatingOnAfternoon !== undefined &&
+            this.responseData.detailedLengthOfHeatingOnEvening !== undefined) {
             this.complete.emit();
         }
     }
