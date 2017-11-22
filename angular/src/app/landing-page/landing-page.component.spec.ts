@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {Observable} from "rxjs/Observable";
 
 import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
 import {ArticleCardComponent} from "./article-card/article-card.component";
@@ -13,8 +14,10 @@ import {NavigationBarComponent} from "../layout-components/navigation-bar/naviga
 import {ResponseData} from "../shared/response-data/response-data";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
+import {QuestionContentService} from "../shared/question-content/question-content.service";
+import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
 
-describe('BoilerLandingPageComponent', () => {
+describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
     let fixture: ComponentFixture<LandingPageComponent>;
     let router: Router;
@@ -27,6 +30,17 @@ describe('BoilerLandingPageComponent', () => {
     const INVALID_POSTCODE = 'invalid';
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
 
+    const postcodeReason = 'a reason here';
+    class QuestionContentServiceStub {
+        fetchQuestionsContent() {
+            return Observable.of({
+                'postcode_epc': {
+                    questionReason: postcodeReason
+                }
+            });
+        }
+    }
+
     beforeEach(async(() => {
         spyOn(PostcodeEpcService, 'isValidPostcode').and.callFake(mockPostcodeValidator);
 
@@ -36,14 +50,18 @@ describe('BoilerLandingPageComponent', () => {
                 NavigationBarComponent,
                 LargeVideoCardComponent,
                 ArticleCardComponent,
-                LatestNewsCardComponent
+                LatestNewsCardComponent,
+                QuestionReasonComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule.withRoutes([]),
             ],
-            providers: [ResponseData]
+            providers: [
+                ResponseData,
+                {provide: QuestionContentService, useClass: QuestionContentServiceStub}
+            ]
         })
             .compileComponents();
     }));
@@ -130,4 +148,11 @@ describe('BoilerLandingPageComponent', () => {
         const errorMessage = fixture.debugElement.query(By.css('.validation-error'));
         expect(errorMessage).not.toBeNull();
     });
+
+    it('should have retrieved the correct postcode question reason', () => {
+        // when
+
+        // them
+        expect(component.postcodeQuestionReason).toBe(postcodeReason);
+    })
 });
