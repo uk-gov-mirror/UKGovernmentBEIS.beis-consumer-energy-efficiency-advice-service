@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
 import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
@@ -10,7 +10,6 @@ import keys from "lodash-es/keys";
 import orderBy from "lodash-es/orderBy";
 import sumBy from "lodash-es/sumBy";
 import {GrantViewModel} from "../../grants/model/grant-view-model";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
@@ -19,6 +18,7 @@ import {concat} from "lodash-es";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
+import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -29,25 +29,29 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     private static RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED: number = 5;
 
-    availableGrants: GrantViewModel[];
     localGrants: GrantViewModel[];
-    recommendations: EnergyEfficiencyRecommendation[] = [];
-    displayedRecommendations: number = EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
     energyCalculations: EnergyCalculations;
-    measuresContent: MeasureContent[];
     localAuthorityName: string;
 
     isLoading: boolean = true;
     isError: boolean = false;
+    recommendationListState: RecommendationsListStates;
+    RecommendationListStates = RecommendationsListStates;
+    recommendationListButtonText: string;
+    displayedRecommendations: EnergyEfficiencyRecommendation[] = [];
 
+    private displayOnlyRecommendationsContainingTags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
+    private allAvailableGrants: GrantViewModel[];
+    private allRecommendations: EnergyEfficiencyRecommendation[] = [];
+    private measuresContent: MeasureContent[];
     private energyCalculationResponse: EnergyCalculationResponse;
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private measureService: EnergySavingMeasureContentService,
-                private questionnaireService: QuestionnaireService,
                 private grantsEligibilityService: GrantEligibilityService,
-                private localAuthorityService: LocalAuthorityService) {
+                private localAuthorityService: LocalAuthorityService,
+                private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -69,41 +73,31 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
     }
 
-    toggleDisplayAllRecommendations(): void {
-        const canDisplayMoreRecommendations = this.recommendations.length > this.displayedRecommendations;
-        this.displayedRecommendations = canDisplayMoreRecommendations ?
-            this.recommendations.length :
-            EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
-    }
-
-    getExpandRecommendationsListButtonText(): string {
-        const extraRecommendationsAvailable = this.recommendations.length - this.displayedRecommendations;
-        if (extraRecommendationsAvailable > 1) {
-            return `There are ${extraRecommendationsAvailable} more recommendations available. See all ▼`;
-        } else if (extraRecommendationsAvailable === 1) {
-            return 'There is 1 more recommendation available. See all ▼';
-        } else {
-            return 'Show fewer ▲';
+    toggleRecommendationListState(): void {
+        switch(this.recommendationListState) {
+            case RecommendationsListStates.Collapsed: {
+                this.recommendationListState = RecommendationsListStates.Expanded;
+                this.recommendationListButtonText = EnergyEfficiencyResultsComponent.getCollapseRecommendationsButtonText();
+                break;
+            }
+            case RecommendationsListStates.Expanded: {
+                this.recommendationListState = RecommendationsListStates.Collapsed;
+                this.recommendationListButtonText = this.getExpandRecommendationsButtonText();
+                break;
+            }
         }
+        this.updateDisplayedRecommendations();
     }
 
-    shouldDisplayExpandRecommendationsListButton(): boolean {
-        return this.recommendations.length > EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
-    }
-
-    getTotalInvestment(): number {
-        return sumBy(this.recommendations.slice(0, this.displayedRecommendations), rec => rec.investmentPounds);
-    }
-
-    getTotalSavings(): number {
-        return sumBy(this.recommendations.slice(0, this.displayedRecommendations), rec => rec.costSavingPoundsPerYear);
-    }
-
-    behaviourQuestionnaireComplete(): boolean {
-        return this.questionnaireService.isComplete('behaviour');
+    onSelectedTagsChanged(selectedTags: EnergyEfficiencyRecommendationTag): void {
+        this.displayOnlyRecommendationsContainingTags = selectedTags;
+        this.updateDisplayedRecommendations();
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
+        if (!response) {
+            this.displayErrorMessage('Received empty energy calculation response');
+        }
         this.energyCalculationResponse = response;
     }
 
@@ -116,7 +110,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private handleGrantsResponses(grants: GrantViewModel[]) {
-        this.availableGrants = grants;
+        this.allAvailableGrants = grants;
     }
 
     private displayErrorMessage(err: any): void {
@@ -126,19 +120,58 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private onLoadingComplete() {
-        this.recommendations = EnergyEfficiencyResultsComponent.getAllRecommendationsOrderedBySaving(
+        this.allRecommendations = EnergyEfficiencyResultsComponent.getAllRecommendationsOrderedBySaving(
             this.energyCalculationResponse,
-            this.availableGrants,
+            this.allAvailableGrants,
             this.measuresContent
         );
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             this.energyCalculationResponse,
-            this.recommendations
+            this.allRecommendations
         );
-        this.localGrants = this.availableGrants.filter(grant => {
+        this.localGrants = this.allAvailableGrants.filter(grant => {
             return grant instanceof LocalAuthorityGrantViewModel;
         });
+        this.initialiseDisplayedRecommendations();
         this.isLoading = false;
+    }
+
+    private initialiseDisplayedRecommendations(): void {
+        this.recommendationListState =
+            this.allRecommendations.length > EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED ?
+                RecommendationsListStates.Collapsed : RecommendationsListStates.CannotExpand;
+        this.recommendationListButtonText = this.getExpandRecommendationsButtonText();
+        this.updateDisplayedRecommendations();
+    }
+
+    private updateDisplayedRecommendations(): void {
+        if (this.recommendationListState === RecommendationsListStates.Collapsed) {
+            this.displayedRecommendations = this.allRecommendations
+                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED);
+        } else {
+            this.displayedRecommendations = this.allRecommendations
+                .filter(recommendation => {
+                    const requiredTags = parseInt(this.displayOnlyRecommendationsContainingTags.toString(2));
+                    const actualTags = parseInt(recommendation.tags.toString(2));
+                    const matchingTags = requiredTags & actualTags;
+                    return matchingTags === requiredTags;
+                });
+        }
+        this.changeDetectorRef.detectChanges();
+    }
+
+    private static getCollapseRecommendationsButtonText(): string {
+        return `Show the top ${EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED} recommendations ▲`;
+
+    }
+
+    private getExpandRecommendationsButtonText(): string {
+        const extraRecommendationsAvailable = this.allRecommendations.length -
+            EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
+        if (extraRecommendationsAvailable === 1) {
+            return 'There is 1 more recommendation available. See all ▼';
+        }
+        return `There are ${extraRecommendationsAvailable} more recommendations available. See all ▼`;
     }
 
     private static getAllRecommendationsOrderedBySaving(energyCalculationResponse: EnergyCalculationResponse,
@@ -188,4 +221,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             .filter(grant => grant.shouldDisplayWithoutMeasures)
             .map(grant => EnergyEfficiencyRecommendation.fromGrant(grant, 'icon-grant'));
     }
+}
+
+enum RecommendationsListStates {
+    Collapsed,
+    Expanded,
+    CannotExpand
 }

@@ -3,7 +3,7 @@ import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation
 import {
     EnergyEfficiencyRecommendationTag, getActiveTags, getTagClassName,
     getTagDescription
-} from "./energy-efficiency-recommendation-tag";
+} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',

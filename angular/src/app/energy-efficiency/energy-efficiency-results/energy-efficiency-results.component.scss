@@ -55,8 +55,20 @@ $grant-card-margin: 24px;
         font-size: 12px;
       }
 
+      .recommendations-filter {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .filter-description {
+          margin-right: 10px;
+          font-size: 12px;
+        }
+      }
+
       .recommendation-cards {
         .expand-recommendations-list {
+          margin-top: 10px;
           @include default-button(100%, 50px);
           text-transform: uppercase;
         }

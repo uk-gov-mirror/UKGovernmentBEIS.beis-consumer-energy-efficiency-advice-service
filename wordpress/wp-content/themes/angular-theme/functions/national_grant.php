@@ -13,7 +13,7 @@ function get_national_grants()
 function get_grant_details($grant_post_object)
 {
     $grant_details = get_fields($grant_post_object->ID);
-    $linked_measure_ids = is_null($grant_details['measures']) ? [] : $grant_details['measures'];
+    $linked_measure_ids = is_null($grant_details['measures']) ? [] : (array) $grant_details['measures'];
     $grant_details['linked_measure_codes'] = array_map('get_measure_code', $linked_measure_ids);
     unset($grant_details['measures']);
     $grant_details['slug'] = $grant_post_object->post_name;

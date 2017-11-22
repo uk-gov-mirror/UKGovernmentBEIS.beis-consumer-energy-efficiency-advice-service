@@ -22,19 +22,35 @@
     <div class="page-row recommendations">
         <div class="page-row-content">
             <div class="recommendations-heading">
-                Our top {{displayedRecommendations}} recommendations for you
+                <div *ngIf="recommendationListState === RecommendationListStates.Collapsed">
+                    Our top {{displayedRecommendations.length}} recommendations for you
+                </div>
+                <div *ngIf="recommendationListState === RecommendationListStates.Expanded">
+                    All recommendations
+                </div>
+                <div *ngIf="recommendationListState === RecommendationListStates.CannotExpand">
+                    Our {{displayedRecommendations.length}} recommendations for you
+                </div>
             </div>
-            <div class="recommendations-subheading">
+            <div class="recommendations-subheading" *ngIf="recommendationListState !== RecommendationListStates.Expanded">
                 Based on your answers we've found a range of measures you can add to your plan
+            </div>
+            <div class="recommendations-filter" *ngIf="recommendationListState !== RecommendationListStates.Collapsed">
+                <div class="filter-description">
+                    You can filter your recommendations by the following
+                </div>
+                <app-recommendation-filter-control
+                        (onSelectedTagsChanged)="onSelectedTagsChanged($event)"></app-recommendation-filter-control>
             </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
-                        *ngFor="let recommendation of recommendations.slice(0, displayedRecommendations) trackBy $index"
+                        *ngFor="let recommendation of displayedRecommendations"
                         [recommendation]="recommendation"
-                    ></app-energy-efficiency-recommendation-card>
-                <button class="expand-recommendations-list" *ngIf="shouldDisplayExpandRecommendationsListButton()"
-                        (click)="toggleDisplayAllRecommendations()">
-                    {{getExpandRecommendationsListButtonText()}}
+                ></app-energy-efficiency-recommendation-card>
+                <button class="expand-recommendations-list"
+                        *ngIf="recommendationListState !== RecommendationListStates.CannotExpand"
+                        (click)="toggleRecommendationListState()">
+                    {{recommendationListButtonText}}
                 </button>
             </div>
         </div>

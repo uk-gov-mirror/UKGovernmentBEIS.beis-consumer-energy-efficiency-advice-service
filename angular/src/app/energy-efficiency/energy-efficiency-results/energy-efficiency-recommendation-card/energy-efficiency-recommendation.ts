@@ -1,7 +1,7 @@
 import {EnergySavingMeasureResponse} from "../../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
 import * as parse from "url-parse";
 import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
-import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-tag";
+import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantViewModel} from "../../../grants/model/grant-view-model";
 
 export class EnergyEfficiencyRecommendation {
