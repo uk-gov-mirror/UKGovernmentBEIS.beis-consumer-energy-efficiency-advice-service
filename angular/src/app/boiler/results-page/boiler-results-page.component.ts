@@ -98,7 +98,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         if (cardSections.length > 0) {
             for (let i = 0; i < cardSections[0].length; i++) {
                 cardSections.forEach((card: any) => delete card[i].style['height']);
-                const maxHeight = cardSections.reduce((height: number, card: any) => Math.max(height, card[i].offsetHeight), 0);
+                const maxHeight = Math.max(...cardSections.map((card: any) => card[i].offsetHeight));
                 cardSections.forEach((card: any) => card[i].style.height = `${maxHeight}px`);
             }
         }
