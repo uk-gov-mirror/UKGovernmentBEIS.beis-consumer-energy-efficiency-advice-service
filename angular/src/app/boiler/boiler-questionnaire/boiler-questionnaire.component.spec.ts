@@ -41,6 +41,14 @@ describe('BoilerQuestionnaireComponent', () => {
         // then
         expect(mockQuestionnaireComponent.questionnaireName).toBe('boiler');
     });
+
+    it('should navigate to results page when questionnaire is complete', () => {
+        // given
+        mockQuestionnaireComponent.onQuestionnaireComplete.emit();
+
+        // then
+        expect(router.navigate).toHaveBeenCalledWith(['/js/boiler/results']);
+    });
 });
 
 @Component({

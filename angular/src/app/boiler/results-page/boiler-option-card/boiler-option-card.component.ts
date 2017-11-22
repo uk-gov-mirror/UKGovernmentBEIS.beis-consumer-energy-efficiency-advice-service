@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {BoilerType} from "../../boiler-types-service/boiler-type";
 
 @Component({
@@ -6,13 +6,6 @@ import {BoilerType} from "../../boiler-types-service/boiler-type";
   templateUrl: './boiler-option-card.component.html',
   styleUrls: ['./boiler-option-card.component.scss']
 })
-export class BoilerOptionCardComponent implements OnInit {
-
+export class BoilerOptionCardComponent {
   @Input() boiler: BoilerType;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

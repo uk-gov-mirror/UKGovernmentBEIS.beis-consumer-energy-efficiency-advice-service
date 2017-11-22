@@ -158,13 +158,11 @@ describe('BoilerEpcReplaceComponent', () => {
         fixture.detectChanges();
 
         // then
-        boilerPageMeasuresServiceStub.fetchMeasuresForBoilerPages().toPromise().then(expectedMeasures => {
-            const recommendationCards = fixture.debugElement.queryAll(By.directive(RecommendationCardComponent));
-            const actualMeasures = recommendationCards
-                .map(el => el.componentInstance.recommendation);
+        const measuresSection = fixture.debugElement.query(By.directive(BoilerMeasuresSectionComponent));
+        const actualMeasures = measuresSection.componentInstance.measures;
 
-            expect(actualMeasures.length).toBe(expectedMeasures.length);
-            expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
+        boilerPageMeasuresServiceStub.fetchMeasuresForBoilerPages().toPromise().then(expectedMeasures => {
+            expect(actualMeasures).toEqual(expectedMeasures);
         });
     });
 
