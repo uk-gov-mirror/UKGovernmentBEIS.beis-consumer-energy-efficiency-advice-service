@@ -9,29 +9,24 @@ import toString from "lodash-es/toString";
     animations: [slideInOutAnimation],
 })
 export class HeatingCostQuestionComponent extends QuestionBaseComponent {
-    isInvalid: boolean;
-    heatingCostDisplay: number;
-
     get responseForAnalytics(): string {
-        return toString(this.responseData.heatingCost);
+        return toString(this.response);
     }
 
     ngOnInit() {
-        this.heatingCostDisplay = this.responseData.heatingCost;
+        this.response = this.response || 0;
     }
 
-    updateResponseData(value) {
-        if (value < 0) {
-            this.isInvalid = true;
-            this.responseData.heatingCost = undefined;
-        } else {
-            this.isInvalid = false;
-            this.responseData.heatingCost = value;
-        }
+    get response(): number {
+        return this.responseData.heatingCost;
+    }
+
+    set response(val: number) {
+        this.responseData.heatingCost = val;
     }
 
     handleFormSubmit() {
-        if (this.responseData.heatingCost !== undefined) {
+        if (this.response) {
             this.complete.emit();
         }
     }
