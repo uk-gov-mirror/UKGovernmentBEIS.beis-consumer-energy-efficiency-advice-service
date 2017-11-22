@@ -13,33 +13,27 @@ describe('NationalGrantsContentService', () => {
 
     const mockApiResponse: NationalGrantContent[] = [
         {
-            acf: {
-                heading: "Eligible grant 1",
-                description: "Get paid for creating your own green energy.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Eligible grant 1",
+            description: "Get paid for creating your own green energy.",
+            linked_measure_codes: ['A', 'B', 'C'],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "an-eligible-grant"
         },
         {
-            acf: {
-                heading: "Eligible grant 2",
-                description: "Get cash if you install or have already installed an eligible renewable heating technology.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Eligible grant 2",
+            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            linked_measure_codes: ['A'],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "another-eligible-grant"
         },
         {
-            acf: {
-                heading: "Ineligible grant",
-                description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Ineligible grant",
+            description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "ineligible-grant"
         }
     ];
@@ -71,7 +65,8 @@ describe('NationalGrantsContentService', () => {
             actualResponse.then((response) => {
                 expect(response.length).toBe(3);
                 expect(response[0].slug).toEqual('an-eligible-grant');
-                expect(response[0].acf.heading).toEqual('Eligible grant 1');
+                expect(response[0].heading).toEqual('Eligible grant 1');
+                expect(response[0].linked_measure_codes).toEqual(['A', 'B', 'C']);
             });
             httpMock.verify();
         }));
@@ -117,7 +112,7 @@ describe('NationalGrantsContentService', () => {
 
     function matchesExpectedRequest(request: HttpRequest<any>): boolean {
         const matchesExpectedMethod = request.method === 'GET';
-        const matchesExpectedUrl = request.urlWithParams === 'acf/v3/national_grant';
+        const matchesExpectedUrl = request.urlWithParams === 'angular-theme/v1/national-grants';
         return matchesExpectedMethod && matchesExpectedUrl;
     }
 });
