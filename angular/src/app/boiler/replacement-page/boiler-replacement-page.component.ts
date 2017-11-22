@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
+import sortBy from "lodash-es/sortBy";
 
 @Component({
     selector: 'app-boiler-replacement-page',
@@ -18,7 +19,7 @@ export class BoilerReplacementPageComponent implements OnInit {
 
     ngOnInit() {
         this.boilerTypesService.fetchBoilerTypes().subscribe(
-            boilerTypes => this.boilers = Object.values(boilerTypes),
+            boilerTypes => this.boilers = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower)),
             () => this.handleError(),
             () => this.loading = false,
         );
