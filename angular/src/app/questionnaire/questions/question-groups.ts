@@ -24,6 +24,7 @@ import {ConstructionQuestionMetadata} from "./construction-question/construction
 import {WaterTankQuestionMetadata} from "./water-tank-question/water-tank-question-metadata";
 import {GardenQuestionMetadata} from "./garden-question/garden-question-metadata";
 import {RoofSpaceQuestionMetadata} from "./roof-space-question/roof-space-question-metadata";
+import {DetailedLengthOfHeatingOnQuestionMetadata} from "./detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),

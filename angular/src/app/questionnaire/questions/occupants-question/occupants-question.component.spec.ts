@@ -41,7 +41,7 @@ describe('OccupantsQuestionComponent', () => {
 
     it('should populate with original number of adults under 64 in response data', async(() => {
         fixture.whenStable().then(() => {
-            let adultsUnder64Input = fixture.debugElement.query(By.css('.adults-under-64-input input'));
+            const adultsUnder64Input = fixture.debugElement.query(By.css('.adults-under-64-input input'));
             expect(adultsUnder64Input.nativeElement.value).toBe(originalNumberOfAdultsUnder64.toString());
         });
     }));
@@ -51,7 +51,7 @@ describe('OccupantsQuestionComponent', () => {
         const expectedAdultsUnder64 = 2;
 
         // when
-        let adultsInput = fixture.debugElement.query(By.css('.adults-under-64-input input'));
+        const adultsInput = fixture.debugElement.query(By.css('.adults-under-64-input input'));
         adultsInput.nativeElement.value = expectedAdultsUnder64;
         adultsInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -61,7 +61,7 @@ describe('OccupantsQuestionComponent', () => {
 
     it('should populate with original number of adults aged 64 to 80 in response data', async(() => {
         fixture.whenStable().then(() => {
-            let adults64To80Input = fixture.debugElement.query(By.css('.adults-64-to-80-input input'));
+            const adults64To80Input = fixture.debugElement.query(By.css('.adults-64-to-80-input input'));
             expect(adults64To80Input.nativeElement.value).toBe(originalNumberOfAdults64To80.toString());
         });
     }));
@@ -71,7 +71,7 @@ describe('OccupantsQuestionComponent', () => {
         const expectedAdults64To80 = 2;
 
         // when
-        let adultsInput = fixture.debugElement.query(By.css('.adults-64-to-80-input input'));
+        const adultsInput = fixture.debugElement.query(By.css('.adults-64-to-80-input input'));
         adultsInput.nativeElement.value = expectedAdults64To80;
         adultsInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -81,7 +81,7 @@ describe('OccupantsQuestionComponent', () => {
 
     it('should populate with original number of adults over 80 in response data', async(() => {
         fixture.whenStable().then(() => {
-            let adultsOver80Input = fixture.debugElement.query(By.css('.adults-over-80-input input'));
+            const adultsOver80Input = fixture.debugElement.query(By.css('.adults-over-80-input input'));
             expect(adultsOver80Input.nativeElement.value).toBe(originalNumberOfAdultsOver80.toString());
         });
     }));
@@ -91,7 +91,7 @@ describe('OccupantsQuestionComponent', () => {
         const expectedAdultsOver80 = 2;
 
         // when
-        let adultsInput = fixture.debugElement.query(By.css('.adults-over-80-input input'));
+        const adultsInput = fixture.debugElement.query(By.css('.adults-over-80-input input'));
         adultsInput.nativeElement.value = expectedAdultsOver80;
         adultsInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -112,7 +112,7 @@ describe('OccupantsQuestionComponent', () => {
 
     it('should populate with original number of children in response data', async(() => {
         fixture.whenStable().then(() => {
-            let childrenInput = fixture.debugElement.query(By.css('.children-input input'));
+            const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
             expect(childrenInput.nativeElement.value).toBe(originalNumberOfChildren.toString());
         });
     }));
@@ -122,7 +122,7 @@ describe('OccupantsQuestionComponent', () => {
         const expectedChildren = 4;
 
         // when
-        let childrenInput = fixture.debugElement.query(By.css('.children-input input'));
+        const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
         childrenInput.nativeElement.value = expectedChildren;
         childrenInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -135,7 +135,7 @@ describe('OccupantsQuestionComponent', () => {
         const expectedChildren = 4;
 
         // when
-        let childrenInput = fixture.debugElement.query(By.css('.children-input input'));
+        const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
         childrenInput.nativeElement.value = expectedChildren;
         childrenInput.nativeElement.dispatchEvent(new Event('input'));
 

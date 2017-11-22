@@ -31,6 +31,7 @@ import {ConstructionQuestionComponent} from "./construction-question/constructio
 import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-question.component";
 import {GardenQuestionComponent} from "./garden-question/garden-question.component";
 import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-question.component";
+import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-heating-on-question/detailed-length-of-heating-on-question.component";
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
         FridgeFreezerQuestionComponent,
@@ -66,6 +68,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
         FridgeFreezerQuestionComponent,
@@ -101,6 +104,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
         FridgeFreezerQuestionComponent,

@@ -23,7 +23,6 @@ describe('LengthOfHeatingOnQuestionComponent', () => {
         responseData = TestBed.get(ResponseData);
         fixture = TestBed.createComponent(LengthOfHeatingOnQuestionComponent);
         component = fixture.componentInstance;
-        spyOn(component.complete, 'emit');
         fixture.detectChanges();
     });
 
