@@ -1,0 +1,34 @@
+[
+  {
+    "id": 3624,
+    "acf": {
+      "single_claim_zero_children": "13200",
+      "single_claim_one_child": "17400",
+      "single_claim_two_children": "21600",
+      "single_claim_three_children": "25800",
+      "single_claim_four_plus_children": "30000",
+      "joint_claim_zero_children": "19800",
+      "joint_claim_one_child": "24000",
+      "joint_claim_two_children": "28200",
+      "joint_claim_three_children": "32400",
+      "joint_claim_four_plus_children": "36600"
+    },
+    "slug": "tax-credits"
+  },
+  {
+    "id": 3227,
+    "acf": {
+      "single_claim_zero_children": "1100",
+      "single_claim_one_child": "1450",
+      "single_claim_two_children": "1800",
+      "single_claim_three_children": "2150",
+      "single_claim_four_plus_children": "2500",
+      "joint_claim_zero_children": "1650",
+      "joint_claim_one_child": "2000",
+      "joint_claim_two_children": "2350",
+      "joint_claim_three_children": "2700",
+      "joint_claim_four_plus_children": "3050"
+    },
+    "slug": "universal-credit"
+  }
+]

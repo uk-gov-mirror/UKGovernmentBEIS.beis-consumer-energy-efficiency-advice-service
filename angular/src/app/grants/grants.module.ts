@@ -11,6 +11,7 @@ import {GrantEligibilityService} from "./grant-eligibility-service/grant-eligibi
 import {NationalGrantsContentService} from "./national-grants-content-service/national-grants-content.service";
 import {NationalGrantCalculatorFactory} from "./national-grant-calculator/national-grant-calculator-factory";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
+import {IncomeThresholdService} from "./national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ export class GrantsModule {
             providers: [
                 GrantEligibilityService,
                 NationalGrantsContentService,
-                NationalGrantCalculatorFactory
+                NationalGrantCalculatorFactory,
+                IncomeThresholdService
             ]
         };
     }

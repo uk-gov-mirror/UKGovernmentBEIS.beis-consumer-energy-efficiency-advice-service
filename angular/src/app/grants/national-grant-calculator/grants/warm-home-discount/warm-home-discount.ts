@@ -1,7 +1,7 @@
-import {NationalGrantCalculator} from "../national-grant-calculator";
-import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
-import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {NationalGrantCalculator} from "../../national-grant-calculator";
+import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
+import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
+import {ResponseData} from "../../../../shared/response-data/response-data";
 import {Observable} from "rxjs/Observable";
 
 export class WarmHomeDiscount extends NationalGrantCalculator {

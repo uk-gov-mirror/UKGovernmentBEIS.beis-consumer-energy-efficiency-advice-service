@@ -1,7 +1,7 @@
-import {NationalGrantCalculator} from "../national-grant-calculator";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
-import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
+import {NationalGrantCalculator} from "../../national-grant-calculator";
+import {ResponseData} from "../../../../shared/response-data/response-data";
+import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
+import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
 import {Observable} from "rxjs/Observable";
 
 export class ColdWeatherPayments extends NationalGrantCalculator {

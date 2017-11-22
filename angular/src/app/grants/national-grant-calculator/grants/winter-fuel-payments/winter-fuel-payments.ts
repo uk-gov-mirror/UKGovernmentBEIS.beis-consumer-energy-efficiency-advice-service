@@ -1,6 +1,6 @@
-import {NationalGrantCalculator} from "../national-grant-calculator";
-import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {NationalGrantCalculator} from "../../national-grant-calculator";
+import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
+import {ResponseData} from "../../../../shared/response-data/response-data";
 import {Observable} from "rxjs/Observable";
 
 export class WinterFuelPayments extends NationalGrantCalculator {

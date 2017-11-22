@@ -1,11 +1,11 @@
-import {NationalGrantCalculator} from "../national-grant-calculator";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
-import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
-import {EpcRating} from "../../../shared/postcode-epc-service/model/epc-rating";
+import {NationalGrantCalculator} from "../../national-grant-calculator";
+import {ResponseData} from "../../../../shared/response-data/response-data";
+import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
+import {TenureType} from "../../../../questionnaire/questions/tenure-type-question/tenure-type";
+import {EpcRating} from "../../../../shared/postcode-epc-service/model/epc-rating";
 import {Observable} from "rxjs/Observable";
-import {EnergyCalculationApiService} from "../../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {RdSapInput} from "../../../shared/energy-calculation-api-service/request/rdsap-input";
+import {EnergyCalculationApiService} from "../../../../shared/energy-calculation-api-service/energy-calculation-api-service";
+import {RdSapInput} from "../../../../shared/energy-calculation-api-service/request/rdsap-input";
 
 export class EcoHhcroSocialEfg extends NationalGrantCalculator {
 

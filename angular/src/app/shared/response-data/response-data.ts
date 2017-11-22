@@ -56,6 +56,12 @@ export class ResponseData {
 
     public benefits: Benefits;
     public income: number;
+
+    public getNumberOfAdults(): number {
+        return this.numberOfAdultsAgedUnder64 +
+                this.numberOfAdultsAged64To80 +
+                this.numberOfAdultsAgedOver80;
+    }
 }
 
 export function isComplete(responseData: ResponseData) {
