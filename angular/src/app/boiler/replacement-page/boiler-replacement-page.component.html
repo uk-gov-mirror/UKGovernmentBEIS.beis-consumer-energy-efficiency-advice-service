@@ -1,3 +1,31 @@
-<p>
-  replacement-page works!
-</p>
+<app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+<div class="boiler-replacement-page" *ngIf="!loading && !error">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <div class="heading-text">Replacing your boiler</div>
+        </div>
+    </div>
+    <div class="page-row get-started">
+        <div class="page-row-content">
+            <div class="content">
+                <div class="heading">Let's find the right boiler for you</div>
+                <div class="body-text">
+                    Answering the following questions helps us to make the best recommendations for your home
+                </div>
+            </div>
+            <a class="link-button" routerLink="/js/boiler/questionnaire">Let's get started</a>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content boiler-types">
+            <div class="heading">Different types of boilers and heating systems</div>
+            <div class="body-text">
+                There are many different types of boilers and heating systems available. Browse through the options
+                below to compare the specifications
+            </div>
+            <div class="boiler-replacement-cards">
+                <app-boiler-replacement-card *ngFor="let boiler of boilers" [boilerType]="boiler"></app-boiler-replacement-card>
+            </div>
+        </div>
+    </div>
+</div>
