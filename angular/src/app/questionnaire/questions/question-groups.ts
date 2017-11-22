@@ -41,6 +41,8 @@ export const CORE_BRE_QUESTIONS = [
     new BedroomsQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),
+    new ConstructionQuestionMetadata(),
+    new GardenQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
