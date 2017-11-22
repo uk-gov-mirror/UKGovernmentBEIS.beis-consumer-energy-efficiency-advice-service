@@ -1,0 +1,23 @@
+@import "styles/boiler";
+
+.boiler-measures-section {
+  display: block;
+
+  .body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .body-text {
+      flex: 0 1 40%;
+    }
+
+    .link-button {
+      flex: 0 0 350px;
+    }
+  }
+
+  .recommendation-cards {
+    margin-top: 48px;
+  }
+}

@@ -5,7 +5,7 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 import {HttpRequest} from "@angular/common/http";
 import {BoilerTypesService} from "./boiler-types.service";
-import {BoilerType} from "./boiler-type";
+import {AllBoilerTypes, BoilerType} from "./boiler-type";
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -42,7 +42,7 @@ describe('EpcApiService', () => {
 
             // then
             actualResponse.then(response =>
-                expect(response).toEqual(boilerTypesResponse.map(metadata => BoilerType.fromMetadata(metadata)))
+                expect(response).toEqual(new AllBoilerTypes(boilerTypesResponse))
             );
         });
 

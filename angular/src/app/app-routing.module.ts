@@ -15,6 +15,8 @@ import {GrantsLandingPageComponent} from "./grants/landing-page/grants-landing-p
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency/energy-efficiency-results/energy-efficiency-results.component";
 import {EnergyEfficiencyResultsRouteGuard} from "./energy-efficiency/energy-efficiency-results/energy-efficiency-results.guard";
 import {BoilerQuestionnaireComponent} from "./boiler/boiler-questionnaire/boiler-questionnaire.component";
+import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-page.component";
+import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-page.guard";
 
 const routes: Routes = [
     {
@@ -64,8 +66,13 @@ const routes: Routes = [
         component: BoilerEpcReplaceComponent
     },
     {
-      path: 'js/boiler/questionnaire',
-      component: BoilerQuestionnaireComponent
+        path: 'js/boiler/questionnaire',
+        component: BoilerQuestionnaireComponent
+    },
+    {
+        path: 'js/boiler/results',
+        component: BoilerResultsPageComponent,
+        canActivate: [BoilerResultsPageRouteGuard]
     },
     {
         path: ':slug',

@@ -95,19 +95,3 @@ $border-width: 1px;
     -moz-appearance: textfield;
   }
 }
-
-@mixin boiler-link-button() {
-  @include body-uppercase;
-  color: white;
-  text-align: left;
-
-  cursor: pointer;
-  border: none;
-  background-color: $dark-grey;
-  &:hover, &:focus {
-    background-color: black;
-  }
-
-  padding: 24px 16px;
-  box-sizing: border-box;
-}

@@ -6,6 +6,9 @@ add_action( 'init', 'setup_boiler_acf_group');
 // Disable the quick-edit link to prevent users editing the slug for a recommendation
 add_filter( 'post_row_actions', disable_quick_edit_for('boiler'), 10, 2 );
 
+// Add slug to returned ACF fields
+add_filter('acf/rest_api/boiler/get_items', 'add_slug');
+
 function create_boiler_post_type() {
 
     register_post_type('boiler',
@@ -55,6 +58,20 @@ function setup_boiler_acf_group() {
                     'name' => 'description',
                     'type' => 'text',
                     'instructions' => 'A short (1-2 sentences) description of this boiler type',
+                    'required' => 1,
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'html',
+                    'maxlength' => '',
+                ),
+                array (
+                    'key' => 'field_5a13f38041082',
+                    'label' => 'Space requirement',
+                    'name' => 'space_requirement',
+                    'type' => 'text',
+                    'instructions' => 'A short (1 or 2 sentences) description of the space requirements for this boiler.',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',

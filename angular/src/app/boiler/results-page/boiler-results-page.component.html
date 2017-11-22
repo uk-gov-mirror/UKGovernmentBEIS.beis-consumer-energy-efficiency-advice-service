@@ -1,0 +1,29 @@
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<div class="boiler-results-page" *ngIf="!isLoading && !isError">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <div class="heading-text">Replacing your boiler</div>
+        </div>
+    </div>
+    <div class="page-row found-options">
+        <div class="page-row-content">
+            <div class="heading">Thanks! We've found the following options for you</div>
+            <div class="boiler-options">
+                <app-boiler-option-card class="boiler-option"
+                                        *ngFor="let boiler of applicableBoilerTypes"
+                                        [boiler]="boiler"></app-boiler-option-card>
+            </div>
+            <div class="installer-links">
+                <button class="link-button"
+                        *ngFor="let boiler of applicableBoilerTypes">
+                    Find a trustworthy {{boiler.name}} installer
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="recommendations page-row-content">
+            <app-boiler-measures-section [measures]="measures"></app-boiler-measures-section>
+        </div>
+    </div>
+</div>

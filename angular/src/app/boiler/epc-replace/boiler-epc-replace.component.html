@@ -26,7 +26,7 @@
                         will save you money
                     </div>
                 </div>
-                <button class="link-button">Answer a few more questions so we can suggest some boilers to suit you</button>
+                <button class="link-button" routerLink="/js/boiler/questionnaire">Answer a few more questions so we can suggest some boilers to suit you</button>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                         If you are not sure or don't have access to your boiler we can ask a few questions in order to
                         give you some personalised recommendations
                     </div>
-                    <button class="link-button">
+                    <button class="link-button" routerLink="/js/boiler/questionnaire">
                         Answer a few more questions so we could suggest the right boiler for you
                     </button>
                 </div>
@@ -49,19 +49,7 @@
     </div>
     <div class="page-row" *ngIf="recommendations !== undefined && !boilerNeedsReplacing()">
         <div class="recommendations page-row-content">
-            <div class="heading">There's probably more you can do!</div>
-            <div class="body">
-                <div class="body-text">
-                    While your boiler is fine, perhaps there are other things you can do to help save money on your energy bills
-                </div>
-                <button class="link-button">Answer a few more questions to help you save on energy</button>
-            </div>
-            <div class="recommendation-cards">
-                <app-recommendation-card class="recommendation-card"
-                                         *ngFor="let measure of staticPartialMeasuresWithCodes trackBy $index"
-                                         [recommendation]="measure.measure">
-                </app-recommendation-card>
-            </div>
+            <app-boiler-measures-section [measures]="measures"></app-boiler-measures-section>
         </div>
     </div>
     <div class="page-row" *ngIf="boilerNeedsReplacing()">

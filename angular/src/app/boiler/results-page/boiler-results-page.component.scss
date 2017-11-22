@@ -1,0 +1,44 @@
+@import "styles/mixins/font";
+@import "styles/var/colours";
+@import "styles/boiler";
+
+@mixin flex-n-per-row($n, $margin) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  > * {
+    flex: 0 0 auto;
+    flex-basis: calc((100% - #{$n * $margin} - 1px) / 3);
+    margin-bottom: $margin;
+    &:not(:nth-child(#{$n}n)) {
+      margin-right: $margin;
+    }
+  }
+}
+
+.boiler-results-page {
+
+  .found-options {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      display: block;
+
+      .boiler-options {
+        @include flex-n-per-row(3, 24px);
+        margin-top: 48px;
+      }
+
+      .installer-links {
+        @include flex-n-per-row(3, 12px);
+        margin-top: 48px;
+      }
+    }
+  }
+
+  .recommendations {
+    display: block;
+  }
+}
