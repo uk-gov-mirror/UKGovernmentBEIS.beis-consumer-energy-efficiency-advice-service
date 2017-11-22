@@ -3,7 +3,7 @@ import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {BoilerReplacementCardComponent} from "./boiler-replacement-card.component";
-import {BoilerType} from "../../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 
 describe('BoilerReplacementCardComponent', () => {
     let component: BoilerReplacementCardComponent;

@@ -1,0 +1,33 @@
+@import "styles/var/colours";
+@import "styles/boiler";
+
+.boiler-replacement-page {
+
+  .get-started {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+
+      .content {
+        flex: 1 1 auto;
+      }
+
+      .link-button {
+        flex: 0 0 200px;
+        text-align: center;
+      }
+    }
+  }
+
+  .boiler-types {
+    display: block;
+
+    .boiler-replacement-cards {
+      margin-top: 48px;
+    }
+  }
+}
