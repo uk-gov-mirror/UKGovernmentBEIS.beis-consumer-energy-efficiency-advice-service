@@ -18,7 +18,7 @@ export class WarmHomeDiscount extends NationalGrantCalculator {
         if (responseData.benefits & WarmHomeDiscount.QUALIFYING_BENEFIT) {
             eligibility = GrantEligibility.LikelyEligible;
         } else {
-            eligibility = GrantEligibility.MayBeEligible;
+            eligibility = GrantEligibility.Ineligible;
             // TODO: improve this (BEISDEAS-96)
         }
         return Observable.of(eligibility);
