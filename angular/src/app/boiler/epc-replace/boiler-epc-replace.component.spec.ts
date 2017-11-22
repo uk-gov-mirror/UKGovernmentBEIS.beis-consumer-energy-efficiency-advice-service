@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Observable";
 
 import {BoilerEpcReplaceComponent} from "./boiler-epc-replace.component";
 import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-model-lookup.component";
-import {BoilerReplacementCardComponent} from "./boiler-replacement-card/boiler-replacement-card.component";
+import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";

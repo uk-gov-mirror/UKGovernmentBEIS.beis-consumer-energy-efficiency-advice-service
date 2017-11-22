@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {BoilerType} from "../../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 
 @Component({
     selector: 'app-boiler-replacement-card',
