@@ -1,3 +1,76 @@
-<p>
-  make-model-replace works!
-</p>
+<app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+<div class="boiler-make-model-replace" *ngIf="!loading && !error">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <div class="heading-text">Replacing your boiler</div>
+        </div>
+    </div>
+    <div class="page-row found-boiler">
+        <div class="page-row-content">
+            <div class="heading">We've found your boiler!</div>
+            <div class="body">
+                <div class="boiler-details">
+                    <div class="name">
+                        <div class="body-text">Your boiler is:</div>
+                        <div class="boiler-name">{{boiler.name}}</div>
+                    </div>
+                    <div class="fuel-and-efficiency">
+                        <div class="fuel">
+                            <div class="body-text">The fuel type is:</div>
+                            <div class="fuel-type">{{getFuelTypeName(boiler.fuelType)}}</div>
+                        </div>
+                        <div class="efficiency">
+                            <div class="body-text">Your boiler's efficiency is:</div>
+                            <div class="efficiency-figure">
+                                <div class="percentage">{{boiler.efficiency}}%</div>
+                                <div class="explanation">
+                                    All boilers after 2010 must have at least {{efficiencyThreshold}}% efficiency.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation no-replace" *ngIf="shouldReplace()">
+                    <div class="body-text">We recommend that:</div>
+                    <div class="body">
+                        <div class="icon icon-cross"></div>
+                        <div class="content">
+                            <div class="recommendation-text">
+                                Due to its age, replacing your boiler will save you money and be more energy efficient
+                            </div>
+                            <a class="link-button" routerLink="/js/boiler/questionnaire">
+                                Answer a few more questions so we can suggest some boilers to suit you
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation no-replace" *ngIf="!shouldReplace()">
+                    <div class="body-text">We recommend that:</div>
+                    <div class="body">
+                        <div class="icon icon icon-tick"></div>
+                        <div class="content">
+                            <div class="recommendation-text">
+                                Your boiler is reasonably new, probably running efficiently and saving you money
+                            </div>
+                            <a class="link-button">
+                                See ways to keep your boiler running efficiently
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content boiler-types">
+            <div class="heading">Different types of boilers and heating systems</div>
+            <div class="body-text">
+                There are many different types of boilers and heating systems available. Browse through the options
+                below to compare the specifications
+            </div>
+            <div class="boiler-replacement-cards">
+                <app-boiler-replacement-card *ngFor="let boilerType of boilerTypes" [boilerType]="boilerType"></app-boiler-replacement-card>
+            </div>
+        </div>
+    </div>
+</div>
