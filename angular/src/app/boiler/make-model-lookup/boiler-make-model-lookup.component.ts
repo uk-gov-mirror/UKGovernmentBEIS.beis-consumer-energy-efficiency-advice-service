@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 
-import fuzzysearch from "fuzzysearch";
 import sortBy from "lodash-es/sortBy";
 import includes from "lodash-es/includes";
 
@@ -25,16 +24,14 @@ export class BoilerMakeModelLookupComponent {
 
     lookupBoilersFromSearchTerm(searchTerm: string) {
         this.searching = true;
-        this.gasAndOilBoilersService.getGasAndOilBoilers().subscribe(
-            boilers => this.findMatchedBoilers(searchTerm, boilers),
-            () => this.findMatchedBoilers(searchTerm, []),
+        this.gasAndOilBoilersService.getGasAndOilBoilersMatching(searchTerm).subscribe(
+            boilers => this.setMatchedBoilers(searchTerm, boilers),
+            () => this.setMatchedBoilers(searchTerm, []),
         );
     }
 
-    private findMatchedBoilers(searchTerm: string, allBoilers: GasAndOilBoiler[]) {
-        const matchedBoilers = allBoilers
-            .filter(boiler => fuzzysearch(searchTerm.toLowerCase(), boiler.name.toLowerCase()));
-        this.matchedBoilers = sortBy(matchedBoilers, boiler => !includes(boiler.name.toLowerCase(), searchTerm.toLowerCase()));
+    private setMatchedBoilers(searchTerm: string, boilers: GasAndOilBoiler[]) {
+        this.matchedBoilers = sortBy(boilers, boiler => !includes(boiler.name.toLowerCase(), searchTerm.toLowerCase()));
         this.searching = false;
     }
 

@@ -30,13 +30,13 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
 
     ngOnInit() {
         Observable.forkJoin(
-            this.gasAndOilBoilersService.getGasAndOilBoilers(),
+            this.gasAndOilBoilersService.getGasAndOilBoilerWithIndexNumber(this.productIndexNumber),
             this.boilerTypesService.fetchBoilerTypes()
         )
             .subscribe(
-                ([gasAndOilBoilers, boilerTypes]) => {
+                ([gasAndOilBoiler, boilerTypes]) => {
                     this.boilerTypes = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower));
-                    this.setBoiler(gasAndOilBoilers);
+                    this.boiler = gasAndOilBoiler;
                 },
                 err => this.handleError(err),
                 () => this.loading = false,
@@ -58,10 +58,6 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
 
     shouldReplace() {
         return this.boiler.efficiency < this.efficiencyThreshold;
-    }
-
-    private setBoiler(allBoilers: GasAndOilBoiler[]) {
-        this.boiler = allBoilers.find(boiler => boiler.productIndexNumber === this.productIndexNumber);
     }
 
     private handleError(err) {

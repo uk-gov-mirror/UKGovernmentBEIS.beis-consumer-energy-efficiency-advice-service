@@ -26,7 +26,8 @@ describe('BoilerLandingPageComponent', () => {
 
     const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');
     const gasAndOilBoilersServiceStub = {
-        getGasAndOilBoilers: () => Observable.of(gasAndOilBoilersData.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson)))
+        getGasAndOilBoilerWithIndexNumber: (index) => Observable.of(GasAndOilBoiler.fromJson(gasAndOilBoilersData[0])),
+        getGasAndOilBoilersMatching: (term) => Observable.of(gasAndOilBoilersData.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson))),
     };
 
     beforeEach(async(() => {
