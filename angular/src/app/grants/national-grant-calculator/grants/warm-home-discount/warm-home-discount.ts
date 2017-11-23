@@ -1,9 +1,11 @@
+import {Injectable} from "@angular/core";
 import {NationalGrantCalculator} from "../../national-grant-calculator";
 import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
 import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
 import {ResponseData} from "../../../../shared/response-data/response-data";
 import {Observable} from "rxjs/Observable";
 
+@Injectable()
 export class WarmHomeDiscount extends NationalGrantCalculator {
 
     private static readonly QUALIFYING_BENEFIT = Benefits.PensionGuaranteeCredit;

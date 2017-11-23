@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/toPromise";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {NationalGrantCalculatorFactory} from "../national-grant-calculator/national-grant-calculator-factory";
+import {NationalGrantCalculatorFactory} from "../national-grant-calculator/factory/national-grant-calculator-factory";
 import {NationalGrantCalculator} from "../national-grant-calculator/national-grant-calculator";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-model";

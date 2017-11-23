@@ -10,7 +10,7 @@ import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-
 import {NationalGrantViewModel} from "../model/national-grant-view-model";
 import isEqual from "lodash-es/isEqual";
 import clone from "lodash-es/clone";
-import {NationalGrantCalculatorFactory} from "../national-grant-calculator/national-grant-calculator-factory";
+import {NationalGrantCalculatorFactory} from "../national-grant-calculator/factory/national-grant-calculator-factory";
 import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
 import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
 

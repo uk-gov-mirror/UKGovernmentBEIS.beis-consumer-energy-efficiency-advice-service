@@ -1,3 +1,4 @@
+import {TestBed, async} from "@angular/core/testing";
 import {Observable} from "rxjs/Observable";
 import {ResponseData} from "../../../../shared/response-data/response-data";
 import {IncomeThresholds} from "./income-threshold-service/income-thresholds";
@@ -8,6 +9,7 @@ import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibi
 
 describe('EcoHhcroHelpToHeat', () => {
     let responseData: ResponseData;
+    let grantCalculator: EcoHhcroHelpToHeat;
 
     const incomeThresholds: IncomeThresholds = {
         "tax-credits": {
@@ -43,20 +45,23 @@ describe('EcoHhcroHelpToHeat', () => {
             }
         }
     };
-    class MockIncomeThresholdService extends IncomeThresholdService {
-        constructor() {
-            super(null, null);
-        }
 
-        fetchIncomeThresholds() {
-            return Observable.of(incomeThresholds);
-        }
-    }
+    const incomeThresholdServiceStub = {
+        fetchIncomeThresholds: () => Observable.of(incomeThresholds)
+    };
 
-    const grantCalculator: EcoHhcroHelpToHeat = new EcoHhcroHelpToHeat(new MockIncomeThresholdService());
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                EcoHhcroHelpToHeat,
+                {provide: IncomeThresholdService, useValue: incomeThresholdServiceStub}
+            ]
+        });
+    }));
 
     beforeEach(() => {
         responseData = new ResponseData();
+        grantCalculator = TestBed.get(EcoHhcroHelpToHeat);
     });
 
     it('should calculate as ineligible if receiving no benefits', () => {
@@ -64,12 +69,12 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.benefits = Benefits.None;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.Ineligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.Ineligible);
+        });
     });
 
     it('should calculate as eligible if receiving ESA', () => {
@@ -77,12 +82,12 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.benefits = Benefits.ESA;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
-            // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-            });
+        // then
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
+        });
     });
 
     it('should calculate as eligible if receiving JSA', () => {
@@ -90,12 +95,12 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.benefits = Benefits.JobseekersAllowance;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
+        });
     });
 
     it('should calculate as eligible if receiving income support', () => {
@@ -103,12 +108,12 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.benefits = Benefits.IncomeSupport;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
+        });
     });
 
     it('should calculate as eligible if receiving pension guarantee credit', () => {
@@ -116,12 +121,12 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.benefits = Benefits.PensionGuaranteeCredit;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
+        });
     });
 
     it('should calculate as eligible if receiving tax credits and income below threshold', () => {
@@ -134,12 +139,12 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.income = 21000;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
+        });
     });
 
     it('should calculate as ineligible if receiving tax credits and income above threshold', () => {
@@ -152,15 +157,15 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.income = 22000;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.Ineligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.Ineligible);
+        });
     });
 
-    it('should calculate as eligible if receiving universal and income below threshold', () => {
+    it('should calculate as eligible if receiving universal credit and income below threshold', () => {
         // given
         responseData.benefits = Benefits.UniversalCredit;
         responseData.numberOfAdultsAgedUnder64 = 1;
@@ -170,15 +175,15 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.income = 32000;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
+        });
     });
 
-    it('should calculate as ineligible if receiving universal and income above threshold', () => {
+    it('should calculate as ineligible if receiving universal credit and income above threshold', () => {
         // given
         responseData.benefits = Benefits.UniversalCredit;
         responseData.numberOfAdultsAgedUnder64 = 1;
@@ -188,11 +193,11 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.income = 33000;
 
         // when
-        grantCalculator.getEligibility(responseData).toPromise()
+        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
 
         // then
-            .then((eligibility) => {
-                expect(eligibility).toBe(GrantEligibility.Ineligible);
-            });
+        calculatedEligibility.then((eligibility) => {
+            expect(eligibility).toBe(GrantEligibility.Ineligible);
+        });
     });
 });

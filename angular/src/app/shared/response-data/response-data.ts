@@ -57,10 +57,10 @@ export class ResponseData {
     public benefits: Benefits;
     public income: number;
 
-    public getNumberOfAdults(): number {
+    get numberOfAdults(): number {
         return this.numberOfAdultsAgedUnder64 +
-                this.numberOfAdultsAged64To80 +
-                this.numberOfAdultsAgedOver80;
+            this.numberOfAdultsAged64To80 +
+            this.numberOfAdultsAgedOver80;
     }
 }
 

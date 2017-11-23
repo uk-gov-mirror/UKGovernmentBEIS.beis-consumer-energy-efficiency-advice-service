@@ -1,3 +1,4 @@
+import {Injectable} from "@angular/core";
 import {NationalGrantCalculator} from "../../national-grant-calculator";
 import {ResponseData} from "../../../../shared/response-data/response-data";
 import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
@@ -6,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 import {IncomeThresholdService} from "./income-threshold-service/income-threshold.service";
 import {IncomeThresholdByChildren, IncomeThreshold} from "./income-threshold-service/income-thresholds";
 
+@Injectable()
 export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
 
     private static readonly AUTOMATICALLY_QUALIFYING_BENEFITS: Benefits = Benefits.ESA | Benefits.JobseekersAllowance |
@@ -32,27 +34,33 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
     }
 
     private getTaxCreditsEligibility(responseData: ResponseData): Observable<GrantEligibility> {
-        const relevantIncomeThreshold = this.incomeThresholdService.fetchIncomeThresholds()
-            .map(incomeThresholds => incomeThresholds['tax-credits']);
         // Tax credits thresholds are compared to annual income
         const relevantIncome = responseData.income;
+        if (!relevantIncome || !responseData.numberOfAdults || !responseData.numberOfChildren) {
+            return Observable.of(GrantEligibility.NotCalculated);
+        }
+        const relevantIncomeThreshold = this.incomeThresholdService.fetchIncomeThresholds()
+            .map(incomeThresholds => incomeThresholds['tax-credits']);
         return EcoHhcroHelpToHeat.getEligibilityFromIncome(
             relevantIncomeThreshold,
             relevantIncome,
-            responseData.getNumberOfAdults(),
+            responseData.numberOfAdults,
             responseData.numberOfChildren
         );
     }
 
     private getUniversalCreditEligibility(responseData: ResponseData): Observable<GrantEligibility> {
-        const relevantIncomeThreshold = this.incomeThresholdService.fetchIncomeThresholds()
-            .map(incomeThresholds => incomeThresholds['universal-credit']);
         // Universal credit thresholds are compared to monthly income
         const relevantIncome = responseData.income / 12;
+        if (!relevantIncome || !responseData.numberOfAdults || !responseData.numberOfChildren) {
+            return Observable.of(GrantEligibility.NotCalculated);
+        }
+        const relevantIncomeThreshold = this.incomeThresholdService.fetchIncomeThresholds()
+            .map(incomeThresholds => incomeThresholds['universal-credit']);
         return EcoHhcroHelpToHeat.getEligibilityFromIncome(
             relevantIncomeThreshold,
             relevantIncome,
-            responseData.getNumberOfAdults(),
+            responseData.numberOfAdults,
             responseData.numberOfChildren
         );
     }
