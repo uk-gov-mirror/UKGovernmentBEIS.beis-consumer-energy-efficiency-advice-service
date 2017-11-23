@@ -9,7 +9,6 @@ import {GrantsLandingPageComponent} from "./landing-page/grants-landing-page.com
 import {RoutingModule} from "../app-routing.module";
 import {GrantEligibilityService} from "./grant-eligibility-service/grant-eligibility.service";
 import {NationalGrantsContentService} from "./national-grants-content-service/national-grants-content.service";
-import {NationalGrantCalculatorFactory} from "./national-grant-calculator/factory/national-grant-calculator-factory";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {IncomeThresholdService} from "./national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
 import {ColdWeatherPayments} from "./national-grant-calculator/grants/cold-weather-payments/cold-weather-payments";
@@ -20,6 +19,7 @@ import {WarmHomeDiscount} from "./national-grant-calculator/grants/warm-home-dis
 import {EcoHhcroHelpToHeat} from "./national-grant-calculator/grants/eco-hhcro-help-to-heat/eco-hhcro-help-to-heat";
 import {WinterFuelPayments} from "./national-grant-calculator/grants/winter-fuel-payments/winter-fuel-payments";
 import {NationalGrantCalculator} from "./national-grant-calculator/national-grant-calculator";
+import {NationalGrantCalculatorProvider} from "./national-grant-calculator/provider/national-grant-calculator.provider";
 
 @NgModule({
     declarations: [
@@ -47,7 +47,7 @@ export class GrantsModule {
             providers: [
                 GrantEligibilityService,
                 NationalGrantsContentService,
-                NationalGrantCalculatorFactory,
+                NationalGrantCalculatorProvider,
                 IncomeThresholdService,
                 {provide: NationalGrantCalculator, useClass: ColdWeatherPayments, multi: true},
                 {provide: NationalGrantCalculator, useClass: EcoCero, multi: true},

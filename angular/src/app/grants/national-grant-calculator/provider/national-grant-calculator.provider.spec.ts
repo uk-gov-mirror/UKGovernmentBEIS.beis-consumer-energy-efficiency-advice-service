@@ -1,12 +1,12 @@
 import {async, TestBed} from "@angular/core/testing";
-import {NationalGrantCalculatorFactory} from "./national-grant-calculator-factory";
 import {NationalGrantCalculator} from "../national-grant-calculator";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
 import {Observable} from "rxjs/Observable";
+import {NationalGrantCalculatorProvider} from "./national-grant-calculator.provider";
 
-describe('NationalGrantCalculatorFactory', () => {
-    let factory: NationalGrantCalculatorFactory;
+describe('NationalGrantCalculatorProvider', () => {
+    let factory: NationalGrantCalculatorProvider;
 
     abstract class BaseMockNationalGrantCalculator extends NationalGrantCalculator {
         getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
@@ -33,7 +33,7 @@ describe('NationalGrantCalculatorFactory', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                NationalGrantCalculatorFactory,
+                NationalGrantCalculatorProvider,
                 {provide: NationalGrantCalculator, useClass: MockNationalGrantCalculator, multi: true},
                 {provide: NationalGrantCalculator, useClass: AnotherMockNationalGrantCalculator, multi: true}
             ]
@@ -42,7 +42,7 @@ describe('NationalGrantCalculatorFactory', () => {
     }));
 
     beforeEach(() => {
-        factory = TestBed.get(NationalGrantCalculatorFactory);
+        factory = TestBed.get(NationalGrantCalculatorProvider);
     });
 
     it('should be created', () => {

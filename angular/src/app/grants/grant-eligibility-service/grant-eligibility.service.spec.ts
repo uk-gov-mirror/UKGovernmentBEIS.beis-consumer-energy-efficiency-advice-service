@@ -5,7 +5,6 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/toPromise";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {NationalGrantCalculatorFactory} from "../national-grant-calculator/factory/national-grant-calculator-factory";
 import {NationalGrantCalculator} from "../national-grant-calculator/national-grant-calculator";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-model";
@@ -13,6 +12,7 @@ import {GrantEligibility} from "./grant-eligibility";
 import {GrantEligibilityService} from "./grant-eligibility.service";
 import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
 import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
+import {NationalGrantCalculatorProvider} from "../national-grant-calculator/provider/national-grant-calculator.provider";
 
 describe('GrantEligibilityService', () => {
     let httpMock: HttpTestingController;
@@ -100,7 +100,7 @@ describe('GrantEligibilityService', () => {
     };
 
     let nationalGrantCalculators: NationalGrantCalculator[];
-    const nationalGrantCalculatorFactoryStub = {
+    const nationalGrantCalculatorProviderStub = {
         nationalGrants: [
             new EligibleNationalGrant('an-eligible-grant'),
             new EligibleNationalGrant('another-eligible-grant'),
@@ -123,7 +123,7 @@ describe('GrantEligibilityService', () => {
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: NationalGrantsContentService, useValue: nationalGrantsContentServiceStub},
-                {provide: NationalGrantCalculatorFactory, useValue: nationalGrantCalculatorFactoryStub}
+                {provide: NationalGrantCalculatorProvider, useValue: nationalGrantCalculatorProviderStub}
             ],
             imports: [HttpClientTestingModule]
         })
