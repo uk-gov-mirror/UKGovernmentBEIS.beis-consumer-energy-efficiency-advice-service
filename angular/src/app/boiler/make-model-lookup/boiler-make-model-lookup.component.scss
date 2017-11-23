@@ -60,31 +60,14 @@
 
     margin-top: 32px;
 
-    .image-rec-button, .link-button {
-      @include boiler-link-button;
+    .link-button {
       height: 50px;
       padding: 8px 16px;
-    }
-
-    .image-rec-button {
-      background-color: white;
-      color: $dark-grey;
-      &:hover, &:focus {
-        background-color: $light-grey;
-        color: black;
-      }
-
-      display: flex;
-      align-items: center;
-      margin-right: 24px;
-
-      .icon-camera {
-        margin-right: 8px;
-      }
-    }
-
-    .link-button {
       text-align: center;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
