@@ -6,10 +6,22 @@ import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-r
 import {DataCardComponent} from "../data-card/data-card.component";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
+import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
     let fixture: ComponentFixture<EnergyEfficiencyRecommendationCardComponent>;
+
+    const advantages = ['Green', 'Cost effective'];
+    const grant = {
+        name: 'National Grant 1',
+        description: 'some national grant',
+        eligibility: GrantEligibility.LikelyEligible,
+        shouldDisplayWithoutMeasures: true,
+        annualPaymentPounds: 120,
+        linkedMeasureCodes: ['V2'],
+        advantages: null
+    };
 
     const recommendation: EnergyEfficiencyRecommendation = {
         investmentPounds: 200,
@@ -20,7 +32,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         headline: 'Loft insulation',
         summary: 'No description available',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
-        grants: []
+        grants: [grant],
+        advantages: advantages
     };
 
     beforeEach(async(() => {
@@ -69,5 +82,22 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
         expect(tagNames).toContain('grant');
         expect(tagNames).toContain('longer term');
+    });
+
+    it('should display a linked grant name', () => {
+        const grantNameElement = fixture.debugElement.query(By.css('.grant-name')).nativeElement;
+        expect(grantNameElement.innerText).toBe(grant.name);
+    });
+
+    it('should display a linked grant description', () => {
+        const grantDescriptionElement = fixture.debugElement.query(By.css('.grant-description')).nativeElement;
+        expect(grantDescriptionElement.innerText).toBe(grant.description);
+    });
+
+    it('should display a the recommendation advantages', () => {
+        const displayedAdvantages = fixture.debugElement.queryAll(By.css('.benefits-list-item'))
+            .map(el => el.nativeElement.innerText.trim());
+        expect(displayedAdvantages.length).toBe(advantages.length);
+        advantages.forEach(expectedAdvantage => expect(displayedAdvantages).toContain(expectedAdvantage));
     });
 });

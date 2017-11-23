@@ -26,7 +26,8 @@ describe('GrantEligibilityService', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
             annualPaymentPounds: null,
-            linkedMeasureCodes: null
+            linkedMeasureCodes: null,
+            advantages: null
         },
         {
             name: 'LA Grant 2',
@@ -34,7 +35,8 @@ describe('GrantEligibilityService', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
             annualPaymentPounds: null,
-            linkedMeasureCodes: null
+            linkedMeasureCodes: null,
+            advantages: null
         }
     ];
 
@@ -45,7 +47,8 @@ describe('GrantEligibilityService', () => {
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "an-eligible-grant"
+            slug: "an-eligible-grant",
+            advantages: ''
         },
         {
             heading: "Eligible grant 2",
@@ -53,7 +56,8 @@ describe('GrantEligibilityService', () => {
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "another-eligible-grant"
+            slug: "another-eligible-grant",
+            advantages: ''
         },
         {
             heading: "Ineligible grant",
@@ -61,7 +65,8 @@ describe('GrantEligibilityService', () => {
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "ineligible-grant"
+            slug: "ineligible-grant",
+            advantages: ''
         }
     ];
 

@@ -11,7 +11,6 @@ import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-s
 import {GrantCardComponent} from "../../grants/grant-card/grant-card.component";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-tag";
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
 import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
@@ -40,6 +39,7 @@ import {EnergySavingMeasureContentService} from "../../shared/energy-saving-meas
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
+import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -60,7 +60,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
-            linkedMeasureCodes: ['V2']
+            linkedMeasureCodes: ['V2'],
+            advantages: []
         },
         {
             name: 'National Grant 2',
@@ -68,7 +69,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
-            linkedMeasureCodes: []
+            linkedMeasureCodes: [],
+            advantages: []
         }
     ];
 
@@ -249,7 +251,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // when
         fixture.detectChanges();
         component.toggleRecommendationListState();
-        component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.LongerTerm);
+        component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm);
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
@@ -289,11 +291,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
+        // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
         // for measure code V2
         expect(component.displayedRecommendations[0].headline).toBe('Wind turbine on mast');
         expect(component.displayedRecommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
         expect(component.displayedRecommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
+        expect(component.displayedRecommendations[0].advantages).toEqual(['Green', 'Cost effective']);
     });
 
     it('should link recommendation to available grant', () => {
@@ -301,7 +304,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
+        // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
         // for measure code V2
         expect(component.displayedRecommendations[0].grants.length).toBe(1);
         expect(component.displayedRecommendations[0].grants[0].name).toBe('National Grant 1');
