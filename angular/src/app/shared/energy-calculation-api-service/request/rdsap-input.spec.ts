@@ -15,6 +15,7 @@ import {
 import {WaterTankSpace} from "../../../questionnaire/questions/water-tank-question/water-tank-space";
 import {GardenAccessibility} from "../../../questionnaire/questions/garden-question/garden-accessibility";
 import {RoofSpace} from "../../../questionnaire/questions/roof-space-question/roof-space";
+import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 
 describe('RdsapInput', () => {
 
@@ -28,6 +29,7 @@ describe('RdsapInput', () => {
         const responseData: ResponseData = {
             userJourneyType: UserJourneyType.Calculator,
             shouldIncludeGrantsQuestionnaire: false,
+            shouldIncludeOptionalPropertyQuestions: false,
             postcode: 'sw1h0et',
             epc: null,
             localAuthorityCode: 'E09000033',
@@ -38,6 +40,8 @@ describe('RdsapInput', () => {
             flatPosition: FlatPosition.ThreeSidesExposed,
             numberOfStoreys: 1,
             numberOfBedrooms: 1,
+            floorArea: undefined,
+            floorAreaUnit: FloorAreaUnit.SquareMetre,
             fuelType: FuelType.MainsGas,
             condensingBoiler: false,
             electricityTariff: undefined,

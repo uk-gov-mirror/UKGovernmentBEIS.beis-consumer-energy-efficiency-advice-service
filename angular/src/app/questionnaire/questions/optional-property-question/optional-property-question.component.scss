@@ -1,14 +1,11 @@
 @import 'styles/mixins/buttons';
 
-.tenure-type-question {
-  .tenure-type-options {
+.optional-property-question {
+  .optional-property-question-options {
     margin-top: 64px;
 
-    .tenure-type-option {
+    .optional-property-question-option {
       @include big-rounded-button;
-
-      width: 320px;
-      height: 160px;
 
       &:not(:last-child) {
         margin-right: 64px;

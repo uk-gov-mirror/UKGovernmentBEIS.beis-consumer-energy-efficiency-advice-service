@@ -31,6 +31,8 @@ import {ConstructionQuestionComponent} from "./construction-question/constructio
 import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-question.component";
 import {GardenQuestionComponent} from "./garden-question/garden-question.component";
 import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-question.component";
+import {OptionalPropertyQuestionComponent} from "./optional-property-question/optional-property-question.component";
+import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-question.component";
 
 @NgModule({
     declarations: [
@@ -40,6 +42,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -49,6 +52,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
@@ -68,6 +72,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -77,6 +82,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
@@ -103,6 +109,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         ConfirmEpcQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -112,6 +119,7 @@ import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-quest
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,

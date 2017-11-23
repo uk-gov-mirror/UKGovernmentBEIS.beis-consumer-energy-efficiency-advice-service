@@ -18,6 +18,10 @@ import {GrantsQuestionnaireQuestionMetadata} from "../../questions/grants-questi
 import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths-question/showers-and-baths-question-metadata";
 import {HeatingCostQuestionMetadata} from "../../questions/heating-cost-question/heating-cost-question-metadata";
 import {LengthOfHeatingOnQuestionMetadata} from "../../questions/length-of-heating-on-question/length-of-heating-on-question-metadata";
+import {OptionalPropertyQuestionMetadata} from "../../questions/optional-property-question/optional-property-question-metadata";
+import {FloorAreaQuestionMetadata} from "../../questions/floor-area-question/floor-area-question-metadata";
+import {ConstructionQuestionMetadata} from "../../questions/construction-question/construction-question-metadata";
+import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -39,6 +43,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -69,6 +77,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -99,6 +111,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -129,6 +145,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
@@ -156,6 +176,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new StoreysQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new OptionalPropertyQuestionMetadata(),
+            new FloorAreaQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),

@@ -24,6 +24,8 @@ import {ConstructionQuestionMetadata} from "./construction-question/construction
 import {WaterTankQuestionMetadata} from "./water-tank-question/water-tank-question-metadata";
 import {GardenQuestionMetadata} from "./garden-question/garden-question-metadata";
 import {RoofSpaceQuestionMetadata} from "./roof-space-question/roof-space-question-metadata";
+import {OptionalPropertyQuestionMetadata} from "./optional-property-question/optional-property-question-metadata";
+import {FloorAreaQuestionMetadata} from "./floor-area-question/floor-area-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new PostcodeEpcQuestionMetadata(),
@@ -37,6 +39,10 @@ export const CORE_BRE_QUESTIONS = [
     new HomeAgeQuestionMetadata(),
     new StoreysQuestionMetadata(),
     new BedroomsQuestionMetadata(),
+    new OptionalPropertyQuestionMetadata(),
+    new FloorAreaQuestionMetadata(),
+    new ConstructionQuestionMetadata(),
+    new GardenQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),

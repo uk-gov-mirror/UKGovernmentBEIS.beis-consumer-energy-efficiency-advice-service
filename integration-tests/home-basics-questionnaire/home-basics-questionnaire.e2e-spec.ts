@@ -58,6 +58,26 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
+        // The start of optional property questions
+        expect(page.getHeading()).toContain('The next set of property questions are optional');
+        CommonPageHelpers.clickButton('Yes');
+        CommonPageHelpers.sleep(1000);
+
+        // Floor area
+        expect(page.getHeading()).toContain('What\'s the floor area of your');
+        CommonPageHelpers.clickButton('I don\'t know');
+        CommonPageHelpers.sleep(1000);
+
+        // Construction insulation
+        expect(page.getHeading()).toContain('What best describes the construction');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Garden
+        expect(page.getHeading()).toContain('Is your garden accessible to digging machinery');
+        CommonPageHelpers.clickButton('No garden');
+        CommonPageHelpers.sleep(1000);
+
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
