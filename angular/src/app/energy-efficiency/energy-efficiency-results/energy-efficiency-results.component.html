@@ -50,7 +50,7 @@
                 <button class="expand-recommendations-list"
                         *ngIf="recommendationListState !== RecommendationListStates.CannotExpand"
                         (click)="toggleRecommendationListState()">
-                    {{recommendationListButtonText}}
+                    {{getRecommendationListButtonText()}}
                 </button>
             </div>
         </div>

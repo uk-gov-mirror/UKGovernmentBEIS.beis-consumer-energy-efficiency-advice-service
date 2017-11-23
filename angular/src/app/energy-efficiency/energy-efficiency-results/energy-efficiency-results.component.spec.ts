@@ -30,7 +30,6 @@ import {DataCardComponent} from "./data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
@@ -231,10 +230,14 @@ describe('EnergyEfficiencyResultsComponent', () => {
     });
 
     it('should apply filters when the recommendations list is expanded', () => {
-        // when
+        // given
         fixture.detectChanges();
         component.toggleRecommendationListState();
+        fixture.detectChanges();
+
+        // when
         component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.Grant);
+        fixture.detectChanges();
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
@@ -242,10 +245,14 @@ describe('EnergyEfficiencyResultsComponent', () => {
     });
 
     it('should apply multiple filters additively', async(() => {
-        // when
+        // given
         fixture.detectChanges();
         component.toggleRecommendationListState();
-        component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.LongerTerm);
+        fixture.detectChanges();
+
+        // when
+        component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm);
+        fixture.detectChanges();
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));

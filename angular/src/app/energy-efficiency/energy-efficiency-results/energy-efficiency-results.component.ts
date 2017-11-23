@@ -37,7 +37,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isError: boolean = false;
     recommendationListState: RecommendationsListStates;
     RecommendationListStates = RecommendationsListStates;
-    recommendationListButtonText: string;
     displayedRecommendations: EnergyEfficiencyRecommendation[] = [];
 
     private displayOnlyRecommendationsContainingTags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
@@ -77,12 +76,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         switch(this.recommendationListState) {
             case RecommendationsListStates.Collapsed: {
                 this.recommendationListState = RecommendationsListStates.Expanded;
-                this.recommendationListButtonText = EnergyEfficiencyResultsComponent.getCollapseRecommendationsButtonText();
                 break;
             }
             case RecommendationsListStates.Expanded: {
                 this.recommendationListState = RecommendationsListStates.Collapsed;
-                this.recommendationListButtonText = this.getExpandRecommendationsButtonText();
                 break;
             }
         }
@@ -92,6 +89,19 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     onSelectedTagsChanged(selectedTags: EnergyEfficiencyRecommendationTag): void {
         this.displayOnlyRecommendationsContainingTags = selectedTags;
         this.updateDisplayedRecommendations();
+    }
+
+    getRecommendationListButtonText(): string {
+        if (this.recommendationListState === RecommendationsListStates.Collapsed) {
+            const extraRecommendationsAvailable = this.allRecommendations.length -
+                EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
+            if (extraRecommendationsAvailable === 1) {
+                return 'There is 1 more recommendation available. See all ▼';
+            }
+            return `There are ${extraRecommendationsAvailable} more recommendations available. See all ▼`;
+        } else {
+            return `Show the top ${EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED} recommendations ▲`;
+        }
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
@@ -140,7 +150,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.recommendationListState =
             this.allRecommendations.length > EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED ?
                 RecommendationsListStates.Collapsed : RecommendationsListStates.CannotExpand;
-        this.recommendationListButtonText = this.getExpandRecommendationsButtonText();
         this.updateDisplayedRecommendations();
     }
 
@@ -151,27 +160,12 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         } else {
             this.displayedRecommendations = this.allRecommendations
                 .filter(recommendation => {
-                    const requiredTags = parseInt(this.displayOnlyRecommendationsContainingTags.toString(2));
-                    const actualTags = parseInt(recommendation.tags.toString(2));
-                    const matchingTags = requiredTags & actualTags;
+                    const requiredTags = this.displayOnlyRecommendationsContainingTags;
+                    const matchingTags = requiredTags & recommendation.tags;
                     return matchingTags === requiredTags;
                 });
         }
         this.changeDetectorRef.detectChanges();
-    }
-
-    private static getCollapseRecommendationsButtonText(): string {
-        return `Show the top ${EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED} recommendations ▲`;
-
-    }
-
-    private getExpandRecommendationsButtonText(): string {
-        const extraRecommendationsAvailable = this.allRecommendations.length -
-            EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
-        if (extraRecommendationsAvailable === 1) {
-            return 'There is 1 more recommendation available. See all ▼';
-        }
-        return `There are ${extraRecommendationsAvailable} more recommendations available. See all ▼`;
     }
 
     private static getAllRecommendationsOrderedBySaving(energyCalculationResponse: EnergyCalculationResponse,

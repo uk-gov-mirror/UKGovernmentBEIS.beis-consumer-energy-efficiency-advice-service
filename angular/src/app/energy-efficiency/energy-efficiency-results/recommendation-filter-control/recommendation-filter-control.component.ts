@@ -20,8 +20,8 @@ export class RecommendationFilterControlComponent implements OnInit {
 
     ngOnInit() {
         this.tags = keys(EnergyEfficiencyRecommendationTag)
-            .map(tag => EnergyEfficiencyRecommendationTag[tag])
-            .filter(tag => typeof tag === "number")
+            .map(x => parseInt(x))
+            .filter(tag => !isNaN(tag))
             .filter(tag => tag !== EnergyEfficiencyRecommendationTag.None)
             .map(tag => {
                 return {
