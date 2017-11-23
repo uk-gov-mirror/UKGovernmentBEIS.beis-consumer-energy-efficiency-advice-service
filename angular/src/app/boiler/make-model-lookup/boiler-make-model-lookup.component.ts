@@ -1,21 +1,10 @@
 import {Component} from "@angular/core";
-import {AssetsService} from "../../shared/assets-service/assets.service";
+import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
+import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 
 import fuzzysearch from "fuzzysearch";
 import sortBy from "lodash-es/sortBy";
 import includes from "lodash-es/includes";
-
-interface BoilerMake {
-    productIndexNumber: string;
-    brandName: string;
-    modelName: string;
-    modelQualifier: string;
-}
-
-interface BoilerDropdownItem {
-    id: string;
-    name: string;
-}
 
 @Component({
     selector: 'app-boiler-make-model-lookup',
@@ -26,28 +15,23 @@ export class BoilerMakeModelLookupComponent {
 
     searching: boolean;
     searchTerm: string;
-    matchedBoilers: BoilerDropdownItem[];
-    selectedBoiler: BoilerDropdownItem;
+    matchedBoilers: GasAndOilBoiler[];
+    selectedBoiler: GasAndOilBoiler;
 
-    constructor(private assetsService: AssetsService) {
+    constructor(private gasAndOilBoilersService: GasAndOilBoilersService) {
     }
 
     lookupBoilersFromSearchTerm(searchTerm: string) {
         this.searching = true;
-        this.assetsService.getAsset('/boilers/gas-and-oil-boiler.json').subscribe(
+        this.gasAndOilBoilersService.getGasAndOilBoilers().subscribe(
             boilers => this.findMatchedBoilers(searchTerm, boilers),
             () => this.findMatchedBoilers(searchTerm, []),
         );
     }
 
-    private findMatchedBoilers(searchTerm: string, allBoilers: BoilerMake[]) {
+    private findMatchedBoilers(searchTerm: string, allBoilers: GasAndOilBoiler[]) {
         const matchedBoilers = allBoilers
-            .map(boiler => ({
-                id: boiler.productIndexNumber,
-                name: `${boiler.brandName} - ${boiler.modelName}, ${boiler.modelQualifier}`,
-            }))
             .filter(boiler => fuzzysearch(searchTerm.toLowerCase(), boiler.name.toLowerCase()));
-
         this.matchedBoilers = sortBy(matchedBoilers, boiler => !includes(boiler.name.toLowerCase(), searchTerm.toLowerCase()));
         this.searching = false;
     }

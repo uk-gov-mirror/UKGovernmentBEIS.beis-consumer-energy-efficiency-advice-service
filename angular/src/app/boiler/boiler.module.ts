@@ -20,6 +20,7 @@ import {BoilerMeasuresSectionComponent} from "./measures-section/boiler-measures
 import {BoilerPageMeasuresService} from "./measures-section/boiler-page-measures.service";
 import {BoilerResultsPageRouteGuard} from "./results-page/boiler-results-page.guard";
 import {BoilerReplacementPageComponent} from "./replacement-page/boiler-replacement-page.component";
+import {GasAndOilBoilersService} from "./gas-and-oil-boilers/gas-and-oil-boilers.service";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ export class BoilerModule {
                 BoilerTypesService,
                 BoilerPageMeasuresService,
                 BoilerResultsPageRouteGuard,
+                GasAndOilBoilersService,
             ]
         };
     }
