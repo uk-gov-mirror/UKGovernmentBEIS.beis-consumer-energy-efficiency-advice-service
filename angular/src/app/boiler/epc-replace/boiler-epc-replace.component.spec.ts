@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
 
@@ -11,11 +12,13 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
+import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
+import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -56,6 +59,11 @@ describe('BoilerEpcReplaceComponent', () => {
             .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
     };
 
+    const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');
+    const gasAndOilBoilersServiceStub = {
+        getGasAndOilBoilers: () => Observable.of(gasAndOilBoilersData.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson)))
+    };
+
     const questionnaireServiceStub = {
         isComplete: () => true
     };
@@ -72,12 +80,14 @@ describe('BoilerEpcReplaceComponent', () => {
             ],
             imports: [
                 RouterTestingModule,
+                FormsModule,
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},
                 {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
+                {provide: GasAndOilBoilersService, useValue: gasAndOilBoilersServiceStub},
             ],
         })
             .compileComponents();
