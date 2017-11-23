@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {Router} from "@angular/router";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 
@@ -13,12 +14,13 @@ import includes from "lodash-es/includes";
 })
 export class BoilerMakeModelLookupComponent {
 
-    searching: boolean;
-    searchTerm: string;
+    searching: boolean = false;
+    searchTerm: string = '';
     matchedBoilers: GasAndOilBoiler[];
     selectedBoiler: GasAndOilBoiler;
 
-    constructor(private gasAndOilBoilersService: GasAndOilBoilersService) {
+    constructor(private gasAndOilBoilersService: GasAndOilBoilersService,
+                private router: Router) {
     }
 
     lookupBoilersFromSearchTerm(searchTerm: string) {
@@ -34,5 +36,13 @@ export class BoilerMakeModelLookupComponent {
             .filter(boiler => fuzzysearch(searchTerm.toLowerCase(), boiler.name.toLowerCase()));
         this.matchedBoilers = sortBy(matchedBoilers, boiler => !includes(boiler.name.toLowerCase(), searchTerm.toLowerCase()));
         this.searching = false;
+    }
+
+    onBoilerSelected() {
+        if (this.selectedBoiler !== undefined) {
+            this.router.navigate(['js/boiler/make-model-replace', this.selectedBoiler.productIndexNumber]);
+        } else {
+            this.router.navigate(['js/boiler/replace']);
+        }
     }
 }
