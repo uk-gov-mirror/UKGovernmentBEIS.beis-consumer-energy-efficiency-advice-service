@@ -18,6 +18,7 @@ pcdfParser.getPcdfWithIgnoredLinesStripped = function (pcdf) {
 pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
     const tableCsvString = getTableBodyCsvString(pcdf, tableMetadata.tableNumber, tableMetadata.dataFormatNumber);
     var tableRows = [];
+
     csvParser({noheader: true})
         .fromString(tableCsvString)
         .on('csv', function (csvRow) {
@@ -31,8 +32,8 @@ pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
                 jsonRow.brandName = jsonRow.brandName.replace(/\w\S*/g, word => word.charAt(0).toUpperCase() + word.substr(1));
             }
 
-            // Remove empty rows which appear in the source data for some reason
-            if (Object.keys(jsonRow).length > 0) {
+            // Remove rows without any actual data, which appear in the source data for some reason
+            if (jsonRow.productIndexNumber !== undefined) {
                 tableRows.push(jsonRow);
             }
         })
