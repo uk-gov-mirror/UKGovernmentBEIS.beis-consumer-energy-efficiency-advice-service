@@ -45,7 +45,8 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     }
 
     getFuelTypeName(fuelType: FuelType) {
-        return getFuelTypeDescription(fuelType);
+        const description = getFuelTypeDescription(fuelType);
+        return description === null ? 'Unknown' : description;
     }
 
     shouldReplace() {
