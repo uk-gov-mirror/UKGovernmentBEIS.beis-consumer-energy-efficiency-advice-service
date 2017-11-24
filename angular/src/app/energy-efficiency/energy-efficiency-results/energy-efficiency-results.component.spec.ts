@@ -11,7 +11,6 @@ import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-s
 import {GrantCardComponent} from "../../grants/grant-card/grant-card.component";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-tag";
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
 import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
@@ -35,10 +34,11 @@ import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-r
 import {DataCardComponent} from "./data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
+import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
+import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -87,10 +87,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fetchMeasureDetails: () => measuresResponse
     };
 
-    const mockQuestionnaireService = {
-        isComplete: (name: string) => false
-    };
-
     const responseData: ResponseData = {
         userJourneyType: UserJourneyType.Calculator,
         shouldIncludeGrantsQuestionnaire: false,
@@ -135,6 +131,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         roofSpace: RoofSpace.NoSpace,
     };
 
+
     beforeEach(async(() => {
         measuresResponse = Observable.of(dummyMeasures);
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
@@ -167,7 +164,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
                 NeedHelpComponent,
-                GrantCardComponent
+                GrantCardComponent,
+                RecommendationFilterControlComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
@@ -175,7 +173,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
-                {provide: QuestionnaireService, useValue: mockQuestionnaireService},
                 {provide: EnergySavingMeasureContentService, useValue: measuresServiceStub},
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
@@ -218,22 +215,53 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
-    it('should display the correct number of recommendations', () => {
-        // given
-        const expectedMeasures = Object.values(dummyEnergyCalculations.measures)
-            .map(measure => [measure.cost_saving, measure.energy_saving]);
-
+    it('should initialise with the recommendations list collapsed', () => {
         // when
         fixture.detectChanges();
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
-        const actualMeasures = recommendationElements
-            .map(el => el.componentInstance.recommendation)
-            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
-
-        expect(actualMeasures.length).toBe(component.displayedRecommendations);
+        expect(recommendationElements.length).toBe(5);
     });
+
+    it('should not display the filter controls when recommendations list is collapsed', () => {
+        // when
+        fixture.detectChanges();
+
+        // then
+        const filterControlsComponent = fixture.debugElement.query(By.directive(RecommendationFilterControlComponent));
+        expect(filterControlsComponent).toBeFalsy();
+    });
+
+    it('should apply filters when the recommendations list is expanded', () => {
+        // given
+        fixture.detectChanges();
+        component.toggleRecommendationListState();
+        fixture.detectChanges();
+
+        // when
+        component.activeTagFilters = EnergyEfficiencyRecommendationTag.Grant;
+        fixture.detectChanges();
+
+        // then
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
+        expect(recommendationElements.length).toEqual(nationalGrants.length);
+    });
+
+    it('should apply multiple filters additively', async(() => {
+        // given
+        fixture.detectChanges();
+        component.toggleRecommendationListState();
+        fixture.detectChanges();
+
+        // when
+        component.activeTagFilters = EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm;
+        fixture.detectChanges();
+
+        // then
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
+        expect(recommendationElements.length).toEqual(0);
+    }));
 
     it('should display home improvement measures correctly', () => {
         // given
@@ -259,8 +287,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.recommendations[0].costSavingPoundsPerYear).toBe(536.18);
-        expect(component.recommendations[0].energySavingKwhPerYear).toBe(0);
+        expect(component.getDisplayedRecommendations()[0].costSavingPoundsPerYear).toBe(536.18);
+        expect(component.getDisplayedRecommendations()[0].energySavingKwhPerYear).toBe(0);
     });
 
     it('should display recommendation details correctly', () => {
@@ -270,9 +298,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
         // for measure code V2
-        expect(component.recommendations[0].headline).toBe('Wind turbine on mast');
-        expect(component.recommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
-        expect(component.recommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
+        expect(component.getDisplayedRecommendations()[0].headline).toBe('Wind turbine on mast');
+        expect(component.getDisplayedRecommendations()[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
+        expect(component.getDisplayedRecommendations()[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
     });
 
     it('should link recommendation to available grant', () => {
@@ -282,8 +310,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
         // for measure code V2
-        expect(component.recommendations[0].grants.length).toBe(1);
-        expect(component.recommendations[0].grants[0].name).toBe('National Grant 1');
+        expect(component.getDisplayedRecommendations()[0].grants.length).toBe(1);
+        expect(component.getDisplayedRecommendations()[0].grants[0].name).toBe('National Grant 1');
     });
 
     it('should display energy calculations correctly', () => {
