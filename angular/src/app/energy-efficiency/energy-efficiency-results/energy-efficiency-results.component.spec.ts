@@ -129,6 +129,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         gardenAccessibility: GardenAccessibility.NotAccessible,
         gardenSizeSquareMetres: 100,
         roofSpace: RoofSpace.NoSpace,
+        numberOfAdults: 1
     };
 
 
