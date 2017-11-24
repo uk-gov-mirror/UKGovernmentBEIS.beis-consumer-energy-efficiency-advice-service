@@ -1,0 +1,34 @@
+<div id="your-plan" class="your-plan page-row" [class.fixed-position]="isFixedPosition" #yourPlanRow>
+    <div class="page-row-content">
+        <div class="plan-details">
+            <div class="heading">Your plan</div>
+            <div class="subheading">
+                {{recommendations.length > 0 ? 'You have added:' : 'Try adding some recommendations to your plan'}}
+            </div>
+            <ul class="recommendations-list">
+                <li class="recommendations-list-item"
+                    *ngFor="let recommendation of recommendations">{{recommendation.headline}}
+                </li>
+            </ul>
+        </div>
+        <app-data-card
+                heading="Your potential score is"
+                value="60"
+                circleColor="green"></app-data-card>
+        <app-data-card
+                heading="Total investment required"
+                [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'">
+        </app-data-card>
+        <app-data-card
+                heading="Total savings per month"
+                [value]="'£' + getRoundedTotalSavingsPerMonth()"></app-data-card>
+        <div class="do-button">
+            DO
+        </div>
+    </div>
+</div>
+<!-- While the 'Your Plan' row is in a fixed position, add a dummy spacer of the same height to the DOM
+    so that we maintain consistent scrolling -->
+<div class="your-plan-spacer"
+     *ngIf="isFixedPosition"
+     [style.height.px]="yourPlanRowHeightPixels"></div>

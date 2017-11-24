@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
 import {
     EnergyEfficiencyRecommendationTag, getActiveTags, getTagClassName,
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
+import {roundToNearest} from "../../../shared/rounding/rounding";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -19,9 +20,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     tags: EnergyEfficiencyRecommendationTag[];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
+    @Input() isAddedToPlan: boolean;
+    @Output() isAddedToPlanChange = new EventEmitter<boolean>();
 
     ngOnInit() {
-        this.roundedMonthlySaving = EnergyEfficiencyRecommendationCardComponent.getMonthlySaving(this.recommendation);
+        this.roundedMonthlySaving = EnergyEfficiencyRecommendationCardComponent.getRoundedMonthlySaving(this.recommendation);
         this.tags = getActiveTags(this.recommendation.tags);
     }
 
@@ -37,11 +40,16 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.isExpandedView = !this.isExpandedView;
     }
 
-    private static getMonthlySaving(recommendation: EnergyEfficiencyRecommendation): number {
-        const costSavingPoundsPerMonth = recommendation.costSavingPoundsPerYear/12;
-        const roundingValue = costSavingPoundsPerMonth > EnergyEfficiencyRecommendationCardComponent.MONTHLY_SAVING_POUNDS_ROUNDING ?
-            EnergyEfficiencyRecommendationCardComponent.MONTHLY_SAVING_POUNDS_ROUNDING :
-            1;
-        return Math.round(costSavingPoundsPerMonth/roundingValue) * roundingValue;
+    toggleAddedToPlan(): void {
+        this.isAddedToPlan = !this.isAddedToPlan;
+        this.isAddedToPlanChange.emit(this.isAddedToPlan);
+    }
+
+    private static getRoundedMonthlySaving(recommendation: EnergyEfficiencyRecommendation): number {
+        const monthlySaving = recommendation.costSavingPoundsPerMonth;
+        const roundingValue =
+            monthlySaving > EnergyEfficiencyRecommendationCardComponent.MONTHLY_SAVING_POUNDS_ROUNDING ?
+            EnergyEfficiencyRecommendationCardComponent.MONTHLY_SAVING_POUNDS_ROUNDING : 1;
+        return roundToNearest(monthlySaving, roundingValue);
     }
 }

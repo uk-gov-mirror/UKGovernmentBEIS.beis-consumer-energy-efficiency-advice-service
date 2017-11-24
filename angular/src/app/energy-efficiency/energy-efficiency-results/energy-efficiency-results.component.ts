@@ -38,9 +38,9 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     recommendationListState: RecommendationsListStates;
     RecommendationListStates = RecommendationsListStates;
     activeTagFilters: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
+    allRecommendations: RecommendationOption[] = [];
 
     private allAvailableGrants: GrantViewModel[];
-    private allRecommendations: EnergyEfficiencyRecommendation[] = [];
     private measuresContent: MeasureContent[];
     private energyCalculationResponse: EnergyCalculationResponse;
 
@@ -70,15 +70,15 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
     }
 
-    getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
+    getDisplayedRecommendations(): RecommendationOption[] {
         if (this.recommendationListState === RecommendationsListStates.Collapsed) {
             return this.allRecommendations
-                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED);
+                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED)
         } else {
             return this.allRecommendations
                 .filter(recommendation => {
                     const requiredTags = this.activeTagFilters;
-                    const matchingTags = requiredTags & recommendation.tags;
+                    const matchingTags = requiredTags & recommendation.value.tags;
                     return matchingTags === requiredTags;
                 });
         }
@@ -109,6 +109,12 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         } else {
             return `Show the top ${EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED} recommendations ▲`;
         }
+    }
+
+    getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
+        return this.allRecommendations
+            .filter(recommendationOption => recommendationOption.isAddedToPlan)
+            .map(recommendationOption => recommendationOption.value);
     }
 
     private handleEnergyCalculationResponse(response: EnergyCalculationResponse) {
@@ -157,19 +163,25 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     private static getAllRecommendationsOrderedBySaving(energyCalculationResponse: EnergyCalculationResponse,
                                                         availableGrants: GrantViewModel[],
-                                                        measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+                                                        measuresContent: MeasureContent[]): RecommendationOption[] {
         const homeImprovementRecommendations = EnergyEfficiencyResultsComponent
             .getHomeImprovementRecommendations(energyCalculationResponse, measuresContent, availableGrants);
         const grantRecommendations = EnergyEfficiencyResultsComponent.getGrantRecommendations(availableGrants);
         const allRecommendations = concat(homeImprovementRecommendations, grantRecommendations);
-        return orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+        return orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc'])
+            .map(recommendation => {
+                return {
+                    value: recommendation,
+                    isAddedToPlan: false
+                }
+            });
     }
 
     private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,
-                                         recommendations: EnergyEfficiencyRecommendation[]): EnergyCalculations {
+                                         recommendations: RecommendationOption[]): EnergyCalculations {
         const potentialEnergyBillSavingPoundsPerYear = sumBy(
             recommendations,
-            recommendation => recommendation.costSavingPoundsPerYear
+            recommendation => recommendation.value.costSavingPoundsPerYear
         );
         return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
     }
@@ -208,4 +220,9 @@ enum RecommendationsListStates {
     Collapsed,
     Expanded,
     CannotExpand
+}
+
+interface RecommendationOption {
+    value: EnergyEfficiencyRecommendation;
+    isAddedToPlan: boolean
 }

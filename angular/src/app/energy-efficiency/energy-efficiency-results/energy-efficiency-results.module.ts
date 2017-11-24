@@ -8,13 +8,15 @@ import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-r
 import {DataCardComponent} from "./data-card/data-card.component";
 import {GrantsModule} from "../../grants/grants.module";
 import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
+import {YourPlanComponent} from "./your-plan/your-plan.component";
 
 @NgModule({
     declarations: [
         EnergyEfficiencyResultsComponent,
         EnergyEfficiencyRecommendationCardComponent,
         DataCardComponent,
-        RecommendationFilterControlComponent
+        RecommendationFilterControlComponent,
+        YourPlanComponent
     ],
     exports: [
         EnergyEfficiencyResultsComponent,

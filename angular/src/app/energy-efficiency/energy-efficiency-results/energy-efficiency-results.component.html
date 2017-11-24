@@ -7,7 +7,7 @@
             <app-data-card
                     heading="Your current score is"
                     value="55"
-                    includeColourCircle="true"
+                    circleColor="orange"
             ></app-data-card>
             <app-data-card
                     heading="Your estimated monthly bills are"
@@ -45,7 +45,8 @@
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getDisplayedRecommendations()"
-                        [recommendation]="recommendation"
+                        [recommendation]="recommendation.value"
+                        [(isAddedToPlan)]="recommendation.isAddedToPlan"
                 ></app-energy-efficiency-recommendation-card>
                 <button class="expand-recommendations-list"
                         *ngIf="recommendationListState !== RecommendationListStates.CannotExpand"
@@ -55,17 +56,5 @@
             </div>
         </div>
     </div>
-    <div class="page-row" *ngIf="localGrants && localGrants.length > 0">
-        <div class="local-grants page-row-content">
-            <div class="subheading">Local Authority grants you might be eligible for</div>
-            <div class="local-authority">You live in {{localAuthorityName}} and we've found the following:</div>
-            <div class="grant-cards">
-                <app-grant-card class="grant-card"
-                                *ngFor="let grant of localGrants"
-                                [grant]="grant">
-                </app-grant-card>
-
-            </div>
-        </div>
-    </div>
+    <app-your-plan [recommendations]="getRecommendationsInPlan()"></app-your-plan>
 </div>

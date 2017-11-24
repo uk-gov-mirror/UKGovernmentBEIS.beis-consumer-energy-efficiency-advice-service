@@ -17,6 +17,10 @@ export class EnergyEfficiencyRecommendation {
                 public grants: GrantViewModel[]) {
     }
 
+    get costSavingPoundsPerMonth(): number {
+        return this.costSavingPoundsPerYear/12;
+    }
+
     static fromMeasure(
        energySavingMeasureResponse: EnergySavingMeasureResponse,
        measureContent: MeasureContent,
