@@ -12,7 +12,6 @@ import {HomeAgeQuestionMetadata} from "../../questions/home-age-question/home-ag
 import {FlatPositionQuestionMetadata} from "../../questions/flat-position-question/flat-position-question-metadata";
 import {HomeTypeQuestionMetadata} from "../../questions/home-type-question/home-type-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "../../questions/confirm-epc-question/confirm-epc-question-metadata";
-import {PostcodeEpcQuestionMetadata} from "../../questions/postcode-epc-question/postcode-epc-question-metadata";
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
 import {GrantsQuestionnaireQuestionMetadata} from "../../questions/grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths-question/showers-and-baths-question-metadata";
@@ -35,7 +34,6 @@ describe('HomeBasicsQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.Calculator;
         const expectedQuestions = [
-            new PostcodeEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
@@ -69,7 +67,6 @@ describe('HomeBasicsQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.ReduceEnergyBills;
         const expectedQuestions = [
-            new PostcodeEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
@@ -103,7 +100,6 @@ describe('HomeBasicsQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
         const expectedQuestions = [
-            new PostcodeEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
@@ -137,7 +133,6 @@ describe('HomeBasicsQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.MakeHomeWarmer;
         const expectedQuestions = [
-            new PostcodeEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
@@ -168,7 +163,6 @@ describe('HomeBasicsQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
         const expectedQuestions = [
-            new PostcodeEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),

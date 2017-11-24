@@ -170,7 +170,7 @@ describe('PostcodeEpcService', () => {
             });
         }));
 
-        it('should trow a specific error if the postcode is not found', async(() => {
+        it('should throw a specific error if the postcode is not found', async(() => {
             // given
             featureFlagResponse = Observable.of({fetch_epc_data: false});
             postcodeBasicDetailsResponse = ErrorObservable.create({

@@ -93,7 +93,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         this.localAuthorityCode = postcodeDetails.localAuthorityCode;
         this.postcode = postcodeDetails.postcode;
         const epcs = postcodeDetails.allEpcsForPostcode;
-        if (!epcs || epcs.length == 0) {
+        if (!epcs || epcs.length === 0) {
             return this.continueWithoutEpc();
         }
         this.shouldDisplayLoadingSpinner = false;
@@ -104,7 +104,6 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             return this.displayPostcodeValidationError();
         }
-        console.error(error);
         this.postcode = this.postcodeInput;
         this.localAuthorityCode = null;
         this.continueWithoutEpc();

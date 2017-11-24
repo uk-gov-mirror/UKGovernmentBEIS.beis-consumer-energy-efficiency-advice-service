@@ -7,7 +7,6 @@ import {CarouselComponent} from "./landing-page/carousel/carousel.component";
 import {CarouselItemComponent} from "./landing-page/carousel/carousel-item/carousel-item.component";
 import {SharedModule} from "../shared/shared.module";
 import {BoilerEpcReplaceComponent} from "./epc-replace/boiler-epc-replace.component";
-import {BoilerPostcodeLookupComponent} from "./postcode-lookup/boiler-postcode-lookup.component";
 import {BoilerMakeModelLookupComponent} from "./make-model-lookup/boiler-make-model-lookup.component";
 import {BoilerReplacementCardComponent} from "./boiler-replacement-card/boiler-replacement-card.component";
 import {RoutingModule} from "../app-routing.module";
@@ -29,7 +28,6 @@ import {BoilerMakeModelReplaceComponent} from "./make-model-replace/boiler-make-
         CarouselComponent,
         CarouselItemComponent,
         BoilerEpcReplaceComponent,
-        BoilerPostcodeLookupComponent,
         BoilerMakeModelLookupComponent,
         BoilerReplacementCardComponent,
         BoilerQuestionnaireComponent,

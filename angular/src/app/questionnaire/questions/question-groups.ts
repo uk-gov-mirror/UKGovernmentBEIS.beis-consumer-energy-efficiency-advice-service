@@ -28,7 +28,6 @@ import {OptionalPropertyQuestionMetadata} from "./optional-property-question/opt
 import {FloorAreaQuestionMetadata} from "./floor-area-question/floor-area-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
-    new PostcodeEpcQuestionMetadata(),
     new TenureTypeQuestionMetadata(),
     new ConfirmEpcQuestionMetadata(),
 ];

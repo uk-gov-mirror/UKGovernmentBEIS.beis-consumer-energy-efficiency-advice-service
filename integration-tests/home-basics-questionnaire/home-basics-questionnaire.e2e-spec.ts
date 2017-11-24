@@ -12,16 +12,11 @@ describe('Home basics questionnaire', () => {
 
     it('should display with no errors', () => {
         expect(page.hasError()).toBeFalsy();
-        expect(page.getHeading()).toContain('postcode');
+        expect(page.getHeading()).toContain('relationship with your home');
     });
 
     it('should include core questions', () => {
         // Sleep 1s between each question to allow for animation
-        // Postcode and mini-EPC, if exists
-        page.enterPostcode('nw19pq');
-        page.selectAddressIfApplicable();
-        CommonPageHelpers.sleep(1000);
-
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
         expect(element(by.css('owner-occupancy-option'))).toBeTruthy();

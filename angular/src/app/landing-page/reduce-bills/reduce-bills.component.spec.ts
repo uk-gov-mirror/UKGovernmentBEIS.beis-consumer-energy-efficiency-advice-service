@@ -13,10 +13,25 @@ import {NavigationBarComponent} from "../../layout-components/navigation-bar/nav
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
 import {QuestionContentService} from "../../shared/question-content/question-content.service";
+import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
+import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
+import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
+
 
 describe('ReduceBillsComponent', () => {
     let component: ReduceBillsComponent;
     let fixture: ComponentFixture<ReduceBillsComponent>;
+
+    const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
+    const dummyPostcodeDetails: PostcodeDetails = {
+        postcode: 'dummy',
+        allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
+        localAuthorityCode: null
+    };
+    const postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(dummyPostcodeDetails)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -27,7 +42,8 @@ describe('ReduceBillsComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
-                QuestionReasonComponent
+                QuestionReasonComponent,
+                PostcodeLookupComponent
             ],
             imports: [
                 CommonModule,
@@ -36,7 +52,8 @@ describe('ReduceBillsComponent', () => {
             ],
             providers: [
                 ResponseData,
-                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}}
+                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
             ]
         })
             .compileComponents();

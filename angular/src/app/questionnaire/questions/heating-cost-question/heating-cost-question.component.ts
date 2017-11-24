@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import toString from "lodash-es/toString";
 
@@ -8,7 +8,7 @@ import toString from "lodash-es/toString";
     styleUrls: ['./heating-cost-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class HeatingCostQuestionComponent extends QuestionBaseComponent {
+export class HeatingCostQuestionComponent extends QuestionBaseComponent implements OnInit {
     get responseForAnalytics(): string {
         return toString(this.response);
     }

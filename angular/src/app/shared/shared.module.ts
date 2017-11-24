@@ -24,9 +24,11 @@ import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 import {EnergySavingMeasureContentService} from "./energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {QuestionReasonComponent} from './question-reason/question-reason.component';
 import {AssetsService} from "./assets-service/assets.service";
+import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 
 @NgModule({
     declarations: [
+        PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
         LatestNewsCardComponent,
@@ -37,6 +39,7 @@ import {AssetsService} from "./assets-service/assets.service";
         QuestionReasonComponent,
     ],
     exports: [
+        PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
         LatestNewsCardComponent,

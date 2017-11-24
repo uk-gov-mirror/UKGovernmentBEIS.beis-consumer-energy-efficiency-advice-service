@@ -32,7 +32,10 @@
                 <div class="heading">Not sure if your boiler needs replacing?</div>
                 <div class="body">
                     <app-boiler-make-model-lookup class="make-and-model"></app-boiler-make-model-lookup>
-                    <app-boiler-postcode-lookup class="postcode-epc"></app-boiler-postcode-lookup>
+                    <app-postcode-lookup class="postcode-epc"
+                                                (addressSelected)="onAddressSelected()"
+                                                helpText="We can also try your postcode to see if your EPC has any information on your boiler">
+                    </app-postcode-lookup>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ import {LandingPageComponent} from "./landing-page.component";
 import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../shared/response-data/response-data";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
-import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
+import {Component, EventEmitter, Output} from "@angular/core";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
 
@@ -22,13 +22,10 @@ describe('LandingPageComponent', () => {
     let fixture: ComponentFixture<LandingPageComponent>;
     let router: Router;
     let responseData: ResponseData;
+    let mockPostcodeLookupComponent: MockPostcodeLookupComponent;
 
     const headingText = 'heading';
     const userJourneyType = UserJourneyType.ReduceCarbonFootprint;
-
-    const VALID_POSTCODE = 'PO57 C03';
-    const INVALID_POSTCODE = 'invalid';
-    const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
 
     const postcodeReason = 'a reason here';
     class QuestionContentServiceStub {
@@ -42,8 +39,6 @@ describe('LandingPageComponent', () => {
     }
 
     beforeEach(async(() => {
-        spyOn(PostcodeEpcService, 'isValidPostcode').and.callFake(mockPostcodeValidator);
-
         TestBed.configureTestingModule({
             declarations: [
                 LandingPageComponent,
@@ -51,6 +46,8 @@ describe('LandingPageComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
+                LatestNewsCardComponent,
+                MockPostcodeLookupComponent,
                 QuestionReasonComponent
             ],
             imports: [
@@ -73,6 +70,8 @@ describe('LandingPageComponent', () => {
         responseData = TestBed.get(ResponseData);
         spyOn(router, 'navigate');
         fixture.detectChanges();
+        const mockPostcodeLookupElement = fixture.debugElement.query(By.directive(MockPostcodeLookupComponent));
+        mockPostcodeLookupComponent = mockPostcodeLookupElement.injector.get(MockPostcodeLookupComponent) as MockPostcodeLookupComponent;
     });
 
     it('should create', () => {
@@ -91,34 +90,11 @@ describe('LandingPageComponent', () => {
         expect(headingElement.innerText).toEqual(headingText);
     });
 
-    it('should use the postcode validation service to validate the postcode', () => {
-        // given
-        component.postcodeInput = VALID_POSTCODE;
-
-        // when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
-
-        // then
-        expect(PostcodeEpcService.isValidPostcode).toHaveBeenCalledWith(VALID_POSTCODE);
-    });
-
-    it('should set the postcode response upon entering a valid postcode', () => {
-        // given
-        component.postcodeInput = VALID_POSTCODE;
-
-        //when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
-
-        // then
-        expect(responseData.postcode).toEqual(VALID_POSTCODE);
-    });
-
     it('should navigate to the questionnaire upon entering a valid postcode', () => {
         // given
-        component.postcodeInput = VALID_POSTCODE;
 
-        //when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
+        // // when
+        mockPostcodeLookupComponent.addressSelected.emit();
 
         // then
         expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/questionnaire/home-basics']);
@@ -127,26 +103,12 @@ describe('LandingPageComponent', () => {
     it('should save the user journey type upon entering a valid postcode', () => {
         // given
         component.userJourneyType = userJourneyType;
-        component.postcodeInput = VALID_POSTCODE;
 
-        //when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
+        // when
+        mockPostcodeLookupComponent.addressSelected.emit();
 
         // then
         expect(responseData.userJourneyType).toBe(userJourneyType);
-    });
-
-    it('should display an error message upon entering an invalid postcode', () => {
-        // given
-        component.postcodeInput = INVALID_POSTCODE;
-
-        //when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
-        fixture.detectChanges();
-
-        // then
-        const errorMessage = fixture.debugElement.query(By.css('.validation-error'));
-        expect(errorMessage).not.toBeNull();
     });
 
     it('should have retrieved the correct postcode question reason', () => {
@@ -156,3 +118,11 @@ describe('LandingPageComponent', () => {
         expect(component.postcodeQuestionReason).toBe(postcodeReason);
     })
 });
+
+@Component({
+    selector: 'app-postcode-lookup',
+    template: '<p>Mock Postcode Lookup Component</p>'
+})
+class MockPostcodeLookupComponent {
+    @Output() public addressSelected: EventEmitter<void> = new EventEmitter<void>();
+}

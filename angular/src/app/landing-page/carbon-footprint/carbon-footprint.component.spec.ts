@@ -13,11 +13,26 @@ import {NavigationBarComponent} from "../../layout-components/navigation-bar/nav
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionContentService} from "../../shared/question-content/question-content.service";
 import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
+import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
+import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
+import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 
 describe('CarbonFootprintComponent', () => {
 
     let component: CarbonFootprintComponent;
     let fixture: ComponentFixture<CarbonFootprintComponent>;
+
+    const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
+    const dummyPostcodeDetails: PostcodeDetails = {
+      postcode: 'dummy',
+      allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
+        localAuthorityCode: null
+    };
+    const postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(dummyPostcodeDetails)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -28,16 +43,19 @@ describe('CarbonFootprintComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
-                QuestionReasonComponent
+                QuestionReasonComponent,
+                PostcodeLookupComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                HttpClientTestingModule
             ],
             providers: [
                 ResponseData,
-                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}}
+                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub}
             ]
         })
             .compileComponents();
