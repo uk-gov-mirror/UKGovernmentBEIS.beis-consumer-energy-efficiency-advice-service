@@ -6,7 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {NationalGrantCalculatorProvider} from "./national-grant-calculator.provider";
 
 describe('NationalGrantCalculatorProvider', () => {
-    let factory: NationalGrantCalculatorProvider;
+    let provider: NationalGrantCalculatorProvider;
 
     abstract class BaseMockNationalGrantCalculator extends NationalGrantCalculator {
         getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
@@ -42,15 +42,24 @@ describe('NationalGrantCalculatorProvider', () => {
     }));
 
     beforeEach(() => {
-        factory = TestBed.get(NationalGrantCalculatorProvider);
+        provider = TestBed.get(NationalGrantCalculatorProvider);
     });
 
     it('should be created', () => {
-        expect(factory).toBeTruthy();
+        expect(provider).toBeTruthy();
     });
 
     it('should be provided with all national grant calculators', () => {
-        expect(factory.nationalGrants.length).toBe(2);
-        factory.nationalGrants.forEach(grant => expect(grant).toBeTruthy());
+        // given
+        const containsAMockNationalGrantCalculator = provider.nationalGrants
+            .some(grant => grant instanceof MockNationalGrantCalculator);
+        const containsAnotherMockNationalGrantCalculator = provider.nationalGrants
+            .some(grant => grant instanceof AnotherMockNationalGrantCalculator);
+
+        // then
+        expect(provider.nationalGrants.length).toBe(2);
+        expect(containsAMockNationalGrantCalculator).toBeTruthy();
+        expect(containsAnotherMockNationalGrantCalculator).toBeTruthy();
+        provider.nationalGrants.forEach(grant => expect(grant).toBeTruthy());
     });
 });
