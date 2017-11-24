@@ -30,7 +30,7 @@ export class EnergyEfficiencyRecommendation {
         const advantagesSplitByLine = measureContent.acf.advantages &&
                 measureContent.acf.advantages.match(/[^\r\n]+/g);
         return new EnergyEfficiencyRecommendation(
-            Math.floor(Math.random() * 99) + 1, // TODO: investment required for measures (BEISDEAS-56)
+            Math.floor(Math.random() * 99) + 1000, // TODO: investment required for measures (BEISDEAS-56)
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
             parse(measureContent.acf.featured_page).pathname,

@@ -7,6 +7,7 @@ import {DataCardComponent} from "../data-card/data-card.component";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
+import {BreakEvenComponent} from "../break-even/break-even.component";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -40,7 +41,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 EnergyEfficiencyRecommendationCardComponent,
-                DataCardComponent
+                DataCardComponent,
+                BreakEvenComponent
             ],
             imports: [RouterTestingModule]
         })

@@ -40,6 +40,7 @@ import {GrantEligibilityService} from "../../grants/grant-eligibility-service/gr
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
 import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
+import {BreakEvenComponent} from "./break-even/break-even.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -168,7 +169,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 SpinnerAndErrorContainerComponent,
                 NeedHelpComponent,
                 GrantCardComponent,
-                RecommendationFilterControlComponent
+                RecommendationFilterControlComponent,
+                BreakEvenComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),

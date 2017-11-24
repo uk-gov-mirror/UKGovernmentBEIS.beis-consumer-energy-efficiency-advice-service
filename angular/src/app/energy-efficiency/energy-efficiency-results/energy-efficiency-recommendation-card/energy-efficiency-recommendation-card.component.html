@@ -17,8 +17,9 @@
                 <a class="read-more-button" [routerLink]="recommendation.readMoreRoute">Read more</a>
             </div>
             <div class="more-detail-row">
-                <button class="more-detail-button" (click)="toggleExpandedView()">See more detail</button>
-                <div class="icon-caret-down"></div>
+                <button class="more-detail-button" (click)="toggleExpandedView()">
+                    {{isExpandedView ? 'Hide details ▲' : 'See more detail ▼'}}
+                </button>
             </div>
         </div>
         <app-data-card class="investment-required-card"
@@ -46,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length > 0">
+        <div class="benefits">
             <div class="heading">Benefits</div>
             <ul class="benefits-list">
                 <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
@@ -54,10 +55,10 @@
                 </li>
             </ul>
         </div>
-        <div class="action-button-container">
-            <a class="action-button" [routerLink]="recommendation.readMoreRoute">
-                Find out more
-            </a>
-        </div>
+        <app-break-even
+                [investmentPounds]="recommendation.investmentPounds"
+                lifespanYears="40"
+                [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
+        </app-break-even>
     </div>
 </div>
