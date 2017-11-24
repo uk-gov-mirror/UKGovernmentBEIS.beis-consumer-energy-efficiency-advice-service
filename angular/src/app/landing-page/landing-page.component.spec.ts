@@ -91,9 +91,7 @@ describe('LandingPageComponent', () => {
     });
 
     it('should navigate to the questionnaire upon entering a valid postcode', () => {
-        // given
-
-        // // when
+        // when
         mockPostcodeLookupComponent.addressSelected.emit();
 
         // then

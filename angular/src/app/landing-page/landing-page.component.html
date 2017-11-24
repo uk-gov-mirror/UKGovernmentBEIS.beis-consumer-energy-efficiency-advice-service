@@ -8,9 +8,10 @@
         <div class="page-row-content">
             <div>
                 <div class="postcode-input">
-                <span class="enter-postcode-text">Enter your postcode for personalised advice</span>
-                <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
-                    </div></div>
+                    <span class="enter-postcode-text">Enter your postcode for personalised advice</span>
+                    <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
+                </div>
+            </div>
             <div *ngIf="!questionContentError" class="postcode-reason-container">
                 <app-question-reason *ngIf="postcodeQuestionReason; else spinner"
                                      [isExpanded]="true"
