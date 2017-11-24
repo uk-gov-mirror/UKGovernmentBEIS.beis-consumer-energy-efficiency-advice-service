@@ -1,5 +1,4 @@
 var csvParser = require('csvtojson');
-var titleCase = require('title-case');
 
 var pcdfParser = {};
 
@@ -28,8 +27,8 @@ pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
             });
 
             // Capitalise the brand name (this isn't done reliably in the source data)
-            if (jsonRow.hasOwnProperty('brandName')) {
-                jsonRow.brandName = titleCase(jsonRow.brandName);
+            if (jsonRow.hasOwnProperty('brandName') && jsonRow.brandName !== undefined) {
+                jsonRow.brandName = jsonRow.brandName.replace(/\w\S*/g, word => word.charAt(0).toUpperCase() + word.substr(1));
             }
 
             // Remove empty rows which appear in the source data for some reason
