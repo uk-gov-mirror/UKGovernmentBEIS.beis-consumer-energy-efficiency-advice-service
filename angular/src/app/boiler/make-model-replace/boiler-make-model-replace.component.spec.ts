@@ -93,7 +93,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
 
     it('should show the right boiler fuel type', () => {
         const fuelTypeElement = fixture.debugElement.query(By.css('.boiler-details .fuel-type')).nativeElement;
-        expect(fuelTypeElement.innerText).toEqual(component.getFuelTypeName(component.boiler.fuelType));
+        expect(fuelTypeElement.innerText.toLowerCase()).toEqual(component.getFuelTypeName(component.boiler.fuelType).toLowerCase());
     });
 
     it('should show the right boiler efficiency', () => {
