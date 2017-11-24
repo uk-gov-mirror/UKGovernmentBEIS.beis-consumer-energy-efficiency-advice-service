@@ -20,7 +20,8 @@ describe('RecommendationFilterControlComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(RecommendationFilterControlComponent);
         component = fixture.componentInstance;
-        spyOn(component.onSelectedTagsChanged, 'emit').and.callThrough();
+        spyOn(component.selectedTagsChange, 'emit').and.callThrough();
+        component.selectedTags = EnergyEfficiencyRecommendationTag.None;
         fixture.detectChanges();
     });
 
@@ -43,9 +44,22 @@ describe('RecommendationFilterControlComponent', () => {
             expect(buttonElements.length).toEqual(expectedNumberOfButtons);
         });
 
-        it('should initialise with no filters selected', () => {
-            expect(component.selectedTags).toEqual(EnergyEfficiencyRecommendationTag.None);
-        });
+        it('should display the correct buttons as selected', async(() => {
+            // given
+            component.selectedTags = EnergyEfficiencyRecommendationTag.LongerTerm
+                | EnergyEfficiencyRecommendationTag.SmallSpend;
+
+            // when
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(fixture.debugElement.query(By.css('.tag-quick-win')).classes.selected).toBeFalsy();
+                expect(fixture.debugElement.query(By.css('.tag-small-spend')).classes.selected).toBeTruthy();
+                expect(fixture.debugElement.query(By.css('.tag-longer-term')).classes.selected).toBeTruthy();
+                expect(fixture.debugElement.query(By.css('.tag-grant')).classes.selected).toBeFalsy();
+            });
+        }));
 
         it('should display all buttons as selected when no filter is selected for neater UI', () => {
             // when
@@ -91,7 +105,7 @@ describe('RecommendationFilterControlComponent', () => {
 
             // when
             expect(component.selectedTags).toEqual(EnergyEfficiencyRecommendationTag.Grant);
-            expect(component.onSelectedTagsChanged.emit).toHaveBeenCalledWith(EnergyEfficiencyRecommendationTag.Grant);
+            expect(component.selectedTagsChange.emit).toHaveBeenCalledWith(EnergyEfficiencyRecommendationTag.Grant);
         });
 
         it('should add the clicked tag to selection if Ctrl key was held down during click', () => {
@@ -105,7 +119,7 @@ describe('RecommendationFilterControlComponent', () => {
             // when
             const expectedTags = EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.LongerTerm;
             expect(component.selectedTags).toEqual(expectedTags);
-            expect(component.onSelectedTagsChanged.emit).toHaveBeenCalledWith(expectedTags);
+            expect(component.selectedTagsChange.emit).toHaveBeenCalledWith(expectedTags);
         });
     });
 
@@ -123,7 +137,7 @@ describe('RecommendationFilterControlComponent', () => {
 
                 // then
                 expect(component.selectedTags).toEqual(EnergyEfficiencyRecommendationTag.None);
-                expect(component.onSelectedTagsChanged.emit).toHaveBeenCalledWith(EnergyEfficiencyRecommendationTag.None);
+                expect(component.selectedTagsChange.emit).toHaveBeenCalledWith(EnergyEfficiencyRecommendationTag.None);
 
             });
         }));

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output, Input} from "@angular/core";
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
@@ -13,9 +13,9 @@ import {keys} from "lodash-es";
 })
 export class RecommendationFilterControlComponent implements OnInit {
 
-    @Output() onSelectedTagsChanged = new EventEmitter<EnergyEfficiencyRecommendationTag>();
+    @Input() selectedTags: EnergyEfficiencyRecommendationTag;
+    @Output() selectedTagsChange = new EventEmitter<EnergyEfficiencyRecommendationTag>();
 
-    selectedTags: EnergyEfficiencyRecommendationTag;
     tags: FilterControl<EnergyEfficiencyRecommendationTag>[];
 
     ngOnInit() {
@@ -30,7 +30,6 @@ export class RecommendationFilterControlComponent implements OnInit {
                     className: getTagClassName(tag)
                 }
             });
-        this.clearFilters();
     }
 
     shouldDisplayAsSelected(tag: EnergyEfficiencyRecommendationTag): boolean {
@@ -47,7 +46,7 @@ export class RecommendationFilterControlComponent implements OnInit {
 
     clearFilters(): void {
         this.selectedTags = EnergyEfficiencyRecommendationTag.None;
-        this.onSelectedTagsChanged.emit(this.selectedTags);
+        this.selectedTagsChange.emit(this.selectedTags);
     }
 
     onTagClicked(tag: EnergyEfficiencyRecommendationTag, event: MouseEvent): void {
@@ -58,7 +57,7 @@ export class RecommendationFilterControlComponent implements OnInit {
             // Select only the clicked tag
             this.selectedTags = tag;
         }
-        this.onSelectedTagsChanged.emit(this.selectedTags);
+        this.selectedTagsChange.emit(this.selectedTags);
     }
 }
 

@@ -236,7 +236,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // when
-        component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.Grant);
+        component.activeTagFilters = EnergyEfficiencyRecommendationTag.Grant;
         fixture.detectChanges();
 
         // then
@@ -251,7 +251,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // when
-        component.onSelectedTagsChanged(EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm);
+        component.activeTagFilters = EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm;
         fixture.detectChanges();
 
         // then
@@ -283,8 +283,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.displayedRecommendations[0].costSavingPoundsPerYear).toBe(536.18);
-        expect(component.displayedRecommendations[0].energySavingKwhPerYear).toBe(0);
+        expect(component.getDisplayedRecommendations()[0].costSavingPoundsPerYear).toBe(536.18);
+        expect(component.getDisplayedRecommendations()[0].energySavingKwhPerYear).toBe(0);
     });
 
     it('should display recommendation details correctly', () => {
@@ -294,9 +294,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
         // for measure code V2
-        expect(component.displayedRecommendations[0].headline).toBe('Wind turbine on mast');
-        expect(component.displayedRecommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
-        expect(component.displayedRecommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
+        expect(component.getDisplayedRecommendations()[0].headline).toBe('Wind turbine on mast');
+        expect(component.getDisplayedRecommendations()[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
+        expect(component.getDisplayedRecommendations()[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
     });
 
     it('should link recommendation to available grant', () => {
@@ -306,8 +306,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
         // for measure code V2
-        expect(component.displayedRecommendations[0].grants.length).toBe(1);
-        expect(component.displayedRecommendations[0].grants[0].name).toBe('National Grant 1');
+        expect(component.getDisplayedRecommendations()[0].grants.length).toBe(1);
+        expect(component.getDisplayedRecommendations()[0].grants[0].name).toBe('National Grant 1');
     });
 
     it('should display energy calculations correctly', () => {

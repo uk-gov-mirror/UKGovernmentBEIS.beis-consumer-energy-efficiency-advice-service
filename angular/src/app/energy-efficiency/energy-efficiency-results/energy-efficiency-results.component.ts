@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
@@ -37,9 +37,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isError: boolean = false;
     recommendationListState: RecommendationsListStates;
     RecommendationListStates = RecommendationsListStates;
-    displayedRecommendations: EnergyEfficiencyRecommendation[] = [];
+    activeTagFilters: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
 
-    private displayOnlyRecommendationsContainingTags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
     private allAvailableGrants: GrantViewModel[];
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
     private measuresContent: MeasureContent[];
@@ -49,8 +48,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private energyCalculationApiService: EnergyCalculationApiService,
                 private measureService: EnergySavingMeasureContentService,
                 private grantsEligibilityService: GrantEligibilityService,
-                private localAuthorityService: LocalAuthorityService,
-                private changeDetectorRef: ChangeDetectorRef) {
+                private localAuthorityService: LocalAuthorityService) {
     }
 
     ngOnInit() {
@@ -72,6 +70,20 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
     }
 
+    getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
+        if (this.recommendationListState === RecommendationsListStates.Collapsed) {
+            return this.allRecommendations
+                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED);
+        } else {
+            return this.allRecommendations
+                .filter(recommendation => {
+                    const requiredTags = this.activeTagFilters;
+                    const matchingTags = requiredTags & recommendation.tags;
+                    return matchingTags === requiredTags;
+                });
+        }
+    }
+
     toggleRecommendationListState(): void {
         switch(this.recommendationListState) {
             case RecommendationsListStates.Collapsed: {
@@ -80,15 +92,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             }
             case RecommendationsListStates.Expanded: {
                 this.recommendationListState = RecommendationsListStates.Collapsed;
+                this.activeTagFilters = EnergyEfficiencyRecommendationTag.None;
                 break;
             }
         }
-        this.updateDisplayedRecommendations();
-    }
-
-    onSelectedTagsChanged(selectedTags: EnergyEfficiencyRecommendationTag): void {
-        this.displayOnlyRecommendationsContainingTags = selectedTags;
-        this.updateDisplayedRecommendations();
     }
 
     getRecommendationListButtonText(): string {
@@ -142,30 +149,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.localGrants = this.allAvailableGrants.filter(grant => {
             return grant instanceof LocalAuthorityGrantViewModel;
         });
-        this.initialiseDisplayedRecommendations();
-        this.isLoading = false;
-    }
-
-    private initialiseDisplayedRecommendations(): void {
         this.recommendationListState =
             this.allRecommendations.length > EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED ?
                 RecommendationsListStates.Collapsed : RecommendationsListStates.CannotExpand;
-        this.updateDisplayedRecommendations();
-    }
-
-    private updateDisplayedRecommendations(): void {
-        if (this.recommendationListState === RecommendationsListStates.Collapsed) {
-            this.displayedRecommendations = this.allRecommendations
-                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED);
-        } else {
-            this.displayedRecommendations = this.allRecommendations
-                .filter(recommendation => {
-                    const requiredTags = this.displayOnlyRecommendationsContainingTags;
-                    const matchingTags = requiredTags & recommendation.tags;
-                    return matchingTags === requiredTags;
-                });
-        }
-        this.changeDetectorRef.detectChanges();
+        this.isLoading = false;
     }
 
     private static getAllRecommendationsOrderedBySaving(energyCalculationResponse: EnergyCalculationResponse,
