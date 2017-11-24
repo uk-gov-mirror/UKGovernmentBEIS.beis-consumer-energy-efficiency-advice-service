@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
-import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
+import {FuelType, getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import sortBy from "lodash-es/sortBy";
@@ -19,8 +19,9 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     error: boolean = false;
     productIndexNumber: string;
     boiler: GasAndOilBoiler;
-    efficiencyThreshold: number = 88;
     boilerTypes: BoilerType[];
+
+    private static readonly EFFICIENCY_THRESHOLD: number = 88;
 
     constructor(private gasAndOilBoilersService: GasAndOilBoilersService,
                 private boilerTypesService: BoilerTypesService,
@@ -44,20 +45,15 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     }
 
     getFuelTypeName(fuelType: FuelType) {
-        switch (fuelType) {
-            case FuelType.MainsGas:
-                return 'Mains gas';
-            case FuelType.LPGGas:
-                return 'LPG gas';
-            case FuelType.HeatingOil:
-                return 'Heating oil';
-            default:
-                return 'Unknown';
-        }
+        return getFuelTypeDescription(fuelType);
     }
 
     shouldReplace() {
         return this.boiler.efficiency < this.efficiencyThreshold;
+    }
+
+    get efficiencyThreshold(): number {
+        return BoilerMakeModelReplaceComponent.EFFICIENCY_THRESHOLD;
     }
 
     private handleError(err) {

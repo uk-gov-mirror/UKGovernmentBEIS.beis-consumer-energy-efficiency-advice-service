@@ -32,7 +32,7 @@ export class GasAndOilBoilersService {
 
     getGasAndOilBoilersMatching(searchTerm: string): Observable<GasAndOilBoiler[]> {
         return this.getAllGasAndOilBoilers().map(boilers =>
-            boilers.filter(boiler => fuzzysearch(boiler.name.toLowerCase(), searchTerm.toLowerCase()))
+            boilers.filter(boiler => fuzzysearch(searchTerm.toLowerCase(), boiler.name.toLowerCase()))
         );
     }
 }

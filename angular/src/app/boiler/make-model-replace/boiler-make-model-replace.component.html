@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="recommendation replace" *ngIf="shouldReplace()">
+                <div class="recommendation replace" *ngIf="shouldReplace(); else noReplace">
                     <div class="body-text">We recommend that:</div>
                     <div class="body">
                         <div class="icon icon-cross"></div>
@@ -44,20 +44,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="recommendation no-replace" *ngIf="!shouldReplace()">
-                    <div class="body-text">We recommend that:</div>
-                    <div class="body">
-                        <div class="icon icon icon-tick"></div>
-                        <div class="content">
-                            <div class="recommendation-text">
-                                Your boiler is reasonably new, probably running efficiently and saving you money
+                <ng-template #noReplace>
+                    <div class="recommendation no-replace">
+                        <div class="body-text">We recommend that:</div>
+                        <div class="body">
+                            <div class="icon icon icon-tick"></div>
+                            <div class="content">
+                                <div class="recommendation-text">
+                                    Your boiler is reasonably new, probably running efficiently and saving you money
+                                </div>
+                                <a class="link-button">
+                                    See ways to keep your boiler running efficiently
+                                </a>
                             </div>
-                            <a class="link-button">
-                                See ways to keep your boiler running efficiently
-                            </a>
                         </div>
                     </div>
-                </div>
+                </ng-template>
             </div>
         </div>
     </div>

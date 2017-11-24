@@ -26,12 +26,18 @@ export class BoilerMakeModelLookupComponent {
         this.searching = true;
         this.gasAndOilBoilersService.getGasAndOilBoilersMatching(searchTerm).subscribe(
             boilers => this.setMatchedBoilers(searchTerm, boilers),
-            () => this.setMatchedBoilers(searchTerm, []),
+            err => this.handleError(err),
         );
     }
 
     private setMatchedBoilers(searchTerm: string, boilers: GasAndOilBoiler[]) {
         this.matchedBoilers = sortBy(boilers, boiler => !includes(boiler.name.toLowerCase(), searchTerm.toLowerCase()));
+        this.searching = false;
+    }
+
+    private handleError(err) {
+        console.error(err);
+        this.matchedBoilers = [];
         this.searching = false;
     }
 

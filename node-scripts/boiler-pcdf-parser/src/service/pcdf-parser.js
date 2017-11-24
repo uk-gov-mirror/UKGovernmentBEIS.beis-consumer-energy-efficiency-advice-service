@@ -1,12 +1,13 @@
 var csvParser = require('csvtojson');
+var titleCase = require('title-case');
 
 var pcdfParser = {};
 
 pcdfParser.getPcdfWithIgnoredLinesStripped = function (pcdf) {
     // Match anything up to and including the first line which begins "$001"
-    var matchIgnoredLinesBeforeStartOfData = /^.*\$001\S*\s+/s;
+    var matchIgnoredLinesBeforeStartOfData = /^[\s\S]*\$001\S*\s+/;
     // Match anything from the first line which begins "$999" onwards
-    var matchIgnoredLinesAfterEndOfData = /\$999.*$/s;
+    var matchIgnoredLinesAfterEndOfData = /\$999[\s\S]*$/;
     // Match any line which begins with #
     var matchCommentLines = /\s*#(.*)/g;
     return pcdf
@@ -25,7 +26,16 @@ pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
             tableMetadata.columnHeadings.forEach(function (columnHeading, columnIndex) {
                 jsonRow[columnHeading] = csvRow[columnIndex];
             });
-            tableRows.push(jsonRow);
+
+            // Capitalise the brand name (this isn't done reliably in the source data)
+            if (jsonRow.hasOwnProperty('brandName')) {
+                jsonRow.brandName = titleCase(jsonRow.brandName);
+            }
+
+            // Remove empty rows which appear in the source data for some reason
+            if (Object.keys(jsonRow).length > 0) {
+                tableRows.push(jsonRow);
+            }
         })
         .on('done', function () {
             success(tableRows);
