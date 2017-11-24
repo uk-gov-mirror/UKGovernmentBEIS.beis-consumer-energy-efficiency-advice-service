@@ -24,9 +24,11 @@ export class EnergyEfficiencyRecommendation {
        iconClassName: string,
        grants: GrantViewModel[]
     ): EnergyEfficiencyRecommendation {
+        let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.LongerTerm;
         const shouldIncludeGrantTag = grants && grants.length > 0;
-        const tags = EnergyEfficiencyRecommendationTag.LongerTerm |
-            (shouldIncludeGrantTag ? EnergyEfficiencyRecommendationTag.Grant : EnergyEfficiencyRecommendationTag.None);
+        if (shouldIncludeGrantTag) {
+            tags = tags | EnergyEfficiencyRecommendationTag.Grant;
+        }
         const advantagesSplitByLine = measureContent.acf.advantages &&
                 measureContent.acf.advantages.match(/[^\r\n]+/g);
         return new EnergyEfficiencyRecommendation(

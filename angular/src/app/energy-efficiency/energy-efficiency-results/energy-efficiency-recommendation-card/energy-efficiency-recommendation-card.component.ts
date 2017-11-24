@@ -5,6 +5,7 @@ import {
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantViewModel} from "../../../grants/model/grant-view-model";
+import {head} from "lodash-es";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -29,7 +30,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.roundedMonthlySaving = EnergyEfficiencyRecommendationCardComponent
             .getMonthlySaving(this.recommendation);
         this.tags = getActiveTags(this.recommendation.tags);
-        this.grant = this.recommendation.grants && this.recommendation.grants[0]
+        this.grant = this.recommendation.grants && head(this.recommendation.grants)
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
