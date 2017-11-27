@@ -16,11 +16,11 @@ import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/t
 import {GrantsQuestionnaireQuestionMetadata} from "../../questions/grants-questionnaire-question/grants-questionnaire-question-metadata";
 import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths-question/showers-and-baths-question-metadata";
 import {HeatingCostQuestionMetadata} from "../../questions/heating-cost-question/heating-cost-question-metadata";
-import {LengthOfHeatingOnQuestionMetadata} from "../../questions/length-of-heating-on-question/length-of-heating-on-question-metadata";
 import {OptionalPropertyQuestionMetadata} from "../../questions/optional-property-question/optional-property-question-metadata";
 import {FloorAreaQuestionMetadata} from "../../questions/floor-area-question/floor-area-question-metadata";
 import {ConstructionQuestionMetadata} from "../../questions/construction-question/construction-question-metadata";
 import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
+import {DetailedLengthOfHeatingOnQuestionMetadata} from "../../questions/detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -49,7 +49,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
-            new LengthOfHeatingOnQuestionMetadata(),
+            new DetailedLengthOfHeatingOnQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -82,7 +82,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
-            new LengthOfHeatingOnQuestionMetadata(),
+            new DetailedLengthOfHeatingOnQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -115,7 +115,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
-            new LengthOfHeatingOnQuestionMetadata(),
+            new DetailedLengthOfHeatingOnQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -148,7 +148,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
-            new LengthOfHeatingOnQuestionMetadata(),
+            new DetailedLengthOfHeatingOnQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata()
         ];
 
@@ -178,7 +178,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
-            new LengthOfHeatingOnQuestionMetadata(),
+            new DetailedLengthOfHeatingOnQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata()
         ];
 

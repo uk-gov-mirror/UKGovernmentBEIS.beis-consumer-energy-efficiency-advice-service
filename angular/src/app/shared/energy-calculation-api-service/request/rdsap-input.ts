@@ -12,6 +12,7 @@ import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-questio
 
 export class RdSapInput {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
+    public static readonly NUMBER_OF_HOURS_PER_QUARTER_DAY = 6;
 
     readonly epc: Epc;
     readonly property_type: string;
@@ -51,7 +52,7 @@ export class RdSapInput {
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
         this.heating_cost = responseData.heatingCost;
-        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData.lengthOfHeatingOn);
+        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
         this.measures = 'Y';
 
         // Habit data+
@@ -194,12 +195,16 @@ export class RdSapInput {
         return toString(showerType);
     }
 
-    private static getNumberOfHeatingOffHoursNormal(lengthOfHeatingOn: number): number[] {
-        // For now, we arbitrarily assume the user has heating off twice a day.
-        const numberOfHeatingOffHoursPerDay = 24 - lengthOfHeatingOn;
-        const numberOfHeatingOffHoursPer12Hours = numberOfHeatingOffHoursPerDay / 2;
+    private static getNumberOfHeatingOffHoursNormal(responseData: ResponseData): number[] {
+        const numberOfHeatingHoursOn: number[] = [
+            responseData.detailedLengthOfHeatingOnEarlyHours,
+            responseData.detailedLengthOfHeatingOnMorning,
+            responseData.detailedLengthOfHeatingOnAfternoon,
+            responseData.detailedLengthOfHeatingOnEvening];
 
-        return [numberOfHeatingOffHoursPer12Hours, numberOfHeatingOffHoursPer12Hours];
+        return numberOfHeatingHoursOn.map((heatingHoursOn: number) => {
+            return RdSapInput.NUMBER_OF_HOURS_PER_QUARTER_DAY - heatingHoursOn;
+        });
     }
 
     private static getFloorArea(area: number, unit: FloorAreaUnit): number {

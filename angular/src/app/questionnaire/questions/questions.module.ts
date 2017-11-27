@@ -25,7 +25,6 @@ import {GrantsQuestionnaireQuestionComponent} from "./grants-questionnaire-quest
 import {BenefitsQuestionComponent} from "./benefits-question/benefits-question.component";
 import {HeatingCostQuestionComponent} from "./heating-cost-question/heating-cost-question.component";
 import {IncomeQuestionComponent} from "./income-question/income-question.component";
-import {LengthOfHeatingOnQuestionComponent} from "./length-of-heating-on-question/length-of-heating-on-question.component";
 import {TumbleDryQuestionComponent} from "./tumble-dry-question/tumble-dry-question.component";
 import {ConstructionQuestionComponent} from "./construction-question/construction-question.component";
 import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-question.component";
@@ -33,6 +32,7 @@ import {GardenQuestionComponent} from "./garden-question/garden-question.compone
 import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-question.component";
 import {OptionalPropertyQuestionComponent} from "./optional-property-question/optional-property-question.component";
 import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-question.component";
+import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-heating-on-question/detailed-length-of-heating-on-question.component";
 
 @NgModule({
     declarations: [
@@ -40,13 +40,13 @@ import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-quest
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
         FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
-        LengthOfHeatingOnQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         IncomeQuestionComponent,
@@ -70,13 +70,13 @@ import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-quest
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
         FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
-        LengthOfHeatingOnQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         IncomeQuestionComponent,
@@ -107,13 +107,13 @@ import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-quest
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
         FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
-        LengthOfHeatingOnQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         IncomeQuestionComponent,

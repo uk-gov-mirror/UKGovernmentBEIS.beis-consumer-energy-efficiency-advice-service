@@ -37,7 +37,10 @@ export class ResponseData {
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
     public heatingCost: number;
-    public lengthOfHeatingOn: number;
+    public detailedLengthOfHeatingOnEarlyHours: number;
+    public detailedLengthOfHeatingOnMorning: number;
+    public detailedLengthOfHeatingOnAfternoon: number;
+    public detailedLengthOfHeatingOnEvening: number;
     public numberOfAdultsAgedUnder64: number;
     public numberOfAdultsAged64To80: number;
     public numberOfAdultsAgedOver80: number;

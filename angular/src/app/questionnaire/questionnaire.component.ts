@@ -18,7 +18,7 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {QuestionnaireService} from "./questionnaire.service";
 import {Subscription} from "rxjs/Subscription";
-import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {QuestionHeadingProcessor} from "./question-heading-processor.service";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 @Component({
