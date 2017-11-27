@@ -1,0 +1,118 @@
+@import "styles/boiler";
+@import "styles/var/colours";
+
+$pros-and-cons-per-row: 3;
+$pros-and-cons-margin: 32px;
+
+.boiler-advice-page {
+  .page-heading {
+    .heading-text {
+      text-transform: capitalize;
+    }
+  }
+
+  .summary {
+    background-color: $lighter-grey;
+
+    .summary-container {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+
+      .description, .stats, .installers {
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        padding: 16px 0;
+
+        &:not(:last-child) {
+          padding-right: 32px;
+          border-right: 1px solid $light-medium-grey;
+        }
+
+        &:not(:first-child) {
+          padding-left: 32px;
+        }
+      }
+
+      .description {
+        width: 30%;
+      }
+
+      .stats {
+        width: 35%;
+
+        .stats-item {
+          display: flex;
+          align-items: flex-start;
+          font-size: 16px;
+          margin-bottom: 8px;
+
+          .name {
+            width: 50%;
+            font-weight: bold;
+          }
+
+          .value {
+            width: 50%;
+          }
+        }
+      }
+
+      .installers {
+        width: 35%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .pros-cons {
+    display: block;
+
+    .pros-container, .cons-container {
+      margin-top: 32px;
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+
+      .pro, .con {
+        flex: 0 0 auto;
+        flex-basis: calc((100% - #{$pros-and-cons-per-row * $pros-and-cons-margin} - 1px) / #{$pros-and-cons-per-row});
+
+        margin-bottom: 1.5 * $pros-and-cons-margin;
+        &:not(:nth-child(#{$pros-and-cons-per-row}n)) {
+          margin-right: $pros-and-cons-margin;
+        }
+
+        .heading-text {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+
+  .pros-container {
+    padding-bottom: 24px;
+    border-bottom: 1px solid $light-medium-grey;
+    margin-bottom: 60px;
+  }
+
+  .featured-video {
+    background-color: $lighter-grey;
+
+    .video-card {
+      width: 100%;
+    }
+  }
+
+  .regulations {
+    display: block;
+    .body-text {
+      margin-bottom: 24px;
+    }
+  }
+}

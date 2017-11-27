@@ -24,6 +24,7 @@ import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 import {EnergySavingMeasureContentService} from "./energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {QuestionReasonComponent} from './question-reason/question-reason.component';
 import {AssetsService} from "./assets-service/assets.service";
+import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {AssetsService} from "./assets-service/assets.service";
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
+        LargeVideoCardComponent,
     ],
     exports: [
         TimesPipe,
@@ -44,7 +46,8 @@ import {AssetsService} from "./assets-service/assets.service";
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
         RecommendationCardComponent,
-        QuestionReasonComponent
+        QuestionReasonComponent,
+        LargeVideoCardComponent,
     ],
     imports: [
         HttpClientModule,

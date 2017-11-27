@@ -5,7 +5,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
 
 import {ReduceBillsComponent} from "./reduce-bills.component";
-import {LargeVideoCardComponent} from "../large-video-card/large-video-card.component";
+import {LargeVideoCardComponent} from "../../shared/large-video-card/large-video-card.component";
 import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news-card.component";
 import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";

@@ -1,3 +1,80 @@
-<p>
-  advice-page works!
-</p>
+<app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+<div class="boiler-advice-page" *ngIf="!loading && !error && !!boilerType">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <div class="heading-text">{{boilerType.name}}</div>
+        </div>
+    </div>
+    <div class="page-row summary">
+        <div class="page-row-content summary-container">
+            <div class="description body-text">{{boilerType.description}}</div>
+            <div class="stats">
+                <div class="stats-item">
+                    <span class="name">Installation cost</span>
+                    <span class="value">£{{boilerType.installationCostLower}}-£{{boilerType.installationCostUpper}}</span>
+                </div>
+                <div class="stats-item">
+                    <span class="name">Average lifetime</span>
+                    <span class="value">{{boilerType.lifetimeYears}} years</span>
+                </div>
+                <div class="stats-item">
+                    <span class="name">Space requirement</span>
+                    <span class="value">{{boilerType.spaceRequirement}}</span>
+                </div>
+            </div>
+            <div class="installers">
+                <a class="link-button">Check out our list of certified installers</a>
+            </div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content pros-cons">
+            <div class="heading">Pros</div>
+            <div class="pros-container">
+                <div class="pro" *ngFor="let pro of boilerType.pros">
+                    <div class="heading-text">{{pro.heading}}</div>
+                    <div class="body-text">{{pro.body}}</div>
+                </div>
+            </div>
+            <div class="heading">Cons</div>
+            <div class="cons-container">
+                <div class="con" *ngFor="let con of boilerType.cons">
+                    <div class="heading-text">{{con.heading}}</div>
+                    <div class="body-text">{{con.body}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row featured-video">
+        <div class="page-row-content">
+            <app-large-video-card class="video-card" title="{{boilerType.name}}s: What you should know"></app-large-video-card>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="regulations page-row-content" *ngIf="isGasBoiler()">
+            <div class="heading">When fitting a new gas boiler you'll also need one of the following</div>
+            <div class="body-text">
+                Under new regulations, all new gas boilers must be fitted with one of these extra energy efficiency
+                measures. Check with an installer to find out which is right for your property.
+            </div>
+            <app-boiler-regulation-card class="regulation-card"
+                                        *ngFor="let regulation of boilerRegulations"
+                                        [regulation]="regulation">
+            </app-boiler-regulation-card>
+        </div>
+    </div>
+</div>
+<div class="boiler-not-found" *ngIf="!loading && !error && !boilerType">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <div class="heading-text">Not found!</div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content">
+            <div class="body-text">
+                We couldn't find the boiler you were looking for. Have you mistyped the URL in the address bar?
+            </div>
+        </div>
+    </div>
+</div>
