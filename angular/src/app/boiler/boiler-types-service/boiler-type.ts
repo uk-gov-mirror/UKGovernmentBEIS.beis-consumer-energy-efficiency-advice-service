@@ -7,7 +7,8 @@ export interface ProOrCon {
 }
 
 export class BoilerType {
-    constructor(public name: string,
+    constructor(public slug: string,
+                public name: string,
                 public description: string,
                 public spaceRequirement: string,
                 public installationCostLower: number,
@@ -24,6 +25,7 @@ export class BoilerType {
 
     static fromMetadata(metadata: BoilerTypeMetadataResponse): BoilerType {
         return new BoilerType(
+            metadata.slug,
             metadata.acf.name,
             metadata.acf.description,
             metadata.acf.space_requirement,
@@ -43,13 +45,5 @@ export class BoilerType {
             console.error(e);
             return [];
         }
-    }
-}
-
-export class AllBoilerTypes {
-    [slug: string]: BoilerType;
-
-    constructor(boilerApiResponse: BoilerTypeMetadataResponse[]) {
-        boilerApiResponse.forEach(boiler => this[boiler.slug] = BoilerType.fromMetadata(boiler));
     }
 }

@@ -36,7 +36,7 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
         )
             .subscribe(
                 ([gasAndOilBoiler, boilerTypes]) => {
-                    this.boilerTypes = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower));
+                    this.boilerTypes = sortBy(boilerTypes, type => +(type.installationCostLower));
                     this.boiler = gasAndOilBoiler;
                 },
                 err => this.handleError(err),

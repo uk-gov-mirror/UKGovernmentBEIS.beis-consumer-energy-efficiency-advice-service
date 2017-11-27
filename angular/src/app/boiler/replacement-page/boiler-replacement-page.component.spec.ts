@@ -7,8 +7,8 @@ import {BoilerReplacementPageComponent} from "./boiler-replacement-page.componen
 import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 
 describe('BoilerReplacementPageComponent', () => {
     let component: BoilerReplacementPageComponent;
@@ -17,7 +17,7 @@ describe('BoilerReplacementPageComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     beforeEach(async(() => {

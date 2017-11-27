@@ -8,12 +8,12 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
 import {BoilerOptionCardComponent} from "./boiler-option-card/boiler-option-card.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -27,7 +27,7 @@ describe('BoilerResultsPageComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     const questionnaireServiceStub = {
@@ -78,7 +78,7 @@ describe('BoilerResultsPageComponent', () => {
 
     it('should show a boiler option card for each applicable boiler', () => {
         // given
-        component.applicableBoilerTypes = Object.values(new AllBoilerTypes(boilerTypesResponse));
+        component.applicableBoilerTypes = boilerTypesResponse.map(boiler => BoilerType.fromMetadata(boiler));
 
         // when
         fixture.detectChanges();

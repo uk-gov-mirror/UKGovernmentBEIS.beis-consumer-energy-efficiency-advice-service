@@ -9,6 +9,7 @@ describe('BoilerOptionCardComponent', () => {
     let fixture: ComponentFixture<BoilerOptionCardComponent>;
 
     const boiler = new BoilerType(
+        'fake',
         'Fake Boiler',
         'Fake description',
         'No space requirement',

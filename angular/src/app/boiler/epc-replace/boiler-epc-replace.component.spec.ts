@@ -12,7 +12,7 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
@@ -56,7 +56,7 @@ describe('BoilerEpcReplaceComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');

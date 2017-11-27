@@ -9,7 +9,7 @@ import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 
 describe('BoilerMakeModelReplaceComponent', () => {
@@ -25,7 +25,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     beforeEach(async(() => {
