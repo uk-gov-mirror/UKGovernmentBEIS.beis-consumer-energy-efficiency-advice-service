@@ -24,6 +24,7 @@
     "core-js": "^2.4.1",
     "fuzzysearch": "^1.0.3",
     "lodash-es": "^4.17.4",
+    "mathsass": "^0.10.1",
     "ng2-nouislider": "^1.7.4",
     "nouislider": "^10.1.0",
     "rxjs": "^5.4.2",

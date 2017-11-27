@@ -39,6 +39,7 @@ import {GrantEligibilityService} from "../../grants/grant-eligibility-service/gr
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
 import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
+import {BreakEvenComponent} from "./break-even/break-even.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -59,7 +60,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
-            linkedMeasureCodes: ['V2']
+            linkedMeasureCodes: ['V2'],
+            advantages: []
         },
         {
             name: 'National Grant 2',
@@ -67,7 +69,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
-            linkedMeasureCodes: []
+            linkedMeasureCodes: [],
+            advantages: []
         }
     ];
 
@@ -166,7 +169,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 SpinnerAndErrorContainerComponent,
                 NeedHelpComponent,
                 GrantCardComponent,
-                RecommendationFilterControlComponent
+                RecommendationFilterControlComponent,
+                BreakEvenComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
@@ -246,7 +250,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
-        expect(recommendationElements.length).toEqual(nationalGrants.length);
+        const expectedNumberOfElements = nationalGrants.length + nationalGrants[0].linkedMeasureCodes.length;
+        expect(recommendationElements.length).toEqual(expectedNumberOfElements);
     });
 
     it('should apply multiple filters additively', async(() => {
@@ -297,11 +302,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
+        // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
         // for measure code V2
         expect(component.getDisplayedRecommendations()[0].headline).toBe('Wind turbine on mast');
         expect(component.getDisplayedRecommendations()[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
         expect(component.getDisplayedRecommendations()[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
+        expect(component.getDisplayedRecommendations()[0].advantages).toEqual(['Green', 'Cost effective']);
     });
 
     it('should link recommendation to available grant', () => {
@@ -309,7 +315,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        // match data in assets/test/energy-calculation-response.json and assets/test/recommendations-response.json
+        // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
         // for measure code V2
         expect(component.getDisplayedRecommendations()[0].grants.length).toBe(1);
         expect(component.getDisplayedRecommendations()[0].grants[0].name).toBe('National Grant 1');

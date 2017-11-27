@@ -17,13 +17,14 @@
                 <a class="read-more-button" [routerLink]="recommendation.readMoreRoute">Read more</a>
             </div>
             <div class="more-detail-row">
-                <button class="more-detail-button" (click)="toggleExpandedView()">See more detail</button>
-                <div class="icon-caret-down"></div>
+                <button class="more-detail-button" (click)="toggleExpandedView()">
+                    {{isExpandedView ? 'Hide details ▲' : 'See more detail ▼'}}
+                </button>
             </div>
         </div>
         <app-data-card class="investment-required-card"
                 heading="Investment required"
-                value="-"
+                [value]="'£' + roundedInvestmentRequired"
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
                 heading="Savings per month up to"
@@ -35,15 +36,13 @@
         </div>
     </div>
     <div class="expanded-view-row" [class.expanded]="isExpandedView">
-        <div class="grants">
+        <div class="grants" *ngIf="grant">
             <div class="heading">Grants</div>
             <div class="grant-info-card">
-                <div class="grant-name">ECO</div>
-                <div class="grant-description">
-                    You might be eligible for free loft insulation under the ECO scheme
-                </div>
+                <div class="grant-name">{{grant.name}}</div>
+                <div class="grant-description">{{grant.description}}</div>
                 <div class="grant-more-info-link-row">
-                    <button class="grant-more-info-link">Find out more</button>
+                    <a class="grant-more-info-link">Find out more</a>
                     <div class="chevron">></div>
                 </div>
             </div>
@@ -51,16 +50,15 @@
         <div class="benefits">
             <div class="heading">Benefits</div>
             <ul class="benefits-list">
-                <li class="benefits-list-item">Simple and cost effective</li>
-                <li class="benefits-list-item">Lasts up to 40 years</li>
-                <li class="benefits-list-item">Easy to install - you can do it yourself</li>
-                <li class="benefits-list-item">Reduces condensation</li>
+                <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
+                    {{advantage}}
+                </li>
             </ul>
         </div>
-        <div class="action-button-container">
-            <button class="action-button">
-                Find out how your energy supplier could help
-            </button>
-        </div>
+        <app-break-even
+                [investmentPounds]="recommendation.investmentPounds"
+                lifespanYears="40"
+                [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
+        </app-break-even>
     </div>
 </div>
