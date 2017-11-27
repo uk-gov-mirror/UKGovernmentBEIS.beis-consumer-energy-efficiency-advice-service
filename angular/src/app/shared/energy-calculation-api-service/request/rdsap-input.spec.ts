@@ -86,5 +86,19 @@ describe('RdsapInput', () => {
             // then
             expect(rdSapInput.occupants).toBe(expectedNumberOfOccupants);
         });
+
+        it('should calculate number of heating off hours normal correctly', () => {
+            // given
+            responseData.detailedLengthOfHeatingOnEarlyHours = 3;
+            responseData.detailedLengthOfHeatingOnMorning = 6;
+            responseData.detailedLengthOfHeatingOnAfternoon = 0;
+            responseData.detailedLengthOfHeatingOnEvening = 0;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.number_of_heating_off_hours_normal).toEqual([3, 0, 6, 6]);
+        })
     })
 });
