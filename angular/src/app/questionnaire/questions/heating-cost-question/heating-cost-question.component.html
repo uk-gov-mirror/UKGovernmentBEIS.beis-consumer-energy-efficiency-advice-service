@@ -1,6 +1,7 @@
 <div class="question-component heating-cost-question">
     <div class="question-content">
         <form class="questionnaire-form" (submit)="handleFormSubmit()">
+            <div class="currency">£</div>
             <app-number-question itemsName="heating cost"
                                  [(quantity)]="response"
                                  [minQuantity]="0"

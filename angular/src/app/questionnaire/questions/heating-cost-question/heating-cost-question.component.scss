@@ -3,6 +3,13 @@
 .heating-cost-question {
   .question-content {
     display: flex;
+    align-items: flex-end;
+
+    .questionnaire-form .currency {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
 
     .do-not-know-button {
       @include capsule-button(200px, 50px);
