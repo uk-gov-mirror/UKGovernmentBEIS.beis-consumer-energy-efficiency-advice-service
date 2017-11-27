@@ -36,9 +36,9 @@
         </div>
     </div>
     <div class="expanded-view-row" [class.expanded]="isExpandedView">
-        <div class="grants" *ngIf="recommendation.grants && recommendation.grants.length > 0">
+        <div class="grants" *ngIf="grant">
             <div class="heading">Grants</div>
-            <div class="grant-info-card" *ngFor="let grant of recommendation.grants">
+            <div class="grant-info-card">
                 <div class="grant-name">{{grant.name}}</div>
                 <div class="grant-description">{{grant.description}}</div>
                 <div class="grant-more-info-link-row">
