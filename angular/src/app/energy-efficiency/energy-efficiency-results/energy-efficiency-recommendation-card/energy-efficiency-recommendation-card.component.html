@@ -35,9 +35,8 @@
             <button class="add-to-plan-text">
                 {{isAddedToPlan ? 'Added to plan' : 'Add to plan'}}
             </button>
-            <div class="add-to-plan-icon" [class.icon-tick-white]="isAddedToPlan">
-                {{isAddedToPlan ? '' : '+'}}
-            </div>
+            <div class="add-to-plan-icon icon-tick-white" *ngIf="isAddedToPlan"></div>
+            <div class="add-to-plan-icon" *ngIf="!isAddedToPlan">+</div>
         </div>
     </div>
     <div class="expanded-view-row" [class.expanded]="isExpandedView">
