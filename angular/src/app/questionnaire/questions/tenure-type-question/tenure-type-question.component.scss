@@ -6,6 +6,7 @@
 
     .tenure-type-option {
       @include big-rounded-button;
+      align-items: stretch;
 
       width: 320px;
       height: 160px;
