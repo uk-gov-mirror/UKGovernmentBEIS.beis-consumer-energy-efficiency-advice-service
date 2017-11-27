@@ -5,7 +5,6 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/toPromise";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {NationalGrantCalculatorFactory} from "../national-grant-calculator/national-grant-calculator-factory";
 import {NationalGrantCalculator} from "../national-grant-calculator/national-grant-calculator";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-model";
@@ -13,6 +12,7 @@ import {GrantEligibility} from "./grant-eligibility";
 import {GrantEligibilityService} from "./grant-eligibility.service";
 import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
 import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
+import {NationalGrantCalculatorProvider} from "../national-grant-calculator/provider/national-grant-calculator.provider";
 
 describe('GrantEligibilityService', () => {
     let httpMock: HttpTestingController;
@@ -25,46 +25,42 @@ describe('GrantEligibilityService', () => {
             description: 'some LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null
+            annualPaymentPounds: null,
+            linkedMeasureCodes: null
         },
         {
             name: 'LA Grant 2',
             description: 'another LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null
+            annualPaymentPounds: null,
+            linkedMeasureCodes: null
         }
     ];
 
     const nationalGrantsContent: NationalGrantContent[] = [
         {
-            acf: {
-                heading: "Eligible grant 1",
-                description: "Get paid for creating your own green energy.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Eligible grant 1",
+            description: "Get paid for creating your own green energy.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "an-eligible-grant"
         },
         {
-            acf: {
-                heading: "Eligible grant 2",
-                description: "Get cash if you install or have already installed an eligible renewable heating technology.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Eligible grant 2",
+            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "another-eligible-grant"
         },
         {
-            acf: {
-                heading: "Ineligible grant",
-                description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
-                measures: [],
-                display_without_measures: false,
-                link_to_measures: true
-            },
+            heading: "Ineligible grant",
+            description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
+            linked_measure_codes: [],
+            display_without_measures: false,
+            link_to_measures: true,
             slug: "ineligible-grant"
         }
     ];
@@ -100,7 +96,7 @@ describe('GrantEligibilityService', () => {
     };
 
     let nationalGrantCalculators: NationalGrantCalculator[];
-    const nationalGrantCalculatorFactoryStub = {
+    const nationalGrantCalculatorProviderStub = {
         nationalGrants: [
             new EligibleNationalGrant('an-eligible-grant'),
             new EligibleNationalGrant('another-eligible-grant'),
@@ -123,7 +119,7 @@ describe('GrantEligibilityService', () => {
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: NationalGrantsContentService, useValue: nationalGrantsContentServiceStub},
-                {provide: NationalGrantCalculatorFactory, useValue: nationalGrantCalculatorFactoryStub}
+                {provide: NationalGrantCalculatorProvider, useValue: nationalGrantCalculatorProviderStub}
             ],
             imports: [HttpClientTestingModule]
         })

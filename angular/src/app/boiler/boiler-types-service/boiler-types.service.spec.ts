@@ -5,9 +5,9 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 import {HttpRequest} from "@angular/common/http";
 import {BoilerTypesService} from "./boiler-types.service";
-import {AllBoilerTypes, BoilerType} from "./boiler-type";
+import {AllBoilerTypes} from "./boiler-type";
 
-describe('EpcApiService', () => {
+describe('BoilerTypesService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: BoilerTypesService;

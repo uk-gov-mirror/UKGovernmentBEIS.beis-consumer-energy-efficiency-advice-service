@@ -17,8 +17,9 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
-import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {QuestionHeadingProcessor} from "./question-heading-processor.service";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -104,7 +105,7 @@ describe('QuestionnaireComponent', () => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent, NeedHelpComponent],
+            declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent, NeedHelpComponent, QuestionReasonComponent],
             imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 ComponentFactoryResolver,
@@ -239,61 +240,5 @@ describe('QuestionnaireComponent', () => {
             // then
             expect(component.onQuestionnaireComplete.emit).toHaveBeenCalled();
         });
-    });
-
-    describe('#toggleQuestionReasonDisplay', () => {
-        it('should display the question reason if currently hidden', async(() => {
-            // given
-            const expectedQuestionReason = 'this question helps us show you useful results';
-            allQuestionsContent = {
-                [questionId]: {
-                    questionHeading: 'test question heading',
-                    helpText: '',
-                    questionReason: expectedQuestionReason
-                }
-            };
-            component.currentQuestionIndex = 0;
-            component.shouldDisplayQuestionReason = false;
-            fixture.detectChanges();
-
-            // when
-            clickToggleQuestionReasonButtonAndDetectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
-                expect(questionReasonElement.classes.visible).toBeTruthy();
-                expect(questionReasonElement.nativeElement.innerText).toBe(expectedQuestionReason);
-            });
-        }));
-
-        it('should hide the question reason if currently displayed', async(() => {
-            // given
-            allQuestionsContent = {
-                [questionId]: {
-                    questionHeading: 'test question heading',
-                    helpText: '',
-                    questionReason: 'this question helps us show you useful results'
-                }
-            };
-            component.currentQuestionIndex = 0;
-            component.shouldDisplayQuestionReason = true;
-            fixture.detectChanges();
-
-            // when
-            clickToggleQuestionReasonButtonAndDetectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
-                expect(questionReasonElement.classes.visible).toBeFalsy();
-            });
-        }));
-
-        function clickToggleQuestionReasonButtonAndDetectChanges(): void {
-            const toggleQuestionReasonButton = fixture.debugElement.query(By.css('.question-reason-button'));
-            toggleQuestionReasonButton.nativeElement.click();
-            fixture.detectChanges();
-        }
     });
 });

@@ -14,11 +14,13 @@ import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/con
 import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
+import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
 
 @Injectable()
 export class ResponseData {
     public userJourneyType: UserJourneyType;
     public shouldIncludeGrantsQuestionnaire: boolean;
+    public shouldIncludeOptionalPropertyQuestions: boolean;
     public postcode: string;
     public epc: Epc;
     public localAuthorityCode: string;
@@ -29,6 +31,8 @@ export class ResponseData {
     public flatPosition: FlatPosition;
     public numberOfStoreys: number;
     public numberOfBedrooms: number;
+    public floorArea: number;
+    public floorAreaUnit: FloorAreaUnit;
     public fuelType: FuelType;
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
@@ -60,6 +64,12 @@ export class ResponseData {
 
     public benefits: Benefits;
     public income: number;
+
+    get numberOfAdults(): number {
+        return this.numberOfAdultsAgedUnder64 +
+            this.numberOfAdultsAged64To80 +
+            this.numberOfAdultsAgedOver80;
+    }
 }
 
 export function isComplete(responseData: ResponseData) {

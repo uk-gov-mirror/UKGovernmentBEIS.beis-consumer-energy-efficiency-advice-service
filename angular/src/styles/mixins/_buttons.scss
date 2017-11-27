@@ -95,3 +95,20 @@ $border-width: 1px;
     -moz-appearance: textfield;
   }
 }
+
+@mixin big-rounded-button() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 240px;
+  height: 120px;
+  border-radius: 32px;
+  border: 1px solid black;
+
+  padding: 20px 50px;
+  box-sizing: border-box;
+
+  font-size: 24px;
+  font-weight: bold;
+}

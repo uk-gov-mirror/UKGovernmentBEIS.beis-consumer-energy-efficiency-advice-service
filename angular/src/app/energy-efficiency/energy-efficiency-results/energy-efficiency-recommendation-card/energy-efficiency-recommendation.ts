@@ -1,7 +1,7 @@
 import {EnergySavingMeasureResponse} from "../../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
 import * as parse from "url-parse";
 import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
-import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-tag";
+import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantViewModel} from "../../../grants/model/grant-view-model";
 
 export class EnergyEfficiencyRecommendation {
@@ -13,13 +13,15 @@ export class EnergyEfficiencyRecommendation {
                 public headline: string,
                 public summary: string,
                 public iconClassName: string,
-                public tags: EnergyEfficiencyRecommendationTag) {
+                public tags: EnergyEfficiencyRecommendationTag,
+                public grants: GrantViewModel[]) {
     }
 
     static fromMeasure(
        energySavingMeasureResponse: EnergySavingMeasureResponse,
        measureContent: MeasureContent,
-       iconClassName: string
+       iconClassName: string,
+       grants: GrantViewModel[]
     ): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             Math.floor(Math.random() * 99) + 1, // TODO: investment required for measures (BEISDEAS-56)
@@ -29,7 +31,8 @@ export class EnergyEfficiencyRecommendation {
             measureContent.acf.headline,
             measureContent.acf.summary,
             iconClassName,
-            EnergyEfficiencyRecommendationTag.LongerTerm
+            EnergyEfficiencyRecommendationTag.LongerTerm,
+            grants
         )
     }
 
@@ -45,7 +48,8 @@ export class EnergyEfficiencyRecommendation {
             grantViewModel.name,
             grantViewModel.description,
             iconClassName,
-            EnergyEfficiencyRecommendationTag.Grant
+            EnergyEfficiencyRecommendationTag.Grant,
+            [grantViewModel]
         );
     }
 }

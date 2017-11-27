@@ -1,22 +1,14 @@
+@import 'styles/mixins/buttons';
+
 .tenure-type-question {
   .tenure-type-options {
     margin-top: 64px;
 
     .tenure-type-option {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      @include big-rounded-button;
 
       width: 320px;
       height: 160px;
-      border-radius: 32px;
-      border: 1px solid black;
-
-      padding: 20px 50px;
-      box-sizing: border-box;
-
-      font-size: 24px;
-      font-weight: bold;
 
       &:not(:last-child) {
         margin-right: 64px;

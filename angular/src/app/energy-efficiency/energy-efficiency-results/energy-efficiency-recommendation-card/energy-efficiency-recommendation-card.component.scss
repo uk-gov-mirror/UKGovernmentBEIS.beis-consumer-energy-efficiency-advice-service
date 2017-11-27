@@ -1,4 +1,5 @@
 @import "../_energy-efficiency-results-page-sizes.scss";
+@import "../recommendation-tags/_recommendation-tags.scss";
 @import "styles/mixins/_font";
 @import "styles/mixins/_buttons";
 @import "styles/var/_colours";
@@ -32,38 +33,6 @@ $icon-column-width: 100px;
 
       & > :not(:first-child) {
         margin-top: 8px;
-      }
-
-      .tags {
-        display: flex;
-
-        & > :not(:first-child) {
-          margin-left: 10px;
-        }
-
-        .tag {
-          color: white;
-          padding: 5px 14px;
-          border-radius: 20px;
-          text-transform: uppercase;
-          font-size: 12px;
-        }
-
-        .tag-quick-win {
-          background-color: coral;
-        }
-
-        .tag-small-spend {
-          background-color: green;
-        }
-
-        .tag-longer-term {
-          background-color: purple;
-        }
-
-        .tag-grant {
-          background-color: turquoise;
-        }
       }
 
       .heading {

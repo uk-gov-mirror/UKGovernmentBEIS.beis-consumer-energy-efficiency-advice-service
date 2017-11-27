@@ -2,7 +2,7 @@
     <button type="button" (click)="increaseQuantity(-step)" [disabled]="quantity == undefined || !isValidForMinimum(quantity)"
             class="increase-button">-</button>
     <input [id]="itemsName" class="text-input" type="number" [(ngModel)]="quantity" (ngModelChange)="updateQuantity()"
-           aria-labelledby="question-heading" [min]="minQuantity" [max]="maxQuantity">
+           aria-labelledby="question-heading" [min]="minQuantity" [max]="maxQuantity" (focus)="$event.target.select()">
     <button type="button" (click)="increaseQuantity(step)" [disabled]="quantity == undefined || !isValidForMaximum(quantity)"
             class="increase-button">+</button>
 </div>

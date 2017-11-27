@@ -31,6 +31,8 @@ import {ConstructionQuestionComponent} from "./construction-question/constructio
 import {WaterTankQuestionComponent} from "./water-tank-question/water-tank-question.component";
 import {GardenQuestionComponent} from "./garden-question/garden-question.component";
 import {RoofSpaceQuestionComponent} from "./roof-space-question/roof-space-question.component";
+import {OptionalPropertyQuestionComponent} from "./optional-property-question/optional-property-question.component";
+import {FloorAreaQuestionComponent} from "./floor-area-question/floor-area-question.component";
 import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-heating-on-question/detailed-length-of-heating-on-question.component";
 
 @NgModule({
@@ -42,6 +44,7 @@ import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-h
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -51,6 +54,7 @@ import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-h
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
@@ -71,6 +75,7 @@ import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-h
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -80,6 +85,7 @@ import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-h
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,
@@ -107,6 +113,7 @@ import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-h
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatPositionQuestionComponent,
+        FloorAreaQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
         HeatingCostQuestionComponent,
@@ -116,6 +123,7 @@ import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-h
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
+        OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowerTypeQuestionComponent,

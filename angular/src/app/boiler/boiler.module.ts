@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+
 import {BoilerLandingPageComponent} from "./landing-page/boiler-landing-page.component";
 import {CarouselComponent} from "./landing-page/carousel/carousel.component";
 import {CarouselItemComponent} from "./landing-page/carousel/carousel-item/carousel-item.component";
@@ -8,7 +9,7 @@ import {SharedModule} from "../shared/shared.module";
 import {BoilerEpcReplaceComponent} from "./epc-replace/boiler-epc-replace.component";
 import {BoilerPostcodeLookupComponent} from "./postcode-lookup/boiler-postcode-lookup.component";
 import {BoilerMakeModelLookupComponent} from "./make-model-lookup/boiler-make-model-lookup.component";
-import {BoilerReplacementCardComponent} from "./epc-replace/boiler-replacement-card/boiler-replacement-card.component";
+import {BoilerReplacementCardComponent} from "./boiler-replacement-card/boiler-replacement-card.component";
 import {RoutingModule} from "../app-routing.module";
 import {BoilerTypesService} from "./boiler-types-service/boiler-types.service";
 import {BoilerQuestionnaireComponent} from "./boiler-questionnaire/boiler-questionnaire.component";
@@ -18,6 +19,9 @@ import {BoilerOptionCardComponent} from "./results-page/boiler-option-card/boile
 import {BoilerMeasuresSectionComponent} from "./measures-section/boiler-measures-section.component";
 import {BoilerPageMeasuresService} from "./measures-section/boiler-page-measures.service";
 import {BoilerResultsPageRouteGuard} from "./results-page/boiler-results-page.guard";
+import {BoilerReplacementPageComponent} from "./replacement-page/boiler-replacement-page.component";
+import {GasAndOilBoilersService} from "./gas-and-oil-boilers/gas-and-oil-boilers.service";
+import {BoilerMakeModelReplaceComponent} from "./make-model-replace/boiler-make-model-replace.component";
 
 @NgModule({
     declarations: [
@@ -32,6 +36,8 @@ import {BoilerResultsPageRouteGuard} from "./results-page/boiler-results-page.gu
         BoilerResultsPageComponent,
         BoilerOptionCardComponent,
         BoilerMeasuresSectionComponent,
+        BoilerReplacementPageComponent,
+        BoilerMakeModelReplaceComponent,
     ],
     imports: [
         CommonModule,
@@ -45,6 +51,8 @@ import {BoilerResultsPageRouteGuard} from "./results-page/boiler-results-page.gu
         BoilerEpcReplaceComponent,
         BoilerQuestionnaireComponent,
         BoilerResultsPageComponent,
+        BoilerReplacementPageComponent,
+        BoilerMakeModelReplaceComponent,
     ],
 })
 export class BoilerModule {
@@ -55,6 +63,7 @@ export class BoilerModule {
                 BoilerTypesService,
                 BoilerPageMeasuresService,
                 BoilerResultsPageRouteGuard,
+                GasAndOilBoilersService,
             ]
         };
     }

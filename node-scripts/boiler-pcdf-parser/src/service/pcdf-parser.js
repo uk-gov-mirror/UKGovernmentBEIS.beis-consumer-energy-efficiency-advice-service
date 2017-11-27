@@ -4,9 +4,9 @@ var pcdfParser = {};
 
 pcdfParser.getPcdfWithIgnoredLinesStripped = function (pcdf) {
     // Match anything up to and including the first line which begins "$001"
-    var matchIgnoredLinesBeforeStartOfData = /^.*\$001\S*\s+/s;
+    var matchIgnoredLinesBeforeStartOfData = /^[\s\S]*\$001\S*\s+/;
     // Match anything from the first line which begins "$999" onwards
-    var matchIgnoredLinesAfterEndOfData = /\$999.*$/s;
+    var matchIgnoredLinesAfterEndOfData = /\$999[\s\S]*$/;
     // Match any line which begins with #
     var matchCommentLines = /\s*#(.*)/g;
     return pcdf
@@ -18,6 +18,7 @@ pcdfParser.getPcdfWithIgnoredLinesStripped = function (pcdf) {
 pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
     const tableCsvString = getTableBodyCsvString(pcdf, tableMetadata.tableNumber, tableMetadata.dataFormatNumber);
     var tableRows = [];
+
     csvParser({noheader: true})
         .fromString(tableCsvString)
         .on('csv', function (csvRow) {
@@ -25,7 +26,16 @@ pcdfParser.getTableBodyJson = function (pcdf, tableMetadata, success) {
             tableMetadata.columnHeadings.forEach(function (columnHeading, columnIndex) {
                 jsonRow[columnHeading] = csvRow[columnIndex];
             });
-            tableRows.push(jsonRow);
+
+            // Capitalise the brand name (this isn't done reliably in the source data)
+            if (jsonRow.hasOwnProperty('brandName') && jsonRow.brandName !== undefined) {
+                jsonRow.brandName = jsonRow.brandName.replace(/\w\S*/g, word => word.charAt(0).toUpperCase() + word.substr(1));
+            }
+
+            // Remove rows without any actual data, which appear in the source data for some reason
+            if (jsonRow.productIndexNumber !== undefined) {
+                tableRows.push(jsonRow);
+            }
         })
         .on('done', function () {
             success(tableRows);

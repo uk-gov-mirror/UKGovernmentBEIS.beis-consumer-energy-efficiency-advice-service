@@ -12,6 +12,8 @@ import {BoilerPostcodeLookupComponent} from "../postcode-lookup/boiler-postcode-
 import {ResponseData} from "../../shared/response-data/response-data";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
+import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
+import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
@@ -20,6 +22,12 @@ describe('BoilerLandingPageComponent', () => {
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
     const epcApiServiceStub = {
         getEpcsForPostcode: (postcode) => Observable.of(EpcParserService.parse(dummyEpcsResponse))
+    };
+
+    const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');
+    const gasAndOilBoilersServiceStub = {
+        getGasAndOilBoilerWithIndexNumber: (index) => Observable.of(GasAndOilBoiler.fromJson(gasAndOilBoilersData[0])),
+        getGasAndOilBoilersMatching: (term) => Observable.of(gasAndOilBoilersData.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson))),
     };
 
     beforeEach(async(() => {
@@ -38,6 +46,7 @@ describe('BoilerLandingPageComponent', () => {
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},
+                {provide: GasAndOilBoilersService, useValue: gasAndOilBoilersServiceStub},
                 ResponseData,
             ]
         })

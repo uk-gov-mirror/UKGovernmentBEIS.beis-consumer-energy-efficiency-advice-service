@@ -13,6 +13,10 @@ export class GardenQuestionMetadata extends QuestionMetadata {
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.shouldIncludeOptionalPropertyQuestions === undefined || responseData.shouldIncludeOptionalPropertyQuestions;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.gardenAccessibility !== undefined &&
             (responseData.gardenAccessibility !== GardenAccessibility.Accessible || responseData.gardenSizeSquareMetres !== undefined);

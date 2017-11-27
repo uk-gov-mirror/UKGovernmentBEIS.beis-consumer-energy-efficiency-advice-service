@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {RouterTestingModule} from "@angular/router/testing";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {Observable} from "rxjs/Observable";
 
 import {HomeImprovementsComponent} from "./home-improvements.component";
 import {LargeVideoCardComponent} from "../large-video-card/large-video-card.component";
@@ -10,6 +11,8 @@ import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
+import {QuestionContentService} from "../../shared/question-content/question-content.service";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -23,7 +26,8 @@ describe('HomeImprovementsComponent', () => {
                 NavigationBarComponent,
                 LargeVideoCardComponent,
                 ArticleCardComponent,
-                LatestNewsCardComponent
+                LatestNewsCardComponent,
+                QuestionReasonComponent
             ],
             imports: [
                 CommonModule,
@@ -31,7 +35,8 @@ describe('HomeImprovementsComponent', () => {
                 RouterTestingModule
             ],
             providers: [
-                ResponseData
+                ResponseData,
+                {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}}
             ]
         })
             .compileComponents();

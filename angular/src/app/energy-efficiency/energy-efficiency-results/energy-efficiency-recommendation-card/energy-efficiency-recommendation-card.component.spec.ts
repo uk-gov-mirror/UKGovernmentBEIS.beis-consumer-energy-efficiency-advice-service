@@ -5,7 +5,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card.component";
 import {DataCardComponent} from "../data-card/data-card.component";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
-import {EnergyEfficiencyRecommendationTag} from "./energy-efficiency-recommendation-tag";
+import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -19,7 +19,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         iconClassName: 'icon-roofing',
         headline: 'Loft insulation',
         summary: 'No description available',
-        tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant
+        tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
+        grants: []
     };
 
     beforeEach(async(() => {

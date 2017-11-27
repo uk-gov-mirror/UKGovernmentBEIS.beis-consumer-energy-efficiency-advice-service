@@ -10,9 +10,9 @@ import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-
 import {NationalGrantViewModel} from "../model/national-grant-view-model";
 import isEqual from "lodash-es/isEqual";
 import clone from "lodash-es/clone";
-import {NationalGrantCalculatorFactory} from "../national-grant-calculator/national-grant-calculator-factory";
 import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
 import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
+import {NationalGrantCalculatorProvider} from "../national-grant-calculator/provider/national-grant-calculator.provider";
 
 @Injectable()
 export class GrantEligibilityService {
@@ -23,7 +23,7 @@ export class GrantEligibilityService {
     constructor(private responseData: ResponseData,
                 private localAuthorityService: LocalAuthorityService,
                 private nationalGrantsService: NationalGrantsContentService,
-                private nationalGrantMetadataFactory: NationalGrantCalculatorFactory) {
+                private nationalGrantCalculatorProvider: NationalGrantCalculatorProvider) {
     }
 
     getApplicableGrants(): Observable<GrantViewModel[]> {
@@ -48,8 +48,8 @@ export class GrantEligibilityService {
     }
 
     private getAllNationalGrantViewModels(grantsContent: NationalGrantContent[]): Observable<NationalGrantViewModel[]> {
-        return Observable.forkJoin(this.nationalGrantMetadataFactory.nationalGrants
-            .map(grantMetadata => this.getGrantViewModel(grantMetadata, grantsContent)));
+        return Observable.forkJoin(this.nationalGrantCalculatorProvider.nationalGrants
+            .map(grantCalculator => this.getGrantViewModel(grantCalculator, grantsContent)));
     }
 
     private getGrantViewModel(grantCalculator: NationalGrantCalculator,

@@ -22,6 +22,8 @@ import {RecommendationCardComponent} from "./recommendation-card/recommendation-
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 import {EnergySavingMeasureContentService} from "./energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {QuestionReasonComponent} from './question-reason/question-reason.component';
+import {AssetsService} from "./assets-service/assets.service";
 
 @NgModule({
     declarations: [
@@ -32,6 +34,7 @@ import {EnergySavingMeasureContentService} from "./energy-saving-measure-content
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
         RecommendationCardComponent,
+        QuestionReasonComponent,
     ],
     exports: [
         TimesPipe,
@@ -41,6 +44,7 @@ import {EnergySavingMeasureContentService} from "./energy-saving-measure-content
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
         RecommendationCardComponent,
+        QuestionReasonComponent
     ],
     imports: [
         HttpClientModule,
@@ -64,7 +68,8 @@ export class SharedModule {
                 PostcodeApiService,
                 LocalAuthorityService,
                 EnergySavingMeasureContentService,
-                GoogleAnalyticsService
+                GoogleAnalyticsService,
+                AssetsService,
             ]
         };
     }

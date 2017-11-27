@@ -17,6 +17,8 @@ import {EnergyEfficiencyResultsRouteGuard} from "./energy-efficiency/energy-effi
 import {BoilerQuestionnaireComponent} from "./boiler/boiler-questionnaire/boiler-questionnaire.component";
 import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-page.component";
 import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-page.guard";
+import {BoilerReplacementPageComponent} from "./boiler/replacement-page/boiler-replacement-page.component";
+import {BoilerMakeModelReplaceComponent} from "./boiler/make-model-replace/boiler-make-model-replace.component";
 
 const routes: Routes = [
     {
@@ -62,8 +64,16 @@ const routes: Routes = [
         component: BoilerLandingPageComponent
     },
     {
+        path: 'js/boiler/replace',
+        component: BoilerReplacementPageComponent,
+    },
+    {
         path: 'js/boiler/epc-replace/:lmkKey',
         component: BoilerEpcReplaceComponent
+    },
+    {
+        path: 'js/boiler/make-model-replace/:productIndexNumber',
+        component: BoilerMakeModelReplaceComponent,
     },
     {
         path: 'js/boiler/questionnaire',

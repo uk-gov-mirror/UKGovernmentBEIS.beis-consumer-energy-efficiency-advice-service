@@ -1,0 +1,15 @@
+@import 'styles/mixins/buttons';
+
+.optional-property-question {
+  .optional-property-question-options {
+    margin-top: 64px;
+
+    .optional-property-question-option {
+      @include big-rounded-button;
+
+      &:not(:last-child) {
+        margin-right: 64px;
+      }
+    }
+  }
+}

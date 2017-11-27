@@ -32,14 +32,16 @@ describe('GrantsLandingPageComponent', () => {
             description: 'some grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null
+            annualPaymentPounds: null,
+            linkedMeasureCodes: null
         },
         {
             name: 'Grant 2',
             description: 'another grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null
+            annualPaymentPounds: null,
+            linkedMeasureCodes: null
         }
     ];
 
