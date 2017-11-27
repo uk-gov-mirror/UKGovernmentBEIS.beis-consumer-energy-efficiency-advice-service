@@ -8,7 +8,9 @@
     "installation_cost_upper_bound": "825",
     "lifetime": "15",
     "running_cost": "1300",
-    "featured_page": "http:\/\/localhost:81\/about\/"
+    "": false,
+    "pros": "[\r\n    {\r\n        &quot;heading&quot;: &quot;More Efficient&quot;,\r\n        &quot;body&quot;: &quot;Combi boilers are highly efficiency when compared to older boiler models. In fact, replacing your boiler with a newer combi boiler could help you to save up to \u00a3300 a year on your heating bills.&quot;\r\n    },\r\n    {\r\n        &quot;heading&quot;: &quot;Cheaper&quot;,\r\n        &quot;body&quot;: &quot;Combi boilers are far less complex than traditional heating systems, which means that installations tend to be cheaper. It is also easier to find replacement parts if a problem occurs.&quot;\r\n    },\r\n    {\r\n        &quot;heading&quot;: &quot;Faster&quot;,\r\n        &quot;body&quot;: &quot;With no water tank to heat up, combi boilers can provide an unlimited supply of hot water on demand. No waiting time!&quot;\r\n    },\r\n    {\r\n        &quot;heading&quot;: &quot;More compact&quot;,\r\n        &quot;body&quot;: &quot;As there is no need for a separate water tank, combi boiler systems take up much less space than conventional heating systems. This makes them ideal for homes that have limited room.&quot;\r\n    },\r\n    {\r\n        &quot;heading&quot;: &quot;Safer&quot;,\r\n        &quot;body&quot;: &quot;The cold water from a combi boiler system is always safe to drink as it is fed directly from the mains. However, this is not always true of traditional systems, which may store cold water in a tank before it is piped through the house&quot;\r\n    },\r\n    {\r\n        &quot;heading&quot;: &quot;Easier to Sell&quot;,\r\n        &quot;body&quot;: &quot;As combi boilers tend to be more efficient than other boiler types, this can be a selling point if you are looking to rent or sell your property. This will also show on the Energy Performance Certificate (EPC).&quot;\r\n    }\r\n]",
+    "cons": "[\r\n    {\r\n        \"heading\": \"Dependence on Mains Pressure\",\r\n        \"body\": \"To ensure that your combi boiler is working properly, you need good mains pressure. If you are having a new boiler fitted, you should check what the mains pressure in your area is before you go ahead with the installation.\"\r\n    },\r\n    {\r\n        \"heading\": \"Limited Use\",\r\n        \"body\": \"With a combi boiler it is not possible to run more than one shower or bath at a time, or to turn on the hot tap while showering. This may be an issue if you live in a large house with a number of bathrooms and en suites, or with lots of people.\"\r\n    },\r\n    {\r\n        \"heading\": \"No Immersion Heater\",\r\n        \"body\": \"As there is no water tank, if your combi boiler breaks down then you will be left without hot water as well as central heating (unless you install an electric shower).\"\r\n    }\r\n]"
   },
   "slug": "combi-boiler"
 }, {
@@ -20,8 +22,10 @@
     "installation_cost_upper_bound": "19000",
     "lifetime": "15",
     "running_cost": "1200",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "No information available"
+    "": false,
+    "space_requirement": "No information available",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "biomass-boiler"
 }, {
@@ -33,8 +37,10 @@
     "installation_cost_upper_bound": "9000",
     "lifetime": "20",
     "running_cost": "1300",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "No information available"
+    "": false,
+    "space_requirement": "No information available",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "micro-chp-boiler"
 }, {
@@ -46,8 +52,10 @@
     "installation_cost_upper_bound": "5000",
     "lifetime": "20",
     "running_cost": "0",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "No information available"
+    "": false,
+    "space_requirement": "No information available",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "solar-water-heater"
 }, {
@@ -59,8 +67,10 @@
     "installation_cost_upper_bound": "18000",
     "lifetime": "50",
     "running_cost": "750",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "Space for the pipes (underground in a garden of at least 400 square metres) and the heat pump (a small room or outbuilding)"
+    "": false,
+    "space_requirement": "Space for the pipes (underground in a garden of at least 400 square metres) and the heat pump (a small room or outbuilding)",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "ground-source-heat-pump"
 }, {
@@ -72,8 +82,10 @@
     "installation_cost_upper_bound": "11000",
     "lifetime": "20",
     "running_cost": "950",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "No information available"
+    "": false,
+    "space_requirement": "No information available",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "air-source-heat-pump"
 }, {
@@ -85,8 +97,10 @@
     "installation_cost_upper_bound": "825",
     "lifetime": "15",
     "running_cost": "1100",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "Room for cylinder (a full-length cupboard) and tank (a loft or very large cupboard)"
+    "": false,
+    "space_requirement": "Room for cylinder (a full-length cupboard) and tank (a loft or very large cupboard)",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "regular-boiler"
 }, {
@@ -98,8 +112,10 @@
     "installation_cost_upper_bound": "910",
     "lifetime": "15",
     "running_cost": "1000",
-    "featured_page": "http:\/\/localhost:81\/about\/",
-    "space_requirement": "No information available"
+    "": false,
+    "space_requirement": "No information available",
+    "pros": "[]",
+    "cons": "[]"
   },
   "slug": "system-boiler"
 }]

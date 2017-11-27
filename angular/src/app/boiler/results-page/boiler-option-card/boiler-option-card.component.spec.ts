@@ -11,12 +11,13 @@ describe('BoilerOptionCardComponent', () => {
     const boiler = new BoilerType(
         'Fake Boiler',
         'Fake description',
-        '/no/path',
         'No space requirement',
         100,
         200,
         15,
         1000,
+        [],
+        []
     );
 
     beforeEach(async(() => {
