@@ -18,8 +18,7 @@ export class PostcodeLookupComponent {
     selectedEpc: Epc;
     validationError: boolean = false;
 
-    @Input() helpText?: string;
-    @Output() addressSelected: EventEmitter<void> = new EventEmitter<void>();
+    @Output() addressSelected: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private responseData: ResponseData,
                 private postcodeEpcService: PostcodeEpcService) {
@@ -92,7 +91,9 @@ export class PostcodeLookupComponent {
     onAddressSelected() {
         if (this.selectedEpc !== undefined) {
             this.epc = this.selectedEpc;
+            this.addressSelected.emit(this.epc.lmkKey);
+        } else {
+            this.addressSelected.emit();
         }
-        this.addressSelected.emit();
     }
 }

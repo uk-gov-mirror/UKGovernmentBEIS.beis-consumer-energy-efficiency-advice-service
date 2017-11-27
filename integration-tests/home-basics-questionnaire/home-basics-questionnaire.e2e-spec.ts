@@ -26,7 +26,9 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // Mini-EPC
-        page.confirmEpcIfApplicable();
+        expect(page.getHeading()).toContain('Here\'s what we know so far...');
+        CommonPageHelpers.clickButton('get a few more details');
+        CommonPageHelpers.sleep(1000);
 
         // Home type
         expect(page.getHeading()).toContain('type of home');

@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
-import {ResponseData} from "../../shared/response-data/response-data";
 
 @Component({
     selector: 'app-boiler-landing-page',
@@ -9,13 +8,12 @@ import {ResponseData} from "../../shared/response-data/response-data";
 })
 export class BoilerLandingPageComponent {
 
-    constructor(private responseData: ResponseData,
-                private router: Router) {
+    constructor(private router: Router) {
     }
 
-    onAddressSelected() {
-        if (this.responseData.epc.lmkKey) {
-            this.router.navigate(['/js/boiler/epc-replace', this.responseData.epc.lmkKey]);
+    onAddressSelected(lmkKey: string) {
+        if (lmkKey) {
+            this.router.navigate(['/js/boiler/epc-replace', lmkKey]);
         }
     }
 }

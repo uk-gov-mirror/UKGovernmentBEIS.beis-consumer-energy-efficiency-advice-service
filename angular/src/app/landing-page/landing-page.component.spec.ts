@@ -46,7 +46,6 @@ describe('LandingPageComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
-                LatestNewsCardComponent,
                 MockPostcodeLookupComponent,
                 QuestionReasonComponent
             ],
@@ -70,8 +69,7 @@ describe('LandingPageComponent', () => {
         responseData = TestBed.get(ResponseData);
         spyOn(router, 'navigate');
         fixture.detectChanges();
-        const mockPostcodeLookupElement = fixture.debugElement.query(By.directive(MockPostcodeLookupComponent));
-        mockPostcodeLookupComponent = mockPostcodeLookupElement.injector.get(MockPostcodeLookupComponent) as MockPostcodeLookupComponent;
+        mockPostcodeLookupComponent = fixture.debugElement.query(By.directive(MockPostcodeLookupComponent)).componentInstance;
     });
 
     it('should create', () => {

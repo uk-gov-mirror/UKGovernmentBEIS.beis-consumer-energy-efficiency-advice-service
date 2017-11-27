@@ -15,23 +15,15 @@ import {QuestionContentService} from "../../shared/question-content/question-con
 import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 
 describe('CarbonFootprintComponent', () => {
 
     let component: CarbonFootprintComponent;
     let fixture: ComponentFixture<CarbonFootprintComponent>;
 
-    const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
-    const dummyPostcodeDetails: PostcodeDetails = {
-      postcode: 'dummy',
-      allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
-        localAuthorityCode: null
-    };
     const postcodeEpcServiceStub = {
-        fetchPostcodeDetails: (postcode) => Observable.of(dummyPostcodeDetails)
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
     };
 
     beforeEach(async(() => {

@@ -10,8 +10,6 @@ import {TimesPipe} from "../../shared/times/times.pipe";
 import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-model-lookup.component";
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
@@ -20,14 +18,8 @@ describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
     let fixture: ComponentFixture<BoilerLandingPageComponent>;
 
-    const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
-    const dummyPostcodeDetails: PostcodeDetails = {
-        postcode: 'dummy',
-        allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
-        localAuthorityCode: null
-    };
     const postcodeEpcServiceStub = {
-        fetchPostcodeDetails: (postcode) => Observable.of(dummyPostcodeDetails)
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
     };
 
     const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');

@@ -9,7 +9,6 @@ describe('GrantsQuestionnaireComponent', () => {
     let component: GrantsQuestionnaireComponent;
     let fixture: ComponentFixture<GrantsQuestionnaireComponent>;
     let router: Router;
-    let mockQuestionnaireElement;
     let mockQuestionnaireComponent: MockQuestionnaireComponent;
 
     beforeEach(async(() => {
@@ -28,8 +27,7 @@ describe('GrantsQuestionnaireComponent', () => {
         router = TestBed.get(Router);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        mockQuestionnaireElement = fixture.debugElement.query(By.directive(MockQuestionnaireComponent));
-        mockQuestionnaireComponent = mockQuestionnaireElement.injector.get(MockQuestionnaireComponent) as MockQuestionnaireComponent;
+        mockQuestionnaireComponent = fixture.debugElement.query(By.directive(MockQuestionnaireComponent)).componentInstance;
         spyOn(router, 'navigate');
     });
 

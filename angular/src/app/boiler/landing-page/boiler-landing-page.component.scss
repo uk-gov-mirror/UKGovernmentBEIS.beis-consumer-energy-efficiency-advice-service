@@ -68,7 +68,7 @@
           align-items: stretch;
           justify-content: space-between;
 
-          .make-and-model, .postcode-epc {
+          .make-and-model, .postcode-lookup-column {
             flex: 1 1 auto;
             flex-basis: calc(50% - 96px);
           }
@@ -78,8 +78,13 @@
             border-right: 1px solid $light-medium-grey;
           }
 
-          .postcode-epc {
+          .postcode-lookup-column {
             padding-left: 96px;
+
+            .help-text {
+              font-size: 18px;
+              width: 100%;
+            }
           }
         }
       }

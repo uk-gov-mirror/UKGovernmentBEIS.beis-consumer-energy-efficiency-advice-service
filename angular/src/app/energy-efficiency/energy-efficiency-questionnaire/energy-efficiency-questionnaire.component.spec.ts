@@ -13,7 +13,6 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
     let fixture: ComponentFixture<EnergyEfficiencyQuestionnaireComponent>;
     let router: Router;
     let responseData: ResponseData;
-    let mockQuestionnaireElement;
     let mockQuestionnaireComponent: MockQuestionnaireComponent;
 
     const questionnaireName = 'home-basics';
@@ -58,8 +57,7 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
         spyOn(router, 'navigate');
         component = fixture.componentInstance;
         fixture.detectChanges();
-        mockQuestionnaireElement = fixture.debugElement.query(By.directive(MockQuestionnaireComponent));
-        mockQuestionnaireComponent = mockQuestionnaireElement.injector.get(MockQuestionnaireComponent) as MockQuestionnaireComponent;
+        mockQuestionnaireComponent = fixture.debugElement.query(By.directive(MockQuestionnaireComponent)).componentInstance;
     });
 
     it('should be constructed', () => {

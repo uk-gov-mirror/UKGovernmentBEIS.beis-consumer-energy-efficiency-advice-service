@@ -49,10 +49,11 @@ describe('PostcodeLookupComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PostcodeLookupComponent);
-        spyOn(TestBed.get(PostcodeEpcService), 'fetchPostcodeDetails').and.callThrough();
         component = fixture.componentInstance;
         responseData = TestBed.get(ResponseData);
         fixture.detectChanges();
+        spyOn(TestBed.get(PostcodeEpcService), 'fetchPostcodeDetails').and.callThrough();
+        spyOn(component.addressSelected, 'emit');
     });
 
     it('should create', () => {
@@ -113,4 +114,23 @@ describe('PostcodeLookupComponent', () => {
         const errorMessage = fixture.debugElement.query(By.css('.validation-error'));
         expect(errorMessage).not.toBeNull();
     });
+
+    it('should emit an event when an address is selected', () => {
+        // given
+        component.postcodeInput = VALID_POSTCODE;
+
+        // when
+        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
+        fixture.detectChanges();
+
+        let showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
+        // Angular syntax for custom ngValue
+        showerTypeSelect.nativeElement.value = "1: 1";
+        showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
+
+        fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
+
+        // then
+        expect(component.addressSelected.emit).toHaveBeenCalledWith(component.epc.lmkKey);
+    })
 });

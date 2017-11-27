@@ -1,7 +1,4 @@
 <div class="postcode-epc">
-  <div class="body-text"*ngIf="helpText">
-    {{helpText}}
-  </div>
   <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
     <input class="postcode-input-text" spellcheck="false" type="text" [(ngModel)]="postcodeInput"
            name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
