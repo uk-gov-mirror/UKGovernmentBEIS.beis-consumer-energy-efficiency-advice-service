@@ -8,7 +8,7 @@ import {QuestionnaireService} from "./questionnaire.service";
 import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
 import {SharedModule} from "../shared/shared.module";
 import {QuestionsModule} from "./questions/questions.module";
-import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {QuestionHeadingProcessor} from "./question-heading-processor.service";
 
 @NgModule({
     declarations: [

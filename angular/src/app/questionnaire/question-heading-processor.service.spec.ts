@@ -1,6 +1,6 @@
 import {TestBed, getTestBed} from "@angular/core/testing"
 
-import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {QuestionHeadingProcessor} from "./question-heading-processor.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {ResponseData} from "../shared/response-data/response-data";
 import {FuelType} from "./questions/fuel-type-question/fuel-type";
