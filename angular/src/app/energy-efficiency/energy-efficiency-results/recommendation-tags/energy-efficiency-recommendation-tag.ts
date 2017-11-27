@@ -32,3 +32,13 @@ export function getActiveTags(flagValues: number): EnergyEfficiencyRecommendatio
         .filter(tag => !isNaN(tag))
         .filter(tag => tag & flagValues);
 }
+
+export function getTagFromCode(tagCode: string): EnergyEfficiencyRecommendationTag {
+    switch(tagCode) {
+        case 'quick-win':   { return EnergyEfficiencyRecommendationTag.QuickWin; }
+        case 'small-spend': { return EnergyEfficiencyRecommendationTag.SmallSpend; }
+        case 'longer-term': { return EnergyEfficiencyRecommendationTag.LongerTerm; }
+        case 'grant':       { return EnergyEfficiencyRecommendationTag.Grant; }
+        default:            { return EnergyEfficiencyRecommendationTag.None; }
+    }
+}

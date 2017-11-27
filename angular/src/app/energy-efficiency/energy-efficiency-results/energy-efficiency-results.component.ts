@@ -19,6 +19,8 @@ import {LocalAuthorityService} from "../../shared/local-authority-service/local-
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
+import {MeasuresResponse} from "../../shared/energy-calculation-api-service/response/measures-response";
+import {MeasureResponse} from "../../shared/energy-calculation-api-service/response/measure-response";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -74,7 +76,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     toggleRecommendationListState(): void {
-        switch(this.recommendationListState) {
+        switch (this.recommendationListState) {
             case RecommendationsListStates.Collapsed: {
                 this.recommendationListState = RecommendationsListStates.Expanded;
                 this.recommendationListButtonText = EnergyEfficiencyResultsComponent.getCollapseRecommendationsButtonText();
@@ -178,9 +180,11 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                                                         availableGrants: GrantViewModel[],
                                                         measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
         const homeImprovementRecommendations = EnergyEfficiencyResultsComponent
-            .getHomeImprovementRecommendations(energyCalculationResponse, measuresContent, availableGrants);
+            .getRecommendationsContent(energyCalculationResponse.measures, measuresContent, availableGrants);
+        const habitRecommendations = EnergyEfficiencyResultsComponent
+            .getRecommendationsContent(energyCalculationResponse.habit_measures, measuresContent, availableGrants);
         const grantRecommendations = EnergyEfficiencyResultsComponent.getGrantRecommendations(availableGrants);
-        const allRecommendations = concat(homeImprovementRecommendations, grantRecommendations);
+        const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
         return orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
     }
 
@@ -193,21 +197,21 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
     }
 
-    private static getHomeImprovementRecommendations(energyCalculationResponse: EnergyCalculationResponse,
-                                                     measuresContent: MeasureContent[],
-                                                     availableGrants: GrantViewModel[]): EnergyEfficiencyRecommendation[] {
-        return keys(energyCalculationResponse.measures)
+    private static getRecommendationsContent(measures: MeasuresResponse<MeasureResponse>,
+                                             measuresContent: MeasureContent[],
+                                             availableGrants: GrantViewModel[]): EnergyEfficiencyRecommendation[] {
+        return keys(measures)
             .map(measureCode => {
                 const recommendationMetadata: MeasureContent = measuresContent
-                    .find((recommendationTypeDetail) => recommendationTypeDetail.acf.rdsap_measure_code === measureCode);
+                    .find((recommendationTypeDetail) => recommendationTypeDetail.measure_code === measureCode);
                 if (!recommendationMetadata) {
                     console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
                 const linkedAvailableGrants = availableGrants
-                    .filter(grant => grant.linkedMeasureCodes && grant.linkedMeasureCodes.indexOf(measureCode) > -1)
+                    .filter(grant => grant.linkedMeasureCodes && grant.linkedMeasureCodes.indexOf(measureCode) > -1);
                 return EnergyEfficiencyRecommendation.fromMeasure(
-                    energyCalculationResponse.measures[measureCode],
+                    measures[measureCode],
                     recommendationMetadata,
                     EnergySavingMeasureContentService.measureIcons[measureCode],
                     linkedAvailableGrants

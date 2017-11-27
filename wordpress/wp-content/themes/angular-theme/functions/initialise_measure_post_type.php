@@ -65,10 +65,10 @@ function setup_measure_acf_group() {
                 ),
                 array (
                     'key' => 'field_59faebb37036d',
-                    'label' => 'RdSAP Measure Code',
-                    'name' => 'rdsap_measure_code',
+                    'label' => 'Measure Code',
+                    'name' => 'measure_code',
                     'type' => 'text',
-                    'instructions' => 'Identifying code as per "Improvement measures for EPCs" in RdSAP (e.g. "A2" for Loft Insulation)',
+                    'instructions' => 'Identifying code as per BRE API response (RdSAP code e.g. "A2" for Loft Insulation, or custom code e.g. one_degree_reduction)',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
@@ -90,6 +90,29 @@ function setup_measure_acf_group() {
                     'append' => '',
                     'formatting' => 'html',
                     'maxlength' => '',
+                ),
+                array (
+                    'key' => 'field_5a1bea2dcd9bf',
+                    'label' => 'Tags',
+                    'name' => 'tags',
+                    'type' => 'relationship',
+                    'instructions' => 'Tags for this measure on the results page',
+                    'required' => 0,
+                    'return_format' => 'id',
+                    'post_type' => array (
+                        0 => 'measure_tag',
+                    ),
+                    'taxonomy' => array (
+                        0 => 'all',
+                    ),
+                    'filters' => array (
+                        0 => 'search',
+                    ),
+                    'result_elements' => array (
+                        0 => 'post_type',
+                        1 => 'post_title',
+                    ),
+                    'max' => ''
                 ),
                 array (
                     'key' => 'field_59f9b923b1d33',

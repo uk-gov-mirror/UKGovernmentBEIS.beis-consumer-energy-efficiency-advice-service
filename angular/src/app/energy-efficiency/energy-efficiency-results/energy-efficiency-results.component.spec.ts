@@ -34,7 +34,6 @@ import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-r
 import {DataCardComponent} from "./data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
@@ -61,7 +60,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
-            linkedMeasureCodes: ['V2'],
+            linkedMeasureCodes: ['U'],
             advantages: []
         },
         {
@@ -260,22 +259,40 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(recommendationElements.length).toEqual(0);
     }));
 
-    it('should display home improvement measures correctly', () => {
+    it('should display all home improvement measures correctly when recommendations list is expanded', () => {
         // given
         const expectedMeasures = Object.values(dummyEnergyCalculations.measures)
             .map(measure => [measure.cost_saving, measure.energy_saving]);
 
         // when
         fixture.detectChanges();
+        expandRecommendationsList();
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
         const actualMeasures = recommendationElements
             .map(el => el.componentInstance.recommendation)
-            .filter(rec => rec.tags & EnergyEfficiencyRecommendationTag.LongerTerm)
             .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
 
-        actualMeasures.forEach(measure => expect(expectedMeasures).toContain(measure));
+        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
+    });
+
+    it('should display all habit measures correctly when recommendations list is expanded', () => {
+        // given
+        const expectedMeasures = Object.values(dummyEnergyCalculations.habit_measures)
+            .map(measure => [measure.cost_saving, measure.energy_saving]);
+
+        // when
+        fixture.detectChanges();
+        expandRecommendationsList();
+
+        // then
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
+        const actualMeasures = recommendationElements
+            .map(el => el.componentInstance.recommendation)
+            .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
+
+        expectedMeasures.forEach(measure => expect(actualMeasures).toContain(measure));
     });
 
     it('should sort recommendations by cost saving descending', () => {
@@ -284,7 +301,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.displayedRecommendations[0].costSavingPoundsPerYear).toBe(536.18);
+        expect(component.displayedRecommendations[0].costSavingPoundsPerYear).toBe(230.64);
         expect(component.displayedRecommendations[0].energySavingKwhPerYear).toBe(0);
     });
 
@@ -294,11 +311,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
-        // for measure code V2
-        expect(component.displayedRecommendations[0].headline).toBe('Wind turbine on mast');
-        expect(component.displayedRecommendations[0].readMoreRoute).toContain('home-improvements/wind-turbine-on-mast');
-        expect(component.displayedRecommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['V2']);
+        // for measure code U
+        expect(component.displayedRecommendations[0].headline).toBe('Solar photovoltaic panels');
+        expect(component.displayedRecommendations[0].readMoreRoute).toContain('home-improvements/solar-photovoltaic-panels');
+        expect(component.displayedRecommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['U']);
         expect(component.displayedRecommendations[0].advantages).toEqual(['Green', 'Cost effective']);
+        expect(component.displayedRecommendations[0].tags).toEqual(EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant);
     });
 
     it('should link recommendation to available grant', () => {
@@ -307,7 +325,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
-        // for measure code V2
+        // for measure code U
         expect(component.displayedRecommendations[0].grants.length).toBe(1);
         expect(component.displayedRecommendations[0].grants[0].name).toBe('National Grant 1');
     });
@@ -318,9 +336,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json, and annual savings from national grants above
-        expect(component.energyCalculations.currentEpcRating).toBe('B');
-        expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(786);
-        expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(2129);
+        expect(component.energyCalculations.currentEpcRating).toBe('F');
+        expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(1226);
+        expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(872);
     });
 
     it('should call local authority API service with code from response data', () => {
@@ -362,4 +380,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.isLoading).toBeFalsy();
         expect(component.isError).toBeTruthy();
     });
+
+    function expandRecommendationsList(): void {
+        const expandRecommendationsListButton = fixture.debugElement.query(By.css('.expand-recommendations-list')).nativeElement;
+        expandRecommendationsListButton.click();
+        fixture.detectChanges();
+    }
 });

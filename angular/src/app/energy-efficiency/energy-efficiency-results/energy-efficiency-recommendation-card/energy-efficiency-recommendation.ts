@@ -1,8 +1,11 @@
-import {EnergySavingMeasureResponse} from "../../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
 import * as parse from "url-parse";
 import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
-import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
+import {
+    EnergyEfficiencyRecommendationTag,
+    getTagFromCode
+} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantViewModel} from "../../../grants/model/grant-view-model";
+import {MeasureResponse} from "../../../shared/energy-calculation-api-service/response/measure-response";
 
 export class EnergyEfficiencyRecommendation {
 
@@ -19,25 +22,28 @@ export class EnergyEfficiencyRecommendation {
     }
 
     static fromMeasure(
-       energySavingMeasureResponse: EnergySavingMeasureResponse,
+       energySavingMeasureResponse: MeasureResponse,
        measureContent: MeasureContent,
        iconClassName: string,
        grants: GrantViewModel[]
     ): EnergyEfficiencyRecommendation {
-        let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.LongerTerm;
+        let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
+        measureContent.tags.forEach(tagCode => {
+            tags |= getTagFromCode(tagCode);
+        });
         const shouldIncludeGrantTag = grants && grants.length > 0;
         if (shouldIncludeGrantTag) {
-            tags = tags | EnergyEfficiencyRecommendationTag.Grant;
+            tags |= EnergyEfficiencyRecommendationTag.Grant;
         }
-        const advantagesSplitByLine = measureContent.acf.advantages &&
-                measureContent.acf.advantages.match(/[^\r\n]+/g);
+        const advantagesSplitByLine = measureContent.advantages &&
+                measureContent.advantages.match(/[^\r\n]+/g);
         return new EnergyEfficiencyRecommendation(
-            Math.floor(Math.random() * 99) + 1000, // TODO: investment required for measures (BEISDEAS-56)
+            EnergyEfficiencyRecommendation.getDummyInvestmentAmount(tags), // TODO: investment required for measures (BEISDEAS-56)
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
-            parse(measureContent.acf.featured_page).pathname,
-            measureContent.acf.headline,
-            measureContent.acf.summary,
+            parse(measureContent.featured_page).pathname,
+            measureContent.headline,
+            measureContent.summary,
             iconClassName,
             tags,
             grants,
@@ -61,5 +67,15 @@ export class EnergyEfficiencyRecommendation {
             [],
             grantViewModel.advantages
         );
+    }
+
+    private static getDummyInvestmentAmount(tags: EnergyEfficiencyRecommendationTag): number {
+        if (tags & EnergyEfficiencyRecommendationTag.QuickWin) {
+            return 0;
+        } else if (tags & EnergyEfficiencyRecommendationTag.SmallSpend) {
+            return Math.floor(Math.random() * 99);
+        } else if (tags & EnergyEfficiencyRecommendationTag.LongerTerm) {
+            return Math.floor(Math.random() * 999)
+        }
     }
 }

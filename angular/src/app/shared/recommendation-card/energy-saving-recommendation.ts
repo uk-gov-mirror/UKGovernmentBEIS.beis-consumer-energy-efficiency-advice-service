@@ -1,6 +1,6 @@
-import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
 import * as parse from "url-parse";
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
+import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
 
 export class EnergySavingRecommendation {
 
@@ -13,16 +13,16 @@ export class EnergySavingRecommendation {
                 public iconClassName: string) {
     }
 
-    static fromResponseData(energySavingMeasureResponse: EnergySavingMeasureResponse,
+    static fromResponseData(energySavingMeasureResponse: MeasureResponse,
                             recommendationMetadata: MeasureContent,
                             iconClassName: string): EnergySavingRecommendation {
         return new EnergySavingRecommendation(
             Math.floor(Math.random() * 99) + 1,
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
-            parse(recommendationMetadata.acf.featured_page).pathname,
-            recommendationMetadata.acf.headline,
-            recommendationMetadata.acf.summary,
+            parse(recommendationMetadata.featured_page).pathname,
+            recommendationMetadata.headline,
+            recommendationMetadata.summary,
             iconClassName,
         );
     }

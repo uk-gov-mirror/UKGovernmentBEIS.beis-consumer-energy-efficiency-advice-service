@@ -1,4 +1,6 @@
 import {EnergySavingMeasureResponse} from "./energy-saving-measure-response";
+import {HabitMeasureResponse} from "./habit-measure-response";
+import {MeasuresResponse} from "./measures-response";
 
 export interface EnergyCalculationResponse {
     'Total-Energy-Consumption': number,
@@ -9,7 +11,6 @@ export interface EnergyCalculationResponse {
     'Total-Hot-Water-Cost': number,
     'Current-SAP-Band': string,
     'Potential-SAP-Band': string,
-    measures: {
-        [measureCode: string]: EnergySavingMeasureResponse
-    }
+    measures: MeasuresResponse<EnergySavingMeasureResponse>,
+    habit_measures: MeasuresResponse<HabitMeasureResponse>
 }

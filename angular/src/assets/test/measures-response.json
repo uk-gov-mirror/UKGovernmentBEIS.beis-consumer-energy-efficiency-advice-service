@@ -1,404 +1,415 @@
 [
   {
-    "id": 3140,
-    "acf": {
-      "headline": "Wind turbine on mast",
-      "rdsap_measure_code": "V2",
-      "featured_page": "http://localhost:81/home-improvements/wind-turbine-on-mast",
-      "linked_pages": [],
-      "summary": "No description available",
-      "advantages": "Green\r\nCost effective"
-    }
+    "headline": "Lower thermostat by one degree",
+    "measure_code": "one_degree_reduction",
+    "featured_page": "http://localhost:81/about/",
+    "linked_pages": "",
+    "summary": "No description available",
+    "tags": [
+      "quick-win"
+    ],
+    "advantages": "Quick and easy"
   },
   {
-    "id": 3139,
-    "acf": {
-      "headline": "Solar photovoltaic panels",
-      "rdsap_measure_code": "U",
-      "featured_page": "http://localhost:81/about/",
-      "linked_pages": "",
-      "summary": "No description available",
-      "advantages": ""
-    }
+    "headline": "Wind turbine on mast",
+    "measure_code": "V2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3138,
-    "acf": {
-      "headline": "High performance external doors",
-      "rdsap_measure_code": "X",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Solar photovoltaic panels",
+    "measure_code": "U",
+    "featured_page": "http://localhost:81/home-improvements/solar-photovoltaic-panels",
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ],
+    "advantages": "Green\r\nCost effective"
   },
   {
-    "id": 3137,
-    "acf": {
-      "headline": "Secondary glazing to single glazed windows",
-      "rdsap_measure_code": "P",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "High performance external doors",
+    "measure_code": "X",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3136,
-    "acf": {
-      "headline": "Glazing replacement",
-      "rdsap_measure_code": "O3",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Secondary glazing to single glazed windows",
+    "measure_code": "P",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3135,
-    "acf": {
-      "headline": "Triple glazed windows",
-      "rdsap_measure_code": "O2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Glazing replacement",
+    "measure_code": "O3",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3134,
-    "acf": {
-      "headline": "Replace single-glazed windows with low E double glazing",
-      "rdsap_measure_code": "O",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Double glazing your windows can reduce noise, as well as saving money on energy bills"
-    }
+    "headline": "Triple glazed windows",
+    "measure_code": "O2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3133,
-    "acf": {
-      "headline": "Storage waster water heat recovery",
-      "rdsap_measure_code": "Y2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "a waste water heat recovery system works by extracting the heat from the water your shower or bath sends down the drain. This heat is used to warm the incoming mains water, reducing the strain on your boiler and the energy required to heat your water up to temperature"
-    }
+    "headline": "Replace single-glazed windows with low E double glazing",
+    "measure_code": "O",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Double glazing your windows can reduce noise, as well as saving money on energy bills",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3132,
-    "acf": {
-      "headline": "Heat recovery system for mixer showers",
-      "rdsap_measure_code": "Y",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Storage waster water heat recovery",
+    "measure_code": "Y2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "a waste water heat recovery system works by extracting the heat from the water your shower or bath sends down the drain. This heat is used to warm the incoming mains water, reducing the strain on your boiler and the energy required to heat your water up to temperature",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3131,
-    "acf": {
-      "headline": "Solar water heating",
-      "rdsap_measure_code": "N",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Heat recovery system for mixer showers",
+    "measure_code": "Y",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3130,
-    "acf": {
-      "headline": "Circulation pump",
-      "rdsap_measure_code": "EP",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Solar water heating",
+    "measure_code": "N",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3129,
-    "acf": {
-      "headline": "Ground source heat pump",
-      "rdsap_measure_code": "Z4",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Circulation pump",
+    "measure_code": "EP",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3128,
-    "acf": {
-      "headline": "Micro CHP",
-      "rdsap_measure_code": "Z3",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Ground source heat pump",
+    "measure_code": "Z4",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3127,
-    "acf": {
-      "headline": "Air source heat pump",
-      "rdsap_measure_code": "Z1",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Micro CHP",
+    "measure_code": "Z3",
+    "featured_page": "http://localhost:81/about/",
+    "linked_pages": "",
+    "summary": "No description available",
+    "advantages": "Micro CHP",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3126,
-    "acf": {
-      "headline": "Gas-fired warm air heating",
-      "rdsap_measure_code": "M",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Air source heat pump",
+    "measure_code": "Z1",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3125,
-    "acf": {
-      "headline": "High heat retention storage heaters",
-      "rdsap_measure_code": "L2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Gas-fired warm air heating",
+    "measure_code": "M",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3124,
-    "acf": {
-      "headline": "Fan assisted storage heaters",
-      "rdsap_measure_code": "L",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "More sophisticated than standard night storage heaters, fan-assisted storage heaters can reduce your energy use and electricity bills"
-    }
+    "headline": "High heat retention storage heaters",
+    "measure_code": "L2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3123,
-    "acf": {
-      "headline": "Wood pellets boiler",
-      "rdsap_measure_code": "K",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Fan assisted storage heaters",
+    "measure_code": "L",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "More sophisticated than standard night storage heaters, fan-assisted storage heaters can reduce your energy use and electricity bills",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3122,
-    "acf": {
-      "headline": "Wood logs boiler",
-      "rdsap_measure_code": "J",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Wood pellets boiler",
+    "measure_code": "K",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3121,
-    "acf": {
-      "headline": "Condensing oil boiler",
-      "rdsap_measure_code": "R",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Wood logs boiler",
+    "measure_code": "J",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3120,
-    "acf": {
-      "headline": "Flue gas heat recovery device in conjunction with boiler",
-      "rdsap_measure_code": "T2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Condensing oil boiler",
+    "measure_code": "R",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3119,
-    "acf": {
-      "headline": "Condensing gas boiler (fuel switch)",
-      "rdsap_measure_code": "T",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Flue gas heat recovery device in conjunction with boiler",
+    "measure_code": "T2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3118,
-    "acf": {
-      "headline": "Condensing gas boiler (no fuel switch)",
-      "rdsap_measure_code": "S",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Condensing gas boiler (fuel switch)",
+    "measure_code": "T",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3117,
-    "acf": {
-      "headline": "Replacement condensing boiler",
-      "rdsap_measure_code": "I",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Condensing gas boiler (no fuel switch)",
+    "measure_code": "S",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3116,
-    "acf": {
-      "headline": "Heating controls (warm air system)",
-      "rdsap_measure_code": "H",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Replacement condensing boiler",
+    "measure_code": "I",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3115,
-    "acf": {
-      "headline": "Heating controls (wet system)",
-      "rdsap_measure_code": "G",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Heating controls (warm air system)",
+    "measure_code": "H",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3114,
-    "acf": {
-      "headline": "Hot water cylinder thermostat",
-      "rdsap_measure_code": "F",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Heating controls (wet system)",
+    "measure_code": "G",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3113,
-    "acf": {
-      "headline": "Hot water cylinder insulation",
-      "rdsap_measure_code": "C",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Insulating your water cylinder is a simple and effective way of saving money on your energy bills"
-    }
+    "headline": "Hot water cylinder thermostat",
+    "measure_code": "F",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3112,
-    "acf": {
-      "headline": "Energy efficient luminaires",
-      "rdsap_measure_code": "E2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Lighting accounts for 15 per cent of a standard electricity bill. You can cut your energy bill by changing which bulbs you use"
-    }
+    "headline": "Hot water cylinder insulation",
+    "measure_code": "C",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Insulating your water cylinder is a simple and effective way of saving money on your energy bills",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3111,
-    "acf": {
-      "headline": "Draughtproof all windows and doors",
-      "rdsap_measure_code": "D",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Draught-proofing is one of the cheapest and most effective ways to save both money and energy"
-    }
+    "headline": "Energy efficient luminaires",
+    "measure_code": "E2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Lighting accounts for 15 per cent of a standard electricity bill. You can cut your energy bill by changing which bulbs you use",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3110,
-    "acf": {
-      "headline": "Floor insulation solid floor",
-      "rdsap_measure_code": "W2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Older homes are more likely to have suspended timber floors. Timber floors can be insulated by lifting the floorboards and laying mineral wool insulation supported by netting between the joists."
-    }
+    "headline": "Draughtproof all windows and doors",
+    "measure_code": "D",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Draught-proofing is one of the cheapest and most effective ways to save both money and energy",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3109,
-    "acf": {
-      "headline": "Floor insulation suspended floor",
-      "rdsap_measure_code": "W1",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Older homes are more likely to have suspended timber floors. Timber floors can be insulated by lifting the floorboards and laying mineral wool insulation supported by netting between the joists."
-    }
+    "headline": "Floor insulation solid floor",
+    "measure_code": "W2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Older homes are more likely to have suspended timber floors. Timber floors can be insulated by lifting the floorboards and laying mineral wool insulation supported by netting between the joists.",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3108,
-    "acf": {
-      "headline": "Wall insulation other",
-      "rdsap_measure_code": "Q1",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Floor insulation suspended floor",
+    "measure_code": "W1",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Older homes are more likely to have suspended timber floors. Timber floors can be insulated by lifting the floorboards and laying mineral wool insulation supported by netting between the joists.",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3107,
-    "acf": {
-      "headline": "Wall insulation brick age band A-D",
-      "rdsap_measure_code": "Q",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Wall insulation other",
+    "measure_code": "Q1",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3106,
-    "acf": {
-      "headline": "Party wall insulation",
-      "rdsap_measure_code": "B4",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Wall insulation brick age band A-D",
+    "measure_code": "Q",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3105,
-    "acf": {
-      "headline": "Cavity fill and solid wall insulation",
-      "rdsap_measure_code": "Q2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Party wall insulation",
+    "measure_code": "B4",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3104,
-    "acf": {
-      "headline": "Cavity wall insulation",
-      "rdsap_measure_code": "B",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Cavity fill and solid wall insulation",
+    "measure_code": "Q2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3103,
-    "acf": {
-      "headline": "Room-in-roof insulation",
-      "rdsap_measure_code": "A3",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Cavity wall insulation",
+    "measure_code": "B",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3102,
-    "acf": {
-      "headline": "Flat roof insulation",
-      "rdsap_measure_code": "A2",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "Insulating your flat roof is a simple and effective way to reduce heat loss and reduce your heating bills."
-    }
+    "headline": "Room-in-roof insulation",
+    "measure_code": "A3",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   },
   {
-    "id": 3101,
-    "acf": {
-      "headline": "Loft insulation",
-      "rdsap_measure_code": "A",
-      "featured_page": false,
-      "linked_pages": [],
-      "summary": "No description available"
-    }
+    "headline": "Flat roof insulation",
+    "measure_code": "A2",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "Insulating your flat roof is a simple and effective way to reduce heat loss and reduce your heating bills.",
+    "tags": [
+      "longer-term"
+    ]
+  },
+  {
+    "headline": "Loft insulation",
+    "measure_code": "A",
+    "featured_page": false,
+    "linked_pages": [],
+    "summary": "No description available",
+    "tags": [
+      "longer-term"
+    ]
   }
 ]
