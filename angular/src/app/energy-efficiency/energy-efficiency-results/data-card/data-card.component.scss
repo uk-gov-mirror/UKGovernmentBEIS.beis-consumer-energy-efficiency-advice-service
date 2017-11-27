@@ -12,12 +12,14 @@
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  min-width: 1px;
 
   & > :not(:first-child) {
     margin-top: 10px;
   }
 
   .heading {
+    align-self: stretch;
     text-transform: uppercase;
     font-size: 12px;
     text-align: center;
