@@ -15,7 +15,8 @@ describe('GrantCardComponent', () => {
         eligibility: GrantEligibility.MayBeEligible,
         shouldDisplayWithoutMeasures: false,
         annualPaymentPounds: 120,
-        linkedMeasureCodes: []
+        linkedMeasureCodes: [],
+        advantages: []
     };
 
     beforeEach(async(() => {

@@ -18,7 +18,8 @@ describe('NationalGrantsContentService', () => {
             linked_measure_codes: ['A', 'B', 'C'],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "an-eligible-grant"
+            slug: "an-eligible-grant",
+            advantages: 'get paid for energy'
         },
         {
             heading: "Eligible grant 2",
@@ -26,7 +27,8 @@ describe('NationalGrantsContentService', () => {
             linked_measure_codes: ['A'],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "another-eligible-grant"
+            slug: "another-eligible-grant",
+            advantages: ''
         },
         {
             heading: "Ineligible grant",
@@ -34,7 +36,8 @@ describe('NationalGrantsContentService', () => {
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "ineligible-grant"
+            slug: "ineligible-grant",
+            advantages: ''
         }
     ];
 

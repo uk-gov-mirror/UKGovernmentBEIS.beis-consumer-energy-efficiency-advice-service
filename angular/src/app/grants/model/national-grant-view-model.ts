@@ -8,6 +8,7 @@ export class NationalGrantViewModel implements GrantViewModel {
     public description: string;
     public shouldDisplayWithoutMeasures: boolean;
     public linkedMeasureCodes: string[];
+    public advantages: string[];
 
     constructor(
         nationalGrantResponse: NationalGrantContent,
@@ -18,5 +19,7 @@ export class NationalGrantViewModel implements GrantViewModel {
         this.description = nationalGrantResponse.description;
         this.shouldDisplayWithoutMeasures = nationalGrantResponse.display_without_measures;
         this.linkedMeasureCodes = nationalGrantResponse.linked_measure_codes;
+        this.advantages = nationalGrantResponse.advantages &&
+            nationalGrantResponse.advantages.match(/[^\r\n]+/g);
     }
 }

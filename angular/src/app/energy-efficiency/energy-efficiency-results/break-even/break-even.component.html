@@ -1,0 +1,17 @@
+<div class="break-even-component" *ngIf="shouldDisplayBreakEven">
+    <div class="header-row">
+        <div class="lifespan">
+            <div class="data-name">Estimated life span</div>
+            <div class="data-value">{{round(lifespanYears)}}yrs</div>
+        </div>
+        <div class="break-even-point">
+            <div class="data-name">Break even point</div>
+            <div class="data-value">{{round(breakEvenYears)}}yrs</div>
+        </div>
+    </div>
+    <div class="graph">
+        <div class="upfront-investment" [style.height]="investmentAsProportionOfLifespanSavings * 100 + '%'"></div>
+        <div class="annual-savings-line"></div>
+        <div class="break-even-point-line" [style.left]="breakEvenTimeAsProportionOfLifespan * 100 + '%'"></div>
+    </div>
+</div>

@@ -33,7 +33,8 @@ describe('GrantsLandingPageComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
             annualPaymentPounds: null,
-            linkedMeasureCodes: null
+            linkedMeasureCodes: null,
+            advantages: null
         },
         {
             name: 'Grant 2',
@@ -41,7 +42,8 @@ describe('GrantsLandingPageComponent', () => {
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
             annualPaymentPounds: null,
-            linkedMeasureCodes: null
+            linkedMeasureCodes: null,
+            advantages: null
         }
     ];
 
