@@ -56,9 +56,9 @@ export class BoilerPageMeasuresService {
         if (measureContent !== undefined) {
             return {
                 ...partialMeasure,
-                readMoreRoute: parse(measureContent.featured_page).pathname,
-                headline: measureContent.headline,
-                summary: measureContent.summary,
+                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
+                headline: measureContent.acf.headline,
+                summary: measureContent.acf.summary,
             };
         } else {
             return partialMeasure;
@@ -69,7 +69,7 @@ export class BoilerPageMeasuresService {
         return this.measuresService.fetchMeasureDetails().map(measures =>
             BoilerPageMeasuresService.partialMeasuresToShowOnBoilerPages.map(measureAndCode => {
                 if (measureAndCode.code !== undefined) {
-                    const measureResponse = measures.find(measure => measure.measure_code === measureAndCode.code);
+                    const measureResponse = measures.find(measure => measure.acf.measure_code === measureAndCode.code);
                     return BoilerPageMeasuresService.combinedMeasure(measureAndCode.measure, measureResponse);
                 } else {
                     return measureAndCode.measure;

@@ -6,7 +6,7 @@ import {MeasureContent} from "./measure-content";
 
 @Injectable()
 export class EnergySavingMeasureContentService {
-    private static readonly measuresEndpoint = 'angular-theme/v1/measures';
+    private static readonly measuresEndpoint = 'acf/v3/measure?per_page=1000';
     private measures: Observable<MeasureContent[]>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {

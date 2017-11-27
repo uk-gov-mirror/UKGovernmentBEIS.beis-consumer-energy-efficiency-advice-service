@@ -20,9 +20,9 @@ export class EnergySavingRecommendation {
             Math.floor(Math.random() * 99) + 1,
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
-            parse(recommendationMetadata.featured_page).pathname,
-            recommendationMetadata.headline,
-            recommendationMetadata.summary,
+            parse(recommendationMetadata.acf.featured_page).pathname,
+            recommendationMetadata.acf.headline,
+            recommendationMetadata.acf.summary,
             iconClassName,
         );
     }

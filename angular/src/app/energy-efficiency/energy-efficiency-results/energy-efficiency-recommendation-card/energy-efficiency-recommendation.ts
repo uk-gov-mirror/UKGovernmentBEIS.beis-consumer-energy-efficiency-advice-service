@@ -2,7 +2,7 @@ import * as parse from "url-parse";
 import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
 import {
     EnergyEfficiencyRecommendationTag,
-    getTagFromCode
+    getTagsForMeasure
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantViewModel} from "../../../grants/model/grant-view-model";
 import {MeasureResponse} from "../../../shared/energy-calculation-api-service/response/measure-response";
@@ -27,23 +27,20 @@ export class EnergyEfficiencyRecommendation {
        iconClassName: string,
        grants: GrantViewModel[]
     ): EnergyEfficiencyRecommendation {
-        let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
-        measureContent.tags.forEach(tagCode => {
-            tags |= getTagFromCode(tagCode);
-        });
+        let tags: EnergyEfficiencyRecommendationTag = getTagsForMeasure(measureContent);
         const shouldIncludeGrantTag = grants && grants.length > 0;
         if (shouldIncludeGrantTag) {
             tags |= EnergyEfficiencyRecommendationTag.Grant;
         }
-        const advantagesSplitByLine = measureContent.advantages &&
-                measureContent.advantages.match(/[^\r\n]+/g);
+        const advantagesSplitByLine = measureContent.acf.advantages &&
+                measureContent.acf.advantages.match(/[^\r\n]+/g);
         return new EnergyEfficiencyRecommendation(
             EnergyEfficiencyRecommendation.getDummyInvestmentAmount(tags), // TODO: investment required for measures (BEISDEAS-56)
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
-            parse(measureContent.featured_page).pathname,
-            measureContent.headline,
-            measureContent.summary,
+            parse(measureContent.acf.featured_page).pathname,
+            measureContent.acf.headline,
+            measureContent.acf.summary,
             iconClassName,
             tags,
             grants,

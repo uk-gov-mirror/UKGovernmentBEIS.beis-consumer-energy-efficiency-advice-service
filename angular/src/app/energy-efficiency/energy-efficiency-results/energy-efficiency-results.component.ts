@@ -203,7 +203,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         return keys(measures)
             .map(measureCode => {
                 const recommendationMetadata: MeasureContent = measuresContent
-                    .find((recommendationTypeDetail) => recommendationTypeDetail.measure_code === measureCode);
+                    .find((recommendationTypeDetail) => recommendationTypeDetail.acf.measure_code === measureCode);
                 if (!recommendationMetadata) {
                     console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;

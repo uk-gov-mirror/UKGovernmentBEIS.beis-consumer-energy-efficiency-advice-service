@@ -36,6 +36,12 @@ function setup_measure_acf_group() {
             'title' => 'Measures',
             'fields' => array (
                 array (
+                    'key' => 'field_5a1c53bca14f4',
+                    'label' => 'Basic Details',
+                    'name' => 'basic_details_tab',
+                    'type' => 'tab',
+                ),
+                array (
                     'key' => 'field_59f9e731d5484',
                     'label' => 'Headline',
                     'name' => 'headline',
@@ -92,29 +98,6 @@ function setup_measure_acf_group() {
                     'maxlength' => '',
                 ),
                 array (
-                    'key' => 'field_5a1bea2dcd9bf',
-                    'label' => 'Tags',
-                    'name' => 'tags',
-                    'type' => 'relationship',
-                    'instructions' => 'Tags for this measure on the results page',
-                    'required' => 0,
-                    'return_format' => 'id',
-                    'post_type' => array (
-                        0 => 'measure_tag',
-                    ),
-                    'taxonomy' => array (
-                        0 => 'all',
-                    ),
-                    'filters' => array (
-                        0 => 'search',
-                    ),
-                    'result_elements' => array (
-                        0 => 'post_type',
-                        1 => 'post_title',
-                    ),
-                    'max' => ''
-                ),
-                array (
                     'key' => 'field_59f9b923b1d33',
                     'label' => 'Featured page',
                     'name' => 'featured_page',
@@ -149,6 +132,36 @@ function setup_measure_acf_group() {
                         1 => 'post_title',
                     ),
                     'max' => '',
+                ),
+                array (
+                    'key' => 'field_5a1c53f320255',
+                    'label' => 'Tags',
+                    'name' => 'tags_tab',
+                    'type' => 'tab',
+                ),
+                array (
+                    'key' => 'field_5a1c544fb4da4',
+                    'label' => 'Quick win',
+                    'name' => 'tag_quick_win',
+                    'type' => 'true_false',
+                    'message' => '',
+                    'default_value' => 0,
+                ),
+                array (
+                    'key' => 'field_5a1c5455659c0',
+                    'label' => 'Small spend',
+                    'name' => 'tag_small_spend',
+                    'type' => 'true_false',
+                    'message' => '',
+                    'default_value' => 0,
+                ),
+                array (
+                    'key' => 'field_5a1c540189238',
+                    'label' => 'Longer term',
+                    'name' => 'tag_longer_term',
+                    'type' => 'true_false',
+                    'message' => '',
+                    'default_value' => 0,
                 )
             ),
             'location' => array (
