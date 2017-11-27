@@ -51,7 +51,7 @@ export class RdSapInput {
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
         this.heating_cost = responseData.heatingCost;
-        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData.lengthOfHeatingOn);
+        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(null);
         this.measures = 'Y';
 
         // Habit data+

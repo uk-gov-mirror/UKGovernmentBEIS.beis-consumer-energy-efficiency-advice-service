@@ -18,7 +18,6 @@ import {GrantsQuestionnaireQuestionMetadata} from "./grants-questionnaire-questi
 import {BenefitsQuestionMetadata} from "./benefits-question/benefits-question-metadata";
 import {IncomeQuestionMetadata} from "./income-question/income-question-metadata";
 import {HeatingCostQuestionMetadata} from "./heating-cost-question/heating-cost-question-metadata";
-import {LengthOfHeatingOnQuestionMetadata} from "./length-of-heating-on-question/length-of-heating-on-question-metadata";
 import {TumbleDryQuestionMetadata} from "./tumble-dry-question/tumble-dry-question-metadata";
 import {ConstructionQuestionMetadata} from "./construction-question/construction-question-metadata";
 import {WaterTankQuestionMetadata} from "./water-tank-question/water-tank-question-metadata";
@@ -48,7 +47,7 @@ export const CORE_BRE_QUESTIONS = [
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
     new HeatingCostQuestionMetadata(),
-    new LengthOfHeatingOnQuestionMetadata()
+    new DetailedLengthOfHeatingOnQuestionMetadata()
 ];
 
 export const BASIC_BEHAVIOURAL_QUESTIONS = [

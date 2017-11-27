@@ -46,7 +46,6 @@ describe('RdsapInput', () => {
             condensingBoiler: false,
             electricityTariff: undefined,
             heatingCost: undefined,
-            lengthOfHeatingOn: undefined,
             detailedLengthOfHeatingOnEarlyHours: undefined,
             detailedLengthOfHeatingOnMorning: undefined,
             detailedLengthOfHeatingOnAfternoon: undefined,
