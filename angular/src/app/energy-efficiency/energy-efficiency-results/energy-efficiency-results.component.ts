@@ -73,7 +73,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     getDisplayedRecommendations(): RecommendationOption[] {
         if (this.recommendationListState === RecommendationsListStates.Collapsed) {
             return this.allRecommendations
-                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED)
+                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED);
         } else {
             return this.allRecommendations
                 .filter(recommendation => {

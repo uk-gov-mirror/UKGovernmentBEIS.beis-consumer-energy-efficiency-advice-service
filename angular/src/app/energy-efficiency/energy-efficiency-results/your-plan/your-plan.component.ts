@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit, DoCheck, ChangeDetectorRef} from "@angular/core";
+import {Component, HostListener, Input, OnInit, DoCheck, ViewChild} from "@angular/core";
 import {EnergyEfficiencyRecommendation} from "../energy-efficiency-recommendation-card/energy-efficiency-recommendation";
 import {sumBy} from "lodash-es";
 import {roundToNearest} from "../../../shared/rounding/rounding";
@@ -13,6 +13,7 @@ export class YourPlanComponent implements OnInit, DoCheck {
     private static readonly POUNDS_ROUNDING = 5;
 
     @Input() recommendations: EnergyEfficiencyRecommendation[];
+    @ViewChild('yourPlanRow') yourPlanRow;
 
     isFixedPosition: boolean = true;
     yourPlanRowHeightPixels: number;
@@ -40,7 +41,7 @@ export class YourPlanComponent implements OnInit, DoCheck {
     // so that another round of change detection is triggered if the height has changed
     detectYourPlanRowHeight(): void {
         const oldValue = this.yourPlanRowHeightPixels;
-        const newValue = document.querySelector('#your-plan').clientHeight;
+        const newValue = this.yourPlanRow.nativeElement.clientHeight;
         if (newValue !== oldValue) {
             this.yourPlanRowHeightPixels = newValue;
         }

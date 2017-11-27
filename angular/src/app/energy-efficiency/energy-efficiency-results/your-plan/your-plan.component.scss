@@ -1,4 +1,4 @@
-@import "styles/var/_colours";
+@import "styles/var/colors";
 @import "../_energy-efficiency-results-page-sizes";
 
 $do-button-height: 120px;
@@ -37,10 +37,6 @@ $do-button-right-chevron-width: 30px;
         font-size: 18px;
       }
 
-      .subheading {
-
-      }
-
       .recommendations-list {
         margin: 0;
         padding: 0;
@@ -49,7 +45,7 @@ $do-button-right-chevron-width: 30px;
         .recommendations-list-item {
           &::before {
             content: ">";
-            color: $recommendation-added-to-plan;
+            color: $focus-blue;
             margin-right: 10px;
             font-stretch: extra-condensed;
             font-weight: bold;
@@ -59,7 +55,7 @@ $do-button-right-chevron-width: 30px;
     }
 
     .do-button {
-      background-color: $recommendation-added-to-plan;
+      background-color: $focus-blue;
       position: relative;
       box-sizing: border-box;
       width: $do-button-width;
@@ -94,7 +90,7 @@ $do-button-right-chevron-width: 30px;
         height: 0;
         border-top: $do-button-height/2 solid transparent;
         border-bottom: $do-button-height/2 solid transparent;
-        border-left: $do-button-right-chevron-width solid $recommendation-added-to-plan;
+        border-left: $do-button-right-chevron-width solid $focus-blue;
       }
     }
   }

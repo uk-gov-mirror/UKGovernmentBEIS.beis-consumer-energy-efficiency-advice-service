@@ -21,7 +21,7 @@
         </app-data-card>
         <app-data-card
                 heading="Total savings per month"
-                [value]="'£' + getRoundedTotalSavingsPerMonth()"></app-data-card>
+                [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"></app-data-card>
         <div class="do-button">
             DO
         </div>
