@@ -1,0 +1,11 @@
+<app-data-card
+        heading="Your potential score is"
+        value="60"
+        circleColor="green"></app-data-card>
+<app-data-card
+        heading="Total investment required"
+        [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'">
+</app-data-card>
+<app-data-card
+        heading="Total savings per month"
+        [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"></app-data-card>

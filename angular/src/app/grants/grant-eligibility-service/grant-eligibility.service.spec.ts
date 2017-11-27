@@ -21,22 +21,26 @@ describe('GrantEligibilityService', () => {
 
     const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
         {
+            grantId: 'la-grant-1',
             name: 'LA Grant 1',
             description: 'some LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
             annualPaymentPounds: null,
             linkedMeasureCodes: null,
-            advantages: null
+            advantages: null,
+            steps: []
         },
         {
+            grantId: 'la-grant-2',
             name: 'LA Grant 2',
             description: 'another LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
             annualPaymentPounds: null,
             linkedMeasureCodes: null,
-            advantages: null
+            advantages: null,
+            steps: []
         }
     ];
 
@@ -48,7 +52,8 @@ describe('GrantEligibilityService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "an-eligible-grant",
-            advantages: ''
+            advantages: '',
+            steps: []
         },
         {
             heading: "Eligible grant 2",
@@ -57,7 +62,8 @@ describe('GrantEligibilityService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "another-eligible-grant",
-            advantages: ''
+            advantages: '',
+            steps: []
         },
         {
             heading: "Ineligible grant",
@@ -66,7 +72,8 @@ describe('GrantEligibilityService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "ineligible-grant",
-            advantages: ''
+            advantages: '',
+            steps: []
         }
     ];
 

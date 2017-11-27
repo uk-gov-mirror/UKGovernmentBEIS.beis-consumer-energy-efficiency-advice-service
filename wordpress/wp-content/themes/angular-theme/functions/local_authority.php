@@ -11,7 +11,7 @@ function get_local_authority(WP_REST_Request $request)
     ));
     if (count($matching_posts) > 0) {
         $local_authority = get_fields($matching_posts[0]->ID);
-        $local_authority['grants'] = array_map('get_fields', $local_authority['grants']);
+        $local_authority['grants'] = array_map('get_local_grant_details', $local_authority['grants']);
         return $local_authority;
     }
     return new WP_Error(
@@ -21,6 +21,13 @@ function get_local_authority(WP_REST_Request $request)
             'status' => 404
         )
     );
+}
+
+function get_local_grant_details($grant_post_id)
+{
+    $grant_details = get_fields($grant_post_id);
+    $grant_details['slug'] = get_post_field('post_name', $grant_post_id);
+    return $grant_details;
 }
 
 add_action('rest_api_init', function () {

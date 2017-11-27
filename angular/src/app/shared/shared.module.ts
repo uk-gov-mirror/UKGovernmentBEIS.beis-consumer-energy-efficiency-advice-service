@@ -25,6 +25,7 @@ import {EnergySavingMeasureContentService} from "./energy-saving-measure-content
 import {QuestionReasonComponent} from './question-reason/question-reason.component';
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
+import {GrantCardComponent} from "./grant-card/grant-card.component";
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.compone
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
+        GrantCardComponent
     ],
     exports: [
         PostcodeLookupComponent,
@@ -47,7 +49,8 @@ import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.compone
         SpinnerAndErrorContainerComponent,
         NeedHelpComponent,
         RecommendationCardComponent,
-        QuestionReasonComponent
+        QuestionReasonComponent,
+        GrantCardComponent
     ],
     imports: [
         HttpClientModule,

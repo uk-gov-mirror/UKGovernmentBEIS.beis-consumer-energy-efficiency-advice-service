@@ -1,0 +1,101 @@
+@import "styles/var/colors";
+
+$more-info-link-buttons-per-row: 2;
+
+.recommendation-step-card {
+  background-color: white;
+  margin-bottom: 4px;
+
+  .step-main-row, .step-details-drawer {
+    padding: 20px 30px;
+  }
+
+  .step-main-row {
+    display: flex;
+    font-weight: bold;
+    font-size: 22px;
+    align-items: center;
+    cursor: pointer;
+
+    .bullet {
+      width: 30px;
+      height: 30px;
+      border: 1px solid $light-medium-grey;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    .step-number {
+      color: $focus-blue;
+      text-transform: uppercase;
+      margin-right: 20px;
+    }
+
+    .expand-step-icon {
+      margin-left: auto;
+      background: none;
+      outline: none;
+      border: none;
+
+      &.expanded {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .step-details-drawer {
+    display: none;
+
+    &.expanded {
+      display: flex;
+    }
+
+    .step-description {
+      border-right: 1px solid $light-grey;
+      padding-right: 40px;
+      margin-right: 40px;
+      width: 50%;
+    }
+
+    .more-info-links {
+      display: flex;
+      flex-wrap: wrap;
+      width: 50%;
+
+      .more-info-link {
+        color: white;
+        display: flex;
+        flex: 0 0 260px;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:nth-last-child(-n + #{$more-info-link-buttons-per-row}) {
+          margin-bottom: 10px;
+        }
+
+        &:not(:nth-child(#{$more-info-link-buttons-per-row}n + 1)) {
+          margin-left: 10px;
+        }
+
+        .more-info-description, .more-info-icon {
+          padding: 16px;
+        }
+
+        .more-info-description {
+          background-color: $dark-blue;
+          text-transform: uppercase;
+          font-size: 12px;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .more-info-icon {
+          background-color: $focus-blue;
+        }
+      }
+
+    }
+  }
+}

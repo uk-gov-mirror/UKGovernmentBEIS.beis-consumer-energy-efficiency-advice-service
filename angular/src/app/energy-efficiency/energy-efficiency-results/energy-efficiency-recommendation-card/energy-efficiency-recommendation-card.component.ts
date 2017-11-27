@@ -1,12 +1,12 @@
-import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
-import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import {Component, Input, OnInit} from "@angular/core";
+import {EnergyEfficiencyRecommendation} from "../../recommendations/energy-efficiency-recommendation";
 import {
-    EnergyEfficiencyRecommendationTag, getActiveTags, getTagClassName,
+    EnergyEfficiencyRecommendationTag,
+    getActiveTags,
+    getTagClassName,
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {GrantViewModel} from "../../../grants/model/grant-view-model";
-import {head} from "lodash-es";
-import {roundToNearest} from "../../../shared/rounding/rounding";
+import {ResponseData} from "../../../shared/response-data/response-data";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -21,11 +21,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     roundedInvestmentRequired: number;
     roundedMonthlySaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
-    grant: GrantViewModel;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
-    @Input() isAddedToPlan: boolean;
-    @Output() isAddedToPlanChange = new EventEmitter<boolean>();
+
+    constructor(private responseData: ResponseData) {
+    }
 
     ngOnInit() {
         this.roundedInvestmentRequired = EnergyEfficiencyRecommendationCardComponent
@@ -33,7 +33,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.roundedMonthlySaving = EnergyEfficiencyRecommendationCardComponent
             .getMonthlySaving(this.recommendation);
         this.tags = getActiveTags(this.recommendation.tags);
-        this.grant = this.recommendation.grants && head(this.recommendation.grants)
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
@@ -49,8 +48,23 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     toggleAddedToPlan(): void {
-        this.isAddedToPlan = !this.isAddedToPlan;
-        this.isAddedToPlanChange.emit(this.isAddedToPlan);
+        const recommendationIndexInPlan = this.getRecommendationIndexInPlan();
+        if (recommendationIndexInPlan > -1) {
+            // Remove recommendation from plan
+            this.responseData.energyEfficiencyRecommendationsInPlan.splice(recommendationIndexInPlan, 1);
+        } else {
+            this.responseData.energyEfficiencyRecommendationsInPlan.push(this.recommendation);
+        }
+    }
+
+    isAddedToPlan(): boolean {
+        return this.getRecommendationIndexInPlan() > -1;
+    }
+
+    private getRecommendationIndexInPlan(): number {
+        const recommendationIdsInPlan = this.responseData.energyEfficiencyRecommendationsInPlan
+            .map(recommendation => recommendation.recommendationId);
+        return recommendationIdsInPlan.indexOf(this.recommendation.recommendationId);
     }
 
     private static getMonthlySaving(recommendation: EnergyEfficiencyRecommendation): number {

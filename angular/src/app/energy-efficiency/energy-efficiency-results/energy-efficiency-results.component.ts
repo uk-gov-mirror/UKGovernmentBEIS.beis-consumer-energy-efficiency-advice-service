@@ -13,7 +13,7 @@ import {GrantViewModel} from "../../grants/model/grant-view-model";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../recommendations/energy-efficiency-recommendation";
 import {concat} from "lodash-es";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
@@ -150,6 +150,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             this.allAvailableGrants,
             this.measuresContent
         );
+        this.refreshRecommendationsInPlan();
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             this.energyCalculationResponse,
             this.allRecommendations
@@ -179,6 +180,14 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                     isAddedToPlan: false
                 }
             });
+    }
+
+    private refreshRecommendationsInPlan(): void {
+        const recommendationIdsPlan = this.responseData.energyEfficiencyRecommendationsInPlan
+            .map(recommendation => recommendation.recommendationId);
+        this.responseData.energyEfficiencyRecommendationsInPlan = this.allRecommendations
+            .map(recommendation => recommendation.value)
+            .filter(recommendation => recommendationIdsPlan.indexOf(recommendation.recommendationId) > -1);
     }
 
     private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,

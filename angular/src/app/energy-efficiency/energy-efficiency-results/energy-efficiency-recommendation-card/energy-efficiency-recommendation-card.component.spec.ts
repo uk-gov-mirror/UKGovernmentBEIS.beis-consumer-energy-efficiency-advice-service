@@ -3,28 +3,33 @@ import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "../data-card/data-card.component";
-import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import {DataCardComponent} from "../../data-card/data-card.component";
+import {EnergyEfficiencyRecommendation} from "../../recommendations/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
 import {BreakEvenComponent} from "../break-even/break-even.component";
+import {NationalGrantViewModel} from "../../../grants/model/national-grant-view-model";
+import {ResponseData} from "../../../shared/response-data/response-data";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
     let fixture: ComponentFixture<EnergyEfficiencyRecommendationCardComponent>;
 
     const advantages = ['Green', 'Cost effective'];
-    const grant = {
+    const grant: NationalGrantViewModel = {
+        grantId: 'national-grant-1',
         name: 'National Grant 1',
         description: 'some national grant',
         eligibility: GrantEligibility.LikelyEligible,
         shouldDisplayWithoutMeasures: true,
         annualPaymentPounds: 120,
         linkedMeasureCodes: ['V2'],
-        advantages: null
+        advantages: null,
+        steps: []
     };
 
     const recommendation: EnergyEfficiencyRecommendation = {
+        recommendationId: 'A',
         investmentPounds: 200,
         costSavingPoundsPerYear: 100,
         costSavingPoundsPerMonth: 100/12,
@@ -34,18 +39,24 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         headline: 'Loft insulation',
         summary: 'No description available',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
-        grants: [grant],
-        advantages: advantages
+        grant: grant,
+        advantages: advantages,
+        steps: []
     };
 
+    let responseData: ResponseData;
+
     beforeEach(async(() => {
+        responseData = new ResponseData();
+
         TestBed.configureTestingModule({
             declarations: [
                 EnergyEfficiencyRecommendationCardComponent,
                 DataCardComponent,
                 BreakEvenComponent
             ],
-            imports: [RouterTestingModule]
+            imports: [RouterTestingModule],
+            providers: [{provide: ResponseData, useValue: responseData}]
         })
             .compileComponents();
     }));
@@ -54,7 +65,6 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         fixture = TestBed.createComponent(EnergyEfficiencyRecommendationCardComponent);
         component = fixture.componentInstance;
         component.recommendation = recommendation;
-        spyOn(component.isAddedToPlanChange, 'emit').and.callThrough();
         fixture.detectChanges();
     });
 
@@ -91,26 +101,26 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
     });
 
     describe('#toggleAddedToPlan', () => {
-        it('should emit added to plan if not already added to plan', () => {
+        it('should add recommendation to plan if not already added to plan', () => {
             // given
-            component.isAddedToPlan = false;
+            responseData.energyEfficiencyRecommendationsInPlan = [];
 
             // when
             clickAddToPlan();
 
             // then
-            expect(component.isAddedToPlanChange.emit).toHaveBeenCalledWith(true);
+            expect(responseData.energyEfficiencyRecommendationsInPlan).toContain(recommendation);
         });
 
-        it('should emit removed from plan if already added to plan', () => {
+        it('should remove recommendation from plan if already added to plan', () => {
             // given
-            component.isAddedToPlan = true;
+            responseData.energyEfficiencyRecommendationsInPlan = [recommendation];
 
             // when
             clickAddToPlan();
 
             // then
-            expect(component.isAddedToPlanChange.emit).toHaveBeenCalledWith(false);
+            expect(responseData.energyEfficiencyRecommendationsInPlan).not.toContain(recommendation);
         });
 
         function clickAddToPlan(): void {

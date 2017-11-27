@@ -1,15 +1,15 @@
 import * as parse from "url-parse";
-import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
-import {
-    EnergyEfficiencyRecommendationTag,
-    getTagsForMeasure
-} from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {GrantViewModel} from "../../../grants/model/grant-view-model";
-import {MeasureResponse} from "../../../shared/energy-calculation-api-service/response/measure-response";
+import {RecommendationStep} from "./recommendation-step";
+import {EnergyEfficiencyRecommendationTag, getTagsForMeasure} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {GrantViewModel} from "../../grants/model/grant-view-model";
+import {MeasureResponse} from "../../shared/energy-calculation-api-service/response/measure-response";
+import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
+import {concat, head} from "lodash-es";
 
 export class EnergyEfficiencyRecommendation {
 
-    constructor(public investmentPounds: number,
+    constructor(public recommendationId: string,
+                public investmentPounds: number,
                 public costSavingPoundsPerYear: number,
                 public energySavingKwhPerYear: number,
                 public readMoreRoute: string,
@@ -17,12 +17,13 @@ export class EnergyEfficiencyRecommendation {
                 public summary: string,
                 public iconClassName: string,
                 public tags: EnergyEfficiencyRecommendationTag,
-                public grants: GrantViewModel[],
-                public advantages: string[]) {
+                public grant: GrantViewModel,
+                public advantages: string[],
+                public steps: RecommendationStep[]) {
     }
 
     get costSavingPoundsPerMonth(): number {
-        return this.costSavingPoundsPerYear/12;
+        return this.costSavingPoundsPerYear / 12;
     }
 
     static fromMeasure(
@@ -38,7 +39,12 @@ export class EnergyEfficiencyRecommendation {
         }
         const advantagesSplitByLine = measureContent.acf.advantages &&
                 measureContent.acf.advantages.match(/[^\r\n]+/g);
+        const measureSteps = measureContent.acf.steps && measureContent.acf.steps
+            .map(stepResponse => new RecommendationStep(stepResponse));
+        const grant = head(grants);
+        const grantSteps = (grant && grant.steps.length > 0) ? grant.steps : [];
         return new EnergyEfficiencyRecommendation(
+            measureContent.acf.measure_code,
             EnergyEfficiencyRecommendation.getDummyInvestmentAmount(tags), // TODO: investment required for measures (BEISDEAS-56)
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
@@ -47,16 +53,16 @@ export class EnergyEfficiencyRecommendation {
             measureContent.acf.summary,
             iconClassName,
             tags,
-            grants,
-            advantagesSplitByLine
+            grant,
+            advantagesSplitByLine,
+            concat(measureSteps, grantSteps)
         )
     }
 
-    static fromGrant(
-        grantViewModel: GrantViewModel,
-        iconClassName: string
-    ): EnergyEfficiencyRecommendation {
+    static fromGrant(grantViewModel: GrantViewModel,
+                     iconClassName: string): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
+            grantViewModel.grantId,
             0, // No investment cost for a grant
             grantViewModel.annualPaymentPounds || 0,
             0, // No energy saving from a grant
@@ -65,8 +71,9 @@ export class EnergyEfficiencyRecommendation {
             grantViewModel.description,
             iconClassName,
             EnergyEfficiencyRecommendationTag.Grant,
-            [],
-            grantViewModel.advantages
+            null,
+            grantViewModel.advantages,
+            grantViewModel.steps
         );
     }
 

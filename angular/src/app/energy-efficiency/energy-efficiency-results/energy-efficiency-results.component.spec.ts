@@ -8,7 +8,7 @@ import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {GrantCardComponent} from "../../grants/grant-card/grant-card.component";
+import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
@@ -31,7 +31,7 @@ import {GardenAccessibility} from "../../questionnaire/questions/garden-question
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
 import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "./data-card/data-card.component";
+import {DataCardComponent} from "../data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
@@ -39,8 +39,9 @@ import {GrantEligibilityService} from "../../grants/grant-eligibility-service/gr
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
 import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
-import {YourPlanComponent} from "./your-plan/your-plan.component";
 import {BreakEvenComponent} from "./break-even/break-even.component";
+import {ResultsPageYourPlanComponent} from "./results-page-your-plan/results-page-your-plan.component";
+import {YourPlanSummaryComponent} from "../your-plan-summary/your-plan-summary.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -56,22 +57,26 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     const nationalGrants: NationalGrantViewModel[] = [
         {
+            grantId: 'national-grant-1',
             name: 'National Grant 1',
             description: 'some national grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
             linkedMeasureCodes: ['U'],
-            advantages: []
+            advantages: [],
+            steps: []
         },
         {
+            grantId: 'national-grant-2',
             name: 'National Grant 2',
             description: 'another national grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
             annualPaymentPounds: 120,
             linkedMeasureCodes: [],
-            advantages: []
+            advantages: [],
+            steps: []
         }
     ];
 
@@ -136,7 +141,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         gardenAccessibility: GardenAccessibility.NotAccessible,
         gardenSizeSquareMetres: 100,
         roofSpace: RoofSpace.NoSpace,
-        numberOfAdults: 1
+        numberOfAdults: 1,
+        energyEfficiencyRecommendationsInPlan: []
     };
 
 
@@ -151,11 +157,13 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grants: [
                 new LocalAuthorityGrantViewModel({
                     display_name: 'LA Grant 1',
-                    description: 'some local grant'
+                    description: 'some local grant',
+                    slug: 'la-grant-1'
                 }),
                 new LocalAuthorityGrantViewModel({
                     display_name: 'LA Grant 2',
-                    description: 'another local grant'
+                    description: 'another local grant',
+                    slug: 'la-grant-1'
                 })
             ]
         });
@@ -175,7 +183,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 GrantCardComponent,
                 RecommendationFilterControlComponent,
                 BreakEvenComponent,
-                YourPlanComponent
+                ResultsPageYourPlanComponent,
+                YourPlanSummaryComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
@@ -341,8 +350,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
         // for measure code U
-        expect(component.getDisplayedRecommendations()[0].value.grants.length).toBe(1);
-        expect(component.getDisplayedRecommendations()[0].value.grants[0].name).toBe('National Grant 1');
+        expect(component.getDisplayedRecommendations()[0].value.grant.name).toBe('National Grant 1');
     });
 
     it('should display energy calculations correctly', () => {

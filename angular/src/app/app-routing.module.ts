@@ -19,6 +19,8 @@ import {BoilerResultsPageComponent} from "./boiler/results-page/boiler-results-p
 import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-page.guard";
 import {BoilerReplacementPageComponent} from "./boiler/replacement-page/boiler-replacement-page.component";
 import {BoilerMakeModelReplaceComponent} from "./boiler/make-model-replace/boiler-make-model-replace.component";
+import {YourPlanPageComponent} from "./energy-efficiency/your-plan-page/your-plan-page.component";
+import {YourPlanPageGuard} from "./energy-efficiency/your-plan-page/your-plan-page.guard";
 
 const routes: Routes = [
     {
@@ -34,6 +36,11 @@ const routes: Routes = [
         path: 'js/energy-efficiency/results',
         component: EnergyEfficiencyResultsComponent,
         canActivate: [EnergyEfficiencyResultsRouteGuard]
+    },
+    {
+        path: 'js/energy-efficiency/your-plan',
+        component: YourPlanPageComponent,
+        canActivate: [YourPlanPageGuard]
     },
     {
         path: 'js/grants',

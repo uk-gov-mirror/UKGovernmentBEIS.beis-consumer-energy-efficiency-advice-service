@@ -1,8 +1,24 @@
+@import "styles/var/colors";
+
 $font-family: "nta", Arial, sans-serif;
 
 @mixin page-heading {
   font-size: 56px;
   font-weight: bold;
+}
+
+@mixin page-heading-small {
+  font-size: 40px;
+  line-height: 42px;
+  font-weight: bold;
+  color: $dark-blue;
+  text-transform: capitalize;
+}
+
+@mixin page-subheadline-small {
+  font-size: 13px;
+  line-height: 16px;
+  color: $dark-grey;
 }
 
 @mixin page-subheading {
@@ -26,9 +42,23 @@ $font-family: "nta", Arial, sans-serif;
 }
 
 @mixin card-heading {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
-  line-height: 1.25;
+  line-height: 19px;
+  color: $dark-grey;
+}
+
+@mixin card-body {
+  font-size: 16px;
+  line-height: 19px;
+  color: $dark-grey;
+}
+
+@mixin card-more-info-link {
+  font-size: 13px;
+  line-height: 16px;
+  color: $focus-blue;
+  text-transform: uppercase;
 }
 
 @mixin body-uppercase {

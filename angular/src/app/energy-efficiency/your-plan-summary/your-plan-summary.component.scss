@@ -1,0 +1,13 @@
+@import "styles/var/colors";
+@import "../energy-efficiency-page-sizes";
+
+$your-plan-summary-border-width: 1px;
+
+:host {
+  display: flex;
+  flex: 0 0 3*$data-card-width + 2*$your-plan-summary-border-width;
+
+  & > :not(:first-child) {
+    border-left: 1px solid $light-grey;
+  }
+}

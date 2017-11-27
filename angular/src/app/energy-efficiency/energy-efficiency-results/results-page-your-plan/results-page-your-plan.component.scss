@@ -1,5 +1,5 @@
 @import "styles/var/colors";
-@import "../_energy-efficiency-results-page-sizes";
+@import "../../_energy-efficiency-page-sizes";
 
 $do-button-height: 120px;
 $do-button-width: $add-to-plan-column-width;
@@ -52,6 +52,13 @@ $do-button-right-chevron-width: 30px;
           }
         }
       }
+
+      .subheading {
+        &.plan-empty {
+          font-weight: bold;
+          color: $focus-blue;
+        }
+      }
     }
 
     .do-button {
@@ -68,6 +75,7 @@ $do-button-right-chevron-width: 30px;
       font-size: 26px;
       color: white;
       cursor: pointer;
+      text-decoration: none;
 
       &::before {
         content: '';
@@ -91,6 +99,12 @@ $do-button-right-chevron-width: 30px;
         border-top: $do-button-height/2 solid transparent;
         border-bottom: $do-button-height/2 solid transparent;
         border-left: $do-button-right-chevron-width solid $focus-blue;
+      }
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0;
+        cursor: default;
       }
     }
   }

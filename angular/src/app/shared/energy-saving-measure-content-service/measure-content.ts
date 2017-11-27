@@ -1,5 +1,5 @@
-import {AcfPageResponse} from "./acf-page-response";
 import {RecommendationTagJsonName} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {RecommendationStepResponse} from "./recommendation-step-response";
 
 export interface MeasureContent {
     acf: {
@@ -7,8 +7,8 @@ export interface MeasureContent {
         headline: string;
         summary: string;
         featured_page: string;
-        linked_pages: AcfPageResponse[];
         advantages: string;
-        tags: RecommendationTagJsonName[]
+        tags: RecommendationTagJsonName[],
+        steps: RecommendationStepResponse[]
     }
 }

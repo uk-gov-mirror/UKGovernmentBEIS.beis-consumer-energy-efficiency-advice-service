@@ -46,7 +46,6 @@
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getDisplayedRecommendations()"
                         [recommendation]="recommendation.value"
-                        [(isAddedToPlan)]="recommendation.isAddedToPlan"
                 ></app-energy-efficiency-recommendation-card>
                 <button class="expand-recommendations-list"
                         *ngIf="recommendationListState !== RecommendationListStates.CannotExpand"
@@ -56,5 +55,5 @@
             </div>
         </div>
     </div>
-    <app-your-plan [recommendations]="getRecommendationsInPlan()"></app-your-plan>
+    <app-results-page-your-plan></app-results-page-your-plan>
 </div>

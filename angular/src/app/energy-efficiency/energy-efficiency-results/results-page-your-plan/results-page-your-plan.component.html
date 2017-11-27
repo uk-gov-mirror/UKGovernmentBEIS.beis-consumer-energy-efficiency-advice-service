@@ -2,7 +2,8 @@
     <div class="page-row-content">
         <div class="plan-details">
             <div class="heading">Your plan</div>
-            <div class="subheading">
+            <div class="subheading"
+                 [class.plan-empty]="recommendations.length === 0">
                 {{recommendations.length > 0 ? 'You have added:' : 'Try adding some recommendations to your plan'}}
             </div>
             <ul class="recommendations-list">
@@ -11,20 +12,12 @@
                 </li>
             </ul>
         </div>
-        <app-data-card
-                heading="Your potential score is"
-                value="60"
-                circleColor="green"></app-data-card>
-        <app-data-card
-                heading="Total investment required"
-                [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'">
-        </app-data-card>
-        <app-data-card
-                heading="Total savings per month"
-                [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"></app-data-card>
-        <div class="do-button">
+        <app-your-plan-summary></app-your-plan-summary>
+        <a class="do-button"
+           [class.disabled]="recommendations.length === 0"
+           routerLink="/js/energy-efficiency/your-plan">
             DO
-        </div>
+        </a>
     </div>
 </div>
 <!-- While the 'Your Plan' row is in a fixed position, add a dummy spacer of the same height to the DOM
