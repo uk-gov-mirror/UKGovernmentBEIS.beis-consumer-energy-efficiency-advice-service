@@ -21,8 +21,6 @@ WAMP Package installations are easy to get started with with the caveat that the
 * Make sure the server is running and follow the steps in https://codex.wordpress.org/Installing_WordPress#Using_the_MySQL_Client
   * Use database name "wordpress", database user "wordpress" and database user password "wordpressPassword123"
   * If you've installed some other MySQL client e.g. phpMyAdmin, feel free to use that instead of the command line client...!
-* IIS sees some of the configuration in web.config as invalid. When running locally, the following lines should be removed:
-  * `<mimeMap fileExtension=".json" mimeType="application/json" />`
 
 ### Using a WAMP stack
 This might be easier to install, but is more different from the production environment at the moment and is harder to configure (e.g. changing version of PHP) than having all the components separately.
