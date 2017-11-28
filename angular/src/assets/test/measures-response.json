@@ -7,9 +7,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": true,
-      "tag_small_spend": false,
-      "tag_longer_term": false
+      "tags": ["tag_quick_win"]
     }
   },
   {
@@ -21,9 +19,7 @@
       "linked_pages": "",
       "summary": "No description available",
       "advantages": "Generate your own power from the wind",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -34,9 +30,7 @@
       "featured_page": "http://localhost:81/home-improvements/solar-photovoltaic-panels",
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true,
+      "tags": ["tag_longer_term"],
       "advantages": "Green\r\nCost effective"
     }
   },
@@ -48,9 +42,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -61,9 +53,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -74,9 +64,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -87,9 +75,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -100,9 +86,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Double glazing your windows can reduce noise, as well as saving money on energy bills",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -113,9 +97,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "a waste water heat recovery system works by extracting the heat from the water your shower or bath sends down the drain. This heat is used to warm the incoming mains water, reducing the strain on your boiler and the energy required to heat your water up to temperature",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -126,9 +108,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -139,9 +119,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -152,9 +130,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -165,9 +141,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -178,9 +152,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -191,9 +163,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -204,9 +174,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -217,9 +185,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -230,9 +196,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "More sophisticated than standard night storage heaters, fan-assisted storage heaters can reduce your energy use and electricity bills",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -243,9 +207,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -256,9 +218,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -269,9 +229,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -282,9 +240,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -295,9 +251,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -308,9 +262,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -321,9 +273,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -334,9 +284,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -347,9 +295,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -360,9 +306,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -373,9 +317,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Insulating your water cylinder is a simple and effective way of saving money on your energy bills",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -386,9 +328,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Lighting accounts for 15 per cent of a standard electricity bill. You can cut your energy bill by changing which bulbs you use",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -399,9 +339,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Draught-proofing is one of the cheapest and most effective ways to save both money and energy",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -412,9 +350,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Older homes are more likely to have suspended timber floors. Timber floors can be insulated by lifting the floorboards and laying mineral wool insulation supported by netting between the joists.",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -425,9 +361,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Older homes are more likely to have suspended timber floors. Timber floors can be insulated by lifting the floorboards and laying mineral wool insulation supported by netting between the joists.",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -438,9 +372,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -451,9 +383,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -464,9 +394,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -477,9 +405,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -490,9 +416,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -503,9 +427,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -516,9 +438,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "Insulating your flat roof is a simple and effective way to reduce heat loss and reduce your heating bills.",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   },
   {
@@ -529,9 +449,7 @@
       "featured_page": false,
       "linked_pages": [],
       "summary": "No description available",
-      "tag_quick_win": false,
-      "tag_small_spend": false,
-      "tag_longer_term": true
+      "tags": ["tag_longer_term"]
     }
   }
 ]

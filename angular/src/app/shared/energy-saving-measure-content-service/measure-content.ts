@@ -1,4 +1,5 @@
 import {AcfPageResponse} from "./acf-page-response";
+import {RecommendationTagJsonName} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 
 export interface MeasureContent {
     acf: {
@@ -8,8 +9,6 @@ export interface MeasureContent {
         featured_page: string;
         linked_pages: AcfPageResponse[];
         advantages: string;
-        tag_quick_win: boolean;
-        tag_small_spend: boolean;
-        tag_longer_term: boolean;
+        tags: RecommendationTagJsonName[];
     }
 }

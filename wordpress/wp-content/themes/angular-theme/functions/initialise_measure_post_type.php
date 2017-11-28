@@ -141,27 +141,17 @@ function setup_measure_acf_group() {
                 ),
                 array (
                     'key' => 'field_5a1c544fb4da4',
-                    'label' => 'Quick win',
-                    'name' => 'tag_quick_win',
-                    'type' => 'true_false',
-                    'message' => '',
-                    'default_value' => 0,
-                ),
-                array (
-                    'key' => 'field_5a1c5455659c0',
-                    'label' => 'Small spend',
-                    'name' => 'tag_small_spend',
-                    'type' => 'true_false',
-                    'message' => '',
-                    'default_value' => 0,
-                ),
-                array (
-                    'key' => 'field_5a1c540189238',
-                    'label' => 'Longer term',
-                    'name' => 'tag_longer_term',
-                    'type' => 'true_false',
-                    'message' => '',
-                    'default_value' => 0,
+                    'label' => 'Tags',
+                    'name' => 'tags',
+                    'instructions' => 'Tags to be displayed with this measure on the results page',
+                    'type' => 'checkbox',
+                    'choices' => array (
+                        'tag_quick_win' => 'Quick win',
+                        'tag_small_spend' => 'Small spend',
+                        'tag_longer_term' => 'Longer term'
+                    ),
+                    'default_value' => '',
+                    'layout' => 'vertical',
                 )
             ),
             'location' => array (
