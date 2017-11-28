@@ -16,7 +16,7 @@ $pros-and-cons-margin: 32px;
 
     .summary-container {
       display: flex;
-      align-items: stretch;
+      align-items: flex-start;
       justify-content: space-between;
 
       .description, .stats, .installers {
@@ -26,7 +26,6 @@ $pros-and-cons-margin: 32px;
 
         &:not(:last-child) {
           padding-right: 32px;
-          border-right: 1px solid $light-medium-grey;
         }
 
         &:not(:first-child) {
@@ -40,6 +39,8 @@ $pros-and-cons-margin: 32px;
 
       .stats {
         width: 35%;
+        border-left: 1px solid $light-medium-grey;
+        border-right: 1px solid $light-medium-grey;
 
         .stats-item {
           display: flex;
@@ -95,10 +96,13 @@ $pros-and-cons-margin: 32px;
     }
   }
 
-  .pros-container {
-    padding-bottom: 24px;
-    border-bottom: 1px solid $light-medium-grey;
-    margin-bottom: 60px;
+  .pros:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  .pros + .cons {
+    padding-top: 60px;
+    border-top: 1px solid $light-medium-grey;
   }
 
   .featured-video {

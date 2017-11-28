@@ -78,7 +78,7 @@ $remaining-width: $content-max-width - $efficiency-box-width;
         justify-content: center;
         width: 100%;
 
-        .heading {
+        .headline {
           @include card-heading;
           margin-bottom: 16px;
           width: 80%;
