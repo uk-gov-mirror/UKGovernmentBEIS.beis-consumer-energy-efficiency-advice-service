@@ -15,6 +15,7 @@
   justify-content: flex-start;
   flex-grow: 1;
   background-color: $lighter-grey;
+  padding-bottom: 16px;
 
   .question-type-icon {
     margin-top: 15vh;
@@ -64,10 +65,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    padding-bottom: 16px;
   }
 
   app-question-reason {
     margin-top: auto;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
   }
 }

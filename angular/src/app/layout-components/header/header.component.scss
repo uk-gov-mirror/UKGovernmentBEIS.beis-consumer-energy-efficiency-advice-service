@@ -48,6 +48,7 @@ $animation-duration-vertical: 0.5s;
       .search-form {
         display: flex;
         flex-grow: 1;
+        width: 100%;
 
         .search-input {
           background: none;
@@ -55,7 +56,8 @@ $animation-duration-vertical: 0.5s;
           border: none;
           padding: 0;
           font-size: 16px;
-          width: 100%;
+          flex-grow: 1;
+          min-width: 1px;
         }
 
         .icon-search {
