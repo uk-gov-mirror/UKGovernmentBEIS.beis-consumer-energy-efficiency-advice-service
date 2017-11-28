@@ -20,11 +20,11 @@ export class YourPlanComponent implements OnInit, DoCheck {
 
     ngOnInit() {
         this.updateYourPlanRowPosition();
-        this.detectYourPlanRowHeight();
+        this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
     }
 
     ngDoCheck() {
-        this.detectYourPlanRowHeight();
+        this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
     }
 
     @HostListener("window:scroll", [])
@@ -34,16 +34,6 @@ export class YourPlanComponent implements OnInit, DoCheck {
             const footerTopPosition = footer.getBoundingClientRect().top;
             const footerVisibleHeight = window.innerHeight - footerTopPosition;
             this.isFixedPosition = footerVisibleHeight < 0;
-        }
-    }
-
-    // Need to manually detect changes in the your-plan row height and assign this to a variable,
-    // so that another round of change detection is triggered if the height has changed
-    detectYourPlanRowHeight(): void {
-        const oldValue = this.yourPlanRowHeightPixels;
-        const newValue = this.yourPlanRow.nativeElement.clientHeight;
-        if (newValue !== oldValue) {
-            this.yourPlanRowHeightPixels = newValue;
         }
     }
 
