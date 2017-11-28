@@ -21,6 +21,10 @@ export class EnergyEfficiencyRecommendation {
                 public advantages: string[]) {
     }
 
+    get costSavingPoundsPerMonth(): number {
+        return this.costSavingPoundsPerYear/12;
+    }
+
     static fromMeasure(
        energySavingMeasureResponse: MeasureResponse,
        measureContent: MeasureContent,

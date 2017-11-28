@@ -1,7 +1,8 @@
 <div class="data-card">
     <div class="heading">{{heading}}</div>
     <div class="number-value"
-         [class.colour-circle]="includeColourCircle">
+         [style.background-color]="circleColor"
+         [class.color-circle]="circleColor">
         {{value}}
     </div>
 </div>

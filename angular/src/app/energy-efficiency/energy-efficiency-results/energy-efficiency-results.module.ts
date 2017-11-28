@@ -8,6 +8,7 @@ import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-r
 import {DataCardComponent} from "./data-card/data-card.component";
 import {GrantsModule} from "../../grants/grants.module";
 import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
+import {YourPlanComponent} from "./your-plan/your-plan.component";
 import {BreakEvenComponent} from "./break-even/break-even.component";
 
 @NgModule({
@@ -16,6 +17,7 @@ import {BreakEvenComponent} from "./break-even/break-even.component";
         EnergyEfficiencyRecommendationCardComponent,
         DataCardComponent,
         RecommendationFilterControlComponent,
+        YourPlanComponent,
         BreakEvenComponent
     ],
     exports: [
