@@ -10,6 +10,7 @@ export class LocalAuthorityGrantViewModel implements GrantViewModel {
     public shouldDisplayWithoutMeasures = false;
     public annualPaymentPounds: number = null;
     public linkedMeasureCodes: string[] = null;
+    public advantages: string[] = null;
 
     constructor(localGrantResponse: LocalGrantResponse) {
         this.name = localGrantResponse.display_name;

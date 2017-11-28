@@ -6,6 +6,7 @@ export interface MeasureContent {
         headline: string;
         summary: string;
         featured_page: string;
-        linked_pages: AcfPageResponse[]
+        linked_pages: AcfPageResponse[];
+        advantages: string;
     }
 }

@@ -56,7 +56,7 @@ function setup_national_grant_acf_group() {
                     'key' => 'field_5a0d96a17c14c',
                     'label' => 'Description',
                     'name' => 'description',
-                    'type' => 'textarea',
+                    'type' => 'text',
                     'instructions' => 'A short description of the grant',
                     'required' => 1,
                     'default_value' => '',
@@ -114,6 +114,31 @@ function setup_national_grant_acf_group() {
                     'type' => 'true_false',
                     'instructions' => 'Should this grant be included as a standalone recommendation on the results page without any matching measures?',
                     'default_value' => ''
+                ),
+                array (
+                    'key' => 'field_5a16a911c5cea',
+                    'label' => 'Advantages',
+                    'name' => 'advantages',
+                    'type' => 'textarea',
+                    'instructions' => 'A list of benefits/advantages to be displayed with this recommendation on the results page (enter one on each line, these will be displayed as a bulleted list)',
+                    'required' => 1,
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'html',
+                    'maxlength' => '',
+                    'conditional_logic' => array (
+                        'status' => 1,
+                        'rules' => array (
+                            array (
+                                'field' => 'field_5a13037c70fa5',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                        'allorany' => 'all',
+                    )
                 )
             ),
             'location' => array (
