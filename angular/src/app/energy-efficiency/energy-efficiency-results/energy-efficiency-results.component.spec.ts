@@ -316,7 +316,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         // match data in assets/test/energy-calculation-response.json
-        expect(component.getDisplayedRecommendations()[0].value.costSavingPoundsPerYear).toBe(536.18);
+        expect(component.getDisplayedRecommendations()[0].value.costSavingPoundsPerYear).toBe(230.64);
         expect(component.getDisplayedRecommendations()[0].value.energySavingKwhPerYear).toBe(0);
     });
 
