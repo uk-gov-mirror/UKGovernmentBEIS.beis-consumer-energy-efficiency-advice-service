@@ -53,6 +53,7 @@ $border-width: 1px;
   position: relative;
   box-sizing: content-box;
   padding: 0;
+  overflow: visible;
 
   &:after {
     right: -$height - 3 * $border-width;

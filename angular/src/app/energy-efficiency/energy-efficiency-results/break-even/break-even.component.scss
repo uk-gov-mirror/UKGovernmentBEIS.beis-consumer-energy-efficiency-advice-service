@@ -1,0 +1,81 @@
+@import "styles/var/_colours";
+@import "../_energy-efficiency-results-page-sizes";
+@import "~mathsass/dist/_math";
+@import "~mathsass/dist/_constants";
+
+$graph-height-pixels: 140;
+$graph-width-pixels: 2 * $data-card-width / 1px;
+$graph-line-width: 2px;
+
+$graph-angle-radians: atan($graph-height-pixels / $graph-width-pixels);
+$graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-height-pixels, 2));
+
+:host {
+  margin-left: 40px;
+  margin-right: $add-to-plan-column-width;
+}
+
+.break-even-component {
+  display: flex;
+  flex-direction: column;
+  width: $graph-width-pixels * 1px;
+
+  .header-row {
+    display: flex;
+    margin-bottom: 20px;
+
+    .lifespan, .break-even-point {
+      display: flex;
+      flex: 1 0 1px;
+
+      &:not(:last-child) {
+        margin-right: 40px;
+      }
+
+      .data-name {
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-right: 10px;
+      }
+
+      .data-value {
+        font-weight: bold;
+        font-size: 32px;
+      }
+    }
+  }
+
+  .graph {
+    height: $graph-height-pixels * 1px;
+    box-sizing: content-box;
+    border-left: 2px solid $light-medium-grey;
+    border-bottom: 2px solid $light-medium-grey;
+    position: relative;
+
+    .annual-savings-line {
+      border-top: $graph-line-width solid $light-medium-grey;
+      height: 0;
+      width: $graph-diagonal-length-pixels * 1px;
+      position: absolute;
+      top: 50%;
+      right: -3%;
+      transform: rotate(-$graph-angle-radians * 1rad);
+    }
+
+    .upfront-investment {
+      width: 100%;
+      background-color: $light-grey;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .break-even-point-line {
+      height: 100%;
+      width: 0;
+      position: absolute;
+      border-left: $graph-line-width dashed $light-medium-grey;
+      top: 0;
+    }
+  }
+}

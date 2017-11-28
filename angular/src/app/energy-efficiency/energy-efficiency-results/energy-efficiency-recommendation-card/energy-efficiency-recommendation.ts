@@ -14,7 +14,8 @@ export class EnergyEfficiencyRecommendation {
                 public summary: string,
                 public iconClassName: string,
                 public tags: EnergyEfficiencyRecommendationTag,
-                public grants: GrantViewModel[]) {
+                public grants: GrantViewModel[],
+                public advantages: string[]) {
     }
 
     static fromMeasure(
@@ -23,16 +24,24 @@ export class EnergyEfficiencyRecommendation {
        iconClassName: string,
        grants: GrantViewModel[]
     ): EnergyEfficiencyRecommendation {
+        let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.LongerTerm;
+        const shouldIncludeGrantTag = grants && grants.length > 0;
+        if (shouldIncludeGrantTag) {
+            tags = tags | EnergyEfficiencyRecommendationTag.Grant;
+        }
+        const advantagesSplitByLine = measureContent.acf.advantages &&
+                measureContent.acf.advantages.match(/[^\r\n]+/g);
         return new EnergyEfficiencyRecommendation(
-            Math.floor(Math.random() * 99) + 1, // TODO: investment required for measures (BEISDEAS-56)
+            Math.floor(Math.random() * 99) + 1000, // TODO: investment required for measures (BEISDEAS-56)
             energySavingMeasureResponse.cost_saving,
             energySavingMeasureResponse.energy_saving,
             parse(measureContent.acf.featured_page).pathname,
             measureContent.acf.headline,
             measureContent.acf.summary,
             iconClassName,
-            EnergyEfficiencyRecommendationTag.LongerTerm,
-            grants
+            tags,
+            grants,
+            advantagesSplitByLine
         )
     }
 
@@ -49,7 +58,8 @@ export class EnergyEfficiencyRecommendation {
             grantViewModel.description,
             iconClassName,
             EnergyEfficiencyRecommendationTag.Grant,
-            [grantViewModel]
+            [],
+            grantViewModel.advantages
         );
     }
 }

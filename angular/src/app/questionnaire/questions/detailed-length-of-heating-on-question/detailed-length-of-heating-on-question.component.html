@@ -1,0 +1,32 @@
+<div class="question-component detailed-length-of-heating-on-question">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="early-hours-input hours-input">
+            <div class="name">Early hours (0:00-6:00)</div>
+            <app-number-question itemsName="early hours"
+                                 [(quantity)]="earlyHours"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="6"></app-number-question>
+        </div>
+        <div class="morning-input hours-input">
+            <div class="name">Morning (6:00-12:00)</div>
+            <app-number-question itemsName="morning"
+                                 [(quantity)]="morning"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="6"></app-number-question>
+        </div>
+        <div class="afternoon-input hours-input">
+            <div class="name">Afternoon (12:00-18:00)</div>
+            <app-number-question itemsName="afternoon"
+                                 [(quantity)]="afternoon"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="6"></app-number-question>
+        </div>
+        <div class="evening-input hours-input">
+            <div class="name">Evening (18:00-0:00)</div>
+            <app-number-question itemsName="evening"
+                                 [(quantity)]="evening"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="6"></app-number-question>
+        </div>
+    </form>
+</div>

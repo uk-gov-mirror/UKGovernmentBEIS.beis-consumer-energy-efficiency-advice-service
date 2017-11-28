@@ -17,7 +17,7 @@ import {Questionnaire} from "./base-questionnaire/questionnaire";
 import {ResponseData} from "../shared/response-data/response-data";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../shared/need-help/need-help.component";
-import {QuestionHeadingProcessor} from "./questionHeadingProcessor.service";
+import {QuestionHeadingProcessor} from "./question-heading-processor.service";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
 
