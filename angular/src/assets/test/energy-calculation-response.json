@@ -1,77 +1,50 @@
 {
-  "Total-Energy-Consumption": 5990.53,
-  "Total-CO2-Emissions": 1400.29,
-  "Total-Lighting-Cost": 102.01,
-  "Total-Heating-Cost": 601.81,
-  "Total-Hot-Water-Cost": 82.56,
-  "Total-Energy-Cost": 795.4,
-  "Current-SAP-Band": "B",
-  "Potential-SAP-Band": "C",
+  "Total-Energy-Consumption": 25703.62,
+  "Total-CO2-Emissions": 7224.64,
+  "Total-Lighting-Cost": 67.28,
+  "Total-Energy-Cost": 1618,
+  "Total-Heating-Cost": 989.34,
+  "Total-Hot-Water-Cost": 169.05,
+  "Current-SAP-Band": "F",
+  "habit_measures": {
+    "one_degree_reduction": {
+      "cost_saving": 83.65,
+      "energy_saving": 2178.31
+    }
+  },
+  "Potential-SAP-Band": "D",
   "measures": {
-    "A3": {
-      "cost_saving": 54.63,
-      "energy_saving": 1322.69,
-      "number": "10"
-    },
     "B": {
-      "cost_saving": 61.61,
-      "energy_saving": 1721.09,
-      "number": "11"
-    },
-    "D": {
-      "cost_saving": 11.03,
-      "energy_saving": 235.69,
-      "number": "12"
+      "cost_saving": 124.95,
+      "energy_saving": 5006.1,
+      "number": "6"
     },
     "C": {
-      "cost_saving": 157.9,
-      "energy_saving": 4117.59,
-      "number": "13"
+      "cost_saving": 13.34,
+      "energy_saving": 408.74,
+      "number": "1"
     },
-    "F": {
-      "cost_saving": 52.19,
-      "energy_saving": 1305.12,
-      "number": "14"
-    },
-    "G": {
-      "cost_saving": 0.69,
-      "energy_saving": 9,
-      "number": "15"
-    },
-    "T": {
-      "cost_saving": 499.54,
-      "energy_saving": 9730.4,
-      "number": "16"
-    },
-    "T2": {
-      "cost_saving": 15.88,
-      "energy_saving": 459.49,
-      "number": "17"
-    },
-    "N": {
-      "cost_saving": 57.45,
-      "energy_saving": 1649.61,
-      "number": "18"
-    },
-    "O2": {
-      "cost_saving": 29.89,
-      "energy_saving": 848.71,
-      "number": "19"
-    },
-    "X": {
-      "cost_saving": 2.63,
-      "energy_saving": 74.75,
+    "I": {
+      "cost_saving": 124.14,
+      "energy_saving": 4310.33,
       "number": "20"
     },
-    "U": {
-      "cost_saving": 409.7,
-      "energy_saving": 0,
-      "number": "21"
+    "N": {
+      "cost_saving": 42.88,
+      "energy_saving": 1249.25,
+      "number": "19",
+      "RHI": 100
     },
-    "V2": {
-      "cost_saving": 536.18,
+    "X": {
+      "cost_saving": 12.62,
+      "energy_saving": 386.58,
+      "number": "48"
+    },
+    "U": {
+      "cost_saving": 230.64,
       "energy_saving": 0,
-      "number": "22"
+      "number": "34",
+      "FIT": 100
     }
   }
 }

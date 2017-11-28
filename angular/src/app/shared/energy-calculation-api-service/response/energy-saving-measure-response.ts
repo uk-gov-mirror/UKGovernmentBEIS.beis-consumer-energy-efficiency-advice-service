@@ -1,5 +1,5 @@
-export interface EnergySavingMeasureResponse {
-    cost_saving: number,
-    energy_saving: number,
+import {MeasureResponse} from "./measure-response";
+
+export interface EnergySavingMeasureResponse extends MeasureResponse {
     number: string
 }

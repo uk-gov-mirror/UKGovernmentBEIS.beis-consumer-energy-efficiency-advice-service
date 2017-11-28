@@ -55,7 +55,7 @@
                 </li>
             </ul>
         </div>
-        <app-break-even
+        <app-break-even *ngIf="recommendation.investmentPounds > 0"
                 [investmentPounds]="recommendation.investmentPounds"
                 lifespanYears="40"
                 [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">

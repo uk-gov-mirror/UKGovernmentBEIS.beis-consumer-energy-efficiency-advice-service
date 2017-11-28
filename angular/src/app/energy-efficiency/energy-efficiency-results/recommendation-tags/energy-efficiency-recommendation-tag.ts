@@ -1,4 +1,5 @@
 import {values} from "lodash-es";
+import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
 
 export enum EnergyEfficiencyRecommendationTag {
     None = 0,
@@ -32,3 +33,21 @@ export function getActiveTags(flagValues: number): EnergyEfficiencyRecommendatio
         .filter(tag => !isNaN(tag))
         .filter(tag => tag & flagValues);
 }
+
+export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficiencyRecommendationTag {
+    let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
+    if (measureContent.acf.tags) {
+        if (measureContent.acf.tags.indexOf('tag_longer_term') > -1) {
+            tags |= EnergyEfficiencyRecommendationTag.LongerTerm;
+        }
+        if (measureContent.acf.tags.indexOf('tag_quick_win') > -1) {
+            tags |= EnergyEfficiencyRecommendationTag.QuickWin;
+        }
+        if (measureContent.acf.tags.indexOf('tag_small_spend') > -1) {
+            tags |= EnergyEfficiencyRecommendationTag.SmallSpend;
+        }
+    }
+    return tags;
+}
+
+export type RecommendationTagJsonName = 'tag_quick_win' | 'tag_small_spend' | 'tag_longer_term';
