@@ -1,15 +1,14 @@
 import {QuestionMetadata} from "../../base-question/question-metadata";
-import {FlatPositionQuestionComponent} from "./flat-position-question.component";
-import {FlatPosition} from "./flat-position";
+import {FlatExposedWallQuestionComponent} from "./flat-exposed-wall-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {isFlat} from "../home-type-question/home-type";
 import {QuestionType} from "../question-type";
 
-export class FlatPositionQuestionMetadata extends QuestionMetadata {
+export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            FlatPositionQuestionComponent,
-            'flat_position',
+            FlatExposedWallQuestionComponent,
+            'flat_exposed_wall',
             QuestionType.House
         );
     }

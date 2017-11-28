@@ -9,7 +9,7 @@ import {FuelTypeQuestionMetadata} from "../../questions/fuel-type-question/fuel-
 import {BedroomsQuestionMetadata} from "../../questions/bedrooms-question/bedrooms-question-metadata";
 import {StoreysQuestionMetadata} from "../../questions/storeys-question/storeys-question-metadata";
 import {HomeAgeQuestionMetadata} from "../../questions/home-age-question/home-age-question-metadata";
-import {FlatPositionQuestionMetadata} from "../../questions/flat-position-question/flat-position-question-metadata";
+import {FlatPositionQuestionMetadata} from "../../questions/flat-exposed-wall-question/flat-exposed-wall-question-metadata";
 import {HomeTypeQuestionMetadata} from "../../questions/home-type-question/home-type-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "../../questions/confirm-epc-question/confirm-epc-question-metadata";
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";

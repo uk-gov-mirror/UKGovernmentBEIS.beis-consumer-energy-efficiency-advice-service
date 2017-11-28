@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Epc} from "../postcode-epc-service/model/epc";
 import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../../questionnaire/questions/electricity-tariff-question/electricity-tariff";
-import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {FlatPosition} from "../../questionnaire/questions/flat-exposed-wall-question/flat-position";
 import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
 import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";

@@ -10,12 +10,12 @@ interface FlatPositionOption {
 }
 
 @Component({
-    selector: 'app-flat-position-question',
-    templateUrl: './flat-position-question.component.html',
-    styleUrls: ['./flat-position-question.component.scss'],
+    selector: 'app-flat-exposed-wall-question',
+    templateUrl: './flat-exposed-wall-question.component.html',
+    styleUrls: ['./flat-exposed-wall-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class FlatPositionQuestionComponent extends QuestionBaseComponent {
+export class FlatExposedWallQuestionComponent extends QuestionBaseComponent {
     flatPositionOptions: FlatPositionOption[];
 
     constructor(responseData: ResponseData) {

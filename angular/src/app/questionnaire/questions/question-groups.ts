@@ -1,6 +1,6 @@
 import {PostcodeEpcQuestionMetadata} from "./postcode-epc-question/postcode-epc-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "./confirm-epc-question/confirm-epc-question-metadata";
-import {FlatPositionQuestionMetadata} from "./flat-position-question/flat-position-question-metadata";
+import {FlatPositionQuestionMetadata} from "./flat-exposed-wall-question/flat-exposed-wall-question-metadata";
 import {HomeAgeQuestionMetadata} from "./home-age-question/home-age-question-metadata";
 import {HomeTypeQuestionMetadata} from "./home-type-question/home-type-question-metadata";
 import {StoreysQuestionMetadata} from "./storeys-question/storeys-question-metadata";

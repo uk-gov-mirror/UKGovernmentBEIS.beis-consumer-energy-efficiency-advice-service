@@ -1,24 +1,24 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
-import {FlatPositionQuestionComponent} from "./flat-position-question.component";
+import {FlatExposedWallQuestionComponent} from "./flat-exposed-wall-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FlatPosition} from "./flat-position";
 
-describe('FlatPositionQuestionComponent', () => {
-    let fixture: ComponentFixture<FlatPositionQuestionComponent>;
-    let component: FlatPositionQuestionComponent;
+describe('FlatExposedWallQuestionComponent', () => {
+    let fixture: ComponentFixture<FlatExposedWallQuestionComponent>;
+    let component: FlatExposedWallQuestionComponent;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FlatPositionQuestionComponent],
+            declarations: [FlatExposedWallQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FlatPositionQuestionComponent);
+        fixture = TestBed.createComponent(FlatExposedWallQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
@@ -28,7 +28,7 @@ describe('FlatPositionQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set the response when clicking on a flat position', () => {
+    it('should set the response when clicking on a wall exposing position', () => {
         // given
 
         // when
@@ -39,7 +39,7 @@ describe('FlatPositionQuestionComponent', () => {
         expect(component.response).toBe(FlatPosition.ThreeSidesExposed);
     });
 
-    it('should notify of completion when clicking on a flat position', () => {
+    it('should notify of completion when clicking on a wall exposing position', () => {
         // given
 
         // when

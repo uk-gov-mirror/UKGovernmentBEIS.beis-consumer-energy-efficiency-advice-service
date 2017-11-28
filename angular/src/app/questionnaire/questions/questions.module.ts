@@ -8,7 +8,7 @@ import {BedroomsQuestionComponent} from "./bedrooms-question/bedrooms-question.c
 import {BoilerTypeQuestionComponent} from "./boiler-type-question/boiler-type-question.component";
 import {ConfirmEpcQuestionComponent} from "./confirm-epc-question/confirm-epc-question.component";
 import {ElectricityTariffQuestionComponent} from "./electricity-tariff-question/electricity-tariff-question.component";
-import {FlatPositionQuestionComponent} from "./flat-position-question/flat-position-question.component";
+import {FlatPositionQuestionComponent} from "./flat-exposed-wall-question/flat-exposed-wall-question.component";
 import {FridgeFreezerQuestionComponent} from "./fridge-freezer-question/fridge-freezer-question.component";
 import {FuelTypeQuestionComponent} from "./fuel-type-question/fuel-type-question.component";
 import {HomeAgeQuestionComponent} from "./home-age-question/home-age-question.component";

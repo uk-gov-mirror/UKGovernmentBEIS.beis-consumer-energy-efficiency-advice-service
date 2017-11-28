@@ -20,7 +20,7 @@ import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
 import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
-import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {FlatPosition} from "../../questionnaire/questions/flat-exposed-wall-question/flat-position";
 import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
 import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
