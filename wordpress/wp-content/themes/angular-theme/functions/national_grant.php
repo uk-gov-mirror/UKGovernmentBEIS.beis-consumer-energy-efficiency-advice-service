@@ -22,7 +22,7 @@ function get_grant_details($grant_post_object)
 
 function get_measure_code($measure_id)
 {
-    return get_field('rdsap_measure_code', $measure_id);
+    return get_field('measure_code', $measure_id);
 }
 
 add_action('rest_api_init', function () {

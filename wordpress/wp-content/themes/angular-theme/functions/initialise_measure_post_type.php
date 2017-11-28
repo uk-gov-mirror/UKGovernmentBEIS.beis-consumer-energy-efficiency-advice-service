@@ -36,6 +36,12 @@ function setup_measure_acf_group() {
             'title' => 'Measures',
             'fields' => array (
                 array (
+                    'key' => 'field_5a1c53bca14f4',
+                    'label' => 'Basic Details',
+                    'name' => 'basic_details_tab',
+                    'type' => 'tab',
+                ),
+                array (
                     'key' => 'field_59f9e731d5484',
                     'label' => 'Headline',
                     'name' => 'headline',
@@ -65,10 +71,10 @@ function setup_measure_acf_group() {
                 ),
                 array (
                     'key' => 'field_59faebb37036d',
-                    'label' => 'RdSAP Measure Code',
-                    'name' => 'rdsap_measure_code',
+                    'label' => 'Measure Code',
+                    'name' => 'measure_code',
                     'type' => 'text',
-                    'instructions' => 'Identifying code as per "Improvement measures for EPCs" in RdSAP (e.g. "A2" for Loft Insulation)',
+                    'instructions' => 'Identifying code as per BRE API response (RdSAP code e.g. "A2" for Loft Insulation, or custom code e.g. one_degree_reduction)',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
@@ -126,6 +132,26 @@ function setup_measure_acf_group() {
                         1 => 'post_title',
                     ),
                     'max' => '',
+                ),
+                array (
+                    'key' => 'field_5a1c53f320255',
+                    'label' => 'Tags',
+                    'name' => 'tags_tab',
+                    'type' => 'tab',
+                ),
+                array (
+                    'key' => 'field_5a1c544fb4da4',
+                    'label' => 'Tags',
+                    'name' => 'tags',
+                    'instructions' => 'Tags to be displayed with this measure on the results page',
+                    'type' => 'checkbox',
+                    'choices' => array (
+                        'tag_quick_win' => 'Quick win',
+                        'tag_small_spend' => 'Small spend',
+                        'tag_longer_term' => 'Longer term'
+                    ),
+                    'default_value' => '',
+                    'layout' => 'vertical',
                 )
             ),
             'location' => array (

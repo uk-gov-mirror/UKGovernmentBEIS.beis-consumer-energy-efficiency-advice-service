@@ -30,9 +30,14 @@
                 heading="Savings per month up to"
                 [value]="'£' + roundedMonthlySaving"
         ></app-data-card>
-        <div class="add-to-plan-column">
-            <div class="add-to-plan-text">Add to plan</div>
-            <button class="add-to-plan-plus">+</button>
+        <div class="add-to-plan-column"
+             [class.selected]="isAddedToPlan"
+             (click)="toggleAddedToPlan()">
+            <button class="add-to-plan-text">
+                {{isAddedToPlan ? 'Added to plan' : 'Add to plan'}}
+            </button>
+            <div class="add-to-plan-icon icon-tick-white" *ngIf="isAddedToPlan"></div>
+            <div class="add-to-plan-icon" *ngIf="!isAddedToPlan">+</div>
         </div>
     </div>
     <div class="expanded-view-row" [class.expanded]="isExpandedView">
@@ -55,7 +60,7 @@
                 </li>
             </ul>
         </div>
-        <app-break-even
+        <app-break-even *ngIf="recommendation.investmentPounds > 0"
                 [investmentPounds]="recommendation.investmentPounds"
                 lifespanYears="40"
                 [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">

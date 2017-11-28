@@ -2,7 +2,7 @@
 @import "../recommendation-tags/_recommendation-tags.scss";
 @import "styles/mixins/_font";
 @import "styles/mixins/_buttons";
-@import "styles/var/_colours";
+@import "styles/var/colors";
 
 $column-side-padding: 20px;
 $icon-column-width: 100px;
@@ -91,6 +91,15 @@ $icon-column-width: 100px;
       justify-content: center;
       background-color: $lighter-medium-grey;
       padding: $column-side-padding;
+      cursor: pointer;
+
+      &.selected {
+        background-color: $focus-blue;
+
+        .add-to-plan-text {
+          color: white;
+        }
+      }
 
       .add-to-plan-text {
         text-transform: uppercase;
@@ -98,20 +107,23 @@ $icon-column-width: 100px;
         font-size: 12px;
         text-align: center;
         font-weight: bold;
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+
+        &:focus {
+          text-decoration: underline;
+        }
       }
 
-      .add-to-plan-plus {
+      .add-to-plan-icon {
         font-size: 72px;
         line-height: 0.4;
         outline: none;
         background: none;
         border: none;
         padding: 0;
-        cursor: pointer;
-
-        &:focus, &:hover {
-          text-shadow: 3px 3px 1px $light-grey;
-        }
       }
     }
   }

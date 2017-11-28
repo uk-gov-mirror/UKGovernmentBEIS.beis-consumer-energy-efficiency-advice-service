@@ -148,6 +148,10 @@
   content: url('assets/images/icons/tick.svg');
 }
 
+.icon-tick-white::before {
+  content: url('assets/images/icons/tick-white.svg');
+}
+
 .icon-cross::before {
   content: url('assets/images/icons/cross.svg');
 }

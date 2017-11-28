@@ -8,5 +8,5 @@ import {Component, Input} from "@angular/core";
 export class DataCardComponent {
     @Input() heading: string;
     @Input() value: string;
-    @Input() includeColourCircle: boolean = false;
+    @Input() circleColor: string;
 }
