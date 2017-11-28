@@ -121,6 +121,7 @@
             .content {
               display: flex;
               flex-direction: column;
+              min-width: 1px;
 
               .recommendation-text {
                 font-size: 24px;
