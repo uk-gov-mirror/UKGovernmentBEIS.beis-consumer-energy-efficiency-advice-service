@@ -9,6 +9,6 @@ export interface MeasureContent {
         featured_page: string;
         linked_pages: AcfPageResponse[];
         advantages: string;
-        tags: RecommendationTagJsonName[];
+        tags: RecommendationTagJsonName[]
     }
 }
