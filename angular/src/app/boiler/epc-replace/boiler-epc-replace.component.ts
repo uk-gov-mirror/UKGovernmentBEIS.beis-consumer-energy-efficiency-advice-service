@@ -8,6 +8,7 @@ import sortBy from "lodash-es/sortBy";
 import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
+import values from "lodash-es/values";
 
 @Component({
     selector: 'app-boiler-epc-replace',
@@ -38,7 +39,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
                 ([epcRecommendations, measures, boilerTypes]) => {
                     this.recommendations = epcRecommendations;
                     this.measures = measures;
-                    this.boilerTypes = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower));
+                    this.boilerTypes = sortBy(values(boilerTypes), type => +(type.installationCostLower));
                 },
                 () => this.handleError(),
                 () => this.loading = false,

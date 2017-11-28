@@ -14,6 +14,7 @@ import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measure
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import values from "lodash-es/values";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -78,7 +79,7 @@ describe('BoilerResultsPageComponent', () => {
 
     it('should show a boiler option card for each applicable boiler', () => {
         // given
-        component.applicableBoilerTypes = Object.values(new AllBoilerTypes(boilerTypesResponse));
+        component.applicableBoilerTypes = values(new AllBoilerTypes(boilerTypesResponse));
 
         // when
         fixture.detectChanges();
@@ -88,8 +89,8 @@ describe('BoilerResultsPageComponent', () => {
         const actualBoilers = optionCards.map(el => el.componentInstance.boiler);
 
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(expectedBoilers => {
-            expect(actualBoilers.length).toBe(Object.values(expectedBoilers).length);
-            Object.values(expectedBoilers).forEach(boiler => expect(actualBoilers).toContain(boiler));
+            expect(actualBoilers.length).toBe(values(expectedBoilers).length);
+            values(expectedBoilers).forEach(boiler => expect(actualBoilers).toContain(boiler));
         });
     });
 

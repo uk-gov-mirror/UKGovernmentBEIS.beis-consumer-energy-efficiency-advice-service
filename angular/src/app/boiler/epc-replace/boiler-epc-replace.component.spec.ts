@@ -19,6 +19,7 @@ import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measure
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
+import values from "lodash-es/values";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -129,8 +130,8 @@ describe('BoilerEpcReplaceComponent', () => {
 
     it('should store the boiler types returned from the API', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(boilerTypes => {
-            expect(component.boilerTypes.length).toBe(Object.values(boilerTypes).length);
-            Object.values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
+            expect(component.boilerTypes.length).toBe(values(boilerTypes).length);
+            values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
         });
     });
 

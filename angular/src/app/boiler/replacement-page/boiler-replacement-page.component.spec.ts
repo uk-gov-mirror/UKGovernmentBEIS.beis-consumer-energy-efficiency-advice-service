@@ -9,6 +9,7 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
+import values from "lodash-es/values";
 
 describe('BoilerReplacementPageComponent', () => {
     let component: BoilerReplacementPageComponent;
@@ -54,8 +55,8 @@ describe('BoilerReplacementPageComponent', () => {
 
     it('should store the boiler types returned from the API', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(boilerTypes => {
-            expect(component.boilers.length).toBe(Object.values(boilerTypes).length);
-            Object.values(boilerTypes).forEach(boiler => expect(component.boilers).toContain(boiler));
+            expect(component.boilers.length).toBe(values(boilerTypes).length);
+            values(boilerTypes).forEach(boiler => expect(component.boilers).toContain(boiler));
         });
     });
 

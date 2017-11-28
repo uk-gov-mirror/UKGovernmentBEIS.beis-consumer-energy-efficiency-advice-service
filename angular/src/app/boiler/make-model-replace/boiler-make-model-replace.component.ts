@@ -7,6 +7,7 @@ import {FuelType, getFuelTypeDescription} from "../../questionnaire/questions/fu
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import sortBy from "lodash-es/sortBy";
+import values from "lodash-es/values";
 
 @Component({
     selector: 'app-boiler-make-model-replace',
@@ -36,7 +37,7 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
         )
             .subscribe(
                 ([gasAndOilBoiler, boilerTypes]) => {
-                    this.boilerTypes = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower));
+                    this.boilerTypes = sortBy(values(boilerTypes), type => +(type.installationCostLower));
                     this.boiler = gasAndOilBoiler;
                 },
                 err => this.handleError(err),

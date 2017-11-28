@@ -11,6 +11,7 @@ import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
+import values from "lodash-es/values";
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
@@ -75,8 +76,8 @@ describe('BoilerMakeModelReplaceComponent', () => {
 
     it('should store the boiler types returned from the API', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(boilerTypes => {
-            expect(component.boilerTypes.length).toBe(Object.values(boilerTypes).length);
-            Object.values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
+            expect(component.boilerTypes.length).toBe(values(boilerTypes).length);
+            values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
         });
     });
 
