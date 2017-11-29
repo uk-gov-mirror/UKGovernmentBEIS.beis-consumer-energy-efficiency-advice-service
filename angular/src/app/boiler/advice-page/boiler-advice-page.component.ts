@@ -16,6 +16,7 @@ export class BoilerAdvicePageComponent implements OnInit {
     boilerSlug: string;
     boilerType: BoilerType;
 
+    private static readonly GAS_BOILERS = ['combi-boiler', 'system-boiler', 'regular-boiler'];
     private static readonly BOILER_REGULATIONS: BoilerRegulation[] = [
         {
             headline: 'Weather compensators',
@@ -52,8 +53,7 @@ export class BoilerAdvicePageComponent implements OnInit {
     }
 
     isGasBoiler(): boolean {
-        const gasBoilers = ['combi-boiler', 'system-boiler', 'regular-boiler'];
-        return gasBoilers.includes(this.boilerSlug);
+        return BoilerAdvicePageComponent.GAS_BOILERS.includes(this.boilerSlug);
     }
 
     private setBoilerTypeFrom(boilerTypes: BoilerType[]) {

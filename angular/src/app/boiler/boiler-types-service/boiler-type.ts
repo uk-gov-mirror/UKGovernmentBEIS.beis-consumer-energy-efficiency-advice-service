@@ -1,5 +1,5 @@
 import {BoilerTypeMetadataResponse} from "./boiler-type-metadata-response";
-import {decode} from "he";
+import * as decode from "decode-html";
 
 export interface ProOrCon {
     heading: string;
