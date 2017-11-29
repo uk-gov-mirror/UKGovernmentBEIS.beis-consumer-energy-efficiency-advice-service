@@ -140,54 +140,123 @@ function setup_boiler_acf_group() {
                     'max' => '',
                     'step' => '',
                 ),
-                array (
-                    'key' => 'field_5a1bea6b57693',
+                array(
+                    'key' => 'field_5a1e9200d6359',
                     'label' => 'Pros',
                     'name' => 'pros',
-                    'type' => 'textarea',
-                    'instructions' => 'Until we get the full version of ACF with repeater fields... Write your pros here as JSON in the following format:
-	
-	[
-			{
-					"heading": "Heading 1",
-					"body": "Body 1"
-			},
-			{
-					"heading": "Heading 2",
-					"body": "Body 2"
-			}
-	]',
-                    'required' => 1,
-                    'default_value' => '[]',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'formatting' => 'none',
-                    'maxlength' => '',
+                    'type' => 'repeater',
+                    'instructions' => 'Upsides of this type of boiler',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'collapsed' => '',
+                    'min' => 0,
+                    'max' => 0,
+                    'layout' => 'table',
+                    'button_label' => '',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_5a1e9233d635a',
+                            'label' => 'Heading',
+                            'name' => 'heading',
+                            'type' => 'text',
+                            'instructions' => 'A short heading summarising this pro',
+                            'required' => 1,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'maxlength' => '',
+                        ),
+                        array(
+                            'key' => 'field_5a1e924ed635b',
+                            'label' => 'Body',
+                            'name' => 'body',
+                            'type' => 'textarea',
+                            'instructions' => 'Details of this pro',
+                            'required' => 1,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'maxlength' => '',
+                            'rows' => '',
+                            'new_lines' => '',
+                        ),
+                    ),
                 ),
-                array (
-                    'key' => 'field_5a1beb6757694',
+                array(
+                    'key' => 'field_5a1e9262d635c',
                     'label' => 'Cons',
                     'name' => 'cons',
-                    'type' => 'textarea',
-                    'instructions' => 'Until we get the full version of ACF with repeater fields... Write your cons here as JSON in the following format:
-	
-	[
-			{
-					"heading": "Heading 1",
-					"body": "Body 1"
-			},
-			{
-					"heading": "Heading 2",
-					"body": "Body 2"
-			}
-	]',
-                    'default_value' => '[]',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'formatting' => 'html',
-                    'maxlength' => '',
+                    'type' => 'repeater',
+                    'instructions' => 'Downsides of this type of boiler',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'collapsed' => '',
+                    'min' => 0,
+                    'max' => 0,
+                    'layout' => 'table',
+                    'button_label' => '',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_5a1e927bd635d',
+                            'label' => 'Heading',
+                            'name' => 'heading',
+                            'type' => 'text',
+                            'instructions' => 'A short heading summarising this con',
+                            'required' => 1,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'maxlength' => '',
+                        ),
+                        array(
+                            'key' => 'field_5a1e9291d635e',
+                            'label' => 'Body',
+                            'name' => 'body',
+                            'type' => 'textarea',
+                            'instructions' => 'Details of this con',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'maxlength' => '',
+                            'rows' => '',
+                            'new_lines' => '',
+                        ),
+                    ),
                 ),
             ),
             'location' => array (

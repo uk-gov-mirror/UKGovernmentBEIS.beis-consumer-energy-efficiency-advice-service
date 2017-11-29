@@ -1,10 +1,4 @@
-import {BoilerTypeMetadataResponse} from "./boiler-type-metadata-response";
-import * as decode from "decode-html";
-
-export interface ProOrCon {
-    heading: string;
-    body: string;
-}
+import {BoilerTypeMetadataResponse, ProOrCon} from "./boiler-type-metadata-response";
 
 export class BoilerType {
     constructor(public slug: string,
@@ -33,17 +27,8 @@ export class BoilerType {
             +metadata.acf.installation_cost_upper_bound,
             +metadata.acf.lifetime,
             +metadata.acf.running_cost,
-            BoilerType.tryParse(metadata.acf.pros),
-            BoilerType.tryParse(metadata.acf.cons),
+            metadata.acf.pros === false ? [] : metadata.acf.pros,
+            metadata.acf.cons === false ? [] : metadata.acf.cons,
         );
-    }
-
-    private static tryParse(encodedJsonString: string): any {
-        try {
-            return JSON.parse(decode(encodedJsonString));
-        } catch (e) {
-            console.error(e);
-            return [];
-        }
     }
 }

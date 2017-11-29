@@ -1,3 +1,8 @@
+export interface ProOrCon {
+    heading: string;
+    body: string;
+}
+
 export interface BoilerTypeMetadataResponse {
     slug: string;
     acf: {
@@ -8,7 +13,7 @@ export interface BoilerTypeMetadataResponse {
         installation_cost_upper_bound: number;
         lifetime: number;
         running_cost: number;
-        pros: string;
-        cons: string;
+        pros: ProOrCon[] | false;
+        cons: ProOrCon[] | false;
     }
 }
