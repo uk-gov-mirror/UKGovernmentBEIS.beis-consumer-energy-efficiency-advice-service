@@ -1,4 +1,5 @@
-import {BoilerTypeMetadataResponse, ProOrCon} from "./boiler-type-metadata-response";
+import {BoilerTypeMetadataResponse} from "./boiler-type-metadata-response";
+import {ProOrCon} from "./pro-or-con";
 
 export class BoilerType {
     constructor(public slug: string,

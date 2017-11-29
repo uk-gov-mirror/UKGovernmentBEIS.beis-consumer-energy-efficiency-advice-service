@@ -1,7 +1,4 @@
-export interface ProOrCon {
-    heading: string;
-    body: string;
-}
+import {ProOrCon} from "./pro-or-con";
 
 export interface BoilerTypeMetadataResponse {
     slug: string;
