@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
 
 import {BoilerOptionCardComponent} from "./boiler-option-card.component";
@@ -9,19 +10,22 @@ describe('BoilerOptionCardComponent', () => {
     let fixture: ComponentFixture<BoilerOptionCardComponent>;
 
     const boiler = new BoilerType(
+        'fake',
         'Fake Boiler',
         'Fake description',
-        '/no/path',
         'No space requirement',
         100,
         200,
         15,
         1000,
+        [],
+        []
     );
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [BoilerOptionCardComponent]
+            declarations: [BoilerOptionCardComponent],
+            imports: [RouterTestingModule],
         })
             .compileComponents();
     }));

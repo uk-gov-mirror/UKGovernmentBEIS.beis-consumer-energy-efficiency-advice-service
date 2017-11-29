@@ -42,6 +42,7 @@ import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-ef
 import {YourPlanComponent} from "./your-plan/your-plan.component";
 import {BreakEvenComponent} from "./break-even/break-even.component";
 import values from "lodash-es/values";
+import {MeasureResponse} from "../../shared/energy-calculation-api-service/response/measure-response";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -278,7 +279,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
     it('should display all home improvement measures correctly when recommendations list is expanded', () => {
         // given
         const expectedMeasures = values(dummyEnergyCalculations.measures)
-            .map(measure => [measure.cost_saving, measure.energy_saving]);
+            .map((measure: MeasureResponse) => [measure.cost_saving, measure.energy_saving]);
 
         // when
         fixture.detectChanges();
@@ -296,7 +297,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
     it('should display all habit measures correctly when recommendations list is expanded', () => {
         // given
         const expectedMeasures = values(dummyEnergyCalculations.habit_measures)
-            .map(measure => [measure.cost_saving, measure.energy_saving]);
+            .map((measure: MeasureResponse) => [measure.cost_saving, measure.energy_saving]);
 
         // when
         fixture.detectChanges();

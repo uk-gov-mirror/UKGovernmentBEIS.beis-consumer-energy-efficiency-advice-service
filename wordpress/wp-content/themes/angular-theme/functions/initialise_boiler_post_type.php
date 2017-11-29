@@ -141,16 +141,53 @@ function setup_boiler_acf_group() {
                     'step' => '',
                 ),
                 array (
-                    'key' => 'field_5a0c7e75873ce',
-                    'label' => 'Featured page',
-                    'name' => 'featured_page',
-                    'type' => 'page_link',
-                    'instructions' => 'The advice page to display when user clicks \'Read More\' for this recommendation',
-                    'post_type' => array (
-                        0 => 'page',
-                    ),
-                    'allow_null' => 0,
-                    'multiple' => 0,
+                    'key' => 'field_5a1bea6b57693',
+                    'label' => 'Pros',
+                    'name' => 'pros',
+                    'type' => 'textarea',
+                    'instructions' => 'Until we get the full version of ACF with repeater fields... Write your pros here as JSON in the following format:
+	
+	[
+			{
+					"heading": "Heading 1",
+					"body": "Body 1"
+			},
+			{
+					"heading": "Heading 2",
+					"body": "Body 2"
+			}
+	]',
+                    'required' => 1,
+                    'default_value' => '[]',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'none',
+                    'maxlength' => '',
+                ),
+                array (
+                    'key' => 'field_5a1beb6757694',
+                    'label' => 'Cons',
+                    'name' => 'cons',
+                    'type' => 'textarea',
+                    'instructions' => 'Until we get the full version of ACF with repeater fields... Write your cons here as JSON in the following format:
+	
+	[
+			{
+					"heading": "Heading 1",
+					"body": "Body 1"
+			},
+			{
+					"heading": "Heading 2",
+					"body": "Body 2"
+			}
+	]',
+                    'default_value' => '[]',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'html',
+                    'maxlength' => '',
                 ),
             ),
             'location' => array (

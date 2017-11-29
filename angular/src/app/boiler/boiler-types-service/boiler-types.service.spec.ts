@@ -5,7 +5,7 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
 import {HttpRequest} from "@angular/common/http";
 import {BoilerTypesService} from "./boiler-types.service";
-import {AllBoilerTypes} from "./boiler-type";
+import {BoilerType} from "./boiler-type";
 
 describe('BoilerTypesService', () => {
     let httpMock: HttpTestingController;
@@ -34,6 +34,7 @@ describe('BoilerTypesService', () => {
         it('returns boiler types from the WP backend', () => {
             // given
             const boilerTypesResponse = require('assets/test/boiler-types-response.json');
+            const expectedResponse = boilerTypesResponse.map(boiler => BoilerType.fromMetadata(boiler));
 
             // when
             const actualResponse = service.fetchBoilerTypes().toPromise();
@@ -42,7 +43,7 @@ describe('BoilerTypesService', () => {
 
             // then
             actualResponse.then(response =>
-                expect(response).toEqual(new AllBoilerTypes(boilerTypesResponse))
+                expect(response).toEqual(expectedResponse)
             );
         });
 

@@ -8,6 +8,7 @@ export interface BoilerTypeMetadataResponse {
         installation_cost_upper_bound: number;
         lifetime: number;
         running_cost: number;
-        featured_page: string;
+        pros: string;
+        cons: string;
     }
 }

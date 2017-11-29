@@ -1,15 +1,22 @@
 import {BoilerTypeMetadataResponse} from "./boiler-type-metadata-response";
-import * as parse from "url-parse";
+import * as decode from "decode-html";
+
+export interface ProOrCon {
+    heading: string;
+    body: string;
+}
 
 export class BoilerType {
-    constructor(public name: string,
+    constructor(public slug: string,
+                public name: string,
                 public description: string,
-                public readMorePath: string,
                 public spaceRequirement: string,
                 public installationCostLower: number,
                 public installationCostUpper: number,
                 public lifetimeYears: number,
-                public runningCostPerYear: number) {
+                public runningCostPerYear: number,
+                public pros: ProOrCon[],
+                public cons: ProOrCon[]) {
     }
 
     get averageInstallationCost() {
@@ -18,22 +25,25 @@ export class BoilerType {
 
     static fromMetadata(metadata: BoilerTypeMetadataResponse): BoilerType {
         return new BoilerType(
+            metadata.slug,
             metadata.acf.name,
             metadata.acf.description,
-            parse(metadata.acf.featured_page).pathname,
             metadata.acf.space_requirement,
             +metadata.acf.installation_cost_lower_bound,
             +metadata.acf.installation_cost_upper_bound,
             +metadata.acf.lifetime,
             +metadata.acf.running_cost,
+            BoilerType.tryParse(metadata.acf.pros),
+            BoilerType.tryParse(metadata.acf.cons),
         );
     }
-}
 
-export class AllBoilerTypes {
-    [slug: string]: BoilerType;
-
-    constructor(boilerApiResponse: BoilerTypeMetadataResponse[]) {
-        boilerApiResponse.forEach(boiler => this[boiler.slug] = BoilerType.fromMetadata(boiler));
+    private static tryParse(encodedJsonString: string): any {
+        try {
+            return JSON.parse(decode(encodedJsonString));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
     }
 }

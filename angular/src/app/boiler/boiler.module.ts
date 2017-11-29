@@ -21,6 +21,8 @@ import {BoilerResultsPageRouteGuard} from "./results-page/boiler-results-page.gu
 import {BoilerReplacementPageComponent} from "./replacement-page/boiler-replacement-page.component";
 import {GasAndOilBoilersService} from "./gas-and-oil-boilers/gas-and-oil-boilers.service";
 import {BoilerMakeModelReplaceComponent} from "./make-model-replace/boiler-make-model-replace.component";
+import {BoilerAdvicePageComponent} from "./advice-page/boiler-advice-page.component";
+import {BoilerRegulationCardComponent} from "./advice-page/boiler-regulation-card/boiler-regulation-card.component";
 
 @NgModule({
     declarations: [
@@ -36,6 +38,8 @@ import {BoilerMakeModelReplaceComponent} from "./make-model-replace/boiler-make-
         BoilerMeasuresSectionComponent,
         BoilerReplacementPageComponent,
         BoilerMakeModelReplaceComponent,
+        BoilerAdvicePageComponent,
+        BoilerRegulationCardComponent,
     ],
     imports: [
         CommonModule,
@@ -51,6 +55,7 @@ import {BoilerMakeModelReplaceComponent} from "./make-model-replace/boiler-make-
         BoilerResultsPageComponent,
         BoilerReplacementPageComponent,
         BoilerMakeModelReplaceComponent,
+        BoilerAdvicePageComponent,
     ],
 })
 export class BoilerModule {

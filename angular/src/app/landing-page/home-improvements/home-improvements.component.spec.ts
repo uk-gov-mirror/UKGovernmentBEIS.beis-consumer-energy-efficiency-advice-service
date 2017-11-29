@@ -5,7 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 
 import {HomeImprovementsComponent} from "./home-improvements.component";
-import {LargeVideoCardComponent} from "../large-video-card/large-video-card.component";
+import {LargeVideoCardComponent} from "../../shared/large-video-card/large-video-card.component";
 import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news-card.component";
 import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";
