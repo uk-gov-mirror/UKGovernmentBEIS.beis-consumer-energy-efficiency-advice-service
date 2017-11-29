@@ -31,6 +31,10 @@ export class YourPlanFooterComponent implements OnInit, DoCheck {
         this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
     }
 
+    removeFromPlan(recommendation: EnergyEfficiencyRecommendation) {
+        this.recommendationsService.toggleAddedToPlan(recommendation);
+    }
+
     @HostListener("window:scroll", [])
     updateYourPlanRowPosition() {
         const footer = document.querySelector('#page-footer');

@@ -22,7 +22,7 @@ import {RecommendationCardComponent} from "./recommendation-card/recommendation-
 import {EpcApiService} from "./postcode-epc-service/epc-api-service/epc-api.service";
 import {GoogleAnalyticsService} from "./analytics/google-analytics.service";
 import {EnergySavingMeasureContentService} from "./energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {QuestionReasonComponent} from './question-reason/question-reason.component';
+import {QuestionReasonComponent} from "./question-reason/question-reason.component";
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";

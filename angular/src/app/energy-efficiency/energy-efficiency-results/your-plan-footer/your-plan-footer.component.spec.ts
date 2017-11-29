@@ -6,6 +6,8 @@ import {DataCardComponent} from "../../data-card/data-card.component";
 import {YourPlanSummaryComponent} from "../../your-plan-summary/your-plan-summary.component";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 import {YourPlanFooterComponent} from "./your-plan-footer.component";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('YourPlanFooterComponent', () => {
     let component: YourPlanFooterComponent;
@@ -70,7 +72,11 @@ describe('YourPlanFooterComponent', () => {
                 DataCardComponent,
                 YourPlanSummaryComponent
             ],
-            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
+            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}],
+            imports: [
+                InlineSVGModule,
+                HttpClientTestingModule
+            ]
         })
             .compileComponents();
     }));
@@ -86,7 +92,7 @@ describe('YourPlanFooterComponent', () => {
     });
 
     it('should display the correct recommendations', () => {
-        const recommendationHeadlines = fixture.debugElement.queryAll(By.css('.recommendations-list-item'))
+        const recommendationHeadlines = fixture.debugElement.queryAll(By.css('.recommendation-name'))
             .map(el => el.nativeElement.innerText);
         expect(recommendationHeadlines.length).toEqual(recommendations.length);
         recommendations.forEach(expectedRecommendation =>

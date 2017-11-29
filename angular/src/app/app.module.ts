@@ -4,6 +4,7 @@ import {NgModule} from "@angular/core";
 import {HttpClientModule} from "@angular/common/http";
 import {RoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {AppComponent} from "./app.component";
 import {QuestionnaireModule} from "./questionnaire/questionnaire.module";
@@ -35,6 +36,7 @@ import {EnergyEfficiencyModule} from "./energy-efficiency/energy-efficiency.modu
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
         BoilerModule.forRoot(),
+        InlineSVGModule
     ],
     bootstrap: [AppComponent],
 })

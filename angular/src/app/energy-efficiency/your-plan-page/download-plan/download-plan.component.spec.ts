@@ -3,6 +3,8 @@ import {By} from "@angular/platform-browser";
 import {DownloadPlanComponent} from "./download-plan.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('DownloadPlanComponent', () => {
     let component: DownloadPlanComponent;
@@ -17,7 +19,11 @@ describe('DownloadPlanComponent', () => {
             declarations: [
                 DownloadPlanComponent,
             ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [{provide: ResponseData, useValue: responseData}],
+            imports: [
+                InlineSVGModule,
+                HttpClientTestingModule
+            ]
         })
             .compileComponents();
     }));

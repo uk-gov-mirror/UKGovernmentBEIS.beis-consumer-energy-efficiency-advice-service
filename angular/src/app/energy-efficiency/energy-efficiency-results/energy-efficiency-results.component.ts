@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
+import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {EnergyCalculations} from "./energy-calculations";
@@ -11,8 +12,8 @@ import {LocalAuthorityService} from "../../shared/local-authority-service/local-
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
-import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
+import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.component";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -21,18 +22,26 @@ import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rd
 })
 export class EnergyEfficiencyResultsComponent implements OnInit {
 
-    private static RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED: number = 5;
-
     localGrants: GrantViewModel[];
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
 
     isLoading: boolean = true;
     isError: boolean = false;
-    recommendationListState: RecommendationsListStates;
-    RecommendationListStates = RecommendationsListStates;
-    activeTagFilters: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
-    allRecommendations: EnergyEfficiencyRecommendation[] = [];
+    _activeTagFilters: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
+
+    get activeTagFilters(): EnergyEfficiencyRecommendationTag {
+        return this._activeTagFilters;
+    }
+
+    set activeTagFilters(val: EnergyEfficiencyRecommendationTag) {
+        this._activeTagFilters = val;
+        this.onDisplayedRecommendationCardsChanged();
+    }
+
+    @ViewChild(YourPlanFooterComponent) yourPlanFooterComponent: YourPlanFooterComponent;
+
+    private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
     constructor(private responseData: ResponseData,
                 private recommendationsService: RecommendationsService,
@@ -53,45 +62,19 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
     }
 
+    private onDisplayedRecommendationCardsChanged() {
+        setTimeout(() => {
+            this.yourPlanFooterComponent && this.yourPlanFooterComponent.updateYourPlanRowPosition();
+        });
+    }
+
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
-        if (this.recommendationListState === RecommendationsListStates.Collapsed) {
-            return this.allRecommendations
-                .slice(0, EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED);
-        } else {
-            return this.allRecommendations
-                .filter(recommendation => {
-                    const requiredTags = this.activeTagFilters;
-                    const matchingTags = requiredTags & recommendation.tags;
-                    return matchingTags === requiredTags;
-                });
-        }
-    }
-
-    toggleRecommendationListState(): void {
-        switch (this.recommendationListState) {
-            case RecommendationsListStates.Collapsed: {
-                this.recommendationListState = RecommendationsListStates.Expanded;
-                break;
-            }
-            case RecommendationsListStates.Expanded: {
-                this.recommendationListState = RecommendationsListStates.Collapsed;
-                this.activeTagFilters = EnergyEfficiencyRecommendationTag.None;
-                break;
-            }
-        }
-    }
-
-    getRecommendationListButtonText(): string {
-        if (this.recommendationListState === RecommendationsListStates.Collapsed) {
-            const extraRecommendationsAvailable = this.allRecommendations.length -
-                EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED;
-            if (extraRecommendationsAvailable === 1) {
-                return 'There is 1 more recommendation available. See all ▼';
-            }
-            return `There are ${extraRecommendationsAvailable} more recommendations available. See all ▼`;
-        } else {
-            return `Show the top ${EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED} recommendations ▲`;
-        }
+        return this.allRecommendations
+            .filter(recommendation => {
+                const requiredTags = this.activeTagFilters;
+                const matchingTags = requiredTags & recommendation.tags;
+                return matchingTags === requiredTags;
+            });
     }
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
@@ -110,15 +93,13 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         energyCalculationResponse: EnergyCalculationResponse
     ) {
         this.allRecommendations = allRecommendations;
+        this.activeTagFilters = EnergyEfficiencyRecommendationTag.TopRecommendations;
         this.localAuthorityName = localAuthority.name;
         this.localGrants = localAuthority.grants;
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             energyCalculationResponse,
             this.allRecommendations
         );
-        this.recommendationListState =
-            this.allRecommendations.length > EnergyEfficiencyResultsComponent.RECOMMENDATIONS_TO_DISPLAY_WHEN_MINIMISED ?
-                RecommendationsListStates.Collapsed : RecommendationsListStates.CannotExpand;
         this.isLoading = false;
     }
 
@@ -131,10 +112,3 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
     }
 }
-
-enum RecommendationsListStates {
-    Collapsed,
-    Expanded,
-    CannotExpand
-}
-

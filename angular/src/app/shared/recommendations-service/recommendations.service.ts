@@ -16,9 +16,12 @@ import {MeasuresResponse} from "../energy-calculation-api-service/response/measu
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
 import {GrantViewModel} from "../../grants/model/grant-view-model";
 import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
+import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Injectable()
 export class RecommendationsService {
+
+    private static TOP_RECOMMENDATIONS: number = 5;
 
     private cachedResponseData: ResponseData;
     private cachedAllRecommendations: RecommendationOption[] = [];
@@ -82,7 +85,8 @@ export class RecommendationsService {
                         .getRecommendationsContent(energyCalculation.habit_measures, measuresContent, availableGrants);
                     const grantRecommendations = RecommendationsService.getGrantRecommendations(availableGrants);
                     const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
-                    return orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+                    const orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+                    return RecommendationsService.tagTopRecommendations(orderedRecommendations);
                 }
             );
     }
@@ -114,5 +118,15 @@ export class RecommendationsService {
         return grants
             .filter(grant => grant.shouldDisplayWithoutMeasures)
             .map(grant => EnergyEfficiencyRecommendation.fromGrant(grant, 'icon-grant'));
+    }
+
+    private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): EnergyEfficiencyRecommendation[] {
+        return recommendations
+            .map((recommendation: EnergyEfficiencyRecommendation, index: number) => {
+                if (index < RecommendationsService.TOP_RECOMMENDATIONS) {
+                    recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations;
+                }
+                return recommendation;
+            });
     }
 }

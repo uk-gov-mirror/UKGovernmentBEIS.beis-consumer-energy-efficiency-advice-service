@@ -22,7 +22,7 @@
   }
 
   .heading {
-    @include card-heading;
+    @include card-heading-small;
     padding: 20px 20px;
     flex-grow: 1;
     flex-shrink: 0;

@@ -16,6 +16,8 @@ import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-g
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -138,7 +140,11 @@ describe('YourPlanPageComponent', () => {
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
             ],
-            imports: [RouterTestingModule]
+            imports: [
+                RouterTestingModule,
+                InlineSVGModule,
+                HttpClientTestingModule
+            ]
         })
             .compileComponents();
     }));

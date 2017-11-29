@@ -11,8 +11,6 @@ $font-family: "nta", Arial, sans-serif;
   font-size: 40px;
   line-height: 42px;
   font-weight: bold;
-  color: $dark-blue;
-  text-transform: capitalize;
 }
 
 @mixin page-subheadline-small {
@@ -22,7 +20,8 @@ $font-family: "nta", Arial, sans-serif;
 }
 
 @mixin page-subheading {
-  font-size: 28px;
+  font-size: 24px;
+  line-height: 32px;
   font-weight: bold;
 }
 
@@ -42,6 +41,13 @@ $font-family: "nta", Arial, sans-serif;
 }
 
 @mixin card-heading {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
+  color: $dark-grey;
+}
+
+@mixin card-heading-small {
   font-size: 16px;
   font-weight: bold;
   line-height: 19px;
@@ -54,10 +60,17 @@ $font-family: "nta", Arial, sans-serif;
   color: $dark-grey;
 }
 
+@mixin card-expand-drawer {
+  font-size: 11px;
+  line-height: 13px;
+  color: $dark-grey;
+  text-transform: uppercase;
+}
+
 @mixin card-more-info-link {
   font-size: 13px;
   line-height: 16px;
-  color: $focus-blue;
+  color: $focus-text-blue;
   text-transform: uppercase;
 }
 
@@ -68,5 +81,6 @@ $font-family: "nta", Arial, sans-serif;
 
 @mixin navbar-item {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
+  line-height: 17px;
 }

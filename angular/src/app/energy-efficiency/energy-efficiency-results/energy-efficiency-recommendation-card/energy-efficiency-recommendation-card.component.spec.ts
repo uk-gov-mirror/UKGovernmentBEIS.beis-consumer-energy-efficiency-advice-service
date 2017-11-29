@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card.component";
 import {DataCardComponent} from "../../data-card/data-card.component";
@@ -58,7 +60,10 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
                 DataCardComponent,
                 BreakEvenComponent
             ],
-            imports: [RouterTestingModule],
+            imports: [
+                RouterTestingModule,
+                InlineSVGModule,
+                HttpClientTestingModule],
             providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
         })
             .compileComponents();
@@ -98,7 +103,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             // then
             expect(tagsElements.length).toBe(2);
             const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
-            expect(tagNames).toContain('grant');
+            expect(tagNames).toContain('grants');
             expect(tagNames).toContain('longer term');
         });
     });

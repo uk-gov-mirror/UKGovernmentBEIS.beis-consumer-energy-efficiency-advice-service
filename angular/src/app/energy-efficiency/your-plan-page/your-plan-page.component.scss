@@ -22,6 +22,7 @@ $grant-card-margin: 10px;
 
       .heading {
         @include page-heading-small;
+        color: $headline-dark-blue;
         margin-bottom: 10px;
       }
 
@@ -32,7 +33,7 @@ $grant-card-margin: 10px;
   }
 
   .recommendations {
-    background-color: $light-grey;
+    background-color: $lighter-grey;
 
     .page-row-content {
       display: flex;
@@ -40,7 +41,7 @@ $grant-card-margin: 10px;
       padding: 20px 0;
 
       & > :not(:last-child) {
-        border-bottom: 1px solid $light-medium-grey;
+        border-bottom: 1px solid $light-grey;
       }
 
       .recommendation-steps-card {
@@ -50,11 +51,12 @@ $grant-card-margin: 10px;
 
         .headline {
           font-weight: bold;
-          font-size: 28px;
+          font-size: 24px;
           margin-bottom: 10px;
         }
 
         .description {
+          @include page-subheadline-small;
           margin-bottom: 20px;
         }
       }
@@ -70,7 +72,12 @@ $grant-card-margin: 10px;
     }
 
     .subheading {
-      @include focus-text;
+      @include page-subheading;
+    }
+
+    .local-authority {
+      @include page-subheadline-small;
+      margin-bottom: 4px;
     }
 
     .grant-cards {

@@ -164,10 +164,11 @@ describe('RecommendationsService', () => {
                 expect(recommendations[0].readMoreRoute).toContain('home-improvements/solar-photovoltaic-panels');
                 expect(recommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['U']);
                 expect(recommendations[0].advantages).toEqual(['Green', 'Cost effective']);
-                expect(recommendations[0].tags).toEqual(EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant);
+                const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
+                    EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.TopRecommendations;
+                expect(recommendations[0].tags).toEqual(expectedTags);
             });
         }));
-
 
         it('should sort recommendations by cost saving descending', async(() => {
             // when
@@ -177,6 +178,19 @@ describe('RecommendationsService', () => {
             recommendations.toPromise().then((recommendations) => {
                 expect(recommendations[0].costSavingPoundsPerYear).toBe(230.64);
                 expect(recommendations[0].energySavingKwhPerYear).toBe(0);
+            });
+        }));
+
+        it('should tag the top 5 recommendations as top-recommendations', async(() => {
+            // when
+            const recommendations = service.getAllRecommendations();
+
+            // then
+            recommendations.toPromise().then((recommendations) => {
+                recommendations.filter((rec, index) => index < 5)
+                    .forEach(rec => expect(rec.tags & EnergyEfficiencyRecommendationTag.TopRecommendations).toBeTruthy());
+                recommendations.filter((rec, index) => index >= 5)
+                    .forEach(rec => expect(rec.tags & EnergyEfficiencyRecommendationTag.TopRecommendations).toBeFalsy());
             });
         }));
 

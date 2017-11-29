@@ -6,11 +6,15 @@
                  [class.plan-empty]="recommendations.length === 0">
                 {{recommendations.length > 0 ? 'You have added:' : 'Try adding some recommendations to your plan'}}
             </div>
-            <ul class="recommendations-list">
-                <li class="recommendations-list-item"
-                    *ngFor="let recommendation of recommendations">{{recommendation.headline}}
-                </li>
-            </ul>
+            <div class="recommendations-list">
+                <div class="recommendations-list-item"
+                     *ngFor="let recommendation of recommendations"
+                     (click)="removeFromPlan(recommendation)">
+                    <div class="list-icon">></div>
+                    <button class="recommendation-name">{{recommendation.headline}}</button>
+                    <div class="remove-recommendation-button" [inlineSVG]="'controls/remove.svg'"></div>
+                </div>
+            </div>
         </div>
         <app-your-plan-summary></app-your-plan-summary>
         <a class="do-button"

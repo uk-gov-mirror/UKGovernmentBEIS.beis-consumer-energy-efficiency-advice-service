@@ -7,7 +7,7 @@
             <app-data-card
                     heading="Your current score is"
                     value="55"
-                    circleColor="orange"
+                    colorCircleClassName="amber"
             ></app-data-card>
             <app-data-card
                     heading="Your estimated monthly bills are"
@@ -22,23 +22,12 @@
     <div class="page-row recommendations">
         <div class="page-row-content">
             <div class="recommendations-heading">
-                <div *ngIf="recommendationListState === RecommendationListStates.Collapsed">
-                    Our top {{getDisplayedRecommendations().length}} recommendations for you
-                </div>
-                <div *ngIf="recommendationListState === RecommendationListStates.Expanded">
-                    All recommendations
-                </div>
-                <div *ngIf="recommendationListState === RecommendationListStates.CannotExpand">
-                    Our {{getDisplayedRecommendations().length}} recommendations for you
-                </div>
+                Add recommendations to your plan
             </div>
-            <div class="recommendations-subheading" *ngIf="recommendationListState !== RecommendationListStates.Expanded">
-                Based on your answers we've found a range of measures you can add to your plan
+            <div class="recommendations-subheading">
+                We've selected our top recommendations but you can filter by the following:
             </div>
-            <div class="recommendations-filter" *ngIf="recommendationListState !== RecommendationListStates.Collapsed">
-                <div class="filter-description">
-                    You can filter your recommendations by the following
-                </div>
+            <div class="recommendations-filter">
                 <app-recommendation-filter-control
                         [(selectedTags)]="activeTagFilters"></app-recommendation-filter-control>
             </div>
@@ -47,11 +36,6 @@
                         *ngFor="let recommendation of getDisplayedRecommendations()"
                         [recommendation]="recommendation"
                 ></app-energy-efficiency-recommendation-card>
-                <button class="expand-recommendations-list"
-                        *ngIf="recommendationListState !== RecommendationListStates.CannotExpand"
-                        (click)="toggleRecommendationListState()">
-                    {{getRecommendationListButtonText()}}
-                </button>
             </div>
         </div>
     </div>

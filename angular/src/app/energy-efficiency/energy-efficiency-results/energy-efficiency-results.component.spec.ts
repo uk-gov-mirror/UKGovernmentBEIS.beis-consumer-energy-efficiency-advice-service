@@ -4,6 +4,8 @@ import {DebugElement} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
 import {ResponseData} from "../../shared/response-data/response-data";
@@ -153,6 +155,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
+                InlineSVGModule,
+                HttpClientTestingModule
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
@@ -214,10 +218,16 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
-    it('should apply filters when the recommendations list is expanded', () => {
-        // given
+    it('should initialise with the top-recommendations filter selected', () => {
+        // when
         fixture.detectChanges();
-        component.toggleRecommendationListState();
+
+        // then
+        expect(component.activeTagFilters).toEqual(EnergyEfficiencyRecommendationTag.TopRecommendations);
+    });
+
+    it('should apply filters', () => {
+        // given
         fixture.detectChanges();
 
         // when
@@ -232,8 +242,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     it('should apply multiple filters additively', async(() => {
         // given
-        fixture.detectChanges();
-        component.toggleRecommendationListState();
         fixture.detectChanges();
 
         // when
@@ -276,4 +284,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         expect(fixture.debugElement.query(By.css('.page-error-container'))).toBeTruthy();
     });
+
+    function clearFilters(): void {
+        component.activeTagFilters = EnergyEfficiencyRecommendationTag.None;
+        fixture.detectChanges();
+    }
 });

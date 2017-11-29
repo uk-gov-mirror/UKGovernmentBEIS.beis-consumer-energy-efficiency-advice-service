@@ -1,13 +1,13 @@
 @import "styles/var/colors";
 
-$pdf-button-width: 50px;
-$pdf-button-arrow-height: 20px;
+$pdf-button-width: 53px;
+$pdf-button-arrow-height: 12px;
 $send-email-button-height: 40px;
-$send-email-button-arrow-width: 20px;
+$send-email-button-arrow-width: 10px;
 $action-divider-circle-diameter: 40px;
 
 .download-plan.page-row {
-  padding: 40px 0;
+  padding: 34px 0 27px 0;
   border-top: 3px solid $light-medium-grey;
   width: 100vw;
   background-color: white;
@@ -32,7 +32,7 @@ $action-divider-circle-diameter: 40px;
 
     .download-your-plan, .download-landlord-report, .email-your-plan {
       display: flex;
-      padding: 0 40px;
+      padding: 0 40px 0 80px;
       flex: 1 0 1px;
       justify-content: space-around;
 
@@ -55,15 +55,17 @@ $action-divider-circle-diameter: 40px;
       }
 
       .download-pdf {
-        background-color: $focus-blue;
-        font-size: 13px;
+        background-color: $action-button-blue;
         outline: none;
         border: none;
         position: relative;
         flex: 0 0 $pdf-button-width;
-        height: 60px;
+        height: 64px;
         cursor: pointer;
-        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
 
         &::after {
           content: '';
@@ -74,7 +76,26 @@ $action-divider-circle-diameter: 40px;
           width: 0;
           border-right: $pdf-button-width/2 solid transparent;
           border-left: $pdf-button-width/2 solid transparent;
-          border-top: $pdf-button-arrow-height solid $focus-blue;
+          border-top: $pdf-button-arrow-height solid $action-button-blue;
+        }
+
+        .download-pdf-text {
+          font-size: 13px;
+          color: white;
+          outline: none;
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0 0 20px;
+        }
+
+        .download-pdf-icon {
+          transform: rotate(90deg);
+          stroke: white;
+          width: 16px;
+          height: 16px;
+          display: block;
+          line-height: 0;
         }
       }
     }
@@ -105,7 +126,7 @@ $action-divider-circle-diameter: 40px;
           outline: none;
           border: none;
           margin: 0;
-          background-color: $light-grey;
+          background-color: $lighter-grey;
           padding: 10px;
           font-size: 16px;
         }
@@ -117,7 +138,7 @@ $action-divider-circle-diameter: 40px;
           padding: 0;
           position: relative;
           flex: 0 0 60px;
-          background: $focus-blue;
+          background: $action-button-blue;
           color: white;
           cursor: pointer;
 
@@ -128,7 +149,7 @@ $action-divider-circle-diameter: 40px;
             right: -$send-email-button-arrow-width;
             width: 0;
             height: 0;
-            border-left: $send-email-button-arrow-width solid $focus-blue;
+            border-left: $send-email-button-arrow-width solid $action-button-blue;
             border-top: $send-email-button-height/2 solid transparent;
             border-bottom: $send-email-button-height/2 solid transparent;
           }

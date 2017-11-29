@@ -1,7 +1,8 @@
 @import "styles/var/colors";
+@import "styles/mixins/font";
 @import "../../_energy-efficiency-page-sizes";
 
-$do-button-height: 120px;
+$do-button-height: 110px;
 $do-button-width: $add-to-plan-column-width;
 $do-button-left-chevron-width: 20px;
 $do-button-right-chevron-width: 30px;
@@ -34,21 +35,54 @@ $do-button-right-chevron-width: 30px;
         font-weight: bold;
         text-transform: capitalize;
         margin-bottom: 10px;
-        font-size: 18px;
+        @include card-heading;
       }
 
       .recommendations-list {
         margin: 0;
         padding: 0;
         list-style: none;
+        font-size: 16px;
+        line-height: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
         .recommendations-list-item {
-          &::before {
-            content: ">";
-            color: $focus-blue;
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+
+          &:hover {
+            .remove-recommendation-button {
+              visibility: visible;
+            }
+          }
+
+          .list-icon {
+            color: $focus-text-blue;
             margin-right: 10px;
             font-stretch: extra-condensed;
             font-weight: bold;
+          }
+
+          .recommendation-name {
+            outline: none;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: inherit;
+          }
+
+          .remove-recommendation-button {
+            display: block;
+            width: 12px;
+            height: 12px;
+            margin-left: 10px;
+            line-height: 0;
+            stroke: $red;
+            visibility: hidden;
           }
         }
       }
@@ -56,13 +90,13 @@ $do-button-right-chevron-width: 30px;
       .subheading {
         &.plan-empty {
           font-weight: bold;
-          color: $focus-blue;
+          color: $focus-text-blue;
         }
       }
     }
 
     .do-button {
-      background-color: $focus-blue;
+      background-color: $action-button-blue;
       position: relative;
       box-sizing: border-box;
       width: $do-button-width;
@@ -98,7 +132,7 @@ $do-button-right-chevron-width: 30px;
         height: 0;
         border-top: $do-button-height/2 solid transparent;
         border-bottom: $do-button-height/2 solid transparent;
-        border-left: $do-button-right-chevron-width solid $focus-blue;
+        border-left: $do-button-right-chevron-width solid $action-button-blue;
       }
 
       &.disabled {

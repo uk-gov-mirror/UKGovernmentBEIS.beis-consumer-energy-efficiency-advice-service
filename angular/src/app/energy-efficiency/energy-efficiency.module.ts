@@ -1,5 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {SharedModule} from "../shared/shared.module";
 import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
@@ -41,7 +42,8 @@ import {YourPlanFooterComponent} from "./energy-efficiency-results/your-plan-foo
         SharedModule,
         CommonModule,
         QuestionnaireModule,
-        RoutingModule
+        RoutingModule,
+        InlineSVGModule
     ]
 })
 export class EnergyEfficiencyModule {

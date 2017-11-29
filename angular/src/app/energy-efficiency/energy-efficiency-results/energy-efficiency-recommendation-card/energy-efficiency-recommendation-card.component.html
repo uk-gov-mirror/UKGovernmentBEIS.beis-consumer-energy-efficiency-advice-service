@@ -14,12 +14,12 @@
                 <div class="summary">
                     {{recommendation.summary}}
                 </div>
-                <a class="read-more-button" [routerLink]="recommendation.readMoreRoute">Read more</a>
             </div>
-            <div class="more-detail-row">
-                <button class="more-detail-button" (click)="toggleExpandedView()">
-                    {{isExpandedView ? 'Hide details ▲' : 'See more detail ▼'}}
+            <div class="more-detail-row"  (click)="toggleExpandedView()">
+                <button class="more-detail-button">
+                    {{isExpandedView ? 'Hide detail' : 'See more detail'}}
                 </button>
+                <div class="more-detail-icon" [class.expanded]="isExpandedView" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             </div>
         </div>
         <app-data-card class="investment-required-card"
@@ -32,12 +32,22 @@
         ></app-data-card>
         <div class="add-to-plan-column"
              [class.selected]="isAddedToPlan()"
+             (mouseenter)="mouseEnterAddToPlanButton()"
+             (mouseleave)="mouseLeaveAddToPlanButton()"
              (click)="toggleAddedToPlan()">
             <button class="add-to-plan-text">
-                {{isAddedToPlan() ? 'Added to plan' : 'Add to plan'}}
+                {{getAddToPlanButtonText()}}
             </button>
-            <div class="add-to-plan-icon icon-tick-white" *ngIf="isAddedToPlan()"></div>
-            <div class="add-to-plan-icon" *ngIf="!isAddedToPlan()">+</div>
+            <div class="add-to-plan-icon add"
+                 *ngIf="!isAddedToPlan()"
+                 [inlineSVG]="'controls/add.svg'"></div>
+            <div class="add-to-plan-icon added"
+                 *ngIf="isAddedToPlan() && !isMouseOverAddToPlanButton"
+                 [inlineSVG]="'controls/tick.svg'"
+            ></div>
+            <div class="add-to-plan-icon remove"
+                 *ngIf="isAddedToPlan() && isMouseOverAddToPlanButton"
+                 [inlineSVG]="'controls/remove.svg'"></div>
         </div>
     </div>
     <div class="expanded-view-row" [class.expanded]="isExpandedView">

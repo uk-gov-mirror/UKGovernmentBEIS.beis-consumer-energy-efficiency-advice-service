@@ -1,6 +1,9 @@
 @import "styles/var/colors";
+@import "styles/mixins/font";
 
 $more-info-link-buttons-per-row: 2;
+$step-number-bullet-diameter: 22px;
+$step-number-bullet-margin: 20px;
 
 .recommendation-step-card {
   background-color: white;
@@ -13,29 +16,39 @@ $more-info-link-buttons-per-row: 2;
   .step-main-row {
     display: flex;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 20px;
     align-items: center;
     cursor: pointer;
 
     .bullet {
-      width: 30px;
-      height: 30px;
+      width: 22px;
+      height: 22px;
       border: 1px solid $light-medium-grey;
       border-radius: 50%;
       margin-right: 20px;
     }
 
     .step-number {
-      color: $focus-blue;
+      color: $focus-text-blue;
       text-transform: uppercase;
       margin-right: 20px;
     }
 
-    .expand-step-icon {
-      margin-left: auto;
+    .step-headline {
+      @include card-heading;
       background: none;
       outline: none;
       border: none;
+      cursor: inherit;
+    }
+
+    .expand-step-icon {
+      margin-left: auto;
+      fill: $action-button-blue;
+      display: block;
+      width: 14px;
+      height: 8px;
+      line-height: 0;
 
       &.expanded {
         transform: rotate(180deg);
@@ -51,10 +64,11 @@ $more-info-link-buttons-per-row: 2;
     }
 
     .step-description {
-      border-right: 1px solid $light-grey;
+      border-right: 1px solid $lighter-medium-grey;
       padding-right: 40px;
+      margin-left: $step-number-bullet-diameter + $step-number-bullet-margin;
       margin-right: 40px;
-      width: 50%;
+      width: 420px;
     }
 
     .more-info-links {
@@ -68,6 +82,7 @@ $more-info-link-buttons-per-row: 2;
         flex: 0 0 260px;
         cursor: pointer;
         text-decoration: none;
+        height: 80px;
 
         &:nth-last-child(-n + #{$more-info-link-buttons-per-row}) {
           margin-bottom: 10px;
@@ -77,25 +92,36 @@ $more-info-link-buttons-per-row: 2;
           margin-left: 10px;
         }
 
-        .more-info-description, .more-info-icon {
-          padding: 16px;
+        .more-info-description, .more-info-icon-container {
+          padding: 20px;
         }
 
         .more-info-description {
-          background-color: $dark-blue;
+          background-color: $button-dark-blue;
           text-transform: uppercase;
-          font-size: 12px;
+          font-size: 13px;
+          line-height: 15px;
           flex: 1;
           display: flex;
           align-items: center;
           justify-content: flex-start;
         }
 
-        .more-info-icon {
-          background-color: $focus-blue;
+        .more-info-icon-container {
+          background-color: $action-button-blue;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .more-info-icon {
+            width: 15px;
+            height: 23px;
+            stroke: white;
+            display: block;
+            line-height: 0;
+          }
         }
       }
-
     }
   }
 }

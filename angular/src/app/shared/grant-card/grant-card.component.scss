@@ -14,7 +14,7 @@
   align-items: flex-start;
   justify-content: flex-end;
 
-  background-color: $light-grey;
+  background-color: $lighter-grey;
   padding: 16px;
   box-sizing: border-box;
 
@@ -23,7 +23,7 @@
   }
 
   .heading {
-    @include card-heading;
+    @include card-heading-small;
     flex-grow: 1;
 
     display: flex;

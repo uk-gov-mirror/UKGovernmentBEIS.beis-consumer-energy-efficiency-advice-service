@@ -21,6 +21,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     roundedInvestmentRequired: number;
     roundedMonthlySaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
+    isMouseOverAddToPlanButton: boolean = false;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
 
@@ -45,6 +46,22 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     toggleExpandedView(): void {
         this.isExpandedView = !this.isExpandedView;
+    }
+
+    mouseEnterAddToPlanButton(): void {
+        this.isMouseOverAddToPlanButton = true;
+    }
+
+    mouseLeaveAddToPlanButton(): void {
+        this.isMouseOverAddToPlanButton = false;
+    }
+
+    getAddToPlanButtonText(): string {
+        if (!this.isAddedToPlan()) {
+            return 'Add to plan';
+        } else {
+            return this.isMouseOverAddToPlanButton ? 'Remove from plan': 'Added to plan';
+        }
     }
 
     toggleAddedToPlan(): void {
