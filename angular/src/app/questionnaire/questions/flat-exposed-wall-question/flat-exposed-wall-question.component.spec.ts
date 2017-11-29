@@ -3,7 +3,7 @@ import {By} from "@angular/platform-browser";
 
 import {FlatExposedWallQuestionComponent} from "./flat-exposed-wall-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
-import {FlatPosition} from "./flat-position";
+import {FlatExposedWall} from "./flat-exposed-wall";
 
 describe('FlatExposedWallQuestionComponent', () => {
     let fixture: ComponentFixture<FlatExposedWallQuestionComponent>;
@@ -36,7 +36,7 @@ describe('FlatExposedWallQuestionComponent', () => {
         threeSidesExposed.nativeElement.click();
 
         // then
-        expect(component.response).toBe(FlatPosition.ThreeSidesExposed);
+        expect(component.response).toBe(FlatExposedWall.ThreeSidesExposedWholeSide);
     });
 
     it('should notify of completion when clicking on a wall exposing position', () => {

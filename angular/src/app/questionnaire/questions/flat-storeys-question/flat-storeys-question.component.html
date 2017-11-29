@@ -1,0 +1,23 @@
+<div class="flat-storeys-question question-component">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="storeys-input">
+            <div class="name">Your flat</div>
+            <app-number-question itemsName="storeys of your flat"
+                                 [(quantity)]="numberOfStoreysInFlat"
+                                 [minQuantity]="1"
+                                 [maxQuantity]="10"></app-number-question>
+        </div>
+        <div class="storeys-input">
+            <div class="name">The whole building</div>
+            <app-number-question itemsName="storeys of the whole building"
+                                 [(quantity)]="numberOfStoreysInBuilding"
+                                 [minQuantity]="1"
+                                 [maxQuantity]="10"></app-number-question>
+        </div>
+    </form>
+    <div class="storeys-icons">
+        <span class="icon-tree" aria-label="tree"></span>
+        <span class="icon-home-storeys" aria-label="house with storeys"></span>
+        <span class="icon-tree" aria-label="tree"></span>
+    </div>
+</div>

@@ -3,19 +3,24 @@ import {ResponseData} from "../../response-data/response-data";
 import {UserJourneyType} from "../../response-data/user-journey-type";
 import {HomeType} from "../../../questionnaire/questions/home-type-question/home-type";
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
-import {FlatPosition} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-position";
+import {HouseExposedWall,} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
 import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
 import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
+import toString from "lodash-es/toString";
 import {
-    GlazingType, RoofType,
+    GlazingType,
+    RoofType,
     WallType
 } from "../../../questionnaire/questions/construction-question/construction-types";
 import {WaterTankSpace} from "../../../questionnaire/questions/water-tank-question/water-tank-space";
 import {GardenAccessibility} from "../../../questionnaire/questions/garden-question/garden-accessibility";
 import {RoofSpace} from "../../../questionnaire/questions/roof-space-question/roof-space";
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
+import {FlatExposedWall} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
+import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
+import {FlatLevel} from "./flat-level";
 
 describe('RdsapInput', () => {
 
@@ -35,13 +40,15 @@ describe('RdsapInput', () => {
             localAuthorityCode: 'E09000033',
             confirmEpc: true,
             tenureType: TenureType.OwnerOccupancy,
-            homeType: HomeType.GroundFloorFlat,
+            homeType: HomeType.FlatDuplexOrMaisonette,
             homeAge: HomeAge.pre1900,
-            flatPosition: FlatPosition.ThreeSidesExposed,
+            numberOfExposedWallsInFlat: FlatExposedWall.ThreeSidesExposedWholeSide,
+            numberOfExposedWallsInHouse: HouseExposedWall.ThreeSidesExposed,
             numberOfStoreys: 1,
             numberOfBedrooms: 1,
             floorArea: undefined,
             floorAreaUnit: FloorAreaUnit.SquareMetre,
+            floorLevels: [FloorLevel.TopFloor],
             fuelType: FuelType.MainsGas,
             condensingBoiler: false,
             electricityTariff: undefined,
@@ -79,7 +86,6 @@ describe('RdsapInput', () => {
             const expectedNumberOfOccupants = numberOfChildren + numberOfAdultsUnder64 +
                 numberOfAdults64To80 + numberOfAdultsOver80;
 
-
             // when
             const rdSapInput = new RdSapInput(responseData);
 
@@ -99,6 +105,59 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.number_of_heating_off_hours_normal).toEqual([3, 0, 6, 6]);
+        });
+
+        it('should calculate flat level correctly', () => {
+            // given
+            responseData.floorLevels = [FloorLevel.Basement, FloorLevel.Ground];
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.flat_level).toEqual(toString(FlatLevel.Basement));
+        });
+
+        it('should calculate flat top storey correctly', () => {
+            // given
+            responseData.floorLevels = [FloorLevel.MidFloor, FloorLevel.TopFloor];
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.flat_top_storey).toEqual('Y');
+        });
+
+        it('should calculate number of exposed walls correctly', () => {
+            // given
+            responseData.homeType = HomeType.ParkHomeOrMobileHome;
+
+            // when
+            let rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.number_of_exposed_walls).toEqual(4);
+
+            // given
+            responseData.homeType = HomeType.FlatDuplexOrMaisonette;
+            responseData.numberOfExposedWallsInFlat = FlatExposedWall.ThreeSidesExposedWholeSide;
+
+            // when
+            rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.number_of_exposed_walls).toEqual(3);
+
+            // given
+            responseData.homeType = HomeType.SemiDetachedBungalow;
+            responseData.numberOfExposedWallsInHouse = HouseExposedWall.TwoSidesExposed;
+
+            // when
+            rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.number_of_exposed_walls).toEqual(2);
         })
     })
 });

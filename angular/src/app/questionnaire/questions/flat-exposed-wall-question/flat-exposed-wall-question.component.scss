@@ -3,6 +3,8 @@
   .icon-container {
     height: 150px;
 
+    // TODO: BEISDEAS-117: replace the svgs once Ben finishes the design
+
     .one-side-exposed::before {
       content: url('/assets/images/flat-positions/one-side-exposed.svg');
     }

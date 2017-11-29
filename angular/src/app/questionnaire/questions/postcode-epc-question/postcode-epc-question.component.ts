@@ -104,6 +104,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             return this.displayPostcodeValidationError();
         }
+        console.error(error);
         this.postcode = this.postcodeInput;
         this.localAuthorityCode = null;
         this.continueWithoutEpc();

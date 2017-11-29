@@ -32,11 +32,11 @@ describe('Home basics questionnaire', () => {
 
         // Home type
         expect(page.getHeading()).toContain('type of home');
-        page.clickOption('ground floor flat');
+        page.clickOption('flat');
         CommonPageHelpers.sleep(1000);
 
         // Flat position
-        expect(page.getHeading()).toContain('its position');
+        expect(page.getHeading()).toContain('flat position');
         page.clickOption('1 Side Exposed');
         CommonPageHelpers.sleep(1000);
 
@@ -47,11 +47,17 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // Storey count
-        expect(page.getHeading()).toContain('How many storeys');
+        expect(page.getHeading()).toContain('How many floors');
         page.goForwards();
 
+        // Which floor
+        expect(page.getHeading()).toContain('Which floor is your property');
+        CommonPageHelpers.sleep(500);
+        page.clickOption('basement');
+        CommonPageHelpers.sleep(1000);
+
         // Bedrooms count
-        expect(page.getHeading()).toContain('How many bedrooms ');
+        expect(page.getHeading()).toContain('How many bedrooms');
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
@@ -82,5 +88,15 @@ describe('Home basics questionnaire', () => {
 
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
+        page.clickOption('Standard');
+        CommonPageHelpers.sleep(1000);
+
+        // Heating cost
+        expect(page.getHeading()).toContain('pay a month');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Length of heating on
+        expect(page.getHeading()).toContain('How many hours');
     })
 });

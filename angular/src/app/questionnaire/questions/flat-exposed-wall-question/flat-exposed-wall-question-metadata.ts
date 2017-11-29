@@ -1,7 +1,7 @@
 import {QuestionMetadata} from "../../base-question/question-metadata";
 import {FlatExposedWallQuestionComponent} from "./flat-exposed-wall-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
-import {isFlat} from "../home-type-question/home-type";
+import {HomeType} from "../home-type-question/home-type";
 import {QuestionType} from "../question-type";
 
 export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
@@ -14,10 +14,10 @@ export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.homeType == null || isFlat(responseData.homeType);
+        return responseData.homeType == null || responseData.homeType === HomeType.FlatDuplexOrMaisonette;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.flatPosition != null;
+        return responseData.numberOfExposedWallsInFlat != null;
     }
 }

@@ -1,11 +1,11 @@
 import {Component} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {FlatPosition} from "./flat-position";
+import {FlatExposedWall} from "./flat-exposed-wall";
 import {ResponseData} from "../../../shared/response-data/response-data";
 
-interface FlatPositionOption {
+interface FlatExposedWallOption {
     name: string;
-    value: FlatPosition;
+    value: FlatExposedWall;
     className: string;
 }
 
@@ -16,27 +16,28 @@ interface FlatPositionOption {
     animations: [slideInOutAnimation]
 })
 export class FlatExposedWallQuestionComponent extends QuestionBaseComponent {
-    flatPositionOptions: FlatPositionOption[];
+    flatExposedWallOptions: FlatExposedWallOption[];
 
     constructor(responseData: ResponseData) {
         super(responseData);
-        this.flatPositionOptions = [
-            {name: '1 Side Exposed', value: FlatPosition.OneSideExposed, className: 'one-side-exposed'},
-            {name: '2 Sides Exposed', value: FlatPosition.TwoSidesExposed, className: 'two-sides-exposed'},
-            {name: '3 Sides Exposed', value: FlatPosition.ThreeSidesExposed, className: 'three-sides-exposed'},
-            {name: '4 Sides Exposed', value: FlatPosition.FourSidesExposed, className: 'four-sides-exposed'},
+        this.flatExposedWallOptions = [
+            {name: '1 Side Exposed (Inset)', value: FlatExposedWall.OneSideExposedInset, className: 'one-side-exposed'},
+            {name: '2 Sides Exposed (In a corner)', value: FlatExposedWall.TwoSidesExposedCorner, className: 'two-sides-exposed'},
+            {name: '2 Sides Exposed (Through building)', value: FlatExposedWall.TwoSidesExposedThroughBuilding, className: 'two-sides-exposed'},
+            {name: '3 Sides Exposed (Whole side)', value: FlatExposedWall.ThreeSidesExposedWholeSide, className: 'three-sides-exposed'},
+            {name: '4 Sides Exposed (Whole floor)', value: FlatExposedWall.FourSidesExposedWholeFloor, className: 'four-sides-exposed'},
         ];
     }
 
     get responseForAnalytics(): string {
-        return FlatPosition[this.response];
+        return FlatExposedWall[this.response];
     }
 
-    get response(): FlatPosition {
-        return this.responseData.flatPosition;
+    get response(): FlatExposedWall {
+        return this.responseData.numberOfExposedWallsInFlat;
     }
 
-    set response(val: FlatPosition) {
-        this.responseData.flatPosition = val;
+    set response(val: FlatExposedWall) {
+        this.responseData.numberOfExposedWallsInFlat = val;
     }
 }

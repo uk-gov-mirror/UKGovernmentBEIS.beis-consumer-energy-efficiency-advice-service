@@ -17,7 +17,7 @@ describe('Landing page', () => {
     it('should navigate to the questionnaire when a postcode is entered', () => {
         page.navigateToReduceBills();
         page.enterPostcode('SW111AA');
-        CommonPageHelpers.sleep(1000);
+        CommonPageHelpers.sleep(2000);
         CommonPageHelpers.clickButton('Go');
         expect(browser.getCurrentUrl()).toContain('/questionnaire/home-basics');
     });
