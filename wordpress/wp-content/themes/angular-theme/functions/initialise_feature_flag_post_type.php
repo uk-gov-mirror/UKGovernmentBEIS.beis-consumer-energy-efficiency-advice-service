@@ -33,9 +33,9 @@ function create_feature_flag_post_type() {
 
 function setup_feature_flag_acf_group() {
 
-    if(function_exists("register_field_group"))
+    if(function_exists("acf_add_local_field_group"))
     {
-        register_field_group(array (
+        acf_add_local_field_group(array (
             'id' => 'acf_feature-flag',
             'title' => 'Feature flag',
             'fields' => array (

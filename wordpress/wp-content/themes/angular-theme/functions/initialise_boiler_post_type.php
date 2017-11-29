@@ -32,9 +32,9 @@ function create_boiler_post_type() {
 
 function setup_boiler_acf_group() {
 
-    if(function_exists("register_field_group"))
+    if(function_exists("acf_add_local_field_group"))
     {
-        register_field_group(array (
+        acf_add_local_field_group(array (
             'id' => 'acf_boiler-type',
             'title' => 'Boiler type',
             'fields' => array (
