@@ -9,6 +9,7 @@ import "rxjs/add/operator/toPromise";
 import {By} from "@angular/platform-browser";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RouterTestingModule} from "@angular/router/testing";
+import {Pipe, PipeTransform} from '@angular/core';
 
 describe('PageComponent', () => {
     let component: PageComponent;
@@ -16,12 +17,25 @@ describe('PageComponent', () => {
     let injector: TestBed;
     let router: Router;
 
-    let expectedPage = {content: {rendered: 'test data!'}};
+    let expectedPage = {
+        title: {rendered: 'test data!'},
+        content: {rendered: 'test data!'},
+        acf: {cover_image: null, video_embed: null}
+    };
     let pageServiceStub = {
         getPage: () => Observable.of(expectedPage)
     };
 
     const testSlug = 'test-page';
+
+    @Pipe({
+        name: 'safe'
+    })
+    class MockSafePipe implements PipeTransform {
+        transform(html) {
+            return html;
+        }
+    }
 
     class MockActivatedRoute {
         private static paramMapGet(key) {
@@ -47,7 +61,8 @@ describe('PageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 PageComponent,
-                SpinnerAndErrorContainerComponent
+                SpinnerAndErrorContainerComponent,
+                MockSafePipe
             ],
             imports: [RouterTestingModule.withRoutes([])],
             providers: [

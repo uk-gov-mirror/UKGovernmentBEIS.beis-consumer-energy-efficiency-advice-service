@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
 import {LatestNewsCardComponent} from "./latest-news-card.component";
 
@@ -11,7 +12,8 @@ describe('LatestNewsCardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ LatestNewsCardComponent ]
+            declarations: [LatestNewsCardComponent],
+            imports: [RouterTestingModule]
         })
             .compileComponents();
     }));

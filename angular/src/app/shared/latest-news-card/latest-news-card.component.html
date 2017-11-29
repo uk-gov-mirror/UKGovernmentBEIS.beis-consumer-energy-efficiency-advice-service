@@ -1,7 +1,7 @@
 <div class="latest-news-card">
-    <div class="latest-news-icon-container">
+    <div class="latest-news-icon-container" [ngClass]="{'no-image': !image}" [style.backgroundImage]="image ? 'url(' + image.url + ')' : null">
         <span [ngClass]="iconClassName"></span>
     </div>
     <div class="heading">{{heading}}</div>
-    <a class="read-more">Read more</a>
+    <a class="read-more" [routerLink]="readMoreRoute">Read more</a>
 </div>

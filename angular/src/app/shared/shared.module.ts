@@ -26,6 +26,7 @@ import {QuestionReasonComponent} from './question-reason/question-reason.compone
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
+import { SafePipe } from './safe/safe.pipe';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import {LargeVideoCardComponent} from "./large-video-card/large-video-card.compo
         RecommendationCardComponent,
         QuestionReasonComponent,
         LargeVideoCardComponent,
+        SafePipe,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -51,6 +53,7 @@ import {LargeVideoCardComponent} from "./large-video-card/large-video-card.compo
         RecommendationCardComponent,
         QuestionReasonComponent,
         LargeVideoCardComponent,
+        SafePipe,
     ],
     imports: [
         HttpClientModule,
