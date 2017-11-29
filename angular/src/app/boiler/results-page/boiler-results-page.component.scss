@@ -10,7 +10,7 @@
 
   > * {
     flex: 0 0 auto;
-    flex-basis: calc((100% - #{$n * $margin} - 1px) / 3);
+    width: calc((100% - #{($n - 1) * $margin} - 1px) / 3);
     margin-bottom: $margin;
     &:not(:nth-child(#{$n}n)) {
       margin-right: $margin;
