@@ -4,12 +4,12 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
 
 import {PageComponent} from "./page.component";
-import {PageService} from "./page.service";
 import "rxjs/add/operator/toPromise";
 import {By} from "@angular/platform-browser";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Pipe, PipeTransform} from '@angular/core';
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
 
 describe('PageComponent', () => {
     let component: PageComponent;
@@ -18,9 +18,10 @@ describe('PageComponent', () => {
     let router: Router;
 
     let expectedPage = {
-        title: {rendered: 'test data!'},
-        content: {rendered: 'test data!'},
-        acf: {cover_image: null, video_embed: null}
+        title: 'test data!',
+        content: 'test data!',
+        coverImage: null,
+        videoEmbed: null
     };
     let pageServiceStub = {
         getPage: () => Observable.of(expectedPage)
@@ -67,7 +68,7 @@ describe('PageComponent', () => {
             imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
-                {provide: PageService, useValue: pageServiceStub}
+                {provide: WordpressPagesService, useValue: pageServiceStub}
             ]
         })
             .compileComponents();
@@ -101,13 +102,13 @@ describe('PageComponent', () => {
         fixture.whenStable()
             .then(() => {
                 let pageContent = fixture.debugElement.query(By.css('.page-component .content'));
-                expect(pageContent.nativeElement.textContent).toBe(expectedPage.content.rendered);
+                expect(pageContent.nativeElement.textContent).toBe(expectedPage.content);
             });
     }));
 
     it('should redirect to the home page if the page data is not found', async(() => {
         // given
-        let injectedPageService = injector.get(PageService);
+        let injectedPageService = injector.get(WordpressPagesService);
         injectedPageService.getPage = () => Observable.of(null);
 
         // when

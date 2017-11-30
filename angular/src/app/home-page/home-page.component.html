@@ -19,7 +19,7 @@
                 <div class="text">
                     <div class="content">
                         <div class="heading">Try our energy efficiency calculator</div>
-                        <div class="subheading icon-timer">  It takes about 5 minutes to complete</div>
+                        <div class="subheading icon-timer"> It takes about 5 minutes to complete</div>
                     </div>
                     <div class="arrow-button">Receive personalised recommendations now</div>
                 </div>
@@ -32,7 +32,8 @@
                     <div class="content">
                         <div class="heading">Learn about home energy grants</div>
                         <div class="subheading">
-                            You might be eligible for help with your energy bills or making your home more energy efficient
+                            You might be eligible for help with your energy bills or making your home more energy
+                            efficient
                         </div>
                     </div>
                     <div class="arrow-button">Find out more</div>
@@ -55,18 +56,16 @@
     <div class="page-row">
         <div class="latest-news page-row-content">
             <div class="subheading">Latest news you might be interested in</div>
-            <div class="latest-news-cards">
-                <app-latest-news-card *ngIf="demoPage"
-                                      iconClassName="icon-video-play"
-                                      [heading]="demoPage.title.rendered"
-                                      [image]="demoPage.acf.cover_image"
-                                      readMoreRoute="/home-improvements/draughtproof-all-windows-and-doors"></app-latest-news-card>
-                <app-latest-news-card iconClassName="icon-infographic"
-                                      heading="5 simple tips to save energy this winter"></app-latest-news-card>
-                <app-latest-news-card iconClassName="icon-checklist"
-                                      heading="How to choose the right installer"></app-latest-news-card>
-                <app-latest-news-card iconClassName="icon-grant" heading="Info on grants"></app-latest-news-card>
+            <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
+                <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
+                                      [iconClassName]="pageIcons[idx]"
+                                      [page]="page"></app-latest-news-card>
             </div>
+            <ng-template #latestNewsSpinner>
+                <div class="spinner-container">
+                    <div class="loading-spinner"></div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

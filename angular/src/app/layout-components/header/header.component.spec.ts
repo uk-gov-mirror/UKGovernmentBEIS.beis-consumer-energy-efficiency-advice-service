@@ -15,11 +15,11 @@ describe('HeaderComponent', () => {
     let injector: TestBed;
 
     const mockSearchResult: WordpressPageResponse[] = [
-        {link: 'page-1', title: {rendered: 'Test page 1'}},
-        {link: 'page-2', title: {rendered: 'Test page 2'}},
-        {link: 'page-3', title: {rendered: 'Test page 3'}},
-        {link: 'page-3', title: {rendered: 'Test page 4'}},
-        {link: 'page-3', title: {rendered: 'Test page 5'}}
+        {link: 'page-1', title: {rendered: 'Test page 1'}, content: {rendered: 'Test page 1'}, acf: null},
+        {link: 'page-2', title: {rendered: 'Test page 2'}, content: {rendered: 'Test page 2'}, acf: null},
+        {link: 'page-3', title: {rendered: 'Test page 3'}, content: {rendered: 'Test page 3'}, acf: null},
+        {link: 'page-3', title: {rendered: 'Test page 4'}, content: {rendered: 'Test page 4'}, acf: null},
+        {link: 'page-3', title: {rendered: 'Test page 5'}, content: {rendered: 'Test page 5'}, acf: null}
     ];
 
     let mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
@@ -28,8 +28,8 @@ describe('HeaderComponent', () => {
         spyOn(mockWordpressPagesService, 'searchPages').and.callThrough();
 
         TestBed.configureTestingModule({
-            declarations: [ HeaderComponent ],
-            imports: [ FormsModule, RouterTestingModule ],
+            declarations: [HeaderComponent],
+            imports: [FormsModule, RouterTestingModule],
             providers: [{provide: WordpressPagesService, useValue: mockWordpressPagesService}]
         })
             .compileComponents();

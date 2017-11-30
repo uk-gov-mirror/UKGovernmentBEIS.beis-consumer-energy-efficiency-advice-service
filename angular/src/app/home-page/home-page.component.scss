@@ -135,6 +135,11 @@
       @include page-subheading;
     }
 
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+    }
+
     .latest-news-cards {
       display: flex;
       padding: 20px 0;

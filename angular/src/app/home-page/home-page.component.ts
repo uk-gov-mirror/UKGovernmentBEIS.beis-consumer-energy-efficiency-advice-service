@@ -3,8 +3,9 @@ import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {ResponseData} from "../shared/response-data/response-data";
 import {Router} from "@angular/router";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {PageService} from "../page/page.service";
-import {Page} from "../page/page";
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-home-page',
@@ -12,18 +13,19 @@ import {Page} from "../page/page";
     styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-    demoPage: Page;
+    latestNews: WordpressPage[];
+    // TODO: Remove fake icon code
+    readonly pageIcons: string[] = ['icon-video-play', 'icon-infographic', 'icon-checklist', 'icon-grant'];
 
     constructor(private responseData: ResponseData,
                 private questionnaireService: QuestionnaireService,
-                private pageService: PageService,
+                private pageService: WordpressPagesService,
                 private router: Router) {
     }
 
     ngOnInit() {
-        // TODO: Remove demo code
-        this.pageService.getPage('draughtproof-all-windows-and-doors')
-            .subscribe(page => this.demoPage = page)
+        this.pageService.getLatestPages()
+            .subscribe(pages => this.latestNews = pages);
     }
 
     onEnergyCalculatorButtonClick() {

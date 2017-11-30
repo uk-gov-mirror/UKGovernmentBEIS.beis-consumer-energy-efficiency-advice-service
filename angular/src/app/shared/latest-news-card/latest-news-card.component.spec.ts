@@ -2,13 +2,20 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {RouterTestingModule} from "@angular/router/testing";
 import {By} from "@angular/platform-browser";
 import {LatestNewsCardComponent} from "./latest-news-card.component";
+import {WordpressPage} from "../wordpress-pages-service/wordpress-page";
 
 describe('LatestNewsCardComponent', () => {
     let component: LatestNewsCardComponent;
     let fixture: ComponentFixture<LatestNewsCardComponent>;
 
-    const heading = 'heading';
     const iconClassName = 'icon-class';
+
+    const page: WordpressPage = {
+        title: 'heading',
+        route: 'fake-route',
+        coverImage: null,
+        videoEmbed: null
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -21,7 +28,7 @@ describe('LatestNewsCardComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LatestNewsCardComponent);
         component = fixture.componentInstance;
-        component.heading = heading;
+        component.page = page;
         component.iconClassName = iconClassName;
         fixture.detectChanges();
     });
@@ -32,7 +39,7 @@ describe('LatestNewsCardComponent', () => {
 
     it('should display the correct heading', () => {
         const headingElement = fixture.debugElement.query(By.css('.heading')).nativeElement;
-        expect(headingElement.innerText).toEqual(heading);
+        expect(headingElement.innerText).toEqual(page.title);
     });
 
     it('should display the correct icon', () => {

@@ -8,8 +8,8 @@ import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {Location} from "@angular/common";
 import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {PageService} from "../page/page.service";
 import {Observable} from "rxjs/Observable";
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -37,8 +37,8 @@ describe('HomePageComponent', () => {
                     useValue: {isComplete: () => questionnaireComplete}
                 },
                 {
-                    provide: PageService,
-                    useValue: {getPage: (slug: string) => Observable.of(null)}
+                    provide: WordpressPagesService,
+                    useValue: {getLatestPages: () => Observable.of([])}
                 }]
         })
             .compileComponents();
