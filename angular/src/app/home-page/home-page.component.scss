@@ -86,7 +86,7 @@ $quick-link-margin: 4px;
         font-size: 36px;
         line-height: 38px;
         font-weight: bold;
-        color: #149BC3;
+        color: $primary-blue;
 
         height: 114px;
         padding-right: 196px;
@@ -98,7 +98,7 @@ $quick-link-margin: 4px;
         font-size: 13px;
         line-height: 16px;
         font-weight: 500;
-        color: #216289;
+        color: $darkened-blue;
         text-transform: uppercase;
 
         height: 48px;
@@ -124,7 +124,7 @@ $quick-link-margin: 4px;
         text-transform: uppercase;
 
         background: white;
-        color: #149BC3;
+        color: $primary-blue;
 
         &:after {
           position: absolute;
@@ -168,7 +168,7 @@ $quick-link-margin: 4px;
       font-size: 24px;
       line-height: 32px;
       font-weight: bold;
-      color: #149BC3;
+      color: $primary-blue;
 
       margin-bottom: 24px;
     }
