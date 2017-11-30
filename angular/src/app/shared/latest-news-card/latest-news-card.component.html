@@ -1,4 +1,4 @@
-<div class="latest-news-card">
+<a class="latest-news-card" [routerLink]="page.route">
     <div class="latest-news-icon-container"
          [ngClass]="{'no-image': !page.coverImage}"
          [style.backgroundImage]="page.coverImage ? 'url(' + page.coverImage.url + ')' : null">
@@ -6,6 +6,6 @@
     </div>
     <div class="text-container">
         <div class="heading">{{page.title}}</div>
-        <a class="read-more" [routerLink]="page.route">Read more</a>
+        <a class="read-more">Read more</a>
     </div>
-</div>
+</a>

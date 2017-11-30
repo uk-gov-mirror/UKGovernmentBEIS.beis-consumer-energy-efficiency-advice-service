@@ -8,6 +8,7 @@
   height: 100%;
   border: none;
   outline: none;
+  text-decoration: none;
 
   .latest-news-icon-container {
     display: flex;
@@ -35,6 +36,7 @@
       font-size: 20px;
       line-height: 24px;
       font-weight: bold;
+      color: black;
     }
 
     .read-more {
@@ -42,11 +44,13 @@
       font-size: 11px;
       line-height: 13px;
       font-weight: 500;
-
       color: $primary-blue;
-      text-decoration: none;
+    }
+  }
 
-      &:focus, &:hover {
+  &:hover {
+    .text-container {
+      .heading, .read-more {
         text-decoration: underline;
       }
     }
