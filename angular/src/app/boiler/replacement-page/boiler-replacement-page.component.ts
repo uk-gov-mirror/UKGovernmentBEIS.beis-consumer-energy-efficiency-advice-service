@@ -19,7 +19,7 @@ export class BoilerReplacementPageComponent implements OnInit {
 
     ngOnInit() {
         this.boilerTypesService.fetchBoilerTypes().subscribe(
-            boilerTypes => this.boilers = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower)),
+            boilerTypes => this.boilers = sortBy(boilerTypes, type => +(type.installationCostLower)),
             err => this.handleError(err),
             () => this.loading = false,
         );

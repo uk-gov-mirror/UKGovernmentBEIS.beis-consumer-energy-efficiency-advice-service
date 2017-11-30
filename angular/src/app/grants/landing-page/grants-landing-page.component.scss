@@ -82,6 +82,7 @@ $grant-card-margin: 24px;
             align-items: stretch;
             flex-direction: column;
             justify-content: space-between;
+            min-width: 1px;
 
             &:not(:first-child) {
               margin-left: 10px;

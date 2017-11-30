@@ -38,7 +38,7 @@ export class BoilerEpcReplaceComponent implements OnInit {
                 ([epcRecommendations, measures, boilerTypes]) => {
                     this.recommendations = epcRecommendations;
                     this.measures = measures;
-                    this.boilerTypes = sortBy(Object.values(boilerTypes), type => +(type.installationCostLower));
+                    this.boilerTypes = sortBy(boilerTypes, type => +(type.installationCostLower));
                 },
                 () => this.handleError(),
                 () => this.loading = false,

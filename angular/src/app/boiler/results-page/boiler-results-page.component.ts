@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {AllBoilerTypes, BoilerType} from "../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
 import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
 import {ResponseData} from "../../shared/response-data/response-data";
@@ -35,7 +35,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         )
             .subscribe(
                 ([boilerTypes, measures]) => {
-                    this.handleBoilerTypesResponse(boilerTypes);
+                    this.applicableBoilerTypes = boilerTypes.filter(boilerType => this.boilerIsApplicable(boilerType));
                     this.measures = measures;
                 },
                 () => this.handleError(),
@@ -51,19 +51,13 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         this.setEqualHeightsOnOptionCardSections();
     }
 
-    private handleBoilerTypesResponse(boilerTypes: AllBoilerTypes) {
-        this.applicableBoilerTypes = Object.keys(boilerTypes)
-            .filter(boilerType => this.boilerIsApplicable(boilerType))
-            .map(boilerType => boilerTypes[boilerType]);
-    }
-
     private handleError() {
         this.isError = true;
         this.isLoading = false;
     }
 
-    private boilerIsApplicable(boilerSlug: string): boolean {
-        switch (boilerSlug) {
+    private boilerIsApplicable(boiler: BoilerType): boolean {
+        switch (boiler.slug) {
             case 'combi-boiler':
                 return true;
             case 'system-boiler':

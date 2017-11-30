@@ -25,6 +25,7 @@ import {EnergySavingMeasureContentService} from "./energy-saving-measure-content
 import {QuestionReasonComponent} from "./question-reason/question-reason.component";
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
+import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {RecommendationsService} from "./recommendations-service/recommendations.service";
 
@@ -39,6 +40,7 @@ import {RecommendationsService} from "./recommendations-service/recommendations.
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
+        LargeVideoCardComponent,
         GrantCardComponent
     ],
     exports: [
@@ -51,6 +53,7 @@ import {RecommendationsService} from "./recommendations-service/recommendations.
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
+        LargeVideoCardComponent,
         GrantCardComponent
     ],
     imports: [

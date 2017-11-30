@@ -56,35 +56,48 @@
         }
       }
 
-      .not-sure-if {
-        padding-top: 32px;
-
-        .heading {
-          font-size: 24px;
-        }
+      .replace-options {
+        padding-top: 64px;
 
         .body {
           display: flex;
           align-items: stretch;
           justify-content: space-between;
 
-          .make-and-model, .postcode-lookup-column {
+          .replace-column, .postcode-lookup-column {
             flex: 1 1 auto;
             flex-basis: calc(50% - 96px);
-          }
 
-          .make-and-model {
-            padding-right: 96px;
-            border-right: 1px solid $light-medium-grey;
-          }
-
-          .postcode-lookup-column {
-            padding-left: 96px;
+            .subheading {
+              font-size: 20px;
+              font-weight: bold;
+              width: 100%;
+              margin-bottom: 24px;
+            }
 
             .help-text {
               font-size: 18px;
               width: 100%;
             }
+          }
+
+          .replace-column {
+            padding-right: 96px;
+            border-right: 1px solid $light-medium-grey;
+
+            .link-button {
+              height: 72px;
+              display: flex;
+              align-items: center;
+            }
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          .postcode-lookup-column {
+            padding-left: 96px;
           }
         }
       }

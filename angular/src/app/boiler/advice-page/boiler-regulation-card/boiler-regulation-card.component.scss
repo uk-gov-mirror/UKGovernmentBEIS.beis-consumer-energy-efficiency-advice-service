@@ -1,0 +1,94 @@
+@import "styles/mixins/font";
+@import "styles/var/colors";
+@import "styles/page";
+
+$efficiency-box-width: 220px;
+$remaining-width: $content-max-width - $efficiency-box-width;
+
+:host {
+  display: block;
+}
+
+.boiler-regulation-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  margin: 16px 0;
+
+  .box {
+    box-sizing: border-box;
+
+    &.description {
+      flex: 1 1 auto;
+      width: $remaining-width;
+      background-color: $lighter-grey;
+      border-left: 10px solid $lighter-medium-grey;
+    }
+
+    &.efficiency {
+      flex: 0 0 auto;
+      width: $efficiency-box-width;
+      background-color: $dark-grey;
+      font-weight: 800;
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 32px 48px;
+
+      .box-heading {
+        @include body-uppercase;
+        font-weight: normal;
+        text-align: center;
+        height: 48px;
+      }
+
+      .box-content {
+        @include focus-text;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .box.description {
+
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+
+    .content {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-right: 16px;
+      }
+
+      .explanation {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+
+        .headline {
+          @include card-heading;
+          margin-bottom: 16px;
+          width: 80%;
+        }
+
+        .summary {
+          font-size: 14px;
+          width: 80%;
+        }
+      }
+    }
+  }
+}

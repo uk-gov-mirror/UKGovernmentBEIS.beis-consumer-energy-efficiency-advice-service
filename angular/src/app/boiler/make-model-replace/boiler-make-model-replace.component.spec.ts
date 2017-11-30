@@ -9,8 +9,9 @@ import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {AllBoilerTypes} from "../boiler-types-service/boiler-type";
+import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
+import values from "lodash-es/values";
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
@@ -25,7 +26,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
-            .map((response: BoilerTypeMetadataResponse[]) => new AllBoilerTypes(response))
+            .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
     beforeEach(async(() => {
@@ -75,8 +76,8 @@ describe('BoilerMakeModelReplaceComponent', () => {
 
     it('should store the boiler types returned from the API', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(boilerTypes => {
-            expect(component.boilerTypes.length).toBe(Object.values(boilerTypes).length);
-            Object.values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
+            expect(component.boilerTypes.length).toBe(values(boilerTypes).length);
+            values(boilerTypes).forEach(boiler => expect(component.boilerTypes).toContain(boiler));
         });
     });
 

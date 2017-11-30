@@ -1,3 +1,5 @@
+import {ProOrCon} from "./pro-or-con";
+
 export interface BoilerTypeMetadataResponse {
     slug: string;
     acf: {
@@ -8,6 +10,7 @@ export interface BoilerTypeMetadataResponse {
         installation_cost_upper_bound: number;
         lifetime: number;
         running_cost: number;
-        featured_page: string;
+        pros: ProOrCon[] | false;
+        cons: ProOrCon[] | false;
     }
 }
