@@ -9,7 +9,7 @@ import {Location} from "@angular/common";
 import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
 import {QuestionnaireService} from "../questionnaire/questionnaire.service";
 
-fdescribe('HomePageComponent', () => {
+describe('HomePageComponent', () => {
     let component: HomePageComponent;
     let fixture: ComponentFixture<HomePageComponent>;
 
