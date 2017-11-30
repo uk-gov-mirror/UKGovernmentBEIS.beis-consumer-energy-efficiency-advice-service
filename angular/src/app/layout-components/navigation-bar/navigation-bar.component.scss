@@ -3,9 +3,12 @@
 
 .navigation-bar {
   background-color: $dark-grey;
-  height: 36px;
+  height: 44px;
 
   .page-row-content {
+
+    display: flex;
+    align-items: center;
 
     .menu-item {
       padding: 10px 15px;
@@ -17,7 +20,9 @@
       text-decoration: none;
 
       &:focus {
-        @include navbar-item;
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: bold;
         text-decoration: underline;
       }
     }
