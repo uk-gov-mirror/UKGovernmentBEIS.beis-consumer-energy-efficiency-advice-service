@@ -44,11 +44,12 @@ $quick-link-margin: 4px;
         padding: 0 22px;
         background: white;
 
-        color: black;
+        color: $dark-grey;
         text-decoration: none;
 
         &:focus, &:hover {
-          box-shadow: 3px 3px 6px black;
+          background: $primary-blue;
+          color: white;
         }
 
         .link-text {
@@ -79,7 +80,13 @@ $quick-link-margin: 4px;
       padding: 70px 0 40px 40px;
 
       &:focus, &:hover {
-        box-shadow: 3px 3px 6px black;
+        .arrow-button {
+          color: white;
+          background: $primary-blue;
+          &:after {
+            border-left-color: $primary-blue;
+          }
+        }
       }
 
       .heading {
