@@ -17,6 +17,7 @@ import {QuestionReasonComponent} from "../../shared/question-reason/question-rea
 import {QuestionContentService} from "../../shared/question-content/question-content.service";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -52,7 +53,8 @@ describe('HomeImprovementsComponent', () => {
             providers: [
                 ResponseData,
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
-                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub}
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
             ]
         })
             .compileComponents();

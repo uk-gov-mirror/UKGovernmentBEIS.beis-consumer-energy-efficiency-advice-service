@@ -16,6 +16,7 @@ import {QuestionReasonComponent} from "../../shared/question-reason/question-rea
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
+import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
 describe('CarbonFootprintComponent', () => {
 
@@ -47,7 +48,8 @@ describe('CarbonFootprintComponent', () => {
             providers: [
                 ResponseData,
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
-                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub}
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
             ]
         })
             .compileComponents();
