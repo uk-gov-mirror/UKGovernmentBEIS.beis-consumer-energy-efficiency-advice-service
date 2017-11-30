@@ -10,7 +10,7 @@ import {HomeType} from "../home-type-question/home-type";
     animations: [slideInOutAnimation]
 })
 export class FlatStoreysQuestionComponent extends QuestionBaseComponent implements OnInit {
-    private numberOfStoreysInBuilding: number;
+    numberOfStoreysInBuilding: number;
 
     get responseForAnalytics(): string {
         return toString(this.numberOfStoreysInFlat);
