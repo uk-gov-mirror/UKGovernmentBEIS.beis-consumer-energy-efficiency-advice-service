@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
-import {ResponseData} from "../../shared/response-data/response-data";
 import {sumBy} from "lodash-es";
-import {EnergyEfficiencyRecommendation} from "../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {roundToNearest} from "../../shared/rounding/rounding";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 
 @Component({
     selector: 'app-your-plan-summary',
@@ -14,10 +14,10 @@ export class YourPlanSummaryComponent {
     private static readonly POUNDS_ROUNDING = 5;
 
     get recommendations(): EnergyEfficiencyRecommendation[] {
-        return this.responseData.energyEfficiencyRecommendationsInPlan;
+        return this.recommendationsService.getRecommendationsInPlan();
     }
 
-    constructor(private responseData: ResponseData,) {
+    constructor(private recommendationsService: RecommendationsService) {
     }
 
     getRoundedTotalSavingsPerMonth(): number {

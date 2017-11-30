@@ -15,7 +15,7 @@ import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
 import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {EnergyEfficiencyRecommendation} from "../../energy-efficiency/recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../recommendations-service/energy-efficiency-recommendation";
 
 @Injectable()
 export class ResponseData {
@@ -64,8 +64,6 @@ export class ResponseData {
 
     public benefits: Benefits;
     public income: number;
-
-    public energyEfficiencyRecommendationsInPlan: EnergyEfficiencyRecommendation[] = [];
 
     get numberOfAdults(): number {
         return this.numberOfAdultsAgedUnder64 +

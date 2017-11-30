@@ -1,9 +1,9 @@
 import * as parse from "url-parse";
 import {RecommendationStep} from "./recommendation-step";
-import {EnergyEfficiencyRecommendationTag, getTagsForMeasure} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {EnergyEfficiencyRecommendationTag, getTagsForMeasure} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantViewModel} from "../../grants/model/grant-view-model";
-import {MeasureResponse} from "../../shared/energy-calculation-api-service/response/measure-response";
-import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
+import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
+import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
 import {concat, head} from "lodash-es";
 
 export class EnergyEfficiencyRecommendation {

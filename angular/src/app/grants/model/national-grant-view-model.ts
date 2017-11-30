@@ -1,7 +1,7 @@
 import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 import {GrantViewModel} from "./grant-view-model";
 import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
-import {RecommendationStep} from "../../energy-efficiency/recommendations/recommendation-step";
+import {RecommendationStep} from "../../shared/recommendations-service/recommendation-step";
 
 export class NationalGrantViewModel implements GrantViewModel {
 

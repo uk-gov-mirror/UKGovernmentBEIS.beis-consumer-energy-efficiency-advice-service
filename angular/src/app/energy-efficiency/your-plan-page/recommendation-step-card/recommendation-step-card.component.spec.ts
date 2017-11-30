@@ -4,7 +4,7 @@ import {DataCardComponent} from "../../data-card/data-card.component";
 import {YourPlanSummaryComponent} from "../../your-plan-summary/your-plan-summary.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {RecommendationStepCardComponent} from "./recommendation-step-card.component";
-import {RecommendationStep} from "../../recommendations/recommendation-step";
+import {RecommendationStep} from "../../../shared/recommendations-service/recommendation-step";
 import {RouterTestingModule} from "@angular/router/testing";
 
 describe('RecommendationStepCardComponent', () => {
@@ -47,7 +47,7 @@ describe('RecommendationStepCardComponent', () => {
         fixture = TestBed.createComponent(RecommendationStepCardComponent);
         component = fixture.componentInstance;
         component.step = step;
-        component.stepIndex = 0;
+        component.stepIndex = 1;
         fixture.detectChanges();
     });
 
@@ -57,7 +57,7 @@ describe('RecommendationStepCardComponent', () => {
 
     it('should display the correct step number', () => {
         const stepNumberElement = fixture.debugElement.query(By.css('.step-number')).nativeElement;
-        expect(stepNumberElement.innerText.toLowerCase()).toEqual('step 01');
+        expect(stepNumberElement.innerText.toLowerCase()).toEqual('step 02');
     });
 
     it('should display the correct headline', () => {

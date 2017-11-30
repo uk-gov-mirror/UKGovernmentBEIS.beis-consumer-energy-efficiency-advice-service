@@ -26,6 +26,7 @@ import {QuestionReasonComponent} from './question-reason/question-reason.compone
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
+import {RecommendationsService} from "./recommendations-service/recommendations.service";
 
 @NgModule({
     declarations: [
@@ -76,6 +77,7 @@ export class SharedModule {
                 EnergySavingMeasureContentService,
                 GoogleAnalyticsService,
                 AssetsService,
+                RecommendationsService
             ]
         };
     }

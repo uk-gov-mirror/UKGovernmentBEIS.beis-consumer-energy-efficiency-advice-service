@@ -1,9 +1,9 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {YourPlanSummaryComponent} from "./your-plan-summary.component";
-import {EnergyEfficiencyRecommendation} from "../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {ResponseData} from "../../shared/response-data/response-data";
 import {DataCardComponent} from "../data-card/data-card.component";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 
 describe('YourPlanSummaryComponent', () => {
     let component: YourPlanSummaryComponent;
@@ -57,18 +57,18 @@ describe('YourPlanSummaryComponent', () => {
         }
     ];
 
-    let responseData: ResponseData;
+    const recommendationsServiceStub = {
+        getRecommendationsInPlan: () => recommendations
+    };
 
     beforeEach(async(() => {
-        responseData = new ResponseData();
-
         TestBed.configureTestingModule({
             declarations: [
                 YourPlanSummaryComponent,
                 DataCardComponent,
                 YourPlanSummaryComponent
             ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
         })
             .compileComponents();
     }));
@@ -76,7 +76,6 @@ describe('YourPlanSummaryComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(YourPlanSummaryComponent);
         component = fixture.componentInstance;
-        responseData.energyEfficiencyRecommendationsInPlan = recommendations;
         fixture.detectChanges();
     });
 

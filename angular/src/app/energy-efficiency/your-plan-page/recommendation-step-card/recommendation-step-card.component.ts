@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {RecommendationStep} from "../../recommendations/recommendation-step";
+import {RecommendationStep} from "../../../shared/recommendations-service/recommendation-step";
 
 @Component({
     selector: 'app-recommendation-step-card',

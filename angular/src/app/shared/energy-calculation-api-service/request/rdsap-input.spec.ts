@@ -72,7 +72,6 @@ describe('RdsapInput', () => {
             gardenSizeSquareMetres: 100,
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
-            energyEfficiencyRecommendationsInPlan: []
         };
 
         it('should calculate the number of occupants correctly', () => {

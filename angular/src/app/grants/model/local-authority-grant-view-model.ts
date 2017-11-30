@@ -1,7 +1,7 @@
 import {LocalGrantResponse} from "../../shared/local-authority-service/local-authority-response";
 import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 import {GrantViewModel} from "./grant-view-model";
-import {RecommendationStep} from "../../energy-efficiency/recommendations/recommendation-step";
+import {RecommendationStep} from "../../shared/recommendations-service/recommendation-step";
 
 export class LocalAuthorityGrantViewModel implements GrantViewModel {
 

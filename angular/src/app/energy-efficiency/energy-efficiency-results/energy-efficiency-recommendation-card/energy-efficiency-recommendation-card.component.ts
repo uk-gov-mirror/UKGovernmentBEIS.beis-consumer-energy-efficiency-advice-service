@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {EnergyEfficiencyRecommendation} from "../../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {
     EnergyEfficiencyRecommendationTag,
     getActiveTags,
     getTagClassName,
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -24,7 +24,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
 
-    constructor(private responseData: ResponseData) {
+    constructor(private recommendationsService: RecommendationsService) {
     }
 
     ngOnInit() {
@@ -48,23 +48,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     toggleAddedToPlan(): void {
-        const recommendationIndexInPlan = this.getRecommendationIndexInPlan();
-        if (recommendationIndexInPlan > -1) {
-            // Remove recommendation from plan
-            this.responseData.energyEfficiencyRecommendationsInPlan.splice(recommendationIndexInPlan, 1);
-        } else {
-            this.responseData.energyEfficiencyRecommendationsInPlan.push(this.recommendation);
-        }
+        this.recommendationsService.toggleAddedToPlan(this.recommendation);
     }
 
     isAddedToPlan(): boolean {
-        return this.getRecommendationIndexInPlan() > -1;
-    }
-
-    private getRecommendationIndexInPlan(): number {
-        const recommendationIdsInPlan = this.responseData.energyEfficiencyRecommendationsInPlan
-            .map(recommendation => recommendation.recommendationId);
-        return recommendationIdsInPlan.indexOf(this.recommendation.recommendationId);
+        return this.recommendationsService.isAddedToPlan(this.recommendation);
     }
 
     private static getMonthlySaving(recommendation: EnergyEfficiencyRecommendation): number {

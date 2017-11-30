@@ -1,15 +1,15 @@
-import {ComponentFixture, TestBed, async} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
-import {EnergyEfficiencyRecommendation} from "../../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {DataCardComponent} from "../../data-card/data-card.component";
-import {ResultsPageYourPlanComponent} from "./results-page-your-plan.component";
 import {YourPlanSummaryComponent} from "../../your-plan-summary/your-plan-summary.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {YourPlanFooterComponent} from "./your-plan-footer.component";
 
-describe('ResultsPageYourPlanComponent', () => {
-    let component: ResultsPageYourPlanComponent;
-    let fixture: ComponentFixture<ResultsPageYourPlanComponent>;
+describe('YourPlanFooterComponent', () => {
+    let component: YourPlanFooterComponent;
+    let fixture: ComponentFixture<YourPlanFooterComponent>;
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
@@ -59,27 +59,25 @@ describe('ResultsPageYourPlanComponent', () => {
         }
     ];
 
-    let responseData: ResponseData;
+    const recommendationsServiceStub = {
+        getRecommendationsInPlan: () => recommendations
+    };
 
     beforeEach(async(() => {
-        responseData = new ResponseData();
-
-
         TestBed.configureTestingModule({
             declarations: [
-                ResultsPageYourPlanComponent,
+                YourPlanFooterComponent,
                 DataCardComponent,
                 YourPlanSummaryComponent
             ],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ResultsPageYourPlanComponent);
+        fixture = TestBed.createComponent(YourPlanFooterComponent);
         component = fixture.componentInstance;
-        responseData.energyEfficiencyRecommendationsInPlan = recommendations;
         fixture.detectChanges();
     });
 

@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 import {YourPlanPageComponent} from "./your-plan-page.component";
-import {ResponseData} from "../../shared/response-data/response-data";
 import {Observable} from "rxjs/Observable";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
@@ -11,10 +10,12 @@ import {RecommendationStepCardComponent} from "./recommendation-step-card/recomm
 import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
 import {DownloadPlanComponent} from "./download-plan/download-plan.component";
 import {DataCardComponent} from "../data-card/data-card.component";
-import {EnergyEfficiencyRecommendation} from "../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {ResponseData} from "../../shared/response-data/response-data";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -77,6 +78,8 @@ describe('YourPlanPageComponent', () => {
         }
     ];
 
+    const localAuthorityCode = "E09000033";
+
     const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
         {
             grantId: 'grant-1',
@@ -107,16 +110,19 @@ describe('YourPlanPageComponent', () => {
         fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
 
-    let responseData: ResponseData;
+    const recommendationsServiceStub = {
+        getRecommendationsInPlan: () => recommendations
+    };
 
     beforeEach(async(() => {
-        responseData = new ResponseData();
         localAuthorityResponse = Observable.of({
             name: 'Westminster',
             isEcoFlexActive: true,
             ecoFlexMoreInfoLink: 'http://www.example.com',
             grants: localAuthorityGrants
         });
+
+        spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
@@ -128,7 +134,8 @@ describe('YourPlanPageComponent', () => {
                 DataCardComponent
             ],
             providers: [
-                {provide: ResponseData, useValue: responseData},
+                {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
+                {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
             ],
             imports: [RouterTestingModule]
@@ -139,12 +146,15 @@ describe('YourPlanPageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(YourPlanPageComponent);
         component = fixture.componentInstance;
-        responseData.energyEfficiencyRecommendationsInPlan = recommendations;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should call the local authority service with the correct local authority code', () => {
+        expect(localAuthorityServiceStub.fetchLocalAuthorityDetails).toHaveBeenCalledWith(localAuthorityCode);
     });
 
     it('should display all recommendations correctly', () => {

@@ -1,5 +1,5 @@
 import * as parse from "url-parse";
-import {RecommendationStepResponse} from "../../shared/energy-saving-measure-content-service/recommendation-step-response";
+import {RecommendationStepResponse} from "../energy-saving-measure-content-service/recommendation-step-response";
 
 export class RecommendationStep {
     headline: string;

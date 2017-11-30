@@ -1,5 +1,5 @@
 import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
-import {RecommendationStep} from "../../energy-efficiency/recommendations/recommendation-step";
+import {RecommendationStep} from "../../shared/recommendations-service/recommendation-step";
 
 export interface GrantViewModel {
     name: string;

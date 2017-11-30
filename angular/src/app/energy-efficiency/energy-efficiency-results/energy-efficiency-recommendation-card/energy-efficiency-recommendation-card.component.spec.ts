@@ -1,15 +1,15 @@
-import {ComponentFixture, TestBed, async} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card.component";
 import {DataCardComponent} from "../../data-card/data-card.component";
-import {EnergyEfficiencyRecommendation} from "../../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
 import {BreakEvenComponent} from "../break-even/break-even.component";
 import {NationalGrantViewModel} from "../../../grants/model/national-grant-view-model";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -44,10 +44,13 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         steps: []
     };
 
-    let responseData: ResponseData;
+    const recommendationsServiceStub = {
+        isAddedToPlan: () => false,
+        toggleAddedToPlan: () => {}
+    };
 
     beforeEach(async(() => {
-        responseData = new ResponseData();
+        spyOn(recommendationsServiceStub, 'toggleAddedToPlan').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
@@ -56,7 +59,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
                 BreakEvenComponent
             ],
             imports: [RouterTestingModule],
-            providers: [{provide: ResponseData, useValue: responseData}]
+            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
         })
             .compileComponents();
     }));
@@ -101,32 +104,14 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
     });
 
     describe('#toggleAddedToPlan', () => {
-        it('should add recommendation to plan if not already added to plan', () => {
-            // given
-            responseData.energyEfficiencyRecommendationsInPlan = [];
-
+        it('should call recommendations service to toggle recommendation added to plan', () => {
             // when
-            clickAddToPlan();
-
-            // then
-            expect(responseData.energyEfficiencyRecommendationsInPlan).toContain(recommendation);
-        });
-
-        it('should remove recommendation from plan if already added to plan', () => {
-            // given
-            responseData.energyEfficiencyRecommendationsInPlan = [recommendation];
-
-            // when
-            clickAddToPlan();
-
-            // then
-            expect(responseData.energyEfficiencyRecommendationsInPlan).not.toContain(recommendation);
-        });
-
-        function clickAddToPlan(): void {
             const addToPlanElement = fixture.debugElement.query(By.css('.add-to-plan-column'));
             addToPlanElement.nativeElement.click();
-        }
+
+            // then
+            expect(recommendationsServiceStub.toggleAddedToPlan).toHaveBeenCalledWith(recommendation);
+        });
     });
 
     it('should display a linked grant name', () => {

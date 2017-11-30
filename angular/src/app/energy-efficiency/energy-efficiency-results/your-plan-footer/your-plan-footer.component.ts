@@ -1,13 +1,14 @@
 import {Component, DoCheck, HostListener, OnInit, ViewChild} from "@angular/core";
-import {EnergyEfficiencyRecommendation} from "../../recommendations/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {ResponseData} from "../../../shared/response-data/response-data";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 @Component({
-    selector: 'app-results-page-your-plan',
-    templateUrl: './results-page-your-plan.component.html',
-    styleUrls: ['./results-page-your-plan.component.scss']
+    selector: 'app-your-plan-footer',
+    templateUrl: './your-plan-footer.component.html',
+    styleUrls: ['./your-plan-footer.component.scss']
 })
-export class ResultsPageYourPlanComponent implements OnInit, DoCheck {
+export class YourPlanFooterComponent implements OnInit, DoCheck {
 
     @ViewChild('yourPlanRow') yourPlanRow;
 
@@ -15,10 +16,10 @@ export class ResultsPageYourPlanComponent implements OnInit, DoCheck {
     yourPlanRowHeightPixels: number;
 
     get recommendations(): EnergyEfficiencyRecommendation[] {
-        return this.responseData.energyEfficiencyRecommendationsInPlan;
+        return this.recommendationsService.getRecommendationsInPlan();
     }
 
-    constructor(private responseData: ResponseData,) {
+    constructor(private recommendationsService: RecommendationsService) {
     }
 
     ngOnInit() {
