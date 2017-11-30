@@ -14,6 +14,8 @@ export class BoilerLandingPageComponent {
     onAddressSelected(lmkKey: string) {
         if (lmkKey) {
             this.router.navigate(['/js/boiler/epc-replace', lmkKey]);
+        } else {
+            this.router.navigate(['/js/boiler/epc-replace/unknown']);
         }
     }
 }
