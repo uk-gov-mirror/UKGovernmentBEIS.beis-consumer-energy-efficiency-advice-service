@@ -151,6 +151,10 @@ export class RdSapInput {
 
     private static getFlatLevel(floorLevels: FloorLevel[]): FlatLevel {
         // For now, we use the lowest floor level as the flat level
+        if (!floorLevels) {
+            return null;
+        }
+
         const lowestFloorLevel:FloorLevel = floorLevels.sort()[0];
         switch (lowestFloorLevel) {
             case FloorLevel.Basement: {
@@ -169,6 +173,10 @@ export class RdSapInput {
     }
 
     private static getFlatTopStorey(floorLevels: FloorLevel[]): string {
+        if (!floorLevels) {
+            return null;
+        }
+        
         return floorLevels.includes(FloorLevel.TopFloor) ? 'Y' : 'N';
     }
 

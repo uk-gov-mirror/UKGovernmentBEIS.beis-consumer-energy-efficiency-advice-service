@@ -32,19 +32,19 @@ import {FlatExposedWallQuestionMetadata} from "./flat-exposed-wall-question/flat
 import {HouseExposedWallQuestionMetadata} from "./house-exposed-wall-question/house-exposed-wall-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
-    new TenureTypeQuestionMetadata(),
     new ConfirmEpcQuestionMetadata(),
+    new TenureTypeQuestionMetadata(),
 ];
 
 export const CORE_BRE_QUESTIONS = [
     new HomeTypeQuestionMetadata(),
-    new FlatExposedWallQuestionMetadata(),
-    new HouseExposedWallQuestionMetadata(),
-    new HomeAgeQuestionMetadata(),
     new HouseStoreysQuestionMetadata(),
     new FlatStoreysQuestionMetadata(),
     new FloorLevelQuestionMetadata(),
     new FloorSpanQuestionMetadata(),
+    new HouseExposedWallQuestionMetadata(),
+    new FlatExposedWallQuestionMetadata(),
+    new HomeAgeQuestionMetadata(),
     new BedroomsQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),

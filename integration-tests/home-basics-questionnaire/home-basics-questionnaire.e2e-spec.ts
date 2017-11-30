@@ -12,11 +12,16 @@ describe('Home basics questionnaire', () => {
 
     it('should display with no errors', () => {
         expect(page.hasError()).toBeFalsy();
-        expect(page.getHeading()).toContain('the following describes your circumstances');
+        expect(page.getHeading()).toContain('Here\'s what we know so far...');
     });
 
     it('should include core questions', () => {
         // Sleep 1s between each question to allow for animation
+        // Mini-EPC
+        expect(page.getHeading()).toContain('Here\'s what we know so far...');
+        CommonPageHelpers.clickButton('get a few more details');
+        CommonPageHelpers.sleep(1000);
+
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
         expect(element(by.css('owner-occupancy-option'))).toBeTruthy();
@@ -25,14 +30,19 @@ describe('Home basics questionnaire', () => {
         page.clickOption('I own my own home');
         CommonPageHelpers.sleep(1000);
 
-        // Mini-EPC
-        expect(page.getHeading()).toContain('Here\'s what we know so far...');
-        CommonPageHelpers.clickButton('get a few more details');
-        CommonPageHelpers.sleep(1000);
-
         // Home type
         expect(page.getHeading()).toContain('type of home');
         page.clickOption('flat');
+        CommonPageHelpers.sleep(1000);
+
+        // Storey count
+        expect(page.getHeading()).toContain('How many floors');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Which floor
+        expect(page.getHeading()).toContain('Which floor is your property');
+        page.clickOption('basement');
         CommonPageHelpers.sleep(1000);
 
         // Flat position
@@ -44,16 +54,6 @@ describe('Home basics questionnaire', () => {
         expect(page.getHeading()).toContain('When was your home built');
         page.selectFirstHomeAge();
         page.goForwards();
-        CommonPageHelpers.sleep(1000);
-
-        // Storey count
-        expect(page.getHeading()).toContain('How many floors');
-        page.goForwards();
-        CommonPageHelpers.sleep(1000);
-
-        // Which floor
-        expect(page.getHeading()).toContain('Which floor is your property');
-        page.clickOption('basement');
         CommonPageHelpers.sleep(1000);
 
         // Bedrooms count
