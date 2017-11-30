@@ -17,6 +17,8 @@ describe('EnergyCalculationApiService', () => {
         property_type: "2",
         built_form: "4",
         flat_level: "1",
+        flat_top_storey: "Y",
+        number_of_exposed_walls: 3,
         construction_date: "A",
         num_storeys: 1,
         num_bedrooms: 1,

@@ -26,14 +26,25 @@
                     If you're replacing your boiler or heating system, there are many options to choose from.<br>
                     Review all the different types or use our heating system calculator to find the right option for your home.
                 </div>
-                <a class="link-button" routerLink="/js/boiler/replace">Yes, let's look at some boiler options</a>
             </div>
-            <div class="not-sure-if">
-                <div class="heading">Not sure if your boiler needs replacing?</div>
+            <div class="replace-options">
                 <div class="body">
-                    <app-boiler-make-model-lookup class="make-and-model"></app-boiler-make-model-lookup>
+                    <div class="replace-column">
+                        <div class="text-content">
+                            <div class="subheading">Yes. My boiler needs replacing</div>
+                            <div class="help-text">
+                                We can provide you with information about the range of boiler types that are available,
+                                including average lifetimes and running costs
+                            </div>
+                        </div>
+                        <a class="link-button" routerLink="/js/boiler/replace">Let's look at some boiler options</a>
+                    </div>
                     <div class="postcode-lookup-column">
-                        <div class="help-text">We can also try your postcode to see if your EPC has any information on your boiler</div>
+                        <div class="subheading">I'm not sure if my boiler needs replacing</div>
+                        <div class="help-text">
+                            We can try your postcode to see if the Energy Performance Certificate (EPC) for your home
+                            has any information on your boiler
+                        </div>
                         <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
                     </div>
                 </div>

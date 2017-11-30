@@ -25,7 +25,7 @@ export class BehaviourQuestionnaire extends Questionnaire {
         switch (journeyType) {
             case UserJourneyType.Calculator:
             case UserJourneyType.ReduceEnergyBills:
-            case UserJourneyType.ReduceCarbonFootprint:
+            case UserJourneyType.MakeHomeGreener:
                 return OTHER_BEHAVIOURAL_QUESTIONS;
             case UserJourneyType.MakeHomeWarmer:
             case UserJourneyType.PlanHomeImprovements:

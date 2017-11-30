@@ -1,7 +1,11 @@
 <div class="latest-news-card">
-    <div class="latest-news-icon-container" [ngClass]="{'no-image': !page.coverImage}" [style.backgroundImage]="page.coverImage ? 'url(' + page.coverImage.url + ')' : null">
+    <div class="latest-news-icon-container"
+         [ngClass]="{'no-image': !page.coverImage}"
+         [style.backgroundImage]="page.coverImage ? 'url(' + page.coverImage.url + ')' : null">
         <span [ngClass]="iconClassName"></span>
     </div>
-    <div class="heading">{{page.title}}</div>
-    <a class="read-more" [routerLink]="page.route">Read more</a>
+    <div class="text-container">
+        <div class="heading">{{page.title}}</div>
+        <a class="read-more" [routerLink]="page.route">Read more</a>
+    </div>
 </div>

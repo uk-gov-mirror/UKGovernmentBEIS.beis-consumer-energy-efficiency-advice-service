@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import toString from "lodash-es/toString";
 import {FloorAreaUnit} from "./floor-area-unit";
@@ -14,7 +14,7 @@ export interface FloorAreaUnitOption {
     styleUrls: ['./floor-area-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class FloorAreaQuestionComponent extends QuestionBaseComponent {
+export class FloorAreaQuestionComponent extends QuestionBaseComponent implements OnInit {
     isInvalid: boolean;
     floorAreaDisplay: number;
 
@@ -36,10 +36,11 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent {
     }
 
     ngOnInit() {
-        this.floorAreaDisplay = this.responseData.floorArea;
+        this.responseData.floorArea = this.responseData.floorArea || 0;
         if (this.responseData.floorAreaUnit === undefined) {
             this.responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
         }
+        this.floorAreaDisplay = this.responseData.floorArea;
     }
 
     updateResponseData(value) {

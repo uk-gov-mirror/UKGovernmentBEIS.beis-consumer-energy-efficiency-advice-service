@@ -28,7 +28,12 @@ describe('HomePageComponent', () => {
             imports: [RouterTestingModule.withRoutes([
                 {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
                 {path: 'js/energy-efficiency/results', component: DummyComponent},
-                {path: 'js/grants', component: DummyComponent}
+                {path: 'js/grants', component: DummyComponent},
+                {path: 'js/boiler', component: DummyComponent},
+                {path: 'js/reduce-bills', component: DummyComponent},
+                {path: 'js/warmer-home', component: DummyComponent},
+                {path: 'js/home-improvements', component: DummyComponent},
+                {path: 'js/greener-home', component: DummyComponent},
             ])],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},
@@ -54,50 +59,57 @@ describe('HomePageComponent', () => {
         expect(component).toBeTruthy();
     });
 
+    it('should set the user journey type and move to the reduce bills landing page when the link is clicked', async () => {
+        checkLink('.landing-page-link.reduce-bills', '/js/reduce-bills');
+    });
+
+    it('should set the user journey type and move to the warmer home landing page when the link is clicked', async () => {
+        checkLink('.landing-page-link.warmer-home', '/js/warmer-home');
+    });
+
+    it('should set the user journey type and move to the home improvements landing page when the link is clicked', async () => {
+        checkLink('.landing-page-link.home-improvements', '/js/home-improvements');
+    });
+
+    it('should set the user journey type and move to the greener home landing page when the link is clicked', async () => {
+        checkLink('.landing-page-link.greener-home', '/js/greener-home');
+    });
+
     it('should set the user journey type and move to the questionnaire when the appropriate button is clicked, if questionnaire incomplete', async () => {
         // given
         questionnaireComplete = false;
 
-        // when
-        const button = fixture.debugElement.query(By.css('.calculator-button'));
-        button.nativeElement.click();
-
-        // then
-        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Calculator);
-        fixture.whenStable().then(() => {
-            const location = fixture.debugElement.injector.get(Location);
-            expect(location.path()).toBe('/js/energy-efficiency/questionnaire/home-basics');
-        });
+        checkLink('.calculator', '/js/energy-efficiency/questionnaire/home-basics', UserJourneyType.Calculator);
     });
 
     it('should set the user journey type and move to the results page when the appropriate button is clicked, if questionnaire complete', async () => {
         // given
         questionnaireComplete = true;
 
+        checkLink('.calculator', '/js/energy-efficiency/results', UserJourneyType.Calculator);
+    });
+
+    it('should set the user journey type and move to the grants page when the appropriate button is clicked', async () => {
+        checkLink('.grants', '/js/grants', UserJourneyType.Grants);
+    });
+
+    it('should set the user journey type and move to the boilers page when the appropriate button is clicked', async () => {
+        checkLink('.boiler', '/js/boiler', UserJourneyType.Boiler);
+    });
+
+    const checkLink = (selector: string, path: string, journeyType?: UserJourneyType) => {
         // when
-        const button = fixture.debugElement.query(By.css('.calculator-button'));
+        const button = fixture.debugElement.query(By.css(selector));
         button.nativeElement.click();
 
         // then
-        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Calculator);
+        if (journeyType !== undefined) {
+            expect(responseDataStub.userJourneyType).toBe(journeyType);
+        }
+
         fixture.whenStable().then(() => {
-            const location = fixture.debugElement.injector.get(Location);
-            expect(location.path()).toBe('/js/energy-efficiency/results');
+            const location = TestBed.get(Location);
+            expect(location.path()).toBe(path);
         });
-    });
-
-    it('should set the user journey type and move to the grants page when the appropriate button is clicked', () => {
-        // given
-        const button = fixture.debugElement.query(By.css('.grants-button'));
-
-        // when
-        button.nativeElement.click();
-
-        // then
-        expect(responseDataStub.userJourneyType).toBe(UserJourneyType.Grants);
-        fixture.whenStable().then(() => {
-            const location = fixture.debugElement.injector.get(Location);
-            expect(location.path()).toBe('/js/grants');
-        });
-    });
+    }
 });

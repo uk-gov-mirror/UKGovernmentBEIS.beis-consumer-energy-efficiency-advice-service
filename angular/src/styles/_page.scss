@@ -1,5 +1,5 @@
 $side-margin: 40px;
-$content-max-width: 1280px;
+$content-max-width: 1180px;
 
 .page-row {
   width: 100%;
@@ -7,7 +7,6 @@ $content-max-width: 1280px;
   justify-content: center;
 
   .page-row-content {
-    display: flex;
     width: 100%;
     margin: 0 $side-margin;
     max-width: $content-max-width;

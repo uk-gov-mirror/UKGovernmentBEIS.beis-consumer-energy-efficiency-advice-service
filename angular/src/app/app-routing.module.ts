@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {PageComponent} from "./page/page.component";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {HomeImprovementsComponent} from "./landing-page/home-improvements/home-improvements.component";
-import {CarbonFootprintComponent} from "./landing-page/carbon-footprint/carbon-footprint.component";
 import {ReduceBillsComponent} from "./landing-page/reduce-bills/reduce-bills.component";
 import {WarmerHomeComponent} from "./landing-page/warmer-home/warmer-home.component";
 import {BoilerLandingPageComponent} from "./boiler/landing-page/boiler-landing-page.component";
@@ -20,6 +19,7 @@ import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-
 import {BoilerReplacementPageComponent} from "./boiler/replacement-page/boiler-replacement-page.component";
 import {BoilerMakeModelReplaceComponent} from "./boiler/make-model-replace/boiler-make-model-replace.component";
 import {BoilerAdvicePageComponent} from "./boiler/advice-page/boiler-advice-page.component";
+import {GreenerHomeComponent} from "./landing-page/greener-home/greener-home.component";
 
 const routes: Routes = [
     {
@@ -45,8 +45,8 @@ const routes: Routes = [
         component: GrantsQuestionnaireComponent
     },
     {
-        path: 'js/carbon-footprint',
-        component: CarbonFootprintComponent
+        path: 'js/greener-home',
+        component: GreenerHomeComponent
     },
     {
         path: 'js/home-improvements',

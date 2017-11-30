@@ -8,19 +8,22 @@ import {SharedModule} from "../shared/shared.module";
 import {ArticleCardComponent} from "./article-card/article-card.component";
 import {WarmerHomeComponent} from "./warmer-home/warmer-home.component";
 import {ReduceBillsComponent} from "./reduce-bills/reduce-bills.component";
-import {CarbonFootprintComponent} from "./carbon-footprint/carbon-footprint.component";
+import {GreenerHomeComponent} from "./greener-home/greener-home.component";
 
 @NgModule({
     declarations: [
         LandingPageComponent,
-        HomeImprovementsComponent,
         ArticleCardComponent,
+        HomeImprovementsComponent,
         WarmerHomeComponent,
         ReduceBillsComponent,
-        CarbonFootprintComponent,
+        GreenerHomeComponent,
     ],
     exports: [
         HomeImprovementsComponent,
+        WarmerHomeComponent,
+        ReduceBillsComponent,
+        GreenerHomeComponent,
     ],
     imports: [
         CommonModule,
