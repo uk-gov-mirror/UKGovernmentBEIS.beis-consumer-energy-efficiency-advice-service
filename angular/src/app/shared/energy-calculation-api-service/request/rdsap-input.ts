@@ -2,22 +2,28 @@ import {PropertyType} from "./property-type";
 import {BuiltForm} from "./built-form";
 import {FlatLevel} from "./flat-level";
 import {ResponseData} from "../../response-data/response-data";
-import {HomeType} from "../../../questionnaire/questions/home-type-question/home-type";
+import {HomeType, isDetached} from "../../../questionnaire/questions/home-type-question/home-type";
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import toString from "lodash-es/toString";
 import {Epc} from "../../postcode-epc-service/model/epc";
 import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
+import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
+import {getNumberOfExposedWallsInFlat} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
+import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
 
 export class RdSapInput {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
     public static readonly NUMBER_OF_HOURS_PER_QUARTER_DAY = 6;
+    public static readonly NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY = 4;
 
     readonly epc: Epc;
     readonly property_type: string;
     readonly built_form: string;
     readonly flat_level: string;
+    readonly flat_top_storey: string;
+    readonly number_of_exposed_walls: number;
     readonly construction_date: string;
     readonly floor_area: number;
     readonly num_storeys: number;
@@ -45,7 +51,9 @@ export class RdSapInput {
         // See BEISDEAS-28 for updating the questions to allow a correct mapping.
         this.property_type = toString(RdSapInput.getPropertyType(responseData.homeType));
         this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
-        this.flat_level = toString(RdSapInput.getFlatLevel(responseData.homeType));
+        this.flat_level = toString(RdSapInput.getFlatLevel(responseData.floorLevels));
+        this.flat_top_storey = RdSapInput.getFlatTopStorey(responseData.floorLevels);
+        this.number_of_exposed_walls = RdSapInput.getNumberOfExposedWalls(responseData);
         this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = RdSapInput.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
         this.num_storeys = responseData.numberOfStoreys;
@@ -94,31 +102,19 @@ export class RdSapInput {
             case HomeType.DetachedHouse: {
                 return PropertyType.House;
             }
-            case HomeType.SemiDetachedHouse: {
+            case HomeType.SemiDetachedOrTerracedHouse: {
                 return PropertyType.House;
             }
-            case HomeType.EndTerraceHouse: {
-                return PropertyType.House;
-            }
-            case HomeType.MidTerraceHouse: {
-                return PropertyType.House;
-            }
-            case HomeType.GroundFloorFlat: {
-                return PropertyType.Flat;
-            }
-            case HomeType.MidFloorFlat: {
-                return PropertyType.Flat;
-            }
-            case HomeType.TopFloorFlat: {
-                return PropertyType.Flat;
-            }
-            case HomeType.BungalowDetached: {
+            case HomeType.DetachedBungalow: {
                 return PropertyType.Bungalow;
             }
-            case HomeType.BungalowAttached: {
+            case HomeType.SemiDetachedBungalow: {
                 return PropertyType.Bungalow;
             }
-            case HomeType.ParkHome: {
+            case HomeType.FlatDuplexOrMaisonette: {
+                return PropertyType.Flat;
+            }
+            case HomeType.ParkHomeOrMobileHome: {
                 return PropertyType.ParkHome;
             }
             default: {
@@ -132,31 +128,19 @@ export class RdSapInput {
             case HomeType.DetachedHouse: {
                 return BuiltForm.Detached;
             }
-            case HomeType.SemiDetachedHouse: {
+            case HomeType.SemiDetachedOrTerracedHouse: {
                 return BuiltForm.SemiDetached;
             }
-            case HomeType.EndTerraceHouse: {
-                return BuiltForm.EndTerrace
-            }
-            case HomeType.MidTerraceHouse: {
-                return BuiltForm.MidTerrace
-            }
-            case HomeType.GroundFloorFlat: {
-                return BuiltForm.MidTerrace;
-            }
-            case HomeType.MidFloorFlat: {
-                return BuiltForm.MidTerrace;
-            }
-            case HomeType.TopFloorFlat: {
-                return BuiltForm.MidTerrace;
-            }
-            case HomeType.BungalowDetached: {
+            case HomeType.DetachedBungalow: {
                 return BuiltForm.Detached;
             }
-            case HomeType.BungalowAttached: {
+            case HomeType.SemiDetachedBungalow: {
                 return BuiltForm.SemiDetached;
             }
-            case HomeType.ParkHome: {
+            case HomeType.FlatDuplexOrMaisonette: {
+                return BuiltForm.MidTerrace;
+            }
+            case HomeType.ParkHomeOrMobileHome: {
                 return BuiltForm.Detached;
             }
             default: {
@@ -165,17 +149,36 @@ export class RdSapInput {
         }
     }
 
-    private static getFlatLevel(homeType: HomeType): FlatLevel {
-        switch (homeType) {
-            case HomeType.GroundFloorFlat: {
+    private static getFlatLevel(floorLevels: FloorLevel[]): FlatLevel {
+        // For now, we use the lowest floor level as the flat level
+        const lowestFloorLevel:FloorLevel = floorLevels.sort()[0];
+        switch (lowestFloorLevel) {
+            case FloorLevel.Basement: {
+                return FlatLevel.Basement;
+            }
+            case FloorLevel.Ground: {
                 return FlatLevel.GroundFloor;
             }
-            case HomeType.MidFloorFlat: {
+            case FloorLevel.MidFloor: {
                 return FlatLevel.MidFloor;
             }
-            case HomeType.TopFloorFlat: {
+            case FloorLevel.TopFloor: {
                 return FlatLevel.TopFloor;
             }
+        }
+    }
+
+    private static getFlatTopStorey(floorLevels: FloorLevel[]): string {
+        return floorLevels.includes(FloorLevel.TopFloor) ? 'Y' : 'N';
+    }
+
+    private static getNumberOfExposedWalls(responseData: ResponseData) {
+        if (responseData.homeType === HomeType.FlatDuplexOrMaisonette) {
+            return getNumberOfExposedWallsInFlat(responseData.numberOfExposedWallsInFlat);
+        } else if (isDetached(responseData.homeType)) {
+            return RdSapInput.NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY;
+        } else {
+            return responseData.numberOfExposedWallsInHouse;
         }
     }
 
@@ -214,4 +217,4 @@ export class RdSapInput {
             return area / RdSapInput.SQUARE_FOOT_PER_SQUARE_METRE;
         }
     }
- }
+}

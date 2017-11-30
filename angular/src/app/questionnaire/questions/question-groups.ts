@@ -1,9 +1,8 @@
 import {PostcodeEpcQuestionMetadata} from "./postcode-epc-question/postcode-epc-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "./confirm-epc-question/confirm-epc-question-metadata";
-import {FlatPositionQuestionMetadata} from "./flat-position-question/flat-position-question-metadata";
 import {HomeAgeQuestionMetadata} from "./home-age-question/home-age-question-metadata";
 import {HomeTypeQuestionMetadata} from "./home-type-question/home-type-question-metadata";
-import {StoreysQuestionMetadata} from "./storeys-question/storeys-question-metadata";
+import {HouseStoreysQuestionMetadata} from "./house-storeys-question/house-storeys-question-metadata";
 import {BedroomsQuestionMetadata} from "./bedrooms-question/bedrooms-question-metadata";
 import {BoilerTypeQuestionMetadata} from "./boiler-type-question/boiler-type-question-metadata";
 import {ElectricityTariffQuestionMetadata} from "./electricity-tariff-question/electricity-tariff-question-metadata";
@@ -26,6 +25,11 @@ import {RoofSpaceQuestionMetadata} from "./roof-space-question/roof-space-questi
 import {OptionalPropertyQuestionMetadata} from "./optional-property-question/optional-property-question-metadata";
 import {FloorAreaQuestionMetadata} from "./floor-area-question/floor-area-question-metadata";
 import {DetailedLengthOfHeatingOnQuestionMetadata} from "./detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata";
+import {FlatStoreysQuestionMetadata} from "./flat-storeys-question/flat-storeys-question-metadata";
+import {FloorLevelQuestionMetadata} from "./floor-level-question/floor-level-question-metadata";
+import {FloorSpanQuestionMetadata} from "./floor-span-question/floor-span-question-metadata";
+import {FlatExposedWallQuestionMetadata} from "./flat-exposed-wall-question/flat-exposed-wall-question-metadata";
+import {HouseExposedWallQuestionMetadata} from "./house-exposed-wall-question/house-exposed-wall-question-metadata";
 
 export const ADDRESS_AND_OWNERSHIP_STATUS = [
     new TenureTypeQuestionMetadata(),
@@ -34,9 +38,13 @@ export const ADDRESS_AND_OWNERSHIP_STATUS = [
 
 export const CORE_BRE_QUESTIONS = [
     new HomeTypeQuestionMetadata(),
-    new FlatPositionQuestionMetadata(),
+    new FlatExposedWallQuestionMetadata(),
+    new HouseExposedWallQuestionMetadata(),
     new HomeAgeQuestionMetadata(),
-    new StoreysQuestionMetadata(),
+    new HouseStoreysQuestionMetadata(),
+    new FlatStoreysQuestionMetadata(),
+    new FloorLevelQuestionMetadata(),
+    new FloorSpanQuestionMetadata(),
     new BedroomsQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),

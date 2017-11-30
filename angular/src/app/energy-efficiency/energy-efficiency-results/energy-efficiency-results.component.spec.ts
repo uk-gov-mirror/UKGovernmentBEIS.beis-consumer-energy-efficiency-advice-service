@@ -20,7 +20,7 @@ import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
 import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
-import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {HouseExposedWall,} from "../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
 import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
 import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
@@ -43,6 +43,8 @@ import {YourPlanComponent} from "./your-plan/your-plan.component";
 import {BreakEvenComponent} from "./break-even/break-even.component";
 import values from "lodash-es/values";
 import {MeasureResponse} from "../../shared/energy-calculation-api-service/response/measure-response";
+import {FloorLevel} from "../../questionnaire/questions/floor-level-question/floor-level";
+import {FlatExposedWall} from "../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -102,11 +104,13 @@ describe('EnergyEfficiencyResultsComponent', () => {
         localAuthorityCode: localAuthorityCode,
         confirmEpc: true,
         tenureType: TenureType.OwnerOccupancy,
-        homeType: HomeType.GroundFloorFlat,
+        homeType: HomeType.FlatDuplexOrMaisonette,
         homeAge: HomeAge.pre1900,
-        flatPosition: FlatPosition.ThreeSidesExposed,
+        numberOfExposedWallsInFlat: FlatExposedWall.ThreeSidesExposedWholeSide,
+        numberOfExposedWallsInHouse: undefined,
         numberOfStoreys: 1,
         numberOfBedrooms: 1,
+        floorLevels: [FloorLevel.Ground],
         floorArea: undefined,
         floorAreaUnit: FloorAreaUnit.SquareMetre,
         fuelType: FuelType.MainsGas,

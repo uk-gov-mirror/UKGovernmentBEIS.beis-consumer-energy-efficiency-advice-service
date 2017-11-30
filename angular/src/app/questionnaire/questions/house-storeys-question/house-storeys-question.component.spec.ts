@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import {StoreysQuestionComponent} from "./storeys-question.component";
+import {HouseStoreysQuestionComponent} from "./house-storeys-question.component";
 import {By} from "@angular/platform-browser";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FormsModule} from "@angular/forms";
 import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
 
-describe('StoreysQuestionComponent', () => {
-    let component: StoreysQuestionComponent;
-    let fixture: ComponentFixture<StoreysQuestionComponent>;
+describe('HouseStoreysQuestionComponent', () => {
+    let component: HouseStoreysQuestionComponent;
+    let fixture: ComponentFixture<HouseStoreysQuestionComponent>;
 
-    const originalNumberOfStoreys: number = 10;
+    const DEFAULT_NUMBER_OF_STOREYS: number = 2;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [StoreysQuestionComponent, NumberQuestionComponent],
+            declarations: [HouseStoreysQuestionComponent, NumberQuestionComponent],
             imports: [FormsModule],
             providers: [ResponseData]
         })
@@ -22,9 +22,8 @@ describe('StoreysQuestionComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(StoreysQuestionComponent);
+        fixture = TestBed.createComponent(HouseStoreysQuestionComponent);
         component = fixture.componentInstance;
-        component.response = originalNumberOfStoreys;
         fixture.detectChanges();
     });
 
@@ -32,11 +31,26 @@ describe('StoreysQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
+    it('should default number of storeys to 2', async(() => {
+        fixture.whenStable().then(() => {
+            let storeysInput = fixture.debugElement.query(By.css('input'));
+            expect(storeysInput.nativeElement.value).toBe(DEFAULT_NUMBER_OF_STOREYS.toString());
+        })
+    }));
+
     it('should populate with original number of storeys in response data', async(() => {
+        // given
+        const originalNumberOfStoreys: number = 10;
+
+        // when
+        component.response = originalNumberOfStoreys;
+        fixture.detectChanges();
+
+        // then
         fixture.whenStable().then(() => {
             let storeysInput = fixture.debugElement.query(By.css('input'));
             expect(storeysInput.nativeElement.value).toBe(originalNumberOfStoreys.toString());
-        });
+        })
     }));
 
     it('should set the response given a valid number of storeys', () => {

@@ -1,0 +1,18 @@
+.house-exposed-wall-options {
+
+  .icon-container {
+    height: 150px;
+
+    .one-side-shared::before {
+      content: url('/assets/images/exposed-wall/house-three-sides-exposed.svg');
+    }
+
+    .two-sides-shared::before {
+      content: url('/assets/images/exposed-wall/house-two-sides-exposed.svg');
+    }
+
+    .three-sides-shared::before {
+      content: url('/assets/images/exposed-wall/house-one-side-exposed.svg');
+    }
+  }
+}

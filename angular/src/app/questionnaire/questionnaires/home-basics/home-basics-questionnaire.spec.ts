@@ -7,9 +7,8 @@ import {ElectricityTariffQuestionMetadata} from "../../questions/electricity-tar
 import {BoilerTypeQuestionMetadata} from "../../questions/boiler-type-question/boiler-type-question-metadata";
 import {FuelTypeQuestionMetadata} from "../../questions/fuel-type-question/fuel-type-question-metadata";
 import {BedroomsQuestionMetadata} from "../../questions/bedrooms-question/bedrooms-question-metadata";
-import {StoreysQuestionMetadata} from "../../questions/storeys-question/storeys-question-metadata";
+import {HouseStoreysQuestionMetadata} from "../../questions/house-storeys-question/house-storeys-question-metadata";
 import {HomeAgeQuestionMetadata} from "../../questions/home-age-question/home-age-question-metadata";
-import {FlatPositionQuestionMetadata} from "../../questions/flat-position-question/flat-position-question-metadata";
 import {HomeTypeQuestionMetadata} from "../../questions/home-type-question/home-type-question-metadata";
 import {ConfirmEpcQuestionMetadata} from "../../questions/confirm-epc-question/confirm-epc-question-metadata";
 import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
@@ -21,6 +20,11 @@ import {FloorAreaQuestionMetadata} from "../../questions/floor-area-question/flo
 import {ConstructionQuestionMetadata} from "../../questions/construction-question/construction-question-metadata";
 import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
 import {DetailedLengthOfHeatingOnQuestionMetadata} from "../../questions/detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata";
+import {FlatExposedWallQuestionMetadata} from "../../questions/flat-exposed-wall-question/flat-exposed-wall-question-metadata";
+import {HouseExposedWallQuestionMetadata} from "../../questions/house-exposed-wall-question/house-exposed-wall-question-metadata";
+import {FlatStoreysQuestionMetadata} from "../../questions/flat-storeys-question/flat-storeys-question-metadata";
+import {FloorLevelQuestionMetadata} from "../../questions/floor-level-question/floor-level-question-metadata";
+import {FloorSpanQuestionMetadata} from "../../questions/floor-span-question/floor-span-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -37,9 +41,13 @@ describe('HomeBasicsQuestionnaire', () => {
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new FlatPositionQuestionMetadata(),
+            new FlatExposedWallQuestionMetadata(),
+            new HouseExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
-            new StoreysQuestionMetadata(),
+            new HouseStoreysQuestionMetadata(),
+            new FlatStoreysQuestionMetadata(),
+            new FloorLevelQuestionMetadata(),
+            new FloorSpanQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -70,9 +78,13 @@ describe('HomeBasicsQuestionnaire', () => {
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new FlatPositionQuestionMetadata(),
+            new FlatExposedWallQuestionMetadata(),
+            new HouseExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
-            new StoreysQuestionMetadata(),
+            new HouseStoreysQuestionMetadata(),
+            new FlatStoreysQuestionMetadata(),
+            new FloorLevelQuestionMetadata(),
+            new FloorSpanQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -103,9 +115,13 @@ describe('HomeBasicsQuestionnaire', () => {
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new FlatPositionQuestionMetadata(),
+            new FlatExposedWallQuestionMetadata(),
+            new HouseExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
-            new StoreysQuestionMetadata(),
+            new HouseStoreysQuestionMetadata(),
+            new FlatStoreysQuestionMetadata(),
+            new FloorLevelQuestionMetadata(),
+            new FloorSpanQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -136,9 +152,13 @@ describe('HomeBasicsQuestionnaire', () => {
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new FlatPositionQuestionMetadata(),
+            new FlatExposedWallQuestionMetadata(),
+            new HouseExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
-            new StoreysQuestionMetadata(),
+            new HouseStoreysQuestionMetadata(),
+            new FlatStoreysQuestionMetadata(),
+            new FloorLevelQuestionMetadata(),
+            new FloorSpanQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -166,9 +186,13 @@ describe('HomeBasicsQuestionnaire', () => {
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new FlatPositionQuestionMetadata(),
+            new FlatExposedWallQuestionMetadata(),
+            new HouseExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
-            new StoreysQuestionMetadata(),
+            new HouseStoreysQuestionMetadata(),
+            new FlatStoreysQuestionMetadata(),
+            new FloorLevelQuestionMetadata(),
+            new FloorSpanQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
