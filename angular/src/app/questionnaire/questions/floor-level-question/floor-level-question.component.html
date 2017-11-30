@@ -1,0 +1,12 @@
+<div class="question-component">
+    <div class="multiple-choice-options floor-level-options">
+        <div class="baseline"></div>
+        <div class="multiple-choice-option" *ngFor="let option of floorLevelOptions; let idx = index"
+             [class.selected]="response === option.value" (click)="response = option.value; complete.emit()">
+            <div class="icon-container">
+                <button [ngClass]="option.className" [attr.aria-labelledby]="'floor-level-name-' + idx"></button>
+            </div>
+            <span [attr.id]="'floor-level-name-' + idx" class="name">{{option.name}}</span>
+        </div>
+    </div>
+</div>

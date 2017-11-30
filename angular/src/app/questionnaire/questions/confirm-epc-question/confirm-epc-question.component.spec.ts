@@ -85,7 +85,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            expect(component.homeType).toEqual(HomeType.MidFloorFlat);
+            expect(component.homeType).toEqual(HomeType.FlatDuplexOrMaisonette);
         });
     }));
 
@@ -151,7 +151,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         it('should autopopulate future questions', async(() => {
             // given
             component.fuelType = FuelType.LPGGas;
-            component.homeType = HomeType.ParkHome;
+            component.homeType = HomeType.ParkHomeOrMobileHome;
             component.electricityTariff = ElectricityTariff.OffPeak;
 
             // when
@@ -160,7 +160,7 @@ describe('ConfirmEpcQuestionComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 expect(component.response.fuelType).toBe(FuelType.LPGGas);
-                expect(component.response.homeType).toBe(HomeType.ParkHome);
+                expect(component.response.homeType).toBe(HomeType.ParkHomeOrMobileHome);
                 expect(component.response.electricityTariff).toBe(ElectricityTariff.OffPeak);
             });
         }));
