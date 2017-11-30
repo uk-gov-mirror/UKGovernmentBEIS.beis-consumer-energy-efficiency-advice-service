@@ -3,136 +3,174 @@
 @import 'styles/mixins/font';
 @import "styles/var/colors";
 
+$landing-page-link-margin: 16px;
+$quick-link-margin: 4px;
+
 .home-page {
-  background-color: $light-grey;
-  flex-direction: column;
+  background: white;
 
-  .heading {
-    .page-row-content {
-      .heading-text {
-        @include page-heading;
-        max-width: 0.5 * $content-max-width;
-        padding: 60px 0;
-      }
+  .heading-section {
+    padding: 74px 0 96px 0;
+    background: url('/assets/images/home-page/background.png');
+    background-size: contain;
+
+    .heading-text {
+      font-size: 60px;
+      line-height: 62px;
+      font-weight: bold;
+
+      color: white;
+
+      width: 620px;
+      margin-bottom: 57px;
     }
-  }
 
-  .landing-page-links {
-    .page-row-content {
-      padding-bottom: 30px;
-
-      > :not(:last-child) {
-        margin-right: 32px;
-      }
+    .landing-page-links {
+      display: flex;
+      align-items: stretch;
 
       .landing-page-link {
-        flex: 1;
-        font-size: 22px;
-        font-weight: bold;
-        color: black;
-        background-color: white;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        width: calc((100% - #{3 * $landing-page-link-margin - 1px}) / 4);
+        &:not(:last-child) {
+          margin-right: $landing-page-link-margin;
+        }
+
         display: flex;
         align-items: center;
-        text-align: left;
-        padding: 48px 32px;
-        border: none;
-        outline: none;
-        cursor: pointer;
+
+        height: 157px;
+        padding: 0 22px;
+        background: white;
+
+        color: black;
         text-decoration: none;
 
         &:focus, &:hover {
           box-shadow: 3px 3px 6px black;
+        }
+
+        .link-text {
+          width: 60%;
+
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: bold;
         }
       }
     }
   }
 
   .quick-links {
+    width: 100%;
     display: flex;
-    align-items: stretch;
-
-    > :nth-child(odd) {
-      background-color: $light-medium-grey;
-      color: white;
-    }
-
-    > :nth-child(even) {
-      background-color: $lighter-grey;
-      color: black;
-    }
 
     .quick-link {
-      outline: none;
-      border: none;
-      cursor: pointer;
-
-      min-height: 280px;
+      position: relative;
+      flex: 0 0 auto;
       box-sizing: border-box;
-      padding: 0 32px 24px 32px;
-      flex: 1 0 1px;
+      width: calc((100% - #{2 * $quick-link-margin - 1px}) / 3);
+      &:not(:last-child) {
+        margin-right: $quick-link-margin;
+      }
 
-      display: flex;
-      align-items: stretch;
+      background: $light-grey;
+      padding: 70px 0 40px 40px;
 
       &:focus, &:hover {
         box-shadow: 3px 3px 6px black;
       }
 
-      .text {
-        flex: 1 1 60%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      .heading {
+        font-size: 36px;
+        line-height: 38px;
+        font-weight: bold;
+        color: #149BC3;
 
-        .content {
-          .heading {
-            @include page-subheading;
-            margin: 64px 0 16px 0;
-          }
-
-          .subheading {
-            @include body-uppercase;
-            margin-bottom: 32px;
-          }
-
-          .arrow-button {
-            @include arrow-button(200px, 40px);
-          }
-        }
-
-        &:only-child {
-          .content .subheading {
-            width: 70%;
-          }
-        }
+        height: 114px;
+        padding-right: 196px;
+        box-sizing: border-box;
+        margin-bottom: 38px;
       }
 
-      .quick-link-icon {
-        flex: 1 1 40%;
-        display: flex;
-        justify-content: center;
+      .description {
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 500;
+        color: #216289;
+        text-transform: uppercase;
 
-        &.center {
-          align-items: center;
-        }
+        height: 48px;
+        width: 80%;
+        padding-right: 196px;
+        box-sizing: border-box;
+        margin-bottom: 48px;
       }
 
       .arrow-button {
-        @include arrow-button(200px, 40px);
-        @include body-uppercase;
-        text-align: center;
-        font-weight: normal;
-        margin-top: 16px;
+        position: relative;
+        height: 48px;
+        width: 50%;
+        box-sizing: border-box;
+        padding-left: 18px;
+
+        display: flex;
+        align-items: center;
+
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        background: white;
+        color: #149BC3;
+
+        &:after {
+          position: absolute;
+          right: -20px;
+          top: 0;
+          content: " ";
+
+          border: 24px solid transparent;
+          border-right-width: 0;
+          border-left: 20px solid white;
+        }
+      }
+
+      .calculator-image:after {
+        content: url('/assets/images/home-page/home-calc.svg');
+        position: absolute;
+        right: 48px;
+        top: 156px;
+      }
+
+      .grants-image:after {
+        content: url('/assets/images/home-page/grants-globe.svg');
+        position: absolute;
+        right: 64px;
+        top: 52px;
+      }
+
+      .boiler-image:after {
+        content: url('/assets/images/home-page/boiler-flame.svg');
+        position: absolute;
+        right: 48px;
+        top: 0;
       }
     }
   }
 
-  .latest-news {
-    margin-top: 64px;
-    flex-direction: column;
+  .other-things {
+    margin-top: 58px;
 
-    .subheading {
-      @include page-subheading;
+    .heading {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: bold;
+      color: #149BC3;
+
+      margin-bottom: 24px;
     }
 
     .latest-news-cards {

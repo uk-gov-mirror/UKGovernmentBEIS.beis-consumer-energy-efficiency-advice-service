@@ -1,60 +1,53 @@
 <div class="home-page">
-    <div class="heading page-row">
+    <div class="heading-section page-row">
         <div class="page-row-content">
-            <div class="heading-text">
-                Impartial and independent advice to help you...
+            <div class="heading-text">Impartial and independent advice to help you...</div>
+            <div class="landing-page-links">
+                <a routerLink="/js/reduce-bills" class="landing-page-link">
+                    <span class="link-text">Reduce your energy bills</span>
+                </a>
+                <a routerLink="/js/warmer-home" class="landing-page-link">
+                    <span class="link-text">Make your home warmer</span>
+                </a>
+                <a routerLink="/js/home-improvements" class="landing-page-link">
+                    <span class="link-text">Plan home improvements</span>
+                </a>
+                <a routerLink="/js/greener-home" class="landing-page-link">
+                    <span class="link-text">Make your home greener</span>
+                </a>
             </div>
         </div>
     </div>
-    <div class="landing-page-links page-row">
-        <div class="page-row-content">
-            <a routerLink="/js/reduce-bills" class="landing-page-link">Reduce your energy bills</a>
-            <a routerLink="/js/home-improvements" class="landing-page-link">Plan home improvements</a>
-            <a routerLink="/js/carbon-footprint" class="landing-page-link">Reduce your home carbon footprint</a>
-        </div>
+    <div class="page-row quick-links">
+        <a class="quick-link calculator" (click)="onEnergyCalculatorButtonClick()" tabindex="0">
+             <div class="heading">Try our energy efficiency calculator</div>
+            <div class="description">
+                <!-- TODO: Once the branch which introduces inline-svg is merged, put a timer icon here-->
+                It takes 5 minutes to complete to receive your recommendations
+            </div>
+            <div class="arrow-button">Try now</div>
+            <span class="calculator-image"></span>
+        </a>
+        <a class="quick-link grants" (click)="onGrantsButtonClick()" tabindex="0">
+            <div class="heading">Learn about home energy grants</div>
+            <div class="description">
+                You might be eligible for help with your energy bills or making your home more energy efficient
+            </div>
+            <div class="arrow-button">Discover your options</div>
+            <span class="grants-image"></span>
+        </a>
+        <a class="quick-link boiler" (click)="onBoilerButtonClick()" tabindex="0">
+            <div class="heading">Problems with your heating?</div>
+            <div class="description">
+                Troubleshooting your boiler or finding the perfect replacement
+            </div>
+            <div class="arrow-button">Find out more</div>
+            <span class="boiler-image"></span>
+        </a>
     </div>
     <div class="page-row">
-        <div class="quick-links page-row-content">
-            <a class="quick-link calculator-button" (click)="onEnergyCalculatorButtonClick()" tabindex="0">
-                <div class="text">
-                    <div class="content">
-                        <div class="heading">Try our energy efficiency calculator</div>
-                        <div class="subheading icon-timer">  It takes about 5 minutes to complete</div>
-                    </div>
-                    <div class="arrow-button">Receive personalised recommendations now</div>
-                </div>
-                <div class="quick-link-icon center">
-                    <div class="icon-house-layers"></div>
-                </div>
-            </a>
-            <a class="quick-link grants-button" (click)="onGrantsButtonClick()" tabindex="0">
-                <div class="text">
-                    <div class="content">
-                        <div class="heading">Learn about home energy grants</div>
-                        <div class="subheading">
-                            You might be eligible for help with your energy bills or making your home more energy efficient
-                        </div>
-                    </div>
-                    <div class="arrow-button">Find out more</div>
-                </div>
-            </a>
-            <a class="quick-link" (click)="onBoilerButtonClick()" tabindex="0">
-                <div class="text">
-                    <div class="content">
-                        <div class="heading">Let's talk boilers</div>
-                        <div class="subheading">Troubleshooting your boiler or finding the best replacement</div>
-                    </div>
-                    <div class="arrow-button">Discover your options</div>
-                </div>
-                <div class="quick-link-icon top">
-                    <div class="icon-boiler"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="page-row">
-        <div class="latest-news page-row-content">
-            <div class="subheading">Latest news you might be interested in</div>
+        <div class="other-things page-row-content">
+            <div class="heading">Other things you might be interested in</div>
             <div class="latest-news-cards">
                 <app-latest-news-card iconClassName="icon-video-play" heading="How to draught-proof your home"></app-latest-news-card>
                 <app-latest-news-card iconClassName="icon-infographic" heading="5 simple tips to save energy this winter"></app-latest-news-card>

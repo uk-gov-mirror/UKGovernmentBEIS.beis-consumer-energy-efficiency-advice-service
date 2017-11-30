@@ -4,7 +4,7 @@
 .latest-news-card {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: $lighter-grey;
   height: 100%;
   border: none;
   outline: none;
@@ -17,28 +17,28 @@
     height: 160px;
   }
 
-  .heading, .read-more {
-    font-weight: bold;
-  }
+  .text-container {
+    min-height: 160px;
+    padding: 25px 20px 27px 20px;
+    box-sizing: border-box;
 
-  .heading {
-    @include card-heading;
-    padding: 20px 20px;
-    flex-grow: 1;
-    flex-shrink: 0;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-  .read-more {
-    text-transform: uppercase;
-    font-size: 12px;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background: none;
+    .heading {
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: bold;
+    }
 
-    &:focus {
-      text-decoration: underline;
+    .read-more {
+      text-transform: uppercase;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 500;
+
+      color: #149BC3;
     }
   }
 }
