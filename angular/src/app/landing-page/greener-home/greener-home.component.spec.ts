@@ -4,7 +4,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs/Observable"
 
-import {CarbonFootprintComponent} from "./carbon-footprint.component";
+import {GreenerHomeComponent} from "./greener-home.component";
 import {LargeVideoCardComponent} from "../../shared/large-video-card/large-video-card.component";
 import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LatestNewsCardComponent} from "../../shared/latest-news-card/latest-news-card.component";
@@ -19,8 +19,8 @@ import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc
 
 describe('CarbonFootprintComponent', () => {
 
-    let component: CarbonFootprintComponent;
-    let fixture: ComponentFixture<CarbonFootprintComponent>;
+    let component: GreenerHomeComponent;
+    let fixture: ComponentFixture<GreenerHomeComponent>;
 
     const postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
@@ -29,7 +29,7 @@ describe('CarbonFootprintComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                CarbonFootprintComponent,
+                GreenerHomeComponent,
                 LandingPageComponent,
                 NavigationBarComponent,
                 LargeVideoCardComponent,
@@ -54,7 +54,7 @@ describe('CarbonFootprintComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(CarbonFootprintComponent);
+        fixture = TestBed.createComponent(GreenerHomeComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

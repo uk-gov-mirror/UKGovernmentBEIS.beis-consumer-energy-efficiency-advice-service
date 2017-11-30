@@ -25,7 +25,7 @@ describe('LandingPageComponent', () => {
     let mockPostcodeLookupComponent: MockPostcodeLookupComponent;
 
     const headingText = 'heading';
-    const userJourneyType = UserJourneyType.ReduceCarbonFootprint;
+    const userJourneyType = UserJourneyType.MakeHomeGreener;
 
     const postcodeReason = 'a reason here';
     class QuestionContentServiceStub {

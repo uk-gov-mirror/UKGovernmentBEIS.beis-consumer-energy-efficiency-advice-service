@@ -28,7 +28,7 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
         switch (journeyType) {
             case UserJourneyType.Calculator:
             case UserJourneyType.ReduceEnergyBills:
-            case UserJourneyType.ReduceCarbonFootprint:
+            case UserJourneyType.MakeHomeGreener:
                 return concat(
                     ADDRESS_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,

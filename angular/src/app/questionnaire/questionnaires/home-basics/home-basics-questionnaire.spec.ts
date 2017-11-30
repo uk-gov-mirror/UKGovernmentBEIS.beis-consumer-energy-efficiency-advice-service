@@ -96,9 +96,9 @@ describe('HomeBasicsQuestionnaire', () => {
         expect(behaviourQuestionnaire.getQuestions()).toEqual(expectedQuestions);
     });
 
-    it('contains the right questions for a user with journey type ReduceCarbonFootprint', () => {
+    it('contains the right questions for a user with journey type MakeHomeGreener', () => {
         // given
-        responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
+        responseData.userJourneyType = UserJourneyType.MakeHomeGreener;
         const expectedQuestions = [
             new TenureTypeQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),

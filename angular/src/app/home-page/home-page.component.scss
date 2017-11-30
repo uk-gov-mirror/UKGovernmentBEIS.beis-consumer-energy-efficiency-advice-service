@@ -102,7 +102,7 @@ $quick-link-margin: 4px;
         text-transform: uppercase;
 
         height: 48px;
-        width: 80%;
+        max-width: 500px;
         padding-right: 196px;
         box-sizing: border-box;
         margin-bottom: 48px;
@@ -175,15 +175,15 @@ $quick-link-margin: 4px;
 
     .latest-news-cards {
       display: flex;
-      padding: 20px 0;
       align-items: stretch;
+      margin-bottom: 60px;
 
       & > * {
         flex: 1;
       }
 
       > :not(:last-child) {
-        margin-right: 15px;
+        margin-right: 20px;
       }
     }
   }
