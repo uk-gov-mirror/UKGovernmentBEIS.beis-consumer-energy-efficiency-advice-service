@@ -13,7 +13,7 @@ describe('NationalGrantCalculatorProvider', () => {
             return Observable.of(GrantEligibility.LikelyEligible);
         }
 
-        getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+        getStandaloneAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
             return Observable.of(0);
         }
     }

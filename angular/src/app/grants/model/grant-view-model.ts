@@ -6,8 +6,9 @@ export interface GrantViewModel {
     description: string;
     eligibility: GrantEligibility
     shouldDisplayWithoutMeasures: boolean;
-    annualPaymentPounds: number;
-    linkedMeasureCodes: string[];
+    annualPaymentPoundsStandalone: number;
+    annualPaymentPoundsByMeasure: {[measureCode: string]: number};
+    linkedMeasureCodesForOneOffPayment: string[];
     advantages: string[];
     grantId: string;
     steps: RecommendationStep[];

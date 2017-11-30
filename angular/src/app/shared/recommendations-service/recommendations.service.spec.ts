@@ -1,6 +1,7 @@
 import {getTestBed, TestBed, async} from "@angular/core/testing";
 import "rxjs/add/operator/toPromise";
 import {Observable} from "rxjs/Observable";
+import max from "lodash-es/max";
 import {RecommendationsService} from "./recommendations.service";
 import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
@@ -31,8 +32,9 @@ describe('RecommendationsService', () => {
             description: 'some national grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
-            annualPaymentPounds: 120,
-            linkedMeasureCodes: ['U'],
+            annualPaymentPoundsStandalone: 120,
+            linkedMeasureCodesForOneOffPayment: [],
+            annualPaymentPoundsByMeasure: {U: 120},
             advantages: [],
             steps: []
         },
@@ -42,8 +44,9 @@ describe('RecommendationsService', () => {
             description: 'another national grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: true,
-            annualPaymentPounds: 120,
-            linkedMeasureCodes: [],
+            annualPaymentPoundsStandalone: 120,
+            linkedMeasureCodesForOneOffPayment: ['B'],
+            annualPaymentPoundsByMeasure: {},
             advantages: [],
             steps: []
         }
@@ -120,10 +123,18 @@ describe('RecommendationsService', () => {
             expect(grantsEligibilityServiceStub.getApplicableGrants).toHaveBeenCalled();
         });
 
-        it('should include all home improvement measures in response', async(() => {
+        it('should include all home improvement measures in response with grant savings added on', async(() => {
             // given
-            const expectedMeasures = Object.values(dummyEnergyCalculations.measures)
-                .map(measure => [measure.cost_saving, measure.energy_saving]);
+            const expectedMeasures = Object.keys(dummyEnergyCalculations.measures)
+                .map(measureCode => {
+                    const grantPaymentsForMeasure = nationalGrants
+                        .map(grant => grant.annualPaymentPoundsByMeasure[measureCode]);
+                    const costSavingFromGrant = max(grantPaymentsForMeasure) || 0;
+                    const costSavingFromMeasure = dummyEnergyCalculations.measures[measureCode].cost_saving || 0;
+                    const costSaving = costSavingFromGrant + costSavingFromMeasure;
+                    const energySaving = dummyEnergyCalculations.measures[measureCode].energy_saving;
+                    return [costSaving, energySaving];
+                });
 
             // when
             const recommendations = service.getAllRecommendations();
@@ -176,7 +187,7 @@ describe('RecommendationsService', () => {
 
             // then
             recommendations.toPromise().then((recommendations) => {
-                expect(recommendations[0].costSavingPoundsPerYear).toBe(230.64);
+                expect(recommendations[0].costSavingPoundsPerYear).toBe(350.64);
                 expect(recommendations[0].energySavingKwhPerYear).toBe(0);
             });
         }));
@@ -194,15 +205,25 @@ describe('RecommendationsService', () => {
             });
         }));
 
-        it('should link recommendation to available grant', async(() => {
+        it('should link recommendation to available grant for annual payment', async(() => {
             // when
             const recommendations = service.getAllRecommendations();
 
             // then
             recommendations.toPromise().then((recommendations) => {
-                // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
-                // for measure code U
-                expect(recommendations[0].grant.name).toBe('National Grant 1');
+                const solarPanelsRecommendation = recommendations.find(rec => rec.headline === 'Solar photovoltaic panels');
+                expect(solarPanelsRecommendation.grant.name).toBe('National Grant 1');
+            });
+        }));
+
+        it('should link recommendation to available grant for one off payment', async(() => {
+            // when
+            const recommendations = service.getAllRecommendations();
+
+            // then
+            recommendations.toPromise().then((recommendations) => {
+                const cavityWallInsulationRecommendation = recommendations.find(rec => rec.headline === 'Cavity wall insulation');
+                expect(cavityWallInsulationRecommendation.grant.name).toBe('National Grant 2');
             });
         }));
     });

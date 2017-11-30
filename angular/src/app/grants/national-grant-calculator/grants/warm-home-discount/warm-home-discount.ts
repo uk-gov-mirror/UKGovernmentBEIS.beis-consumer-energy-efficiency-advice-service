@@ -26,7 +26,7 @@ export class WarmHomeDiscount extends NationalGrantCalculator {
         return Observable.of(eligibility);
     }
 
-    getAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
+    getStandaloneAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
         return Observable.of(WarmHomeDiscount.ANNUAL_PAYMENT_POUNDS);
     }
 }

@@ -103,8 +103,13 @@ export class RecommendationsService {
                     return null;
                 }
                 const linkedAvailableGrants = availableGrants
-                    .filter(grant => grant.linkedMeasureCodes && grant.linkedMeasureCodes.indexOf(measureCode) > -1);
+                    .filter(grant => {
+                        const isLinkedForAnnualPayment = grant.annualPaymentPoundsByMeasure[measureCode];
+                        const isLinkedForOneOffPayment = grant.linkedMeasureCodesForOneOffPayment.indexOf(measureCode) > -1;
+                        return isLinkedForAnnualPayment || isLinkedForOneOffPayment;
+                    });
                 return EnergyEfficiencyRecommendation.fromMeasure(
+                    measureCode,
                     measures[measureCode],
                     recommendationMetadata,
                     EnergySavingMeasureContentService.measureIcons[measureCode],

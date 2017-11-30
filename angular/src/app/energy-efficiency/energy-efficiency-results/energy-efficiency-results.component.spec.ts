@@ -102,8 +102,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 description: 'some national grant',
                 eligibility: GrantEligibility.LikelyEligible,
                 shouldDisplayWithoutMeasures: true,
-                annualPaymentPounds: 120,
-                linkedMeasureCodes: ['V2'],
+                annualPaymentPoundsStandalone: 120,
+                linkedMeasureCodesForOneOffPayment: ['V2'],
+                annualPaymentPoundsByMeasure: {V2: 120},
                 advantages: null,
                 steps: []
             },

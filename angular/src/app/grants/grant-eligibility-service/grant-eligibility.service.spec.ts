@@ -26,8 +26,9 @@ describe('GrantEligibilityService', () => {
             description: 'some LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
+            annualPaymentPoundsStandalone: null,
+            linkedMeasureCodesForOneOffPayment: [],
+            annualPaymentPoundsByMeasure: {},
             advantages: null,
             steps: []
         },
@@ -37,8 +38,9 @@ describe('GrantEligibilityService', () => {
             description: 'another LA grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
+            annualPaymentPoundsStandalone: null,
+            linkedMeasureCodesForOneOffPayment: [],
+            annualPaymentPoundsByMeasure: {},
             advantages: null,
             steps: []
         }
@@ -82,7 +84,7 @@ describe('GrantEligibilityService', () => {
             return Observable.of(GrantEligibility.LikelyEligible);
         }
 
-        getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+        getStandaloneAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
             return Observable.of(120);
         }
     }
@@ -92,7 +94,7 @@ describe('GrantEligibilityService', () => {
             return Observable.of(GrantEligibility.Ineligible);
         }
 
-        getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+        getStandaloneAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
             return Observable.of(null);
         }
     }

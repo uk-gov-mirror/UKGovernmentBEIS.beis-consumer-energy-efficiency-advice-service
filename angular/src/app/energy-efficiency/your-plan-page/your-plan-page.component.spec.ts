@@ -89,8 +89,9 @@ describe('YourPlanPageComponent', () => {
             description: 'some grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
+            annualPaymentPoundsStandalone: null,
+            linkedMeasureCodesForOneOffPayment: [],
+            annualPaymentPoundsByMeasure: {},
             advantages: null,
             steps: []
         },
@@ -100,8 +101,9 @@ describe('YourPlanPageComponent', () => {
             description: 'another grant',
             eligibility: GrantEligibility.MayBeEligible,
             shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
+            annualPaymentPoundsStandalone: null,
+            linkedMeasureCodesForOneOffPayment: [],
+            annualPaymentPoundsByMeasure: {},
             advantages: null,
             steps: []
         }

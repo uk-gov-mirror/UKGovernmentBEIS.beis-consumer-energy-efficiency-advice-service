@@ -16,7 +16,7 @@ export class WinterFuelPayments extends NationalGrantCalculator {
         return Observable.of(isEligible ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
     }
 
-    getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+    getStandaloneAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
         const adults64To80 = responseData.numberOfAdultsAged64To80;
         const adultsOver80 = responseData.numberOfAdultsAgedOver80;
         if (adults64To80 === 0) {

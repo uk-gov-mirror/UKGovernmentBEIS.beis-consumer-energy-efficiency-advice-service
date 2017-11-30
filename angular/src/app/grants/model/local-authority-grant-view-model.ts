@@ -10,8 +10,9 @@ export class LocalAuthorityGrantViewModel implements GrantViewModel {
     public grantId: string;
     public eligibility: GrantEligibility = GrantEligibility.MayBeEligible;
     public shouldDisplayWithoutMeasures = false;
-    public annualPaymentPounds: number = null;
-    public linkedMeasureCodes: string[] = null;
+    public annualPaymentPoundsStandalone: number = null;
+    public annualPaymentPoundsByMeasure: {[measureCode: string]: number} = {};
+    public linkedMeasureCodesForOneOffPayment: string[] = [];
     public advantages: string[] = null;
     public steps: RecommendationStep[] = null;
 

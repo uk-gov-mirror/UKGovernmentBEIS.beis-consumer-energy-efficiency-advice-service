@@ -61,10 +61,16 @@ export class GrantEligibilityService {
         }
         return Observable.forkJoin(
             grantCalculator.getEligibility(this.responseData),
-            grantCalculator.getAnnualPaymentPounds(this.responseData)
+            grantCalculator.getStandaloneAnnualPaymentPounds(this.responseData),
+            grantCalculator.getAnnualPaymentPoundsByMeasure(this.responseData)
         )
-            .map(([eligibility, annualPaymentPounds]) =>
-                new NationalGrantViewModel(grantResponse, eligibility, annualPaymentPounds));
+            .map(([eligibility, standaloneAnnualPaymentPounds, annualPaymentPoundsByMeasure]) =>
+                new NationalGrantViewModel(
+                    grantResponse,
+                    eligibility,
+                    standaloneAnnualPaymentPounds,
+                    annualPaymentPoundsByMeasure
+                ));
     }
 
     private static isEligible(grantViewModel: GrantViewModel) {

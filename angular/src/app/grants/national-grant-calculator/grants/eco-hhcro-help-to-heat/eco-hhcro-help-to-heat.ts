@@ -29,10 +29,6 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
         }
     }
 
-    getAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
-        return Observable.of(null);
-    }
-
     private getTaxCreditsEligibility(responseData: ResponseData): Observable<GrantEligibility> {
         // Tax credits thresholds are compared to annual income
         const relevantIncome = responseData.income;

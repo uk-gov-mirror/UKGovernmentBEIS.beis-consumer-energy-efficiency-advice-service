@@ -15,8 +15,9 @@ describe('GrantCardComponent', () => {
         description: 'Description',
         eligibility: GrantEligibility.MayBeEligible,
         shouldDisplayWithoutMeasures: false,
-        annualPaymentPounds: 120,
-        linkedMeasureCodes: [],
+        annualPaymentPoundsStandalone: 120,
+        linkedMeasureCodesForOneOffPayment: [],
+        annualPaymentPoundsByMeasure: {},
         advantages: [],
         steps: []
     };
