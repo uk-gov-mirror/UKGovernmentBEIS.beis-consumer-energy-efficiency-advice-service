@@ -79,6 +79,8 @@ $quick-link-margin: 4px;
       background: $light-grey;
       padding: 70px 0 40px 40px;
 
+      cursor: pointer;
+
       &:focus, &:hover {
         .arrow-button {
           color: white;
