@@ -1,9 +1,12 @@
 <div class="benefits-question question-component">
-    <form class="questionnaire-form" (submit)="complete.emit()">
-        <label *ngFor="let option of options">
-            <input [name]="Benefits[option.value]" id="benefits-checkbox-{{Benefits[option.value]}}" type="checkbox" [ngModel]="getBenefitsValue(option)" (ngModelChange)="toggleBenefit(option)"
-                class="checkbox">
-            <span>{{option.name}}</span>
-        </label>
-    </form>
+    <div class="multiple-choice-options benefits-options">
+        <button *ngFor="let option of options"
+                class="multiple-choice-option benefits-option"
+                id="benefits-checkbox-{{Benefits[option.value]}}"
+                [name]="Benefits[option.value]"
+                [class.selected]="isBenefitSelected(option)"
+                (click)="toggleBenefit(option)">
+            {{option.name}}
+        </button>
+    </div>
 </div>

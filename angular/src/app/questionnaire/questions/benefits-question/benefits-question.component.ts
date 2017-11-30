@@ -25,7 +25,7 @@ export class BenefitsQuestionComponent extends QuestionBaseComponent implements 
     readonly Benefits = Benefits;
 
     get responseForAnalytics(): string {
-        const benefits = this.options.filter(option => this.getBenefitsValue(option))
+        const benefits = this.options.filter(option => this.isBenefitSelected(option))
             .map(option => Benefits[option.value]);
         return benefits.length ? benefits.join(', ') : 'None';
     };
@@ -46,7 +46,7 @@ export class BenefitsQuestionComponent extends QuestionBaseComponent implements 
         this.response ^= benefitsOptions.value;
     }
 
-    getBenefitsValue(benefitsOptions: BenefitsOption) {
+    isBenefitSelected(benefitsOptions: BenefitsOption) {
         return this.response & benefitsOptions.value;
     }
 }

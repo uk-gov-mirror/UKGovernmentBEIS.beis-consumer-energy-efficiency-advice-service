@@ -1,11 +1,11 @@
 <div class="question-component">
     <div class="multiple-choice-options fuel-type-options">
-        <div class="multiple-choice-option" *ngFor="let option of fuelTypeOptions; let idx = index"
-             [class.selected]="response === option.value" (click)="response = option.value; complete.emit()">
-            <div class="icon-container">
-                <button [ngClass]="option.className" [attr.aria-labelledby]="'fuel-type-name-' + idx"></button>
-            </div>
-            <span [attr.id]="'fuel-type-name-' + idx" class="name">{{option.name}}</span>
-        </div>
+        <button class="multiple-choice-option fuel-type-option"
+             *ngFor="let option of fuelTypeOptions"
+             [class.selected]="response === option.value"
+             [ngClass]="option.className"
+             (click)="response = option.value; complete.emit()">
+            {{option.name}}
+        </button>
     </div>
 </div>

@@ -1,12 +1,16 @@
 <div class="electricity-tariff-question question-component">
-    <div class="multiple-choice-options buttons">
-        <button id="standard-button" class="multiple-choice-option tariff-button"
+    <div class="multiple-choice-options electricity-tariff-options">
+        <button id="standard-button"
+                class="multiple-choice-option electricity-tariff-option"
                 [class.selected]="response === ElectricityTariff.Standard"
-                (click)="response = ElectricityTariff.Standard; complete.emit()">Standard
+                (click)="response = ElectricityTariff.Standard; complete.emit()">
+            Standard
         </button>
-        <button id="off-peak-button" class="multiple-choice-option tariff-button"
+        <button id="off-peak-button"
+                class="multiple-choice-option electricity-tariff-option"
                 [class.selected]="response === ElectricityTariff.OffPeak"
-                (click)="response = ElectricityTariff.OffPeak; complete.emit()">Off Peak
+                (click)="response = ElectricityTariff.OffPeak; complete.emit()">
+            Off Peak
         </button>
     </div>
 </div>

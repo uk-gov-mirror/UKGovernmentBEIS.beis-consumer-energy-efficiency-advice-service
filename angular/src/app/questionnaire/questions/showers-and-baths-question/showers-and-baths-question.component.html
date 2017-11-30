@@ -1,14 +1,14 @@
 <div class="showers-and-baths-question question-component">
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
-        <div class="form-row">
-            <label for="showers">Showers</label>
+        <div class="showers-baths-input">
+            <div class="name">Showers</div>
             <app-number-question itemsName="showers"
                                  [(quantity)]="showers"
                                  [minQuantity]="0"
                                  [maxQuantity]="50"></app-number-question>
         </div>
-        <div class="form-row">
-            <label for="baths">Baths</label>
+        <div class="showers-baths-input">
+            <div class="name">Baths</div>
             <app-number-question itemsName="baths"
                                  [(quantity)]="baths"
                                  [minQuantity]="0"

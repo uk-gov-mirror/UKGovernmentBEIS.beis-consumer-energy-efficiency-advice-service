@@ -1,26 +1,19 @@
 .flat-exposed-wall-options {
+  display: flex;
+  flex-wrap: wrap;
 
-  .icon-container {
-    height: 150px;
+  .flat-exposed-wall-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
+    text-transform: capitalize;
 
-    .one-side-exposed::before {
-      content: url('/assets/images/exposed-wall/flat-one-side-exposed.svg');
+    &:nth-child(odd) {
+      margin-right: 20px;
     }
 
-    .two-sides-exposed-corner::before {
-      content: url('/assets/images/exposed-wall/flat-two-sides-exposed-corner.svg');
-    }
-
-    .two-sides-exposed-through::before {
-      content: url('/assets/images/exposed-wall/flat-two-sides-exposed-through.svg');
-    }
-
-    .three-sides-exposed::before {
-      content: url('/assets/images/exposed-wall/flat-three-sides-exposed.svg');
-    }
-
-    .four-sides-exposed::before {
-      content: url('/assets/images/exposed-wall/flat-four-sides-exposed.svg');
+    &:nth-last-child(n + 2) {
+      margin-bottom: 20px;
     }
   }
+
 }

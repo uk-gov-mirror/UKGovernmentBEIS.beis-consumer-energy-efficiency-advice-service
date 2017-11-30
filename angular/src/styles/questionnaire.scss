@@ -1,5 +1,6 @@
 @import 'mixins/font';
 @import "var/colors";
+@import "styles/page";
 
 .questions-container {
 
@@ -14,7 +15,6 @@
 
       .questionnaire-form {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
 
@@ -26,9 +26,8 @@
         .text-input {
           font-weight: bold;
           font-size: 24px;
-          border-radius: 30px;
+          border-radius: 30%/50%;
           padding: 10px;
-          margin: 2px;
           text-align: center;
           text-transform: uppercase;
           outline: none;
@@ -44,7 +43,8 @@
             -webkit-appearance: none;
             appearance: none;
             padding: 12px 36px 12px 24px;
-            background: white url('/assets/images/controls/caret-down.svg') no-repeat right;
+            background: white url('/assets/images/controls/chevron-down.svg') no-repeat right 20px center/20px;
+            min-width: 100px;
 
             &::-ms-expand {
               display: none;
@@ -58,48 +58,30 @@
       }
 
       .multiple-choice-options {
-        display: flex;
-        justify-content: space-between;
-        max-width: 100%;
+        max-width: $content-max-width;
 
         .multiple-choice-option {
-          flex: 0 1 auto;
-          margin: 0 12px;
+          @include capsule-button;
 
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          background-color: white;
+          color: $dark-grey;
 
-          &, button {
-            background: none;
-            border: none;
-            cursor: pointer;
-          }
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: bold;
 
-          .icon-container {
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-          }
+          padding: 12px 36px;
+          box-sizing: border-box;
 
-          .name {
-            text-align: center;
-            margin-top: 8px;
-            text-transform: capitalize;
-
-            font-weight: bold;
-            font-size: 16px;
-          }
+          outline: none;
 
           &:hover, &:focus {
-            outline: none;
-            background-color: rgba(#2196F3, 0.2);
+            background-color: $lighter-medium-grey;
           }
 
           &.selected {
-            outline: none;
-            background-color: rgba(#2196F3, 0.5);
+            background-color: $primary-blue;
+            color: white;
           }
         }
       }

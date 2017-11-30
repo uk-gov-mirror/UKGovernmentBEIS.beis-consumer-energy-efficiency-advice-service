@@ -41,7 +41,7 @@ describe('BenefitsQuestionComponent', () => {
         fixture.whenStable().then(() =>
             possibleBenefits.forEach(benefit => {
                 const checkbox = fixture.debugElement.query(By.css(`#benefits-checkbox-${Benefits[benefit]}`)).nativeElement;
-                expect(checkbox.checked).toBe(!!(originalBenefits & benefit));
+                expect(checkbox.classList.contains('selected')).toBe(!!(originalBenefits & benefit));
             })
         );
     }));

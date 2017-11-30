@@ -1,10 +1,16 @@
-<div class="boiler-type-component question-component">
-    <div class="multiple-choice-options buttons">
-        <button id="yes-button" class="multiple-choice-option yes-no-button" [class.selected]="response === true"
-                (click)="response = true; complete.emit()">Yes
+<div class="boiler-type-question question-component">
+    <div class="multiple-choice-options boiler-type-options">
+        <button id="yes-button"
+                class="multiple-choice-option boiler-type-option"
+                [class.selected]="response === true"
+                (click)="response = true; complete.emit()">
+            Yes
         </button>
-        <button id="no-button" class="multiple-choice-option yes-no-button" [class.selected]="response === false"
-                (click)="response = false; complete.emit()">No
+        <button id="no-button"
+                class="multiple-choice-option boiler-type-option"
+                [class.selected]="response === false"
+                (click)="response = false; complete.emit()">
+            No
         </button>
     </div>
 </div>

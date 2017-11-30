@@ -1,13 +1,13 @@
 <div class="question-component heating-cost-question">
     <div class="question-content">
         <form class="questionnaire-form" (submit)="handleFormSubmit()">
-            <div class="currency">£</div>
             <app-number-question itemsName="heating cost"
                                  [(quantity)]="response"
                                  [minQuantity]="0"
                                  [maxQuantity]="500"
-                                 [step]="10"></app-number-question>
+                                 [step]="10"
+                                 prefix="£"></app-number-question>
         </form>
-        <button class="do-not-know-button" id="do-not-know-button" (click)="response = 0; complete.emit();">I don't know</button>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="response = 0; complete.emit();">Don't know</button>
     </div>
 </div>

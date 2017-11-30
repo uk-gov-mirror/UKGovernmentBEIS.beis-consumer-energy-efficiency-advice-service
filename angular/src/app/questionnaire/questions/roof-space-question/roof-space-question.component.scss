@@ -1,38 +1,23 @@
-.roof-space-question {
-  .roof-space-options {
-    margin-top: 64px;
+.roof-space-question .roof-space-options {
+  display: flex;
 
-    .roof-space-option {
+  .roof-space-option {
+    flex: 0 0 auto;
+    width: calc((100% - 80px - 1px) / 4);
 
-      .roof-space-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
 
-        width: 240px;
-        border-radius: 240px;
-        border: 1px solid black;
+    .roof-space-button {
+      white-space: nowrap;
+      width: 100%;
+    }
 
-        padding: 16px 32px;
-        box-sizing: border-box;
-
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      .roof-space-button:not(:hover):not(:focus):not(.selected) {
-        background-color: white;
-      }
-
-      .help-text {
-        font-size: 14px;
-        margin-top: 16px;
-        text-align: center;
-      }
-
-      &:not(:last-child) {
-        margin-right: 64px;
-      }
+    .help-text {
+      font-size: 14px;
+      margin-top: 16px;
+      text-align: center;
     }
   }
 }

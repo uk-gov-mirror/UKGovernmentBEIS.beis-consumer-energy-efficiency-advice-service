@@ -41,7 +41,7 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
         ];
     }
 
-    onFloorLevelOptionChange(option: FloorLevelOption) {
+    toggleFloorLevelOption(option: FloorLevelOption) {
         if (this.responseData.floorLevels.includes(option.value)) {
             pull(this.responseData.floorLevels, option.value);
         } else {
@@ -49,7 +49,7 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
         }
     }
 
-    getFloorLevelOptionValue(option: FloorLevelOption) {
+    isFloorLevelOptionSelected(option: FloorLevelOption) {
         return this.responseData.floorLevels.includes(option.value);
     }
 }

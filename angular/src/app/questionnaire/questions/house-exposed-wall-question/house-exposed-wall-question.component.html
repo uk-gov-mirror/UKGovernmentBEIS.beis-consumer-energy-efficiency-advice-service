@@ -1,11 +1,11 @@
 <div class="question-component">
     <div class="multiple-choice-options house-exposed-wall-options">
-        <div class="multiple-choice-option" *ngFor="let option of houseExposedWallOptions; let idx = index"
-             [class.selected]="response === option.value" (click)="response = option.value; complete.emit()">
-            <div class="icon-container">
-                <button [ngClass]="option.className" [attr.aria-labelledby]="'house-exposed-wall-option-' + idx"></button>
-            </div>
-            <span [attr.id]="'house-position-name-' + idx" class="name">{{option.name}}</span>
-        </div>
+        <button class="multiple-choice-option house-exposed-wall-option"
+                *ngFor="let option of houseExposedWallOptions"
+                [class.selected]="response === option.value"
+                [ngClass]="option.className"
+                (click)="response = option.value; complete.emit()">
+            {{option.name}}
+        </button>
     </div>
 </div>

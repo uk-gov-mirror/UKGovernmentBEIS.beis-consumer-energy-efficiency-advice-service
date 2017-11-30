@@ -1,40 +1,18 @@
-@import "styles/var/colors";
-
 .floor-level-options {
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 
-  .baseline {
-    position: absolute;
-    width: 100%;
-    top: 144px;
-    box-sizing: border-box;
-    border-bottom: 1px solid $light-medium-grey;
-  }
+  .floor-level-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
+    text-transform: capitalize;
 
-  .multiple-choice-option {
-
-    .icon-container {
-      height: 150px;
-
-      .basement::before {
-        content: url('/assets/images/home-types/ground-floor-flat.svg');
-      }
-
-      .ground::before {
-        content: url('/assets/images/home-types/ground-floor-flat.svg');
-      }
-
-      .mid-floor::before {
-        content: url('/assets/images/home-types/mid-floor-flat.svg');
-      }
-
-      .top-floor::before {
-        content: url('/assets/images/home-types/top-floor-flat.svg');
-      }
+    &:nth-child(odd) {
+      margin-right: 20px;
     }
 
-    .name {
-      max-width: 100px;
+    &:nth-last-child(n + 3) {
+      margin-bottom: 20px;
     }
   }
 }

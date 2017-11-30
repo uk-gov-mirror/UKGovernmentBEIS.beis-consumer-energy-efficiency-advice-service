@@ -99,17 +99,6 @@ describe('OccupantsQuestionComponent', () => {
         expect(component.adultsAgedOver80).toBe(expectedAdultsOver80);
     });
 
-    it('should display the number of adults given the response data', () => {
-        // given
-        const expectedAdults = originalNumberOfAdults64To80 + originalNumberOfAdultsUnder64 + originalNumberOfAdultsOver80;
-
-        // when
-        fixture.detectChanges();
-
-        // then
-        expect(fixture.debugElement.queryAll(By.css('.icon-person-large')).length).toBe(expectedAdults);
-    });
-
     it('should populate with original number of children in response data', async(() => {
         fixture.whenStable().then(() => {
             const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
@@ -128,20 +117,5 @@ describe('OccupantsQuestionComponent', () => {
 
         // then
         expect(component.children).toBe(expectedChildren);
-    });
-
-    it('should display the number of children given a valid number of children', () => {
-        // given
-        const expectedChildren = 4;
-
-        // when
-        const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
-        childrenInput.nativeElement.value = expectedChildren;
-        childrenInput.nativeElement.dispatchEvent(new Event('input'));
-
-        fixture.detectChanges();
-
-        // then
-        expect(fixture.debugElement.queryAll(By.css('.icon-person')).length).toBe(expectedChildren);
     });
 });

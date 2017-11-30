@@ -97,8 +97,8 @@ describe('NumberQuestionComponent', () => {
 
     it('should increase and decrease quantity when buttons are clicked', () => {
         // given
-        let decreaseButton = fixture.debugElement.query(de => de.nativeElement.textContent === '-');
-        let increaseButton = fixture.debugElement.query(de => de.nativeElement.textContent === '+');
+        let decreaseButton = fixture.debugElement.query(By.css('.delta-button.decrease'));
+        let increaseButton = fixture.debugElement.query(By.css('.delta-button.increase'));
 
         let emitted: number;
         component.quantityChange.subscribe(quantity => emitted = quantity);

@@ -52,19 +52,4 @@ describe('BedroomsQuestionComponent', () => {
         // then
         expect(component.response).toBe(expectedBedrooms);
     });
-
-    it('should set the number of beds given a valid number of bedrooms', () => {
-        // given
-        const expectedBedrooms = 5;
-
-        // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
-        storeysInput.nativeElement.value = expectedBedrooms;
-        storeysInput.nativeElement.dispatchEvent(new Event('input'));
-
-        fixture.detectChanges();
-
-        // then
-        expect(fixture.debugElement.queryAll(By.css('.icon-bed')).length).toBe(expectedBedrooms);
-    });
 });

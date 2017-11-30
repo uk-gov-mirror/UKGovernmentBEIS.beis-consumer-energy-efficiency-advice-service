@@ -1,15 +1,19 @@
 .benefits-question.question-component {
-  .questionnaire-form {
-    align-items: flex-start;
+  .benefits-options {
+    display: flex;
+    flex-wrap: wrap;
 
-    label {
-      padding: 4px 0;
-      display: flex;
-      align-items: center;
+    .benefits-option {
+      flex: 0 0 auto;
+      width: calc((100% - 20px - 1px) / 2);
+      text-transform: capitalize;
 
-      .checkbox {
-        width: 40px;
-        height: 40px;
+      &:nth-child(odd) {
+        margin-right: 20px;
+      }
+
+      &:nth-last-child(n + 3) {
+        margin-bottom: 20px;
       }
     }
   }

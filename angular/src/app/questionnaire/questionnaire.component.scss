@@ -1,5 +1,6 @@
 @import 'styles/mixins/buttons';
 @import "styles/page";
+@import "styles/var/colors";
 
 :host {
   display: flex;
@@ -19,19 +20,22 @@
 
   .question-type-icon {
     margin-top: 15vh;
-    margin-bottom: 20px;
   }
 
-  .question-heading-container {
-    width: 100%;
-    max-width: 1280px;
+  .question-type-icon-baseline {
+    background-color: $focus-blue;
+    width: 140px;
+    height: 1px;
+    margin-bottom: 20px;
+    margin-top: -4px; // align to the bottom of the question type icon
   }
 
   .question-heading-container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
+    width: 100%;
 
     > button {
       flex: 0 0 auto;
@@ -41,15 +45,71 @@
       font-size: 36px;
       font-weight: bold;
       text-align: center;
+      color: $darkened-blue;
     }
 
     .left-arrow, .right-arrow {
-      @include round-button(32px);
-      font-size: 16px;
-      margin: 0 16px;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 500;
+      height: 48px;
+      width: 84px;
+
+      background-color: white;
+      color: #a9a9a9;
+
+      display: inline-flex;
+      align-items: center;
+
+      outline: none;
+      border: none;
 
       &.hidden {
         visibility: hidden;
+      }
+
+      &:not([disabled]) {
+        cursor: pointer;
+        &:focus, &:hover {
+          background-color: $lighter-medium-grey;
+        }
+      }
+    }
+
+    .left-arrow {
+      border-radius: 0 10px 10px 0;
+      justify-content: flex-start;
+
+      &::before {
+        content: "";
+        background-image: url('/assets/images/controls/chevron-left.svg');
+        background-size: 16px 16px;
+        width: 16px;
+        height: 16px;
+        margin-right: 9px;
+      }
+    }
+
+    .right-arrow {
+      border-radius: 10px 0 0 10px;
+      justify-content: flex-end;
+
+      &::after {
+        content: "";
+        background-image: url('/assets/images/controls/chevron-right.svg');
+        background-size: 16px 16px;
+        width: 16px;
+        height: 16px;
+        margin-left: 9px;
+      }
+
+      &:not([disabled]) {
+        background-color: $green;
+        color: white;
+
+        &:focus, &:hover {
+          background-color: $primary-blue;
+        }
       }
     }
   }
@@ -57,7 +117,7 @@
   .help-text {
     width: 60vw;
     text-align: center;
-    margin-bottom: 20px;
+    color: $focus-blue;
   }
 
   .question {
@@ -66,6 +126,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding-bottom: 16px;
+    margin-top: 96px;
   }
 
   app-question-reason {
