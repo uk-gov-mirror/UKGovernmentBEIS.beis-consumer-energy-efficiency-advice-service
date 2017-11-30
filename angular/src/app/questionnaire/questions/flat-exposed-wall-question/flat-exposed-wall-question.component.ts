@@ -22,8 +22,8 @@ export class FlatExposedWallQuestionComponent extends QuestionBaseComponent {
         super(responseData);
         this.flatExposedWallOptions = [
             {name: '1 Side Exposed (Inset)', value: FlatExposedWall.OneSideExposedInset, className: 'one-side-exposed'},
-            {name: '2 Sides Exposed (In a corner)', value: FlatExposedWall.TwoSidesExposedCorner, className: 'two-sides-exposed'},
-            {name: '2 Sides Exposed (Through building)', value: FlatExposedWall.TwoSidesExposedThroughBuilding, className: 'two-sides-exposed'},
+            {name: '2 Sides Exposed (In a corner)', value: FlatExposedWall.TwoSidesExposedCorner, className: 'two-sides-exposed-corner'},
+            {name: '2 Sides Exposed (Through building)', value: FlatExposedWall.TwoSidesExposedThroughBuilding, className: 'two-sides-exposed-through'},
             {name: '3 Sides Exposed (Whole side)', value: FlatExposedWall.ThreeSidesExposedWholeSide, className: 'three-sides-exposed'},
             {name: '4 Sides Exposed (Whole floor)', value: FlatExposedWall.FourSidesExposedWholeFloor, className: 'four-sides-exposed'},
         ];

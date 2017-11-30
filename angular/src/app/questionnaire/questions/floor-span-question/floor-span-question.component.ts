@@ -37,9 +37,7 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
     }
 
     ngOnInit() {
-        if (this.responseData.floorLevels === undefined) {
-            this.responseData.floorLevels = [];
-        }
+        this.responseData.floorLevels = this.responseData.floorLevels || [];
     }
 
     onFloorLevelOptionChange(option: FloorLevelOption) {

@@ -3,18 +3,16 @@
   .icon-container {
     height: 150px;
 
-    // TODO: BEISDEAS-117: replace the svgs once Ben finishes the design
-
     .one-side-shared::before {
-      content: url('/assets/images/flat-positions/three-sides-exposed.svg');
+      content: url('/assets/images/exposed-wall/house-three-sides-exposed.svg');
     }
 
     .two-sides-shared::before {
-      content: url('/assets/images/flat-positions/two-sides-exposed.svg');
+      content: url('/assets/images/exposed-wall/house-two-sides-exposed.svg');
     }
 
     .three-sides-shared::before {
-      content: url('/assets/images/flat-positions/one-side-exposed.svg');
+      content: url('/assets/images/exposed-wall/house-one-side-exposed.svg');
     }
   }
 }
