@@ -31,7 +31,7 @@ describe('FlatStoreysQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should default number of storeys to 2', async(() => {
+    it('should default number of storeys to 1', async(() => {
         fixture.whenStable().then(() => {
             let storeysInput = fixture.debugElement.query(By.css('input'));
             expect(storeysInput.nativeElement.value).toBe(DEFAULT_NUMBER_OF_STOREYS.toString());

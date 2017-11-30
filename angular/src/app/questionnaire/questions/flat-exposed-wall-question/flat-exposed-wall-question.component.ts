@@ -1,14 +1,15 @@
 import {Component} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {FlatExposedWall} from "./flat-exposed-wall";
+import {FlatExposedWall, getFlatExposedWallDescription} from "./flat-exposed-wall";
 import {ResponseData} from "../../../shared/response-data/response-data";
 
-interface FlatExposedWallOption {
-    name: string;
-    value: FlatExposedWall;
-    className: string;
-}
+class FlatExposedWallOption {
+    public readonly name: string;
 
+    constructor(public readonly value: FlatExposedWall, public readonly className: string) {
+        this.name = getFlatExposedWallDescription(value);
+    }
+}
 @Component({
     selector: 'app-flat-exposed-wall-question',
     templateUrl: './flat-exposed-wall-question.component.html',
@@ -21,11 +22,11 @@ export class FlatExposedWallQuestionComponent extends QuestionBaseComponent {
     constructor(responseData: ResponseData) {
         super(responseData);
         this.flatExposedWallOptions = [
-            {name: '1 Side Exposed (Inset)', value: FlatExposedWall.OneSideExposedInset, className: 'one-side-exposed'},
-            {name: '2 Sides Exposed (In a corner)', value: FlatExposedWall.TwoSidesExposedCorner, className: 'two-sides-exposed-corner'},
-            {name: '2 Sides Exposed (Through building)', value: FlatExposedWall.TwoSidesExposedThroughBuilding, className: 'two-sides-exposed-through'},
-            {name: '3 Sides Exposed (Whole side)', value: FlatExposedWall.ThreeSidesExposedWholeSide, className: 'three-sides-exposed'},
-            {name: '4 Sides Exposed (Whole floor)', value: FlatExposedWall.FourSidesExposedWholeFloor, className: 'four-sides-exposed'},
+            new FlatExposedWallOption(FlatExposedWall.OneSideExposedInset, 'one-side-exposed'),
+            new FlatExposedWallOption(FlatExposedWall.TwoSidesExposedCorner, 'two-sides-exposed-corner'),
+            new FlatExposedWallOption(FlatExposedWall.TwoSidesExposedThroughBuilding, 'two-sides-exposed-through'),
+            new FlatExposedWallOption(FlatExposedWall.ThreeSidesExposedWholeSide, 'three-sides-exposed'),
+            new FlatExposedWallOption(FlatExposedWall.FourSidesExposedWholeFloor, 'four-sides-exposed')
         ];
     }
 

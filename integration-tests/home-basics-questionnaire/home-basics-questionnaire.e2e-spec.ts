@@ -49,10 +49,10 @@ describe('Home basics questionnaire', () => {
         // Storey count
         expect(page.getHeading()).toContain('How many floors');
         page.goForwards();
+        CommonPageHelpers.sleep(1000);
 
         // Which floor
         expect(page.getHeading()).toContain('Which floor is your property');
-        CommonPageHelpers.sleep(500);
         page.clickOption('basement');
         CommonPageHelpers.sleep(1000);
 

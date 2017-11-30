@@ -1,13 +1,14 @@
 export enum HouseExposedWall {
-    OneSideExposed,
-    TwoSidesExposed,
-    ThreeSidesExposed
+    OneSideExposed = 1,
+    TwoSidesExposed = 2,
+    ThreeSidesExposed = 3
 }
 
-export function getNumberOfExposedWallsInHouse(houseExposedWall: HouseExposedWall): number {
+export function getHouseSharedWallDescription(houseExposedWall: HouseExposedWall) {
     switch (houseExposedWall) {
-        case HouseExposedWall.OneSideExposed:            { return 1; }
-        case HouseExposedWall.TwoSidesExposed:           { return 2; }
-        case HouseExposedWall.ThreeSidesExposed:         { return 3; }
+        case HouseExposedWall.OneSideExposed:           { return '3 Sides'; }
+        case HouseExposedWall.TwoSidesExposed:          { return '2 Sides'; }
+        case HouseExposedWall.ThreeSidesExposed:        { return '1 Side'; }
+        default:                                        { return null; }
     }
 }

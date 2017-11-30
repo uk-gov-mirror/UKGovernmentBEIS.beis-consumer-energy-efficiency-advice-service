@@ -1,12 +1,14 @@
 import {Component} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {ResponseData} from "../../../shared/response-data/response-data";
-import {HouseExposedWall} from "./house-exposed-wall";
+import {getHouseSharedWallDescription, HouseExposedWall} from "./house-exposed-wall";
 
-interface HouseExposedWallOption {
-    name: string;
-    value: HouseExposedWall;
-    className: string;
+class HouseExposedWallOption {
+    public readonly name: string;
+
+    constructor(public readonly value: HouseExposedWall, public readonly className: string) {
+        this.name = getHouseSharedWallDescription(value);
+    }
 }
 
 @Component({
@@ -21,9 +23,9 @@ export class HouseExposedWallQuestionComponent extends QuestionBaseComponent {
     constructor(responseData: ResponseData) {
         super(responseData);
         this.houseExposedWallOptions = [
-            {name: '1 Side', value: HouseExposedWall.ThreeSidesExposed, className: 'one-side-shared'},
-            {name: '2 Sides', value: HouseExposedWall.TwoSidesExposed, className: 'two-sides-shared'},
-            {name: '3 Sides', value: HouseExposedWall.OneSideExposed, className: 'three-sides-shared'}
+            new HouseExposedWallOption(HouseExposedWall.ThreeSidesExposed, 'one-side-shared'),
+            new HouseExposedWallOption(HouseExposedWall.TwoSidesExposed, 'two-sides-shared'),
+            new HouseExposedWallOption(HouseExposedWall.OneSideExposed, 'three-sides-shared')
         ];
     }
 

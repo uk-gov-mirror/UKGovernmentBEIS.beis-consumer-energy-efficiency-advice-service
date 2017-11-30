@@ -5,6 +5,7 @@ import {FloorSpanQuestionComponent} from "./floor-span-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FloorLevel} from "../floor-level-question/floor-level";
 import {FormsModule} from "@angular/forms";
+import {keys} from "lodash-es";
 
 describe('FloorSpanQuestionComponent', () => {
     let fixture: ComponentFixture<FloorSpanQuestionComponent>;
@@ -35,9 +36,9 @@ describe('FloorSpanQuestionComponent', () => {
     it('should populate with original floor levels in response data checked', async(() => {
         // given
         const originalFloorLevels: FloorLevel[] = [FloorLevel.Basement, FloorLevel.TopFloor];
-        const allFloorLevels: FloorLevel[] = Object.keys(FloorLevel)
-            .filter((key) => typeof FloorLevel[key] === 'number')
-            .map((key) => FloorLevel[key]);
+        const allFloorLevels: FloorLevel[] = keys(FloorLevel)
+            .map(x => parseInt(x))
+            .filter(floorLevel => !isNaN(floorLevel));
 
         // when
         responseData.floorLevels = originalFloorLevels;

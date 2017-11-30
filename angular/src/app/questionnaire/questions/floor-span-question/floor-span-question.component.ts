@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FloorLevel, getFloorLevelDescription} from "../floor-level-question/floor-level";
+import {pull} from "lodash";
 
 class FloorLevelOption {
     public readonly name: string;
@@ -22,8 +23,12 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
 
     readonly FloorLevel = FloorLevel;
 
+    ngOnInit() {
+        this.responseData.floorLevels = this.responseData.floorLevels || [];
+    }
+
     get responseForAnalytics(): string {
-        return this.responseData.floorLevels.toString();
+        return this.responseData.floorLevels.map(floorLevel => FloorLevel[floorLevel]).toString();
     }
 
     constructor(responseData: ResponseData) {
@@ -36,15 +41,9 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
         ];
     }
 
-    ngOnInit() {
-        this.responseData.floorLevels = this.responseData.floorLevels || [];
-    }
-
     onFloorLevelOptionChange(option: FloorLevelOption) {
         if (this.responseData.floorLevels.includes(option.value)) {
-            this.responseData.floorLevels = this.responseData.floorLevels.filter((selectedFloorLevel) => {
-                return selectedFloorLevel !== option.value;
-            })
+            pull(this.responseData.floorLevels, option.value);
         } else {
             this.responseData.floorLevels.push(option.value);
         }

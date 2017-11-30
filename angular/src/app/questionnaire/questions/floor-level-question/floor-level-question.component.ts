@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {FloorLevel, getFloorLevelDescription} from "./floor-level";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {ResponseData} from "../../../shared/response-data/response-data";
@@ -17,11 +17,15 @@ class FloorLevelOption {
     styleUrls: ['./floor-level-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class FloorLevelQuestionComponent extends QuestionBaseComponent {
+export class FloorLevelQuestionComponent extends QuestionBaseComponent implements OnInit {
     floorLevelOptions: FloorLevelOption[];
 
+    ngOnInit() {
+        this.responseData.floorLevels = this.responseData.floorLevels || [];
+    }
+
     get responseForAnalytics(): string {
-        return this.responseData.floorLevels.toString();
+        return this.responseData.floorLevels.map(floorLevel => FloorLevel[floorLevel]).toString();
     }
 
     constructor(responseData: ResponseData) {

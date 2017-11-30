@@ -11,7 +11,7 @@ import {ShowerType} from "../../../questionnaire/questions/shower-type-question/
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
 import {getNumberOfExposedWallsInFlat} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
-import {getNumberOfExposedWallsInHouse} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
+import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
 
 export class RdSapInput {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
@@ -152,7 +152,6 @@ export class RdSapInput {
     private static getFlatLevel(floorLevels: FloorLevel[]): FlatLevel {
         // For now, we use the lowest floor level as the flat level
         const lowestFloorLevel:FloorLevel = floorLevels.sort()[0];
-        console.log('fl', lowestFloorLevel);
         switch (lowestFloorLevel) {
             case FloorLevel.Basement: {
                 return FlatLevel.Basement;
@@ -179,7 +178,7 @@ export class RdSapInput {
         } else if (isDetached(responseData.homeType)) {
             return RdSapInput.NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY;
         } else {
-            return getNumberOfExposedWallsInHouse(responseData.numberOfExposedWallsInHouse);
+            return responseData.numberOfExposedWallsInHouse;
         }
     }
 
