@@ -4,23 +4,28 @@
             <div class="heading-text">Boilers & Heating Systems</div>
         </div>
     </div>
-    <div class="page-row">
-        <div class="page-row-content troubleshooting">
+    <div class="troubleshooting page-row">
+        <div class="page-row-content">
             <div class="heading">Troubleshooting tips</div>
             <div class="body-text">Try these 5 fixes before calling an engineer</div>
             <div class="tips">
                 <app-carousel class="carousel"></app-carousel>
-                <div class="still-not-working">
-                    <div class="body-large">Still not working?</div>
-                    <button class="link-button">Check out our list of certified repairers</button>
-                    <button class="link-button">Find out about your landlord's obligations</button>
+                <div class="links">
+                    <div class="still-not-working">
+                        <div class="body-large">Still not working?</div>
+                        <app-boiler-link-button text="Check out our list of certified repairers"></app-boiler-link-button>
+                    </div>
+                    <div class="tenant">
+                        <div class="body-large">Are you a tenant?</div>
+                        <app-boiler-link-button text="Find out about your landlord's obligations"></app-boiler-link-button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="replacing page-row">
         <div class="page-row-content">
-            <div class="heading">Thinking about replacing your boiler?</div>
+            <div class="large-heading">Thinking about replacing your boiler?</div>
             <div class="boiler-options">
                 <div class="body-text">
                     If you're replacing your boiler or heating system, there are many options to choose from.<br>
@@ -31,16 +36,18 @@
                 <div class="body">
                     <div class="replace-column">
                         <div class="text-content">
-                            <div class="subheading">Yes. My boiler needs replacing</div>
+                            <div class="small-heading">Yes. My boiler needs replacing</div>
                             <div class="help-text">
                                 We can provide you with information about the range of boiler types that are available,
                                 including average lifetimes and running costs
                             </div>
                         </div>
-                        <a class="link-button" routerLink="/js/boiler/replace">Let's look at some boiler options</a>
+                        <app-boiler-link-button class="link-button"
+                                                text="Let's look at some boiler options"
+                                                path="/js/boiler/replace"></app-boiler-link-button>
                     </div>
                     <div class="postcode-lookup-column">
-                        <div class="subheading">I'm not sure if my boiler needs replacing</div>
+                        <div class="small-heading">I'm not sure if my boiler needs replacing</div>
                         <div class="help-text">
                             We can try your postcode to see if the Energy Performance Certificate (EPC) for your home
                             has any information on your boiler
@@ -51,8 +58,8 @@
             </div>
         </div>
     </div>
-    <div class="page-row">
-        <div class="grants page-row-content">
+    <div class="grants page-row">
+        <div class="page-row-content">
             <div class="heading">Grants & incentives</div>
             <div class="body">
                 <div class="body-text">
@@ -60,14 +67,14 @@
                     to replace your boiler. There are also incentives available if you are using a renewable energy source
                 </div>
                 <div class="links">
-                    <button class="link-button">Find out about boiler grants</button>
-                    <button class="link-button">Earn money via the renewable heat incentive</button>
+                    <app-boiler-link-button class="link-button" text="Find out about boiler grants"></app-boiler-link-button>
+                    <app-boiler-link-button class="link-button" text="Earn money via the renewable heat incentive"></app-boiler-link-button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="find-installer page-row">
-        <div class="page-row-content">
+    <div class="page-row">
+        <div class="find-installer page-row-content">
             <div class="heading">Find a trustworthy installer</div>
             <div class="installers">
                 <div class="installer">

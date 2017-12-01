@@ -5,14 +5,18 @@
 .boiler-landing-page {
 
   .troubleshooting {
-    display: block;
+    background-color: $lighter-grey;
+
+    .heading {
+      margin-bottom: 8px;
+    }
 
     .tips {
       margin-top: 32px;
 
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: stretch;
 
       .carousel {
         flex: 1 1 auto;
@@ -20,92 +24,116 @@
         border-right: 1px solid $light-medium-grey;
       }
 
-      .still-not-working {
-        flex: 0 0 250px;
-        padding-left: 48px;
+      .links {
+        flex: 0 0 260px;
+        padding-left: 60px;
 
-        .link-button {
-          margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .still-not-working, .tenant {
+          flex: 0 0 50%;
+
+          display: flex;
+          flex-direction: column;
+
+          .body-large {
+            margin-bottom: 20px;
+          }
+        }
+
+        .still-not-working {
+          justify-content: flex-start;
+          border-bottom: 1px solid $light-medium-grey;
+        }
+
+        .tenant {
+          justify-content: flex-end;
         }
       }
     }
   }
 
   .replacing {
-    background-color: $lighter-grey;
+    .large-heading {
+      margin-bottom: 18px;
+    }
 
-    .page-row-content {
-      display: block;
+    .boiler-options {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      padding-bottom: 32px;
+      border-bottom: 1px solid $light-medium-grey;
 
-      .boiler-options {
+      .body-text {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+      }
+
+      .link-button {
+        flex: 0 0 250px;
+        margin-left: 64px;
+      }
+    }
+
+    .replace-options {
+      padding-top: 64px;
+
+      .body {
         display: flex;
         align-items: stretch;
         justify-content: space-between;
-        padding-bottom: 32px;
-        border-bottom: 1px solid $light-medium-grey;
 
-        .body-text {
+        .replace-column, .postcode-lookup-column {
           flex: 1 1 auto;
-          display: flex;
-          align-items: center;
-        }
+          flex-basis: calc(50% - 96px);
 
-        .link-button {
-          flex: 0 0 250px;
-          margin-left: 64px;
-        }
-      }
-
-      .replace-options {
-        padding-top: 64px;
-
-        .body {
-          display: flex;
-          align-items: stretch;
-          justify-content: space-between;
-
-          .replace-column, .postcode-lookup-column {
-            flex: 1 1 auto;
-            flex-basis: calc(50% - 96px);
-
-            .subheading {
-              font-size: 20px;
-              font-weight: bold;
-              width: 100%;
-              margin-bottom: 24px;
-            }
-
-            .help-text {
-              font-size: 18px;
-              width: 100%;
-            }
+          .small-heading {
+            margin-bottom: 17px;
           }
 
-          .replace-column {
-            padding-right: 96px;
-            border-right: 1px solid $light-medium-grey;
+          .help-text {
+            font-size: 18px;
+            width: 100%;
+          }
 
-            .link-button {
-              height: 72px;
-              display: flex;
-              align-items: center;
-            }
+          .link-button {
+            width: 100%;
+            height: 70px;
+          }
+        }
 
+        .replace-column {
+          padding-right: 96px;
+          border-right: 1px solid $light-medium-grey;
+
+          .link-button {
+            height: 72px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
           }
 
-          .postcode-lookup-column {
-            padding-left: 96px;
-          }
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .postcode-lookup-column {
+          padding-left: 96px;
         }
       }
     }
   }
 
   .grants {
-    display: block;
+    background: $lighter-grey;
+
+    .heading {
+      margin-bottom: 27px;
+    }
 
     .body {
       display: flex;
@@ -126,10 +154,10 @@
         justify-content: space-between;
 
         > .link-button {
-          flex: 0 0 250px;
+          flex: 0 0 260px;
 
           &:first-child {
-            margin-right: 24px;
+            margin-right: 18px;
           }
         }
       }
@@ -137,45 +165,50 @@
   }
 
   .find-installer {
-    background-color: $lighter-grey;
 
-    .page-row-content {
-      display: block;
+    .heading {
+      margin-bottom: 28px;
+    }
 
-      .installers {
+    .installers {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .installer {
+        flex: 1 0 1px;
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
 
-        .installer {
-          flex: 1 0 1px;
-          &:not(:last-child) {
-            margin-right: 24px;
-          }
+        .installer-section {
+          font-size: 13px;
+          line-height: 16px;
+          font-weight: 300;
+          text-transform: uppercase;
+        }
+
+        .installer-link {
+          width: 100%;
+          min-height: 125px;
+          margin-top: 12px;
+          padding: 20px;
+          box-sizing: border-box;
+
+          background: $lighter-grey;
 
           display: flex;
-          flex-direction: column;
           align-items: flex-start;
-          justify-content: flex-end;
+          justify-content: flex-start;
 
-          .installer-section {
-            @include body-uppercase;
-          }
-
-          .installer-link {
-            width: 100%;
-            height: 120px;
-            margin-top: 12px;
-            padding: 24px;
-            box-sizing: border-box;
-
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-
-            @include card-heading;
-            background-color: white;
-          }
+          font-size: 16px;
+          line-height: 19px;
+          font-weight: bold;
         }
       }
     }

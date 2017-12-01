@@ -1,3 +1,5 @@
+@import "styles/var/colors";
+
 :host {
   display: block;
 }
@@ -16,7 +18,7 @@
     margin-top: 48px;
 
     .postcode-input-text {
-      background-color: white;
+      background-color: $lighter-grey;
       outline: none;
       border: none;
 
@@ -30,8 +32,7 @@
     }
 
     .postcode-input-submit {
-      background-color: black;
-      color: white;
+      background: $pink url('/assets/images/controls/chevron-right-white.svg') no-repeat center;
 
       flex: 0 0 72px;
       border: none;

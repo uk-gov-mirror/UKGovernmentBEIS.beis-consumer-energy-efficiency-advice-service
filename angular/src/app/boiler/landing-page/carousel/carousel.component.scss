@@ -68,8 +68,8 @@ $item-margin: 16px;
     justify-content: center;
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background-color: $lighter-medium-grey;
 
@@ -78,7 +78,7 @@ $item-margin: 16px;
       }
 
       &:not(:last-child) {
-        margin-right: 8px;
+        margin-right: 6px;
       }
     }
   }
