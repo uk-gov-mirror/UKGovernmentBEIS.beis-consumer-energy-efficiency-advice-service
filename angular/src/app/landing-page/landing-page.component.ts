@@ -25,8 +25,6 @@ export class LandingPageComponent implements OnInit {
     questionContentError: boolean = false;
     postcodeQuestionReason: string;
     latestNews: WordpressPage[];
-    // TODO: Remove fake icon code
-    readonly pageIcons: string[] = ['icon-video-play', 'icon-infographic', 'icon-checklist', 'icon-grant'];
 
     ngOnInit() {
         this.questionContentService.fetchQuestionsContent()

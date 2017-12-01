@@ -14,8 +14,6 @@ import {Observable} from "rxjs/Observable";
 })
 export class HomePageComponent implements OnInit {
     latestNews: WordpressPage[];
-    // TODO: Remove fake icon code
-    readonly pageIcons: string[] = ['icon-video-play', 'icon-infographic', 'icon-checklist', 'icon-grant'];
 
     constructor(private responseData: ResponseData,
                 private questionnaireService: QuestionnaireService,

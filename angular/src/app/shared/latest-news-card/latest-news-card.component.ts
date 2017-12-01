@@ -7,6 +7,5 @@ import {WordpressPage} from "../wordpress-pages-service/wordpress-page";
     styleUrls: ['./latest-news-card.component.scss']
 })
 export class LatestNewsCardComponent {
-    @Input() iconClassName: string;
     @Input() page: WordpressPage;
 }

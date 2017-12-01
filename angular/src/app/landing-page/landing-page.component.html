@@ -64,7 +64,6 @@
             <div class="heading">Other things you might be interested in</div>
             <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
                 <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
-                                      [iconClassName]="pageIcons[idx]"
                                       [page]="page"></app-latest-news-card>
             </div>
             <ng-template #latestNewsSpinner>
