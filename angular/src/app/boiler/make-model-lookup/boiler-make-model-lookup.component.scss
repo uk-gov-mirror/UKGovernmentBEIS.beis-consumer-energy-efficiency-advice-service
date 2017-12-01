@@ -1,4 +1,4 @@
-@import "styles/mixins/buttons";
+@import "styles/var/colors";
 @import "styles/boiler";
 
 :host {
@@ -9,18 +9,39 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 
   .body-text {
-    font-size: 18px;
+    width: calc(50% - 108px);
+    margin-bottom: 12px;
+  }
+
+  .selection {
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .search-select, .dont-know {
+      flex: 0 0 50%;
+      padding: 24px 0;
+    }
+
+    .search-select {
+      padding-right: 108px;
+      border-right: 1px solid $light-medium-grey;
+    }
+
+    .dont-know {
+      padding-left: 108px;
+    }
   }
 
   .boiler-input {
     width: 100%;
     height: 72px;
     display: flex;
-    margin-top: 48px;
 
     .boiler-input-text {
       background-color: white;
@@ -35,8 +56,7 @@
     }
 
     .boiler-input-submit {
-      background-color: black;
-      color: white;
+      background: $pink url('/assets/images/controls/chevron-right-white.svg') no-repeat center;
 
       flex: 0 0 72px;
       border: none;
@@ -60,7 +80,6 @@
   .boiler-select {
     width: 100%;
     height: 50px;
-    margin-top: 24px;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -83,7 +102,7 @@
     }
 
     .go-button {
-      background-color: black;
+      background-color: $pink;
       color: white;
 
       flex: 0 0 50px;
@@ -99,22 +118,10 @@
     }
   }
 
-  .dont-know-buttons {
-    width: 100%;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-
-    margin-top: 32px;
-
+  .dont-know {
     .link-button {
-      height: 50px;
-      padding: 8px 16px;
-      text-align: center;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      height: 70px;
+      width: 50%;
     }
   }
 }

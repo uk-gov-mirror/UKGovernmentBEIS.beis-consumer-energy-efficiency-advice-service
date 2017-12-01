@@ -7,10 +7,10 @@
     <g id="Supply" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="circle-roofing">
             <g id="Group-11">
-                <circle id="Oval-10-Copy-4" fill="#F2F2F2" cx="30" cy="30" r="30"></circle>
+                <circle id="Oval-10-Copy-4" fill="#F5F5F5" cx="30" cy="30" r="30"></circle>
                 <g id="Group-4-Copy-2" transform="translate(16.000000, 14.000000)">
-                    <polygon id="Rectangle-5" fill="#000000" points="2.5 13.6666667 13.9376085 5 25.5 13.6666667 25.5 31 2.5 31"></polygon>
-                    <polyline id="Path-2" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="0 11 13.8968948 0 28 11"></polyline>
+                    <polygon id="Rectangle-5" fill="#4A4A4A" points="2.5 13.6666667 13.9376085 5 25.5 13.6666667 25.5 31 2.5 31"></polygon>
+                    <polyline id="Path-2" stroke="#4A4A4A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="0 11 13.8968948 0 28 11"></polyline>
                 </g>
                 <text id="&gt;-copy" transform="translate(29.000000, 27.500000) rotate(-90.000000) translate(-29.000000, -27.500000) " font-family="DIN-Bold, DIN" font-size="10" font-weight="bold" fill="#FFFFFF">
                     <tspan x="23.5" y="31.5">&gt;</tspan>

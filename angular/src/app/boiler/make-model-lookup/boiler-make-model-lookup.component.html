@@ -2,25 +2,29 @@
     <div class="body-text">
         Select the make and the model of your boiler so we can check whether it needs replacing
     </div>
-    <form class="boiler-input" (ngSubmit)="lookupBoilersFromSearchTerm(searchTerm)">
-        <input class="boiler-input-text"spellcheck="false" type="text" [(ngModel)]="searchTerm"
-               name="make-model-input" aria-label="Enter your boiler's make and model"
-               title="Enter your boiler's make and model">
-        <button class="boiler-input-submit" type="submit"
-                title="Submit" aria-label="Submit">></button>
-    </form>
-    <div class="loading-spinner" *ngIf="searching"></div>
-    <div class="boiler-select" *ngIf="matchedBoilers !== undefined && !searching">
-        <select class="boiler-dropdown" [class.placeholder]="selectedBoiler === undefined" [(ngModel)]="selectedBoiler">
-            <option class="boiler-option" [ngValue]="undefined" selected disabled hidden>-- Please select your boiler --</option>
-            <option class="boiler-option" [ngValue]="undefined">-- My boiler is not listed --</option>
-            <option class="boiler-option"
-                    *ngFor="let boiler of matchedBoilers"
-                    [ngValue]="boiler">{{boiler.name}}</option>
-        </select>
-        <button class="go-button" (click)="onBoilerSelected()">Go</button>
-    </div>
-    <div class="dont-know-buttons">
-        <a class="link-button" routerLink="/js/boiler/replace">I don't know my boiler make</a>
+    <div class="selection">
+        <div class="search-select">
+            <form class="boiler-input" (ngSubmit)="lookupBoilersFromSearchTerm(searchTerm)">
+                <input class="boiler-input-text"spellcheck="false" type="text" [(ngModel)]="searchTerm"
+                       name="make-model-input" aria-label="Enter your boiler's make and model"
+                       title="Enter your boiler's make and model">
+                <button class="boiler-input-submit" type="submit"
+                        title="Submit" aria-label="Submit"></button>
+            </form>
+            <div class="loading-spinner" *ngIf="searching"></div>
+            <div class="boiler-select" *ngIf="matchedBoilers !== undefined && !searching">
+                <select class="boiler-dropdown" [class.placeholder]="selectedBoiler === undefined" [(ngModel)]="selectedBoiler">
+                    <option class="boiler-option" [ngValue]="undefined" selected disabled hidden>-- Please select your boiler --</option>
+                    <option class="boiler-option" [ngValue]="undefined">-- My boiler is not listed --</option>
+                    <option class="boiler-option"
+                            *ngFor="let boiler of matchedBoilers"
+                            [ngValue]="boiler">{{boiler.name}}</option>
+                </select>
+                <button class="go-button" (click)="onBoilerSelected()">Go</button>
+            </div>
+        </div>
+        <div class="dont-know">
+            <app-boiler-link-button class="link-button" text="I don't know my boiler make" path="/js/boiler/replace"></app-boiler-link-button>
+        </div>
     </div>
 </div>

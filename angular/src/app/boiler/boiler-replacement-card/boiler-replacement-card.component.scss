@@ -1,11 +1,5 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
-@import "styles/page";
-
-$running-cost-box-width: 220px;
-$lifetime-box-width: 180px;
-$installation-cost-box-width: 220px;
-$remaining-boxes-width: $content-max-width - $running-cost-box-width - $lifetime-box-width - $installation-cost-box-width;
 
 :host {
   display: block;
@@ -13,133 +7,133 @@ $remaining-boxes-width: $content-max-width - $running-cost-box-width - $lifetime
 
 .boiler-replacement-card {
   display: flex;
+  flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
 
-  margin: 16px 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: $dark-grey;
 
-  .box {
-    box-sizing: border-box;
-
-    &.description {
-      flex: 1 1 auto;
-      width: $remaining-boxes-width;
-      background-color: $lighter-grey;
-      border-left: 10px solid $lighter-medium-grey;
-    }
-
-    &.installation {
-      flex: 0 0 auto;
-      width: $installation-cost-box-width;
-      background-color: white;
-      font-weight: 800;
-    }
-
-    &.lifetime {
-      flex: 0 0 auto;
-      width: $lifetime-box-width;
-      background-color: $light-grey;
-      font-weight: 800;
-    }
-
-    &.running-cost {
-      flex: 0 0 auto;
-      width: $running-cost-box-width;
-      background-color: $dark-medium-grey;
-      font-weight: 800;
-      color: white;
-    }
-
-    &:not(.description) {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: space-between;
-      padding: 16px 24px;
-
-      .box-heading {
-        @include body-uppercase;
-        font-weight: normal;
-        text-align: center;
-        height: 48px;
-        width: 100%;
-      }
-
-      .box-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-      }
-    }
-
-    &:not(.description), &:not(.running-cost) {
-      .box-content {
-        @include focus-text;
-      }
-    }
-
-    &.installation {
-      .box-content {
-        font-size: 22px;
-      }
+  &:focus, &:hover {
+    .main-row .details .content .name {
+      text-decoration: underline;
     }
   }
 
-  .box.description {
-
-    box-sizing: border-box;
-    padding: 16px;
-    display: flex;
+  .main-row {
     width: 100%;
+    display: flex;
     align-items: stretch;
 
-    .content {
+    background: $lighter-grey;
+    border-bottom: 2px solid white;
+
+    .details, .box {
+      padding: 64px 16px 44px 16px;
+    }
+
+    .details {
       flex: 1 1 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+
+      padding-left: 8px;
+      padding-right: 36px;
+      border-right: 2px solid white;
 
       .icon {
-        margin-right: 16px;
+        position: relative;
+        top: -14px;
       }
 
-      .explanation {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        width: 100%;
+      .content {
+        .name {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: bold;
 
-        .heading {
-          @include card-heading;
           margin-bottom: 16px;
-          width: 100%;
         }
 
-        .summary {
+        .description {
           font-size: 14px;
-          width: 100%;
         }
       }
     }
 
-    .read-more {
-      display: flex;
+    .box {
       flex: 0 0 auto;
-      align-items: flex-end;
+      width: 200px;
+      box-sizing: border-box;
 
-      text-decoration: none;
-      cursor: pointer;
-      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
-      .read-more-text {
-        @include body-uppercase;
+      .title {
+        font-size: 11px;
+        line-height: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+
+        height: 30px;
+        margin-bottom: 10px;
       }
 
-      .icon-caret-down {
-        position: relative;
-        top: 6px;
-        margin-left: 8px;
+      .value {
+        font-size: 36px;
+        line-height: 48px;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+
+    .installation {
+      border-right: 2px solid white;
+    }
+  }
+
+  .secondary-row {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+
+    background: $lighter-grey;
+
+    .content {
+      width: calc(100% - 400px);
+      padding: 36px 36px 64px 68px;
+      box-sizing: border-box;
+
+      display: flex;
+      align-items: flex-start;
+
+      .lifetime, .space {
+        flex: 0 0 50%;
+
+        display: flex;
+        align-items: flex-start;
+
+        .title {
+          font-size: 11px;
+          line-height: 18px;
+          font-weight: 500;
+          text-transform: uppercase;
+          color: $primary-blue;
+
+          flex: 0 0 auto;
+          margin-right: 24px;
+        }
+
+        .value {
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 300;
+
+          flex: 1 1 auto;
+        }
       }
     }
   }

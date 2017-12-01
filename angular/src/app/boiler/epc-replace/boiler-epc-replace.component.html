@@ -12,21 +12,24 @@
             <div class="no-replace" *ngIf="!boilerNeedsReplacing()">
                 <div class="summary">
                     <div class="icon icon-tick"></div>
-                    <div class="large-body-text">
+                    <div class="replace-text">
                         Your boiler is reasonably new, probably running efficiently and saving you money
                     </div>
                 </div>
-                <button class="link-button">See ways to keep your boiler running efficiently</button>
+                <app-boiler-link-button class="link-button" text="See ways to keep your boiler running efficiently"></app-boiler-link-button>
             </div>
             <div class="replace" *ngIf="boilerNeedsReplacing()">
                 <div class="summary">
                     <div class="icon icon-cross"></div>
-                    <div class="large-body-text">
-                        Your boiler is getting old and needs replacing. A new boiler will be more energy efficient and
+                    <div class="replace-text">
+                        Your boiler needs replacing. A new boiler will be more energy efficient and
                         will save you money
                     </div>
                 </div>
-                <a class="link-button" routerLink="/js/boiler/questionnaire">Answer a few more questions so we can suggest some boilers to suit you</a>
+                <app-boiler-link-button class="link-button"
+                                        text="Answer a few more questions so we can suggest some boilers to suit you"
+                                        path="/js/boiler/questionnaire">
+                </app-boiler-link-button>
             </div>
         </div>
     </div>
@@ -35,15 +38,6 @@
             <div class="heading">Sorry, we couldn't find anything based on your EPC!</div>
             <div class="body">
                 <app-boiler-make-model-lookup class="make-and-model"></app-boiler-make-model-lookup>
-                <div class="not-sure">
-                    <div class="body-text">
-                        If you are not sure or don't have access to your boiler we can ask a few questions in order to
-                        give you some personalised recommendations
-                    </div>
-                    <a class="link-button" routerLink="/js/boiler/questionnaire">
-                        Answer a few more questions so we could suggest the right boiler for you
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -60,7 +54,9 @@
                 below to compare the specifications
             </div>
             <div class="boiler-replacement-cards">
-                <app-boiler-replacement-card *ngFor="let boilerType of boilerTypes trackBy $index" [boilerType]="boilerType"></app-boiler-replacement-card>
+                <app-boiler-replacement-card *ngFor="let boilerType of boilerTypes trackBy $index"
+                                             class="replacement-card"
+                                             [boilerType]="boilerType"></app-boiler-replacement-card>
             </div>
         </div>
     </div>

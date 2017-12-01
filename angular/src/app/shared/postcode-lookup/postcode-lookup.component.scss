@@ -2,6 +2,18 @@
 
 :host {
   display: block;
+
+  &.input-grey {
+    .postcode-input-text {
+      background-color: $lighter-grey;
+    }
+  }
+
+  &.input-white {
+    .postcode-input-text {
+      background-color: white;
+    }
+  }
 }
 
 .postcode-epc {
@@ -18,7 +30,6 @@
     margin-top: 48px;
 
     .postcode-input-text {
-      background-color: $lighter-grey;
       outline: none;
       border: none;
 
@@ -77,7 +88,7 @@
   }
 
   .go-button {
-    background-color: black;
+    background-color: $pink;
     color: white;
 
     flex: 0 0 50px;
