@@ -31,13 +31,13 @@
                 [value]="'£' + roundedMonthlySaving"
         ></app-data-card>
         <div class="add-to-plan-column"
-             [class.selected]="isAddedToPlan()"
+             [class.selected]="recommendation.isAddedToPlan"
              (click)="toggleAddedToPlan()">
             <button class="add-to-plan-text">
-                {{isAddedToPlan() ? 'Added to plan' : 'Add to plan'}}
+                {{recommendation.isAddedToPlan ? 'Added to plan' : 'Add to plan'}}
             </button>
-            <div class="add-to-plan-icon icon-tick-white" *ngIf="isAddedToPlan()"></div>
-            <div class="add-to-plan-icon" *ngIf="!isAddedToPlan()">+</div>
+            <div class="add-to-plan-icon icon-tick-white" *ngIf="recommendation.isAddedToPlan"></div>
+            <div class="add-to-plan-icon" *ngIf="!recommendation.isAddedToPlan">+</div>
         </div>
     </div>
     <div class="expanded-view-row" [class.expanded]="isExpandedView">

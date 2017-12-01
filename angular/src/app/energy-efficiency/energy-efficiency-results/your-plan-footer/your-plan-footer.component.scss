@@ -8,13 +8,6 @@ $do-button-right-chevron-width: 30px;
 
 .your-plan {
   background: white;
-  width: 100vw;
-
-  &.fixed-position {
-    position: fixed;
-    bottom: 0;
-    border-top: 3px solid $light-grey;
-  }
 
   .page-row-content {
     display: flex;

@@ -121,30 +121,45 @@ function setup_national_grant_acf_group() {
                     'instructions' => 'Should this grant be included as a standalone recommendation on the results page without any matching measures?',
                     'default_value' => ''
                 ),
-                array (
+                array(
                     'key' => 'field_5a16a911c5cea',
                     'label' => 'Advantages',
                     'name' => 'advantages',
-                    'type' => 'textarea',
-                    'instructions' => 'A list of benefits/advantages to be displayed with this recommendation on the results page (enter one on each line, these will be displayed as a bulleted list)',
+                    'instructions' => 'A list of benefits/advantages to be displayed with this measures on the results page (enter one on each line, these will be displayed as a bulleted list)',
+                    'type' => 'repeater',
                     'required' => 1,
-                    'default_value' => '',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'formatting' => 'html',
-                    'maxlength' => '',
-                    'conditional_logic' => array (
-                        'status' => 1,
-                        'rules' => array (
-                            array (
-                                'field' => 'field_5a13037c70fa5',
-                                'operator' => '==',
-                                'value' => '1',
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'collapsed' => '',
+                    'min' => 0,
+                    'max' => 0,
+                    'layout' => 'table',
+                    'button_label' => '',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_5a211dd5ac12c',
+                            'label' => 'Advantage',
+                            'name' => 'advantage',
+                            'type' => 'text',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
                             ),
+                            'default_value' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'maxlength' => '',
                         ),
-                        'allorany' => 'all',
-                    )
+                    ),
                 ),
                 array (
                     'key' => 'field_5a1d95f734426',

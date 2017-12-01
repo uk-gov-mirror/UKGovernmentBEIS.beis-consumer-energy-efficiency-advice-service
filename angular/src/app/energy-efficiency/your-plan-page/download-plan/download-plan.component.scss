@@ -8,15 +8,7 @@ $action-divider-circle-diameter: 40px;
 
 .download-plan.page-row {
   padding: 40px 0;
-  border-top: 3px solid $light-medium-grey;
-  width: 100vw;
   background-color: white;
-
-  &.fixed-position {
-    position: fixed;
-    bottom: 0;
-    border-top: 3px solid $light-grey;
-  }
 
   .page-row-content {
     display: flex;

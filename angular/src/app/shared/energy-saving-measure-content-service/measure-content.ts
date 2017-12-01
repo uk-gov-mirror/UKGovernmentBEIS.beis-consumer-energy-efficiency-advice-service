@@ -7,7 +7,7 @@ export interface MeasureContent {
         headline: string;
         summary: string;
         featured_page: string;
-        advantages: string;
+        advantages: {advantage: string}[];
         tags: RecommendationTagJsonName[],
         steps: RecommendationStepResponse[]
     }

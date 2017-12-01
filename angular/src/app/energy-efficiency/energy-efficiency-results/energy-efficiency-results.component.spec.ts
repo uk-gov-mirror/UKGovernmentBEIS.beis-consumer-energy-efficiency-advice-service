@@ -26,6 +26,7 @@ import {YourPlanSummaryComponent} from "../your-plan-summary/your-plan-summary.c
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.component";
+import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -54,7 +55,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
-            recommendationId: 'loft-insulation',
             investmentPounds: 199,
             costSavingPoundsPerYear: 99,
             costSavingPoundsPerMonth: 99 / 12,
@@ -66,10 +66,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         },
         {
-            recommendationId: 'solar-photovolatic-panels',
             investmentPounds: 999,
             costSavingPoundsPerYear: 200,
             costSavingPoundsPerMonth: 200 / 12,
@@ -81,10 +81,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         },
         {
-            recommendationId: 'cylinder-insulation',
             investmentPounds: 20,
             costSavingPoundsPerYear: 10,
             costSavingPoundsPerMonth: 10 / 12,
@@ -106,7 +106,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 steps: []
             },
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         }
     ];
 
@@ -149,7 +150,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 RecommendationFilterControlComponent,
                 BreakEvenComponent,
                 YourPlanFooterComponent,
-                YourPlanSummaryComponent
+                YourPlanSummaryComponent,
+                StickyRowWrapperComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),

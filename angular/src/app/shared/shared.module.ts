@@ -27,6 +27,7 @@ import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {RecommendationsService} from "./recommendations-service/recommendations.service";
+import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper.component";
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {RecommendationsService} from "./recommendations-service/recommendations.
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
-        GrantCardComponent
+        GrantCardComponent,
+        StickyRowWrapperComponent
     ],
     exports: [
         PostcodeLookupComponent,
@@ -51,7 +53,8 @@ import {RecommendationsService} from "./recommendations-service/recommendations.
         NeedHelpComponent,
         RecommendationCardComponent,
         QuestionReasonComponent,
-        GrantCardComponent
+        GrantCardComponent,
+        StickyRowWrapperComponent
     ],
     imports: [
         HttpClientModule,
