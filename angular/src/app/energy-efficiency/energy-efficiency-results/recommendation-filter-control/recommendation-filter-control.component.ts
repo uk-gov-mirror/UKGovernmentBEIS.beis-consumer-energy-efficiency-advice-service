@@ -32,8 +32,8 @@ export class RecommendationFilterControlComponent implements OnInit {
             });
     }
 
-    shouldDisplayAsSelected(tag: EnergyEfficiencyRecommendationTag): boolean {
-        return !!(this.selectedTags & tag);
+    shouldDisplayAsDeselected(tag: EnergyEfficiencyRecommendationTag): boolean {
+        return !(this.selectedTags & tag);
     }
 
     isAnyTagSelected(): boolean {

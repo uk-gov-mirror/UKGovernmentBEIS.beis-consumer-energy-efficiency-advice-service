@@ -3,7 +3,7 @@
         <button class="tag"
                 *ngFor="let tag of tags"
                 [ngClass]="tag.className"
-                [class.deselected]="!shouldDisplayAsSelected(tag.value)"
+                [class.deselected]="shouldDisplayAsDeselected(tag.value)"
                 (click)="onTagClicked(tag.value, $event)"
                 [title]="'Click to show only ' + tag.description + ' recommendations. Hold down the Ctrl key while ' +
                     'you click to apply multiple filters at once'">

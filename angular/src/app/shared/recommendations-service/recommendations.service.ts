@@ -85,8 +85,9 @@ export class RecommendationsService {
                         .getRecommendationsContent(energyCalculation.habit_measures, measuresContent, availableGrants);
                     const grantRecommendations = RecommendationsService.getGrantRecommendations(availableGrants);
                     const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
-                    const orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
-                    return RecommendationsService.tagTopRecommendations(orderedRecommendations);
+                    let orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+                    RecommendationsService.tagTopRecommendations(orderedRecommendations);
+                    return orderedRecommendations;
                 }
             );
     }
@@ -120,13 +121,9 @@ export class RecommendationsService {
             .map(grant => EnergyEfficiencyRecommendation.fromGrant(grant, 'icon-grant'));
     }
 
-    private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): EnergyEfficiencyRecommendation[] {
-        return recommendations
-            .map((recommendation: EnergyEfficiencyRecommendation, index: number) => {
-                if (index < RecommendationsService.TOP_RECOMMENDATIONS) {
-                    recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations;
-                }
-                return recommendation;
-            });
+    private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): void {
+        recommendations
+            .slice(0, RecommendationsService.TOP_RECOMMENDATIONS)
+            .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
     }
 }

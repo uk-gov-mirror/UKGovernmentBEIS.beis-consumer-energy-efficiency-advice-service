@@ -28,6 +28,6 @@ export class AppComponent {
         }
 
         // Set base URL for inline-svg directive
-        svgService.setBaseUrl({baseUrl: 'http://localhost:81/wp-content/themes/angular-theme/dist/assets/images/'});
+        svgService.setBaseUrl({baseUrl: '/wp-content/themes/angular-theme/dist/assets/images/'});
     }
 }

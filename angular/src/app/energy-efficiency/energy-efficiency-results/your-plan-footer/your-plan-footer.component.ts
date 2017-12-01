@@ -1,6 +1,5 @@
 import {Component, DoCheck, HostListener, OnInit, ViewChild} from "@angular/core";
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
-import {ResponseData} from "../../../shared/response-data/response-data";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 @Component({
@@ -24,11 +23,10 @@ export class YourPlanFooterComponent implements OnInit, DoCheck {
 
     ngOnInit() {
         this.updateYourPlanRowPosition();
-        this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
     }
 
     ngDoCheck() {
-        this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
+        this.updateYourPlanRowPosition();
     }
 
     removeFromPlan(recommendation: EnergyEfficiencyRecommendation) {
@@ -37,6 +35,7 @@ export class YourPlanFooterComponent implements OnInit, DoCheck {
 
     @HostListener("window:scroll", [])
     updateYourPlanRowPosition() {
+        this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
         const footer = document.querySelector('#page-footer');
         if (footer) {
             const footerTopPosition = footer.getBoundingClientRect().top;
