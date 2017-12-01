@@ -6,6 +6,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {BoilerMeasuresSectionComponent} from "./boiler-measures-section.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
 
 describe('BoilerMeasuresSectionComponent', () => {
     let component: BoilerMeasuresSectionComponent;
@@ -22,6 +23,7 @@ describe('BoilerMeasuresSectionComponent', () => {
             declarations: [
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,

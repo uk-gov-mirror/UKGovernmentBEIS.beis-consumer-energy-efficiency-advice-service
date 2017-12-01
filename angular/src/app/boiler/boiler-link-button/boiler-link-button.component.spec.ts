@@ -1,25 +1,40 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
+import {RouterTestingModule} from "@angular/router/testing";
 
-import { BoilerLinkButtonComponent } from './boiler-link-button.component';
+import {BoilerLinkButtonComponent} from "./boiler-link-button.component";
 
 describe('BoilerLinkButtonComponent', () => {
-  let component: BoilerLinkButtonComponent;
-  let fixture: ComponentFixture<BoilerLinkButtonComponent>;
+    let component: BoilerLinkButtonComponent;
+    let fixture: ComponentFixture<BoilerLinkButtonComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BoilerLinkButtonComponent ]
-    })
-    .compileComponents();
-  }));
+    const linkText = "Some link text";
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BoilerLinkButtonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                BoilerLinkButtonComponent
+            ],
+            imports: [
+                RouterTestingModule,
+            ]
+        })
+            .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(BoilerLinkButtonComponent);
+        component = fixture.componentInstance;
+        component.text = linkText;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should show the right link text', () => {
+        const textElement = fixture.debugElement.query(By.css('.text-container')).nativeElement;
+        expect(textElement.innerText).toBe(linkText.toUpperCase());
+    });
 });

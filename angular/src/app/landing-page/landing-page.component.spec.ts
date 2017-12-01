@@ -49,7 +49,7 @@ describe('LandingPageComponent', () => {
                 ArticleCardComponent,
                 LatestNewsCardComponent,
                 MockPostcodeLookupComponent,
-                QuestionReasonComponent
+                QuestionReasonComponent,
             ],
             imports: [
                 CommonModule,

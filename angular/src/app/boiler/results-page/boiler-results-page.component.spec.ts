@@ -14,6 +14,7 @@ import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -42,6 +43,7 @@ describe('BoilerResultsPageComponent', () => {
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,
