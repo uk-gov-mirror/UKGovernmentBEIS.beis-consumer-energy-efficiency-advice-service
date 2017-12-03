@@ -31,11 +31,9 @@ export class RecommendationsService {
     getAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
         if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
             this.cachedResponseData = clone(this.responseData);
-            return this.refreshAllRecommendations()
-                .map(recommendations => {
-                    this.cachedRecommendations = recommendations;
-                    return recommendations;
-                });
+            let observable = this.refreshAllRecommendations();
+            observable.subscribe(recommendations => this.cachedRecommendations = recommendations);
+            return observable;
         }
         return Observable.of(this.cachedRecommendations);
     }

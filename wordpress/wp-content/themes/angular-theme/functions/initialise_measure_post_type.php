@@ -87,7 +87,7 @@ function setup_measure_acf_group() {
                     'key' => 'field_5a211dcaac12b',
                     'label' => 'Advantages',
                     'name' => 'advantages',
-                    'instructions' => 'A list of benefits/advantages to be displayed with this measures on the results page (enter one on each line, these will be displayed as a bulleted list)',
+                    'instructions' => 'A list of benefits/advantages to be displayed with this measure on the results page (enter one on each line, these will be displayed as a bulleted list)',
                     'type' => 'repeater',
                     'required' => 1,
                     'conditional_logic' => 0,
