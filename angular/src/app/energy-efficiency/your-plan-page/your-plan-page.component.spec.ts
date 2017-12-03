@@ -16,6 +16,7 @@ import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-g
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 import {InlineSVGModule} from "ng-inline-svg";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
@@ -25,7 +26,6 @@ describe('YourPlanPageComponent', () => {
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
-            recommendationId: 'loft-insulation',
             investmentPounds: 199,
             costSavingPoundsPerYear: 99,
             costSavingPoundsPerMonth: 99 / 12,
@@ -46,10 +46,10 @@ describe('YourPlanPageComponent', () => {
                 description: 'Step two description',
                 moreInfoLinks: []
             }
-            ]
+            ],
+            isAddedToPlan: false
         },
         {
-            recommendationId: 'solar-photovolatic-panels',
             investmentPounds: 999,
             costSavingPoundsPerYear: 200,
             costSavingPoundsPerMonth: 200 / 12,
@@ -61,10 +61,10 @@ describe('YourPlanPageComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         },
         {
-            recommendationId: 'cylinder-insulation',
             investmentPounds: 20,
             costSavingPoundsPerYear: 10,
             costSavingPoundsPerMonth: 10 / 12,
@@ -76,7 +76,8 @@ describe('YourPlanPageComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         }
     ];
 
@@ -133,7 +134,8 @@ describe('YourPlanPageComponent', () => {
                 RecommendationStepCardComponent,
                 GrantCardComponent,
                 DownloadPlanComponent,
-                DataCardComponent
+                DataCardComponent,
+                StickyRowWrapperComponent
             ],
             providers: [
                 {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},

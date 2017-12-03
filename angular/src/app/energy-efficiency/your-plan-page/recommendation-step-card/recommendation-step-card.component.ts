@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {RecommendationStep} from "../../../shared/recommendations-service/recommendation-step";
+import padStart from "lodash-es/padStart";
 
 @Component({
     selector: 'app-recommendation-step-card',
@@ -21,7 +22,7 @@ export class RecommendationStepCardComponent implements OnInit {
 
     get formattedStepNumber(): string {
         const stepNumber = this.stepIndex + RecommendationStepCardComponent.INITIAL_STEP_NUMBER;
-        return stepNumber < 10 ? `0${stepNumber}` : stepNumber.toString();
+        return padStart(stepNumber.toString(), 2, '0');
     }
 
     toggleIsExpanded(): void {

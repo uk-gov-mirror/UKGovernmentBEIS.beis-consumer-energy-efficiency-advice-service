@@ -22,7 +22,7 @@ export class YourPlanPageComponent implements OnInit {
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
-    private responseData: ResponseData) {
+                private responseData: ResponseData) {
     }
 
     ngOnInit() {

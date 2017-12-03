@@ -1,4 +1,4 @@
-<div id="your-plan" class="your-plan page-row" [class.fixed-position]="isFixedPosition" #yourPlanRow>
+<div class="your-plan page-row">
     <div class="page-row-content">
         <div class="plan-details">
             <div class="heading">Your plan</div>
@@ -24,8 +24,3 @@
         </a>
     </div>
 </div>
-<!-- While the 'Your Plan' row is in a fixed position, add a dummy spacer of the same height to the DOM
-    so that we maintain consistent scrolling -->
-<div class="your-plan-spacer"
-     *ngIf="isFixedPosition"
-     [style.height.px]="yourPlanRowHeightPixels"></div>

@@ -23,7 +23,7 @@ export class NationalGrantViewModel implements GrantViewModel {
         this.shouldDisplayWithoutMeasures = nationalGrantContent.display_without_measures;
         this.linkedMeasureCodes = nationalGrantContent.linked_measure_codes;
         this.advantages = nationalGrantContent.advantages &&
-            nationalGrantContent.advantages.match(/[^\r\n]+/g);
+            nationalGrantContent.advantages.map(x => x.advantage);
         this.grantId = nationalGrantContent.slug;
         this.steps = nationalGrantContent.steps && nationalGrantContent.steps
             .map(stepResponse => new RecommendationStep(stepResponse));

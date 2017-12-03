@@ -28,6 +28,7 @@ import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.compone
 import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {RecommendationsService} from "./recommendations-service/recommendations.service";
+import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper.component";
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import {RecommendationsService} from "./recommendations-service/recommendations.
         RecommendationCardComponent,
         QuestionReasonComponent,
         LargeVideoCardComponent,
-        GrantCardComponent
+        GrantCardComponent,
+        StickyRowWrapperComponent
     ],
     exports: [
         PostcodeLookupComponent,
@@ -54,7 +56,8 @@ import {RecommendationsService} from "./recommendations-service/recommendations.
         RecommendationCardComponent,
         QuestionReasonComponent,
         LargeVideoCardComponent,
-        GrantCardComponent
+        GrantCardComponent,
+        StickyRowWrapperComponent
     ],
     imports: [
         HttpClientModule,

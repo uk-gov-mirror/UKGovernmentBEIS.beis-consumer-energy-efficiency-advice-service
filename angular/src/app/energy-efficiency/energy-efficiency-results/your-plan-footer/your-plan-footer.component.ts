@@ -1,4 +1,4 @@
-import {Component, DoCheck, HostListener, OnInit, ViewChild} from "@angular/core";
+import {Component} from "@angular/core";
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
@@ -7,13 +7,7 @@ import {RecommendationsService} from "../../../shared/recommendations-service/re
     templateUrl: './your-plan-footer.component.html',
     styleUrls: ['./your-plan-footer.component.scss']
 })
-export class YourPlanFooterComponent implements OnInit, DoCheck {
-
-    @ViewChild('yourPlanRow') yourPlanRow;
-
-    isFixedPosition: boolean = true;
-    yourPlanRowHeightPixels: number;
-
+export class YourPlanFooterComponent {
     get recommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
     }
@@ -21,26 +15,7 @@ export class YourPlanFooterComponent implements OnInit, DoCheck {
     constructor(private recommendationsService: RecommendationsService) {
     }
 
-    ngOnInit() {
-        this.updateYourPlanRowPosition();
-    }
-
-    ngDoCheck() {
-        this.updateYourPlanRowPosition();
-    }
-
-    removeFromPlan(recommendation: EnergyEfficiencyRecommendation) {
-        this.recommendationsService.toggleAddedToPlan(recommendation);
-    }
-
-    @HostListener("window:scroll", [])
-    updateYourPlanRowPosition() {
-        this.yourPlanRowHeightPixels = this.yourPlanRow.nativeElement.clientHeight;
-        const footer = document.querySelector('#page-footer');
-        if (footer) {
-            const footerTopPosition = footer.getBoundingClientRect().top;
-            const footerVisibleHeight = window.innerHeight - footerTopPosition;
-            this.isFixedPosition = footerVisibleHeight < 0;
-        }
+    removeFromPlan(recommendation: EnergyEfficiencyRecommendation): void {
+        recommendation.isAddedToPlan = false;
     }
 }

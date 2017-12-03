@@ -9,8 +9,7 @@
                 </div>
                 <div class="subheading" *ngIf="recommendations.length > 1">
                     You have added {{recommendations.length}} recommendations to your plan. You'll find all the steps
-                    and things you need to
-                    consider to implement those measures.
+                    and things you need to consider to implement those measures.
                 </div>
             </div>
             <app-your-plan-summary></app-your-plan-summary>
@@ -43,5 +42,7 @@
             </div>
         </div>
     </div>
-    <app-download-plan></app-download-plan>
+    <app-sticky-row-wrapper>
+        <app-download-plan></app-download-plan>
+    </app-sticky-row-wrapper>
 </div>

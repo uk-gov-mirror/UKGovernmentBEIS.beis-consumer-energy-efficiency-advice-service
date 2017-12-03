@@ -19,7 +19,9 @@ describe('NationalGrantsContentService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "an-eligible-grant",
-            advantages: 'get paid for energy',
+            advantages: [{
+                advantage: 'get paid for energy'
+            }],
             steps: []
         },
         {
@@ -29,7 +31,7 @@ describe('NationalGrantsContentService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "another-eligible-grant",
-            advantages: '',
+            advantages: [],
             steps: []
         },
         {
@@ -39,7 +41,7 @@ describe('NationalGrantsContentService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "ineligible-grant",
-            advantages: '',
+            advantages: [],
             steps: []
         }
     ];

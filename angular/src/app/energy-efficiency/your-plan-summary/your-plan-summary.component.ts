@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {sumBy} from "lodash-es";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
-import {roundToNearest} from "../../shared/rounding/rounding";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {RoundingService} from "../../shared/rounding-service/rounding.service";
 
 @Component({
     selector: 'app-your-plan-summary',
@@ -10,8 +10,6 @@ import {RecommendationsService} from "../../shared/recommendations-service/recom
     styleUrls: ['./your-plan-summary.component.scss']
 })
 export class YourPlanSummaryComponent {
-
-    private static readonly POUNDS_ROUNDING = 5;
 
     get recommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
@@ -25,7 +23,7 @@ export class YourPlanSummaryComponent {
             this.recommendations,
             recommendation => recommendation.costSavingPoundsPerMonth
         );
-        return YourPlanSummaryComponent.round(savingsPerMonth);
+        return RoundingService.roundCostValue(savingsPerMonth);
     }
 
     getRoundedTotalInvestmentRequired(): number {
@@ -33,13 +31,6 @@ export class YourPlanSummaryComponent {
             this.recommendations,
             recommendation => recommendation.investmentPounds
         );
-        return YourPlanSummaryComponent.round(totalInvestment);
-    }
-
-    private static round(input: number): number {
-        const roundingValue =
-            input > YourPlanSummaryComponent.POUNDS_ROUNDING ?
-                YourPlanSummaryComponent.POUNDS_ROUNDING : 1;
-        return roundToNearest(input, roundingValue);
+        return RoundingService.roundCostValue(totalInvestment);
     }
 }

@@ -18,7 +18,9 @@
       "featured_page": "http://localhost:81/about/",
       "linked_pages": "",
       "summary": "No description available",
-      "advantages": "Generate your own power from the wind",
+      "advantages": [{
+        "advantage": "Generate your own power from the wind"
+      }],
       "tags": ["tag_longer_term"]
     }
   },
@@ -32,7 +34,14 @@
       "tags": [
         "tag_longer_term"
       ],
-      "advantages": "Green\r\nCost effective",
+      "advantages": [
+        {
+          "advantage": "Green"
+        },
+        {
+          "advantage": "Cost effective"
+        }
+      ],
       "steps": [
         {
           "headline": "Check your roof",

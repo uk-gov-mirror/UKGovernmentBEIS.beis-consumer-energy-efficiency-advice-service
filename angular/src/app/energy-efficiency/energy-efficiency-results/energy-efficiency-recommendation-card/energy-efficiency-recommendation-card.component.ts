@@ -6,7 +6,7 @@ import {
     getTagClassName,
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {RoundingService} from "../../../shared/rounding-service/rounding.service";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -14,8 +14,6 @@ import {RecommendationsService} from "../../../shared/recommendations-service/re
     styleUrls: ['./energy-efficiency-recommendation-card.component.scss']
 })
 export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
-
-    private static readonly POUNDS_ROUNDING = 5;
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
@@ -25,14 +23,9 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
 
-    constructor(private recommendationsService: RecommendationsService) {
-    }
-
     ngOnInit() {
-        this.roundedInvestmentRequired = EnergyEfficiencyRecommendationCardComponent
-            .roundCostValue(this.recommendation.investmentPounds);
-        this.roundedMonthlySaving = EnergyEfficiencyRecommendationCardComponent
-            .getMonthlySaving(this.recommendation);
+        this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
+        this.roundedMonthlySaving = RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerMonth);
         this.tags = getActiveTags(this.recommendation.tags);
     }
 
@@ -57,7 +50,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     getAddToPlanButtonText(): string {
-        if (!this.isAddedToPlan()) {
+        if (!this.recommendation.isAddedToPlan) {
             return 'Add to plan';
         } else {
             return this.isMouseOverAddToPlanButton ? 'Remove from plan': 'Added to plan';
@@ -65,22 +58,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     toggleAddedToPlan(): void {
-        this.recommendationsService.toggleAddedToPlan(this.recommendation);
-    }
-
-    isAddedToPlan(): boolean {
-        return this.recommendationsService.isAddedToPlan(this.recommendation);
-    }
-
-    private static getMonthlySaving(recommendation: EnergyEfficiencyRecommendation): number {
-        const costSavingPoundsPerMonth = recommendation.costSavingPoundsPerYear/12;
-        return EnergyEfficiencyRecommendationCardComponent.roundCostValue(costSavingPoundsPerMonth);
-    }
-
-    private static roundCostValue(input: number): number {
-        const roundingValue = input > EnergyEfficiencyRecommendationCardComponent.POUNDS_ROUNDING ?
-            EnergyEfficiencyRecommendationCardComponent.POUNDS_ROUNDING :
-            1;
-        return Math.round(input/roundingValue) * roundingValue;
+        this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
     }
 }

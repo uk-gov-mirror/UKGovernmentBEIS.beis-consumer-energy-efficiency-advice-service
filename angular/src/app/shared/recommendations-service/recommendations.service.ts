@@ -6,7 +6,6 @@ import concat from "lodash-es/concat";
 import orderBy from "lodash-es/orderBy";
 import keys from "lodash-es/keys";
 import {ResponseData} from "../response-data/response-data";
-import {RecommendationOption} from "./recommendation-option";
 import {EnergyCalculationApiService} from "../energy-calculation-api-service/energy-calculation-api-service";
 import {EnergySavingMeasureContentService} from "../energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
@@ -24,7 +23,7 @@ export class RecommendationsService {
     private static TOP_RECOMMENDATIONS: number = 5;
 
     private cachedResponseData: ResponseData;
-    private cachedAllRecommendations: RecommendationOption[] = [];
+    private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
@@ -33,39 +32,18 @@ export class RecommendationsService {
     }
 
     getAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
-        if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedAllRecommendations.length === 0) {
+        if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
             this.cachedResponseData = clone(this.responseData);
-            return this.refreshAllRecommendations()
-                .map(recommendations => {
-                    this.cachedAllRecommendations = recommendations.map(rec => {
-                        return {
-                            value: rec,
-                            isAddedToPlan: false
-                        };
-                    });
-                    return recommendations;
-                })
+            let observable = this.refreshAllRecommendations();
+            observable.subscribe(recommendations => this.cachedRecommendations = recommendations);
+            return observable;
         }
-        return Observable.of(this.cachedAllRecommendations.map(rec => rec.value));
+        return Observable.of(this.cachedRecommendations);
     }
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.cachedAllRecommendations
-            .filter(recommendationOption => recommendationOption.isAddedToPlan)
-            .map(recommendationOption => recommendationOption.value);
-    }
-
-    toggleAddedToPlan(recommendation: EnergyEfficiencyRecommendation): void {
-        const recommendationIndex = this.cachedAllRecommendations
-            .findIndex(recommendationOption => isEqual(recommendationOption.value, recommendation));
-        this.cachedAllRecommendations[recommendationIndex].isAddedToPlan =
-            !this.cachedAllRecommendations[recommendationIndex].isAddedToPlan;
-    }
-
-    isAddedToPlan(recommendation: EnergyEfficiencyRecommendation): boolean {
-        return this.cachedAllRecommendations
-            .find(recommendationOption => isEqual(recommendationOption.value, recommendation))
-            .isAddedToPlan;
+        return this.cachedRecommendations
+            .filter(recommendation => recommendation.isAddedToPlan)
     }
 
     private refreshAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {

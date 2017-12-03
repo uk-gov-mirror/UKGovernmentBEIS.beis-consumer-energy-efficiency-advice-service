@@ -31,7 +31,7 @@
                 [value]="'£' + roundedMonthlySaving"
         ></app-data-card>
         <div class="add-to-plan-column"
-             [class.selected]="isAddedToPlan()"
+             [class.selected]="recommendation.isAddedToPlan"
              (mouseenter)="mouseEnterAddToPlanButton()"
              (mouseleave)="mouseLeaveAddToPlanButton()"
              (click)="toggleAddedToPlan()">
@@ -39,14 +39,14 @@
                 {{getAddToPlanButtonText()}}
             </button>
             <div class="add-to-plan-icon add"
-                 *ngIf="!isAddedToPlan()"
+                 *ngIf="!recommendation.isAddedToPlan"
                  [inlineSVG]="'controls/add.svg'"></div>
             <div class="add-to-plan-icon added"
-                 *ngIf="isAddedToPlan() && !isMouseOverAddToPlanButton"
+                 *ngIf="recommendation.isAddedToPlan && !isMouseOverAddToPlanButton"
                  [inlineSVG]="'controls/tick.svg'"
             ></div>
             <div class="add-to-plan-icon remove"
-                 *ngIf="isAddedToPlan() && isMouseOverAddToPlanButton"
+                 *ngIf="recommendation.isAddedToPlan && isMouseOverAddToPlanButton"
                  [inlineSVG]="'controls/remove.svg'"></div>
         </div>
     </div>

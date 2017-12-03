@@ -31,7 +31,6 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
     };
 
     const recommendation: EnergyEfficiencyRecommendation = {
-        recommendationId: 'A',
         investmentPounds: 200,
         costSavingPoundsPerYear: 100,
         costSavingPoundsPerMonth: 100/12,
@@ -43,17 +42,11 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
         grant: grant,
         advantages: advantages,
-        steps: []
-    };
-
-    const recommendationsServiceStub = {
-        isAddedToPlan: () => false,
-        toggleAddedToPlan: () => {}
+        steps: [],
+        isAddedToPlan: false
     };
 
     beforeEach(async(() => {
-        spyOn(recommendationsServiceStub, 'toggleAddedToPlan').and.callThrough();
-
         TestBed.configureTestingModule({
             declarations: [
                 EnergyEfficiencyRecommendationCardComponent,
@@ -63,8 +56,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             imports: [
                 RouterTestingModule,
                 InlineSVGModule,
-                HttpClientTestingModule],
-            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
+                HttpClientTestingModule
+            ]
         })
             .compileComponents();
     }));
@@ -109,13 +102,28 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
     });
 
     describe('#toggleAddedToPlan', () => {
-        it('should call recommendations service to toggle recommendation added to plan', () => {
+        it('should add recommendation to plan if not already added to plan', () => {
+            // given
+            component.recommendation.isAddedToPlan = false;
+
             // when
             const addToPlanElement = fixture.debugElement.query(By.css('.add-to-plan-column'));
             addToPlanElement.nativeElement.click();
 
             // then
-            expect(recommendationsServiceStub.toggleAddedToPlan).toHaveBeenCalledWith(recommendation);
+            expect(component.recommendation.isAddedToPlan).toBeTruthy();
+        });
+
+        it('should remove recommendation from plan if already added to plan', () => {
+            // given
+            component.recommendation.isAddedToPlan = true;
+
+            // when
+            const addToPlanElement = fixture.debugElement.query(By.css('.add-to-plan-column'));
+            addToPlanElement.nativeElement.click();
+
+            // then
+            expect(component.recommendation.isAddedToPlan).toBeFalsy();
         });
     });
 

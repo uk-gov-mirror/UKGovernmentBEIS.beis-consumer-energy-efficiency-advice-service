@@ -11,7 +11,6 @@ describe('YourPlanSummaryComponent', () => {
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
-            recommendationId: 'loft-insulation',
             investmentPounds: 199,
             costSavingPoundsPerYear: 99,
             costSavingPoundsPerMonth: 99 / 12,
@@ -23,10 +22,10 @@ describe('YourPlanSummaryComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         },
         {
-            recommendationId: 'solar-photovolatic-panels',
             investmentPounds: 999,
             costSavingPoundsPerYear: 200,
             costSavingPoundsPerMonth: 200 / 12,
@@ -38,10 +37,10 @@ describe('YourPlanSummaryComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         },
         {
-            recommendationId: 'cylinder-insulation',
             investmentPounds: 20,
             costSavingPoundsPerYear: 10,
             costSavingPoundsPerMonth: 10 / 12,
@@ -53,7 +52,8 @@ describe('YourPlanSummaryComponent', () => {
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
             grant: null,
             advantages: [],
-            steps: []
+            steps: [],
+            isAddedToPlan: false
         }
     ];
 

@@ -13,7 +13,7 @@ import {LocalAuthority} from "../../shared/local-authority-service/local-authori
 import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
-import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.component";
+import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -39,7 +39,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.onDisplayedRecommendationCardsChanged();
     }
 
-    @ViewChild(YourPlanFooterComponent) yourPlanFooterComponent: YourPlanFooterComponent;
+    @ViewChild(StickyRowWrapperComponent) yourPlanFooterWrapperComponent: StickyRowWrapperComponent;
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
@@ -64,7 +64,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     private onDisplayedRecommendationCardsChanged() {
         setTimeout(() => {
-            this.yourPlanFooterComponent && this.yourPlanFooterComponent.updateYourPlanRowPosition();
+            this.yourPlanFooterWrapperComponent && this.yourPlanFooterWrapperComponent.updateRowPosition();
         });
     }
 

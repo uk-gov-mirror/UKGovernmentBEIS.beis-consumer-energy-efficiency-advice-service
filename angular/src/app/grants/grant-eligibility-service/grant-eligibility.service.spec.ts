@@ -52,7 +52,7 @@ describe('GrantEligibilityService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "an-eligible-grant",
-            advantages: '',
+            advantages: [],
             steps: []
         },
         {
@@ -62,7 +62,7 @@ describe('GrantEligibilityService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "another-eligible-grant",
-            advantages: '',
+            advantages: [],
             steps: []
         },
         {
@@ -72,7 +72,7 @@ describe('GrantEligibilityService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: "ineligible-grant",
-            advantages: '',
+            advantages: [],
             steps: []
         }
     ];
