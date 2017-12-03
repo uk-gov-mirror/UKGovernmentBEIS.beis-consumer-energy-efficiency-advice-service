@@ -6,7 +6,6 @@ import {EnergyCalculations} from "./energy-calculations";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import sumBy from "lodash-es/sumBy";
-import {GrantViewModel} from "../../grants/model/grant-view-model";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
@@ -14,6 +13,7 @@ import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-ef
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
 import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.component";
+import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -22,7 +22,7 @@ import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.compo
 })
 export class EnergyEfficiencyResultsComponent implements OnInit {
 
-    localGrants: GrantViewModel[];
+    localGrants: LocalAuthorityGrant[];
     energyCalculations: EnergyCalculations;
     localAuthorityName: string;
 

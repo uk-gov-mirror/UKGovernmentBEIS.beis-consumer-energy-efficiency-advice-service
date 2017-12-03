@@ -9,11 +9,7 @@ export abstract class NationalGrantCalculator {
 
     abstract getEligibility(responseData: ResponseData): Observable<GrantEligibility>;
 
-    getStandaloneAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
-        return Observable.of(null);
-    };
-
-    getAnnualPaymentPoundsByMeasure(responseData: ResponseData): Observable<{[measureCode: string]: number}> {
-        return Observable.of({});
+    getStandaloneAnnualPaymentPounds(responseData: ResponseData): number {
+        return null;
     };
 }

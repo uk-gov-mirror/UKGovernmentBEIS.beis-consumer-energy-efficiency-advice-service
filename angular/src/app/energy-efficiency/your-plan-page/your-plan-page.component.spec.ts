@@ -12,12 +12,12 @@ import {DownloadPlanComponent} from "./download-plan/download-plan.component";
 import {DataCardComponent} from "../data-card/data-card.component";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {InlineSVGModule} from "ng-inline-svg";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -82,17 +82,12 @@ describe('YourPlanPageComponent', () => {
 
     const localAuthorityCode = "E09000033";
 
-    const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
+    const localAuthorityGrants: LocalAuthorityGrant[] = [
         {
             grantId: 'grant-1',
             name: 'Grant 1',
             description: 'some grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false,
-            annualPaymentPoundsStandalone: null,
-            linkedMeasureCodesForOneOffPayment: [],
-            annualPaymentPoundsByMeasure: {},
-            advantages: null,
             steps: []
         },
         {
@@ -100,11 +95,6 @@ describe('YourPlanPageComponent', () => {
             name: 'Grant 2',
             description: 'another grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false,
-            annualPaymentPoundsStandalone: null,
-            linkedMeasureCodesForOneOffPayment: [],
-            annualPaymentPoundsByMeasure: {},
-            advantages: null,
             steps: []
         }
     ];

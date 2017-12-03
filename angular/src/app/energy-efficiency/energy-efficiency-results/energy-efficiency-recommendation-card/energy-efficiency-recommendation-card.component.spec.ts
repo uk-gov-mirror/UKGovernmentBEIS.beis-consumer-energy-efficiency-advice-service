@@ -10,24 +10,20 @@ import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-se
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
 import {BreakEvenComponent} from "../break-even/break-even.component";
-import {NationalGrantViewModel} from "../../../grants/model/national-grant-view-model";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {NationalGrantForMeasure} from "../../../grants/model/national-grant-for-measure";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
     let fixture: ComponentFixture<EnergyEfficiencyRecommendationCardComponent>;
 
     const advantages = ['Green', 'Cost effective'];
-    const grant: NationalGrantViewModel = {
+    const grant: NationalGrantForMeasure = {
         grantId: 'national-grant-1',
         name: 'National Grant 1',
         description: 'some national grant',
         eligibility: GrantEligibility.LikelyEligible,
-        shouldDisplayWithoutMeasures: true,
-        annualPaymentPoundsStandalone: 120,
-        linkedMeasureCodesForOneOffPayment: ['V2'],
-        annualPaymentPoundsByMeasure: {V2: 120},
-        advantages: null,
+        annualPaymentPoundsForMeasure: 120,
         steps: []
     };
 

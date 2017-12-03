@@ -1,19 +1,18 @@
-import {getTestBed, TestBed, async} from "@angular/core/testing";
+import {async, getTestBed, TestBed} from "@angular/core/testing";
 import "rxjs/add/operator/toPromise";
 import {Observable} from "rxjs/Observable";
-import max from "lodash-es/max";
 import {RecommendationsService} from "./recommendations.service";
-import {NationalGrantViewModel} from "../../grants/model/national-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
 import {ResponseData} from "../response-data/response-data";
-import {GrantViewModel} from "../../grants/model/grant-view-model";
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
 import {EnergyCalculationApiService} from "../energy-calculation-api-service/energy-calculation-api-service";
 import {EnergySavingMeasureContentService} from "../energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {StandaloneNationalGrant} from "../../grants/model/standalone-national-grant";
+import {NationalGrantForMeasure} from "../../grants/model/national-grant-for-measure";
 
 describe('RecommendationsService', () => {
     let injector: TestBed;
@@ -25,16 +24,13 @@ describe('RecommendationsService', () => {
         fetchEnergyCalculation: () => energyCalculationResponse
     };
 
-    const nationalGrants: NationalGrantViewModel[] = [
+    const standaloneNationalGrants: StandaloneNationalGrant[] = [
         {
             grantId: 'national-grant-1',
             name: 'National Grant 1',
             description: 'some national grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: true,
             annualPaymentPoundsStandalone: 120,
-            linkedMeasureCodesForOneOffPayment: [],
-            annualPaymentPoundsByMeasure: {U: 120},
             advantages: [],
             steps: []
         },
@@ -43,18 +39,26 @@ describe('RecommendationsService', () => {
             name: 'National Grant 2',
             description: 'another national grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: true,
             annualPaymentPoundsStandalone: 120,
-            linkedMeasureCodesForOneOffPayment: ['B'],
-            annualPaymentPoundsByMeasure: {},
             advantages: [],
             steps: []
         }
     ];
 
-    let grantsResponse: Observable<GrantViewModel[]>;
+    const nationalGrantForMeasure: NationalGrantForMeasure = {
+        grantId: 'national-grant-for-measure',
+        name: 'National Grant For Measure',
+        description: 'some national grant for measure',
+        eligibility: GrantEligibility.MayBeEligible,
+        annualPaymentPoundsForMeasure: 120,
+        steps: []
+    };
+
+    let standaloneNationalGrantsResponse: Observable<StandaloneNationalGrant[]>;
+    let nationalGrantsForMeasureResponse: Observable<NationalGrantForMeasure[]>;
     const grantsEligibilityServiceStub = {
-        getApplicableGrants: () => grantsResponse
+        getEligibleStandaloneGrants: () => standaloneNationalGrantsResponse,
+        getEligibleGrantsForMeasure: () => nationalGrantsForMeasureResponse
     };
 
     const dummyMeasures = require('assets/test/measures-response.json');
@@ -68,10 +72,11 @@ describe('RecommendationsService', () => {
     beforeEach(async(() => {
         measuresResponse = Observable.of(dummyMeasures);
         responseData = new ResponseData();
-        grantsResponse = Observable.of(nationalGrants);
+        standaloneNationalGrantsResponse = Observable.of(standaloneNationalGrants);
+        nationalGrantsForMeasureResponse = Observable.of([nationalGrantForMeasure]);
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
 
-        spyOn(grantsEligibilityServiceStub, 'getApplicableGrants').and.callThrough();
+        spyOn(grantsEligibilityServiceStub, 'getEligibleStandaloneGrants').and.callThrough();
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
         spyOn(measuresServiceStub, 'fetchMeasureDetails').and.callThrough();
 
@@ -120,16 +125,14 @@ describe('RecommendationsService', () => {
             service.getAllRecommendations();
 
             // then
-            expect(grantsEligibilityServiceStub.getApplicableGrants).toHaveBeenCalled();
+            expect(grantsEligibilityServiceStub.getEligibleStandaloneGrants).toHaveBeenCalled();
         });
 
         it('should include all home improvement measures in response with grant savings added on', async(() => {
             // given
             const expectedMeasures = Object.keys(dummyEnergyCalculations.measures)
                 .map(measureCode => {
-                    const grantPaymentsForMeasure = nationalGrants
-                        .map(grant => grant.annualPaymentPoundsByMeasure[measureCode]);
-                    const costSavingFromGrant = max(grantPaymentsForMeasure) || 0;
+                    const costSavingFromGrant = nationalGrantForMeasure.annualPaymentPoundsForMeasure;
                     const costSavingFromMeasure = dummyEnergyCalculations.measures[measureCode].cost_saving || 0;
                     const costSaving = costSavingFromGrant + costSavingFromMeasure;
                     const energySaving = dummyEnergyCalculations.measures[measureCode].energy_saving;
@@ -205,25 +208,14 @@ describe('RecommendationsService', () => {
             });
         }));
 
-        it('should link recommendation to available grant for annual payment', async(() => {
-            // when
-            const recommendations = service.getAllRecommendations();
-
-            // then
-            recommendations.toPromise().then((recommendations) => {
-                const solarPanelsRecommendation = recommendations.find(rec => rec.headline === 'Solar photovoltaic panels');
-                expect(solarPanelsRecommendation.grant.name).toBe('National Grant 1');
-            });
-        }));
-
-        it('should link recommendation to available grant for one off payment', async(() => {
+        it('should link recommendation to available grant', async(() => {
             // when
             const recommendations = service.getAllRecommendations();
 
             // then
             recommendations.toPromise().then((recommendations) => {
                 const cavityWallInsulationRecommendation = recommendations.find(rec => rec.headline === 'Cavity wall insulation');
-                expect(cavityWallInsulationRecommendation.grant.name).toBe('National Grant 2');
+                expect(cavityWallInsulationRecommendation.grant.name).toBe('National Grant For Measure');
             });
         }));
     });
