@@ -4,8 +4,6 @@ import {CommonModule} from "@angular/common";
 import {SharedModule} from "../shared/shared.module";
 import {RoutingModule} from "../app-routing.module";
 import {PageComponent} from "./page.component";
-import {PageService} from "./page.service";
-
 @NgModule({
     declarations: [
         PageComponent,
@@ -20,10 +18,4 @@ import {PageService} from "./page.service";
     ]
 })
 export class PageModule {
-    static forRoot() {
-        return {
-            ngModule: PageModule,
-            providers: [PageService]
-        };
-    }
 }

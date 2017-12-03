@@ -3,6 +3,9 @@ import {Router} from "@angular/router";
 import {ResponseData} from "../shared/response-data/response-data";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-landing-page',
@@ -12,7 +15,8 @@ import {QuestionContentService} from "../shared/question-content/question-conten
 export class LandingPageComponent implements OnInit {
     constructor(private router: Router,
                 private responseData: ResponseData,
-                private questionContentService: QuestionContentService) {
+                private questionContentService: QuestionContentService,
+                private pageService: WordpressPagesService) {
     }
 
     @Input() heading: string;
@@ -20,6 +24,7 @@ export class LandingPageComponent implements OnInit {
 
     questionContentError: boolean = false;
     postcodeQuestionReason: string;
+    latestNews: WordpressPage[];
 
     ngOnInit() {
         this.questionContentService.fetchQuestionsContent()
@@ -28,6 +33,8 @@ export class LandingPageComponent implements OnInit {
                     console.log(err);
                     this.questionContentError = true;
                 });
+        this.pageService.getLatestPages()
+            .subscribe(pages => this.latestNews = pages);
     }
 
     onAddressSelected() {

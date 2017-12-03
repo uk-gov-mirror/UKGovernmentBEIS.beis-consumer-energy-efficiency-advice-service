@@ -16,7 +16,7 @@ export class NavigationBarComponent implements OnInit {
 
     ngOnInit() {
         this.wordpressPagesService
-            .fetchTopLevelPages()
+            .getTopLevelPages()
             .subscribe(wordpressPages => this.topLevelPages = wordpressPages);
     }
 }

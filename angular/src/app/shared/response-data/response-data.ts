@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Epc} from "../postcode-epc-service/model/epc";
 import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../../questionnaire/questions/electricity-tariff-question/electricity-tariff";
-import {FlatPosition} from "../../questionnaire/questions/flat-position-question/flat-position";
+import {HouseExposedWall} from "../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
 import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
 import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
@@ -15,7 +15,8 @@ import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
 import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {EnergyEfficiencyRecommendation} from "../recommendations-service/energy-efficiency-recommendation";
+import {FloorLevel} from "../../questionnaire/questions/floor-level-question/floor-level";
+import {FlatExposedWall} from "../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 
 @Injectable()
 export class ResponseData {
@@ -29,7 +30,8 @@ export class ResponseData {
     public tenureType: TenureType;
     public homeType: HomeType;
     public homeAge: HomeAge;
-    public flatPosition: FlatPosition;
+    public numberOfExposedWallsInFlat: FlatExposedWall;
+    public numberOfExposedWallsInHouse: HouseExposedWall;
     public numberOfStoreys: number;
     public numberOfBedrooms: number;
     public floorArea: number;
@@ -61,6 +63,7 @@ export class ResponseData {
     public gardenAccessibility: GardenAccessibility;
     public gardenSizeSquareMetres: number;
     public roofSpace: RoofSpace;
+    public floorLevels: FloorLevel[];
 
     public benefits: Benefits;
     public income: number;

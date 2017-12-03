@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import "rxjs/add/operator/switchMap";
-import {PageService} from "./page.service";
-import {Page} from "./page";
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {ExtendedWordpressPage} from "../shared/wordpress-pages-service/extended-wordpress-page";
 
 @Component({
     selector: 'app-page',
@@ -11,13 +11,13 @@ import {Page} from "./page";
 })
 export class PageComponent implements OnInit {
 
-    pageData: Page;
+    pageData: ExtendedWordpressPage;
     isLoading: boolean;
     isError: boolean;
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private pageService: PageService) {
+                private pageService: WordpressPagesService) {
     }
 
     ngOnInit() {
@@ -32,7 +32,7 @@ export class PageComponent implements OnInit {
             );
     }
 
-    displayPage(pageData: Page): void {
+    displayPage(pageData: ExtendedWordpressPage): void {
         if (!pageData) {
             this.router.navigate(['/']);
         }

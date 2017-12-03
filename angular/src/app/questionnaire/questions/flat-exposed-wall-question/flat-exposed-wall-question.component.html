@@ -1,0 +1,11 @@
+<div class="question-component">
+    <div class="multiple-choice-options flat-exposed-wall-options">
+        <div class="multiple-choice-option" *ngFor="let option of flatExposedWallOptions; let idx = index"
+             [class.selected]="response === option.value" (click)="response = option.value; complete.emit()">
+            <div class="icon-container">
+                <button [ngClass]="option.className" [attr.aria-labelledby]="'flat-exposed-wall-option-' + idx"></button>
+            </div>
+            <span [attr.id]="'flat-position-name-' + idx" class="name">{{option.name}}</span>
+        </div>
+    </div>
+</div>

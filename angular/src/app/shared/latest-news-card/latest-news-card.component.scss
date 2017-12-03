@@ -4,41 +4,56 @@
 .latest-news-card {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: $lighter-grey;
   height: 100%;
   border: none;
   outline: none;
+  text-decoration: none;
 
   .latest-news-icon-container {
-    background-color: $dark-medium-grey;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 160px;
+    background-position: center;
+    background-size: cover;
+
+    &.no-image {
+      background-color: $dark-medium-grey;
+    }
   }
 
-  .heading, .read-more {
-    font-weight: bold;
-  }
+  .text-container {
+    min-height: 160px;
+    padding: 25px 20px 27px 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
   .heading {
     @include card-heading-small;
     padding: 20px 20px;
     flex-grow: 1;
     flex-shrink: 0;
+    color: $dark-grey;
   }
 
-  .read-more {
-    text-transform: uppercase;
-    font-size: 12px;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background: none;
+    .read-more {
+      text-transform: uppercase;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 500;
+      color: $primary-blue;
+    }
+  }
 
-    &:focus {
-      text-decoration: underline;
+  &:hover {
+    .text-container {
+      .heading, .read-more {
+        text-decoration: underline;
+      }
     }
   }
 }

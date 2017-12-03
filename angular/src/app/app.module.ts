@@ -32,7 +32,7 @@ import {EnergyEfficiencyModule} from "./energy-efficiency/energy-efficiency.modu
         EnergyEfficiencyModule.forRoot(),
         HomePageModule,
         GrantsModule.forRoot(),
-        PageModule.forRoot(),
+        PageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
         BoilerModule.forRoot(),

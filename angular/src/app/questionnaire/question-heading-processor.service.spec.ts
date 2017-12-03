@@ -43,13 +43,13 @@ describe('questionHeadingProcessor', () => {
             // given
             const question = 'Is your fuel type {{fuel_type}} and your property {{property}}?';
             responseData.fuelType = FuelType.Electricity;
-            responseData.homeType = HomeType.TopFloorFlat;
+            responseData.homeType = HomeType.FlatDuplexOrMaisonette;
 
             // when
             const processedQuestion = service.replacePlaceholders(question);
 
             // then
-            expect(processedQuestion).toBe('Is your fuel type electricity and your property top floor flat?');
+            expect(processedQuestion).toBe('Is your fuel type electricity and your property flat, duplex or maisonette?');
         });
 
         it('replaces placeholder that appears multiple times in a question', () => {

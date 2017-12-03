@@ -16,6 +16,7 @@ import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {Component, EventEmitter, Output} from "@angular/core";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
+import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -25,9 +26,10 @@ describe('LandingPageComponent', () => {
     let mockPostcodeLookupComponent: MockPostcodeLookupComponent;
 
     const headingText = 'heading';
-    const userJourneyType = UserJourneyType.ReduceCarbonFootprint;
+    const userJourneyType = UserJourneyType.MakeHomeGreener;
 
     const postcodeReason = 'a reason here';
+
     class QuestionContentServiceStub {
         fetchQuestionsContent() {
             return Observable.of({
@@ -56,7 +58,8 @@ describe('LandingPageComponent', () => {
             ],
             providers: [
                 ResponseData,
-                {provide: QuestionContentService, useClass: QuestionContentServiceStub}
+                {provide: QuestionContentService, useClass: QuestionContentServiceStub},
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
             ]
         })
             .compileComponents();

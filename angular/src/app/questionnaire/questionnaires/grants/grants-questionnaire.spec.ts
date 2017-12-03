@@ -46,7 +46,7 @@ describe('GrantsQuestionnaire', () => {
         responseData.tenureType = undefined;
         responseData.numberOfChildren = undefined;
         responseData.numberOfAdultsAgedUnder64 = undefined;
-        responseData.userJourneyType = UserJourneyType.ReduceCarbonFootprint;
+        responseData.userJourneyType = UserJourneyType.MakeHomeGreener;
         GrantsQuestionnaire.getInstance(responseData);
         const expectedQuestions = [
             new TenureTypeQuestionMetadata(),

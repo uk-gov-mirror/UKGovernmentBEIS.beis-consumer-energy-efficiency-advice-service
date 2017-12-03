@@ -10,7 +10,7 @@ export class QuestionnairePage {
     }
 
     clickOption(text: string) {
-        let option = element(by.cssContainingText('.multiple-choice-option', text));
+        const option = element(by.cssContainingText('.multiple-choice-option', text));
         option.getTagName().then((tagName: string) => {
             if (tagName === 'button') {
                 option.click();

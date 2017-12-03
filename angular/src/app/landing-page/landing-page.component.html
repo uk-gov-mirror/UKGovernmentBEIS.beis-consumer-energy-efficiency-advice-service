@@ -62,20 +62,15 @@
     <div class="other-suggestions page-row">
         <div class="page-row-content">
             <div class="heading">Other things you might be interested in</div>
-            <div class="latest-news-cards">
-                <app-latest-news-card iconClassName="icon-video-play"
-                                      heading="How to draught-proof your home">
-                </app-latest-news-card>
-                <app-latest-news-card iconClassName="icon-infographic"
-                                      heading="5 simple tips to save energy this winter">
-                </app-latest-news-card>
-                <app-latest-news-card iconClassName="icon-checklist"
-                                      heading="How to choose the right installer">
-                </app-latest-news-card>
-                <app-latest-news-card iconClassName="icon-grant"
-                                      heading="Info on grants">
-                </app-latest-news-card>
+            <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
+                <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
+                                      [page]="page"></app-latest-news-card>
             </div>
+            <ng-template #latestNewsSpinner>
+                <div class="spinner-container">
+                    <div class="loading-spinner"></div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

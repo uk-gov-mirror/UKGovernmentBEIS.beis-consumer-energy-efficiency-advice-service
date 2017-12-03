@@ -15,7 +15,7 @@ describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
     let app: AppComponent;
 
-    const mockWordpressPagesService = {fetchTopLevelPages: () => Observable.of([])};
+    const mockWordpressPagesService = {getTopLevelPages: () => Observable.of([])};
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

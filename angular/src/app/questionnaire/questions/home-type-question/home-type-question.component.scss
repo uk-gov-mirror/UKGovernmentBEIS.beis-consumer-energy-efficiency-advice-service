@@ -20,39 +20,23 @@
         content: url('/assets/images/home-types/detached-house.svg');
       }
 
-      .semi-detached-house::before {
+      .semi-detached-or-terraced-house::before {
         content: url('/assets/images/home-types/semi-detached-house.svg');
       }
 
-      .end-terrace-house::before {
-        content: url('/assets/images/home-types/end-terrace-house.svg');
-      }
-
-      .mid-terrace-house::before {
-        content: url('/assets/images/home-types/mid-terrace-house.svg');
-      }
-
-      .ground-floor-flat::before {
-        content: url('/assets/images/home-types/ground-floor-flat.svg');
-      }
-
-      .mid-floor-flat::before {
-        content: url('/assets/images/home-types/mid-floor-flat.svg');
-      }
-
-      .top-floor-flat::before {
-        content: url('/assets/images/home-types/top-floor-flat.svg');
-      }
-
-      .bungalow-attached::before {
-        content: url('/assets/images/home-types/bungalow-attached.svg');
-      }
-
-      .bungalow-detached::before {
+      .detached-bungalow::before {
         content: url('/assets/images/home-types/bungalow-detached.svg');
       }
 
-      .park-home::before {
+      .semi-detached-bungalow::before {
+        content: url('/assets/images/home-types/bungalow-attached.svg');
+      }
+
+      .flat-duplex-or-maisonette::before {
+        content: url('/assets/images/home-types/mid-floor-flat.svg');
+      }
+
+      .park-home-or-mobile-home::before {
         content: url('/assets/images/home-types/park-home.svg');
       }
     }

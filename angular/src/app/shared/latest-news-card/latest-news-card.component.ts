@@ -1,4 +1,5 @@
 import {Component, Input} from "@angular/core";
+import {WordpressPage} from "../wordpress-pages-service/wordpress-page";
 
 @Component({
     selector: 'app-latest-news-card',
@@ -6,6 +7,5 @@ import {Component, Input} from "@angular/core";
     styleUrls: ['./latest-news-card.component.scss']
 })
 export class LatestNewsCardComponent {
-    @Input() iconClassName: string;
-    @Input() heading: string;
+    @Input() page: WordpressPage;
 }

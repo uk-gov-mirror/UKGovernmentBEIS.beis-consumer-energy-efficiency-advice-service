@@ -74,15 +74,15 @@ describe('WordpressPagesService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === `wp/v2/pages?search=${ encodeURI(searchString) }`;
+            const matchesExpectedUrl = request.urlWithParams === `wp/v2/pages?search=${ encodeURI(searchString) }&context=embed`;
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });
 
-    describe('#fetchTopLevelPages', () => {
+    describe('#getTopLevelPages', () => {
         it('calls API and returns data correctly', async(() => {
             // when
-            const actualResponse = service.fetchTopLevelPages().toPromise();
+            const actualResponse = service.getTopLevelPages().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
@@ -97,12 +97,12 @@ describe('WordpressPagesService', () => {
 
         it('does not call API on second call', async(() => {
             // given
-            const firstRequest = service.fetchTopLevelPages().toPromise();
+            const firstRequest = service.getTopLevelPages().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             //when
             firstRequest.then(() => {
-                service.fetchTopLevelPages().toPromise();
+                service.getTopLevelPages().toPromise();
 
                 //then
                 httpMock.verify();
@@ -115,7 +115,7 @@ describe('WordpressPagesService', () => {
             const expectedStatusText = 'bad request';
 
             // when
-            const actualResponse = service.fetchTopLevelPages().toPromise();
+            const actualResponse = service.getTopLevelPages().toPromise();
             httpMock.expectOne(matchesExpectedRequest)
                 .error(
                     new ErrorEvent('mock network error'),
@@ -135,7 +135,55 @@ describe('WordpressPagesService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === 'wp/v2/pages?parent=0';
+            const matchesExpectedUrl = request.urlWithParams === 'wp/v2/pages?parent=0&context=embed';
+            return matchesExpectedMethod && matchesExpectedUrl;
+        }
+    });
+
+    describe('#getLatestPages', () => {
+        it('calls API and returns data correctly', async(() => {
+            // when
+            const actualResponse = service.getLatestPages().toPromise();
+            httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
+
+            // then
+            actualResponse.then((pagesResponse) => {
+                // match data in 'assets/test/search-pages-response.json'
+                expect(pagesResponse.length).toBe(7);
+                expect(pagesResponse[0].route).toContain('microgen-7');
+                expect(pagesResponse[0].title).toBe('Microgen 7');
+            });
+            httpMock.verify();
+        }));
+
+        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
+            const matchesExpectedMethod = request.method === 'GET';
+            const matchesExpectedUrl = request.urlWithParams === 'wp/v2/pages?per_page=4&orderby=date&order=desc&context=embed';
+            return matchesExpectedMethod && matchesExpectedUrl;
+        }
+    });
+
+    describe('#getPage', () => {
+        const testSlug = "my-test-page";
+
+        it('calls API and returns data correctly', async(() => {
+            // when
+            const actualResponse = service.getPage(testSlug).toPromise();
+            httpMock.expectOne(matchesExpectedRequest).flush([mockApiResponse[0]]);
+
+            // then
+            actualResponse.then((pageResponse) => {
+                // match data in 'assets/test/search-pages-response.json'
+                expect(pageResponse.route).toContain('microgen-7');
+                expect(pageResponse.title).toBe('Microgen 7');
+                expect(pageResponse.content).toBe('<p>Microgen 7</p>\n');
+            });
+            httpMock.verify();
+        }));
+
+        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
+            const matchesExpectedMethod = request.method === 'GET';
+            const matchesExpectedUrl = request.urlWithParams === `wp/v2/pages?per_page=1&slug=${testSlug}`;
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

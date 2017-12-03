@@ -26,6 +26,7 @@ import {QuestionReasonComponent} from "./question-reason/question-reason.compone
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
+import { SafePipe } from './safe/safe.pipe';
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {RecommendationsService} from "./recommendations-service/recommendations.service";
 import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper.component";
@@ -42,6 +43,7 @@ import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper
         RecommendationCardComponent,
         QuestionReasonComponent,
         LargeVideoCardComponent,
+        SafePipe,
         GrantCardComponent,
         StickyRowWrapperComponent
     ],
@@ -56,6 +58,7 @@ import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper
         RecommendationCardComponent,
         QuestionReasonComponent,
         LargeVideoCardComponent,
+        SafePipe,
         GrantCardComponent,
         StickyRowWrapperComponent
     ],

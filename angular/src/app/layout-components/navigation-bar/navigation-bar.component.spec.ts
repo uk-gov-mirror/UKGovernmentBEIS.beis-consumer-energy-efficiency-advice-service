@@ -68,8 +68,8 @@ describe('NavigationBarComponent', () => {
 
     function injectMockWordpressPagesCallbackAndDetectChanges(fetchTopLevelPages: () => Observable<WordpressPage[]>) {
         let injectedWordpressPagesService = fixture.debugElement.injector.get(WordpressPagesService);
-        injectedWordpressPagesService.fetchTopLevelPages = fetchTopLevelPages;
-        fetchTopLevelPagesSpy = spyOn(injectedWordpressPagesService, 'fetchTopLevelPages').and.callThrough();
+        injectedWordpressPagesService.getTopLevelPages = fetchTopLevelPages;
+        fetchTopLevelPagesSpy = spyOn(injectedWordpressPagesService, 'getTopLevelPages').and.callThrough();
         fixture.detectChanges();
     }
 });
