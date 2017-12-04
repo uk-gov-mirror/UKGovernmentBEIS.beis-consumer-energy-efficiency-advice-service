@@ -1,47 +1,74 @@
 @import "styles/page";
 @import 'styles/var/colors';
 
-$progress-indicator-height: 40px;
-$progress-indicator-border-width: 2px;
-$sqrt-two: 1.414;
-
 :host {
   background: white;
 }
 
 .progress-indicator-component {
+  $color-list: (
+          #2a759c, $primary-blue, #52cea9, #78d523
+  );
+
+  $progress-indicator-height: 40px;
+  $sqrt-two: 1.414;
+
   display: flex;
   height: $progress-indicator-height;
-  padding: 4px 0;
+  width: 100%;
 
   .progress-indicator {
     display: flex;
     flex-grow: 1;
+
+    .pre-questionnaire-sections {
+      background-color: nth($color-list, 1);
+      flex: 1 1 auto;
+    }
+
+    .questionnaire-sections {
+      max-width: $content-max-width;
+      flex: 1 1 100%;
+      display: flex;
+    }
+
+    .post-questionnaire-sections {
+      background-color: #d8d8d8;
+      flex: 1 1 auto;
+    }
 
     .questionnaire-section {
       flex-grow: 1;
       display: flex;
       position: relative;
       align-items: center;
-      box-shadow: 0 2*$progress-indicator-border-width $progress-indicator-border-width $progress-indicator-border-width*-1 grey;
 
       &:not(:first-child) {
         padding-left: 20px;
       }
 
-      &:after {
+      &::after {
         position: absolute;
-        right: -$progress-indicator-height/4;
-        top: 1.5 * $progress-indicator-border-width;
+        right: calc(-1 * #{$progress-indicator-height} / (2 * #{$sqrt-two}));
         content: '';
         transform: rotate(-45deg);
-        box-shadow: 2*$progress-indicator-border-width 2*$progress-indicator-border-width 2*$progress-indicator-border-width $progress-indicator-border-width*-1 grey;
-        width: calc(#{$progress-indicator-height} / #{$sqrt-two} + 3 * #{$progress-indicator-border-width});
-        height: calc(#{$progress-indicator-height} / #{$sqrt-two} + 3 * #{$progress-indicator-border-width});
+        width: calc(#{$progress-indicator-height} / #{$sqrt-two});
+        height: calc(#{$progress-indicator-height} / #{$sqrt-two});
+      }
+
+      @for $i from 1 through length($color-list) {
+        &:nth-child(#{$i}) {
+          z-index: #{10 - $i};
+          background-color: nth($color-list, $i);
+
+          &::after {
+            background-color: nth($color-list, $i);
+          }
+        }
       }
 
       .horizontal-dashed-line {
-        border-bottom: 1px dashed $dark-medium-grey;
+        border-bottom: 1px dashed white;
         flex: 1;
       }
 
@@ -55,11 +82,52 @@ $sqrt-two: 1.414;
         flex: 1.5;
 
         .question-type-icon {
-          padding: 5px 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          line-height: 0;
+          margin-left: 10px;
+          margin-right: 10px;
+
+          :not(.person-showering) ::ng-deep svg {
+            width: 28px;
+            height: 28px;
+          }
+
+          .person ::ng-deep svg {
+            path {
+              fill: white;
+            }
+          }
+
+          .house ::ng-deep svg {
+            polygon {
+              fill: white;
+            }
+
+            polyline {
+              stroke: white;
+            }
+          }
+
+          .thermostat ::ng-deep svg {
+            path {
+              stroke: white;
+            }
+
+            circle {
+              fill: white;
+            }
+          }
+
+          .person-showering ::ng-deep svg {
+            width: 32px;
+            height: 32px;
+
+            path {
+              fill: white;
+            }
+
+            g#Group-15 path {
+              stroke: white;
+            }
+          }
         }
       }
 
@@ -74,11 +142,11 @@ $sqrt-two: 1.414;
 
         .step-link {
           padding: 0;
-          width: 15px;
-          height: 15px;
+          width: 10px;
+          height: 10px;
           border-radius: 15px;
-          border: 1px solid black;
-          background: none;
+          border: none;
+          background: white;
 
           &.active {
             background-color: black;
