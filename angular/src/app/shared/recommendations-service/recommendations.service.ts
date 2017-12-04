@@ -5,6 +5,7 @@ import clone from "lodash-es/clone";
 import concat from "lodash-es/concat";
 import orderBy from "lodash-es/orderBy";
 import keys from "lodash-es/keys";
+import "rxjs/add/operator/do";
 import {ResponseData} from "../response-data/response-data";
 import {EnergyCalculationApiService} from "../energy-calculation-api-service/energy-calculation-api-service";
 import {EnergySavingMeasureContentService} from "../energy-saving-measure-content-service/energy-saving-measure-content.service";
@@ -34,9 +35,8 @@ export class RecommendationsService {
     getAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
         if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
             this.cachedResponseData = clone(this.responseData);
-            let observable = this.refreshAllRecommendations();
-            observable.subscribe(recommendations => this.cachedRecommendations = recommendations);
-            return observable;
+            return this.refreshAllRecommendations()
+                .do(recommendations => this.cachedRecommendations = recommendations);
         }
         return Observable.of(this.cachedRecommendations);
     }
