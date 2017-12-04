@@ -4,7 +4,7 @@
             <div class="form-element">
                 <div class="name">Area</div>
                 <input class="floor-area-input text-input" id="floor-area-input" name="floor-area-input" type="number"
-                       aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateResponseData($event)">
+                       aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateFloorArea($event)">
             </div>
         </form>
         <div class="floor-area-unit-input multiple-choice-options unit-options">
@@ -16,7 +16,7 @@
                 {{floorAreaUnit.basicUnitDisplay}}&#xb2;
             </button>
         </div>
-        <button class="do-not-know-button" id="do-not-know-button" (click)="updateResponseData(0); complete.emit();">I don't know</button>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="updateFloorArea(0); complete.emit();">I don't know</button>
     </div>
     <div class="error" *ngIf="isInvalid">
         <div class="error-message">Please enter a valid value.</div>

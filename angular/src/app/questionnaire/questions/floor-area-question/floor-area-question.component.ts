@@ -40,13 +40,11 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
 
     ngOnInit() {
         this.responseData.floorArea = this.responseData.floorArea || 0;
-        if (this.responseData.floorAreaUnit === undefined) {
-            this.responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
-        }
+        this.responseData.floorAreaUnit = this.responseData.floorAreaUnit || FloorAreaUnit.SquareMetre;
         this.floorAreaDisplay = this.responseData.floorArea;
     }
 
-    updateResponseData(value) {
+    updateFloorArea(value) {
         if (value < 0) {
             this.isInvalid = true;
             this.responseData.floorArea = undefined;
