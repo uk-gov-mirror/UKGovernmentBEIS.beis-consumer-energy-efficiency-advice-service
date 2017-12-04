@@ -3,6 +3,6 @@
 <head>
     <base href="/">
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
-    <title>BEIS DCEAS</title>
+    <title>Energy Saving Advice Service</title>
     <?php wp_head(); ?>
 </head>
