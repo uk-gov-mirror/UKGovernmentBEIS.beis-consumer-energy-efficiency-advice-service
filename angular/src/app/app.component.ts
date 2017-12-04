@@ -27,9 +27,7 @@ export class AppComponent implements OnInit {
             // Scroll to top when route changes
             window.scrollTo(0, 0);
             // Record route change for Google Analytics tracking if that's supported in this environment
-            if (GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
-                this.googleAnalyticsService.recordPageView();
-            }
+            this.googleAnalyticsService.recordPageView();
         });
 
         // Set base URL for inline-svg directive

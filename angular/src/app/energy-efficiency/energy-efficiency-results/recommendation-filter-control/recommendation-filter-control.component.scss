@@ -15,9 +15,7 @@
         color: $light-medium-grey;
       }
 
-      &:focus {
-        box-shadow: 1px 1px 1px $dark-grey;
-      }
+      // TODO: Add a focus style for keyboard accessibility
 
       &.clear-filters {
         background-color: $dark-medium-grey;
