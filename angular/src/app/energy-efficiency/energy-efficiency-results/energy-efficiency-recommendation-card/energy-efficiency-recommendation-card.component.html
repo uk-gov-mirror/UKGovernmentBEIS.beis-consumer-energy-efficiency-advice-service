@@ -72,7 +72,7 @@
         </div>
         <app-break-even *ngIf="recommendation.investmentPounds > 0"
                 [investmentPounds]="recommendation.investmentPounds"
-                lifespanYears="40"
+                [lifespanYears]="recommendation.lifetimeYears"
                 [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
         </app-break-even>
     </div>

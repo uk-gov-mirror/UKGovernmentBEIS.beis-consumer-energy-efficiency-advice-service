@@ -32,6 +32,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
 
     const recommendation: EnergyEfficiencyRecommendation = {
         investmentPounds: 200,
+        lifetimeYears: 40,
         costSavingPoundsPerYear: 100,
         costSavingPoundsPerMonth: 100/12,
         energySavingKwhPerYear: 100,

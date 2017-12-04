@@ -8,10 +8,15 @@ import {GrantViewModel} from "../../grants/model/grant-view-model";
 import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
 import {concat, head} from "lodash-es";
+import {
+    EnergySavingMeasureResponse,
+    isEnergySavingMeasureResponse
+} from "../energy-calculation-api-service/response/energy-saving-measure-response";
 
 export class EnergyEfficiencyRecommendation {
 
     constructor(public investmentPounds: number,
+                public lifetimeYears: number,
                 public costSavingPoundsPerYear: number,
                 public energySavingKwhPerYear: number,
                 public readMoreRoute: string,
@@ -29,7 +34,7 @@ export class EnergyEfficiencyRecommendation {
         return this.costSavingPoundsPerYear / 12;
     }
 
-    static fromMeasure(energySavingMeasureResponse: MeasureResponse,
+    static fromMeasure(measure: MeasureResponse,
                        measureContent: MeasureContent,
                        iconClassName: string,
                        grants: GrantViewModel[]): EnergyEfficiencyRecommendation {
@@ -44,10 +49,19 @@ export class EnergyEfficiencyRecommendation {
                 .map(stepResponse => new RecommendationStep(stepResponse));
         const grant = head(grants);
         const grantSteps = (grant && grant.steps.length > 0) ? grant.steps : [];
+        let lifetime: number = null;
+        let estimatedInvestmentPounds: number = 0;
+        if (isEnergySavingMeasureResponse(measure)) {
+            lifetime = measure.lifetime;
+            // Estimate investment cost as the midpoint of the range included in the response
+            estimatedInvestmentPounds = (measure.min_installation_cost +
+                measure.max_installation_cost) / 2;
+        }
         return new EnergyEfficiencyRecommendation(
-            EnergyEfficiencyRecommendation.getDummyInvestmentAmount(tags), // TODO: investment required for measures (BEISDEAS-56)
-            energySavingMeasureResponse.cost_saving,
-            energySavingMeasureResponse.energy_saving,
+            estimatedInvestmentPounds,
+            lifetime,
+            measure.cost_saving,
+            measure.energy_saving,
             parse(measureContent.acf.featured_page).pathname,
             measureContent.acf.headline,
             measureContent.acf.summary,
@@ -64,6 +78,7 @@ export class EnergyEfficiencyRecommendation {
                      iconClassName: string): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant
+            null, // No lifetime for a grant
             grantViewModel.annualPaymentPounds || 0,
             0, // No energy saving from a grant
             '', // TODO: router link for more info (BEISDEAS-103)

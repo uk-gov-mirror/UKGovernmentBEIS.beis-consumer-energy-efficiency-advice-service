@@ -12,6 +12,7 @@ describe('YourPlanSummaryComponent', () => {
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
             investmentPounds: 199,
+            lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
             costSavingPoundsPerMonth: 99 / 12,
             energySavingKwhPerYear: 100,
@@ -27,6 +28,7 @@ describe('YourPlanSummaryComponent', () => {
         },
         {
             investmentPounds: 999,
+            lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
             costSavingPoundsPerMonth: 200 / 12,
             energySavingKwhPerYear: 250,
@@ -42,6 +44,7 @@ describe('YourPlanSummaryComponent', () => {
         },
         {
             investmentPounds: 20,
+            lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             costSavingPoundsPerMonth: 10 / 12,
             energySavingKwhPerYear: 5,
