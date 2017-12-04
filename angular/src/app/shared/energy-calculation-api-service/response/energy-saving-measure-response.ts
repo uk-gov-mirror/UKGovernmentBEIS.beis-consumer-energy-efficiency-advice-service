@@ -1,10 +1,14 @@
 import {MeasureResponse} from "./measure-response";
 
-export class EnergySavingMeasureResponse implements MeasureResponse {
-    constructor(public cost_saving: number,
-                public energy_saving: number,
-                public number: string,
-                public FIT: number,
-                public RHI: number) {
-    }
+export interface EnergySavingMeasureResponse extends MeasureResponse {
+    number: string;
+    lifetime: number;
+    max_installation_cost: number;
+    min_installation_cost: number;
+    FIT: number;
+    RHI: number;
+}
+
+export function isEnergySavingMeasureResponse(measure: MeasureResponse): measure is EnergySavingMeasureResponse {
+    return (<EnergySavingMeasureResponse>measure).number !== undefined;
 }

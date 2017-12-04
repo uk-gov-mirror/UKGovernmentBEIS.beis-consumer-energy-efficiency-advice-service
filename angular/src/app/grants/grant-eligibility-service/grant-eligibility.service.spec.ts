@@ -212,7 +212,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 100,
-                "RHI": 0
+                "RHI": 0,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
             const fitMeasureCode = "U";
 
@@ -233,7 +236,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 0,
-                "RHI": 0
+                "RHI": 0,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
             const fitMeasureCode = "U";
 
@@ -254,7 +260,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 0,
-                "RHI": 100
+                "RHI": 100,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
 
             // when
@@ -274,7 +283,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 0,
-                "RHI": 0
+                "RHI": 0,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
 
             // when
@@ -294,7 +306,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 0,
-                "RHI": 0
+                "RHI": 0,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
 
             // when
@@ -315,7 +330,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 0,
-                "RHI": 0
+                "RHI": 0,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
 
             // when
@@ -336,7 +354,10 @@ describe('GrantEligibilityService', () => {
                 "energy_saving": 0,
                 "number": "34",
                 "FIT": 0,
-                "RHI": 0
+                "RHI": 0,
+                "lifetime": 40,
+                "min_installation_cost": 500,
+                "max_installation_cost": 1500
             };
 
             // when

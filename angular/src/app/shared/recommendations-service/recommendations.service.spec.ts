@@ -181,6 +181,8 @@ describe('RecommendationsService', () => {
                 const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
                     EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.TopRecommendations;
                 expect(recommendations[0].tags).toEqual(expectedTags);
+                expect(recommendations[0].lifetimeYears).toEqual(30);
+                expect(recommendations[0].investmentPounds).toEqual(750);
             });
         }));
 
