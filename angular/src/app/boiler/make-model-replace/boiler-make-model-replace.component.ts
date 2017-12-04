@@ -3,10 +3,11 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
-import {FuelType, getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import sortBy from "lodash-es/sortBy";
+import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
+import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
 
 @Component({
     selector: 'app-boiler-make-model-replace',
@@ -18,13 +19,16 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     loading: boolean = true;
     error: boolean = false;
     productIndexNumber: string;
+
     boiler: GasAndOilBoiler;
     boilerTypes: BoilerType[];
+    measures: EnergySavingRecommendation[];
 
     private static readonly EFFICIENCY_THRESHOLD: number = 88;
 
     constructor(private gasAndOilBoilersService: GasAndOilBoilersService,
                 private boilerTypesService: BoilerTypesService,
+                private boilerPageMeasuresService: BoilerPageMeasuresService,
                 private route: ActivatedRoute) {
         this.productIndexNumber = this.route.snapshot.paramMap.get('productIndexNumber');
     }
@@ -32,29 +36,23 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     ngOnInit() {
         Observable.forkJoin(
             this.gasAndOilBoilersService.getGasAndOilBoilerWithIndexNumber(this.productIndexNumber),
-            this.boilerTypesService.fetchBoilerTypes()
+            this.boilerTypesService.fetchBoilerTypes(),
+            this.boilerPageMeasuresService.fetchMeasuresForBoilerPages(),
         )
             .subscribe(
-                ([gasAndOilBoiler, boilerTypes]) => {
-                    this.boilerTypes = sortBy(boilerTypes, type => +(type.installationCostLower));
+                ([gasAndOilBoiler, boilerTypes, measures]) => {
                     this.boiler = gasAndOilBoiler;
+                    this.boilerTypes = sortBy(boilerTypes, type => +(type.averageInstallationCost));
+                    console.log(this.boilerTypes);
+                    this.measures = measures;
                 },
                 err => this.handleError(err),
                 () => this.loading = false,
             );
     }
 
-    getFuelTypeName(fuelType: FuelType) {
-        const description = getFuelTypeDescription(fuelType);
-        return description === null ? 'Unknown' : description;
-    }
-
-    shouldReplace() {
-        return this.boiler.efficiency < this.efficiencyThreshold;
-    }
-
-    get efficiencyThreshold(): number {
-        return BoilerMakeModelReplaceComponent.EFFICIENCY_THRESHOLD;
+    boilerNeedsReplacing() {
+        return this.boiler.efficiency < BoilerMakeModelReplaceComponent.EFFICIENCY_THRESHOLD;
     }
 
     private handleError(err) {

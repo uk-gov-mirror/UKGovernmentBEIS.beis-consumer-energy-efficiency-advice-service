@@ -7,72 +7,53 @@
     </div>
     <div class="page-row found-boiler">
         <div class="page-row-content">
-            <div class="heading">We've found your boiler!</div>
-            <div class="body">
-                <div class="boiler-details">
-                    <div class="name">
-                        <div class="body-text">Your boiler is:</div>
-                        <div class="boiler-name">{{boiler.name}}</div>
-                    </div>
-                    <div class="fuel-and-efficiency">
-                        <div class="fuel">
-                            <div class="body-text">The fuel type is:</div>
-                            <div class="fuel-type">{{getFuelTypeName(boiler.fuelType)}}</div>
-                        </div>
-                        <div class="efficiency">
-                            <div class="body-text">Your boiler's efficiency is:</div>
-                            <div class="efficiency-figure">
-                                <div class="percentage">{{boiler.efficiency}}%</div>
-                                <div class="explanation">
-                                    All boilers after 2010 must have at least {{efficiencyThreshold}}% efficiency.
-                                </div>
-                            </div>
-                        </div>
+            <div class="heading">Thanks. We've found your make and model</div>
+            <div class="body-text">This recommends that:</div>
+            <div class="no-replace" *ngIf="!boilerNeedsReplacing(); else replaceSection">
+                <div class="summary">
+                    <div class="icon icon-tick"></div>
+                    <div class="replace-text">
+                        Your boiler is reasonably new, probably running efficiently and saving you money
                     </div>
                 </div>
-                <div class="recommendation replace" *ngIf="shouldReplace(); else noReplace">
-                    <div class="body-text">We recommend that:</div>
-                    <div class="body">
+                <app-boiler-link-button class="link-button" text="See ways to keep your boiler running efficiently"></app-boiler-link-button>
+            </div>
+            <ng-template #replaceSection>
+                <div class="replace">
+                    <div class="summary">
                         <div class="icon icon-cross"></div>
-                        <div class="content">
-                            <div class="recommendation-text">
-                                Your boiler needs replacing. A new boiler will be more energy efficient and will save you money
-                            </div>
-                            <a class="link-button" routerLink="/js/boiler/questionnaire">
-                                Answer a few more questions so we can suggest some boilers to suit you
-                            </a>
+                        <div class="replace-text">
+                            Your boiler needs replacing. A new boiler will be more energy efficient and
+                            will save you money
                         </div>
                     </div>
+                    <app-boiler-link-button class="link-button"
+                                            text="Answer a few more questions so we can suggest some boilers to suit you"
+                                            path="/js/boiler/questionnaire">
+                    </app-boiler-link-button>
                 </div>
-                <ng-template #noReplace>
-                    <div class="recommendation no-replace">
-                        <div class="body-text">We recommend that:</div>
-                        <div class="body">
-                            <div class="icon icon icon-tick"></div>
-                            <div class="content">
-                                <div class="recommendation-text">
-                                    Your boiler is reasonably new, probably running efficiently and saving you money
-                                </div>
-                                <a class="link-button">
-                                    See ways to keep your boiler running efficiently
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-            </div>
+            </ng-template>
         </div>
     </div>
-    <div class="page-row">
-        <div class="page-row-content boiler-types">
-            <div class="heading">Different types of boilers and heating systems</div>
-            <div class="body-text">
-                There are many different types of boilers and heating systems available. Browse through the options
-                below to compare the specifications
-            </div>
-            <div class="boiler-replacement-cards">
-                <app-boiler-replacement-card *ngFor="let boilerType of boilerTypes" [boilerType]="boilerType"></app-boiler-replacement-card>
-            </div>
+    <div class="page-row" *ngIf="!boilerNeedsReplacing(); else boilerTypesSection">
+        <div class="recommendations page-row-content">
+            <app-boiler-measures-section [measures]="measures"></app-boiler-measures-section>
         </div>
     </div>
+    <ng-template #boilerTypesSection>
+        <div class="page-row">
+            <div class="page-row-content boiler-types">
+                <div class="heading">Different types of boilers and heating systems</div>
+                <div class="body-text">
+                    There are many different types of boilers and heating systems available. Browse through the options
+                    below to compare the specifications
+                </div>
+                <div class="boiler-replacement-cards">
+                    <app-boiler-replacement-card *ngFor="let boilerType of boilerTypes trackBy $index"
+                                                 class="replacement-card"
+                                                 [boilerType]="boilerType"></app-boiler-replacement-card>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>
