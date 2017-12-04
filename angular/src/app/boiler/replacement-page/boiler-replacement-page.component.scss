@@ -11,23 +11,32 @@
       align-items: center;
       justify-content: space-between;
 
-
       .content {
         flex: 1 1 auto;
+
+        .heading {
+          margin-bottom: 8px;
+        }
       }
 
       .link-button {
-        flex: 0 0 200px;
-        text-align: center;
+        flex: 0 0 300px;
+        height: 70px;
       }
     }
   }
 
   .boiler-types {
-    display: block;
+    .heading {
+      margin-bottom: 8px;
+    }
 
     .boiler-replacement-cards {
       margin-top: 48px;
+
+      .replacement-card:not(:last-child) {
+        margin-bottom: 20px;
+      }
     }
   }
 }
