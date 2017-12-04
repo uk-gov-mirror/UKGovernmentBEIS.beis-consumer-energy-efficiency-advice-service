@@ -25,7 +25,7 @@ export class RecommendationsService {
 
     private cachedResponseData: ResponseData;
     private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
-    private cachedCurrentScore: number;
+    cachedCurrentScore: number;
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
@@ -47,12 +47,8 @@ export class RecommendationsService {
             .filter(recommendation => recommendation.isAddedToPlan)
     }
 
-    get currentScore(): number {
-        return this.cachedCurrentScore;
-    }
-
     get potentialScore(): number {
-        return this.currentScore + this.getRecommendationsInPlan().length;
+        return this.cachedCurrentScore + this.getRecommendationsInPlan().length;
     }
 
     private refreshAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {

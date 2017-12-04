@@ -39,6 +39,6 @@ export class YourPlanSummaryComponent {
     }
 
     get currentScoreColorCircleClassName(): string {
-        return this.potentialScore > this.recommendationsService.currentScore ? 'green' : 'amber';
+        return this.potentialScore > this.recommendationsService.cachedCurrentScore ? 'green' : 'amber';
     }
 }
