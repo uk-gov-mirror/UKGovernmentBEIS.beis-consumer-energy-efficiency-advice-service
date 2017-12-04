@@ -36,6 +36,7 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
         font-size: 12px;
         text-transform: uppercase;
         margin-right: 10px;
+        color: $focus-text-blue;
       }
 
       .data-value {

@@ -66,6 +66,7 @@ $do-button-right-chevron-width: 30px;
             padding: 0;
             margin: 0;
             cursor: inherit;
+            font-family: $font-family-light;
           }
 
           .remove-recommendation-button {
@@ -81,8 +82,9 @@ $do-button-right-chevron-width: 30px;
       }
 
       .subheading {
+        font-family: $font-family-light;
+
         &.plan-empty {
-          font-weight: bold;
           color: $focus-text-blue;
         }
       }
