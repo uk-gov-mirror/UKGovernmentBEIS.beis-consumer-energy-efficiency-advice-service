@@ -46,11 +46,13 @@ const routes: Routes = [
     },
     {
         path: 'js/grants',
-        component: GrantsLandingPageComponent
+        component: GrantsLandingPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/grants/questionnaire',
-        component: GrantsQuestionnaireComponent
+        component: GrantsQuestionnaireComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/greener-home',
@@ -70,7 +72,8 @@ const routes: Routes = [
     },
     {
         path: 'js/boiler',
-        component: BoilerLandingPageComponent
+        component: BoilerLandingPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/boiler/advice/:slug',
@@ -99,11 +102,13 @@ const routes: Routes = [
     },
     {
         path: ':slug',
-        component: PageComponent
+        component: PageComponent,
+        pathMatch: 'full'
     },
     {
         path: ':section/:slug',
-        component: PageComponent
+        component: PageComponent,
+        pathMatch: 'full'
     },
     {
         path: '**',
