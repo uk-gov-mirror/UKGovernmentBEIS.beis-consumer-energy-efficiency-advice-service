@@ -54,22 +54,12 @@ describe('RecommendationFilterControlComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                expect(fixture.debugElement.query(By.css('.tag-quick-win')).classes.selected).toBeFalsy();
-                expect(fixture.debugElement.query(By.css('.tag-small-spend')).classes.selected).toBeTruthy();
-                expect(fixture.debugElement.query(By.css('.tag-longer-term')).classes.selected).toBeTruthy();
-                expect(fixture.debugElement.query(By.css('.tag-grant')).classes.selected).toBeFalsy();
+                expect(fixture.debugElement.query(By.css('.tag-quick-win')).classes.deselected).toBeTruthy();
+                expect(fixture.debugElement.query(By.css('.tag-small-spend')).classes.deselected).toBeFalsy();
+                expect(fixture.debugElement.query(By.css('.tag-longer-term')).classes.deselected).toBeFalsy();
+                expect(fixture.debugElement.query(By.css('.tag-grant')).classes.deselected).toBeTruthy();
             });
         }));
-
-        it('should display all buttons as selected when no filter is selected for neater UI', () => {
-            // when
-            const buttonElements = fixture.debugElement.queryAll(By.css('.tag'));
-
-            // then
-            buttonElements.forEach(button => {
-                expect(button.classes.selected).toBeTruthy();
-            });
-        });
 
         it('should not display the clear-filters button when no filter is selected', () => {
             // when

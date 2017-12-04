@@ -1,27 +1,33 @@
-import {ComponentFixture, TestBed, async} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "../data-card/data-card.component";
-import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import {DataCardComponent} from "../../data-card/data-card.component";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
 import {BreakEvenComponent} from "../break-even/break-even.component";
+import {NationalGrantViewModel} from "../../../grants/model/national-grant-view-model";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
     let fixture: ComponentFixture<EnergyEfficiencyRecommendationCardComponent>;
 
     const advantages = ['Green', 'Cost effective'];
-    const grant = {
+    const grant: NationalGrantViewModel = {
+        grantId: 'national-grant-1',
         name: 'National Grant 1',
         description: 'some national grant',
         eligibility: GrantEligibility.LikelyEligible,
         shouldDisplayWithoutMeasures: true,
         annualPaymentPounds: 120,
         linkedMeasureCodes: ['V2'],
-        advantages: null
+        advantages: null,
+        steps: []
     };
 
     const recommendation: EnergyEfficiencyRecommendation = {
@@ -34,8 +40,10 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         headline: 'Loft insulation',
         summary: 'No description available',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
-        grants: [grant],
-        advantages: advantages
+        grant: grant,
+        advantages: advantages,
+        steps: [],
+        isAddedToPlan: false
     };
 
     beforeEach(async(() => {
@@ -45,7 +53,11 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
                 DataCardComponent,
                 BreakEvenComponent
             ],
-            imports: [RouterTestingModule]
+            imports: [
+                RouterTestingModule,
+                InlineSVGModule,
+                HttpClientTestingModule
+            ]
         })
             .compileComponents();
     }));
@@ -54,7 +66,6 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         fixture = TestBed.createComponent(EnergyEfficiencyRecommendationCardComponent);
         component = fixture.componentInstance;
         component.recommendation = recommendation;
-        spyOn(component.isAddedToPlanChange, 'emit').and.callThrough();
         fixture.detectChanges();
     });
 
@@ -85,38 +96,35 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             // then
             expect(tagsElements.length).toBe(2);
             const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
-            expect(tagNames).toContain('grant');
+            expect(tagNames).toContain('grants');
             expect(tagNames).toContain('longer term');
         });
     });
 
     describe('#toggleAddedToPlan', () => {
-        it('should emit added to plan if not already added to plan', () => {
+        it('should add recommendation to plan if not already added to plan', () => {
             // given
-            component.isAddedToPlan = false;
+            component.recommendation.isAddedToPlan = false;
 
             // when
-            clickAddToPlan();
-
-            // then
-            expect(component.isAddedToPlanChange.emit).toHaveBeenCalledWith(true);
-        });
-
-        it('should emit removed from plan if already added to plan', () => {
-            // given
-            component.isAddedToPlan = true;
-
-            // when
-            clickAddToPlan();
-
-            // then
-            expect(component.isAddedToPlanChange.emit).toHaveBeenCalledWith(false);
-        });
-
-        function clickAddToPlan(): void {
             const addToPlanElement = fixture.debugElement.query(By.css('.add-to-plan-column'));
             addToPlanElement.nativeElement.click();
-        }
+
+            // then
+            expect(component.recommendation.isAddedToPlan).toBeTruthy();
+        });
+
+        it('should remove recommendation from plan if already added to plan', () => {
+            // given
+            component.recommendation.isAddedToPlan = true;
+
+            // when
+            const addToPlanElement = fixture.debugElement.query(By.css('.add-to-plan-column'));
+            addToPlanElement.nativeElement.click();
+
+            // then
+            expect(component.recommendation.isAddedToPlan).toBeFalsy();
+        });
     });
 
     it('should display a linked grant name', () => {

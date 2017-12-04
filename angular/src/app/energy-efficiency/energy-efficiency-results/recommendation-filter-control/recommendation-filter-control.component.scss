@@ -6,7 +6,6 @@
 
   .tags {
     .tag {
-      opacity: 0.4;
       cursor: pointer;
       outline: none;
       border: none;
@@ -15,8 +14,9 @@
         box-shadow: 2px 2px 4px black;
       }
 
-      &.selected {
-        opacity: 1;
+      &.deselected {
+        background-color: white;
+        color: $light-medium-grey;
       }
 
       &.clear-filters {

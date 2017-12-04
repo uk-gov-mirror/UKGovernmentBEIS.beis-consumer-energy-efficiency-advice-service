@@ -18,7 +18,9 @@
       "featured_page": "http://localhost:81/about/",
       "linked_pages": "",
       "summary": "No description available",
-      "advantages": "Generate your own power from the wind",
+      "advantages": [{
+        "advantage": "Generate your own power from the wind"
+      }],
       "tags": ["tag_longer_term"]
     }
   },
@@ -28,10 +30,54 @@
       "headline": "Solar photovoltaic panels",
       "measure_code": "U",
       "featured_page": "http://localhost:81/home-improvements/solar-photovoltaic-panels",
-      "linked_pages": [],
       "summary": "No description available",
-      "tags": ["tag_longer_term"],
-      "advantages": "Green\r\nCost effective"
+      "tags": [
+        "tag_longer_term"
+      ],
+      "advantages": [
+        {
+          "advantage": "Green"
+        },
+        {
+          "advantage": "Cost effective"
+        }
+      ],
+      "steps": [
+        {
+          "headline": "Check your roof",
+          "description": "Do you have a roof?",
+          "more_info_links": [
+            {
+              "button_text": "Roofs",
+              "linked_page": "http://localhost:81/about/"
+            },
+            {
+              "button_text": "Ladders",
+              "linked_page": "http://localhost:81/home-improvements/"
+            }
+          ]
+        },
+        {
+          "headline": "Get some solar panels",
+          "description": "Go and get them!",
+          "more_info_links": [
+            {
+              "button_text": "Solar panels",
+              "linked_page": "http://localhost:81/renewable-energy/"
+            }
+          ]
+        },
+        {
+          "headline": "Install your solar panels",
+          "description": "Put them up!",
+          "more_info_links": [
+            {
+              "button_text": "Installing solar panels",
+              "linked_page": "http://localhost:81/about/"
+            }
+          ]
+        }
+      ]
     }
   },
   {

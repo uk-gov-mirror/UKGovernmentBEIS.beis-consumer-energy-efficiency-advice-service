@@ -1,13 +1,13 @@
-import {ComponentFixture, TestBed, async} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {YourPlanComponent} from "./your-plan.component";
-import {EnergyEfficiencyRecommendation} from "../energy-efficiency-recommendation-card/energy-efficiency-recommendation";
-import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {YourPlanSummaryComponent} from "./your-plan-summary.component";
+import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {DataCardComponent} from "../data-card/data-card.component";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 
-describe('YourPlanComponent', () => {
-    let component: YourPlanComponent;
-    let fixture: ComponentFixture<YourPlanComponent>;
+describe('YourPlanSummaryComponent', () => {
+    let component: YourPlanSummaryComponent;
+    let fixture: ComponentFixture<YourPlanSummaryComponent>;
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
@@ -20,8 +20,10 @@ describe('YourPlanComponent', () => {
             headline: 'Loft insulation',
             summary: 'No description available',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
-            grants: [],
-            advantages: []
+            grant: null,
+            advantages: [],
+            steps: [],
+            isAddedToPlan: false
         },
         {
             investmentPounds: 999,
@@ -33,8 +35,10 @@ describe('YourPlanComponent', () => {
             headline: 'Solar photovoltaic panels',
             summary: 'No description available',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
-            grants: [],
-            advantages: []
+            grant: null,
+            advantages: [],
+            steps: [],
+            isAddedToPlan: false
         },
         {
             investmentPounds: 20,
@@ -46,35 +50,37 @@ describe('YourPlanComponent', () => {
             headline: 'Cylinder insulation',
             summary: 'No description available',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
-            grants: [],
-            advantages: []
+            grant: null,
+            advantages: [],
+            steps: [],
+            isAddedToPlan: false
         }
     ];
 
+    const recommendationsServiceStub = {
+        getRecommendationsInPlan: () => recommendations
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [YourPlanComponent, DataCardComponent]
+            declarations: [
+                YourPlanSummaryComponent,
+                DataCardComponent,
+                YourPlanSummaryComponent
+            ],
+            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(YourPlanComponent);
+        fixture = TestBed.createComponent(YourPlanSummaryComponent);
         component = fixture.componentInstance;
-        component.recommendations = recommendations;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('should display the correct recommendations', () => {
-        const recommendationHeadlines = fixture.debugElement.queryAll(By.css('.recommendations-list-item'))
-            .map(el => el.nativeElement.innerText);
-        expect(recommendationHeadlines.length).toEqual(recommendations.length);
-        recommendations.forEach(expectedRecommendation =>
-            expect(recommendationHeadlines).toContain(expectedRecommendation.headline));
     });
 
     it('should calculate the total investment and round it correctly', () => {

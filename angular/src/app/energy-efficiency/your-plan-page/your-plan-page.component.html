@@ -1,0 +1,48 @@
+<div class="your-plan-page">
+    <div class="your-plan-header page-row">
+        <div class="page-row-content">
+            <div class="heading-container">
+                <div class="heading">Your plan</div>
+                <div class="subheading" *ngIf="recommendations.length === 1">
+                    You have added 1 recommendation to your plan. You'll find all the steps and things you need to
+                    consider to implement this measure.
+                </div>
+                <div class="subheading" *ngIf="recommendations.length > 1">
+                    You have added {{recommendations.length}} recommendations to your plan. You'll find all the steps
+                    and things you need to consider to implement those measures.
+                </div>
+            </div>
+            <app-your-plan-summary></app-your-plan-summary>
+        </div>
+    </div>
+    <div class="recommendations page-row">
+        <div class="page-row-content">
+            <div class="recommendation-steps-card" *ngFor="let recommendation of recommendations">
+                <div class="headline">{{recommendation.headline}}</div>
+                <div class="description">{{recommendation.summary}}</div>
+                <div class="steps">
+                    <app-recommendation-step-card *ngFor="let step of recommendation.steps; let i = index"
+                                                  [step]="step"
+                                                  [stepIndex]="i"></app-recommendation-step-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="local-authority-grants page-row" *ngIf="localAuthorityGrants && localAuthorityGrants.length > 0">
+        <div class="page-row-content">
+            <div class="subheading">Local Authority grants</div>
+            <div class="local-authority">As part of your energy efficiency measures you might be eligible for local
+                grants. You live in {{localAuthorityName}} so we've found the following:
+            </div>
+            <div class="grant-cards">
+                <app-grant-card class="grant-card"
+                                *ngFor="let grant of localAuthorityGrants"
+                                [grant]="grant">
+                </app-grant-card>
+            </div>
+        </div>
+    </div>
+    <app-sticky-row-wrapper>
+        <app-download-plan></app-download-plan>
+    </app-sticky-row-wrapper>
+</div>

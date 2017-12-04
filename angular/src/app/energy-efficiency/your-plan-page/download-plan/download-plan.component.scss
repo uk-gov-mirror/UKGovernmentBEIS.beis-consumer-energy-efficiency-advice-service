@@ -1,0 +1,152 @@
+@import "styles/var/colors";
+
+$pdf-button-width: 53px;
+$pdf-button-arrow-height: 12px;
+$send-email-button-height: 40px;
+$send-email-button-arrow-width: 10px;
+$action-divider-circle-diameter: 40px;
+
+.download-plan.page-row {
+  padding: 34px 0 27px 0;
+  background-color: white;
+
+  .page-row-content {
+    display: flex;
+    position: relative;
+
+    & > * {
+      border-left: 1px solid $light-grey;
+    }
+
+    & > :last-child {
+      border-right: 1px solid $light-grey;
+    }
+
+    .download-your-plan, .download-landlord-report, .email-your-plan {
+      display: flex;
+      padding: 0 40px 0 80px;
+      flex: 1 0 1px;
+      justify-content: space-around;
+
+      .header {
+        font-size: 20px;
+        color: $dark-grey;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .description {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      .action-details {
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+      }
+
+      .download-pdf {
+        background-color: $action-button-blue;
+        outline: none;
+        border: none;
+        position: relative;
+        flex: 0 0 $pdf-button-width;
+        height: 64px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -$pdf-button-arrow-height;
+          left: 0;
+          height: 0;
+          width: 0;
+          border-right: $pdf-button-width/2 solid transparent;
+          border-left: $pdf-button-width/2 solid transparent;
+          border-top: $pdf-button-arrow-height solid $action-button-blue;
+        }
+
+        .download-pdf-text {
+          font-size: 13px;
+          color: white;
+          outline: none;
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0 0 20px;
+        }
+
+        .download-pdf-icon {
+          transform: rotate(90deg);
+          stroke: white;
+          width: 16px;
+          height: 16px;
+          display: block;
+          line-height: 0;
+        }
+      }
+    }
+
+    .action-divider {
+      width: $action-divider-circle-diameter;
+      height: $action-divider-circle-diameter;
+      border: 1px solid $light-grey;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: calc(50% - #{$action-divider-circle-diameter}/2);
+      top: calc(50% - #{$action-divider-circle-diameter}/2);
+      background-color: white;
+    }
+
+    .email-your-plan {
+      flex-direction: column;
+
+      .email-form {
+        height: $send-email-button-height;
+        display: flex;
+        align-items: stretch;
+
+        .email-input {
+          outline: none;
+          border: none;
+          margin: 0;
+          background-color: $lighter-grey;
+          padding: 10px;
+          font-size: 16px;
+        }
+
+        .send-email {
+          outline: none;
+          border: none;
+          margin: 0;
+          padding: 0;
+          position: relative;
+          flex: 0 0 60px;
+          background: $action-button-blue;
+          color: white;
+          cursor: pointer;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -$send-email-button-arrow-width;
+            width: 0;
+            height: 0;
+            border-left: $send-email-button-arrow-width solid $action-button-blue;
+            border-top: $send-email-button-height/2 solid transparent;
+            border-bottom: $send-email-button-height/2 solid transparent;
+          }
+        }
+      }
+    }
+  }
+}

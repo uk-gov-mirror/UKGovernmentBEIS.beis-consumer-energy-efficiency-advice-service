@@ -57,7 +57,7 @@ $grant-card-margin: 24px;
           }
 
           .grant-subheading {
-            @include card-heading;
+            @include card-heading-small;
           }
 
           .link-button {

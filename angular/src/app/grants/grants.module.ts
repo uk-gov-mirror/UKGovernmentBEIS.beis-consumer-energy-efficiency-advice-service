@@ -9,7 +9,6 @@ import {GrantsLandingPageComponent} from "./landing-page/grants-landing-page.com
 import {RoutingModule} from "../app-routing.module";
 import {GrantEligibilityService} from "./grant-eligibility-service/grant-eligibility.service";
 import {NationalGrantsContentService} from "./national-grants-content-service/national-grants-content.service";
-import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {IncomeThresholdService} from "./national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
 import {ColdWeatherPayments} from "./national-grant-calculator/grants/cold-weather-payments/cold-weather-payments";
 import {EcoHhcroFlex} from "./national-grant-calculator/grants/eco-hhcro-flex/eco-hccro-flex";
@@ -24,13 +23,11 @@ import {NationalGrantCalculatorProvider} from "./national-grant-calculator/provi
 @NgModule({
     declarations: [
         GrantsQuestionnaireComponent,
-        GrantsLandingPageComponent,
-        GrantCardComponent
+        GrantsLandingPageComponent
     ],
     exports: [
         GrantsQuestionnaireComponent,
-        GrantsLandingPageComponent,
-        GrantCardComponent
+        GrantsLandingPageComponent
     ],
     imports: [
         SharedModule,

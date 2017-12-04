@@ -78,7 +78,7 @@ describe('RdsapInput', () => {
             gardenAccessibility: GardenAccessibility.NotAccessible,
             gardenSizeSquareMetres: 100,
             roofSpace: RoofSpace.NoSpace,
-            numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80
+            numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
         };
 
         it('should calculate the number of occupants correctly', () => {
