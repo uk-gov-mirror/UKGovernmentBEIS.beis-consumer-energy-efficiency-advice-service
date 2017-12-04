@@ -26,7 +26,8 @@ import {GreenerHomeComponent} from "./landing-page/greener-home/greener-home.com
 const routes: Routes = [
     {
         path: '',
-        component: HomePageComponent
+        component: HomePageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/energy-efficiency/questionnaire/:name',
