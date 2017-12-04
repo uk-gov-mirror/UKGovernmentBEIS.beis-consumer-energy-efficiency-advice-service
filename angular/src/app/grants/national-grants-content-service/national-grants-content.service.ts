@@ -23,7 +23,8 @@ export class NationalGrantsContentService {
     static getContentForGrant(grantsContent: NationalGrantContent[], grantId: string) {
         const grantContent = grantsContent.find(grant => grant.slug === grantId);
         if (!grantContent) {
-            throw new Error(`No content found for grant with id "${grantId}"`)
+            console.warn(`No content found for grant with id "${grantId}"`);
+            return null;
         }
         return grantContent;
     }

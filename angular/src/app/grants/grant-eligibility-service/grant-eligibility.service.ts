@@ -22,7 +22,15 @@ import {RenewableHeatIncentive} from "../national-grant-calculator/grants/renewa
 export class GrantEligibilityService {
 
     private cachedResponseData: ResponseData;
-    private cachedEligibilityByGrant: Observable<EligibilityByGrant>;
+    private _eligibilityByGrant: Observable<EligibilityByGrant>;
+
+    private get eligibilityByGrant(): Observable<EligibilityByGrant> {
+        if (!isEqual(this.responseData, this.cachedResponseData) || !this.eligibilityByGrant) {
+            this.cachedResponseData = clone(this.responseData);
+            this._eligibilityByGrant = this.fetchEligibilityByGrant().shareReplay(1);
+        }
+        return this._eligibilityByGrant;
+    }
 
     constructor(private responseData: ResponseData,
                 private nationalGrantsContentService: NationalGrantsContentService,
@@ -30,9 +38,8 @@ export class GrantEligibilityService {
     }
 
     getEligibleGrantsForMeasure(measureCode: string, measure: EnergySavingMeasureResponse): Observable<NationalGrantForMeasure[]> {
-        this.refreshEligibilityByGrantIfNecessary();
         return Observable.forkJoin(
-            this.cachedEligibilityByGrant,
+            this.eligibilityByGrant,
             this.nationalGrantsContentService.fetchNationalGrantsContent()
         )
             .map(([eligibilityForGrants, grantsContent]) => {
@@ -45,18 +52,17 @@ export class GrantEligibilityService {
     }
 
     getEligibleStandaloneGrants(): Observable<StandaloneNationalGrant[]> {
-        this.refreshEligibilityByGrantIfNecessary();
         return Observable.forkJoin(
-            this.cachedEligibilityByGrant,
+            this.eligibilityByGrant,
             this.nationalGrantsContentService.fetchNationalGrantsContent()
         )
             .map(([eligibilityByGrant, grantsContent]) => keys(eligibilityByGrant)
                 .filter(grantId => GrantEligibilityService.isEligible(eligibilityByGrant[grantId].eligibility))
                 .reduce((standaloneNationalGrants, grantId) => {
                         const grantContent = NationalGrantsContentService.getContentForGrant(grantsContent, grantId);
-                        if (grantContent.display_without_measures) {
+                        if (grantContent && grantContent.display_without_measures) {
                             standaloneNationalGrants.push(new StandaloneNationalGrant(
-                                NationalGrantsContentService.getContentForGrant(grantsContent, grantId),
+                                grantContent,
                                 eligibilityByGrant[grantId].eligibility,
                                 eligibilityByGrant[grantId].calculator.getStandaloneAnnualPaymentPounds(this.responseData)
                             ));
@@ -65,13 +71,6 @@ export class GrantEligibilityService {
                     }, []
                 )
             );
-    }
-
-    private refreshEligibilityByGrantIfNecessary(): void {
-        if (!isEqual(this.responseData, this.cachedResponseData) || !this.cachedEligibilityByGrant) {
-            this.cachedResponseData = clone(this.responseData);
-            this.cachedEligibilityByGrant = this.fetchEligibilityByGrant().shareReplay(1);
-        }
     }
 
     private fetchEligibilityByGrant(): Observable<EligibilityByGrant> {
@@ -95,16 +94,18 @@ export class GrantEligibilityService {
                                                        eligibilityByGrant: EligibilityByGrant,
                                                        grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
         let recurringPaymentGrantsForMeasure: NationalGrantForMeasure[] = [];
-        if (measure.FIT && measure.FIT > 0) {
+        const fitGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID);
+        if (measure.FIT && measure.FIT > 0 && fitGrantContent) {
             recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID),
+                fitGrantContent,
                 eligibilityByGrant[FeedInTariff.GRANT_ID].eligibility,
                 measure.FIT
             ));
         }
-        if (measure.RHI && measure.RHI > 0) {
+        const rhiGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID);
+        if (measure.RHI && measure.RHI > 0 && rhiGrantContent) {
             recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID),
+                rhiGrantContent,
                 eligibilityByGrant[RenewableHeatIncentive.GRANT_ID].eligibility,
                 measure.RHI
             ));
@@ -119,7 +120,7 @@ export class GrantEligibilityService {
             .filter(grantId => GrantEligibilityService.isEligible(eligibilityByGrant[grantId].eligibility))
             .reduce((oneOffPaymentGrantsForMeasure, grantId) => {
                 const grantContent = NationalGrantsContentService.getContentForGrant(grantsContent, grantId);
-                if (grantContent.linked_measure_codes.indexOf(measureCode) > -1) {
+                if (grantContent && grantContent.linked_measure_codes.indexOf(measureCode) > -1) {
                     oneOffPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
                         grantContent,
                         eligibilityByGrant[grantId].eligibility,

@@ -79,12 +79,12 @@ export class RecommendationsService {
                     if (!energyCalculation) {
                         throw new Error('Received empty energy calculation response');
                     }
+                    const habitRecommendations = RecommendationsService
+                        .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
+                    const grantRecommendations = eligibleStandaloneGrants
+                        .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
                     return this.getHomeImprovementRecommendationsContent(energyCalculation.measures, measuresContent)
                         .map(homeImprovementRecommendations => {
-                            const habitRecommendations = RecommendationsService
-                                .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
-                            const grantRecommendations = eligibleStandaloneGrants
-                                .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
                             const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
                             const orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
                             return RecommendationsService.tagTopRecommendations(orderedRecommendations);
