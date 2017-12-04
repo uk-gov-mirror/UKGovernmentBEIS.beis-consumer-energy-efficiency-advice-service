@@ -14,7 +14,6 @@ import {BoilerTypesService} from "./boiler-types-service/boiler-types.service";
 import {BoilerQuestionnaireComponent} from "./boiler-questionnaire/boiler-questionnaire.component";
 import {QuestionnaireModule} from "../questionnaire/questionnaire.module";
 import {BoilerResultsPageComponent} from "./results-page/boiler-results-page.component";
-import {BoilerOptionCardComponent} from "./results-page/boiler-option-card/boiler-option-card.component";
 import {BoilerMeasuresSectionComponent} from "./measures-section/boiler-measures-section.component";
 import {BoilerPageMeasuresService} from "./measures-section/boiler-page-measures.service";
 import {BoilerResultsPageRouteGuard} from "./results-page/boiler-results-page.guard";
@@ -35,7 +34,6 @@ import {BoilerLinkButtonComponent} from "./boiler-link-button/boiler-link-button
         BoilerReplacementCardComponent,
         BoilerQuestionnaireComponent,
         BoilerResultsPageComponent,
-        BoilerOptionCardComponent,
         BoilerMeasuresSectionComponent,
         BoilerReplacementPageComponent,
         BoilerMakeModelReplaceComponent,

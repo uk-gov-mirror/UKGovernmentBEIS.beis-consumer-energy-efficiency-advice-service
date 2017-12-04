@@ -2,28 +2,25 @@
 <div class="boiler-results-page" *ngIf="!isLoading && !isError">
     <div class="page-row page-heading">
         <div class="page-row-content">
-            <div class="heading-text">Replacing your boiler</div>
+            <div class="heading-text">Your boiler recommendations</div>
         </div>
     </div>
     <div class="page-row found-options">
         <div class="page-row-content">
             <div class="heading">Thanks! We've found the following options for you</div>
             <div class="boiler-options">
-                <app-boiler-option-card class="boiler-option"
-                                        *ngFor="let boiler of applicableBoilerTypes"
-                                        [boiler]="boiler"></app-boiler-option-card>
-            </div>
-            <div class="installer-links">
-                <button class="link-button"
-                        *ngFor="let boiler of applicableBoilerTypes">
-                    Find a trustworthy {{boiler.name}} installer
-                </button>
+                <app-boiler-replacement-card class="boiler-option white"
+                                             *ngFor="let boilerType of applicableBoilerTypes"
+                                             [boilerType]="boilerType">
+                </app-boiler-replacement-card>
             </div>
         </div>
     </div>
     <div class="page-row">
         <div class="recommendations page-row-content">
-            <app-boiler-measures-section [measures]="measures"></app-boiler-measures-section>
+            <app-boiler-measures-section bodyText="While you're upgrading your boiler, perhaps there are other things you can do to
+                                               help save money on your energy bills"
+                                         [measures]="measures"></app-boiler-measures-section>
         </div>
     </div>
 </div>

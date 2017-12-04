@@ -14,6 +14,8 @@ describe('BoilerMeasuresSectionComponent', () => {
     let router: Router;
     let basicsQuestionnaireComplete: boolean = false;
 
+    const bodyText = 'Here is some body text for the component';
+
     const questionnaireServiceStub = {
         isComplete: () => basicsQuestionnaireComplete
     };
@@ -40,11 +42,17 @@ describe('BoilerMeasuresSectionComponent', () => {
         router = TestBed.get(Router);
         spyOn(router, 'navigate');
         component = fixture.componentInstance;
+        component.bodyText = bodyText;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should show the right body text', () => {
+        const bodyTextElement = fixture.debugElement.query(By.css('.body-text')).nativeElement;
+        expect(bodyTextElement.innerText).toEqual(bodyText);
     });
 
     it('should navigate to the home basics questionnaire when the link is clicked and the questionnaire is not complete', () => {

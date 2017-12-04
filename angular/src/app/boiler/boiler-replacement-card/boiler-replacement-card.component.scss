@@ -5,6 +5,24 @@
   display: block;
 }
 
+:host.white {
+  .boiler-replacement-card {
+    .main-row {
+      background: white;
+      border-bottom: 2px solid $lighter-grey;
+      .details {
+        border-right: 2px solid $lighter-grey;
+      }
+      .installation {
+        border-right: 2px solid $lighter-grey;
+      }
+    }
+    .secondary-row {
+      background: white;
+    }
+  }
+}
+
 .boiler-replacement-card {
   display: flex;
   flex-direction: column;
@@ -13,7 +31,6 @@
   cursor: pointer;
   text-decoration: none;
   color: $dark-grey;
-
   &:focus, &:hover {
     .main-row .details .content .name {
       text-decoration: underline;
@@ -43,7 +60,8 @@
 
       .icon {
         position: relative;
-        top: -14px;
+        top: -2px;
+        margin-right: 12px;
       }
 
       .content {

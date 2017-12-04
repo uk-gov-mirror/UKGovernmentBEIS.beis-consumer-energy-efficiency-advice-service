@@ -37,7 +37,9 @@
     </div>
     <div class="page-row" *ngIf="!boilerNeedsReplacing(); else boilerTypesSection">
         <div class="recommendations page-row-content">
-            <app-boiler-measures-section [measures]="measures"></app-boiler-measures-section>
+            <app-boiler-measures-section bodyText="While your boiler is fine, perhaps there are other things you can do
+                                                   to help save money on your energy bills"
+                                         [measures]="measures"></app-boiler-measures-section>
         </div>
     </div>
     <ng-template #boilerTypesSection>
