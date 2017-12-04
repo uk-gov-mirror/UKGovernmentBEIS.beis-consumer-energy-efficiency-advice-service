@@ -50,10 +50,9 @@ export class PostcodeLookupComponent {
 
     onPostcodeSubmit() {
         if (this.postcodeInput) {
-            this.postcodeInput = this.postcodeInput.replace(/\s/g, '');
             this.loadingEpcs = true;
             this.resetSearchState();
-            this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput)
+            this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
                 .subscribe(
                     postcodeDetails => this.handlePostcodeDetails(postcodeDetails),
                     error => this.handlePostcodeSearchError(error)
@@ -73,7 +72,7 @@ export class PostcodeLookupComponent {
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             return this.displayPostcodeValidationError();
         }
-        this.postcode = this.postcodeInput;
+        this.postcode = this.postcodeInput.replace(/\s/g, '');
         this.localAuthorityCode = null;
     }
 
@@ -84,7 +83,6 @@ export class PostcodeLookupComponent {
 
     private resetSearchState(): void {
         this.epcs = undefined;
-        this.loadingEpcs = false;
         this.validationError = false;
     }
 
