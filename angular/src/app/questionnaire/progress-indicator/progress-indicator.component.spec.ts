@@ -50,8 +50,8 @@ describe('ProgressIndicatorComponent', () => {
 
     class TestQuestionnaire extends Questionnaire {
         static readonly questions = [
-            new TestQuestion(TestQuestionComponent, 'question0', QuestionType.User),
-            new TestQuestion(TestQuestionComponent, 'question1', QuestionType.User),
+            new TestQuestion(TestQuestionComponent, 'question0', QuestionType.House),
+            new TestQuestion(TestQuestionComponent, 'question1', QuestionType.House),
             new TestQuestion(TestQuestionComponent, 'question2', QuestionType.House),
             new TestQuestion(TestQuestionComponent, 'question3', QuestionType.House),
             new TestQuestion(TestQuestionComponent, 'question4', QuestionType.House),

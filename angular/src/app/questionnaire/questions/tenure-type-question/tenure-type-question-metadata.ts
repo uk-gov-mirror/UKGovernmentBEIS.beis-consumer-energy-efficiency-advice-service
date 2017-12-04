@@ -8,7 +8,7 @@ export class TenureTypeQuestionMetadata extends QuestionMetadata {
         super(
             TenureTypeQuestionComponent,
             'tenure-type',
-            QuestionType.User
+            QuestionType.House
         );
     }
 
