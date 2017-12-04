@@ -10,6 +10,7 @@ import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 })
 export class BoilerMeasuresSectionComponent {
     @Input() measures: EnergySavingRecommendation[];
+    @Input() bodyText: string;
 
     constructor(private questionnaireService: QuestionnaireService,
                 private router: Router) {

@@ -6,8 +6,8 @@
 }
 
 .carousel-item {
-  background-color: $lighter-grey;
-  padding: 24px 16px;
+  background: white;
+  padding: 20px;
   box-sizing: border-box;
 
   display: flex;
@@ -16,19 +16,34 @@
 
   .heading {
     .number {
-      @include focus-text;
-      margin-bottom: 12px;
+      font-size: 32px;
+      line-height: 38px;
+      font-weight: bold;
+
+      color: $primary-blue;
+
+      margin-bottom: 14px;
     }
 
     .summary {
       width: 100%;
-      font-size: 24px;
+      height: 72px;
+
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: bold;
+
+      color: $darkened-blue;
+
       margin-bottom: 24px;
     }
   }
 
   .details {
     width: 100%;
-    font-size: 16px;
+
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 300;
   }
 }

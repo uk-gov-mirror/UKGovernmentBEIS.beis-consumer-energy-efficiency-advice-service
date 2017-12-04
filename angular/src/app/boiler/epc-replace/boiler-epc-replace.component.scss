@@ -17,45 +17,54 @@
   .found-epc {
     background-color: $lighter-grey;
 
-    .page-row-content {
-      display: block;
+    .heading {
+      margin-bottom: 8px;
+    }
 
-      .no-replace, .replace {
-        margin-top: 32px;
+    .body-text {
+      margin-bottom: 32px;
+    }
+
+    .no-replace, .replace {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .summary {
+        flex: 1 1 auto;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
 
-        .summary {
+        .icon {
+          flex: 0 0 76px;
+          height: 76px;
+          border-radius: 50%;
+          margin-right: 32px;
+
+          &.icon-tick {
+            background: white url('/assets/images/icons/tick-pink.svg') no-repeat center;
+            background-size: 42px 42px;
+          }
+
+          &.icon-cross {
+            background: white url('/assets/images/icons/cross-pink.svg') no-repeat center;
+            background-size: 42px 42px;
+          }
+        }
+
+        .replace-text {
           flex: 1 1 auto;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
+          margin-right: 96px;
 
-          .icon {
-            flex: 0 0 80px;
-            height: 80px;
-            background-color: white;
-            border-radius: 50%;
-            margin-right: 32px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .large-body-text {
-            flex: 1 1 auto;
-            font-weight: bold;
-            margin-right: 96px;
-          }
+          font-size: 24px;
+          line-height: 28px;
+          font-weight: bold;
         }
+      }
 
-        .link-button {
-          flex: 0 0 350px;
-          padding: 16px;
-          position: relative;
-        }
+      .link-button {
+        flex: 0 0 350px;
       }
     }
   }
@@ -64,55 +73,22 @@
     background-color: $lighter-grey;
     flex-grow: 1;
 
-    .page-row-content {
-      display: block;
-
-      .body {
-        margin-top: 64px;
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-
-        .make-and-model, .not-sure {
-          flex: 1 1 auto;
-          flex-basis: calc(50% - 96px);
-        }
-
-        .make-and-model {
-          padding-right: 96px;
-          border-right: 1px solid $light-medium-grey;
-        }
-
-        .not-sure {
-          padding-left: 96px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-
-          .body-text {
-            width: 80%;
-          }
-
-          .link-button {
-            width: 80%;
-            height: 50px;
-            padding: 8px 16px;
-          }
-        }
-      }
+    .heading {
+      margin-bottom: 8px;
     }
   }
 
-  .recommendations {
-    display: block;
-  }
-
   .boiler-types {
-    display: block;
+    .heading {
+      margin-bottom: 8px;
+    }
 
     .boiler-replacement-cards {
       margin-top: 48px;
+
+      .replacement-card:not(:last-child) {
+        margin-bottom: 20px;
+      }
     }
   }
 }

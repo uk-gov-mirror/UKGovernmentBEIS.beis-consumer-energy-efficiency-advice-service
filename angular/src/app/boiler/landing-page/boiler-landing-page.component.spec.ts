@@ -13,6 +13,7 @@ import {ResponseData} from "../../shared/response-data/response-data";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
 import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
@@ -36,7 +37,8 @@ describe('BoilerLandingPageComponent', () => {
                 CarouselItemComponent,
                 BoilerMakeModelLookupComponent,
                 PostcodeLookupComponent,
-                TimesPipe
+                TimesPipe,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 FormsModule,

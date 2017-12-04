@@ -2,144 +2,73 @@
 @import "styles/boiler";
 
 .boiler-make-model-replace {
+
   .found-boiler {
     background-color: $lighter-grey;
 
-    .page-row-content {
-      display: block;
+    .heading {
+      margin-bottom: 8px;
+    }
 
-      .heading {
-        margin-bottom: 32px;
+    .body-text {
+      margin-bottom: 32px;
+    }
+
+    .no-replace, .replace {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .summary {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .icon {
+          flex: 0 0 76px;
+          height: 76px;
+          border-radius: 50%;
+          margin-right: 32px;
+
+          &.icon-tick {
+            background: white url('/assets/images/icons/tick-pink.svg') no-repeat center;
+            background-size: 42px 42px;
+          }
+
+          &.icon-cross {
+            background: white url('/assets/images/icons/cross-pink.svg') no-repeat center;
+            background-size: 42px 42px;
+          }
+        }
+
+        .replace-text {
+          flex: 1 1 auto;
+          margin-right: 96px;
+
+          font-size: 24px;
+          line-height: 28px;
+          font-weight: bold;
+        }
       }
 
-      .body {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-
-        .boiler-details {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          justify-content: space-between;
-
-          flex: 0 0 auto;
-          width: 50%;
-          padding-right: 48px;
-          box-sizing: border-box;
-          border-right: 1px solid $light-medium-grey;
-
-          .name {
-            margin-bottom: 64px;
-
-            .body-text {
-              margin-bottom: 12px;
-            }
-
-            .boiler-name {
-              font-size: 24px;
-              font-weight: bold;
-            }
-          }
-
-          .fuel-and-efficiency {
-            display: flex;
-            align-items: stretch;
-            justify-content: space-between;
-            padding-right: 10%;
-
-            .fuel, .efficiency {
-              width: 40%;
-
-              .body-text {
-                margin-bottom: 12px;
-              }
-            }
-
-            .fuel {
-              .fuel-type {
-                font-size: 24px;
-                font-weight: bold;
-                text-transform: capitalize;
-              }
-            }
-
-            .efficiency {
-              .efficiency-figure {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-
-                .percentage {
-                  flex: 0 0 auto;
-                  font-size: 24px;
-                  font-weight: bold;
-                  margin-right: 16px;
-                }
-
-                .explanation {
-                  flex: 1 1 auto;
-                  font-size: 13px;
-                }
-              }
-            }
-          }
-        }
-
-        .recommendation {
-          flex: 0 0 auto;
-          width: 50%;
-          padding-left: 48px;
-          box-sizing: border-box;
-
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          justify-content: space-between;
-
-          .body-text {
-            margin-bottom: 12px;
-          }
-
-          .body {
-            display: flex;
-            align-items: stretch;
-            justify-content: space-between;
-
-            .icon {
-              flex: 0 0 80px;
-              height: 80px;
-              background-color: white;
-              border-radius: 50%;
-              margin-right: 80px;
-
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-
-            .content {
-              display: flex;
-              flex-direction: column;
-              min-width: 1px;
-
-              .recommendation-text {
-                font-size: 24px;
-                font-weight: bold;
-                margin-bottom: 32px;
-              }
-            }
-          }
-        }
+      .link-button {
+        flex: 0 0 350px;
       }
     }
   }
 
   .boiler-types {
-    display: block;
+    .heading {
+      margin-bottom: 8px;
+    }
 
     .boiler-replacement-cards {
       margin-top: 48px;
+
+      .replacement-card:not(:last-child) {
+        margin-bottom: 20px;
+      }
     }
   }
 }

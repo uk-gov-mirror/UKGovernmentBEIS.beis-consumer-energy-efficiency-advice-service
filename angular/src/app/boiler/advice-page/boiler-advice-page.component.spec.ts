@@ -10,6 +10,7 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
 
 describe('BoilerAdvicePageComponent', () => {
     let component: BoilerAdvicePageComponent;
@@ -28,6 +29,7 @@ describe('BoilerAdvicePageComponent', () => {
                 SpinnerAndErrorContainerComponent,
                 LargeVideoCardComponent,
                 BoilerRegulationCardComponent,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,

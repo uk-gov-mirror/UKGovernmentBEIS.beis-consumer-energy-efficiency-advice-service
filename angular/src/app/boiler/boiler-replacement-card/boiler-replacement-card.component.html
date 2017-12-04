@@ -1,27 +1,31 @@
-<div class="boiler-replacement-card">
-    <div class="box description">
-        <div class="content">
+<a class="boiler-replacement-card" routerLink="/js/boiler/advice/{{boilerType.slug}}">
+    <div class="main-row">
+        <div class="details">
             <span class="icon icon-heating"></span>
-            <div class="explanation">
-                <div class="heading">{{boilerType.name}}</div>
-                <div class="summary">{{boilerType.description}}</div>
+            <div class="content">
+                <div class="name">{{boilerType.name}}</div>
+                <div class="description">{{boilerType.description}}</div>
             </div>
         </div>
-        <a class="read-more" routerLink="/js/boiler/advice/{{boilerType.slug}}">
-            <span class="read-more-text">Read more</span>
-            <span class="icon-caret-down"></span>
-        </a>
+        <div class="box installation">
+            <div class="title">Average installation cost</div>
+            <div class="value">£{{boilerType.averageInstallationCost.toFixed(0)}}</div>
+        </div>
+        <div class="box running-cost">
+            <div class="title">Average running cost</div>
+            <div class="value">£{{boilerType.runningCostPerYear.toFixed(0)}}</div>
+        </div>
     </div>
-    <div class="box installation">
-        <div class="box-heading">Average installation cost</div>
-        <div class="box-content">£{{boilerType.installationCostLower}}-£{{boilerType.installationCostUpper}}</div>
+    <div class="secondary-row">
+        <div class="content">
+            <div class="lifetime">
+                <div class="title">Average lifetime</div>
+                <div class="value">{{boilerType.lifetimeYears}} years</div>
+            </div>
+            <div class="space">
+                <div class="title">Space requirement</div>
+                <div class="value">{{boilerType.spaceRequirement}}</div>
+            </div>
+        </div>
     </div>
-    <div class="box lifetime">
-        <div class="box-heading">Average lifetime up to</div>
-        <div class="box-content">{{boilerType.lifetimeYears}} yrs</div>
-    </div>
-    <div class="box running-cost">
-        <div class="box-heading">Average running cost per year</div>
-        <div class="box-content">£{{boilerType.runningCostPerYear}}</div>
-    </div>
-</div>
+</a>

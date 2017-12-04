@@ -7,7 +7,7 @@
     </div>
     <div class="page-row summary">
         <div class="page-row-content summary-container">
-            <div class="description body-text">{{boilerType.description}}</div>
+            <div class="description">{{boilerType.description}}</div>
             <div class="stats">
                 <div class="stats-item installation">
                     <span class="name">Installation cost</span>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="installers">
-                <a class="link-button">Check out our list of certified installers</a>
+                <app-boiler-link-button class="link-button" text="Check out our list of certified installers"></app-boiler-link-button>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
     </div>
     <div class="page-row">
         <div class="regulations page-row-content" *ngIf="isGasBoiler()">
-            <div class="heading">When fitting a new gas boiler you'll also need one of the following</div>
+            <div class="heading">When fitting a new gas boiler you'll also need one of the following:</div>
             <div class="body-text">
                 Under new regulations, all new gas boilers must be fitted with one of these extra energy efficiency
                 measures. Check with an installer to find out which is right for your property.

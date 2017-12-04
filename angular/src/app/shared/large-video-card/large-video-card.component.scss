@@ -7,6 +7,7 @@
 
 .large-video-card {
   display: flex;
+  height: 100%;
   min-height: 300px;
 
   > * {
@@ -24,7 +25,7 @@
   }
 
   .text-container {
-    background-color: $light-grey;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -32,11 +33,18 @@
 
 
     .video-text {
-      @include card-heading-small;
+      font-size: 16px;
+      line-height: 34px;
+      font-weight: bold;
+
+      color: $primary-blue;
     }
 
     .title {
-      @include title-text;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: bold;
+
       padding: 32px 0;
       max-width: 80%;
     }

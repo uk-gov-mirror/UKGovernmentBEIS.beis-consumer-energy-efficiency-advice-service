@@ -12,6 +12,11 @@ import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-me
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import values from "lodash-es/values";
+import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
+import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
@@ -29,12 +34,24 @@ describe('BoilerMakeModelReplaceComponent', () => {
             .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
+    const boilerPageMeasures = require('assets/test/boiler-page-measures.json');
+    const boilerPageMeasuresServiceStub = {
+        fetchMeasuresForBoilerPages: () => Observable.of(boilerPageMeasures)
+    };
+
+    const questionnaireServiceStub = {
+        isComplete: () => true
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
                 BoilerMakeModelReplaceComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerReplacementCardComponent,
+                BoilerLinkButtonComponent,
+                BoilerMeasuresSectionComponent,
+                RecommendationCardComponent,
             ],
             imports: [
                 RouterTestingModule,
@@ -42,6 +59,8 @@ describe('BoilerMakeModelReplaceComponent', () => {
             providers: [
                 {provide: GasAndOilBoilersService, useValue: gasAndOilBoilersServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
+                {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
+                {provide: QuestionnaireService, useValue: questionnaireServiceStub},
             ]
         })
             .compileComponents();
@@ -87,21 +106,6 @@ describe('BoilerMakeModelReplaceComponent', () => {
         }
     });
 
-    it('should show the right boiler name', () => {
-       const nameElement = fixture.debugElement.query(By.css('.boiler-details .boiler-name')).nativeElement;
-       expect(nameElement.innerText).toEqual(component.boiler.name);
-    });
-
-    it('should show the right boiler fuel type', () => {
-        const fuelTypeElement = fixture.debugElement.query(By.css('.boiler-details .fuel-type')).nativeElement;
-        expect(fuelTypeElement.innerText.toLowerCase()).toEqual(component.getFuelTypeName(component.boiler.fuelType).toLowerCase());
-    });
-
-    it('should show the right boiler efficiency', () => {
-        const efficiencyElement = fixture.debugElement.query(By.css('.boiler-details .efficiency .percentage')).nativeElement;
-        expect(efficiencyElement.innerText).toEqual(component.boiler.efficiency + '%');
-    });
-
     it('should show the replace section if the boiler needs replacing', () => {
         // given
         component.boiler.efficiency = component.efficiencyThreshold - 1;
@@ -114,6 +118,23 @@ describe('BoilerMakeModelReplaceComponent', () => {
         expect(noReplaceElement()).toBeFalsy();
     });
 
+    it('should show boiler options if the boiler needs replacing', () => {
+        // given
+        component.boiler.efficiency = component.efficiencyThreshold - 1;
+        const expectedBoilers = component.boilerTypes;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        const boilerTypeCards = fixture.debugElement.queryAll(By.directive(BoilerReplacementCardComponent));
+        const actualBoilers = boilerTypeCards
+            .map(el => el.componentInstance.boilerType);
+
+        expect(actualBoilers.length).toBe(expectedBoilers.length);
+        expectedBoilers.forEach(measure => expect(actualBoilers).toContain(measure));
+    });
+
     it('should show the no-replace section if the boiler does not need replacing', () => {
         // given
         component.boiler.efficiency = component.efficiencyThreshold + 1;
@@ -124,6 +145,22 @@ describe('BoilerMakeModelReplaceComponent', () => {
         // then
         expect(replaceElement()).toBeFalsy();
         expect(noReplaceElement()).toBeTruthy();
+    });
+
+    it('should show energy saving measures if the boiler does not need replacing', () => {
+        // given
+        component.boiler.efficiency = component.efficiencyThreshold + 1;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        const measuresSection = fixture.debugElement.query(By.directive(BoilerMeasuresSectionComponent));
+        const actualMeasures = measuresSection.componentInstance.measures;
+
+        boilerPageMeasuresServiceStub.fetchMeasuresForBoilerPages().toPromise().then(expectedMeasures => {
+            expect(actualMeasures).toEqual(expectedMeasures);
+        });
     });
 
     const noReplaceElement = () => fixture.debugElement.query(By.css('.no-replace'));

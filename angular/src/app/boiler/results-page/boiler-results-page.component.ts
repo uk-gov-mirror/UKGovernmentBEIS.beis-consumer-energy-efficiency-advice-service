@@ -10,6 +10,7 @@ import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
 import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
+import sortBy from "lodash-es/sortBy";
 
 @Component({
     selector: 'app-boiler-results-page',
@@ -35,7 +36,10 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
         )
             .subscribe(
                 ([boilerTypes, measures]) => {
-                    this.applicableBoilerTypes = boilerTypes.filter(boilerType => this.boilerIsApplicable(boilerType));
+                    this.applicableBoilerTypes = sortBy(
+                        boilerTypes.filter(boilerType => this.boilerIsApplicable(boilerType)),
+                        boilerType => boilerType.averageInstallationCost,
+                    );
                     this.measures = measures;
                 },
                 () => this.handleError(),

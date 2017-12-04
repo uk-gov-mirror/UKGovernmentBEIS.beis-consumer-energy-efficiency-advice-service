@@ -6,12 +6,15 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {BoilerMeasuresSectionComponent} from "./boiler-measures-section.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
 
 describe('BoilerMeasuresSectionComponent', () => {
     let component: BoilerMeasuresSectionComponent;
     let fixture: ComponentFixture<BoilerMeasuresSectionComponent>;
     let router: Router;
     let basicsQuestionnaireComplete: boolean = false;
+
+    const bodyText = 'Here is some body text for the component';
 
     const questionnaireServiceStub = {
         isComplete: () => basicsQuestionnaireComplete
@@ -22,6 +25,7 @@ describe('BoilerMeasuresSectionComponent', () => {
             declarations: [
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
+                BoilerLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,
@@ -38,11 +42,17 @@ describe('BoilerMeasuresSectionComponent', () => {
         router = TestBed.get(Router);
         spyOn(router, 'navigate');
         component = fixture.componentInstance;
+        component.bodyText = bodyText;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should show the right body text', () => {
+        const bodyTextElement = fixture.debugElement.query(By.css('.body-text')).nativeElement;
+        expect(bodyTextElement.innerText).toEqual(bodyText);
     });
 
     it('should navigate to the home basics questionnaire when the link is clicked and the questionnaire is not complete', () => {
