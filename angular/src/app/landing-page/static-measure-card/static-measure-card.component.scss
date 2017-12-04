@@ -2,12 +2,19 @@
 @import "styles/mixins/font";
 
 .static-measure-card {
-  padding: 48px 0 32px;
   background-color: white;
   display: flex;
 
   .heading {
     @include card-heading;
+  }
+
+  .card-section {
+    padding: 48px 0 32px;
+
+    &:not(:last-child) {
+      border-right: 2px solid $lighter-grey;
+    }
   }
 
   .basic-info {
@@ -25,7 +32,7 @@
     .value {
       font-size: 48px;
       line-height: 58px;
-      flex: 0 0 115px;
+      flex: 0 0 120px;
     }
 
     .heading {
@@ -36,7 +43,8 @@
   }
 
   .recommendation-basic-details {
-    padding: 0 32px;
+    padding-right: 32px;
+    padding-left: 32px;
 
     .summary-row {
       padding-top: 8px;
