@@ -6,7 +6,7 @@ declare const gaId: any;
 
 @Injectable()
 export class GoogleAnalyticsService {
-    static readonly GOOGLE_ANALYTICS_SUPPORTED: boolean = typeof gtag !== 'undefined' && typeof gaId !== 'undefined';
+    private static readonly GOOGLE_ANALYTICS_SUPPORTED: boolean = typeof gtag !== 'undefined' && typeof gaId !== 'undefined';
 
     constructor(private location: Location) {
     }
