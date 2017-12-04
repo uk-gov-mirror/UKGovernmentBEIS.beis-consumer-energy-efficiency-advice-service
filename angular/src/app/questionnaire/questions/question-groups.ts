@@ -31,7 +31,11 @@ import {FloorSpanQuestionMetadata} from "./floor-span-question/floor-span-questi
 import {FlatExposedWallQuestionMetadata} from "./flat-exposed-wall-question/flat-exposed-wall-question-metadata";
 import {HouseExposedWallQuestionMetadata} from "./house-exposed-wall-question/house-exposed-wall-question-metadata";
 
-export const ADDRESS_AND_OWNERSHIP_STATUS = [
+export const ADDRESS = [
+    new PostcodeEpcQuestionMetadata()
+];
+
+export const EPC_AND_OWNERSHIP_STATUS = [
     new ConfirmEpcQuestionMetadata(),
     new TenureTypeQuestionMetadata(),
 ];
