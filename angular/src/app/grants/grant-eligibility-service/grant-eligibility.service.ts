@@ -25,7 +25,7 @@ export class GrantEligibilityService {
     private _eligibilityByGrant: Observable<EligibilityByGrant>;
 
     private get eligibilityByGrant(): Observable<EligibilityByGrant> {
-        if (!isEqual(this.responseData, this.cachedResponseData) || !this.eligibilityByGrant) {
+        if (!isEqual(this.responseData, this.cachedResponseData) || !this._eligibilityByGrant) {
             this.cachedResponseData = clone(this.responseData);
             this._eligibilityByGrant = this.fetchEligibilityByGrant().shareReplay(1);
         }

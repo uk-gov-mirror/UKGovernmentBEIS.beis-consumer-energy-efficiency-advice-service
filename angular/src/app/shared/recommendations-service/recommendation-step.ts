@@ -12,7 +12,7 @@ export class RecommendationStep {
     constructor(measureStep: RecommendationStepResponse) {
         this.headline = measureStep.headline;
         this.description = measureStep.description;
-        this.moreInfoLinks = measureStep.more_info_links
+        this.moreInfoLinks = (measureStep.more_info_links || [])
             .map(link => {
                 return {
                     buttonText: link.button_text,
