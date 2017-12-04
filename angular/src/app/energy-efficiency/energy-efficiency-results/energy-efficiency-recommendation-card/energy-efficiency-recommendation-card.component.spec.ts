@@ -86,7 +86,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
 
         it('should display the correct icon', () => {
             const iconElement = fixture.debugElement.query(By.css('.icon')).nativeElement;
-            expect(iconElement.classList).toContain(recommendation.iconClassName);
+            expect(iconElement.classList).toContain(recommendation.iconPath);
         });
 
         it('should display the correct tags', () => {

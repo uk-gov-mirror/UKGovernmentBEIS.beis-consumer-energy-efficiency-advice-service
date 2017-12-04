@@ -83,10 +83,12 @@ export class RecommendationsService {
                 }
                 const linkedAvailableGrants = availableGrants
                     .filter(grant => grant.linkedMeasureCodes && grant.linkedMeasureCodes.indexOf(measureCode) > -1);
+                const iconPath = EnergySavingMeasureContentService.measureIcons[measureCode] ||
+                    EnergySavingMeasureContentService.FALLBACK_MEASURE_ICON;
                 return EnergyEfficiencyRecommendation.fromMeasure(
                     measures[measureCode],
                     recommendationMetadata,
-                    EnergySavingMeasureContentService.measureIcons[measureCode],
+                    iconPath,
                     linkedAvailableGrants
                 )
             })

@@ -21,6 +21,12 @@ $icon-column-width: $add-to-plan-column-width;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      .icon {
+        width: 36px;
+        height: 36px;
+        line-height: 0;
+      }
     }
 
     .recommendation-basic-details {

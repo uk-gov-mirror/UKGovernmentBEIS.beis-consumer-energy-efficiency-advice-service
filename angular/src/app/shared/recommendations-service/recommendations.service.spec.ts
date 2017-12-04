@@ -162,7 +162,7 @@ describe('RecommendationsService', () => {
                 // for measure code U
                 expect(recommendations[0].headline).toBe('Solar photovoltaic panels');
                 expect(recommendations[0].readMoreRoute).toContain('home-improvements/solar-photovoltaic-panels');
-                expect(recommendations[0].iconClassName).toBe(EnergySavingMeasureContentService.measureIcons['U']);
+                expect(recommendations[0].iconPath).toBe(EnergySavingMeasureContentService.measureIcons['U']);
                 expect(recommendations[0].advantages).toEqual(['Green', 'Cost effective']);
                 const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
                     EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.TopRecommendations;
