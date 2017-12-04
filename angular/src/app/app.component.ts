@@ -27,6 +27,13 @@ export class AppComponent {
             });
         }
 
+        // Scroll to top when on route change events
+        this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+                window.scrollTo(0, 0);
+            }
+        });
+
         // Set base URL for inline-svg directive
         svgService.setBaseUrl({baseUrl: '/wp-content/themes/angular-theme/dist/assets/images/'});
     }
