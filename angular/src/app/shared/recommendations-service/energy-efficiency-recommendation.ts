@@ -46,7 +46,7 @@ export class EnergyEfficiencyRecommendation {
         const measureSteps = measureContent.acf.steps && measureContent.acf.steps
                 .map(stepResponse => new RecommendationStep(stepResponse));
         const grant = head(grants);
-        const grantSteps = (grant && grant.steps.length > 0) ? grant.steps : [];
+        const grantSteps = (grant && grant.steps && grant.steps.length > 0) ? grant.steps : [];
         let costSavingPerYear: number = measureResponse.cost_saving;
         if (grant && grant.annualPaymentPoundsForMeasure) {
             costSavingPerYear += grant.annualPaymentPoundsForMeasure;
