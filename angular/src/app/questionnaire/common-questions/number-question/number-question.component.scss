@@ -1,4 +1,5 @@
 @import 'styles/mixins/buttons';
+@import "styles/var/colors";
 
 :host {
   display: flex;
@@ -8,36 +9,60 @@
 
 .number-question-component {
   @include with-no-spin-buttons;
-  border: 1px solid black;
-  border-radius: 33px;
-  width: 160px;
   padding: 0 4px;
 
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+  .text-box-container {
+    background: white;
+    display: flex;
 
-  input[type="number"] {
-    -moz-appearance: textfield;
-    margin: 0 8px;
-    width: 1px;
-    flex-grow: 1;
-    background: transparent;
+    height: 56px;
+    box-sizing: border-box;
+    margin: 0 20px;
 
-    &:hover, &:focus {
-      background: white;
+    &:hover, &.text-box-focused {
+      background: $light-grey;
+    }
+
+    &.text-box-focused {
+      box-shadow: 0 0 10px 4px grey;
+    }
+
+    .prefix {
+      font-size: 24px;
+      font-weight: bold;
+
+      display: flex;
+      align-items: center;
+
+      color: $primary-blue;
+    }
+
+    .text-box {
+      box-sizing: border-box;
+      padding: 10px;
+      width: 80px;
+
+      border: none;
+      outline: none;
+
+      background: transparent;
+      color: inherit;
+
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
     }
   }
 
-  .increase-button {
-    @include round-button(40px);
-    font-size: 36px;
-    line-height: 0;
-    font-weight: 600;
-    background-color: transparent;
-    color: black;
+  .delta-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    ::ng-deep svg circle {
+      fill: $primary-blue;
+    }
 
     &[disabled], &.inactive {
       background-color: transparent;
@@ -46,8 +71,9 @@
 
     &:not([disabled]) {
       &:hover, &:focus {
-        background-color: $light-medium-grey;
-        border-color: transparent;
+        ::ng-deep svg circle {
+          fill: $darkened-blue;
+        }
       }
     }
   }

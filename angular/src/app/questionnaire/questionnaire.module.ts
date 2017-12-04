@@ -9,6 +9,7 @@ import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicato
 import {SharedModule} from "../shared/shared.module";
 import {QuestionsModule} from "./questions/questions.module";
 import {QuestionHeadingProcessor} from "./question-heading-processor.service";
+import {InlineSVGModule} from "ng-inline-svg";
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {QuestionHeadingProcessor} from "./question-heading-processor.service";
         BrowserAnimationsModule,
         SharedModule,
         QuestionsModule,
+        InlineSVGModule
     ]
 })
 export class QuestionnaireModule {

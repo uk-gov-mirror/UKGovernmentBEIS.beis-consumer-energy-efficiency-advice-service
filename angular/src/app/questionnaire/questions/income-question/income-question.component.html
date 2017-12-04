@@ -1,10 +1,10 @@
 <div class="income-question question-component">
     <form class="questionnaire-form" (submit)="handleFormSubmit()">
-        <div class="currency">£</div>
         <app-number-question itemsName="income"
                              [minQuantity]="0"
                              [step]="1000"
-                             [(quantity)]="response">
+                             [(quantity)]="response"
+                             prefix="£">
         </app-number-question>
     </form>
 </div>

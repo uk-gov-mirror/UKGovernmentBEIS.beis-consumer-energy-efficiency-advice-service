@@ -32,7 +32,7 @@ describe('GardenQuestionComponent', () => {
 
     it('should set the response when clicking on an option', () => {
         // given
-        let noGarden = fixture.debugElement.queryAll(By.css('.garden-button')).find(el => el.nativeElement.innerText === 'No garden');
+        let noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
 
         // when
         noGarden.nativeElement.click();
@@ -43,7 +43,7 @@ describe('GardenQuestionComponent', () => {
 
     it('should notify of completion when clicking on an option', () => {
         // given
-        let noGarden = fixture.debugElement.queryAll(By.css('.garden-button')).find(el => el.nativeElement.innerText === 'No garden');
+        let noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
 
         // when
         noGarden.nativeElement.click();

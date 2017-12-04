@@ -1,11 +1,14 @@
 import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import toString from "lodash-es/toString";
-import {FloorAreaUnit} from "./floor-area-unit";
+import {FloorAreaUnit, getBasicUnitDisplay} from "./floor-area-unit";
 
-export interface FloorAreaUnitOption {
-    basicUnitDisplay: string;
-    value: FloorAreaUnit;
+class FloorAreaUnitOption {
+    public readonly basicUnitDisplay: string;
+
+    constructor(public readonly value: FloorAreaUnit, public readonly className: string) {
+        this.basicUnitDisplay = getBasicUnitDisplay(value);
+    }
 }
 
 @Component({
@@ -19,8 +22,8 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
     floorAreaDisplay: number;
 
     floorAreaUnits: FloorAreaUnitOption[] = [
-        {basicUnitDisplay: 'm', value: FloorAreaUnit.SquareMetre},
-        {basicUnitDisplay: 'ft', value: FloorAreaUnit.SquareFoot}
+        new FloorAreaUnitOption(FloorAreaUnit.SquareMetre, 'square-metre'),
+        new FloorAreaUnitOption(FloorAreaUnit.SquareFoot, 'square-foot')
     ];
 
     get responseForAnalytics(): string {
@@ -28,7 +31,7 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
     }
 
     get selectedFloorAreaUnit(): FloorAreaUnit {
-        return this.responseData.floorAreaUnit || FloorAreaUnit.SquareMetre;
+        return this.responseData.floorAreaUnit;
     }
 
     set selectedFloorAreaUnit(val: FloorAreaUnit) {
@@ -37,13 +40,11 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
 
     ngOnInit() {
         this.responseData.floorArea = this.responseData.floorArea || 0;
-        if (this.responseData.floorAreaUnit === undefined) {
-            this.responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
-        }
+        this.responseData.floorAreaUnit = this.responseData.floorAreaUnit || FloorAreaUnit.SquareMetre;
         this.floorAreaDisplay = this.responseData.floorArea;
     }
 
-    updateResponseData(value) {
+    updateFloorArea(value) {
         if (value < 0) {
             this.isInvalid = true;
             this.responseData.floorArea = undefined;
@@ -51,6 +52,10 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
             this.isInvalid = false;
             this.responseData.floorArea = value;
         }
+    }
+
+    isFloorAreaUnitSelected(val: FloorAreaUnit) {
+        return this.selectedFloorAreaUnit === val;
     }
 
     handleFormSubmit() {

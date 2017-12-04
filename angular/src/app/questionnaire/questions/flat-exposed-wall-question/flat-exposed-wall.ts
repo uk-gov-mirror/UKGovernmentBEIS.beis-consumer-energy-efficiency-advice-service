@@ -6,7 +6,7 @@ export enum FlatExposedWall {
     FourSidesExposedWholeFloor
 }
 
-export function getFlatExposedWallDescription(flatExposedWall: FlatExposedWall) {
+export function getFlatExposedWallDescription(flatExposedWall: FlatExposedWall): string {
     switch (flatExposedWall) {
         case FlatExposedWall.OneSideExposedInset:             { return '1 Side Exposed (Inset)'; }
         case FlatExposedWall.TwoSidesExposedCorner:           { return '2 Sides Exposed (In a corner)'; }

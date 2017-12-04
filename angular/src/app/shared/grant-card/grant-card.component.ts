@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {GrantViewModel} from "../../grants/model/grant-view-model";
+import {Grant} from "../../grants/model/grant";
 
 @Component({
     selector: 'app-grant-card',
@@ -7,5 +7,5 @@ import {GrantViewModel} from "../../grants/model/grant-view-model";
     styleUrls: ['./grant-card.component.scss']
 })
 export class GrantCardComponent {
-    @Input() grant: GrantViewModel;
+    @Input() grant: Grant;
 }

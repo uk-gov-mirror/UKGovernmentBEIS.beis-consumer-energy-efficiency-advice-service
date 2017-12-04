@@ -1,19 +1,12 @@
-@import 'styles/mixins/buttons';
+.tenure-type-question .tenure-type-options {
+  display: flex;
+  flex-direction: column;
 
-.tenure-type-question {
-  .tenure-type-options {
-    margin-top: 64px;
+  .tenure-type-option {
+    align-items: stretch;
 
-    .tenure-type-option {
-      @include big-rounded-button;
-      align-items: stretch;
-
-      width: 320px;
-      height: 160px;
-
-      &:not(:last-child) {
-        margin-right: 64px;
-      }
+    &:not(:last-child) {
+      margin-bottom: 20px;
     }
   }
 }

@@ -17,34 +17,52 @@
     "B": {
       "cost_saving": 124.95,
       "energy_saving": 5006.1,
-      "number": "6"
+      "number": "6",
+      "lifetime": 42,
+      "max_installation_cost": 1500,
+      "min_installation_cost": 500
     },
     "C": {
       "cost_saving": 13.34,
       "energy_saving": 408.74,
-      "number": "1"
+      "number": "1",
+      "lifetime": 10,
+      "max_installation_cost": 30,
+      "min_installation_cost": 15
     },
     "I": {
       "cost_saving": 124.14,
       "energy_saving": 4310.33,
-      "number": "20"
+      "number": "20",
+      "lifetime": 12,
+      "max_installation_cost": 3000,
+      "min_installation_cost": 2200
     },
     "N": {
       "cost_saving": 42.88,
       "energy_saving": 1249.25,
       "number": "19",
-      "RHI": 100
+      "RHI": 100,
+      "lifetime": 25,
+      "max_installation_cost": 6000,
+      "min_installation_cost": 4000
     },
     "X": {
       "cost_saving": 12.62,
       "energy_saving": 386.58,
-      "number": "48"
+      "number": "48",
+      "lifetime": 30,
+      "max_installation_cost": 500,
+      "min_installation_cost": 500
     },
     "U": {
       "cost_saving": 230.64,
       "energy_saving": 0,
       "number": "34",
-      "FIT": 100
+      "FIT": 100,
+      "lifetime": 30,
+      "max_installation_cost": 1000,
+      "min_installation_cost": 500
     }
   }
 }

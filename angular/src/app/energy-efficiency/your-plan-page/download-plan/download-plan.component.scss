@@ -1,4 +1,5 @@
 @import "styles/var/colors";
+@import "styles/mixins/font";
 
 $pdf-button-width: 53px;
 $pdf-button-arrow-height: 12px;
@@ -28,22 +29,23 @@ $action-divider-circle-diameter: 40px;
       flex: 1 0 1px;
       justify-content: space-around;
 
-      .header {
-        font-size: 20px;
-        color: $dark-grey;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-
-      .description {
-        font-size: 16px;
-        line-height: 20px;
-      }
-
       .action-details {
         display: flex;
         flex-direction: column;
         margin-right: 20px;
+
+        .header {
+          font-size: 20px;
+          color: $dark-grey;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+
+        .description {
+          font-size: 16px;
+          line-height: 20px;
+          font-family: $font-family-light;
+        }
       }
 
       .download-pdf {

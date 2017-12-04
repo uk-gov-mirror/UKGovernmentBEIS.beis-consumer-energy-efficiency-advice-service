@@ -5,7 +5,6 @@ import toString from "lodash-es/toString";
 @Component({
     selector: 'app-bedrooms-question',
     templateUrl: './bedrooms-question.component.html',
-    styleUrls: ['./bedrooms-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class BedroomsQuestionComponent extends QuestionBaseComponent implements OnInit {

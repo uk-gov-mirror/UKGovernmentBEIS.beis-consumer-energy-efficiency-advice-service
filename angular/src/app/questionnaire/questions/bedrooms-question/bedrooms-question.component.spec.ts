@@ -6,6 +6,8 @@ import {FormsModule} from "@angular/forms";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../shared/times/times.pipe";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('BedroomsQuestionComponent', () => {
     let component: BedroomsQuestionComponent;
@@ -16,7 +18,7 @@ describe('BedroomsQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [BedroomsQuestionComponent, NumberQuestionComponent, TimesPipe],
-            imports: [FormsModule],
+            imports: [FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -51,20 +53,5 @@ describe('BedroomsQuestionComponent', () => {
 
         // then
         expect(component.response).toBe(expectedBedrooms);
-    });
-
-    it('should set the number of beds given a valid number of bedrooms', () => {
-        // given
-        const expectedBedrooms = 5;
-
-        // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
-        storeysInput.nativeElement.value = expectedBedrooms;
-        storeysInput.nativeElement.dispatchEvent(new Event('input'));
-
-        fixture.detectChanges();
-
-        // then
-        expect(fixture.debugElement.queryAll(By.css('.icon-bed')).length).toBe(expectedBedrooms);
     });
 });

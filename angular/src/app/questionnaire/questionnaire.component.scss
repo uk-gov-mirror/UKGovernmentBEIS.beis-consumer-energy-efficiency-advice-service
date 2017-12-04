@@ -1,5 +1,5 @@
 @import 'styles/mixins/buttons';
-@import "styles/page";
+@import "styles/var/colors";
 
 :host {
   display: flex;
@@ -8,6 +8,8 @@
 }
 
 .questions-container {
+  $greyed-out: #a9a9a9;
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -19,19 +21,66 @@
 
   .question-type-icon {
     margin-top: 15vh;
+    margin-bottom: -4px;
+
+    &.with-extra-vertical-offset {
+      margin-bottom: -9px;
+    }
+
+    .person ::ng-deep svg {
+      path {
+        fill: $primary-blue;
+      }
+    }
+
+    .house ::ng-deep svg {
+      polygon {
+        fill: $primary-blue;
+      }
+
+      polyline {
+        stroke: $primary-blue;
+      }
+    }
+
+    .thermostat ::ng-deep svg {
+      path {
+        stroke: $primary-blue;
+      }
+
+      circle {
+        fill: $primary-blue;
+      }
+    }
+
+    .person-showering ::ng-deep svg {
+      path {
+        fill: $primary-blue;
+      }
+
+      g#Group-15 path {
+        stroke: $primary-blue;
+      }
+    }
+  }
+
+  .question-type-icon-baseline {
+    background-color: $primary-blue;
+    width: 140px;
+    height: 1px;
     margin-bottom: 20px;
   }
 
   .question-heading-container {
     width: 100%;
-    max-width: $content-max-width;
   }
 
   .question-heading-container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
+    width: 100%;
 
     > button {
       flex: 0 0 auto;
@@ -41,15 +90,75 @@
       font-size: 36px;
       font-weight: bold;
       text-align: center;
+      color: $darkened-blue;
     }
 
     .left-arrow, .right-arrow {
-      @include round-button(32px);
-      font-size: 16px;
-      margin: 0 16px;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 500;
+      height: 48px;
+      width: 84px;
+
+      background-color: white;
+      color: $greyed-out;
+      fill: $greyed-out;
+
+      display: inline-flex;
+      align-items: center;
+
+      outline: none;
+      border: none;
+
+      .left-chevron-icon, .right-chevron-icon {
+        width: 20px;
+
+        ::ng-deep svg {
+          fill: $greyed-out;
+          vertical-align: middle;
+        }
+      }
 
       &.hidden {
         visibility: hidden;
+      }
+
+      &:not([disabled]) {
+        cursor: pointer;
+        &:focus, &:hover {
+          background-color: $lighter-medium-grey;
+        }
+      }
+    }
+
+    .left-arrow {
+      border-radius: 0 10px 10px 0;
+      justify-content: flex-start;
+
+      .left-chevron-icon {
+        margin-right: 10px;
+      }
+    }
+
+    .right-arrow {
+      border-radius: 10px 0 0 10px;
+      justify-content: flex-end;
+
+      .right-chevron-icon {
+        margin-left: 10px;
+      }
+
+      &:not([disabled]) {
+        background-color: $green;
+        color: white;
+
+        .right-chevron-icon ::ng-deep svg {
+          fill: white;
+        }
+
+        &:focus, &:hover {
+          background-color: $primary-blue;
+        }
       }
     }
   }
@@ -57,7 +166,7 @@
   .help-text {
     width: 60vw;
     text-align: center;
-    margin-bottom: 20px;
+    color: $focus-blue;
   }
 
   .question {
@@ -66,6 +175,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding-bottom: 16px;
+    margin-top: 96px;
   }
 
   app-question-reason {

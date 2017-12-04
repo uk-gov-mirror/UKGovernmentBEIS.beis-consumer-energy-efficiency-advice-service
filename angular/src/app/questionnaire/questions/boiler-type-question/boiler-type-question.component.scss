@@ -1,15 +1,12 @@
-@import 'styles/mixins/buttons';
-
-.boiler-type-component {
+.boiler-type-question .boiler-type-options {
   display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  .buttons {
-    margin: 32px 0;
-    .yes-no-button {
-      @include capsule-button(200px, 50px);
-      font-size: 20px;
+  .boiler-type-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
+
+    &:not(:last-child) {
+      margin-right: 20px;
     }
   }
 }

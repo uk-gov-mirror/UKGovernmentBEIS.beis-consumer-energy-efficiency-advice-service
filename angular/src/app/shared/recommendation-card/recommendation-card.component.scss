@@ -95,6 +95,7 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
         }
 
         .summary {
+          font-family: $font-family-light;
           font-size: 14px;
           width: 100%;
         }

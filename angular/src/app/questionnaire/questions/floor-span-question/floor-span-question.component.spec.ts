@@ -48,7 +48,7 @@ describe('FloorSpanQuestionComponent', () => {
         fixture.whenStable().then(() =>
             allFloorLevels.forEach(floorLevel => {
                 const checkbox = fixture.debugElement.query(By.css(`#floor-span-checkbox-${FloorLevel[floorLevel]}`)).nativeElement;
-                expect(checkbox.checked).toBe(originalFloorLevels.includes(floorLevel));
+                expect(checkbox.classList.contains('selected')).toBe(originalFloorLevels.includes(floorLevel));
             })
         );
     }));

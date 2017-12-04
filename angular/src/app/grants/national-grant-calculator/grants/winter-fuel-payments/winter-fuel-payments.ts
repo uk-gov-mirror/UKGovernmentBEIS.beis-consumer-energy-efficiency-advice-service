@@ -16,16 +16,16 @@ export class WinterFuelPayments extends NationalGrantCalculator {
         return Observable.of(isEligible ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
     }
 
-    getAnnualPaymentPounds(responseData: ResponseData): Observable<number> {
+    getStandaloneAnnualPaymentPounds(responseData: ResponseData): number {
         const adults64To80 = responseData.numberOfAdultsAged64To80;
         const adultsOver80 = responseData.numberOfAdultsAgedOver80;
         if (adults64To80 === 0) {
-            return Observable.of(WinterFuelPayments.getAnnualPaymentForOnlyAdultsOver80(adultsOver80));
+            return WinterFuelPayments.getAnnualPaymentForOnlyAdultsOver80(adultsOver80);
         } else if (adultsOver80 === 0) {
-            return Observable.of(WinterFuelPayments.getAnnualPaymentForOnlyAdults64To80(adults64To80))
+            return WinterFuelPayments.getAnnualPaymentForOnlyAdults64To80(adults64To80)
         } else {
             const annualPayment = 100 * adults64To80 + 200 * adultsOver80;
-            return Observable.of(annualPayment);
+            return annualPayment;
         }
     }
 

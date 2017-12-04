@@ -12,13 +12,13 @@ import {DownloadPlanComponent} from "./download-plan/download-plan.component";
 import {DataCardComponent} from "../../shared/data-card/data-card.component";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 import {InlineSVGModule} from "ng-inline-svg";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -27,11 +27,12 @@ describe('YourPlanPageComponent', () => {
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
             investmentPounds: 199,
+            lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
             costSavingPoundsPerMonth: 99 / 12,
             energySavingKwhPerYear: 100,
             readMoreRoute: ('dummy-route'),
-            iconClassName: 'dummy-icon',
+            iconPath: 'icons/dummy.svg',
             headline: 'Loft insulation',
             summary: 'No description available',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
@@ -51,11 +52,12 @@ describe('YourPlanPageComponent', () => {
         },
         {
             investmentPounds: 999,
+            lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
             costSavingPoundsPerMonth: 200 / 12,
             energySavingKwhPerYear: 250,
             readMoreRoute: ('dummy-route'),
-            iconClassName: 'dummy-icon',
+            iconPath: 'icons/dummy.svg',
             headline: 'Solar photovoltaic panels',
             summary: 'No description available',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
@@ -66,11 +68,12 @@ describe('YourPlanPageComponent', () => {
         },
         {
             investmentPounds: 20,
+            lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             costSavingPoundsPerMonth: 10 / 12,
             energySavingKwhPerYear: 5,
             readMoreRoute: ('dummy-route'),
-            iconClassName: 'dummy-icon',
+            iconPath: 'icons/dummy.svg',
             headline: 'Cylinder insulation',
             summary: 'No description available',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
@@ -83,16 +86,12 @@ describe('YourPlanPageComponent', () => {
 
     const localAuthorityCode = "E09000033";
 
-    const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
+    const localAuthorityGrants: LocalAuthorityGrant[] = [
         {
             grantId: 'grant-1',
             name: 'Grant 1',
             description: 'some grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
-            advantages: null,
             steps: []
         },
         {
@@ -100,10 +99,6 @@ describe('YourPlanPageComponent', () => {
             name: 'Grant 2',
             description: 'another grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
-            advantages: null,
             steps: []
         }
     ];

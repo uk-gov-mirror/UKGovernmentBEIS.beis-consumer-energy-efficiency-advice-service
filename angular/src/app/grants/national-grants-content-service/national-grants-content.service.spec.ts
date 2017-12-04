@@ -63,10 +63,10 @@ describe('NationalGrantsContentService', () => {
         });
     });
 
-    describe('#fetchNationalGrants', () => {
+    describe('#fetchNationalGrantsContent', () => {
         it('calls API and returns data correctly', async(() => {
             // when
-            const actualResponse = service.fetchNationalGrants().toPromise();
+            const actualResponse = service.fetchNationalGrantsContent().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
@@ -81,12 +81,12 @@ describe('NationalGrantsContentService', () => {
 
         it('does not call API on second call', async(() => {
             // given
-            const firstRequest = service.fetchNationalGrants().toPromise();
+            const firstRequest = service.fetchNationalGrantsContent().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             //when
             firstRequest.then(() => {
-                service.fetchNationalGrants().toPromise();
+                service.fetchNationalGrantsContent().toPromise();
 
                 //then
                 httpMock.verify();
@@ -99,7 +99,7 @@ describe('NationalGrantsContentService', () => {
             const expectedStatusText = 'bad request';
 
             // when
-            const actualResponse = service.fetchNationalGrants().toPromise();
+            const actualResponse = service.fetchNationalGrantsContent().toPromise();
             httpMock.expectOne(matchesExpectedRequest)
                 .error(
                     new ErrorEvent('mock network error'),

@@ -1,14 +1,12 @@
-@import 'styles/mixins/buttons';
+.grants-questionnaire-question .grants-questionnaire-options {
+  display: flex;
 
-.grants-questionnaire-question {
-  .grants-questionnaire-options {
-    margin-top: 64px;
+  .grants-questionnaire-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
 
-    .grants-questionnaire-option {
-      @include big-rounded-button;
-      &:not(:last-child) {
-        margin-right: 64px;
-      }
+    &:not(:last-child) {
+      margin-right: 20px;
     }
   }
 }

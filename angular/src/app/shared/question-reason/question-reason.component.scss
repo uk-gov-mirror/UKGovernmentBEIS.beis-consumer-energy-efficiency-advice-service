@@ -1,3 +1,5 @@
+@import "styles/mixins/font";
+
 .question-reason-container {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 10px;
+    font-family: $font-family-light;
 
     &.visible {
       opacity: 1;

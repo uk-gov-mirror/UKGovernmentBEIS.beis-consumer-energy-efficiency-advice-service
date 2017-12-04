@@ -1,29 +1,28 @@
+@import "styles/var/colors";
+
 .flat-storeys-question {
   display: flex;
-  flex-direction: column;
   align-items: center;
 
   .storeys-input {
-    width: 100%;
+    flex: 1 1 50%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
 
     &:not(:first-child) {
-      margin-top: 30px;
+      margin-left: 30px;
+      padding-left: 30px;
+      border-left: 1px solid $separator-grey;
     }
 
     .name {
-      margin-right: 20px;
-      font-size: 20px;
+      font-size: 16px;
+      line-height: 20px;
+
+      display: flex;
+      justify-content: center;
+
+      margin-bottom: 17px;
     }
-  }
-}
-
-.storeys-icons {
-  padding-top: 48px;
-
-  .icon-home-storeys {
-    padding: 0 16px;
   }
 }

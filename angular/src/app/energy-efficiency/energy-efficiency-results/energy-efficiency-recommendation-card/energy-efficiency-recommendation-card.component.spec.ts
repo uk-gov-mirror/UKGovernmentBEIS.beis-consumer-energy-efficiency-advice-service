@@ -10,33 +10,31 @@ import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-se
 import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
 import {BreakEvenComponent} from "../break-even/break-even.component";
-import {NationalGrantViewModel} from "../../../grants/model/national-grant-view-model";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {NationalGrantForMeasure} from "../../../grants/model/national-grant-for-measure";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
     let fixture: ComponentFixture<EnergyEfficiencyRecommendationCardComponent>;
 
     const advantages = ['Green', 'Cost effective'];
-    const grant: NationalGrantViewModel = {
+    const grant: NationalGrantForMeasure = {
         grantId: 'national-grant-1',
         name: 'National Grant 1',
         description: 'some national grant',
         eligibility: GrantEligibility.LikelyEligible,
-        shouldDisplayWithoutMeasures: true,
-        annualPaymentPounds: 120,
-        linkedMeasureCodes: ['V2'],
-        advantages: null,
+        annualPaymentPoundsForMeasure: 120,
         steps: []
     };
 
     const recommendation: EnergyEfficiencyRecommendation = {
         investmentPounds: 200,
+        lifetimeYears: 40,
         costSavingPoundsPerYear: 100,
         costSavingPoundsPerMonth: 100/12,
         energySavingKwhPerYear: 100,
         readMoreRoute: ('home-improvements/loft-insulation'),
-        iconClassName: 'icon-roofing',
+        iconPath: 'icons/dummy.svg',
         headline: 'Loft insulation',
         summary: 'No description available',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
@@ -82,11 +80,6 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         it('should display the correct summary', () => {
             const summaryElement = fixture.debugElement.query(By.css('.summary')).nativeElement;
             expect(summaryElement.innerText).toBe(recommendation.summary);
-        });
-
-        it('should display the correct icon', () => {
-            const iconElement = fixture.debugElement.query(By.css('.icon')).nativeElement;
-            expect(iconElement.classList).toContain(recommendation.iconClassName);
         });
 
         it('should display the correct tags', () => {

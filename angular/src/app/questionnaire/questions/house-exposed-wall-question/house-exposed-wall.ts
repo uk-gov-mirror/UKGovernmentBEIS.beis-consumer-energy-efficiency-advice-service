@@ -4,7 +4,7 @@ export enum HouseExposedWall {
     ThreeSidesExposed = 3
 }
 
-export function getHouseSharedWallDescription(houseExposedWall: HouseExposedWall) {
+export function getHouseSharedWallDescription(houseExposedWall: HouseExposedWall): string {
     switch (houseExposedWall) {
         case HouseExposedWall.OneSideExposed:           { return '3 Sides'; }
         case HouseExposedWall.TwoSidesExposed:          { return '2 Sides'; }

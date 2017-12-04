@@ -1,25 +1,64 @@
 @import 'styles/mixins/buttons';
+@import 'styles/var/colors';
 
 .floor-area-question {
-
   @include with-no-spin-buttons;
-  input[type="number"] {
-    width: 200px;
-  }
 
   .question-content {
     display: flex;
 
-    .floor-area-input {
-      margin-right: 10px;
+    .form-element {
+      align-items: stretch;
+
+      .name {
+        margin-right: 10px;
+
+        display: flex;
+        align-items: center;
+
+        color: $primary-blue;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .floor-area-input {
+        margin-right: 20px;
+        width: 200px;
+        border-radius: 12%/50%;
+      }
+    }
+
+    .floor-area-unit-input {
+      margin-right: 30px;
+      padding-right: 30px;
+      border-right: 1px solid $separator-grey;
+
+      display: flex;
+      align-items: center;
+
+      color: $primary-blue;
+      font-size: 24px;
+      font-weight: bold;
+
+      .unit-option {
+        &:nth-child(odd) {
+          margin-right: 20px;
+        }
+      }
     }
 
     .do-not-know-button {
-      @include capsule-button(200px, 50px);
+      @include capsule-button();
       font-size: 20px;
       background-color: white;
       border: none;
-      margin-left: 50px;
+      outline: none;
+      padding: 12px 36px;
+      color: $dark-grey;
+
+      &:hover, &:focus {
+        background-color: $lighter-medium-grey;
+      }
     }
   }
 }

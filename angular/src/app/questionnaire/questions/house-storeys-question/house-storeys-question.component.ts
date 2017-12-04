@@ -4,9 +4,8 @@ import toString from "lodash-es/toString";
 import {HomeType} from "../home-type-question/home-type";
 
 @Component({
-    selector: 'app-storeys-question',
+    selector: 'app-house-storeys-question',
     templateUrl: './house-storeys-question.component.html',
-    styleUrls: ['./house-storeys-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class HouseStoreysQuestionComponent extends QuestionBaseComponent implements OnInit {

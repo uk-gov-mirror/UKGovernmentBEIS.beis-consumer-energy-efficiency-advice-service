@@ -1,12 +1,10 @@
 .income-question.question-component {
-  .currency {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
+  //// TODO: Remove when deprecated fully
+  ::ng-deep .number-question-component .text-input {
+    border-radius: 16%/50%;
 
-  // TODO: Remove when deprecated fully
-  ::ng-deep .number-question-component {
-    width: 300px;
+    .text-box {
+      min-width: 126px;
+    }
   }
 }

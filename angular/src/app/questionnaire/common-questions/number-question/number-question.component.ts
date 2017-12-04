@@ -7,12 +7,14 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 })
 export class NumberQuestionComponent {
     isInvalid: boolean;
+    textBoxFocused: boolean;
     private _quantity: number;
 
     @Input() itemsName: string;
     @Input() minQuantity?: number;
     @Input() maxQuantity?: number;
     @Input() step?: number = 1;
+    @Input() prefix?: string;
 
     @Input()
     set quantity(value: number) {

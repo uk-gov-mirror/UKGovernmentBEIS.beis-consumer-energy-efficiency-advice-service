@@ -59,15 +59,13 @@ describe('FloorAreaQuestionComponent', () => {
         expect(responseData.floorArea).toBe(0);
     });
 
-    it('should set floor area unit to square foot when changing the unit', () => {
+    it('should set floor area unit to square foot when clicking the unit', () => {
         // given
 
         // when
         fixture.whenStable().then(() => {
-            let floorAreaUnitSelect = fixture.debugElement.query(By.css('select'))
-            // Angular syntax for custom ngValue
-            floorAreaUnitSelect.nativeElement.value = "1: 1";
-            floorAreaUnitSelect.nativeElement.dispatchEvent(new Event('change'));
+            let squareFootUnitButton = fixture.debugElement.query(By.css('.unit-option.square-foot'));
+            squareFootUnitButton.nativeElement.click();
 
             // then
             expect(responseData.floorAreaUnit).toBe(component.floorAreaUnits[1].value);

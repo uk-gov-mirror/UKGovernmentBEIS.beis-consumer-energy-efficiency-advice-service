@@ -77,7 +77,7 @@ function setup_national_grant_acf_group() {
                     'label' => 'Link to measures?',
                     'name' => 'link_to_measures',
                     'type' => 'true_false',
-                    'instructions' => 'Can this grant be used to fund specific recommended home improvement measures?',
+                    'instructions' => 'Can this grant be used to fund specific recommended home improvement measures? (Does not include whether the grant could involve a recurring payment for a measure - this is calculated separately in the app)',
                     'default_value' => ''
                 ),
                 array (

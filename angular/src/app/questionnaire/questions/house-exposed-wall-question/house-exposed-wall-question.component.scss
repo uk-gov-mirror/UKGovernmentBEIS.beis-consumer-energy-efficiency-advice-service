@@ -1,18 +1,14 @@
 .house-exposed-wall-options {
+  display: flex;
 
-  .icon-container {
-    height: 150px;
+  .house-exposed-wall-option {
+    flex: 0 0 auto;
+    width: calc((100% - 40px - 1px) / 3);
 
-    .one-side-shared::before {
-      content: url('/assets/images/exposed-wall/house-three-sides-exposed.svg');
-    }
+    white-space: nowrap;
 
-    .two-sides-shared::before {
-      content: url('/assets/images/exposed-wall/house-two-sides-exposed.svg');
-    }
-
-    .three-sides-shared::before {
-      content: url('/assets/images/exposed-wall/house-one-side-exposed.svg');
+    &:not(:last-child) {
+      margin-right: 20px;
     }
   }
 }

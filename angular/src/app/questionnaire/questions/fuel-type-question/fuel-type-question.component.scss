@@ -1,25 +1,18 @@
 .fuel-type-options {
-  .icon-container {
-    height: 150px;
+  display: flex;
+  flex-wrap: wrap;
 
-    .electricity::after {
-      content: url('/assets/images/fuel-types/electricty.svg');
+  .fuel-type-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
+    text-transform: capitalize;
+
+    &:nth-child(odd) {
+      margin-right: 20px;
     }
 
-    .mains-gas::after {
-      content: url('/assets/images/fuel-types/mains-gas.svg');
-    }
-
-    .lpg-gas::after {
-      content: url('/assets/images/fuel-types/lpg-gas.svg');
-    }
-
-    .heating-oil::after {
-      content: url('/assets/images/fuel-types/heating-oil.svg');
-    }
-
-    .solid-fuel::after {
-      content: url('/assets/images/fuel-types/solid-fuel.svg');
+    &:nth-last-child(n + 2) {
+      margin-bottom: 20px;
     }
   }
 }

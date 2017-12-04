@@ -18,7 +18,8 @@ export class BreakEvenComponent {
 
     ngOnInit() {
         this.breakEvenYears = this.investmentPounds/this.costSavingPoundsPerYear;
-        this.shouldDisplayBreakEven = this.breakEvenYears < this.lifespanYears;
+        this.shouldDisplayBreakEven = this.breakEvenYears && this.lifespanYears &&
+            this.breakEvenYears < this.lifespanYears;
         const totalLifespanCostSavingPounds = this.lifespanYears * this.costSavingPoundsPerYear;
         this.investmentAsProportionOfLifespanSavings = this.investmentPounds/totalLifespanCostSavingPounds;
         this.breakEvenTimeAsProportionOfLifespan = this.breakEvenYears/this.lifespanYears;

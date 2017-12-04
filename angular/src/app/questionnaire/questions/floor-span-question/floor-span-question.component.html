@@ -1,9 +1,12 @@
 <div class="question-component floor-span-question">
-    <form class="questionnaire-form" (submit)="complete.emit()">
-        <label *ngFor="let option of floorLevelOptions">
-            <input [name]="option.name" id="floor-span-checkbox-{{FloorLevel[option.value]}}" type="checkbox" [ngModel]="getFloorLevelOptionValue(option)" (ngModelChange)="onFloorLevelOptionChange(option)"
-                   class="checkbox">
-            <span>{{option.displayName}}</span>
-        </label>
-    </form>
+    <div class="multiple-choice-options floor-level-options">
+        <button *ngFor="let option of floorLevelOptions"
+                class="multiple-choice-option floor-level-option"
+                id="floor-span-checkbox-{{FloorLevel[option.value]}}"
+                [name]="option.name"
+                [class.selected]="isFloorLevelOptionSelected(option)"
+                (click)="toggleFloorLevelOption(option)">
+            {{option.displayName}}
+        </button>
+    </div>
 </div>

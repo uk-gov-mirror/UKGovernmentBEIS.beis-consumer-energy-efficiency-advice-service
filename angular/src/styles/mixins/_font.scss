@@ -1,6 +1,7 @@
 @import "styles/var/colors";
 
 $font-family: Gotham, Arial, sans-serif;
+$font-family-light: GothamLight, Gotham, Arial, sans-serif;
 
 @font-face {
   font-family: 'Gotham';
@@ -15,6 +16,14 @@ $font-family: Gotham, Arial, sans-serif;
   src: url('/assets/fonts/gotham-bold-webfont.woff') format('woff');
   src: url('/assets/fonts/gotham-bold-webfont.woff2') format('woff2');
   font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamLight';
+  src: url('/assets/fonts/gotham-light-webfont.woff') format('woff');
+  src: url('/assets/fonts/gotham-light-webfont.woff2') format('woff2');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -33,6 +42,7 @@ $font-family: Gotham, Arial, sans-serif;
   font-size: 13px;
   line-height: 16px;
   color: $dark-grey;
+  font-family: $font-family-light;
 }
 
 @mixin page-subheading {
@@ -74,6 +84,7 @@ $font-family: Gotham, Arial, sans-serif;
   font-size: 16px;
   line-height: 19px;
   color: $dark-grey;
+  font-family: $font-family-light;
 }
 
 @mixin card-expand-drawer {
@@ -81,6 +92,7 @@ $font-family: Gotham, Arial, sans-serif;
   line-height: 13px;
   color: $dark-grey;
   text-transform: uppercase;
+  font-family: $font-family-light;
 }
 
 @mixin card-more-info-link {
@@ -88,11 +100,13 @@ $font-family: Gotham, Arial, sans-serif;
   line-height: 16px;
   color: $focus-text-blue;
   text-transform: uppercase;
+  font-family: $font-family-light;
 }
 
 @mixin body-uppercase {
   font-size: 13px;
   text-transform: uppercase;
+  font-family: $font-family-light;
 }
 
 @mixin navbar-item {

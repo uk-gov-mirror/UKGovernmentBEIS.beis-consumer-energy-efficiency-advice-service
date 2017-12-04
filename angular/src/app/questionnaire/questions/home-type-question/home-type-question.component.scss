@@ -1,48 +1,18 @@
-@import "styles/var/colors";
-
 .home-type-options {
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 
-  .baseline {
-    position: absolute;
-    width: 100%;
-    top: 144px;
-    box-sizing: border-box;
-    border-bottom: 1px solid $light-medium-grey;
-  }
+  .home-type-option {
+    flex: 0 0 auto;
+    width: calc((100% - 20px - 1px) / 2);
+    text-transform: capitalize;
 
-  .multiple-choice-option {
-
-    .icon-container {
-      height: 150px;
-
-      .detached-house::before {
-        content: url('/assets/images/home-types/detached-house.svg');
-      }
-
-      .semi-detached-or-terraced-house::before {
-        content: url('/assets/images/home-types/semi-detached-house.svg');
-      }
-
-      .detached-bungalow::before {
-        content: url('/assets/images/home-types/bungalow-detached.svg');
-      }
-
-      .semi-detached-bungalow::before {
-        content: url('/assets/images/home-types/bungalow-attached.svg');
-      }
-
-      .flat-duplex-or-maisonette::before {
-        content: url('/assets/images/home-types/mid-floor-flat.svg');
-      }
-
-      .park-home-or-mobile-home::before {
-        content: url('/assets/images/home-types/park-home.svg');
-      }
+    &:nth-child(odd) {
+      margin-right: 20px;
     }
 
-    .name {
-      max-width: 100px;
+    &:nth-last-child(n + 3) {
+      margin-bottom: 20px;
     }
   }
 }

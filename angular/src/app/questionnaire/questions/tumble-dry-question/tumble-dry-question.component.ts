@@ -11,6 +11,7 @@ import toString from "lodash-es/toString";
 export class TumbleDryQuestionComponent extends QuestionBaseComponent {
     isInvalid: boolean;
     tumbleDryPercentageDisplay: number;
+    textBoxFocused: boolean;
 
     get responseForAnalytics(): string {
         return toString(this.responseData.tumbleDryPercentage);
