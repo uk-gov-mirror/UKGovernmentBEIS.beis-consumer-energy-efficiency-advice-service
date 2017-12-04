@@ -33,4 +33,12 @@ export class YourPlanSummaryComponent {
         );
         return RoundingService.roundCostValue(totalInvestment);
     }
+
+    get potentialScore(): number {
+        return this.recommendationsService.potentialScore;
+    }
+
+    get currentScoreColorCircleClassName(): string {
+        return this.potentialScore > this.recommendationsService.currentScore ? 'green' : 'amber';
+    }
 }
