@@ -15,12 +15,15 @@ describe('Home basics questionnaire', () => {
         expect(page.getHeading()).toContain('Here\'s what we know so far...');
     });
 
-    it('should include core questions', () => {
+    fit('should include core questions', () => {
         // Sleep 1s between each question to allow for animation
-        // Mini-EPC
-        expect(page.getHeading()).toContain('Here\'s what we know so far...');
-        CommonPageHelpers.clickButton('get a few more details');
+        // Postcode and mini-EPC, if exists
+        page.enterPostcode('nw19pq');
+        page.selectAddressIfApplicable();
         CommonPageHelpers.sleep(1000);
+
+        // Mini-EPC
+        page.confirmEpcIfApplicable();
 
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
