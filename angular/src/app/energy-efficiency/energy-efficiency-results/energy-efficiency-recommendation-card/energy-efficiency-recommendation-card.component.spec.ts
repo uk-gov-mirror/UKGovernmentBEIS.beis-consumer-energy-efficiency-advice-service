@@ -34,7 +34,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         costSavingPoundsPerMonth: 100/12,
         energySavingKwhPerYear: 100,
         readMoreRoute: ('home-improvements/loft-insulation'),
-        iconClassName: 'icon-roofing',
+        iconPath: 'icons/dummy.svg',
         headline: 'Loft insulation',
         summary: 'No description available',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
@@ -80,11 +80,6 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         it('should display the correct summary', () => {
             const summaryElement = fixture.debugElement.query(By.css('.summary')).nativeElement;
             expect(summaryElement.innerText).toBe(recommendation.summary);
-        });
-
-        it('should display the correct icon', () => {
-            const iconElement = fixture.debugElement.query(By.css('.icon')).nativeElement;
-            expect(iconElement.classList).toContain(recommendation.iconClassName);
         });
 
         it('should display the correct tags', () => {

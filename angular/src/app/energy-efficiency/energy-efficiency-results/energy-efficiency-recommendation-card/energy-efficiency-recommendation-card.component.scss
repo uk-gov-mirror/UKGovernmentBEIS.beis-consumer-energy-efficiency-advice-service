@@ -21,6 +21,12 @@ $icon-column-width: $add-to-plan-column-width;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      .icon {
+        width: 36px;
+        height: 36px;
+        line-height: 0;
+      }
     }
 
     .recommendation-basic-details {
@@ -90,13 +96,17 @@ $icon-column-width: $add-to-plan-column-width;
       border-left: 2px solid $lighter-grey;
     }
 
+    .investment-required-card, .monthly-savings-card {
+      margin-top: 22px;
+    }
+
     .add-to-plan-column {
       flex: 0 0;
       flex-basis: $add-to-plan-column-width;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       cursor: pointer;
       color: $focus-text-blue;
 
@@ -116,6 +126,7 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .add-to-plan-text {
+        margin-top: 44px;
         color: $focus-text-blue;
         text-transform: uppercase;
         margin-bottom: 10px;

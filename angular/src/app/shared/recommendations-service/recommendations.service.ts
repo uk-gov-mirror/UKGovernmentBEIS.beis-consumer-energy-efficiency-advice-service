@@ -106,10 +106,12 @@ export class RecommendationsService {
                     console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
+                const iconPath = EnergySavingMeasureContentService.measureIcons[measureCode] ||
+                    EnergySavingMeasureContentService.FALLBACK_MEASURE_ICON;
                 return EnergyEfficiencyRecommendation.fromMeasure(
                     measures[measureCode],
                     recommendationMetadata,
-                    EnergySavingMeasureContentService.measureIcons[measureCode],
+                    iconPath,
                     null
                 )
             })

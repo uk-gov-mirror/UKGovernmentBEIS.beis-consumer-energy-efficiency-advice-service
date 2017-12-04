@@ -20,7 +20,7 @@ export class EnergyEfficiencyRecommendation {
                 public readMoreRoute: string,
                 public headline: string,
                 public summary: string,
-                public iconClassName: string,
+                public iconPath: string,
                 public tags: EnergyEfficiencyRecommendationTag,
                 public grant: NationalGrantForMeasure,
                 public advantages: string[],
