@@ -30,7 +30,6 @@ describe('BoilerAdvicePageComponent', () => {
                 LargeVideoCardComponent,
                 BoilerRegulationCardComponent,
                 BoilerLinkButtonComponent,
-                
             ],
             imports: [
                 RouterTestingModule,
