@@ -15,7 +15,6 @@ import {LocalAuthority} from "../../shared/local-authority-service/local-authori
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
 import {DataCardComponent} from "../data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
@@ -28,6 +27,7 @@ import {YourPlanSummaryComponent} from "../your-plan-summary/your-plan-summary.c
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.component";
+import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
@@ -101,11 +101,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 name: 'National Grant 1',
                 description: 'some national grant',
                 eligibility: GrantEligibility.LikelyEligible,
-                shouldDisplayWithoutMeasures: true,
-                annualPaymentPounds: 120,
-                linkedMeasureCodes: ['V2'],
-                advantages: null,
-                steps: []
+                steps: [],
+                annualPaymentPoundsForMeasure: 0
             },
             advantages: [],
             steps: [],
@@ -121,12 +118,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isEcoFlexActive: true,
             ecoFlexMoreInfoLink: 'http://www.example.com',
             grants: [
-                new LocalAuthorityGrantViewModel({
+                new LocalAuthorityGrant({
                     display_name: 'LA Grant 1',
                     description: 'some local grant',
                     slug: 'la-grant-1'
                 }),
-                new LocalAuthorityGrantViewModel({
+                new LocalAuthorityGrant({
                     display_name: 'LA Grant 2',
                     description: 'another local grant',
                     slug: 'la-grant-1'

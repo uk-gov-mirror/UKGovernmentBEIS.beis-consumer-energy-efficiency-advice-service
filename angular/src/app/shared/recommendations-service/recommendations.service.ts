@@ -14,9 +14,9 @@ import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation
 import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
 import {MeasuresResponse} from "../energy-calculation-api-service/response/measures-response";
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
-import {GrantViewModel} from "../../grants/model/grant-view-model";
-import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {EnergySavingMeasureResponse} from "../energy-calculation-api-service/response/energy-saving-measure-response";
+import {HabitMeasureResponse} from "../energy-calculation-api-service/response/habit-measure-response";
 
 @Injectable()
 export class RecommendationsService {
@@ -50,29 +50,54 @@ export class RecommendationsService {
         return Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
             this.measureService.fetchMeasureDetails(),
-            this.grantsEligibilityService.getApplicableGrants()
+            this.grantsEligibilityService.getEligibleStandaloneGrants()
         )
-            .map(
-                ([energyCalculation, measuresContent, availableGrants]) => {
+            .mergeMap(
+                ([energyCalculation, measuresContent, eligibleStandaloneGrants]) => {
                     if (!energyCalculation) {
                         throw new Error('Received empty energy calculation response');
                     }
-                    const homeImprovementRecommendations = RecommendationsService
-                        .getRecommendationsContent(energyCalculation.measures, measuresContent, availableGrants);
                     const habitRecommendations = RecommendationsService
-                        .getRecommendationsContent(energyCalculation.habit_measures, measuresContent, availableGrants);
-                    const grantRecommendations = RecommendationsService.getGrantRecommendations(availableGrants);
-                    const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
-                    let orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
-                    RecommendationsService.tagTopRecommendations(orderedRecommendations);
-                    return orderedRecommendations;
+                        .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
+                    const grantRecommendations = eligibleStandaloneGrants
+                        .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
+                    return this.getHomeImprovementRecommendationsContent(energyCalculation.measures, measuresContent)
+                        .map(homeImprovementRecommendations => {
+                            const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
+                            let orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+                            RecommendationsService.tagTopRecommendations(orderedRecommendations);
+                            return orderedRecommendations;
+                        });
                 }
-            );
+            )
     }
 
-    private static getRecommendationsContent(measures: MeasuresResponse<MeasureResponse>,
-                                             measuresContent: MeasureContent[],
-                                             availableGrants: GrantViewModel[]): EnergyEfficiencyRecommendation[] {
+    private getHomeImprovementRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
+                                                     measuresContent: MeasureContent[]): Observable<EnergyEfficiencyRecommendation[]> {
+        return Observable.forkJoin(keys(measures)
+            .map(measureCode => {
+                const measureContent: MeasureContent = measuresContent
+                    .find((recommendationTypeDetail) => recommendationTypeDetail.acf.measure_code === measureCode);
+                if (!measureContent) {
+                    console.error(`Recommendation with code ${ measureCode } not recognised`);
+                    return null;
+                }
+                return this.grantsEligibilityService
+                    .getEligibleGrantsForMeasure(measureCode, measures[measureCode])
+                    .map(grantsForMeasure => {
+                        return EnergyEfficiencyRecommendation.fromMeasure(
+                            measures[measureCode],
+                            measureContent,
+                            EnergySavingMeasureContentService.measureIcons[measureCode],
+                            grantsForMeasure
+                        )
+                    });
+            })
+            .filter(measure => measure));
+    }
+
+    private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
+                                                  measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
         return keys(measures)
             .map(measureCode => {
                 const recommendationMetadata: MeasureContent = measuresContent
@@ -81,22 +106,14 @@ export class RecommendationsService {
                     console.error(`Recommendation with code ${ measureCode } not recognised`);
                     return null;
                 }
-                const linkedAvailableGrants = availableGrants
-                    .filter(grant => grant.linkedMeasureCodes && grant.linkedMeasureCodes.indexOf(measureCode) > -1);
                 return EnergyEfficiencyRecommendation.fromMeasure(
                     measures[measureCode],
                     recommendationMetadata,
                     EnergySavingMeasureContentService.measureIcons[measureCode],
-                    linkedAvailableGrants
+                    null
                 )
             })
             .filter(measure => measure);
-    }
-
-    private static getGrantRecommendations(grants: GrantViewModel[]): EnergyEfficiencyRecommendation[] {
-        return grants
-            .filter(grant => grant.shouldDisplayWithoutMeasures)
-            .map(grant => EnergyEfficiencyRecommendation.fromGrant(grant, 'icon-grant'));
     }
 
     private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): void {

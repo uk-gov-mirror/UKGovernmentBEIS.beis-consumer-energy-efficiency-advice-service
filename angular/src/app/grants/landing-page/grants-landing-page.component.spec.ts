@@ -15,7 +15,7 @@ import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
-import {LocalAuthorityGrantViewModel} from "../model/local-authority-grant-view-model";
+import {LocalAuthorityGrant} from "../model/local-authority-grant";
 
 describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;
@@ -26,16 +26,12 @@ describe('GrantsLandingPageComponent', () => {
     const postcode = "SW1A1AA";
     const localAuthorityCode = "E09000033";
     const localAuthorityName = "Westminster";
-    const localAuthorityGrants: LocalAuthorityGrantViewModel[] = [
+    const localAuthorityGrants: LocalAuthorityGrant[] = [
         {
             grantId: 'grant-1',
             name: 'Grant 1',
             description: 'some grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
-            advantages: null,
             steps: []
         },
         {
@@ -43,10 +39,6 @@ describe('GrantsLandingPageComponent', () => {
             name: 'Grant 2',
             description: 'another grant',
             eligibility: GrantEligibility.MayBeEligible,
-            shouldDisplayWithoutMeasures: false,
-            annualPaymentPounds: null,
-            linkedMeasureCodes: null,
-            advantages: null,
             steps: []
         }
     ];

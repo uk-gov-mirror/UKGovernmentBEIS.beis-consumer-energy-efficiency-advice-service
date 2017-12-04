@@ -2,9 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -17,7 +17,7 @@ export class YourPlanPageComponent implements OnInit {
         return this.recommendationsService.getRecommendationsInPlan();
     }
 
-    localAuthorityGrants: LocalAuthorityGrantViewModel[] = [];
+    localAuthorityGrants: LocalAuthorityGrant[] = [];
     localAuthorityName: string;
 
     constructor(private recommendationsService: RecommendationsService,

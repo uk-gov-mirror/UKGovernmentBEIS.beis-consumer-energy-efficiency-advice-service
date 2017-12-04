@@ -2,22 +2,18 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 
 import {GrantCardComponent} from "./grant-card.component";
-import {GrantViewModel} from "../../grants/model/grant-view-model";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
+import {Grant} from "../../grants/model/grant";
 
 describe('GrantCardComponent', () => {
     let component: GrantCardComponent;
     let fixture: ComponentFixture<GrantCardComponent>;
 
-    const grant: GrantViewModel = {
+    const grant: Grant = {
         grantId: 'grant-id',
         name: 'Name',
         description: 'Description',
         eligibility: GrantEligibility.MayBeEligible,
-        shouldDisplayWithoutMeasures: false,
-        annualPaymentPounds: 120,
-        linkedMeasureCodes: [],
-        advantages: [],
         steps: []
     };
 

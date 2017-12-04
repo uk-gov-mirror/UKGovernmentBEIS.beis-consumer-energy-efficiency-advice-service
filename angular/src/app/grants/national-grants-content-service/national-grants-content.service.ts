@@ -7,16 +7,25 @@ import {NationalGrantContent} from "./national-grants-content";
 @Injectable()
 export class NationalGrantsContentService {
     private static readonly nationalGrantsEndpoint = 'angular-theme/v1/national-grants';
-    private nationalGrants: Observable<NationalGrantContent[]>;
+    private nationalGrantsContent: Observable<NationalGrantContent[]>;
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
-    fetchNationalGrants(): Observable<NationalGrantContent[]> {
-        if (!this.nationalGrants) {
-            this.nationalGrants = this.http.get(this.wordpressApiService.getFullApiEndpoint(NationalGrantsContentService.nationalGrantsEndpoint))
+    fetchNationalGrantsContent(): Observable<NationalGrantContent[]> {
+        if (!this.nationalGrantsContent) {
+            this.nationalGrantsContent = this.http.get(this.wordpressApiService.getFullApiEndpoint(NationalGrantsContentService.nationalGrantsEndpoint))
                 .shareReplay(1);
         }
-        return this.nationalGrants;
+        return this.nationalGrantsContent;
+    }
+
+    static getContentForGrant(grantsContent: NationalGrantContent[], grantId: string) {
+        const grantContent = grantsContent.find(grant => grant.slug === grantId);
+        if (!grantContent) {
+            console.warn(`No content found for grant with id "${grantId}"`);
+            return null;
+        }
+        return grantContent;
     }
 }

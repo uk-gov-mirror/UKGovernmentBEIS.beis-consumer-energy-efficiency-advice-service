@@ -6,7 +6,6 @@ import {UserJourneyType} from "../../shared/response-data/user-journey-type";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {GrantViewModel} from "../model/grant-view-model";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 
 @Component({

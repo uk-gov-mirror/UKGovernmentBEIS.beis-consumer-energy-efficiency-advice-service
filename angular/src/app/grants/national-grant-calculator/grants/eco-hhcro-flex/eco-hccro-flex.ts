@@ -16,8 +16,4 @@ export class EcoHhcroFlex extends NationalGrantCalculator {
         return this.localAuthorityService.fetchLocalAuthorityDetails(responseData.localAuthorityCode)
             .map(response => response.isEcoFlexActive ? GrantEligibility.MayBeEligible : GrantEligibility.Ineligible);
     }
-
-    getAnnualPaymentPounds(resposeData: ResponseData): Observable<number> {
-        return Observable.of(null);
-    }
 }
