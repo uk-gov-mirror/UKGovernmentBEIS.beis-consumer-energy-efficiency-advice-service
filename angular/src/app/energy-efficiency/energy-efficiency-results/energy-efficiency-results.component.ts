@@ -74,7 +74,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             .filter(recommendation => {
                 const requiredTags = this.activeTagFilters;
                 const matchingTags = requiredTags & recommendation.tags;
-                return matchingTags === requiredTags;
+                return matchingTags !== EnergyEfficiencyRecommendationTag.None;
             });
     }
 

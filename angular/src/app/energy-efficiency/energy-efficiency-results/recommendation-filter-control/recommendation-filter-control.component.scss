@@ -10,9 +10,13 @@
       outline: none;
       border: none;
 
-      &.deselected:not(:focus):not(:hover) {
+      &.deselected:not(:hover) {
         background-color: white;
         color: $light-medium-grey;
+      }
+
+      &:focus {
+        box-shadow: 1px 1px 1px $dark-grey;
       }
 
       &.clear-filters {

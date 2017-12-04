@@ -242,7 +242,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(recommendationElements.length).toEqual(expectedNumberOfElements);
     });
 
-    it('should apply multiple filters additively', async(() => {
+    it('should show recommendations matching any of multiple selected filters', async(() => {
         // given
         fixture.detectChanges();
 
@@ -252,7 +252,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
-        expect(recommendationElements.length).toEqual(0);
+        expect(recommendationElements.length).toEqual(3);
     }));
 
     it('should display energy calculations correctly', () => {
