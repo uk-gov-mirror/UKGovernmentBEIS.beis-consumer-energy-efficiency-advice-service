@@ -5,6 +5,9 @@ import {FormsModule} from "@angular/forms"
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-heating-on-question.component";
 import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+
 describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
     let component: DetailedLengthOfHeatingOnQuestionComponent;
     let fixture: ComponentFixture<DetailedLengthOfHeatingOnQuestionComponent>;
@@ -15,7 +18,7 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DetailedLengthOfHeatingOnQuestionComponent, NumberQuestionComponent],
-            imports: [FormsModule],
+            imports: [FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [ResponseData]
         })
             .compileComponents();

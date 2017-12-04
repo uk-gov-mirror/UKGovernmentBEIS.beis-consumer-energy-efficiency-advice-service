@@ -6,6 +6,8 @@ import {FormsModule} from "@angular/forms";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {TimesPipe} from "../../../shared/times/times.pipe";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('OccupantsQuestionComponent', () => {
     let component: OccupantsQuestionComponent;
@@ -19,7 +21,7 @@ describe('OccupantsQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [OccupantsQuestionComponent, NumberQuestionComponent, TimesPipe],
-            imports: [FormsModule],
+            imports: [FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [ResponseData]
         })
             .compileComponents();

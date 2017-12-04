@@ -5,6 +5,8 @@ import {ResponseData} from "../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
 import {IncomeQuestionComponent} from "./income-question.component";
 import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('IncomeQuestionComponent', () => {
     let component: IncomeQuestionComponent;
@@ -15,7 +17,7 @@ describe('IncomeQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [IncomeQuestionComponent, NumberQuestionComponent],
-            imports: [FormsModule],
+            imports: [FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [ResponseData]
         })
             .compileComponents();

@@ -58,15 +58,9 @@
     border: none;
     outline: none;
     cursor: pointer;
-    // TODO-127: change colour
-    color: blue;
 
-    &.increase::before {
-      content: url('/assets/images/controls/plus-btn.svg');
-    }
-
-    &.decrease::before {
-      content: url('/assets/images/controls/minus-btn.svg');
+    ::ng-deep svg circle {
+      fill: $primary-blue;
     }
 
     &[disabled], &.inactive {
@@ -76,8 +70,9 @@
 
     &:not([disabled]) {
       &:hover, &:focus {
-        // TODO-127: Update hover state once inline SVG is in use
-        color: $darkened-blue;
+        ::ng-deep svg circle {
+          fill: $darkened-blue;
+        }
       }
     }
   }

@@ -1,5 +1,4 @@
 @import 'styles/mixins/buttons';
-@import "styles/page";
 @import "styles/var/colors";
 
 :host {
@@ -9,6 +8,8 @@
 }
 
 .questions-container {
+  $greyed-out: #a9a9a9;
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,19 +21,58 @@
 
   .question-type-icon {
     margin-top: 15vh;
+    margin-bottom: -4px;
+
+    &.with-extra-vertical-offset {
+      margin-bottom: -9px;
+    }
+
+    .person ::ng-deep svg {
+      path {
+        fill: $primary-blue;
+      }
+    }
+
+    .house ::ng-deep svg {
+      polygon {
+        fill: $primary-blue;
+      }
+
+      polyline {
+        stroke: $primary-blue;
+      }
+    }
+
+    .thermostat ::ng-deep svg {
+      path {
+        stroke: $primary-blue;
+      }
+
+      circle {
+        fill: $primary-blue;
+      }
+    }
+
+    .person-showering ::ng-deep svg {
+      path {
+        fill: $primary-blue;
+      }
+
+      g#Group-15 path {
+        stroke: $primary-blue;
+      }
+    }
   }
 
   .question-type-icon-baseline {
-    background-color: $focus-blue;
+    background-color: $primary-blue;
     width: 140px;
     height: 1px;
     margin-bottom: 20px;
-    margin-top: -4px; // align to the bottom of the question type icon
   }
 
   .question-heading-container {
     width: 100%;
-    max-width: $content-max-width;
   }
 
   .question-heading-container {
@@ -61,13 +101,23 @@
       width: 84px;
 
       background-color: white;
-      color: #a9a9a9;
+      color: $greyed-out;
+      fill: $greyed-out;
 
       display: inline-flex;
       align-items: center;
 
       outline: none;
       border: none;
+
+      .left-chevron-icon, .right-chevron-icon {
+        width: 20px;
+
+        ::ng-deep svg {
+          fill: $greyed-out;
+          vertical-align: middle;
+        }
+      }
 
       &.hidden {
         visibility: hidden;
@@ -85,13 +135,8 @@
       border-radius: 0 10px 10px 0;
       justify-content: flex-start;
 
-      &::before {
-        content: "";
-        background-image: url('/assets/images/controls/chevron-left.svg');
-        background-size: 16px 16px;
-        width: 16px;
-        height: 16px;
-        margin-right: 9px;
+      .left-chevron-icon {
+        margin-right: 10px;
       }
     }
 
@@ -99,18 +144,17 @@
       border-radius: 10px 0 0 10px;
       justify-content: flex-end;
 
-      &::after {
-        content: "";
-        background-image: url('/assets/images/controls/chevron-right.svg');
-        background-size: 16px 16px;
-        width: 16px;
-        height: 16px;
-        margin-left: 9px;
+      .right-chevron-icon {
+        margin-left: 10px;
       }
 
       &:not([disabled]) {
         background-color: $green;
         color: white;
+
+        .right-chevron-icon ::ng-deep svg {
+          fill: white;
+        }
 
         &:focus, &:hover {
           background-color: $primary-blue;

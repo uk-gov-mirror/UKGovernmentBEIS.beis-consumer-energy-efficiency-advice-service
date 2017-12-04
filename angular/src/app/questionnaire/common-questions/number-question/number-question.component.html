@@ -1,6 +1,7 @@
 <div class="form-element number-question-component">
     <button type="button" (click)="increaseQuantity(-step)" [disabled]="quantity == undefined || !isValidForMinimum(quantity)"
             class="delta-button decrease">
+        <div [inlineSVG]="'controls/minus-btn.svg'"></div>
     </button>
     <div class="text-input text-box-container" [ngClass]="{'text-box-focused': textBoxFocused}">
         <div class="prefix">{{prefix}}</div>
@@ -16,7 +17,9 @@
                (blur)="textBoxFocused = false">
     </div>
     <button type="button" (click)="increaseQuantity(step)" [disabled]="quantity == undefined || !isValidForMaximum(quantity)"
-            class="delta-button increase"></button>
+            class="delta-button increase">
+        <div [inlineSVG]="'controls/plus-btn.svg'"></div>
+    </button>
 </div>
 <div *ngIf="isInvalid" class="error">
     Please enter a valid amount of {{itemsName}}.

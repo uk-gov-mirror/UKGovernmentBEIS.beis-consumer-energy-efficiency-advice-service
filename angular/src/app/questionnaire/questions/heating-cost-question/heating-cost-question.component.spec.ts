@@ -5,6 +5,8 @@ import {FormsModule} from "@angular/forms"
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {HeatingCostQuestionComponent} from "./heating-cost-question.component";
 import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('HeatingCostQuestionComponent', () => {
     let component: HeatingCostQuestionComponent;
@@ -16,7 +18,7 @@ describe('HeatingCostQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [HeatingCostQuestionComponent, NumberQuestionComponent],
-            imports: [FormsModule],
+            imports: [FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [ResponseData]
         })
             .compileComponents();

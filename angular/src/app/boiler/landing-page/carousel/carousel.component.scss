@@ -26,6 +26,10 @@ $item-margin: 16px;
       align-items: center;
       justify-content: center;
 
+      &::before {
+        width: 32px;
+      }
+
       &.left {
         margin-right: 16px;
       }

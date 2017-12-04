@@ -5,15 +5,25 @@
                         [currentQuestionIndex]="currentQuestionIndex"
                         [allQuestionsContent]="allQuestionsContent"
                         (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
-    <span class="question-type-icon" [ngClass]="questionTypeIconClassName"></span>
+    <span class="question-type-icon"
+          [ngClass]="{'with-extra-vertical-offset': questionTypeIconClassName === 'icon-person-showering'}">
+        <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionTypeIconClassName !== 'icon-person'"></div>
+        <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionTypeIconClassName !== 'icon-house'"></div>
+        <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionTypeIconClassName !== 'icon-thermostat'"></div>
+        <div class="person-showering" [inlineSVG]="'question-types/behaviour.svg'" [hidden]="questionTypeIconClassName !== 'icon-person-showering'"></div>
+    </span>
     <span class="question-type-icon-baseline"></span>
     <div class="question-heading-container">
         <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()"
-                (click)="goBackOneQuestion()" aria-label="Go back">PREV
+                (click)="goBackOneQuestion()" aria-label="Go back">
+            <div class="left-chevron-icon" [inlineSVG]="'controls/chevron-left.svg'"></div>
+            PREV
         </button>
         <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
         <button class="right-arrow" [disabled]="!hasBeenAnswered()"
-                (click)="goForwards()" aria-label="Go forwards">GO
+                (click)="goForwards()" aria-label="Go forwards">
+            GO
+            <div class="right-chevron-icon" [inlineSVG]="'controls/chevron-right.svg'"></div>
         </button>
     </div>
     <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>

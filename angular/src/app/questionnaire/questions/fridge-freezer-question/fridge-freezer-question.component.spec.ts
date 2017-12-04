@@ -5,6 +5,8 @@ import {NumberQuestionComponent} from "../../common-questions/number-question/nu
 import {FormsModule} from "@angular/forms";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {By} from "@angular/platform-browser";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('FridgeFreezerQuestionComponent', () => {
     let component: FridgeFreezerQuestionComponent;
@@ -18,7 +20,7 @@ describe('FridgeFreezerQuestionComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [FridgeFreezerQuestionComponent, NumberQuestionComponent],
-            imports: [FormsModule],
+            imports: [FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [ResponseData]
         })
             .compileComponents();
