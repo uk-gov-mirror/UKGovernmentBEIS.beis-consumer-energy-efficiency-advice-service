@@ -2,7 +2,7 @@
     <div class="latest-news-icon-container"
          [ngClass]="{'no-image': !page.coverImage}"
          [style.backgroundImage]="page.coverImage ? 'url(' + page.coverImage.url + ')' : null">
-        <span [ngClass]="iconClassName"></span>
+        <span *ngIf="page.videoEmbed" class="icon-video-play"></span>
     </div>
     <div class="text-container">
         <div class="heading">{{page.title}}</div>

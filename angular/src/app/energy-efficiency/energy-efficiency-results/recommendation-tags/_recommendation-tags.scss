@@ -1,3 +1,5 @@
+@import "styles/var/colors";
+
 .tags {
   display: flex;
 
@@ -6,26 +8,34 @@
   }
 
   .tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
-    padding: 5px 14px;
+    height: 20px;
+    width: 116px;
     border-radius: 20px;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .tag-quick-win {
-    background-color: coral;
+    background-color: #FF0066;
   }
 
   .tag-small-spend {
-    background-color: green;
+    background-color: $amber;
   }
 
   .tag-longer-term {
-    background-color: purple;
+    background-color: #52CEA8;
   }
 
   .tag-grant {
-    background-color: turquoise;
+    background-color: $action-button-blue;
+  }
+
+  .tag-top-recommendations {
+    background-color: #E50046;
   }
 }

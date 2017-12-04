@@ -1,11 +1,10 @@
-@import "../_energy-efficiency-results-page-sizes.scss";
+@import "../../_energy-efficiency-page-sizes";
 @import "../recommendation-tags/_recommendation-tags.scss";
 @import "styles/mixins/_font";
 @import "styles/mixins/_buttons";
 @import "styles/var/colors";
 
-$column-side-padding: 20px;
-$icon-column-width: 100px;
+$icon-column-width: $add-to-plan-column-width;
 
 .energy-efficiency-recommendation-card {
   background-color: white;
@@ -32,11 +31,11 @@ $icon-column-width: 100px;
       padding: 10px 4px;
 
       & > :not(:first-child) {
-        margin-top: 8px;
+        margin-top: 14px;
       }
 
       .heading {
-        @include focus-text;
+        @include card-heading;
       }
 
       .summary-row {
@@ -44,16 +43,9 @@ $icon-column-width: 100px;
         width: 100%;
 
         .summary {
+          @include page-subheadline-small;
           margin-right: 20px;
           flex: 1;
-        }
-
-        .read-more-button {
-          @include arrow-button(200px, 40px);
-          text-transform: uppercase;
-          margin-right: 30px;
-          text-decoration: none;
-          font-size: 14px;
         }
       }
 
@@ -62,49 +54,72 @@ $icon-column-width: 100px;
         border-top: 1px solid $light-grey;
         padding: 10px 0;
         display: flex;
+        cursor: pointer;
+        align-items: center;
 
         .more-detail-button {
           background: none;
           outline: none;
           border: none;
           text-transform: uppercase;
-          cursor: pointer;
           padding: 0;
+          @include card-expand-drawer;
+          cursor: inherit;
 
           &:focus, &:hover {
             text-decoration: underline;
           }
         }
+
+        .more-detail-icon {
+          margin-left: 6px;
+          width: 14px;
+          height: 8px;
+          display: block;
+          line-height: 0;
+          fill: $action-button-blue;
+
+          &.expanded {
+            transform: rotate(180deg);
+          }
+        }
       }
     }
 
-    .investment-required-card, .monthly-savings-card {
-      border-left: 2px solid $light-grey;
+    .investment-required-card, .monthly-savings-card, .add-to-plan-column {
+      border-left: 2px solid $lighter-grey;
     }
 
     .add-to-plan-column {
       flex: 0 0;
-      flex-basis: calc(#{$add-to-plan-column-width} - 2 * #{$column-side-padding});
+      flex-basis: $add-to-plan-column-width;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: $lighter-medium-grey;
-      padding: $column-side-padding;
       cursor: pointer;
+      color: $focus-text-blue;
 
       &.selected {
-        background-color: $focus-blue;
+        background-color: $action-button-blue;
+        border-left-color: $action-button-blue;
 
         .add-to-plan-text {
           color: white;
         }
+
+        &:hover, &:focus {
+          background-color: $red;
+          border-left-color: $red;
+          content: attr(hover-text);
+        }
       }
 
       .add-to-plan-text {
+        color: $focus-text-blue;
         text-transform: uppercase;
         margin-bottom: 10px;
-        font-size: 12px;
+        font-size: 11px;
         text-align: center;
         font-weight: bold;
         cursor: pointer;
@@ -118,12 +133,20 @@ $icon-column-width: 100px;
       }
 
       .add-to-plan-icon {
-        font-size: 72px;
-        line-height: 0.4;
         outline: none;
         background: none;
         border: none;
         padding: 0;
+        width: 30px;
+        height: 30px;
+
+        &.add {
+          stroke: $action-button-blue;
+        }
+
+        &.remove, &.added{
+          stroke: white;
+        }
       }
     }
   }

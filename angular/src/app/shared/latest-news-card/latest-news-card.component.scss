@@ -32,12 +32,13 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .heading {
-      font-size: 20px;
-      line-height: 24px;
-      font-weight: bold;
-      color: $dark-grey;
-    }
+  .heading {
+    @include card-heading-small;
+    padding: 20px 20px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    color: $dark-grey;
+  }
 
     .read-more {
       text-transform: uppercase;

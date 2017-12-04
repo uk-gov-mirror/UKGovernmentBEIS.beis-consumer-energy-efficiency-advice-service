@@ -1,4 +1,5 @@
 import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
+import {RecommendationStep} from "../../shared/recommendations-service/recommendation-step";
 
 export interface GrantViewModel {
     name: string;
@@ -8,4 +9,6 @@ export interface GrantViewModel {
     annualPaymentPounds: number;
     linkedMeasureCodes: string[];
     advantages: string[];
+    grantId: string;
+    steps: RecommendationStep[];
 }

@@ -19,12 +19,15 @@ import {BoilerResultsPageRouteGuard} from "./boiler/results-page/boiler-results-
 import {BoilerReplacementPageComponent} from "./boiler/replacement-page/boiler-replacement-page.component";
 import {BoilerMakeModelReplaceComponent} from "./boiler/make-model-replace/boiler-make-model-replace.component";
 import {BoilerAdvicePageComponent} from "./boiler/advice-page/boiler-advice-page.component";
+import {YourPlanPageComponent} from "./energy-efficiency/your-plan-page/your-plan-page.component";
+import {YourPlanPageGuard} from "./energy-efficiency/your-plan-page/your-plan-page.guard";
 import {GreenerHomeComponent} from "./landing-page/greener-home/greener-home.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: HomePageComponent
+        component: HomePageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/energy-efficiency/questionnaire/:name',
@@ -37,12 +40,19 @@ const routes: Routes = [
         canActivate: [EnergyEfficiencyResultsRouteGuard]
     },
     {
+        path: 'js/energy-efficiency/your-plan',
+        component: YourPlanPageComponent,
+        canActivate: [YourPlanPageGuard]
+    },
+    {
         path: 'js/grants',
-        component: GrantsLandingPageComponent
+        component: GrantsLandingPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/grants/questionnaire',
-        component: GrantsQuestionnaireComponent
+        component: GrantsQuestionnaireComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/greener-home',
@@ -62,7 +72,8 @@ const routes: Routes = [
     },
     {
         path: 'js/boiler',
-        component: BoilerLandingPageComponent
+        component: BoilerLandingPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/boiler/advice/:slug',
@@ -91,11 +102,13 @@ const routes: Routes = [
     },
     {
         path: ':slug',
-        component: PageComponent
+        component: PageComponent,
+        pathMatch: 'full'
     },
     {
         path: ':section/:slug',
-        component: PageComponent
+        component: PageComponent,
+        pathMatch: 'full'
     },
     {
         path: '**',

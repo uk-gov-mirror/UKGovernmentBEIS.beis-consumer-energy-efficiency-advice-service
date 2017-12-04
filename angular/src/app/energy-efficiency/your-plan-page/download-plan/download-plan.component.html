@@ -1,0 +1,32 @@
+<div class="download-plan page-row">
+    <div class="page-row-content">
+        <div class="download-your-plan">
+            <div class="action-details">
+                <div class="header">Download your plan</div>
+                <div class="description">Save your plan to your device so that you can return to it later</div>
+            </div>
+            <div class="download-pdf">
+                <button class="download-pdf-text">PDF</button>
+                <div class="download-pdf-icon" [inlineSVG]="'controls/apply-arrow.svg'"></div>
+            </div>
+        </div>
+        <div class="download-landlord-report" *ngIf="isTenant()">
+            <div class="action-details">
+                <div class="header">Download your landlord's report</div>
+                <div class="description">Encourage your landlord to make improvements so you can save money</div>
+            </div>
+            <div class="download-pdf">
+                <button class="download-pdf-text">PDF</button>
+                <div class="download-pdf-icon" [inlineSVG]="'controls/apply-arrow.svg'"></div>
+            </div>
+        </div>
+        <div class="action-divider" *ngIf="!isTenant()">OR</div>
+        <div class="email-your-plan">
+            <div class="header">Email your plan</div>
+            <form class="email-form">
+                <input class="email-input" title="Enter your email address" type="text"/>
+                <button type="submit" class="send-email">GO</button>
+            </form>
+        </div>
+    </div>
+</div>

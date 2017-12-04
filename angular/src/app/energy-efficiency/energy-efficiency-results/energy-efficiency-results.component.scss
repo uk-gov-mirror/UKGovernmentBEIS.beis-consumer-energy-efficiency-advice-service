@@ -1,4 +1,4 @@
-@import "_energy-efficiency-results-page-sizes.scss";
+@import "../_energy-efficiency-page-sizes";
 @import "styles/mixins/_font";
 @import "styles/mixins/_buttons";
 @import "styles/var/colors";
@@ -6,8 +6,16 @@
 $grant-cards-per-row: 4;
 $grant-card-margin: 24px;
 
-.results-page {
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+.results-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   width: 100%;
 
   .subheading {
@@ -30,40 +38,39 @@ $grant-card-margin: 24px;
       }
 
       .heading-text {
-        font-size: 42px;
+        @include page-heading-small;
         padding-right: 20px;
-        font-weight: bold;
         flex: 1 0 1px;
+        display: flex;
+        align-items: center;
       }
     }
   }
 
   .recommendations.page-row {
-    background-color: $light-grey;
+    background-color: $lighter-grey;
+    flex-grow: 1;
 
     .page-row-content {
       display: flex;
       flex-direction: column;
-      padding: 20px 0 32px 0;
+      padding: 40px 0 32px 0;
 
       .recommendations-heading {
-        font-size: 20px;
-        margin-bottom: 4px;
+        @include card-heading;
+        margin-bottom: 6px;
       }
 
       .recommendations-subheading {
-        font-size: 12px;
+        font-size: 13px;
+        line-height: 16px;
       }
 
       .recommendations-filter {
+        padding: 16px 0;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-
-        .filter-description {
-          margin-right: 10px;
-          font-size: 12px;
-        }
       }
 
       .recommendation-cards {

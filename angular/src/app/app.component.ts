@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
 import 'rxjs/add/operator/distinctUntilChanged';
 import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
+import {SVGCacheService} from "ng-inline-svg";
 
 @Component({
     selector: 'app-root',
@@ -9,7 +10,11 @@ import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.servic
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    constructor(private router: Router, private googleAnalyticsService: GoogleAnalyticsService) {
+    constructor(
+        private router: Router,
+        private googleAnalyticsService: GoogleAnalyticsService,
+        private svgService: SVGCacheService
+    ) {
         // Configure Google Analytics tracking if that's supported in this environment
         if (GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
             router.events.distinctUntilChanged((previous: any, current: any) => {
@@ -21,5 +26,8 @@ export class AppComponent {
                 this.googleAnalyticsService.recordPageView();
             });
         }
+
+        // Set base URL for inline-svg directive
+        svgService.setBaseUrl({baseUrl: '/wp-content/themes/angular-theme/dist/assets/images/'});
     }
 }

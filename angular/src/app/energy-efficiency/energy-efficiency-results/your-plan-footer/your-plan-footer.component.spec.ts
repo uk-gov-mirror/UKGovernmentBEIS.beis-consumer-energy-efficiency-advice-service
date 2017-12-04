@@ -1,0 +1,101 @@
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {By} from "@angular/platform-browser";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
+import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
+import {DataCardComponent} from "../../data-card/data-card.component";
+import {YourPlanSummaryComponent} from "../../your-plan-summary/your-plan-summary.component";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {YourPlanFooterComponent} from "./your-plan-footer.component";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+
+describe('YourPlanFooterComponent', () => {
+    let component: YourPlanFooterComponent;
+    let fixture: ComponentFixture<YourPlanFooterComponent>;
+
+    const recommendations: EnergyEfficiencyRecommendation[] = [
+        {
+            investmentPounds: 199,
+            costSavingPoundsPerYear: 99,
+            costSavingPoundsPerMonth: 99 / 12,
+            energySavingKwhPerYear: 100,
+            readMoreRoute: ('dummy-route'),
+            iconClassName: 'dummy-icon',
+            headline: 'Loft insulation',
+            summary: 'No description available',
+            tags: EnergyEfficiencyRecommendationTag.LongerTerm,
+            grant: null,
+            advantages: [],
+            steps: [],
+            isAddedToPlan: false
+        },
+        {
+            investmentPounds: 999,
+            costSavingPoundsPerYear: 200,
+            costSavingPoundsPerMonth: 200 / 12,
+            energySavingKwhPerYear: 250,
+            readMoreRoute: ('dummy-route'),
+            iconClassName: 'dummy-icon',
+            headline: 'Solar photovoltaic panels',
+            summary: 'No description available',
+            tags: EnergyEfficiencyRecommendationTag.LongerTerm,
+            grant: null,
+            advantages: [],
+            steps: [],
+            isAddedToPlan: false
+        },
+        {
+            investmentPounds: 20,
+            costSavingPoundsPerYear: 10,
+            costSavingPoundsPerMonth: 10 / 12,
+            energySavingKwhPerYear: 5,
+            readMoreRoute: ('dummy-route'),
+            iconClassName: 'dummy-icon',
+            headline: 'Cylinder insulation',
+            summary: 'No description available',
+            tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
+            grant: null,
+            advantages: [],
+            steps: [],
+            isAddedToPlan: false
+        }
+    ];
+
+    const recommendationsServiceStub = {
+        getRecommendationsInPlan: () => recommendations
+    };
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                YourPlanFooterComponent,
+                DataCardComponent,
+                YourPlanSummaryComponent
+            ],
+            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}],
+            imports: [
+                InlineSVGModule,
+                HttpClientTestingModule
+            ]
+        })
+            .compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(YourPlanFooterComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('should display the correct recommendations', () => {
+        const recommendationHeadlines = fixture.debugElement.queryAll(By.css('.recommendation-name'))
+            .map(el => el.nativeElement.innerText);
+        expect(recommendationHeadlines.length).toEqual(recommendations.length);
+        recommendations.forEach(expectedRecommendation =>
+            expect(recommendationHeadlines).toContain(expectedRecommendation.headline));
+    });
+});

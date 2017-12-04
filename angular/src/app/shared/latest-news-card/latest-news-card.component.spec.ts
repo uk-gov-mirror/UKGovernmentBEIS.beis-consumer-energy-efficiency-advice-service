@@ -8,8 +8,6 @@ describe('LatestNewsCardComponent', () => {
     let component: LatestNewsCardComponent;
     let fixture: ComponentFixture<LatestNewsCardComponent>;
 
-    const iconClassName = 'icon-class';
-
     const page: WordpressPage = {
         title: 'heading',
         route: 'fake-route',
@@ -29,7 +27,6 @@ describe('LatestNewsCardComponent', () => {
         fixture = TestBed.createComponent(LatestNewsCardComponent);
         component = fixture.componentInstance;
         component.page = page;
-        component.iconClassName = iconClassName;
         fixture.detectChanges();
     });
 
@@ -42,8 +39,20 @@ describe('LatestNewsCardComponent', () => {
         expect(headingElement.innerText).toEqual(page.title);
     });
 
-    it('should display the correct icon', () => {
-        const iconElement = fixture.debugElement.query(By.css('.latest-news-icon-container span')).nativeElement;
-        expect(iconElement.className).toEqual(iconClassName);
+    it('should not display a video play icon if there is no video', () => {
+        const iconElement = fixture.debugElement.query(By.css('.icon-video-play'));
+        expect(iconElement).toBeNull();
+    });
+
+    it('should display a video play icon if there is a video', () => {
+        // given
+        page.videoEmbed = "http://test-video.com";
+        fixture.detectChanges();
+
+        // when
+        const iconElement = fixture.debugElement.query(By.css('.icon-video-play'));
+
+        // then
+        expect(iconElement).not.toBeNull();
     });
 });

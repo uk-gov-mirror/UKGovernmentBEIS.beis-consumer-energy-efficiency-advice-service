@@ -32,12 +32,8 @@ export class RecommendationFilterControlComponent implements OnInit {
             });
     }
 
-    shouldDisplayAsSelected(tag: EnergyEfficiencyRecommendationTag): boolean {
-        if (!this.isAnyTagSelected()) {
-            // If no tags are selected, we display all as selected for cleaner UI
-            return true;
-        }
-        return !!(this.selectedTags & tag);
+    shouldDisplayAsDeselected(tag: EnergyEfficiencyRecommendationTag): boolean {
+        return !(this.selectedTags & tag);
     }
 
     isAnyTagSelected(): boolean {
