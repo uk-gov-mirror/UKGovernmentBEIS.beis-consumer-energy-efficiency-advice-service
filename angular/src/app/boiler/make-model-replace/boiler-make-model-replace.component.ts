@@ -43,7 +43,6 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
                 ([gasAndOilBoiler, boilerTypes, measures]) => {
                     this.boiler = gasAndOilBoiler;
                     this.boilerTypes = sortBy(boilerTypes, type => +(type.averageInstallationCost));
-                    console.log(this.boilerTypes);
                     this.measures = measures;
                 },
                 err => this.handleError(err),
@@ -51,8 +50,12 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
             );
     }
 
+    get efficiencyThreshold() {
+        return BoilerMakeModelReplaceComponent.EFFICIENCY_THRESHOLD;
+    }
+
     boilerNeedsReplacing() {
-        return this.boiler.efficiency < BoilerMakeModelReplaceComponent.EFFICIENCY_THRESHOLD;
+        return this.boiler.efficiency < this.efficiencyThreshold;
     }
 
     private handleError(err) {
