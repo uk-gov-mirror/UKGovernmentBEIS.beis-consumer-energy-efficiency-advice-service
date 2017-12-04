@@ -25,6 +25,7 @@ import {HouseExposedWallQuestionMetadata} from "../../questions/house-exposed-wa
 import {FlatStoreysQuestionMetadata} from "../../questions/flat-storeys-question/flat-storeys-question-metadata";
 import {FloorLevelQuestionMetadata} from "../../questions/floor-level-question/floor-level-question-metadata";
 import {FloorSpanQuestionMetadata} from "../../questions/floor-span-question/floor-span-question-metadata";
+import {PostcodeEpcQuestionMetadata} from "../../questions/postcode-epc-question/postcode-epc-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -38,6 +39,7 @@ describe('HomeBasicsQuestionnaire', () => {
         // given
         responseData.userJourneyType = UserJourneyType.Calculator;
         const expectedQuestions = [
+            new PostcodeEpcQuestionMetadata(),
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
