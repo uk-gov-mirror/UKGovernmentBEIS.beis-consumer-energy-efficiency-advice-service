@@ -1,0 +1,20 @@
+<div class="static-measure-card">
+    <div class="basic-info">
+        <div class="recommendation-icon">
+            <div [ngClass]="measure.iconClassName" class="icon"></div>
+        </div>
+        <div class="value">{{measure.basicInfoValue}}</div>
+        <div class="heading">{{measure.basicInfoHeadline}}</div>
+    </div>
+    <div class="recommendation-basic-details">
+        <div class="heading">{{measure.measureHeadline}}</div>
+        <div class="summary-row">
+            <div class="summary">
+                {{measure.measureSummary}}
+            </div>
+        </div>
+    </div>
+    <app-data-card class="average-savings-card"
+                   heading="Average savings per year"
+                   [value]="'£' + measure.averageSavings"></app-data-card>
+</div>

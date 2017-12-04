@@ -15,8 +15,9 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {UserJourneyType} from "../shared/response-data/user-journey-type";
 import {Component, EventEmitter, Output} from "@angular/core";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
-import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
 import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {StaticMeasureCardComponent} from "./static-measure-card/static-measure-card.component";
+import {DataCardComponent} from "../shared/data-card/data-card.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -49,7 +50,8 @@ describe('LandingPageComponent', () => {
                 ArticleCardComponent,
                 LatestNewsCardComponent,
                 MockPostcodeLookupComponent,
-                QuestionReasonComponent,
+                StaticMeasureCardComponent,
+                DataCardComponent
             ],
             imports: [
                 CommonModule,
@@ -87,7 +89,7 @@ describe('LandingPageComponent', () => {
         fixture.detectChanges();
 
         // then
-        const headingElement = fixture.debugElement.query(By.css('.page-heading .heading-text')).nativeElement;
+        const headingElement = fixture.debugElement.query(By.css('.page-heading .heading')).nativeElement;
         expect(headingElement.innerText).toEqual(headingText);
     });
 

@@ -26,10 +26,11 @@ import {QuestionReasonComponent} from "./question-reason/question-reason.compone
 import {AssetsService} from "./assets-service/assets.service";
 import {PostcodeLookupComponent} from "./postcode-lookup/postcode-lookup.component";
 import {LargeVideoCardComponent} from "./large-video-card/large-video-card.component";
-import { SafePipe } from './safe/safe.pipe';
+import {SafePipe} from './safe/safe.pipe';
 import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {RecommendationsService} from "./recommendations-service/recommendations.service";
 import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper.component";
+import {DataCardComponent} from "./data-card/data-card.component";
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper
         LargeVideoCardComponent,
         SafePipe,
         GrantCardComponent,
-        StickyRowWrapperComponent
+        StickyRowWrapperComponent,
+        DataCardComponent
     ],
     exports: [
         PostcodeLookupComponent,
@@ -60,7 +62,8 @@ import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper
         LargeVideoCardComponent,
         SafePipe,
         GrantCardComponent,
-        StickyRowWrapperComponent
+        StickyRowWrapperComponent,
+        DataCardComponent
     ],
     imports: [
         HttpClientModule,

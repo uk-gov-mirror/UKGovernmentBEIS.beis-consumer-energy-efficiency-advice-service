@@ -9,6 +9,7 @@ import {ArticleCardComponent} from "./article-card/article-card.component";
 import {WarmerHomeComponent} from "./warmer-home/warmer-home.component";
 import {ReduceBillsComponent} from "./reduce-bills/reduce-bills.component";
 import {GreenerHomeComponent} from "./greener-home/greener-home.component";
+import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import {GreenerHomeComponent} from "./greener-home/greener-home.component";
         WarmerHomeComponent,
         ReduceBillsComponent,
         GreenerHomeComponent,
+        StaticMeasureCardComponent,
     ],
     exports: [
         HomeImprovementsComponent,

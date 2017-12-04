@@ -13,11 +13,12 @@ import {NavigationBarComponent} from "../../layout-components/navigation-bar/nav
 import {ResponseData} from "../../shared/response-data/response-data";
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
 import {QuestionContentService} from "../../shared/question-content/question-content.service";
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {StaticMeasureCardComponent} from "../static-measure-card/static-measure-card.component";
+import {DataCardComponent} from "../../shared/data-card/data-card.component";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -42,8 +43,9 @@ describe('HomeImprovementsComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
-                QuestionReasonComponent,
                 PostcodeLookupComponent,
+                StaticMeasureCardComponent,
+                DataCardComponent
             ],
             imports: [
                 CommonModule,

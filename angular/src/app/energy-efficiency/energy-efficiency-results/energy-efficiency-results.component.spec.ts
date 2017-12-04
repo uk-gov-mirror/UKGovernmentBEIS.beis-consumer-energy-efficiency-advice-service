@@ -17,7 +17,7 @@ import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.comp
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {LocalAuthorityGrantViewModel} from "../../grants/model/local-authority-grant-view-model";
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "../data-card/data-card.component";
+import {DataCardComponent} from "../../shared/data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";

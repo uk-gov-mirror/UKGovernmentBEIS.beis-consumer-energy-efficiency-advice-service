@@ -4,129 +4,84 @@
 .landing-page {
 
   .page-row-content {
-    padding: 48px 0;
+    padding: 60px 0 50px;
+
+    .heading {
+      @include page-subheading;
+      color: $focus-text-blue
+    }
   }
 
   .page-heading {
-    background-color: $light-grey;
-
     .page-row-content {
-      padding: 60px 0;
+      padding-bottom: 60px;
 
-      .heading-text {
+      .heading {
         @include page-heading;
+        color: $headline-dark-blue;
       }
     }
   }
 
-  .postcode .page-row-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid black;
+  .postcode {
+    background-color: $primary-blue;
+    color: white;
 
-    .postcode-input {
+    .page-row-content {
+      position: relative;
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
+      flex-direction: column;
 
-      .enter-postcode-text {
-        @include page-subheading;
+      .heading {
+        color: white;
       }
 
-      ::ng-deep .postcode-input-text {
-        background-color: $light-grey;
+      .postcode-reason-container {
+        padding-right: 40px;
+      }
+
+      .postcode-input {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .static-measures {
+    background-color: $lighter-grey;
+
+    .page-row-content {
+      padding-bottom: 82px;
+
+      .body-text {
+        padding: 14px 0 18px;
+        font-size: 16px;
+        line-height: 20px;
       }
     }
 
-    .postcode-reason-container {
-      display: flex;
-      justify-content: center;
-    }
-
-    .or {
-      position: absolute;
-      width: 48px;
-      height: 48px;
-      left: calc(50% - 24px);
-      bottom: -24px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 100%;
-      background-color: black;
-      color: white;
-
-      font-size: 18px;
-      font-weight: bold;
-      text-transform: uppercase;
+    app-static-measure-card {
+      display: block;
+      margin: 20px 0;
     }
   }
 
   .browse .page-row-content {
+    padding-top: 77px;
     display: flex;
     flex-direction: column;
 
     .heading {
-      @include page-subheading;
       margin-bottom: 32px;
-    }
-
-    .statistics {
-      display: flex;
-      align-items: center;
-      margin-bottom: 32px;
-
-      .statistic {
-        flex: 1 0 1px;
-        padding: 16px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .graphic {
-          flex-shrink: 0;
-          box-sizing: border-box;
-
-          width: 200px;
-          height: 200px;
-          border-radius: 100%;
-          margin-right: 32px;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          .headline-figure {
-            @include headline-figure;
-          }
-
-          &.percentage-graphic {
-            border: 16px solid $lighter-medium-grey;
-            border-top-color: transparent;
-            transform: rotate(45deg);
-
-            .headline-figure {
-              transform: rotate(-45deg);
-            }
-          }
-
-          &.money-graphic {
-            background-color: $lighter-grey;
-          }
-        }
-
-        .text {
-          @include focus-text;
-        }
-      }
     }
 
     .full-width-card {
       margin-bottom: 24px;
+
+      ::ng-deep .large-video-card .text-container {
+        background-color: $lighter-grey;
+      }
     }
 
     .half-width-cards {

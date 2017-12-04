@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/switch-blue</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/switch-blue" stroke="#01ABCE" stroke-width="3">
+            <g id="Group-4" transform="translate(0.000000, 5.000000)">
+                <path d="M6,13 C6,20.1797017 11.8202983,26 19,26 L19,26 M30,13 C30,5.82029825 24.1797017,0 17,0" id="Oval-5"></path>
+                <polyline id="Rectangle-11" transform="translate(6.000000, 13.000000) rotate(45.000000) translate(-6.000000, -13.000000) " points="2 17 2 9 2 9 10 9"></polyline>
+                <polyline id="Rectangle-11-Copy" transform="translate(30.000000, 13.000000) scale(1, -1) rotate(45.000000) translate(-30.000000, -13.000000) " points="26 17 26 9 26 9 34 9"></polyline>
+                <path d="M30,18 L30,13" id="Path-4-Copy"></path>
+                <path d="M6,13 L6,8" id="Path-4"></path>
+            </g>
+        </g>
+    </g>
+</svg>
