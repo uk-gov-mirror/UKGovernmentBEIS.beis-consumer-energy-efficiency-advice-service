@@ -49,6 +49,7 @@
 
       &::after {
         position: absolute;
+        top: 6px;
         right: calc(-1 * #{$progress-indicator-height} / (2 * #{$SQRT2}));
         content: '';
         transform: rotate(-45deg);
