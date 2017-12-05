@@ -1,3 +1,5 @@
+@import "styles/var/colors";
+
 .postcode-epc-question {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,7 @@
   .icon-search {
     height: 30px;
     width: 30px;
+    stroke: $dark-grey;
     cursor: pointer;
     background: none;
     border: none;

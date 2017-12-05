@@ -65,14 +65,16 @@ $animation-duration-vertical: 0.5s;
           min-width: 1px;
         }
 
-        .icon-search {
+        .icon {
           height: 20px;
           width: 20px;
+          stroke: $primary-blue;
           cursor: pointer;
           background: none;
           border: none;
           outline: none;
           padding: 0;
+          flex-shrink: 0;
 
           &:focus {
             height: 24px;
