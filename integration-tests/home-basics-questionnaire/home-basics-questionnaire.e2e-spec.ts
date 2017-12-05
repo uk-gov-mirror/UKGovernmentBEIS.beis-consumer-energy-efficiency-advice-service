@@ -12,7 +12,7 @@ describe('Home basics questionnaire', () => {
 
     it('should display with no errors', () => {
         expect(page.hasError()).toBeFalsy();
-        expect(page.getHeading()).toContain('Here\'s what we know so far...');
+        expect(page.getHeading()).toContain('postcode');
     });
 
     it('should include core questions', () => {
