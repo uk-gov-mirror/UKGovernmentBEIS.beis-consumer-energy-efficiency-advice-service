@@ -1,5 +1,6 @@
 @import "styles/page";
 @import 'styles/var/colors';
+@import "~mathsass/dist/_constants";
 
 :host {
   background: white;
@@ -7,11 +8,10 @@
 
 .progress-indicator-component {
   $color-list: (
-          #2a759c, $primary-blue, #52cea9, #78d523
+    #2a759c, $primary-blue, #52cea9, #78d523
   );
 
   $progress-indicator-height: 40px;
-  $sqrt-two: 1.414;
 
   display: flex;
   height: $progress-indicator-height;
@@ -49,11 +49,11 @@
 
       &::after {
         position: absolute;
-        right: calc(-1 * #{$progress-indicator-height} / (2 * #{$sqrt-two}));
+        right: calc(-1 * #{$progress-indicator-height} / (2 * #{$SQRT2}));
         content: '';
         transform: rotate(-45deg);
-        width: calc(#{$progress-indicator-height} / #{$sqrt-two});
-        height: calc(#{$progress-indicator-height} / #{$sqrt-two});
+        width: calc(#{$progress-indicator-height} / #{$SQRT2});
+        height: calc(#{$progress-indicator-height} / #{$SQRT2});
       }
 
       @for $i from 1 through length($color-list) {
