@@ -64,7 +64,7 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // The start of optional property questions
-        expect(page.getHeading()).toContain('property questions are optional');
+        expect(page.getHeading()).toContain('answer more questions about your property');
         CommonPageHelpers.clickButton('Yes');
         CommonPageHelpers.sleep(1000);
 
