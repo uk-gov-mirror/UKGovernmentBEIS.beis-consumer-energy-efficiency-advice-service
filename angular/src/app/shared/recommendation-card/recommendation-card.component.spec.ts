@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {RecommendationCardComponent} from "./recommendation-card.component";
 import {EnergySavingRecommendation} from "./energy-saving-recommendation";
@@ -14,15 +15,20 @@ describe('RecommendationCardComponent', () => {
         costSavingPoundsPerYear: 100,
         energySavingKwhPerYear: 100,
         readMoreRoute: ('home-improvements/loft-insulation'),
-        iconClassName: 'icon-roofing',
+        iconPath: 'icons/thermostat.svg',
         headline: 'Loft insulation',
         summary: 'No description available'
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [RecommendationCardComponent],
-            imports: [RouterTestingModule]
+            declarations: [
+                RecommendationCardComponent
+            ],
+            imports: [
+                RouterTestingModule,
+                InlineSVGModule,
+            ]
         })
             .compileComponents();
     }));
@@ -46,11 +52,6 @@ describe('RecommendationCardComponent', () => {
     it('should display the correct summary', () => {
        const summaryElement = fixture.debugElement.query(By.css('.summary')).nativeElement;
        expect(summaryElement.innerText).toBe(recommendation.summary);
-    });
-
-    it('should display the correct icon', () => {
-        const iconElement = fixture.debugElement.query(By.css('.icon')).nativeElement;
-        expect(iconElement.classList).toContain(recommendation.iconClassName);
     });
 
     it('should display the correct investment amount', () => {
