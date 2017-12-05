@@ -10,6 +10,8 @@ import {NavigationBarComponent} from "./layout-components/navigation-bar/navigat
 import {WordpressPagesService} from "./shared/wordpress-pages-service/wordpress-pages.service";
 import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
 import {SVGCacheService} from "ng-inline-svg";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -25,7 +27,7 @@ describe('AppComponent', () => {
                 FooterComponent,
                 NavigationBarComponent
             ],
-            imports: [RouterTestingModule, FormsModule],
+            imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 GoogleAnalyticsService,

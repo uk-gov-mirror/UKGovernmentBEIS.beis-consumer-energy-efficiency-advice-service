@@ -7,7 +7,8 @@ import {HeaderComponent} from "./header.component";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {WordpressPageResponse} from "../../shared/wordpress-pages-service/wordpress-page-response";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
-
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -29,7 +30,7 @@ describe('HeaderComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [HeaderComponent],
-            imports: [FormsModule, RouterTestingModule],
+            imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [{provide: WordpressPagesService, useValue: mockWordpressPagesService}]
         })
             .compileComponents();
