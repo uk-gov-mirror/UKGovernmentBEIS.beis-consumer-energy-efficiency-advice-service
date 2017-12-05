@@ -1,65 +1,56 @@
 <div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
-    <div class="horizontal-line" *ngIf="epcRating"></div>
-    <div class="epc-rating-container" *ngIf="epcRating">
-        <div class="epc-rating-column">
-            <div class="epc-rating-row">
-                <div class="epc-rating-header">Your Energy Performance Certificate rating is</div>
-                <div class="epc-rating">{{EpcRating[epcRating]}}</div>
-            </div>
-            <div class="epc-rating-description">
-                <p>
-                    {{epcRatingRelativeDescription}}<br>
-                    Most homes appear around grade {{EpcRating[averageEpcRating]}}.
-                </p>
-                <p>
-                    The average cost of energy for a property in your band is £{{getAverageEnergyCost(epcRating)}}.
-                    <span *ngIf="epcRatingWorseThanAverage">
-                        For reference, for a Band {{EpcRating[averageEpcRating]}} this is around £{{getAverageEnergyCost(averageEpcRating)}}.
-                    </span>
-                </p>
-                <p>
-                    Continue this questionnaire to find out ways this could be improved.
-                </p>
+    <div class="epc-section">
+        <app-data-card heading="Your energy performance certificate rating is"
+                       [value]="EpcRating[epcRating]"
+                       [colorCircleClassName]="getEpcMetadata(epcRating).colorCircleClassName"></app-data-card>
+        <div class="epc-diagram-card">
+            <div class="heading">This means your home is low efficiency. Most homes appear around grade D.</div>
+            <div class="epc-diagram">
+                <img src="wp-content/themes/angular-theme/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg">
             </div>
         </div>
-        <div class="epc-rating-column">
-            <img src="wp-content/themes/angular-theme/dist/assets/images/epc-ratings/EPC_Image-{{EpcRating[epcRating]}}.png">
-        </div>
+        <app-data-card heading="The average cost of energy for a property in your band is"
+                       [value]="'£' + getEpcMetadata(epcRating).averageEnergyCost"></app-data-card>
+        <app-data-card heading="For reference, for a Band {{EpcRating[averageEpcRating]}} property this is around"
+                       [value]="'£' + getEpcMetadata(averageEpcRating).averageEnergyCost"></app-data-card>
     </div>
-    <div class="horizontal-line"></div>
     <div class="confirm-epc-details-section">
-        <div class="epc-details-container">
-            <div class="epc-details-header">We've found that your home is the following:</div>
-            <ol type="1" class="epc-details-list">
-                <li class="epc-detail" *ngIf="homeTypeDescription">
-                    <span>It is a </span><span>{{homeTypeDescription}}</span>
-                </li>
-                <li class="epc-detail" *ngIf="numberHabitableRooms">
-                    <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span
-                        *ngIf="numberHabitableRooms !== 1">s</span>
-                </li>
-                <li class="epc-detail" *ngIf="fuelTypeDescription">
-                    <span>It is heated by </span><span>{{fuelTypeDescription}}</span>
-                </li>
-                <li class="epc-detail" *ngIf="electricityTariffDescription">
-                    <span>You have </span><span>{{electricityTariffDescription === 'off peak' ? 'an' : 'a'}}</span>
-                    <span>{{electricityTariffDescription}}</span><span> electricity tariff</span>
-                </li>
-                <li class="epc-detail" *ngIf="localAuthorityDescription">
-                    <span>The local authority is </span><span>{{localAuthorityDescription}}</span>
-                </li>
-            </ol>
-        </div>
-        <div class="confirm-epc-details">
-            <div class="confirm-epc-details-row">
-                <div class="confirm-epc-details-question">Are these details correct?</div>
-                <button class="confirm-epc-details-button" (click)="confirmEpcDetails()">Yes</button>
-                <button class="confirm-epc-details-button" (click)="rejectEpcDetails()">No</button>
+        <div class="confirm-epc-details-background"></div>
+        <div class="epc-details-header">From your EPC we've found that your home is the following:</div>
+        <div class="confirm-epc-details-body">
+            <div class="epc-details-container">
+                <ol type="1" class="epc-details-list">
+                    <li class="epc-detail" *ngIf="homeTypeDescription">
+                        <span>It is a </span><span>{{homeTypeDescription}}</span>
+                    </li>
+                    <li class="epc-detail" *ngIf="numberHabitableRooms">
+                        <span>It has </span><span>{{numberHabitableRooms}}</span><span> habitable room</span><span
+                            *ngIf="numberHabitableRooms !== 1">s</span>
+                    </li>
+                    <li class="epc-detail" *ngIf="fuelTypeDescription">
+                        <span>It is heated by </span><span>{{fuelTypeDescription}}</span>
+                    </li>
+                    <li class="epc-detail" *ngIf="electricityTariffDescription">
+                        <span>You have </span><span>{{electricityTariffDescription === 'off peak' ? 'an' : 'a'}}</span>
+                        <span>{{electricityTariffDescription}}</span><span> electricity tariff</span>
+                    </li>
+                    <li class="epc-detail" *ngIf="localAuthorityDescription">
+                        <span>The local authority is </span><span>{{localAuthorityDescription}}</span>
+                    </li>
+                </ol>
             </div>
-            <div class="confirm-epc-details-row">
-                <button class="need-more-details-button" (click)="confirmEpcDetails()">Let's get a few more details to
-                    get a better picture.
-                </button>
+            <div class="confirm-epc-details">
+                <div class="confirm-epc-details-row">
+                    <div class="confirm-epc-details-question">Are these details correct?</div>
+                    <button class="confirm-epc-details-button yes-button" (click)="confirmEpcDetails()">Yes</button>
+                    <button class="confirm-epc-details-button no-button" (click)="rejectEpcDetails()">No</button>
+                </div>
+                <div class="confirm-epc-details-row">
+                    <button class="need-more-details-button" (click)="confirmEpcDetails()">
+                        <div class="button-main">Great! Let's get a few more details</div>
+                        <div class="button-go">GO</div>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

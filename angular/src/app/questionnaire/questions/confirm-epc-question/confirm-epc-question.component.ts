@@ -10,6 +10,11 @@ import {
     getElectricityTariffFromEpc
 } from "../electricity-tariff-question/electricity-tariff";
 
+interface EpcMetadata {
+    averageEnergyCost: number,
+    colorCircleClassName: string
+}
+
 @Component({
     selector: 'confirm-epc',
     templateUrl: './confirm-epc-question.component.html',
@@ -20,14 +25,14 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
 
-    private static readonly AVERAGE_ENERGY_COSTS: { [epcRating: number]: number } = {
-        [EpcRating.A]: 700,
-        [EpcRating.B]: 700,
-        [EpcRating.C]: 1000,
-        [EpcRating.D]: 1400,
-        [EpcRating.E]: 1650,
-        [EpcRating.F]: 2200,
-        [EpcRating.G]: 2850
+    private static readonly EPC_METADATA: { [epcRating: number]: EpcMetadata } = {
+        [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
+        [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
+        [EpcRating.C]: {averageEnergyCost: 1000, colorCircleClassName: 'green'},
+        [EpcRating.D]: {averageEnergyCost: 1400, colorCircleClassName: 'amber'},
+        [EpcRating.E]: {averageEnergyCost: 1650, colorCircleClassName: 'amber'},
+        [EpcRating.F]: {averageEnergyCost: 2200, colorCircleClassName: 'red'},
+        [EpcRating.G]: {averageEnergyCost: 2850, colorCircleClassName: 'red'}
     };
 
     EpcRating = EpcRating;
@@ -60,8 +65,8 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         return this.epcRating > ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
     }
 
-    getAverageEnergyCost(epcRating: EpcRating): number {
-        return ConfirmEpcQuestionComponent.AVERAGE_ENERGY_COSTS[epcRating];
+    getEpcMetadata(epcRating: EpcRating): EpcMetadata {
+        return ConfirmEpcQuestionComponent.EPC_METADATA[epcRating];
     }
 
     get response(): EpcConfirmation {
