@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {BoilerResultsPageComponent} from "./boiler-results-page.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
@@ -47,6 +48,7 @@ describe('BoilerResultsPageComponent', () => {
             ],
             imports: [
                 RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,

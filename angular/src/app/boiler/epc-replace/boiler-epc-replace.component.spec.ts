@@ -3,6 +3,7 @@ import {By} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {BoilerEpcReplaceComponent} from "./boiler-epc-replace.component";
 import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-model-lookup.component";
@@ -85,6 +86,7 @@ describe('BoilerEpcReplaceComponent', () => {
             imports: [
                 RouterTestingModule,
                 FormsModule,
+                InlineSVGModule,
             ],
             providers: [
                 {provide: EpcApiService, useValue: epcApiServiceStub},

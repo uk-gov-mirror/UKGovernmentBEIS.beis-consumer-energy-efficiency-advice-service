@@ -10,12 +10,12 @@ export class EnergySavingRecommendation {
                 public readMoreRoute: string,
                 public headline: string,
                 public summary: string,
-                public iconClassName: string) {
+                public iconPath: string) {
     }
 
     static fromResponseData(energySavingMeasureResponse: MeasureResponse,
                             recommendationMetadata: MeasureContent,
-                            iconClassName: string): EnergySavingRecommendation {
+                            iconPath: string): EnergySavingRecommendation {
         return new EnergySavingRecommendation(
             Math.floor(Math.random() * 99) + 1,
             energySavingMeasureResponse.cost_saving,
@@ -23,7 +23,7 @@ export class EnergySavingRecommendation {
             parse(recommendationMetadata.acf.featured_page).pathname,
             recommendationMetadata.acf.headline,
             recommendationMetadata.acf.summary,
-            iconClassName,
+            iconPath,
         );
     }
 }

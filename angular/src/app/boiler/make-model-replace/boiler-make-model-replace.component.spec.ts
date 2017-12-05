@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
 import {Observable} from "rxjs/Observable";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {BoilerMakeModelReplaceComponent} from "./boiler-make-model-replace.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
@@ -55,6 +56,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
             ],
             imports: [
                 RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 {provide: GasAndOilBoilersService, useValue: gasAndOilBoilersServiceStub},
