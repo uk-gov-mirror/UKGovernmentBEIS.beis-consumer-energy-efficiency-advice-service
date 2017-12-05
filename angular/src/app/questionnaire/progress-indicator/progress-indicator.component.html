@@ -2,6 +2,11 @@
     <div class="progress-indicator">
         <div class="pre-questionnaire-sections"></div>
         <div class="questionnaire-sections">
+            <div class="questionnaire-section information-section">
+                <span class="journey-heading" *ngIf="journeyHeading !== null">{{journeyHeading}}</span>
+                <span class="clock" [inlineSVG]="'icons/timer.svg'"></span>
+                <span class="time-needed">5 mins</span>
+            </div>
             <div class="questionnaire-section" *ngFor="let questionnaireSection of questionnaireSections"
                  [style.flex-basis]="getFlexBasis(questionnaireSection)">
                 <div class="question-type-icon-container">
