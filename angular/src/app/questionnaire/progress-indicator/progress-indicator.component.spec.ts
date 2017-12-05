@@ -10,6 +10,8 @@ import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionMetadata} from "../base-question/question-metadata";
 import {QuestionBaseComponent} from "../base-question/question-base-component";
 import groupBy from "lodash-es/groupBy";
+import {InlineSVGModule} from "ng-inline-svg";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
@@ -78,6 +80,7 @@ describe('ProgressIndicatorComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ProgressIndicatorComponent],
+            imports: [InlineSVGModule, HttpClientTestingModule]
         })
             .compileComponents();
     }));
@@ -143,9 +146,7 @@ describe('ProgressIndicatorComponent', () => {
 
         // when
         const heatingSection = allQuestionnaireSections.find(section => {
-            const sectionIcon = section.query(By.css('.question-type-icon'));
-            const heatingIconClassName = QuestionTypeUtil.getIconClassName(QuestionType.Heating);
-            return sectionIcon.nativeElement.classList.contains(heatingIconClassName);
+            return !!(section.query(By.css('.question-type-icon .thermostat:not(.hidden)')).nativeElement);
         });
 
         // then

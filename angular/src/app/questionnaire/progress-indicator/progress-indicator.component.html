@@ -1,21 +1,29 @@
-<div class="progress-indicator-component page-row-content">
+<div class="progress-indicator-component">
     <div class="progress-indicator">
-        <div class="questionnaire-section" *ngFor="let questionnaireSection of questionnaireSections"
-             [style.flex-basis]="getFlexBasis(questionnaireSection)">
-            <div class="question-type-icon-container">
-                <div class="question-type-icon" [ngClass]="questionnaireSection.className"></div>
-                <div class="horizontal-dashed-line"></div>
-            </div>
-            <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
-                <button class="step-link"
-                        [attr.title]="getTitleText(question)"
-                        [attr.aria-label]="getTitleText(question)"
-                        [disabled]="!isAvailable(question.questionIndex)"
-                        [class.active]="question.questionIndex === currentQuestionIndex"
-                        [class.not-applicable]="!isApplicable(question.questionIndex)"
-                        (click)="clickedOnLink.emit(question.questionIndex)"></button>
-                <div class="horizontal-dashed-line"></div>
+        <div class="pre-questionnaire-sections"></div>
+        <div class="questionnaire-sections">
+            <div class="questionnaire-section" *ngFor="let questionnaireSection of questionnaireSections"
+                 [style.flex-basis]="getFlexBasis(questionnaireSection)">
+                <div class="question-type-icon-container">
+                    <div class="question-type-icon">
+                        <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionnaireSection.className !== 'icon-house'"></div>
+                        <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionnaireSection.className !== 'icon-thermostat'"></div>
+                        <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionnaireSection.className !== 'icon-person'"></div>
+                    </div>
+                    <div class="horizontal-dashed-line"></div>
+                </div>
+                <div *ngFor="let question of questionnaireSection.questions" class="progress-indicator-step">
+                    <button class="step-link"
+                            [attr.title]="getTitleText(question)"
+                            [attr.aria-label]="getTitleText(question)"
+                            [disabled]="!isAvailable(question.questionIndex)"
+                            [class.active]="question.questionIndex === currentQuestionIndex"
+                            [class.not-applicable]="!isApplicable(question.questionIndex)"
+                            (click)="clickedOnLink.emit(question.questionIndex)"></button>
+                    <div class="horizontal-dashed-line"></div>
+                </div>
             </div>
         </div>
+        <div class="post-questionnaire-sections"></div>
     </div>
 </div>
