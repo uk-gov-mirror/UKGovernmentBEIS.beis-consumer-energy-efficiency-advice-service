@@ -44,7 +44,7 @@ export class BoilerPageMeasuresService {
                 undefined,
                 'Drop the thermostat by 1 degree',
                 undefined,
-                'icon-thermometer',
+                'icons/thermostat.svg',
             ),
         },
     ];

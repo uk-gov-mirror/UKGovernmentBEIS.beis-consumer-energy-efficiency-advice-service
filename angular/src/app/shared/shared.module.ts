@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {TimesPipe} from "./times/times.pipe";
 import {QuestionContentService} from "./question-content/question-content.service";
@@ -69,7 +70,8 @@ import {DataCardComponent} from "./data-card/data-card.component";
         HttpClientModule,
         RoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        InlineSVGModule,
     ],
 })
 export class SharedModule {
