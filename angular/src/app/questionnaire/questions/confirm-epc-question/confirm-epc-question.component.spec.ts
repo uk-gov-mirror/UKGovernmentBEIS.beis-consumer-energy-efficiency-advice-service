@@ -7,6 +7,7 @@ import {FuelType} from "../fuel-type-question/fuel-type";
 import {ElectricityTariff} from "../electricity-tariff-question/electricity-tariff";
 import {EpcResponse} from "../../../shared/postcode-epc-service/model/response/epc-response";
 import {EpcRating} from "../../../shared/postcode-epc-service/model/epc-rating";
+import {DataCardComponent} from "../../../shared/data-card/data-card.component";
 
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;
@@ -21,7 +22,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ConfirmEpcQuestionComponent],
+            declarations: [ConfirmEpcQuestionComponent, DataCardComponent],
             providers: [ResponseData],
         })
             .compileComponents();
