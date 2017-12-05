@@ -19,11 +19,13 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
     }
 
     private selectFirstAddress() {
-        element(by.css('app-postcode-epc-question .list-select .list-select-option:first-child')).click();
+        let e = element(by.css('app-postcode-epc-question .list-select .list-select-option:first-child'));
+        CommonPageHelpers.clickWhenClickable(e);
     }
 
     selectFirstHomeAge() {
-        element(by.css('app-home-age-question .home-age-option:first-child')).click();
+        let e = element(by.css('app-home-age-question .home-age-option:first-child'));
+        CommonPageHelpers.clickWhenClickable(e);
     }
 
     selectAddressIfApplicable() {

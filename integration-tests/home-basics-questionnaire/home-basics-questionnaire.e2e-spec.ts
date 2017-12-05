@@ -12,10 +12,10 @@ describe('Home basics questionnaire', () => {
 
     it('should display with no errors', () => {
         expect(page.hasError()).toBeFalsy();
-        expect(page.getHeading()).toContain('Here\'s what we know so far...');
+        expect(page.getHeading()).toContain('postcode');
     });
 
-    fit('should include core questions', () => {
+    it('should include core questions', () => {
         // Sleep 1s between each question to allow for animation
         // Postcode and mini-EPC, if exists
         page.enterPostcode('nw19pq');
@@ -55,7 +55,6 @@ describe('Home basics questionnaire', () => {
 
         // Home age
         expect(page.getHeading()).toContain('When was your home built');
-        page.selectFirstHomeAge();
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
@@ -65,7 +64,7 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // The start of optional property questions
-        expect(page.getHeading()).toContain('answer more questions about your property');
+        expect(page.getHeading()).toContain('property questions are optional');
         CommonPageHelpers.clickButton('Yes');
         CommonPageHelpers.sleep(1000);
 
