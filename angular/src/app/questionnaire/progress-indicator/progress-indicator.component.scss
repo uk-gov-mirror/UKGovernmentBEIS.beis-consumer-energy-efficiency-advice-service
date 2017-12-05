@@ -57,6 +57,27 @@
         height: calc(#{$progress-indicator-height} / #{$SQRT2});
       }
 
+      &.information-section {
+        flex: 0 0 auto;
+        text-transform: uppercase;
+        color: white;
+        font-size: 11px;
+        font-weight: bold;
+        padding-right: 18px;
+
+        .journey-heading {
+          margin-right: 35px;
+        }
+
+        .clock ::ng-deep svg {
+          fill: white;
+        }
+
+        .time-needed {
+          margin-left: 10px;
+        }
+      }
+
       @for $i from 1 through length($color-list) {
         &:nth-child(#{$i}) {
           z-index: #{10 - $i};

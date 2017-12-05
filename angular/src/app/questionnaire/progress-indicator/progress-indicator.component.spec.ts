@@ -80,7 +80,8 @@ describe('ProgressIndicatorComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ProgressIndicatorComponent],
-            imports: [InlineSVGModule, HttpClientTestingModule]
+            imports: [InlineSVGModule, HttpClientTestingModule],
+            providers: [ResponseData]
         })
             .compileComponents();
     }));
@@ -131,10 +132,11 @@ describe('ProgressIndicatorComponent', () => {
         const expectedNumberOfQuestionnaireSections = Object.keys(groupBy(TestQuestionnaire.questions, q => q.questionType)).length;
 
         // when
-        const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
+        const questionnaireSectionsExcludingInformationSection =
+            fixture.debugElement.queryAll(By.css('.questionnaire-section:not(.information-section)'));
 
         // then
-        expect(allQuestionnaireSections.length).toEqual(expectedNumberOfQuestionnaireSections);
+        expect(questionnaireSectionsExcludingInformationSection.length).toEqual(expectedNumberOfQuestionnaireSections);
     });
 
     it('should display the correct number of questions in each section', () => {
@@ -146,7 +148,7 @@ describe('ProgressIndicatorComponent', () => {
 
         // when
         const heatingSection = allQuestionnaireSections.find(section => {
-            return !!(section.query(By.css('.question-type-icon .thermostat:not(.hidden)')).nativeElement);
+            return !!section.query(By.css('.question-type-icon .thermostat'));
         });
 
         // then

@@ -5,6 +5,8 @@ import {Questionnaire} from "../base-questionnaire/questionnaire";
 import groupBy from "lodash-es/groupBy";
 import sortBy from "lodash-es/sortBy";
 import head from "lodash-es/head";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {getJourneyDescription, UserJourneyType} from "../../shared/response-data/user-journey-type";
 
 @Component({
     selector: 'progress-indicator',
@@ -16,11 +18,15 @@ export class ProgressIndicatorComponent implements OnInit {
     private static readonly ICONS_PER_SECTION = 1;
 
     questionnaireSections: QuestionnaireSection[];
+    journeyHeading: string;
     private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
     @Input() allQuestionsContent: AllQuestionsContent;
     @Input() questionnaire: Questionnaire;
     @Output() clickedOnLink: EventEmitter<number> = new EventEmitter();
+
+    constructor(private responseData: ResponseData) {
+    }
 
     ngOnInit() {
         const allQuestions = this.questionnaire.getQuestions();
@@ -46,6 +52,8 @@ export class ProgressIndicatorComponent implements OnInit {
         });
         this.totalNumberOfIconsAndQuestions = allQuestions.length +
             ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
+
+        this.journeyHeading = getJourneyDescription(this.responseData.userJourneyType);
     }
 
     isAvailable(questionIndex: number) {

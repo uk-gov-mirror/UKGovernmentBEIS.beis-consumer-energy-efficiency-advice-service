@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {ResponseData} from "../shared/response-data/response-data";
-import {UserJourneyType} from "../shared/response-data/user-journey-type";
+import {getJourneyDescription, UserJourneyType} from "../shared/response-data/user-journey-type";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
@@ -20,11 +20,12 @@ export class LandingPageComponent implements OnInit {
                 private pageService: WordpressPagesService) {
     }
 
-    @Input() heading: string;
     @Input() userJourneyType: UserJourneyType;
 
     questionContentError: boolean = false;
     postcodeQuestionReason: string;
+    heading: string;
+
     staticMeasures: StaticMeasure[] = [
         {
             iconClassName: 'icon-lightbulb',
@@ -54,6 +55,8 @@ export class LandingPageComponent implements OnInit {
                 });
         this.pageService.getLatestPages()
             .subscribe(pages => this.latestNews = pages);
+
+        this.heading = getJourneyDescription(this.userJourneyType);
     }
 
     onAddressSelected() {
