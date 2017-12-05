@@ -16,7 +16,7 @@ import {LocalAuthorityService} from "../../shared/local-authority-service/local-
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "../data-card/data-card.component";
+import {DataCardComponent} from "../../shared/data-card/data-card.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
@@ -242,7 +242,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(recommendationElements.length).toEqual(expectedNumberOfElements);
     });
 
-    it('should apply multiple filters additively', async(() => {
+    it('should show recommendations matching any of multiple selected filters', async(() => {
         // given
         fixture.detectChanges();
 
@@ -252,7 +252,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         // then
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
-        expect(recommendationElements.length).toEqual(0);
+        expect(recommendationElements.length).toEqual(3);
     }));
 
     it('should display energy calculations correctly', () => {

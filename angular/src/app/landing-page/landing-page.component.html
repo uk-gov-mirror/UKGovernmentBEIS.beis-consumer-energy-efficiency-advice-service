@@ -1,45 +1,39 @@
 <div class="landing-page">
     <div class="page-heading page-row">
         <div class="page-row-content">
-            <div class="heading-text">{{heading}}</div>
+            <div class="heading">{{heading}}</div>
         </div>
     </div>
     <div class="postcode page-row">
         <div class="page-row-content">
-            <div>
-                <div class="postcode-input">
-                    <span class="enter-postcode-text">Enter your postcode for personalised advice</span>
-                    <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
+            <div class="heading">Enter your postcode for personalised advice</div>
+            <div class="postcode-input">
+                <div *ngIf="!questionContentError" class="postcode-reason-container">
+                    <div *ngIf="postcodeQuestionReason; else spinner">{{postcodeQuestionReason}}</div>
+                    <ng-template #spinner>
+                        <div class="loading-spinner"></div>
+                    </ng-template>
                 </div>
+                <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
             </div>
-            <div *ngIf="!questionContentError" class="postcode-reason-container">
-                <app-question-reason *ngIf="postcodeQuestionReason; else spinner"
-                                     [isExpanded]="true"
-                                     [questionReason]="postcodeQuestionReason"></app-question-reason>
-                <ng-template #spinner>
-                    <div class="loading-spinner"></div>
-                </ng-template>
+        </div>
+    </div>
+    <div class="static-measures page-row">
+        <div class="page-row-content">
+            <div class="heading">Measures you can take right now</div>
+            <div class="body-text">
+                Here are a few things you can do immediately to help save money.<br/>
+                If you answer some more questions we can recommend other measures you can take.
             </div>
-            <div class="or">Or</div>
+            <div class="static-measure-cards">
+                <app-static-measure-card *ngFor="let staticMeasure of staticMeasures"
+                                         [measure]="staticMeasure"></app-static-measure-card>
+            </div>
         </div>
     </div>
     <div class="browse page-row">
         <div class="page-row-content">
-            <div class="heading">Browse articles, videos and tips</div>
-            <div class="statistics">
-                <div class="statistic">
-                    <div class="graphic percentage-graphic">
-                        <span class="headline-figure">35%</span>
-                    </div>
-                    <div class="text">of heat loss is through walls</div>
-                </div>
-                <div class="statistic">
-                    <div class="graphic money-graphic">
-                        <span class="headline-figure">£150</span>
-                    </div>
-                    <div class="text">annual saving by implementing loft insulation</div>
-                </div>
-            </div>
+            <div class="heading">Advice and tips to reduce your energy bills</div>
             <div class="full-width-card">
                 <app-large-video-card title="Loft conversions: What you should know"></app-large-video-card>
             </div>

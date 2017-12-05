@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {YourPlanSummaryComponent} from "./your-plan-summary.component";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {DataCardComponent} from "../data-card/data-card.component";
+import {DataCardComponent} from "../../shared/data-card/data-card.component";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 
 describe('YourPlanSummaryComponent', () => {

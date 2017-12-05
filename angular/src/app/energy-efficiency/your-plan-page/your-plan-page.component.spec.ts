@@ -9,7 +9,7 @@ import {YourPlanSummaryComponent} from "../your-plan-summary/your-plan-summary.c
 import {RecommendationStepCardComponent} from "./recommendation-step-card/recommendation-step-card.component";
 import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
 import {DownloadPlanComponent} from "./download-plan/download-plan.component";
-import {DataCardComponent} from "../data-card/data-card.component";
+import {DataCardComponent} from "../../shared/data-card/data-card.component";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";

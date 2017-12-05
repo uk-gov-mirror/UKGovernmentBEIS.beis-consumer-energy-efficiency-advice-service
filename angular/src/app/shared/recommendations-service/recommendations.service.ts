@@ -25,6 +25,7 @@ export class RecommendationsService {
 
     private cachedResponseData: ResponseData;
     private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
+    cachedCurrentScore: number;
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
@@ -46,6 +47,10 @@ export class RecommendationsService {
             .filter(recommendation => recommendation.isAddedToPlan)
     }
 
+    get potentialScore(): number {
+        return this.cachedCurrentScore + this.getRecommendationsInPlan().length;
+    }
+
     private refreshAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
         return Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
@@ -57,6 +62,7 @@ export class RecommendationsService {
                     if (!energyCalculation) {
                         throw new Error('Received empty energy calculation response');
                     }
+                    this.cachedCurrentScore = parseInt(energyCalculation['Current-SAP-Rating']);
                     const habitRecommendations = RecommendationsService
                         .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants

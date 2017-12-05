@@ -9,7 +9,6 @@ import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency-questi
 import {YourPlanPageComponent} from "./your-plan-page/your-plan-page.component";
 import {YourPlanPageGuard} from "./your-plan-page/your-plan-page.guard";
 import {YourPlanSummaryComponent} from "./your-plan-summary/your-plan-summary.component";
-import {DataCardComponent} from "./data-card/data-card.component";
 import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results/energy-efficiency-results.component";
 import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-results/energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
 import {RecommendationFilterControlComponent} from "./energy-efficiency-results/recommendation-filter-control/recommendation-filter-control.component";
@@ -24,7 +23,6 @@ import {YourPlanFooterComponent} from "./energy-efficiency-results/your-plan-foo
         EnergyEfficiencyQuestionnaireComponent,
         YourPlanPageComponent,
         YourPlanSummaryComponent,
-        DataCardComponent,
         EnergyEfficiencyResultsComponent,
         EnergyEfficiencyRecommendationCardComponent,
         RecommendationFilterControlComponent,

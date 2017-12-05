@@ -10,10 +10,12 @@
       outline: none;
       border: none;
 
-      &.deselected:not(:focus):not(:hover) {
+      &.deselected:not(:hover) {
         background-color: white;
         color: $light-medium-grey;
       }
+
+      // TODO: Add a focus style for keyboard accessibility
 
       &.clear-filters {
         background-color: $dark-medium-grey;

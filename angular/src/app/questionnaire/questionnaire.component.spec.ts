@@ -63,8 +63,8 @@ describe('QuestionnaireComponent', () => {
             super(
                 new ResponseData(),
                 [
-                    new TestQuestion(TestQuestionComponent, questionId, QuestionType.User),
-                    new TestQuestion(TestQuestionComponent, anotherQuestionId, QuestionType.User)
+                    new TestQuestion(TestQuestionComponent, questionId, QuestionType.House),
+                    new TestQuestion(TestQuestionComponent, anotherQuestionId, QuestionType.House)
                 ]
             );
         }

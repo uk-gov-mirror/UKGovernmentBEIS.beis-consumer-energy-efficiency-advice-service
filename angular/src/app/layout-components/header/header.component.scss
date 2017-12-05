@@ -19,6 +19,11 @@ $animation-duration-vertical: 0.5s;
       margin-right: 20px;
       align-items: center;
 
+      .ehc-logo {
+        height: 62px;
+        margin-left: -80px;
+      }
+
       .vertical-line {
         border-left: 1px solid black;
         margin: 0 20px;

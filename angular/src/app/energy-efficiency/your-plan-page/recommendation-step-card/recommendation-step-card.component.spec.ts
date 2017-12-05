@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
-import {DataCardComponent} from "../../data-card/data-card.component";
+import {DataCardComponent} from "../../../shared/data-card/data-card.component";
 import {YourPlanSummaryComponent} from "../../your-plan-summary/your-plan-summary.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {RecommendationStepCardComponent} from "./recommendation-step-card.component";

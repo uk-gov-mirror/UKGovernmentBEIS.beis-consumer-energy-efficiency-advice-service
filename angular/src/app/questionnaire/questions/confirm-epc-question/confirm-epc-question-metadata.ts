@@ -10,7 +10,7 @@ export class ConfirmEpcQuestionMetadata extends QuestionMetadata {
         super(
             ConfirmEpcQuestionComponent,
             'confirm_epc',
-            QuestionType.User
+            QuestionType.House
         );
     }
 

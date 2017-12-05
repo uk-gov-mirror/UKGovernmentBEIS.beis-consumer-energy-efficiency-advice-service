@@ -6,7 +6,7 @@
             <div class="heading-text">Your energy recommendations</div>
             <app-data-card
                     heading="Your current score is"
-                    value="55"
+                    [value]="energyCalculations.currentScore"
                     colorCircleClassName="amber"
             ></app-data-card>
             <app-data-card

@@ -3,6 +3,7 @@ import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-ser
 export class EnergyCalculations {
     currentEnergyBillPoundsPerYear: number;
     potentialEnergyBillSavingPoundsPerYear: number;
+    currentScore: number;
     currentEpcRating: string;
     potentialEpcRating: string;
 
@@ -20,6 +21,7 @@ export class EnergyCalculations {
         this.potentialEnergyBillSavingPoundsPerYear = Math.round(potentialEnergyBillSavingPoundsPerYear);
         this.currentEpcRating = energyCalculationResponse['Current-SAP-Band'];
         // TODO: get potential EPC rating from Energy Calculation API too
+        this.currentScore = parseInt(energyCalculationResponse['Current-SAP-Rating']);
         this.potentialEpcRating = null;
         const co2EmissionsPerYearTonnesUnrounded = energyCalculationResponse['Total-CO2-Emissions']/1000;
         this.currentCo2EmissionsPerYearTonnes = Math.round(co2EmissionsPerYearTonnesUnrounded * 10)/10;

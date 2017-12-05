@@ -11,11 +11,12 @@ import {ArticleCardComponent} from "../article-card/article-card.component";
 import {LandingPageComponent} from "../landing-page.component";
 import {NavigationBarComponent} from "../../layout-components/navigation-bar/navigation-bar.component";
 import {ResponseData} from "../../shared/response-data/response-data";
-import {QuestionReasonComponent} from "../../shared/question-reason/question-reason.component";
 import {QuestionContentService} from "../../shared/question-content/question-content.service";
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {StaticMeasureCardComponent} from "../static-measure-card/static-measure-card.component";
+import {DataCardComponent} from "../../shared/data-card/data-card.component";
 
 
 describe('ReduceBillsComponent', () => {
@@ -35,8 +36,9 @@ describe('ReduceBillsComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
-                QuestionReasonComponent,
-                PostcodeLookupComponent
+                PostcodeLookupComponent,
+                StaticMeasureCardComponent,
+                DataCardComponent
             ],
             imports: [
                 CommonModule,

@@ -10,6 +10,7 @@ export interface EnergyCalculationResponse {
     'Total-Heating-Cost': number,
     'Total-Hot-Water-Cost': number,
     'Current-SAP-Band': string,
+    'Current-SAP-Rating': string,
     'Potential-SAP-Band': string,
     measures: MeasuresResponse<EnergySavingMeasureResponse>,
     habit_measures: MeasuresResponse<HabitMeasureResponse>

@@ -1,0 +1,67 @@
+@import "styles/var/colors";
+@import "styles/mixins/font";
+
+.static-measure-card {
+  background-color: white;
+  display: flex;
+
+  .heading {
+    @include card-heading;
+  }
+
+  .card-section {
+    padding: 48px 0 32px;
+
+    &:not(:last-child) {
+      border-right: 2px solid $lighter-grey;
+    }
+  }
+
+  .basic-info {
+    flex: 0 0 40%;
+    display: flex;
+    color: $headline-dark-blue;
+
+    .recommendation-icon {
+      flex: 0 0 80px;
+      display: flex;
+      justify-content: space-around;
+      padding-top: 12px;
+
+      .icon {
+        width: 36px;
+      }
+    }
+
+    .value {
+      font-size: 48px;
+      line-height: 58px;
+      flex: 0 0 120px;
+    }
+
+    .heading {
+      padding-top: 4px;
+      color: $headline-dark-blue;
+      padding-right: 32px;
+    }
+  }
+
+  .recommendation-basic-details {
+    padding-right: 32px;
+    padding-left: 32px;
+
+    .summary-row {
+      padding-top: 8px;
+      font-size: 13px;
+      line-height: 15px;
+    }
+  }
+
+  app-data-card {
+    padding-right: 16px;
+
+    ::ng-deep .data-card .number-value {
+      margin: 0;
+    }
+  }
+}
