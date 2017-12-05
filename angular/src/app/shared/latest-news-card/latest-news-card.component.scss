@@ -34,7 +34,7 @@
 
   .heading {
     @include card-heading-small;
-    padding: 20px 20px;
+    padding: 20px 0;
     flex-grow: 1;
     flex-shrink: 0;
     color: $dark-grey;

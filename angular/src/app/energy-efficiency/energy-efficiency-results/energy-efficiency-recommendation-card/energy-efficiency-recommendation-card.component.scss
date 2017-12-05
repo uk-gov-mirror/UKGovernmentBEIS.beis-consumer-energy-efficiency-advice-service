@@ -137,6 +137,7 @@ $icon-column-width: $add-to-plan-column-width;
         background: none;
         border: none;
         outline: none;
+        max-width: 100%;
 
         &:focus {
           text-decoration: underline;
