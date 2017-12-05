@@ -31,14 +31,14 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
       flex: 0 0 auto;
       width: $investment-box-width;
       background-color: $light-grey;
-      font-weight: 800;
+      font-weight: bold;
     }
 
     &.savings {
       flex: 0 0 auto;
       width: $savings-box-width;
       background-color: $dark-medium-grey;
-      font-weight: 800;
+      font-weight: bold;
       color: white;
     }
 
@@ -46,13 +46,14 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      padding: 32px 48px;
+      padding: 32px 0;
 
       .box-heading {
         @include body-uppercase;
         font-weight: normal;
         text-align: center;
         height: 48px;
+        margin: 0 48px;
       }
 
       .box-content {
@@ -78,6 +79,8 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
       align-items: center;
 
       .icon {
+        height: 38px;
+        width: 38px;
         margin-right: 16px;
       }
 

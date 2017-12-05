@@ -10,7 +10,7 @@
                 <div class="recommendations-list-item"
                      *ngFor="let recommendation of recommendations"
                      (click)="removeFromPlan(recommendation)">
-                    <div class="list-icon">></div>
+                    <div class="list-icon" [inlineSVG]="'controls/do-chevron.svg'"></div>
                     <button class="recommendation-name">{{recommendation.headline}}</button>
                     <div class="remove-recommendation-button" [inlineSVG]="'controls/remove.svg'"></div>
                 </div>

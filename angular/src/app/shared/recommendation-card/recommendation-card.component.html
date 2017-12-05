@@ -1,7 +1,7 @@
 <div class="recommendation-card">
     <div class="box description">
         <div class="content">
-            <span class="icon" [ngClass]="recommendation.iconClassName"></span>
+            <span [inlineSVG]="recommendation.iconPath" class="icon"></span>
             <div class="explanation">
                 <div class="heading">{{recommendation.headline}}</div>
                 <div class="summary">{{recommendation.summary}}</div>

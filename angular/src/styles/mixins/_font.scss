@@ -5,24 +5,40 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 
 @font-face {
   font-family: 'Gotham';
-  src: url('/assets/fonts/gotham-medium-webfont.woff') format('woff');
-  src: url('/assets/fonts/gotham-medium-webfont.woff2') format('woff2');
+  src: url('/assets/fonts/GothamMedium.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/gotham-medium-webfont.woff2') format('woff2'),
+       url('/assets/fonts/gotham-medium-webfont.woff') format('woff'),
+       url('/assets/fonts/GothamMedium.ttf') format('treutype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Gotham';
-  src: url('/assets/fonts/gotham-bold-webfont.woff') format('woff');
-  src: url('/assets/fonts/gotham-bold-webfont.woff2') format('woff2');
+  src: url('/assets/fonts/GothamMedium.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/gotham-medium-webfont.woff2') format('woff2'),
+       url('/assets/fonts/gotham-medium-webfont.woff') format('woff'),
+       url('/assets/fonts/GothamMedium.ttf') format('treutype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/assets/fonts/GothamBold.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/gotham-bold-webfont.woff2') format('woff2'),
+       url('/assets/fonts/gotham-bold-webfont.woff') format('woff'),
+       url('/assets/fonts/GothamBold.ttf') format('treutype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'GothamLight';
-  src: url('/assets/fonts/gotham-light-webfont.woff') format('woff');
-  src: url('/assets/fonts/gotham-light-webfont.woff2') format('woff2');
+  src: url('/assets/fonts/GothamLight.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/gotham-light-webfont.woff2') format('woff2'),
+       url('/assets/fonts/gotham-light-webfont.woff') format('woff'),
+       url('/assets/fonts/GothamLight.ttf') format('treutype');
   font-weight: normal;
   font-style: normal;
 }

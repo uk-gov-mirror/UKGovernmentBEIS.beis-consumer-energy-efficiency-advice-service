@@ -31,6 +31,11 @@ $do-button-right-chevron-width: 30px;
         @include card-heading;
       }
 
+      .subheading {
+        font-size: 16px;
+        line-height: 20px;
+      }
+
       .recommendations-list {
         margin: 0;
         padding: 0;
@@ -53,10 +58,11 @@ $do-button-right-chevron-width: 30px;
           }
 
           .list-icon {
-            color: $focus-text-blue;
+            fill: $focus-text-blue;
             margin-right: 10px;
-            font-stretch: extra-condensed;
-            font-weight: bold;
+            height: 12px;
+            width: 10px;
+            line-height: 0;
           }
 
           .recommendation-name {
@@ -67,6 +73,8 @@ $do-button-right-chevron-width: 30px;
             margin: 0;
             cursor: inherit;
             font-family: $font-family-light;
+            font-size: 16px;
+            line-height: 20px;
           }
 
           .remove-recommendation-button {

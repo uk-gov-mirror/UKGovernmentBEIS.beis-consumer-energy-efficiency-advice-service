@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {InlineSVGModule} from "ng-inline-svg";
 
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
@@ -21,7 +22,8 @@ import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress
         CommonModule,
         FormsModule,
         RoutingModule,
-        SharedModule
+        SharedModule,
+        InlineSVGModule
     ],
 })
 export class LayoutComponentsModule {
