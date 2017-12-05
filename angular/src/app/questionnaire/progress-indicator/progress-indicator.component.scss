@@ -85,7 +85,7 @@
           margin-left: 10px;
           margin-right: 10px;
 
-          :not(.person-showering) ::ng-deep svg {
+          ::ng-deep svg {
             width: 28px;
             height: 28px;
           }
@@ -113,19 +113,6 @@
 
             circle {
               fill: white;
-            }
-          }
-
-          .person-showering ::ng-deep svg {
-            width: 32px;
-            height: 32px;
-
-            path {
-              fill: white;
-            }
-
-            g#Group-15 path {
-              stroke: white;
             }
           }
         }
