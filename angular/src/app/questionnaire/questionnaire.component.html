@@ -5,12 +5,10 @@
                         [currentQuestionIndex]="currentQuestionIndex"
                         [allQuestionsContent]="allQuestionsContent"
                         (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
-    <span class="question-type-icon"
-          [ngClass]="{'with-extra-vertical-offset': questionTypeIconClassName === 'icon-person-showering'}">
-        <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionTypeIconClassName !== 'icon-person'"></div>
+    <span class="question-type-icon">
         <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionTypeIconClassName !== 'icon-house'"></div>
         <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionTypeIconClassName !== 'icon-thermostat'"></div>
-        <div class="person-showering" [inlineSVG]="'question-types/behaviour.svg'" [hidden]="questionTypeIconClassName !== 'icon-person-showering'"></div>
+        <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionTypeIconClassName !== 'icon-person'"></div>
     </span>
     <span class="question-type-icon-baseline"></span>
     <div class="question-heading-container">

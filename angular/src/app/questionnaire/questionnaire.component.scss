@@ -23,10 +23,6 @@
     margin-top: 15vh;
     margin-bottom: -4px;
 
-    &.with-extra-vertical-offset {
-      margin-bottom: -9px;
-    }
-
     .person ::ng-deep svg {
       path {
         fill: $primary-blue;
@@ -50,16 +46,6 @@
 
       circle {
         fill: $primary-blue;
-      }
-    }
-
-    .person-showering ::ng-deep svg {
-      path {
-        fill: $primary-blue;
-      }
-
-      g#Group-15 path {
-        stroke: $primary-blue;
       }
     }
   }
