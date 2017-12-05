@@ -47,8 +47,10 @@
                 </div>
                 <div class="confirm-epc-details-row">
                     <button class="need-more-details-button" (click)="confirmEpcDetails()">
-                        <div class="button-main">Great! Let's get a few more details</div>
-                        <div class="button-go">GO</div>
+                        <div class="need-more-details-body">
+                            <div class="button-main">Great! Let's get a few more details</div>
+                            <div class="button-go">GO</div>
+                        </div>
                     </button>
                 </div>
             </div>
@@ -57,9 +59,12 @@
 </div>
 <div class="question-component confirm-epc-question" *ngIf="!isEpcAvailable">
     <div class="need-more-details-container">
-        <div>We couldn't find any details about energy efficiency at your property based on your postcode.</div>
-        <button class="need-more-details-button" (click)="rejectEpcDetails()">Let's get a few more details to get a
-            better picture.
+        <div class="no-details">We couldn't find any details about energy efficiency at your property based on your postcode.</div>
+        <button class="need-more-details-button" (click)="rejectEpcDetails()">
+            <div class="need-more-details-body">
+                <div class="button-main">Let's get a few more details</div>
+                <div class="button-go">GO</div>
+            </div>
         </button>
     </div>
 </div>
