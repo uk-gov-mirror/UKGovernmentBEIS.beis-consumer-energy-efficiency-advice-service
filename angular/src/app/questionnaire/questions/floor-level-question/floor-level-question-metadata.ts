@@ -14,7 +14,7 @@ export class FloorLevelQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.floorLevels !== undefined;
+        return responseData.floorLevels !== undefined && responseData.floorLevels.length > 0;
     }
 
     isApplicable(responseData: ResponseData): boolean {
