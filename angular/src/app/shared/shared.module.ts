@@ -3,6 +3,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {InlineSVGModule} from "ng-inline-svg";
+import {CookieService} from "ng2-cookies";
 
 import {TimesPipe} from "./times/times.pipe";
 import {QuestionContentService} from "./question-content/question-content.service";
@@ -91,7 +92,8 @@ export class SharedModule {
                 EnergySavingMeasureContentService,
                 GoogleAnalyticsService,
                 AssetsService,
-                RecommendationsService
+                RecommendationsService,
+                CookieService
             ]
         };
     }

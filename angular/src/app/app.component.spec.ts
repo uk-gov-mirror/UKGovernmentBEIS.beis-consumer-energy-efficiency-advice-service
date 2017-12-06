@@ -12,12 +12,18 @@ import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.servic
 import {SVGCacheService} from "ng-inline-svg";
 import {InlineSVGModule} from "ng-inline-svg";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {CookieService} from "ng2-cookies";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
     let app: AppComponent;
 
     const mockWordpressPagesService = {getTopLevelPages: () => Observable.of([])};
+
+    const mockCookieService = {
+        check: () => {},
+        set: () => {}
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -31,7 +37,8 @@ describe('AppComponent', () => {
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 GoogleAnalyticsService,
-                {provide: SVGCacheService, useValue: {setBaseUrl: () => {}}}
+                {provide: SVGCacheService, useValue: {setBaseUrl: () => {}}},
+                {provide: CookieService, useValue: mockCookieService}
             ]
         }).compileComponents();
     }));
