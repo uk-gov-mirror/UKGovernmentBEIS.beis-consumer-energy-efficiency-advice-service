@@ -12,7 +12,7 @@ import {CookieService} from "ng2-cookies";
 })
 export class AppComponent implements OnInit {
 
-    private static readonly ALPHA_ALERT_COOKIE_NAME = 'beis-dceas-alpha-alert-provided';
+    private static readonly ALPHA_ALERT_COOKIE_NAME = 'beis-dceas_alpha-alert-provided';
 
     constructor(
         private router: Router,
