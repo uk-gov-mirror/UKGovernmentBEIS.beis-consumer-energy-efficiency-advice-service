@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FloorLevel, getFloorLevelDescription} from "../floor-level-question/floor-level";
-import {pull} from "lodash";
+import pull from "lodash-es/pull";
 
 class FloorLevelOption {
     public readonly name: string;
