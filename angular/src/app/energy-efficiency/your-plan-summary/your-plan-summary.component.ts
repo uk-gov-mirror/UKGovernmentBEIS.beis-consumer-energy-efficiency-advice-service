@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {sumBy} from "lodash-es";
+import sumBy from "lodash-es/sumBy";
 import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 import {RoundingService} from "../../shared/rounding-service/rounding.service";

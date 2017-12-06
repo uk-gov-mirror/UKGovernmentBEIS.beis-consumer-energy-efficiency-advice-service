@@ -4,7 +4,7 @@ import {
     getTagClassName,
     getTagDescription
 } from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {keys} from "lodash-es";
+import keys from "lodash-es/keys";
 
 @Component({
     selector: 'app-recommendation-filter-control',

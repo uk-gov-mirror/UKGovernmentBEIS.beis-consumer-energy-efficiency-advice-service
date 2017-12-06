@@ -1,4 +1,4 @@
-import {values} from "lodash-es";
+import values from "lodash-es/values";
 import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
 
 export enum EnergyEfficiencyRecommendationTag {

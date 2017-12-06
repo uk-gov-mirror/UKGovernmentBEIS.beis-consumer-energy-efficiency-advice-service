@@ -5,7 +5,7 @@ import {FloorSpanQuestionComponent} from "./floor-span-question.component";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FloorLevel} from "../floor-level-question/floor-level";
 import {FormsModule} from "@angular/forms";
-import {keys} from "lodash-es";
+import keys from "lodash-es/keys";
 
 describe('FloorSpanQuestionComponent', () => {
     let fixture: ComponentFixture<FloorSpanQuestionComponent>;

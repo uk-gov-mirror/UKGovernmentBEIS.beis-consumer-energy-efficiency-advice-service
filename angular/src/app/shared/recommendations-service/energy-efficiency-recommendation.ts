@@ -6,7 +6,8 @@ import {
 } from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
-import {concat, head} from "lodash-es";
+import concat from "lodash-es/concat";
+import head from "lodash-es/head";
 import {StandaloneNationalGrant} from "../../grants/model/standalone-national-grant";
 import {NationalGrantForMeasure} from "../../grants/model/national-grant-for-measure";
 import {isEnergySavingMeasureResponse} from "../energy-calculation-api-service/response/energy-saving-measure-response";
