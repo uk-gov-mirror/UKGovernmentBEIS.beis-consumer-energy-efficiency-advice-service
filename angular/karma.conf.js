@@ -40,6 +40,10 @@ module.exports = function (config) {
           '--remote-debugging-port=9222'
         ]
       }
-    }
+    },
+    browserNoActivityTimeout : 60000, //default 10000
+    browserDisconnectTimeout : 10000, // default 2000
+    browserDisconnectTolerance : 1, // default 0
+    captureTimeout: 60000
   });
 };
