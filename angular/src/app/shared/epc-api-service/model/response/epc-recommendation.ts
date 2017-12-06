@@ -18,6 +18,6 @@ export class EpcRecommendation {
     }
 
     isBoilerReplacement() {
-        return this.improvementIdText.toLowerCase().includes('replace boiler');
+        return this.improvementIdText && this.improvementIdText.toLowerCase().includes('replace boiler');
     }
 }
