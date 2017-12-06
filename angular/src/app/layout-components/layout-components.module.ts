@@ -8,15 +8,18 @@ import {FooterComponent} from "./footer/footer.component";
 import {SharedModule} from "../shared/shared.module";
 import {RoutingModule} from "../app-routing.module";
 import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import { OneTimePopupComponent } from './one-time-popup/one-time-popup.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        OneTimePopupComponent
     ],
     exports: [
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        OneTimePopupComponent
     ],
     imports: [
         CommonModule,

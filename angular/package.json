@@ -26,6 +26,7 @@
     "lodash-es": "^4.17.4",
     "mathsass": "^0.10.1",
     "ng-inline-svg": "^3.4.0",
+    "ng2-cookies": "^1.0.12",
     "ng2-nouislider": "1.7.4",
     "nouislider": "^10.1.0",
     "rxjs": "^5.4.2",

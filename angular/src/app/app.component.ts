@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
-import 'rxjs/add/operator/distinctUntilChanged';
+import "rxjs/add/operator/distinctUntilChanged";
 import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
 import {SVGCacheService} from "ng-inline-svg";
 
@@ -10,6 +10,7 @@ import {SVGCacheService} from "ng-inline-svg";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
     constructor(
         private router: Router,
         private googleAnalyticsService: GoogleAnalyticsService,
