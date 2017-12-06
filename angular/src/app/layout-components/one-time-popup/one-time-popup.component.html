@@ -1,0 +1,13 @@
+<div class="one-time-popup" *ngIf="isDisplayed">
+    <div class="page-mask"></div>
+    <div class="alert-box">
+        <div class="text">
+            This is an Alpha. It is not intended to be fully functional, and in particular not all the
+            questions are taken into account when generating recommendations.<br><br>The final site would include more
+            detailed recommendations.
+        </div>
+        <form (submit)="handleOkPressed()">
+            <button type="submit" class="ok-button">OK</button>
+        </form>
+    </div>
+</div>

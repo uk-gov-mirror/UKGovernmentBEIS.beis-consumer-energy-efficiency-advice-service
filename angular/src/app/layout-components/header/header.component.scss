@@ -96,7 +96,7 @@ $animation-duration-vertical: 0.5s;
         display: flex;
         align-items: stretch;
         overflow: hidden;
-        z-index: 10;
+        z-index: 1;
 
         &.expanded {
           max-height: 300px;
