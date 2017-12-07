@@ -1,4 +1,5 @@
 import {EpcRecommendationResponse} from "./epc-recommendation-response";
+import includes from "lodash-es/includes";
 
 export class EpcRecommendation {
     public lmkKey: string;
@@ -18,6 +19,6 @@ export class EpcRecommendation {
     }
 
     isBoilerReplacement() {
-        return this.improvementIdText && this.improvementIdText.toLowerCase().includes('replace boiler');
+        return this.improvementIdText && includes(this.improvementIdText.toLowerCase(), 'replace boiler');
     }
 }

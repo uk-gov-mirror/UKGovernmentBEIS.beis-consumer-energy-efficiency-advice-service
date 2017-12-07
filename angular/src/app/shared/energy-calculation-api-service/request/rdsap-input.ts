@@ -12,6 +12,8 @@ import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-questio
 import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
 import {getNumberOfExposedWallsInFlat} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
+import includes from "lodash-es/includes";
+
 
 export class RdSapInput {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
@@ -177,7 +179,7 @@ export class RdSapInput {
             return null;
         }
         
-        return floorLevels.includes(FloorLevel.TopFloor) ? 'Y' : 'N';
+        return includes(floorLevels, FloorLevel.TopFloor) ? 'Y' : 'N';
     }
 
     private static getNumberOfExposedWalls(responseData: ResponseData) {

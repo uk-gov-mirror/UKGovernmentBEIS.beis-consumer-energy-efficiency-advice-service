@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerRegulation} from "./boiler-regulation-card/boiler-regulation-card.component";
+import includes from "lodash-es/includes";
 
 @Component({
     selector: 'app-boiler-advice-page',
@@ -53,7 +54,7 @@ export class BoilerAdvicePageComponent implements OnInit {
     }
 
     isGasBoiler(): boolean {
-        return BoilerAdvicePageComponent.GAS_BOILERS.includes(this.boilerSlug);
+        return includes(BoilerAdvicePageComponent.GAS_BOILERS, this.boilerSlug);
     }
 
     private setBoilerTypeFrom(boilerTypes: BoilerType[]) {

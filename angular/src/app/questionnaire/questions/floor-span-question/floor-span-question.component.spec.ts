@@ -6,6 +6,7 @@ import {ResponseData} from "../../../shared/response-data/response-data";
 import {FloorLevel} from "../floor-level-question/floor-level";
 import {FormsModule} from "@angular/forms";
 import keys from "lodash-es/keys";
+import includes from "lodash-es/includes";
 
 describe('FloorSpanQuestionComponent', () => {
     let fixture: ComponentFixture<FloorSpanQuestionComponent>;
@@ -48,7 +49,7 @@ describe('FloorSpanQuestionComponent', () => {
         fixture.whenStable().then(() =>
             allFloorLevels.forEach(floorLevel => {
                 const checkbox = fixture.debugElement.query(By.css(`#floor-span-checkbox-${FloorLevel[floorLevel]}`)).nativeElement;
-                expect(checkbox.classList.contains('selected')).toBe(originalFloorLevels.includes(floorLevel));
+                expect(checkbox.classList.contains('selected')).toBe(includes(originalFloorLevels, floorLevel));
             })
         );
     }));

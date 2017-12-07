@@ -1,4 +1,6 @@
 import {Epc} from "../../../shared/postcode-epc-service/model/epc";
+import includes from "lodash-es/includes";
+
 export enum ElectricityTariff {
     Standard,
     OffPeak,
@@ -19,9 +21,9 @@ export function getElectricityTariffDescription(electricityTariff: ElectricityTa
 }
 
 export function getElectricityTariffFromEpc(epc: Epc): ElectricityTariff {
-    if (epc.hotWaterDescription && epc.hotWaterDescription.includes('off-peak')) {
+    if (epc.hotWaterDescription && includes(epc.hotWaterDescription, 'off-peak')) {
         return ElectricityTariff.OffPeak;
-    } else if (epc.hotWaterDescription && epc.hotWaterDescription.includes('standard tariff')) {
+    } else if (epc.hotWaterDescription && includes(epc.hotWaterDescription, 'standard tariff')) {
         return ElectricityTariff.Standard;
     } else {
         return null;

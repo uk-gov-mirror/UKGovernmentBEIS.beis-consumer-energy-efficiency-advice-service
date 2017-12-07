@@ -1,4 +1,6 @@
 import {Epc} from "../../../shared/postcode-epc-service/model/epc";
+import includes from "lodash-es/includes";
+
 export enum FuelType {
     Electricity = 29,
     MainsGas = 26,
@@ -30,13 +32,13 @@ export function getFuelTypeDescription(fuelType: FuelType): string {
 
 export function getFuelTypeFromEpc(epc: Epc): FuelType {
     // TODO: this is very fragile!
-    if (epc.mainHeatDescription && epc.mainHeatDescription.includes('mains gas')) {
+    if (epc.mainHeatDescription && includes(epc.mainHeatDescription, 'mains gas')) {
         return FuelType.MainsGas;
-    } else if (epc.mainFuel && epc.mainFuel.includes('mains gas')) {
+    } else if (epc.mainFuel && includes(epc.mainFuel, 'mains gas')) {
         return FuelType.MainsGas;
-    } else if (epc.mainHeatDescription && epc.mainHeatDescription.includes('electric')) {
+    } else if (epc.mainHeatDescription && includes(epc.mainHeatDescription, 'electric')) {
         return FuelType.Electricity;
-    } else if (epc.mainFuel && epc.mainFuel.includes('electric')) {
+    } else if (epc.mainFuel && includes(epc.mainFuel, 'electric')) {
         return FuelType.Electricity;
     } else {
         return null;

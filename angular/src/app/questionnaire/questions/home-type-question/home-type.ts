@@ -1,4 +1,6 @@
 import {Epc} from "../../../shared/postcode-epc-service/model/epc";
+import includes from "lodash-es/includes";
+
 export enum HomeType {
     DetachedHouse,
     SemiDetachedOrTerracedHouse,
@@ -33,7 +35,7 @@ export function getHomeTypeFromEpc(epc: Epc): HomeType {
     } else if (epc.propertyType === 'house') {
         if (epc.builtForm === 'detached') {
             return HomeType.DetachedHouse;
-        } else if (epc.builtForm === 'semi-detached' || epc.builtForm.includes('terrace')) {
+        } else if (epc.builtForm === 'semi-detached' || includes(epc.builtForm, 'terrace')) {
             return HomeType.SemiDetachedOrTerracedHouse;
         }
     } else {

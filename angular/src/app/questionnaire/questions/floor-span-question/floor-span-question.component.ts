@@ -3,6 +3,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/qu
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {FloorLevel, getFloorLevelDescription} from "../floor-level-question/floor-level";
 import pull from "lodash-es/pull";
+import includes from "lodash-es/includes";
 
 class FloorLevelOption {
     public readonly name: string;
@@ -42,7 +43,7 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
     }
 
     toggleFloorLevelOption(option: FloorLevelOption) {
-        if (this.responseData.floorLevels.includes(option.value)) {
+        if (includes(this.responseData.floorLevels, option.value)) {
             pull(this.responseData.floorLevels, option.value);
         } else {
             this.responseData.floorLevels.push(option.value);
@@ -50,6 +51,6 @@ export class FloorSpanQuestionComponent extends QuestionBaseComponent implements
     }
 
     isFloorLevelOptionSelected(option: FloorLevelOption) {
-        return this.responseData.floorLevels.includes(option.value);
+        return includes(this.responseData.floorLevels, option.value);
     }
 }

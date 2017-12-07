@@ -12,6 +12,7 @@ import {QuestionBaseComponent} from "../base-question/question-base-component";
 import groupBy from "lodash-es/groupBy";
 import {InlineSVGModule} from "ng-inline-svg";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import includes from "lodash-es/includes";
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
@@ -69,7 +70,7 @@ describe('ProgressIndicatorComponent', () => {
         }
 
         isAvailable(index) {
-            return availableQuestions !== undefined && availableQuestions.includes(index);
+            return availableQuestions !== undefined && includes(availableQuestions, index);
         }
 
         isApplicable(index) {
