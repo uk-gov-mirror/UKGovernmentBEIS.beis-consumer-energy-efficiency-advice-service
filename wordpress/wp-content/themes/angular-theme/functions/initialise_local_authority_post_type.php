@@ -78,7 +78,7 @@ function setup_local_authority_acf_group() {
                     'name' => 'is_eco_flex_active',
                     'type' => 'true_false',
                     'instructions' => '',
-                    'required' => 1
+                    'required' => 0
                 ),
                 array (
                     'key' => 'field_5a0b2353b4282',
@@ -110,7 +110,7 @@ function setup_local_authority_acf_group() {
                     'name' => 'grants',
                     'type' => 'relationship',
                     'instructions' => 'The grants which are available in the local authority',
-                    'required' => 1,
+                    'required' => 0,
                     'return_format' => 'id',
                     'post_type' => array (
                         0 => 'local_grant',
