@@ -1,0 +1,7 @@
+<?php
+
+$_SERVER["OCR_API_TOKEN"] = "";
+$_SERVER["GOOGLE_ANALYTICS_ID"] = "";
+$_SERVER["HOTJAR_ID"] = "";
+$_SERVER["BRE_API_USERNAME"] = "";
+$_SERVER["BRE_API_PASSWORD"] = "";

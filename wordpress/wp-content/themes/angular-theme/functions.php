@@ -1,5 +1,11 @@
 <?php
 
+# Load config to be used by functions if it exists
+$configFilePath = dirname(__FILE__) . "/config/config.php";
+if (file_exists($configFilePath)) {
+    include($configFilePath);
+}
+
 require_once("functions/analytics.php");
 require_once("functions/epc.php");
 require_once("functions/ocr.php");

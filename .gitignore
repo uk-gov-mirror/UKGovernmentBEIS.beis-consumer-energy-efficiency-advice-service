@@ -1,6 +1,7 @@
 # Custom ignored files
 
 wordpress/wp-content/themes/angular-theme/dist/
+wordpress/wp-content/themes/angular-theme/config/config.php
 wordpress/wp-content/plugins/
 /.idea/workspace.xml
 /.idea/tasks.xml

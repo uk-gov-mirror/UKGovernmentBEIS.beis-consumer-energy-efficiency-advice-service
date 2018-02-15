@@ -6,7 +6,6 @@ Other options are using the PHP in-built server, or a package installation such 
 
 WAMP Package installations are easy to get started with with the caveat that they usually require the base href to be a subdirectory e.g. http://localhost:81/wordpress/ rather than just http://localhost:81. This causes issues with serving our Angular files, so there's a bit more config that you'll have to change (and make sure it doesn't get pushed to Azure).
 
-* API keys and other sensitive configuration are accessed by the PHP application as environment variables. Replace calls to `$_SERVER[variable-name]` with the real value, if testing these features locally.
 
 ## Server/database setup
 
@@ -48,6 +47,11 @@ This might be easier to install, but is more different from the production envir
     * WP REST API cache
   * Import the necessary Wordpress content to your local wordpress MySQL database. This content is not stored in the repository!
 * The front end won't be displaying anything yet... now we need to set up the Angular project.
+
+## Wordpress Server Config
+API keys and other sensitive configuration are accessed by the PHP application as environment variables. To set these, copy the file
+`wordpress/wp-content/themes/angular-theme/config/config.template.php` to a new file called `config.php` in the same directory. This file
+ will be ignored by git, so you can safely fill in the template values with real values.
 
 ## Angular setup
 
