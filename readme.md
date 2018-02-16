@@ -50,7 +50,7 @@ This might be easier to install, but is more different from the production envir
 
 ## Wordpress Server Config
 API keys and other sensitive configuration are accessed by the PHP application as environment variables. To set these, copy the file
-`wordpress/wp-content/themes/angular-theme/config/config.template.php` to a new file called `config.php` in the same directory. This file
+`wordpress/wp-content/themes/angular-theme/config/config.php.template` to a new file called `config.php` in the same directory. This file
  will be ignored by git, so you can safely fill in the template values with real values.
 
 ## Angular setup

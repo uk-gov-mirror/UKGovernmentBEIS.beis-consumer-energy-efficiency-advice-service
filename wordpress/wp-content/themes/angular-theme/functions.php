@@ -5,6 +5,11 @@ $configFilePath = dirname(__FILE__) . "/config/config.php";
 if (file_exists($configFilePath)) {
     include($configFilePath);
 }
+if (!isset($_SERVER["OCR_API_TOKEN"])) {
+    throw new Exception("The configuration appears to not be set.\n" .
+        "On a dev machine, please copy `config.php.template` to `config.php` and fill in the values.\n" .
+        "On a server, please ensure the relevant ENV vars are set.");
+}
 
 require_once("functions/analytics.php");
 require_once("functions/epc.php");
