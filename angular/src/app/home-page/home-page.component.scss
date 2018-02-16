@@ -1,11 +1,34 @@
+// Imports
 @import "styles/page";
+@import "styles/mixins/breakpoints.scss";
 @import 'styles/mixins/buttons';
 @import 'styles/mixins/font';
 @import "styles/var/colors";
 
-$landing-page-link-margin: 16px;
+// Component specific variables
+$mobile-homepage-link-margin: 16px;
+$tablet-homepage-link-margin: 16px;
+$desktop-homepage-link-margin: 16px;
 $quick-link-margin: 4px;
 
+// Component specific mixins
+@mixin is-homepage-row($margin-compensation) {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin: -($margin-compensation / 2);
+}
+
+@mixin is-homepage-row-item($number-of-items, $margin) {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: calc((100% / #{$number-of-items}) - #{$margin});
+  margin: $margin / 2;
+}
+
+// General styling (hopefully doesn't contain many widths/sizes etc.)
 .home-page {
   background: white;
 
@@ -26,20 +49,7 @@ $quick-link-margin: 4px;
     }
 
     .landing-page-links {
-      display: flex;
-      align-items: stretch;
-
       .landing-page-link {
-        flex: 0 0 auto;
-        box-sizing: border-box;
-        width: calc((100% - #{3 * $landing-page-link-margin - 1px}) / 4);
-        &:not(:last-child) {
-          margin-right: $landing-page-link-margin;
-        }
-
-        display: flex;
-        align-items: center;
-
         height: 157px;
         padding: 0 22px;
         background: white;
@@ -199,6 +209,37 @@ $quick-link-margin: 4px;
       > :not(:last-child) {
         margin-right: 20px;
       }
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .home-page .heading-section .landing-page-links {
+    @include is-homepage-row($margin-compensation: 0);
+
+    .landing-page-link {
+      @include is-homepage-row-item($number-of-items: 1, $margin: $mobile-homepage-link-margin);
+    }
+  }
+}
+
+@include tablet() {
+  .home-page .heading-section .landing-page-links {
+    @include is-homepage-row($margin-compensation: $tablet-homepage-link-margin);
+
+    .landing-page-link {
+      @include is-homepage-row-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
+    }
+  }
+}
+
+@include desktop() {
+  .home-page .heading-section .landing-page-links {
+    @include is-homepage-row($margin-compensation: $desktop-homepage-link-margin);
+
+    .landing-page-link {
+      @include is-homepage-row-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
     }
   }
 }
