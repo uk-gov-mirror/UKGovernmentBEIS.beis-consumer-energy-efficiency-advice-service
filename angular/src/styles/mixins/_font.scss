@@ -1,3 +1,4 @@
+@import "styles/mixins/breakpoints";
 @import "styles/var/colors";
 
 $font-family: Gotham, Arial, sans-serif;
@@ -43,6 +44,39 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-style: normal;
 }
 
+@mixin has-font-sizes-at-breakpoints(
+  $desktop-font-size,
+  $desktop-line-height,
+  $tablet-font-size,
+  $tablet-line-height,
+  $mobile-font-size,
+  $mobile-line-height
+) {
+  @include mobile() {
+    font-size: $mobile-font-size;
+    line-height: $mobile-line-height;
+  }
+  @include tablet() {
+    font-size: $tablet-font-size;
+    line-height: $tablet-line-height;
+  }
+  @include desktop() {
+    font-size: $desktop-font-size;
+    line-height: $desktop-line-height;
+  }
+}
+
+@mixin page-heading-large-font {
+  @include has-font-sizes-at-breakpoints(60px, 62px, 60px, 62px, 40px, 40px);
+  font-weight: bold;
+}
+
+@mixin large-link-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 19px, 16px, 19px);
+  font-weight: bold;
+}
+
+// TODO Convert the below rules to match the same format as the above rules
 @mixin page-heading {
   font-size: 56px;
   font-weight: bold;
