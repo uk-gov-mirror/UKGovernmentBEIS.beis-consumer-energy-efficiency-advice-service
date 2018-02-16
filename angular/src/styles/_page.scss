@@ -1,6 +1,12 @@
-$side-margin: 40px;
+@import "styles/mixins/breakpoints";
+
+// Component specific variables
+$mobile-side-margin: 20px;
+$tablet-side-margin: 40px;
+$desktop-side-margin: 40px;
 $content-max-width: 1180px;
 
+// General styling (shouldn't contain many widths/sizes etc.)
 .page-row {
   width: 100%;
   display: flex;
@@ -8,7 +14,25 @@ $content-max-width: 1180px;
 
   .page-row-content {
     width: 100%;
-    margin: 0 $side-margin;
     max-width: $content-max-width;
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .page-row .page-row-content {
+    margin: 0 $mobile-side-margin;
+  }
+}
+
+@include tablet() {
+  .page-row .page-row-content {
+    margin: 0 $tablet-side-margin;
+  }
+}
+
+@include desktop() {
+  .page-row .page-row-content {
+    margin: 0 $desktop-side-margin;
   }
 }
