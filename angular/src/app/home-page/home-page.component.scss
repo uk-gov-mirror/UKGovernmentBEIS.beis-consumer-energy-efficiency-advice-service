@@ -1,18 +1,17 @@
-// Imports
 @import "styles/page";
-@import "styles/mixins/breakpoints.scss";
+@import "styles/mixins/breakpoints";
 @import 'styles/mixins/buttons';
 @import 'styles/mixins/font';
 @import "styles/var/colors";
 
 // Component specific variables
-$mobile-homepage-link-margin: 16px;
+$mobile-homepage-link-margin: 20px;
 $tablet-homepage-link-margin: 16px;
 $desktop-homepage-link-margin: 16px;
 $quick-link-margin: 4px;
 
 // Component specific mixins
-@mixin is-homepage-row($margin-compensation) {
+@mixin is-homepage-row($margin-compensation: 0) {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
@@ -28,32 +27,22 @@ $quick-link-margin: 4px;
   margin: $margin / 2;
 }
 
-// General styling (hopefully doesn't contain many widths/sizes etc.)
+// General styling (shouldn't contain many widths/sizes etc.)
 .home-page {
   background: white;
 
   .heading-section {
-    padding: 74px 0 96px 0;
-    background: url('/assets/images/home-page/background.jpg') bottom;
-    background-size: 100%;
+    background: url('/assets/images/home-page/background.jpg') center bottom;
+    background-size: cover;
 
     .heading-text {
-      font-size: 60px;
-      line-height: 62px;
-      font-weight: bold;
-
+      @include page-heading-large-font();
       color: white;
-
-      width: 620px;
-      margin-bottom: 57px;
     }
 
     .landing-page-links {
       .landing-page-link {
-        height: 157px;
-        padding: 0 22px;
         background: white;
-
         color: $dark-grey;
         text-decoration: none;
 
@@ -63,11 +52,7 @@ $quick-link-margin: 4px;
         }
 
         .link-text {
-          width: 60%;
-
-          font-size: 20px;
-          line-height: 24px;
-          font-weight: bold;
+          @include large-link-font();
         }
       }
     }
@@ -215,31 +200,77 @@ $quick-link-margin: 4px;
 
 // Breakpoint specific styling
 @include mobile() {
-  .home-page .heading-section .landing-page-links {
-    @include is-homepage-row($margin-compensation: 0);
+  .home-page .heading-section {
+    padding: 53px 0 20px 0;
 
-    .landing-page-link {
-      @include is-homepage-row-item($number-of-items: 1, $margin: $mobile-homepage-link-margin);
+    .heading-text {
+      width: 100%;
+      margin-bottom: 64px;
+      min-height: 212px;
+    }
+
+    .landing-page-links {
+      @include is-homepage-row($margin-compensation: $mobile-homepage-link-margin);
+
+      .landing-page-link {
+        @include is-homepage-row-item($number-of-items: 2, $margin: $mobile-homepage-link-margin);
+        height: 80px;
+        padding: 0 20px;
+
+        .link-text {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
 @include tablet() {
-  .home-page .heading-section .landing-page-links {
-    @include is-homepage-row($margin-compensation: $tablet-homepage-link-margin);
+  .home-page .heading-section {
+    padding: 74px 0 96px 0;
 
-    .landing-page-link {
-      @include is-homepage-row-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
+    .heading-text {
+      width: 620px;
+      margin-bottom: 57px;
+    }
+
+    .landing-page-links {
+      @include is-homepage-row($margin-compensation: $tablet-homepage-link-margin);
+
+      .landing-page-link {
+        @include is-homepage-row-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
+        height: 157px;
+        padding: 0 22px;
+
+        .link-text {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
 @include desktop() {
-  .home-page .heading-section .landing-page-links {
-    @include is-homepage-row($margin-compensation: $desktop-homepage-link-margin);
+  .home-page .heading-section {
+    padding: 74px 0 96px 0;
 
-    .landing-page-link {
-      @include is-homepage-row-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
+    .heading-text {
+      width: 620px;
+      margin-bottom: 57px;
+    }
+
+    .landing-page-links {
+      @include is-homepage-row($margin-compensation: $desktop-homepage-link-margin);
+
+      .landing-page-link {
+        @include is-homepage-row-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
+        height: 157px;
+        padding: 0 22px;
+
+        .link-text {
+          width: 60%;
+        }
+      }
     }
   }
 }
