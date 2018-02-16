@@ -1,5 +1,6 @@
 @import "styles/page";
 @import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
 @import 'styles/mixins/buttons';
 @import 'styles/mixins/font';
 @import "styles/var/colors";
@@ -11,21 +12,7 @@ $desktop-homepage-link-margin: 16px;
 $quick-link-margin: 4px;
 
 // Component specific mixins
-@mixin is-homepage-row($margin-compensation: 0) {
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
-  margin: -($margin-compensation / 2);
-}
 
-@mixin is-homepage-row-item($number-of-items, $margin) {
-  flex: 0 0 auto;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  width: calc((100% / #{$number-of-items}) - #{$margin});
-  margin: $margin / 2;
-}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .home-page {
@@ -210,10 +197,10 @@ $quick-link-margin: 4px;
     }
 
     .landing-page-links {
-      @include is-homepage-row($margin-compensation: $mobile-homepage-link-margin);
+      @include is-grid($margin-compensation: $mobile-homepage-link-margin);
 
       .landing-page-link {
-        @include is-homepage-row-item($number-of-items: 2, $margin: $mobile-homepage-link-margin);
+        @include is-grid-item($number-of-items: 2, $margin: $mobile-homepage-link-margin);
         height: 80px;
         padding: 0 20px;
 
@@ -235,10 +222,10 @@ $quick-link-margin: 4px;
     }
 
     .landing-page-links {
-      @include is-homepage-row($margin-compensation: $tablet-homepage-link-margin);
+      @include is-grid($margin-compensation: $tablet-homepage-link-margin);
 
       .landing-page-link {
-        @include is-homepage-row-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
+        @include is-grid-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
         height: 157px;
         padding: 0 22px;
 
@@ -260,10 +247,10 @@ $quick-link-margin: 4px;
     }
 
     .landing-page-links {
-      @include is-homepage-row($margin-compensation: $desktop-homepage-link-margin);
+      @include is-grid($margin-compensation: $desktop-homepage-link-margin);
 
       .landing-page-link {
-        @include is-homepage-row-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
+        @include is-grid-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
         height: 157px;
         padding: 0 22px;
 
