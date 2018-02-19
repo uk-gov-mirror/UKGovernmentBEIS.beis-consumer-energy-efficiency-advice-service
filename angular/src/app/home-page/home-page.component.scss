@@ -9,7 +9,11 @@
 $mobile-homepage-link-margin: 20px;
 $tablet-homepage-link-margin: 16px;
 $desktop-homepage-link-margin: 16px;
-$quick-link-margin: 4px;
+$mobile-quick-link-margin: 6px;
+$tablet-quick-link-margin: 4px;
+$desktop-quick-link-margin: 4px;
+$arrow-width: 20px;
+$arrow-height: 48px;
 
 // Component specific mixins
 
@@ -19,7 +23,7 @@ $quick-link-margin: 4px;
   background: white;
 
   .heading-section {
-    background: url('/assets/images/home-page/background.jpg') center bottom;
+    background: url('/assets/images/home-page/background.jpg') right bottom;
     background-size: cover;
 
     .heading-text {
@@ -32,6 +36,8 @@ $quick-link-margin: 4px;
         background: white;
         color: $dark-grey;
         text-decoration: none;
+        display: flex;
+        align-items: center;
 
         &:focus, &:hover {
           background: $primary-blue;
@@ -46,22 +52,13 @@ $quick-link-margin: 4px;
   }
 
   .quick-links {
-    width: 100%;
-    display: flex;
-
     .quick-link {
       position: relative;
-      flex: 0 0 auto;
-      box-sizing: border-box;
-      width: calc((100% - #{2 * $quick-link-margin - 1px}) / 3);
-      &:not(:last-child) {
-        margin-right: $quick-link-margin;
-      }
-
       background: $light-grey;
-      padding: 70px 0 40px 40px;
-
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
 
       &:focus, &:hover {
         .arrow-button {
@@ -74,80 +71,58 @@ $quick-link-margin: 4px;
       }
 
       .heading {
-        font-size: 36px;
-        line-height: 38px;
-        font-weight: bold;
+        @include quick-link-heading-font;
         color: $primary-blue;
-
-        height: 114px;
-        padding-right: 196px;
         box-sizing: border-box;
-        margin-bottom: 38px;
       }
 
       .description {
-        font-size: 13px;
-        line-height: 16px;
-        font-weight: 500;
+        @include quick-link-font;
         color: $darkened-blue;
-        text-transform: uppercase;
-
-        height: 48px;
-        max-width: 500px;
-        padding-right: 196px;
         box-sizing: border-box;
-        margin-bottom: 48px;
       }
 
       .arrow-button {
         position: relative;
-        height: 48px;
-        width: 50%;
         box-sizing: border-box;
-        padding-left: 18px;
-
         display: flex;
         align-items: center;
-
-        font-size: 13px;
-        line-height: 16px;
-        font-weight: 500;
-        text-transform: uppercase;
+        margin-top: auto;
+        @include quick-link-font;
 
         background: white;
         color: $primary-blue;
 
         &:after {
           position: absolute;
-          right: -20px;
+          right: -$arrow-width;
           top: 0;
           content: " ";
-
-          border: 24px solid transparent;
+          border: ($arrow-height / 2) solid transparent;
           border-right-width: 0;
-          border-left: 20px solid white;
+          border-left: $arrow-width solid white;
         }
       }
 
       .calculator-image:after {
-        content: url('/assets/images/home-page/home-calc.svg');
+        background: url("/assets/images/home-page/home-calc.svg") no-repeat;
+        background-size: 100%;
         position: absolute;
-        right: 48px;
-        top: 156px;
+        content: "";
       }
 
       .grants-image:after {
-        content: url('/assets/images/home-page/grants-globe.svg');
+        background: url('/assets/images/home-page/grants-globe.svg') no-repeat;
+        background-size: 100%;
         position: absolute;
-        right: 64px;
-        top: 52px;
+        content: "";
       }
 
       .boiler-image:after {
-        content: url('/assets/images/home-page/boiler-flame.svg');
+        background: url('/assets/images/home-page/boiler-flame.svg') no-repeat;
+        background-size: 100%;
         position: absolute;
-        right: 48px;
-        top: 0;
+        content: "";
       }
     }
   }
@@ -187,25 +162,74 @@ $quick-link-margin: 4px;
 
 // Breakpoint specific styling
 @include mobile() {
-  .home-page .heading-section {
-    padding: 53px 0 20px 0;
+  .home-page {
+    .heading-section {
 
-    .heading-text {
-      width: 100%;
-      margin-bottom: 64px;
-      min-height: 212px;
+      padding: 53px 0 20px 0;
+
+      .heading-text {
+        width: 100%;
+        margin-bottom: 64px;
+        min-height: 212px;
+      }
+
+      .landing-page-links {
+        @include is-grid($margin-compensation: $mobile-homepage-link-margin);
+
+        .landing-page-link {
+          @include is-grid-item($number-of-items: 2, $margin: $mobile-homepage-link-margin);
+          height: 80px;
+          padding: 0 20px;
+
+          .link-text {
+            width: 100%;
+          }
+        }
+      }
     }
 
-    .landing-page-links {
-      @include is-grid($margin-compensation: $mobile-homepage-link-margin);
+    .quick-links {
+      @include is-grid($margin-compensation: $mobile-quick-link-margin);
 
-      .landing-page-link {
-        @include is-grid-item($number-of-items: 2, $margin: $mobile-homepage-link-margin);
-        height: 80px;
-        padding: 0 20px;
+      .quick-link {
+        @include is-grid-item($number-of-items: 1, $margin: $mobile-quick-link-margin);
+        padding: 60px 0 44px 20px;
 
-        .link-text {
-          width: 100%;
+        .heading {
+          padding-right: 82px;
+          margin-bottom: 20px;
+        }
+
+        .description {
+          padding-right: 130px;
+          margin-bottom: 42px;
+        }
+
+        .arrow-button {
+          height: $arrow-height;
+          width: 85%;
+          padding-left: 20px;
+        }
+
+        .calculator-image:after {
+          right: 18px;
+          top: 150px;
+          height: 90px;
+          width: 109px;
+        }
+
+        .grants-image:after {
+          right: 24px;
+          top: 161px;
+          height: 95px;
+          width: 103px;
+        }
+
+        .boiler-image:after {
+          right: 33px;
+          top: 0;
+          height: 251px;
+          width: 77px;
         }
       }
     }
@@ -213,24 +237,72 @@ $quick-link-margin: 4px;
 }
 
 @include tablet() {
-  .home-page .heading-section {
-    padding: 74px 0 96px 0;
+  .home-page {
+    .heading-section {
+      padding: 74px 0 96px 0;
 
-    .heading-text {
-      width: 620px;
-      margin-bottom: 57px;
+      .heading-text {
+        width: 620px;
+        margin-bottom: 57px;
+      }
+
+      .landing-page-links {
+        @include is-grid($margin-compensation: $tablet-homepage-link-margin);
+
+        .landing-page-link {
+          @include is-grid-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
+          height: 157px;
+          padding: 0 22px;
+
+          .link-text {
+            width: 100%;
+          }
+        }
+      }
     }
 
-    .landing-page-links {
-      @include is-grid($margin-compensation: $tablet-homepage-link-margin);
+    .quick-links {
+      @include is-grid($margin-compensation: $tablet-quick-link-margin);
 
-      .landing-page-link {
-        @include is-grid-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
-        height: 157px;
-        padding: 0 22px;
+      .quick-link {
+        @include is-grid-item($number-of-items: 3, $margin: $tablet-quick-link-margin);
+        padding: 70px 0 40px 40px;
 
-        .link-text {
-          width: 100%;
+        .heading {
+          padding-right: 196px;
+          margin-bottom: 38px;
+        }
+
+        .description {
+          padding-right: 196px;
+          margin-bottom: 48px;
+        }
+
+        .arrow-button {
+          height: $arrow-height;
+          width: 50%;
+          padding-left: 18px;
+        }
+
+        .calculator-image:after {
+          right: 48px;
+          top: 156px;
+          height: 109px;
+          width: 132px;
+        }
+
+        .grants-image:after {
+          right: 52px;
+          top: 36px;
+          height: 136px;
+          width: 126px;
+        }
+
+        .boiler-image:after {
+          right: 53px;
+          top: 0;
+          height: 266px;
+          width: 103px;
         }
       }
     }
@@ -238,24 +310,72 @@ $quick-link-margin: 4px;
 }
 
 @include desktop() {
-  .home-page .heading-section {
-    padding: 74px 0 96px 0;
+  .home-page {
+    .heading-section {
+      padding: 74px 0 96px 0;
 
-    .heading-text {
-      width: 620px;
-      margin-bottom: 57px;
+      .heading-text {
+        width: 620px;
+        margin-bottom: 57px;
+      }
+
+      .landing-page-links {
+        @include is-grid($margin-compensation: $desktop-homepage-link-margin);
+
+        .landing-page-link {
+          @include is-grid-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
+          height: 157px;
+          padding: 0 22px;
+
+          .link-text {
+            width: 60%;
+          }
+        }
+      }
     }
 
-    .landing-page-links {
-      @include is-grid($margin-compensation: $desktop-homepage-link-margin);
+    .quick-links {
+      @include is-grid($margin-compensation: $desktop-quick-link-margin);
 
-      .landing-page-link {
-        @include is-grid-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
-        height: 157px;
-        padding: 0 22px;
+      .quick-link {
+        @include is-grid-item($number-of-items: 3, $margin: $desktop-quick-link-margin);
+        padding: 70px 0 40px 40px;
 
-        .link-text {
-          width: 60%;
+        .heading {
+          padding-right: 196px;
+          margin-bottom: 38px;
+        }
+
+        .description {
+          padding-right: 196px;
+          margin-bottom: 48px;
+        }
+
+        .arrow-button {
+          height: $arrow-height;
+          width: 50%;
+          padding-left: 18px;
+        }
+
+        .calculator-image:after {
+          right: 48px;
+          top: 156px;
+          height: 109px;
+          width: 132px;
+        }
+
+        .grants-image:after {
+          right: 52px;
+          top: 36px;
+          height: 136px;
+          width: 126px;
+        }
+
+        .boiler-image:after {
+          right: 53px;
+          top: 0;
+          height: 266px;
+          width: 103px;
         }
       }
     }
