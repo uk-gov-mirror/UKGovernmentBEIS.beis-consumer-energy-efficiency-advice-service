@@ -6,20 +6,126 @@
 @import "styles/var/colors";
 
 // Component specific variables
-$mobile-homepage-link-margin: 20px;
-$tablet-homepage-link-margin: 16px;
-$desktop-homepage-link-margin: 16px;
-$mobile-quick-link-margin: 6px;
-$tablet-quick-link-margin: 4px;
-$desktop-quick-link-margin: 4px;
-$mobile-news-card-margin: 18px;
-$tablet-news-card-margin: 20px;
-$desktop-news-card-margin: 20px;
+$calculator-image: "/assets/images/home-page/home-calc.svg";
+$grants-image: "/assets/images/home-page/grants-globe.svg";
+$boiler-image: "/assets/images/home-page/boiler-flame.svg";
 $arrow-width: 20px;
 $arrow-height: 48px;
 
 // Component specific mixins
+@mixin has-homepage-heading-section(
+  $padding,
+  $heading-width,
+  $heading-bottom-margin,
+  $heading-min-height,
+  $grid-margin,
+  $number-of-links-in-row,
+  $link-height,
+  $link-padding,
+  $link-text-width
+) {
+  .heading-section {
+    padding: $padding;
 
+    .heading-text {
+      width: $heading-width;
+      margin-bottom: $heading-bottom-margin;
+      min-height: $heading-min-height;
+    }
+
+    .landing-page-links {
+      @include is-grid($margin-compensation: $grid-margin);
+
+      .landing-page-link {
+        @include is-grid-item($number-of-items: $number-of-links-in-row, $margin: $grid-margin);
+        height: $link-height;
+        padding: $link-padding;
+
+        .link-text {
+          width: $link-text-width;
+        }
+      }
+    }
+  }
+}
+
+@mixin has-quick-links-section(
+  $grid-margin,
+  $number-of-items-in-row,
+  $link-padding,
+  $heading-padding-right,
+  $heading-margin-bottom,
+  $description-padding-right,
+  $description-margin-bottom,
+  $arrow-width,
+  $arrow-padding-left
+) {
+  .quick-links {
+    @include is-grid($margin-compensation: $grid-margin);
+
+    .quick-link {
+      @include is-grid-item($number-of-items: $number-of-items-in-row, $margin: $grid-margin);
+      padding: $link-padding;
+
+      .heading {
+        padding-right: $heading-padding-right;
+        margin-bottom: $heading-margin-bottom;
+      }
+
+      .description {
+        padding-right: $description-padding-right;
+        margin-bottom: $description-margin-bottom;
+      }
+
+      .arrow-button {
+        height: $arrow-height;
+        width: $arrow-width;
+        padding-left: $arrow-padding-left;
+      }
+    }
+  }
+}
+
+@mixin has-other-things-section($margin, $heading-margin-bottom, $grid-margin, $number-of-items-in-row) {
+  .other-things {
+    margin: $margin;
+
+    .heading {
+      margin-bottom: $heading-margin-bottom;
+    }
+
+    .latest-news-cards {
+      @include is-grid($margin-compensation: $grid-margin);
+
+      > * {
+        @include is-grid-item($number-of-items: $number-of-items-in-row, $margin: $grid-margin);
+      }
+    }
+  }
+}
+
+@mixin is-quick-link-image($url, $distance-from-right, $distance-from-top, $height, $width) {
+  background: url($url) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  content: "";
+  right: $distance-from-right;
+  top: $distance-from-top;
+  height: $height;
+  width: $width;
+}
+
+@mixin is-calculator-link-image($distance-from-right, $distance-from-top, $height, $width) {
+  @include is-quick-link-image($calculator-image, $distance-from-right, $distance-from-top, $height, $width);
+}
+
+@mixin is-grants-link-image($distance-from-right, $distance-from-top, $height, $width) {
+  @include is-quick-link-image($grants-image, $distance-from-right, $distance-from-top, $height, $width);
+}
+
+@mixin is-boiler-link-image($distance-from-right, $distance-from-top, $height, $width) {
+  @include is-quick-link-image($boiler-image, $distance-from-right, $distance-from-top, $height, $width);
+}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .home-page {
@@ -106,27 +212,6 @@ $arrow-height: 48px;
           border-left: $arrow-width solid white;
         }
       }
-
-      .calculator-image:after {
-        background: url("/assets/images/home-page/home-calc.svg") no-repeat;
-        background-size: 100%;
-        position: absolute;
-        content: "";
-      }
-
-      .grants-image:after {
-        background: url('/assets/images/home-page/grants-globe.svg') no-repeat;
-        background-size: 100%;
-        position: absolute;
-        content: "";
-      }
-
-      .boiler-image:after {
-        background: url('/assets/images/home-page/boiler-flame.svg') no-repeat;
-        background-size: 100%;
-        position: absolute;
-        content: "";
-      }
     }
   }
 
@@ -146,272 +231,153 @@ $arrow-height: 48px;
 // Breakpoint specific styling
 @include mobile() {
   .home-page {
-    .heading-section {
+    @include has-homepage-heading-section(
+      $padding: 53px 0 20px 0,
+      $heading-width: 100%,
+      $heading-bottom-margin: 64px,
+      $heading-min-height: 212px,
+      $grid-margin: 20px,
+      $number-of-links-in-row: 2,
+      $link-height: 80px,
+      $link-padding: 0 20px,
+      $link-text-width: 100%
+    );
 
-      padding: 53px 0 20px 0;
-
-      .heading-text {
-        width: 100%;
-        margin-bottom: 64px;
-        min-height: 212px;
-      }
-
-      .landing-page-links {
-        @include is-grid($margin-compensation: $mobile-homepage-link-margin);
-
-        .landing-page-link {
-          @include is-grid-item($number-of-items: 2, $margin: $mobile-homepage-link-margin);
-          height: 80px;
-          padding: 0 20px;
-
-          .link-text {
-            width: 100%;
-          }
-        }
-      }
-    }
+    @include has-quick-links-section(
+      $grid-margin: 6px,
+      $number-of-items-in-row: 1,
+      $link-padding: 60px 0 44px 20px,
+      $heading-padding-right: 82px,
+      $heading-margin-bottom: 20px,
+      $description-padding-right: 130px,
+      $description-margin-bottom: 42px,
+      $arrow-width: 85%,
+      $arrow-padding-left: 20px
+    );
 
     .quick-links {
-      @include is-grid($margin-compensation: $mobile-quick-link-margin);
-
       .quick-link {
-        @include is-grid-item($number-of-items: 1, $margin: $mobile-quick-link-margin);
-        padding: 60px 0 44px 20px;
-
-        .heading {
-          padding-right: 82px;
-          margin-bottom: 20px;
-        }
-
-        .description {
-          padding-right: 130px;
-          margin-bottom: 42px;
-        }
-
-        .arrow-button {
-          height: $arrow-height;
-          width: 85%;
-          padding-left: 20px;
-        }
-
         .calculator-image:after {
-          right: 18px;
-          top: 150px;
-          height: 90px;
-          width: 109px;
+          @include is-calculator-link-image(18px, 150px, 90px, 109px);
         }
 
         .grants-image:after {
-          right: 24px;
-          top: 161px;
-          height: 95px;
-          width: 103px;
+          @include is-grants-link-image(24px, 161px, 95px, 103px);
         }
 
         .boiler-image:after {
-          right: 33px;
-          top: 0;
-          height: 251px;
-          width: 77px;
+          @include is-boiler-link-image(33px, 0, 251px, 77px);
         }
       }
     }
 
-    .other-things {
-      margin-top: 56px;
-
-      .heading {
-        margin-bottom: 60px;
-      }
-
-      .latest-news-cards {
-        @include is-grid($margin-compensation: $mobile-news-card-margin);
-        margin-bottom: 20px;
-
-        > * {
-          @include is-grid-item($number-of-items: 1, $margin: $mobile-news-card-margin);
-        }
-      }
-    }
+    @include has-other-things-section(
+      $margin: 56px 0 20px,
+      $heading-margin-bottom: 60px,
+      $grid-margin: 18px,
+      $number-of-items-in-row: 1
+    );
   }
 }
 
 @include tablet() {
   .home-page {
-    .heading-section {
-      padding: 74px 0 96px 0;
+    @include has-homepage-heading-section(
+      $padding: 74px 0 96px 0,
+      $heading-width: 620px,
+      $heading-bottom-margin: 57px,
+      $heading-min-height: 0,
+      $grid-margin: 16px,
+      $number-of-links-in-row: 4,
+      $link-height: 157px,
+      $link-padding: 0 22px,
+      $link-text-width: 100%
+    );
 
-      .heading-text {
-        width: 620px;
-        margin-bottom: 57px;
-      }
-
-      .landing-page-links {
-        @include is-grid($margin-compensation: $tablet-homepage-link-margin);
-
-        .landing-page-link {
-          @include is-grid-item($number-of-items: 2, $margin: $tablet-homepage-link-margin);
-          height: 157px;
-          padding: 0 22px;
-
-          .link-text {
-            width: 100%;
-          }
-        }
-      }
-    }
+    @include has-quick-links-section(
+      $grid-margin: 4px,
+      $number-of-items-in-row: 3,
+      $link-padding: 70px 0 40px 40px,
+      $heading-padding-right: 196px,
+      $heading-margin-bottom: 38px,
+      $description-padding-right: 196px,
+      $description-margin-bottom: 48px,
+      $arrow-width: 50%,
+      $arrow-padding-left: 18px
+    );
 
     .quick-links {
-      @include is-grid($margin-compensation: $tablet-quick-link-margin);
-
       .quick-link {
-        @include is-grid-item($number-of-items: 3, $margin: $tablet-quick-link-margin);
-        padding: 70px 0 40px 40px;
-
-        .heading {
-          padding-right: 196px;
-          margin-bottom: 38px;
-        }
-
-        .description {
-          padding-right: 196px;
-          margin-bottom: 48px;
-        }
-
-        .arrow-button {
-          height: $arrow-height;
-          width: 50%;
-          padding-left: 18px;
-        }
-
         .calculator-image:after {
-          right: 48px;
-          top: 156px;
-          height: 109px;
-          width: 132px;
+          @include is-calculator-link-image(48px, 156px, 109px, 132px);
         }
 
         .grants-image:after {
-          right: 52px;
-          top: 36px;
-          height: 136px;
-          width: 126px;
+          @include is-grants-link-image(52px, 36px, 136px, 126px);
         }
 
         .boiler-image:after {
-          right: 53px;
-          top: 0;
-          height: 266px;
-          width: 103px;
+          @include is-boiler-link-image(53px, 0, 266px, 103px);
         }
       }
     }
 
-    .other-things {
-      margin-top: 58px;
-
-      .heading {
-        margin-bottom: 24px;
-      }
-
-      .latest-news-cards {
-        @include is-grid($margin-compensation: $tablet-news-card-margin);
-        margin-bottom: 60px;
-
-        > * {
-          @include is-grid-item($number-of-items: 2, $margin: $tablet-news-card-margin);
-        }
-      }
-    }
+    @include has-other-things-section(
+      $margin: 58px 0 60px,
+      $heading-margin-bottom: 24px,
+      $grid-margin: 20px,
+      $number-of-items-in-row: 2
+    );
   }
 }
 
 @include desktop() {
   .home-page {
-    .heading-section {
-      padding: 74px 0 96px 0;
+    @include has-homepage-heading-section(
+      $padding: 74px 0 96px 0,
+      $heading-width: 620px,
+      $heading-bottom-margin: 57px,
+      $heading-min-height: 0,
+      $grid-margin: 16px,
+      $number-of-links-in-row: 4,
+      $link-height: 157px,
+      $link-padding: 0 22px,
+      $link-text-width: 60%
+    );
 
-      .heading-text {
-        width: 620px;
-        margin-bottom: 57px;
-      }
-
-      .landing-page-links {
-        @include is-grid($margin-compensation: $desktop-homepage-link-margin);
-
-        .landing-page-link {
-          @include is-grid-item($number-of-items: 4, $margin: $desktop-homepage-link-margin);
-          height: 157px;
-          padding: 0 22px;
-
-          .link-text {
-            width: 60%;
-          }
-        }
-      }
-    }
+    @include has-quick-links-section(
+      $grid-margin: 4px,
+      $number-of-items-in-row: 3,
+      $link-padding: 70px 0 40px 40px,
+      $heading-padding-right: 196px,
+      $heading-margin-bottom: 38px,
+      $description-padding-right: 196px,
+      $description-margin-bottom: 48px,
+      $arrow-width: 50%,
+      $arrow-padding-left: 18px
+    );
 
     .quick-links {
-      @include is-grid($margin-compensation: $desktop-quick-link-margin);
-
       .quick-link {
-        @include is-grid-item($number-of-items: 3, $margin: $desktop-quick-link-margin);
-        padding: 70px 0 40px 40px;
-
-        .heading {
-          padding-right: 196px;
-          margin-bottom: 38px;
-        }
-
-        .description {
-          padding-right: 196px;
-          margin-bottom: 48px;
-        }
-
-        .arrow-button {
-          height: $arrow-height;
-          width: 50%;
-          padding-left: 18px;
-        }
-
         .calculator-image:after {
-          right: 48px;
-          top: 156px;
-          height: 109px;
-          width: 132px;
+          @include is-calculator-link-image(48px, 156px, 109px, 132px);
         }
 
         .grants-image:after {
-          right: 52px;
-          top: 36px;
-          height: 136px;
-          width: 126px;
+          @include is-grants-link-image(52px, 36px, 136px, 126px);
         }
 
         .boiler-image:after {
-          right: 53px;
-          top: 0;
-          height: 266px;
-          width: 103px;
+          @include is-boiler-link-image(53px, 0, 266px, 103px);
         }
       }
     }
 
-    .other-things {
-      margin-top: 58px;
-
-      .heading {
-        margin-bottom: 24px;
-      }
-
-      .latest-news-cards {
-        @include is-grid($margin-compensation: $desktop-news-card-margin);
-        margin-bottom: 60px;
-
-        > * {
-          @include is-grid-item($number-of-items: 4, $margin: $desktop-news-card-margin);
-        }
-      }
-    }
+    @include has-other-things-section(
+      $margin: 58px 0 60px,
+      $heading-margin-bottom: 24px,
+      $grid-margin: 20px,
+      $number-of-items-in-row: 4
+    );
   }
 }
