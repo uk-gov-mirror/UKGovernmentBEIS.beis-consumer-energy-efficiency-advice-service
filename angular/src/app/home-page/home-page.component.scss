@@ -20,7 +20,6 @@ $arrow-height: 48px;
   $heading-min-height,
   $grid-margin,
   $number-of-links-in-row,
-  $link-height,
   $link-padding,
   $link-text-width
 ) {
@@ -38,7 +37,6 @@ $arrow-height: 48px;
 
       .landing-page-link {
         @include is-grid-item($number-of-items: $number-of-links-in-row, $margin: $grid-margin);
-        height: $link-height;
         padding: $link-padding;
 
         .link-text {
@@ -86,9 +84,10 @@ $arrow-height: 48px;
   }
 }
 
-@mixin has-other-things-section($margin, $heading-margin-bottom, $grid-margin, $number-of-items-in-row) {
+@mixin has-other-things-section($top-margin, $bottom-margin, $heading-margin-bottom, $grid-margin, $number-of-items-in-row) {
   .other-things {
-    margin: $margin;
+    margin-top: $top-margin;
+    margin-bottom: $bottom-margin;
 
     .heading {
       margin-bottom: $heading-margin-bottom;
@@ -107,6 +106,7 @@ $arrow-height: 48px;
 @mixin is-quick-link-image($url, $distance-from-right, $distance-from-top, $height, $width) {
   background: url($url) no-repeat;
   background-size: 100%;
+  background-position: bottom;
   position: absolute;
   content: "";
   right: $distance-from-right;
@@ -238,8 +238,8 @@ $arrow-height: 48px;
       $heading-min-height: 212px,
       $grid-margin: 20px,
       $number-of-links-in-row: 2,
-      $link-height: 80px,
-      $link-padding: 0 20px,
+      // Should be 20px all round, but at ~320px this does not fit
+      $link-padding: 20px 8px,
       $link-text-width: 100%
     );
 
@@ -247,32 +247,33 @@ $arrow-height: 48px;
       $grid-margin: 6px,
       $number-of-items-in-row: 1,
       $link-padding: 60px 0 44px 20px,
-      $heading-padding-right: 82px,
+      $heading-padding-right: 110px,
       $heading-margin-bottom: 20px,
       $description-padding-right: 130px,
       $description-margin-bottom: 42px,
-      $arrow-width: 85%,
+      $arrow-width: 80%,
       $arrow-padding-left: 20px
     );
 
     .quick-links {
       .quick-link {
         .calculator-image:after {
-          @include is-calculator-link-image(18px, 150px, 90px, 109px);
+          @include is-calculator-link-image(18px, 40%, 90px, 109px);
         }
 
         .grants-image:after {
-          @include is-grants-link-image(24px, 161px, 95px, 103px);
+          @include is-grants-link-image(24px, 35%, 95px, 103px);
         }
 
         .boiler-image:after {
-          @include is-boiler-link-image(33px, 0, 251px, 77px);
+          @include is-boiler-link-image(33px, 0, 55%, 77px);
         }
       }
     }
 
     @include has-other-things-section(
-      $margin: 56px 0 20px,
+      $top-margin: 56px,
+      $bottom-margin: 20px,
       $heading-margin-bottom: 60px,
       $grid-margin: 18px,
       $number-of-items-in-row: 1
@@ -289,8 +290,7 @@ $arrow-height: 48px;
       $heading-min-height: 0,
       $grid-margin: 16px,
       $number-of-links-in-row: 4,
-      $link-height: 157px,
-      $link-padding: 0 22px,
+      $link-padding: 22px,
       $link-text-width: 100%
     );
 
@@ -309,7 +309,7 @@ $arrow-height: 48px;
     .quick-links {
       .quick-link {
         .calculator-image:after {
-          @include is-calculator-link-image(48px, 156px, 109px, 132px);
+          @include is-calculator-link-image(48px, 156px, 90px, 109px);
         }
 
         .grants-image:after {
@@ -323,7 +323,8 @@ $arrow-height: 48px;
     }
 
     @include has-other-things-section(
-      $margin: 58px 0 60px,
+      $top-margin: 58px,
+      $bottom-margin: 60px,
       $heading-margin-bottom: 24px,
       $grid-margin: 20px,
       $number-of-items-in-row: 2
@@ -340,8 +341,7 @@ $arrow-height: 48px;
       $heading-min-height: 0,
       $grid-margin: 16px,
       $number-of-links-in-row: 4,
-      $link-height: 157px,
-      $link-padding: 0 22px,
+      $link-padding: 22px,
       $link-text-width: 60%
     );
 
@@ -360,7 +360,7 @@ $arrow-height: 48px;
     .quick-links {
       .quick-link {
         .calculator-image:after {
-          @include is-calculator-link-image(48px, 156px, 109px, 132px);
+          @include is-calculator-link-image(8%, 40%, 109px, 132px);
         }
 
         .grants-image:after {
@@ -368,13 +368,14 @@ $arrow-height: 48px;
         }
 
         .boiler-image:after {
-          @include is-boiler-link-image(53px, 0, 266px, 103px);
+          @include is-boiler-link-image(8%, 0, 266px, 103px);
         }
       }
     }
 
     @include has-other-things-section(
-      $margin: 58px 0 60px,
+      $top-margin: 58px,
+      $bottom-margin: 60px,
       $heading-margin-bottom: 24px,
       $grid-margin: 20px,
       $number-of-items-in-row: 4
