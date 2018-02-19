@@ -92,6 +92,19 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin card-heading-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 20px, 24px, 20px, 24px);
+  font-weight: bold;
+  color: $dark-grey;
+}
+
+@mixin read-more-font {
+  @include has-font-sizes-at-breakpoints(11px, 13px, 11px, 13px, 11px, 13px);
+  font-weight: 500;
+  color: $primary-blue;
+  text-transform: uppercase;
+}
+
 // TODO Convert the below rules to match the same format as the above rules
 @mixin page-heading {
   font-size: 56px;
@@ -130,13 +143,6 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 @mixin title-text {
   font-size: 32px;
   font-weight: bold;
-}
-
-@mixin card-heading {
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 24px;
-  color: $dark-grey;
 }
 
 @mixin card-heading-small {

@@ -28,7 +28,7 @@ $do-button-right-chevron-width: 30px;
         font-weight: bold;
         text-transform: capitalize;
         margin-bottom: 10px;
-        @include card-heading;
+        @include card-heading-font;
       }
 
       .subheading {

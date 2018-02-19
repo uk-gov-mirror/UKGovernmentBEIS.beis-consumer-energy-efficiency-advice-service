@@ -1,6 +1,25 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 
+// Component specific variables
+
+// Component specific mixins
+@mixin is-latest-news-card($image-height, $text-container-min-height, $text-container-padding, $heading-padding) {
+  .latest-news-icon-container {
+    height: $image-height;
+  }
+
+  .text-container {
+    min-height: $text-container-min-height;
+    padding: $text-container-padding;
+
+    .heading {
+      padding: $heading-padding;
+    }
+  }
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .latest-news-card {
   display: flex;
   flex-direction: column;
@@ -14,7 +33,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 160px;
     background-position: center;
     background-size: cover;
 
@@ -24,28 +42,20 @@
   }
 
   .text-container {
-    min-height: 160px;
-    padding: 25px 20px 27px 20px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-  .heading {
-    @include card-heading-small;
-    padding: 20px 0;
-    flex-grow: 1;
-    flex-shrink: 0;
-    color: $dark-grey;
-  }
+    .heading {
+      @include card-heading-font;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
 
     .read-more {
-      text-transform: uppercase;
-      font-size: 11px;
-      line-height: 13px;
-      font-weight: 500;
-      color: $primary-blue;
+      @include read-more-font;
     }
   }
 
@@ -55,5 +65,39 @@
         text-decoration: underline;
       }
     }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .latest-news-card {
+    @include is-latest-news-card(
+      $image-height: 184px,
+      $text-container-min-height: 160px,
+      $text-container-padding: 25px,
+      $heading-padding: 0 0 40px
+    );
+  }
+}
+
+@include tablet() {
+  .latest-news-card {
+    @include is-latest-news-card(
+      $image-height: 236px,
+      $text-container-min-height: 160px,
+      $text-container-padding: 25px 20px 27px 20px,
+      $heading-padding: 0 0 40px
+    );
+  }
+}
+
+@include desktop() {
+  .latest-news-card {
+    @include is-latest-news-card(
+      $image-height: 236px,
+      $text-container-min-height: 160px,
+      $text-container-padding: 25px 20px 27px 20px,
+      $heading-padding: 0 0 40px
+    );
   }
 }

@@ -79,7 +79,7 @@ $remaining-width: $content-max-width - $efficiency-box-width;
         width: 100%;
 
         .headline {
-          @include card-heading;
+          @include card-heading-font;
           margin-bottom: 16px;
           width: 80%;
         }

@@ -35,7 +35,7 @@ $step-number-bullet-margin: 20px;
     }
 
     .step-headline {
-      @include card-heading;
+      @include card-heading-font;
       background: none;
       outline: none;
       border: none;

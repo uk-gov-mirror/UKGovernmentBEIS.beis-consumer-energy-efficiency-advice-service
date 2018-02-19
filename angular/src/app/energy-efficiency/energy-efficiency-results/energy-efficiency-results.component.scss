@@ -57,7 +57,7 @@ $grant-card-margin: 24px;
       padding: 40px 0 32px 0;
 
       .recommendations-heading {
-        @include card-heading;
+        @include card-heading-font;
         margin-bottom: 6px;
       }
 

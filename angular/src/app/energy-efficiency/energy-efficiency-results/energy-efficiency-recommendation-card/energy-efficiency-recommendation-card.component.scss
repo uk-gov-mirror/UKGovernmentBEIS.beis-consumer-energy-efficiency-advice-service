@@ -41,7 +41,7 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .heading {
-        @include card-heading;
+        @include card-heading-font;
       }
 
       .summary-row {

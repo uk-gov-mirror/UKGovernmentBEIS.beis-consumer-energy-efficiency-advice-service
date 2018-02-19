@@ -6,7 +6,7 @@
   display: flex;
 
   .heading {
-    @include card-heading;
+    @include card-heading-font;
   }
 
   .card-section {
