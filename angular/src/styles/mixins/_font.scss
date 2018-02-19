@@ -87,6 +87,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   text-transform: uppercase;
 }
 
+@mixin page-section-heading-font {
+  @include has-font-sizes-at-breakpoints(24px, 32px, 24px, 32px, 20px, 20px);
+  font-weight: bold;
+}
+
 // TODO Convert the below rules to match the same format as the above rules
 @mixin page-heading {
   font-size: 56px;

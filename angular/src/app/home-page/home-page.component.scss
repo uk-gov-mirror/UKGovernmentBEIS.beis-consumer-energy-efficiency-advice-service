@@ -12,6 +12,9 @@ $desktop-homepage-link-margin: 16px;
 $mobile-quick-link-margin: 6px;
 $tablet-quick-link-margin: 4px;
 $desktop-quick-link-margin: 4px;
+$mobile-news-card-margin: 18px;
+$tablet-news-card-margin: 20px;
+$desktop-news-card-margin: 20px;
 $arrow-width: 20px;
 $arrow-height: 48px;
 
@@ -128,34 +131,14 @@ $arrow-height: 48px;
   }
 
   .other-things {
-    margin-top: 58px;
-
     .heading {
-      font-size: 24px;
-      line-height: 32px;
-      font-weight: bold;
+      @include page-section-heading-font;
       color: $primary-blue;
-
-      margin-bottom: 24px;
     }
 
     .spinner-container {
       display: flex;
       justify-content: center;
-    }
-
-    .latest-news-cards {
-      display: flex;
-      align-items: stretch;
-      margin-bottom: 60px;
-
-      & > * {
-        flex: 1;
-      }
-
-      > :not(:last-child) {
-        margin-right: 20px;
-      }
     }
   }
 }
@@ -233,6 +216,23 @@ $arrow-height: 48px;
         }
       }
     }
+
+    .other-things {
+      margin-top: 56px;
+
+      .heading {
+        margin-bottom: 60px;
+      }
+
+      .latest-news-cards {
+        @include is-grid($margin-compensation: $mobile-news-card-margin);
+        margin-bottom: 20px;
+
+        > * {
+          @include is-grid-item($number-of-items: 1, $margin: $mobile-news-card-margin);
+        }
+      }
+    }
   }
 }
 
@@ -306,6 +306,23 @@ $arrow-height: 48px;
         }
       }
     }
+
+    .other-things {
+      margin-top: 58px;
+
+      .heading {
+        margin-bottom: 24px;
+      }
+
+      .latest-news-cards {
+        @include is-grid($margin-compensation: $tablet-news-card-margin);
+        margin-bottom: 60px;
+
+        > * {
+          @include is-grid-item($number-of-items: 2, $margin: $tablet-news-card-margin);
+        }
+      }
+    }
   }
 }
 
@@ -376,6 +393,23 @@ $arrow-height: 48px;
           top: 0;
           height: 266px;
           width: 103px;
+        }
+      }
+    }
+
+    .other-things {
+      margin-top: 58px;
+
+      .heading {
+        margin-bottom: 24px;
+      }
+
+      .latest-news-cards {
+        @include is-grid($margin-compensation: $desktop-news-card-margin);
+        margin-bottom: 60px;
+
+        > * {
+          @include is-grid-item($number-of-items: 4, $margin: $desktop-news-card-margin);
         }
       }
     }
