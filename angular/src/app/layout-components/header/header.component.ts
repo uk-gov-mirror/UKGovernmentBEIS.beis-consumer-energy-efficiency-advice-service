@@ -26,6 +26,12 @@ export class HeaderComponent {
     constructor(private renderer: Renderer2, private wordpressPagesService: WordpressPagesService) {
     }
 
+    expandSearchBox(): void {
+        if (!this.shouldDisplaySearchDetailsDropdown) {
+            this.handleSearchBoxFocussed();
+        }
+    }
+
     handleSearchBoxFocussed(): void {
         this.shouldDisplaySearchDetailsDropdown = true;
         this.deregisterFocusOutListener = this.renderer.listen('window', 'focusout', event => this.handleFocusChange(event));
