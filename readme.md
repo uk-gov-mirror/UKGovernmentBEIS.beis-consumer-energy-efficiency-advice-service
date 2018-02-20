@@ -74,3 +74,12 @@ Integration tests are in the "/integration-tests" project.
   * Have the site up and running at http://localhost:81
   * Run `npm run test`
     * If you are running the site at a different URL (e.g. if you're using EasyPHP), then either change exports.config.baseUrl in /integration-tests/protractor.conf.js to the correct baseUrl, or run "npm run test -- --baseUrl=[your base url]" instead
+See http://www.protractortest.org/#/ for a guide on writing protractor tests. We probably don't need too many of these - just check that the site basically exists.
+
+## Debugging
+
+Go to https://www.jetbrains.com/help/idea/configuring-xdebug.html. Download and install Xdebug, integrate it with the PHP interpreter and do any IntelliJ config you need.
+
+Create a debug server configuration following the instructions here https://www.jetbrains.com/help/idea/creating-a-php-debug-server-configuration.html
+
+Then just start debugging using this configuration!
