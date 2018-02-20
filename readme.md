@@ -34,6 +34,11 @@ This might be easier to install, but is more different from the production envir
 * Make sure the database is running and follow the steps in https://codex.wordpress.org/Installing_WordPress#Using_phpMyAdmin
   * Use database name "wordpress", database user "wordpress" and database user password "wordpressPassword123"
 
+## Wordpress Server Config
+API keys and other sensitive configuration are accessed by the PHP application as environment variables. To set these, copy the file
+`wordpress/wp-content/themes/angular-theme/config/config.php.template` to a new file called `config.php` in the same directory. This file
+ will be ignored by git, so you can safely fill in the template values with real values.
+
 ## Initial Wordpress site setup
 
 * Make sure the web and MySQL servers are up and running, and visit http://localhost:81. You should be redirected to an initial setup page for Wordpress.
@@ -47,11 +52,6 @@ This might be easier to install, but is more different from the production envir
     * WP REST API cache
   * Import the necessary Wordpress content to your local wordpress MySQL database. This content is not stored in the repository!
 * The front end won't be displaying anything yet... now we need to set up the Angular project.
-
-## Wordpress Server Config
-API keys and other sensitive configuration are accessed by the PHP application as environment variables. To set these, copy the file
-`wordpress/wp-content/themes/angular-theme/config/config.php.template` to a new file called `config.php` in the same directory. This file
- will be ignored by git, so you can safely fill in the template values with real values.
 
 ## Angular setup
 
