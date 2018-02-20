@@ -1,3 +1,7 @@
+// These mixins are to add a gap (gutter) between items in a flex grid
+// In the future, we may be able to use "row-gap"
+// See https://www.w3.org/TR/css3-grid-layout/#gutters
+// and https://github.com/w3c/csswg-drafts/issues/592
 @mixin is-grid($margin-compensation: 0) {
   display: flex;
   flex-wrap: wrap;
