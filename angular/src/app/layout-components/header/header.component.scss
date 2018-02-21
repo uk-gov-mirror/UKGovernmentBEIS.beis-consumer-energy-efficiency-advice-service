@@ -8,29 +8,6 @@ $animation-duration-horizontal: 0.5s;
 $animation-duration-vertical: 0.5s;
 
 // Component specific mixins
-@mixin is-header($padding, $logo-spacing, $ehc-logo-height, $vertical-line-height, $gov-logo-height) {
-  .page-row-content {
-    padding: $padding;
-
-    .logos {
-      margin-right: $logo-spacing;
-
-      .ehc-logo, .ehc-logo--small {
-        height: $ehc-logo-height;
-      }
-
-      .vertical-line {
-        margin: 0 $logo-spacing;
-        height: $vertical-line-height;
-      }
-
-      .gov-logo {
-        height: $gov-logo-height;
-      }
-    }
-  }
-}
-
 @mixin has-small-ehc-logo() {
   .ehc-logo {
     display: none;
@@ -51,18 +28,16 @@ $animation-duration-vertical: 0.5s;
   }
 }
 
-@mixin is-full-size-header($padding, $logo-spacing, $ehc-logo-height, $vertical-line-height, $gov-logo-height) {
+@mixin is-full-size-header() {
   @include has-large-ehc-logo;
-  @include is-header($padding, $logo-spacing, $ehc-logo-height, $vertical-line-height, $gov-logo-height);
 
   .mobile-icons {
     display: none;
   }
 }
 
-@mixin is-compressed-header($padding, $logo-spacing, $ehc-logo-height, $vertical-line-height, $gov-logo-height) {
+@mixin is-compressed-header() {
   @include has-small-ehc-logo;
-  @include is-header($padding, $logo-spacing, $ehc-logo-height, $vertical-line-height, $gov-logo-height);
 
   .mobile-icons {
     display: block;
@@ -97,7 +72,7 @@ $animation-duration-vertical: 0.5s;
 @mixin is-search-icon($size) {
   @include is-clickable-icon($size);
   stroke: $primary-blue;
-  padding-right: 28px;
+  margin-right: 16px;
 }
 
 @mixin is-menu-icon($size) {
@@ -283,36 +258,76 @@ $animation-duration-vertical: 0.5s;
 // Breakpoint specific styling
 @include mobile() {
   .header {
-    @include is-compressed-header(
-      $padding: 10px 0,
-      $logo-spacing: 19px,
-      $ehc-logo-height: 50px,
-      $vertical-line-height: 42px,
-      $gov-logo-height: 18px
-    );
+    @include is-compressed-header();
+    .page-row-content {
+      padding: 10px 0;
+
+      .logos {
+        .ehc-logo, .ehc-logo--small {
+          height: 50px;
+        }
+
+        .vertical-line {
+          margin: 0 19px;
+          height: 42px;
+        }
+
+        .gov-logo {
+          height: 18px;
+        }
+      }
+    }
   }
 }
 
 @include tablet() {
   .header {
-    @include is-full-size-header(
-      $padding: 10px 0,
-      $logo-spacing: 20px,
-      $ehc-logo-height: 62px,
-      $vertical-line-height: 50px,
-      $gov-logo-height: 24px
-    );
+    @include is-full-size-header();
+    .page-row-content {
+      padding: 10px 0;
+
+      .logos {
+        margin-right: 20px;
+
+        .ehc-logo, .ehc-logo--small {
+          height: 62px;
+        }
+
+        .vertical-line {
+          margin: 0 20px;
+          height: 50px;
+        }
+
+        .gov-logo {
+          height: 24px;
+        }
+      }
+    }
   }
 }
 
 @include desktop() {
   .header {
-    @include is-full-size-header(
-      $padding: 10px 0,
-      $logo-spacing: 20px,
-      $ehc-logo-height: 62px,
-      $vertical-line-height: 50px,
-      $gov-logo-height: 24px
-    );
+    @include is-full-size-header();
+    .page-row-content {
+      padding: 10px 0;
+
+      .logos {
+        margin-right: 20px;
+
+        .ehc-logo, .ehc-logo--small {
+          height: 62px;
+        }
+
+        .vertical-line {
+          margin: 0 20px;
+          height: 50px;
+        }
+
+        .gov-logo {
+          height: 24px;
+        }
+      }
+    }
   }
 }
