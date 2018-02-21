@@ -1,4 +1,4 @@
-import {Component, Renderer2, ViewChild, ChangeDetectorRef} from "@angular/core";
+import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from "@angular/core";
 import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
@@ -13,12 +13,15 @@ export class HeaderComponent {
     shouldDisplaySearchDetailsDropdown: boolean = false;
     shouldDisplayExpandSearchResultsButton: boolean = false;
     shouldDisplayExpandedSearchResults: boolean = false;
+    shouldExpandNav: boolean = false;
     searchText: string;
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
     private allSearchResults: WordpressPage[] = [];
     private deregisterFocusOutListener: () => void;
+
+    @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
@@ -30,7 +33,11 @@ export class HeaderComponent {
         private wordpressPagesService: WordpressPagesService) {
     }
 
-    expandSearchMobileBox(): void {
+    toggleMobileNav(): void {
+        this.onMobileNavToggled.emit();
+    }
+
+    toggleSearchMobileBox(): void {
         if (!this.shouldDisplaySearchDetailsDropdown) {
             this.focusOnSearchBox();
         }

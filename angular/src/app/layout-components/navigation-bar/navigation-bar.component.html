@@ -1,6 +1,8 @@
-<div class="navigation-bar page-row">
+<div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
     <div class="page-row-content">
         <a class="menu-item" *ngFor="let page of topLevelPages"
-           [routerLink]="page.route" [innerHTML]="page.title"></a>
+           [routerLink]="page.route" [innerHTML]="page.title"
+           (click)="hideMobileNav()"></a>
     </div>
+    <div class="navigation-bar-mobile-overlay" (click)="hideMobileNav()"></div>
 </div>

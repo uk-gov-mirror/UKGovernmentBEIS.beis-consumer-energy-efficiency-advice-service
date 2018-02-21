@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
@@ -10,6 +10,8 @@ import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpr
 export class NavigationBarComponent implements OnInit {
 
     topLevelPages: WordpressPage[] = [];
+    @Input() shouldExpandNav: boolean;
+    @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
 
     constructor(private wordpressPagesService: WordpressPagesService) {
     }
@@ -18,5 +20,9 @@ export class NavigationBarComponent implements OnInit {
         this.wordpressPagesService
             .getTopLevelPages()
             .subscribe(wordpressPages => this.topLevelPages = wordpressPages);
+    }
+
+    hideMobileNav() {
+        this.onHideMobileNav.emit();
     }
 }

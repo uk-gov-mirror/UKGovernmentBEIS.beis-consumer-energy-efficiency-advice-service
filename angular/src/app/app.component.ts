@@ -10,6 +10,7 @@ import {SVGCacheService} from "ng-inline-svg";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    shouldExpandNav: boolean = false;
 
     constructor(
         private router: Router,
@@ -33,5 +34,13 @@ export class AppComponent implements OnInit {
 
         // Set base URL for inline-svg directive
         this.svgService.setBaseUrl({baseUrl: '/wp-content/themes/angular-theme/dist/assets/images/'});
+    }
+
+    toggleMobileNav(): void {
+        this.shouldExpandNav = !this.shouldExpandNav;
+    }
+
+    hideMobileNav(): void {
+        this.shouldExpandNav = false;
     }
 }
