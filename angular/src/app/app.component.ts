@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
+import { Meta } from "@angular/platform-browser";
 import "rxjs/add/operator/distinctUntilChanged";
 import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
 import {SVGCacheService} from "ng-inline-svg";
@@ -14,9 +15,11 @@ export class AppComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private meta: Meta,
         private googleAnalyticsService: GoogleAnalyticsService,
         private svgService: SVGCacheService
     ) {
+        this.meta.addTag({ name: 'viewport', content: 'width=device-width,initial-scale=1.0' });
     }
 
     ngOnInit() {
