@@ -1,4 +1,4 @@
-import {Component, Renderer2, ViewChild} from "@angular/core";
+import {Component, Renderer2, ViewChild, ChangeDetectorRef} from "@angular/core";
 import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
@@ -22,14 +22,25 @@ export class HeaderComponent {
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
+    @ViewChild('mobileSearchButton') mobileSearchButton;
 
-    constructor(private renderer: Renderer2, private wordpressPagesService: WordpressPagesService) {
+    constructor(
+        private renderer: Renderer2,
+        private changeDetector: ChangeDetectorRef,
+        private wordpressPagesService: WordpressPagesService) {
     }
 
-    expandSearchBox(): void {
+    expandSearchMobileBox(): void {
         if (!this.shouldDisplaySearchDetailsDropdown) {
-            this.handleSearchBoxFocussed();
+            this.focusOnSearchBox();
         }
+    }
+
+    focusOnSearchBox(): void {
+        this.handleSearchBoxFocussed();
+        // Make sure the search box is actually visible before focusing on it
+        this.changeDetector.detectChanges();
+        this.searchInput.nativeElement.focus();
     }
 
     handleSearchBoxFocussed(): void {
@@ -50,12 +61,13 @@ export class HeaderComponent {
     }
 
     collapseSearchBox(): void {
-        this.shouldDisplaySearchDetailsDropdown = false;
         this.deregisterFocusOutListener();
         this.searchText = null;
         setTimeout(() => {
             this.searchState = SearchStates.Initial;
             this.resetSearchResults();
+            // TODO mobile_nav: This is a hacky approach to fixing event issues
+            this.shouldDisplaySearchDetailsDropdown = false;
         }, 500);
     }
 
