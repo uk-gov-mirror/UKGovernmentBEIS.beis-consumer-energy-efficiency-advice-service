@@ -50,6 +50,8 @@ API keys and other sensitive configuration are accessed by the PHP application a
     * ACF to REST API
     * Wordpress Importer
     * WP REST API cache
+    * Advanced Custom Fields PRO
+      * Unfortunately, This is a paid version which is not readily available. Please download and install it separately (if you have access, see the Swiki). 
   * Import the necessary Wordpress content to your local wordpress MySQL database. This content is not stored in the repository!
 * The front end won't be displaying anything yet... now we need to set up the Angular project.
 
