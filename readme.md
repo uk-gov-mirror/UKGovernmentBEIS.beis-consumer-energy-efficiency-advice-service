@@ -1,11 +1,23 @@
-This project is a Wordpress project with an Angular 4 frontend, so you'll need some way of locally hosting a PHP app and MySQL server for testing during development.
+# BEIS DCEAS - Energy Efficiency Website
 
-Suggested way is installing MySQL and PHP standalone, and using IIS. This is most similar to the deployment environment, in Azure.
+This project is a Wordpress project with an Angular 4
+frontend, so you'll need some way of locally hosting a
+PHP app and MySQL server for testing during development.
 
-Other options are using the PHP in-built server, or a package installation such as WAMP. Using the PHP in-built server makes debugging a bit more complicated, and also causes the site to throws occasional strange un-debuggable exceptions, but it does make installing a server trivial if you don't want to install IIS just for this. 
+Suggested way is installing MySQL and PHP standalone, and using
+IIS. This is most similar to the deployment environment, in Azure.
 
-WAMP Package installations are easy to get started with with the caveat that they usually require the base href to be a subdirectory e.g. http://localhost:81/wordpress/ rather than just http://localhost:81. This causes issues with serving our Angular files, so there's a bit more config that you'll have to change (and make sure it doesn't get pushed to Azure).
+Other options are using the PHP in-built server, or a package
+installation such as WAMP. Using the PHP in-built server makes
+debugging a bit more complicated, and also causes the site to throws
+occasional strange un-debuggable exceptions, but it does make installing
+a server trivial if you don't want to install IIS just for this.
 
+WAMP Package installations are easy to get started with with the caveat
+that they usually require the base href to be a subdirectory e.g.
+http://localhost:81/wordpress/ rather than just http://localhost:81. This
+causes issues with serving our Angular files, so there's a bit more config
+that you'll have to change (and make sure it doesn't get pushed to Azure).
 
 ## Server/database setup
 
