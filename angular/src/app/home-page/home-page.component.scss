@@ -1,5 +1,6 @@
 @import "styles/page";
 @import "styles/mixins/layout";
+@import "styles/mixins/common-sections";
 @import 'styles/mixins/buttons';
 @import 'styles/mixins/font';
 @import "styles/var/colors";
@@ -78,25 +79,6 @@ $arrow-height: 48px;
         height: $arrow-height;
         width: $arrow-width;
         padding-left: $arrow-padding-left;
-      }
-    }
-  }
-}
-
-@mixin has-other-things-section($top-margin, $bottom-margin, $heading-margin-bottom, $grid-margin, $number-of-items-in-row) {
-  .other-things {
-    margin-top: $top-margin;
-    margin-bottom: $bottom-margin;
-
-    .heading {
-      margin-bottom: $heading-margin-bottom;
-    }
-
-    .latest-news-cards {
-      @include is-grid($margin-compensation: $grid-margin);
-
-      > * {
-        @include is-grid-item($number-of-items: $number-of-items-in-row, $margin: $grid-margin);
       }
     }
   }
@@ -215,15 +197,7 @@ $arrow-height: 48px;
   }
 
   .other-things {
-    .heading {
-      @include page-section-heading-font;
-      color: $primary-blue;
-    }
-
-    .spinner-container {
-      display: flex;
-      justify-content: center;
-    }
+    @include is-other-things-section();
   }
 }
 
@@ -269,14 +243,6 @@ $arrow-height: 48px;
         }
       }
     }
-
-    @include has-other-things-section(
-      $top-margin: 56px,
-      $bottom-margin: 20px,
-      $heading-margin-bottom: 60px,
-      $grid-margin: 18px,
-      $number-of-items-in-row: 1
-    );
   }
 }
 
@@ -320,14 +286,6 @@ $arrow-height: 48px;
         }
       }
     }
-
-    @include has-other-things-section(
-      $top-margin: 58px,
-      $bottom-margin: 60px,
-      $heading-margin-bottom: 24px,
-      $grid-margin: 20px,
-      $number-of-items-in-row: 2
-    );
   }
 }
 
@@ -371,13 +329,5 @@ $arrow-height: 48px;
         }
       }
     }
-
-    @include has-other-things-section(
-      $top-margin: 58px,
-      $bottom-margin: 60px,
-      $heading-margin-bottom: 24px,
-      $grid-margin: 20px,
-      $number-of-items-in-row: 4
-    );
   }
 }
