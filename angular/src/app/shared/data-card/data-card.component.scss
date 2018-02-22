@@ -3,6 +3,11 @@
 @import "styles/mixins/font";
 @import "styles/mixins/layout";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   flex: 0 0 $data-card-width;
   display: flex;

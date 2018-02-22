@@ -156,6 +156,28 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin browse-video-text-font {
+  @include has-font-sizes-at-breakpoints(16px, 34px, 16px, 34px, 16px, 34px);
+  font-weight: bold;
+  color: $primary-blue;
+}
+
+@mixin browse-video-title-font {
+  @include has-font-sizes-at-breakpoints(28px, 32px, 28px, 32px, 24px, 26px);
+  font-weight: bold;
+}
+
+@mixin article-title-font {
+  @include has-font-sizes-at-breakpoints(32px, 32px, 32px, 32px, 24px, 26px);
+  font-weight: bold;
+}
+
+@mixin article-summary-font {
+  @include has-font-sizes-at-breakpoints(14px, 18px, 14px, 18px, 13px, 15px);
+  font-family: $font-family-light;
+  font-weight: bold;
+}
+
 // TODO Convert the below rules to match the same format as the above rules
 
 @mixin page-heading-small {
@@ -184,11 +206,6 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 
 @mixin headline-figure {
   font-size: 56px;
-  font-weight: bold;
-}
-
-@mixin title-text {
-  font-size: 32px;
   font-weight: bold;
 }
 

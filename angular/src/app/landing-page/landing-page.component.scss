@@ -3,8 +3,28 @@
 @import "styles/mixins/layout";
 
 // Component specific variables
+$desktop-browse-cards-margin: 24px;
+$tablet-browse-cards-margin: 20px;
+$mobile-browse-cards-margin: 20px;
 
 // Component specific mixins
+@mixin is-browse-card-grid($margin, $small-cards-per-row: 2) {
+  @include is-grid($margin-compensation: $margin);
+
+  .full-width-card {
+    @include is-grid-item($number-of-items: 1, $margin: $margin);
+  }
+
+  .small-cards {
+    @include is-grid($margin-compensation: $margin);
+    @include is-grid-item($number-of-items: 1, $margin: 0);
+    width: 100%;
+
+    app-article-card {
+      @include is-grid-item($number-of-items: $small-cards-per-row, $margin: $margin);
+    }
+  }
+}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .landing-page {
@@ -51,31 +71,9 @@
   }
 
   .browse .page-row-content {
-    padding-top: 77px;
-    display: flex;
-    flex-direction: column;
-
-    .heading {
-      margin-bottom: 32px;
-    }
-
     .full-width-card {
-      margin-bottom: 24px;
-
       ::ng-deep .large-video-card .text-container {
         background-color: $lighter-grey;
-      }
-    }
-
-    .half-width-cards {
-      display: flex;
-      align-items: stretch;
-
-      > * {
-        flex-basis: calc(50% - 12px);
-        &:first-child {
-          margin-right: 24px;
-        }
       }
     }
   }
@@ -142,6 +140,18 @@
         }
       }
     }
+
+    .browse .page-row-content {
+      padding-top: 50px;
+
+      .heading {
+        margin-bottom: 36px;
+      }
+
+      .browse-cards {
+        @include is-browse-card-grid($margin: $mobile-browse-cards-margin, $small-cards-per-row: 1);
+      }
+    }
   }
 
   @include tablet() {
@@ -168,6 +178,18 @@
         .body-text {
           padding: 14px 0 18px;
         }
+      }
+    }
+
+    .browse .page-row-content {
+      padding-top: 50px;
+
+      .heading {
+        margin-bottom: 32px;
+      }
+
+      .browse-cards {
+        @include is-browse-card-grid($margin: $tablet-browse-cards-margin, $small-cards-per-row: 2);
       }
     }
   }
@@ -200,6 +222,18 @@
         .body-text {
           padding: 14px 0 18px;
         }
+      }
+    }
+
+    .browse .page-row-content {
+      padding-top: 77px;
+
+      .heading {
+        margin-bottom: 32px;
+      }
+
+      .browse-cards {
+        @include is-browse-card-grid($margin: $desktop-browse-cards-margin, $small-cards-per-row: 2);
       }
     }
   }
