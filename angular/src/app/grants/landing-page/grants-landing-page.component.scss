@@ -18,7 +18,7 @@ $grant-card-margin: 24px;
       padding: 60px 0;
 
       .heading-text {
-        @include page-heading;
+        @include page-heading-font;
       }
     }
   }

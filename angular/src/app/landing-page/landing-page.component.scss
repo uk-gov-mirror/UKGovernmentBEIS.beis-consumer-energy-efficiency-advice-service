@@ -1,23 +1,24 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
+@import "styles/mixins/layout";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .landing-page {
-
   .page-row-content {
-    padding: 60px 0 50px;
-
     .heading {
       @include page-subheading;
-      color: $focus-text-blue
+      color: $focus-text-blue;
     }
   }
 
   .page-heading {
     .page-row-content {
-      padding-bottom: 60px;
-
       .heading {
-        @include page-heading;
+        @include page-heading-font;
         color: $headline-dark-blue;
       }
     }
@@ -28,22 +29,8 @@
     color: white;
 
     .page-row-content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-
       .heading {
         color: white;
-      }
-
-      .postcode-reason-container {
-        padding-right: 40px;
-      }
-
-      .postcode-input {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
       }
     }
   }
@@ -126,6 +113,67 @@
         > :not(:last-child) {
           margin-right: 16px;
         }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.landing-page {
+  @include mobile() {
+    .page-row-content {
+      padding: 25px 0 20px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 28px;
+      }
+    }
+
+    .postcode {
+      .heading {
+        padding-bottom: 24px;
+      }
+    }
+  }
+
+  @include tablet() {
+    .page-row-content {
+      padding: 45px 0 60px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 40px;
+      }
+    }
+
+    .postcode {
+      .heading {
+        padding-bottom: 24px;
+      }
+    }
+  }
+
+  @include desktop() {
+    .page-row-content {
+      padding: 45px 0 60px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 40px;
+      }
+    }
+
+    .postcode {
+      .postcode-reason-container {
+        padding-right: 40px;
+      }
+
+      .postcode-input {
+        @include has-children-side-by-side();
       }
     }
   }

@@ -71,6 +71,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin page-heading-font {
+  @include has-font-sizes-at-breakpoints(48px, 62px, 48px, 62px, 32px, 34px);
+  font-weight: bold;
+}
+
 @mixin large-link-font {
   @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 19px, 16px, 19px);
   font-weight: bold;
@@ -119,11 +124,12 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   outline: none;
 }
 
-// TODO Convert the below rules to match the same format as the above rules
-@mixin page-heading {
-  font-size: 56px;
+@mixin postcode-dropdown-font {
+  @include has-font-sizes-at-breakpoints(24px, 24px, 20px, 24px, 14px, 16px);
   font-weight: bold;
 }
+
+// TODO Convert the below rules to match the same format as the above rules
 
 @mixin page-heading-small {
   font-size: 40px;

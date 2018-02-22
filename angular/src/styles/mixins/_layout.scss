@@ -16,3 +16,9 @@
   width: calc((100% / #{$number-of-items}) - #{$margin});
   margin: $margin / 2;
 }
+
+@mixin has-children-side-by-side() {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
