@@ -43,6 +43,7 @@
 .data-card {
   @include mobile() {
     @include has-children-side-by-side();
+    width: 100%;
 
     .heading, .number-value {
       flex: 0 0 40%;
