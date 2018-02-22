@@ -284,11 +284,11 @@ $arrow-height: 48px;
   .home-page {
     @include has-homepage-heading-section(
       $padding: 74px 0 96px 0,
-      $heading-width: 620px,
+      $heading-width: 100%,
       $heading-bottom-margin: 57px,
       $heading-min-height: 0,
       $grid-margin: 16px,
-      $number-of-links-in-row: 4,
+      $number-of-links-in-row: 2,
       $link-padding: 22px,
       $link-text-width: 100%
     );
