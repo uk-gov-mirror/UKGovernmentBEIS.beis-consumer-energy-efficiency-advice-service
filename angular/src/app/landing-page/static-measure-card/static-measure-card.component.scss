@@ -1,17 +1,13 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 
-.static-measure-card {
-  background-color: white;
+// Component specific variables
+
+// Component specific mixins
+@mixin is-horizontal-static-measures-card() {
   display: flex;
 
-  .heading {
-    @include card-heading-font;
-  }
-
   .card-section {
-    padding: 48px 0 32px;
-
     &:not(:last-child) {
       border-right: 2px solid $lighter-grey;
     }
@@ -20,12 +16,36 @@
   .basic-info {
     flex: 0 0 40%;
     display: flex;
+
+    .recommendation-icon {
+      display: flex;
+      justify-content: space-around;
+      flex: 0 0 80px;
+    }
+
+    .value {
+      flex: 0 0 120px;
+    }
+  }
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.static-measure-card {
+  background-color: white;
+
+  .heading {
+    @include card-heading-font;
+  }
+
+  .card-section {
+    border-bottom: 2px solid $lighter-grey;
+  }
+
+  .basic-info {
     color: $headline-dark-blue;
 
     .recommendation-icon {
-      flex: 0 0 80px;
-      display: flex;
-      justify-content: space-around;
+      display: none;
       padding-top: 12px;
 
       .icon {
@@ -34,26 +54,17 @@
     }
 
     .value {
-      font-size: 48px;
-      line-height: 58px;
-      flex: 0 0 120px;
+      @include static-measure-value-font();
     }
 
     .heading {
-      padding-top: 4px;
       color: $headline-dark-blue;
-      padding-right: 32px;
     }
   }
 
   .recommendation-basic-details {
-    padding-right: 32px;
-    padding-left: 32px;
-
     .summary-row {
-      padding-top: 8px;
-      font-size: 13px;
-      line-height: 15px;
+      @include static-measures-summary-font();
     }
   }
 
@@ -62,6 +73,73 @@
 
     ::ng-deep .data-card .number-value {
       margin: 0;
+    }
+  }
+}
+
+// Breakpoint specific styling
+.static-measure-card {
+  @include mobile() {
+    .card-section {
+      padding: 18px 22px 14px;
+
+      &:not(:last-child) {
+        padding-bottom: 56px;
+      }
+    }
+
+    .basic-info {
+      .heading {
+        padding-top: 8px;
+      }
+    }
+
+    .recommendation-basic-details {
+      .summary-row {
+        padding-top: 20px;
+      }
+    }
+  }
+
+  @include tablet() {
+    .card-section {
+      padding: 48px 22px 14px;
+
+      &:not(:last-child) {
+        padding-bottom: 32px;
+      }
+    }
+
+    .basic-info {
+      .heading {
+        padding-top: 8px;
+      }
+    }
+
+    .recommendation-basic-details {
+      .summary-row {
+        padding-top: 20px;
+      }
+    }
+  }
+
+  @include desktop() {
+    @include is-horizontal-static-measures-card();
+
+    .card-section {
+      padding: 48px 0 32px;
+    }
+
+    .basic-info {
+      .heading {
+        padding-top: 4px;
+        padding-right: 32px;
+      }
+    }
+
+    .recommendation-basic-details {
+      padding-right: 32px;
+      padding-left: 32px;
     }
   }
 }

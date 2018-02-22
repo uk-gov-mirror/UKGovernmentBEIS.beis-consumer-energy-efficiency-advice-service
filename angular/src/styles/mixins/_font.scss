@@ -129,6 +129,33 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin static-measures-body-font {
+  @include has-font-sizes-at-breakpoints(16px, 20px, 16px, 20px, 14px, 17px);
+  font-weight: 300;
+}
+
+@mixin static-measures-summary-font {
+  @include has-font-sizes-at-breakpoints(13px, 15px, 13px, 15px, 13px, 15px);
+  font-weight: 300;
+}
+
+@mixin static-measure-value-font {
+  @include has-font-sizes-at-breakpoints(48px, 58px, 48px, 58px, 52px, 62px);
+  font-weight: bold;
+}
+
+@mixin data-card-heading-font {
+  @include has-font-sizes-at-breakpoints(11px, 14px, 11px, 14px, 11px, 15px);
+  text-transform: uppercase;
+  color: $dark-grey;
+  font-weight: bold;
+}
+
+@mixin data-card-value-font {
+  @include has-font-sizes-at-breakpoints(36px, 36px, 36px, 36px, 36px, 36px);
+  font-weight: bold;
+}
+
 // TODO Convert the below rules to match the same format as the above rules
 
 @mixin page-heading-small {
