@@ -47,13 +47,18 @@ This might be easier to install, but is more different from the production envir
   * Use database name "wordpress", database user "wordpress" and database user password "wordpressPassword123"
 
 ## Wordpress Server Config
-API keys and other sensitive configuration are accessed by the PHP application as environment variables. To set these, copy the file
-`wordpress/wp-content/themes/angular-theme/config/config.php.template` to a new file called `config.php` in the same directory. This file
- will be ignored by git, so you can safely fill in the template values with real values.
+
+API keys and other sensitive configuration are accessed by the PHP
+application as environment variables. To set these, copy the file
+`wordpress/wp-content/themes/angular-theme/config/config.php.template` to a
+new file called `config.php` in the same directory. This file will be ignored
+by git, so you can safely fill in the template values with real values.
 
 ## Initial Wordpress site setup
 
-* Make sure the web and MySQL servers are up and running, and visit http://localhost:81. You should be redirected to an initial setup page for Wordpress.
+* Make sure the web and MySQL servers are up and
+  running, and visit http://localhost:81. You should be
+  redirected to an initial setup page for Wordpress.
 * Fill out the forms with sensible details.
 * Visit the admin backend and:
   * Change the theme to "BEIS DCEAS Theme"
@@ -63,23 +68,38 @@ API keys and other sensitive configuration are accessed by the PHP application a
     * Wordpress Importer
     * WP REST API cache
     * Advanced Custom Fields PRO
-      * Unfortunately, This is a paid version which is not readily available. Please download and install it separately (if you have access, see the Swiki). 
-  * Import the necessary Wordpress content to your local wordpress MySQL database. This content is not stored in the repository!
+      * Unfortunately, This is a paid version which is not
+        readily available. Please download and install it
+        separately (if you have access, see the Swiki).
+  * Import the necessary Wordpress content to your local wordpress
+    MySQL database. This content is not stored in the repository!
+
 * The front end won't be displaying anything yet... now we need to set up the Angular project.
 
 ## Angular setup
 
 * Install Node.js and NPM https://nodejs.org/en/
-* Open a cmd window and go to the "angular" directory in the root of the repository
-* Run `npm install`
-* Install the Angular CLI https://github.com/angular/angular-cli (technically not absolutely necessary, since NPM will install it locally - but it makes things easier)
-* Run `ng build` to get the compiled Angular files into the Wordpress theme. The Angular application will now be available at http://localhost:81. 
 
-When developing, it's a good idea to have the command "ng build --watch" running. This will watch your Angular files and automatically compile them on changes.
+* Open a cmd window and go to the "angular" directory in the root of the repository
+
+* Run `npm install`
+
+* Install the Angular CLI https://github.com/angular/angular-cli
+  (technically not absolutely necessary, since NPM will
+  install it locally - but it makes things easier)
+
+* Run `ng build` to get the compiled Angular files into the Wordpress theme.
+  The Angular application will now be available at http://localhost:81.
+
+When developing, it's a good idea to have the command
+"ng build --watch" running. This will watch your
+Angular files and automatically compile them on changes.
 
 ## Tests
 
-Angular unit tests are run from the Angular project. Open a command window in "/angular" and run `ng test` (or "npm run test"). The tests will automatically be re-run when the files are changed.
+Angular unit tests are run from the Angular project. Open a command
+window in "/angular" and run `ng test` (or "npm run test"). The
+tests will automatically be re-run when the files are changed.
 
 Integration tests are in the "/integration-tests" project.
 
@@ -87,13 +107,22 @@ Integration tests are in the "/integration-tests" project.
 * When you want to run the integration tests:
   * Have the site up and running at http://localhost:81
   * Run `npm run test`
-    * If you are running the site at a different URL (e.g. if you're using EasyPHP), then either change exports.config.baseUrl in /integration-tests/protractor.conf.js to the correct baseUrl, or run "npm run test -- --baseUrl=[your base url]" instead
-See http://www.protractortest.org/#/ for a guide on writing protractor tests. We probably don't need too many of these - just check that the site basically exists.
+    * If you are running the site at a different URL (e.g. if you're
+      using EasyPHP), then either change exports.config.baseUrl in
+      /integration-tests/protractor.conf.js to the correct baseUrl,
+      or run "npm run test -- --baseUrl=[your base url]" instead
+
+See http://www.protractortest.org/#/ for a guide on
+writing protractor tests. We probably don't need too many
+of these - just check that the site basically exists.
 
 ## Debugging
 
-Go to https://www.jetbrains.com/help/idea/configuring-xdebug.html. Download and install Xdebug, integrate it with the PHP interpreter and do any IntelliJ config you need.
+Go to https://www.jetbrains.com/help/idea/configuring-xdebug.html.
+Download and install Xdebug, integrate it with the
+PHP interpreter and do any IntelliJ config you need.
 
-Create a debug server configuration following the instructions here https://www.jetbrains.com/help/idea/creating-a-php-debug-server-configuration.html
+Create a debug server configuration following the instructions here
+https://www.jetbrains.com/help/idea/creating-a-php-debug-server-configuration.html
 
 Then just start debugging using this configuration!
