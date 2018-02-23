@@ -1,80 +1,74 @@
 # BEIS DCEAS - Energy Efficiency Website
 
-This project is a Wordpress project with an Angular 4
-frontend, so you'll need some way of locally hosting a
-PHP app and MySQL server for testing during development.
+This project is the BEIS Energy Efficiency Website.
 
-Suggested way is installing MySQL and PHP standalone, and using
-IIS. This is most similar to the deployment environment, in Azure.
+It is public-facing.
 
-Other options are using the PHP in-built server, or a package
-installation such as WAMP. Using the PHP in-built server makes
-debugging a bit more complicated, and also causes the site to throws
-occasional strange un-debuggable exceptions, but it does make installing
-a server trivial if you don't want to install IIS just for this.
+## Table of Contents
 
-WAMP Package installations are easy to get started with with the caveat
-that they usually require the base href to be a subdirectory e.g.
-http://localhost:81/wordpress/ rather than just http://localhost:81. This
-causes issues with serving our Angular files, so there's a bit more config
-that you'll have to change (and make sure it doesn't get pushed to Azure).
+<!-- toc -->
+TODO:RTB toc here
+<!-- tocstop -->
 
-## Server/database setup
+## Architecture
 
-### Using IIS and MySQL
-* To set up IIS with PHP, look at https://docs.microsoft.com/en-us/iis/application-frameworks/scenario-build-a-php-website-on-iis/configuring-step-1-install-iis-and-php
-  * If you haven't already got IIS installed, follow the instructions in part 1.1 "Install IIS"
-  * Install PHP for Windows by following the instructions in part 1.2 "Install PHP by using Web PI"
-  * Create your website in IIS by following the steps in part 1.4 "Add Your PHP Application".
-    * In step 5, the physical path is the path to the "/wordpress" folder, NOT the root of the repository
-    * In step 9, specify port 81
-* Install MySQL server - this can be done from Web PI as well
-* Make sure the server is running and follow the steps in https://codex.wordpress.org/Installing_WordPress#Using_the_MySQL_Client
-  * Use database name "wordpress", database user "wordpress" and database user password "wordpressPassword123"
-  * If you've installed some other MySQL client e.g. phpMyAdmin, feel free to use that instead of the command line client...!
+![Architecture overview diagram](architecture-overview.png)
 
-### Using a WAMP stack
-This might be easier to install, but is more different from the production environment at the moment and is harder to configure (e.g. changing version of PHP) than having all the components separately.
+## Development Setup
 
-* Download a WAMP installer/environment e.g. WampServer http://www.wampserver.com/en/ or EasyPHP Devserver http://www.easyphp.org/documentation/devserver/getting-started.php. EasyPHP looks a bit more slick?
-* Install it
-* If using WampServer - add an alias called something sensible like "beis", linking up your "/wordpress" folder. If using EasyPHP, add a working directory called something like "edsa-beis" linking to your "/wordpress" folder.
-* Change some config:
-  * Change the base href in /wordpress/wp-content/themes/angular-theme/header.php to "/beis" (or "/edsa-beis")
-  * Change the deployUrl in angular/.angular-cli.json to "/beis/wp-content/themes/angular-theme/dist/" (or "/edsa-beis/...etc")
-  * Make sure you don't commit these changes!
-* Make sure the database is running and follow the steps in https://codex.wordpress.org/Installing_WordPress#Using_phpMyAdmin
-  * Use database name "wordpress", database user "wordpress" and database user password "wordpressPassword123"
+There are two web UIs: the user site (Angular JS) and the admin site (Wordpress).
 
-## Wordpress Server Config
+To run and make changes to the user site (without making CMS changes), you will
+need Java and Node.js. Follow the "Development Setup - User Site" section below.
 
-API keys and other sensitive configuration are accessed by the PHP
-application as environment variables. To set these, copy the file
-`wordpress/wp-content/themes/angular-theme/config/config.php.template` to a
-new file called `config.php` in the same directory. This file will be ignored
-by git, so you can safely fill in the template values with real values.
+To run and make changes to the admin site, or to make CMS changes to the user
+site you will need PHP. Follow the "Development Setup - Admin Site" section below.
 
-## Initial Wordpress site setup
+### Development Setup - User Site
 
-* Make sure the web and MySQL servers are up and
-  running, and visit http://localhost:81. You should be
-  redirected to an initial setup page for Wordpress.
-* Fill out the forms with sensible details.
-* Visit the admin backend and:
-  * Change the theme to "BEIS DCEAS Theme"
-  * Ensure the following plugins are activated:
-    * Advanced Custom Fields
-    * ACF to REST API
-    * Wordpress Importer
-    * WP REST API cache
-    * Advanced Custom Fields PRO
-      * Unfortunately, This is a paid version which is not
-        readily available. Please download and install it
-        separately (if you have access, see the Swiki).
-  * Import the necessary Wordpress content to your local wordpress
-    MySQL database. This content is not stored in the repository!
+You will need the database installed locally, follow
+the "Development Setup - MySQL Database" section below.
 
-* The front end won't be displaying anything yet... now we need to set up the Angular project.
+TODO:RTB hopefully just press "play" in IntelliJ
+
+### Development Setup - Admin Site
+
+You will need the database installed locally, follow
+the "Development Setup - MySQL Database" section below.
+
+You will need PHP installed and registered in IntelliJ.
+You can install PHP using the Microsoft Web Platform Insaller at
+https://www.iis.net/downloads/microsoft/web-platform-installer
+
+Copy the file
+`wordpress/wp-content/themes/angular-theme/config/config.php.template`
+to a new file called `config.php` in the same directory and
+fill in the config values. This file will be ignored by git, so
+you can safely fill in the template values with real values.
+
+You should be able to launch the site by selecting the "on local server"
+run configuration and clicking "Play".
+
+Open the site at http://localhost:81
+
+### Development Setup - MySQL Database
+
+Install MySQL 5.5 using the Microsoft Web Platform Insaller at
+https://www.iis.net/downloads/microsoft/web-platform-installer
+
+Set the root username and password to something
+you will remember (e.g. "root" / "password").
+
+Log in as root and run the following to create a WP user and database
+
+    CREATE DATABASE wordpress;
+    GRANT ALL PRIVILEGES ON wordpress.* TO "wordpress"@"localhost"
+        IDENTIFIED BY "wordpressPassword123";
+
+Get a dump of the database from somewhere (another developer,
+the live site etc.) and restore it to that database.
+
+# Older instructions - TODO:RTB sort out
 
 ## Angular setup
 
