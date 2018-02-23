@@ -1,6 +1,11 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   display: block;
 
@@ -19,14 +24,12 @@
 
 .postcode-epc {
   width: 100%;
-  min-width: 455px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .postcode-input {
     width: 100%;
-    height: 72px;
     display: flex;
     margin-top: 48px;
 
@@ -35,12 +38,9 @@
       border: none;
 
       flex: 1 1 auto;
-      padding: 0 24px;
       min-width: 0;
 
-      font-size: 24px;
-      font-weight: bold;
-      text-transform: uppercase;
+      @include postcode-input-font;
     }
 
     .postcode-input-submit {
@@ -82,7 +82,7 @@
       min-width: 0;
 
       .address-option {
-        font-size: 18px;
+        @include postcode-options-font();
       }
     }
   }
@@ -123,17 +123,47 @@
 }
 
 // Breakpoint specific styling
-@include mobile() {
-  .postcode-epc {
+.postcode-epc {
+  @include mobile() {
     min-width: 0;
-  }
-}
 
-@include tablet() {
-  .postcode-epc {
+    .postcode-input {
+        height: 66px;
+
+        .postcode-input-text {
+          padding: 0 18px;
+        }
+    }
+
+    .address-select {
+      .address-dropdown {
+        width: 100%;
+      }
+    }
+  }
+
+  @include tablet() {
     min-width: 0;
-  }
-}
 
-@include desktop() {
+    .postcode-input {
+        height: 72px;
+
+        .postcode-input-text {
+          padding: 0 24px;
+        }
+    }
+    
+  }
+
+  @include desktop() {
+    min-width: 455px;
+
+    .postcode-input {
+        height: 72px;
+
+        .postcode-input-text {
+          padding: 0 24px;
+        }
+    }
+  }
 }

@@ -125,8 +125,19 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 }
 
 @mixin postcode-dropdown-font {
-  @include has-font-sizes-at-breakpoints(24px, 24px, 20px, 24px, 14px, 16px);
+  @include has-font-sizes-at-breakpoints(20px, 24px, 20px, 24px, 14px, 16px);
   font-weight: bold;
+}
+
+@mixin postcode-options-font {
+  @include has-font-sizes-at-breakpoints(18px, 20px, 18px, 20px, 14px, 16px);
+  font-weight: 500;
+}
+
+@mixin postcode-input-font {
+  @include has-font-sizes-at-breakpoints(24px, 29px, 24px, 29px, 20px, 24px);
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 @mixin static-measures-body-font {
