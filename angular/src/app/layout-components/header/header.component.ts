@@ -1,4 +1,4 @@
-import {Component, Renderer2, ViewChild} from "@angular/core";
+import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from "@angular/core";
 import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 
@@ -13,40 +13,70 @@ export class HeaderComponent {
     shouldDisplaySearchDetailsDropdown: boolean = false;
     shouldDisplayExpandSearchResultsButton: boolean = false;
     shouldDisplayExpandedSearchResults: boolean = false;
+    shouldExpandNav: boolean = false;
     searchText: string;
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
     private allSearchResults: WordpressPage[] = [];
-    private deregisterFocusOutListener: () => void;
+    private deregisterWindowClickListener: () => void;
+
+    @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
+    @ViewChild('mobileSearchButton') mobileSearchButton;
 
-    constructor(private renderer: Renderer2, private wordpressPagesService: WordpressPagesService) {
+    constructor(
+        private renderer: Renderer2,
+        private changeDetector: ChangeDetectorRef,
+        private wordpressPagesService: WordpressPagesService) {
+    }
+
+    toggleMobileNav(): void {
+        this.onMobileNavToggled.emit();
+    }
+
+    toggleSearchMobileBox(): void {
+        if (!this.shouldDisplaySearchDetailsDropdown) {
+            this.focusOnSearchBox();
+        } else {
+            this.collapseSearchBox();
+        }
+    }
+
+    focusOnSearchBox(): void {
+        this.handleSearchBoxFocussed();
+        // Make sure the search box is actually visible before focusing on it
+        this.changeDetector.detectChanges();
+        this.searchInput.nativeElement.focus();
     }
 
     handleSearchBoxFocussed(): void {
         this.shouldDisplaySearchDetailsDropdown = true;
-        this.deregisterFocusOutListener = this.renderer.listen('window', 'focusout', event => this.handleFocusChange(event));
+        // Ensure there is only ever one click listener
+        if (this.deregisterWindowClickListener) {
+            this.deregisterWindowClickListener();
+        }
+        this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
     }
 
-    // For accessibility it should be possible to focus the links in the expanded search container by pressing tab.
-    // So when the search input is defocussed, we don't want to hide the expanded search container if the focus has moved
-    // to one of the links within the search container. But we do want to minimise the search container when focus moves outside it.
-    handleFocusChange(event): void {
-        const newFocussedElement = event.relatedTarget;
-        const isFocusStillInsideExpandedSearchContainer = newFocussedElement &&
-            this.searchContainer.nativeElement.contains(newFocussedElement);
-        if (!isFocusStillInsideExpandedSearchContainer) {
+    handleWindowClick(event): void {
+        const clickedElement = event.target;
+        const isStillWithinSearchContainer = clickedElement
+            && this.searchContainer.nativeElement.contains(clickedElement);
+        const isMobileSearchButton = clickedElement
+            && this.mobileSearchButton.nativeElement.contains(event.target);
+        if (!isStillWithinSearchContainer && !isMobileSearchButton) {
             this.collapseSearchBox();
         }
     }
 
     collapseSearchBox(): void {
-        this.shouldDisplaySearchDetailsDropdown = false;
-        this.deregisterFocusOutListener();
+        this.deregisterWindowClickListener();
         this.searchText = null;
+        this.shouldDisplaySearchDetailsDropdown = false;
+
         setTimeout(() => {
             this.searchState = SearchStates.Initial;
             this.resetSearchResults();

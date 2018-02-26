@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
+import { Meta } from "@angular/platform-browser";
 import "rxjs/add/operator/distinctUntilChanged";
 import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
 import {SVGCacheService} from "ng-inline-svg";
@@ -10,12 +11,15 @@ import {SVGCacheService} from "ng-inline-svg";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    shouldExpandNav: boolean = false;
 
     constructor(
         private router: Router,
+        private meta: Meta,
         private googleAnalyticsService: GoogleAnalyticsService,
         private svgService: SVGCacheService
     ) {
+        this.meta.addTag({ name: 'viewport', content: 'width=device-width,initial-scale=1.0' });
     }
 
     ngOnInit() {
@@ -33,5 +37,13 @@ export class AppComponent implements OnInit {
 
         // Set base URL for inline-svg directive
         this.svgService.setBaseUrl({baseUrl: '/wp-content/themes/angular-theme/dist/assets/images/'});
+    }
+
+    toggleMobileNav(): void {
+        this.shouldExpandNav = !this.shouldExpandNav;
+    }
+
+    hideMobileNav(): void {
+        this.shouldExpandNav = false;
     }
 }

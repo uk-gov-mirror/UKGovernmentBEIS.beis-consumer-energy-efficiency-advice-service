@@ -1,34 +1,110 @@
 @import "styles/page";
 @import "styles/var/colors";
 
+// Component specific variables
 $search-container-height: 24px;
 $search-container-vertical-padding: 10px;
 $animation-duration-horizontal: 0.5s;
 $animation-duration-vertical: 0.5s;
 
+// Component specific mixins
+@mixin has-small-ehc-logo() {
+  .ehc-logo {
+    display: none;
+  }
+
+  .ehc-logo--small {
+    display: block;
+  }
+}
+
+@mixin has-large-ehc-logo() {
+  .ehc-logo {
+    display: block;
+  }
+
+  .ehc-logo--small {
+    display: none;
+  }
+}
+
+@mixin is-full-size-header() {
+  @include has-large-ehc-logo;
+
+  .mobile-icons {
+    display: none;
+  }
+}
+
+@mixin is-compressed-header() {
+  @include has-small-ehc-logo;
+
+  .mobile-icons {
+    display: block;
+  }
+
+  .page-row-content .search-container {
+    position: absolute;
+    top: 100%;
+    right: -20px;
+    width: calc(100% + 20px);
+    max-width: inherit;
+    display: none;
+
+    &.focussed {
+      display: block;
+      max-width: inherit;
+    }
+  }
+}
+
+@mixin is-clickable-icon($size) {
+  height: $size;
+  width: $size;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  display: inline-block;
+}
+
+@mixin is-search-icon($size) {
+  @include is-clickable-icon($size);
+  stroke: $primary-blue;
+  margin-right: 16px;
+}
+
+@mixin is-menu-icon($size) {
+  @include is-clickable-icon($size);
+  stroke: $dark-grey;
+}
+
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .header {
   .page-row-content {
-    padding: 10px 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 
     .logos {
       display: flex;
-      margin-right: 20px;
       align-items: center;
-
-      .ehc-logo {
-        height: 62px;
-        margin-left: -80px;
-      }
 
       .vertical-line {
         border-left: 1px solid black;
-        margin: 0 20px;
-        height: 50px;
       }
+    }
+
+    .mobile-search-icon {
+      @include is-search-icon(24px);
+    }
+
+    .mobile-menu-icon {
+      @include is-menu-icon(22px);
     }
 
     .search-container {
@@ -66,14 +142,7 @@ $animation-duration-vertical: 0.5s;
         }
 
         .icon {
-          height: 20px;
-          width: 20px;
-          stroke: $primary-blue;
-          cursor: pointer;
-          background: none;
-          border: none;
-          outline: none;
-          padding: 0;
+          @include is-search-icon(20px);
           flex-shrink: 0;
 
           &:focus {
@@ -180,6 +249,83 @@ $animation-duration-vertical: 0.5s;
           flex-direction: column;
           font-size: 12px;
           padding: 20px;
+        }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .header {
+    @include is-compressed-header();
+    .page-row-content {
+      padding: 10px 0;
+
+      .logos {
+        .ehc-logo, .ehc-logo--small {
+          height: 50px;
+        }
+
+        .vertical-line {
+          margin: 0 19px;
+          height: 42px;
+        }
+
+        .gov-logo {
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .header {
+    @include is-full-size-header();
+    .page-row-content {
+      padding: 10px 0;
+
+      .logos {
+        margin-right: 20px;
+
+        .ehc-logo, .ehc-logo--small {
+          height: 62px;
+        }
+
+        .vertical-line {
+          margin: 0 20px;
+          height: 50px;
+        }
+
+        .gov-logo {
+          height: 24px;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .header {
+    @include is-full-size-header();
+    .page-row-content {
+      padding: 10px 0;
+
+      .logos {
+        margin-right: 20px;
+
+        .ehc-logo, .ehc-logo--small {
+          height: 62px;
+        }
+
+        .vertical-line {
+          margin: 0 20px;
+          height: 50px;
+        }
+
+        .gov-logo {
+          height: 24px;
         }
       }
     }
