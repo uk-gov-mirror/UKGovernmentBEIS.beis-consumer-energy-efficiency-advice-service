@@ -13,7 +13,6 @@ export class HeaderComponent {
     shouldDisplaySearchDetailsDropdown: boolean = false;
     shouldDisplayExpandSearchResultsButton: boolean = false;
     shouldDisplayExpandedSearchResults: boolean = false;
-    searchHasJustExpanded: boolean = false;
     shouldExpandNav: boolean = false;
     searchText: string;
     searchState: SearchStates = SearchStates.Initial;
@@ -40,9 +39,9 @@ export class HeaderComponent {
 
     toggleSearchMobileBox(): void {
         if (!this.shouldDisplaySearchDetailsDropdown) {
-            this.searchHasJustExpanded = true;
-            setTimeout(() => this.searchHasJustExpanded = false, 300);
             this.focusOnSearchBox();
+        } else {
+            this.collapseSearchBox();
         }
     }
 
@@ -55,14 +54,21 @@ export class HeaderComponent {
 
     handleSearchBoxFocussed(): void {
         this.shouldDisplaySearchDetailsDropdown = true;
+        // Ensure there is only ever one click listener
+        if (!!this.deregisterWindowClickListener) {
+            this.deregisterWindowClickListener();
+        }
         this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
     }
 
     handleWindowClick(event): void {
+        console.log('stuff');
         const clickedElement = event.target;
         const isStillWithinSearchContainer = clickedElement
             && this.searchContainer.nativeElement.contains(clickedElement);
-        if (!isStillWithinSearchContainer && !this.searchHasJustExpanded) {
+        const isMobileSearchButton = clickedElement
+            && this.mobileSearchButton.nativeElement.contains(event.target);
+        if (!isStillWithinSearchContainer && !isMobileSearchButton) {
             this.collapseSearchBox();
         }
     }
