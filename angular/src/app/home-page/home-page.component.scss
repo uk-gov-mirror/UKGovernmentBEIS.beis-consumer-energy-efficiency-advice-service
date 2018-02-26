@@ -52,7 +52,7 @@ $arrow-height: 48px;
   $number-of-items-in-row,
   $link-padding,
   $heading-padding-right,
-  $heading-margin-bottom,
+  $heading-padding-bottom,
   $description-padding-right,
   $description-margin-bottom,
   $arrow-width,
@@ -67,7 +67,7 @@ $arrow-height: 48px;
 
       .heading {
         padding-right: $heading-padding-right;
-        margin-bottom: $heading-margin-bottom;
+        padding-bottom: $heading-padding-bottom;
       }
 
       .description {
@@ -221,7 +221,7 @@ $arrow-height: 48px;
       $number-of-items-in-row: 1,
       $link-padding: 60px 0 44px 20px,
       $heading-padding-right: 110px,
-      $heading-margin-bottom: 20px,
+      $heading-padding-bottom: 20px,
       $description-padding-right: 130px,
       $description-margin-bottom: 42px,
       $arrow-width: 80%,
@@ -262,27 +262,40 @@ $arrow-height: 48px;
     @include has-quick-links-section(
       $grid-margin: 4px,
       $number-of-items-in-row: 1,
-      $link-padding: 70px 0 40px 40px,
-      $heading-padding-right: 196px,
-      $heading-margin-bottom: 38px,
-      $description-padding-right: 196px,
-      $description-margin-bottom: 48px,
-      $arrow-width: 50%,
+      $link-padding: 56px 34px 40px,
+      $heading-padding-right: 45%,
+      $heading-padding-bottom: 38px,
+      $description-padding-right: 80px,
+      $description-margin-bottom: 0,
+      $arrow-width: 200px,
       $arrow-padding-left: 18px
     );
 
     .quick-links {
       .quick-link {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .description {
+          flex: 0 0 70%;
+          align-self: center;
+        }
+
+        .arrow-button {
+          flex: 0 0 25%;
+        }
+
         .calculator-image:after {
-          @include is-calculator-link-image(48px, 156px, 90px, 109px);
+          @include is-calculator-link-image(101px, 42px, 90px, 109px);
         }
 
         .grants-image:after {
-          @include is-grants-link-image(52px, 36px, 136px, 126px);
+          @include is-grants-link-image(108px, 44px, 98px, 88px);
         }
 
         .boiler-image:after {
-          @include is-boiler-link-image(53px, 0, 266px, 103px);
+          @include is-boiler-link-image(108px, 0, 140px, 75px);
         }
       }
     }
@@ -307,7 +320,7 @@ $arrow-height: 48px;
       $number-of-items-in-row: 3,
       $link-padding: 70px 0 40px 40px,
       $heading-padding-right: 196px,
-      $heading-margin-bottom: 38px,
+      $heading-padding-bottom: 38px,
       $description-padding-right: 196px,
       $description-margin-bottom: 48px,
       $arrow-width: 50%,
