@@ -249,19 +249,19 @@ $arrow-height: 48px;
 @include tablet() {
   .home-page {
     @include has-homepage-heading-section(
-      $padding: 74px 0 96px 0,
-      $heading-width: 100%,
-      $heading-bottom-margin: 57px,
+      $padding: 66px 0 38px 0,
+      $heading-width: 72%,
+      $heading-bottom-margin: 90px,
       $heading-min-height: 0,
-      $grid-margin: 16px,
-      $number-of-links-in-row: 2,
-      $link-padding: 22px,
+      $grid-margin: 20px,
+      $number-of-links-in-row: 4,
+      $link-padding: 30px 20px,
       $link-text-width: 100%
     );
 
     @include has-quick-links-section(
       $grid-margin: 4px,
-      $number-of-items-in-row: 3,
+      $number-of-items-in-row: 1,
       $link-padding: 70px 0 40px 40px,
       $heading-padding-right: 196px,
       $heading-margin-bottom: 38px,

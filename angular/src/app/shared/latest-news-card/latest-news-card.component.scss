@@ -83,9 +83,9 @@
 @include tablet() {
   .latest-news-card {
     @include is-latest-news-card(
-      $image-height: 236px,
+      $image-height: 185px,
       $text-container-min-height: 160px,
-      $text-container-padding: 25px 20px 27px 20px,
+      $text-container-padding: 20px 24px 27px,
       $heading-padding: 0 0 40px
     );
   }

@@ -40,9 +40,9 @@
 
   @include tablet() {
     @include is-other-things-section-with-parameters(
-        $top-margin: 58px,
-        $bottom-margin: 60px,
-        $heading-margin-bottom: 24px,
+        $top-margin: 40px,
+        $bottom-margin: 35px,
+        $heading-margin-bottom: 20px,
         $grid-margin: 20px,
         $number-of-items-in-row: 2
     );
