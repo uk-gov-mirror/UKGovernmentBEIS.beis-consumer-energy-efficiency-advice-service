@@ -13,13 +13,14 @@ export class HeaderComponent {
     shouldDisplaySearchDetailsDropdown: boolean = false;
     shouldDisplayExpandSearchResultsButton: boolean = false;
     shouldDisplayExpandedSearchResults: boolean = false;
+    searchHasJustExpanded: boolean = false;
     shouldExpandNav: boolean = false;
     searchText: string;
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
     private allSearchResults: WordpressPage[] = [];
-    private deregisterFocusOutListener: () => void;
+    private deregisterWindowClickListener: () => void;
 
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
@@ -39,6 +40,8 @@ export class HeaderComponent {
 
     toggleSearchMobileBox(): void {
         if (!this.shouldDisplaySearchDetailsDropdown) {
+            this.searchHasJustExpanded = true;
+            setTimeout(() => this.searchHasJustExpanded = false, 300);
             this.focusOnSearchBox();
         }
     }
@@ -52,29 +55,26 @@ export class HeaderComponent {
 
     handleSearchBoxFocussed(): void {
         this.shouldDisplaySearchDetailsDropdown = true;
-        this.deregisterFocusOutListener = this.renderer.listen('window', 'focusout', event => this.handleFocusChange(event));
+        this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
     }
 
-    // For accessibility it should be possible to focus the links in the expanded search container by pressing tab.
-    // So when the search input is defocussed, we don't want to hide the expanded search container if the focus has moved
-    // to one of the links within the search container. But we do want to minimise the search container when focus moves outside it.
-    handleFocusChange(event): void {
-        const newFocussedElement = event.relatedTarget;
-        const isFocusStillInsideExpandedSearchContainer = newFocussedElement &&
-            this.searchContainer.nativeElement.contains(newFocussedElement);
-        if (!isFocusStillInsideExpandedSearchContainer) {
+    handleWindowClick(event): void {
+        const clickedElement = event.target;
+        const isStillWithinSearchContainer = clickedElement
+            && this.searchContainer.nativeElement.contains(clickedElement);
+        if (!isStillWithinSearchContainer && !this.searchHasJustExpanded) {
             this.collapseSearchBox();
         }
     }
 
     collapseSearchBox(): void {
-        this.deregisterFocusOutListener();
+        this.deregisterWindowClickListener();
         this.searchText = null;
+        this.shouldDisplaySearchDetailsDropdown = false;
+
         setTimeout(() => {
             this.searchState = SearchStates.Initial;
             this.resetSearchResults();
-            // TODO mobile_nav: This is a hacky approach to fixing event issues
-            this.shouldDisplaySearchDetailsDropdown = false;
         }, 500);
     }
 
