@@ -7,19 +7,17 @@
     <div class="local-grants page-row">
         <div class="page-row-content">
             <div class="postcode-input">
-                <div class="postcode-input-text">
-                    <div class="enter-postcode-text">
-                        <span class="enter-postcode-title-text">Enter your postcode for localised grants</span>
-                        <span class="enter-postcode-subtext">Telling us your postcode and answering a few questions
-                            on your circumstances will allow us to show you relevant national and local grants
-                            that you might be eligible for.</span>
-                    </div>
+                <div class="enter-postcode-text">
+                    <h3>Enter your postcode for localised grants</h3>
+                    <p>Telling us your postcode and answering a few questions
+                        on your circumstances will allow us to show you relevant national and local grants
+                        that you might be eligible for.</p>
                 </div>
                 <div class="enter-postcode-form">
-                    <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
-                        <input class="postcode-input-text" [(ngModel)]="postcodeInput" spellcheck="false" type="text"
+                    <form (ngSubmit)="onPostcodeSubmit()">
+                        <input [(ngModel)]="postcodeInput" spellcheck="false" type="text"
                                name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode" placeholder="e.g. W1 1AA">
-                        <button class="postcode-input-submit" type="submit"
+                        <button type="submit"
                                 title="Submit" aria-label="Submit">>
                         </button>
                     </form>

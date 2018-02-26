@@ -18,7 +18,7 @@ $grant-card-margin: 24px;
 
       .heading-text {
         @include page-heading;
-        color: #216289;
+        color: $headline-dark-blue;
       }
     }
   }
@@ -47,14 +47,14 @@ $grant-card-margin: 24px;
           padding: 30px 0px;
           width: 100%;
 
-          color: #149BC3;
+          color: $focus-text-blue;
           font-size: 28px;
           font-weight: bold;
           line-height: 32px;
         }
 
         .grant-info-title-efficiency {
-          color: #149BC3;
+          color: $focus-text-blue;
           font-size: 28px;
           font-weight: bold;
           line-height: 32px;
@@ -78,11 +78,11 @@ $grant-card-margin: 24px;
 
           .grant-heading {
             @include focus-text;
-            color: #149BC3;
+            color: $focus-text-blue;
           }
 
           .grant-description{
-            color: #216289;
+            color: $headline-dark-blue;
 
             font-size: 13px;
             font-weight: 500;
@@ -92,7 +92,7 @@ $grant-card-margin: 24px;
 
           .link-button {
             @include body-uppercase;
-            color: #149BC3;
+            color: $focus-text-blue;
             text-align: left;
             text-decoration: none;
             font-size: 12px;
@@ -171,7 +171,7 @@ $grant-card-margin: 24px;
   }
 
   .local-grants {
-    background-color: #01ABCE;
+    background-color: $action-button-blue;
 
     .page-row-content {
       display: flex;
@@ -181,8 +181,9 @@ $grant-card-margin: 24px;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        flex-direction: row;
 
-        height: 125px;
+        height: 150px;
 
         .enter-postcode-text {
           display: flex;
@@ -191,12 +192,10 @@ $grant-card-margin: 24px;
 
           width: 700px;
 
-          .enter-postcode-title-text{
+          h3{
             @include page-subheading;
-
-            padding-bottom: 30px;
           }
-          .enter-postcode-subtext{
+          p{
             font-family: Gotham, Arial, sans-serif;;
             font-size: 16px;
             font-weight: 300;
@@ -206,53 +205,53 @@ $grant-card-margin: 24px;
 
         .enter-postcode-form{
           align-self: flex-end;
-        }
 
-        .postcode-input {
-          height: 70px;
-          display: flex;
-          align-items: stretch;
-          justify-content: flex-end;
-
-          .postcode-input-text {
-            background-color: $light-grey;
-            outline: none;
-            border: none;
-
-            width: 250px;
-            padding: 0 24px;
-
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-          }
-
-          .postcode-input-text::placeholder{
-            color: #898989;
-            text-transform: none;
-          }
-
-          .postcode-input-submit {
-            background-color: crimson;
-            color: white;
-
-            width: 70px;
-            outline: none;
-            border: none;
-
-            font-size: 28px;
-            font-weight: bold;
-
+          form {
+            height: 70px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch;
+            justify-content: flex-end;
+
+            input {
+              background-color: $light-grey;
+              outline: none;
+              border: none;
+
+              width: 250px;
+              padding: 0 24px;
+
+              font-size: 24px;
+              font-weight: bold;
+              text-transform: uppercase;
+            }
+
+            input::placeholder{
+              color: #898989;
+              text-transform: none;
+            }
+
+            button {
+              background-color: $red;
+              color: white;
+
+              width: 70px;
+              outline: none;
+              border: none;
+
+              font-size: 28px;
+              font-weight: bold;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
           }
         }
       }
 
       .validation-error, .network-error {
         margin-top: 20px;
-        background-color: crimson;
+        background-color: $red;
         padding: 10px;
         font-size: 16px;
         border-radius: 4px;
