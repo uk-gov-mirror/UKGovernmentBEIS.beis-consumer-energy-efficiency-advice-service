@@ -55,7 +55,7 @@ export class HeaderComponent {
     handleSearchBoxFocussed(): void {
         this.shouldDisplaySearchDetailsDropdown = true;
         // Ensure there is only ever one click listener
-        if (!!this.deregisterWindowClickListener) {
+        if (this.deregisterWindowClickListener) {
             this.deregisterWindowClickListener();
         }
         this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
