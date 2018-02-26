@@ -62,7 +62,6 @@ export class HeaderComponent {
     }
 
     handleWindowClick(event): void {
-        console.log('stuff');
         const clickedElement = event.target;
         const isStillWithinSearchContainer = clickedElement
             && this.searchContainer.nativeElement.contains(clickedElement);
