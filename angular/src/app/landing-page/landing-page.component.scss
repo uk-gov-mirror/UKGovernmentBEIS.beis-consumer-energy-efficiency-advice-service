@@ -102,6 +102,11 @@ $mobile-browse-cards-margin: 20px;
     }
 
     .postcode {
+      .page-row-content {
+        // Force section to be within the limits
+        width: calc(100% - 40px);
+      }
+
       .heading {
         padding-bottom: 24px;
       }
