@@ -31,7 +31,6 @@
   .postcode-input {
     width: 100%;
     display: flex;
-    margin-top: 48px;
 
     .postcode-input-text {
       outline: none;
@@ -129,6 +128,7 @@
 
     .postcode-input {
         height: 66px;
+        margin-top: 48px;
 
         .postcode-input-text {
           padding: 0 18px;
@@ -146,10 +146,11 @@
     min-width: 0;
 
     .postcode-input {
-        height: 72px;
+        height: 64px;
+        margin-top: 32px;
 
         .postcode-input-text {
-          padding: 0 24px;
+          padding: 0 34px;
         }
     }
     
@@ -160,6 +161,7 @@
 
     .postcode-input {
         height: 72px;
+        margin-top: 48px;
 
         .postcode-input-text {
           padding: 0 24px;

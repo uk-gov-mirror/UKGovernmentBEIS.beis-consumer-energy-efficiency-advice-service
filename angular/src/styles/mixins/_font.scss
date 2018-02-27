@@ -72,7 +72,12 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 }
 
 @mixin page-heading-font {
-  @include has-font-sizes-at-breakpoints(48px, 62px, 48px, 62px, 32px, 34px);
+  @include has-font-sizes-at-breakpoints(48px, 62px, 36px, 40px, 32px, 34px);
+  font-weight: bold;
+}
+
+@mixin page-subheading-font {
+  @include has-font-sizes-at-breakpoints(28px, 32px, 28px, 32px, 24px, 26px);
   font-weight: bold;
 }
 
@@ -125,7 +130,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 }
 
 @mixin postcode-dropdown-font {
-  @include has-font-sizes-at-breakpoints(20px, 24px, 20px, 24px, 14px, 16px);
+  @include has-font-sizes-at-breakpoints(20px, 24px, 18px, 22px, 14px, 16px);
   font-weight: bold;
 }
 
@@ -135,7 +140,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 }
 
 @mixin postcode-input-font {
-  @include has-font-sizes-at-breakpoints(24px, 29px, 24px, 29px, 20px, 24px);
+  @include has-font-sizes-at-breakpoints(24px, 29px, 20px, 24px, 20px, 24px);
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -167,26 +172,26 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin browse-video-title-font {
+  @include has-font-sizes-at-breakpoints(28px, 32px, 28px, 32px, 24px, 26px);
+  font-weight: bold;
+}
+
 @mixin browse-video-text-font {
   @include has-font-sizes-at-breakpoints(16px, 34px, 16px, 34px, 16px, 34px);
   font-weight: bold;
   color: $primary-blue;
 }
 
-@mixin browse-video-title-font {
-  @include has-font-sizes-at-breakpoints(28px, 32px, 28px, 32px, 24px, 26px);
-  font-weight: bold;
-}
-
 @mixin article-title-font {
-  @include has-font-sizes-at-breakpoints(32px, 32px, 32px, 32px, 24px, 26px);
+  @include has-font-sizes-at-breakpoints(32px, 32px, 24px, 26px, 24px, 26px);
   font-weight: bold;
 }
 
 @mixin article-summary-font {
-  @include has-font-sizes-at-breakpoints(14px, 18px, 14px, 18px, 13px, 15px);
+  @include has-font-sizes-at-breakpoints(14px, 18px, 13px, 15px, 13px, 15px);
   font-family: $font-family-light;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 // TODO Convert the below rules to match the same format as the above rules
@@ -202,12 +207,6 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   line-height: 16px;
   color: $dark-grey;
   font-family: $font-family-light;
-}
-
-@mixin page-subheading {
-  font-size: 28px;
-  line-height: 32px;
-  font-weight: bold;
 }
 
 @mixin focus-text {

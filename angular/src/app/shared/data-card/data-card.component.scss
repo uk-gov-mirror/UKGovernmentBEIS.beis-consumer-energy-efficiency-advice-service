@@ -6,6 +6,27 @@
 // Component specific variables
 
 // Component specific mixins
+@mixin is-vertical-app-card($padding, $heading-height, $value-height) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $padding;
+  min-width: 1px;
+  justify-content: center;
+
+  .heading {
+    align-self: stretch;
+    text-align: center;
+    height: $heading-height;
+  }
+
+  .number-value {
+    height: $value-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
@@ -56,32 +77,10 @@
   }
 
   @include tablet() {
-    @include has-children-side-by-side();
-
-    .heading, .number-value {
-      width: 50%;
-    }
+    @include is-vertical-app-card($padding: 0, $heading-height: 36px, $value-height: 52px);
   }
 
   @include desktop() {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    min-width: 1px;
-    justify-content: center;
-
-    .heading {
-      align-self: stretch;
-      text-align: center;
-      height: 20px;
-    }
-
-    .number-value {
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    @include is-vertical-app-card($padding: 10px, $heading-height: 20px, $value-height: 70px);
   }
 }

@@ -19,7 +19,7 @@ $grant-card-margin: 24px;
   width: 100%;
 
   .subheading {
-    @include page-subheading;
+    @include page-subheading-font;
     margin-bottom: 8px;
   }
 
@@ -89,7 +89,7 @@ $grant-card-margin: 24px;
     margin-top: 30px;
 
     .subheading {
-      @include page-subheading;
+      @include page-subheading-font;
       margin-bottom: 8px;
     }
 

@@ -38,6 +38,7 @@
   }
 
   .card-section {
+    box-sizing: border-box;
     border-bottom: 2px solid $lighter-grey;
   }
 
@@ -102,24 +103,45 @@
   }
 
   @include tablet() {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    // Max height dictates when to wrap an item to the next column (in this case, the app-data-card is wrapped)
+    max-height: 400px;
+    align-content: space-evenly;
+
     .card-section {
-      padding: 48px 22px 14px;
+      padding: 48px 24px 14px 24px;
+      border-bottom: none;
 
       &:not(:last-child) {
-        padding-bottom: 32px;
+        border-right: 2px solid $lighter-grey;
+        padding-right: 38px;
       }
     }
 
     .basic-info {
+      width: 60%;
+      padding-bottom: 20px;
+
       .heading {
         padding-top: 8px;
       }
     }
 
     .recommendation-basic-details {
+      width: 60%;
+      padding-bottom: 38px;
+      padding-top: 0;
+
       .summary-row {
-        padding-top: 20px;
+        padding-top: 8px;
       }
+    }
+
+    app-data-card {
+      padding: 24px;
+      margin: auto;
     }
   }
 
