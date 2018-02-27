@@ -60,15 +60,19 @@
   }
 
   @include tablet() {
-    min-height: 300px;
+    min-height: 237px;
 
     > * {
-      padding: 32px;
+      padding: 24px;
+    }
+
+    .video-icon-container {
+      min-height: 400px;
     }
 
     .text-container {
       .title {
-        padding: 32px 0;
+        padding: 20px 0;
       }
     }
   }

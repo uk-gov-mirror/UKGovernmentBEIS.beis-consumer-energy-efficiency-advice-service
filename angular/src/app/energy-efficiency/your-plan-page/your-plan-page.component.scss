@@ -75,7 +75,7 @@ $grant-card-margin: 10px;
     }
 
     .subheading {
-      @include page-subheading;
+      @include page-subheading-font;
     }
 
     .local-authority {

@@ -29,7 +29,7 @@ $grant-card-margin: 24px;
       flex-direction: column;
 
       .heading {
-        @include page-subheading;
+        @include page-subheading-font;
         margin-bottom: 16px;
       }
 
@@ -119,7 +119,7 @@ $grant-card-margin: 24px;
         justify-content: space-between;
 
         .enter-postcode-text {
-          @include page-subheading;
+          @include page-subheading-font;
         }
 
         .postcode-input {

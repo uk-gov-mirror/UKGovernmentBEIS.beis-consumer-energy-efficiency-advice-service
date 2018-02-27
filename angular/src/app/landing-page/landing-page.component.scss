@@ -31,12 +31,14 @@ $mobile-browse-cards-margin: 20px;
 .landing-page {
   .page-row-content {
     .heading {
-      @include page-subheading;
+      @include page-subheading-font;
       color: $focus-text-blue;
     }
   }
 
   .page-heading {
+    background-color: $lighter-grey;
+
     .page-row-content {
       .heading {
         @include page-heading-font;
@@ -144,18 +146,12 @@ $mobile-browse-cards-margin: 20px;
 
   @include tablet() {
     .page-row-content {
-      padding: 45px 0 60px;
-    }
-
-    .page-heading {
-      .page-row-content {
-        padding-bottom: 40px;
-      }
+      padding: 47px 0 36px;
     }
 
     .postcode {
       .heading {
-        padding-bottom: 24px;
+        padding-bottom: 22px;
       }
 
       .loading-spinner {
@@ -166,19 +162,19 @@ $mobile-browse-cards-margin: 20px;
 
     .static-measures {
       .page-row-content {
-        padding-bottom: 82px;
+        padding-bottom: 50px;
 
         .body-text {
-          padding: 14px 0 18px;
+          padding: 14px 0 36px;
         }
       }
     }
 
     .browse .page-row-content {
-      padding-top: 50px;
+      padding-top: 40px;
 
       .heading {
-        margin-bottom: 32px;
+        margin-bottom: 20px;
       }
 
       .browse-cards {
