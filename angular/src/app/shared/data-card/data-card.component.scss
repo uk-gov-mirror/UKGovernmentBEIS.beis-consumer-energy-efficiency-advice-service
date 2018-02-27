@@ -1,6 +1,13 @@
 @import "../../energy-efficiency/energy-efficiency-page-sizes";
-@import "../../../styles/var/colors";
+@import "styles/var/colors";
+@import "styles/mixins/font";
+@import "styles/mixins/layout";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   flex: 0 0 $data-card-width;
   display: flex;
@@ -9,31 +16,12 @@
 }
 
 .data-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  min-width: 1px;
-  justify-content: center;
-
   .heading {
-    align-self: stretch;
-    text-transform: uppercase;
-    font-size: 11px;
-    line-height: 14px;
-    color: $dark-grey;
-    text-align: center;
-    font-weight: bold;
-    height: 20px;
+    @include data-card-heading-font();
   }
 
   .number-value {
-    font-size: 36px;
-    font-weight: bold;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include data-card-value-font();
   }
 
   .color-circle {
@@ -51,6 +39,49 @@
 
     &.red {
       background-color: $red
+    }
+  }
+}
+
+
+// Breakpoint specific styling
+.data-card {
+  @include mobile() {
+    @include has-children-side-by-side();
+    width: 100%;
+
+    .heading, .number-value {
+      flex: 0 0 40%;
+    }
+  }
+
+  @include tablet() {
+    @include has-children-side-by-side();
+
+    .heading, .number-value {
+      width: 50%;
+    }
+  }
+
+  @include desktop() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    min-width: 1px;
+    justify-content: center;
+
+    .heading {
+      align-self: stretch;
+      text-align: center;
+      height: 20px;
+    }
+
+    .number-value {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

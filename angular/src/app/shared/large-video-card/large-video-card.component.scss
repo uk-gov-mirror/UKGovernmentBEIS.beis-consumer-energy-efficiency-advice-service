@@ -1,19 +1,20 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   display: block;
 }
 
 .large-video-card {
-  display: flex;
   height: 100%;
-  min-height: 300px;
 
   > * {
-    padding: 32px;
     box-sizing: border-box;
-    flex: 1 1 50%;
     min-height: inherit;
   }
 
@@ -33,20 +34,59 @@
 
 
     .video-text {
-      font-size: 16px;
-      line-height: 34px;
-      font-weight: bold;
-
-      color: $primary-blue;
+      @include browse-video-text-font();
     }
 
     .title {
-      font-size: 28px;
-      line-height: 32px;
-      font-weight: bold;
+      @include browse-video-title-font();
+    }
+  }
+}
 
-      padding: 32px 0;
-      max-width: 80%;
+// Breakpoint specific styling
+.large-video-card {
+  @include mobile() {
+    min-height: 220px;
+
+    > * {
+      padding: 20px;
+    }
+
+    .text-container {
+      .title {
+        padding: 32px 0;
+      }
+    }
+  }
+
+  @include tablet() {
+    min-height: 300px;
+
+    > * {
+      padding: 32px;
+    }
+
+    .text-container {
+      .title {
+        padding: 32px 0;
+      }
+    }
+  }
+
+  @include desktop() {
+    display: flex;
+    min-height: 300px;
+
+    > * {
+      flex: 1 1 50%;
+      padding: 32px;
+    }
+
+    .text-container {
+      .title {
+        padding: 32px 0;
+        max-width: 80%;
+      }
     }
   }
 }

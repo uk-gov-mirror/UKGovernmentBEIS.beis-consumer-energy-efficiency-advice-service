@@ -4,6 +4,33 @@
 // Component specific variables
 
 // Component specific mixins
+@mixin is-expandable-nav-bar() {
+  height: 0;
+  display: none;
+
+  &.expanded {
+    display: block;
+
+    .navigation-bar-mobile-overlay {
+      display: block;
+    }
+  }
+
+  .page-row-content {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    background-color: #4a4a4a;
+    margin: 0;
+    padding: 0 20px;
+
+    .menu-item {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .navigation-bar {
@@ -49,38 +76,15 @@
 }
 
 // Breakpoint specific styling
-@include mobile() {
-  .navigation-bar {
-    height: 0;
-    display: none;
-
-    &.expanded {
-      display: block;
-
-      .navigation-bar-mobile-overlay {
-        display: block;
-      }
-    }
-
-    .page-row-content {
-      display: block;
-      position: absolute;
-      z-index: 2;
-      background-color: #4a4a4a;
-      margin: 0;
-      padding: 0 20px;
-
-      .menu-item {
-        display: block;
-        width: 100%;
-        margin: 0;
-      }
-    }
+.navigation-bar {
+  @include mobile() {
+    @include is-expandable-nav-bar();
   }
-}
 
-@include tablet() {
-}
+  @include tablet() {
+    @include is-expandable-nav-bar();
+  }
 
-@include desktop() {
+  @include desktop() {
+  }
 }

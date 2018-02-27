@@ -1,23 +1,45 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
+@import "styles/mixins/layout";
+@import "styles/mixins/common-sections";
 
+// Component specific variables
+$desktop-browse-cards-margin: 24px;
+$tablet-browse-cards-margin: 20px;
+$mobile-browse-cards-margin: 20px;
+
+// Component specific mixins
+@mixin is-browse-card-grid($margin, $small-cards-per-row: 2) {
+  @include is-grid($margin-compensation: $margin);
+
+  .full-width-card {
+    @include is-grid-item($number-of-items: 1, $margin: $margin);
+  }
+
+  .small-cards {
+    @include is-grid($margin-compensation: $margin);
+    @include is-grid-item($number-of-items: 1, $margin: 0);
+    width: 100%;
+
+    app-article-card {
+      @include is-grid-item($number-of-items: $small-cards-per-row, $margin: $margin);
+    }
+  }
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .landing-page {
-
   .page-row-content {
-    padding: 60px 0 50px;
-
     .heading {
       @include page-subheading;
-      color: $focus-text-blue
+      color: $focus-text-blue;
     }
   }
 
   .page-heading {
     .page-row-content {
-      padding-bottom: 60px;
-
       .heading {
-        @include page-heading;
+        @include page-heading-font;
         color: $headline-dark-blue;
       }
     }
@@ -28,22 +50,8 @@
     color: white;
 
     .page-row-content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-
       .heading {
         color: white;
-      }
-
-      .postcode-reason-container {
-        padding-right: 40px;
-      }
-
-      .postcode-input {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
       }
     }
   }
@@ -52,12 +60,8 @@
     background-color: $lighter-grey;
 
     .page-row-content {
-      padding-bottom: 82px;
-
       .body-text {
-        padding: 14px 0 18px;
-        font-size: 16px;
-        line-height: 20px;
+        @include static-measures-body-font();
       }
     }
 
@@ -68,31 +72,9 @@
   }
 
   .browse .page-row-content {
-    padding-top: 77px;
-    display: flex;
-    flex-direction: column;
-
-    .heading {
-      margin-bottom: 32px;
-    }
-
     .full-width-card {
-      margin-bottom: 24px;
-
       ::ng-deep .large-video-card .text-container {
         background-color: $lighter-grey;
-      }
-    }
-
-    .half-width-cards {
-      display: flex;
-      align-items: stretch;
-
-      > * {
-        flex-basis: calc(50% - 12px);
-        &:first-child {
-          margin-right: 24px;
-        }
       }
     }
   }
@@ -101,31 +83,164 @@
     background-color: $light-grey;
 
     .page-row-content {
-      display: flex;
-      flex-direction: column;
+      @include is-other-things-section();
+    }
+  }
+}
+
+// Breakpoint specific styling
+.landing-page {
+  @include mobile() {
+    .page-row-content {
+      padding: 25px 0 20px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 28px;
+      }
+    }
+
+    .postcode {
+      .heading {
+        padding-bottom: 24px;
+      }
+
+      .loading-spinner {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .static-measures {
+      .page-row-content {
+        padding-bottom: 44px;
+
+        .body-text {
+          padding: 26px 0 12px;
+        }
+      }
+    }
+
+    .browse .page-row-content {
+      padding-top: 50px;
 
       .heading {
-        @include page-subheading;
+        margin-bottom: 36px;
+      }
+
+      .browse-cards {
+        @include is-browse-card-grid($margin: $mobile-browse-cards-margin, $small-cards-per-row: 1);
+      }
+    }
+
+    .other-suggestions {
+      .page-row-content {
+        margin-top: 30px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include tablet() {
+    .page-row-content {
+      padding: 45px 0 60px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 40px;
+      }
+    }
+
+    .postcode {
+      .heading {
+        padding-bottom: 24px;
+      }
+
+      .loading-spinner {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .static-measures {
+      .page-row-content {
+        padding-bottom: 82px;
+
+        .body-text {
+          padding: 14px 0 18px;
+        }
+      }
+    }
+
+    .browse .page-row-content {
+      padding-top: 50px;
+
+      .heading {
         margin-bottom: 32px;
       }
 
-      .spinner-container {
-        display: flex;
-        justify-content: center;
+      .browse-cards {
+        @include is-browse-card-grid($margin: $tablet-browse-cards-margin, $small-cards-per-row: 2);
+      }
+    }
+
+    .other-suggestions {
+      .page-row-content {
+        margin-top: 30px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include desktop() {
+    .page-row-content {
+      padding: 45px 0 60px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 40px;
+      }
+    }
+
+    .postcode {
+      .postcode-reason-container {
+        padding-right: 40px;
       }
 
-      .latest-news-cards {
-        width: 100%;
-        display: flex;
-        align-items: stretch;
+      .postcode-input {
+        @include has-children-side-by-side();
+      }
+    }
 
-        & > * {
-          flex: 1 0 1px;
-        }
+    .static-measures {
+      .page-row-content {
+        padding-bottom: 82px;
 
-        > :not(:last-child) {
-          margin-right: 16px;
+        .body-text {
+          padding: 14px 0 18px;
         }
+      }
+    }
+
+    .browse .page-row-content {
+      padding-top: 77px;
+
+      .heading {
+        margin-bottom: 32px;
+      }
+
+      .browse-cards {
+        @include is-browse-card-grid($margin: $desktop-browse-cards-margin, $small-cards-per-row: 2);
+      }
+    }
+
+    .other-suggestions {
+      .page-row-content {
+        margin-top: 30px;
+        margin-bottom: 0;
       }
     }
   }
