@@ -65,7 +65,7 @@ function setup_local_authority_grant_acf_group() {
                     array (
                         'param' => 'post_type',
                         'operator' => '==',
-                        'value' => 'grant',
+                        'value' => 'local_grant',
                         'order_no' => 0,
                         'group_no' => 0,
                     ),
