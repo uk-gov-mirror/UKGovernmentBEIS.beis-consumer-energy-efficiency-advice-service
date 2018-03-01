@@ -19,11 +19,15 @@ describe('RecommendationStepCardComponent', () => {
         moreInfoLinks: [
             {
                 buttonText: 'Test static page 1',
-                route: '/js/static-page-1'
+                isExternalLink: true,
+                route: '/js/static-page-1',
+                externalLink: 'http://google.com'
             },
             {
                 buttonText: 'Test static page 2',
-                route: '/js/static-page-2'
+                isExternalLink: false,
+                route: '/js/static-page-2',
+                externalLink: ''
             }
         ]
     };
@@ -129,6 +133,17 @@ describe('RecommendationStepCardComponent', () => {
         const expectedTexts = step.moreInfoLinks
             .map(link => link.buttonText.toLowerCase());
         expectedTexts.forEach(text => expect(actualLinkTexts).toContain(text));
+    });
+
+    it('should display external link', () => {
+        // when
+        fixture.detectChanges();
+        toggleDetailsDrawerExpanded();
+
+        // then
+        const linkHrefs = fixture.debugElement.queryAll(By.css('.more-info-link'))
+            .map(el => el.nativeElement.getAttribute('href'));
+        expect(linkHrefs[0]).toBe('http://google.com');
     });
 
     function toggleDetailsDrawerExpanded() {

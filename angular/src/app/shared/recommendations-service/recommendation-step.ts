@@ -6,7 +6,9 @@ export class RecommendationStep {
     description: string;
     moreInfoLinks: {
         buttonText: string;
+        isExternalLink: boolean;
         route: string;
+        externalLink: string;
     }[];
 
     constructor(measureStep: RecommendationStepResponse) {
@@ -16,7 +18,9 @@ export class RecommendationStep {
             .map(link => {
                 return {
                     buttonText: link.button_text,
-                    route: parse(link.linked_page).pathname
+                    isExternalLink: link.is_external_link,
+                    route: parse(link.linked_page).pathname,
+                    externalLink: link.external_link
                 }
             })
     }
