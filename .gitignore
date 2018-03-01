@@ -7,6 +7,8 @@ wordpress/wp-content/themes/angular-theme/config/config.php
 node_modules
 *.pptx
 .gradle
+build/
+out/
 
 # Default gitignore for Angular project
 
@@ -21,6 +23,7 @@ angular/out-tsc
 
 # IDEs and editors
 # /.idea
+.idea/libraries/
 .project
 .classpath
 .c9/

@@ -31,6 +31,8 @@ the "Development Setup - MySQL Database" section below.
 
 TODO:RTB hopefully just press "play" in IntelliJ
 
+TODO:RTB for now, you will need the WordPress site running locally as well
+
 ### Development Setup - Admin Site
 
 You will need the database installed locally, follow

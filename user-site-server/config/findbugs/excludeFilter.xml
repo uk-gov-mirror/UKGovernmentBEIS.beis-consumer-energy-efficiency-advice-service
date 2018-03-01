@@ -1,0 +1,20 @@
+<FindBugsFilter>
+    <!-- This rule is inapplicable to us: we are writing a web app, not
+       - a Windows text editor. -->
+    <Match><Bug pattern="VA_FORMAT_STRING_USES_NEWLINE" /></Match>
+    <!-- This rule is invalid https://sourceforge.net/p/findbugs/bugs/1379/ -->
+    <Match><Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" /></Match>
+    <!-- This rule is old-fashioned, we don't need it. -->
+    <Match><Bug pattern="CO_SELF_NO_OBJECT" /></Match>
+    <!-- We don't use Java serialization. -->
+    <Match><Bug pattern="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE" /></Match>
+    <!-- We don't have any untrusted code -->
+    <Match><Bug pattern="EI_EXPOSE_REP" /></Match>
+    <Match><Bug pattern="EI_EXPOSE_REP2" /></Match>
+    <!-- This may indicate a latent problem, but the code is out of our control, so we'll just
+       - have to wait and see if it causes issues in practice. -->
+    <Match>
+        <Bug pattern="IC_INIT_CIRCULARITY" />
+        <Class name="~uk\.gov\.beis\.dceas\.db\.gen\..*" />
+    </Match>
+</FindBugsFilter>

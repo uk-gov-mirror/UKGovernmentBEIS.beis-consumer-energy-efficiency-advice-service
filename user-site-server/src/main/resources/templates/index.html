@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="/" />
+    <meta charset="UTF-8"/>
+    <title>Energy Saving Advice Service</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        // These values are duplicated in angular/src/config.ts so that we can have a strongly typed config object;
+        // if you change these or add more properties, please make the same change to that file.
+        window.CONFIG = {
+            apiRoot: [[${apiRoot}]],
+            environment: [[${environment}]],
+            buildTimestamp: [[${buildTimestamp}]],
+            buildGitCommit: [[${buildGitCommit}]],
+            buildJenkinsUrl: [[${buildJenkinsUrl}]],
+            buildJenkinsNumber: [[${buildJenkinsNumber}]]
+        };
+        /*]]>*/
+    </script>
+</head>
+<body>
+    <app-root></app-root>
+    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/inline.bundle.js"></script>
+    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/polyfills.bundle.js"></script>
+    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/styles.bundle.js"></script>
+    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/vendor.bundle.js"></script>
+    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/main.bundle.js"></script>
+</body>
+</html>
