@@ -12,6 +12,7 @@ import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-questio
 import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
 import {getNumberOfExposedWallsInFlat} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
+import { TenureType } from "../../../questionnaire/questions/tenure-type-question/tenure-type";
 import includes from "lodash-es/includes";
 
 
@@ -33,7 +34,8 @@ export class RdSapInput {
     readonly heating_fuel: string;
     readonly heating_cost: number;
     readonly number_of_heating_off_hours_normal: number[];
-    readonly measures: string;
+    readonly measures: boolean;
+    readonly rented: boolean;
 
     readonly living_room_temperature: number;
     readonly occupants: number;
@@ -63,7 +65,8 @@ export class RdSapInput {
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
         this.heating_cost = responseData.heatingCost;
         this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
-        this.measures = 'Y';
+        this.measures = true;
+        this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;

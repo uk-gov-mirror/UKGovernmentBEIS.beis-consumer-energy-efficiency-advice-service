@@ -158,6 +158,39 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.number_of_exposed_walls).toEqual(2);
-        })
-    })
+        });
+
+        it('should set rented to true for private tenancy', () => {
+            // given
+            responseData.tenureType = TenureType.PrivateTenancy;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.rented).toEqual(true);
+        });
+
+        it('should set rented to true for social tenancy', () => {
+            // given
+            responseData.tenureType = TenureType.SocialTenancy;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.rented).toEqual(true);
+        });
+
+        it('should set rented to false for owner occupancy', () => {
+            // given
+            responseData.tenureType = TenureType.OwnerOccupancy;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.rented).toEqual(false);
+        });
+    });
 });
