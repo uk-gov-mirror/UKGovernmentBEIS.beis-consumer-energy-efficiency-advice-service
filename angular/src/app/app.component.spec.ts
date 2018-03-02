@@ -13,6 +13,7 @@ import {SVGCacheService} from "ng-inline-svg";
 import {InlineSVGModule} from "ng-inline-svg";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {OneTimePopupComponent} from "./layout-components/one-time-popup/one-time-popup.component";
+import {PopupComponent} from "./shared/popup/popup.component";
 import {CookieService} from "ng2-cookies";
 
 describe('AppComponent', () => {
@@ -33,7 +34,8 @@ describe('AppComponent', () => {
                 HeaderComponent,
                 FooterComponent,
                 NavigationBarComponent,
-                OneTimePopupComponent
+                OneTimePopupComponent,
+                PopupComponent,
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
