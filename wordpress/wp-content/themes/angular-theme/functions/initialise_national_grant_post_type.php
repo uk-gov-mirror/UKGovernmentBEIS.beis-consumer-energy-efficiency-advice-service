@@ -263,13 +263,40 @@ function setup_national_grant_acf_group() {
                                     'maxlength' => '',
                                 ),
                                 array(
+                                    'key' => 'field_5a97f4817ed9d',
+                                    'label' => 'Is external link?',
+                                    'name' => 'is_external_link',
+                                    'type' => 'true_false',
+                                    'instructions' => '',
+                                    'required' => 0,
+                                    'conditional_logic' => 0,
+                                    'wrapper' => array(
+                                        'width' => '',
+                                        'class' => '',
+                                        'id' => '',
+                                    ),
+                                    'message' => '',
+                                    'default_value' => 0,
+                                    'ui' => 0,
+                                    'ui_on_text' => '',
+                                    'ui_off_text' => '',
+                                ),
+                                array(
                                     'key' => 'field_5a1d96253944b',
                                     'label' => 'Linked page',
                                     'name' => 'linked_page',
                                     'type' => 'page_link',
                                     'instructions' => '',
                                     'required' => 0,
-                                    'conditional_logic' => 0,
+                                    'conditional_logic' => array(
+                                        array(
+                                            array(
+                                                'field' => 'field_5a97f4817ed9d',
+                                                'operator' => '!=',
+                                                'value' => '1',
+                                            ),
+                                        ),
+                                    ),
                                     'wrapper' => array(
                                         'width' => '',
                                         'class' => '',
@@ -283,6 +310,30 @@ function setup_national_grant_acf_group() {
                                     'allow_null' => 0,
                                     'allow_archives' => 1,
                                     'multiple' => 0,
+                                ),
+                                array(
+                                    'key' => 'field_5a97f4a17ed9e',
+                                    'label' => 'External Link',
+                                    'name' => 'external_link',
+                                    'type' => 'url',
+                                    'instructions' => '',
+                                    'required' => 0,
+                                    'conditional_logic' => array(
+                                        array(
+                                            array(
+                                                'field' => 'field_5a97f4817ed9d',
+                                                'operator' => '==',
+                                                'value' => '1',
+                                            ),
+                                        ),
+                                    ),
+                                    'wrapper' => array(
+                                        'width' => '',
+                                        'class' => '',
+                                        'id' => '',
+                                    ),
+                                    'default_value' => '',
+                                    'placeholder' => '',
                                 ),
                             ),
                         ),
