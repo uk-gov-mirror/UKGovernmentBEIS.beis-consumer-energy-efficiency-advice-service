@@ -7,4 +7,5 @@ import {Component, Input} from "@angular/core";
 })
 export class LargeVideoCardComponent {
     @Input() title: string;
+    @Input() synopsis: string;
 }
