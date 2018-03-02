@@ -1,5 +1,7 @@
 <?php require_once('api_error_handling.php');
 
+// TODO:BEISDEAS-161 migrate to java for scalability, maintainability and caching
+
 // Add Wordpress API function for getting EPC
 function get_postcode_details(WP_REST_Request $request)
 {

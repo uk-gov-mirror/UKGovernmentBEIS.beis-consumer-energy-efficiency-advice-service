@@ -1,5 +1,7 @@
 <?php
 
+// TODO:BEISDEAS-157 migrate to java frontend
+
 // Load custom analytics scripts in the head
 function enqueue_custom_scripts()
 {

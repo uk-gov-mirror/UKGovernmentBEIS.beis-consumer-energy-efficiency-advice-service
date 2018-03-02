@@ -1,5 +1,7 @@
 <?php
 
+// TODO:BEISDEAS-161 migrate to java for scalability, maintainability and caching
+
 // Add Wordpress API function for getting Measures content
 function get_measures()
 {

@@ -1,5 +1,10 @@
 <?php require_once('post_type_functions.php');
 
+/**
+ * This file sets up the "Types of boiler" post type in WP.
+ * This is separate to the boiler model catalogue
+ */
+
 add_action( 'init', 'create_boiler_post_type' );
 add_action( 'init', 'setup_boiler_acf_group');
 

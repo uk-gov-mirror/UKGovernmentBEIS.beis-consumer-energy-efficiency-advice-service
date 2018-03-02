@@ -1,5 +1,9 @@
 <?php
 
+// TODO:BEISDEAS-157 we should be able to delete this once the frontend is not accessed through WP
+// At the same time, we should probably hide the frontend entirely in WP and direct people
+// to the Java host, to avoid confusion.
+
 add_filter('do_parse_request', function($do_parse, $wp) {
 
     // This filter disables Wordpress's routing for matching URL paths, to avoid conflicting with routing within the Angular app

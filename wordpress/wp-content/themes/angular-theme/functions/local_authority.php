@@ -1,5 +1,7 @@
 <?php
 
+// TODO:BEISDEAS-161 migrate to java for scalability, maintainability and caching
+
 // Add Wordpress API function for getting Local Authority data by ONS code
 function get_local_authority(WP_REST_Request $request)
 {
