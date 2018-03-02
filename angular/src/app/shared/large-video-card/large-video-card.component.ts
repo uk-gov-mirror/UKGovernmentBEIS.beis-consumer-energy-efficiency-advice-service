@@ -6,6 +6,16 @@ import {Component, Input} from "@angular/core";
     styleUrls: ['./large-video-card.component.scss']
 })
 export class LargeVideoCardComponent {
+    displaySynopsis: boolean = false;
+
     @Input() title: string;
     @Input() synopsis: string;
+
+    openSynopsis(): void {
+        this.displaySynopsis = true;
+    }
+
+    closeSynopsis(): void {
+        this.displaySynopsis = false;
+    }
 }

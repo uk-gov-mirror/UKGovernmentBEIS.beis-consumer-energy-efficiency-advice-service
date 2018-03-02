@@ -6,20 +6,25 @@ $mobile-popup-spacing: 20px;
 
 // Component specific mixins
 @mixin is-fixed-width-popup($width) {
-    .alert-box {
-        position: fixed;
-        width: $width;
-        max-width: calc(100% - 40px);
-        top: 15vh;
-        left: 50%;
-        margin-left: -$width / 2;
-        padding: 40px;
-        z-index: 2;
-    }
+  .alert-box {
+    position: fixed;
+    width: $width;
+    top: 15vh;
+    left: 50%;
+    margin-left: -$width / 2;
+    padding: 40px;
+    z-index: 2;
+  }
 }
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .popup {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
   .page-mask {
     background: $dark-grey;
     width: 100vw;
@@ -28,6 +33,8 @@ $mobile-popup-spacing: 20px;
     opacity: 0.8;
     top: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 1;
   }
 
@@ -37,6 +44,7 @@ $mobile-popup-spacing: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    box-sizing: border-box;
 
     .text {
       width: 100%;
@@ -64,18 +72,19 @@ $mobile-popup-spacing: 20px;
 // Breakpoint specific styling
 .popup {
   @include mobile() {
-      .alert-box {
-        position: fixed;
-        padding: $mobile-popup-spacing;
-        margin: $mobile-popup-spacing;
-        max-height: calc(100vh - (4 * #{$mobile-popup-spacing}));
-        overflow-y: scroll;
+    .alert-box {
+      top: 0;
+      position: fixed;
+      width: calc(100% - (2 * #{$mobile-popup-spacing}));
+      padding: $mobile-popup-spacing;
+      margin: $mobile-popup-spacing;
+      max-height: calc(100vh - (4 * #{$mobile-popup-spacing}));
+      overflow-y: scroll;
 
-        .ok-button {
-            margin: $mobile-popup-spacing 0;
-        }
+      .ok-button {
+          margin: $mobile-popup-spacing 0;
       }
-
+    }
   }
 
   @include tablet() {
