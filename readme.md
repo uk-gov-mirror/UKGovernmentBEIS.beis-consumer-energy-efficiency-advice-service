@@ -7,7 +7,17 @@ It is public-facing.
 ## Table of Contents
 
 <!-- toc -->
-TODO:RTB toc here
+
+  * [Architecture](#architecture)
+  * [Development Setup](#development-setup)
+    + [Development Setup - User Site](#development-setup---user-site)
+    + [Development Setup - Admin Site](#development-setup---admin-site)
+    + [Development Setup - MySQL Database](#development-setup---mysql-database)
+- [Older instructions - TODO:RTB sort out](#older-instructions---todortb-sort-out)
+  * [Angular setup](#angular-setup)
+  * [Tests](#tests)
+  * [Debugging](#debugging)
+
 <!-- tocstop -->
 
 ## Architecture
