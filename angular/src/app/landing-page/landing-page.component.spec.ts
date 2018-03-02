@@ -17,6 +17,7 @@ import {Component, EventEmitter, Output} from "@angular/core";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
 import {StaticMeasureCardComponent} from "./static-measure-card/static-measure-card.component";
+import { PopupComponent } from "../shared/popup/popup.component";
 import {DataCardComponent} from "../shared/data-card/data-card.component";
 
 describe('LandingPageComponent', () => {
@@ -51,6 +52,7 @@ describe('LandingPageComponent', () => {
                 LatestNewsCardComponent,
                 MockPostcodeLookupComponent,
                 StaticMeasureCardComponent,
+                PopupComponent,
                 DataCardComponent
             ],
             imports: [

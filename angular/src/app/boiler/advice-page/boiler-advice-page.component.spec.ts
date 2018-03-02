@@ -11,6 +11,7 @@ import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-me
 import {BoilerType} from "../boiler-types-service/boiler-type";
 import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
 import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import { PopupComponent } from "../../shared/popup/popup.component";
 
 describe('BoilerAdvicePageComponent', () => {
     let component: BoilerAdvicePageComponent;
@@ -30,6 +31,7 @@ describe('BoilerAdvicePageComponent', () => {
                 LargeVideoCardComponent,
                 BoilerRegulationCardComponent,
                 BoilerLinkButtonComponent,
+                PopupComponent,
             ],
             imports: [
                 RouterTestingModule,
