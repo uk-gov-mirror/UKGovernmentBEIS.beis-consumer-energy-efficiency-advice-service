@@ -1,0 +1,88 @@
+@import "styles/var/colors";
+@import "styles/mixins/font";
+
+// Component specific variables
+$mobile-popup-spacing: 20px;
+
+// Component specific mixins
+@mixin is-fixed-width-popup($width) {
+    .alert-box {
+        position: fixed;
+        width: $width;
+        max-width: calc(100% - 40px);
+        top: 15vh;
+        left: 50%;
+        margin-left: -$width / 2;
+        padding: 40px;
+        z-index: 2;
+    }
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.popup {
+  .page-mask {
+    background: $dark-grey;
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    opacity: 0.8;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .alert-box {
+    background: white;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .text {
+      width: 100%;
+      @include popup-text-font;
+    }
+
+    .ok-button {
+      background-color: $action-button-blue;
+      outline: none;
+      border: none;
+      padding: 10px 60px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      margin: 50px 0 0;
+      cursor: pointer;
+
+      &:focus, &:hover {
+        background-color: $button-dark-blue;
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.popup {
+  @include mobile() {
+      .alert-box {
+        position: fixed;
+        padding: $mobile-popup-spacing;
+        margin: $mobile-popup-spacing;
+        max-height: calc(100vh - (4 * #{$mobile-popup-spacing}));
+        overflow-y: scroll;
+
+        .ok-button {
+            margin: $mobile-popup-spacing 0;
+        }
+      }
+
+  }
+
+  @include tablet() {
+    @include is-fixed-width-popup(500px);
+  }
+
+  @include desktop() {
+    @include is-fixed-width-popup(500px);
+  }
+}
