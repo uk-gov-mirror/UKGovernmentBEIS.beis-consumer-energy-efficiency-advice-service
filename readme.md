@@ -17,12 +17,36 @@ It is public-facing.
   * [Angular setup](#angular-setup)
   * [Tests](#tests)
   * [Debugging](#debugging)
+  * [Angular / Wordpress Routing](#angular--wordpress-routing)
+  * [Adding a question to the questionnaire](#adding-a-question-to-the-questionnaire)
 
 <!-- tocstop -->
 
 ## Architecture
 
 ![Architecture overview diagram](architecture-overview.png)
+
+Folders:
+
+ * `wordpress/`
+  
+The base directory of the Wordpress installation for the admin site. The
+theme we're working on lives in `/wordpress/wp-content/themes/angular-theme`.
+If you do any PHP work, it should almost certainly be only in
+this folder, or to the wp-config.php, or be a separate plugin.
+
+ * `angular/`
+ 
+The Angular application that runs the client-side for the user facing site.
+This is compiled into the `/wordpress/wp-content/themes/angular-theme/dist`
+folder for use on the site; however, for ease of config
+and development, the source code lives in this folder.
+TODO:BEISDEAS-156 update when this has changed
+
+ * `integration-tests/`
+ 
+Simple integration tests to check that the application is generally working as expected.
+TODO:RTB document how to run these?
 
 ## Development Setup
 
@@ -132,3 +156,32 @@ Create a debug server configuration following the instructions here
 https://www.jetbrains.com/help/idea/creating-a-php-debug-server-configuration.html
 
 Then just start debugging using this configuration!
+
+
+## Angular / Wordpress Routing
+
+Wordpress has built in redirecting which happens before the Angular app is loaded.
+
+By default, Wordpress's built in routing will redirect any request to a path which ends in a wordpress page slug (e.g. "www.example.com/some/path/:slug") to that page's default Wordpress permalink ("www.example.com/:slug"). This means that an Angular route "www.example.com/some/path/to/slug" could never be reached as an entry point to the app, because Wordpress would redirect before loading the Angular app.
+
+To distinguish Angular routes from Wordpress routes, for now all routes in the Angular app are prefixed with "/js/" and Wordpress routing is disabled for any URL path which begins with "/js/".
+
+## Adding a question to the questionnaire
+
+These, as it stands, are the steps that should be taken when creating a new question component. HomeTypeQuestionMetadata and HomeTypeQuestionComponent can be used as an example.
+
+* Angular theme:
+  * (If necessary) Create a class, say MyResponse, that will represent the response to the question.
+  * Create a component, say MyQuestionComponent, under questionnaire/questions, and an additional class (MyQuestionMetadata) in the same place. 
+  * The component must extend QuestionBaseComponent<MyResponse> and the additional class must extend QuestionMetadata<MyResponse>
+  * The component must include the following metadata in the @Component annotation: animations: [slideInOutAnimation]
+    * This was previously done via a custom decorator, but in production mode, Angular's AoT compiler is not clever enough to realise what the custom decorator does, so they now have to passed in manually to every single question component (sad)
+  * Add your component to entryComponents in the relevant module
+  * Define the response getter and setter on MyQuestionComponent such that they read the response from and update the answer on ResponseData (available via the base class).
+  * Define isApplicable and hasBeenAnswered on MyQuestionMetadata.
+  * Define the questionId in the constructor of MyQuestionMetadata. This should correspond to the slug of the Wordpress post (see below).
+  * Define your component's logic, template and styling in the usual way, making use of the response and complete members of the base class.
+  * Update QuestionnaireService to be aware of your new question, and possibly change the logic within QuestionnaireComponent (adding helper methods to QuestionnaireService as needed) if your question requires more complicated decisions to be made than is currently allowed for.
+* Wordpress:
+  * Add a new post of type 'Question' and define the question heading and (if desired) help text. Export your data so it can be imported in other environments/by other developers (see Creating new wordpress content)
+  * Ensure the slug corresponds to the questionId in MyQuestionMetadata
