@@ -205,6 +205,7 @@ $grant-card-margin: 24px;
 
         .enter-postcode-form{
           align-self: flex-end;
+          display: flex;
 
           form {
             height: 70px;

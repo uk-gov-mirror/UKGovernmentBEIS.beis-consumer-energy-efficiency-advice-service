@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {Observable} from "rxjs/Observable";
+import {Router} from "@angular/router";
 
 import {ResponseData} from "../../shared/response-data/response-data";
 import {UserJourneyType} from "../../shared/response-data/user-journey-type";
@@ -24,7 +25,8 @@ export class GrantsLandingPageComponent {
     constructor(
         private responseData: ResponseData,
         private postcodeEpcService: PostcodeEpcService,
-        private localAuthorityService: LocalAuthorityService
+        private localAuthorityService: LocalAuthorityService,
+        private router: Router
     ) {
     }
 
@@ -81,5 +83,9 @@ export class GrantsLandingPageComponent {
 
     setJourneyTypeToHomeImprovements(): void {
         this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
+    }
+
+    onAddressSelected() {
+        this.router.navigate(['js/grants/questionnaire']);
     }
 }
