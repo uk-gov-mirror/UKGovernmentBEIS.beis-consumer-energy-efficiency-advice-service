@@ -41,10 +41,12 @@ describe('YourPlanPageComponent', () => {
             steps: [{
                 headline: 'Step One',
                 description: 'Step one description',
+                readMore: '',
                 moreInfoLinks: []
             },{
                 headline: 'Step Two',
                 description: 'Step two description',
+                readMore: '',
                 moreInfoLinks: []
             }
             ],

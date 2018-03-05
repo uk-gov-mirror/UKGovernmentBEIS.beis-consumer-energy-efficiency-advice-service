@@ -4,6 +4,7 @@ import {RecommendationStepResponse} from "../energy-saving-measure-content-servi
 export class RecommendationStep {
     headline: string;
     description: string;
+    readMore: string;
     moreInfoLinks: {
         buttonText: string;
         isExternalLink: boolean;
@@ -14,6 +15,7 @@ export class RecommendationStep {
     constructor(measureStep: RecommendationStepResponse) {
         this.headline = measureStep.headline;
         this.description = measureStep.description;
+        this.readMore = measureStep.read_more;
         this.moreInfoLinks = (measureStep.more_info_links || [])
             .map(link => {
                 return {
@@ -21,7 +23,7 @@ export class RecommendationStep {
                     isExternalLink: link.is_external_link,
                     route: parse(link.linked_page).pathname,
                     externalLink: link.external_link
-                }
-            })
+                };
+            });
     }
 }

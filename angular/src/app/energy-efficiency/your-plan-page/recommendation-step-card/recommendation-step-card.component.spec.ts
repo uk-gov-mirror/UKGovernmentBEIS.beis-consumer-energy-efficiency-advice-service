@@ -16,6 +16,7 @@ describe('RecommendationStepCardComponent', () => {
     const step: RecommendationStep = {
         headline: 'Choose the right loft insulation',
         description: 'The type of loft insulation to install depends on your intended usage of your loft',
+        readMore: 'More things to read',
         moreInfoLinks: [
             {
                 buttonText: 'Test static page 1',
@@ -122,6 +123,53 @@ describe('RecommendationStepCardComponent', () => {
         expect(stepNumberElement.innerText.toLowerCase()).toEqual(step.description.toLowerCase());
     });
 
+    it('should hide read more button when there is no read more content', () => {
+        // given
+        // Deep clone "step"
+        const noReadMoreStep: RecommendationStep = JSON.parse(JSON.stringify(step));
+        noReadMoreStep.readMore = '';
+
+        // when
+        component.step = noReadMoreStep;
+        fixture.detectChanges();
+        toggleDetailsDrawerExpanded();
+
+        // then
+        const readMoreButtonElement = fixture.debugElement.query(By.css('.read-more-button'));
+        expect(readMoreButtonElement).toBeNull();
+    });
+
+    it('should show read more button when there is read more content', () => {
+        // when
+        fixture.detectChanges();
+        toggleDetailsDrawerExpanded();
+
+        // then
+        const readMoreButtonElement = fixture.debugElement.query(By.css('.read-more-button'));
+        expect(readMoreButtonElement).not.toBeNull();
+    });
+
+    it('should hide read more section', () => {
+        // when
+        fixture.detectChanges();
+        toggleDetailsDrawerExpanded();
+
+        // then
+        const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content'));
+        expect(readMoreContentElement).toBeNull();
+    });
+
+    it('should show read more section when clicked', () => {
+        // when
+        fixture.detectChanges();
+        toggleDetailsDrawerExpanded();
+        toggleReadMoreExpanded();
+
+        // then
+        const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content')).nativeElement;
+        expect(readMoreContentElement.innerText.toLowerCase()).toEqual(step.readMore.toLowerCase());
+    });
+
     it('should display the correct links', () => {
         // when
         fixture.detectChanges();
@@ -149,6 +197,12 @@ describe('RecommendationStepCardComponent', () => {
     function toggleDetailsDrawerExpanded() {
         const mainRowElement = fixture.debugElement.query(By.css('.step-main-row')).nativeElement;
         mainRowElement.click();
+        fixture.detectChanges();
+    }
+
+    function toggleReadMoreExpanded() {
+        const readMoreButton = fixture.debugElement.query(By.css('.read-more-button')).nativeElement;
+        readMoreButton.click();
         fixture.detectChanges();
     }
 });
