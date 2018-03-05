@@ -29,6 +29,9 @@ describe('LandingPageComponent', () => {
 
     const headingText = 'heading';
     const userJourneyType = UserJourneyType.MakeHomeGreener;
+    const staticMeasures = [];
+    const articles = [];
+    const video = {title: '', synopsis: ''};
 
     const postcodeReason = 'a reason here';
 
@@ -72,6 +75,9 @@ describe('LandingPageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LandingPageComponent);
         component = fixture.componentInstance;
+        component.staticMeasures = staticMeasures;
+        component.video = video;
+        component.articles = articles;
         router = TestBed.get(Router);
         responseData = TestBed.get(ResponseData);
         spyOn(router, 'navigate');
@@ -117,9 +123,9 @@ describe('LandingPageComponent', () => {
     it('should have retrieved the correct postcode question reason', () => {
         // when
 
-        // them
+        // then
         expect(component.postcodeQuestionReason).toBe(postcodeReason);
-    })
+    });
 });
 
 @Component({
