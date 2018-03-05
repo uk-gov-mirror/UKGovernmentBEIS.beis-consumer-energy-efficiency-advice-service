@@ -1,11 +1,11 @@
-import {getTestBed, TestBed} from "@angular/core/testing";
-import "rxjs/add/operator/toPromise";
+import {getTestBed, TestBed} from '@angular/core/testing';
+import 'rxjs/add/operator/toPromise';
 
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
-import {HttpRequest} from "@angular/common/http";
-import {BoilerTypesService} from "./boiler-types.service";
-import {BoilerType} from "./boiler-type";
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
+import {HttpRequest} from '@angular/common/http';
+import {BoilerTypesService} from './boiler-types.service';
+import {BoilerType} from './boiler-type';
 
 describe('BoilerTypesService', () => {
     let httpMock: HttpTestingController;
@@ -38,7 +38,7 @@ describe('BoilerTypesService', () => {
 
             // when
             const actualResponse = service.fetchBoilerTypes().toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
+            const request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(boilerTypesResponse);
 
             // then

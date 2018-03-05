@@ -1,25 +1,25 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {ProgressIndicatorComponent} from "./progress-indicator.component";
-import {QuestionType, QuestionTypeUtil} from "../questions/question-type";
-import {DebugElement} from "@angular/core/core";
-import {AllQuestionsContent} from "../../shared/question-content/all-questions-content";
-import {Questionnaire} from "../base-questionnaire/questionnaire";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {QuestionMetadata} from "../base-question/question-metadata";
-import {QuestionBaseComponent} from "../base-question/question-base-component";
-import groupBy from "lodash-es/groupBy";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import includes from "lodash-es/includes";
+import {ProgressIndicatorComponent} from './progress-indicator.component';
+import {QuestionType, QuestionTypeUtil} from '../questions/question-type';
+import {DebugElement} from '@angular/core/core';
+import {AllQuestionsContent} from '../../shared/question-content/all-questions-content';
+import {Questionnaire} from '../base-questionnaire/questionnaire';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {QuestionMetadata} from '../base-question/question-metadata';
+import {QuestionBaseComponent} from '../base-question/question-base-component';
+import groupBy from 'lodash-es/groupBy';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import includes from 'lodash-es/includes';
 
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
     let fixture: ComponentFixture<ProgressIndicatorComponent>;
     let availableQuestions: number[];
     const question1TitleText = 'Question 1 heading';
-    let allQuestionsContent: AllQuestionsContent = {
+    const allQuestionsContent: AllQuestionsContent = {
         question0: {questionHeading: 'Question 0 heading', helpText: 'Question 0 help text', questionReason: ''},
         question1: {questionHeading: question1TitleText, helpText: 'Question 1 help text', questionReason: ''},
         question2: {questionHeading: 'Question 2 heading', helpText: 'Question 2 help text', questionReason: ''},
@@ -121,7 +121,8 @@ describe('ProgressIndicatorComponent', () => {
 
         // when
         component.currentQuestionIndex = currentQuestionIndex;
-        const nonCurrentProgressIndicatorSteps = allProgressIndicatorSteps.filter(step => allProgressIndicatorSteps.indexOf(step) !== currentQuestionIndex);
+        const nonCurrentProgressIndicatorSteps = allProgressIndicatorSteps.filter(
+            step => allProgressIndicatorSteps.indexOf(step) !== currentQuestionIndex);
         fixture.detectChanges();
 
         // then

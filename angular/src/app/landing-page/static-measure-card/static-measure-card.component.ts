@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {StaticMeasure} from "./static-measure";
+import {StaticMeasure} from './static-measure';
 
 @Component({
     selector: 'app-static-measure-card',

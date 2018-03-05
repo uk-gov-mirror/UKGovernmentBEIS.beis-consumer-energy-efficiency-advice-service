@@ -1,28 +1,28 @@
-import {ChangeDetectorRef, ComponentFactoryResolver} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {Observable} from "rxjs/Observable";
-import {ActivatedRoute} from "@angular/router";
+import {ChangeDetectorRef, ComponentFactoryResolver} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute} from '@angular/router';
 
-import {QuestionnaireComponent} from "./questionnaire.component";
-import {QuestionnaireService} from "./questionnaire.service";
-import {ProgressIndicatorComponent} from "./progress-indicator/progress-indicator.component";
-import {QuestionContentService} from "../shared/question-content/question-content.service";
-import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
-import {QuestionType} from "./questions/question-type";
-import {QuestionBaseComponent} from "./base-question/question-base-component";
-import {QuestionMetadata} from "./base-question/question-metadata";
-import {Questionnaire} from "./base-questionnaire/questionnaire";
-import {ResponseData} from "../shared/response-data/response-data";
-import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {NeedHelpComponent} from "../shared/need-help/need-help.component";
-import {QuestionHeadingProcessor} from "./question-heading-processor.service";
-import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
-import {QuestionReasonComponent} from "../shared/question-reason/question-reason.component";
+import {QuestionnaireComponent} from './questionnaire.component';
+import {QuestionnaireService} from './questionnaire.service';
+import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
+import {QuestionContentService} from '../shared/question-content/question-content.service';
+import {AllQuestionsContent} from '../shared/question-content/all-questions-content';
+import {QuestionType} from './questions/question-type';
+import {QuestionBaseComponent} from './base-question/question-base-component';
+import {QuestionMetadata} from './base-question/question-metadata';
+import {Questionnaire} from './base-questionnaire/questionnaire';
+import {ResponseData} from '../shared/response-data/response-data';
+import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {NeedHelpComponent} from '../shared/need-help/need-help.component';
+import {QuestionHeadingProcessor} from './question-heading-processor.service';
+import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
+import {QuestionReasonComponent} from '../shared/question-reason/question-reason.component';
 
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -87,13 +87,6 @@ describe('QuestionnaireComponent', () => {
     }
 
     class MockActivatedRoute {
-        private static paramMapGet(key) {
-            if (key === 'name') {
-                return questionnaireName;
-            } else {
-                throw new Error('Unexpected parameter name');
-            }
-        }
 
         public snapshot = {
             paramMap: {get: MockActivatedRoute.paramMapGet}
@@ -102,13 +95,26 @@ describe('QuestionnaireComponent', () => {
         public paramMap = Observable.of({
             get: MockActivatedRoute.paramMapGet
         });
+        private static paramMapGet(key) {
+            if (key === 'name') {
+                return questionnaireName;
+            } else {
+                throw new Error('Unexpected parameter name');
+            }
+        }
     }
 
     beforeEach(async(() => {
         spyOn(questionContentServiceStub, 'fetchQuestionsContent').and.callThrough();
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [QuestionnaireComponent, ProgressIndicatorComponent, SpinnerAndErrorContainerComponent, NeedHelpComponent, QuestionReasonComponent],
+            declarations: [
+                QuestionnaireComponent,
+                ProgressIndicatorComponent,
+                SpinnerAndErrorContainerComponent,
+                NeedHelpComponent,
+                QuestionReasonComponent
+            ],
             imports: [RouterTestingModule.withRoutes([]), InlineSVGModule, HttpClientTestingModule],
             providers: [
                 ComponentFactoryResolver,

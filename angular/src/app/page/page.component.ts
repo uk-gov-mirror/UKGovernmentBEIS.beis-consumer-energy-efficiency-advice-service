@@ -1,8 +1,8 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import "rxjs/add/operator/switchMap";
-import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
-import {ExtendedWordpressPage} from "../shared/wordpress-pages-service/extended-wordpress-page";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-wordpress-page';
 
 @Component({
     selector: 'app-page',

@@ -1,12 +1,12 @@
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {TenureType} from "../../questions/tenure-type-question/tenure-type";
-import {GrantsQuestionnaire} from "./grants-questionnaire";
-import {PostcodeEpcQuestionMetadata} from "../../questions/postcode-epc-question/postcode-epc-question-metadata";
-import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occupants-question-metadata";
-import {TenureTypeQuestionMetadata} from "../../questions/tenure-type-question/tenure-type-question-metadata";
-import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
-import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
-import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {TenureType} from '../../questions/tenure-type-question/tenure-type';
+import {GrantsQuestionnaire} from './grants-questionnaire';
+import {PostcodeEpcQuestionMetadata} from '../../questions/postcode-epc-question/postcode-epc-question-metadata';
+import {OccupantsQuestionMetadata} from '../../questions/occupants-question/occupants-question-metadata';
+import {TenureTypeQuestionMetadata} from '../../questions/tenure-type-question/tenure-type-question-metadata';
+import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
+import {BenefitsQuestionMetadata} from '../../questions/benefits-question/benefits-question-metadata';
+import {IncomeQuestionMetadata} from '../../questions/income-question/income-question-metadata';
 
 describe('GrantsQuestionnaire', () => {
 

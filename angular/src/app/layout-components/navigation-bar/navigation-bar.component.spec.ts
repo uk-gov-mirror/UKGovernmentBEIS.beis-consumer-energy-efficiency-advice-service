@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {NavigationBarComponent} from "./navigation-bar.component";
-import {Observable} from "rxjs/Observable";
-import {RouterTestingModule} from "@angular/router/testing";
-import {By} from "@angular/platform-browser";
-import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
-import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {NavigationBarComponent} from './navigation-bar.component';
+import {Observable} from 'rxjs/Observable';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
+import {WordpressPage} from '../../shared/wordpress-pages-service/wordpress-page';
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
@@ -52,7 +52,7 @@ describe('NavigationBarComponent', () => {
             {route: 'wp-page/page-one',   title: 'Page one'},
             {route: 'wp-page/page-two',   title: 'Page two'},
             {route: 'wp-page/page-three', title: 'Page three'},
-        ];
+        ] as WordpressPage[];
 
         // when
         injectMockWordpressPagesCallbackAndDetectChanges(() => Observable.of(wordpressPages));
@@ -67,7 +67,7 @@ describe('NavigationBarComponent', () => {
     }));
 
     function injectMockWordpressPagesCallbackAndDetectChanges(fetchTopLevelPages: () => Observable<WordpressPage[]>) {
-        let injectedWordpressPagesService = fixture.debugElement.injector.get(WordpressPagesService);
+        const injectedWordpressPagesService = fixture.debugElement.injector.get(WordpressPagesService);
         injectedWordpressPagesService.getTopLevelPages = fetchTopLevelPages;
         fetchTopLevelPagesSpy = spyOn(injectedWordpressPagesService, 'getTopLevelPages').and.callThrough();
         fixture.detectChanges();

@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import * as parse from "url-parse";
-import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
-import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import * as parse from 'url-parse';
+import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
+import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
+import {MeasureContent} from '../../shared/energy-saving-measure-content-service/measure-content';
 
 
 @Injectable()

@@ -1,13 +1,13 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import sortBy from "lodash-es/sortBy";
-import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
-import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
-import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {EpcRecommendation} from '../../shared/epc-api-service/model/response/epc-recommendation';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import sortBy from 'lodash-es/sortBy';
+import {EpcApiService} from '../../shared/postcode-epc-service/epc-api-service/epc-api.service';
+import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
+import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
 
 @Component({
     selector: 'app-boiler-epc-replace',
@@ -16,7 +16,7 @@ import {EnergySavingRecommendation} from "../../shared/recommendation-card/energ
 })
 export class BoilerEpcReplaceComponent implements OnInit {
     lmkKey: string;
-    loading: boolean = true;
+    loading = true;
     recommendations: EpcRecommendation[];
     boilerTypes: BoilerType[];
     measures: EnergySavingRecommendation[];

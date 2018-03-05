@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import sortBy from "lodash-es/sortBy";
+import {Component, OnInit} from '@angular/core';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import sortBy from 'lodash-es/sortBy';
 
 @Component({
     selector: 'app-boiler-replacement-page',

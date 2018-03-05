@@ -1,5 +1,5 @@
-import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
-import {BoilerJson} from "./gas-and-oil-boilers.service";
+import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
+import {BoilerJson} from './gas-and-oil-boilers.service';
 
 export class GasAndOilBoiler {
     constructor(public productIndexNumber: string,
@@ -18,7 +18,7 @@ export class GasAndOilBoiler {
 
     private static fuelTypeFromCode(fuelCode: string) {
         if (GasAndOilBoiler.fuelCodes.hasOwnProperty(fuelCode)) {
-            return GasAndOilBoiler.fuelCodes[fuelCode]
+            return GasAndOilBoiler.fuelCodes[fuelCode];
         } else {
             return undefined;
         }

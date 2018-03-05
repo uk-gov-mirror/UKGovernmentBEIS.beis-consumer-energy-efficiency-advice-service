@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {QuestionType, QuestionTypeUtil} from "../questions/question-type";
-import {AllQuestionsContent} from "../../shared/question-content/all-questions-content";
-import {Questionnaire} from "../base-questionnaire/questionnaire";
-import groupBy from "lodash-es/groupBy";
-import sortBy from "lodash-es/sortBy";
-import head from "lodash-es/head";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {getJourneyDescription, UserJourneyType} from "../../shared/response-data/user-journey-type";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {QuestionType, QuestionTypeUtil} from '../questions/question-type';
+import {AllQuestionsContent} from '../../shared/question-content/all-questions-content';
+import {Questionnaire} from '../base-questionnaire/questionnaire';
+import groupBy from 'lodash-es/groupBy';
+import sortBy from 'lodash-es/sortBy';
+import head from 'lodash-es/head';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {getJourneyDescription, UserJourneyType} from '../../shared/response-data/user-journey-type';
 
 @Component({
-    selector: 'progress-indicator',
+    selector: 'app-progress-indicator',
     templateUrl: './progress-indicator.component.html',
     styleUrls: ['./progress-indicator.component.scss']
 })
@@ -38,7 +38,7 @@ export class ProgressIndicatorComponent implements OnInit {
                     questionIndex: i,
                     questionHeading: questionHeading,
                     questionType: question.questionType
-                }
+                };
             }), 'questionType');
         const sortedQuestions = sortBy(groupedQuestions, (questionGroup: QuestionStep[]) => head(questionGroup).questionIndex);
 
@@ -48,7 +48,7 @@ export class ProgressIndicatorComponent implements OnInit {
                 questionType: questionType,
                 questions: questionGroup,
                 className: QuestionTypeUtil.getIconClassName(questionType)
-            }
+            };
         });
         this.totalNumberOfIconsAndQuestions = allQuestions.length +
             ProgressIndicatorComponent.ICONS_PER_SECTION * this.questionnaireSections.length;
@@ -86,5 +86,5 @@ interface QuestionnaireSection {
 interface QuestionStep {
     questionIndex: number;
     questionType: QuestionType;
-    questionHeading: string
+    questionHeading: string;
 }

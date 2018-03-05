@@ -1,13 +1,13 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
-import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {DataCardComponent} from "../../../shared/data-card/data-card.component";
-import {YourPlanSummaryComponent} from "../../your-plan-summary/your-plan-summary.component";
-import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
-import {YourPlanFooterComponent} from "./your-plan-footer.component";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
+import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-efficiency-recommendation-tag';
+import {DataCardComponent} from '../../../shared/data-card/data-card.component';
+import {YourPlanSummaryComponent} from '../../your-plan-summary/your-plan-summary.component';
+import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
+import {YourPlanFooterComponent} from './your-plan-footer.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('YourPlanFooterComponent', () => {
     let component: YourPlanFooterComponent;

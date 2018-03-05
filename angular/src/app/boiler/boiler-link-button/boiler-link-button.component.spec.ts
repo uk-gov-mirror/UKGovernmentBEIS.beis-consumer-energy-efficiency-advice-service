@@ -1,14 +1,14 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
 
-import {BoilerLinkButtonComponent} from "./boiler-link-button.component";
+import {BoilerLinkButtonComponent} from './boiler-link-button.component';
 
 describe('BoilerLinkButtonComponent', () => {
     let component: BoilerLinkButtonComponent;
     let fixture: ComponentFixture<BoilerLinkButtonComponent>;
 
-    const linkText = "Some link text";
+    const linkText = 'Some link text';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

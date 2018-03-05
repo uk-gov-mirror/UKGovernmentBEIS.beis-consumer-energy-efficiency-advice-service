@@ -1,13 +1,13 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
-import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import sortBy from "lodash-es/sortBy";
-import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
-import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
+import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import sortBy from 'lodash-es/sortBy';
+import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
+import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
 
 @Component({
     selector: 'app-boiler-make-model-replace',
@@ -15,6 +15,7 @@ import {EnergySavingRecommendation} from "../../shared/recommendation-card/energ
     styleUrls: ['./boiler-make-model-replace.component.scss']
 })
 export class BoilerMakeModelReplaceComponent implements OnInit {
+    private static readonly EFFICIENCY_THRESHOLD: number = 88;
 
     loading: boolean = true;
     error: boolean = false;
@@ -24,7 +25,6 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     boilerTypes: BoilerType[];
     measures: EnergySavingRecommendation[];
 
-    private static readonly EFFICIENCY_THRESHOLD: number = 88;
 
     constructor(private gasAndOilBoilersService: GasAndOilBoilersService,
                 private boilerTypesService: BoilerTypesService,

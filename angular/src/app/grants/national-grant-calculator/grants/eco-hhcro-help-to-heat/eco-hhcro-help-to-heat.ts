@@ -1,17 +1,53 @@
-import {Injectable} from "@angular/core";
-import {NationalGrantCalculator} from "../../national-grant-calculator";
-import {ResponseData} from "../../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
-import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
-import {Observable} from "rxjs/Observable";
-import {IncomeThresholdService} from "./income-threshold-service/income-threshold.service";
-import {IncomeThresholdByChildren, IncomeThreshold} from "./income-threshold-service/income-thresholds";
+import {Injectable} from '@angular/core';
+import {NationalGrantCalculator} from '../../national-grant-calculator';
+import {ResponseData} from '../../../../shared/response-data/response-data';
+import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
+import {Benefits} from '../../../../questionnaire/questions/benefits-question/benefits';
+import {Observable} from 'rxjs/Observable';
+import {IncomeThresholdService} from './income-threshold-service/income-threshold.service';
+import {IncomeThresholdByChildren, IncomeThreshold} from './income-threshold-service/income-thresholds';
 
 @Injectable()
 export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
 
     private static readonly AUTOMATICALLY_QUALIFYING_BENEFITS: Benefits = Benefits.ESA | Benefits.JobseekersAllowance |
         Benefits.IncomeSupport | Benefits.PensionGuaranteeCredit;
+
+    private static getEligibilityFromIncome(relevantIncomeThreshold: Observable<IncomeThreshold>,
+                                        relevantIncome: number,
+                                        numberOfAdults: number,
+                                        numberOfChildren: number): Observable<GrantEligibility> {
+        const incomeThresholdValue = relevantIncomeThreshold
+            .map(incomeThreshold => {
+                const incomeThresholdByChildren = numberOfAdults === 1 ?
+                    incomeThreshold.singleClaim : incomeThreshold.jointClaim;
+                return EcoHhcroHelpToHeat.getIncomeThresholdValue(incomeThresholdByChildren, numberOfChildren);
+            });
+        return incomeThresholdValue
+            .map(thresholdValue => relevantIncome < thresholdValue ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
+
+    }
+
+    private static getIncomeThresholdValue(incomeThresholdByChildren: IncomeThresholdByChildren,
+                                            numberOfChildren: number): number {
+        switch (numberOfChildren) {
+            case 0: {
+                return incomeThresholdByChildren.zeroChildren;
+            }
+            case 1: {
+                return incomeThresholdByChildren.oneChild;
+            }
+            case 2: {
+                return incomeThresholdByChildren.twoChildren;
+            }
+            case 3: {
+                return incomeThresholdByChildren.threeChildren;
+            }
+            default: {
+                return incomeThresholdByChildren.fourPlusChildren;
+            }
+        }
+    }
 
     constructor(private incomeThresholdService: IncomeThresholdService) {
         super('eco-hhcro-help-to-heat');
@@ -59,41 +95,5 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
             responseData.numberOfAdults,
             responseData.numberOfChildren
         );
-    }
-
-    private static getEligibilityFromIncome(relevantIncomeThreshold: Observable<IncomeThreshold>,
-                                     relevantIncome: number,
-                                     numberOfAdults: number,
-                                     numberOfChildren: number): Observable<GrantEligibility> {
-        const incomeThresholdValue = relevantIncomeThreshold
-            .map(incomeThreshold => {
-                const incomeThresholdByChildren = numberOfAdults === 1 ?
-                    incomeThreshold.singleClaim : incomeThreshold.jointClaim;
-                return EcoHhcroHelpToHeat.getIncomeThresholdValue(incomeThresholdByChildren, numberOfChildren);
-            });
-        return incomeThresholdValue
-            .map(thresholdValue => relevantIncome < thresholdValue ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
-
-    }
-
-    private static getIncomeThresholdValue(incomeThresholdByChildren: IncomeThresholdByChildren,
-                                           numberOfChildren: number): number {
-        switch (numberOfChildren) {
-            case 0: {
-                return incomeThresholdByChildren.zeroChildren;
-            }
-            case 1: {
-                return incomeThresholdByChildren.oneChild;
-            }
-            case 2: {
-                return incomeThresholdByChildren.twoChildren;
-            }
-            case 3: {
-                return incomeThresholdByChildren.threeChildren;
-            }
-            default: {
-                return incomeThresholdByChildren.fourPlusChildren;
-            }
-        }
     }
 }

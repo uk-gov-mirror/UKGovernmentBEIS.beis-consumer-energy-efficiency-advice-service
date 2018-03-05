@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
+import {Component} from '@angular/core';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 
 @Component({
     selector: 'app-download-plan',

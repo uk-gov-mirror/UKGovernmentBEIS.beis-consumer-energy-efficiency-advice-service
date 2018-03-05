@@ -1,9 +1,9 @@
-import {async, TestBed} from "@angular/core/testing";
-import {NationalGrantCalculator} from "../national-grant-calculator";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../grant-eligibility-service/grant-eligibility";
-import {Observable} from "rxjs/Observable";
-import {NationalGrantCalculatorProvider} from "./national-grant-calculator.provider";
+import {async, TestBed} from '@angular/core/testing';
+import {NationalGrantCalculator} from '../national-grant-calculator';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {GrantEligibility} from '../../grant-eligibility-service/grant-eligibility';
+import {Observable} from 'rxjs/Observable';
+import {NationalGrantCalculatorProvider} from './national-grant-calculator.provider';
 
 describe('NationalGrantCalculatorProvider', () => {
     let provider: NationalGrantCalculatorProvider;

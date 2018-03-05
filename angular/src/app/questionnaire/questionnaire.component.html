@@ -1,10 +1,10 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
 <app-need-help></app-need-help>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
-    <progress-indicator class="page-row" [questionnaire]="questionnaire"
+    <app-progress-indicator class="page-row" [questionnaire]="questionnaire"
                         [currentQuestionIndex]="currentQuestionIndex"
                         [allQuestionsContent]="allQuestionsContent"
-                        (clickedOnLink)="animateToQuestion($event)"></progress-indicator>
+                        (clickedOnLink)="animateToQuestion($event)"></app-progress-indicator>
     <span class="question-type-icon">
         <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionTypeIconClassName !== 'icon-house'"></div>
         <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionTypeIconClassName !== 'icon-thermostat'"></div>
@@ -26,7 +26,7 @@
     </div>
     <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>
     <div class="question">
-        <ng-template question-host></ng-template>
+        <ng-template app-question-host></ng-template>
     </div>
     <app-question-reason *ngIf="currentQuestionContent.questionReason"
                      [isExpanded]="currentQuestionContent.autoOpenQuestionReason"

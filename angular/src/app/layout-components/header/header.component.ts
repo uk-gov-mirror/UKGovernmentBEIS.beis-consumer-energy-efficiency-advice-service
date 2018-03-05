@@ -1,6 +1,6 @@
-import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from "@angular/core";
-import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
-import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from '@angular/core';
+import {WordpressPage} from '../../shared/wordpress-pages-service/wordpress-page';
+import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 
 @Component({
     selector: 'app-header',

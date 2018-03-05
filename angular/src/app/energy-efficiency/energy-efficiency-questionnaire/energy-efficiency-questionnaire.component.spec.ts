@@ -1,12 +1,12 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {EnergyEfficiencyQuestionnaireComponent} from "./energy-efficiency-questionnaire.component";
-import {Observable} from "rxjs/Observable";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ResponseData} from "../../shared/response-data/response-data";
+import {EnergyEfficiencyQuestionnaireComponent} from './energy-efficiency-questionnaire.component';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ResponseData} from '../../shared/response-data/response-data';
 
 describe('EnergyEfficiencyQuestionnaireComponent', () => {
     let component: EnergyEfficiencyQuestionnaireComponent;
@@ -18,13 +18,6 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
     const questionnaireName = 'home-basics';
 
     class MockActivatedRoute {
-        private static paramMapGet(key) {
-            if (key === 'name') {
-                return questionnaireName;
-            } else {
-                throw new Error('Unexpected parameter name');
-            }
-        }
 
         public snapshot = {
             paramMap: {get: MockActivatedRoute.paramMapGet}
@@ -33,6 +26,14 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
         public paramMap = Observable.of({
             get: MockActivatedRoute.paramMapGet
         });
+
+        private static paramMapGet(key) {
+            if (key === 'name') {
+                return questionnaireName;
+            } else {
+                throw new Error('Unexpected parameter name');
+            }
+        }
     }
 
     beforeEach(async(() => {

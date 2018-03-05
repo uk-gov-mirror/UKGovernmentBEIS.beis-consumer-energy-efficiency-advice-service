@@ -1,8 +1,8 @@
-import {Component} from "@angular/core";
-import {UserJourneyType} from "../../shared/response-data/user-journey-type";
-import {Video} from "../../shared/large-video-card/video";
-import {StaticMeasure} from "../static-measure-card/static-measure";
-import { Article } from "../article-card/article";
+import {Component} from '@angular/core';
+import {UserJourneyType} from '../../shared/response-data/user-journey-type';
+import {Video} from '../../shared/large-video-card/video';
+import {StaticMeasure} from '../static-measure-card/static-measure';
+import { Article } from '../article-card/article';
 
 @Component({
     selector: 'app-greener-home',

@@ -1,11 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {UserJourneyType} from "../shared/response-data/user-journey-type";
-import {ResponseData} from "../shared/response-data/response-data";
-import {Router} from "@angular/router";
-import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
-import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
-import {Observable} from "rxjs/Observable";
+import {Component, OnInit} from '@angular/core';
+import {UserJourneyType} from '../shared/response-data/user-journey-type';
+import {ResponseData} from '../shared/response-data/response-data';
+import {Router} from '@angular/router';
+import {QuestionnaireService} from '../questionnaire/questionnaire.service';
+import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {WordpressPage} from '../shared/wordpress-pages-service/wordpress-page';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-home-page',
@@ -28,7 +28,9 @@ export class HomePageComponent implements OnInit {
 
     onEnergyCalculatorButtonClick() {
         this.responseData.userJourneyType = UserJourneyType.Calculator;
-        const route = this.questionnaireService.isComplete('home-basics') ? '/js/energy-efficiency/results' : '/js/energy-efficiency/questionnaire/home-basics';
+        const route = this.questionnaireService.isComplete('home-basics')
+            ? '/js/energy-efficiency/results'
+            : '/js/energy-efficiency/questionnaire/home-basics';
         this.router.navigate([route]);
     }
 

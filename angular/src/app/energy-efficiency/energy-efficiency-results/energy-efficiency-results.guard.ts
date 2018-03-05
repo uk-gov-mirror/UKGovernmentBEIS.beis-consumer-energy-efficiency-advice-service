@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {CanActivate, Router} from "@angular/router";
-import {isComplete, ResponseData} from "../../shared/response-data/response-data";
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 
 @Injectable()
 export class EnergyEfficiencyResultsRouteGuard implements CanActivate {

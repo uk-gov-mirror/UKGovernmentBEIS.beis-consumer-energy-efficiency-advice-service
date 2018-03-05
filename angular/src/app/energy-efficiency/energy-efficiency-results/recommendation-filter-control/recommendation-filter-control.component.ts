@@ -1,10 +1,10 @@
-import {Component, EventEmitter, OnInit, Output, Input} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
     getTagDescription
-} from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import keys from "lodash-es/keys";
+} from '../recommendation-tags/energy-efficiency-recommendation-tag';
+import keys from 'lodash-es/keys';
 
 @Component({
     selector: 'app-recommendation-filter-control',
@@ -28,7 +28,7 @@ export class RecommendationFilterControlComponent implements OnInit {
                     value: tag,
                     description: getTagDescription(tag),
                     className: getTagClassName(tag)
-                }
+                };
             });
     }
 

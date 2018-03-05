@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {ResponseData} from "../shared/response-data/response-data";
-import {getFuelTypeDescription} from "./questions/fuel-type-question/fuel-type";
-import {getHomeTypeDescription} from "./questions/home-type-question/home-type";
+import {Injectable} from '@angular/core';
+import {ResponseData} from '../shared/response-data/response-data';
+import {getFuelTypeDescription} from './questions/fuel-type-question/fuel-type';
+import {getHomeTypeDescription} from './questions/home-type-question/home-type';
 
 export interface ReplacementProcedures {
-    placeholder: RegExp,
-    replacementFinder: (ResponseData) => string
+    placeholder: RegExp;
+    replacementFinder: (ResponseData) => string;
 }
 
 @Injectable()
@@ -35,7 +35,7 @@ export class QuestionHeadingProcessor {
     public replacePlaceholders(questionHeading) {
         QuestionHeadingProcessor.REPLACEMENT_PROCEDURES.forEach(
             (replacement: ReplacementProcedures): void => {
-                questionHeading = questionHeading.replace(replacement.placeholder, replacement.replacementFinder(this.responseData))
+                questionHeading = questionHeading.replace(replacement.placeholder, replacement.replacementFinder(this.responseData));
             }
         );
 

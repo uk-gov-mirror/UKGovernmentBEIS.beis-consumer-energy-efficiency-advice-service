@@ -1,24 +1,24 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {Router} from "@angular/router";
-import {RouterTestingModule} from "@angular/router/testing";
-import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 
-import {LargeVideoCardComponent} from "../shared/large-video-card/large-video-card.component";
-import {ArticleCardComponent} from "./article-card/article-card.component";
-import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
-import {LandingPageComponent} from "./landing-page.component";
-import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
-import {ResponseData} from "../shared/response-data/response-data";
-import {UserJourneyType} from "../shared/response-data/user-journey-type";
-import {Component, EventEmitter, Output} from "@angular/core";
-import {QuestionContentService} from "../shared/question-content/question-content.service";
-import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
-import {StaticMeasureCardComponent} from "./static-measure-card/static-measure-card.component";
-import { PopupComponent } from "../shared/popup/popup.component";
-import {DataCardComponent} from "../shared/data-card/data-card.component";
+import {LargeVideoCardComponent} from '../shared/large-video-card/large-video-card.component';
+import {ArticleCardComponent} from './article-card/article-card.component';
+import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
+import {LandingPageComponent} from './landing-page.component';
+import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
+import {ResponseData} from '../shared/response-data/response-data';
+import {UserJourneyType} from '../shared/response-data/user-journey-type';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {QuestionContentService} from '../shared/question-content/question-content.service';
+import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
+import { PopupComponent } from '../shared/popup/popup.component';
+import {DataCardComponent} from '../shared/data-card/data-card.component';
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;

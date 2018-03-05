@@ -1,7 +1,7 @@
-import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
-import {RecommendationStep} from "../../shared/recommendations-service/recommendation-step";
-import {Grant} from "./grant";
-import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
+import {GrantEligibility} from '../grant-eligibility-service/grant-eligibility';
+import {RecommendationStep} from '../../shared/recommendations-service/recommendation-step';
+import {Grant} from './grant';
+import {NationalGrantContent} from '../national-grants-content-service/national-grants-content';
 
 export class StandaloneNationalGrant implements Grant {
     grantId: string;

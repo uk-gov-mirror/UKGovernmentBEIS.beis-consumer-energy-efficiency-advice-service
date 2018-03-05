@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {CanActivate, Router} from "@angular/router";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 
 @Injectable()
 export class BoilerResultsPageRouteGuard implements CanActivate {

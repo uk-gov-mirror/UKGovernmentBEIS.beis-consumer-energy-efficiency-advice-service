@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {AssetsService} from "../../shared/assets-service/assets.service";
-import {GasAndOilBoiler} from "./gas-and-oil-boiler";
-import fuzzysearch from "fuzzysearch";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {AssetsService} from '../../shared/assets-service/assets.service';
+import {GasAndOilBoiler} from './gas-and-oil-boiler';
+import fuzzysearch from 'fuzzysearch';
 
 export interface BoilerJson {
     productIndexNumber: string;

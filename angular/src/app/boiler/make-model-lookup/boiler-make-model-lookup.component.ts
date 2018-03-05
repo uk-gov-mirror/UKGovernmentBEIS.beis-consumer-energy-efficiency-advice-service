@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
-import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
-import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
+import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
 
-import sortBy from "lodash-es/sortBy";
-import includes from "lodash-es/includes";
+import sortBy from 'lodash-es/sortBy';
+import includes from 'lodash-es/includes';
 
 @Component({
     selector: 'app-boiler-make-model-lookup',

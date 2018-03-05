@@ -1,12 +1,12 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
+import {Component, Input, OnInit} from '@angular/core';
+import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {
     EnergyEfficiencyRecommendationTag,
     getActiveTags,
     getTagClassName,
     getTagDescription
-} from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {RoundingService} from "../../../shared/rounding-service/rounding.service";
+} from '../recommendation-tags/energy-efficiency-recommendation-tag';
+import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -53,7 +53,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         if (!this.recommendation.isAddedToPlan) {
             return 'Add to plan';
         } else {
-            return this.isMouseOverAddToPlanButton ? 'Remove from plan': 'Added to plan';
+            return this.isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
         }
     }
 

@@ -8,18 +8,18 @@ import {
     OnInit,
     Output,
     ViewChild
-} from "@angular/core";
-import {QuestionDirective} from "./question.directive";
-import {QuestionTypeUtil} from "./questions/question-type";
-import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from "./base-question/question-base-component";
-import {AllQuestionsContent} from "../shared/question-content/all-questions-content";
-import {QuestionContent} from "../shared/question-content/question-content";
-import {QuestionContentService} from "../shared/question-content/question-content.service";
-import {Questionnaire} from "./base-questionnaire/questionnaire";
-import {QuestionnaireService} from "./questionnaire.service";
-import {Subscription} from "rxjs/Subscription";
-import {QuestionHeadingProcessor} from "./question-heading-processor.service";
-import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+} from '@angular/core';
+import {QuestionDirective} from './question.directive';
+import {QuestionTypeUtil} from './questions/question-type';
+import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
+import {AllQuestionsContent} from '../shared/question-content/all-questions-content';
+import {QuestionContent} from '../shared/question-content/question-content';
+import {QuestionContentService} from '../shared/question-content/question-content.service';
+import {Questionnaire} from './base-questionnaire/questionnaire';
+import {QuestionnaireService} from './questionnaire.service';
+import {Subscription} from 'rxjs/Subscription';
+import {QuestionHeadingProcessor} from './question-heading-processor.service';
+import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 
 @Component({
     selector: 'app-questionnaire',

@@ -1,6 +1,6 @@
-import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
-import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
-import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {WordpressPage} from '../../shared/wordpress-pages-service/wordpress-page';
+import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 
 @Component({
     selector: 'app-navigation-bar',

@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {BoilerRegulation} from "./boiler-regulation-card/boiler-regulation-card.component";
-import includes from "lodash-es/includes";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {BoilerRegulation} from './boiler-regulation-card/boiler-regulation-card.component';
+import includes from 'lodash-es/includes';
 
 @Component({
     selector: 'app-boiler-advice-page',
@@ -11,17 +11,12 @@ import includes from "lodash-es/includes";
     styleUrls: ['./boiler-advice-page.component.scss']
 })
 export class BoilerAdvicePageComponent implements OnInit {
-
-    loading: boolean = true;
-    error: boolean = false;
-    boilerSlug: string;
-    boilerType: BoilerType;
-
     private static readonly GAS_BOILERS = ['combi-boiler', 'system-boiler', 'regular-boiler'];
     private static readonly BOILER_REGULATIONS: BoilerRegulation[] = [
         {
             headline: 'Weather compensators',
-            summary: 'A weather compensator can reduce the heat output of the boiler to correspond to different external temperatures so that less fuel is consumed to achieve the desired thermal comfort.',
+            summary: 'A weather compensator can reduce the heat output of the boiler to correspond to different external \
+                temperatures so that less fuel is consumed to achieve the desired thermal comfort.',
             efficiencyImprovement: 0.7,
         },
         {
@@ -31,10 +26,15 @@ export class BoilerAdvicePageComponent implements OnInit {
         },
         {
             headline: 'Flue Gas Heat Recovery (FGHR)',
-            summary: 'Flue Gas Heat Recovery (FGHR) is the extraction of waste heat from the products of combustion (flue gases) which can then be used for the purpose of pre-heating domestic hot water (DHW).',
+            summary: 'Flue Gas Heat Recovery (FGHR) is the extraction of waste heat from the products of combustion (flue gases) \
+                which can then be used for the purpose of pre-heating domestic hot water (DHW).',
             efficiencyImprovement: 2.93,
         }
     ];
+    loading = true;
+    error = false;
+    boilerSlug: string;
+    boilerType: BoilerType;
 
     constructor(private boilerTypesService: BoilerTypesService,
                 private route: ActivatedRoute) {

@@ -1,22 +1,22 @@
-import {Injectable} from "@angular/core";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {GrantEligibility} from "./grant-eligibility";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/mergeMap";
-import "rxjs/add/operator/reduce";
-import isEqual from "lodash-es/isEqual";
-import clone from "lodash-es/clone";
-import keys from "lodash-es/keys";
-import concat from "lodash-es/concat";
-import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
-import {NationalGrantCalculatorProvider} from "../national-grant-calculator/provider/national-grant-calculator.provider";
-import {StandaloneNationalGrant} from "../model/standalone-national-grant";
-import {NationalGrantForMeasure} from "../model/national-grant-for-measure";
-import {EligibilityByGrant} from "./eligibility-by-grant";
-import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
-import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
-import {FeedInTariff} from "../national-grant-calculator/grants/feed-in-tariff/feed-in-tariff";
-import {RenewableHeatIncentive} from "../national-grant-calculator/grants/renewable-heat-incentive/renewable-heat-incentive";
+import {Injectable} from '@angular/core';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {GrantEligibility} from './grant-eligibility';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/reduce';
+import isEqual from 'lodash-es/isEqual';
+import clone from 'lodash-es/clone';
+import keys from 'lodash-es/keys';
+import concat from 'lodash-es/concat';
+import {NationalGrantsContentService} from '../national-grants-content-service/national-grants-content.service';
+import {NationalGrantCalculatorProvider} from '../national-grant-calculator/provider/national-grant-calculator.provider';
+import {StandaloneNationalGrant} from '../model/standalone-national-grant';
+import {NationalGrantForMeasure} from '../model/national-grant-for-measure';
+import {EligibilityByGrant} from './eligibility-by-grant';
+import {EnergySavingMeasureResponse} from '../../shared/energy-calculation-api-service/response/energy-saving-measure-response';
+import {NationalGrantContent} from '../national-grants-content-service/national-grants-content';
+import {FeedInTariff} from '../national-grant-calculator/grants/feed-in-tariff/feed-in-tariff';
+import {RenewableHeatIncentive} from '../national-grant-calculator/grants/renewable-heat-incentive/renewable-heat-incentive';
 
 @Injectable()
 export class GrantEligibilityService {
@@ -30,6 +30,52 @@ export class GrantEligibilityService {
             this._eligibilityByGrant = this.fetchEligibilityByGrant().shareReplay(1);
         }
         return this._eligibilityByGrant;
+    }
+
+    private static getRecurringPaymentGrantsForMeasure(measure: EnergySavingMeasureResponse,
+                                                       eligibilityByGrant: EligibilityByGrant,
+                                                       grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
+        const recurringPaymentGrantsForMeasure: NationalGrantForMeasure[] = [];
+        const fitGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID);
+        if (measure.FIT && measure.FIT > 0 && fitGrantContent) {
+            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
+                fitGrantContent,
+                eligibilityByGrant[FeedInTariff.GRANT_ID].eligibility,
+                measure.FIT
+            ));
+        }
+        const rhiGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID);
+        if (measure.RHI && measure.RHI > 0 && rhiGrantContent) {
+            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
+                rhiGrantContent,
+                eligibilityByGrant[RenewableHeatIncentive.GRANT_ID].eligibility,
+                measure.RHI
+            ));
+        }
+        return recurringPaymentGrantsForMeasure;
+    }
+
+    private static getOneOffPaymentGrantsForMeasure(measureCode: string,
+                                                    eligibilityByGrant: EligibilityByGrant,
+                                                    grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
+        return keys(eligibilityByGrant)
+            .filter(grantId => GrantEligibilityService.isEligible(eligibilityByGrant[grantId].eligibility))
+            .reduce((oneOffPaymentGrantsForMeasure, grantId) => {
+                const grantContent = NationalGrantsContentService.getContentForGrant(grantsContent, grantId);
+                if (grantContent && grantContent.linked_measure_codes.indexOf(measureCode) > -1) {
+                    oneOffPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
+                        grantContent,
+                        eligibilityByGrant[grantId].eligibility,
+                        0
+                    ));
+                }
+                return oneOffPaymentGrantsForMeasure;
+            }, []);
+    }
+
+    private static isEligible(eligibility: GrantEligibility) {
+        return eligibility === GrantEligibility.LikelyEligible ||
+            eligibility === GrantEligibility.MayBeEligible;
     }
 
     constructor(private responseData: ResponseData,
@@ -87,52 +133,6 @@ export class GrantEligibilityService {
                         return eligibilityByGrant;
                     }, {}
                 )
-            )
-    }
-
-    private static getRecurringPaymentGrantsForMeasure(measure: EnergySavingMeasureResponse,
-                                                       eligibilityByGrant: EligibilityByGrant,
-                                                       grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
-        let recurringPaymentGrantsForMeasure: NationalGrantForMeasure[] = [];
-        const fitGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID);
-        if (measure.FIT && measure.FIT > 0 && fitGrantContent) {
-            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                fitGrantContent,
-                eligibilityByGrant[FeedInTariff.GRANT_ID].eligibility,
-                measure.FIT
-            ));
-        }
-        const rhiGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID);
-        if (measure.RHI && measure.RHI > 0 && rhiGrantContent) {
-            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                rhiGrantContent,
-                eligibilityByGrant[RenewableHeatIncentive.GRANT_ID].eligibility,
-                measure.RHI
-            ));
-        }
-        return recurringPaymentGrantsForMeasure;
-    }
-
-    private static getOneOffPaymentGrantsForMeasure(measureCode: string,
-                                                    eligibilityByGrant: EligibilityByGrant,
-                                                    grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
-        return keys(eligibilityByGrant)
-            .filter(grantId => GrantEligibilityService.isEligible(eligibilityByGrant[grantId].eligibility))
-            .reduce((oneOffPaymentGrantsForMeasure, grantId) => {
-                const grantContent = NationalGrantsContentService.getContentForGrant(grantsContent, grantId);
-                if (grantContent && grantContent.linked_measure_codes.indexOf(measureCode) > -1) {
-                    oneOffPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                        grantContent,
-                        eligibilityByGrant[grantId].eligibility,
-                        0
-                    ));
-                }
-                return oneOffPaymentGrantsForMeasure;
-            }, []);
-    }
-
-    private static isEligible(eligibility: GrantEligibility) {
-        return eligibility === GrantEligibility.LikelyEligible ||
-            eligibility === GrantEligibility.MayBeEligible;
+            );
     }
 }
