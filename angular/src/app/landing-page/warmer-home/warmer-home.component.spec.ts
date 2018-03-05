@@ -17,6 +17,7 @@ import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc
 import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
 import {StaticMeasureCardComponent} from "../static-measure-card/static-measure-card.component";
 import {DataCardComponent} from "../../shared/data-card/data-card.component";
+import { PopupComponent } from "../../shared/popup/popup.component";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -37,7 +38,8 @@ describe('WarmerHomeComponent', () => {
                 LatestNewsCardComponent,
                 PostcodeLookupComponent,
                 StaticMeasureCardComponent,
-                DataCardComponent
+                DataCardComponent,
+                PopupComponent,
             ],
             imports: [
                 CommonModule,

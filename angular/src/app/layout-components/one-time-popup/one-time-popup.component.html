@@ -1,13 +1,9 @@
 <div class="one-time-popup" *ngIf="isDisplayed">
-    <div class="page-mask"></div>
-    <div class="alert-box">
-        <div class="text">
-            This is a prototype service and is not intended to be fully functional. In particular recommendations generated may not fully reflect information entered.
-            <br/><br/>
-            The final site would include more detailed and tailored recommendations. For impartial energy advice please call the Energy Saving Advice Service on 0300 123 1234.
-        </div>
-        <form (submit)="handleOkPressed()">
-            <button type="submit" class="ok-button">OK</button>
-        </form>
-    </div>
+    <app-popup (onOkPressed)="handleOkPressed()">
+        This is a prototype service and is not intended to be fully functional.
+        In particular recommendations generated may not fully reflect information entered.
+        <br /><br />
+        The final site would include more detailed and tailored recommendations.
+        For impartial energy advice please call the Energy Saving Advice Service on 0300 123 1234.
+    </app-popup>
 </div>

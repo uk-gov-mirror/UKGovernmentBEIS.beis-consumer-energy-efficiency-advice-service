@@ -17,6 +17,7 @@ import {Component, EventEmitter, Output} from "@angular/core";
 import {QuestionContentService} from "../shared/question-content/question-content.service";
 import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
 import {StaticMeasureCardComponent} from "./static-measure-card/static-measure-card.component";
+import { PopupComponent } from "../shared/popup/popup.component";
 import {DataCardComponent} from "../shared/data-card/data-card.component";
 
 describe('LandingPageComponent', () => {
@@ -28,6 +29,9 @@ describe('LandingPageComponent', () => {
 
     const headingText = 'heading';
     const userJourneyType = UserJourneyType.MakeHomeGreener;
+    const staticMeasures = [];
+    const articles = [];
+    const video = {title: '', synopsis: ''};
 
     const postcodeReason = 'a reason here';
 
@@ -51,6 +55,7 @@ describe('LandingPageComponent', () => {
                 LatestNewsCardComponent,
                 MockPostcodeLookupComponent,
                 StaticMeasureCardComponent,
+                PopupComponent,
                 DataCardComponent
             ],
             imports: [
@@ -70,6 +75,9 @@ describe('LandingPageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LandingPageComponent);
         component = fixture.componentInstance;
+        component.staticMeasures = staticMeasures;
+        component.video = video;
+        component.articles = articles;
         router = TestBed.get(Router);
         responseData = TestBed.get(ResponseData);
         spyOn(router, 'navigate');
@@ -115,9 +123,9 @@ describe('LandingPageComponent', () => {
     it('should have retrieved the correct postcode question reason', () => {
         // when
 
-        // them
+        // then
         expect(component.postcodeQuestionReason).toBe(postcodeReason);
-    })
+    });
 });
 
 @Component({

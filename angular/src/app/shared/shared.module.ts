@@ -33,6 +33,7 @@ import {GrantCardComponent} from "./grant-card/grant-card.component";
 import {RecommendationsService} from "./recommendations-service/recommendations.service";
 import {StickyRowWrapperComponent} from "./sticky-row-wrapper/sticky-row-wrapper.component";
 import {DataCardComponent} from "./data-card/data-card.component";
+import {PopupComponent} from "./popup/popup.component";
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import {DataCardComponent} from "./data-card/data-card.component";
         SafePipe,
         GrantCardComponent,
         StickyRowWrapperComponent,
-        DataCardComponent
+        DataCardComponent,
+        PopupComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -65,7 +67,8 @@ import {DataCardComponent} from "./data-card/data-card.component";
         SafePipe,
         GrantCardComponent,
         StickyRowWrapperComponent,
-        DataCardComponent
+        DataCardComponent,
+        PopupComponent,
     ],
     imports: [
         HttpClientModule,

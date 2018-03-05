@@ -7,6 +7,8 @@ import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress
 import {WordpressPage} from "../shared/wordpress-pages-service/wordpress-page";
 import {Observable} from "rxjs/Observable";
 import {StaticMeasure} from "./static-measure-card/static-measure";
+import {Article} from "./article-card/article";
+import {Video} from "../shared/large-video-card/video";
 
 @Component({
     selector: 'app-landing-page',
@@ -21,29 +23,13 @@ export class LandingPageComponent implements OnInit {
     }
 
     @Input() userJourneyType: UserJourneyType;
+    @Input() staticMeasures: StaticMeasure[];
+    @Input() video: Video;
+    @Input() articles: Article[];
 
     questionContentError: boolean = false;
     postcodeQuestionReason: string;
     heading: string;
-
-    staticMeasures: StaticMeasure[] = [
-        {
-            iconClassName: 'icon-lightbulb',
-            basicInfoValue: '15%',
-            basicInfoHeadline: 'of your electricity bill is accounted for by lighting',
-            measureHeadline: 'Energy efficient lighting',
-            measureSummary: 'You can cut your lighting bill and energy use by changing which bulbs you use and how you use them',
-            averageSavings: 75
-        },
-        {
-            iconClassName: 'icon-switch',
-            basicInfoValue: '40%',
-            basicInfoHeadline: 'of people could save money by switching energy suppliers',
-            measureHeadline: 'Switching energy supplier',
-            measureSummary: 'Comparing energy tariffs and deals regularly can help you make sure you’re getting the best gas or electricity tariff for your usage and the best service offer.',
-            averageSavings: 30
-        }
-    ];
     latestNews: WordpressPage[];
 
     ngOnInit() {
