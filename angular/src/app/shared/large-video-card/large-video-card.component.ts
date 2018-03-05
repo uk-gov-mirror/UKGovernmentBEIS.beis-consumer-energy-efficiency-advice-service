@@ -1,4 +1,5 @@
 import {Component, Input} from "@angular/core";
+import {Video} from "./video";
 
 @Component({
     selector: 'app-large-video-card',
@@ -8,8 +9,7 @@ import {Component, Input} from "@angular/core";
 export class LargeVideoCardComponent {
     displaySynopsis: boolean = false;
 
-    @Input() title: string;
-    @Input() synopsis: string;
+    @Input() video: Video;
 
     openSynopsis(): void {
         this.displaySynopsis = true;
