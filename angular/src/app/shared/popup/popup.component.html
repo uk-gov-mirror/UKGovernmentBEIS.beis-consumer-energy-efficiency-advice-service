@@ -1,7 +1,9 @@
 <div class="popup">
     <div class="page-mask"></div>
     <div class="alert-box">
-        <div class="text" [innerHTML]="text"></div>
+        <div class="popup-body">
+            <ng-content></ng-content>
+        </div>
         <form (submit)="handleOkPressed()">
             <button type="submit" class="ok-button">OK</button>
         </form>

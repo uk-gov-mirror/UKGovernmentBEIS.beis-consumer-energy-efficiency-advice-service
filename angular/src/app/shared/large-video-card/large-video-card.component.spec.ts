@@ -44,7 +44,7 @@ describe('LargeVideoCardComponent', () => {
         // When
         component.displaySynopsis = true;
         fixture.detectChanges();
-        const synopsisText = fixture.debugElement.query(By.css('.popup .text')).nativeElement;
+        const synopsisText = fixture.debugElement.query(By.css('.popup .popup-body')).nativeElement;
 
         // Then
         expect(synopsisText.innerText).toEqual(video.synopsis);
@@ -54,7 +54,7 @@ describe('LargeVideoCardComponent', () => {
         // When
         component.displaySynopsis = false;
         fixture.detectChanges();
-        const synopsisElement = fixture.debugElement.query(By.css('.popup .text'));
+        const synopsisElement = fixture.debugElement.query(By.css('.popup .popup-body'));
 
         // Then
         expect(synopsisElement).toBeFalsy();

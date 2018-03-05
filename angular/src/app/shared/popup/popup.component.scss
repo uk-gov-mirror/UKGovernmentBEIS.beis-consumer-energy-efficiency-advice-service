@@ -46,7 +46,7 @@ $mobile-popup-spacing: 20px;
     flex-direction: column;
     box-sizing: border-box;
 
-    .text {
+    .popup-body {
       width: 100%;
       @include popup-text-font;
     }
