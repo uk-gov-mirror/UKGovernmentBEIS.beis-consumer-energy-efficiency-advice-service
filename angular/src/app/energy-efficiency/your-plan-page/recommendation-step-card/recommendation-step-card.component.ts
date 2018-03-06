@@ -15,7 +15,6 @@ export class RecommendationStepCardComponent implements OnInit {
     @Input() stepIndex: number;
 
     isExpanded: boolean;
-    isReadMoreExpanded: boolean;
 
     ngOnInit() {
         this.isExpanded = this.stepIndex === 0;
@@ -28,9 +27,5 @@ export class RecommendationStepCardComponent implements OnInit {
 
     toggleIsExpanded(): void {
         this.isExpanded = !this.isExpanded;
-    }
-
-    toggleIsReadMoreExpanded(): void {
-        this.isReadMoreExpanded = !this.isReadMoreExpanded;
     }
 }

@@ -167,7 +167,7 @@ describe('RecommendationStepCardComponent', () => {
 
         // then
         const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content')).nativeElement;
-        expect(readMoreContentElement.innerText.toLowerCase()).toEqual(step.readMore.toLowerCase());
+        expect(readMoreContentElement.innerText.toLowerCase()).toContain(step.readMore.toLowerCase());
     });
 
     it('should display the correct links', () => {
