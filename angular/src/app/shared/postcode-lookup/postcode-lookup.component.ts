@@ -60,7 +60,7 @@ export class PostcodeLookupComponent {
             this.resetSearchState();
             this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
                 .subscribe(
-                    postcodeDetails => this.isScottish(postcodeDetails),
+                    postcodeDetails => this.checkForScottishPostcode(postcodeDetails),
                     error => this.handlePostcodeSearchError(error)
                 )
             this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
@@ -120,8 +120,7 @@ export class PostcodeLookupComponent {
         return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
     }
 
-    private isScottish(postcodeDetails: PostcodeBasicDetailsResponse | PostcodeDetails){
-        console.log(postcodeDetails)
+    private checkForScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse | PostcodeDetails){
         if(postcodeDetails.result.country === "Scotland"){
             this.resetSearchState();
             this.scottishPostcode = true;
