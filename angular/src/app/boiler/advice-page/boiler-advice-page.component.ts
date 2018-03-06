@@ -11,6 +11,12 @@ import includes from 'lodash-es/includes';
     styleUrls: ['./boiler-advice-page.component.scss']
 })
 export class BoilerAdvicePageComponent implements OnInit {
+
+    loading = true;
+    error = false;
+    boilerSlug: string;
+    boilerType: BoilerType;
+
     private static readonly GAS_BOILERS = ['combi-boiler', 'system-boiler', 'regular-boiler'];
     private static readonly BOILER_REGULATIONS: BoilerRegulation[] = [
         {
@@ -31,10 +37,6 @@ export class BoilerAdvicePageComponent implements OnInit {
             efficiencyImprovement: 2.93,
         }
     ];
-    loading = true;
-    error = false;
-    boilerSlug: string;
-    boilerType: BoilerType;
 
     constructor(private boilerTypesService: BoilerTypesService,
                 private route: ActivatedRoute) {

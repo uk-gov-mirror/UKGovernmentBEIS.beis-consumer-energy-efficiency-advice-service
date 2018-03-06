@@ -20,14 +20,6 @@ class FloorLevelOption {
 export class FloorLevelQuestionComponent extends QuestionBaseComponent implements OnInit {
     floorLevelOptions: FloorLevelOption[];
 
-    ngOnInit() {
-        this.responseData.floorLevels = this.responseData.floorLevels || [];
-    }
-
-    get responseForAnalytics(): string {
-        return this.responseData.floorLevels.map(floorLevel => FloorLevel[floorLevel]).toString();
-    }
-
     constructor(responseData: ResponseData) {
         super(responseData);
         this.floorLevelOptions = [
@@ -36,6 +28,14 @@ export class FloorLevelQuestionComponent extends QuestionBaseComponent implement
             new FloorLevelOption(FloorLevel.MidFloor, 'mid-floor'),
             new FloorLevelOption(FloorLevel.TopFloor, 'top-floor')
         ];
+    }
+
+    ngOnInit() {
+        this.responseData.floorLevels = this.responseData.floorLevels || [];
+    }
+
+    get responseForAnalytics(): string {
+        return this.responseData.floorLevels.map(floorLevel => FloorLevel[floorLevel]).toString();
     }
 
     get response(): FloorLevel {

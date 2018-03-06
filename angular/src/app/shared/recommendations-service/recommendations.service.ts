@@ -22,39 +22,12 @@ import {HabitMeasureResponse} from '../energy-calculation-api-service/response/h
 @Injectable()
 export class RecommendationsService {
 
+    cachedCurrentScore: number;
+
     private static TOP_RECOMMENDATIONS: number = 5;
 
     private cachedResponseData: ResponseData;
     private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
-    cachedCurrentScore: number;
-
-    private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
-                                                  measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
-        return keys(measures)
-            .map(measureCode => {
-                const recommendationMetadata: MeasureContent = measuresContent
-                    .find((recommendationTypeDetail) => recommendationTypeDetail.acf.measure_code === measureCode);
-                if (!recommendationMetadata) {
-                    console.error(`Recommendation with code ${ measureCode } not recognised`);
-                    return null;
-                }
-                const iconPath = EnergySavingMeasureContentService.measureIcons[measureCode] ||
-                    EnergySavingMeasureContentService.FALLBACK_MEASURE_ICON;
-                return EnergyEfficiencyRecommendation.fromMeasure(
-                    measures[measureCode],
-                    recommendationMetadata,
-                    iconPath,
-                    null
-                );
-            })
-            .filter(measure => measure);
-    }
-
-    private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): void {
-        recommendations
-            .slice(0, RecommendationsService.TOP_RECOMMENDATIONS)
-            .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
-    }
 
     constructor(private responseData: ResponseData,
                 private energyCalculationApiService: EnergyCalculationApiService,
@@ -129,5 +102,33 @@ export class RecommendationsService {
                     });
             })
             .filter(measure => measure));
+    }
+
+    private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
+                                                  measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+        return keys(measures)
+            .map(measureCode => {
+                const recommendationMetadata: MeasureContent = measuresContent
+                    .find((recommendationTypeDetail) => recommendationTypeDetail.acf.measure_code === measureCode);
+                if (!recommendationMetadata) {
+                    console.error(`Recommendation with code ${ measureCode } not recognised`);
+                    return null;
+                }
+                const iconPath = EnergySavingMeasureContentService.measureIcons[measureCode] ||
+                    EnergySavingMeasureContentService.FALLBACK_MEASURE_ICON;
+                return EnergyEfficiencyRecommendation.fromMeasure(
+                    measures[measureCode],
+                    recommendationMetadata,
+                    iconPath,
+                    null
+                );
+            })
+            .filter(measure => measure);
+    }
+
+    private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): void {
+        recommendations
+            .slice(0, RecommendationsService.TOP_RECOMMENDATIONS)
+            .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
     }
 }

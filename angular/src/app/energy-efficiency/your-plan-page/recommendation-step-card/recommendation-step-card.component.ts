@@ -9,12 +9,12 @@ import padStart from 'lodash-es/padStart';
 })
 export class RecommendationStepCardComponent implements OnInit {
 
-    private static readonly INITIAL_STEP_NUMBER: number = 1;
-
     @Input() step: RecommendationStep;
     @Input() stepIndex: number;
 
     isExpanded: boolean;
+
+    private static readonly INITIAL_STEP_NUMBER: number = 1;
 
     ngOnInit() {
         this.isExpanded = this.stepIndex === 0;

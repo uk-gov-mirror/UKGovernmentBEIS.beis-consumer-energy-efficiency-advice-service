@@ -13,42 +13,6 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
     private static readonly AUTOMATICALLY_QUALIFYING_BENEFITS: Benefits = Benefits.ESA | Benefits.JobseekersAllowance |
         Benefits.IncomeSupport | Benefits.PensionGuaranteeCredit;
 
-    private static getEligibilityFromIncome(relevantIncomeThreshold: Observable<IncomeThreshold>,
-                                        relevantIncome: number,
-                                        numberOfAdults: number,
-                                        numberOfChildren: number): Observable<GrantEligibility> {
-        const incomeThresholdValue = relevantIncomeThreshold
-            .map(incomeThreshold => {
-                const incomeThresholdByChildren = numberOfAdults === 1 ?
-                    incomeThreshold.singleClaim : incomeThreshold.jointClaim;
-                return EcoHhcroHelpToHeat.getIncomeThresholdValue(incomeThresholdByChildren, numberOfChildren);
-            });
-        return incomeThresholdValue
-            .map(thresholdValue => relevantIncome < thresholdValue ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
-
-    }
-
-    private static getIncomeThresholdValue(incomeThresholdByChildren: IncomeThresholdByChildren,
-                                            numberOfChildren: number): number {
-        switch (numberOfChildren) {
-            case 0: {
-                return incomeThresholdByChildren.zeroChildren;
-            }
-            case 1: {
-                return incomeThresholdByChildren.oneChild;
-            }
-            case 2: {
-                return incomeThresholdByChildren.twoChildren;
-            }
-            case 3: {
-                return incomeThresholdByChildren.threeChildren;
-            }
-            default: {
-                return incomeThresholdByChildren.fourPlusChildren;
-            }
-        }
-    }
-
     constructor(private incomeThresholdService: IncomeThresholdService) {
         super('eco-hhcro-help-to-heat');
     }
@@ -95,5 +59,41 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
             responseData.numberOfAdults,
             responseData.numberOfChildren
         );
+    }
+
+    private static getEligibilityFromIncome(relevantIncomeThreshold: Observable<IncomeThreshold>,
+                                        relevantIncome: number,
+                                        numberOfAdults: number,
+                                        numberOfChildren: number): Observable<GrantEligibility> {
+        const incomeThresholdValue = relevantIncomeThreshold
+            .map(incomeThreshold => {
+                const incomeThresholdByChildren = numberOfAdults === 1 ?
+                    incomeThreshold.singleClaim : incomeThreshold.jointClaim;
+                return EcoHhcroHelpToHeat.getIncomeThresholdValue(incomeThresholdByChildren, numberOfChildren);
+            });
+        return incomeThresholdValue
+            .map(thresholdValue => relevantIncome < thresholdValue ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
+
+    }
+
+    private static getIncomeThresholdValue(incomeThresholdByChildren: IncomeThresholdByChildren,
+                                            numberOfChildren: number): number {
+        switch (numberOfChildren) {
+            case 0: {
+                return incomeThresholdByChildren.zeroChildren;
+            }
+            case 1: {
+                return incomeThresholdByChildren.oneChild;
+            }
+            case 2: {
+                return incomeThresholdByChildren.twoChildren;
+            }
+            case 3: {
+                return incomeThresholdByChildren.threeChildren;
+            }
+            default: {
+                return incomeThresholdByChildren.fourPlusChildren;
+            }
+        }
     }
 }

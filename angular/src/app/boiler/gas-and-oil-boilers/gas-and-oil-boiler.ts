@@ -2,11 +2,6 @@ import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-ty
 import {BoilerJson} from './gas-and-oil-boilers.service';
 
 export class GasAndOilBoiler {
-    constructor(public productIndexNumber: string,
-                public name: string,
-                public fuelType: FuelType,
-                public efficiency: number) {
-    }
 
     private static readonly fuelCodes = {
         1: FuelType.MainsGas,
@@ -16,12 +11,10 @@ export class GasAndOilBoiler {
         4: FuelType.HeatingOil,
     };
 
-    private static fuelTypeFromCode(fuelCode: string) {
-        if (GasAndOilBoiler.fuelCodes.hasOwnProperty(fuelCode)) {
-            return GasAndOilBoiler.fuelCodes[fuelCode];
-        } else {
-            return undefined;
-        }
+    constructor(public productIndexNumber: string,
+                public name: string,
+                public fuelType: FuelType,
+                public efficiency: number) {
     }
 
     static fromJson(boilerJson: BoilerJson) {
@@ -31,5 +24,13 @@ export class GasAndOilBoiler {
             GasAndOilBoiler.fuelTypeFromCode(boilerJson.fuel),
             +boilerJson.sap2005SeasonalEfficiency,
         );
+    }
+
+    private static fuelTypeFromCode(fuelCode: string) {
+        if (GasAndOilBoiler.fuelCodes.hasOwnProperty(fuelCode)) {
+            return GasAndOilBoiler.fuelCodes[fuelCode];
+        } else {
+            return undefined;
+        }
     }
 }

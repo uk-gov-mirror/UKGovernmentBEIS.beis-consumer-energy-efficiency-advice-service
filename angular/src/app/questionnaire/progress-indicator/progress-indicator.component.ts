@@ -15,15 +15,17 @@ import {getJourneyDescription, UserJourneyType} from '../../shared/response-data
 })
 export class ProgressIndicatorComponent implements OnInit {
 
-    private static readonly ICONS_PER_SECTION = 1;
-
     questionnaireSections: QuestionnaireSection[];
     journeyHeading: string;
-    private totalNumberOfIconsAndQuestions: number;
     @Input() currentQuestionIndex: number;
     @Input() allQuestionsContent: AllQuestionsContent;
     @Input() questionnaire: Questionnaire;
     @Output() clickedOnLink: EventEmitter<number> = new EventEmitter();
+
+    private static readonly ICONS_PER_SECTION = 1;
+
+    private totalNumberOfIconsAndQuestions: number;
+
 
     constructor(private responseData: ResponseData) {
     }

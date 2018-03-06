@@ -3,8 +3,6 @@ import {EpcResponse} from './response/epc-response';
 
 export class Epc {
 
-    private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
-
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
 
     public lmkKey: string;
@@ -93,32 +91,7 @@ export class Epc {
     public constituencyLabel: string;
     public certificateHash: string;
 
-    private static getIntegerFromStartOfString(input: string): number {
-        const matchNumberAtStartOfString = /^[0-9]+/;
-        const regexMatches = matchNumberAtStartOfString.exec(input);
-        const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
-        const number = numberAsString ? parseInt(numberAsString) : null;
-        return (number && !isNaN(number)) ? number : null;
-    }
-
-    private static getParsedFloorLevel(val: string): number {
-        return (val.toLowerCase() === 'ground') ? 0 : Epc.getParsedIntegerOrNull(val);
-    }
-
-    private static getParsedIntegerOrNull(val: string): number {
-        const parsedNumber = parseInt(val);
-        return isNaN(parsedNumber) ? null : parsedNumber;
-    }
-
-    private static getParsedBooleanFromEpcResponseValue(val: string): boolean {
-        if (val === 'Y') {
-            return true;
-        } else if (val === 'N') {
-            return false;
-        } else {
-            return null;
-        }
-    }
+    private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
 
     constructor(epcResponse: EpcResponse) {
         // TODO: We may not use all these fields and may be able to remove some. We currently use the following fields:
@@ -226,5 +199,32 @@ export class Epc {
         const houseNumberFromFirstLine = Epc.getIntegerFromStartOfString(this.address1);
         const houseNumberFromSecondLine = Epc.getIntegerFromStartOfString(this.address2);
         return houseNumberFromFirstLine || houseNumberFromSecondLine;
+    }
+
+    private static getIntegerFromStartOfString(input: string): number {
+        const matchNumberAtStartOfString = /^[0-9]+/;
+        const regexMatches = matchNumberAtStartOfString.exec(input);
+        const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
+        const number = numberAsString ? parseInt(numberAsString) : null;
+        return (number && !isNaN(number)) ? number : null;
+    }
+
+    private static getParsedFloorLevel(val: string): number {
+        return (val.toLowerCase() === 'ground') ? 0 : Epc.getParsedIntegerOrNull(val);
+    }
+
+    private static getParsedIntegerOrNull(val: string): number {
+        const parsedNumber = parseInt(val);
+        return isNaN(parsedNumber) ? null : parsedNumber;
+    }
+
+    private static getParsedBooleanFromEpcResponseValue(val: string): boolean {
+        if (val === 'Y') {
+            return true;
+        } else if (val === 'N') {
+            return false;
+        } else {
+            return null;
+        }
     }
 }

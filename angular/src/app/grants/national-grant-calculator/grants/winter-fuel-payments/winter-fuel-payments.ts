@@ -7,20 +7,6 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class WinterFuelPayments extends NationalGrantCalculator {
 
-    private static getAnnualPaymentForOnlyAdultsOver80(adultsOver80: number): number {
-        switch (adultsOver80) {
-            case 1:   { return 300; }
-            default:  { return 150 * adultsOver80; }
-        }
-    }
-
-    private static getAnnualPaymentForOnlyAdults64To80(adults64To80: number): number {
-        switch (adults64To80) {
-            case 1:  { return 200; }
-            default: { return 100 * adults64To80; }
-        }
-    }
-
     constructor() {
         super('winter-fuel-payments');
     }
@@ -41,6 +27,20 @@ export class WinterFuelPayments extends NationalGrantCalculator {
         } else {
             const annualPayment = 100 * adults64To80 + 200 * adultsOver80;
             return annualPayment;
+        }
+    }
+
+    private static getAnnualPaymentForOnlyAdultsOver80(adultsOver80: number): number {
+        switch (adultsOver80) {
+            case 1:   { return 300; }
+            default:  { return 150 * adultsOver80; }
+        }
+    }
+
+    private static getAnnualPaymentForOnlyAdults64To80(adults64To80: number): number {
+        switch (adults64To80) {
+            case 1:  { return 200; }
+            default: { return 100 * adults64To80; }
         }
     }
 }

@@ -78,6 +78,24 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
             );
     }
 
+    isSelected(epc: Epc): boolean {
+        return this.selectedEpc && epc.certificateHash === this.selectedEpc.certificateHash;
+    }
+
+    continueWithEpc(epc: Epc): void {
+        this.selectedEpc = epc;
+        this.isNoEpcSelected = false;
+        this.epc = epc;
+        this.complete.emit();
+    }
+
+    continueWithoutEpc(): void {
+        this.selectedEpc = null;
+        this.isNoEpcSelected = true;
+        this.epc = null;
+        this.complete.emit();
+    }
+
     private displayPostcodeValidationError(): void {
         this.resetSearchState();
         this.validationError = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
@@ -108,23 +126,5 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         this.postcode = this.postcodeInput;
         this.localAuthorityCode = null;
         this.continueWithoutEpc();
-    }
-
-    isSelected(epc: Epc): boolean {
-        return this.selectedEpc && epc.certificateHash === this.selectedEpc.certificateHash;
-    }
-
-    continueWithEpc(epc: Epc): void {
-        this.selectedEpc = epc;
-        this.isNoEpcSelected = false;
-        this.epc = epc;
-        this.complete.emit();
-    }
-
-    continueWithoutEpc(): void {
-        this.selectedEpc = null;
-        this.isNoEpcSelected = true;
-        this.epc = null;
-        this.complete.emit();
     }
 }

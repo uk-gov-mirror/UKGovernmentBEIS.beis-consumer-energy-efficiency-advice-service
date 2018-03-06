@@ -43,15 +43,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
-    private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,
-                                         recommendations: EnergyEfficiencyRecommendation[]): EnergyCalculations {
-        const potentialEnergyBillSavingPoundsPerYear = sumBy(
-            recommendations,
-            recommendation => recommendation.costSavingPoundsPerYear
-        );
-        return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
-    }
-
     constructor(private responseData: ResponseData,
                 private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
@@ -71,14 +62,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
     }
 
-    private onDisplayedRecommendationCardsChanged() {
-        setTimeout(() => {
-            if (this.yourPlanFooterWrapperComponent) {
-                this.yourPlanFooterWrapperComponent.updateRowPosition();
-            }
-        });
-    }
-
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
         return this.allRecommendations
             .filter(recommendation => {
@@ -92,6 +75,14 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
+    }
+
+    private onDisplayedRecommendationCardsChanged() {
+        setTimeout(() => {
+            if (this.yourPlanFooterWrapperComponent) {
+                this.yourPlanFooterWrapperComponent.updateRowPosition();
+            }
+        });
     }
 
     private displayErrorMessage(err: any): void {
@@ -114,5 +105,14 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             this.allRecommendations
         );
         this.isLoading = false;
+    }
+
+    private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,
+                                         recommendations: EnergyEfficiencyRecommendation[]): EnergyCalculations {
+        const potentialEnergyBillSavingPoundsPerYear = sumBy(
+            recommendations,
+            recommendation => recommendation.costSavingPoundsPerYear
+        );
+        return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
     }
 }

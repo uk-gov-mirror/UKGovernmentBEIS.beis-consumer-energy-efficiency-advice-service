@@ -7,10 +7,10 @@ import {Component, Input, OnInit, AfterViewInit, ElementRef, ViewChild} from '@a
 })
 export class RadialPercentageComponent implements OnInit, AfterViewInit {
 
-    private static readonly initialCircleSize: number = 100;
-
     @Input() progress: number = 0;
     @ViewChild('radialPercentage') container;
+
+    private static readonly initialCircleSize: number = 100;
 
     constructor(private host: ElementRef) {
     }

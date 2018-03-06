@@ -16,11 +16,18 @@ interface HomeAgeOption {
     animations: [slideInOutAnimation]
 })
 export class HomeAgeQuestionComponent extends QuestionBaseComponent implements OnInit, OnDestroy {
+    sliderLeftPosition: number = 0;
+    isSliderSelected: boolean = false;
+
+    @ViewChild('slider') slider;
+    @ViewChild('timeline') timeline;
+    @ViewChild('option') option;
 
     private homeAges: HomeAge[] = keys(HomeAge)
         .map(x => parseInt(x))
         .filter(homeAge => !isNaN(homeAge));
 
+    // tslint:disable-next-line:member-ordering - the private "homeAges" property must be declared before this
     homeAgeOptions: HomeAgeOption[] = this.homeAges
         .map(homeAge => {
             return {
@@ -28,8 +35,6 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
                 value: homeAge
             };
         });
-    sliderLeftPosition: number = 0;
-    isSliderSelected: boolean = false;
 
     private mouseOffsetFromSliderX: number = 0;
     private currentSliderCentreX: number = 0;
@@ -37,21 +42,18 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
     private deregisterMouseMoveListener: () => void;
     private deregisterMouseUpListener: () => void;
 
-    @ViewChild('slider') slider;
-    @ViewChild('timeline') timeline;
-    @ViewChild('option') option;
 
     get responseForAnalytics(): string {
         return HomeAge[this.response];
     }
 
+    constructor(responseData: ResponseData, private renderer: Renderer2) {
+        super(responseData);
+    }
+
     static boundBy(target: number, min: number, max: number): number {
         const boundedBelow = Math.max(target, min);
         return Math.min(boundedBelow, max);
-    }
-
-    constructor(responseData: ResponseData, private renderer: Renderer2) {
-        super(responseData);
     }
 
     ngOnInit() {

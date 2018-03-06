@@ -16,21 +16,13 @@ export class PostcodeEpcService {
     static readonly POSTCODE_NOT_FOUND: string = 'POSTCODE_NOT_FOUND';
     private static readonly POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
 
-    static isValidPostcode(postcode: string) {
-        return PostcodeEpcService.POSTCODE_REGEXP.test(postcode);
-    }
-
-    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeDetails> {
-        const isPostcodeNotFoundResponse: boolean = err.status === PostcodeApiService.postcodeNotFoundStatus;
-        if (isPostcodeNotFoundResponse) {
-            return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
-        }
-        return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
-    }
-
     constructor(private epcApiService: EpcApiService,
                 private postcodeApiService: PostcodeApiService,
                 private featureFlagService: FeatureFlagService, ) {
+    }
+
+    static isValidPostcode(postcode: string) {
+        return PostcodeEpcService.POSTCODE_REGEXP.test(postcode);
     }
 
     fetchPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
@@ -59,5 +51,13 @@ export class PostcodeEpcService {
                 })
             .catch((postcodeApiError) =>
                     PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));
+    }
+
+    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeDetails> {
+        const isPostcodeNotFoundResponse: boolean = err.status === PostcodeApiService.postcodeNotFoundStatus;
+        if (isPostcodeNotFoundResponse) {
+            return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
+        }
+        return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
     }
 }

@@ -52,19 +52,6 @@ export class BoilerPageMeasuresService {
     constructor(private measuresService: EnergySavingMeasureContentService) {
     }
 
-    private static combinedMeasure(partialMeasure: EnergySavingRecommendation, measureContent: MeasureContent) {
-        if (measureContent !== undefined) {
-            return {
-                ...partialMeasure,
-                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
-                headline: measureContent.acf.headline,
-                summary: measureContent.acf.summary,
-            };
-        } else {
-            return partialMeasure;
-        }
-    }
-
     fetchMeasuresForBoilerPages(): Observable<EnergySavingRecommendation[]> {
         return this.measuresService.fetchMeasureDetails().map(measures =>
             BoilerPageMeasuresService.partialMeasuresToShowOnBoilerPages.map(measureAndCode => {
@@ -76,5 +63,18 @@ export class BoilerPageMeasuresService {
                 }
             })
         ).shareReplay(1);
+    }
+
+    private static combinedMeasure(partialMeasure: EnergySavingRecommendation, measureContent: MeasureContent) {
+        if (measureContent !== undefined) {
+            return {
+                ...partialMeasure,
+                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
+                headline: measureContent.acf.headline,
+                summary: measureContent.acf.summary,
+            };
+        } else {
+            return partialMeasure;
+        }
     }
 }

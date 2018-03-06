@@ -15,9 +15,9 @@ import {EpcRecommendationResponse} from '../../epc-api-service/model/response/ep
 
 @Injectable()
 export class EpcApiService {
+    static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
     private static readonly epcSearchEndpoint = 'angular-theme/v1/epc';
     private static readonly recommendationEndpoint = 'angular-theme/v1/epc-recommendations';
-    static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
 
     private epcs: {[postcode: string]: Observable<Epc[]>} = {};
     private recommendations: {[lmkKey: string]: Observable<EpcRecommendation[]>} = {};

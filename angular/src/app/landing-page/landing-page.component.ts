@@ -16,11 +16,6 @@ import {Video} from '../shared/large-video-card/video';
     styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-    constructor(private router: Router,
-                private responseData: ResponseData,
-                private questionContentService: QuestionContentService,
-                private pageService: WordpressPagesService) {
-    }
 
     @Input() userJourneyType: UserJourneyType;
     @Input() staticMeasures: StaticMeasure[];
@@ -31,6 +26,12 @@ export class LandingPageComponent implements OnInit {
     postcodeQuestionReason: string;
     heading: string;
     latestNews: WordpressPage[];
+
+    constructor(private router: Router,
+                private responseData: ResponseData,
+                private questionContentService: QuestionContentService,
+                private pageService: WordpressPagesService) {
+    }
 
     ngOnInit() {
         this.questionContentService.fetchQuestionsContent()

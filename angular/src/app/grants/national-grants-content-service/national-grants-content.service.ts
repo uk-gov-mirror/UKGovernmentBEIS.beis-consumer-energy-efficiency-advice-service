@@ -9,6 +9,9 @@ export class NationalGrantsContentService {
     private static readonly nationalGrantsEndpoint = 'angular-theme/v1/national-grants';
     private nationalGrantsContent: Observable<NationalGrantContent[]>;
 
+    constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
+    }
+
     static getContentForGrant(grantsContent: NationalGrantContent[], grantId: string) {
         const grantContent = grantsContent.find(grant => grant.slug === grantId);
         if (!grantContent) {
@@ -16,9 +19,6 @@ export class NationalGrantsContentService {
             return null;
         }
         return grantContent;
-    }
-
-    constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
     fetchNationalGrantsContent(): Observable<NationalGrantContent[]> {

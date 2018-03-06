@@ -28,11 +28,6 @@ import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.servi
 })
 export class QuestionnaireComponent implements OnInit, OnDestroy {
 
-    private questionComponent: QuestionBaseComponent;
-    private questionContentSubscription: Subscription;
-    private onQuestionCompleteSubscription: Subscription;
-    private currentQuestionId: string;
-
     questionnaire: Questionnaire;
     isLoading: boolean;
     isError: boolean;
@@ -46,6 +41,11 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     @Output() onQuestionnaireComplete = new EventEmitter<void>();
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
+
+    private questionComponent: QuestionBaseComponent;
+    private questionContentSubscription: Subscription;
+    private onQuestionCompleteSubscription: Subscription;
+    private currentQuestionId: string;
 
     constructor(private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
@@ -79,38 +79,11 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         }
     }
 
-    private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
-        this.isLoading = false;
-        this.allQuestionsContent = questionContent;
-        this.jumpToQuestion(this.currentQuestionIndex);
-    }
-
-    private jumpToQuestion(index) {
-        this.currentQuestionIndex = index;
-        this.renderQuestion('none');
-    }
-
-    private getAnimationDirection(index): SlideInFrom {
-        if (index < this.currentQuestionIndex) {
-            return 'left';
-        } else if (index > this.currentQuestionIndex) {
-            return 'right';
-        } else {
-            return 'none';
-        }
-    }
-
     animateToQuestion(index) {
         this.recordQuestionAnswer();
         const direction = this.getAnimationDirection(index);
         this.currentQuestionIndex = index;
         this.renderQuestion(direction);
-    }
-
-    private displayErrorAndLogMessage(err: any) {
-        console.error(err);
-        this.isLoading = false;
-        this.isError = true;
     }
 
     previousQuestionExists() {
@@ -161,6 +134,33 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
 
     toggleQuestionReasonDisplay() {
         this.shouldDisplayQuestionReason = !this.shouldDisplayQuestionReason;
+    }
+
+    private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
+        this.isLoading = false;
+        this.allQuestionsContent = questionContent;
+        this.jumpToQuestion(this.currentQuestionIndex);
+    }
+
+    private jumpToQuestion(index) {
+        this.currentQuestionIndex = index;
+        this.renderQuestion('none');
+    }
+
+    private getAnimationDirection(index): SlideInFrom {
+        if (index < this.currentQuestionIndex) {
+            return 'left';
+        } else if (index > this.currentQuestionIndex) {
+            return 'right';
+        } else {
+            return 'none';
+        }
+    }
+
+    private displayErrorAndLogMessage(err: any) {
+        console.error(err);
+        this.isLoading = false;
+        this.isError = true;
     }
 
     private recordQuestionAnswer() {

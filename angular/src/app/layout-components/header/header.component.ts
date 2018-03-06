@@ -18,14 +18,14 @@ export class HeaderComponent {
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
-    private allSearchResults: WordpressPage[] = [];
-    private deregisterWindowClickListener: () => void;
-
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
     @ViewChild('mobileSearchButton') mobileSearchButton;
+
+    private allSearchResults: WordpressPage[] = [];
+    private deregisterWindowClickListener: () => void;
 
     constructor(
         private renderer: Renderer2,

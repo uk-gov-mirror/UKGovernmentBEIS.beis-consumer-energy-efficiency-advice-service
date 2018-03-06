@@ -15,7 +15,6 @@ import {EnergySavingRecommendation} from '../../shared/recommendation-card/energ
     styleUrls: ['./boiler-make-model-replace.component.scss']
 })
 export class BoilerMakeModelReplaceComponent implements OnInit {
-    private static readonly EFFICIENCY_THRESHOLD: number = 88;
 
     loading: boolean = true;
     error: boolean = false;
@@ -25,6 +24,7 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     boilerTypes: BoilerType[];
     measures: EnergySavingRecommendation[];
 
+    private static readonly EFFICIENCY_THRESHOLD: number = 88;
 
     constructor(private gasAndOilBoilersService: GasAndOilBoilersService,
                 private boilerTypesService: BoilerTypesService,

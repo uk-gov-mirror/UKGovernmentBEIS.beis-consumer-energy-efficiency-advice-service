@@ -19,11 +19,6 @@ export class GasAndOilBoilersService {
     constructor(private assetsService: AssetsService) {
     }
 
-    private getAllGasAndOilBoilers(): Observable<GasAndOilBoiler[]> {
-        return this.assetsService.getAsset('boilers/gas-and-oil-boiler.json')
-            .map((boilers: any) => boilers.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson)));
-    }
-
     getGasAndOilBoilerWithIndexNumber(productIndexNumber: string): Observable<GasAndOilBoiler> {
         return this.getAllGasAndOilBoilers().map(boilers =>
             boilers.find(boiler => boiler.productIndexNumber === productIndexNumber)
@@ -34,5 +29,10 @@ export class GasAndOilBoilersService {
         return this.getAllGasAndOilBoilers().map(boilers =>
             boilers.filter(boiler => fuzzysearch(searchTerm.toLowerCase(), boiler.name.toLowerCase()))
         );
+    }
+
+    private getAllGasAndOilBoilers(): Observable<GasAndOilBoiler[]> {
+        return this.assetsService.getAsset('boilers/gas-and-oil-boiler.json')
+            .map((boilers: any) => boilers.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson)));
     }
 }

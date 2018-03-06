@@ -32,52 +32,6 @@ export class GrantEligibilityService {
         return this._eligibilityByGrant;
     }
 
-    private static getRecurringPaymentGrantsForMeasure(measure: EnergySavingMeasureResponse,
-                                                       eligibilityByGrant: EligibilityByGrant,
-                                                       grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
-        const recurringPaymentGrantsForMeasure: NationalGrantForMeasure[] = [];
-        const fitGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID);
-        if (measure.FIT && measure.FIT > 0 && fitGrantContent) {
-            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                fitGrantContent,
-                eligibilityByGrant[FeedInTariff.GRANT_ID].eligibility,
-                measure.FIT
-            ));
-        }
-        const rhiGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID);
-        if (measure.RHI && measure.RHI > 0 && rhiGrantContent) {
-            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                rhiGrantContent,
-                eligibilityByGrant[RenewableHeatIncentive.GRANT_ID].eligibility,
-                measure.RHI
-            ));
-        }
-        return recurringPaymentGrantsForMeasure;
-    }
-
-    private static getOneOffPaymentGrantsForMeasure(measureCode: string,
-                                                    eligibilityByGrant: EligibilityByGrant,
-                                                    grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
-        return keys(eligibilityByGrant)
-            .filter(grantId => GrantEligibilityService.isEligible(eligibilityByGrant[grantId].eligibility))
-            .reduce((oneOffPaymentGrantsForMeasure, grantId) => {
-                const grantContent = NationalGrantsContentService.getContentForGrant(grantsContent, grantId);
-                if (grantContent && grantContent.linked_measure_codes.indexOf(measureCode) > -1) {
-                    oneOffPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                        grantContent,
-                        eligibilityByGrant[grantId].eligibility,
-                        0
-                    ));
-                }
-                return oneOffPaymentGrantsForMeasure;
-            }, []);
-    }
-
-    private static isEligible(eligibility: GrantEligibility) {
-        return eligibility === GrantEligibility.LikelyEligible ||
-            eligibility === GrantEligibility.MayBeEligible;
-    }
-
     constructor(private responseData: ResponseData,
                 private nationalGrantsContentService: NationalGrantsContentService,
                 private nationalGrantCalculatorProvider: NationalGrantCalculatorProvider) {
@@ -134,5 +88,51 @@ export class GrantEligibilityService {
                     }, {}
                 )
             );
+    }
+
+    private static getRecurringPaymentGrantsForMeasure(measure: EnergySavingMeasureResponse,
+                                                       eligibilityByGrant: EligibilityByGrant,
+                                                       grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
+        const recurringPaymentGrantsForMeasure: NationalGrantForMeasure[] = [];
+        const fitGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID);
+        if (measure.FIT && measure.FIT > 0 && fitGrantContent) {
+            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
+                fitGrantContent,
+                eligibilityByGrant[FeedInTariff.GRANT_ID].eligibility,
+                measure.FIT
+            ));
+        }
+        const rhiGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID);
+        if (measure.RHI && measure.RHI > 0 && rhiGrantContent) {
+            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
+                rhiGrantContent,
+                eligibilityByGrant[RenewableHeatIncentive.GRANT_ID].eligibility,
+                measure.RHI
+            ));
+        }
+        return recurringPaymentGrantsForMeasure;
+    }
+
+    private static getOneOffPaymentGrantsForMeasure(measureCode: string,
+                                                    eligibilityByGrant: EligibilityByGrant,
+                                                    grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
+        return keys(eligibilityByGrant)
+            .filter(grantId => GrantEligibilityService.isEligible(eligibilityByGrant[grantId].eligibility))
+            .reduce((oneOffPaymentGrantsForMeasure, grantId) => {
+                const grantContent = NationalGrantsContentService.getContentForGrant(grantsContent, grantId);
+                if (grantContent && grantContent.linked_measure_codes.indexOf(measureCode) > -1) {
+                    oneOffPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
+                        grantContent,
+                        eligibilityByGrant[grantId].eligibility,
+                        0
+                    ));
+                }
+                return oneOffPaymentGrantsForMeasure;
+            }, []);
+    }
+
+    private static isEligible(eligibility: GrantEligibility) {
+        return eligibility === GrantEligibility.LikelyEligible ||
+            eligibility === GrantEligibility.MayBeEligible;
     }
 }

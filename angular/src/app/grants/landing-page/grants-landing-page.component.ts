@@ -40,6 +40,14 @@ export class GrantsLandingPageComponent {
             );
     }
 
+    setJourneyTypeToBoiler(): void {
+        this.responseData.userJourneyType = UserJourneyType.Boiler;
+    }
+
+    setJourneyTypeToHomeImprovements(): void {
+        this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
+    }
+
     private postcodeSearchCompleted(postcodeDetails: PostcodeDetails) {
         const localAuthorityCode = postcodeDetails.localAuthorityCode;
         if (!localAuthorityCode) {
@@ -73,13 +81,5 @@ export class GrantsLandingPageComponent {
             this.isError = true;
             console.error(err);
         }
-    }
-
-    setJourneyTypeToBoiler(): void {
-        this.responseData.userJourneyType = UserJourneyType.Boiler;
-    }
-
-    setJourneyTypeToHomeImprovements(): void {
-        this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
     }
 }

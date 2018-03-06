@@ -60,6 +60,15 @@ export class PostcodeLookupComponent {
         }
     }
 
+    onAddressSelected() {
+        if (this.selectedEpc !== undefined) {
+            this.epc = this.selectedEpc;
+            this.addressSelected.emit(this.epc.lmkKey);
+        } else {
+            this.addressSelected.emit();
+        }
+    }
+
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
         this.localAuthorityCode = postcodeDetails.localAuthorityCode;
         this.postcode = postcodeDetails.postcode;
@@ -84,14 +93,5 @@ export class PostcodeLookupComponent {
     private resetSearchState(): void {
         this.epcs = undefined;
         this.validationError = false;
-    }
-
-    onAddressSelected() {
-        if (this.selectedEpc !== undefined) {
-            this.epc = this.selectedEpc;
-            this.addressSelected.emit(this.epc.lmkKey);
-        } else {
-            this.addressSelected.emit();
-        }
     }
 }

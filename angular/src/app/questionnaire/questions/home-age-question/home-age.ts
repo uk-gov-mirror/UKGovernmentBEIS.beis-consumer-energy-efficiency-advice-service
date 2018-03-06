@@ -14,6 +14,22 @@ export enum HomeAge {
 }
 
 export abstract class HomeAgeUtil {
+
+    public static getDisplayName(homeAge: HomeAge) {
+        switch (homeAge) {
+            case HomeAge.pre1900:
+                const exclusiveUpperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(HomeAge.pre1900) + 1;
+                return `pre ${ exclusiveUpperBoundYear }`;
+            case HomeAge.from2011toPresent:
+                const inclusiveLowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(HomeAge.from2011toPresent);
+                return `${ inclusiveLowerBoundYear }-present`;
+            default:
+                const lowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(homeAge);
+                const upperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(homeAge);
+                return lowerBoundYear + '-' + upperBoundYear;
+        }
+    }
+
     private static getInclusiveLowerBoundYear(homeAge: HomeAge) {
         switch (homeAge) {
             case HomeAge.pre1900:           { return null; }
@@ -37,20 +53,5 @@ export abstract class HomeAgeUtil {
         }
         const nextHomeAge = homeAge + 1;
         return HomeAgeUtil.getInclusiveLowerBoundYear(nextHomeAge) - 1;
-    }
-
-    public static getDisplayName(homeAge: HomeAge) {
-        switch (homeAge) {
-            case HomeAge.pre1900:
-                const exclusiveUpperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(HomeAge.pre1900) + 1;
-                return `pre ${ exclusiveUpperBoundYear }`;
-            case HomeAge.from2011toPresent:
-                const inclusiveLowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(HomeAge.from2011toPresent);
-                return `${ inclusiveLowerBoundYear }-present`;
-            default:
-                const lowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(homeAge);
-                const upperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(homeAge);
-                return lowerBoundYear + '-' + upperBoundYear;
-        }
     }
 }

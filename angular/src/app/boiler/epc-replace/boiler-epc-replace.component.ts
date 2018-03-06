@@ -45,12 +45,12 @@ export class BoilerEpcReplaceComponent implements OnInit {
             );
     }
 
+    boilerNeedsReplacing() {
+        return this.recommendations && this.recommendations.some(rec => rec.isBoilerReplacement());
+    }
+
     private handleError() {
         this.recommendations = undefined;
         this.loading = false;
-    }
-
-    boilerNeedsReplacing() {
-        return this.recommendations && this.recommendations.some(rec => rec.isBoilerReplacement());
     }
 }

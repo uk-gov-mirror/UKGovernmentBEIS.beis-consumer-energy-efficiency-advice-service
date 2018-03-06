@@ -23,18 +23,6 @@ interface EpcMetadata {
 })
 export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implements OnInit {
 
-    private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
-
-    private static readonly EPC_METADATA: { [epcRating: number]: EpcMetadata } = {
-        [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
-        [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
-        [EpcRating.C]: {averageEnergyCost: 1000, colorCircleClassName: 'green'},
-        [EpcRating.D]: {averageEnergyCost: 1400, colorCircleClassName: 'amber'},
-        [EpcRating.E]: {averageEnergyCost: 1650, colorCircleClassName: 'amber'},
-        [EpcRating.F]: {averageEnergyCost: 2200, colorCircleClassName: 'red'},
-        [EpcRating.G]: {averageEnergyCost: 2850, colorCircleClassName: 'red'}
-    };
-
     EpcRating = EpcRating;
 
     isEpcAvailable: boolean;
@@ -48,6 +36,18 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     fuelTypeDescription: string;
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
+
+    private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
+
+    private static readonly EPC_METADATA: { [epcRating: number]: EpcMetadata } = {
+        [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
+        [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
+        [EpcRating.C]: {averageEnergyCost: 1000, colorCircleClassName: 'green'},
+        [EpcRating.D]: {averageEnergyCost: 1400, colorCircleClassName: 'amber'},
+        [EpcRating.E]: {averageEnergyCost: 1650, colorCircleClassName: 'amber'},
+        [EpcRating.F]: {averageEnergyCost: 2200, colorCircleClassName: 'red'},
+        [EpcRating.G]: {averageEnergyCost: 2850, colorCircleClassName: 'red'}
+    };
 
     static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
         if (epcRating === ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING) {

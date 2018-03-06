@@ -13,10 +13,6 @@ export class StickyRowWrapperComponent implements OnInit, DoCheck {
     isFixedPosition: boolean = true;
     stickyRowHeightPixels: number;
 
-    private static isVerticalPositionOnScreen(position: number): boolean {
-        return position >= 0 && position <= window.innerHeight;
-    }
-
     ngOnInit() {
         this.updateRowPosition();
     }
@@ -33,5 +29,9 @@ export class StickyRowWrapperComponent implements OnInit, DoCheck {
         const isStickyRowFullyOnScreen = StickyRowWrapperComponent.isVerticalPositionOnScreen(stickyRowTopPosition) &&
                 StickyRowWrapperComponent.isVerticalPositionOnScreen(stickyRowBottomPosition);
         this.isFixedPosition = !isStickyRowFullyOnScreen;
+    }
+
+    private static isVerticalPositionOnScreen(position: number): boolean {
+        return position >= 0 && position <= window.innerHeight;
     }
 }

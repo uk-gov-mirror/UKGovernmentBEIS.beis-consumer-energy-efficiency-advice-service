@@ -30,6 +30,14 @@ export class BoilerMakeModelLookupComponent {
         );
     }
 
+    onBoilerSelected() {
+        if (this.selectedBoiler !== undefined) {
+            this.router.navigate(['js/boiler/make-model-replace', this.selectedBoiler.productIndexNumber]);
+        } else {
+            this.router.navigate(['js/boiler/replace']);
+        }
+    }
+
     private setMatchedBoilers(searchTerm: string, boilers: GasAndOilBoiler[]) {
         this.matchedBoilers = sortBy(boilers, boiler => !includes(boiler.name.toLowerCase(), searchTerm.toLowerCase()));
         this.searching = false;
@@ -39,13 +47,5 @@ export class BoilerMakeModelLookupComponent {
         console.error(err);
         this.matchedBoilers = [];
         this.searching = false;
-    }
-
-    onBoilerSelected() {
-        if (this.selectedBoiler !== undefined) {
-            this.router.navigate(['js/boiler/make-model-replace', this.selectedBoiler.productIndexNumber]);
-        } else {
-            this.router.navigate(['js/boiler/replace']);
-        }
     }
 }
