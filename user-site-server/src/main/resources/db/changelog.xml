@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file lists all the database changelogs for the BEIS DCEAS
+   =
+   = TODO:BEIS-163 update terminology here to match GOV.UK
+   = Changelogs which have been released to "test" or "live" must not be modified.
+   = If you find a mistake in such a changelog, you must create a second fixup
+   = changelog to correct it.
+   =
+   = Changelogs which have not yet been released beyond "int" may be modified, but
+   = it is better to avoid doing so.
+   =
+   = Please add Changelogs in the same commit as the code which uses the new schema,
+   = so that changes are atomic and the codebase is in a consistent state.
+   =
+   = See http://www.liquibase.org/quickstart.html
+   =
+   = ####### MySQL, H2 and development
+   =
+   = The database on developers' machines and on the CI server runs H2, which is
+   = fast to boot and needs no external dependencies.
+   = The database in production runs on MySQL, which is performant at large scale.
+   =
+   = There are some differences in the SQL syntax and supported features of the
+   = two databases, so please test your changes (both the changelog and the
+   = supported feature) in both if you are doing anything unusual.
+   =
+   = Key areas where we have seen issues:
+   =   * boolean typed columns; boolean literals
+   =   * default column values
+   =   * date handling (precision)
+   =   * column comments
+   =   * UPDATE FROM and complex update syntax
+   -->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!-- Please create a new file for each changelog, using today's date
+       = in the filename.
+       =
+       = This is a bit easier to follow than one massive changelog file and
+       = makes it clearer that changelogs are write-once and should not be
+       = modified once released.
+
+       - Run `./gradlew check` to update the JOOQ generated classes after adding to this file.
+       - If that doesn't work straight away then you might need to run `./gradlew clean`.
+       -->
+    <include file="changelogs/2018-03-06-quartz-scheduler-tables.sql" relativeToChangelogFile="true" />
+</databaseChangeLog>

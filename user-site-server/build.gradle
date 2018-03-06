@@ -107,7 +107,12 @@ dependencies {
 
     // This is not used in production, but needed at build time for the jOOQ codegen
     // and on development machines for an in-memory database
+    // TODO:RTB use https://github.com/michaelruocco/embedded-mysql-plugin instead?
     compile('com.h2database:h2:1.4.193')
+
+    compile('org.liquibase:liquibase-core:3.5.5')
+    compile('com.mattbertolini:liquibase-slf4j:2.0.0')
+    compile('org.quartz-scheduler:quartz:2.3.0')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.assertj:assertj-core:3.7.0')
