@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {getHouseSharedWallDescription, HouseExposedWall} from "./house-exposed-wall";
+import {Component} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {getHouseSharedWallDescription, HouseExposedWall} from './house-exposed-wall';
 
 class HouseExposedWallOption {
     public readonly name: string;

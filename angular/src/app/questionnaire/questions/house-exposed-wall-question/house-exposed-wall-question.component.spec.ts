@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {HouseExposedWallQuestionComponent} from "./house-exposed-wall-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {HouseExposedWall} from "./house-exposed-wall";
+import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {HouseExposedWall} from './house-exposed-wall';
 
 describe('HouseExposedWallQuestionComponent', () => {
     let fixture: ComponentFixture<HouseExposedWallQuestionComponent>;
@@ -32,7 +32,7 @@ describe('HouseExposedWallQuestionComponent', () => {
         // given
 
         // when
-        let threeSidesExposed = fixture.debugElement.query(By.css('.one-side-shared'));
+        const threeSidesExposed = fixture.debugElement.query(By.css('.one-side-shared'));
         threeSidesExposed.nativeElement.click();
 
         // then
@@ -43,7 +43,7 @@ describe('HouseExposedWallQuestionComponent', () => {
         // given
 
         // when
-        let threeSidesExposed = fixture.debugElement.query(By.css('.one-side-shared'));
+        const threeSidesExposed = fixture.debugElement.query(By.css('.one-side-shared'));
         threeSidesExposed.nativeElement.click();
 
         // then

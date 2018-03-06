@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {FlatExposedWall, getFlatExposedWallDescription} from "./flat-exposed-wall";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {Component} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {FlatExposedWall, getFlatExposedWallDescription} from './flat-exposed-wall';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 class FlatExposedWallOption {
     public readonly name: string;

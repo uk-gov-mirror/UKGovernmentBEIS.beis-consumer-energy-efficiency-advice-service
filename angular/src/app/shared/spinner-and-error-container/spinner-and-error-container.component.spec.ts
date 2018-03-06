@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {SpinnerAndErrorContainerComponent} from "./spinner-and-error-container.component";
+import {SpinnerAndErrorContainerComponent} from './spinner-and-error-container.component';
 
 describe('SpinnerAndErrorContainerComponent', () => {
     let component: SpinnerAndErrorContainerComponent;

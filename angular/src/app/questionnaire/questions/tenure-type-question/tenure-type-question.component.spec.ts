@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {TenureTypeQuestionComponent} from "./tenure-type-question.component";
-import {TenureType} from "./tenure-type";
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {TenureTypeQuestionComponent} from './tenure-type-question.component';
+import {TenureType} from './tenure-type';
 
 describe('TenureTypeQuestionComponent', () => {
     let component: TenureTypeQuestionComponent;

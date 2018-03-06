@@ -1,5 +1,5 @@
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import includes from "lodash-es/includes";
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import includes from 'lodash-es/includes';
 
 export enum HomeType {
     DetachedHouse,
@@ -17,7 +17,7 @@ export function isDetached(homeType: HomeType): boolean {
 }
 
 export function getHomeTypeDescription(homeType: HomeType): string {
-    switch(homeType) {
+    switch (homeType) {
         case HomeType.DetachedHouse:                { return 'detached house'; }
         case HomeType.SemiDetachedOrTerracedHouse:  { return 'semi-detached or terraced house'; }
         case HomeType.DetachedBungalow:             { return 'detached bungalow'; }

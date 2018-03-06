@@ -1,6 +1,6 @@
-import {WordpressPageResponse} from "./wordpress-page-response";
-import * as parse from "url-parse";
-import {AcfImage} from "./acf-image";
+import {WordpressPageResponse} from './wordpress-page-response';
+import * as parse from 'url-parse';
+import {AcfImage} from './acf-image';
 
 export class WordpressPage {
     route: string;

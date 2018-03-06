@@ -1,7 +1,7 @@
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {QuestionType} from "../question-type";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {TenureTypeQuestionComponent} from "./tenure-type-question.component";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {QuestionType} from '../question-type';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {TenureTypeQuestionComponent} from './tenure-type-question.component';
 
 export class TenureTypeQuestionMetadata extends QuestionMetadata {
     constructor() {

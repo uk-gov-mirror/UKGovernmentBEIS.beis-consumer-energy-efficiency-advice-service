@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing"
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CarouselComponent} from "./carousel.component"
-import {CarouselItemComponent} from "./carousel-item/carousel-item.component";
-import {TimesPipe} from "../../../shared/times/times.pipe";
+import {CarouselComponent} from './carousel.component';
+import {CarouselItemComponent} from './carousel-item/carousel-item.component';
+import {TimesPipe} from '../../../shared/times/times.pipe';
 
 describe('CarouselComponent', () => {
     let component: CarouselComponent;

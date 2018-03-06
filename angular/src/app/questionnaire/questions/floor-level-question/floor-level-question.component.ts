@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {FloorLevel, getFloorLevelDescription} from "./floor-level";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {Component, OnInit} from '@angular/core';
+import {FloorLevel, getFloorLevelDescription} from './floor-level';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 class FloorLevelOption {
     public readonly name: string;

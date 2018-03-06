@@ -35,7 +35,7 @@ export abstract class HomeAgeUtil {
         if (homeAge === HomeAge.from2011toPresent) {
             return null;
         }
-        let nextHomeAge = homeAge + 1;
+        const nextHomeAge = homeAge + 1;
         return HomeAgeUtil.getInclusiveLowerBoundYear(nextHomeAge) - 1;
     }
 
@@ -48,8 +48,8 @@ export abstract class HomeAgeUtil {
                 const inclusiveLowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(HomeAge.from2011toPresent);
                 return `${ inclusiveLowerBoundYear }-present`;
             default:
-                let lowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(homeAge);
-                let upperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(homeAge);
+                const lowerBoundYear = HomeAgeUtil.getInclusiveLowerBoundYear(homeAge);
+                const upperBoundYear = HomeAgeUtil.getInclusiveUpperBoundYear(homeAge);
                 return lowerBoundYear + '-' + upperBoundYear;
         }
     }

@@ -1,19 +1,19 @@
-import {PropertyType} from "./property-type";
-import {BuiltForm} from "./built-form";
-import {FlatLevel} from "./flat-level";
-import {ResponseData} from "../../response-data/response-data";
-import {HomeType, isDetached} from "../../../questionnaire/questions/home-type-question/home-type";
-import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
-import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
-import toString from "lodash-es/toString";
-import {Epc} from "../../postcode-epc-service/model/epc";
-import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
-import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
-import {getNumberOfExposedWallsInFlat} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
-import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
-import { TenureType } from "../../../questionnaire/questions/tenure-type-question/tenure-type";
-import includes from "lodash-es/includes";
+import {PropertyType} from './property-type';
+import {BuiltForm} from './built-form';
+import {FlatLevel} from './flat-level';
+import {ResponseData} from '../../response-data/response-data';
+import {HomeType, isDetached} from '../../../questionnaire/questions/home-type-question/home-type';
+import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
+import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
+import toString from 'lodash-es/toString';
+import {Epc} from '../../postcode-epc-service/model/epc';
+import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
+import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
+import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
+import {getNumberOfExposedWallsInFlat} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
+import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
+import { TenureType } from '../../../questionnaire/questions/tenure-type-question/tenure-type';
+import includes from 'lodash-es/includes';
 
 
 export class RdSapInput {
@@ -46,61 +46,6 @@ export class RdSapInput {
     readonly fridge_freezers: number;
     readonly fridges: number;
     readonly freezers: number;
-
-    constructor(responseData: ResponseData) {
-        this.epc = responseData.epc;
-
-        // TODO: This is not currently a full correct mapping to RdSAP. For a full mapping, the homeType question needs to be changed.
-        // This is a 'best possible' mapping based on the current questions, to enable a PoC connection to the BRE API.
-        // See BEISDEAS-28 for updating the questions to allow a correct mapping.
-        this.property_type = toString(RdSapInput.getPropertyType(responseData.homeType));
-        this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
-        this.flat_level = toString(RdSapInput.getFlatLevel(responseData.floorLevels));
-        this.flat_top_storey = RdSapInput.getFlatTopStorey(responseData.floorLevels);
-        this.number_of_exposed_walls = RdSapInput.getNumberOfExposedWalls(responseData);
-        this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
-        this.floor_area = RdSapInput.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
-        this.num_storeys = responseData.numberOfStoreys;
-        this.num_bedrooms = responseData.numberOfBedrooms;
-        this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
-        this.heating_cost = responseData.heatingCost;
-        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
-        this.measures = true;
-        this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
-
-        // Habit data+
-        this.living_room_temperature = responseData.livingRoomTemperature;
-        this.occupants = responseData.numberOfChildren + responseData.numberOfAdultsAgedUnder64 +
-            responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
-        this.showers_per_week = responseData.numberOfShowersPerWeek;
-        this.baths_per_week = responseData.numberOfBathsPerWeek;
-        if (responseData.showerType) {
-            this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
-        }
-        this.tumble_dry_percentage = responseData.tumbleDryPercentage;
-        this.fridge_freezers = responseData.numberOfFridgeFreezers;
-        this.fridges = responseData.numberOfFridges;
-        this.freezers = responseData.numberOfFreezers;
-    }
-
-    public isMinimalDataSet() {
-        let requiredProperties = [
-            this.property_type,
-            this.built_form,
-            this.construction_date,
-            this.heating_fuel
-        ];
-        if (this.property_type === toString(PropertyType.Flat)) {
-            requiredProperties.push(this.flat_level);
-        }
-        if (!this.floor_area) {
-            requiredProperties.push(toString(this.num_storeys));
-            requiredProperties.push(toString(this.num_bedrooms));
-        }
-        return requiredProperties.every(value => {
-            return value && value.length > 0;
-        });
-    }
 
     private static getPropertyType(homeType: HomeType): PropertyType {
         switch (homeType) {
@@ -160,7 +105,7 @@ export class RdSapInput {
             return null;
         }
 
-        const lowestFloorLevel:FloorLevel = floorLevels.sort()[0];
+        const lowestFloorLevel: FloorLevel = floorLevels.sort()[0];
         switch (lowestFloorLevel) {
             case FloorLevel.Basement: {
                 return FlatLevel.Basement;
@@ -181,7 +126,7 @@ export class RdSapInput {
         if (!floorLevels) {
             return null;
         }
-        
+
         return includes(floorLevels, FloorLevel.TopFloor) ? 'Y' : 'N';
     }
 
@@ -229,5 +174,60 @@ export class RdSapInput {
         } else {
             return area / RdSapInput.SQUARE_FOOT_PER_SQUARE_METRE;
         }
+    }
+
+    constructor(responseData: ResponseData) {
+        this.epc = responseData.epc;
+
+        // TODO: This is not currently a full correct mapping to RdSAP. For a full mapping, the homeType question needs to be changed.
+        // This is a 'best possible' mapping based on the current questions, to enable a PoC connection to the BRE API.
+        // See BEISDEAS-28 for updating the questions to allow a correct mapping.
+        this.property_type = toString(RdSapInput.getPropertyType(responseData.homeType));
+        this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
+        this.flat_level = toString(RdSapInput.getFlatLevel(responseData.floorLevels));
+        this.flat_top_storey = RdSapInput.getFlatTopStorey(responseData.floorLevels);
+        this.number_of_exposed_walls = RdSapInput.getNumberOfExposedWalls(responseData);
+        this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
+        this.floor_area = RdSapInput.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
+        this.num_storeys = responseData.numberOfStoreys;
+        this.num_bedrooms = responseData.numberOfBedrooms;
+        this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
+        this.heating_cost = responseData.heatingCost;
+        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
+        this.measures = true;
+        this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
+
+        // Habit data+
+        this.living_room_temperature = responseData.livingRoomTemperature;
+        this.occupants = responseData.numberOfChildren + responseData.numberOfAdultsAgedUnder64 +
+            responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
+        this.showers_per_week = responseData.numberOfShowersPerWeek;
+        this.baths_per_week = responseData.numberOfBathsPerWeek;
+        if (responseData.showerType) {
+            this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
+        }
+        this.tumble_dry_percentage = responseData.tumbleDryPercentage;
+        this.fridge_freezers = responseData.numberOfFridgeFreezers;
+        this.fridges = responseData.numberOfFridges;
+        this.freezers = responseData.numberOfFreezers;
+    }
+
+    public isMinimalDataSet() {
+        const requiredProperties = [
+            this.property_type,
+            this.built_form,
+            this.construction_date,
+            this.heating_fuel
+        ];
+        if (this.property_type === toString(PropertyType.Flat)) {
+            requiredProperties.push(this.flat_level);
+        }
+        if (!this.floor_area) {
+            requiredProperties.push(toString(this.num_storeys));
+            requiredProperties.push(toString(this.num_bedrooms));
+        }
+        return requiredProperties.every(value => {
+            return value && value.length > 0;
+        });
     }
 }

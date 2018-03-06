@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {RadialPercentageComponent} from "./radial-percentage.component";
+import {RadialPercentageComponent} from './radial-percentage.component';
 
 describe('RadialPercentageComponent', () => {
     let component: RadialPercentageComponent;

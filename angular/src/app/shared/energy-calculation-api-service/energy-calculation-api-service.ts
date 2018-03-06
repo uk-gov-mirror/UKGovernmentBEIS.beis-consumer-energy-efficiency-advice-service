@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {RdSapInput} from "./request/rdsap-input";
-import {Observable} from "rxjs/Observable";
-import {EnergyCalculationResponse} from "./response/energy-calculation-response";
-import isEqual from "lodash-es/isEqual";
-import clone from "lodash-es/clone";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import {RdSapInput} from './request/rdsap-input';
+import {Observable} from 'rxjs/Observable';
+import {EnergyCalculationResponse} from './response/energy-calculation-response';
+import isEqual from 'lodash-es/isEqual';
+import clone from 'lodash-es/clone';
 
 @Injectable()
 export class EnergyCalculationApiService {
@@ -25,7 +25,7 @@ export class EnergyCalculationApiService {
                 this.cachedResults = Observable.of(null);
             }
             const endpoint = this.wordpressApiService.getFullApiEndpoint(EnergyCalculationApiService.breEndpoint);
-            this.cachedResults = this.http.post(endpoint, rdSapInput).shareReplay(1);
+            this.cachedResults = this.http.post<EnergyCalculationResponse>(endpoint, rdSapInput).shareReplay(1);
         }
         return this.cachedResults;
     }

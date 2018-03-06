@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {FridgeFreezerQuestionComponent} from "./fridge-freezer-question.component";
-import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
-import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {By} from "@angular/platform-browser";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {FridgeFreezerQuestionComponent} from './fridge-freezer-question.component';
+import {NumberQuestionComponent} from '../../common-questions/number-question/number-question.component';
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {By} from '@angular/platform-browser';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('FridgeFreezerQuestionComponent', () => {
     let component: FridgeFreezerQuestionComponent;
@@ -43,7 +43,7 @@ describe('FridgeFreezerQuestionComponent', () => {
 
     it('should populate with original numbers of fridge-freezers in response data', async(() => {
         fixture.whenStable().then(() => {
-            let fridgeFreezersInput = fixture.debugElement.query(By.css('.fridge-freezer-input input')).nativeElement;
+            const fridgeFreezersInput = fixture.debugElement.query(By.css('.fridge-freezer-input input')).nativeElement;
             expect(fridgeFreezersInput.value).toBe(originalNumberOfFridgeFreezers.toString());
         });
     }));
@@ -53,7 +53,7 @@ describe('FridgeFreezerQuestionComponent', () => {
         const expectedFridgeFreezers = 5;
 
         // when
-        let fridgeFreezersInput = fixture.debugElement.query(By.css('.fridge-freezer-input input')).nativeElement;
+        const fridgeFreezersInput = fixture.debugElement.query(By.css('.fridge-freezer-input input')).nativeElement;
         fridgeFreezersInput.value = expectedFridgeFreezers;
         fridgeFreezersInput.dispatchEvent(new Event('input'));
 
@@ -63,7 +63,7 @@ describe('FridgeFreezerQuestionComponent', () => {
 
     it('should populate with original numbers of fridges in response data', async(() => {
         fixture.whenStable().then(() => {
-            let fridgesInput = fixture.debugElement.query(By.css('.fridge-input input')).nativeElement;
+            const fridgesInput = fixture.debugElement.query(By.css('.fridge-input input')).nativeElement;
             expect(fridgesInput.value).toBe(originalNumberOfFridges.toString());
         });
     }));
@@ -73,7 +73,7 @@ describe('FridgeFreezerQuestionComponent', () => {
         const expectedFridges = 5;
 
         // when
-        let fridgesInput = fixture.debugElement.query(By.css('.fridge-input input')).nativeElement;
+        const fridgesInput = fixture.debugElement.query(By.css('.fridge-input input')).nativeElement;
         fridgesInput.value = expectedFridges;
         fridgesInput.dispatchEvent(new Event('input'));
 
@@ -83,7 +83,7 @@ describe('FridgeFreezerQuestionComponent', () => {
 
     it('should populate with original numbers of fridge-freezers in response data', async(() => {
         fixture.whenStable().then(() => {
-            let freezersInput = fixture.debugElement.query(By.css('.freezer-input input')).nativeElement;
+            const freezersInput = fixture.debugElement.query(By.css('.freezer-input input')).nativeElement;
             expect(freezersInput.value).toBe(originalNumberOfFreezers.toString());
         });
     }));
@@ -93,7 +93,7 @@ describe('FridgeFreezerQuestionComponent', () => {
         const expectedFreezers = 5;
 
         // when
-        let freezersInput = fixture.debugElement.query(By.css('.freezer-input input')).nativeElement;
+        const freezersInput = fixture.debugElement.query(By.css('.freezer-input input')).nativeElement;
         freezersInput.value = expectedFreezers;
         freezersInput.dispatchEvent(new Event('input'));
 

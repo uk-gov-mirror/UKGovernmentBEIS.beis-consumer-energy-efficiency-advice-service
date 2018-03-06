@@ -1,5 +1,5 @@
-import {Epc} from "./epc";
-import head from "lodash-es/head";
+import {Epc} from './epc';
+import head from 'lodash-es/head';
 
 export class PostcodeDetails {
 

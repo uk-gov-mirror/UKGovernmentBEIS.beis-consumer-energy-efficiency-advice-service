@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import toString from "lodash-es/toString";
+import {Component, OnInit} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import toString from 'lodash-es/toString';
 
 @Component({
     selector: 'app-heating-cost-question',

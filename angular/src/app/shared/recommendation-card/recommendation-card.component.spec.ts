@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {InlineSVGModule} from "ng-inline-svg";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
 
-import {RecommendationCardComponent} from "./recommendation-card.component";
-import {EnergySavingRecommendation} from "./energy-saving-recommendation";
+import {RecommendationCardComponent} from './recommendation-card.component';
+import {EnergySavingRecommendation} from './energy-saving-recommendation';
 
 describe('RecommendationCardComponent', () => {
     let component: RecommendationCardComponent;

@@ -1,11 +1,11 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import "rxjs/add/operator/toPromise";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import 'rxjs/add/operator/toPromise';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
 
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {EnergyCalculationApiService} from "./energy-calculation-api-service";
-import {RdSapInput} from "./request/rdsap-input";
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import {EnergyCalculationApiService} from './energy-calculation-api-service';
+import {RdSapInput} from './request/rdsap-input';
 
 describe('EnergyCalculationApiService', () => {
     let httpMock: HttpTestingController;
@@ -14,15 +14,15 @@ describe('EnergyCalculationApiService', () => {
 
     const rdSapInput: RdSapInput = {
         epc: undefined,
-        property_type: "2",
-        built_form: "4",
-        flat_level: "1",
-        flat_top_storey: "Y",
+        property_type: '2',
+        built_form: '4',
+        flat_level: '1',
+        flat_top_storey: 'Y',
         number_of_exposed_walls: 3,
-        construction_date: "A",
+        construction_date: 'A',
         num_storeys: 1,
         num_bedrooms: 1,
-        heating_fuel: "26",
+        heating_fuel: '26',
         heating_cost: 1000,
         number_of_heating_off_hours_normal: [4, 4],
         measures: true,

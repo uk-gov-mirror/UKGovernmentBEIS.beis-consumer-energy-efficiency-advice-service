@@ -1,26 +1,27 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import "rxjs/add/operator/toPromise";
-import {Observable} from "rxjs/Observable";
-import {RecommendationsService} from "./recommendations.service";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
-import {ResponseData} from "../response-data/response-data";
-import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
-import {EnergyCalculationApiService} from "../energy-calculation-api-service/energy-calculation-api-service";
-import {EnergySavingMeasureContentService} from "../energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
-import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
-import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {StandaloneNationalGrant} from "../../grants/model/standalone-national-grant";
-import {NationalGrantForMeasure} from "../../grants/model/national-grant-for-measure";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Observable';
+import {RecommendationsService} from './recommendations.service';
+import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
+import {EnergyCalculationResponse} from '../energy-calculation-api-service/response/energy-calculation-response';
+import {ResponseData} from '../response-data/response-data';
+import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
+import {EnergyCalculationApiService} from '../energy-calculation-api-service/energy-calculation-api-service';
+import {EnergySavingMeasureContentService} from '../energy-saving-measure-content-service/energy-saving-measure-content.service';
+import {GrantEligibilityService} from '../../grants/grant-eligibility-service/grant-eligibility.service';
+import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
+import {EnergyEfficiencyRecommendationTag} from
+    '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
+import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
 
 describe('RecommendationsService', () => {
     let injector: TestBed;
     let service: RecommendationsService;
 
-    const dummyEnergyCalculations = require('assets/test/energy-calculation-response.json');
+    const dummyEnergyCalculations: EnergyCalculationResponse = require('assets/test/energy-calculation-response.json');
     let energyCalculationResponse: Observable<EnergyCalculationResponse>;
-    let energyCalculationApiServiceStub = {
+    const energyCalculationApiServiceStub = {
         fetchEnergyCalculation: () => energyCalculationResponse
     };
 
@@ -63,7 +64,7 @@ describe('RecommendationsService', () => {
 
     const dummyMeasures = require('assets/test/measures-response.json');
     let measuresResponse: Observable<MeasureContent[]>;
-    let measuresServiceStub = {
+    const measuresServiceStub = {
         fetchMeasureDetails: () => measuresResponse
     };
 
@@ -140,10 +141,10 @@ describe('RecommendationsService', () => {
                 });
 
             // when
-            const recommendations = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations();
 
             // then
-            recommendations.toPromise().then(recommendations => {
+            recommendationsObservable.toPromise().then(recommendations => {
                 const actualRecommendations = recommendations
                     .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
                 expectedMeasures.forEach(measure => expect(actualRecommendations).toContain(measure));
@@ -156,10 +157,10 @@ describe('RecommendationsService', () => {
                 .map(measure => [measure.cost_saving, measure.energy_saving]);
 
             // when
-            const recommendations = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations();
 
             // then
-            recommendations.toPromise().then(recommendations => {
+            recommendationsObservable.toPromise().then(recommendations => {
                 const actualRecommendations = recommendations
                     .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
                 expectedMeasures.forEach(measure => expect(actualRecommendations).toContain(measure));
@@ -168,10 +169,10 @@ describe('RecommendationsService', () => {
 
         it('should return recommendation details correctly', async(() => {
             // when
-            const recommendations = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations();
 
             // then
-            recommendations.toPromise().then((recommendations) => {
+            recommendationsObservable.toPromise().then((recommendations) => {
                 // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
                 // for measure code U
                 expect(recommendations[0].headline).toBe('Solar photovoltaic panels');
@@ -188,10 +189,10 @@ describe('RecommendationsService', () => {
 
         it('should sort recommendations by cost saving descending', async(() => {
             // when
-            const recommendations = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations();
 
             // then
-            recommendations.toPromise().then((recommendations) => {
+            recommendationsObservable.toPromise().then((recommendations) => {
                 expect(recommendations[0].costSavingPoundsPerYear).toBe(350.64);
                 expect(recommendations[0].energySavingKwhPerYear).toBe(0);
             });
@@ -199,10 +200,10 @@ describe('RecommendationsService', () => {
 
         it('should tag the top 5 recommendations as top-recommendations', async(() => {
             // when
-            const recommendations = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations();
 
             // then
-            recommendations.toPromise().then((recommendations) => {
+            recommendationsObservable.toPromise().then((recommendations) => {
                 recommendations.filter((rec, index) => index < 5)
                     .forEach(rec => expect(rec.tags & EnergyEfficiencyRecommendationTag.TopRecommendations).toBeTruthy());
                 recommendations.filter((rec, index) => index >= 5)
@@ -212,10 +213,10 @@ describe('RecommendationsService', () => {
 
         it('should link recommendation to available grant', async(() => {
             // when
-            const recommendations = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations();
 
             // then
-            recommendations.toPromise().then((recommendations) => {
+            recommendationsObservable.toPromise().then((recommendations) => {
                 const cavityWallInsulationRecommendation = recommendations.find(rec => rec.headline === 'Cavity wall insulation');
                 expect(cavityWallInsulationRecommendation.grant.name).toBe('National Grant For Measure');
             });

@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
-import {Benefits} from "./benefits";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
+import {Benefits} from './benefits';
 
 interface BenefitsOption {
     value: Benefits;
@@ -28,7 +28,7 @@ export class BenefitsQuestionComponent extends QuestionBaseComponent implements 
         const benefits = this.options.filter(option => this.isBenefitSelected(option))
             .map(option => Benefits[option.value]);
         return benefits.length ? benefits.join(', ') : 'None';
-    };
+    }
 
     ngOnInit() {
         this.response = this.response || Benefits.None;

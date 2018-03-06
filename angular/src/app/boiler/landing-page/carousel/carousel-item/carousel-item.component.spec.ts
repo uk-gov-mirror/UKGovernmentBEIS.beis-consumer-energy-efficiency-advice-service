@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {CarouselItemComponent} from "./carousel-item.component";
+import {CarouselItemComponent} from './carousel-item.component';
 
 describe('CarouselItemComponent', () => {
     let component: CarouselItemComponent;

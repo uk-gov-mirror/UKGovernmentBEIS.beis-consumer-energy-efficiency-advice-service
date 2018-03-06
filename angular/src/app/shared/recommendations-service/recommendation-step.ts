@@ -1,5 +1,5 @@
-import * as parse from "url-parse";
-import {RecommendationStepResponse} from "../energy-saving-measure-content-service/recommendation-step-response";
+import * as parse from 'url-parse';
+import {RecommendationStepResponse} from '../energy-saving-measure-content-service/recommendation-step-response';
 
 export class RecommendationStep {
     headline: string;
@@ -21,7 +21,7 @@ export class RecommendationStep {
                     isExternalLink: link.is_external_link,
                     route: parse(link.linked_page).pathname,
                     externalLink: link.external_link
-                }
-            })
+                };
+            });
     }
 }

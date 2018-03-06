@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {LargeVideoCardComponent} from "./large-video-card.component";
-import { PopupComponent } from "../popup/popup.component";
-import {Video} from "./video";
+import {LargeVideoCardComponent} from './large-video-card.component';
+import { PopupComponent } from '../popup/popup.component';
+import {Video} from './video';
 
 describe('LargeVideoCardComponent', () => {
     let component: LargeVideoCardComponent;

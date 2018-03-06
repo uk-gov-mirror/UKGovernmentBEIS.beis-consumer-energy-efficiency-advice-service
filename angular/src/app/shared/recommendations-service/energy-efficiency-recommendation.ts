@@ -1,16 +1,16 @@
-import * as parse from "url-parse";
-import {RecommendationStep} from "./recommendation-step";
+import * as parse from 'url-parse';
+import {RecommendationStep} from './recommendation-step';
 import {
     EnergyEfficiencyRecommendationTag,
     getTagsForMeasure
-} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
-import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
-import concat from "lodash-es/concat";
-import head from "lodash-es/head";
-import {StandaloneNationalGrant} from "../../grants/model/standalone-national-grant";
-import {NationalGrantForMeasure} from "../../grants/model/national-grant-for-measure";
-import {isEnergySavingMeasureResponse} from "../energy-calculation-api-service/response/energy-saving-measure-response";
+} from '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {MeasureResponse} from '../energy-calculation-api-service/response/measure-response';
+import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
+import concat from 'lodash-es/concat';
+import head from 'lodash-es/head';
+import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
+import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
+import {isEnergySavingMeasureResponse} from '../energy-calculation-api-service/response/energy-saving-measure-response';
 
 export class EnergyEfficiencyRecommendation {
 
@@ -74,7 +74,7 @@ export class EnergyEfficiencyRecommendation {
             advantages,
             concat(measureSteps, grantSteps),
             false
-        )
+        );
     }
 
     static fromNationalGrant(grant: StandaloneNationalGrant,
@@ -102,7 +102,7 @@ export class EnergyEfficiencyRecommendation {
         } else if (tags & EnergyEfficiencyRecommendationTag.SmallSpend) {
             return Math.floor(Math.random() * 99);
         } else if (tags & EnergyEfficiencyRecommendationTag.LongerTerm) {
-            return Math.floor(Math.random() * 999)
+            return Math.floor(Math.random() * 999);
         }
     }
 }

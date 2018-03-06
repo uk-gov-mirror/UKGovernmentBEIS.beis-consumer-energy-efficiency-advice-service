@@ -1,10 +1,10 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import "rxjs/add/operator/toPromise";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import 'rxjs/add/operator/toPromise';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
 
-import {QuestionContentService} from "./question-content.service";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {QuestionContentService} from './question-content.service';
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 
 describe('QuestionContentService', () => {
     let httpMock: HttpTestingController;
@@ -36,7 +36,7 @@ describe('QuestionContentService', () => {
 
             // when
             const actualResponse = service.fetchQuestionsContent().toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
+            const request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(mockApiResponse);
 
             // then

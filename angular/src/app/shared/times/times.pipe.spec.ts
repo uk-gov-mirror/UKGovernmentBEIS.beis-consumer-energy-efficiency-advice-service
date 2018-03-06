@@ -1,4 +1,4 @@
-import {TimesPipe} from "./times.pipe";
+import {TimesPipe} from './times.pipe';
 
 describe('TimesPipe', () => {
     let pipe: TimesPipe;
@@ -28,5 +28,5 @@ describe('TimesPipe', () => {
 
         // then
         expect(result).toEqual([]);
-    })
+    });
 });

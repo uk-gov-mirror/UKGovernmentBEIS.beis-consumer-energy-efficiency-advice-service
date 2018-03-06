@@ -1,6 +1,6 @@
-import * as parse from "url-parse";
-import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
-import {MeasureResponse} from "../energy-calculation-api-service/response/measure-response";
+import * as parse from 'url-parse';
+import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
+import {MeasureResponse} from '../energy-calculation-api-service/response/measure-response';
 
 export class EnergySavingRecommendation {
 

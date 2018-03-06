@@ -1,18 +1,18 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
-import "zone.js/dist/long-stack-trace-zone";
-import "zone.js/dist/proxy.js";
-import "zone.js/dist/sync-test";
-import "zone.js/dist/jasmine-patch";
-import "zone.js/dist/async-test";
-import "zone.js/dist/fake-async-test";
-import {getTestBed} from "@angular/core/testing";
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angular/platform-browser-dynamic/testing";
-import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import 'zone.js/dist/long-stack-trace-zone';
+import 'zone.js/dist/proxy.js';
+import 'zone.js/dist/sync-test';
+import 'zone.js/dist/jasmine-patch';
+import 'zone.js/dist/async-test';
+import 'zone.js/dist/fake-async-test';
+import {getTestBed} from '@angular/core/testing';
+import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 // Common rxjs operators
-import "rxjs/add/observable/of";
-import "rxjs/add/observable/defer";
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/defer';
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare const __karma__: any;

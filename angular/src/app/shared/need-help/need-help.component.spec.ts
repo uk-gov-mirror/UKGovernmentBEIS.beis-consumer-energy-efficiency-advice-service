@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NeedHelpComponent} from "./need-help.component";
-import {By} from "@angular/platform-browser";
+import {NeedHelpComponent} from './need-help.component';
+import {By} from '@angular/platform-browser';
 
 describe('NeedHelpComponent', () => {
     let component: NeedHelpComponent;

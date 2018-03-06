@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {FlatStoreysQuestionComponent} from "./flat-storeys-question.component";
-import {By} from "@angular/platform-browser";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {FormsModule} from "@angular/forms";
-import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {FlatStoreysQuestionComponent} from './flat-storeys-question.component';
+import {By} from '@angular/platform-browser';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {FormsModule} from '@angular/forms';
+import {NumberQuestionComponent} from '../../common-questions/number-question/number-question.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('FlatStoreysQuestionComponent', () => {
     let component: FlatStoreysQuestionComponent;
@@ -35,9 +35,9 @@ describe('FlatStoreysQuestionComponent', () => {
 
     it('should default number of storeys to 1', async(() => {
         fixture.whenStable().then(() => {
-            let storeysInput = fixture.debugElement.query(By.css('input'));
+            const storeysInput = fixture.debugElement.query(By.css('input'));
             expect(storeysInput.nativeElement.value).toBe(DEFAULT_NUMBER_OF_STOREYS.toString());
-        })
+        });
     }));
 
 
@@ -51,7 +51,7 @@ describe('FlatStoreysQuestionComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            let storeysInput = fixture.debugElement.query(By.css('input'));
+            const storeysInput = fixture.debugElement.query(By.css('input'));
             expect(storeysInput.nativeElement.value).toBe(originalNumberOfStoreys.toString());
         });
     }));
@@ -61,7 +61,7 @@ describe('FlatStoreysQuestionComponent', () => {
         const expectedStoreys = 5;
 
         // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
+        const storeysInput = fixture.debugElement.query(By.css('input'));
         storeysInput.nativeElement.value = expectedStoreys;
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 

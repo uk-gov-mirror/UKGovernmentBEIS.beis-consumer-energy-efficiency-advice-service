@@ -1,8 +1,8 @@
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {QuestionType} from "../question-type";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {IncomeQuestionComponent} from "./income-question.component";
-import {Benefits} from "../benefits-question/benefits";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {QuestionType} from '../question-type';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {IncomeQuestionComponent} from './income-question.component';
+import {Benefits} from '../benefits-question/benefits';
 
 export class IncomeQuestionMetadata extends QuestionMetadata {
     constructor() {

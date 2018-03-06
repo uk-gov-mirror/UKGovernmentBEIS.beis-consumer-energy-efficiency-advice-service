@@ -1,5 +1,5 @@
-import {Injectable, Inject} from "@angular/core";
-import {NationalGrantCalculator} from "../national-grant-calculator";
+import {Injectable, Inject} from '@angular/core';
+import {NationalGrantCalculator} from '../national-grant-calculator';
 
 @Injectable()
 export class NationalGrantCalculatorProvider {

@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {ElectricityTariff} from "./electricity-tariff";
+import {Component} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ElectricityTariff} from './electricity-tariff';
 
 @Component({
     selector: 'app-electricity-tariff-question',
@@ -13,7 +13,7 @@ export class ElectricityTariffQuestionComponent extends QuestionBaseComponent {
 
     get responseForAnalytics(): string {
         return ElectricityTariff[this.response];
-    };
+    }
 
     get response(): ElectricityTariff {
         return this.responseData.electricityTariff;

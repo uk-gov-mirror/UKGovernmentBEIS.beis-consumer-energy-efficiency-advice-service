@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {Grant} from "../../grants/model/grant";
+import {Component, Input} from '@angular/core';
+import {Grant} from '../../grants/model/grant';
 
 @Component({
     selector: 'app-grant-card',

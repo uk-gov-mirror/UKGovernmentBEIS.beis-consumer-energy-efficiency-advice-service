@@ -54,7 +54,7 @@
     "no-debugger": true,
     "no-duplicate-super": true,
     "no-empty": false,
-    "no-empty-interface": true,
+    "no-empty-interface": false,
     "no-eval": true,
     "no-inferrable-types": false,
     "no-misused-new": true,
@@ -132,7 +132,9 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "no-access-missing-member": true,
+    // This rule is causing issues with inheritance and will be removed in the future
+    // https://github.com/mgechev/codelyzer/issues/191
+    "no-access-missing-member": false,
     "templates-use-public": true,
     "invoke-injectable": true
   }

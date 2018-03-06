@@ -1,4 +1,4 @@
 export interface MeasureResponse {
-    cost_saving: number,
-    energy_saving: number
+    cost_saving: number;
+    energy_saving: number;
 }

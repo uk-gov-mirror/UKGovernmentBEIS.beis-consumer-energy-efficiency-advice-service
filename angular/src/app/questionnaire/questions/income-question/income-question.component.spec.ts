@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {By} from "@angular/platform-browser";
-import {IncomeQuestionComponent} from "./income-question.component";
-import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {By} from '@angular/platform-browser';
+import {IncomeQuestionComponent} from './income-question.component';
+import {NumberQuestionComponent} from '../../common-questions/number-question/number-question.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('IncomeQuestionComponent', () => {
     let component: IncomeQuestionComponent;
@@ -36,7 +36,7 @@ describe('IncomeQuestionComponent', () => {
 
     it('should populate with original income in response data', async(() => {
         fixture.whenStable().then(() => {
-            let incomeInput = fixture.debugElement.query(By.css('input'));
+            const incomeInput = fixture.debugElement.query(By.css('input'));
             expect(incomeInput.nativeElement.value).toBe(originalIncome.toString());
         });
     }));
@@ -46,7 +46,7 @@ describe('IncomeQuestionComponent', () => {
         const expectedInput = 18;
 
         // when
-        let incomeInput = fixture.debugElement.query(By.css('input'));
+        const incomeInput = fixture.debugElement.query(By.css('input'));
         incomeInput.nativeElement.value = expectedInput;
         incomeInput.nativeElement.dispatchEvent(new Event('input'));
 

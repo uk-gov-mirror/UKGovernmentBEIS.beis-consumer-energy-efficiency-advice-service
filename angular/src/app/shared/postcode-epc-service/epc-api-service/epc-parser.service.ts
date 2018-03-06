@@ -1,7 +1,7 @@
 
-import {JsonApiResponse} from "../../epc-api-service/model/response/json-api-response";
-import {Epc} from "../model/epc";
-import {EpcResponse} from "../model/response/epc-response";
+import {JsonApiResponse} from '../../epc-api-service/model/response/json-api-response';
+import {Epc} from '../model/epc';
+import {EpcResponse} from '../model/response/epc-response';
 
 export abstract class EpcParserService {
 

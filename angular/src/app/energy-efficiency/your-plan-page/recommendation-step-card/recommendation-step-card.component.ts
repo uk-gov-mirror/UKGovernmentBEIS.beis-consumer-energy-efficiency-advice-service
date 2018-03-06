@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {RecommendationStep} from "../../../shared/recommendations-service/recommendation-step";
-import padStart from "lodash-es/padStart";
+import {Component, Input, OnInit} from '@angular/core';
+import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
+import padStart from 'lodash-es/padStart';
 
 @Component({
     selector: 'app-recommendation-step-card',

@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {WaterTankQuestionComponent} from "./water-tank-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {WaterTankSpace} from "./water-tank-space";
+import {WaterTankQuestionComponent} from './water-tank-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {WaterTankSpace} from './water-tank-space';
 
 describe('WaterTankQuestionComponent', () => {
     let component: WaterTankQuestionComponent;
@@ -30,7 +30,7 @@ describe('WaterTankQuestionComponent', () => {
 
     it('should set the response when clicking on an option', () => {
         // given
-        let noSpace = fixture.debugElement.queryAll(By.css('.water-tank-button')).find(el => el.nativeElement.innerText === 'No space');
+        const noSpace = fixture.debugElement.queryAll(By.css('.water-tank-button')).find(el => el.nativeElement.innerText === 'No space');
 
         // when
         noSpace.nativeElement.click();
@@ -41,7 +41,7 @@ describe('WaterTankQuestionComponent', () => {
 
     it('should notify of completion when clicking on an option', () => {
         // given
-        let noSpace = fixture.debugElement.queryAll(By.css('.water-tank-button')).find(el => el.nativeElement.innerText === 'No space');
+        const noSpace = fixture.debugElement.queryAll(By.css('.water-tank-button')).find(el => el.nativeElement.innerText === 'No space');
 
         // when
         noSpace.nativeElement.click();

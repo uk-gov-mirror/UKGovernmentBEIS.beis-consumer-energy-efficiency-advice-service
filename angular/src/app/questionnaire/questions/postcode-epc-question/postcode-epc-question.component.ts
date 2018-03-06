@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
-import "rxjs/add/operator/map";
+import {Component, OnInit} from '@angular/core';
+import 'rxjs/add/operator/map';
 
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import {EpcParserService} from "../../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {PostcodeEpcService} from "../../../shared/postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../../../shared/postcode-epc-service/model/postcode-details";
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import {EpcParserService} from '../../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {PostcodeEpcService} from '../../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../../../shared/postcode-epc-service/model/postcode-details';
 
 @Component({
     selector: 'app-postcode-epc-question',

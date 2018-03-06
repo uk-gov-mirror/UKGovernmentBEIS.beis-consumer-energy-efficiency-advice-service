@@ -1,22 +1,22 @@
-import {Component, OnInit} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {EpcRating} from "../../../shared/postcode-epc-service/model/epc-rating";
-import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from "../home-type-question/home-type";
-import {EpcConfirmation} from "./epc-confirmation";
-import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from "../fuel-type-question/fuel-type";
+import {Component, OnInit} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {EpcRating} from '../../../shared/postcode-epc-service/model/epc-rating';
+import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
+import {EpcConfirmation} from './epc-confirmation';
+import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from '../fuel-type-question/fuel-type';
 import {
     ElectricityTariff,
     getElectricityTariffDescription,
     getElectricityTariffFromEpc
-} from "../electricity-tariff-question/electricity-tariff";
+} from '../electricity-tariff-question/electricity-tariff';
 
 interface EpcMetadata {
-    averageEnergyCost: number,
-    colorCircleClassName: string
+    averageEnergyCost: number;
+    colorCircleClassName: string;
 }
 
 @Component({
-    selector: 'confirm-epc',
+    selector: 'app-confirm-epc',
     templateUrl: './confirm-epc-question.component.html',
     styleUrls: ['./confirm-epc-question.component.scss'],
     animations: [slideInOutAnimation]
@@ -49,9 +49,17 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
 
+    static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
+        if (epcRating === ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING) {
+            return 'This means your home\'s efficiency is about average.';
+        }
+        const comparatorAdjective = epcRating < ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING ? 'high' : 'low';
+        return `This means your home is relatively ${ comparatorAdjective } efficiency.`;
+    }
+
     get responseForAnalytics(): string {
         return this.responseData.confirmEpc ? 'EPC data confirmed' : 'EPC data rejected';
-    };
+    }
 
     ngOnInit() {
         this.getDetailsFromResponseData();
@@ -125,13 +133,5 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     rejectEpcDetails() {
         this.confirmEpcDetails();
-    }
-
-    static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
-        if (epcRating === ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING) {
-            return 'This means your home\'s efficiency is about average.'
-        }
-        const comparatorAdjective = epcRating < ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING ? 'high' : 'low';
-        return `This means your home is relatively ${ comparatorAdjective } efficiency.`
     }
 }

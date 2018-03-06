@@ -1,4 +1,4 @@
-import {FeatureFlagName} from "./feature-flags";
+import {FeatureFlagName} from './feature-flags';
 
 export interface FeatureFlagResponse {
     slug: FeatureFlagName;

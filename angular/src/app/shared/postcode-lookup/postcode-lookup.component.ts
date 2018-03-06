@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {Epc} from "../../shared/postcode-epc-service/model/epc";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {PostcodeEpcService} from "../postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {Epc} from '../../shared/postcode-epc-service/model/epc';
+import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 
 @Component({
     selector: 'app-postcode-lookup',

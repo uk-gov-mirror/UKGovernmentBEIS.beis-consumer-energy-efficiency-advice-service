@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
-import {GardenAccessibility} from "./garden-accessibility";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
+import {GardenAccessibility} from './garden-accessibility';
 
 interface AccessibilityOption {
     name: string;

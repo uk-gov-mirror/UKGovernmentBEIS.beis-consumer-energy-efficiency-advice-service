@@ -1,8 +1,8 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
-import {WordpressPagesService} from "./wordpress-pages.service";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
+import {WordpressPagesService} from './wordpress-pages.service';
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 
 describe('WordpressPagesService', () => {
     let httpMock: HttpTestingController;
@@ -100,11 +100,11 @@ describe('WordpressPagesService', () => {
             const firstRequest = service.getTopLevelPages().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
-            //when
+            // when
             firstRequest.then(() => {
                 service.getTopLevelPages().toPromise();
 
-                //then
+                // then
                 httpMock.verify();
             });
         }));
@@ -164,7 +164,7 @@ describe('WordpressPagesService', () => {
     });
 
     describe('#getPage', () => {
-        const testSlug = "my-test-page";
+        const testSlug = 'my-test-page';
 
         it('calls API and returns data correctly', async(() => {
             // when

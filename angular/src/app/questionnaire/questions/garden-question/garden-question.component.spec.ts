@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {NouisliderModule} from "ng2-nouislider";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {NouisliderModule} from 'ng2-nouislider';
 
-import {GardenQuestionComponent} from "./garden-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {GardenAccessibility} from "./garden-accessibility";
+import {GardenQuestionComponent} from './garden-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {GardenAccessibility} from './garden-accessibility';
 
 describe('GardenQuestionComponent', () => {
     let component: GardenQuestionComponent;
@@ -32,7 +32,7 @@ describe('GardenQuestionComponent', () => {
 
     it('should set the response when clicking on an option', () => {
         // given
-        let noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
+        const noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
 
         // when
         noGarden.nativeElement.click();
@@ -43,7 +43,7 @@ describe('GardenQuestionComponent', () => {
 
     it('should notify of completion when clicking on an option', () => {
         // given
-        let noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
+        const noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
 
         // when
         noGarden.nativeElement.click();

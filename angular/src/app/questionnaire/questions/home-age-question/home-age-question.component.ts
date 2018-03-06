@@ -1,12 +1,12 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {HomeAge, HomeAgeUtil} from "./home-age";
-import {Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild} from "@angular/core";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import keys from "lodash-es/keys";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {HomeAge, HomeAgeUtil} from './home-age';
+import {Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import keys from 'lodash-es/keys';
 
 interface HomeAgeOption {
-    name: string,
-    value: HomeAge
+    name: string;
+    value: HomeAge;
 }
 
 @Component({
@@ -43,6 +43,11 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
 
     get responseForAnalytics(): string {
         return HomeAge[this.response];
+    }
+
+    static boundBy(target: number, min: number, max: number): number {
+        const boundedBelow = Math.max(target, min);
+        return Math.min(boundedBelow, max);
     }
 
     constructor(responseData: ResponseData, private renderer: Renderer2) {
@@ -82,10 +87,10 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
         if (event.target === this.slider.nativeElement) {
             this.isSliderSelected = true;
             this.mouseOffsetFromSliderX = event.pageX - this.currentSliderCentreX;
-            this.deregisterMouseMoveListener = this.renderer.listen('document', 'mousemove', event => this.onMouseMove(event));
-            this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', event => this.onMouseUp(event));
+            this.deregisterMouseMoveListener = this.renderer.listen('document', 'mousemove', mouseEvent => this.onMouseMove(mouseEvent));
+            this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', mouseEvent => this.onMouseUp(mouseEvent));
         }
-    };
+    }
 
     moveSliderToCentreOfOption(homeAge: HomeAge): void {
         const optionIndex = this.homeAges.indexOf(homeAge) >= 0 ? this.homeAges.indexOf(homeAge) : 0;
@@ -115,14 +120,18 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
     }
 
     deregisterEventListeners(): void {
-        this.deregisterMouseMoveListener && this.deregisterMouseMoveListener();
-        this.deregisterMouseUpListener && this.deregisterMouseUpListener();
+        if (this.deregisterMouseMoveListener) {
+            this.deregisterMouseMoveListener();
+        }
+        if (this.deregisterMouseUpListener) {
+            this.deregisterMouseUpListener();
+        }
     }
 
     selectResponseFromSliderLocation(x: number): void {
         const selectedOption = this.getSelectedOptionFromSliderLocation(x);
         this.selectResponse(selectedOption);
-    };
+    }
 
     getSelectedOptionFromSliderLocation(x: number): HomeAge {
         const rawIndex = Math.floor(x / this.getOptionWidthInPixels());
@@ -140,10 +149,5 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
 
     getOptionWidthInPixels(): number {
         return this.option.nativeElement.scrollWidth;
-    }
-
-    static boundBy(target: number, min: number, max: number): number {
-        const boundedBelow = Math.max(target, min);
-        return Math.min(boundedBelow, max);
     }
 }

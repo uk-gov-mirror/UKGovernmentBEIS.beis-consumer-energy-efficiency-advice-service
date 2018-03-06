@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {ElectricityTariffQuestionComponent} from "./electricity-tariff-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {ElectricityTariff} from "./electricity-tariff";
+import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {ElectricityTariff} from './electricity-tariff';
 
 describe('ElectricityTariffQuestionComponent', () => {
     let fixture: ComponentFixture<ElectricityTariffQuestionComponent>;
@@ -32,7 +32,7 @@ describe('ElectricityTariffQuestionComponent', () => {
         // given
 
         // when
-        let standard = fixture.debugElement.query(By.css('#standard-button'));
+        const standard = fixture.debugElement.query(By.css('#standard-button'));
         standard.nativeElement.click();
 
         // then
@@ -43,7 +43,7 @@ describe('ElectricityTariffQuestionComponent', () => {
         // given
 
         // when
-        let offPeak = fixture.debugElement.query(By.css('#off-peak-button'));
+        const offPeak = fixture.debugElement.query(By.css('#off-peak-button'));
         offPeak.nativeElement.click();
 
         // then

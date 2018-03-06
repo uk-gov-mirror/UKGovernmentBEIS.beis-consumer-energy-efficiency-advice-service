@@ -6,7 +6,7 @@ export enum FloorLevel {
 }
 
 export function getFloorLevelDescription(floorLevel: FloorLevel): string {
-    switch(floorLevel) {
+    switch (floorLevel) {
         case FloorLevel.Basement:           { return 'basement'; }
         case FloorLevel.Ground:             { return 'ground'; }
         case FloorLevel.MidFloor:           { return 'mid-floor'; }

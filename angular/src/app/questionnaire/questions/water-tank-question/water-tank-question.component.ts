@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component} from "@angular/core";
-import {WaterTankSpace} from "./water-tank-space";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component} from '@angular/core';
+import {WaterTankSpace} from './water-tank-space';
 
 interface SpaceOption {
     name: string;

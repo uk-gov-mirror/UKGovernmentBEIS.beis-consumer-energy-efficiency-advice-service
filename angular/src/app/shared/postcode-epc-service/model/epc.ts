@@ -1,7 +1,10 @@
-import {EpcRating} from "./epc-rating";
-import {EpcResponse} from "./response/epc-response";
+import {EpcRating} from './epc-rating';
+import {EpcResponse} from './response/epc-response';
 
 export class Epc {
+
+    private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
+
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
 
     public lmkKey: string;
@@ -90,7 +93,32 @@ export class Epc {
     public constituencyLabel: string;
     public certificateHash: string;
 
-    private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
+    private static getIntegerFromStartOfString(input: string): number {
+        const matchNumberAtStartOfString = /^[0-9]+/;
+        const regexMatches = matchNumberAtStartOfString.exec(input);
+        const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
+        const number = numberAsString ? parseInt(numberAsString) : null;
+        return (number && !isNaN(number)) ? number : null;
+    }
+
+    private static getParsedFloorLevel(val: string): number {
+        return (val.toLowerCase() === 'ground') ? 0 : Epc.getParsedIntegerOrNull(val);
+    }
+
+    private static getParsedIntegerOrNull(val: string): number {
+        const parsedNumber = parseInt(val);
+        return isNaN(parsedNumber) ? null : parsedNumber;
+    }
+
+    private static getParsedBooleanFromEpcResponseValue(val: string): boolean {
+        if (val === 'Y') {
+            return true;
+        } else if (val === 'N') {
+            return false;
+        } else {
+            return null;
+        }
+    }
 
     constructor(epcResponse: EpcResponse) {
         // TODO: We may not use all these fields and may be able to remove some. We currently use the following fields:
@@ -141,7 +169,8 @@ export class Epc {
         this.hotWaterCostPotential = epcResponse['hot-water-cost-potential'];
         this.totalFloorArea = epcResponse['total-floor-area'];
         this.energyTariff = epcResponse['energy-tariff'];
-        this.flatStoreyCount = epcResponse['flat-storey-count']; // this is the number of storeys in the apartment block, not the number of storeys in the flat
+        // this is the number of storeys in the apartment block, not the number of storeys in the flat
+        this.flatStoreyCount = epcResponse['flat-storey-count'];
         this.mainHeatingControls = epcResponse['main-heating-controls'];
         this.multiGlazeProportion = epcResponse['multi-glaze-proportion'];
         this.glazedType = epcResponse['glazed-type'];
@@ -187,9 +216,9 @@ export class Epc {
     }
 
     public getDisplayAddress(): string {
-        let displayAddress1 = this.address1;
-        let displayAddress2 = this.address2 ? ', ' + this.address2 : '';
-        let displayAddress3 = this.address3 ? ', ' + this.address3 : '';
+        const displayAddress1 = this.address1;
+        const displayAddress2 = this.address2 ? ', ' + this.address2 : '';
+        const displayAddress3 = this.address3 ? ', ' + this.address3 : '';
         return displayAddress1 + displayAddress2 + displayAddress3;
     }
 
@@ -197,32 +226,5 @@ export class Epc {
         const houseNumberFromFirstLine = Epc.getIntegerFromStartOfString(this.address1);
         const houseNumberFromSecondLine = Epc.getIntegerFromStartOfString(this.address2);
         return houseNumberFromFirstLine || houseNumberFromSecondLine;
-    }
-
-    private static getIntegerFromStartOfString(input: string): number {
-        const matchNumberAtStartOfString = /^[0-9]+/;
-        const regexMatches = matchNumberAtStartOfString.exec(input);
-        const numberAsString = regexMatches && regexMatches.length > 0 && regexMatches[0];
-        const number = numberAsString ? parseInt(numberAsString) : null;
-        return (number && !isNaN(number)) ? number : null;
-    }
-
-    private static getParsedFloorLevel(val: string): number {
-        return (val.toLowerCase() === 'ground') ? 0 : Epc.getParsedIntegerOrNull(val);
-    }
-
-    private static getParsedIntegerOrNull(val: string): number {
-        const parsedNumber = parseInt(val);
-        return isNaN(parsedNumber) ? null : parsedNumber;
-    }
-
-    private static getParsedBooleanFromEpcResponseValue(val: string): boolean {
-        if (val === 'Y') {
-            return true;
-        } else if (val === 'N') {
-            return false;
-        } else {
-            return null;
-        }
     }
 }
