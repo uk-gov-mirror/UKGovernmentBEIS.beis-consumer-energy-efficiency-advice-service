@@ -2,6 +2,8 @@
 @import "styles/mixins/epc-rating";
 @import "styles/mixins/buttons";
 
+// Component specific variables
+
 $section-break-margin: 40px;
 $epc-rating-width: 40px;
 $component-width: 60vw;
@@ -9,14 +11,14 @@ $component-width: 60vw;
 $go-button-height: 80px;
 $go-button-right-chevron-width: 20px;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+
 .confirm-epc-question {
-  display: flex;
-  flex-direction: column;
-  width: $component-width;
 
   .horizontal-line {
     border-top: 1px solid black;
-    width: 100%;
   }
 
   .epc-section {
@@ -25,8 +27,6 @@ $go-button-right-chevron-width: 20px;
 
     > * {
       flex: 0 0 auto;
-      width: 15vw;
-      min-width: 1px;
 
       &:not(:last-child) {
         border-right: 2px solid #d8d8d8;
@@ -40,62 +40,38 @@ $go-button-right-chevron-width: 20px;
 
     // Copied from data-card.scss
     .epc-diagram-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 10px;
       min-width: 1px;
-      justify-content: center;
 
       .heading {
-        align-self: stretch;
-        text-transform: uppercase;
-        font-size: 11px;
-        line-height: 14px;
         color: $dark-grey;
         text-align: center;
         font-weight: bold;
-        height: 72px;
       }
     }
   }
 
   .confirm-epc-details-section {
     padding: $section-break-margin 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
 
     .confirm-epc-details-background {
-      height: 100%;
-      width: 100vw;
       position: absolute;
       background: white;
-      left: -1 * (100vw - $component-width) / 2;
-      top: 0;
     }
     .epc-details-header, .confirm-epc-details-body {
       z-index: 1;
     }
 
     .epc-details-header {
-      font-size: 20px;
       font-weight: bold;
-      line-height: 24px;
       color: $focus-text-blue;
       margin-bottom: 10px;
     }
 
     .confirm-epc-details-body {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
     }
 
     .epc-details-container {
-      display: flex;
-      flex-direction: column;
-      flex-basis: 60%;
 
       .epc-details-list {
         margin: 0;
@@ -104,22 +80,14 @@ $go-button-right-chevron-width: 20px;
         .epc-detail {
           padding: 8px 0;
           color: #39393A;
-          font-size: 16px;
-          line-height: 20px;
         }
       }
     }
 
     .confirm-epc-details {
-      display: flex;
-      flex-direction: column;
       font-weight: bold;
-      flex-basis: 40%;
-      justify-content: space-between;
 
       .confirm-epc-details-row {
-        display: flex;
-        align-items: center;
 
         .confirm-epc-details-question {
           color: $headline-dark-blue;
@@ -128,9 +96,6 @@ $go-button-right-chevron-width: 20px;
 
         .confirm-epc-details-button {
           @include capsule-button;
-          font-size: 16px;
-          line-height: 30px;
-          font-weight: bold;
           padding: 2px 36px;
           box-sizing: border-box;
           outline: none;
@@ -158,9 +123,6 @@ $go-button-right-chevron-width: 20px;
   }
 
   .need-more-details-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 
     .no-details {
       padding-bottom: 48px;
@@ -176,29 +138,16 @@ $go-button-right-chevron-width: 20px;
       cursor: pointer;
 
       .need-more-details-body {
-        flex-grow: 1;
         color: white;
         border: none;
-        height: $go-button-height;
-        font-size: 20px;
-        line-height: 24px;
-        font-weight: bold;
-        display: flex;
         padding: 0;
 
         .button-main, .button-go {
-          height: 100%;
-          position: relative;
-          display: flex;
-          align-items: center;
 
           &::after {
             content: '';
             position: absolute;
             right: -$go-button-right-chevron-width;
-            top: 0;
-            width: 0;
-            height: 0;
             border-top: $go-button-height/2 solid transparent;
             border-bottom: $go-button-height/2 solid transparent;
           }
@@ -207,7 +156,6 @@ $go-button-right-chevron-width: 20px;
         .button-main {
           z-index: 1;
           padding-left: 20px;
-          flex-grow: 1;
 
           &::after {
             border-left: $go-button-right-chevron-width solid $button-dark-blue;
@@ -238,6 +186,245 @@ $go-button-right-chevron-width: 20px;
 
             &::after {
               border-left-color: $button-dark-blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Breakpoint specific styling
+
+.confirm-epc-question {
+  display: flex;
+  flex-direction: column;
+  width: $component-width;
+
+  @include desktop() {
+    .horizontal-line {
+      width: 100%;
+    }
+
+    .epc-section {
+      display: flex;
+
+      > * {
+        flex: 0 0 auto;
+        width: 15vw;
+        min-width: 1px;
+
+        &:not(:last-child) {
+          border-right: 2px solid #d8d8d8;
+        }
+
+        ::ng-deep .data-card {
+          justify-content: space-between;
+        }
+      }
+
+      // Copied from data-card.scss
+      .epc-diagram-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        min-width: 1px;
+        justify-content: center;
+
+        .heading {
+          align-self: stretch;
+          text-transform: uppercase;
+          font-size: 11px;
+          line-height: 14px;
+          color: $dark-grey;
+          text-align: center;
+          font-weight: bold;
+          height: 72px;
+        }
+      }
+    }
+
+    .confirm-epc-details-section {
+      padding: $section-break-margin 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      .confirm-epc-details-background {
+        height: 100%;
+        width: 100vw;
+        position: absolute;
+        background: white;
+        left: -1 * (100vw - $component-width) / 2;
+        top: 0;
+      }
+      .epc-details-header, .confirm-epc-details-body {
+        z-index: 1;
+      }
+
+      .epc-details-header {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 24px;
+        color: $focus-text-blue;
+        margin-bottom: 10px;
+      }
+
+      .confirm-epc-details-body {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .epc-details-container {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 60%;
+
+        .epc-details-list {
+          margin: 0;
+          padding-left: 16px;
+
+          .epc-detail {
+            padding: 8px 0;
+            color: #39393A;
+            font-size: 16px;
+            line-height: 20px;
+          }
+        }
+      }
+
+      .confirm-epc-details {
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        flex-basis: 40%;
+        justify-content: space-between;
+
+        .confirm-epc-details-row {
+          display: flex;
+          align-items: center;
+
+          .confirm-epc-details-question {
+            color: $headline-dark-blue;
+            margin-right: 20px;
+          }
+
+          .confirm-epc-details-button {
+            @include capsule-button;
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: bold;
+            padding: 2px 36px;
+            box-sizing: border-box;
+            outline: none;
+
+            &:hover, &:focus {
+              background-color: $lighter-medium-grey;
+            }
+
+            &.yes-button {
+              background-color: $action-button-blue;
+              color: white;
+              margin-right: 32px;
+
+              &:hover, &:focus {
+                background-color: $button-dark-blue;
+              }
+            }
+          }
+
+          &:first-child {
+            padding-bottom: 16px;
+          }
+        }
+      }
+    }
+
+    .need-more-details-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .no-details {
+        padding-bottom: 48px;
+      }
+    }
+
+    .need-more-details-container, .confirm-epc-details-section {
+      .need-more-details-button {
+        padding: 0;
+        border: none;
+        overflow: visible;
+        background-color: $button-dark-blue;
+        cursor: pointer;
+
+        .need-more-details-body {
+          flex-grow: 1;
+          color: white;
+          border: none;
+          height: $go-button-height;
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: bold;
+          display: flex;
+          padding: 0;
+
+          .button-main, .button-go {
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            &::after {
+              content: '';
+              position: absolute;
+              right: -$go-button-right-chevron-width;
+              top: 0;
+              width: 0;
+              height: 0;
+              border-top: $go-button-height/2 solid transparent;
+              border-bottom: $go-button-height/2 solid transparent;
+            }
+          }
+
+          .button-main {
+            z-index: 1;
+            padding-left: 20px;
+            flex-grow: 1;
+
+            &::after {
+              border-left: $go-button-right-chevron-width solid $button-dark-blue;
+            }
+          }
+
+          .button-go {
+            background-color: $action-button-blue;
+            padding-left: $go-button-right-chevron-width + 16px;
+            padding-right: 4px;
+
+            &::after {
+              border-left: $go-button-right-chevron-width solid $action-button-blue;
+            }
+          }
+        }
+
+        &:hover {
+          background-color: $action-button-blue;
+
+          .need-more-details-body {
+            .button-main::after {
+              border-left-color: $action-button-blue
+            }
+
+            .button-go {
+              background-color: $button-dark-blue;
+
+              &::after {
+                border-left-color: $button-dark-blue;
+              }
             }
           }
         }
