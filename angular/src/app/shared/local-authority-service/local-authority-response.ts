@@ -1,7 +1,7 @@
 export interface LocalGrantResponse {
     display_name: string;
     description: string;
-    slug: string
+    slug: string;
 }
 
 export interface LocalAuthorityResponse {

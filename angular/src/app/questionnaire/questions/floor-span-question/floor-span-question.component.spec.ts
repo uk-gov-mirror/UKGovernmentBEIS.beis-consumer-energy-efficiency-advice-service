@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {FloorSpanQuestionComponent} from "./floor-span-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {FloorLevel} from "../floor-level-question/floor-level";
-import {FormsModule} from "@angular/forms";
-import keys from "lodash-es/keys";
-import includes from "lodash-es/includes";
+import {FloorSpanQuestionComponent} from './floor-span-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {FloorLevel} from '../floor-level-question/floor-level';
+import {FormsModule} from '@angular/forms';
+import keys from 'lodash-es/keys';
+import includes from 'lodash-es/includes';
 
 describe('FloorSpanQuestionComponent', () => {
     let fixture: ComponentFixture<FloorSpanQuestionComponent>;
@@ -64,7 +64,7 @@ describe('FloorSpanQuestionComponent', () => {
 
             // then
             expect(responseData.floorLevels).toEqual([FloorLevel.Basement]);
-        })
+        });
     }));
 
     it('should set response data when clicking on multiple floor level', async(() => {
@@ -79,6 +79,6 @@ describe('FloorSpanQuestionComponent', () => {
 
             // then
             expect(responseData.floorLevels).toEqual([FloorLevel.Basement, FloorLevel.Ground]);
-        })
-    }))
+        });
+    }));
 });

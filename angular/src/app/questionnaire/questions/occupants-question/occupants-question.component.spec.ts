@@ -1,13 +1,13 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {OccupantsQuestionComponent} from "./occupants-question.component";
-import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
-import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {By} from "@angular/platform-browser";
-import {TimesPipe} from "../../../shared/times/times.pipe";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {OccupantsQuestionComponent} from './occupants-question.component';
+import {NumberQuestionComponent} from '../../common-questions/number-question/number-question.component';
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {By} from '@angular/platform-browser';
+import {TimesPipe} from '../../../shared/times/times.pipe';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('OccupantsQuestionComponent', () => {
     let component: OccupantsQuestionComponent;

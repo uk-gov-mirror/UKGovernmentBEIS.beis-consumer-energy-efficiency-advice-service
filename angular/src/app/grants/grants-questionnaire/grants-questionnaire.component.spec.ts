@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {Router} from "@angular/router";
-import {GrantsQuestionnaireComponent} from "./grants-questionnaire.component";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {GrantsQuestionnaireComponent} from './grants-questionnaire.component';
 
 describe('GrantsQuestionnaireComponent', () => {
     let component: GrantsQuestionnaireComponent;

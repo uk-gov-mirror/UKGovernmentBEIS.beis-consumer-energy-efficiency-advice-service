@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed, async} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {BreakEvenComponent} from "./break-even.component";
+import {ComponentFixture, TestBed, async} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {BreakEvenComponent} from './break-even.component';
 
 describe('BreakEvenComponent', () => {
     let component: BreakEvenComponent;

@@ -1,12 +1,12 @@
-import {Questionnaire} from "../../base-questionnaire/questionnaire";
-import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
-import {QuestionMetadata} from "../../base-question/question-metadata";
+import {Questionnaire} from '../../base-questionnaire/questionnaire';
+import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
+import {QuestionMetadata} from '../../base-question/question-metadata';
 import {
     EPC_AND_OWNERSHIP_STATUS, BASIC_BEHAVIOURAL_QUESTIONS,
     CORE_BRE_QUESTIONS, GRANTS_QUESTIONNAIRE_QUESTION, ADDRESS
-} from "../../questions/question-groups";
-import concat from "lodash-es/concat";
-import {ResponseData} from "../../../shared/response-data/response-data";
+} from '../../questions/question-groups';
+import concat from 'lodash-es/concat';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 export class HomeBasicsQuestionnaire extends Questionnaire {
 
@@ -19,7 +19,8 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
             return HomeBasicsQuestionnaire.currentInstance;
         } else {
             HomeBasicsQuestionnaire.currentJourneyType = journeyType;
-            HomeBasicsQuestionnaire.currentInstance = new HomeBasicsQuestionnaire(responseData, HomeBasicsQuestionnaire.questionsForJourneyType(journeyType));
+            HomeBasicsQuestionnaire.currentInstance =
+                new HomeBasicsQuestionnaire(responseData, HomeBasicsQuestionnaire.questionsForJourneyType(journeyType));
             return HomeBasicsQuestionnaire.currentInstance;
         }
     }

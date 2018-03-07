@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {HomeTypeQuestionComponent} from "./home-type-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {HomeType} from "./home-type";
+import {HomeTypeQuestionComponent} from './home-type-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {HomeType} from './home-type';
 
 describe('HomeTypeQuestionComponent', () => {
     let fixture: ComponentFixture<HomeTypeQuestionComponent>;
@@ -32,7 +32,7 @@ describe('HomeTypeQuestionComponent', () => {
         // given
 
         // when
-        let detachedHouse = fixture.debugElement.query(By.css('.detached-house'));
+        const detachedHouse = fixture.debugElement.query(By.css('.detached-house'));
         detachedHouse.nativeElement.click();
 
         // then
@@ -43,7 +43,7 @@ describe('HomeTypeQuestionComponent', () => {
         // given
 
         // when
-        let detachedHouse = fixture.debugElement.query(By.css('.detached-house'));
+        const detachedHouse = fixture.debugElement.query(By.css('.detached-house'));
         detachedHouse.nativeElement.click();
 
         // then

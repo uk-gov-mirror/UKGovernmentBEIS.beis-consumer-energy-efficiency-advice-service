@@ -1,15 +1,15 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {FormsModule} from "@angular/forms";
-import {By} from "@angular/platform-browser";
-import {Observable} from "rxjs/Observable";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {Observable} from 'rxjs/Observable';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
-import {PostcodeEpcQuestionComponent} from "./postcode-epc-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import {EpcParserService} from "../../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {PostcodeEpcService} from "../../../shared/postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../../../shared/postcode-epc-service/model/postcode-details";
+import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import {EpcParserService} from '../../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {PostcodeEpcService} from '../../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../../../shared/postcode-epc-service/model/postcode-details';
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -24,7 +24,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
     let postcodeEpcResponse: Observable<PostcodeDetails>;
 
-    let postcodeEpcServiceStub = {
+    const postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => postcodeEpcResponse
     };
 

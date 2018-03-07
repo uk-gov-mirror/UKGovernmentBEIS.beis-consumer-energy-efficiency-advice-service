@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component} from "@angular/core";
-import {ShowerType} from "./shower-type";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component} from '@angular/core';
+import {ShowerType} from './shower-type';
 
 export interface ShowerTypeOption {
     name: string;

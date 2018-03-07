@@ -1,6 +1,6 @@
-import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from "@angular/core";
-import {WordpressPage} from "../../shared/wordpress-pages-service/wordpress-page";
-import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
+import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from '@angular/core';
+import {WordpressPage} from '../../shared/wordpress-pages-service/wordpress-page';
+import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 
 @Component({
     selector: 'app-header',
@@ -18,14 +18,14 @@ export class HeaderComponent {
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
-    private allSearchResults: WordpressPage[] = [];
-    private deregisterWindowClickListener: () => void;
-
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
     @ViewChild('mobileSearchButton') mobileSearchButton;
+
+    private allSearchResults: WordpressPage[] = [];
+    private deregisterWindowClickListener: () => void;
 
     constructor(
         private renderer: Renderer2,

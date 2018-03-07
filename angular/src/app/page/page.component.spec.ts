@@ -1,15 +1,15 @@
-import {async, ComponentFixture, getTestBed, TestBed} from "@angular/core/testing";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/of";
+import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
-import {PageComponent} from "./page.component";
-import "rxjs/add/operator/toPromise";
-import {By} from "@angular/platform-browser";
-import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {RouterTestingModule} from "@angular/router/testing";
+import {PageComponent} from './page.component';
+import 'rxjs/add/operator/toPromise';
+import {By} from '@angular/platform-browser';
+import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {RouterTestingModule} from '@angular/router/testing';
 import {Pipe, PipeTransform} from '@angular/core';
-import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 
 describe('PageComponent', () => {
     let component: PageComponent;
@@ -17,13 +17,13 @@ describe('PageComponent', () => {
     let injector: TestBed;
     let router: Router;
 
-    let expectedPage = {
+    const expectedPage = {
         title: 'test data!',
         content: 'test data!',
         coverImage: null,
         videoEmbed: null
     };
-    let pageServiceStub = {
+    const pageServiceStub = {
         getPage: () => Observable.of(expectedPage)
     };
 
@@ -39,14 +39,6 @@ describe('PageComponent', () => {
     }
 
     class MockActivatedRoute {
-        private static paramMapGet(key) {
-            if (key === 'slug') {
-                return testSlug;
-            } else {
-                throw new Error('Unexpected parameter name');
-            }
-        }
-
         public snapshot = {
             paramMap: {get: MockActivatedRoute.paramMapGet}
         };
@@ -54,6 +46,14 @@ describe('PageComponent', () => {
         public paramMap = Observable.of({
             get: MockActivatedRoute.paramMapGet
         });
+
+        private static paramMapGet(key) {
+            if (key === 'slug') {
+                return testSlug;
+            } else {
+                throw new Error('Unexpected parameter name');
+            }
+        }
     }
 
     beforeEach(async(() => {
@@ -101,14 +101,14 @@ describe('PageComponent', () => {
         // then
         fixture.whenStable()
             .then(() => {
-                let pageContent = fixture.debugElement.query(By.css('.page-component .content'));
+                const pageContent = fixture.debugElement.query(By.css('.page-component .content'));
                 expect(pageContent.nativeElement.textContent).toBe(expectedPage.content);
             });
     }));
 
     it('should redirect to the home page if the page data is not found', async(() => {
         // given
-        let injectedPageService = injector.get(WordpressPagesService);
+        const injectedPageService = injector.get(WordpressPagesService);
         injectedPageService.getPage = () => Observable.of(null);
 
         // when

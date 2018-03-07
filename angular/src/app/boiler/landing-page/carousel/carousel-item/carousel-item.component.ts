@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import padStart from "lodash-es/padStart";
+import {Component, Input} from '@angular/core';
+import padStart from 'lodash-es/padStart';
 
 @Component({
     selector: 'app-carousel-item',

@@ -1,7 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import toString from "lodash-es/toString";
-import {FloorAreaUnit, getBasicUnitDisplay} from "./floor-area-unit";
+import {Component, OnInit} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import toString from 'lodash-es/toString';
+import {FloorAreaUnit, getBasicUnitDisplay} from './floor-area-unit';
 
 class FloorAreaUnitOption {
     public readonly basicUnitDisplay: string;

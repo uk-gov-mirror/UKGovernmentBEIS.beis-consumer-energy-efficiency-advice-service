@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {NationalGrantCalculator} from "../../national-grant-calculator";
-import {ResponseData} from "../../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
-import {TenureType} from "../../../../questionnaire/questions/tenure-type-question/tenure-type";
-import {EpcRating} from "../../../../shared/postcode-epc-service/model/epc-rating";
-import {Observable} from "rxjs/Observable";
-import {EnergyCalculationApiService} from "../../../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {RdSapInput} from "../../../../shared/energy-calculation-api-service/request/rdsap-input";
+import {Injectable} from '@angular/core';
+import {NationalGrantCalculator} from '../../national-grant-calculator';
+import {ResponseData} from '../../../../shared/response-data/response-data';
+import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
+import {TenureType} from '../../../../questionnaire/questions/tenure-type-question/tenure-type';
+import {EpcRating} from '../../../../shared/postcode-epc-service/model/epc-rating';
+import {Observable} from 'rxjs/Observable';
+import {EnergyCalculationApiService} from '../../../../shared/energy-calculation-api-service/energy-calculation-api-service';
+import {RdSapInput} from '../../../../shared/energy-calculation-api-service/request/rdsap-input';
 
 @Injectable()
 export class EcoHhcroSocialEfg extends NationalGrantCalculator {
@@ -26,11 +26,13 @@ export class EcoHhcroSocialEfg extends NationalGrantCalculator {
         if (!isSocialTenant) {
             return Observable.of(GrantEligibility.Ineligible);
         }
-        const epcRating: Observable<EpcRating> = (responseData.epc && responseData.epc.currentEnergyRating) ?
+        const epcRatingObservable: Observable<EpcRating> = (responseData.epc && responseData.epc.currentEnergyRating) ?
             Observable.of(responseData.epc.currentEnergyRating) :
             this.getEstimatedEpc(responseData);
-        const isApplicableEpcRating = epcRating.map(epcRating => EcoHhcroSocialEfg.APPLICABLE_EPC_RATINGS.indexOf(epcRating) > -1);
-        return isApplicableEpcRating.map(isApplicableEpcRating => isApplicableEpcRating ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
+        const isApplicableEpcRatingObservable = epcRatingObservable.map(
+            epcRating => EcoHhcroSocialEfg.APPLICABLE_EPC_RATINGS.indexOf(epcRating) > -1);
+        return isApplicableEpcRatingObservable.map(
+            isApplicableEpcRating => isApplicableEpcRating ? GrantEligibility.LikelyEligible : GrantEligibility.Ineligible);
     }
 
     private getEstimatedEpc(responseData: ResponseData): Observable<EpcRating> {

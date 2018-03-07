@@ -1,14 +1,14 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import "rxjs/add/operator/toPromise";
-import {HttpRequest} from "@angular/common/http";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import 'rxjs/add/operator/toPromise';
+import {HttpRequest} from '@angular/common/http';
 
-import {EpcApiService} from "./epc-api.service";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
-import {JsonApiResponse} from "../../epc-api-service/model/response/json-api-response";
-import {Epc} from "../model/epc";
-import {EpcResponse} from "../model/response/epc-response";
-import {EpcRecommendation} from "../../epc-api-service/model/response/epc-recommendation";
+import {EpcApiService} from './epc-api.service';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
+import {JsonApiResponse} from '../../epc-api-service/model/response/json-api-response';
+import {Epc} from '../model/epc';
+import {EpcResponse} from '../model/response/epc-response';
+import {EpcRecommendation} from '../../epc-api-service/model/response/epc-recommendation';
 
 describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
@@ -46,7 +46,7 @@ describe('EpcApiService', () => {
 
             // when
             const actualResponse = service.getEpcsForPostcode(postcode).toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
+            const request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(expectedResponse);
 
             // then
@@ -62,12 +62,12 @@ describe('EpcApiService', () => {
 
             // when
             const actualResponse = service.getEpcsForPostcode(postcode).toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
+            const request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(dummyEpcsResponse);
 
             // then
             actualResponse.then(epcs => {
-                const epc = epcs.find(epc => epc.address === 'Apartment 1, 1 Test Street');
+                const epc = epcs.find(epcResponse => epcResponse.address === 'Apartment 1, 1 Test Street');
                 expect(epc.epcDate).toEqual(new Date('2017-01-01'));
             });
         }));
@@ -90,7 +90,7 @@ describe('EpcApiService', () => {
 
             // when
             const actualResponse = service.getRecommendationsForLmkKey(lmkKey).toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
+            const request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(dummyEpcRecommendationsResponse);
 
             // then

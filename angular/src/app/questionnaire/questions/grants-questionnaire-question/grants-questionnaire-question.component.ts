@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component} from "@angular/core";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component} from '@angular/core';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-grants-questionnaire-question',

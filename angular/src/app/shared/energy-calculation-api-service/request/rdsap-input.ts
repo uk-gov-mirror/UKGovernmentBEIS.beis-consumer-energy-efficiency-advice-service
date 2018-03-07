@@ -1,19 +1,19 @@
-import {PropertyType} from "./property-type";
-import {BuiltForm} from "./built-form";
-import {FlatLevel} from "./flat-level";
-import {ResponseData} from "../../response-data/response-data";
-import {HomeType, isDetached} from "../../../questionnaire/questions/home-type-question/home-type";
-import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
-import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
-import toString from "lodash-es/toString";
-import {Epc} from "../../postcode-epc-service/model/epc";
-import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
-import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
-import {getNumberOfExposedWallsInFlat} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
-import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
-import { TenureType } from "../../../questionnaire/questions/tenure-type-question/tenure-type";
-import includes from "lodash-es/includes";
+import {PropertyType} from './property-type';
+import {BuiltForm} from './built-form';
+import {FlatLevel} from './flat-level';
+import {ResponseData} from '../../response-data/response-data';
+import {HomeType, isDetached} from '../../../questionnaire/questions/home-type-question/home-type';
+import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
+import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
+import toString from 'lodash-es/toString';
+import {Epc} from '../../postcode-epc-service/model/epc';
+import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
+import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
+import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
+import {getNumberOfExposedWallsInFlat} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
+import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
+import { TenureType } from '../../../questionnaire/questions/tenure-type-question/tenure-type';
+import includes from 'lodash-es/includes';
 
 
 export class RdSapInput {
@@ -84,7 +84,7 @@ export class RdSapInput {
     }
 
     public isMinimalDataSet() {
-        let requiredProperties = [
+        const requiredProperties = [
             this.property_type,
             this.built_form,
             this.construction_date,
@@ -160,7 +160,7 @@ export class RdSapInput {
             return null;
         }
 
-        const lowestFloorLevel:FloorLevel = floorLevels.sort()[0];
+        const lowestFloorLevel: FloorLevel = floorLevels.sort()[0];
         switch (lowestFloorLevel) {
             case FloorLevel.Basement: {
                 return FlatLevel.Basement;
@@ -181,7 +181,7 @@ export class RdSapInput {
         if (!floorLevels) {
             return null;
         }
-        
+
         return includes(floorLevels, FloorLevel.TopFloor) ? 'Y' : 'N';
     }
 

@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
+import {Component} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 
 @Component({
     selector: 'app-boiler-type-question',
@@ -10,7 +10,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/qu
 export class BoilerTypeQuestionComponent extends QuestionBaseComponent {
     get responseForAnalytics(): string {
         return this.response ? 'Condensing' : 'Non-condensing';
-    };
+    }
 
     get response(): boolean {
         return this.responseData.condensingBoiler;

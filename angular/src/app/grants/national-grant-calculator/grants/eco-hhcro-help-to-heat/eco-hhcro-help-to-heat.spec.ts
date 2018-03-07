@@ -1,47 +1,47 @@
-import {TestBed, async} from "@angular/core/testing";
-import {Observable} from "rxjs/Observable";
-import {ResponseData} from "../../../../shared/response-data/response-data";
-import {IncomeThresholds} from "./income-threshold-service/income-thresholds";
-import {EcoHhcroHelpToHeat} from "./eco-hhcro-help-to-heat";
-import {IncomeThresholdService} from "./income-threshold-service/income-threshold.service";
-import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
-import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
+import {TestBed, async} from '@angular/core/testing';
+import {Observable} from 'rxjs/Observable';
+import {ResponseData} from '../../../../shared/response-data/response-data';
+import {IncomeThresholds} from './income-threshold-service/income-thresholds';
+import {EcoHhcroHelpToHeat} from './eco-hhcro-help-to-heat';
+import {IncomeThresholdService} from './income-threshold-service/income-threshold.service';
+import {Benefits} from '../../../../questionnaire/questions/benefits-question/benefits';
+import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
 
 describe('EcoHhcroHelpToHeat', () => {
     let responseData: ResponseData;
     let grantCalculator: EcoHhcroHelpToHeat;
 
     const incomeThresholds: IncomeThresholds = {
-        "tax-credits": {
-            "singleClaim": {
-                "zeroChildren": 13200,
-                "oneChild": 17400,
-                "twoChildren": 21600,
-                "threeChildren": 25800,
-                "fourPlusChildren": 30000
+        'tax-credits': {
+            'singleClaim': {
+                'zeroChildren': 13200,
+                'oneChild': 17400,
+                'twoChildren': 21600,
+                'threeChildren': 25800,
+                'fourPlusChildren': 30000
             },
-            "jointClaim": {
-                "zeroChildren": 19800,
-                "oneChild": 24000,
-                "twoChildren": 28200,
-                "threeChildren": 32400,
-                "fourPlusChildren": 36600
+            'jointClaim': {
+                'zeroChildren': 19800,
+                'oneChild': 24000,
+                'twoChildren': 28200,
+                'threeChildren': 32400,
+                'fourPlusChildren': 36600
             }
         },
-        "universal-credit": {
-            "singleClaim": {
-                "zeroChildren": 1100,
-                "oneChild": 1450,
-                "twoChildren": 1800,
-                "threeChildren": 2150,
-                "fourPlusChildren": 2500
+        'universal-credit': {
+            'singleClaim': {
+                'zeroChildren': 1100,
+                'oneChild': 1450,
+                'twoChildren': 1800,
+                'threeChildren': 2150,
+                'fourPlusChildren': 2500
             },
-            "jointClaim": {
-                "zeroChildren": 1650,
-                "oneChild": 2000,
-                "twoChildren": 2350,
-                "threeChildren": 2700,
-                "fourPlusChildren": 3050
+            'jointClaim': {
+                'zeroChildren': 1650,
+                'oneChild': 2000,
+                'twoChildren': 2350,
+                'threeChildren': 2700,
+                'fourPlusChildren': 3050
             }
         }
     };

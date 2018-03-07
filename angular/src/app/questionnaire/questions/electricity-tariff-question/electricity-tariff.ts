@@ -1,5 +1,5 @@
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import includes from "lodash-es/includes";
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import includes from 'lodash-es/includes';
 
 export enum ElectricityTariff {
     Standard,

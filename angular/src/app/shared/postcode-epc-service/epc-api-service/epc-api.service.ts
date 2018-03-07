@@ -1,23 +1,23 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {EpcParserService} from "./epc-parser.service";
-import groupBy from "lodash-es/groupBy";
-import keys from "lodash-es/keys";
-import orderBy from "lodash-es/orderBy";
-import head from "lodash-es/head";
-import {Epc} from "../model/epc";
-import {EpcRecommendation} from "../../epc-api-service/model/response/epc-recommendation";
-import {WordpressApiService} from "../../wordpress-api-service/wordpress-api-service";
-import {JsonApiResponse} from "../../epc-api-service/model/response/json-api-response";
-import {EpcResponse} from "../model/response/epc-response";
-import {EpcRecommendationResponse} from "../../epc-api-service/model/response/epc-recommendation-response";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {EpcParserService} from './epc-parser.service';
+import groupBy from 'lodash-es/groupBy';
+import keys from 'lodash-es/keys';
+import orderBy from 'lodash-es/orderBy';
+import head from 'lodash-es/head';
+import {Epc} from '../model/epc';
+import {EpcRecommendation} from '../../epc-api-service/model/response/epc-recommendation';
+import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
+import {JsonApiResponse} from '../../epc-api-service/model/response/json-api-response';
+import {EpcResponse} from '../model/response/epc-response';
+import {EpcRecommendationResponse} from '../../epc-api-service/model/response/epc-recommendation-response';
 
 @Injectable()
 export class EpcApiService {
+    static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
     private static readonly epcSearchEndpoint = 'angular-theme/v1/epc';
     private static readonly recommendationEndpoint = 'angular-theme/v1/epc-recommendations';
-    static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
 
     private epcs: {[postcode: string]: Observable<Epc[]>} = {};
     private recommendations: {[lmkKey: string]: Observable<EpcRecommendation[]>} = {};
@@ -45,7 +45,8 @@ export class EpcApiService {
             const params = new HttpParams().set('lmkKey', lmkKey);
             this.recommendations[lmkKey] = this.http
                 .get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.recommendationEndpoint), {params: params})
-                .map((result: JsonApiResponse<EpcRecommendationResponse>) => result.rows.map(recResponse => new EpcRecommendation(recResponse)))
+                .map((result: JsonApiResponse<EpcRecommendationResponse>) =>
+                    result.rows.map(recResponse => new EpcRecommendation(recResponse)))
                 .shareReplay(1);
         }
         return this.recommendations[lmkKey];
@@ -56,7 +57,7 @@ export class EpcApiService {
         return keys(epcsByAddress)
             .map(address => {
                 const allEpcsForPostcodeSortedByDate = orderBy(epcsByAddress[address], ['epcDate'], ['desc']);
-                return head(allEpcsForPostcodeSortedByDate)
+                return head(allEpcsForPostcodeSortedByDate);
             });
     }
 }

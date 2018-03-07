@@ -1,5 +1,6 @@
-import {RecommendationTagJsonName} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {RecommendationStepResponse} from "./recommendation-step-response";
+import {RecommendationTagJsonName} from
+    '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {RecommendationStepResponse} from './recommendation-step-response';
 
 export interface MeasureContent {
     acf: {
@@ -10,5 +11,5 @@ export interface MeasureContent {
         advantages: {advantage: string}[];
         tags: RecommendationTagJsonName[],
         steps: RecommendationStepResponse[]
-    }
+    };
 }

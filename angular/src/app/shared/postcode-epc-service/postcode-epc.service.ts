@@ -1,14 +1,14 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/catch";
-import "rxjs/add/observable/of";
-import "rxjs/add/observable/throw";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 
-import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
-import {FeatureFlagService} from "../feature-flag/feature-flag.service";
-import {PostcodeErrorResponse} from "./model/response/postcode-error-response";
-import {PostcodeDetails} from "./model/postcode-details";
-import {EpcApiService} from "./epc-api-service/epc-api.service";
+import {PostcodeApiService} from './postcode-api-service/postcode-api.service';
+import {FeatureFlagService} from '../feature-flag/feature-flag.service';
+import {PostcodeErrorResponse} from './model/response/postcode-error-response';
+import {PostcodeDetails} from './model/postcode-details';
+import {EpcApiService} from './epc-api-service/epc-api.service';
 
 @Injectable()
 export class PostcodeEpcService {
@@ -18,7 +18,11 @@ export class PostcodeEpcService {
 
     constructor(private epcApiService: EpcApiService,
                 private postcodeApiService: PostcodeApiService,
-                private featureFlagService: FeatureFlagService,) {
+                private featureFlagService: FeatureFlagService, ) {
+    }
+
+    static isValidPostcode(postcode: string) {
+        return PostcodeEpcService.POSTCODE_REGEXP.test(postcode);
     }
 
     fetchPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
@@ -28,10 +32,6 @@ export class PostcodeEpcService {
         return this.featureFlagService.fetchFeatureFlags()
             .switchMap(flags => flags.fetch_epc_data ? this.fetchEpcsForPostcode(postcode) : this.fetchBasicPostcodeDetails(postcode))
             .catch(() => this.fetchBasicPostcodeDetails(postcode));
-    }
-
-    static isValidPostcode(postcode: string) {
-        return PostcodeEpcService.POSTCODE_REGEXP.test(postcode);
     }
 
     private fetchEpcsForPostcode(postcode: string): Observable<PostcodeDetails> {
@@ -47,7 +47,7 @@ export class PostcodeEpcService {
                         postcode: postcode,
                         allEpcsForPostcode: [],
                         localAuthorityCode: postcodeResponse.result.codes.admin_district
-                    }
+                    };
                 })
             .catch((postcodeApiError) =>
                     PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));

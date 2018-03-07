@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {GrantCardComponent} from "./grant-card.component";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {Grant} from "../../grants/model/grant";
+import {GrantCardComponent} from './grant-card.component';
+import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
+import {Grant} from '../../grants/model/grant';
 
 describe('GrantCardComponent', () => {
     let component: GrantCardComponent;

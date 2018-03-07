@@ -1,8 +1,8 @@
-import {Component} from "@angular/core";
-import sumBy from "lodash-es/sumBy";
-import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
-import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
-import {RoundingService} from "../../shared/rounding-service/rounding.service";
+import {Component} from '@angular/core';
+import sumBy from 'lodash-es/sumBy';
+import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
+import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
+import {RoundingService} from '../../shared/rounding-service/rounding.service';
 
 @Component({
     selector: 'app-your-plan-summary',

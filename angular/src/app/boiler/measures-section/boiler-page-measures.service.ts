@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import * as parse from "url-parse";
-import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
-import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {MeasureContent} from "../../shared/energy-saving-measure-content-service/measure-content";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import * as parse from 'url-parse';
+import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
+import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
+import {MeasureContent} from '../../shared/energy-saving-measure-content-service/measure-content';
 
 
 @Injectable()
@@ -52,19 +52,6 @@ export class BoilerPageMeasuresService {
     constructor(private measuresService: EnergySavingMeasureContentService) {
     }
 
-    private static combinedMeasure(partialMeasure: EnergySavingRecommendation, measureContent: MeasureContent) {
-        if (measureContent !== undefined) {
-            return {
-                ...partialMeasure,
-                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
-                headline: measureContent.acf.headline,
-                summary: measureContent.acf.summary,
-            };
-        } else {
-            return partialMeasure;
-        }
-    }
-
     fetchMeasuresForBoilerPages(): Observable<EnergySavingRecommendation[]> {
         return this.measuresService.fetchMeasureDetails().map(measures =>
             BoilerPageMeasuresService.partialMeasuresToShowOnBoilerPages.map(measureAndCode => {
@@ -76,5 +63,18 @@ export class BoilerPageMeasuresService {
                 }
             })
         ).shareReplay(1);
+    }
+
+    private static combinedMeasure(partialMeasure: EnergySavingRecommendation, measureContent: MeasureContent) {
+        if (measureContent !== undefined) {
+            return {
+                ...partialMeasure,
+                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
+                headline: measureContent.acf.headline,
+                summary: measureContent.acf.summary,
+            };
+        } else {
+            return partialMeasure;
+        }
     }
 }

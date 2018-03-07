@@ -1,5 +1,5 @@
-import {WordpressPage} from "./wordpress-page";
-import {WordpressPageResponse} from "./wordpress-page-response";
+import {WordpressPage} from './wordpress-page';
+import {WordpressPageResponse} from './wordpress-page-response';
 
 export class ExtendedWordpressPage extends WordpressPage {
     content: string;

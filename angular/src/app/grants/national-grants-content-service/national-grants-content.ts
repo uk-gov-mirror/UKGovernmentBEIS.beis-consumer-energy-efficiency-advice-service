@@ -1,4 +1,4 @@
-import {RecommendationStepResponse} from "../../shared/energy-saving-measure-content-service/recommendation-step-response";
+import {RecommendationStepResponse} from '../../shared/energy-saving-measure-content-service/recommendation-step-response';
 
 export interface NationalGrantContent {
     slug: string;

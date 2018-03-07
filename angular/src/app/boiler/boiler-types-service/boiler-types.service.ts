@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
-import {BoilerType} from "./boiler-type";
-import {BoilerTypeMetadataResponse} from "./boiler-type-metadata-response";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
+import {BoilerType} from './boiler-type';
+import {BoilerTypeMetadataResponse} from './boiler-type-metadata-response';
 
 @Injectable()
 export class BoilerTypesService {

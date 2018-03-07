@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import toString from "lodash-es/toString";
+import {Component, OnInit} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import toString from 'lodash-es/toString';
 
 @Component({
     selector: 'app-tumble-dry-question',
@@ -8,7 +8,7 @@ import toString from "lodash-es/toString";
     styleUrls: ['./tumble-dry-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class TumbleDryQuestionComponent extends QuestionBaseComponent {
+export class TumbleDryQuestionComponent extends QuestionBaseComponent implements OnInit {
     isInvalid: boolean;
     tumbleDryPercentageDisplay: number;
     textBoxFocused: boolean;

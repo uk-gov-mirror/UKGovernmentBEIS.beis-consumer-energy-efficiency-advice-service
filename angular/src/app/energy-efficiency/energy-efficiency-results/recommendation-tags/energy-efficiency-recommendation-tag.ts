@@ -1,5 +1,5 @@
-import values from "lodash-es/values";
-import {MeasureContent} from "../../../shared/energy-saving-measure-content-service/measure-content";
+import values from 'lodash-es/values';
+import {MeasureContent} from '../../../shared/energy-saving-measure-content-service/measure-content';
 
 export enum EnergyEfficiencyRecommendationTag {
     None = 0,
@@ -45,7 +45,7 @@ export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficie
             .reduce((result, value) => {
                 result |= value;
                 return result;
-            }, EnergyEfficiencyRecommendationTag.None)
+            }, EnergyEfficiencyRecommendationTag.None);
     }
     return tags;
 }

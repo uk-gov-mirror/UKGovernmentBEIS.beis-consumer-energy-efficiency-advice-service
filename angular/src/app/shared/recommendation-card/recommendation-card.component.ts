@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {EnergySavingRecommendation} from "./energy-saving-recommendation";
+import {Component, Input, OnInit} from '@angular/core';
+import {EnergySavingRecommendation} from './energy-saving-recommendation';
 
 @Component({
     selector: 'app-recommendation-card',

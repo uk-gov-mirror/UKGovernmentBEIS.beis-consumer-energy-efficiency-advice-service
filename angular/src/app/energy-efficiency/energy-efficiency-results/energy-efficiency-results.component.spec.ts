@@ -1,45 +1,46 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {DebugElement} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Observable} from "rxjs/Observable";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
-import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
-import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {EnergyEfficiencyResultsComponent} from "./energy-efficiency-results.component";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "../../shared/data-card/data-card.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
-import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
-import {RecommendationFilterControlComponent} from "./recommendation-filter-control/recommendation-filter-control.component";
-import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
-import {BreakEvenComponent} from "./break-even/break-even.component";
-import {YourPlanSummaryComponent} from "../your-plan-summary/your-plan-summary.component";
-import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
-import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
-import {YourPlanFooterComponent} from "./your-plan-footer/your-plan-footer.component";
-import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
-import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
+import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
+import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
+import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
+import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results.component';
+import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
+import {EnergyEfficiencyRecommendationCardComponent} from
+    './energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {NeedHelpComponent} from '../../shared/need-help/need-help.component';
+import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
+import {RecommendationFilterControlComponent} from './recommendation-filter-control/recommendation-filter-control.component';
+import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
+import {BreakEvenComponent} from './break-even/break-even.component';
+import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.component';
+import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
+import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
+import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.component';
+import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
+import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
     let fixture: ComponentFixture<EnergyEfficiencyResultsComponent>;
     const dummyEnergyCalculations = require('assets/test/energy-calculation-response.json');
     let energyCalculationResponse: Observable<EnergyCalculationResponse>;
-    let energyCalculationApiServiceStub = {
+    const energyCalculationApiServiceStub = {
         fetchEnergyCalculation: () => energyCalculationResponse
     };
-    const localAuthorityCode = "E09000033";
-    const localAuthorityName = "Westminster";
+    const localAuthorityCode = 'E09000033';
+    const localAuthorityName = 'Westminster';
 
     let localAuthorityResponse: Observable<LocalAuthority>;
     const localAuthorityServiceStub = {
@@ -237,7 +238,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(
+            By.directive(EnergyEfficiencyRecommendationCardComponent)
+        );
         const expectedNumberOfElements = recommendations.filter(rec => !!rec.grant).length;
         expect(recommendationElements.length).toEqual(expectedNumberOfElements);
     });
@@ -251,7 +254,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
 
         // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(By.directive(EnergyEfficiencyRecommendationCardComponent));
+        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(
+            By.directive(EnergyEfficiencyRecommendationCardComponent)
+        );
         expect(recommendationElements.length).toEqual(3);
     }));
 

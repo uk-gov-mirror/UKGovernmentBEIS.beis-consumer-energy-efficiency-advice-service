@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 
 @Injectable()
 export class YourPlanPageGuard implements CanActivate {

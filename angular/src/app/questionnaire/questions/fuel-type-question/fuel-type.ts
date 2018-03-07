@@ -1,5 +1,5 @@
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import includes from "lodash-es/includes";
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import includes from 'lodash-es/includes';
 
 export enum FuelType {
     Electricity = 29,
@@ -20,7 +20,7 @@ export function isElectric(fuelType: FuelType) {
 }
 
 export function getFuelTypeDescription(fuelType: FuelType): string {
-    switch(fuelType) {
+    switch (fuelType) {
         case FuelType.Electricity:  { return 'electricity'; }
         case FuelType.MainsGas:     { return 'mains gas'; }
         case FuelType.LPGGas:       { return 'LPG gas'; }

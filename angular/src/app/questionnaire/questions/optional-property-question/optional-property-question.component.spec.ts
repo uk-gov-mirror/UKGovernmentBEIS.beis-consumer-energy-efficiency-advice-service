@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {By} from "@angular/platform-browser";
-import {OptionalPropertyQuestionComponent} from "./optional-property-question.component";
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {By} from '@angular/platform-browser';
+import {OptionalPropertyQuestionComponent} from './optional-property-question.component';
 
 describe('OptionalPropertyQuestionComponent', () => {
     let component: OptionalPropertyQuestionComponent;
@@ -31,7 +31,7 @@ describe('OptionalPropertyQuestionComponent', () => {
         // given
         responseData.shouldIncludeOptionalPropertyQuestions = true;
 
-        //when
+        // when
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {

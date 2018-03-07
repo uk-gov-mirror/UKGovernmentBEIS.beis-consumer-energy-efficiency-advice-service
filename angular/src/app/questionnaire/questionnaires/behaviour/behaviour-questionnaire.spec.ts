@@ -1,12 +1,13 @@
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
-import {BehaviourQuestionnaire} from "./behaviour-questionnaire";
-import {ShowersAndBathsQuestionMetadata} from "../../questions/showers-and-baths-question/showers-and-baths-question-metadata";
-import {ShowerTypeQuestionMetadata} from "../../questions/shower-type-question/shower-type-question-metadata";
-import {FridgeFreezerQuestionMetadata} from "../../questions/fridge-freezer-question/fridge-freezer-question-metadata";
-import {OccupantsQuestionMetadata} from "../../questions/occupants-question/occupants-question-metadata";
-import {LivingRoomTemperatureQuestionMetadata} from "../../questions/living-room-temperature-question/living-room-temperature-question-metadata";
-import {TumbleDryQuestionMetadata} from "../../questions/tumble-dry-question/tumble-dry-question-metadata";
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
+import {BehaviourQuestionnaire} from './behaviour-questionnaire';
+import {ShowersAndBathsQuestionMetadata} from '../../questions/showers-and-baths-question/showers-and-baths-question-metadata';
+import {ShowerTypeQuestionMetadata} from '../../questions/shower-type-question/shower-type-question-metadata';
+import {FridgeFreezerQuestionMetadata} from '../../questions/fridge-freezer-question/fridge-freezer-question-metadata';
+import {OccupantsQuestionMetadata} from '../../questions/occupants-question/occupants-question-metadata';
+import {LivingRoomTemperatureQuestionMetadata} from
+    '../../questions/living-room-temperature-question/living-room-temperature-question-metadata';
+import {TumbleDryQuestionMetadata} from '../../questions/tumble-dry-question/tumble-dry-question-metadata';
 
 describe('BehaviourQuestionnaire', () => {
 

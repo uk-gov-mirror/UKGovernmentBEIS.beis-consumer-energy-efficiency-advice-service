@@ -1,5 +1,5 @@
-import {TestBed, ComponentFixture, async} from "@angular/core/testing";
-import {StickyRowWrapperComponent} from "./sticky-row-wrapper.component";
+import {TestBed, ComponentFixture, async} from '@angular/core/testing';
+import {StickyRowWrapperComponent} from './sticky-row-wrapper.component';
 
 describe('StickyRowWrapperComponent', () => {
     let fixture: ComponentFixture<StickyRowWrapperComponent>;

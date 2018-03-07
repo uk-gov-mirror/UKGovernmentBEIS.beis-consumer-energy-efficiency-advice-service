@@ -1,5 +1,5 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-occupants-question',

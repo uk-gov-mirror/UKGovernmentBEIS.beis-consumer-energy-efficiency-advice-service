@@ -11,5 +11,5 @@ export interface IncomeThresholdResponse {
         joint_claim_two_children: string;
         joint_claim_three_children: string;
         joint_claim_four_plus_children: string;
-    }
+    };
 }

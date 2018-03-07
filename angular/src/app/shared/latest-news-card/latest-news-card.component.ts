@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {WordpressPage} from "../wordpress-pages-service/wordpress-page";
+import {Component, Input} from '@angular/core';
+import {WordpressPage} from '../wordpress-pages-service/wordpress-page';
 
 @Component({
     selector: 'app-latest-news-card',

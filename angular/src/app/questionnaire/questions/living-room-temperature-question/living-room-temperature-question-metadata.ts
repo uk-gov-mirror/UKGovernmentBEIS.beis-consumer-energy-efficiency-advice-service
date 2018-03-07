@@ -1,7 +1,7 @@
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {LivingRoomTemperatureQuestionComponent} from "./living-room-temperature-question.component";
-import {QuestionType} from "../question-type";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {LivingRoomTemperatureQuestionComponent} from './living-room-temperature-question.component';
+import {QuestionType} from '../question-type';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 export class LivingRoomTemperatureQuestionMetadata extends QuestionMetadata {
     constructor() {

@@ -1,12 +1,12 @@
-import {Component} from "@angular/core";
-import {Observable} from "rxjs/Observable";
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
-import {ResponseData} from "../../shared/response-data/response-data";
-import {UserJourneyType} from "../../shared/response-data/user-journey-type";
-import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
+import {ResponseData} from '../../shared/response-data/response-data';
+import {UserJourneyType} from '../../shared/response-data/user-journey-type';
+import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../../shared/postcode-epc-service/model/postcode-details';
+import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
+import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 
 @Component({
     selector: 'app-grants-landing-page',
@@ -37,7 +37,15 @@ export class GrantsLandingPageComponent {
             .subscribe(
                 postcodeDetails => this.postcodeSearchCompleted(postcodeDetails),
                 err => this.handlePostcodeSearchError(err)
-            )
+            );
+    }
+
+    setJourneyTypeToBoiler(): void {
+        this.responseData.userJourneyType = UserJourneyType.Boiler;
+    }
+
+    setJourneyTypeToHomeImprovements(): void {
+        this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
     }
 
     private postcodeSearchCompleted(postcodeDetails: PostcodeDetails) {
@@ -52,7 +60,7 @@ export class GrantsLandingPageComponent {
             .subscribe(
                 response => this.handleLocalAuthorityResponse(response),
                 err => this.handleLocalAuthorityServiceError(err),
-            )
+            );
     }
 
     private handleLocalAuthorityResponse(localAuthority: LocalAuthority): void {
@@ -73,13 +81,5 @@ export class GrantsLandingPageComponent {
             this.isError = true;
             console.error(err);
         }
-    }
-
-    setJourneyTypeToBoiler(): void {
-        this.responseData.userJourneyType = UserJourneyType.Boiler;
-    }
-
-    setJourneyTypeToHomeImprovements(): void {
-        this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
     }
 }

@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Questionnaire} from "./base-questionnaire/questionnaire";
-import {ResponseData} from "../shared/response-data/response-data";
-import {HomeBasicsQuestionnaire} from "./questionnaires/home-basics/home-basics-questionnaire";
-import {BehaviourQuestionnaire} from "./questionnaires/behaviour/behaviour-questionnaire";
-import {GrantsQuestionnaire} from "./questionnaires/grants/grants-questionnaire";
-import {BoilerQuestionnaire} from "./questionnaires/boiler/boiler-questionnaire";
+import {Injectable} from '@angular/core';
+import {Questionnaire} from './base-questionnaire/questionnaire';
+import {ResponseData} from '../shared/response-data/response-data';
+import {HomeBasicsQuestionnaire} from './questionnaires/home-basics/home-basics-questionnaire';
+import {BehaviourQuestionnaire} from './questionnaires/behaviour/behaviour-questionnaire';
+import {GrantsQuestionnaire} from './questionnaires/grants/grants-questionnaire';
+import {BoilerQuestionnaire} from './questionnaires/boiler/boiler-questionnaire';
 
 type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 

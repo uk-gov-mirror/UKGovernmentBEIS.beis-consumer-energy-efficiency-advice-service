@@ -1,13 +1,13 @@
-import {ComponentFixture, TestBed, async} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {DataCardComponent} from "./data-card.component";
+import {ComponentFixture, TestBed, async} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DataCardComponent} from './data-card.component';
 
 describe('DataCardComponent', () => {
     let component: DataCardComponent;
     let fixture: ComponentFixture<DataCardComponent>;
 
     const heading = 'test heading';
-    const value = "£123";
+    const value = '£123';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
-import toString from "lodash-es/toString";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
+import toString from 'lodash-es/toString';
 
 @Component({
     selector: 'app-bedrooms-question',
@@ -10,7 +10,7 @@ import toString from "lodash-es/toString";
 export class BedroomsQuestionComponent extends QuestionBaseComponent implements OnInit {
     get responseForAnalytics(): string {
         return toString(this.response);
-    };
+    }
 
     ngOnInit() {
         this.response = this.response || 1;

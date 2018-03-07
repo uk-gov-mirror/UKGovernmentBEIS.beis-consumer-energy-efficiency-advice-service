@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RecommendationFilterControlComponent} from "./recommendation-filter-control.component";
-import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import keys from "lodash-es/keys";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RecommendationFilterControlComponent} from './recommendation-filter-control.component';
+import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-efficiency-recommendation-tag';
+import keys from 'lodash-es/keys';
 
 describe('RecommendationFilterControlComponent', () => {
     let component: RecommendationFilterControlComponent;

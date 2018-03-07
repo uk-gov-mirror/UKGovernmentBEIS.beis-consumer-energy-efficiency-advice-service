@@ -1,24 +1,11 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
-import {MeasureContent} from "./measure-content";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
+import {MeasureContent} from './measure-content';
 
 @Injectable()
 export class EnergySavingMeasureContentService {
-    private static readonly measuresEndpoint = 'acf/v3/measure?per_page=1000';
-    private measures: Observable<MeasureContent[]>;
-
-    constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
-    }
-
-    fetchMeasureDetails(): Observable<MeasureContent[]> {
-        if (!this.measures) {
-            this.measures = this.http.get(this.wordpressApiService.getFullApiEndpoint(EnergySavingMeasureContentService.measuresEndpoint))
-                .shareReplay(1);
-        }
-        return this.measures;
-    }
 
     public static FALLBACK_MEASURE_ICON: string = 'icons/green.svg';
 
@@ -68,4 +55,18 @@ export class EnergySavingMeasureContentService {
         'baths_to_showers':     'icons/shower.svg',
         'one_degree_reduction': 'icons/thermostat.svg'
     };
+    private static readonly measuresEndpoint = 'acf/v3/measure?per_page=1000';
+    private measures: Observable<MeasureContent[]>;
+
+    constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
+    }
+
+    fetchMeasureDetails(): Observable<MeasureContent[]> {
+        if (!this.measures) {
+            this.measures = this.http.get<MeasureContent[]>(
+                this.wordpressApiService.getFullApiEndpoint(EnergySavingMeasureContentService.measuresEndpoint))
+                .shareReplay(1);
+        }
+        return this.measures;
+    }
 }

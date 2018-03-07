@@ -1,26 +1,26 @@
-import {RdSapInput} from "./rdsap-input";
-import {ResponseData} from "../../response-data/response-data";
-import {UserJourneyType} from "../../response-data/user-journey-type";
-import {HomeType} from "../../../questionnaire/questions/home-type-question/home-type";
-import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
-import {HouseExposedWall,} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
-import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
-import {ShowerType} from "../../../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
-import {Benefits} from "../../../questionnaire/questions/benefits-question/benefits";
-import toString from "lodash-es/toString";
+import {RdSapInput} from './rdsap-input';
+import {ResponseData} from '../../response-data/response-data';
+import {UserJourneyType} from '../../response-data/user-journey-type';
+import {HomeType} from '../../../questionnaire/questions/home-type-question/home-type';
+import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
+import {HouseExposedWall, } from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
+import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
+import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
+import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
+import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
+import toString from 'lodash-es/toString';
 import {
     GlazingType,
     RoofType,
     WallType
-} from "../../../questionnaire/questions/construction-question/construction-types";
-import {WaterTankSpace} from "../../../questionnaire/questions/water-tank-question/water-tank-space";
-import {GardenAccessibility} from "../../../questionnaire/questions/garden-question/garden-accessibility";
-import {RoofSpace} from "../../../questionnaire/questions/roof-space-question/roof-space";
-import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {FlatExposedWall} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
-import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
-import {FlatLevel} from "./flat-level";
+} from '../../../questionnaire/questions/construction-question/construction-types';
+import {WaterTankSpace} from '../../../questionnaire/questions/water-tank-question/water-tank-space';
+import {GardenAccessibility} from '../../../questionnaire/questions/garden-question/garden-accessibility';
+import {RoofSpace} from '../../../questionnaire/questions/roof-space-question/roof-space';
+import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
+import {FlatExposedWall} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
+import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
+import {FlatLevel} from './flat-level';
 
 describe('RdsapInput', () => {
 

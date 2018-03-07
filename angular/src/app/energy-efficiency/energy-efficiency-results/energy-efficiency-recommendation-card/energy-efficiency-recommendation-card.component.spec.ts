@@ -1,17 +1,17 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
-import {EnergyEfficiencyRecommendationCardComponent} from "./energy-efficiency-recommendation-card.component";
-import {DataCardComponent} from "../../../shared/data-card/data-card.component";
-import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
-import {EnergyEfficiencyRecommendationTag} from "../recommendation-tags/energy-efficiency-recommendation-tag";
-import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
-import {BreakEvenComponent} from "../break-even/break-even.component";
-import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
-import {NationalGrantForMeasure} from "../../../grants/model/national-grant-for-measure";
+import {EnergyEfficiencyRecommendationCardComponent} from './energy-efficiency-recommendation-card.component';
+import {DataCardComponent} from '../../../shared/data-card/data-card.component';
+import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
+import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-efficiency-recommendation-tag';
+import {GrantEligibility} from '../../../grants/grant-eligibility-service/grant-eligibility';
+import {BreakEvenComponent} from '../break-even/break-even.component';
+import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
+import {NationalGrantForMeasure} from '../../../grants/model/national-grant-for-measure';
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -31,7 +31,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         investmentPounds: 200,
         lifetimeYears: 40,
         costSavingPoundsPerYear: 100,
-        costSavingPoundsPerMonth: 100/12,
+        costSavingPoundsPerMonth: 100 / 12,
         energySavingKwhPerYear: 100,
         readMoreRoute: ('home-improvements/loft-insulation'),
         iconPath: 'icons/dummy.svg',

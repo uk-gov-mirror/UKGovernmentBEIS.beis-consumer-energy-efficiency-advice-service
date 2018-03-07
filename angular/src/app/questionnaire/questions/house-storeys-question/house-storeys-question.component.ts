@@ -1,7 +1,7 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
-import toString from "lodash-es/toString";
-import {HomeType} from "../home-type-question/home-type";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
+import toString from 'lodash-es/toString';
+import {HomeType} from '../home-type-question/home-type';
 
 @Component({
     selector: 'app-house-storeys-question',

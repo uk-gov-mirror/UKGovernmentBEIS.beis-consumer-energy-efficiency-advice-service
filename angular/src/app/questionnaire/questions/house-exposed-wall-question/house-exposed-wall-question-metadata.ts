@@ -1,8 +1,8 @@
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {HouseExposedWallQuestionComponent} from "./house-exposed-wall-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {QuestionType} from "../question-type";
-import {HomeType, isDetached} from "../home-type-question/home-type";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {QuestionType} from '../question-type';
+import {HomeType, isDetached} from '../home-type-question/home-type';
 
 export class HouseExposedWallQuestionMetadata extends QuestionMetadata {
     constructor() {

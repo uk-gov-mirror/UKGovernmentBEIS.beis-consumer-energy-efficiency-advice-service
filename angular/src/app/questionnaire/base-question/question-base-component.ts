@@ -1,6 +1,6 @@
-import {EventEmitter, HostBinding, Inject, Input, Output} from "@angular/core";
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {ResponseData} from "../../shared/response-data/response-data";
+import {EventEmitter, HostBinding, Inject, Input, Output} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ResponseData} from '../../shared/response-data/response-data';
 
 export type SlideInFrom = 'none' | 'left' | 'right';
 
@@ -39,9 +39,9 @@ export const slideInOutAnimation = trigger('slideInOut', [
 export abstract class QuestionBaseComponent {
     abstract get responseForAnalytics(): string;
 
-    constructor(@Inject(ResponseData) protected responseData: ResponseData) {
-    }
-
     @HostBinding('@slideInOut') @Input() slideInOut: string = 'none';
     @Output() complete: EventEmitter<void> = new EventEmitter<void>();
+
+    constructor(@Inject(ResponseData) protected responseData: ResponseData) {
+    }
 }

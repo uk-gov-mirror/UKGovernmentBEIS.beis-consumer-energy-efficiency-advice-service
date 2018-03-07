@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
-import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {Component} from '@angular/core';
+import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
+import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 
 @Component({
     selector: 'app-your-plan-footer',

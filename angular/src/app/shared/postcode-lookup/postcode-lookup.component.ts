@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {Epc} from "../../shared/postcode-epc-service/model/epc";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {PostcodeEpcService} from "../postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {Epc} from '../../shared/postcode-epc-service/model/epc';
+import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 
 @Component({
     selector: 'app-postcode-lookup',
@@ -60,6 +60,15 @@ export class PostcodeLookupComponent {
         }
     }
 
+    onAddressSelected() {
+        if (this.selectedEpc !== undefined) {
+            this.epc = this.selectedEpc;
+            this.addressSelected.emit(this.epc.lmkKey);
+        } else {
+            this.addressSelected.emit();
+        }
+    }
+
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
         this.localAuthorityCode = postcodeDetails.localAuthorityCode;
         this.postcode = postcodeDetails.postcode;
@@ -84,14 +93,5 @@ export class PostcodeLookupComponent {
     private resetSearchState(): void {
         this.epcs = undefined;
         this.validationError = false;
-    }
-
-    onAddressSelected() {
-        if (this.selectedEpc !== undefined) {
-            this.epc = this.selectedEpc;
-            this.addressSelected.emit(this.epc.lmkKey);
-        } else {
-            this.addressSelected.emit();
-        }
     }
 }

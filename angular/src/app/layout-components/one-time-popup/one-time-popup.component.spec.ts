@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {CookieService} from "ng2-cookies";
-import {OneTimePopupComponent} from "./one-time-popup.component";
-import {PopupComponent} from "../../shared/popup/popup.component";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {CookieService} from 'ng2-cookies';
+import {OneTimePopupComponent} from './one-time-popup.component';
+import {PopupComponent} from '../../shared/popup/popup.component';
 
 describe('OneTimePopupComponent', () => {
   let component: OneTimePopupComponent;

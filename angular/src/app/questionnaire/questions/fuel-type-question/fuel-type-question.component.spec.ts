@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {FuelTypeQuestionComponent} from "./fuel-type-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {FuelType} from "./fuel-type";
+import {FuelTypeQuestionComponent} from './fuel-type-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {FuelType} from './fuel-type';
 
 describe('FuelTypeQuestionComponent', () => {
     let fixture: ComponentFixture<FuelTypeQuestionComponent>;
@@ -30,7 +30,7 @@ describe('FuelTypeQuestionComponent', () => {
 
     it('should set the response when clicking on a fuel type', () => {
         // given
-        let solidFuel = fixture.debugElement.query(By.css('.solid-fuel'));
+        const solidFuel = fixture.debugElement.query(By.css('.solid-fuel'));
 
         // when
         solidFuel.nativeElement.click();
@@ -41,7 +41,7 @@ describe('FuelTypeQuestionComponent', () => {
 
     it('should notify of completion when clicking on a fuel type', () => {
         // given
-        let solidFuel = fixture.debugElement.query(By.css('.solid-fuel'));
+        const solidFuel = fixture.debugElement.query(By.css('.solid-fuel'));
 
         // when
         solidFuel.nativeElement.click();

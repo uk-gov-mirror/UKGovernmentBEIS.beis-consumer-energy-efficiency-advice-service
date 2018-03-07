@@ -1,10 +1,10 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
-import {LocalAuthorityService} from "./local-authority.service";
-import {LocalAuthorityResponse} from "./local-authority-response";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import "rxjs/add/operator/toPromise";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
+import {LocalAuthorityService} from './local-authority.service';
+import {LocalAuthorityResponse} from './local-authority-response';
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import 'rxjs/add/operator/toPromise';
 
 describe('LocalAuthorityService', () => {
     let httpMock: HttpTestingController;
@@ -64,11 +64,11 @@ describe('LocalAuthorityService', () => {
             const firstRequest = service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
-            //when
+            // when
             firstRequest.then(() => {
                 service.fetchLocalAuthorityDetails(localAuthorityCode).toPromise();
 
-                //then
+                // then
                 httpMock.verify();
             });
         }));

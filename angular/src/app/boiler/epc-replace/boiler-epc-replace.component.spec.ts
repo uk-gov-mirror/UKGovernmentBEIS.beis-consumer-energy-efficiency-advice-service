@@ -1,27 +1,27 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Observable} from "rxjs/Observable";
-import {InlineSVGModule} from "ng-inline-svg";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
-import {BoilerEpcReplaceComponent} from "./boiler-epc-replace.component";
-import {BoilerMakeModelLookupComponent} from "../make-model-lookup/boiler-make-model-lookup.component";
-import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
-import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {EpcRecommendation} from "../../shared/epc-api-service/model/response/epc-recommendation";
-import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {EpcApiService} from "../../shared/postcode-epc-service/epc-api-service/epc-api.service";
-import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
-import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
-import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
-import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
-import values from "lodash-es/values";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import {BoilerEpcReplaceComponent} from './boiler-epc-replace.component';
+import {BoilerMakeModelLookupComponent} from '../make-model-lookup/boiler-make-model-lookup.component';
+import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
+import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {EpcRecommendation} from '../../shared/epc-api-service/model/response/epc-recommendation';
+import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {EpcApiService} from '../../shared/postcode-epc-service/epc-api-service/epc-api.service';
+import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
+import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measures-section.component';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
+import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
+import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
+import values from 'lodash-es/values';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -48,7 +48,7 @@ describe('BoilerEpcReplaceComponent', () => {
 
     const dummyEpcRecommendationsResponse = require('assets/test/dummy-epc-recommendations-response.json');
     const epcApiServiceStub = {
-        getRecommendationsForLmkKey: (lmkKey) => Observable.of(dummyEpcRecommendationsResponse.rows.map(rec => new EpcRecommendation(rec)))
+        getRecommendationsForLmkKey: (value) => Observable.of(dummyEpcRecommendationsResponse.rows.map(rec => new EpcRecommendation(rec)))
     };
 
     const boilerPageMeasures = require('assets/test/boiler-page-measures.json');
@@ -141,7 +141,8 @@ describe('BoilerEpcReplaceComponent', () => {
 
     it('should store the boiler types in order of installation cost', () => {
         for (let i = 0; i < component.boilerTypes.length - 1; i++) {
-            expect(+component.boilerTypes[i].installationCostLower).toBeLessThanOrEqual(+component.boilerTypes[i + 1].installationCostLower);
+            expect(+component.boilerTypes[i].installationCostLower)
+                .toBeLessThanOrEqual(+component.boilerTypes[i + 1].installationCostLower);
         }
     });
 

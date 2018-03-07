@@ -1,11 +1,11 @@
-import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/shareReplay";
-import {WordpressApiService} from "../../../../../shared/wordpress-api-service/wordpress-api-service";
-import {IncomeThresholdResponse} from "./income-threshold-response";
-import {IncomeThresholds, incomeThresholdsFromResponses} from "./income-thresholds";
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/shareReplay';
+import {WordpressApiService} from '../../../../../shared/wordpress-api-service/wordpress-api-service';
+import {IncomeThresholdResponse} from './income-threshold-response';
+import {IncomeThresholds, incomeThresholdsFromResponses} from './income-thresholds';
 
 @Injectable()
 export class IncomeThresholdService {

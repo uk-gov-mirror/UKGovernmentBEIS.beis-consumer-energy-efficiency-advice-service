@@ -1,16 +1,16 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import {Observable} from "rxjs/Observable";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import "rxjs/add/operator/toPromise";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {Observable} from 'rxjs/Observable';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import 'rxjs/add/operator/toPromise';
 
-import {PostcodeEpcService} from "./postcode-epc.service";
-import {EpcApiService} from "./epc-api-service/epc-api.service";
-import {PostcodeApiService} from "./postcode-api-service/postcode-api.service";
-import {FeatureFlagService} from "../feature-flag/feature-flag.service";
-import {FeatureFlags} from "../feature-flag/feature-flags";
-import {EpcParserService} from "./epc-api-service/epc-parser.service";
-import {Epc} from "./model/epc";
-import {PostcodeBasicDetailsResponse} from "./model/response/postcode-basic-details-response";
+import {PostcodeEpcService} from './postcode-epc.service';
+import {EpcApiService} from './epc-api-service/epc-api.service';
+import {PostcodeApiService} from './postcode-api-service/postcode-api.service';
+import {FeatureFlagService} from '../feature-flag/feature-flag.service';
+import {FeatureFlags} from '../feature-flag/feature-flags';
+import {EpcParserService} from './epc-api-service/epc-parser.service';
+import {Epc} from './model/epc';
+import {PostcodeBasicDetailsResponse} from './model/response/postcode-basic-details-response';
 
 describe('PostcodeEpcService', () => {
     let injector: TestBed;
@@ -27,13 +27,13 @@ describe('PostcodeEpcService', () => {
     let postcodeBasicDetailsResponse: Observable<PostcodeBasicDetailsResponse>;
     let epcsResponse: Observable<Epc[]>;
 
-    let featureFlagServiceStub = {
+    const featureFlagServiceStub = {
         fetchFeatureFlags: () => featureFlagResponse
     };
-    let epcApiServiceStub = {
+    const epcApiServiceStub = {
         getEpcsForPostcode: () => epcsResponse
     };
-    let postcodeApiServiceStub = {
+    const postcodeApiServiceStub = {
         fetchBasicPostcodeDetails: () => postcodeBasicDetailsResponse
     };
 
@@ -86,10 +86,10 @@ describe('PostcodeEpcService', () => {
 
         it('should return data returned by EPC API', async(() => {
             // when
-            const postcodeDetails = service.fetchPostcodeDetails(postcode);
+            const postcodeDetailsResponse = service.fetchPostcodeDetails(postcode);
 
             // then
-            postcodeDetails.toPromise().then((postcodeDetails) => {
+            postcodeDetailsResponse.toPromise().then((postcodeDetails) => {
                 expect(postcodeDetails.postcode).toEqual(postcode);
                 expect(postcodeDetails.allEpcsForPostcode).toEqual(dummyEpcs);
                 expect(postcodeDetails.localAuthorityCode).toEqual(localAuthorityCode);
@@ -101,9 +101,9 @@ describe('PostcodeEpcService', () => {
             epcsResponse = ErrorObservable.create('test network error');
 
             // when
-            const postcodeDetails = service.fetchPostcodeDetails(postcode);
+            const postcodeDetailsResponse = service.fetchPostcodeDetails(postcode);
 
-            postcodeDetails.toPromise().then((postcodeDetails) => {
+            postcodeDetailsResponse.toPromise().then((postcodeDetails) => {
                 // then
                 expect(postcodeApiServiceStub.fetchBasicPostcodeDetails).toHaveBeenCalledWith(postcode);
                 expect(postcodeDetails.postcode).toEqual(postcode);
@@ -130,9 +130,9 @@ describe('PostcodeEpcService', () => {
             featureFlagResponse = Observable.of({fetch_epc_data: false});
 
             // when
-            const postcodeDetails = service.fetchPostcodeDetails(postcode);
+            const postcodeDetailsResponse = service.fetchPostcodeDetails(postcode);
 
-            postcodeDetails.toPromise().then((postcodeDetails) => {
+            postcodeDetailsResponse.toPromise().then((postcodeDetails) => {
                 // then
                 expect(postcodeApiServiceStub.fetchBasicPostcodeDetails).toHaveBeenCalledWith(postcode);
                 expect(postcodeDetails.postcode).toEqual(postcode);
@@ -159,9 +159,9 @@ describe('PostcodeEpcService', () => {
             featureFlagResponse = ErrorObservable.create('test network error');
 
             // when
-            const postcodeDetails = service.fetchPostcodeDetails(postcode);
+            const postcodeDetailsResponse = service.fetchPostcodeDetails(postcode);
 
-            postcodeDetails.toPromise().then((postcodeDetails) => {
+            postcodeDetailsResponse.toPromise().then((postcodeDetails) => {
                 // then
                 expect(postcodeApiServiceStub.fetchBasicPostcodeDetails).toHaveBeenCalledWith(postcode);
                 expect(postcodeDetails.postcode).toEqual(postcode);
@@ -200,7 +200,7 @@ describe('PostcodeEpcService', () => {
             );
         }));
     });
-    
+
     describe('#isValidPostcode', () => {
         it('should recognise a correct postcode without space as valid', () => {
             expect(PostcodeEpcService.isValidPostcode('SW1H0ET')).toBeTruthy();
