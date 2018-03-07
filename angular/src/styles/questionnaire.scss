@@ -138,11 +138,16 @@ $desktop-multiple-choice-margin: 20px;
       }
     }
 
-    .multiple-choice-options {
+    .answer-grid {
       @include is-grid($margin-compensation: $mobile-multiple-choice-margin);
 
-      .multiple-choice-option {
+      & > * {
         @include is-grid-item($number-of-items: 1, $margin: $mobile-multiple-choice-margin);
+      }
+    }
+
+    .multiple-choice-options {
+      .multiple-choice-option {
         padding: 10px 36px;
       }
     }
@@ -157,11 +162,16 @@ $desktop-multiple-choice-margin: 20px;
       }
     }
 
-    .multiple-choice-options {
+    .answer-grid {
       @include is-grid($margin-compensation: $tablet-multiple-choice-margin);
 
-      .multiple-choice-option {
+      & > * {
         @include is-grid-item($number-of-items: 2, $margin: $tablet-multiple-choice-margin);
+      }
+    }
+
+    .multiple-choice-options {
+      .multiple-choice-option {
         padding: 8px 25px;
       }
     }
@@ -176,15 +186,20 @@ $desktop-multiple-choice-margin: 20px;
       }
     }
 
-    .multiple-choice-options {
+    .answer-grid {
       display: flex;
       flex-wrap: wrap;
       margin: -$desktop-multiple-choice-margin;
 
-      .multiple-choice-option {
+      & > * {
         // This is often overriden on a per question basis
         @include is-grid-item($number-of-items: 1, $margin: $desktop-multiple-choice-margin);
         align-items: stretch;
+      }
+    }
+
+    .multiple-choice-options {
+      .multiple-choice-option {
         padding: 12px 36px;
       }
     }

@@ -1,5 +1,5 @@
 <div class="construction-question question-component">
-    <form class="questionnaire-form" (submit)="complete.emit()">
+    <form class="answer-grid questionnaire-form" (submit)="complete.emit()">
         <div class="insulation-type-input">
             <label id="roof-type-label" class="question">What type of roof insulation?</label>
             <select name="roof-type" class="dropdown-input text-input roof-type" aria-labelledby="roof-type-label" [(ngModel)]="roofType">
