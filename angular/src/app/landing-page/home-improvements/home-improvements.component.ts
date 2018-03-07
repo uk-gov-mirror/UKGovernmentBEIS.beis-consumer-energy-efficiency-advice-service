@@ -33,9 +33,27 @@ export class HomeImprovementsComponent {
     ];
 
     video: Video = {
-        title: 'Loft conversions: What you should know',
-        synopsis: 'Loft insulation is well worth considering because if there is little or no \
-            existing insulation considerable savings can be made.'
+        title: 'Draught-proofing',
+        synopsis: `
+            A guided tour round a typical home, showing where draughts are likely to be, including:
+            <ul>
+                <li>
+                    Around doors and windows
+                </li>
+                <li>
+                    Letterboxes and keyholes
+                </li>
+                <li>
+                    Around the floor edge
+                </li>
+                <li>
+                    Loft hatch
+                </li>
+                <li>
+                    Gaps around pipes etc.
+                </li>
+            </ul>
+        The video will also cover ventilation that should not be sealed.`
     };
 
     articles: Article[] = [
