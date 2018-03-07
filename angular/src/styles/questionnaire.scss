@@ -1,16 +1,19 @@
 @import 'mixins/font';
+@import "mixins/layout";
 @import "var/colors";
 @import "styles/page";
 
+// Variables
+$mobile-multiple-choice-margin: 15px;
+$tablet-multiple-choice-margin: 20px;
+$desktop-multiple-choice-margin: 20px;
+
+// Mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .questions-container {
 
   .question {
-    & > * {
-      display: flex;
-      justify-content: center;
-      flex: 1 0 100vw;
-    }
-
     .question-component {
 
       .questionnaire-form {
@@ -63,17 +66,9 @@
 
         .multiple-choice-option {
           @include capsule-button;
-
+          @include question-button-font;
           background-color: white;
-          color: $dark-grey;
-
-          font-size: 20px;
-          line-height: 24px;
-          font-weight: bold;
-
-          padding: 12px 36px;
           box-sizing: border-box;
-
           outline: none;
 
           &:hover, &:focus {
@@ -126,6 +121,75 @@
           font-size: 24px;
           font-weight: bold;
           margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.questions-container {
+  @include mobile() {
+    .question {
+      & > * {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100%;
+
+        .question-component {
+          .multiple-choice-options {
+            @include is-grid($margin-compensation: $mobile-multiple-choice-margin);
+
+            .multiple-choice-option {
+              @include is-grid-item($number-of-items: 1, $margin: $mobile-multiple-choice-margin);
+              padding: 10px 36px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    .question {
+      & > * {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100%;
+
+        .question-component {
+          .multiple-choice-options {
+            @include is-grid($margin-compensation: $tablet-multiple-choice-margin);
+
+            .multiple-choice-option {
+              @include is-grid-item($number-of-items: 2, $margin: $tablet-multiple-choice-margin);
+              padding: 8px 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include desktop() {
+    .question {
+      & > * {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100vw;
+
+        .question-component {
+          .multiple-choice-options {
+            @include is-grid($margin-compensation: $desktop-multiple-choice-margin);
+            flex-direction: column;
+
+            .multiple-choice-option {
+              // This is often overriden on a per question basis
+              @include is-grid-item($number-of-items: 1, $margin: $desktop-multiple-choice-margin);
+              align-items: stretch;
+              padding: 12px 36px;
+            }
+          }
         }
       }
     }

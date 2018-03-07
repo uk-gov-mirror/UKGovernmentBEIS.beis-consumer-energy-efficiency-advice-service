@@ -198,6 +198,30 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: 300;
 }
 
+@mixin question-heading-font {
+  @include has-font-sizes-at-breakpoints(36px, 38px, 24px, 32px, 20px, 24px);
+  font-size: 36px;
+  font-weight: bold;
+  color: $darkened-blue;
+}
+
+@mixin question-button-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 22px, 14px, 20px);
+  color: $dark-grey;
+  font-weight: bold;
+}
+
+@mixin question-reason-header-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 22px, 14px, 20px);
+  color: $dark-grey;
+  font-weight: bold;
+}
+
+@mixin question-reason-font {
+  @include has-font-sizes-at-breakpoints(14px, 18px, 14px, 18px, 14px, 18px);
+  font-family: $font-family-light;
+}
+
 // TODO Convert the below rules to match the same format as the above rules
 
 @mixin page-heading-small {
