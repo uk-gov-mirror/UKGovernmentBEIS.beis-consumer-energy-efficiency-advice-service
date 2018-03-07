@@ -7,7 +7,7 @@ import {RecommendationStepCardComponent} from './recommendation-step-card.compon
 import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
 import {RouterTestingModule} from '@angular/router/testing';
 import {InlineSVGModule} from 'ng-inline-svg';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('RecommendationStepCardComponent', () => {
     let component: RecommendationStepCardComponent;
