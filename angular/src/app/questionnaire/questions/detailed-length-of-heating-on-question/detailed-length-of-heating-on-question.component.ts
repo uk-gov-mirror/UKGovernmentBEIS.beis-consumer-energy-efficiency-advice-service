@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import toString from "lodash-es/toString";
+import {Component, OnInit} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import toString from 'lodash-es/toString';
 
 @Component({
     selector: 'app-length-of-heating-on-question',
@@ -8,7 +8,7 @@ import toString from "lodash-es/toString";
     styleUrls: ['./detailed-length-of-heating-on-question.component.scss'],
     animations: [slideInOutAnimation],
 })
-export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComponent {
+export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComponent implements OnInit {
 
     get responseForAnalytics(): string {
         return JSON.stringify({
@@ -16,7 +16,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
             morning: this.morning,
             afternoon: this.afternoon,
             evening: this.evening
-        })
+        });
     }
 
     get earlyHours(): number {

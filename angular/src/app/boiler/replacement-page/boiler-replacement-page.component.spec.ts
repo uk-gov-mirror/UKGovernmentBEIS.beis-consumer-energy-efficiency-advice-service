@@ -1,15 +1,15 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Observable} from "rxjs/Observable";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
 
-import {BoilerReplacementPageComponent} from "./boiler-replacement-page.component";
-import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import {BoilerReplacementPageComponent} from './boiler-replacement-page.component';
+import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 
 describe('BoilerReplacementPageComponent', () => {
     let component: BoilerReplacementPageComponent;

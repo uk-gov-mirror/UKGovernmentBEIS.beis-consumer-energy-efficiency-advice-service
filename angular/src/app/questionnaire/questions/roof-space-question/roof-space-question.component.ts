@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component} from "@angular/core";
-import {RoofSpace} from "./roof-space";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component} from '@angular/core';
+import {RoofSpace} from './roof-space';
 
 interface SpaceOption {
     name: string;

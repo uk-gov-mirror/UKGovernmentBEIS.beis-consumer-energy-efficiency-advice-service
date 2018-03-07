@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ResponseData} from "../../shared/response-data/response-data";
+import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ResponseData} from '../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-energy-efficiency-questionnaire',
@@ -20,7 +20,7 @@ export class EnergyEfficiencyQuestionnaireComponent {
     }
 
     onQuestionnaireComplete(): void {
-        if(this.responseData.shouldIncludeGrantsQuestionnaire) {
+        if (this.responseData.shouldIncludeGrantsQuestionnaire) {
             this.router.navigate(['/js/grants/questionnaire']);
         } else {
             this.router.navigate(['/js/energy-efficiency/results']);

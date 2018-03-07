@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'app-number-question',
@@ -8,7 +8,6 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 export class NumberQuestionComponent {
     isInvalid: boolean;
     textBoxFocused: boolean;
-    private _quantity: number;
 
     @Input() itemsName: string;
     @Input() minQuantity?: number;
@@ -28,6 +27,8 @@ export class NumberQuestionComponent {
     }
 
     @Output() quantityChange = new EventEmitter<number>();
+
+    private _quantity: number;
 
     increaseQuantity(amount: number): void {
         let potentialQuantity = this.quantity + amount;

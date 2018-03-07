@@ -1,7 +1,7 @@
-import {Component, Input} from "@angular/core";
-import {Router} from "@angular/router";
-import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {Component, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 
 @Component({
     selector: 'app-boiler-measures-section',
@@ -17,7 +17,9 @@ export class BoilerMeasuresSectionComponent {
     }
 
     goToEnergyEfficiency() {
-        const route = this.questionnaireService.isComplete('home-basics') ? '/js/energy-efficiency/results' : '/js/energy-efficiency/questionnaire/home-basics';
+        const route = this.questionnaireService.isComplete('home-basics')
+            ? '/js/energy-efficiency/results'
+            : '/js/energy-efficiency/questionnaire/home-basics';
         this.router.navigate([route]);
     }
 }

@@ -1,4 +1,4 @@
-import {ProOrCon} from "./pro-or-con";
+import {ProOrCon} from './pro-or-con';
 
 export interface BoilerTypeMetadataResponse {
     slug: string;
@@ -12,5 +12,5 @@ export interface BoilerTypeMetadataResponse {
         running_cost: number;
         pros: ProOrCon[] | false;
         cons: ProOrCon[] | false;
-    }
+    };
 }

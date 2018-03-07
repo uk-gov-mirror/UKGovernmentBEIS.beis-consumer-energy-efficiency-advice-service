@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {FlatExposedWallQuestionComponent} from "./flat-exposed-wall-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {FlatExposedWall} from "./flat-exposed-wall";
+import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {FlatExposedWall} from './flat-exposed-wall';
 
 describe('FlatExposedWallQuestionComponent', () => {
     let fixture: ComponentFixture<FlatExposedWallQuestionComponent>;
@@ -32,7 +32,7 @@ describe('FlatExposedWallQuestionComponent', () => {
         // given
 
         // when
-        let threeSidesExposed = fixture.debugElement.query(By.css('.three-sides-exposed'));
+        const threeSidesExposed = fixture.debugElement.query(By.css('.three-sides-exposed'));
         threeSidesExposed.nativeElement.click();
 
         // then
@@ -43,7 +43,7 @@ describe('FlatExposedWallQuestionComponent', () => {
         // given
 
         // when
-        let threeSidesExposed = fixture.debugElement.query(By.css('.three-sides-exposed'));
+        const threeSidesExposed = fixture.debugElement.query(By.css('.three-sides-exposed'));
         threeSidesExposed.nativeElement.click();
 
         // then

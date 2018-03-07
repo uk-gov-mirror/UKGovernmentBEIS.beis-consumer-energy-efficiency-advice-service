@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {FloorLevelQuestionComponent} from "./floor-level-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {FloorLevel} from "./floor-level";
+import {FloorLevelQuestionComponent} from './floor-level-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {FloorLevel} from './floor-level';
 
 describe('FloorLevelQuestionComponent', () => {
     let fixture: ComponentFixture<FloorLevelQuestionComponent>;
@@ -43,7 +43,7 @@ describe('FloorLevelQuestionComponent', () => {
         // given
 
         // when
-        let detachedHouse = fixture.debugElement.query(By.css('.basement'));
+        const detachedHouse = fixture.debugElement.query(By.css('.basement'));
         detachedHouse.nativeElement.click();
 
         // then

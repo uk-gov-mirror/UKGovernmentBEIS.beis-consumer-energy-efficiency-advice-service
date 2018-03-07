@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {FuelType, getFuelTypeDescription} from "./fuel-type";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {Component} from '@angular/core';
+import {FuelType, getFuelTypeDescription} from './fuel-type';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 class FuelTypeOption {
     public readonly name: string;
@@ -28,7 +28,7 @@ export class FuelTypeQuestionComponent extends QuestionBaseComponent {
             new FuelTypeOption(FuelType.LPGGas, 'lpg-gas'),
             new FuelTypeOption(FuelType.HeatingOil, 'heating-oil'),
             new FuelTypeOption(FuelType.SolidFuel, 'solid-fuel')
-        ]
+        ];
     }
 
     get responseForAnalytics(): string {

@@ -1,10 +1,10 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
-import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
-import "rxjs/add/operator/toPromise";
-import {NationalGrantsContentService} from "./national-grants-content.service";
-import {NationalGrantContent} from "./national-grants-content";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
+import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
+import 'rxjs/add/operator/toPromise';
+import {NationalGrantsContentService} from './national-grants-content.service';
+import {NationalGrantContent} from './national-grants-content';
 
 describe('NationalGrantsContentService', () => {
     let httpMock: HttpTestingController;
@@ -13,34 +13,34 @@ describe('NationalGrantsContentService', () => {
 
     const mockApiResponse: NationalGrantContent[] = [
         {
-            heading: "Eligible grant 1",
-            description: "Get paid for creating your own green energy.",
+            heading: 'Eligible grant 1',
+            description: 'Get paid for creating your own green energy.',
             linked_measure_codes: ['A', 'B', 'C'],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "an-eligible-grant",
+            slug: 'an-eligible-grant',
             advantages: [{
                 advantage: 'get paid for energy'
             }],
             steps: []
         },
         {
-            heading: "Eligible grant 2",
-            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            heading: 'Eligible grant 2',
+            description: 'Get cash if you install or have already installed an eligible renewable heating technology.',
             linked_measure_codes: ['A'],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "another-eligible-grant",
+            slug: 'another-eligible-grant',
             advantages: [],
             steps: []
         },
         {
-            heading: "Ineligible grant",
-            description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
+            heading: 'Ineligible grant',
+            description: 'If you\'re receiving certain benefits, you may get a payment when the weather is cold.',
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "ineligible-grant",
+            slug: 'ineligible-grant',
             advantages: [],
             steps: []
         }
@@ -84,11 +84,11 @@ describe('NationalGrantsContentService', () => {
             const firstRequest = service.fetchNationalGrantsContent().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
-            //when
+            // when
             firstRequest.then(() => {
                 service.fetchNationalGrantsContent().toPromise();
 
-                //then
+                // then
                 httpMock.verify();
             });
         }));

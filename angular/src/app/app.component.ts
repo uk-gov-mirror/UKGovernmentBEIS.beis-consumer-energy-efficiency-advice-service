@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {NavigationEnd, Router} from "@angular/router";
-import { Meta } from "@angular/platform-browser";
-import "rxjs/add/operator/distinctUntilChanged";
-import {GoogleAnalyticsService} from "./shared/analytics/google-analytics.service";
-import {SVGCacheService} from "ng-inline-svg";
+import {Component, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import { Meta } from '@angular/platform-browser';
+import 'rxjs/add/operator/distinctUntilChanged';
+import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
+import {SVGCacheService} from 'ng-inline-svg';
 
 @Component({
     selector: 'app-root',

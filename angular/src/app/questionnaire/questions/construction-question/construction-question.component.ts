@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
-import {GlazingType, RoofType, WallType} from "./construction-types";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
+import {GlazingType, RoofType, WallType} from './construction-types';
 
 interface DropdownOption<T> {
     name: string;

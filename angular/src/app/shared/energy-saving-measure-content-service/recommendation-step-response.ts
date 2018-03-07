@@ -7,5 +7,5 @@ export interface RecommendationStepResponse {
         is_external_link: boolean;
         linked_page: string;
         external_link: string;
-    }[]
+    }[];
 }

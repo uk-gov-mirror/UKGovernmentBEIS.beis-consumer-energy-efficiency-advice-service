@@ -1,4 +1,4 @@
-import {IncomeThresholdResponse} from "./income-threshold-response";
+import {IncomeThresholdResponse} from './income-threshold-response';
 
 export type IncomeThresholdName = 'tax-credits' | 'universal-credit';
 export type IncomeThresholds = {[K in IncomeThresholdName]?: IncomeThreshold};
@@ -21,7 +21,7 @@ export class IncomeThreshold {
             twoChildren:        parseInt(incomeThresholdResponse.acf.joint_claim_two_children),
             threeChildren:      parseInt(incomeThresholdResponse.acf.joint_claim_three_children),
             fourPlusChildren:   parseInt(incomeThresholdResponse.acf.joint_claim_four_plus_children),
-        }
+        };
     }
 }
 
@@ -34,7 +34,7 @@ export interface IncomeThresholdByChildren {
 }
 
 export function incomeThresholdsFromResponses(incomeThresholdResponses: IncomeThresholdResponse[]): IncomeThresholds {
-    let incomeThresholds = {};
+    const incomeThresholds = {};
     incomeThresholdResponses.forEach((response: IncomeThresholdResponse) => {
         incomeThresholds[response.slug] = new IncomeThreshold(response);
     });

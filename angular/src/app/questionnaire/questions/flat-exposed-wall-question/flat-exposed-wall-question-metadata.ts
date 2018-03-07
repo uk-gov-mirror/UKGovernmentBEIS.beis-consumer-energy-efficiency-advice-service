@@ -1,8 +1,8 @@
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {FlatExposedWallQuestionComponent} from "./flat-exposed-wall-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {HomeType} from "../home-type-question/home-type";
-import {QuestionType} from "../question-type";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {HomeType} from '../home-type-question/home-type';
+import {QuestionType} from '../question-type';
 
 export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
     constructor() {

@@ -1,5 +1,5 @@
-import {LocalAuthorityResponse} from "./local-authority-response";
-import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
+import {LocalAuthorityResponse} from './local-authority-response';
+import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 
 export class LocalAuthority {
 

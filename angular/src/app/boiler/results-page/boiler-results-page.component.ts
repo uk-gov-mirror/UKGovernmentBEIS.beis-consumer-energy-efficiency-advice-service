@@ -1,16 +1,16 @@
-import {Component, OnInit, AfterViewInit, AfterViewChecked} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {EnergySavingRecommendation} from "../../shared/recommendation-card/energy-saving-recommendation";
-import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {isGasOrOil} from "../../questionnaire/questions/fuel-type-question/fuel-type";
-import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
-import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
-import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
-import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
-import sortBy from "lodash-es/sortBy";
+import {Component, OnInit, AfterViewInit, AfterViewChecked} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
+import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {isGasOrOil} from '../../questionnaire/questions/fuel-type-question/fuel-type';
+import {WaterTankSpace} from '../../questionnaire/questions/water-tank-question/water-tank-space';
+import {GardenAccessibility} from '../../questionnaire/questions/garden-question/garden-accessibility';
+import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
+import {RoofSpace} from '../../questionnaire/questions/roof-space-question/roof-space';
+import sortBy from 'lodash-es/sortBy';
 
 @Component({
     selector: 'app-boiler-results-page',

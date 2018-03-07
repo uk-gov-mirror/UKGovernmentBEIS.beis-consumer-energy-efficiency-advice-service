@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {RouterTestingModule} from "@angular/router/testing";
-import {By} from "@angular/platform-browser";
-import {LatestNewsCardComponent} from "./latest-news-card.component";
-import {WordpressPage} from "../wordpress-pages-service/wordpress-page";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {LatestNewsCardComponent} from './latest-news-card.component';
+import {WordpressPage} from '../wordpress-pages-service/wordpress-page';
 
 describe('LatestNewsCardComponent', () => {
     let component: LatestNewsCardComponent;
@@ -46,7 +46,7 @@ describe('LatestNewsCardComponent', () => {
 
     it('should display a video play icon if there is a video', () => {
         // given
-        page.videoEmbed = "http://test-video.com";
+        page.videoEmbed = 'http://test-video.com';
         fixture.detectChanges();
 
         // when

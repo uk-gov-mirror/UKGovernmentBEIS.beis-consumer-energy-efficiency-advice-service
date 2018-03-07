@@ -1,7 +1,7 @@
-import {Grant} from "./grant";
-import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
-import {RecommendationStep} from "../../shared/recommendations-service/recommendation-step";
-import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
+import {Grant} from './grant';
+import {GrantEligibility} from '../grant-eligibility-service/grant-eligibility';
+import {RecommendationStep} from '../../shared/recommendations-service/recommendation-step';
+import {NationalGrantContent} from '../national-grants-content-service/national-grants-content';
 
 export class NationalGrantForMeasure implements Grant {
     grantId: string;

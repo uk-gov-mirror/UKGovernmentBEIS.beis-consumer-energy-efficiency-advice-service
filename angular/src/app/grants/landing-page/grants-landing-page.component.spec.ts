@@ -1,21 +1,21 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {RouterTestingModule} from "@angular/router/testing";
-import {By} from "@angular/platform-browser";
-import {CommonModule} from "@angular/common";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 
-import {GrantsLandingPageComponent} from "./grants-landing-page.component";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {FormsModule} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
-import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {GrantEligibility} from "../grant-eligibility-service/grant-eligibility";
-import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
-import {LocalAuthorityGrant} from "../model/local-authority-grant";
+import {GrantsLandingPageComponent} from './grants-landing-page.component';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {FormsModule} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import {PostcodeDetails} from '../../shared/postcode-epc-service/model/postcode-details';
+import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
+import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
+import {GrantEligibility} from '../grant-eligibility-service/grant-eligibility';
+import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
+import {LocalAuthorityGrant} from '../model/local-authority-grant';
 
 describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;
@@ -23,9 +23,9 @@ describe('GrantsLandingPageComponent', () => {
     let responseData: ResponseData;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
-    const postcode = "SW1A1AA";
-    const localAuthorityCode = "E09000033";
-    const localAuthorityName = "Westminster";
+    const postcode = 'SW1A1AA';
+    const localAuthorityCode = 'E09000033';
+    const localAuthorityName = 'Westminster';
     const localAuthorityGrants: LocalAuthorityGrant[] = [
         {
             grantId: 'grant-1',
@@ -44,12 +44,12 @@ describe('GrantsLandingPageComponent', () => {
     ];
 
     let postcodeEpcResponse: Observable<PostcodeDetails>;
-    let postcodeEpcServiceStub = {
-        fetchPostcodeDetails: (postcode) => postcodeEpcResponse
+    const postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (value) => postcodeEpcResponse
     };
 
     let localAuthorityResponse: Observable<LocalAuthority>;
-    let localAuthorityServiceStub = {
+    const localAuthorityServiceStub = {
         fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
 
@@ -198,7 +198,9 @@ describe('GrantsLandingPageComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
-                const localAuthorityMessageElement = fixture.debugElement.query(By.css('.no-local-grants .local-authority-name')).nativeElement;
+                const localAuthorityMessageElement = fixture.debugElement.query(
+                    By.css('.no-local-grants .local-authority-name')
+                ).nativeElement;
                 expect(localAuthorityMessageElement.innerText).toContain(localAuthorityName);
             });
         }));
@@ -217,9 +219,9 @@ describe('GrantsLandingPageComponent', () => {
             });
         }));
 
-        function submitPostcode(postcode: string) {
+        function submitPostcode(postcodeToSubmit: string) {
             const postcodeInputElement = fixture.debugElement.query(By.css('.postcode-input-text')).nativeElement;
-            postcodeInputElement.value = postcode;
+            postcodeInputElement.value = postcodeToSubmit;
             postcodeInputElement.dispatchEvent(new Event('input'));
             fixture.detectChanges();
             const submitPostcodeButton = fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement;

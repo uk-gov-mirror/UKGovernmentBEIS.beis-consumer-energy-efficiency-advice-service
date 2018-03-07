@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {Video} from "./video";
+import {Component, Input} from '@angular/core';
+import {Video} from './video';
 
 @Component({
     selector: 'app-large-video-card',

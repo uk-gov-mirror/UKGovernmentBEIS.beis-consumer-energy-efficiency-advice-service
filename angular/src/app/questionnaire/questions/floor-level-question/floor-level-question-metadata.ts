@@ -1,8 +1,8 @@
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {FloorLevelQuestionComponent} from "./floor-level-question.component";
-import {QuestionType} from "../question-type";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {HomeType} from "../home-type-question/home-type";
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {FloorLevelQuestionComponent} from './floor-level-question.component';
+import {QuestionType} from '../question-type';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {HomeType} from '../home-type-question/home-type';
 
 export class FloorLevelQuestionMetadata extends QuestionMetadata {
     constructor() {

@@ -1,4 +1,4 @@
-import {AcfImage} from "./acf-image";
+import {AcfImage} from './acf-image';
 
 export interface WordpressPageResponse {
     link: string;

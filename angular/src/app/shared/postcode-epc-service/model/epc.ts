@@ -1,7 +1,8 @@
-import {EpcRating} from "./epc-rating";
-import {EpcResponse} from "./response/epc-response";
+import {EpcRating} from './epc-rating';
+import {EpcResponse} from './response/epc-response';
 
 export class Epc {
+
     // See https://epc.opendatacommunities.org/docs/guidance for documentation of the data
 
     public lmkKey: string;
@@ -141,7 +142,8 @@ export class Epc {
         this.hotWaterCostPotential = epcResponse['hot-water-cost-potential'];
         this.totalFloorArea = epcResponse['total-floor-area'];
         this.energyTariff = epcResponse['energy-tariff'];
-        this.flatStoreyCount = epcResponse['flat-storey-count']; // this is the number of storeys in the apartment block, not the number of storeys in the flat
+        // this is the number of storeys in the apartment block, not the number of storeys in the flat
+        this.flatStoreyCount = epcResponse['flat-storey-count'];
         this.mainHeatingControls = epcResponse['main-heating-controls'];
         this.multiGlazeProportion = epcResponse['multi-glaze-proportion'];
         this.glazedType = epcResponse['glazed-type'];
@@ -187,9 +189,9 @@ export class Epc {
     }
 
     public getDisplayAddress(): string {
-        let displayAddress1 = this.address1;
-        let displayAddress2 = this.address2 ? ', ' + this.address2 : '';
-        let displayAddress3 = this.address3 ? ', ' + this.address3 : '';
+        const displayAddress1 = this.address1;
+        const displayAddress2 = this.address2 ? ', ' + this.address2 : '';
+        const displayAddress3 = this.address3 ? ', ' + this.address3 : '';
         return displayAddress1 + displayAddress2 + displayAddress3;
     }
 

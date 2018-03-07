@@ -1,14 +1,14 @@
-import {async, ComponentFixture, getTestBed, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Observable} from "rxjs/Observable";
-import {HeaderComponent} from "./header.component";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-import {WordpressPageResponse} from "../../shared/wordpress-pages-service/wordpress-page-response";
-import {WordpressPagesService} from "../../shared/wordpress-pages-service/wordpress-pages.service";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import {HeaderComponent} from './header.component';
+import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
+import {WordpressPageResponse} from '../../shared/wordpress-pages-service/wordpress-page-response';
+import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -23,7 +23,7 @@ describe('HeaderComponent', () => {
         {link: 'page-3', title: {rendered: 'Test page 5'}, content: {rendered: 'Test page 5'}, acf: null}
     ];
 
-    let mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
+    const mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
 
     beforeEach(async(() => {
         spyOn(mockWordpressPagesService, 'searchPages').and.callThrough();

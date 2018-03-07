@@ -1,5 +1,5 @@
-import {EpcRecommendationResponse} from "./epc-recommendation-response";
-import includes from "lodash-es/includes";
+import {EpcRecommendationResponse} from './epc-recommendation-response';
+import includes from 'lodash-es/includes';
 
 export class EpcRecommendation {
     public lmkKey: string;

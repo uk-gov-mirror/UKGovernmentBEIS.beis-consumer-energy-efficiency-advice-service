@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {HomeAgeQuestionComponent} from "./home-age-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {HomeAge} from "./home-age";
+import {HomeAgeQuestionComponent} from './home-age-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {HomeAge} from './home-age';
 
 describe('HomeAgeQuestionComponent', () => {
     let component: HomeAgeQuestionComponent;

@@ -1,9 +1,9 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {ConstructionQuestionComponent} from "./construction-question.component";
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {ConstructionQuestionComponent} from './construction-question.component';
 
 describe('ShowerTypeQuestionComponent', () => {
     let component: ConstructionQuestionComponent;
@@ -30,13 +30,13 @@ describe('ShowerTypeQuestionComponent', () => {
 
     it('should set the response when new roof type selected', async(() => {
         // given
-        let expectedRoofType = component.roofTypes[0];
+        const expectedRoofType = component.roofTypes[0];
 
         // when
         fixture.whenStable().then(() => {
-            let roofTypeSelect = fixture.debugElement.query(By.css('select.roof-type'));
+            const roofTypeSelect = fixture.debugElement.query(By.css('select.roof-type'));
             // Angular syntax for custom ngValue
-            roofTypeSelect.nativeElement.value = "0: 0";
+            roofTypeSelect.nativeElement.value = '0: 0';
             roofTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
             // then
@@ -46,13 +46,13 @@ describe('ShowerTypeQuestionComponent', () => {
 
     it('should set the response when new wall type selected', async(() => {
         // given
-        let expectedWallType = component.wallTypes[0];
+        const expectedWallType = component.wallTypes[0];
 
         // when
         fixture.whenStable().then(() => {
-            let wallTypeSelect = fixture.debugElement.query(By.css('select.wall-type'));
+            const wallTypeSelect = fixture.debugElement.query(By.css('select.wall-type'));
             // Angular syntax for custom ngValue
-            wallTypeSelect.nativeElement.value = "0: 0";
+            wallTypeSelect.nativeElement.value = '0: 0';
             wallTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
             // then
@@ -62,13 +62,13 @@ describe('ShowerTypeQuestionComponent', () => {
 
     it('should set the response when new glazing type selected', async(() => {
         // given
-        let expectedGlazingType = component.glazingTypes[0];
+        const expectedGlazingType = component.glazingTypes[0];
 
         // when
         fixture.whenStable().then(() => {
-            let glazingTypeSelect = fixture.debugElement.query(By.css('select.glazing-type'));
+            const glazingTypeSelect = fixture.debugElement.query(By.css('select.glazing-type'));
             // Angular syntax for custom ngValue
-            glazingTypeSelect.nativeElement.value = "0: 0";
+            glazingTypeSelect.nativeElement.value = '0: 0';
             glazingTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
             // then

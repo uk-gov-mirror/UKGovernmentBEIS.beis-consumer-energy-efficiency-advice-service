@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {NationalGrantCalculator} from "../../national-grant-calculator";
-import {ResponseData} from "../../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
-import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {NationalGrantCalculator} from '../../national-grant-calculator';
+import {ResponseData} from '../../../../shared/response-data/response-data';
+import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
+import {Benefits} from '../../../../questionnaire/questions/benefits-question/benefits';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ColdWeatherPayments extends NationalGrantCalculator {

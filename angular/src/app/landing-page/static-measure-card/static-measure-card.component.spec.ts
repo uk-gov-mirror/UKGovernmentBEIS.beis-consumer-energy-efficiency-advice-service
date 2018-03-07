@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from "@angular/platform-browser";
+import {By} from '@angular/platform-browser';
 
 import {StaticMeasureCardComponent} from './static-measure-card.component';
-import {DataCardComponent} from "../../shared/data-card/data-card.component";
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
 
 describe('StaticMeasureCardComponent', () => {
     let component: StaticMeasureCardComponent;
@@ -45,7 +45,7 @@ describe('StaticMeasureCardComponent', () => {
         fixture.detectChanges();
 
         // then
-        let headlingElement = fixture.debugElement.query(By.css('.basic-info .heading'));
+        const headlingElement = fixture.debugElement.query(By.css('.basic-info .heading'));
         expect(headlingElement.nativeElement.innerText).toBe(headline);
     });
 });

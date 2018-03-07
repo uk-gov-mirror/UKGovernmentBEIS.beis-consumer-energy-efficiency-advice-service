@@ -1,4 +1,4 @@
-import {Component, DoCheck, HostListener, OnInit, ViewChild} from "@angular/core";
+import {Component, DoCheck, HostListener, OnInit, ViewChild} from '@angular/core';
 
 @Component({
     selector: 'app-sticky-row-wrapper',
@@ -21,7 +21,7 @@ export class StickyRowWrapperComponent implements OnInit, DoCheck {
         this.updateRowPosition();
     }
 
-    @HostListener("window:scroll", [])
+    @HostListener('window:scroll', [])
     updateRowPosition(): void {
         this.stickyRowHeightPixels = this.stickyRow.nativeElement.clientHeight;
         const stickyRowTopPosition = this.stickyRowSpacer.nativeElement.getBoundingClientRect().top;

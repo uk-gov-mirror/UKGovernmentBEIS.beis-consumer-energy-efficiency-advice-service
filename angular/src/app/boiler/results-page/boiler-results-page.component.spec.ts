@@ -1,21 +1,21 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Observable} from "rxjs/Observable";
-import {InlineSVGModule} from "ng-inline-svg";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
-import {BoilerResultsPageComponent} from "./boiler-results-page.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
-import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
-import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
-import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
+import {BoilerResultsPageComponent} from './boiler-results-page.component';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measures-section.component';
+import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
+import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
+import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;

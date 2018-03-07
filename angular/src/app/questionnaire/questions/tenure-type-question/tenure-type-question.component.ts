@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {TenureType} from "./tenure-type";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {Component} from '@angular/core';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {TenureType} from './tenure-type';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-ownership-status-question',
@@ -18,10 +18,22 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
     constructor(responseData: ResponseData) {
         super(responseData);
         this.tenureTypeOptions = [
-            {value: TenureType.OwnerOccupancy, id:'owner-occupancy', description: "I own my own home"},
-            {value: TenureType.PrivateTenancy, id:'private-tenancy', description: "I rent my home from a private landlord"},
-            {value: TenureType.SocialTenancy,  id:'social-tenancy',  description: "I rent my home from the council or a housing association"},
-        ]
+            {
+                value: TenureType.OwnerOccupancy,
+                id: 'owner-occupancy',
+                description: 'I own my own home'
+            },
+            {
+                value: TenureType.PrivateTenancy,
+                id: 'private-tenancy',
+                description: 'I rent my home from a private landlord'
+            },
+            {
+                value: TenureType.SocialTenancy,
+                id: 'social-tenancy',
+                description: 'I rent my home from the council or a housing association'
+            },
+        ];
     }
 
     get response(): TenureType {

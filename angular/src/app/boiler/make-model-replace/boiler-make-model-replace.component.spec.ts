@@ -1,23 +1,23 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Observable} from "rxjs/Observable";
-import {InlineSVGModule} from "ng-inline-svg";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
-import {BoilerMakeModelReplaceComponent} from "./boiler-make-model-replace.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {BoilerReplacementCardComponent} from "../boiler-replacement-card/boiler-replacement-card.component";
-import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
-import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
-import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import values from "lodash-es/values";
-import {BoilerPageMeasuresService} from "../measures-section/boiler-page-measures.service";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
-import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
-import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {BoilerMakeModelReplaceComponent} from './boiler-make-model-replace.component';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
+import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
+import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
+import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import values from 'lodash-es/values';
+import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measures-section.component';
+import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
@@ -73,7 +73,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
         spyOn(TestBed.get(GasAndOilBoilersService), 'getGasAndOilBoilerWithIndexNumber').and.callThrough();
         component = fixture.componentInstance;
-        component.productIndexNumber = "12345";
+        component.productIndexNumber = '12345';
         fixture.detectChanges();
     });
 
@@ -104,7 +104,8 @@ describe('BoilerMakeModelReplaceComponent', () => {
 
     it('should store the boiler types in order of installation cost', () => {
         for (let i = 0; i < component.boilerTypes.length - 1; i++) {
-            expect(+component.boilerTypes[i].installationCostLower).toBeLessThanOrEqual(+component.boilerTypes[i + 1].installationCostLower);
+            expect(+component.boilerTypes[i].installationCostLower)
+                .toBeLessThanOrEqual(+component.boilerTypes[i + 1].installationCostLower);
         }
     });
 

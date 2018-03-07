@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, AfterViewInit, ElementRef, ViewChild} from "@angular/core";
+import {Component, Input, OnInit, AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
     selector: 'app-radial-percentage',
@@ -8,8 +8,9 @@ import {Component, Input, OnInit, AfterViewInit, ElementRef, ViewChild} from "@a
 export class RadialPercentageComponent implements OnInit, AfterViewInit {
 
     @Input() progress: number = 0;
-    private static readonly initialCircleSize: number = 100;
     @ViewChild('radialPercentage') container;
+
+    private static readonly initialCircleSize: number = 100;
 
     constructor(private host: ElementRef) {
     }

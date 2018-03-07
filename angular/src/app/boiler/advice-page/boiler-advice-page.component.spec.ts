@@ -1,17 +1,17 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {RouterTestingModule} from "@angular/router/testing";
-import {By} from "@angular/platform-browser";
-import {Observable} from "rxjs/Observable";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {Observable} from 'rxjs/Observable';
 
-import {BoilerAdvicePageComponent} from "./boiler-advice-page.component";
-import {LargeVideoCardComponent} from "../../shared/large-video-card/large-video-card.component";
-import {BoilerRegulationCardComponent} from "./boiler-regulation-card/boiler-regulation-card.component";
-import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {BoilerTypeMetadataResponse} from "../boiler-types-service/boiler-type-metadata-response";
-import {BoilerType} from "../boiler-types-service/boiler-type";
-import {BoilerTypesService} from "../boiler-types-service/boiler-types.service";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
-import { PopupComponent } from "../../shared/popup/popup.component";
+import {BoilerAdvicePageComponent} from './boiler-advice-page.component';
+import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
+import {BoilerRegulationCardComponent} from './boiler-regulation-card/boiler-regulation-card.component';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
+import {BoilerType} from '../boiler-types-service/boiler-type';
+import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import { PopupComponent } from '../../shared/popup/popup.component';
 
 describe('BoilerAdvicePageComponent', () => {
     let component: BoilerAdvicePageComponent;
@@ -70,7 +70,8 @@ describe('BoilerAdvicePageComponent', () => {
 
     it('should show the right boiler installation cost', () => {
         const installationCostElement = fixture.debugElement.query(By.css('.installation .value')).nativeElement;
-        expect(installationCostElement.innerText).toEqual(`£${component.boilerType.installationCostLower}-£${component.boilerType.installationCostUpper}`);
+        expect(installationCostElement.innerText)
+            .toEqual(`£${component.boilerType.installationCostLower}-£${component.boilerType.installationCostUpper}`);
     });
 
     it('should show the right boiler lifetime expectancy', () => {
@@ -104,8 +105,10 @@ describe('BoilerAdvicePageComponent', () => {
 
         // when
         fixture.detectChanges();
-        const actualProHeadings = Array.from(fixture.debugElement.queryAll(By.css('.pro .heading-text'))).map(pro => pro.nativeElement.innerText);
-        const actualProBodies = Array.from(fixture.debugElement.queryAll(By.css('.pro .body-text'))).map(pro => pro.nativeElement.innerText);
+        const actualProHeadings = Array.from(fixture.debugElement.queryAll(By.css('.pro .heading-text')))
+            .map(pro => pro.nativeElement.innerText);
+        const actualProBodies = Array.from(fixture.debugElement.queryAll(By.css('.pro .body-text')))
+            .map(pro => pro.nativeElement.innerText);
 
         // then
         expect(actualProHeadings).toEqual(component.boilerType.pros.map(pro => pro.heading));
@@ -133,8 +136,10 @@ describe('BoilerAdvicePageComponent', () => {
 
         // when
         fixture.detectChanges();
-        const actualConHeadings = Array.from(fixture.debugElement.queryAll(By.css('.con .heading-text'))).map(con => con.nativeElement.innerText);
-        const actualConBodies = Array.from(fixture.debugElement.queryAll(By.css('.con .body-text'))).map(con => con.nativeElement.innerText);
+        const actualConHeadings = Array.from(fixture.debugElement.queryAll(By.css('.con .heading-text')))
+            .map(con => con.nativeElement.innerText);
+        const actualConBodies = Array.from(fixture.debugElement.queryAll(By.css('.con .body-text')))
+            .map(con => con.nativeElement.innerText);
 
         // then
         expect(actualConHeadings).toEqual(component.boilerType.cons.map(con => con.heading));

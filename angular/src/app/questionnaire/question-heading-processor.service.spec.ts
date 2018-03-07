@@ -1,10 +1,10 @@
-import {TestBed, getTestBed} from "@angular/core/testing"
+import {TestBed, getTestBed} from '@angular/core/testing';
 
-import {QuestionHeadingProcessor} from "./question-heading-processor.service";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {ResponseData} from "../shared/response-data/response-data";
-import {FuelType} from "./questions/fuel-type-question/fuel-type";
-import {HomeType} from "./questions/home-type-question/home-type";
+import {QuestionHeadingProcessor} from './question-heading-processor.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ResponseData} from '../shared/response-data/response-data';
+import {FuelType} from './questions/fuel-type-question/fuel-type';
+import {HomeType} from './questions/home-type-question/home-type';
 
 describe('questionHeadingProcessor', () => {
     let injector: TestBed;
@@ -23,7 +23,7 @@ describe('questionHeadingProcessor', () => {
     describe('#construct', () => {
         it('should be created', () => {
             expect(service).toBeTruthy();
-        })
+        });
     });
 
     describe('#replacePlaceholders', () => {
@@ -62,6 +62,6 @@ describe('questionHeadingProcessor', () => {
 
             // then
             expect(processedQuestion).toBe('You have indicated that you use electricity. Is electricity what you actually want to use?');
-        })
-    })
+        });
+    });
 });

@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router} from "@angular/router";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router} from '@angular/router';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 
 @Injectable()
 export class EnergyEfficiencyQuestionnaireGuard implements CanActivate {

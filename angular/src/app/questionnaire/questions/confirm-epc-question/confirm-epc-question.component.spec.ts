@@ -1,13 +1,13 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {ConfirmEpcQuestionComponent} from "./confirm-epc-question.component";
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import {HomeType} from "../home-type-question/home-type";
-import {FuelType} from "../fuel-type-question/fuel-type";
-import {ElectricityTariff} from "../electricity-tariff-question/electricity-tariff";
-import {EpcResponse} from "../../../shared/postcode-epc-service/model/response/epc-response";
-import {EpcRating} from "../../../shared/postcode-epc-service/model/epc-rating";
-import {DataCardComponent} from "../../../shared/data-card/data-card.component";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {ConfirmEpcQuestionComponent} from './confirm-epc-question.component';
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import {HomeType} from '../home-type-question/home-type';
+import {FuelType} from '../fuel-type-question/fuel-type';
+import {ElectricityTariff} from '../electricity-tariff-question/electricity-tariff';
+import {EpcResponse} from '../../../shared/postcode-epc-service/model/response/epc-response';
+import {EpcRating} from '../../../shared/postcode-epc-service/model/epc-rating';
+import {DataCardComponent} from '../../../shared/data-card/data-card.component';
 
 describe('ConfirmEpcQuestionComponent', () => {
     let component: ConfirmEpcQuestionComponent;
@@ -15,7 +15,7 @@ describe('ConfirmEpcQuestionComponent', () => {
     let epcResponse: EpcResponse;
 
     function injectEpcAndDetectChanges(epc: Epc) {
-        let injectedResponseData = fixture.debugElement.injector.get(ResponseData);
+        const injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = epc;
         fixture.detectChanges();
     }

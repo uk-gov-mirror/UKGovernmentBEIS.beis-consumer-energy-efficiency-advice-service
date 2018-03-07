@@ -1,6 +1,6 @@
-import {Questionnaire} from "../../base-questionnaire/questionnaire";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {BOILER_QUESTIONS} from "../../questions/question-groups";
+import {Questionnaire} from '../../base-questionnaire/questionnaire';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {BOILER_QUESTIONS} from '../../questions/question-groups';
 
 export class BoilerQuestionnaire extends Questionnaire {
 

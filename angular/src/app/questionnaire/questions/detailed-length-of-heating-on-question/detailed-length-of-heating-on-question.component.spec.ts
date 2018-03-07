@@ -1,12 +1,12 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {FormsModule} from "@angular/forms"
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {DetailedLengthOfHeatingOnQuestionComponent} from "./detailed-length-of-heating-on-question.component";
-import {NumberQuestionComponent} from "../../common-questions/number-question/number-question.component";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {DetailedLengthOfHeatingOnQuestionComponent} from './detailed-length-of-heating-on-question.component';
+import {NumberQuestionComponent} from '../../common-questions/number-question/number-question.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
     let component: DetailedLengthOfHeatingOnQuestionComponent;

@@ -1,10 +1,10 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import "rxjs/add/operator/toPromise";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import 'rxjs/add/operator/toPromise';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
 
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {FeatureFlagService} from "./feature-flag.service";
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import {FeatureFlagService} from './feature-flag.service';
 
 describe('FeatureFlagService', () => {
     let httpMock: HttpTestingController;
@@ -36,7 +36,7 @@ describe('FeatureFlagService', () => {
 
             // when
             const actualResponse = service.fetchFeatureFlags().toPromise();
-            let request = httpMock.expectOne(matchesExpectedRequest);
+            const request = httpMock.expectOne(matchesExpectedRequest);
             request.flush(mockApiResponse);
 
             // then

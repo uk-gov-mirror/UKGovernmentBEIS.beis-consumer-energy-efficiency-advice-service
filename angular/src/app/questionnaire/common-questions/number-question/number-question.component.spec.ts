@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NumberQuestionComponent} from "./number-question.component";
-import {FormsModule} from "@angular/forms";
-import {By} from "@angular/platform-browser";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {NumberQuestionComponent} from './number-question.component';
+import {FormsModule} from '@angular/forms';
+import {By} from '@angular/platform-browser';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('NumberQuestionComponent', () => {
     let component: NumberQuestionComponent;
@@ -37,7 +37,7 @@ describe('NumberQuestionComponent', () => {
 
     it('should populate with input quantity', async(() => {
         fixture.whenStable().then(() => {
-            let input = fixture.debugElement.query(By.css('input'));
+            const input = fixture.debugElement.query(By.css('input'));
             expect(input.nativeElement.value).toBe(originalQuantity.toString());
         });
     }));
@@ -49,7 +49,7 @@ describe('NumberQuestionComponent', () => {
         component.quantityChange.subscribe(quantity => emitted = quantity);
 
         // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
+        const storeysInput = fixture.debugElement.query(By.css('input'));
         storeysInput.nativeElement.value = expectedQuantity;
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -68,7 +68,7 @@ describe('NumberQuestionComponent', () => {
         });
 
         // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
+        const storeysInput = fixture.debugElement.query(By.css('input'));
         storeysInput.nativeElement.value = invalidStoreys;
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -88,7 +88,7 @@ describe('NumberQuestionComponent', () => {
         });
 
         // when
-        let storeysInput = fixture.debugElement.query(By.css('input'));
+        const storeysInput = fixture.debugElement.query(By.css('input'));
         storeysInput.nativeElement.value = invalidStoreys;
         storeysInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -99,8 +99,8 @@ describe('NumberQuestionComponent', () => {
 
     it('should increase and decrease quantity when buttons are clicked', () => {
         // given
-        let decreaseButton = fixture.debugElement.query(By.css('.delta-button.decrease'));
-        let increaseButton = fixture.debugElement.query(By.css('.delta-button.increase'));
+        const decreaseButton = fixture.debugElement.query(By.css('.delta-button.decrease'));
+        const increaseButton = fixture.debugElement.query(By.css('.delta-button.increase'));
 
         let emitted: number;
         component.quantityChange.subscribe(quantity => emitted = quantity);

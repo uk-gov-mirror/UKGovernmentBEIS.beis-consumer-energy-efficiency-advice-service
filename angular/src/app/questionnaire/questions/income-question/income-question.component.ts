@@ -1,6 +1,6 @@
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {Component, OnInit} from "@angular/core";
-import toString from "lodash-es/toString";
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {Component, OnInit} from '@angular/core';
+import toString from 'lodash-es/toString';
 
 @Component({
     selector: 'app-income-question',
@@ -14,7 +14,7 @@ export class IncomeQuestionComponent extends QuestionBaseComponent implements On
     }
 
     ngOnInit() {
-        this.response = this.response|| 0;
+        this.response = this.response || 0;
     }
 
     get response() {

@@ -1,13 +1,13 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {Router} from "@angular/router";
-import {RouterTestingModule} from "@angular/router/testing";
-import {InlineSVGModule} from "ng-inline-svg";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
 
-import {BoilerMeasuresSectionComponent} from "./boiler-measures-section.component";
-import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
-import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import {BoilerMeasuresSectionComponent} from './boiler-measures-section.component';
+import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 
 describe('BoilerMeasuresSectionComponent', () => {
     let component: BoilerMeasuresSectionComponent;

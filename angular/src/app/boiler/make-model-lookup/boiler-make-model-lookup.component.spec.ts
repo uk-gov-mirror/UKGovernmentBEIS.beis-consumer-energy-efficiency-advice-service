@@ -1,13 +1,13 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {FormsModule} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 
-import {BoilerMakeModelLookupComponent} from "./boiler-make-model-lookup.component";
-import {GasAndOilBoilersService} from "../gas-and-oil-boilers/gas-and-oil-boilers.service";
-import {GasAndOilBoiler} from "../gas-and-oil-boilers/gas-and-oil-boiler";
-import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-button.component";
+import {BoilerMakeModelLookupComponent} from './boiler-make-model-lookup.component';
+import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
+import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
+import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 
 describe('BoilerMakeModelLookupComponent', () => {
     let component: BoilerMakeModelLookupComponent;

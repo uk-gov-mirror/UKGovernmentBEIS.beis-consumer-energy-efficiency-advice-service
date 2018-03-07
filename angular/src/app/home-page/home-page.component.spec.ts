@@ -1,15 +1,15 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {HomePageComponent} from "./home-page.component";
-import {LatestNewsCardComponent} from "../shared/latest-news-card/latest-news-card.component";
-import {ResponseData} from "../shared/response-data/response-data";
-import {RouterTestingModule} from "@angular/router/testing";
-import {By} from "@angular/platform-browser";
-import {UserJourneyType} from "../shared/response-data/user-journey-type";
-import {Location} from "@angular/common";
-import {NavigationBarComponent} from "../layout-components/navigation-bar/navigation-bar.component";
-import {QuestionnaireService} from "../questionnaire/questionnaire.service";
-import {Observable} from "rxjs/Observable";
-import {WordpressPagesService} from "../shared/wordpress-pages-service/wordpress-pages.service";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {HomePageComponent} from './home-page.component';
+import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
+import {ResponseData} from '../shared/response-data/response-data';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {UserJourneyType} from '../shared/response-data/user-journey-type';
+import {Location} from '@angular/common';
+import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
+import {QuestionnaireService} from '../questionnaire/questionnaire.service';
+import {Observable} from 'rxjs/Observable';
+import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -75,14 +75,16 @@ describe('HomePageComponent', () => {
         checkLink('.landing-page-link.greener-home', '/js/greener-home');
     });
 
-    it('should set the user journey type and move to the questionnaire when the appropriate button is clicked, if questionnaire incomplete', async () => {
+    it('should set the user journey type and move to the questionnaire when the appropriate button is clicked, if questionnaire incomplete',
+    async () => {
         // given
         questionnaireComplete = false;
 
         checkLink('.calculator', '/js/energy-efficiency/questionnaire/home-basics', UserJourneyType.Calculator);
     });
 
-    it('should set the user journey type and move to the results page when the appropriate button is clicked, if questionnaire complete', async () => {
+    it('should set the user journey type and move to the results page when the appropriate button is clicked, if questionnaire complete',
+    async () => {
         // given
         questionnaireComplete = true;
 
@@ -111,5 +113,5 @@ describe('HomePageComponent', () => {
             const location = TestBed.get(Location);
             expect(location.path()).toBe(path);
         });
-    }
+    };
 });

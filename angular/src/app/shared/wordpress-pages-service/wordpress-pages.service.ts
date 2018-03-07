@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {WordpressApiService} from "../wordpress-api-service/wordpress-api-service";
-import {WordpressPage} from "./wordpress-page";
-import {WordpressPageResponse} from "./wordpress-page-response";
-import {ExtendedWordpressPage} from "./extended-wordpress-page";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
+import {WordpressPage} from './wordpress-page';
+import {WordpressPageResponse} from './wordpress-page-response';
+import {ExtendedWordpressPage} from './extended-wordpress-page';
 
 @Injectable()
 export class WordpressPagesService {

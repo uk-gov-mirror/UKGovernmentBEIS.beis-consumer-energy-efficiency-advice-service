@@ -3,6 +3,7 @@
 
 // Component specific variables
 $mobile-popup-spacing: 20px;
+$tablet-and-desktop-popup-spacing: 40px;
 
 // Component specific mixins
 @mixin is-fixed-width-popup($width) {
@@ -10,9 +11,11 @@ $mobile-popup-spacing: 20px;
     position: fixed;
     width: $width;
     top: 15vh;
+    max-height: calc(85vh - (3 * #{$mobile-popup-spacing}));
+    overflow-y: scroll;
     left: 50%;
     margin-left: -$width / 2;
-    padding: 40px;
+    padding: $tablet-and-desktop-popup-spacing;
     z-index: 2;
   }
 }
@@ -59,7 +62,7 @@ $mobile-popup-spacing: 20px;
       font-size: 24px;
       font-weight: bold;
       color: white;
-      margin: 50px 0 0;
+      margin: 20px 0;
       cursor: pointer;
 
       &:focus, &:hover {

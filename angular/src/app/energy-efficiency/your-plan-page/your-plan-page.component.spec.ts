@@ -1,24 +1,24 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {YourPlanPageComponent} from "./your-plan-page.component";
-import {Observable} from "rxjs/Observable";
-import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {YourPlanSummaryComponent} from "../your-plan-summary/your-plan-summary.component";
-import {RecommendationStepCardComponent} from "./recommendation-step-card/recommendation-step-card.component";
-import {GrantCardComponent} from "../../shared/grant-card/grant-card.component";
-import {DownloadPlanComponent} from "./download-plan/download-plan.component";
-import {DataCardComponent} from "../../shared/data-card/data-card.component";
-import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
-import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {YourPlanPageComponent} from './your-plan-page.component';
+import {Observable} from 'rxjs/Observable';
+import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
+import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
+import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.component';
+import {RecommendationStepCardComponent} from './recommendation-step-card/recommendation-step-card.component';
+import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {DownloadPlanComponent} from './download-plan/download-plan.component';
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
+import {EnergyEfficiencyRecommendationTag} from '../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
+import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -43,7 +43,7 @@ describe('YourPlanPageComponent', () => {
                 description: 'Step one description',
                 readMore: '',
                 moreInfoLinks: []
-            },{
+            }, {
                 headline: 'Step Two',
                 description: 'Step two description',
                 readMore: '',
@@ -86,7 +86,7 @@ describe('YourPlanPageComponent', () => {
         }
     ];
 
-    const localAuthorityCode = "E09000033";
+    const localAuthorityCode = 'E09000033';
 
     const localAuthorityGrants: LocalAuthorityGrant[] = [
         {

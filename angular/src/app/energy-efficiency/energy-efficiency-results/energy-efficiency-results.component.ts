@@ -1,19 +1,19 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {EnergyCalculationApiService} from "../../shared/energy-calculation-api-service/energy-calculation-api-service";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {EnergyCalculationResponse} from "../../shared/energy-calculation-api-service/response/energy-calculation-response";
-import {EnergyCalculations} from "./energy-calculations";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/forkJoin";
-import sumBy from "lodash-es/sumBy";
-import {EnergyEfficiencyRecommendation} from "../../shared/recommendations-service/energy-efficiency-recommendation";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
-import {EnergyEfficiencyRecommendationTag} from "./recommendation-tags/energy-efficiency-recommendation-tag";
-import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
-import {RdSapInput} from "../../shared/energy-calculation-api-service/request/rdsap-input";
-import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
-import {StickyRowWrapperComponent} from "../../shared/sticky-row-wrapper/sticky-row-wrapper.component";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
+import {EnergyCalculations} from './energy-calculations';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
+import sumBy from 'lodash-es/sumBy';
+import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
+import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
+import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
+import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
+import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
+import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
+import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
+import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -62,12 +62,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
     }
 
-    private onDisplayedRecommendationCardsChanged() {
-        setTimeout(() => {
-            this.yourPlanFooterWrapperComponent && this.yourPlanFooterWrapperComponent.updateRowPosition();
-        });
-    }
-
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
         return this.allRecommendations
             .filter(recommendation => {
@@ -81,6 +75,14 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
+    }
+
+    private onDisplayedRecommendationCardsChanged() {
+        setTimeout(() => {
+            if (this.yourPlanFooterWrapperComponent) {
+                this.yourPlanFooterWrapperComponent.updateRowPosition();
+            }
+        });
     }
 
     private displayErrorMessage(err: any): void {

@@ -1,8 +1,8 @@
-import {Questionnaire} from "../../base-questionnaire/questionnaire";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {QuestionMetadata} from "../../base-question/question-metadata";
-import {GRANTS_QUESTIONS} from "../../questions/question-groups";
-import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
+import {Questionnaire} from '../../base-questionnaire/questionnaire';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {QuestionMetadata} from '../../base-question/question-metadata';
+import {GRANTS_QUESTIONS} from '../../questions/question-groups';
+import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
 
 export class GrantsQuestionnaire extends Questionnaire {
 
@@ -15,7 +15,8 @@ export class GrantsQuestionnaire extends Questionnaire {
             return GrantsQuestionnaire.currentInstance;
         } else {
             GrantsQuestionnaire.currentJourneyType = journeyType;
-            GrantsQuestionnaire.currentInstance = new GrantsQuestionnaire(responseData, GrantsQuestionnaire.questionsNotAlreadyAnswered(responseData));
+            GrantsQuestionnaire.currentInstance =
+                new GrantsQuestionnaire(responseData, GrantsQuestionnaire.questionsNotAlreadyAnswered(responseData));
             return GrantsQuestionnaire.currentInstance;
         }
     }

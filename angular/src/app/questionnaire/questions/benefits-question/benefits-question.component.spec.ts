@@ -1,11 +1,11 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {FormsModule} from "@angular/forms";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {By} from "@angular/platform-browser";
-import {BenefitsQuestionComponent} from "./benefits-question.component";
-import {Benefits} from "./benefits";
-import keys from "lodash-es/keys";
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {By} from '@angular/platform-browser';
+import {BenefitsQuestionComponent} from './benefits-question.component';
+import {Benefits} from './benefits';
+import keys from 'lodash-es/keys';
 
 describe('BenefitsQuestionComponent', () => {
     let component: BenefitsQuestionComponent;

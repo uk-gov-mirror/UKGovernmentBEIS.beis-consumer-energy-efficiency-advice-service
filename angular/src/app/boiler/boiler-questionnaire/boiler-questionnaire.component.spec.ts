@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {Router} from "@angular/router";
-import {BoilerQuestionnaireComponent} from "./boiler-questionnaire.component";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {BoilerQuestionnaireComponent} from './boiler-questionnaire.component';
 
 describe('BoilerQuestionnaireComponent', () => {
     let component: BoilerQuestionnaireComponent;

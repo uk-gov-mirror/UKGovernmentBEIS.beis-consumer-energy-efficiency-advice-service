@@ -1,7 +1,7 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from"@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {BoilerRegulation, BoilerRegulationCardComponent} from "./boiler-regulation-card.component";
+import {BoilerRegulation, BoilerRegulationCardComponent} from './boiler-regulation-card.component';
 
 describe('BoilerRegulationCardComponent', () => {
     let component: BoilerRegulationCardComponent;

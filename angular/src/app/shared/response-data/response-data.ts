@@ -1,22 +1,22 @@
-import {Injectable} from "@angular/core";
-import {Epc} from "../postcode-epc-service/model/epc";
-import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
-import {ElectricityTariff} from "../../questionnaire/questions/electricity-tariff-question/electricity-tariff";
-import {HouseExposedWall} from "../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
-import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
-import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
-import {RdSapInput} from "../energy-calculation-api-service/request/rdsap-input";
-import {UserJourneyType} from "./user-journey-type";
-import {ShowerType} from "../../questionnaire/questions/shower-type-question/shower-type";
-import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
-import {Benefits} from "../../questionnaire/questions/benefits-question/benefits";
-import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
-import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
-import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
-import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
-import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {FloorLevel} from "../../questionnaire/questions/floor-level-question/floor-level";
-import {FlatExposedWall} from "../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
+import {Injectable} from '@angular/core';
+import {Epc} from '../postcode-epc-service/model/epc';
+import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
+import {ElectricityTariff} from '../../questionnaire/questions/electricity-tariff-question/electricity-tariff';
+import {HouseExposedWall} from '../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
+import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age';
+import {HomeType} from '../../questionnaire/questions/home-type-question/home-type';
+import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
+import {UserJourneyType} from './user-journey-type';
+import {ShowerType} from '../../questionnaire/questions/shower-type-question/shower-type';
+import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
+import {Benefits} from '../../questionnaire/questions/benefits-question/benefits';
+import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
+import {WaterTankSpace} from '../../questionnaire/questions/water-tank-question/water-tank-space';
+import {GardenAccessibility} from '../../questionnaire/questions/garden-question/garden-accessibility';
+import {RoofSpace} from '../../questionnaire/questions/roof-space-question/roof-space';
+import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/floor-area-unit';
+import {FloorLevel} from '../../questionnaire/questions/floor-level-question/floor-level';
+import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 
 @Injectable()
 export class ResponseData {

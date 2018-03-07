@@ -1,102 +1,102 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {WordpressApiService} from "../../shared/wordpress-api-service/wordpress-api-service";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/toPromise";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {NationalGrantCalculator} from "../national-grant-calculator/national-grant-calculator";
-import {GrantEligibility} from "./grant-eligibility";
-import {GrantEligibilityService} from "./grant-eligibility.service";
-import {NationalGrantContent} from "../national-grants-content-service/national-grants-content";
-import {NationalGrantsContentService} from "../national-grants-content-service/national-grants-content.service";
-import {NationalGrantCalculatorProvider} from "../national-grant-calculator/provider/national-grant-calculator.provider";
-import {EnergySavingMeasureResponse} from "../../shared/energy-calculation-api-service/response/energy-saving-measure-response";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {NationalGrantCalculator} from '../national-grant-calculator/national-grant-calculator';
+import {GrantEligibility} from './grant-eligibility';
+import {GrantEligibilityService} from './grant-eligibility.service';
+import {NationalGrantContent} from '../national-grants-content-service/national-grants-content';
+import {NationalGrantsContentService} from '../national-grants-content-service/national-grants-content.service';
+import {NationalGrantCalculatorProvider} from '../national-grant-calculator/provider/national-grant-calculator.provider';
+import {EnergySavingMeasureResponse} from '../../shared/energy-calculation-api-service/response/energy-saving-measure-response';
 
 describe('GrantEligibilityService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: GrantEligibilityService;
 
-    const measureCode = "U";
+    const measureCode = 'U';
 
     const nationalGrantsContent: NationalGrantContent[] = [
         {
-            heading: "Linked eligible grant 1",
-            description: "Get paid for creating your own green energy.",
+            heading: 'Linked eligible grant 1',
+            description: 'Get paid for creating your own green energy.',
             linked_measure_codes: [measureCode],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "linked-eligible-grant-1",
+            slug: 'linked-eligible-grant-1',
             advantages: [],
             steps: []
         },
         {
-            heading: "Linked eligible grant 2",
-            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            heading: 'Linked eligible grant 2',
+            description: 'Get cash if you install or have already installed an eligible renewable heating technology.',
             linked_measure_codes: [measureCode],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "linked-eligible-grant-2",
+            slug: 'linked-eligible-grant-2',
             advantages: [],
             steps: []
         },
         {
-            heading: "Standalone eligible grant 1",
-            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            heading: 'Standalone eligible grant 1',
+            description: 'Get cash if you install or have already installed an eligible renewable heating technology.',
             linked_measure_codes: [],
             display_without_measures: true,
             link_to_measures: false,
-            slug: "standalone-eligible-grant-1",
+            slug: 'standalone-eligible-grant-1',
             advantages: [],
             steps: []
         },
         {
-            heading: "Standalone eligible grant 2",
-            description: "Get cash if you install or have already installed an eligible renewable heating technology.",
+            heading: 'Standalone eligible grant 2',
+            description: 'Get cash if you install or have already installed an eligible renewable heating technology.',
             linked_measure_codes: [],
             display_without_measures: true,
             link_to_measures: false,
-            slug: "standalone-eligible-grant-2",
+            slug: 'standalone-eligible-grant-2',
             advantages: [],
             steps: []
         },
         {
-            heading: "Standalone ineligible grant",
-            description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
+            heading: 'Standalone ineligible grant',
+            description: 'If you\'re receiving certain benefits, you may get a payment when the weather is cold.',
             linked_measure_codes: [],
             display_without_measures: true,
             link_to_measures: false,
-            slug: "standalone-ineligible-grant",
+            slug: 'standalone-ineligible-grant',
             advantages: [],
             steps: []
         },
         {
-            heading: "Linked ineligible grant",
-            description: "If you're receiving certain benefits, you may get a payment when the weather is cold.",
+            heading: 'Linked ineligible grant',
+            description: 'If you\'re receiving certain benefits, you may get a payment when the weather is cold.',
             linked_measure_codes: [measureCode],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "linked-ineligible-grant",
+            slug: 'linked-ineligible-grant',
             advantages: [],
             steps: []
         },
         {
-            heading: "Feed in tariff",
-            description: "",
+            heading: 'Feed in tariff',
+            description: '',
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "feed-in-tariff",
+            slug: 'feed-in-tariff',
             advantages: [],
             steps: []
         },
         {
-            heading: "Renewable heat incentive",
-            description: "",
+            heading: 'Renewable heat incentive',
+            description: '',
             linked_measure_codes: [],
             display_without_measures: false,
             link_to_measures: true,
-            slug: "renewable-heat-incentive",
+            slug: 'renewable-heat-incentive',
             advantages: [],
             steps: []
         }
@@ -208,16 +208,16 @@ describe('GrantEligibilityService', () => {
         it('should return FIT if included in measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 100,
-                "RHI": 0,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 100,
+                'RHI': 0,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
-            const fitMeasureCode = "U";
+            const fitMeasureCode = 'U';
 
             // when
             const grants = service.getEligibleGrantsForMeasure(fitMeasureCode, measure);
@@ -232,16 +232,16 @@ describe('GrantEligibilityService', () => {
         it('should not return FIT if not included in measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 0,
-                "RHI": 0,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 0,
+                'RHI': 0,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
-            const fitMeasureCode = "U";
+            const fitMeasureCode = 'U';
 
             // when
             const grants = service.getEligibleGrantsForMeasure(fitMeasureCode, measure);
@@ -256,14 +256,14 @@ describe('GrantEligibilityService', () => {
         it('should return RHI if included in measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 0,
-                "RHI": 100,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 0,
+                'RHI': 100,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
 
             // when
@@ -279,14 +279,14 @@ describe('GrantEligibilityService', () => {
         it('should not return RHI if not included in measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 0,
-                "RHI": 0,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 0,
+                'RHI': 0,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
 
             // when
@@ -302,14 +302,14 @@ describe('GrantEligibilityService', () => {
         it('should return all grants linked to the measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 0,
-                "RHI": 0,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 0,
+                'RHI': 0,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
 
             // when
@@ -326,14 +326,14 @@ describe('GrantEligibilityService', () => {
         it('should not return grants not linked to the measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 0,
-                "RHI": 0,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 0,
+                'RHI': 0,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
 
             // when
@@ -350,14 +350,14 @@ describe('GrantEligibilityService', () => {
         it('should not return ineligible grants', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
-                "cost_saving": 230.64,
-                "energy_saving": 0,
-                "number": "34",
-                "FIT": 0,
-                "RHI": 0,
-                "lifetime": 40,
-                "min_installation_cost": 500,
-                "max_installation_cost": 1500
+                'cost_saving': 230.64,
+                'energy_saving': 0,
+                'number': '34',
+                'FIT': 0,
+                'RHI': 0,
+                'lifetime': 40,
+                'min_installation_cost': 500,
+                'max_installation_cost': 1500
             };
 
             // when

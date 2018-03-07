@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
-import "rxjs/add/operator/map";
+import {Component, OnInit} from '@angular/core';
+import 'rxjs/add/operator/map';
 
-import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import {EpcParserService} from "../../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {QuestionBaseComponent, slideInOutAnimation} from "../../base-question/question-base-component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {PostcodeEpcService} from "../../../shared/postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../../../shared/postcode-epc-service/model/postcode-details";
+import {Epc} from '../../../shared/postcode-epc-service/model/epc';
+import {EpcParserService} from '../../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {PostcodeEpcService} from '../../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../../../shared/postcode-epc-service/model/postcode-details';
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -78,6 +78,24 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
             );
     }
 
+    isSelected(epc: Epc): boolean {
+        return this.selectedEpc && epc.certificateHash === this.selectedEpc.certificateHash;
+    }
+
+    continueWithEpc(epc: Epc): void {
+        this.selectedEpc = epc;
+        this.isNoEpcSelected = false;
+        this.epc = epc;
+        this.complete.emit();
+    }
+
+    continueWithoutEpc(): void {
+        this.selectedEpc = null;
+        this.isNoEpcSelected = true;
+        this.epc = null;
+        this.complete.emit();
+    }
+
     private displayPostcodeValidationError(): void {
         this.resetSearchState();
         this.validationError = PostcodeEpcQuestionComponent.ERROR_VALIDATION;
@@ -108,23 +126,5 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         this.postcode = this.postcodeInput;
         this.localAuthorityCode = null;
         this.continueWithoutEpc();
-    }
-
-    isSelected(epc: Epc): boolean {
-        return this.selectedEpc && epc.certificateHash === this.selectedEpc.certificateHash;
-    }
-
-    continueWithEpc(epc: Epc): void {
-        this.selectedEpc = epc;
-        this.isNoEpcSelected = false;
-        this.epc = epc;
-        this.complete.emit();
-    }
-
-    continueWithoutEpc(): void {
-        this.selectedEpc = null;
-        this.isNoEpcSelected = true;
-        this.epc = null;
-        this.complete.emit();
     }
 }

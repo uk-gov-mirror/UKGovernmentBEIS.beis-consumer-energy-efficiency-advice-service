@@ -1,8 +1,8 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 
-import {BoilerTypeQuestionComponent} from "./boiler-type-question.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
+import {BoilerTypeQuestionComponent} from './boiler-type-question.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
 
 describe('BoilerTypeQuestionComponent', () => {
     let component: BoilerTypeQuestionComponent;
@@ -31,7 +31,7 @@ describe('BoilerTypeQuestionComponent', () => {
         // given
 
         // when
-        let yes = fixture.debugElement.query(By.css('#yes-button'));
+        const yes = fixture.debugElement.query(By.css('#yes-button'));
         yes.nativeElement.click();
 
         // then
@@ -42,7 +42,7 @@ describe('BoilerTypeQuestionComponent', () => {
         // given
 
         // when
-        let no = fixture.debugElement.query(By.css('#no-button'));
+        const no = fixture.debugElement.query(By.css('#no-button'));
         no.nativeElement.click();
 
         // then

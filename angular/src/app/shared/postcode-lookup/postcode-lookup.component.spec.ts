@@ -1,14 +1,14 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {RouterTestingModule} from "@angular/router/testing";
-import {FormsModule} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 
-import {PostcodeLookupComponent} from "./postcode-lookup.component";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {PostcodeEpcService} from "../postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
+import {PostcodeLookupComponent} from './postcode-lookup.component';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 
 describe('PostcodeLookupComponent', () => {
     let component: PostcodeLookupComponent;
@@ -79,11 +79,12 @@ describe('PostcodeLookupComponent', () => {
         // then
         const selectOptions = fixture.debugElement.queryAll(By.css('.address-option'));
         postcodeEpcServiceStub.fetchPostcodeDetails(component.postcodeInput).toPromise().then(postcodeDetails =>
-           postcodeDetails.allEpcsForPostcode.forEach(epc => expect(selectOptions.some(option => option.nativeElement.innerText === epc.address)).toBeTruthy())
+           postcodeDetails.allEpcsForPostcode.forEach(epc =>
+            expect(selectOptions.some(option => option.nativeElement.innerText === epc.address)).toBeTruthy())
         );
     });
 
-    it('should set the postcode response upon entering a valid postcode',() => {
+    it('should set the postcode response upon entering a valid postcode', () => {
         // given
         component.postcodeInput = VALID_POSTCODE;
 
@@ -91,9 +92,9 @@ describe('PostcodeLookupComponent', () => {
         fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
         fixture.detectChanges();
 
-        let showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
+        const showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
         // Angular syntax for custom ngValue
-        showerTypeSelect.nativeElement.value = "1: 1";
+        showerTypeSelect.nativeElement.value = '1: 1';
         showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
         fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
@@ -123,14 +124,14 @@ describe('PostcodeLookupComponent', () => {
         fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
         fixture.detectChanges();
 
-        let showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
+        const showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
         // Angular syntax for custom ngValue
-        showerTypeSelect.nativeElement.value = "1: 1";
+        showerTypeSelect.nativeElement.value = '1: 1';
         showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
         fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
 
         // then
         expect(component.addressSelected.emit).toHaveBeenCalledWith(component.epc.lmkKey);
-    })
+    });
 });

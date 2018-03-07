@@ -1,10 +1,10 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {By} from "@angular/platform-browser";
-import {DownloadPlanComponent} from "./download-plan.component";
-import {ResponseData} from "../../../shared/response-data/response-data";
-import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
-import {InlineSVGModule} from "ng-inline-svg";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DownloadPlanComponent} from './download-plan.component';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('DownloadPlanComponent', () => {
     let component: DownloadPlanComponent;

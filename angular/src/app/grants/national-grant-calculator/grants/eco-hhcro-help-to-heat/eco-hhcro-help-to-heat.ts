@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {NationalGrantCalculator} from "../../national-grant-calculator";
-import {ResponseData} from "../../../../shared/response-data/response-data";
-import {GrantEligibility} from "../../../grant-eligibility-service/grant-eligibility";
-import {Benefits} from "../../../../questionnaire/questions/benefits-question/benefits";
-import {Observable} from "rxjs/Observable";
-import {IncomeThresholdService} from "./income-threshold-service/income-threshold.service";
-import {IncomeThresholdByChildren, IncomeThreshold} from "./income-threshold-service/income-thresholds";
+import {Injectable} from '@angular/core';
+import {NationalGrantCalculator} from '../../national-grant-calculator';
+import {ResponseData} from '../../../../shared/response-data/response-data';
+import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
+import {Benefits} from '../../../../questionnaire/questions/benefits-question/benefits';
+import {Observable} from 'rxjs/Observable';
+import {IncomeThresholdService} from './income-threshold-service/income-threshold.service';
+import {IncomeThresholdByChildren, IncomeThreshold} from './income-threshold-service/income-thresholds';
 
 @Injectable()
 export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
@@ -62,9 +62,9 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
     }
 
     private static getEligibilityFromIncome(relevantIncomeThreshold: Observable<IncomeThreshold>,
-                                     relevantIncome: number,
-                                     numberOfAdults: number,
-                                     numberOfChildren: number): Observable<GrantEligibility> {
+                                        relevantIncome: number,
+                                        numberOfAdults: number,
+                                        numberOfChildren: number): Observable<GrantEligibility> {
         const incomeThresholdValue = relevantIncomeThreshold
             .map(incomeThreshold => {
                 const incomeThresholdByChildren = numberOfAdults === 1 ?
@@ -77,7 +77,7 @@ export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
     }
 
     private static getIncomeThresholdValue(incomeThresholdByChildren: IncomeThresholdByChildren,
-                                           numberOfChildren: number): number {
+                                            numberOfChildren: number): number {
         switch (numberOfChildren) {
             case 0: {
                 return incomeThresholdByChildren.zeroChildren;

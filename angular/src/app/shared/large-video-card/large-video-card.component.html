@@ -1,5 +1,5 @@
 <app-popup *ngIf="displaySynopsis" (onOkPressed)="closeSynopsis()">
-    {{video.synopsis}}
+    <span [innerHTML]="video.synopsis"></span>
 </app-popup>
 <a class="large-video-card">
     <div class="video-icon-container" (click)="openSynopsis()">

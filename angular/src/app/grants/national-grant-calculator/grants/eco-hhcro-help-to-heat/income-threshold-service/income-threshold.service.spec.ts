@@ -1,9 +1,9 @@
-import {async, getTestBed, TestBed} from "@angular/core/testing";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpRequest} from "@angular/common/http";
-import "rxjs/add/operator/toPromise";
-import {IncomeThresholdService} from "./income-threshold.service";
-import {WordpressApiService} from "../../../../../shared/wordpress-api-service/wordpress-api-service";
+import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpRequest} from '@angular/common/http';
+import 'rxjs/add/operator/toPromise';
+import {IncomeThresholdService} from './income-threshold.service';
+import {WordpressApiService} from '../../../../../shared/wordpress-api-service/wordpress-api-service';
 
 describe('IncomeThresholdService', () => {
     let httpMock: HttpTestingController;
@@ -49,11 +49,11 @@ describe('IncomeThresholdService', () => {
             const firstRequest = service.fetchIncomeThresholds().toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
-            //when
+            // when
             firstRequest.then(() => {
                 service.fetchIncomeThresholds().toPromise();
 
-                //then
+                // then
                 httpMock.verify();
             });
         }));
