@@ -1,23 +1,32 @@
 @import "styles/var/colors";
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
+@import "styles/mixins/font";
 
 .occupants-question {
   .questionnaire-form .occupants-input {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    &:not(:first-child) {
-      margin-left: 30px;
-      padding-left: 30px;
-      border-left: 1px solid $separator-grey;
-    }
-
     .name {
-      font-size: 16px;
-      line-height: 20px;
-
+      @include question-number-label-font;
       margin-bottom: 17px;
+      text-align: center;
+    }
+  }
+}
+
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .occupants-question {
+    .questionnaire-form .occupants-input {
+      @include is-grid-item($number-of-items: 4, $margin: 20px);
+      margin: 0;
+      padding: 0 36px;
+
+      &:not(:first-child) {
+        border-left: 1px solid $separator-grey;
+      }
     }
   }
 }

@@ -21,8 +21,8 @@
 @include tablet() {
 }
 @include desktop() {
-  .roof-space-question .roof-space-options {
-    .roof-space-option {
+  .water-tank-question .water-tank-options {
+    .water-tank-option {
       @include is-grid-item($number-of-items: 3, $margin: 20px);
     }
   }

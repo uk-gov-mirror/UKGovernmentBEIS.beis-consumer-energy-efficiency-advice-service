@@ -1,21 +1,17 @@
 @import 'styles/mixins/buttons';
 @import "styles/var/colors";
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/font";
+@import "styles/mixins/layout";
 
 .heating-cost-question {
   .question-content {
     display: flex;
 
-    .questionnaire-form {
-      margin-right: 30px;
-      padding-right: 30px;
-      border-right: 1px solid $separator-grey;
-    }
-
     .do-not-know-button {
       @include capsule-button();
-      font-size: 20px;
+      @include question-button-font;
       background-color: white;
-      color: $dark-grey;
       border: none;
       outline: none;
       padding: 12px 36px;
@@ -23,6 +19,23 @@
       &:hover, &:focus {
         background-color: $lighter-medium-grey;
       }
+    }
+  }
+}
+
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .heating-cost-question {
+    .question-content > * {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+    }
+
+    .questionnaire-form {
+      padding-right: 30px;
+      border-right: 1px solid $separator-grey;
     }
   }
 }
