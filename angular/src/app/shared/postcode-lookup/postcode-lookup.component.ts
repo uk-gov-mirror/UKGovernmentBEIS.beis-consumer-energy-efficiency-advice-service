@@ -57,18 +57,26 @@ export class PostcodeLookupComponent {
     onPostcodeSubmit() {
         if (this.postcodeInput) {
             this.loadingEpcs = true;
+            this.scottishPostcode = false;
             this.resetSearchState();
             this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
                 .subscribe(
-                    postcodeDetails => this.checkForScottishPostcode(postcodeDetails),
+                    postcodeDetails => {
+                        if(!this.isScottishPostcode(postcodeDetails)){
+                            this.scottishPostcode = false;
+                            this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
+                                .subscribe(
+                                    postcodeDetails => this.handlePostcodeDetails(postcodeDetails),
+                                    error => this.handlePostcodeSearchError(error)
+                                );
+                        }
+                        else{
+                            this.scottishPostcode = true;
+                        }
+                    },
                     error => this.handlePostcodeSearchError(error)
                 )
-            this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
-                .subscribe(
-                    postcodeDetails => this.handlePostcodeDetails(postcodeDetails),
-                    error => this.handlePostcodeSearchError(error)
-                );
-            }
+        }
     }
 
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
@@ -106,13 +114,13 @@ export class PostcodeLookupComponent {
         }
     }
 
-    private fetchPostcodeDetails(postcode: string): Observable<PostcodeBasicDetailsResponse | PostcodeDetails> {
+    private fetchPostcodeDetails(postcode: string): Observable<PostcodeBasicDetailsResponse> {
         return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
             .catch((postcodeApiError) =>
                 PostcodeLookupComponent.handlePostcodeApiError(postcodeApiError, postcode));
     }
 
-    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeDetails> {
+    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeBasicDetailsResponse> {
         const isPostcodeNotFoundResponse: boolean = err.status === PostcodeApiService.postcodeNotFoundStatus;
         if (isPostcodeNotFoundResponse) {
             return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
@@ -120,13 +128,12 @@ export class PostcodeLookupComponent {
         return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
     }
 
-    private checkForScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse | PostcodeDetails){
+    private isScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse): boolean{
         if(postcodeDetails.result.country === "Scotland"){
-            this.resetSearchState();
-            this.scottishPostcode = true;
+            return true;
         }
         else{
-            this.scottishPostcode = false;
+            return false;
         }
     }
 }
