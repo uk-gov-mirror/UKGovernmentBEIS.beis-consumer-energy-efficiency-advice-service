@@ -1,12 +1,14 @@
-.electricity-tariff-question .electricity-tariff-options {
-  display: flex;
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
 
-  .electricity-tariff-option {
-    flex: 0 0 auto;
-    width: calc((100% - 20px - 1px) / 2);
-
-    &:not(:last-child) {
-      margin-right: 20px;
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .electricity-tariff-question .electricity-tariff-options {
+    .electricity-tariff-option {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
     }
   }
 }

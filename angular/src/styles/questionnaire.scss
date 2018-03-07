@@ -135,17 +135,15 @@ $desktop-multiple-choice-margin: 20px;
         display: flex;
         justify-content: center;
         flex: 1 0 100%;
+      }
+    }
 
-        .question-component {
-          .multiple-choice-options {
-            @include is-grid($margin-compensation: $mobile-multiple-choice-margin);
+    .multiple-choice-options {
+      @include is-grid($margin-compensation: $mobile-multiple-choice-margin);
 
-            .multiple-choice-option {
-              @include is-grid-item($number-of-items: 1, $margin: $mobile-multiple-choice-margin);
-              padding: 10px 36px;
-            }
-          }
-        }
+      .multiple-choice-option {
+        @include is-grid-item($number-of-items: 1, $margin: $mobile-multiple-choice-margin);
+        padding: 10px 36px;
       }
     }
   }
@@ -156,17 +154,15 @@ $desktop-multiple-choice-margin: 20px;
         display: flex;
         justify-content: center;
         flex: 1 0 100%;
+      }
+    }
 
-        .question-component {
-          .multiple-choice-options {
-            @include is-grid($margin-compensation: $tablet-multiple-choice-margin);
+    .multiple-choice-options {
+      @include is-grid($margin-compensation: $tablet-multiple-choice-margin);
 
-            .multiple-choice-option {
-              @include is-grid-item($number-of-items: 2, $margin: $tablet-multiple-choice-margin);
-              padding: 8px 25px;
-            }
-          }
-        }
+      .multiple-choice-option {
+        @include is-grid-item($number-of-items: 2, $margin: $tablet-multiple-choice-margin);
+        padding: 8px 25px;
       }
     }
   }
@@ -177,20 +173,19 @@ $desktop-multiple-choice-margin: 20px;
         display: flex;
         justify-content: center;
         flex: 1 0 100vw;
+      }
+    }
 
-        .question-component {
-          .multiple-choice-options {
-            @include is-grid($margin-compensation: $desktop-multiple-choice-margin);
-            flex-direction: column;
+    .multiple-choice-options {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -$desktop-multiple-choice-margin;
 
-            .multiple-choice-option {
-              // This is often overriden on a per question basis
-              @include is-grid-item($number-of-items: 1, $margin: $desktop-multiple-choice-margin);
-              align-items: stretch;
-              padding: 12px 36px;
-            }
-          }
-        }
+      .multiple-choice-option {
+        // This is often overriden on a per question basis
+        @include is-grid-item($number-of-items: 1, $margin: $desktop-multiple-choice-margin);
+        align-items: stretch;
+        padding: 12px 36px;
       }
     }
   }

@@ -1,18 +1,15 @@
-.fuel-type-options {
-  display: flex;
-  flex-wrap: wrap;
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
 
-  .fuel-type-option {
-    flex: 0 0 auto;
-    width: calc((100% - 20px - 1px) / 2);
-    text-transform: capitalize;
-
-    &:nth-child(odd) {
-      margin-right: 20px;
-    }
-
-    &:nth-last-child(n + 2) {
-      margin-bottom: 20px;
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .fuel-type-options {
+    .fuel-type-option {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+      text-transform: capitalize;
     }
   }
 }

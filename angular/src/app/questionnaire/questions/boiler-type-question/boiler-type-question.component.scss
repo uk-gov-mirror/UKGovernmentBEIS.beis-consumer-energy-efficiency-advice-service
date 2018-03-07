@@ -1,12 +1,14 @@
-.boiler-type-question .boiler-type-options {
-  display: flex;
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
 
-  .boiler-type-option {
-    flex: 0 0 auto;
-    width: calc((100% - 20px - 1px) / 2);
-
-    &:not(:last-child) {
-      margin-right: 20px;
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .boiler-type-question .boiler-type-options {
+    .boiler-type-option {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
     }
   }
 }

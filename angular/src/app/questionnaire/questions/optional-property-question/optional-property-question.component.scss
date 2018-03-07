@@ -1,14 +1,14 @@
-.optional-property-question .optional-property-question-options {
-  display: flex;
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
 
-  .optional-property-question-option {
-    flex: 0 0 auto;
-    width: calc((100% - 20px - 1px) / 2);
-
-    white-space: nowrap;
-
-    &:not(:last-child) {
-      margin-right: 20px;
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .optional-property-question-options {
+    .optional-property-question-option {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
     }
   }
 }
