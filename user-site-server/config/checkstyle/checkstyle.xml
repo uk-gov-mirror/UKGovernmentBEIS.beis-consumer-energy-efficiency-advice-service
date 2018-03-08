@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<!--
+    This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+    Checkstyle-Configuration: Unicorn
+    Description: none
+-->
+<module name="Checker">
+  <property name="severity" value="error"/>
+  <module name="SuppressWarningsFilter" />
+  <module name="TreeWalker">
+    <module name="AnnotationUseStyle"/>
+    <module name="MissingOverride"/>
+    <module name="EmptyBlock">
+      <!-- This will need changing if/when we update Checkstyle
+         - https://stackoverflow.com/questions/15500946/configure-checkstyle-to-ignore-an-empty-catch-block
+         -->
+      <property name="option" value="text" />
+    </module>
+    <module name="LeftCurly"/>
+    <module name="NeedBraces"/>
+    <module name="RightCurly"/>
+    <module name="AvoidNestedBlocks"/>
+    <module name="VisibilityModifier"/>
+    <module name="FinalClass"/>
+    <module name="InterfaceIsType"/>
+    <module name="MutableException">
+      <property name="format" value="^.*Exception$"/>
+    </module>
+    <module name="ThrowsCount">
+      <property name="max" value="5"/>
+    </module>
+    <module name="InnerTypeLast"/>
+    <!-- "Main benefit of a trailing comma is that when you add new entry to
+       = an array, no surrounding lines are changed."
+       = http://checkstyle.sourceforge.net/config_coding.html#ArrayTrailingComma
+       -->
+    <module name="ArrayTrailingComma"/>
+    <module name="CovariantEquals"/>
+    <module name="EmptyStatement"/>
+    <module name="EqualsHashCode"/>
+    <module name="IllegalInstantiation"/>
+    <module name="InnerAssignment"/>
+    <module name="MissingSwitchDefault"/>
+    <module name="ModifiedControlVariable">
+      <!-- In foreach loops, the loop var is more like a method param than a "control" variable,
+         = so can be modified without very much confusion. Arguably, it's not great style to
+         = do so, but sometimes it is clearer than the easily reachable alternatives.
+         =
+         = See comments on "parameter assignment" below
+         -->
+      <property name="skipEnhancedForLoopVariable" value="true" />
+    </module>
+    <module name="SimplifyBooleanExpression"/>
+    <module name="SimplifyBooleanReturn"/>
+    <module name="StringLiteralEquality"/>
+    <module name="NestedForDepth">
+      <property name="max" value="3"/>
+    </module>
+    <module name="NestedIfDepth">
+      <property name="max" value="3"/>
+    </module>
+    <module name="NestedTryDepth">
+      <property name="max" value="2"/>
+    </module>
+    <module name="NoFinalizer"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="IllegalThrows"/>
+    <module name="PackageDeclaration"/>
+    <module name="ReturnCount">
+      <property name="max" value="5"/>
+      <property name="maxForVoid" value="5"/>
+    </module>
+    <module name="IllegalType">
+      <property name="tokens" value="PARAMETER_DEF, METHOD_DEF"/>
+      <property name="illegalClassNames" value="HashSet,HashMap,TreeSet,TreeMap,java.util.HashSet,java.util.HashMap,java.util.TreeSet,java.util.TreeMap"/>
+    </module>
+    <module name="DeclarationOrder"/>
+    <!--I don't think that parameter assignment is so bad as to need to be
+        universally forbidden.
+        See e.g. https://stackoverflow.com/questions/3972510/the-parameter-foo-should-not-be-assigned-whats-the-harm
+        -->
+    <!--<module name="ParameterAssignment"/>-->
+    <module name="DefaultComesLast"/>
+    <module name="FallThrough"/>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="UnnecessaryParentheses"/>
+    <module name="OneStatementPerLine"/>
+    <module name="AvoidStarImport"/>
+    <module name="IllegalImport">
+      <property name="illegalPkgs" value="sun, org.apache.commons.logging, org.apache.log4j"/>
+    </module>
+    <module name="RedundantImport"/>
+    <module name="UnusedImports">
+      <property name="processJavadoc" value="true"/>
+    </module>
+    <!--module name="CustomImportOrder">
+      <property name="customImportOrderRules" value="STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS"/>
+      <property name="standardPackageRegExp" value="^(javax|java)\."/>
+      <property name="thirdPartyPackageRegExp" value="^(org)\."/>
+      <property name="specialImportsRegExp" value="^(com)\."/>
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
+    </module-->
+    <!-- Below is the configuration to match IntelliJ IDEA defaults
+         Unfortunately the gradle checkstyle plugin can't cope when some import groups are missing (which is often)
+    <module name="CustomImportOrder">
+      <property name="customImportOrderRules"
+                value="THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC"/>
+      <property name="specialImportsRegExp" value="^javax\."/>
+      <property name="standardPackageRegExp" value="^java\."/>
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
+      <property name="separateLineBetweenGroups" value="false"/>
+    </module> -->
+    <module name="BooleanExpressionComplexity">
+      <property name="max" value="5"/>
+    </module>
+    <module name="UncommentedMain">
+      <property name="excludedClasses" value="(Launcher|Main|Application)$"/>
+    </module>
+    <module name="UpperEll"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="Regexp">
+      <property name="format" value="buffer\.append\(cardNumber\)\;"/>
+      <property name="message" value="Credit Card numbers should not be logged."/>
+      <property name="illegalPattern" value="true"/>
+    </module>
+    <module name="Regexp">
+      <property name="format" value="buffer\.append\(securityNumber\)\;"/>
+      <property name="message" value="Credit Card security numbers should not be logged."/>
+      <property name="illegalPattern" value="true"/>
+    </module>
+    <module name="OuterTypeFilename"/>
+    <module name="ModifierOrder"/>
+    <module name="RedundantModifier"/>
+    <module name="ClassTypeParameterName">
+      <property name="format" value="^[A-Z]\w*$" />
+    </module>
+    <module name="ConstantName"/>
+    <module name="LocalFinalVariableName"/>
+    <module name="LocalVariableName"/>
+    <module name="MemberName"/>
+    <module name="MethodName"/>
+    <module name="MethodTypeParameterName">
+      <!-- One-letter type params like "T" or "R" are ok, but descriptive names
+         - like TItem or TResult are better. -->
+      <property name="format" value="^[A-Z]|T[A-Z]\w*$" />
+    </module>
+    <module name="PackageName"/>
+    <module name="ParameterName"/>
+    <module name="StaticVariableName"/>
+    <module name="TypeName"/>
+    <module name="ExecutableStatementCount">
+      <property name="max" value="80"/>
+    </module>
+    <module name="LineLength">
+      <property name="max" value="160"/>
+    </module>
+    <module name="MethodLength">
+      <property name="countEmpty" value="false"/>
+    </module>
+    <module name="AnonInnerLength">
+      <property name="max" value="200"/>
+    </module>
+    <module name="ParameterNumber">
+      <property name="max" value="10" />
+    </module>
+    <module name="OuterTypeNumber"/>
+    <module name="GenericWhitespace"/>
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyForIteratorPad"/>
+    <module name="MethodParamPad"/>
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+    </module>
+    <module name="NoWhitespaceBefore"/>
+    <module name="OperatorWrap"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAround"/>
+    <module name="SuppressWarningsHolder" />
+    <module name="SuppressionCommentFilter"/>
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE\:LENGTH_OFF"/>
+      <property name="onCommentFormat" value="CHECKSTYLE\:LENGTH_ON"/>
+      <property name="checkFormat" value="LineLength"/>
+    </module>
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/>
+      <property name="onCommentFormat" value="CSON\: ([\w\|]+)"/>
+      <property name="checkFormat" value="$1"/>
+    </module>
+  </module>
+  <module name="NewlineAtEndOfFile">
+    <property name="lineSeparator" value="lf"/>
+  </module>
+  <module name="Translation"/>
+  <module name="FileLength"/>
+  <module name="RegexpSingleline">
+    <property name="format" value="\s+$"/>
+    <property name="message" value="Line has trailing spaces."/>
+  </module>
+  <module name="FileTabCharacter"/>
+  <module name="SuppressionFilter">
+    <property name="file" value="user-site-server/config/checkstyle/suppressions.xml"/>
+  </module>
+</module>

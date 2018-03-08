@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <!-- This is only run in H2, i.e. in dev -->
+    <changeSet id="2018-03-08-add-boilers-dev-data.xml"
+               author="richard.bradley@softwire.com"
+               dbms="h2">
+        <sql><![CDATA[
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690001', 'Illustrative Boiler - Regular, Gas condensing', '90.4', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690002', 'Illustrative Boiler - Instantaneous combi, Gas condensing', '90.2', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690003', 'Illustrative Boiler - Storage combi, Gas condensing', '90.1', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690004', 'Illustrative Boiler - Regular, LPG condensing', '92.0', '2');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690005', 'Illustrative Boiler - Instantaneous combi, LPG condensing', '92.0', '2');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690006', 'Illustrative Boiler - Regular, Oil condensing', '93.1', '4');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690007', 'Illustrative Boiler - Storage combi, Oil condensing', '90.3', '4');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690101', 'notional dwelling - England Wales 2013, Regular', '90.4', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690102', 'notional dwelling - England Wales 2013, Instantaneous combi', '90.2', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690103', 'notional dwelling - Scotland 2015, mains gas', '89.8', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690104', 'notional dwelling - Scotland 2015, LPG', '90.1', '2');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('690105', 'notional dwelling - Scotland 2015, oil', '91.8', '4');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000098', 'Baxi Heating - Wm, 20/3rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000099', 'Baxi Heating - Wm, 281rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000100', 'Baxi Heating - Wm, 282rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000102', 'Baxi Heating - Wm, 38/3', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000103', 'Baxi Heating - Wm, 381rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000104', 'Baxi Heating - Wm, 382rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000105', 'Baxi Heating - Wm, 40/3of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000106', 'Baxi Heating - Wm, 401of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000108', 'Baxi Heating - Wm, 402of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000109', 'Baxi Heating - Wm, 51/3', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000110', 'Baxi Heating - Wm, 511rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000111', 'Baxi Heating - Wm, 512rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000113', 'Baxi Heating - Wm, 532rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000114', 'Baxi Heating - Wm, 55/3of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000115', 'Baxi Heating - Wm, 551of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000116', 'Baxi Heating - Wm, 552of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000117', 'Baxi Heating - Wm, 60/3rs', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000126', 'Broag Remeha - W40M Eco, ', '83', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000127', 'Broag Remeha - W60M Eco, ', '83', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000130', 'Burco Maxol - Microturbo, 40 SRF & 40 MDF', '68', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000131', 'Burco Maxol - Microturbo, 50 SRF & 50 MDF', '68', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000260', 'Caradon Ideal - Mexico Slimline, cf40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000262', 'Caradon Ideal - Mexico Slimline, cf55', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000264', 'Caradon Ideal - Mexico Slimline, rs40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000266', 'Caradon Ideal - Mexico Slimline, rs55', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000268', 'Caradon Ideal - Mexico Slimline 2, cf40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000269', 'Caradon Ideal - Mexico Slimline 2, cf55', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000270', 'Caradon Ideal - Mexico Slimline 2, rs40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000271', 'Caradon Ideal - Mexico Slimline 2, rs55', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000272', 'Caradon Ideal - Mexico Super, cf100', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000273', 'Caradon Ideal - Mexico Super, cf125', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000275', 'Caradon Ideal - Mexico Super, cf30/40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000277', 'Caradon Ideal - Mexico Super, cf40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000278', 'Caradon Ideal - Mexico Super, cf40/60', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000280', 'Caradon Ideal - Mexico Super, cf55', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000281', 'Caradon Ideal - Mexico Super, cf65', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000282', 'Caradon Ideal - Mexico Super, cf75', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000283', 'Caradon Ideal - Mexico Super, cf80', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000284', 'Caradon Ideal - Mexico Super, rs100', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000285', 'Caradon Ideal - Mexico Super, rs125', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000286', 'Caradon Ideal - Mexico Super, rs30/40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000287', 'Caradon Ideal - Mexico Super, rs40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000289', 'Caradon Ideal - Mexico Super, rs40/60', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000290', 'Caradon Ideal - Mexico Super, rs55', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000292', 'Caradon Ideal - Mexico Super, rs65', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000293', 'Caradon Ideal - Mexico Super, rs75', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000294', 'Caradon Ideal - Mexico Super, rs80', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000413', 'Chaffoteaux - Celtic, ff', '70', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000414', 'Chaffoteaux - Challenger, 30bf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000415', 'Chaffoteaux - Challenger, 30ff', '72', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000416', 'Chaffoteaux - Challenger, 30of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000417', 'Chaffoteaux - Challenger, 40bf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000418', 'Chaffoteaux - Challenger, 50ff', '72', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000419', 'Chaffoteaux - Challenger, 50of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000420', 'Chaffoteaux - Corvec, 28bf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000421', 'Chaffoteaux - Corvec, 28of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000422', 'Chaffoteaux - Corvec, 28s', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000423', 'Chaffoteaux - Corvec, 45bf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000424', 'Chaffoteaux - Corvec, 45of', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000425', 'Chaffoteaux - Corvec, 45s', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000426', 'Chaffoteaux - Corvec, 48cf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000427', 'Chaffoteaux - Corvec, 64cf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000428', 'Chaffoteaux - Corvec, 80cf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000429', 'Chaffoteaux - Corvec Maxiflame, 2bf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000433', 'Chaffoteaux - Corvec Miniflame, cf', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000456', 'Claudio GR (Vokera) - Excell, 80SP', '73', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000457', 'Vokera - Excell, 80E', '73', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000458', 'Vokera - Excell, 96E', '73', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000467', 'Vokera - Meteor, V90', '68', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000468', 'Vokera - Meteor, S90', '68', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000474', 'Ferroli - Combi, 76ff', '70', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000478', 'Ferroli - Roma, 55ff', '72', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000488', 'Ferroli - Xignal, Xignal', '68', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000489', 'Ferroli - Hawk II, Hawk II', '68', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000490', 'Halstead - 30/90Combi, 30/90combi', '70', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000491', 'Halstead - Blenheim, 15/30', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000492', 'Halstead - Blenheim, 30/40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000493', 'Halstead - Blenheim, 40', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000494', 'Halstead - Blenheim, 40/50', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000495', 'Halstead - Blenheim, 50', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000496', 'Halstead - Blenheim, 50/60', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000497', 'Halstead - Blenheim, 60/75', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000508', 'Halstead - 40h, ', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000509', 'Halstead - Balmoral, 45f', '72', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000510', 'Halstead - 50h, ', '65', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000511', 'Halstead - Balmoral, 65f', '72', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000512', 'Halstead - Triocombi, triocombi', '70', '1');
+INSERT INTO BOILERS (product_index_number, name, sap_2005_seasonal_efficiency, fuel) VALUES ('000513', 'Halstead - Quattro, Quattro', '70', '1');
+        ]]></sql>
+    </changeSet>
+</databaseChangeLog>

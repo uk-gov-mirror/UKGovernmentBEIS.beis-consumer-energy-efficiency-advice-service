@@ -2,11 +2,13 @@
 
 wordpress/wp-content/themes/angular-theme/dist/
 wordpress/wp-content/themes/angular-theme/config/config.php
-wordpress/wp-content/plugins/
 /.idea/workspace.xml
 /.idea/tasks.xml
-
 node_modules
+*.pptx
+.gradle
+build/
+out/
 
 # Default gitignore for Angular project
 
@@ -21,6 +23,7 @@ angular/out-tsc
 
 # IDEs and editors
 # /.idea
+.idea/libraries/
 .project
 .classpath
 .c9/
@@ -74,3 +77,4 @@ wordpress/license.txt
 wordpress/readme.html
 wordpress/sitemap.xml
 wordpress/sitemap.xml.gz
+

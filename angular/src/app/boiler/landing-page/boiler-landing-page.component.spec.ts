@@ -23,12 +23,6 @@ describe('BoilerLandingPageComponent', () => {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
     };
 
-    const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');
-    const gasAndOilBoilersServiceStub = {
-        getGasAndOilBoilerWithIndexNumber: (index) => Observable.of(GasAndOilBoiler.fromJson(gasAndOilBoilersData[0])),
-        getGasAndOilBoilersMatching: (term) => Observable.of(gasAndOilBoilersData.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson))),
-    };
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -45,7 +39,6 @@ describe('BoilerLandingPageComponent', () => {
                 RouterTestingModule
             ],
             providers: [
-                {provide: GasAndOilBoilersService, useValue: gasAndOilBoilersServiceStub},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 ResponseData,
             ]

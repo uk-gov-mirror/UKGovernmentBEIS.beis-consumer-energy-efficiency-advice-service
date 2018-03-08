@@ -1,0 +1,195 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+        classpath('com.h2database:h2:1.4.193') // (for liquibase)
+    }
+}
+
+plugins {
+    id 'nu.studer.jooq' version '2.0.9'
+    id 'org.liquibase.gradle' version '1.2.4'
+    id "io.franzbecker.gradle-lombok" version "1.11"
+    id 'com.github.ksoichiro.build.info' version '0.2.0'
+    // Run e.g. "./gradlew :assemble :taskTree" to see task dependencies for `assemble`
+    id "com.dorongold.task-tree" version "1.3"
+}
+
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
+// To get a coverage report, uncomment this line and run `gradlew jacocoTestReport`
+//apply plugin: "jacoco"
+
+def buildTimeStr = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmX")
+        .withZone(ZoneOffset.UTC)
+        .format(Instant.now())
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+findbugs {
+    excludeFilter = file("$projectDir/config/findbugs/excludeFilter.xml")
+}
+
+springBoot {
+    executable = true
+}
+
+clean.doFirst {
+    delete "${rootDir}/src/main/generated/"
+    println "Deleted ${rootDir}/src/main/generated/"
+}
+
+processResources() {
+    filesMatching("application.properties") {
+        filter(ReplaceTokens, tokens:  [
+                'build.number': System.env['BUILD_NUMBER'] ? System.env['BUILD_NUMBER'] : "NO_BUILD",
+                'build.tag': System.env['BUILD_TAG'] ? System.env['BUILD_TAG'] : "NO_BUILD",
+                'build.url': System.env['BUILD_URL'] ? System.env['BUILD_URL'] : "NO_BUILD"
+        ])
+    }
+}
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+// Run `./gradlew dependencies` for a deps report
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-jooq')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework:spring-context-support')
+
+    compile('com.google.guava:guava:23.0')
+    compile('org.apache.commons:commons-lang3:3.6')
+
+    compile('com.github.mkopylec:charon-spring-boot-starter:2.3.0')
+
+    // Update Jackson to latest version to get support for ACCEPT_CASE_INSENSITIVE_ENUMS
+    // We might be able to remove this after a future Spring update
+    // (not yet as of Spring Boot 1.5.10)
+    def jacksonVer = '2.9.2'
+    compile("com.fasterxml.jackson.core:jackson-core:${jacksonVer}")
+    compile("com.fasterxml.jackson.core:jackson-databind:${jacksonVer}")
+    compile("com.fasterxml.jackson.core:jackson-annotations:${jacksonVer}")
+
+    // Jackson mappers for java8 dates, Optionals etc.
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVer}")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVer}")
+    compile("com.fasterxml.jackson.module:jackson-module-parameter-names:${jacksonVer}")
+
+    // This is not used in production, but needed at build time for the jOOQ codegen
+    // and on development machines for an in-memory database
+    // TODO:RTB use https://github.com/michaelruocco/embedded-mysql-plugin instead?
+    compile('com.h2database:h2:1.4.193')
+
+    jooqRuntime('com.h2database:h2:1.4.193')
+
+    compile('org.liquibase:liquibase-core:3.5.5')
+    compile('com.mattbertolini:liquibase-slf4j:2.0.0')
+    compile('org.quartz-scheduler:quartz:2.3.0')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.assertj:assertj-core:3.7.0')
+}
+
+checkstyle {
+    toolVersion "8.5"
+    configFile "$projectDir/config/checkstyle/checkstyle.xml" as File
+}
+
+// Details of the local H2 DB used to generate jOOQ classes.
+// This is different to the DB used to run the app locally and run tests.
+def jooqCodegenDbUrl = "jdbc:h2:$buildDir/db/schema-only.db;MODE=MYSQL"
+def jooqCodegenDbUser = 'sa'
+def jooqCodegenDbPassword = ''
+def jooqCodegenDbSchema = 'public'
+
+// TODO:RTB needed here?
+jooq {
+    dceas(sourceSets.main) {
+        jdbc {
+            driver = 'org.h2.Driver'
+            url = "$jooqCodegenDbUrl"
+            user = "$jooqCodegenDbUser"
+            password = "$jooqCodegenDbPassword"
+            schema = "$jooqCodegenDbSchema"
+        }
+        generator {
+            name = 'org.jooq.util.DefaultGenerator'
+            database {
+                name = 'org.jooq.util.h2.H2Database'
+                inputSchema = "$jooqCodegenDbSchema"
+                outputSchemaToDefault = true
+                customTypes {
+                }
+                forcedTypes {
+                }
+            }
+            generate {
+                relations = true
+                deprecated = false
+                records = true
+                immutablePojos = false
+                fluentSetters = true
+            }
+            target {
+                packageName = 'uk.gov.beis.dceas.db.gen'
+                directory = 'src/main/generated/java'
+            }
+        }
+    }
+}
+
+liquibase {
+    activities {
+        jooqSchema {
+            changeLogFile "$projectDir/src/main/resources/db/changelog.xml"
+            url jooqCodegenDbUrl
+            username jooqCodegenDbUser
+            password jooqCodegenDbPassword
+        }
+    }
+}
+
+generateDceasJooqSchemaSource.dependsOn update
+
+jar {
+    manifest {
+        attributes(
+                'Build-Timestamp': buildTimeStr,
+                'Git-Commit': System.getenv("GIT_COMMIT") ?: "dev",
+                'Jenkins-Build-Url': System.getenv("BUILD_URL") ?: "dev",
+                'Jenkins-Build-Number': System.getenv("BUILD_NUMBER") ?: "dev"
+        )
+    }
+}

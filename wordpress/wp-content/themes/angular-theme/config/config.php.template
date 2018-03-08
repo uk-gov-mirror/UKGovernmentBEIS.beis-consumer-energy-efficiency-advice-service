@@ -1,5 +1,7 @@
 <?php
 
+// Copy this file to "config.php" and fill in the secret values below.
+
 $_SERVER["EPC_API_TOKEN"] = "";
 $_SERVER["OCR_API_TOKEN"] = "";
 $_SERVER["GOOGLE_ANALYTICS_ID"] = "";

@@ -6,6 +6,8 @@
       <excludeFolder url="file://$MODULE_DIR$/angular/dist" />
       <excludeFolder url="file://$MODULE_DIR$/angular/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/angular/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/wordpress/wp-admin" />
+      <excludeFolder url="file://$MODULE_DIR$/wordpress/wp-content/plugins" />
       <excludeFolder url="file://$MODULE_DIR$/wordpress/wp-content/themes/angular-theme/dist" />
     </content>
     <content url="file://$MODULE_DIR$/angular/node_modules" />
