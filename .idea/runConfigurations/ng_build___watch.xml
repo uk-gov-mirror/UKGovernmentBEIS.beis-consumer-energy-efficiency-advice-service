@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ng build --watch" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="node_modules/@angular/cli/bin/ng" application-parameters="build --watch" working-dir="$PROJECT_DIR$/angular">
+    <method />
+  </configuration>
+</component>

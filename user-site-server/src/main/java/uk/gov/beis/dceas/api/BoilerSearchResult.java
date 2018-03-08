@@ -1,6 +1,5 @@
 package uk.gov.beis.dceas.api;
 
-import lombok.AllArgsConstructor;
 import lombok.Value;
 
 import java.util.List;

@@ -22,7 +22,6 @@ import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Properties;
 
 import static java.util.Collections.singleton;

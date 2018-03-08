@@ -67,7 +67,8 @@ public class BoilerPcdfDatabaseUpdateService {
         int tableFormatId = -1;
         List<BoilersRecord> boilers = new ArrayList<>();
 
-        for (String line; (line = in.readLine()) != null; ) {
+        String line;
+        while ((line = in.readLine()) != null) {
             if (line.startsWith("#")) {
                 continue; // file comment
             }
