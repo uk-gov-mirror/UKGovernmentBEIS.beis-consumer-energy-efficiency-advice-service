@@ -16,7 +16,7 @@ public class DceasApplication {
         System.out.println(
             "BEIS DCEAS application starting at " + Instant.now() + ". "
                 + "This is the application's `stdout` stream. For the "
-                + "application logs, please see /var/log/TODO:RTB-<env>.log"
+                + "application logs, please see /var/log/TODO:BEISDEAS-156-<env>.log"
         );
 
         SpringApplication.run(DceasApplication.class, args);

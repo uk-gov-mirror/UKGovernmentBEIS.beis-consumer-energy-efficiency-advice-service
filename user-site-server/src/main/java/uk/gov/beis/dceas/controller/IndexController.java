@@ -39,7 +39,7 @@ public class IndexController {
 
     @RequestMapping(value = {
         "/",
-        "/js/**"  // TODO:RTB tidy up js routing for prettier URLs
+        "/js/**"  // TODO:BEIS-157 tidy up js routing for prettier URLs
     },
         method = GET)
     public String index(Model model) throws IOException {

@@ -39,8 +39,6 @@ describe('ConfirmEpcQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    // TODO: add more tests once the intended behaviour of this page is more certain
-
     it('should display EPC results if there is an epc', async(() => {
         // when
         injectEpcAndDetectChanges(new Epc(epcResponse));

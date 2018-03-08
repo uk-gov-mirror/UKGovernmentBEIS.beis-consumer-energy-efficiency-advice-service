@@ -29,7 +29,7 @@ export function getHomeTypeDescription(homeType: HomeType): string {
 }
 
 export function getHomeTypeFromEpc(epc: Epc): HomeType {
-    // TODO: this is very fragile!
+    // TODO:BEIS-15 this is very fragile!
     if (epc.propertyType === 'flat') {
         return HomeType.FlatDuplexOrMaisonette;
     } else if (epc.propertyType === 'house') {

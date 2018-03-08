@@ -13,7 +13,7 @@ It is public-facing.
     + [Development Setup - User Site](#development-setup---user-site)
     + [Development Setup - Admin Site](#development-setup---admin-site)
     + [Development Setup - MySQL Database](#development-setup---mysql-database)
-- [Older instructions - TODO:RTB sort out](#older-instructions---todortb-sort-out)
+- [Older instructions - TODO:BEISDEAS-156 sort out](#older-instructions---todobeisdeas-156-sort-out)
   * [Angular setup](#angular-setup)
   * [Tests](#tests)
   * [Debugging](#debugging)
@@ -46,7 +46,7 @@ TODO:BEISDEAS-156 update when this has changed
  * `integration-tests/`
  
 Simple integration tests to check that the application is generally working as expected.
-TODO:RTB document how to run these?
+TODO:BEISDEAS-156 document how to run these?
 
 ## Development Setup
 
@@ -63,9 +63,9 @@ site you will need PHP. Follow the "Development Setup - Admin Site" section belo
 You will need the database installed locally, follow
 the "Development Setup - MySQL Database" section below.
 
-TODO:RTB hopefully just press "play" in IntelliJ
+TODO:BEISDEAS-156 hopefully just press "play" in IntelliJ
 
-TODO:RTB for now, you will need the WordPress site running locally as well
+TODO:BEISDEAS-156 for now, you will need the WordPress site running locally as well
 
 ### Development Setup - Admin Site
 
@@ -104,7 +104,7 @@ Log in as root and run the following to create a WP user and database
 Get a dump of the database from somewhere (another developer,
 the live site etc.) and restore it to that database.
 
-# Older instructions - TODO:RTB sort out
+# Older instructions - TODO:BEISDEAS-156 sort out
 
 ## Angular setup
 

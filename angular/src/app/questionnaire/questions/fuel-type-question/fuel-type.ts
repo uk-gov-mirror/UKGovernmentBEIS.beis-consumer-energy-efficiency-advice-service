@@ -31,7 +31,7 @@ export function getFuelTypeDescription(fuelType: FuelType): string {
 }
 
 export function getFuelTypeFromEpc(epc: Epc): FuelType {
-    // TODO: this is very fragile!
+    // TODO:BEIS-15 this is very fragile!
     if (epc.mainHeatDescription && includes(epc.mainHeatDescription, 'mains gas')) {
         return FuelType.MainsGas;
     } else if (epc.mainFuel && includes(epc.mainFuel, 'mains gas')) {

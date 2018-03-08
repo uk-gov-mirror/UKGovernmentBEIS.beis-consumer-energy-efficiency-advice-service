@@ -11,8 +11,7 @@ import {ShowerType} from '../../../questionnaire/questions/shower-type-question/
 import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
 import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
 import {getNumberOfExposedWallsInFlat} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
-import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
-import { TenureType } from '../../../questionnaire/questions/tenure-type-question/tenure-type';
+import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import includes from 'lodash-es/includes';
 
 
@@ -50,9 +49,11 @@ export class RdSapInput {
     constructor(responseData: ResponseData) {
         this.epc = responseData.epc;
 
-        // TODO: This is not currently a full correct mapping to RdSAP. For a full mapping, the homeType question needs to be changed.
-        // This is a 'best possible' mapping based on the current questions, to enable a PoC connection to the BRE API.
-        // See BEISDEAS-28 for updating the questions to allow a correct mapping.
+        // TODO:BEISDEAS-28 This is not currently a full correct mapping
+        // to RdSAP. For a full mapping, the homeType question needs to be
+        // changed. This is a 'best possible' mapping based on the current
+        // questions, to enable a PoC connection to the BRE API. See
+        // BEISDEAS-28 for updating the questions to allow a correct mapping.
         this.property_type = toString(RdSapInput.getPropertyType(responseData.homeType));
         this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
         this.flat_level = toString(RdSapInput.getFlatLevel(responseData.floorLevels));

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CookieService} from 'ng2-cookies';
 
 @Component({
@@ -15,7 +15,7 @@ export class OneTimePopupComponent implements OnInit {
   constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
-    // TODO: remove this alert which applies to Alpha only
+    // TODO:BEISDEAS-163 remove this alert which applies to Alpha only
     if (!this.cookieService.check(OneTimePopupComponent.ALPHA_ALERT_COOKIE_NAME)) {
       this.isDisplayed = true;
       this.cookieService.set(OneTimePopupComponent.ALPHA_ALERT_COOKIE_NAME, 'true');

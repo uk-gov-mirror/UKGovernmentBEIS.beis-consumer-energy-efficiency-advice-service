@@ -94,9 +94,11 @@ export class Epc {
     private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
 
     constructor(epcResponse: EpcResponse) {
-        // TODO: We may not use all these fields and may be able to remove some. We currently use the following fields:
-        // NB The data quality is mixed. Any field that we use should be escaped/parsed appropriately and we should be able to deal with
-        // a missing or bad field.
+        // TODO:BEIS-15 We may not use all these fields and may
+        // be able to remove some. We currently use the following
+        // fields: NB The data quality is mixed. Any field that
+        // we use should be escaped/parsed appropriately and we
+        // should be able to deal with a missing or bad field.
         this.lmkKey = epcResponse['lmk-key'];
         this.address1 = epcResponse['address1'];
         this.address2 = epcResponse['address2'];
@@ -112,13 +114,13 @@ export class Epc {
         this.flatTopStorey = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['flat-top-storey']);
         this.builtForm = epcResponse['built-form'].toLowerCase();
         this.isConnectedToMainsGas = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['mains-gas-flag']);
-        this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO: watch out - this field is marked as deprecated in some responses
+        this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO:BEIS-15 watch out - this field is marked as deprecated in some responses
         this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
         this.localAuthorityCode = epcResponse['local-authority'];
         this.epcDate = new Date(epcResponse['lodgement-date']);
         this.certificateHash = epcResponse['certificate-hash'];
 
-        // TODO: These fields are not currently used; maybe we can remove these later on
+        // TODO:BEIS-15 These fields are not currently used; maybe we can remove these later on
         this.buildingReferenceNumber = epcResponse['building-reference-number'];
         this.potentialEnergyRating = epcResponse['potential-energy-rating'];
         this.currentEnergyEfficiency = epcResponse['current-energy-efficiency'];

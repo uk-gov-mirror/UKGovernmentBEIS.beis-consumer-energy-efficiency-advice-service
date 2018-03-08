@@ -11,7 +11,7 @@ import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-me
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
-import { PopupComponent } from '../../shared/popup/popup.component';
+import {PopupComponent} from '../../shared/popup/popup.component';
 
 describe('BoilerAdvicePageComponent', () => {
     let component: BoilerAdvicePageComponent;
@@ -145,37 +145,6 @@ describe('BoilerAdvicePageComponent', () => {
         expect(actualConHeadings).toEqual(component.boilerType.cons.map(con => con.heading));
         expect(actualConBodies).toEqual(component.boilerType.cons.map(con => con.body));
     });
-
-    // TODO:
-    // For some reason, these tests cause the test runner to disconnect and time out. I've spent a couple of hours
-    // looking into why, but I still have no idea. If anyone works out how to fix it, please reinstate these tests!
-    //
-    // it('should not show the regulations section for a non-gas boiler', () => {
-    //     // given
-    //     component.boilerType = boilerWithSlug('ground-source-heat-pump');
-    //
-    //     // when
-    //     fixture.detectChanges();
-    //
-    //     // then
-    //     expect(regulationsSection()).toBeFalsy();
-    // });
-    //
-    // it('should show the regulations for a gas boiler', () => {
-    //     // given
-    //     component.boilerType = boilerWithSlug('combi-boiler');
-    //
-    //     // when
-    //     fixture.detectChanges();
-    //     const expectedRegulations = component.boilerRegulations;
-    //
-    //     // then
-    //     const actualRegulations = Array.from(fixture.debugElement.queryAll(By.directive(BoilerRegulationCardComponent)))
-    //         .map(card => card.componentInstance.regulation);
-    //
-    //     expect(actualRegulations.length).toBe(expectedRegulations.length);
-    //     expectedRegulations.forEach(regulation => expect(actualRegulations).toContain(regulation));
-    // });
 
     const prosSection = () => fixture.debugElement.query(By.css('.pros'));
     const consSection = () => fixture.debugElement.query(By.css('.cons'));

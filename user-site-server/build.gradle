@@ -109,7 +109,7 @@ dependencies {
 
     // This is not used in production, but needed at build time for the jOOQ codegen
     // and on development machines for an in-memory database
-    // TODO:RTB use https://github.com/michaelruocco/embedded-mysql-plugin instead?
+    // TODO:BEIS-157 use https://github.com/michaelruocco/embedded-mysql-plugin instead?
     compile('com.h2database:h2:1.4.193')
 
     jooqRuntime('com.h2database:h2:1.4.193')
@@ -134,7 +134,6 @@ def jooqCodegenDbUser = 'sa'
 def jooqCodegenDbPassword = ''
 def jooqCodegenDbSchema = 'public'
 
-// TODO:RTB needed here?
 jooq {
     dceas(sourceSets.main) {
         jdbc {
