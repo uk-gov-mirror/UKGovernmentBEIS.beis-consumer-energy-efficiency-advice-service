@@ -53,7 +53,9 @@ TODO:BEISDEAS-156 document how to run these?
 There are two web UIs: the user site (Angular JS) and the admin site (Wordpress).
 
 To run and make changes to the user site (without making CMS changes), you will
-need Java and Node.js. Follow the "Development Setup - User Site" section below.
+need Java (Java 8) and Node.js. Follow the "Development Setup - User Site" section below.
+
+Note: Gradle will not compile with Java 9
 
 To run and make changes to the admin site, or to make CMS changes to the user
 site you will need PHP. Follow the "Development Setup - Admin Site" section below.
