@@ -131,6 +131,9 @@ $desktop-multiple-choice-margin: 20px;
 .questions-container {
   @include mobile() {
     .question {
+      .question-component {
+        width: 100%;
+      }
       & > * {
         display: flex;
         justify-content: center;
@@ -155,6 +158,10 @@ $desktop-multiple-choice-margin: 20px;
 
   @include tablet() {
     .question {
+      .question-component {
+        width: 100%;
+      }
+
       & > * {
         display: flex;
         justify-content: center;

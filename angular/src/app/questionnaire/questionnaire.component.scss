@@ -192,6 +192,10 @@
       width: 100%;
       margin-top: 30px;
     }
+
+    .help-text {
+      width: 100%;
+    }
   }
 
   @include tablet() {
@@ -215,6 +219,10 @@
     .question {
       width: 100%;
       margin-top: 52px;
+    }
+
+    .help-text {
+      width: 100%;
     }
   }
 
