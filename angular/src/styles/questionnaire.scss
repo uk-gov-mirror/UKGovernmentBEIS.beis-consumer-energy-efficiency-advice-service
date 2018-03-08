@@ -27,12 +27,10 @@ $desktop-multiple-choice-margin: 20px;
         }
 
         .text-input {
-          font-weight: bold;
-          font-size: 24px;
+          @include question-text-input-font;
           border-radius: 30%/50%;
           padding: 10px;
           text-align: center;
-          text-transform: uppercase;
           outline: none;
           border: none;
           color: $dark-grey;
@@ -46,16 +44,13 @@ $desktop-multiple-choice-margin: 20px;
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
+            background: white url('/assets/images/controls/chevron-down.svg') no-repeat right 16px center/16px;
             padding: 12px 36px 12px 24px;
-            background: white url('/assets/images/controls/chevron-down.svg') no-repeat right 20px center/20px;
             min-width: 100px;
+            max-width: 100%;
 
             &::-ms-expand {
               display: none;
-            }
-
-            option {
-              font-size: medium;
             }
           }
         }
@@ -133,6 +128,12 @@ $desktop-multiple-choice-margin: 20px;
     .question {
       .question-component {
         width: 100%;
+
+        .questionnaire-form {
+          .dropdown-input {
+            width: 100%;
+          }
+        }
       }
       & > * {
         display: flex;
@@ -160,6 +161,12 @@ $desktop-multiple-choice-margin: 20px;
     .question {
       .question-component {
         width: 100%;
+
+        .questionnaire-form {
+          .dropdown-input {
+            width: 100%;
+          }
+        }
       }
 
       & > * {

@@ -222,13 +222,19 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-family: $font-family-light;
 }
 
-@mixin question-number-label-font {
+@mixin question-label-font {
   @include has-font-sizes-at-breakpoints(16px, 20px, 14px, 20px, 14px, 20px);
   font-family: $font-family-light;
 }
 
 @mixin question-number-font {
   @include has-font-sizes-at-breakpoints(24px, 28px, 20px, 24px, 20px, 24px);
+  font-weight: bold;
+}
+
+@mixin question-text-input-font {
+  @include has-font-sizes-at-breakpoints(24px, 28px, 18px, 22px, 16px, 20px);
+  text-transform: uppercase;
   font-weight: bold;
 }
 

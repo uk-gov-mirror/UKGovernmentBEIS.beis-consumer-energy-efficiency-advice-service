@@ -6,7 +6,7 @@
 .detailed-length-of-heating-on-question {
   .questionnaire-form .hours-input {
     .name {
-      @include question-number-label-font;
+      @include question-label-font;
       margin-bottom: 17px;
     }
   }

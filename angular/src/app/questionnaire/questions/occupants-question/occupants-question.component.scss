@@ -6,7 +6,7 @@
 .occupants-question {
   .questionnaire-form .occupants-input {
     .name {
-      @include question-number-label-font;
+      @include question-label-font;
       margin-bottom: 17px;
       text-align: center;
     }
