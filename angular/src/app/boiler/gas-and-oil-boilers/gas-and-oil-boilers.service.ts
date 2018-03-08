@@ -1,38 +1,41 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {AssetsService} from "../../shared/assets-service/assets.service";
 import {GasAndOilBoiler} from "./gas-and-oil-boiler";
-import fuzzysearch from "fuzzysearch";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import Config from "../../config";
 
 export interface BoilerJson {
     productIndexNumber: string;
-    brandName: string;
-    modelName: string;
-    modelQualifier: string;
+    name: string;
     sap2005SeasonalEfficiency: string;
     fuel: string;
+}
+
+interface BoilerJsonResponse {
+    results: BoilerJson[]
 }
 
 @Injectable()
 export class GasAndOilBoilersService {
 
-    constructor(private assetsService: AssetsService) {
-    }
-
-    private getAllGasAndOilBoilers(): Observable<GasAndOilBoiler[]> {
-        return this.assetsService.getAsset('boilers/gas-and-oil-boiler.json')
-            .map((boilers: any) => boilers.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson)));
+    constructor(private http: HttpClient) {
     }
 
     getGasAndOilBoilerWithIndexNumber(productIndexNumber: string): Observable<GasAndOilBoiler> {
-        return this.getAllGasAndOilBoilers().map(boilers =>
-            boilers.find(boiler => boiler.productIndexNumber === productIndexNumber)
-        );
+        let url = Config().apiRoot + "/boilers/" + encodeURIComponent(productIndexNumber);
+
+        return this.http
+            .get<BoilerJson>(url)
+            .map(GasAndOilBoiler.fromJson)
+            .shareReplay(1);
     }
 
     getGasAndOilBoilersMatching(searchTerm: string): Observable<GasAndOilBoiler[]> {
-        return this.getAllGasAndOilBoilers().map(boilers =>
-            boilers.filter(boiler => fuzzysearch(searchTerm.toLowerCase(), boiler.name.toLowerCase()))
-        );
+        return this.http
+            .get<BoilerJsonResponse>(
+                Config().apiRoot + "/boilers",
+                {'params': new HttpParams().append("searchTerm", searchTerm)})
+            .map(result => result.results.map(GasAndOilBoiler.fromJson))
+            .shareReplay(1);
     }
 }

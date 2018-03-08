@@ -15,11 +15,13 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
         classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+        classpath('com.h2database:h2:1.4.193') // (for liquibase)
     }
 }
 
 plugins {
     id 'nu.studer.jooq' version '2.0.9'
+    id 'org.liquibase.gradle' version '1.2.4'
     id "io.franzbecker.gradle-lombok" version "1.11"
     id 'com.github.ksoichiro.build.info' version '0.2.0'
     // Run e.g. "./gradlew :assemble :taskTree" to see task dependencies for `assemble`
@@ -110,6 +112,8 @@ dependencies {
     // TODO:RTB use https://github.com/michaelruocco/embedded-mysql-plugin instead?
     compile('com.h2database:h2:1.4.193')
 
+    jooqRuntime('com.h2database:h2:1.4.193')
+
     compile('org.liquibase:liquibase-core:3.5.5')
     compile('com.mattbertolini:liquibase-slf4j:2.0.0')
     compile('org.quartz-scheduler:quartz:2.3.0')
@@ -132,7 +136,7 @@ def jooqCodegenDbSchema = 'public'
 
 // TODO:RTB needed here?
 jooq {
-    ppc(sourceSets.main) {
+    dceas(sourceSets.main) {
         jdbc {
             driver = 'org.h2.Driver'
             url = "$jooqCodegenDbUrl"
@@ -145,6 +149,7 @@ jooq {
             database {
                 name = 'org.jooq.util.h2.H2Database'
                 inputSchema = "$jooqCodegenDbSchema"
+                outputSchemaToDefault = true
                 customTypes {
                 }
                 forcedTypes {
@@ -164,6 +169,19 @@ jooq {
         }
     }
 }
+
+liquibase {
+    activities {
+        jooqSchema {
+            changeLogFile "$projectDir/src/main/resources/db/changelog.xml"
+            url jooqCodegenDbUrl
+            username jooqCodegenDbUser
+            password jooqCodegenDbPassword
+        }
+    }
+}
+
+generateDceasJooqSchemaSource.dependsOn update
 
 jar {
     manifest {

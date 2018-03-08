@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
 
+## Running tests
+
+Run the following:
+
+    ./node_modules/.bin/ng test --browsers Chrome
+
+then use the Chrome window which appears to view the test output.
+(The window will take 10-30s to appear, after things get compiled. Be patient.)
+
+To debug tests, open the Chrome devtools window.
+
+To run a single test, click its name in the test output in Chrome.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.

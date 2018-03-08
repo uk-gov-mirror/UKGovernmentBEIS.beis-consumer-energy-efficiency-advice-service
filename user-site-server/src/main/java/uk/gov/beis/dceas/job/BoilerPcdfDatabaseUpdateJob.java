@@ -2,8 +2,11 @@ package uk.gov.beis.dceas.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.gov.beis.dceas.service.BoilerPcdfDatabaseUpdateService;
+
+import java.io.IOException;
 
 /**
  * A scheduled job which fetches the Boiler database from
@@ -19,7 +22,11 @@ public class BoilerPcdfDatabaseUpdateJob implements Job {
     }
 
     @Override
-    public void execute(JobExecutionContext jobExecutionContext) {
-        service.updateDatabase();
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        try {
+            service.updateDatabase();
+        } catch (IOException e) {
+            throw new JobExecutionException(e);
+        }
     }
 }

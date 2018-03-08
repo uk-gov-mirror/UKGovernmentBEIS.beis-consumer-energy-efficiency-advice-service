@@ -27,7 +27,6 @@
     <module name="VisibilityModifier"/>
     <module name="FinalClass"/>
     <module name="InterfaceIsType"/>
-    <module name="HideUtilityClassConstructor"/>
     <module name="MutableException">
       <property name="format" value="^.*Exception$"/>
     </module>

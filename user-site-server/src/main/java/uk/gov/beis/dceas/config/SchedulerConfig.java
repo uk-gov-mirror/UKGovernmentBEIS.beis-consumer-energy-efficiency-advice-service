@@ -22,7 +22,10 @@ import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Properties;
+
+import static java.util.Collections.singleton;
 
 /**
  * Configuration related to the Quartz scheduler.
@@ -60,7 +63,11 @@ public class SchedulerConfig {
 
         Scheduler scheduler = factory.getScheduler();
         scheduler.setJobFactory(jobFactory);
-        scheduler.scheduleJob((JobDetail) boilerPcdfDatabaseUpdateTrigger.getJobDataMap().get("jobDetail"), boilerPcdfDatabaseUpdateTrigger);
+        scheduler.scheduleJob(
+            (JobDetail) boilerPcdfDatabaseUpdateTrigger
+                .getJobDataMap().get("jobDetail"),
+            singleton(boilerPcdfDatabaseUpdateTrigger),
+            true);
 
         scheduler.start();
         return scheduler;

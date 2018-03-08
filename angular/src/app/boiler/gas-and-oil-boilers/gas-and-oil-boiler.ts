@@ -27,7 +27,7 @@ export class GasAndOilBoiler {
     static fromJson(boilerJson: BoilerJson) {
         return new GasAndOilBoiler(
             boilerJson.productIndexNumber,
-            `${boilerJson.brandName} - ${boilerJson.modelName}, ${boilerJson.modelQualifier}`,
+            boilerJson.name,
             GasAndOilBoiler.fuelTypeFromCode(boilerJson.fuel),
             +boilerJson.sap2005SeasonalEfficiency,
         );

@@ -114,9 +114,8 @@ the live site etc.) and restore it to that database.
 
 * Run `npm install`
 
-* Install the Angular CLI https://github.com/angular/angular-cli
-  (technically not absolutely necessary, since NPM will
-  install it locally - but it makes things easier)
+* You can use the Angular CLI from `./node_modules/.bin/ng` or you
+  can install the Angular CLI https://github.com/angular/angular-cli
 
 * Run `ng build` to get the compiled Angular files into the Wordpress theme.
   The Angular application will now be available at http://localhost:81.

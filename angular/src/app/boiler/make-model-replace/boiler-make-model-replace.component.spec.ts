@@ -18,16 +18,20 @@ import {BoilerLinkButtonComponent} from "../boiler-link-button/boiler-link-butto
 import {BoilerMeasuresSectionComponent} from "../measures-section/boiler-measures-section.component";
 import {RecommendationCardComponent} from "../../shared/recommendation-card/recommendation-card.component";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
+import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
     let fixture: ComponentFixture<BoilerMakeModelReplaceComponent>;
 
-    const gasAndOilBoilersData = require('assets/boilers/gas-and-oil-boiler.json');
-    const gasAndOilBoilersServiceStub = {
-        getGasAndOilBoilerWithIndexNumber: (index) => Observable.of(GasAndOilBoiler.fromJson(gasAndOilBoilersData[0])),
-        getGasAndOilBoilersMatching: (term) => Observable.of(gasAndOilBoilersData.map(boilerJson => GasAndOilBoiler.fromJson(boilerJson))),
-    };
+    const gasAndOilBoilersServiceStub = (() => {
+        let boiler = new GasAndOilBoiler("001", "test boiler", FuelType.MainsGas, 40);
+
+        return {
+            getGasAndOilBoilerWithIndexNumber: (index) => Observable.of(boiler),
+            getGasAndOilBoilersMatching: (term) => Observable.of([boiler]),
+        }
+    })();
 
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
