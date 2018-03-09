@@ -1,10 +1,15 @@
 @import "styles/mixins/font";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .question-reason-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 14px;
+  @include question-reason-font;
 
   & > * {
     padding: 10px 20px;
@@ -15,11 +20,10 @@
     opacity: 0;
     max-height: 0;
     transition: opacity 0.5s linear, max-height 0.5s linear;
-    width: 600px;
     background-color: white;
     border-radius: 10px;
     padding: 10px;
-    font-family: $font-family-light;
+    overflow: hidden;
 
     &.visible {
       opacity: 1;
@@ -40,12 +44,9 @@
     }
 
     .question-reason-icon {
-      width: 32px;
-      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
       background: black;
       border-radius: 50%;
       color: white;
@@ -54,7 +55,44 @@
 
     .question-reason-header {
       padding-left: 20px;
-      font-size: 20px;
+      @include question-reason-header-font;
+    }
+  }
+}
+
+// Breakpoint specific styling
+.question-reason-container {
+  @include mobile() {
+    .question-reason-button {
+      .question-reason-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  @include tablet() {
+    .question-reason-button {
+      .question-reason-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  @include desktop() {
+    .question-reason {
+      width: 600px;
+    }
+
+    .question-reason-button {
+      .question-reason-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 26px;
+      }
     }
   }
 }

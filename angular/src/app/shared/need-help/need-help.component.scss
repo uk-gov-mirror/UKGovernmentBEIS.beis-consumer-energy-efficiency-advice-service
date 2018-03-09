@@ -1,8 +1,12 @@
 @import "styles/page";
 
+// Component specific variables
 $width: 204px;
 $height: 60px;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .need-help {
   z-index: 1;
   cursor: pointer;
@@ -42,5 +46,19 @@ $height: 60px;
       font-size: 20px;
       padding: 4px 0 8px;
     }
+  }
+}
+
+// Breakpoint specific styling
+.need-help {
+  @include mobile() {
+    display: none;
+  }
+
+  @include tablet() {
+    display: none;
+  }
+
+  @include desktop() {
   }
 }

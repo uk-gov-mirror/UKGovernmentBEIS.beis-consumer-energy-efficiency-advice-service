@@ -1,14 +1,15 @@
-.house-exposed-wall-options {
-  display: flex;
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
 
-  .house-exposed-wall-option {
-    flex: 0 0 auto;
-    width: calc((100% - 40px - 1px) / 3);
-
-    white-space: nowrap;
-
-    &:not(:last-child) {
-      margin-right: 20px;
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .house-exposed-wall-options {
+    .house-exposed-wall-option {
+      @include is-grid-item($number-of-items: 3, $margin: 20px);
+      white-space: nowrap;
     }
   }
 }

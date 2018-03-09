@@ -1,5 +1,8 @@
 @import 'styles/mixins/buttons';
-@import 'styles/var/colors';
+@import "styles/var/colors";
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/font";
+@import "styles/mixins/layout";
 
 .tumble-dry-question {
   @include with-no-spin-buttons;
@@ -8,10 +11,6 @@
     display: flex;
 
     .questionnaire-form {
-      margin-right: 30px;
-      padding-right: 30px;
-      border-right: 1px solid $separator-grey;
-
       .text-box-container {
         background: white;
         display: flex;
@@ -31,6 +30,8 @@
         }
 
         .text-box {
+          @include question-number-font;
+          text-align: end;
           box-sizing: border-box;
           padding: 10px;
           width: 80px;
@@ -39,10 +40,6 @@
           outline: none;
 
           background: transparent;
-
-          font-size: 24px;
-          font-weight: bold;
-          text-align: end;
         }
 
         .percentage-sign {
@@ -61,9 +58,8 @@
 
     .no-tumble-dryer-button {
       @include capsule-button();
-      font-size: 20px;
+      @include question-button-font;
       background-color: white;
-      color: $dark-grey;
       border: none;
       outline: none;
       padding: 12px 36px;
@@ -72,7 +68,22 @@
         background-color: $lighter-medium-grey;
       }
     }
-
   }
 }
 
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .tumble-dry-question {
+    .question-content > * {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+    }
+
+    .questionnaire-form {
+      padding-right: 30px;
+      border-right: 1px solid $separator-grey;
+    }
+  }
+}

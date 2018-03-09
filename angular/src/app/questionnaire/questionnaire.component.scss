@@ -1,6 +1,12 @@
 @import 'styles/mixins/buttons';
+@import "styles/mixins/font";
 @import "styles/var/colors";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   display: flex;
   flex-direction: column;
@@ -73,10 +79,7 @@
     }
 
     .question-heading {
-      font-size: 36px;
-      font-weight: bold;
-      text-align: center;
-      color: $darkened-blue;
+      @include question-heading-font;
     }
 
     .left-arrow, .right-arrow {
@@ -150,22 +153,98 @@
   }
 
   .help-text {
-    width: 60vw;
-    text-align: center;
     color: $focus-blue;
   }
 
   .question {
-    width: 100vw;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     padding-bottom: 16px;
-    margin-top: 96px;
   }
 
   app-question-reason {
     margin-top: auto;
-    margin-bottom: 24px;
+  }
+}
+
+// Breakpoint specific styling
+.questions-container {
+  @include mobile() {
+    padding: 40px;
+    box-sizing: border-box;
+
+    .question-type-icon, .question-type-icon-baseline {
+      display: none;
+    }
+
+    .question-heading-container {
+      .question-heading {
+        width: 100%;
+      }
+
+      .right-arrow, .left-arrow {
+        display: none;
+      }
+    }
+
+    .question {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .help-text {
+      width: 100%;
+    }
+  }
+
+  @include tablet() {
+    padding: 68px 94px;
+    box-sizing: border-box;
+
+    .question-type-icon, .question-type-icon-baseline {
+      display: none;
+    }
+
+    .question-heading-container {
+      .question-heading {
+        width: 100%;
+      }
+
+      .right-arrow, .left-arrow {
+        display: none;
+      }
+    }
+
+    .question {
+      width: 100%;
+      margin-top: 52px;
+    }
+
+    .help-text {
+      width: 100%;
+    }
+  }
+
+  @include desktop() {
+    .question {
+      width: 100vw;
+      margin-top: 96px;
+
+      .question-heading-container {
+        .question-heading {
+          text-align: center;
+        }
+      }
+    }
+
+    .help-text {
+      width: 60vw;
+      text-align: center;
+    }
+
+    app-question-reason {
+      margin-bottom: 24px;
+    }
   }
 }

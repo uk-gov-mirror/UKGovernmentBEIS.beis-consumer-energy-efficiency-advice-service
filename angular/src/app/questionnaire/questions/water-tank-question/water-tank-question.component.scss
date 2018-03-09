@@ -1,14 +1,8 @@
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
+
 .water-tank-question .water-tank-options {
-  display: flex;
-
   .water-tank-option {
-    flex: 0 0 auto;
-    width: calc((100% - 40px - 1px) / 3);
-
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-
     .water-tank-button {
       white-space: nowrap;
       width: 100%;
@@ -18,6 +12,18 @@
       font-size: 14px;
       margin-top: 16px;
       text-align: center;
+    }
+  }
+}
+
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .water-tank-question .water-tank-options {
+    .water-tank-option {
+      @include is-grid-item($number-of-items: 3, $margin: 20px);
     }
   }
 }

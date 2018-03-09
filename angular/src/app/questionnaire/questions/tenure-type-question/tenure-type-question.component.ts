@@ -6,7 +6,6 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 @Component({
     selector: 'app-ownership-status-question',
     templateUrl: './tenure-type-question.component.html',
-    styleUrls: ['./tenure-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class TenureTypeQuestionComponent extends QuestionBaseComponent {

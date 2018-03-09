@@ -2,6 +2,11 @@
 @import 'styles/var/colors';
 @import "~mathsass/dist/_constants";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   background: white;
 }
@@ -175,5 +180,19 @@
         }
       }
     }
+  }
+}
+
+// Breakpoint specific styling
+.progress-indicator-component {
+  @include mobile() {
+    display: none;
+  }
+
+  @include tablet() {
+    display: none;
+  }
+
+  @include desktop() {
   }
 }

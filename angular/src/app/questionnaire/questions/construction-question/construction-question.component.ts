@@ -10,7 +10,7 @@ interface DropdownOption<T> {
 @Component({
     selector: 'app-construction-question',
     templateUrl: './construction-question.component.html',
-    styleUrls: ['./construction-question.scss'],
+    styleUrls: ['./construction-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class ConstructionQuestionComponent extends QuestionBaseComponent implements OnInit {

@@ -1,16 +1,19 @@
 @import 'mixins/font';
+@import "mixins/layout";
 @import "var/colors";
 @import "styles/page";
 
+// Variables
+$mobile-multiple-choice-margin: 15px;
+$tablet-multiple-choice-margin: 20px;
+$desktop-multiple-choice-margin: 20px;
+
+// Mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .questions-container {
 
   .question {
-    & > * {
-      display: flex;
-      justify-content: center;
-      flex: 1 0 100vw;
-    }
-
     .question-component {
 
       .questionnaire-form {
@@ -24,12 +27,10 @@
         }
 
         .text-input {
-          font-weight: bold;
-          font-size: 24px;
+          @include question-text-input-font;
           border-radius: 30%/50%;
           padding: 10px;
           text-align: center;
-          text-transform: uppercase;
           outline: none;
           border: none;
           color: $dark-grey;
@@ -43,16 +44,13 @@
             -moz-appearance: none;
             -webkit-appearance: none;
             appearance: none;
+            background: white url('/assets/images/controls/chevron-down.svg') no-repeat right 16px center/16px;
             padding: 12px 36px 12px 24px;
-            background: white url('/assets/images/controls/chevron-down.svg') no-repeat right 20px center/20px;
             min-width: 100px;
+            max-width: 100%;
 
             &::-ms-expand {
               display: none;
-            }
-
-            option {
-              font-size: medium;
             }
           }
         }
@@ -63,17 +61,9 @@
 
         .multiple-choice-option {
           @include capsule-button;
-
+          @include question-button-font;
           background-color: white;
-          color: $dark-grey;
-
-          font-size: 20px;
-          line-height: 24px;
-          font-weight: bold;
-
-          padding: 12px 36px;
           box-sizing: border-box;
-
           outline: none;
 
           &:hover, &:focus {
@@ -127,6 +117,104 @@
           font-weight: bold;
           margin-bottom: 10px;
         }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.questions-container {
+  @include mobile() {
+    .question {
+      .question-component {
+        width: 100%;
+
+        .questionnaire-form {
+          .dropdown-input {
+            width: 100%;
+          }
+        }
+      }
+      & > * {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100%;
+      }
+    }
+
+    .answer-grid {
+      @include is-grid($margin-compensation: $mobile-multiple-choice-margin);
+
+      & > * {
+        @include is-grid-item($number-of-items: 1, $margin: $mobile-multiple-choice-margin);
+      }
+    }
+
+    .multiple-choice-options {
+      .multiple-choice-option {
+        padding: 10px 36px;
+      }
+    }
+  }
+
+  @include tablet() {
+    .question {
+      .question-component {
+        width: 100%;
+
+        .questionnaire-form {
+          .dropdown-input {
+            width: 100%;
+          }
+        }
+      }
+
+      & > * {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100%;
+      }
+    }
+
+    .answer-grid {
+      @include is-grid($margin-compensation: $tablet-multiple-choice-margin);
+
+      & > * {
+        @include is-grid-item($number-of-items: 2, $margin: $tablet-multiple-choice-margin);
+      }
+    }
+
+    .multiple-choice-options {
+      .multiple-choice-option {
+        padding: 8px 25px;
+      }
+    }
+  }
+
+  @include desktop() {
+    .question {
+      & > * {
+        display: flex;
+        justify-content: center;
+        flex: 1 0 100vw;
+      }
+    }
+
+    .answer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -$desktop-multiple-choice-margin;
+
+      & > * {
+        // This is often overriden on a per question basis
+        @include is-grid-item($number-of-items: 1, $margin: $desktop-multiple-choice-margin);
+        align-items: stretch;
+      }
+    }
+
+    .multiple-choice-options {
+      .multiple-choice-option {
+        padding: 12px 36px;
       }
     }
   }

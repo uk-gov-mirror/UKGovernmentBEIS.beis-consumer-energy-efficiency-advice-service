@@ -1,6 +1,13 @@
 @import 'styles/mixins/buttons';
 @import "styles/var/colors";
+@import "styles/mixins/font";
+@import "styles/mixins/layout";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   display: flex;
   flex-direction: column;
@@ -28,8 +35,7 @@
     }
 
     .prefix {
-      font-size: 24px;
-      font-weight: bold;
+      @include question-number-font;
 
       display: flex;
       align-items: center;
@@ -47,9 +53,7 @@
 
       background: transparent;
       color: inherit;
-
-      font-size: 24px;
-      font-weight: bold;
+      @include question-number-font;
       text-align: center;
     }
   }
@@ -59,6 +63,7 @@
     border: none;
     outline: none;
     cursor: pointer;
+    padding: 0;
 
     ::ng-deep svg circle {
       fill: $primary-blue;
@@ -76,5 +81,17 @@
         }
       }
     }
+  }
+}
+
+// Breakpoint specific styling
+.number-question-component {
+  @include mobile() {
+  }
+
+  @include tablet() {
+  }
+
+  @include desktop() {
   }
 }
