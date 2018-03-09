@@ -12,12 +12,16 @@ export class WordpressMeasuresService {
 
     constructor(private wordpressApiService: WordpressApiService) {
     }
-    // TODO:BEISDEAS-170 Add searching method
+
+    searchMeasures(searchText: string): Observable<WordpressMeasure[]> {
+        return this.wordpressApiService.searchPosts<MeasureContent>(WordpressMeasuresService.measuresEndpoint, searchText)
+            .map(measureResponses => measureResponses.map(measureResponse => new WordpressMeasure(measureResponse)));
+    }
 
     getMeasure(slug: string): Observable<WordpressMeasure> {
         if (!this.measures[slug]) {
-            this.measures[slug] = this.wordpressApiService.getPostByType<MeasureContent>(WordpressMeasuresService.measuresEndpoint, slug)
-                .map(measure => measure ? new WordpressMeasure(measure, slug) : null)
+            this.measures[slug] = this.wordpressApiService.getPost<MeasureContent>(WordpressMeasuresService.measuresEndpoint, slug)
+                .map(measure => measure ? new WordpressMeasure(measure) : null)
                 .shareReplay(1);
         }
         return this.measures[slug];

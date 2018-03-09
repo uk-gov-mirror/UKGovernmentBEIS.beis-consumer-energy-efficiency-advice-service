@@ -1,6 +1,8 @@
 import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from '@angular/core';
-import {WordpressPage} from '../../shared/wordpress-pages-service/wordpress-page';
+import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
+import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
+import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-searchable';
 
 @Component({
     selector: 'app-header',
@@ -24,13 +26,14 @@ export class HeaderComponent {
     @ViewChild('searchInput') searchInput;
     @ViewChild('mobileSearchButton') mobileSearchButton;
 
-    private allSearchResults: WordpressPage[] = [];
+    private allSearchResults: WordpressSearchable[] = [];
     private deregisterWindowClickListener: () => void;
 
     constructor(
         private renderer: Renderer2,
         private changeDetector: ChangeDetectorRef,
-        private wordpressPagesService: WordpressPagesService) {
+        private wordpressPagesService: WordpressPagesService,
+        private wordpressMeasuresService: WordpressMeasuresService) {
     }
 
     toggleMobileNav(): void {
@@ -86,9 +89,13 @@ export class HeaderComponent {
     searchForPages(): void {
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
-        this.wordpressPagesService.searchPages(this.searchText)
-            .subscribe(
-                response => this.handleSearchResponse(response),
+        Observable.forkJoin(
+            this.wordpressPagesService.searchPages(this.searchText),
+            this.wordpressMeasuresService.searchMeasures(this.searchText)
+            ).subscribe(([pages, measures]) => {
+                    const results = (pages as WordpressSearchable[]).concat(measures);
+                    this.handleSearchResponse(results);
+                },
                 () => this.handleSearchError()
             );
     }
@@ -99,7 +106,7 @@ export class HeaderComponent {
         this.shouldDisplayExpandSearchResultsButton = false;
     }
 
-    handleSearchResponse(results: WordpressPage[]): void {
+    handleSearchResponse(results: WordpressSearchable[]): void {
         if (results.length === 0) {
             this.searchState = SearchStates.NoResults;
             return;
@@ -122,7 +129,7 @@ export class HeaderComponent {
         this.searchInput.nativeElement.focus();
     }
 
-    getSearchResultsToDisplay(): WordpressPage[] {
+    getSearchResultsToDisplay(): WordpressSearchable[] {
         return this.shouldDisplayExpandedSearchResults ?
             this.allSearchResults :
             this.allSearchResults.slice(0, HeaderComponent.reducedSearchResultsQuantity);

@@ -9,8 +9,8 @@ export class WordpressMeasure implements WordpressSearchable {
     advantages: string[];
     steps: RecommendationStep[];
 
-    constructor(wordpressMeasureResponse: MeasureContent, slug: string) {
-        this.route = '/js/measure/' + slug;
+    constructor(wordpressMeasureResponse: MeasureContent) {
+        this.route = '/js/measures/' + wordpressMeasureResponse.slug;
         this.title = wordpressMeasureResponse.acf.headline;
         this.summary = wordpressMeasureResponse.acf.summary;
         this.advantages = wordpressMeasureResponse.acf.advantages
