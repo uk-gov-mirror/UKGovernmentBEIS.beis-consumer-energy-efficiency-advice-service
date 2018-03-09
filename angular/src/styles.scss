@@ -12,7 +12,13 @@
 @import "~nouislider/distribute/nouislider.min.css";
 
 html, body {
-  overflow-y: visible;
+  @include mobile() {
+    overflow-y: auto;
+  }
+
+  @include desktop() {
+    overflow-y: visible;
+  }
   font-family: $font-family;
   color: $dark-grey;
   margin: 0;

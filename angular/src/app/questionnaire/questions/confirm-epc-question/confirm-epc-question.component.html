@@ -1,6 +1,6 @@
 <div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
     <div class="epc-section">
-        <app-data-card heading="Your energy performance certificate rating is"
+        <app-data-card class="energy-performance" heading="Your energy performance certificate rating is"
                        [value]="EpcRating[epcRating]"
                        [colorCircleClassName]="getEpcMetadata(epcRating).colorCircleClassName"></app-data-card>
         <div class="epc-diagram-card">
@@ -9,10 +9,12 @@
                 <img src="wp-content/themes/angular-theme/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg">
             </div>
         </div>
-        <app-data-card heading="The average cost of energy for a property in your band is"
-                       [value]="'£' + getEpcMetadata(epcRating).averageEnergyCost"></app-data-card>
-        <app-data-card heading="For reference, for a Band {{EpcRating[averageEpcRating]}} property this is around"
-                       [value]="'£' + getEpcMetadata(averageEpcRating).averageEnergyCost"></app-data-card>
+        <div class="data-card-row">
+            <app-data-card heading="The average cost of energy for a property in your band is"
+                           [value]="'£' + getEpcMetadata(epcRating).averageEnergyCost"></app-data-card>
+            <app-data-card heading="For reference, for a Band {{EpcRating[averageEpcRating]}} property this is around"
+                           [value]="'£' + getEpcMetadata(averageEpcRating).averageEnergyCost"></app-data-card>
+        </div>
     </div>
     <div class="confirm-epc-details-section">
         <div class="confirm-epc-details-background"></div>
