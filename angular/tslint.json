@@ -84,9 +84,12 @@
       "check-whitespace"
     ],
     "prefer-const": true,
+    // Given the codebase is mixed Java, TS and JSON, we would prefer double
+    // quotes if we had to pick one everywhere, but there's no real harm in having
+    // some of each around the place.
     "quotemark": [
-      true,
-      "single"
+      false,
+      "double"
     ],
     "radix": false,
     "semicolon": [

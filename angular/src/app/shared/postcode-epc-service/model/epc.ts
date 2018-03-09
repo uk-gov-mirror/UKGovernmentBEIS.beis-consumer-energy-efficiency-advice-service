@@ -114,7 +114,8 @@ export class Epc {
         this.flatTopStorey = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['flat-top-storey']);
         this.builtForm = epcResponse['built-form'].toLowerCase();
         this.isConnectedToMainsGas = Epc.getParsedBooleanFromEpcResponseValue(epcResponse['mains-gas-flag']);
-        this.mainFuel = epcResponse['main-fuel'].toLowerCase(); // TODO:BEIS-15 watch out - this field is marked as deprecated in some responses
+        // TODO:BEIS-15 watch out - the main-fuel field is marked as deprecated in some responses
+        this.mainFuel = epcResponse['main-fuel'].toLowerCase();
         this.hotWaterDescription = epcResponse['hotwater-description'].toLowerCase();
         this.localAuthorityCode = epcResponse['local-authority'];
         this.epcDate = new Date(epcResponse['lodgement-date']);
