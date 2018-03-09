@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageComponent} from './page/page.component';
+import {MeasurePageComponent} from './measure-page/measure-page.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {HomeImprovementsComponent} from './landing-page/home-improvements/home-improvements.component';
 import {ReduceBillsComponent} from './landing-page/reduce-bills/reduce-bills.component';
@@ -8,9 +9,9 @@ import {WarmerHomeComponent} from './landing-page/warmer-home/warmer-home.compon
 import {BoilerLandingPageComponent} from './boiler/landing-page/boiler-landing-page.component';
 import {GrantsQuestionnaireComponent} from './grants/grants-questionnaire/grants-questionnaire.component';
 import {EnergyEfficiencyQuestionnaireComponent} from
-    './energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.component';
+'./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.component';
 import {EnergyEfficiencyQuestionnaireGuard} from
-    './energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard';
+'./energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard';
 import {BoilerEpcReplaceComponent} from './boiler/epc-replace/boiler-epc-replace.component';
 import {GrantsLandingPageComponent} from './grants/landing-page/grants-landing-page.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency/energy-efficiency-results/energy-efficiency-results.component';
@@ -101,6 +102,11 @@ const routes: Routes = [
         path: 'js/boiler/results',
         component: BoilerResultsPageComponent,
         canActivate: [BoilerResultsPageRouteGuard]
+    },
+    {
+        path: 'js/measures/:slug',
+        component: MeasurePageComponent,
+        pathMatch: 'full'
     },
     {
         path: ':slug',

@@ -13,6 +13,7 @@ import {HomePageModule} from './home-page/home-page.module';
 import {LandingPageModule} from './landing-page/landing-page.module';
 import {LayoutComponentsModule} from './layout-components/layout-components.module';
 import {PageModule} from './page/page.module';
+import {MeasurePageModule} from './measure-page/measure-page.module';
 import {BoilerModule} from './boiler/boiler.module';
 import {GrantsModule} from './grants/grants.module';
 import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.module';
@@ -33,6 +34,7 @@ import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.modu
         HomePageModule,
         GrantsModule.forRoot(),
         PageModule,
+        MeasurePageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
         BoilerModule.forRoot(),

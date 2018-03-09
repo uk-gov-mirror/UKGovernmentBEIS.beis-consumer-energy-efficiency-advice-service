@@ -17,6 +17,7 @@ export class WordpressPagesService {
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
     }
 
+    // TODO:BEISDEAS-170 Commonise with measures service
     searchPages(searchText: string): Observable<WordpressPage[]> {
         const params = new HttpParams().set('search', searchText).set('context', 'embed');
         const endpoint = this.wordpressApiService.getFullApiEndpoint(WordpressPagesService.pagesEndpoint);
@@ -51,10 +52,8 @@ export class WordpressPagesService {
 
     getPage(slug: string): Observable<ExtendedWordpressPage> {
         if (!this.pages[slug]) {
-            const params = new HttpParams().set('per_page', '1').set('slug', slug);
-            this.pages[slug] = this.http
-                .get(this.wordpressApiService.getFullApiEndpoint(WordpressPagesService.pagesEndpoint), {params: params})
-                .map((pages: WordpressPageResponse[]) => pages.length === 1 ? new ExtendedWordpressPage(pages[0]) : null)
+            this.pages[slug] = this.wordpressApiService.getPostByType<WordpressPageResponse>(WordpressPagesService.pagesEndpoint, slug)
+                .map(page => page ? new ExtendedWordpressPage(page) : null)
                 .shareReplay(1);
         }
         return this.pages[slug];

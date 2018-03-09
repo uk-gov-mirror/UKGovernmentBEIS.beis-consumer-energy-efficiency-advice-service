@@ -1,0 +1,19 @@
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<div class="page-row" *ngIf="!isLoading && !isError">
+    <div class="page-row-content measures-page-component" *ngIf="measureData">
+        <h1 [innerHTML]="measureData.title"></h1>
+        <p [innerHTML]="measureData.summary"></p>
+        <h2>Advantages</h2>
+        <ul>
+            <li *ngFor="let advantage of measureData.advantages">{{advantage}}</li>
+        </ul>
+        <h2>Steps</h2>
+        <ul>
+            <li *ngFor="let step of measureData.steps">
+                <h3>{{step.headline}}</h3>
+                <p>{{step.description}}</p>
+                <p *ngIf="step.readMore">{{step.readMore}}</p>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -34,6 +34,7 @@ import {RecommendationsService} from './recommendations-service/recommendations.
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
 import {PopupComponent} from './popup/popup.component';
+import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
 
 @NgModule({
     declarations: [
@@ -85,6 +86,7 @@ export class SharedModule {
             providers: [
                 QuestionContentService,
                 WordpressApiService,
+                WordpressMeasuresService,
                 ResponseData,
                 FeatureFlagService,
                 EnergyCalculationApiService,
