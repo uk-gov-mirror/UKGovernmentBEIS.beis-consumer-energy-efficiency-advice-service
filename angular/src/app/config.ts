@@ -11,4 +11,4 @@ class Config {
     buildJenkinsNumber: string;
 }
 
-export default () => (window as any).CONFIG as Config
+export default () => (window as any).CONFIG as Config;
