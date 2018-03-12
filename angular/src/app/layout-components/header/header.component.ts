@@ -86,7 +86,7 @@ export class HeaderComponent {
         }, 500);
     }
 
-    searchForPages(): void {
+    search(): void {
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
         Observable.forkJoin(

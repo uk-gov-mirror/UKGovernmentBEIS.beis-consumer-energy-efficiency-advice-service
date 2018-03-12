@@ -1,7 +1,7 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
 <div class="page-row" *ngIf="!isLoading && !isError">
-    <div class="page-row-content measures-page-component" *ngIf="measureData">
-        <h1 [innerHTML]="measureData.title"></h1>
+    <div class="page-row-content measure-page-component" *ngIf="measureData">
+        <h1 class="title" [innerHTML]="measureData.title"></h1>
         <p [innerHTML]="measureData.summary"></p>
         <h2>Advantages</h2>
         <ul>
