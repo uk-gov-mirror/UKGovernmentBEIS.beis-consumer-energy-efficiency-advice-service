@@ -49,6 +49,48 @@
     .step-read-more {
       @include measures-page-font;
     }
+
+    .step-link {
+      width: 100%;
+      color: white;
+      display: flex;
+      cursor: pointer;
+      text-decoration: none;
+      height: 60px;
+
+      .step-link-text {
+        background-color: $button-dark-blue;
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 15px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+      }
+
+      .step-link-icon-container {
+        background-color: $action-button-blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+
+        .step-link-icon {
+          width: 15px;
+          height: 23px;
+          stroke: white;
+          fill: white;
+          display: block;
+          line-height: 0;
+        }
+      }
+    }
+  }
+
+  .latest-news-section {
+    background-color: $light-grey;
   }
 }
 
@@ -58,7 +100,13 @@
 
   }
   @include tablet() {
+    .step-links {
+      @include is-grid($margin-compensation: 75px);
 
+      .step-link {
+        @include is-grid-item($number-of-items: 2, $margin: 75px);
+      }
+    }
   }
   @include desktop() {
     .steps-section {
@@ -70,7 +118,7 @@
           flex: 0 0 65%;
         }
 
-        .step-buttons {
+        .step-links {
           flex: 0 0 25%;
         }
       }

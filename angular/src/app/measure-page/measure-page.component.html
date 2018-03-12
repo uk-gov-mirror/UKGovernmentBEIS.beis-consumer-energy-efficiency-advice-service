@@ -25,8 +25,21 @@
                         <div class="step-description">{{step.description}}</div>
                         <div class="step-read-more" [innerHTML]="step.readMore"></div>
                     </div>
-                    <div class="step-buttons">
-                        BUTTONS
+                    <div class="step-links" *ngIf="step.moreInfoLinks && step.moreInfoLinks.length">
+                        <ng-container *ngFor="let moreInfoLink of step.moreInfoLinks">
+                            <a class="step-link" *ngIf="moreInfoLink.isExternalLink" target="_blank" [href]="moreInfoLink.externalLink">
+                                <div class="step-link-text">{{moreInfoLink.buttonText}}</div>
+                                <div class="step-link-icon-container">
+                                    <div class="step-link-icon" [inlineSVG]="'controls/new-window.svg'"></div>
+                                </div>
+                            </a>
+                            <a class="step-link" *ngIf="!moreInfoLink.isExternalLink" [routerLink]="moreInfoLink.route">
+                                <div class="step-link-text">{{moreInfoLink.buttonText}}</div>
+                                <div class="step-link-icon-container">
+                                    <div class="step-link-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
+                                </div>
+                            </a>
+                        </ng-container>
                     </div>
                 </div>
             </div>
