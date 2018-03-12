@@ -35,6 +35,7 @@ import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper
 import {DataCardComponent} from './data-card/data-card.component';
 import {PopupComponent} from './popup/popup.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
+import {LatestNewsSectionComponent} from './latest-news-section/latest-news-section.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-m
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
+        LatestNewsSectionComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -70,6 +72,7 @@ import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-m
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
+        LatestNewsSectionComponent,
     ],
     imports: [
         HttpClientModule,
