@@ -1,5 +1,5 @@
 .income-question.question-component {
-  // TODO:BEISDEAS-127 Remove when deprecated fully
+  // TODO:BEISDEAS-176 Remove deprecated "ng-deep" before it is removed from major browsers
   ::ng-deep .number-question-component .text-input {
     border-radius: 16%/50%;
 
