@@ -9,6 +9,7 @@ It is public-facing.
 <!-- toc -->
 
   * [Architecture](#architecture)
+  * [Operational Support](#operational-support)
   * [Development Setup](#development-setup)
     + [Development Setup - User Site](#development-setup---user-site)
     + [Development Setup - Admin Site](#development-setup---admin-site)
@@ -49,6 +50,10 @@ TODO:BEISDEAS-156 update when this has changed
  
 Simple integration tests to check that the application is generally working as expected.
 TODO:BEISDEAS-156 document how to run these?
+
+## Operational Support
+
+Please see [documentation/Operational Support.md](documentation/Operational Support.md)
 
 ## Development Setup
 

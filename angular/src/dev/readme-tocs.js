@@ -14,7 +14,7 @@ exec('git ls-files', {maxBuffer: 1024 * 1024}, function(error, stdout) {
     }
 
     stdout.toString().split(/\r?\n/).forEach(function(fileName) {
-        if (/README.md$/i.test(fileName)) {
+        if (/.*\.md$/i.test(fileName)) {
             // c.f. https://github.com/jonschlinkert/markdown-toc/blob/master/cli.js
             var input = fs.createReadStream(fileName);
             input.pipe(concat(function (input) {
