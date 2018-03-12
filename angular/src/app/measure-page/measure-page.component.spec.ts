@@ -101,7 +101,7 @@ describe('MeasurePageComponent', () => {
         // then
         fixture.whenStable()
             .then(() => {
-                const measureTitle = fixture.debugElement.query(By.css('.measure-page-component .title'));
+                const measureTitle = fixture.debugElement.query(By.css('.measure-page .title'));
                 expect(measureTitle.nativeElement.textContent).toBe(expectedMeasure.title);
             });
     }));

@@ -1,0 +1,79 @@
+@import "styles/mixins/layout";
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.measure-page {
+  .heading-section {
+    background-color: $primary-blue;
+
+    .title {
+      @include measures-page-heading-font;
+      color: white;
+    }
+
+    .summary {
+      @include measures-page-summary-font;
+      color: white;
+    }
+  }
+
+  .benefits-section {
+    background-color: $lighter-grey;
+
+    .benefits-title {
+      color: $darkened-blue;
+      font-weight: bold;
+    }
+
+    .benefits-text {
+      @include measures-page-font;
+    }
+  }
+
+  .steps-section {
+    .step-title {
+      @include measures-page-subheading-font;
+      color: $darkened-blue;
+    }
+
+    .step-description {
+      @include measures-page-step-description-font;
+      color: $primary-blue;
+    }
+
+    .step-read-more {
+      @include measures-page-font;
+    }
+  }
+}
+
+// Breakpoint specific styling
+.measure-page {
+  @include mobile() {
+
+  }
+  @include tablet() {
+
+  }
+  @include desktop() {
+    .steps-section {
+      .step-content {
+        display: flex;
+        justify-content: space-between;
+
+        .step-text {
+          flex: 0 0 65%;
+        }
+
+        .step-buttons {
+          flex: 0 0 25%;
+        }
+      }
+    }
+  }
+}

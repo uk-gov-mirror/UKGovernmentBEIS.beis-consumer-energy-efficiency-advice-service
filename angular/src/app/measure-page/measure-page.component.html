@@ -1,19 +1,38 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
-<div class="page-row" *ngIf="!isLoading && !isError">
-    <div class="page-row-content measure-page-component" *ngIf="measureData">
-        <h1 class="title" [innerHTML]="measureData.title"></h1>
-        <p [innerHTML]="measureData.summary"></p>
-        <h2>Advantages</h2>
-        <ul>
-            <li *ngFor="let advantage of measureData.advantages">{{advantage}}</li>
-        </ul>
-        <h2>Steps</h2>
-        <ul>
-            <li *ngFor="let step of measureData.steps">
-                <h3>{{step.headline}}</h3>
-                <p>{{step.description}}</p>
-                <p *ngIf="step.readMore" [innerHTML]="step.readMore"></p>
-            </li>
-        </ul>
+<div class="measure-page" *ngIf="!isLoading && !isError && measureData">
+    <div class="page-row heading-section">
+        <div class="page-row-content">
+            <div class="title">{{measureData.title}}</div>
+            <div class="summary">{{measureData.summary}}</div>
+        </div>
+    </div>
+    <div class="page-row benefits-section">
+        <div class="page-row-content">
+            <div class="benefits">
+                <div class="benefits-title">Benefits</div>
+                <ul>
+                    <li class="benefit-text" *ngFor="let advantage of measureData.advantages">{{advantage}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-row steps-section">
+        <div class="page-row-content">
+            <div class="step" *ngFor="let step of measureData.steps">
+                <div class="step-title">{{step.headline}}</div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <div class="step-description">{{step.description}}</div>
+                        <div class="step-read-more" [innerHTML]="step.readMore"></div>
+                    </div>
+                    <div class="step-buttons">
+                        BUTTONS
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row latest-news-section">
+        <app-latest-news-section></app-latest-news-section>
     </div>
 </div>

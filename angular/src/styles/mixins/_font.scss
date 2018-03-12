@@ -71,14 +71,39 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin measures-page-heading-font {
+  @include has-font-sizes-at-breakpoints(60px, 62px, 36px, 40px, 32px, 36px);
+  font-weight: bold;
+}
+
 @mixin page-heading-font {
   @include has-font-sizes-at-breakpoints(48px, 62px, 36px, 40px, 32px, 34px);
+  font-weight: bold;
+}
+
+@mixin measures-page-subheading-font {
+  @include has-font-sizes-at-breakpoints(32px, 36px, 32px, 36px, 24px, 28px);
   font-weight: bold;
 }
 
 @mixin page-subheading-font {
   @include has-font-sizes-at-breakpoints(28px, 32px, 28px, 32px, 24px, 26px);
   font-weight: bold;
+}
+
+@mixin measures-page-summary-font {
+  @include has-font-sizes-at-breakpoints(24px, 28px, 20px, 24px, 16px, 22px);
+  font-family: $font-family-light;
+}
+
+@mixin measures-page-step-description-font {
+  @include has-font-sizes-at-breakpoints(20px, 28px, 20px, 28px, 20px, 28px);
+  font-family: $font-family-light;
+}
+
+@mixin measures-page-font {
+  @include has-font-sizes-at-breakpoints(16px, 22px, 16px, 22px, 16px, 22px);
+  font-family: $font-family-light;
 }
 
 @mixin popup-text-font {
