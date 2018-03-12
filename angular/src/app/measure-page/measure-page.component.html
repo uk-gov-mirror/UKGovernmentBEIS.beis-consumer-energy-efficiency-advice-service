@@ -12,7 +12,7 @@
             <li *ngFor="let step of measureData.steps">
                 <h3>{{step.headline}}</h3>
                 <p>{{step.description}}</p>
-                <p *ngIf="step.readMore">{{step.readMore}}</p>
+                <p *ngIf="step.readMore" [innerHTML]="step.readMore"></p>
             </li>
         </ul>
     </div>
