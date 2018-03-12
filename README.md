@@ -13,7 +13,9 @@ It is public-facing.
     + [Development Setup - User Site](#development-setup---user-site)
     + [Development Setup - Admin Site](#development-setup---admin-site)
     + [Development Setup - MySQL Database](#development-setup---mysql-database)
-- [Older instructions - TODO:BEISDEAS-156 sort out](#older-instructions---todobeisdeas-156-sort-out)
+  * [Development Notes](#development-notes)
+    + [Adding files from .idea/ to git](#adding-files-from-idea-to-git)
+- [Older dev setup instructions - TODO:BEISDEAS-156 sort out](#older-dev-setup-instructions---todobeisdeas-156-sort-out)
   * [Angular setup](#angular-setup)
   * [Tests](#tests)
   * [Debugging](#debugging)
@@ -106,7 +108,20 @@ Log in as root and run the following to create a WP user and database
 Get a dump of the database from somewhere (another developer,
 the live site etc.) and restore it to that database.
 
-# Older instructions - TODO:BEISDEAS-156 sort out
+## Development Notes
+
+### Adding files from .idea/ to git
+
+In general, please don't add files from `.idea/ `to version control. Most
+of that content is generated from Gradle or NPM and/or varies by machine.
+
+However, please do commit any `.idea/` changes which you are sure are:
+
+ * something we want all developers to have
+ * not auto-generated from Gradle or NPM
+ * the same for all developers (i.e. ensure that your user name doesn't appear in any file paths)
+
+# Older dev setup instructions - TODO:BEISDEAS-156 sort out
 
 ## Angular setup
 
