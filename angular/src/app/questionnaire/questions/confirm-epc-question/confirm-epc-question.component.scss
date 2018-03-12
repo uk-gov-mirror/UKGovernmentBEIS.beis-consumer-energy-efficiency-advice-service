@@ -233,12 +233,14 @@ $go-button-right-chevron-width: 20px;
       justify-content: space-around;
 
       .energy-performance{
+        width: 100%;
         flex: 0 0 auto;
         align-self: flex-start;
+        border-top: 2px $separator-grey solid;
 
         ::ng-deep .data-card {
-          height: 180px;
-          padding: 25px 0px 25px 0px;
+          height: 120px;
+          padding: 20px 0px 20px 0px;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -261,12 +263,18 @@ $go-button-right-chevron-width: 20px;
       }
 
       .epc-diagram-card{
+        border-top: 2px $separator-grey solid;
+
         .heading{
-          padding-bottom: 33px;
+          padding: 20px 0px 20px 0px;
         }
 
         .epc-diagram {
-          padding: 10px 10px 10px 10px;
+          padding: 10px 10px 20px 10px;
+
+          ::ng-deep img {
+            width: 70vw;
+          }
         }
       }
 
@@ -274,12 +282,15 @@ $go-button-right-chevron-width: 20px;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        border-top: 2px $separator-grey solid;
 
         app-data-card {
           padding: 25px 10px 25px 10px;
+
           ::ng-deep .data-card{
             display: flex;
             flex-direction: column;
+            align-items: center;
             width: 30vw;
 
             .heading{
@@ -288,16 +299,13 @@ $go-button-right-chevron-width: 20px;
           }
         }
       }
-
-      > * {
-
-        &:not(:last-child) {
-          border-right: 2px solid #d8d8d8;
-        }
-      }
     }
 
     .confirm-epc-details-section {
+
+      border-top: 2px $separator-grey solid;
+      padding-top: 25px;
+
       .epc-details-header {
         color: $focus-text-blue;
       }
@@ -322,31 +330,38 @@ $go-button-right-chevron-width: 20px;
       .confirm-epc-details{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         height: 80px;
         background-color: $lighter-grey;
         position: fixed;
         left: 0;
         bottom: 0;
-        border-top: 2px solid $dark-grey;
+        border-top: 2px solid $light-grey;
         width: 100vw;
         z-index: 3;
         font-weight: bold;
 
+        .confirm-epc-details-row:first-child {
+          flex-grow: 0.8;
+        }
+
         .confirm-epc-details-row {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: space-around;
 
           .confirm-epc-details-question {
+            width: 130px;
             color: $headline-dark-blue;
+            margin-right: 10px;
           }
 
           .confirm-epc-details-button{
-            border-radius: 35%;
+            border-radius: 100000000px;
             margin-right: 10px;
             height: 30px;
-            width: 40px;
+            width: 70px;
+            border-style: none;
           }
 
           .yes-button{
@@ -355,23 +370,232 @@ $go-button-right-chevron-width: 20px;
           }
 
           .no-button{
-            background-color: $lighter-grey;
+            background-color: $light-grey;
             color: $darker-grey;
           }
 
+          .button-main-tablet {
+            visibility: hidden;
+            width: 0px;
+            height: 0px;
+          }
+
           .need-more-details-button{
-            background-color: $action-button-blue;
+            background-color: transparent;
             color: $lighter-grey;
-            border-radius: 35%;
+            height: 55px;
+            width: 55px;
+            border-style: none;
+            background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
+            background-size: cover;
 
             .need-more-details-body{
               display: flex;
               flex-direction: column;
-              justify-content: space-between;
+              justify-content: center;
               align-items: center;
 
               .button-main{
                 visibility: hidden;
+                height: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    width: 90vw;
+
+    .epc-section {
+
+      div:first-child {
+        display: flex;
+        flex-direction: row;
+        border-top: 2px $separator-grey solid;
+        justify-content: space-evenly;
+
+        .energy-performance{
+          flex: 1 0 50%;
+          padding: 25px 30px 25px 10px;
+          margin: 30px 0px 30px 0px;
+
+          :ng-deep .data-card {
+            display: flex;
+            align-items: center;
+          }
+
+          ::ng-deep .color-circle{
+            flex: 0 0 auto;
+            height: 80px;
+            width: 80px;
+            margin-right: 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+        }
+
+        .epc-diagram-card {
+          flex: 1 0 50%;
+          margin: 20px 0px 20px 0px;
+          padding: 25px 0px 25px 40px;
+
+          border-left: 2px $separator-grey solid;
+
+          .heading {
+            border-top: none;
+          }
+        }
+      }
+
+      .data-card-row{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+
+        border-top: 2px $separator-grey solid;
+
+        app-data-card {
+          flex-grow: 0.5;
+          padding: 25px 10px 25px 10px;
+          margin: 30px 0px 30px 0px;
+
+          ::ng-deep .data-card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30vw;
+
+            .heading{
+              padding-bottom: 20px
+            }
+          }
+        }
+
+        app-data-card:first-child{
+          border-right: 2px $separator-grey solid;
+        }
+      }
+    }
+
+    .confirm-epc-details-section {
+
+      border-top: 2px $separator-grey solid;
+      padding-top: 25px;
+
+      .epc-details-header {
+        color: $focus-text-blue;
+      }
+
+      .epc-details-list {
+        position: relative;
+        left: 0;
+
+        font-family: $font-family-light;
+
+        .epc-detail{
+          margin-bottom: 15px;
+
+          span{
+            position: relative;
+            left: 10px;
+          }
+        }
+      }
+
+      .confirm-epc-details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 80px;
+        background-color: $lighter-grey;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        border-top: 4px solid $separator-grey;
+        width: 100vw;
+        z-index: 3;
+        font-weight: bold;
+
+        .confirm-epc-details-row:first-child {
+          flex-grow: 0.8;
+          border-right: 2px $separator-grey solid;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          div:first-child {
+            width: 60%;
+          }
+
+          .confirm-epc-details-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+          }
+        }
+
+        .confirm-epc-details-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          flex: 1 0 50%;
+
+          .confirm-epc-details-question {
+            width: 130px;
+            color: $headline-dark-blue;
+            margin-right: 10px;
+          }
+
+          .confirm-epc-details-button{
+            border-radius: 100000000px;
+            margin-right: 10px;
+            height: 30px;
+            width: 70px;
+            border-style: none;
+          }
+
+          .yes-button{
+            background-color: $action-button-blue;
+            color: $lighter-grey;
+          }
+
+          .no-button{
+            background-color: $light-grey;
+            color: $darker-grey;
+          }
+          .button-main-tablet {
+            color: $focus-text-blue;
+            padding-right: 10px;
+            width: 50%;
+          }
+
+          .need-more-details-button{
+            background-color: transparent;
+            background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
+            background-size: cover;
+            color: $lighter-grey;
+            height: 55px;
+            width: 55px;
+            border-style: none;
+
+            .need-more-details-body{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              height: 100%;
+
+              .button-main {
+                visibility: hidden;
+                height: 0px;
+                width: 0px;
               }
             }
           }
@@ -512,6 +736,12 @@ $go-button-right-chevron-width: 20px;
                 background-color: $button-dark-blue;
               }
             }
+          }
+
+          .button-main-tablet {
+            visibility: hidden;
+            width: 0px;
+            height: 0px;
           }
 
           &:first-child {

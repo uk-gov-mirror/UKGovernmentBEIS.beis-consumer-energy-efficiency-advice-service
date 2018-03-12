@@ -16,6 +16,10 @@ html, body {
     overflow-y: auto;
   }
 
+  @include tablet() {
+    overflow-y: auto;
+  }
+
   @include desktop() {
     overflow-y: visible;
   }
