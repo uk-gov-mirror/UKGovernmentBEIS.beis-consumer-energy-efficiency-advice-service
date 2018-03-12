@@ -28,12 +28,17 @@ module.exports = function (config) {
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: [
-            // When developing / debugging, change this to "Chrome" and view the output
-            // and debug your tests in a live browser window.
-            // You can use this window to run a single test (rather than all), etc.
-            // 'Chrome'
-
-            // For the CI server, we use a headless chrome. Comment this out
+            // When developing / debugging, you will likely want to use 'Chrome' rather
+            // than 'ChromeHeadless'.
+            // You should add "--browsers Chrome" to your command-line arguments
+            // (or you can change the setting below).
+            //
+            // If you do that, a new Chrome window should appear when you run the tests.
+            // Use the Chrome devtools to debug your tests as necessary.
+            // You can use that Chrome window to run a single test (rather than all), etc.
+            //
+            // For the CI server, we use a headless chrome, which is faster and more
+            // up-to-date than PhantomJS:
             'ChromeHeadless'
         ],
         singleRun: false,
