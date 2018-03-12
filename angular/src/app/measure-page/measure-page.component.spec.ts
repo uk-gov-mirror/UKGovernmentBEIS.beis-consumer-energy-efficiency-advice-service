@@ -10,6 +10,9 @@ import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-con
 import {RouterTestingModule} from '@angular/router/testing';
 import {Pipe, PipeTransform} from '@angular/core';
 import {WordpressMeasuresService} from '../shared/wordpress-measures-service/wordpress-measures.service';
+import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
+import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
+import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 
 describe('MeasurePageComponent', () => {
     let component: MeasurePageComponent;
@@ -63,12 +66,15 @@ describe('MeasurePageComponent', () => {
             declarations: [
                 MeasurePageComponent,
                 SpinnerAndErrorContainerComponent,
+                LatestNewsSectionComponent,
+                LatestNewsCardComponent,
                 MockSafePipe
             ],
             imports: [RouterTestingModule.withRoutes([])],
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
-                {provide: WordpressMeasuresService, useValue: measuresServiceStub}
+                {provide: WordpressMeasuresService, useValue: measuresServiceStub},
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
             ]
         })
             .compileComponents();
