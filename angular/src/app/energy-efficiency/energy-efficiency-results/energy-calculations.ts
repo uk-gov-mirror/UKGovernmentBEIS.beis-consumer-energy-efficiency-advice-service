@@ -20,7 +20,6 @@ export class EnergyCalculations {
         this.currentMonthlyBillPoundsRounded = Math.round(currentMonthlyBillPoundsUnrounded * 100) / 100;
         this.potentialEnergyBillSavingPoundsPerYear = Math.round(potentialEnergyBillSavingPoundsPerYear);
         this.currentEpcRating = energyCalculationResponse['Current-SAP-Band'];
-        // TODO:BEIS-27 get potential EPC rating from Energy Calculation API too
         this.currentScore = parseInt(energyCalculationResponse['Current-SAP-Rating']);
         this.potentialEpcRating = null;
         const co2EmissionsPerYearTonnesUnrounded = energyCalculationResponse['Total-CO2-Emissions'] / 1000;

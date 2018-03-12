@@ -84,7 +84,7 @@ export class EnergyEfficiencyRecommendation {
             null, // No lifetime for a grant
             grant.annualPaymentPoundsStandalone || 0,
             0, // No energy saving from a grant
-            '', // TODO: router link for more info (BEISDEAS-103)
+            '', // TODO: router link for more info (BEISDEAS-174)
             grant.name,
             grant.description,
             iconClassName,
