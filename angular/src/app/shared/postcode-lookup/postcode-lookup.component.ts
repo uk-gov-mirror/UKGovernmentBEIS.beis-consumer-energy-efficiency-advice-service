@@ -117,8 +117,8 @@ export class PostcodeLookupComponent {
             .catch((postcodeApiError) =>
                 PostcodeLookupComponent.handlePostcodeApiError(postcodeApiError, postcode));
     }
-    private isScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse): boolean{
-        if (postcodeDetails.result.country === "Scotland"){
+    private isScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse): boolean {
+        if (postcodeDetails.result.country === "Scotland") {
             return true;
         } else {
             return false;

@@ -34,23 +34,23 @@ export class PostcodeEpcService {
             .catch(() => this.fetchBasicPostcodeDetails(postcode));
     }
 
+    fetchBasicPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
+        return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
+            .map(postcodeResponse => {
+                return {
+                    postcode: postcode,
+                    allEpcsForPostcode: [],
+                    localAuthorityCode: postcodeResponse.result.codes.admin_district
+                };
+            })
+            .catch((postcodeApiError) =>
+                PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));
+    }
+
     private fetchEpcsForPostcode(postcode: string): Observable<PostcodeDetails> {
         return this.epcApiService.getEpcsForPostcode(postcode)
             .switchMap(epcs => Observable.of(new PostcodeDetails(postcode, epcs)))
             .catch(() => this.fetchBasicPostcodeDetails(postcode));
-    }
-
-    fetchBasicPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
-        return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
-            .map(postcodeResponse => {
-                    return {
-                        postcode: postcode,
-                        allEpcsForPostcode: [],
-                        localAuthorityCode: postcodeResponse.result.codes.admin_district
-                    };
-                })
-            .catch((postcodeApiError) =>
-                    PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));
     }
 
     private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeDetails> {
