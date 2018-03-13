@@ -194,7 +194,7 @@ $grant-card-margin: 24px;
           width: 700px;
 
           h3{
-            @include page-subheading;
+            @include page-subheading-font;
           }
           p{
             font-family: Gotham, Arial, sans-serif;;
