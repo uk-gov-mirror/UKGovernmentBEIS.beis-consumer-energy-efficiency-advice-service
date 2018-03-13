@@ -98,8 +98,8 @@ Open the site at http://localhost:81
 
 ### Development Setup - MySQL Database
 
-Install MySQL 5.5 using the Microsoft Web Platform Insaller at
-https://www.iis.net/downloads/microsoft/web-platform-installer
+Install MySQL 5.7 from
+https://dev.mysql.com/downloads/
 
 Set the root username and password to something
 you will remember (e.g. "root" / "password").
