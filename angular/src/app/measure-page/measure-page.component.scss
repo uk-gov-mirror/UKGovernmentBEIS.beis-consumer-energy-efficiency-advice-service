@@ -60,13 +60,11 @@
       display: flex;
       cursor: pointer;
       text-decoration: none;
-      height: 60px;
+      min-height: 60px;
 
       .step-link-text {
         background-color: $button-dark-blue;
-        text-transform: uppercase;
-        font-size: 13px;
-        line-height: 15px;
+        @include more-info-button-font;
         flex: 1;
         display: flex;
         align-items: center;
@@ -101,14 +99,83 @@
 // Breakpoint specific styling
 .measure-page {
   @include mobile() {
+    .heading-section {
+      padding: 25px 0;
+
+      .title {
+        padding-bottom: 15px;
+      }
+    }
+
+    .benefits-section {
+      padding: 28px 0 44px;
+    }
+
+    .steps-section {
+      padding: 0;
+
+      .step {
+        padding: 60px 0;
+      }
+
+      .step-description {
+        padding-top: 20px;
+      }
+
+      .step-read-more {
+        padding-top: 25px;
+      }
+
+      .step-content {
+        .step-links {
+          @include is-grid($margin-compensation: 60px);
+          padding-top: 46px;
+
+          .step-link {
+            @include is-grid-item($number-of-items: 1, $margin: 60px);
+          }
+        }
+      }
+    }
 
   }
   @include tablet() {
-    .step-links {
-      @include is-grid($margin-compensation: 75px);
+    .heading-section {
+      padding: 40px 0;
 
-      .step-link {
-        @include is-grid-item($number-of-items: 2, $margin: 75px);
+      .title {
+        padding-bottom: 25px;
+      }
+    }
+
+    .benefits-section {
+      padding: 33px 0 40px;
+    }
+
+    .steps-section {
+      padding: 0;
+
+      .step {
+        padding: 60px 0;
+      }
+
+      .step-description {
+        padding-top: 14px;
+      }
+
+      .step-read-more {
+        padding-top: 25px;
+      }
+
+      .step-content {
+        .step-links {
+          @include is-grid($margin-compensation: 75px);
+          padding-top: 54px;
+
+          .step-link {
+            @include is-grid-item($number-of-items: 2, $margin: 75px);
+          }
+        }
       }
     }
   }
@@ -132,12 +199,12 @@
         padding: 60px 0;
       }
 
-      .step-title {
-        padding-bottom: 14px;
+      .step-description {
+        padding-top: 14px;
       }
 
-      .step-description {
-        padding-bottom: 18px;
+      .step-read-more {
+        padding-top: 18px;
       }
 
       .step-content {
