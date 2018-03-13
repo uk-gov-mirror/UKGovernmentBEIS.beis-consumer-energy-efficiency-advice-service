@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="page-row steps-section">
+    <div class="page-row steps-section" *ngIf="measureData.steps && measureData.steps.length">
         <div class="page-row-content">
             <div class="step" *ngFor="let step of measureData.steps">
                 <div class="step-title">{{step.headline}}</div>
