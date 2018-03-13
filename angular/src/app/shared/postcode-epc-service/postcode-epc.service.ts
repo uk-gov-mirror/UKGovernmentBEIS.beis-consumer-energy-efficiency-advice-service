@@ -40,7 +40,7 @@ export class PostcodeEpcService {
             .catch(() => this.fetchBasicPostcodeDetails(postcode));
     }
 
-    private fetchBasicPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
+    fetchBasicPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
         return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
             .map(postcodeResponse => {
                     return {
