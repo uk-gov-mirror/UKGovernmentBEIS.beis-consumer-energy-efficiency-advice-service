@@ -30,12 +30,16 @@
       font-weight: bold;
     }
 
-    .benefits-text {
+    .benefit-text {
       @include measures-page-font;
     }
   }
 
   .steps-section {
+    .step:not(:last-child) {
+      border-bottom: 1px solid $primary-blue;
+    }
+
     .step-title {
       @include measures-page-subheading-font;
       color: $darkened-blue;
@@ -109,7 +113,33 @@
     }
   }
   @include desktop() {
+    .heading-section {
+      padding: 70px 0;
+
+      .title {
+        padding-bottom: 20px;
+      }
+    }
+
+    .benefits-section {
+      padding: 30px 0;
+    }
+
     .steps-section {
+      padding: 0;
+
+      .step {
+        padding: 60px 0;
+      }
+
+      .step-title {
+        padding-bottom: 14px;
+      }
+
+      .step-description {
+        padding-bottom: 18px;
+      }
+
       .step-content {
         display: flex;
         justify-content: space-between;
@@ -120,6 +150,12 @@
 
         .step-links {
           flex: 0 0 25%;
+          @include is-grid($margin-compensation: 44px);
+          display: block;
+
+          .step-link {
+            @include is-grid-item($number-of-items: 1, $margin: 44px);
+          }
         }
       }
     }
