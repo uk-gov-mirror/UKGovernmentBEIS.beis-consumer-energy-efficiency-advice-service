@@ -61,8 +61,8 @@ export class PostcodeLookupComponent {
             this.resetSearchState();
             this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
                 .subscribe(
-                    postcodeDetails => {
-                        if (!this.isScottishPostcode(postcodeDetails)) {
+                    basicPostcodeDetails => {
+                        if (!this.isScottishPostcode(basicPostcodeDetails)) {
                             this.scottishPostcode = false;
                             this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
                                 .subscribe(
