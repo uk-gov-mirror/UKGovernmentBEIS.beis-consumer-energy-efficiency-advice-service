@@ -18,193 +18,114 @@ $go-button-right-chevron-width: 20px;
 .confirm-epc-question {
   width: $component-width;
 
-  @include desktop() {
-    .horizontal-line {
-      width: 100%;
+  .epc-section {
+    // Copied from data-card.scss
+    .epc-diagram-card {
+
+      .heading {
+        text-transform: uppercase;
+        color: $dark-grey;
+        text-align: center;
+      }
+    }
+  }
+
+  .confirm-epc-details-section {
+    padding: $section-break-margin 0;
+    position: relative;
+
+    .confirm-epc-details-background {
+      position: absolute;
+      background: white;
+    }
+    .epc-details-header, .confirm-epc-details-body {
+      z-index: 1;
     }
 
-    .epc-section {
+    .epc-details-header {
+      font-weight: bold;
+      color: $focus-text-blue;
+    }
 
-      > * {
-        width: 15vw;
-        min-width: 1px;
+    .epc-details-container {
 
-        &:not(:last-child) {
-          border-right: 2px solid #d8d8d8;
-        }
+      .epc-detail {
+        color: #39393A;
       }
+    }
 
-      // Copied from data-card.scss
-      .epc-diagram-card {
-        padding: 10px;
-        min-width: 1px;
+    .confirm-epc-details {
+      font-weight: bold;
 
-        .heading {
-          text-transform: uppercase;
-          font-size: 11px;
-          line-height: 14px;
-          color: $dark-grey;
-          text-align: center;
+      .confirm-epc-details-row {
+
+        .confirm-epc-details-question {
+          color: $headline-dark-blue;
+        }
+
+        .confirm-epc-details-button {
+          @include capsule-button;
           font-weight: bold;
-          height: 72px;
-        }
-      }
-    }
+          box-sizing: border-box;
+          outline: none;
 
-    .confirm-epc-details-section {
-      padding: $section-break-margin 0;
-      position: relative;
-
-      .confirm-epc-details-background {
-        height: 100%;
-        width: 100vw;
-        position: absolute;
-        background: white;
-        left: -1 * (100vw - $component-width) / 2;
-        top: 0;
-      }
-      .epc-details-header, .confirm-epc-details-body {
-        z-index: 1;
-      }
-
-      .epc-details-header {
-        font-size: 20px;
-        font-weight: bold;
-        line-height: 24px;
-        color: $focus-text-blue;
-        margin-bottom: 10px;
-      }
-
-      .epc-details-container {
-
-        .epc-details-list {
-          margin: 0;
-          padding-left: 16px;
-
-          .epc-detail {
-            padding: 8px 0;
-            color: #39393A;
-            font-size: 16px;
-            line-height: 20px;
-          }
-        }
-      }
-
-      .confirm-epc-details {
-        font-weight: bold;
-
-        .confirm-epc-details-row {
-
-          .confirm-epc-details-question {
-            color: $headline-dark-blue;
-            margin-right: 20px;
+          &:hover, &:focus {
+            background-color: $lighter-medium-grey;
           }
 
-          .confirm-epc-details-button {
-            @include capsule-button;
-            font-size: 16px;
-            line-height: 30px;
-            font-weight: bold;
-            padding: 2px 36px;
-            box-sizing: border-box;
-            outline: none;
+          &.yes-button {
+            background-color: $action-button-blue;
+            color: white;
 
             &:hover, &:focus {
-              background-color: $lighter-medium-grey;
+              background-color: $button-dark-blue;
             }
-
-            &.yes-button {
-              background-color: $action-button-blue;
-              color: white;
-              margin-right: 32px;
-
-              &:hover, &:focus {
-                background-color: $button-dark-blue;
-              }
-            }
-          }
-
-          &:first-child {
-            padding-bottom: 16px;
           }
         }
       }
     }
+  }
 
-    .need-more-details-container {
+  .need-more-details-container, .confirm-epc-details-section {
+    .need-more-details-button {
+      border: none;
+      overflow: visible;
+      background-color: $button-dark-blue;
+      cursor: pointer;
 
-      .no-details {
-        padding-bottom: 48px;
-      }
-    }
-
-    .need-more-details-container, .confirm-epc-details-section {
-      .need-more-details-button {
-        padding: 0;
+      .need-more-details-body {
+        color: white;
         border: none;
-        overflow: visible;
-        background-color: $button-dark-blue;
-        cursor: pointer;
+
+        .button-main, .button-go {
+          height: 100%;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+          }
+        }
+
+        .button-main {
+          z-index: 1;
+        }
+
+        .button-go {
+          background-color: $action-button-blue;
+        }
+      }
+
+      &:hover {
+        background-color: $action-button-blue;
 
         .need-more-details-body {
-          color: white;
-          border: none;
-          height: $go-button-height;
-          font-size: 20px;
-          line-height: 24px;
-          font-weight: bold;
-          padding: 0;
-
-          .button-main, .button-go {
-            height: 100%;
-            position: relative;
-
-            &::after {
-              content: '';
-              position: absolute;
-              right: -$go-button-right-chevron-width;
-              top: 0;
-              width: 0;
-              height: 0;
-              border-top: $go-button-height/2 solid transparent;
-              border-bottom: $go-button-height/2 solid transparent;
-            }
-          }
-
-          .button-main {
-            z-index: 1;
-            padding-left: 20px;
-
-            &::after {
-              border-left: $go-button-right-chevron-width solid $button-dark-blue;
-            }
-          }
 
           .button-go {
-            background-color: $action-button-blue;
-            padding-left: $go-button-right-chevron-width + 16px;
-            padding-right: 4px;
+            background-color: $button-dark-blue;
 
             &::after {
-              border-left: $go-button-right-chevron-width solid $action-button-blue;
-            }
-          }
-        }
-
-        &:hover {
-          background-color: $action-button-blue;
-
-          .need-more-details-body {
-            .button-main::after {
-              border-left-color: $action-button-blue
-            }
-
-            .button-go {
-              background-color: $button-dark-blue;
-
-              &::after {
-                border-left-color: $button-dark-blue;
-              }
+              border-left-color: $button-dark-blue;
             }
           }
         }
@@ -315,15 +236,11 @@ $go-button-right-chevron-width: 20px;
         left: 0;
 
         font-family: $font-family-light;
+        margin: 0px 0px 0px 15px;
+        padding: 15px 0px 5px 0px;
 
-        .epc-detail{
+        ::ng-deep .epc-detail{
           margin-bottom: 15px;
-
-          span{
-            position: relative;
-            left: 10px;
-          }
-
         }
       }
 
@@ -497,14 +414,11 @@ $go-button-right-chevron-width: 20px;
         left: 0;
 
         font-family: $font-family-light;
+        margin: 0px 0px 0px 15px;
+        padding: 15px 0px 5px 0px;
 
-        .epc-detail{
+        ::ng-deep .epc-detail{
           margin-bottom: 15px;
-
-          span{
-            position: relative;
-            left: 10px;
-          }
         }
       }
 
@@ -611,29 +525,49 @@ $go-button-right-chevron-width: 20px;
 
     .epc-section {
       display: flex;
+      min-width: 700px;
 
-      > * {
-        flex: 0 0 auto;
+      ::ng-deep > * {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 auto;
         width: 15vw;
         min-width: 1px;
+        border-right: none;
+        margin-bottom: 40px;
 
-        &:not(:last-child) {
-          border-right: 2px solid #d8d8d8;
+        .energy-performance {
+          flex: 1 1 50%;
         }
 
         ::ng-deep .data-card {
           justify-content: space-between;
         }
+
+        > * {
+          padding: 10px 20px 10px 20px;
+        }
       }
 
-      // Copied from data-card.scss
+      div:first-child {
+        > * {
+          border-right: 2px solid #d8d8d8;
+        }
+      }
+
+      div:last-child {
+        app-data-card:first-child {
+          border-right: 2px solid #d8d8d8;
+        }
+      }
+
       .epc-diagram-card {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 10px;
         min-width: 1px;
-        justify-content: center;
+        justify-content: space-around;
+        flex: 1 1 50%;
 
         .heading {
           align-self: stretch;
@@ -642,8 +576,14 @@ $go-button-right-chevron-width: 20px;
           line-height: 14px;
           color: $dark-grey;
           text-align: center;
-          font-weight: bold;
           height: 72px;
+        }
+
+        .epc-diagram{
+          width: 100%;
+          img {
+            width: 13vw;
+          }
         }
       }
     }
@@ -668,7 +608,6 @@ $go-button-right-chevron-width: 20px;
 
       .epc-details-header {
         font-size: 20px;
-        font-weight: bold;
         line-height: 24px;
         color: $focus-text-blue;
         margin-bottom: 10px;
@@ -701,7 +640,6 @@ $go-button-right-chevron-width: 20px;
       .confirm-epc-details {
         display: flex;
         flex-direction: column;
-        font-weight: bold;
         flex-basis: 40%;
         justify-content: space-between;
 
@@ -718,23 +656,12 @@ $go-button-right-chevron-width: 20px;
             @include capsule-button;
             font-size: 16px;
             line-height: 30px;
-            font-weight: bold;
             padding: 2px 36px;
             box-sizing: border-box;
             outline: none;
 
-            &:hover, &:focus {
-              background-color: $lighter-medium-grey;
-            }
-
             &.yes-button {
-              background-color: $action-button-blue;
-              color: white;
               margin-right: 32px;
-
-              &:hover, &:focus {
-                background-color: $button-dark-blue;
-              }
             }
           }
 
@@ -766,17 +693,13 @@ $go-button-right-chevron-width: 20px;
         padding: 0;
         border: none;
         overflow: visible;
-        background-color: $button-dark-blue;
-        cursor: pointer;
 
         .need-more-details-body {
           flex-grow: 1;
-          color: white;
           border: none;
           height: $go-button-height;
           font-size: 20px;
           line-height: 24px;
-          font-weight: bold;
           display: flex;
           padding: 0;
 
