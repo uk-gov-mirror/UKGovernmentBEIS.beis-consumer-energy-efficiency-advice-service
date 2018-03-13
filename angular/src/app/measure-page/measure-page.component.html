@@ -6,13 +6,11 @@
             <div class="summary">{{measureData.summary}}</div>
         </div>
     </div>
-    <div class="page-row benefits-section">
+    <div class="page-row benefits-section" *ngIf="measureData.advantages && measureData.advantages.length">
         <div class="page-row-content">
             <div class="benefits">
                 <div class="benefits-title">Benefits</div>
-                <ul>
-                    <li class="benefit-text" *ngFor="let advantage of measureData.advantages">{{advantage}}</li>
-                </ul>
+                <div class="benefit-text" *ngFor="let advantage of measureData.advantages">{{advantage}}</div>
             </div>
         </div>
     </div>

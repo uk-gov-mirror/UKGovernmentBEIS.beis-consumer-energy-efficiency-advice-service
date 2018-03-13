@@ -28,10 +28,14 @@
     .benefits-title {
       color: $darkened-blue;
       font-weight: bold;
+      padding-bottom: 20px;
     }
 
     .benefit-text {
       @include measures-page-font;
+      list-style-type: disc;
+      display: list-item;
+      margin-left: 1em;
     }
   }
 
