@@ -14,11 +14,13 @@
 
 <!-- tocstop -->
 
-## Deploymentá
+## Deployment
 
 TODO:BEIS-163 document how to release the site
 
 How to roll back a release etc.
+
+See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
 
 ## Configuration
 
