@@ -5,8 +5,8 @@
         </div>
     </div>
     <div class="troubleshooting page-row">
-        <div class="page-row-content">
-            <div class="heading">Troubleshooting tips</div>
+        <div class="page-row-content" [ngClass]="{'mobile-hidden': !troubleshootingMobileExpanded}">
+            <div class="heading mobile-expander" (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded">Troubleshooting tips</div>
             <div class="body-text">Try these 5 fixes before calling an engineer</div>
             <div class="tips">
                 <app-carousel class="carousel"></app-carousel>
@@ -24,8 +24,8 @@
         </div>
     </div>
     <div class="replacing page-row">
-        <div class="page-row-content">
-            <div class="large-heading">Thinking about replacing your boiler?</div>
+        <div class="page-row-content" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+            <div class="large-heading mobile-expander" (click)="replacingMobileExpanded = !replacingMobileExpanded">Thinking about replacing your boiler?</div>
             <div class="boiler-options">
                 <div class="body-text">
                     If you're replacing your boiler or heating system, there are many options to choose from.<br>
@@ -59,8 +59,8 @@
         </div>
     </div>
     <div class="grants page-row">
-        <div class="page-row-content">
-            <div class="heading">Grants & incentives</div>
+        <div class="page-row-content" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
+            <div class="heading mobile-expander" (click)="grantsMobileExpanded = !grantsMobileExpanded">Grants & incentives</div>
             <div class="body">
                 <div class="body-text">
                     Find out if you are eligible to receive financial support from the government if you are struggling
@@ -74,8 +74,8 @@
         </div>
     </div>
     <div class="page-row">
-        <div class="find-installer page-row-content">
-            <div class="heading">Find a trustworthy installer</div>
+        <div class="find-installer page-row-content" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
+            <div class="heading mobile-expander" (click)="installerMobileExpanded = !installerMobileExpanded">Find a trustworthy installer</div>
             <div class="installers">
                 <div class="installer">
                     <div class="installer-section">For plumbing</div>
