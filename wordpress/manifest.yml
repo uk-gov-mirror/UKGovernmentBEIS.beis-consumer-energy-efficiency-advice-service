@@ -1,0 +1,14 @@
+# This is the Cloud Foundry application manifest for the user-site-server
+# application
+#
+# See http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
+---
+applications:
+- name: dceas-admin-site
+  buildpack: php_buildpack
+  path: .
+  services:
+    - dceas-database
+
+# TODO:BEIS-163 need any env? http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
+# TODO:BEIS-163 services, VCAP_SERVICES
