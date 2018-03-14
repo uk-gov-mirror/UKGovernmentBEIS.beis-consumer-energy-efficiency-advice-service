@@ -15,7 +15,5 @@
               [ngValue]="epc">{{epc.getDisplayAddress()}}</option>
     </select>
     <button class="go-button" (click)="onAddressSelected()">Go</button>
-  </div>
-  <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
-  <div class="scottish-postcode" *ngIf="scottishPostcode">We do not think this service is suitable/accurate for you (As your home is in Scotland)</div>
+  </div><div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
 </div>

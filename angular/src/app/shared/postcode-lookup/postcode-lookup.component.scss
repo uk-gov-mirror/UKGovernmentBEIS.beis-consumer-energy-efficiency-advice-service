@@ -119,12 +119,6 @@
     align-items: center;
     justify-content: center;
   }
-
-  .scottish-postcode {
-    padding: 10px;
-    margin-top: 20px;
-    width: 300px;
-  }
 }
 
 // Breakpoint specific styling
@@ -159,7 +153,7 @@
           padding: 0 34px;
         }
     }
-
+    
   }
 
   @include desktop() {

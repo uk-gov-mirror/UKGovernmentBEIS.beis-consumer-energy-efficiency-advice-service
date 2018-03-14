@@ -1,13 +1,12 @@
-import {Component} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import {Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
-import {ResponseData} from "../../shared/response-data/response-data";
-import {UserJourneyType} from "../../shared/response-data/user-journey-type";
-import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
-import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
-import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
+import {ResponseData} from '../../shared/response-data/response-data';
+import {UserJourneyType} from '../../shared/response-data/user-journey-type';
+import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../../shared/postcode-epc-service/model/postcode-details';
+import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
+import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 
 @Component({
     selector: 'app-grants-landing-page',
@@ -25,8 +24,7 @@ export class GrantsLandingPageComponent {
     constructor(
         private responseData: ResponseData,
         private postcodeEpcService: PostcodeEpcService,
-        private localAuthorityService: LocalAuthorityService,
-        private router: Router
+        private localAuthorityService: LocalAuthorityService
     ) {
     }
 
@@ -48,10 +46,6 @@ export class GrantsLandingPageComponent {
 
     setJourneyTypeToHomeImprovements(): void {
         this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
-    }
-
-    onAddressSelected() {
-        this.router.navigate(['js/grants/questionnaire']);
     }
 
     private postcodeSearchCompleted(postcodeDetails: PostcodeDetails) {
