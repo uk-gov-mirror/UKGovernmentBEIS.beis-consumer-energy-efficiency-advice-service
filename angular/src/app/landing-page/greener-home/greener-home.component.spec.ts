@@ -19,6 +19,7 @@ import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpr
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
+import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
 
 describe('CarbonFootprintComponent', () => {
 
@@ -37,6 +38,7 @@ describe('CarbonFootprintComponent', () => {
                 NavigationBarComponent,
                 LargeVideoCardComponent,
                 ArticleCardComponent,
+                LatestNewsSectionComponent,
                 LatestNewsCardComponent,
                 PostcodeLookupComponent,
                 StaticMeasureCardComponent,

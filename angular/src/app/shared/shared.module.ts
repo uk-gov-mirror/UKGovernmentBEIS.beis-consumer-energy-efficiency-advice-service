@@ -34,6 +34,8 @@ import {RecommendationsService} from './recommendations-service/recommendations.
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
 import {PopupComponent} from './popup/popup.component';
+import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
+import {LatestNewsSectionComponent} from './latest-news-section/latest-news-section.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +54,7 @@ import {PopupComponent} from './popup/popup.component';
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
+        LatestNewsSectionComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -69,6 +72,7 @@ import {PopupComponent} from './popup/popup.component';
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
+        LatestNewsSectionComponent,
     ],
     imports: [
         HttpClientModule,
@@ -85,6 +89,7 @@ export class SharedModule {
             providers: [
                 QuestionContentService,
                 WordpressApiService,
+                WordpressMeasuresService,
                 ResponseData,
                 FeatureFlagService,
                 EnergyCalculationApiService,

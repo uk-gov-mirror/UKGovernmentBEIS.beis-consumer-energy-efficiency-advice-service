@@ -19,6 +19,7 @@ import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress
 import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
 import { PopupComponent } from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
+import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -53,6 +54,7 @@ describe('LandingPageComponent', () => {
                 LargeVideoCardComponent,
                 ArticleCardComponent,
                 LatestNewsCardComponent,
+                LatestNewsSectionComponent,
                 MockPostcodeLookupComponent,
                 StaticMeasureCardComponent,
                 PopupComponent,

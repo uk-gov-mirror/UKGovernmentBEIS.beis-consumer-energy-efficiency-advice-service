@@ -1,6 +1,5 @@
 @import "styles/page";
 @import "styles/mixins/layout";
-@import "styles/mixins/common-sections";
 @import 'styles/mixins/buttons';
 @import 'styles/mixins/font';
 @import "styles/var/colors";
@@ -194,10 +193,6 @@ $arrow-height: 48px;
         }
       }
     }
-  }
-
-  .other-things {
-    @include is-other-things-section();
   }
 }
 

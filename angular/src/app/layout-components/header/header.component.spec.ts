@@ -9,6 +9,7 @@ import {WordpressPageResponse} from '../../shared/wordpress-pages-service/wordpr
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -24,14 +25,19 @@ describe('HeaderComponent', () => {
     ];
 
     const mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
+    const mockWordpressMeasuresService = {searchMeasures: (searchString) => Observable.of(mockSearchResult)};
 
     beforeEach(async(() => {
         spyOn(mockWordpressPagesService, 'searchPages').and.callThrough();
+        spyOn(mockWordpressMeasuresService, 'searchMeasures').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [HeaderComponent],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
-            providers: [{provide: WordpressPagesService, useValue: mockWordpressPagesService}]
+            providers: [
+                {provide: WordpressPagesService, useValue: mockWordpressPagesService},
+                {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
+            ]
         })
             .compileComponents();
         injector = getTestBed();
@@ -105,7 +111,7 @@ describe('HeaderComponent', () => {
         }));
     });
 
-    describe('#searchForPages', () => {
+    describe('#search', () => {
 
         beforeEach(() => {
             const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
@@ -113,16 +119,17 @@ describe('HeaderComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should search for pages with the correct search string', () => {
+        it('should search with the correct search string', () => {
             // given
             const searchString = 'dummy search text';
             component.searchText = searchString;
 
             // when
-            component.searchForPages();
+            component.search();
 
             // then
             expect(mockWordpressPagesService.searchPages).toHaveBeenCalledWith(searchString);
+            expect(mockWordpressMeasuresService.searchMeasures).toHaveBeenCalledWith(searchString);
         });
 
         it('should display an error if the search returns an error', async(() => {
@@ -130,7 +137,7 @@ describe('HeaderComponent', () => {
             injectSearchCallbackAndDetectChanges(() => ErrorObservable.create('error'));
 
             // when
-            component.searchForPages();
+            component.search();
 
             // then
             fixture.whenStable().then(() => {
@@ -143,7 +150,7 @@ describe('HeaderComponent', () => {
             injectSearchCallbackAndDetectChanges(() => Observable.of([]));
 
             // when
-            component.searchForPages();
+            component.search();
 
             // then
             fixture.whenStable().then(() => {
@@ -156,7 +163,7 @@ describe('HeaderComponent', () => {
             injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
 
             // when
-            component.searchForPages();
+            component.search();
             fixture.detectChanges();
 
             // then
@@ -172,21 +179,23 @@ describe('HeaderComponent', () => {
         it('should display all search results', async(() => {
             // given
             injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
-            component.searchForPages();
+            component.search();
 
             // when
             component.displayExpandedSearchResults();
 
             // then
             fixture.whenStable().then(() => {
-                expect(component.getSearchResultsToDisplay().length).toEqual(mockSearchResult.length);
+                expect(component.getSearchResultsToDisplay().length).toEqual(mockSearchResult.length * 2);
             });
         }));
     });
 
     function injectSearchCallbackAndDetectChanges(callback: (searchText: string) => Observable<WordpressPageResponse[]>) {
-        const injectedSearchService = injector.get(WordpressPagesService);
-        injectedSearchService.searchPages = callback;
+        const injectedSearchPageService = injector.get(WordpressPagesService);
+        const injectedSearchMeasuresService = injector.get(WordpressMeasuresService);
+        injectedSearchPageService.searchPages = callback;
+        injectedSearchMeasuresService.searchMeasures = callback;
         fixture.detectChanges();
     }
 });
