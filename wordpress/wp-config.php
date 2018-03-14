@@ -35,7 +35,11 @@ define('DB_COLLATE', '');
 $table_prefix  = 'wp_';
 
 //** Environment-specific configuration */
-require_once('wp-config/env-specific.php');
+if (isset($_ENV['VCAP_SERVICES'])) {
+    require_once("wp-config/wp-config-cloudfoundry.php");
+} else {
+    require_once('wp-config/wp-config-dev.php');
+}
 
 /* That's all, stop editing! Happy blogging. */
 

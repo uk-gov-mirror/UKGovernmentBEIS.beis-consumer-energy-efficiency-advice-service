@@ -1,6 +1,7 @@
 <?php
 
 # Load config to be used by functions if it exists
+// TODO:BEIS-163 configure from cloudfoundry env, see wp-config-cloudfoundry.php
 $configFilePath = dirname(__FILE__) . "/config/config.php";
 if (file_exists($configFilePath)) {
     include($configFilePath);

@@ -1,3 +1,4 @@
 {
-	"PHP_EXTENSIONS": ["mbstring", "mysqli", "mcrypt", "gd", "zip"]
+	"PHP_VERSION": "{PHP_70_LATEST}",
+	"PHP_EXTENSIONS": ["mbstring", "mysqli", "openssl", "mcrypt", "gd", "zip"]
 }
