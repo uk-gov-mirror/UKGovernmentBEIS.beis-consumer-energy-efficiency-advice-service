@@ -73,7 +73,7 @@ export class PostcodeLookupComponent {
                             this.scottishPostcode = true;
                         }
                     },
-                    error => {console.log("hello"); this.handlePostcodeSearchError(error)}
+                    error => this.handlePostcodeSearchError(error)
                 );
         }
     }
@@ -95,9 +95,7 @@ export class PostcodeLookupComponent {
     }
 
     private handlePostcodeSearchError(error: any): void {
-        console.log(error)
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
-            console.log("Hi im here")
             return this.displayPostcodeValidationError();
         }
         this.postcode = this.postcodeInput.replace(/\s/g, '');
@@ -116,8 +114,12 @@ export class PostcodeLookupComponent {
 
     private fetchPostcodeDetails(postcode: string): Observable<PostcodeBasicDetailsResponse> {
         return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
-            .catch((postcodeApiError) =>
-                PostcodeLookupComponent.handlePostcodeApiError(postcodeApiError, postcode));
+            .catch(() => {
+                if (!PostcodeEpcService.isValidPostcode(postcode)) {
+                    return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
+                }
+                return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
+            });
     }
     private isScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse): boolean {
         if (postcodeDetails.result.country === "Scotland") {
@@ -125,16 +127,5 @@ export class PostcodeLookupComponent {
         } else {
             return false;
         }
-    }
-
-    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeBasicDetailsResponse> {
-        console.log("objComp")
-        console.log(err.status)
-        console.log(err.error)
-        const isPostcodeNotFoundResponse: boolean = err.status === PostcodeApiService.postcodeNotFoundStatus;
-        if (isPostcodeNotFoundResponse) {
-            return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
-        }
-        return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
     }
 }

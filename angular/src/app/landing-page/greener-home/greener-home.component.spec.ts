@@ -15,6 +15,7 @@ import {QuestionContentService} from '../../shared/question-content/question-con
 import {PostcodeLookupComponent} from '../../shared/postcode-lookup/postcode-lookup.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
@@ -27,6 +28,10 @@ describe('CarbonFootprintComponent', () => {
 
     const postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const postcodeApiServiceStub = {
+        fetchBasicPostcodeDetails: (postcode) => Observable.of(null)
     };
 
     beforeEach(async(() => {
@@ -53,7 +58,8 @@ describe('CarbonFootprintComponent', () => {
                 ResponseData,
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
-                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
             ]
         })
             .compileComponents();

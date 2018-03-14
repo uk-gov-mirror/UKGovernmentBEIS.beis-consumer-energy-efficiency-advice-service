@@ -19,6 +19,8 @@ import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
+import {PostcodeBasicDetailsResponse} from '../../shared/postcode-epc-service/model/response/postcode-basic-details-response';
 import { PopupComponent } from '../../shared/popup/popup.component';
 
 describe('HomeImprovementsComponent', () => {
@@ -35,6 +37,12 @@ describe('HomeImprovementsComponent', () => {
         fetchPostcodeDetails: (postcode) => Observable.of(dummyPostcodeDetails)
     };
 
+    const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
+    const dummyBasicPostcodeDetails: PostcodeBasicDetailsResponse = dummyPostcodeResponse;
+
+    const postcodeApiServiceStub = {
+        fetchBasicPostcodeDetails: (postcode) => Observable.of(dummyBasicPostcodeDetails)
+    };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -58,7 +66,8 @@ describe('HomeImprovementsComponent', () => {
                 ResponseData,
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
-                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
             ]
         })
             .compileComponents();

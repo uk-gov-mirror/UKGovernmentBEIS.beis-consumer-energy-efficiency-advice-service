@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {PostcodeDetails} from '../../shared/postcode-epc-service/model/postcode-details';
+import {PostcodeBasicDetailsResponse} from '../../shared/postcode-epc-service/model/response/postcode-basic-details-response';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
 import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
@@ -16,6 +17,8 @@ import {LocalAuthorityService} from '../../shared/local-authority-service/local-
 import {GrantEligibility} from '../grant-eligibility-service/grant-eligibility';
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 import {LocalAuthorityGrant} from '../model/local-authority-grant';
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
+import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 
 describe('GrantsLandingPageComponent', () => {
     let component: GrantsLandingPageComponent;
@@ -23,6 +26,8 @@ describe('GrantsLandingPageComponent', () => {
     let responseData: ResponseData;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
+    const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
+    const dummyBasicPostcodeDetails: PostcodeBasicDetailsResponse = dummyPostcodeResponse;
     const postcode = 'SW1A1AA';
     const localAuthorityCode = 'E09000033';
     const localAuthorityName = 'Westminster';
@@ -53,6 +58,11 @@ describe('GrantsLandingPageComponent', () => {
         fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
 
+    let postcodeApiResponse: Observable<PostcodeBasicDetailsResponse>;
+    const postcodeApiServiceStub = {
+        fetchBasicPostcodeDetails: (value) => postcodeApiResponse
+    };
+
     beforeEach(async(() => {
         postcodeEpcResponse = Observable.of({
             allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
@@ -65,16 +75,19 @@ describe('GrantsLandingPageComponent', () => {
             ecoFlexMoreInfoLink: 'http://www.example.com',
             grants: localAuthorityGrants
         });
+        postcodeApiResponse = Observable.of(dummyBasicPostcodeDetails);
 
         spyOn(postcodeEpcServiceStub, 'fetchPostcodeDetails').and.callThrough();
+        spyOn(postcodeApiServiceStub, 'fetchBasicPostcodeDetails').and.callThrough();
         spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
 
         TestBed.configureTestingModule({
-            declarations: [GrantsLandingPageComponent, GrantCardComponent],
+            declarations: [GrantsLandingPageComponent, GrantCardComponent, PostcodeLookupComponent],
             providers: [
                 ResponseData,
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
             ],
             imports: [
                 CommonModule,

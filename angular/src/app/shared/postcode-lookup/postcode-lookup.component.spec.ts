@@ -19,11 +19,9 @@ describe('PostcodeLookupComponent', () => {
 
     const VALID_POSTCODE = 'SW1H0ET';
     const INVALID_POSTCODE = 'invalid';
-    const SCOTTISH_POSTCODE = 'KY49NP';
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
-    const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
 
     const dummyPostcodeDetails: PostcodeDetails = {
         postcode: VALID_POSTCODE,
@@ -31,6 +29,7 @@ describe('PostcodeLookupComponent', () => {
         localAuthorityCode: null
     };
 
+    const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
     const dummyBasicPostcodeDetails: PostcodeBasicDetailsResponse = dummyPostcodeResponse;
 
     const postcodeEpcServiceStub = {
@@ -144,19 +143,6 @@ describe('PostcodeLookupComponent', () => {
 
         // then
         const errorMessage = fixture.debugElement.query(By.css('.validation-error'));
-        expect(errorMessage).not.toBeNull();
-    });
-
-    it('should display an error message upon entering a scottish postcode', () => {
-        // given
-        component.postcodeInput = SCOTTISH_POSTCODE;
-
-        // when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
-        fixture.detectChanges();
-
-        // then
-        const errorMessage = fixture.debugElement.query(By.css('.scottishPostcode'));
         expect(errorMessage).not.toBeNull();
     });
 
