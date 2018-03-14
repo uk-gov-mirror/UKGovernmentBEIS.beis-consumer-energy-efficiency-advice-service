@@ -2,6 +2,11 @@
 @import "styles/mixins/font";
 @import "styles/boiler";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .boiler-landing-page {
 
   .troubleshooting {
@@ -214,5 +219,20 @@
         }
       }
     }
+  }
+}
+
+// Breakpoint specific styling
+.boiler-landing-page {
+  @include mobile() {
+    .mobile-hidden > *:not(.mobile-expander) {
+      display: none;
+    }
+  }
+
+  @include tablet() {
+  }
+
+  @include desktop() {
   }
 }
