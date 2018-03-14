@@ -73,7 +73,7 @@ export class PostcodeLookupComponent {
                             this.scottishPostcode = true;
                         }
                     },
-                    error => this.handlePostcodeSearchError(error)
+                    error => {console.log("hello"); this.handlePostcodeSearchError(error)}
                 );
         }
     }
@@ -95,7 +95,9 @@ export class PostcodeLookupComponent {
     }
 
     private handlePostcodeSearchError(error: any): void {
+        console.log(error)
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
+            console.log("Hi im here")
             return this.displayPostcodeValidationError();
         }
         this.postcode = this.postcodeInput.replace(/\s/g, '');
@@ -126,6 +128,9 @@ export class PostcodeLookupComponent {
     }
 
     private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeBasicDetailsResponse> {
+        console.log("objComp")
+        console.log(err.status)
+        console.log(err.error)
         const isPostcodeNotFoundResponse: boolean = err.status === PostcodeApiService.postcodeNotFoundStatus;
         if (isPostcodeNotFoundResponse) {
             return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
