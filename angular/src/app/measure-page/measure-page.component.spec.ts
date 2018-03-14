@@ -1,5 +1,6 @@
 import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
 import {ActivatedRoute, Router} from '@angular/router';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
@@ -70,7 +71,7 @@ describe('MeasurePageComponent', () => {
                 LatestNewsCardComponent,
                 MockSafePipe
             ],
-            imports: [RouterTestingModule.withRoutes([])],
+            imports: [RouterTestingModule.withRoutes([]), InlineSVGModule],
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: WordpressMeasuresService, useValue: measuresServiceStub},
