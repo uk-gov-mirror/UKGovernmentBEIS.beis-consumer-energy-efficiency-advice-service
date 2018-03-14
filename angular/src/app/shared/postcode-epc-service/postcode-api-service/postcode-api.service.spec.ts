@@ -39,6 +39,7 @@ describe('PostcodeApiService', () => {
             const expectedResponse: PostcodeBasicDetailsResponse = {
                 status: 200,
                 result: {
+                    country: "England",
                     postcode: postcode,
                     codes: {
                         admin_district: 'E09000033'
