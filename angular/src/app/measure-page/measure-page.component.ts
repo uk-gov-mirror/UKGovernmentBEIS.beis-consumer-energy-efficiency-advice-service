@@ -34,6 +34,7 @@ export class MeasurePageComponent implements OnInit {
 
     displayMeasure(measureData: WordpressMeasure): void {
         if (!measureData) {
+            this.isError = true;
             this.router.navigate(['/']);
         }
         this.measureData = measureData;
