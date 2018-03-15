@@ -13,6 +13,7 @@ These instructions are kept for future reference.
 - [Common tasks](#common-tasks)
 - [Database](#database)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
+- [User Site (Java)](#user-site-java)
 
 <!-- tocstop -->
 
