@@ -49,7 +49,7 @@ You will need to update the `wp_options` table to change the hostname & port:
 
     cf conduit dceas-database -- mysql
     
-    update wp_options set option_value = 'https://dceas-admin-site.cloudapps.digital'
+    update wp_options set option_value = 'https://dceas-admin-site-int.cloudapps.digital'
       where option_name in ('siteurl', 'home');
 
 ## Admin Site (Wordpress)
