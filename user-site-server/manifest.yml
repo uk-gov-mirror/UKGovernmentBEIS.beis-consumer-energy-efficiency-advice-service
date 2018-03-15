@@ -2,6 +2,9 @@
 # application
 #
 # See http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
+#
+# DO NOT push the app directly with `cf push`, but please always use
+# ./infrastructure/ci-user-site-deploy.sh
 ---
 applications:
 - name: dceas-user-site

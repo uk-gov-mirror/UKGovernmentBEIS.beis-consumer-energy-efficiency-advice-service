@@ -16,9 +16,15 @@
 
 ## Deployment
 
-TODO:BEIS-163 document how to release the site
+The "live" sites can be released using the Jenkins job at TODO:BEIS-190
 
-How to roll back a release etc.
+The "staging" sites (for UAT) can be released using the Jenkins job at
+http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
+
+The "int" site is automatically updated after each code change by the Jenkins job at
+http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/2.%20BEIS%20DCEAS%20-%20Deploy%20to%20Int/
+
+BEISDEAS-189 document how to roll back a release etc.
 
 See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
 
