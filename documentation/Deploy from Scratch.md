@@ -54,10 +54,19 @@ You will need to update the `wp_options` table to change the hostname & port:
 
 ## Admin Site (Wordpress)
 
-    # Build the site locally, so that the angular files are up to date.
+Add necessary config:
+
+    # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
+    cf set-env dceas-admin-site 'NONCE_KEY' '...'
+    # Do the same for the 7 other secret keys
+        
+Build the site locally, so that the angular files are up to date.:
+ 
     pushd angular
     npm run build -- --prod
     popd
+
+Deploy:
     
     cd wordpress
     cf push
