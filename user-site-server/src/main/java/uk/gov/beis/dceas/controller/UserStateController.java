@@ -46,7 +46,7 @@ public class UserStateController {
     @PostMapping
     public ResponseEntity<?> createUserState(UriComponentsBuilder builder, @RequestBody String state) {
         String reference = generateReference();
-        dslContext
+        int recordsCreated = dslContext
             .insertInto(USER_STATE, USER_STATE.REFERENCE, USER_STATE.STATE, USER_STATE.UPDATED)
             .values(
                 reference,
@@ -54,19 +54,28 @@ public class UserStateController {
                 Timestamp.from(Instant.now()))
             .execute();
 
+        if (recordsCreated == 0) {
+            return ResponseEntity.notFound().build();
+        }
+
         // Respond with a 201 "Created" and a Location header containing the url of the created resource
         UriComponents uriComponents = builder.path("/api/userState/{reference}").buildAndExpand(reference);
         return ResponseEntity.created(uriComponents.toUri()).build();
     }
 
     @PutMapping("/{reference}")
-    public void updateUserState(@PathVariable String reference, @RequestBody String state) {
-        dslContext
+    public ResponseEntity<?> updateUserState(@PathVariable String reference, @RequestBody String state) {
+        int entriesUpdated = dslContext
             .update(USER_STATE)
             .set(USER_STATE.STATE, state)
             .set(USER_STATE.UPDATED, Timestamp.from(Instant.now()))
             .where(USER_STATE.REFERENCE.eq(reference))
             .execute();
+
+        if (entriesUpdated == 0) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
     }
 
     // TODO BEISDEAS-191 Generate 3 words as reference
