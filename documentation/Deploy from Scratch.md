@@ -56,6 +56,12 @@ You will need to update the `wp_options` table to change the hostname & port:
 
 Add necessary config:
 
+    cf set-env dceas-admin-site EPC_API_TOKEN xxx
+    cf set-env dceas-admin-site GOOGLE_ANALYTICS_ID xxx
+    cf set-env dceas-admin-site HOTJAR_ID xxx
+    cf set-env dceas-admin-site BRE_API_USERNAME xxx
+    cf set-env dceas-admin-site BRE_API_PASSWORD xxx
+    
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
     cf set-env dceas-admin-site 'NONCE_KEY' '...'
     # Do the same for the 7 other secret keys
