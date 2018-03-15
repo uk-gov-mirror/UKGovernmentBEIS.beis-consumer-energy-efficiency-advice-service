@@ -64,7 +64,6 @@ public class UserStateController {
         dslContext
             .update(USER_STATE)
             .set(USER_STATE.STATE, state)
-            // TODO BEISDEAS-191 Worry about timezones etc.
             .set(USER_STATE.UPDATED, Timestamp.from(Instant.now()))
             .where(USER_STATE.REFERENCE.eq(reference))
             .execute();
