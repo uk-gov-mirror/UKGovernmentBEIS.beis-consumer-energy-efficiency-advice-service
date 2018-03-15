@@ -10,7 +10,7 @@ export class WordpressMeasure implements WordpressSearchable {
     steps: RecommendationStep[];
 
     constructor(wordpressMeasureResponse: MeasureContent) {
-        this.route = '/js/measures/' + wordpressMeasureResponse.slug;
+        this.route = '/js/measures/' + encodeURIComponent(wordpressMeasureResponse.slug);
         this.title = wordpressMeasureResponse.acf.headline;
         this.summary = wordpressMeasureResponse.acf.summary;
         this.advantages = wordpressMeasureResponse.acf.advantages
