@@ -7,6 +7,7 @@
 - [Deployment](#deployment)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
+  * [Updating Wordpress](#updating-wordpress)
 - [Database](#database)
 - [Monitoring](#monitoring)
   * [Application logs](#application-logs)
@@ -38,6 +39,19 @@ Use `cf env`, mostly...
 ## Dependencies
 
 TODO:BEIS-163 document deps
+
+### Updating Wordpress
+
+You cannot update Wordpress or its Plugins using the web GUI in the admin site,
+any changes made this way would be lost when the web server is recycled or if new
+webservers are created for load balancing.
+
+You must instead:
+
+ * Run Wordpress on your dev machine (see the instructions in the [main README.md](../README.md))
+ * Update it there
+ * Commit the changes to `git`
+ * Deploy a new version of the site (see "Deployment" above)
 
 ## Database
 
