@@ -10,12 +10,6 @@ set -ex
 #
 # The caller should be logged in to CF, see https://docs.cloud.service.gov.uk/#setting-up-custom-scripts
 
-# TODO:BEIS-157 soon the Angular content will be packaged into the user-site, not
-# the admin-site, at which point it should be built here
-./gradlew build
-
-cd user-site-server
-
 [[ -v SPACE ]] || read -p "Which space? (int,staging,live): " SPACE
 case $SPACE in
   int | staging )
@@ -29,6 +23,23 @@ case $SPACE in
     exit 1
   ;;
 esac
+
+
+pushd angular
+
+node -v
+npm -v
+
+npm install --no-optional
+
+npm run build -- --prod
+
+popd
+
+
+./gradlew build
+
+cd user-site-server
 
 cf target -o beis-domestic-energy-advice-service -s $SPACE
 cf push --hostname $HOSTNAME

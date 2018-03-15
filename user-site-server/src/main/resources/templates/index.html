@@ -19,16 +19,8 @@
         /*]]>*/
     </script>
     <!-- TODO:BEISDEAS-156 need a favicon -->
+    <th:block th:utext="${angularHeadContent}" />
 </head>
-<body>
-    <!-- This code, including the <script> tags should be kept in sync with the file
-       = compiled by Angular at wordpress/wp-content/themes/angular-theme/dist/index.html
-       = It should change only if we change the Angular configuration. -->
-    <app-root></app-root>
-    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/inline.bundle.js"></script>
-    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/polyfills.bundle.js"></script>
-    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/styles.bundle.js"></script>
-    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/vendor.bundle.js"></script>
-    <script type="text/javascript" src="/wp-content/themes/angular-theme/dist/main.bundle.js"></script>
+<body th:utext="${angularBodyContent}">
 </body>
 </html>

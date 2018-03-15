@@ -96,6 +96,7 @@ dependencies {
     // It looks like v6 is still experimental anyway, so 5 is fine for us
     // https://dev.mysql.com/doc/relnotes/connector-j/6.0/en/
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.45'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
 
     // Charon does proxying, for the WP pass-through
     compile('com.github.mkopylec:charon-spring-boot-starter:2.3.0')

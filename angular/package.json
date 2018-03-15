@@ -12,7 +12,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer ../wordpress/wp-content/themes/angular-theme/dist/stats.json",
+    "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer ../user-site-server/src/main/resources/public/dist/stats.json",
     "enforce-engine-strict": "node src/dev/enforce-engine-strict.js",
     "toc": "cd .. && node angular/src/dev/readme-tocs.js",
     "postinstall": "npm run-script enforce-engine-strict && npm run-script toc"

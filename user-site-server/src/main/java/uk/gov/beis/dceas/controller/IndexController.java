@@ -1,6 +1,9 @@
 package uk.gov.beis.dceas.controller;
 
 import com.google.common.collect.Iterables;
+import com.google.common.io.Resources;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
@@ -32,9 +36,23 @@ public class IndexController {
 
     private final Environment environment;
 
+    private final String angularHeadContent;
+    private final String angularBodyContent;
+
     @Autowired
-    public IndexController(Environment environment) {
+    public IndexController(Environment environment) throws IOException {
         this.environment = environment;
+
+        // We read the "dist" index.html from Angular, and inject it into our
+        // index page, to use things like Angular's content hash stamping etc.
+        String angularIndexFileContent = Resources.toString(
+            getClass().getResource("/public/dist/index.html"),
+            StandardCharsets.UTF_8);
+
+        Document document = Jsoup.parse(angularIndexFileContent);
+
+        angularHeadContent = document.head().html();
+        angularBodyContent = document.body().html();
     }
 
     @RequestMapping(value = {
@@ -46,6 +64,8 @@ public class IndexController {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("environment", getEnvName());
+        model.addAttribute("angularHeadContent", angularHeadContent);
+        model.addAttribute("angularBodyContent", angularBodyContent);
 
         Attributes attributes = getBuildAttributes();
         model.addAttribute("buildTimestamp",
