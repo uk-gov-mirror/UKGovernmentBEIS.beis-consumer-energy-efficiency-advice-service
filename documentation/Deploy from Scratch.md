@@ -59,14 +59,17 @@ Add necessary config:
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
     cf set-env dceas-admin-site 'NONCE_KEY' '...'
     # Do the same for the 7 other secret keys
-        
-Build the site locally, so that the angular files are up to date.:
- 
-    pushd angular
-    npm run build -- --prod
-    popd
 
-Deploy:
-    
-    cd wordpress
-    cf push
+Build the site locally, and deploy:
+ 
+    ./infrastructure/ci-admin-site-deploy.sh
+
+## User Site (Java)
+
+Add necessary config:
+
+    cf set-env dceas-user-site dceas-admin-site-url https://dceas-admin-site-int.cloudapps.digital
+
+Build the site locally, and deploy:
+
+    ./infrastructure/ci-user-site-deploy.sh
