@@ -13,6 +13,7 @@ These instructions are kept for future reference.
 - [Common tasks](#common-tasks)
 - [Database](#database)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
+- [User Site (Java)](#user-site-java)
 
 <!-- tocstop -->
 
@@ -49,24 +50,33 @@ You will need to update the `wp_options` table to change the hostname & port:
 
     cf conduit dceas-database -- mysql
     
-    update wp_options set option_value = 'https://dceas-admin-site.cloudapps.digital'
+    update wp_options set option_value = 'https://dceas-admin-site-int.cloudapps.digital'
       where option_name in ('siteurl', 'home');
 
 ## Admin Site (Wordpress)
 
 Add necessary config:
 
+    cf set-env dceas-admin-site EPC_API_TOKEN xxx
+    cf set-env dceas-admin-site GOOGLE_ANALYTICS_ID xxx
+    cf set-env dceas-admin-site HOTJAR_ID xxx
+    cf set-env dceas-admin-site BRE_API_USERNAME xxx
+    cf set-env dceas-admin-site BRE_API_PASSWORD xxx
+    
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
     cf set-env dceas-admin-site 'NONCE_KEY' '...'
     # Do the same for the 7 other secret keys
-        
-Build the site locally, so that the angular files are up to date.:
- 
-    pushd angular
-    npm run build -- --prod
-    popd
 
-Deploy:
-    
-    cd wordpress
-    cf push
+Build the site locally, and deploy:
+ 
+    ./infrastructure/ci-admin-site-deploy.sh
+
+## User Site (Java)
+
+Add necessary config:
+
+    cf set-env dceas-user-site dceas-admin-site-url https://dceas-admin-site-int.cloudapps.digital
+
+Build the site locally, and deploy:
+
+    ./infrastructure/ci-user-site-deploy.sh
