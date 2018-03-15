@@ -28,6 +28,7 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSchedulerState;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
+import uk.gov.beis.dceas.db.gen.tables.UserState;
 
 
 /**
@@ -43,7 +44,7 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSchema extends SchemaImpl {
 
-    private static final long serialVersionUID = -1978699089;
+    private static final long serialVersionUID = 139594046;
 
     /**
      * The reference instance of <code></code>
@@ -121,6 +122,11 @@ public class DefaultSchema extends SchemaImpl {
     public final QrtzTriggers QRTZ_TRIGGERS = uk.gov.beis.dceas.db.gen.tables.QrtzTriggers.QRTZ_TRIGGERS;
 
     /**
+     * The table <code>user_state</code>.
+     */
+    public final UserState USER_STATE = uk.gov.beis.dceas.db.gen.tables.UserState.USER_STATE;
+
+    /**
      * No further instances allowed
      */
     private DefaultSchema() {
@@ -158,6 +164,7 @@ public class DefaultSchema extends SchemaImpl {
             QrtzSchedulerState.QRTZ_SCHEDULER_STATE,
             QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS,
             QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS,
-            QrtzTriggers.QRTZ_TRIGGERS);
+            QrtzTriggers.QRTZ_TRIGGERS,
+            UserState.USER_STATE);
     }
 }
