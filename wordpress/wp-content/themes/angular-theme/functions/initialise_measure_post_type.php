@@ -6,6 +6,9 @@ add_action( 'init', 'setup_measure_acf_group');
 // Disable the quick-edit link to prevent users editing the slug for a measure
 add_filter( 'post_row_actions', disable_quick_edit_for('measure'), 10, 2 );
 
+// Add slug to returned ACF fields
+add_filter('acf/rest_api/measure/get_items', 'add_slug');
+
 function create_measure_post_type() {
 
     register_post_type('measure',

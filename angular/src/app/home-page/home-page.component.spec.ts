@@ -10,6 +10,7 @@ import {NavigationBarComponent} from '../layout-components/navigation-bar/naviga
 import {QuestionnaireService} from '../questionnaire/questionnaire.service';
 import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -24,7 +25,7 @@ describe('HomePageComponent', () => {
     beforeEach(async(() => {
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [HomePageComponent, LatestNewsCardComponent, NavigationBarComponent],
+            declarations: [HomePageComponent, LatestNewsSectionComponent, LatestNewsCardComponent, NavigationBarComponent],
             imports: [RouterTestingModule.withRoutes([
                 {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
                 {path: 'js/energy-efficiency/results', component: DummyComponent},

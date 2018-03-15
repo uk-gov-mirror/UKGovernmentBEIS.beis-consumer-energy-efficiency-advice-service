@@ -31,54 +31,6 @@ describe('WordpressPagesService', () => {
         });
     });
 
-    describe('#searchPages', () => {
-
-        it('calls API and returns data correctly', async(() => {
-            // when
-            const actualResponse = service.searchPages(searchString).toPromise();
-            httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
-
-            // then
-            actualResponse.then((pages) => {
-                // match data in 'assets/test/search-pages-response.json'
-                expect(pages.length).toBe(7);
-                expect(pages[0].route).toContain('microgen-7');
-                expect(pages[0].title).toBe('Microgen 7');
-            });
-            httpMock.verify();
-        }));
-
-        it('throws an error if API returns an error', async(() => {
-            // given
-            const expectedStatus = 400;
-            const expectedStatusText = 'bad request';
-
-            // when
-            const actualResponse = service.searchPages(searchString).toPromise();
-            httpMock.expectOne(matchesExpectedRequest)
-                .error(
-                    new ErrorEvent('mock network error'),
-                    {
-                        status: expectedStatus,
-                        statusText: expectedStatusText
-                    }
-                );
-
-            // then
-            actualResponse.catch((errorResponse) => {
-                expect(errorResponse.statusText).toBe(expectedStatusText);
-                expect(errorResponse.status).toBe(expectedStatus);
-            });
-            httpMock.verify();
-        }));
-
-        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
-            const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === `wp/v2/pages?search=${ encodeURI(searchString) }&context=embed`;
-            return matchesExpectedMethod && matchesExpectedUrl;
-        }
-    });
-
     describe('#getTopLevelPages', () => {
         it('calls API and returns data correctly', async(() => {
             // when
@@ -159,31 +111,6 @@ describe('WordpressPagesService', () => {
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
             const matchesExpectedUrl = request.urlWithParams === 'wp/v2/pages?per_page=4&orderby=date&order=desc&context=embed';
-            return matchesExpectedMethod && matchesExpectedUrl;
-        }
-    });
-
-    describe('#getPage', () => {
-        const testSlug = 'my-test-page';
-
-        it('calls API and returns data correctly', async(() => {
-            // when
-            const actualResponse = service.getPage(testSlug).toPromise();
-            httpMock.expectOne(matchesExpectedRequest).flush([mockApiResponse[0]]);
-
-            // then
-            actualResponse.then((pageResponse) => {
-                // match data in 'assets/test/search-pages-response.json'
-                expect(pageResponse.route).toContain('microgen-7');
-                expect(pageResponse.title).toBe('Microgen 7');
-                expect(pageResponse.content).toBe('<p>Microgen 7</p>\n');
-            });
-            httpMock.verify();
-        }));
-
-        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
-            const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === `wp/v2/pages?per_page=1&slug=${testSlug}`;
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

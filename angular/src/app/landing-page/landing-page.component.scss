@@ -1,7 +1,6 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
 @import "styles/mixins/layout";
-@import "styles/mixins/common-sections";
 
 // Component specific variables
 $desktop-browse-cards-margin: 24px;
@@ -83,10 +82,6 @@ $mobile-browse-cards-margin: 20px;
 
   .other-suggestions {
     background-color: $light-grey;
-
-    .page-row-content {
-      @include is-other-things-section();
-    }
   }
 }
 
@@ -140,13 +135,6 @@ $mobile-browse-cards-margin: 20px;
         @include is-browse-card-grid($margin: $mobile-browse-cards-margin, $small-cards-per-row: 1);
       }
     }
-
-    .other-suggestions {
-      .page-row-content {
-        margin-top: 30px;
-        margin-bottom: 0;
-      }
-    }
   }
 
   @include tablet() {
@@ -184,13 +172,6 @@ $mobile-browse-cards-margin: 20px;
 
       .browse-cards {
         @include is-browse-card-grid($margin: $tablet-browse-cards-margin, $small-cards-per-row: 2);
-      }
-    }
-
-    .other-suggestions {
-      .page-row-content {
-        margin-top: 30px;
-        margin-bottom: 0;
       }
     }
   }
@@ -235,13 +216,6 @@ $mobile-browse-cards-margin: 20px;
 
       .browse-cards {
         @include is-browse-card-grid($margin: $desktop-browse-cards-margin, $small-cards-per-row: 2);
-      }
-    }
-
-    .other-suggestions {
-      .page-row-content {
-        margin-top: 30px;
-        margin-bottom: 0;
       }
     }
   }

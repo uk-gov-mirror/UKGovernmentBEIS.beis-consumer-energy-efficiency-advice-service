@@ -1,0 +1,49 @@
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<div class="measure-page" *ngIf="!isLoading && !isError">
+    <div class="page-row heading-section">
+        <div class="page-row-content">
+            <div class="title">{{measureData.title}}</div>
+            <div class="summary">{{measureData.summary}}</div>
+        </div>
+    </div>
+    <div class="page-row benefits-section" *ngIf="measureData.advantages && measureData.advantages.length">
+        <div class="page-row-content">
+            <div class="benefits">
+                <div class="benefits-title">Benefits</div>
+                <div class="benefit-text" *ngFor="let advantage of measureData.advantages">{{advantage}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row steps-section" *ngIf="measureData.steps && measureData.steps.length">
+        <div class="page-row-content">
+            <div class="step" *ngFor="let step of measureData.steps">
+                <div class="step-title">{{step.headline}}</div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <div class="step-description">{{step.description}}</div>
+                        <div class="step-read-more" [innerHTML]="step.readMore"></div>
+                    </div>
+                    <div class="step-links" *ngIf="step.moreInfoLinks && step.moreInfoLinks.length">
+                        <ng-container *ngFor="let moreInfoLink of step.moreInfoLinks">
+                            <a class="step-link" *ngIf="moreInfoLink.isExternalLink" target="_blank" [href]="moreInfoLink.externalLink">
+                                <div class="step-link-text">{{moreInfoLink.buttonText}}</div>
+                                <div class="step-link-icon-container">
+                                    <div class="step-link-icon" [inlineSVG]="'controls/new-window.svg'"></div>
+                                </div>
+                            </a>
+                            <a class="step-link" *ngIf="!moreInfoLink.isExternalLink" [routerLink]="moreInfoLink.route">
+                                <div class="step-link-text">{{moreInfoLink.buttonText}}</div>
+                                <div class="step-link-icon-container">
+                                    <div class="step-link-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
+                                </div>
+                            </a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-row latest-news-section">
+        <app-latest-news-section></app-latest-news-section>
+    </div>
+</div>

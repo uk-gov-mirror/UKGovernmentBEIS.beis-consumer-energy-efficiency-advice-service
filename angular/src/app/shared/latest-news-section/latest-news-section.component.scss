@@ -1,0 +1,74 @@
+@import "styles/mixins/layout";
+@import "styles/mixins/font";
+
+// Component specific variables
+
+// Component specific mixins
+@mixin is-latest-news-section($top-margin, $bottom-margin, $heading-margin-bottom, $grid-margin, $number-of-items-in-row) {
+  margin-top: $top-margin;
+  margin-bottom: $bottom-margin;
+
+  .heading {
+    margin-bottom: $heading-margin-bottom;
+  }
+
+  .latest-news-cards {
+    @include is-grid($margin-compensation: $grid-margin);
+
+    > * {
+      @include is-grid-item($number-of-items: $number-of-items-in-row, $margin: $grid-margin);
+    }
+  }
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
+:host {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.latest-news-section {
+  .heading {
+    @include page-section-heading-font;
+    color: $primary-blue;
+  }
+
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// Breakpoint specific styling
+.latest-news-section {
+  @include mobile() {
+    @include is-latest-news-section(
+            $top-margin: 56px,
+            $bottom-margin: 20px,
+            $heading-margin-bottom: 60px,
+            $grid-margin: 18px,
+            $number-of-items-in-row: 1
+    );
+  }
+
+  @include tablet() {
+    @include is-latest-news-section(
+            $top-margin: 40px,
+            $bottom-margin: 35px,
+            $heading-margin-bottom: 20px,
+            $grid-margin: 20px,
+            $number-of-items-in-row: 2
+    );
+  }
+
+  @include desktop() {
+    @include is-latest-news-section(
+            $top-margin: 58px,
+            $bottom-margin: 60px,
+            $heading-margin-bottom: 24px,
+            $grid-margin: 20px,
+            $number-of-items-in-row: 4
+    );
+  }
+}
