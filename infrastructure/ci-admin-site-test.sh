@@ -14,4 +14,6 @@ npm -v
 
 npm install --no-optional
 
+npm run lint
+
 npm run test -- --single-run
