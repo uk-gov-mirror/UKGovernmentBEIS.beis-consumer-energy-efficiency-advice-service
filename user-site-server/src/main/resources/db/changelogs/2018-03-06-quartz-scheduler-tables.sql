@@ -1,4 +1,3 @@
---liquibase formatted sql
 --  From https://github.com/davidkiss/spring-boot-quartz-demo
 
 CREATE TABLE QRTZ_CALENDARS (
