@@ -29,6 +29,7 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
+import uk.gov.beis.dceas.db.gen.tables.Words;
 
 
 /**
@@ -44,7 +45,7 @@ import uk.gov.beis.dceas.db.gen.tables.UserState;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSchema extends SchemaImpl {
 
-    private static final long serialVersionUID = 139594046;
+    private static final long serialVersionUID = -927433569;
 
     /**
      * The reference instance of <code></code>
@@ -127,6 +128,11 @@ public class DefaultSchema extends SchemaImpl {
     public final UserState USER_STATE = uk.gov.beis.dceas.db.gen.tables.UserState.USER_STATE;
 
     /**
+     * The table <code>words</code>.
+     */
+    public final Words WORDS = uk.gov.beis.dceas.db.gen.tables.Words.WORDS;
+
+    /**
      * No further instances allowed
      */
     private DefaultSchema() {
@@ -165,6 +171,7 @@ public class DefaultSchema extends SchemaImpl {
             QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS,
             QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS,
             QrtzTriggers.QRTZ_TRIGGERS,
-            UserState.USER_STATE);
+            UserState.USER_STATE,
+            Words.WORDS);
     }
 }

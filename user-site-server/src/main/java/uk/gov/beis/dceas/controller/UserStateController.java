@@ -13,18 +13,22 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
 
+import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
+import java.util.Random;
 
 import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
+import static uk.gov.beis.dceas.db.gen.Tables.WORDS;
 import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
 
 @RestController
 @RequestMapping("/api/userState")
 public class UserStateController {
 
-    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int REFERENCE_CHARACTER_LENGTH = 8;
+    private static final int WORD_COUNT = 3;
+    private static Random rnd = new SecureRandom();
 
     private final DSLContext dslContext;
 
@@ -78,12 +82,17 @@ public class UserStateController {
         return ResponseEntity.ok().build();
     }
 
-    // TODO BEISDEAS-191 Generate 3 words as reference
-    private static String generateReference() {
+    private String generateReference() {
+        List<String> words = dslContext
+            .selectFrom(WORDS)
+            .fetch()
+            .getValues(WORDS.WORD);
+
+        // TODO BEISDEAS-191 comment on unguessability
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < REFERENCE_CHARACTER_LENGTH; i++) {
-            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
-            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+        for (int i = 0; i < WORD_COUNT; i++) {
+            int index = rnd.nextInt(words.size());
+            builder.append(words.get(index));
         }
         return builder.toString();
     }
