@@ -42,7 +42,7 @@ public class UserStateController {
         return notFoundIfNull(
             dslContext
                 .selectFrom(USER_STATE)
-                .where(USER_STATE.REFERENCE.eq(reference))
+                .where(USER_STATE.ID.eq(reference))
                 .fetchOne(UserState::fromDb)
         );
     }
@@ -51,11 +51,10 @@ public class UserStateController {
     public ResponseEntity<?> createUserState(UriComponentsBuilder builder, @RequestBody String state) {
         String reference = generateReference();
         int recordsCreated = dslContext
-            .insertInto(USER_STATE, USER_STATE.REFERENCE, USER_STATE.STATE, USER_STATE.UPDATED)
-            .values(
-                reference,
-                state,
-                Timestamp.from(Instant.now()))
+            .insertInto(USER_STATE)
+            .set(USER_STATE.ID, reference)
+            .set(USER_STATE.STATE, state)
+            .set(USER_STATE.UPDATED, Timestamp.from(Instant.now()))
             .execute();
 
         if (recordsCreated == 0) {
@@ -73,7 +72,7 @@ public class UserStateController {
             .update(USER_STATE)
             .set(USER_STATE.STATE, state)
             .set(USER_STATE.UPDATED, Timestamp.from(Instant.now()))
-            .where(USER_STATE.REFERENCE.eq(reference))
+            .where(USER_STATE.ID.eq(reference))
             .execute();
 
         if (entriesUpdated == 0) {

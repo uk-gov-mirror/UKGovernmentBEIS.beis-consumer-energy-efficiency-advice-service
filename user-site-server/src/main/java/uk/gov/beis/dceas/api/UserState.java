@@ -19,7 +19,7 @@ public class UserState {
 
     public static UserState fromDb(UserStateRecord record) {
         return new UserState(
-            record.getReference(),
+            record.getId(),
             record.getState(),
             record.getUpdated());
     }

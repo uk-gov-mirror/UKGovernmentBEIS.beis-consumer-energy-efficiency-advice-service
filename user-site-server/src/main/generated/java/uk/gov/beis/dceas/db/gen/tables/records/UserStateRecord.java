@@ -30,20 +30,20 @@ import uk.gov.beis.dceas.db.gen.tables.UserState;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserStateRecord extends UpdatableRecordImpl<UserStateRecord> implements Record3<String, String, Timestamp> {
 
-    private static final long serialVersionUID = -1663495083;
+    private static final long serialVersionUID = 2035041475;
 
     /**
-     * Setter for <code>user_state.reference</code>.
+     * Setter for <code>user_state.id</code>.
      */
-    public UserStateRecord setReference(String value) {
+    public UserStateRecord setId(String value) {
         set(0, value);
         return this;
     }
 
     /**
-     * Getter for <code>user_state.reference</code>.
+     * Getter for <code>user_state.id</code>.
      */
-    public String getReference() {
+    public String getId() {
         return (String) get(0);
     }
 
@@ -114,7 +114,7 @@ public class UserStateRecord extends UpdatableRecordImpl<UserStateRecord> implem
      */
     @Override
     public Field<String> field1() {
-        return UserState.USER_STATE.REFERENCE;
+        return UserState.USER_STATE.ID;
     }
 
     /**
@@ -138,7 +138,7 @@ public class UserStateRecord extends UpdatableRecordImpl<UserStateRecord> implem
      */
     @Override
     public String value1() {
-        return getReference();
+        return getId();
     }
 
     /**
@@ -162,7 +162,7 @@ public class UserStateRecord extends UpdatableRecordImpl<UserStateRecord> implem
      */
     @Override
     public UserStateRecord value1(String value) {
-        setReference(value);
+        setId(value);
         return this;
     }
 
@@ -209,10 +209,10 @@ public class UserStateRecord extends UpdatableRecordImpl<UserStateRecord> implem
     /**
      * Create a detached, initialised UserStateRecord
      */
-    public UserStateRecord(String reference, String state, Timestamp updated) {
+    public UserStateRecord(String id, String state, Timestamp updated) {
         super(UserState.USER_STATE);
 
-        set(0, reference);
+        set(0, id);
         set(1, state);
         set(2, updated);
     }

@@ -35,7 +35,7 @@ import uk.gov.beis.dceas.db.gen.tables.records.UserStateRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserState extends TableImpl<UserStateRecord> {
 
-    private static final long serialVersionUID = -1523356579;
+    private static final long serialVersionUID = 607589673;
 
     /**
      * The reference instance of <code>user_state</code>
@@ -51,19 +51,19 @@ public class UserState extends TableImpl<UserStateRecord> {
     }
 
     /**
-     * The column <code>user_state.reference</code>.
+     * The column <code>user_state.id</code>.
      */
-    public final TableField<UserStateRecord, String> REFERENCE = createField("reference", org.jooq.impl.SQLDataType.VARCHAR.length(255).nullable(false), this, "");
+    public final TableField<UserStateRecord, String> ID = createField("id", org.jooq.impl.SQLDataType.VARCHAR.length(255).nullable(false), this, "");
 
     /**
      * The column <code>user_state.state</code>.
      */
-    public final TableField<UserStateRecord, String> STATE = createField("state", org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<UserStateRecord, String> STATE = createField("state", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
 
     /**
      * The column <code>user_state.updated</code>.
      */
-    public final TableField<UserStateRecord, Timestamp> UPDATED = createField("updated", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
+    public final TableField<UserStateRecord, Timestamp> UPDATED = createField("updated", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
 
     /**
      * Create a <code>user_state</code> table reference
