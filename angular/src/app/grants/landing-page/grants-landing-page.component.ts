@@ -16,7 +16,6 @@ import {LocalAuthority} from "../../shared/local-authority-service/local-authori
 })
 export class GrantsLandingPageComponent {
 
-    postcodeInput: string = '';
     localAuthority: LocalAuthority = null;
     validationError: boolean = false;
     isLoading: boolean = false;
@@ -24,22 +23,8 @@ export class GrantsLandingPageComponent {
 
     constructor(
         private responseData: ResponseData,
-        private postcodeEpcService: PostcodeEpcService,
-        private localAuthorityService: LocalAuthorityService,
         private router: Router
     ) {
-    }
-
-    onPostcodeSubmit(): void {
-        this.localAuthority = null;
-        this.validationError = false;
-        this.isError = false;
-        this.isLoading = true;
-        this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
-            .subscribe(
-                postcodeDetails => this.postcodeSearchCompleted(postcodeDetails),
-                err => this.handlePostcodeSearchError(err)
-            );
     }
 
     setJourneyTypeToBoiler(): void {
@@ -52,40 +37,5 @@ export class GrantsLandingPageComponent {
 
     onAddressSelected() {
         this.router.navigate(['js/grants/questionnaire']);
-    }
-
-    private postcodeSearchCompleted(postcodeDetails: PostcodeDetails) {
-        const localAuthorityCode = postcodeDetails.localAuthorityCode;
-        if (!localAuthorityCode) {
-            this.isError = true;
-            console.error(`No local authority code found for postcode ${ postcodeDetails.postcode }`);
-        }
-        this.responseData.postcode = postcodeDetails.postcode;
-        this.responseData.localAuthorityCode = postcodeDetails.localAuthorityCode;
-        this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
-            .subscribe(
-                response => this.handleLocalAuthorityResponse(response),
-                err => this.handleLocalAuthorityServiceError(err),
-            );
-    }
-
-    private handleLocalAuthorityResponse(localAuthority: LocalAuthority): void {
-        this.localAuthority = localAuthority;
-        this.isLoading = false;
-    }
-
-    private handleLocalAuthorityServiceError(err): void {
-        this.isError = true;
-        console.error(err);
-    }
-
-    private handlePostcodeSearchError(err): void {
-        this.isLoading = false;
-        if (err === PostcodeEpcService.POSTCODE_NOT_FOUND) {
-            this.validationError = true;
-        } else {
-            this.isError = true;
-            console.error(err);
-        }
     }
 }

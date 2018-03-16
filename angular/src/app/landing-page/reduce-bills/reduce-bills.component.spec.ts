@@ -17,6 +17,7 @@ import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import { PopupComponent } from '../../shared/popup/popup.component';
 
 
@@ -25,6 +26,10 @@ describe('ReduceBillsComponent', () => {
     let fixture: ComponentFixture<ReduceBillsComponent>;
 
     const postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
     };
 
@@ -51,7 +56,8 @@ describe('ReduceBillsComponent', () => {
                 ResponseData,
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
-                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
             ]
         })
             .compileComponents();
