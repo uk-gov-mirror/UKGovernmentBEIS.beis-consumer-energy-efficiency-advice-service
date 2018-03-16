@@ -11,6 +11,7 @@ import {BoilerMakeModelLookupComponent} from '../make-model-lookup/boiler-make-m
 import {PostcodeLookupComponent} from '../../shared/postcode-lookup/postcode-lookup.component';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
 import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
@@ -20,6 +21,10 @@ describe('BoilerLandingPageComponent', () => {
     let fixture: ComponentFixture<BoilerLandingPageComponent>;
 
     const postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
     };
 
@@ -40,7 +45,8 @@ describe('BoilerLandingPageComponent', () => {
             ],
             providers: [
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
-                ResponseData,
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                ResponseData
             ]
         })
             .compileComponents();
