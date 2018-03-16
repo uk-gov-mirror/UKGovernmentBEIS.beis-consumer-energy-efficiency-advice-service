@@ -20,6 +20,7 @@ import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -28,6 +29,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @Controller
 public class IndexController {
+
     @Value("${dceas.apiRoot}")
     private String apiRoot;
 
@@ -45,8 +47,13 @@ public class IndexController {
 
         // We read the "dist" index.html from Angular, and inject it into our
         // index page, to use things like Angular's content hash stamping etc.
+        URL indexResouce = getClass().getResource("/public/dist/index.html");
+        checkNotNull(indexResouce,
+            "The angular files were not found in the resources dir. "
+                + "The application will not work!");
+
         String angularIndexFileContent = Resources.toString(
-            getClass().getResource("/public/dist/index.html"),
+            indexResouce,
             StandardCharsets.UTF_8);
 
         Document document = Jsoup.parse(angularIndexFileContent);
