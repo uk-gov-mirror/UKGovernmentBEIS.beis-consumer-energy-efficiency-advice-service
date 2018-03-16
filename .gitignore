@@ -24,6 +24,7 @@ angular/out-tsc
 # IDEs and editors
 # /.idea
 .idea/libraries/
+.idea/codeStyles/
 .project
 .classpath
 .c9/
