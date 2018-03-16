@@ -79,6 +79,9 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
+    // This meta-repo allows us to use a fork, pending a fix to
+    // https://github.com/mkopylec/charon-spring-boot-starter/issues/45
+    maven { url 'https://jitpack.io' }
 }
 
 // Run `./gradlew dependencies` for a deps report
@@ -99,7 +102,11 @@ dependencies {
     compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
 
     // Charon does proxying, for the WP pass-through
-    compile('com.github.mkopylec:charon-spring-boot-starter:2.3.0')
+    //
+    // We are currently using a fork, pending a fix to
+    // https://github.com/mkopylec/charon-spring-boot-starter/issues/45
+    // We should switch back to a published version asap.
+    compile('com.github.RichardBradley:charon-spring-boot-starter:2.3.0-i45')
 
     // Update Jackson to latest version to get support for ACCEPT_CASE_INSENSITIVE_ENUMS
     // We might be able to remove this after a future Spring update
