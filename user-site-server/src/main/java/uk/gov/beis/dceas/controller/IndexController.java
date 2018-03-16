@@ -4,6 +4,8 @@ import com.google.common.collect.Iterables;
 import com.google.common.io.Resources;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -20,7 +22,6 @@ import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -29,6 +30,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @Controller
 public class IndexController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Value("${dceas.apiRoot}")
     private String apiRoot;
@@ -48,18 +51,21 @@ public class IndexController {
         // We read the "dist" index.html from Angular, and inject it into our
         // index page, to use things like Angular's content hash stamping etc.
         URL indexResouce = getClass().getResource("/public/dist/index.html");
-        checkNotNull(indexResouce,
-            "The angular files were not found in the resources dir. "
+        if (indexResouce != null) {
+            String angularIndexFileContent = Resources.toString(
+                indexResouce,
+                StandardCharsets.UTF_8);
+
+            Document document = Jsoup.parse(angularIndexFileContent);
+
+            angularHeadContent = document.head().html();
+            angularBodyContent = document.body().html();
+        } else {
+            log.error("The angular files were not found in the resources dir. "
                 + "The application will not work!");
-
-        String angularIndexFileContent = Resources.toString(
-            indexResouce,
-            StandardCharsets.UTF_8);
-
-        Document document = Jsoup.parse(angularIndexFileContent);
-
-        angularHeadContent = document.head().html();
-        angularBodyContent = document.body().html();
+            angularHeadContent = "";
+            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly";
+        }
     }
 
     @RequestMapping(value = {
