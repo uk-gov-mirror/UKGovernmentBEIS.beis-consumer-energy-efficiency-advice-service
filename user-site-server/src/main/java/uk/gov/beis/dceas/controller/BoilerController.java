@@ -50,6 +50,8 @@ public class BoilerController {
             dslContext
                 .selectFrom(BOILERS)
                 .where(BOILERS.NAME.likeIgnoreCase(likeQuery))
+                .orderBy(BOILERS.NAME)
+                .limit(PAGE_SIZE)
                 .fetch(Boiler::fromDb));
     }
 }
