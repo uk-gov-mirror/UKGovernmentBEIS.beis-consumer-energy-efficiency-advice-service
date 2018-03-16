@@ -25,6 +25,7 @@ angular/out-tsc
 # /.idea
 .idea/libraries/
 .idea/codeStyles/
+.idea/uiDesigner.xml
 .project
 .classpath
 .c9/
