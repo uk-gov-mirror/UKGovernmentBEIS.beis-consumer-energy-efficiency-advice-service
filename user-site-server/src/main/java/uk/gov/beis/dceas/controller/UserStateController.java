@@ -81,13 +81,17 @@ public class UserStateController {
         return ResponseEntity.ok().build();
     }
 
+
+    // There are 701 words to be chosen from, this leads to:
+    // 701 ^ 3 = 344,472,101 possible combinations
+    // This makes these references extremely unguessable, and is compounded by the fact that the list of
+    // possible words is not known to users
     private String generateReference() {
         List<String> words = dslContext
             .selectFrom(WORDS)
             .fetch()
             .getValues(WORDS.WORD);
 
-        // TODO BEISDEAS-191 comment on unguessability
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < WORD_COUNT; i++) {
             int index = rnd.nextInt(words.size());
