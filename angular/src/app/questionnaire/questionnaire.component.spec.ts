@@ -23,6 +23,7 @@ import {QuestionReasonComponent} from '../shared/question-reason/question-reason
 
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {UserStateApiService} from "../shared/user-state-api-service/user-state-api-service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -39,6 +40,10 @@ describe('QuestionnaireComponent', () => {
         fetchQuestionsContent() {
             return Observable.of(allQuestionsContent);
         }
+    };
+
+    const userStateApiServiceStub = {
+        sendState: () => {}
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
@@ -124,7 +129,8 @@ describe('QuestionnaireComponent', () => {
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionHeadingProcessor, useClass: MockQuestionHeadingProcessor},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
-                {provide: ResponseData, useValue: responseDataStub}
+                {provide: UserStateApiService, useValue: userStateApiServiceStub},
+                {provide: ResponseData, useValue: responseDataStub},
             ],
         })
             .compileComponents();
