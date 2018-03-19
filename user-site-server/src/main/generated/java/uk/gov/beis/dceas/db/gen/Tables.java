@@ -20,6 +20,7 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSchedulerState;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
+import uk.gov.beis.dceas.db.gen.tables.UserState;
 
 
 /**
@@ -104,4 +105,9 @@ public class Tables {
      * The table <code>qrtz_triggers</code>.
      */
     public static final QrtzTriggers QRTZ_TRIGGERS = uk.gov.beis.dceas.db.gen.tables.QrtzTriggers.QRTZ_TRIGGERS;
+
+    /**
+     * The table <code>user_state</code>.
+     */
+    public static final UserState USER_STATE = uk.gov.beis.dceas.db.gen.tables.UserState.USER_STATE;
 }
