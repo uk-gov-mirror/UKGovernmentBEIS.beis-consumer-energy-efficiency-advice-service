@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class UserState {
     String reference;
     String state;
-    Timestamp stateUpdated;
+    Timestamp updated;
 
     public static UserState fromDb(UserStateRecord record) {
         return new UserState(

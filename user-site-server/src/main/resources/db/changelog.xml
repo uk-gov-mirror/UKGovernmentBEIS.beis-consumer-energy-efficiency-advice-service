@@ -52,5 +52,4 @@
     <include file="changelogs/2018-03-07-add-boilers-table.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-03-08-add-boilers-dev-data.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-03-15-add-user-state-table.xml" relativeToChangelogFile="true" />
-    <include file="changelogs/2018-03-16-add-words-table-and-data.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
