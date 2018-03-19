@@ -21,8 +21,6 @@ public class UserStateDatabaseCleanJob implements Job {
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         try {
-            // TODO BEISDEAS-183 Remove console log
-            System.out.println("Running database clean");
             service.cleanDatabase();
         } catch (DataAccessException e) {
             throw new JobExecutionException(e);
