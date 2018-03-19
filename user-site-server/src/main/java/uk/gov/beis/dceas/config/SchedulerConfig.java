@@ -1,6 +1,7 @@
 package uk.gov.beis.dceas.config;
 
 import liquibase.integration.spring.SpringLiquibase;
+import org.jooq.DSLContext;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SimpleTrigger;
@@ -19,10 +20,12 @@ import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import uk.gov.beis.dceas.job.BoilerPcdfDatabaseUpdateJob;
 import uk.gov.beis.dceas.job.UserStateDatabaseCleanJob;
+import uk.gov.beis.dceas.service.UserStateDatabaseCleanService;
 import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.time.Clock;
 import java.util.Properties;
 
 import static java.util.Collections.singleton;
@@ -111,6 +114,16 @@ public class SchedulerConfig {
         @Value("${dceas.user-state-database-clean-cron}") String cronExpression) {
 
         return createCronTrigger(jobDetail, cronExpression);
+    }
+
+    @Bean
+    public UserStateDatabaseCleanService userStateDatabaseCleanService(DSLContext dslContext, Clock clock) {
+        return new UserStateDatabaseCleanService(dslContext, clock);
+    }
+
+    @Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone();
     }
 
     private static JobDetailFactoryBean createJobDetail(Class jobClass) {
