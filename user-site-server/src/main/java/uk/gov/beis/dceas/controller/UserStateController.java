@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
+import uk.gov.beis.dceas.data.RandomWordList;
 
 import java.security.SecureRandom;
 import java.sql.Timestamp;
@@ -20,7 +21,6 @@ import java.util.List;
 import java.util.Random;
 
 import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
-import static uk.gov.beis.dceas.db.gen.Tables.WORDS;
 import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
 
 @RestController
@@ -81,16 +81,14 @@ public class UserStateController {
         return ResponseEntity.ok().build();
     }
 
-
-    // There are 701 words to be chosen from, this leads to:
-    // 701 ^ 3 = 344,472,101 possible combinations
-    // This makes these references extremely unguessable, and is compounded by the fact that the list of
-    // possible words is not known to users
+    /**
+     * There are 683 words to be chosen from, this leads to:
+     * 683 ^ 3 = 318,611,987 possible combinations
+     * This makes these references extremely unguessable, and is compounded by the fact that the list of
+     * possible words is not known to users
+     */
     private String generateReference() {
-        List<String> words = dslContext
-            .selectFrom(WORDS)
-            .fetch()
-            .getValues(WORDS.WORD);
+        List<String> words = RandomWordList.WORDS;
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < WORD_COUNT; i++) {

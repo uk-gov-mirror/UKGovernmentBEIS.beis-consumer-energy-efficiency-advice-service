@@ -21,7 +21,6 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
-import uk.gov.beis.dceas.db.gen.tables.Words;
 
 
 /**
@@ -111,9 +110,4 @@ public class Tables {
      * The table <code>user_state</code>.
      */
     public static final UserState USER_STATE = uk.gov.beis.dceas.db.gen.tables.UserState.USER_STATE;
-
-    /**
-     * The table <code>words</code>.
-     */
-    public static final Words WORDS = uk.gov.beis.dceas.db.gen.tables.Words.WORDS;
 }

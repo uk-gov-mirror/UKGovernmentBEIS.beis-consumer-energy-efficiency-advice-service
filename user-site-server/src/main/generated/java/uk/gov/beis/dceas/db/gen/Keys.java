@@ -23,7 +23,6 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
-import uk.gov.beis.dceas.db.gen.tables.Words;
 import uk.gov.beis.dceas.db.gen.tables.records.BoilersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.DatabasechangeloglockRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzCalendarsRecord;
@@ -37,7 +36,6 @@ import uk.gov.beis.dceas.db.gen.tables.records.QrtzSimpleTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzSimpropTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.UserStateRecord;
-import uk.gov.beis.dceas.db.gen.tables.records.WordsRecord;
 
 
 /**
@@ -76,7 +74,6 @@ public class Keys {
     public static final UniqueKey<QrtzSimpropTriggersRecord> PK_QRTZ_SIMPROP_TRIGGERS = UniqueKeys0.PK_QRTZ_SIMPROP_TRIGGERS;
     public static final UniqueKey<QrtzTriggersRecord> PK_QRTZ_TRIGGERS = UniqueKeys0.PK_QRTZ_TRIGGERS;
     public static final UniqueKey<UserStateRecord> PK_USER_STATE = UniqueKeys0.PK_USER_STATE;
-    public static final UniqueKey<WordsRecord> PK_WORDS = UniqueKeys0.PK_WORDS;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -105,7 +102,6 @@ public class Keys {
         public static final UniqueKey<QrtzSimpropTriggersRecord> PK_QRTZ_SIMPROP_TRIGGERS = createUniqueKey(QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS, "pk_qrtz_simprop_triggers", QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.SCHED_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<QrtzTriggersRecord> PK_QRTZ_TRIGGERS = createUniqueKey(QrtzTriggers.QRTZ_TRIGGERS, "pk_qrtz_triggers", QrtzTriggers.QRTZ_TRIGGERS.SCHED_NAME, QrtzTriggers.QRTZ_TRIGGERS.TRIGGER_NAME, QrtzTriggers.QRTZ_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<UserStateRecord> PK_USER_STATE = createUniqueKey(UserState.USER_STATE, "pk_user_state", UserState.USER_STATE.ID);
-        public static final UniqueKey<WordsRecord> PK_WORDS = createUniqueKey(Words.WORDS, "pk_words", Words.WORDS.WORD);
     }
 
     private static class ForeignKeys0 extends AbstractKeys {
