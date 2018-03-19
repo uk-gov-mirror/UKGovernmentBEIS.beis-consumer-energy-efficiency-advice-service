@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AssetsService {
-    private static readonly ASSETS_ROOT = '/wp-content/themes/angular-theme/dist/assets/';
+    private static readonly ASSETS_ROOT = '/dist/assets/';
 
     constructor(private location: Location,
                 private http: HttpClient) {

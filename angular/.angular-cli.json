@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "../wordpress/wp-content/themes/angular-theme/dist",
+      "outDir": "../user-site-server/src/main/resources/public/dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -32,7 +32,7 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       },
-      "deployUrl": "/wp-content/themes/angular-theme/dist/"
+      "deployUrl": "/dist/"
     }
   ],
   "lint": [
