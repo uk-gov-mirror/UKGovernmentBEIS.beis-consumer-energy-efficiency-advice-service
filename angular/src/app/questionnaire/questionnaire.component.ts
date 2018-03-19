@@ -20,6 +20,7 @@ import {QuestionnaireService} from './questionnaire.service';
 import {Subscription} from 'rxjs/Subscription';
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
+import {UserStateApiService} from "../shared/user-state-api-service/user-state-api-service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -52,7 +53,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
                 private questionHeadingProcessor: QuestionHeadingProcessor,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private userStateApiService: UserStateApiService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -71,6 +73,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')
         );
+        this.userStateApiService.sendState();
     }
 
     ngOnDestroy() {
@@ -112,6 +115,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
+            this.userStateApiService.sendState();
         }
     }
 
@@ -120,6 +124,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
+            this.userStateApiService.sendState();
         }
     }
 
