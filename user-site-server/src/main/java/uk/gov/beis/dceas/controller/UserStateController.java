@@ -44,7 +44,7 @@ public class UserStateController {
         return notFoundIfNull(
             dslContext
                 .selectFrom(USER_STATE)
-                .where(USER_STATE.ID.eq(URLDecoder.decode(reference, "UTF-8")))
+                .where(USER_STATE.ID.eq(URLDecoder.decode(reference, "UTF-8").toLowerCase()))
                 .fetchOne(UserState::fromDb)
         );
     }
