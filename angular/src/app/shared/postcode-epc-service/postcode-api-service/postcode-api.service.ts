@@ -7,7 +7,7 @@ import {PostcodeBasicDetailsResponse} from '../model/response/postcode-basic-det
 @Injectable()
 export class PostcodeApiService {
     public static readonly postcodeNotFoundStatus: number = 404;
-    private static readonly postcodeEndpoint = 'angular-theme/v1/postcode/';
+    private static readonly postcodeEndpoint = 'http://postcodes.io/postcodes/';
 
     private postcodeResponses: {[postcode: string]: Observable<PostcodeBasicDetailsResponse>} = {};
 
@@ -19,7 +19,7 @@ export class PostcodeApiService {
             const postcodeWithoutSpaces = postcode.replace(/ /g, '');
             const endpoint = PostcodeApiService.postcodeEndpoint + postcodeWithoutSpaces;
             this.postcodeResponses[postcode] =
-                this.http.get<PostcodeBasicDetailsResponse>(this.wordpressApiService.getFullApiEndpoint(endpoint))
+                this.http.get<PostcodeBasicDetailsResponse>(endpoint)
                 .shareReplay(1);
         }
         return this.postcodeResponses[postcode];
