@@ -1,11 +1,15 @@
 <div class="admin-page">
+    <div class="page-row heading-section">
+        <div class="page-row-content">
+            <div class="heading">Admin Page</div>
+            <div class="help-text">Enter the user's reference below to be taken into their session</div>
+        </div>
+    </div>
     <div class="page-row">
         <div class="page-row-content">
-            <div class="large-heading">Admin Page</div>
-            <div>Enter the user's reference below to be taken into their session</div>
             <form (submit)="handleFormSubmit()" #adminForm="ngForm">
-                <label for="reference">Reference:</label><br />
-                <input id="reference" type="text" name="reference" [(ngModel)]="reference" required><br /><br />
+                <label for="reference">Reference:</label>
+                <input id="reference" type="text" name="reference" [(ngModel)]="reference" required>
                 <button type="submit" [disabled]="!adminForm.form.valid">Go</button>
             </form>
             <div class="page-loading-container" *ngIf="!error && loading">
