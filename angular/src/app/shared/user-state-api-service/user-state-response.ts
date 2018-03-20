@@ -1,7 +1,5 @@
-import {UserState} from "./user-state";
-
 export interface UserStateResponse {
     reference: string;
-    state: UserState;
+    state: string;
     updated: string;
 }

@@ -14,7 +14,7 @@ export class UserStateApiService {
 
     fetchUserStateByReference(reference: string): Observable<UserState> {
         return this.http.get<UserStateResponse>(this.getFullApiEndpoint(reference))
-            .map(response => response.state);
+            .map(response => JSON.parse(response.state));
     }
 
     sendNewState(state: UserState): Observable<string> {
