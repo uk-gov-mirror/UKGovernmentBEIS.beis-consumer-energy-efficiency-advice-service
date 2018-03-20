@@ -115,16 +115,6 @@ public class SchedulerConfig {
         return createCronTrigger(jobDetail, cronExpression);
     }
 
-    @Bean
-    public Clock clock() {
-        return Clock.systemUTC();
-    }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
     private static JobDetailFactoryBean createJobDetail(Class jobClass) {
         JobDetailFactoryBean factoryBean = new JobDetailFactoryBean();
         factoryBean.setJobClass(jobClass);
