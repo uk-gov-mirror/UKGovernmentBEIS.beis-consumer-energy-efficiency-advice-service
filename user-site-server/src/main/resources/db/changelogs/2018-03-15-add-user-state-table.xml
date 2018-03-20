@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-03-15-add-user-state-table.xml"
+               author="anthony.pengelly@softwire.com">
+        <createTable tableName="user_state" remarks="This table holds the users' answers to the questionnaires so far,
+                        as well as their current page. It is used by the Call Centre interface to allow support staff
+                        to pick up a user's journey part-way through.">
+            <column name="id" type="VARCHAR(255)"><constraints nullable="false" primaryKey="true" /></column>
+            <column name="state" type="TEXT"><constraints nullable="false" /></column>
+            <column name="updated" type="TIMESTAMP"><constraints nullable="false" /></column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
