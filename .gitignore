@@ -1,6 +1,6 @@
 # Custom ignored files
 
-wordpress/wp-content/themes/angular-theme/dist/
+user-site-server/src/main/resources/public/dist/
 wordpress/wp-content/themes/angular-theme/config/config.php
 /.idea/workspace.xml
 /.idea/tasks.xml
@@ -70,7 +70,6 @@ wordpress/wp-content/backups/
 wordpress/wp-content/blogs.dir/
 wordpress/wp-content/cache/
 wordpress/wp-content/upgrade/
-wordpress/wp-content/uploads/
 wordpress/wp-content/wp-cache-config.php
 wordpress/wp-content/plugins/hello.php
 

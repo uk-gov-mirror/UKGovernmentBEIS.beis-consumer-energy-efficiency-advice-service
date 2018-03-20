@@ -3,7 +3,7 @@ package uk.gov.beis.dceas.service;
 import org.jooq.DSLContext;
 import org.jooq.exception.DataAccessException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Clock;
@@ -12,7 +12,7 @@ import java.time.Instant;
 
 import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
 
-@Component
+@Service
 public class UserStateDatabaseCleanService {
 
     private final static int HOURS_TO_KEEP_STATE = 12;

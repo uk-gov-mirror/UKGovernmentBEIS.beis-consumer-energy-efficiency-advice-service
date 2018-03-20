@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import {Meta} from '@angular/platform-browser';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {SVGCacheService} from 'ng-inline-svg';
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
         });
 
         // Set base URL for inline-svg directive
-        this.svgService.setBaseUrl({baseUrl: '/wp-content/themes/angular-theme/dist/assets/images/'});
+        this.svgService.setBaseUrl({baseUrl: '/dist/assets/images/'});
     }
 
     toggleMobileNav(): void {

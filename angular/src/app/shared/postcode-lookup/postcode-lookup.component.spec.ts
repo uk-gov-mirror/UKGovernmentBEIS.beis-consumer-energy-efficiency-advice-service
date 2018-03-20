@@ -9,6 +9,8 @@ import {ResponseData} from '../../shared/response-data/response-data';
 import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
+import {PostcodeApiService} from "../postcode-epc-service/postcode-api-service/postcode-api.service";
+import {PostcodeBasicDetailsResponse} from "../postcode-epc-service/model/response/postcode-basic-details-response";
 
 describe('PostcodeLookupComponent', () => {
     let component: PostcodeLookupComponent;
@@ -20,11 +22,15 @@ describe('PostcodeLookupComponent', () => {
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
 
     const dummyEpcsResponse = require('assets/test/dummy-epcs-response.json');
+
     const dummyPostcodeDetails: PostcodeDetails = {
         postcode: VALID_POSTCODE,
         allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
         localAuthorityCode: null
     };
+
+    const dummyPostcodeResponse = require('assets/test/dummy-postcode-response.json');
+    const dummyBasicPostcodeDetails: PostcodeBasicDetailsResponse = dummyPostcodeResponse;
 
     const postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => {
@@ -36,12 +42,25 @@ describe('PostcodeLookupComponent', () => {
         }
     };
 
+    const postcodeApiServiceStub = {
+        fetchBasicPostcodeDetails: (postcode) => {
+            if (postcode === INVALID_POSTCODE) {
+                return Observable.throw(PostcodeApiService.postcodeNotFoundStatus);
+            }
+
+            return Observable.of(dummyBasicPostcodeDetails);
+        }
+    };
+
     beforeEach(async(() => {
         spyOn(PostcodeEpcService, 'isValidPostcode').and.callFake(mockPostcodeValidator);
 
         TestBed.configureTestingModule({
             declarations: [PostcodeLookupComponent],
-            providers: [{provide: PostcodeEpcService, useValue: postcodeEpcServiceStub}, ResponseData],
+            providers: [{provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                ResponseData
+            ],
             imports: [FormsModule, RouterTestingModule]
         })
             .compileComponents();
@@ -53,11 +72,22 @@ describe('PostcodeLookupComponent', () => {
         responseData = TestBed.get(ResponseData);
         fixture.detectChanges();
         spyOn(TestBed.get(PostcodeEpcService), 'fetchPostcodeDetails').and.callThrough();
+        spyOn(TestBed.get(PostcodeApiService), 'fetchBasicPostcodeDetails').and.callThrough();
         spyOn(component.addressSelected, 'emit');
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should call the postcode API service when a postcode is entered', () => {
+        // when
+        component.postcodeInput = VALID_POSTCODE;
+        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
+        fixture.detectChanges();
+
+        // then
+        expect(TestBed.get(PostcodeApiService).fetchBasicPostcodeDetails).toHaveBeenCalledWith(component.postcodeInput);
     });
 
     it('should call the EPC API service when a postcode is entered', () => {

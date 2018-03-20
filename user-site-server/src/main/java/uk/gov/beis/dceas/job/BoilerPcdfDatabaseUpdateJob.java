@@ -14,12 +14,11 @@ import java.io.IOException;
  */
 public class BoilerPcdfDatabaseUpdateJob implements Job {
 
-    private final BoilerPcdfDatabaseUpdateService service;
+    @Autowired
+    private BoilerPcdfDatabaseUpdateService service;
 
     @Autowired
-    public BoilerPcdfDatabaseUpdateJob(BoilerPcdfDatabaseUpdateService service) {
-        this.service = service;
-    }
+    public BoilerPcdfDatabaseUpdateJob() {}
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {

@@ -1,6 +1,11 @@
 package uk.gov.beis.dceas.controller;
 
 import com.google.common.collect.Iterables;
+import com.google.common.io.Resources;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
@@ -24,6 +30,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @Controller
 public class IndexController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     @Value("${dceas.apiRoot}")
     private String apiRoot;
 
@@ -32,20 +41,44 @@ public class IndexController {
 
     private final Environment environment;
 
+    private final String angularHeadContent;
+    private final String angularBodyContent;
+
     @Autowired
-    public IndexController(Environment environment) {
+    public IndexController(Environment environment) throws IOException {
         this.environment = environment;
+
+        // We read the "dist" index.html from Angular, and inject it into our
+        // index page, to use things like Angular's content hash stamping etc.
+        URL indexResouce = getClass().getResource("/public/dist/index.html");
+        if (indexResouce != null) {
+            String angularIndexFileContent = Resources.toString(
+                indexResouce,
+                StandardCharsets.UTF_8);
+
+            Document document = Jsoup.parse(angularIndexFileContent);
+
+            angularHeadContent = document.head().html();
+            angularBodyContent = document.body().html();
+        } else {
+            log.error("The angular files were not found in the resources dir. "
+                + "The application will not work!");
+            angularHeadContent = "";
+            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly";
+        }
     }
 
     @RequestMapping(value = {
         "/",
-        "/js/**"  // TODO:BEIS-157 tidy up js routing for prettier URLs
+        "/js/**"  // TODO:BEIS-196 tidy up js routing for prettier URLs
     },
         method = GET)
     public String index(Model model) throws IOException {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("environment", getEnvName());
+        model.addAttribute("angularHeadContent", angularHeadContent);
+        model.addAttribute("angularBodyContent", angularBodyContent);
 
         Attributes attributes = getBuildAttributes();
         model.addAttribute("buildTimestamp",

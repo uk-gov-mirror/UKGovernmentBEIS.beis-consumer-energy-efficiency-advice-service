@@ -5,7 +5,19 @@ set -ex
 #
 # The working directory should be the git root
 
-# TODO:BEIS-157 soon the Angular content will be packaged into the user-site, not
-# the admin-site, at which point it should be moved here
+# Angular tests:
+pushd angular
 
+node -v
+npm -v
+
+npm install --no-optional
+
+npm run lint
+
+npm run test -- --single-run
+
+popd
+
+# Java tests:
 ./gradlew check

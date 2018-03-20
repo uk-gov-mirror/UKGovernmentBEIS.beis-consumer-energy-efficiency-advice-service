@@ -41,10 +41,9 @@ this folder, or to the wp-config.php, or be a separate plugin.
  * `angular/`
  
 The Angular application that runs the client-side for the user facing site.
-This is compiled into the `/wordpress/wp-content/themes/angular-theme/dist`
+This is compiled into the `user-site-server/src/main/resources/public/dist`
 folder for use on the site; however, for ease of config
 and development, the source code lives in this folder.
-TODO:BEISDEAS-156 update when this has changed
 
  * `integration-tests/`
  

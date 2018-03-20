@@ -91,9 +91,11 @@ public class UserStateController {
         List<String> words = RandomWordList.WORDS;
 
         StringBuilder builder = new StringBuilder();
+        String sep = "";
         for (int i = 0; i < WORD_COUNT; i++) {
             int index = rnd.nextInt(words.size());
-            builder.append(words.get(index));
+            builder.append(sep).append(words.get(index));
+            sep = " ";
         }
         return builder.toString();
     }

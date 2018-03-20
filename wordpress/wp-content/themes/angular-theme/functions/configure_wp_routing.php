@@ -1,6 +1,6 @@
 <?php
 
-// TODO:BEISDEAS-157 we should be able to delete this once the frontend is not accessed through WP
+// TODO:BEISDEAS-161 we should be able to delete this once the frontend is not accessed through WP
 // At the same time, we should probably hide the frontend entirely in WP and direct people
 // to the Java host, to avoid confusion.
 

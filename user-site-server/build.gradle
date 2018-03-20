@@ -79,6 +79,9 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
+    // This meta-repo allows us to use a fork, pending a fix to
+    // https://github.com/mkopylec/charon-spring-boot-starter/issues/45
+    maven { url 'https://jitpack.io' }
 }
 
 // Run `./gradlew dependencies` for a deps report
@@ -96,9 +99,14 @@ dependencies {
     // It looks like v6 is still experimental anyway, so 5 is fine for us
     // https://dev.mysql.com/doc/relnotes/connector-j/6.0/en/
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.45'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
 
     // Charon does proxying, for the WP pass-through
-    compile('com.github.mkopylec:charon-spring-boot-starter:2.3.0')
+    //
+    // We are currently using a fork, pending a fix to
+    // https://github.com/mkopylec/charon-spring-boot-starter/issues/45
+    // We should switch back to a published version asap.
+    compile('com.github.RichardBradley:charon-spring-boot-starter:2.3.0-i45')
 
     // Update Jackson to latest version to get support for ACCEPT_CASE_INSENSITIVE_ENUMS
     // We might be able to remove this after a future Spring update
@@ -115,7 +123,7 @@ dependencies {
 
     // This is not used in production, but needed at build time for the jOOQ codegen
     // and on development machines for an in-memory database
-    // TODO:BEIS-157 use https://github.com/michaelruocco/embedded-mysql-plugin instead?
+    // TODO:BEIS-195 use https://github.com/michaelruocco/embedded-mysql-plugin instead?
     compile('com.h2database:h2:1.4.193')
 
     jooqRuntime('com.h2database:h2:1.4.193')
