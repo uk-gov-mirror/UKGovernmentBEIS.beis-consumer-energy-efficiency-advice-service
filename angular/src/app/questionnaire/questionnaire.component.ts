@@ -20,7 +20,7 @@ import {QuestionnaireService} from './questionnaire.service';
 import {Subscription} from 'rxjs/Subscription';
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
-import {UserStateApiService} from "../shared/user-state-api-service/user-state-api-service";
+import {UserStateService} from "../shared/user-state-service/user-state-service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -54,7 +54,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private changeDetectorRef: ChangeDetectorRef,
                 private questionHeadingProcessor: QuestionHeadingProcessor,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private userStateApiService: UserStateApiService) {
+                private userStateService: UserStateService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -73,7 +73,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')
         );
-        this.userStateApiService.sendState();
+        this.userStateService.sendState();
     }
 
     ngOnDestroy() {
@@ -115,7 +115,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
-            this.userStateApiService.sendState();
+            this.userStateService.sendState();
         }
     }
 
@@ -124,7 +124,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
-            this.userStateApiService.sendState();
+            this.userStateService.sendState();
         }
     }
 

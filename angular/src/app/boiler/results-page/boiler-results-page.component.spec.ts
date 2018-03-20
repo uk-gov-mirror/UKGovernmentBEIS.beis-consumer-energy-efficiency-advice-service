@@ -16,7 +16,7 @@ import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
-import {UserStateApiService} from "../../shared/user-state-api-service/user-state-api-service";
+import {UserStateService} from "../../shared/user-state-service/user-state-service";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -37,7 +37,7 @@ describe('BoilerResultsPageComponent', () => {
         isComplete: () => true
     };
 
-    const userStateApiServiceStub = {
+    const userStateServiceStub = {
         sendState: () => {}
     };
 
@@ -60,7 +60,7 @@ describe('BoilerResultsPageComponent', () => {
                 {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
-                {provide: UserStateApiService, useValue: userStateApiServiceStub},
+                {provide: UserStateService, useValue: userStateServiceStub},
             ],
         })
             .compileComponents();
