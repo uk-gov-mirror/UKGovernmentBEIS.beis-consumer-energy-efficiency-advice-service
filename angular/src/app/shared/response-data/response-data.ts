@@ -78,3 +78,24 @@ export class ResponseData {
 export function isComplete(responseData: ResponseData) {
     return new RdSapInput(responseData).isMinimalDataSet();
 }
+
+export function replaceOldResponseData(oldResponseData: ResponseData, newResponseData: ResponseData) {
+    deleteOldResponseData(oldResponseData);
+    addNewResponseData(oldResponseData, newResponseData);
+}
+
+function addNewResponseData(oldResponseData: ResponseData, newResponseData: ResponseData) {
+    for (const i in newResponseData) {
+        if (newResponseData.hasOwnProperty(i)) {
+            oldResponseData[i] = newResponseData[i];
+        }
+    }
+}
+
+function deleteOldResponseData(responseData: ResponseData) {
+    for (const i in responseData) {
+        if (responseData.hasOwnProperty(i)) {
+            delete responseData[i];
+        }
+    }
+}
