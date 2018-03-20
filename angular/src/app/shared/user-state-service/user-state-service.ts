@@ -7,6 +7,7 @@ import {UserStateApiService} from "../user-state-api-service/user-state-api-serv
 
 @Injectable()
 export class UserStateService {
+    // The user's unique session reference
     private reference: string;
 
     constructor(
@@ -17,7 +18,7 @@ export class UserStateService {
 
     sendState() {
         if (this.reference) {
-            this.userStateApiService.sendStateUsingReference(this.reference, this.buildUserState());
+            this.userStateApiService.sendStateUsingSessionReference(this.reference, this.buildUserState());
         } else {
             this.userStateApiService.sendNewState(this.buildUserState())
                 .subscribe(reference => {
@@ -27,7 +28,7 @@ export class UserStateService {
     }
 
     joinSession(reference: string, onError: () => void) {
-        this.userStateApiService.fetchUserStateByReference(reference)
+        this.userStateApiService.fetchUserStateBySessionReference(reference)
             .subscribe(state => {
                 this.reference = reference;
                 replaceOldResponseData(this.responseData, state.responseData);

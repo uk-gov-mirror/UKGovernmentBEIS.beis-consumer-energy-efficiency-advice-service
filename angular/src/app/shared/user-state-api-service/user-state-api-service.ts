@@ -12,8 +12,8 @@ export class UserStateApiService {
     constructor(private http: HttpClient, private location: Location) {
     }
 
-    fetchUserStateByReference(reference: string): Observable<UserState> {
-        return this.http.get<UserStateResponse>(this.getFullApiEndpoint(reference))
+    fetchUserStateBySessionReference(sessionReference: string): Observable<UserState> {
+        return this.http.get<UserStateResponse>(this.getFullApiEndpoint(sessionReference))
             .map(response => JSON.parse(response.state));
     }
 
@@ -24,12 +24,12 @@ export class UserStateApiService {
             // Response type is needed for an empty response, see https://github.com/angular/angular/issues/18680
             {observe: 'response', responseType: 'text'}
         ).map(response =>
-            UserStateApiService.getReferenceFromLocationHeader(response.headers.get('location'))
+            UserStateApiService.getSessionIdFromLocationHeader(response.headers.get('location'))
         );
     }
 
-    sendStateUsingReference(reference: string, state: UserState) {
-        this.http.put(this.getFullApiEndpoint(reference), state, {responseType: 'text'})
+    sendStateUsingSessionReference(sessionReference: string, state: UserState) {
+        this.http.put(this.getFullApiEndpoint(sessionReference), state, {responseType: 'text'})
             .subscribe();
     }
 
@@ -41,8 +41,12 @@ export class UserStateApiService {
         return this.location.prepareExternalUrl(UserStateApiService.USER_STATE_API_ROOT);
     }
 
-    private static getReferenceFromLocationHeader(header: string) {
-        const locationComponents = header.split(UserStateApiService.USER_STATE_API_ROOT);
-        return locationComponents[locationComponents.length - 1];
+    private static getSessionIdFromLocationHeader(header: string) {
+        const result = /\/api\/userState\/(.*)/.exec(header);
+        if (result) {
+            return decodeURIComponent(result[1]);
+        } else {
+            throw new Error(`Bad header format: ${header}`);
+        }
     }
 }

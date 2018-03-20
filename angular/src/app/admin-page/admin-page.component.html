@@ -8,8 +8,8 @@
     <div class="page-row">
         <div class="page-row-content">
             <form (submit)="handleFormSubmit()" #adminForm="ngForm">
-                <label for="reference">Reference:</label>
-                <input id="reference" type="text" name="reference" [(ngModel)]="reference" required>
+                <label for="sessionReference">Reference:</label>
+                <input id="sessionReference" type="text" name="sessionReference" [(ngModel)]="sessionReference" required>
                 <button type="submit" [disabled]="!adminForm.form.valid">Go</button>
             </form>
             <div class="page-loading-container" *ngIf="!error && loading">

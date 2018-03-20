@@ -7,7 +7,7 @@ import {UserStateService} from "../shared/user-state-service/user-state-service"
     styleUrls: ['./admin-page.component.scss']
 })
 export class AdminPageComponent {
-    reference: string;
+    sessionReference: string;
     error: boolean = false;
     loading: boolean = false;
 
@@ -16,7 +16,7 @@ export class AdminPageComponent {
     handleFormSubmit() {
         this.error = false;
         this.loading = true;
-        this.userStateService.joinSession(this.reference, () => this.handleError());
+        this.userStateService.joinSession(this.sessionReference, () => this.handleError());
     }
 
     private handleError() {

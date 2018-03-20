@@ -18,6 +18,11 @@ import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/f
 import {FloorLevel} from '../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 
+/**
+ * This is a global mutable singleton which tracks the user's answers to the questionnaires.
+ *
+ * Services which need to read or write this data can request that the singleton is injected.
+ */
 @Injectable()
 export class ResponseData {
     public userJourneyType: UserJourneyType;
