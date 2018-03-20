@@ -16,18 +16,17 @@ import java.time.Instant;
 import java.time.ZoneId;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest("integrationTest=true")
 public class UserStateDatabaseCleanServiceTest {
 
+    private static final Instant MOCK_TIME_NOW = Instant.parse("2007-12-03T10:15:30.00Z");
+
     @Autowired
     private DSLContext database;
 
-    private static final Instant MOCK_TIME_NOW = Instant.parse("2007-12-03T10:15:30.00Z");
     private UserStateDatabaseCleanService underTest;
 
     @Before

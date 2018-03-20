@@ -18,7 +18,8 @@ public class BoilerPcdfDatabaseUpdateJob implements Job {
     private BoilerPcdfDatabaseUpdateService service;
 
     @Autowired
-    public BoilerPcdfDatabaseUpdateJob() {}
+    public BoilerPcdfDatabaseUpdateJob() {
+    }
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
