@@ -44,7 +44,7 @@ public class UserStateController {
         return notFoundIfNull(
             dslContext
                 .selectFrom(USER_STATE)
-                .where(USER_STATE.ID.eq(URLDecoder.decode(reference, "UTF-8").toLowerCase()))
+                .where(USER_STATE.ID.eq(reference.toLowerCase()))
                 .fetchOne(UserState::fromDb)
         );
     }
@@ -74,7 +74,7 @@ public class UserStateController {
             .update(USER_STATE)
             .set(USER_STATE.STATE, state)
             .set(USER_STATE.UPDATED, Timestamp.from(Instant.now()))
-            .where(USER_STATE.ID.eq(URLDecoder.decode(reference, "UTF-8")))
+            .where(USER_STATE.ID.eq(reference))
             .execute();
 
         if (entriesUpdated == 0) {

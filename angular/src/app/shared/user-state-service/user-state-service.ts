@@ -27,7 +27,7 @@ export class UserStateService {
         }
     }
 
-    joinSession(reference: string, onError: () => void) {
+    joinSession(reference: string, onError: (error) => void) {
         this.userStateApiService.fetchUserStateBySessionReference(reference)
             .subscribe(state => {
                 this.reference = reference;

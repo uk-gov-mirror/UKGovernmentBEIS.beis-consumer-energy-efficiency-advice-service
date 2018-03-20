@@ -9,6 +9,7 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
+import * as log from 'loglevel';
 import {QuestionDirective} from './question.directive';
 import {QuestionTypeUtil} from './questions/question-type';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
@@ -66,7 +67,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);
         }
         if (this.questionnaire.getQuestions().length === 0) {
-            console.log(`Questionnaire "${ this.questionnaireName } is empty"`);
+            log.warn(`Questionnaire "${ this.questionnaireName } is empty"`);
             this.onQuestionnaireComplete.emit();
         }
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(

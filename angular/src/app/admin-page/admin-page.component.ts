@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
+import * as log from 'loglevel';
 
 @Component({
     selector: 'app-admin-page',
@@ -16,11 +17,12 @@ export class AdminPageComponent {
     handleFormSubmit() {
         this.error = false;
         this.loading = true;
-        this.userStateService.joinSession(this.sessionReference, () => this.handleError());
+        this.userStateService.joinSession(this.sessionReference, (error) => this.handleError(error));
     }
 
-    private handleError() {
+    private handleError(error) {
         this.error = true;
         this.loading = false;
+        log.error(error);
     }
 }
