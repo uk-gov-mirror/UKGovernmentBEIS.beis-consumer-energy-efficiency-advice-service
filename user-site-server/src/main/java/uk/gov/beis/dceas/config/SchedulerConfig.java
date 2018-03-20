@@ -17,11 +17,14 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.job.BoilerPcdfDatabaseUpdateJob;
+import uk.gov.beis.dceas.job.UserStateDatabaseCleanJob;
 import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.time.Clock;
 import java.util.Properties;
 
 import static java.util.Collections.singleton;
@@ -49,7 +52,8 @@ public class SchedulerConfig {
     public Scheduler schedulerFactoryBean(
         DataSource dataSource,
         JobFactory jobFactory,
-        @Qualifier("boilerPcdfDatabaseUpdateTrigger") Trigger boilerPcdfDatabaseUpdateTrigger) throws Exception {
+        @Qualifier("boilerPcdfDatabaseUpdateTrigger") Trigger boilerPcdfDatabaseUpdateTrigger,
+        @Qualifier("userStateDatabaseCleanTrigger") Trigger userStateDatabaseCleanTrigger) throws Exception {
 
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         // this allows to update triggers in DB when updating settings in config file:
@@ -66,6 +70,12 @@ public class SchedulerConfig {
             (JobDetail) boilerPcdfDatabaseUpdateTrigger
                 .getJobDataMap().get("jobDetail"),
             singleton(boilerPcdfDatabaseUpdateTrigger),
+            true);
+
+        scheduler.scheduleJob(
+            (JobDetail) userStateDatabaseCleanTrigger
+                    .getJobDataMap().get("jobDetail"),
+            singleton(userStateDatabaseCleanTrigger),
             true);
 
         scheduler.start();
@@ -89,6 +99,18 @@ public class SchedulerConfig {
     public CronTriggerFactoryBean boilerPcdfDatabaseUpdateTrigger(
         @Qualifier("boilerPcdfDatabaseUpdateJobDetail") JobDetail jobDetail,
         @Value("${dceas.boiler-pcdf-database-update-cron}") String cronExpression) {
+
+        return createCronTrigger(jobDetail, cronExpression);
+    }
+    @Bean
+    public JobDetailFactoryBean userStateDatabaseCleanJobDetail() {
+        return createJobDetail(UserStateDatabaseCleanJob.class);
+    }
+
+    @Bean(name = "userStateDatabaseCleanTrigger")
+    public CronTriggerFactoryBean userStateDatabaseCleanTrigger(
+        @Qualifier("userStateDatabaseCleanJobDetail") JobDetail jobDetail,
+        @Value("${dceas.user-state-database-clean-cron}") String cronExpression) {
 
         return createCronTrigger(jobDetail, cronExpression);
     }
