@@ -8,6 +8,15 @@
                 <input id="reference" type="text" name="reference" [(ngModel)]="reference" required><br /><br />
                 <button type="submit" [disabled]="!adminForm.form.valid">Go</button>
             </form>
+            <div class="page-loading-container" *ngIf="!error && loading">
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="page-error-container" *ngIf="error">
+                <div class="error">
+                    <div class="error-header">Oh no!</div>
+                    Unable to load the user's session. Is the reference (including spaces) definitely correct?
+                </div>
+            </div>
         </div>
     </div>
 </div>

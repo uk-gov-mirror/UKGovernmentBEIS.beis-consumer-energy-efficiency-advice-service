@@ -26,13 +26,13 @@ export class UserStateService {
         }
     }
 
-    joinSession(reference: string) {
+    joinSession(reference: string, onError: () => void) {
         this.userStateApiService.fetchUserStateByReference(reference)
             .subscribe(state => {
                 this.reference = reference;
                 replaceOldResponseData(this.responseData, state.responseData);
                 this.router.navigate([state.url]);
-            });
+            }, onError);
     }
 
     private buildUserState(): UserState {

@@ -6,15 +6,21 @@ import {UserStateService} from "../shared/user-state-service/user-state-service"
     templateUrl: './admin-page.component.html',
     styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent {
     reference: string;
+    error: boolean = false;
+    loading: boolean = false;
 
     constructor(private userStateService: UserStateService) { }
 
-    ngOnInit() {
+    handleFormSubmit() {
+        this.error = false;
+        this.loading = true;
+        this.userStateService.joinSession(this.reference, () => this.handleError());
     }
 
-    handleFormSubmit() {
-        this.userStateService.joinSession(this.reference);
+    private handleError() {
+        this.error = true;
+        this.loading = false;
     }
 }
