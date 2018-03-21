@@ -13,10 +13,10 @@ import java.time.Instant;
 public class DceasApplication {
 
     public static void main(String[] args) {
-        // The stdout is written to /var/log/*.log
-        // See https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
-        // Stdout might look like the primary log file and be confusing, so
-        // we'll add a hint pointing admins to the real log file:
+        // All logs go to stdout, even in production.
+        //
+        // Cloud Foundry will pipe stdout to the log
+        // https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html
         System.out.println(
             "BEIS DCEAS application starting at " + Instant.now() + ". "
                 + "This is the application's `stdout` stream. For the "

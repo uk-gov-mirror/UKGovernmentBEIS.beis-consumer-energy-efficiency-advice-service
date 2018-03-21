@@ -9,6 +9,7 @@
 - [Dependencies](#dependencies)
   * [Updating Wordpress](#updating-wordpress)
 - [Database](#database)
+  * [Copying database from one env to another](#copying-database-from-one-env-to-another)
 - [Monitoring](#monitoring)
   * [Application logs](#application-logs)
 - [Troubleshooting](#troubleshooting)
