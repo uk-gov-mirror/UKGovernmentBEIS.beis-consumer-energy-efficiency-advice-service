@@ -15,7 +15,6 @@ import uk.gov.beis.dceas.api.UserState;
 import uk.gov.beis.dceas.data.RandomWordList;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.time.Instant;
