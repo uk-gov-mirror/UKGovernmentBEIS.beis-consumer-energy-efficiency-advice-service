@@ -5,6 +5,7 @@
 class Config {
     apiRoot: string;
     environment: string;
+    hasAdminIpAddress: boolean;
     buildTimestamp: string;
     buildGitCommit: string;
     buildJenkinsUrl: string;
