@@ -20,9 +20,9 @@ public class IpValidationService {
         List<String> ipAddresses = new ArrayList<String>();
         ipAddresses.add(request.getRemoteAddr());
 
-        String proxyIpsOrNull = request.getHeader("X-FORWARDED-FOR");
-        if (proxyIpsOrNull != null) {
-            ipAddresses.addAll(Arrays.asList(proxyIpsOrNull.split(",")));
+        String proxiedIpsOrNull = request.getHeader("X-FORWARDED-FOR");
+        if (proxiedIpsOrNull != null) {
+            ipAddresses.addAll(Arrays.asList(proxiedIpsOrNull.split(",")));
         }
 
         for (String ipAddress : ipAddresses) {

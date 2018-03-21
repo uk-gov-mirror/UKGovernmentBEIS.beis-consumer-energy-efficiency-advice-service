@@ -26,6 +26,7 @@ import {YourPlanPageComponent} from './energy-efficiency/your-plan-page/your-pla
 import {YourPlanPageGuard} from './energy-efficiency/your-plan-page/your-plan-page.guard';
 import {GreenerHomeComponent} from './landing-page/greener-home/greener-home.component';
 import {AdminPageComponent} from "./admin-page/admin-page.component";
+import {AdminPageGuard} from "./admin-page/admin-page.guard";
 
 const routes: Routes = [
     {
@@ -106,7 +107,8 @@ const routes: Routes = [
     },
     {
         path: 'js/admin',
-        component: AdminPageComponent
+        component: AdminPageComponent,
+        canActivate: [AdminPageGuard]
     },
     {
         path: 'js/measures/:slug',
