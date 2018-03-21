@@ -22,9 +22,15 @@ The "live" sites can be released using the Jenkins job at TODO:BEIS-190
 
 The "staging" sites (for UAT) can be released using the Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
+which deploys to:
+  * https://dceas-user-site-staging.cloudapps.digital/
+  * https://dceas-admin-site-staging.cloudapps.digital/
 
 The "int" site is automatically updated after each code change by the Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/2.%20BEIS%20DCEAS%20-%20Deploy%20to%20Int/
+which deploys to:
+  * https://dceas-user-site-int.cloudapps.digital/
+  * https://dceas-admin-site-int.cloudapps.digital/
 
 BEISDEAS-189 document how to roll back a release etc.
 
@@ -55,7 +61,24 @@ You must instead:
 
 ## Database
 
-TODO:BEIS-163 document how to connect to the DB
+You can connect to the database on Cloud Foundry using the `conduit` plugin:
+
+    cf install-plugin conduit
+    cf target -s int
+    cf conduit dceas-database -- mysql
+
+### Copying database from one env to another
+
+To copy the database from `staging` to `int`, do:
+
+    cf target -s staging
+    cf env dceas-admin-site # note the DB_NAME
+    cf conduit dceas-database -- mysqldump $DB_NAME > 2018-01-01-staging.sql
+    cf target -s int
+    cf conduit dceas-database -- mysql < 2018-01-01-staging.sql
+    cf conduit dceas-database -- mysql
+      update wp_options set option_value = 'https://dceas-admin-site-int.cloudapps.digital'
+            where option_name in ('siteurl', 'home');
 
 ## Monitoring
 
