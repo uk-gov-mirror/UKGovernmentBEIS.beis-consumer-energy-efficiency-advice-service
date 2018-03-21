@@ -29,6 +29,7 @@ describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
+    let startingQuestion = null;
 
     const questionnaireName = 'test';
     const questionId = 'test-question-id';
@@ -100,6 +101,19 @@ describe('QuestionnaireComponent', () => {
         public paramMap = Observable.of({
             get: MockActivatedRoute.paramMapGet
         });
+
+        public queryParamMap = Observable.of({
+            get: MockActivatedRoute.queryParamMapGet
+        });
+
+        private static queryParamMapGet(key) {
+            if (key === 'startingQuestion') {
+                return startingQuestion;
+            } else {
+                throw new Error('Unexpected query parameter name');
+            }
+        }
+
         private static paramMapGet(key) {
             if (key === 'name') {
                 return questionnaireName;
@@ -221,6 +235,46 @@ describe('QuestionnaireComponent', () => {
                 expect(questionReasonElement.classes.visible).toBeFalsy();
             });
         }));
+    });
+
+    describe('#queryParams', () => {
+        it('should set the starting question if there is a query param', () => {
+            // given
+            allQuestionsContent = {
+                [questionId]: {questionHeading: 'heading 1', helpText: '', questionReason: ''},
+                [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
+            };
+            component.currentQuestionIndex = 0;
+            startingQuestion = 1;
+
+            // when
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                const questionHeadingElement = fixture.debugElement.query(By.css('.question-heading'));
+                expect(questionHeadingElement.nativeElement.innerText).toBe('heading 2');
+            });
+        });
+
+        it('should not set the starting question if there is not a query param', () => {
+            // given
+            allQuestionsContent = {
+                [questionId]: {questionHeading: 'heading 1', helpText: '', questionReason: ''},
+                [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
+            };
+            component.currentQuestionIndex = 0;
+            startingQuestion = null;
+
+            // when
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                const questionHeadingElement = fixture.debugElement.query(By.css('.question-heading'));
+                expect(questionHeadingElement.nativeElement.innerText).toBe('heading 1');
+            });
+        });
     });
 
     describe('#goForwards', () => {
