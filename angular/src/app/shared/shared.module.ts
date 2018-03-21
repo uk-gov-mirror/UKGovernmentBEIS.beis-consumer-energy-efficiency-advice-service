@@ -36,6 +36,7 @@ import {DataCardComponent} from './data-card/data-card.component';
 import {PopupComponent} from './popup/popup.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
 import {LatestNewsSectionComponent} from './latest-news-section/latest-news-section.component';
+import {UserStateApiService} from "./user-state-api-service/user-state-api-service";
 
 @NgModule({
     declarations: [
@@ -93,6 +94,7 @@ export class SharedModule {
                 ResponseData,
                 FeatureFlagService,
                 EnergyCalculationApiService,
+                UserStateApiService,
                 EpcApiService,
                 PostcodeEpcService,
                 PostcodeApiService,

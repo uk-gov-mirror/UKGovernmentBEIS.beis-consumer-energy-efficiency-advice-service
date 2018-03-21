@@ -30,6 +30,7 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.component';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
+import {UserStateApiService} from "../../shared/user-state-api-service/user-state-api-service";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -52,6 +53,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
         getAllRecommendations: () => recommendationsResponse,
         isAddedToPlan: () => false,
         getRecommendationsInPlan: () => []
+    };
+
+    const userStateApiServiceStub = {
+        sendState: () => {}
     };
 
     let responseData: ResponseData;
@@ -165,7 +170,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
-                {provide: RecommendationsService, useValue: recommendationsServiceStub}
+                {provide: RecommendationsService, useValue: recommendationsServiceStub},
+                {provide: UserStateApiService, useValue: userStateApiServiceStub},
             ]
         })
             .compileComponents();
