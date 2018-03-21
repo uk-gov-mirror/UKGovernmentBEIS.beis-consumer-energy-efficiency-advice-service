@@ -29,7 +29,7 @@ describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
-    let startingQuestion = null;
+    let startingQuestion;
 
     const questionnaireName = 'test';
     const questionId = 'test-question-id';
@@ -154,6 +154,7 @@ describe('QuestionnaireComponent', () => {
         fixture = TestBed.createComponent(QuestionnaireComponent);
         component = fixture.componentInstance;
         component.questionnaireName = questionnaireName;
+        startingQuestion = null;
         spyOn(component.onQuestionnaireComplete, 'emit');
     });
 
@@ -264,7 +265,6 @@ describe('QuestionnaireComponent', () => {
                 [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
             };
             component.currentQuestionIndex = 0;
-            startingQuestion = null;
 
             // when
             fixture.detectChanges();
