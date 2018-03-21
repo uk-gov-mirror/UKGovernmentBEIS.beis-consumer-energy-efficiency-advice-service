@@ -22,7 +22,7 @@ public class IpValidationService {
 
         String proxiedIpsOrNull = request.getHeader("X-FORWARDED-FOR");
         if (proxiedIpsOrNull != null) {
-            ipAddresses.addAll(Arrays.asList(proxiedIpsOrNull.split(",")));
+            ipAddresses.addAll(Arrays.asList(proxiedIpsOrNull.split(", ")));
         }
 
         for (String ipAddress : ipAddresses) {
