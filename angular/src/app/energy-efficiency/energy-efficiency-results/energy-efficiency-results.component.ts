@@ -14,7 +14,7 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
-import {UserStateApiService} from "../../shared/user-state-api-service/user-state-api-service";
+import {UserStateService} from "../../shared/user-state-service/user-state-service";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -48,7 +48,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
                 private energyCalculationService: EnergyCalculationApiService,
-                private userStateApiService: UserStateApiService) {
+                private userStateService: UserStateService) {
     }
 
     ngOnInit() {
@@ -62,7 +62,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                     this.onLoadingComplete(allRecommendations, localAuthority, energyCalculationResponse),
                 (err) => this.displayErrorMessage(err),
             );
-        this.userStateApiService.sendState();
+        this.userStateService.sendState();
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {

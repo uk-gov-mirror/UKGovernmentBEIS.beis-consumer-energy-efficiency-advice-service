@@ -14,6 +14,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
 import uk.gov.beis.dceas.data.RandomWordList;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -38,11 +40,11 @@ public class UserStateController {
 
 
     @GetMapping("/{reference}")
-    public UserState getByReference(@PathVariable String reference) {
+    public UserState getByReference(@PathVariable String reference) throws UnsupportedEncodingException {
         return notFoundIfNull(
             dslContext
                 .selectFrom(USER_STATE)
-                .where(USER_STATE.ID.eq(reference))
+                .where(USER_STATE.ID.eq(reference.toLowerCase()))
                 .fetchOne(UserState::fromDb)
         );
     }
@@ -67,7 +69,7 @@ public class UserStateController {
     }
 
     @PutMapping("/{reference}")
-    public ResponseEntity<?> updateUserState(@PathVariable String reference, @RequestBody String state) {
+    public ResponseEntity<?> updateUserState(@PathVariable String reference, @RequestBody String state) throws UnsupportedEncodingException {
         int entriesUpdated = dslContext
             .update(USER_STATE)
             .set(USER_STATE.STATE, state)

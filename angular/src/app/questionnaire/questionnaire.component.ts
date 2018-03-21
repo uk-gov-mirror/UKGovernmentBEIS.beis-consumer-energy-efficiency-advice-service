@@ -9,6 +9,7 @@ import {
     Output,
     ViewChild
 } from '@angular/core';
+import * as log from 'loglevel';
 import {QuestionDirective} from './question.directive';
 import {QuestionTypeUtil} from './questions/question-type';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
@@ -20,7 +21,7 @@ import {QuestionnaireService} from './questionnaire.service';
 import {Subscription} from 'rxjs/Subscription';
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
-import {UserStateApiService} from "../shared/user-state-api-service/user-state-api-service";
+import {UserStateService} from "../shared/user-state-service/user-state-service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -54,7 +55,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private changeDetectorRef: ChangeDetectorRef,
                 private questionHeadingProcessor: QuestionHeadingProcessor,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private userStateApiService: UserStateApiService) {
+                private userStateService: UserStateService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -66,14 +67,14 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);
         }
         if (this.questionnaire.getQuestions().length === 0) {
-            console.log(`Questionnaire "${ this.questionnaireName } is empty"`);
+            log.warn(`Questionnaire "${ this.questionnaireName } is empty"`);
             this.onQuestionnaireComplete.emit();
         }
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')
         );
-        this.userStateApiService.sendState();
+        this.userStateService.sendState();
     }
 
     ngOnDestroy() {
@@ -115,7 +116,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
-            this.userStateApiService.sendState();
+            this.userStateService.sendState();
         }
     }
 
@@ -124,7 +125,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
-            this.userStateApiService.sendState();
+            this.userStateService.sendState();
         }
     }
 

@@ -11,7 +11,7 @@ import {GardenAccessibility} from '../../questionnaire/questions/garden-question
 import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
 import {RoofSpace} from '../../questionnaire/questions/roof-space-question/roof-space';
 import sortBy from 'lodash-es/sortBy';
-import {UserStateApiService} from "../../shared/user-state-api-service/user-state-api-service";
+import {UserStateService} from "../../shared/user-state-service/user-state-service";
 
 @Component({
     selector: 'app-boiler-results-page',
@@ -27,7 +27,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
 
     constructor(private boilerTypesService: BoilerTypesService,
                 private boilerPageMeasuresService: BoilerPageMeasuresService,
-                private userStateApiService: UserStateApiService,
+                private userStateService: UserStateService,
                 private responseData: ResponseData) {
     }
 
@@ -47,7 +47,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
                 () => this.handleError(),
                 () => this.isLoading = false,
             );
-        this.userStateApiService.sendState();
+        this.userStateService.sendState();
     }
 
     ngAfterViewInit() {

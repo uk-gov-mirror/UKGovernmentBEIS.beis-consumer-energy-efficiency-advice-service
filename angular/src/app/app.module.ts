@@ -17,6 +17,7 @@ import {MeasurePageModule} from './measure-page/measure-page.module';
 import {BoilerModule} from './boiler/boiler.module';
 import {GrantsModule} from './grants/grants.module';
 import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.module';
+import {AdminPageModule} from "./admin-page/admin-page.module";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.modu
         GrantsModule.forRoot(),
         PageModule,
         MeasurePageModule,
+        AdminPageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
         BoilerModule.forRoot(),

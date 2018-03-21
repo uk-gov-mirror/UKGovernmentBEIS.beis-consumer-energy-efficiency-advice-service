@@ -1,0 +1,47 @@
+@import 'styles/mixins/font';
+@import 'styles/mixins/buttons';
+@import 'styles/var/colors';
+
+.admin-page {
+  .page-row {
+    padding: 32px 0;
+  }
+
+  .heading-section {
+    background-color: $primary-blue;
+    color: white;
+
+    .heading {
+      @include page-heading-large-font;
+      padding-bottom: 16px;
+    }
+
+    .help-text {
+      @include page-subheading-font;
+    }
+  }
+
+  label {
+    @include question-label-font;
+    display: block;
+    padding-bottom: 8px;
+  }
+
+  input {
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid $lighter-medium-grey;
+    @include question-text-input-font;
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: 44px;
+    padding: 0 8px;
+    margin-bottom: 16px;
+  }
+
+  button {
+    @include default-button(60px, 32px);
+    background-color: $primary-blue;
+  }
+}
