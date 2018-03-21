@@ -16,11 +16,11 @@ export class UserStateService {
         private router: Router,
         private responseData: ResponseData) {}
 
-    sendState() {
+    sendState(questionIndex?: number) {
         if (this.reference) {
-            this.userStateApiService.sendStateUsingSessionReference(this.reference, this.buildUserState());
+            this.userStateApiService.sendStateUsingSessionReference(this.reference, this.buildUserState(questionIndex));
         } else {
-            this.userStateApiService.sendNewState(this.buildUserState())
+            this.userStateApiService.sendNewState(this.buildUserState(questionIndex))
                 .subscribe(reference => {
                     this.reference = reference;
                 });
@@ -32,14 +32,23 @@ export class UserStateService {
             .subscribe(state => {
                 this.reference = reference;
                 replaceOldResponseData(this.responseData, state.responseData);
-                this.router.navigate([state.url]);
+                if (state.questionIndex) {
+                    this.router.navigate([state.url], {queryParams: {startingQuestion: state.questionIndex}});
+                } else {
+                    this.router.navigate([state.url]);
+                }
             }, onError);
     }
 
-    private buildUserState(): UserState {
-        return {
+    private buildUserState(questionIndex?: number): UserState {
+        const userState: UserState = {
             responseData: this.responseData,
-            url: this.location.path()
+            // TODO BEISDEAS-180 Make this more robust
+            url: this.location.path().split('?')[0]
         };
+        if (questionIndex) {
+            userState.questionIndex = questionIndex;
+        }
+        return userState;
     }
 }

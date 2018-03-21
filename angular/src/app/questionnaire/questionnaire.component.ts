@@ -10,6 +10,7 @@ import {
     ViewChild
 } from '@angular/core';
 import * as log from 'loglevel';
+import {ActivatedRoute} from '@angular/router';
 import {QuestionDirective} from './question.directive';
 import {QuestionTypeUtil} from './questions/question-type';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
@@ -49,7 +50,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
 
-    constructor(private questionContentService: QuestionContentService,
+    constructor(private route: ActivatedRoute,
+                private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
                 private changeDetectorRef: ChangeDetectorRef,
@@ -74,7 +76,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')
         );
-        this.userStateService.sendState();
+        this.setCurrentIndexFromRouteParams();
     }
 
     ngOnDestroy() {
@@ -116,7 +118,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
-            this.userStateService.sendState();
+            this.userStateService.sendState(this.currentQuestionIndex);
         }
     }
 
@@ -125,7 +127,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
-            this.userStateService.sendState();
+            this.userStateService.sendState(this.currentQuestionIndex);
         }
     }
 
@@ -218,5 +220,16 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 this.goForwards();
             });
         }
+    }
+
+    private setCurrentIndexFromRouteParams() {
+        return this.route.queryParamMap
+            .subscribe(queryParams => {
+                const indexOrNull = parseInt(queryParams.get('startingQuestion'), 10);
+                if (indexOrNull) {
+                    this.currentQuestionIndex = indexOrNull;
+                }
+                this.userStateService.sendState(this.currentQuestionIndex);
+            });
     }
 }
