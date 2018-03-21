@@ -15,7 +15,7 @@ import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
 @Service
 public class UserStateDatabaseCleanService {
 
-    private final static int HOURS_TO_KEEP_STATE = 12;
+    private static final int HOURS_TO_KEEP_STATE = 12;
 
     private final DSLContext dslContext;
     private final Clock clock;
@@ -26,7 +26,7 @@ public class UserStateDatabaseCleanService {
         this.clock = clock;
     }
 
-    public void cleanDatabase() throws DataAccessException{
+    public void cleanDatabase() throws DataAccessException {
         Timestamp threshold = Timestamp.from(Instant.now(clock)
             .minus(Duration.ofHours(HOURS_TO_KEEP_STATE)));
 

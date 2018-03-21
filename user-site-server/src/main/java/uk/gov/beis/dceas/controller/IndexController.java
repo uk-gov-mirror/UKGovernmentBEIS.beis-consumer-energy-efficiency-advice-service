@@ -46,6 +46,7 @@ public class IndexController {
 
     @Autowired
     public IndexController(Environment environment) throws IOException {
+        // TODO:BEIS-196 env is "dev" on CF at the moment, fix or rename
         this.environment = environment;
 
         // We read the "dist" index.html from Angular, and inject it into our

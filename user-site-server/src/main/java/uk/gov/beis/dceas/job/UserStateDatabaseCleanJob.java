@@ -16,7 +16,8 @@ public class UserStateDatabaseCleanJob implements Job {
     private UserStateDatabaseCleanService service;
 
     @Autowired
-    public UserStateDatabaseCleanJob() {}
+    public UserStateDatabaseCleanJob() {
+    }
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {

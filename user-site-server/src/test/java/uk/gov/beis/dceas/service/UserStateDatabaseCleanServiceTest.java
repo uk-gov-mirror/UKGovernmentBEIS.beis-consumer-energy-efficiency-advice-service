@@ -13,26 +13,25 @@ import java.sql.Timestamp;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.ZoneId;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest("integrationTest=true")
 public class UserStateDatabaseCleanServiceTest {
 
+    private static final Instant MOCK_TIME_NOW = Instant.parse("2007-12-03T10:15:30.00Z");
+
     @Autowired
     private DSLContext database;
 
-    private static final Instant MOCK_TIME_NOW = Instant.ofEpochSecond(1000000);
     private UserStateDatabaseCleanService underTest;
 
     @Before
     public void setUp() {
-        Clock mockClock = mock(Clock.class);
-        when(mockClock.instant()).thenReturn(MOCK_TIME_NOW);
+        Clock mockClock = Clock.fixed(MOCK_TIME_NOW, ZoneId.systemDefault());
         database.deleteFrom(USER_STATE).execute();
         underTest = new UserStateDatabaseCleanService(database, mockClock);
     }

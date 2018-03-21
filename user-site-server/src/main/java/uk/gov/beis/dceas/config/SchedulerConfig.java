@@ -17,14 +17,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.job.BoilerPcdfDatabaseUpdateJob;
 import uk.gov.beis.dceas.job.UserStateDatabaseCleanJob;
 import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.time.Clock;
 import java.util.Properties;
 
 import static java.util.Collections.singleton;
@@ -113,16 +111,6 @@ public class SchedulerConfig {
         @Value("${dceas.user-state-database-clean-cron}") String cronExpression) {
 
         return createCronTrigger(jobDetail, cronExpression);
-    }
-
-    @Bean
-    public Clock clock() {
-        return Clock.systemUTC();
-    }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
     }
 
     private static JobDetailFactoryBean createJobDetail(Class jobClass) {
