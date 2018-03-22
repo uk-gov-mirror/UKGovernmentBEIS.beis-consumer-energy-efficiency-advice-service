@@ -10,6 +10,8 @@ import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpr
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
+import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
+import {UserStateService} from "../../shared/user-state-service/user-state-service";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -26,17 +28,22 @@ describe('HeaderComponent', () => {
 
     const mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
     const mockWordpressMeasuresService = {searchMeasures: (searchString) => Observable.of(mockSearchResult)};
+    const mockUserStateService = {getSessionReference: () => "reference"};
 
     beforeEach(async(() => {
         spyOn(mockWordpressPagesService, 'searchPages').and.callThrough();
         spyOn(mockWordpressMeasuresService, 'searchMeasures').and.callThrough();
 
         TestBed.configureTestingModule({
-            declarations: [HeaderComponent],
+            declarations: [
+                HeaderComponent,
+                NeedHelpComponent
+            ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
+                {provide: UserStateService, useValue: mockUserStateService},
             ]
         })
             .compileComponents();
