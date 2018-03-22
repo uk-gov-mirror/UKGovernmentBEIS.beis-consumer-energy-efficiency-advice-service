@@ -94,6 +94,7 @@ dependencies {
 
     compile('com.google.guava:guava:23.0')
     compile('org.apache.commons:commons-lang3:3.6')
+    compile(group: 'org.springframework.security', name: 'spring-security-web', version: '3.0.7.RELEASE')
     // We cannot use mysql connector v6
     // until https://liquibase.jira.com/browse/CORE-2723 is fixed.
     // It looks like v6 is still experimental anyway, so 5 is fine for us
