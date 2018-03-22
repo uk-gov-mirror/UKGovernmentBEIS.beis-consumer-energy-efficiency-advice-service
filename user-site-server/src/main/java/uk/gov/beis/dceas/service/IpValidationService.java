@@ -1,7 +1,7 @@
 package uk.gov.beis.dceas.service;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.web.util.IpAddressMatcher;
+import org.springframework.security.web.util.matcher.IpAddressMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
