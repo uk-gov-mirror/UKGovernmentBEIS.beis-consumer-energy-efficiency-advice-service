@@ -2,14 +2,20 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NeedHelpComponent} from './need-help.component';
 import {By} from '@angular/platform-browser';
+import {UserStateService} from "../user-state-service/user-state-service";
 
 describe('NeedHelpComponent', () => {
     let component: NeedHelpComponent;
     let fixture: ComponentFixture<NeedHelpComponent>;
 
+    const userStateServiceStub = {
+        getSessionReference: () => "some reference"
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ NeedHelpComponent ]
+            declarations: [ NeedHelpComponent ],
+            providers: [{provide: UserStateService, useValue: userStateServiceStub}]
         })
             .compileComponents();
     }));

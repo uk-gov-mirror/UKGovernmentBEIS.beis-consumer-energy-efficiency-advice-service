@@ -9,20 +9,30 @@ import {UserStateApiService} from "../user-state-api-service/user-state-api-serv
 export class UserStateService {
     // The user's unique session reference
     private reference: string;
+    private referencePromise: Promise<string>;
+    private resolveReference: (reference: string) => void;
 
     constructor(
         private userStateApiService: UserStateApiService,
         private location: Location,
         private router: Router,
-        private responseData: ResponseData) {}
+        private responseData: ResponseData) {
 
-    sendState() {
+        // The "need-help" component may request the reference before it has been generated
+        // We instead return a promise of the reference, that is resolved once the backend has generated it
+        this.referencePromise = new Promise(resolve => {
+            this.resolveReference = resolve;
+        });
+    }
+
+    sendState(questionIndex?: number) {
         if (this.reference) {
-            this.userStateApiService.sendStateUsingSessionReference(this.reference, this.buildUserState());
+            this.userStateApiService.sendStateUsingSessionReference(this.reference, this.buildUserState(questionIndex));
         } else {
-            this.userStateApiService.sendNewState(this.buildUserState())
+            this.userStateApiService.sendNewState(this.buildUserState(questionIndex))
                 .subscribe(reference => {
                     this.reference = reference;
+                    this.resolveReference(reference);
                 });
         }
     }
@@ -31,15 +41,29 @@ export class UserStateService {
         this.userStateApiService.fetchUserStateBySessionReference(reference)
             .subscribe(state => {
                 this.reference = reference;
+                this.referencePromise = Promise.resolve( this.reference);
                 replaceOldResponseData(this.responseData, state.responseData);
-                this.router.navigate([state.url]);
+                if (state.questionIndex) {
+                    this.router.navigate([state.url], {queryParams: {startingQuestion: state.questionIndex}});
+                } else {
+                    this.router.navigate([state.url]);
+                }
             }, onError);
     }
 
-    private buildUserState(): UserState {
-        return {
+    getSessionReference() {
+        return this.referencePromise;
+    }
+
+    private buildUserState(questionIndex?: number): UserState {
+        const userState: UserState = {
             responseData: this.responseData,
-            url: this.location.path()
+            // Remove any query params from the current url
+            url: this.location.path().split('?')[0]
         };
+        if (questionIndex) {
+            userState.questionIndex = questionIndex;
+        }
+        return userState;
     }
 }
