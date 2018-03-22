@@ -101,14 +101,15 @@ public class IndexController {
     }
 
     private Attributes getBuildAttributes() throws IOException {
-        if ("dev".equals(getEnvName())) {
-            return new Attributes();
-        }
-
         // Can't use normal resource loading in Spring Boot
         // https://stackoverflow.com/questions/32293962/how-to-read-my-meta-inf-manifest-mf-file-in-a-spring-boot-app
         String jarClassUrl = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-        String jarUrl = jarClassUrl.substring(0, jarClassUrl.indexOf('!'));
+        int jarFileSelectorStartIndex = jarClassUrl.indexOf('!');
+        if (jarFileSelectorStartIndex < 0) {
+            // Not running inside a JAR
+            return new Attributes();
+        }
+        String jarUrl = jarClassUrl.substring(0, jarFileSelectorStartIndex);
         URL mfUrl = new URL(jarUrl + "!/" + JarFile.MANIFEST_NAME);
 
         try (InputStream mfStream = mfUrl.openStream()) {
