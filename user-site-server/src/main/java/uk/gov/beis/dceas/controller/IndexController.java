@@ -42,6 +42,7 @@ public class IndexController {
     private final Environment environment;
 
     private final String angularHeadContent;
+
     private final String angularBodyContent;
 
     @Autowired
@@ -101,20 +102,33 @@ public class IndexController {
     }
 
     private Attributes getBuildAttributes() throws IOException {
-        // Can't use normal resource loading in Spring Boot
-        // https://stackoverflow.com/questions/32293962/how-to-read-my-meta-inf-manifest-mf-file-in-a-spring-boot-app
-        String jarClassUrl = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-        int jarFileSelectorStartIndex = jarClassUrl.indexOf('!');
-        if (jarFileSelectorStartIndex < 0) {
-            // Not running inside a JAR
-            return new Attributes();
-        }
-        String jarUrl = jarClassUrl.substring(0, jarFileSelectorStartIndex);
-        URL mfUrl = new URL(jarUrl + "!/" + JarFile.MANIFEST_NAME);
+        InputStream mfStream = null;
+        try {
+            // The cloud foundry Java buildpack unzips the JAR, so normal classloading
+            // should work
+            mfStream = this.getClass().getClassLoader().getResourceAsStream("META-INF/MANIFEST.MF");
 
-        try (InputStream mfStream = mfUrl.openStream()) {
+            if (mfStream == null) {
+                // Can't use normal resource loading in Spring Boot
+                // https://stackoverflow.com/questions/32293962/how-to-read-my-meta-inf-manifest-mf-file-in-a-spring-boot-app
+                String jarClassUrl = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+                int jarFileSelectorStartIndex = jarClassUrl.indexOf('!');
+                if (jarFileSelectorStartIndex < 0) {
+                    // Not running inside a JAR
+                    return new Attributes();
+                }
+                String jarUrl = jarClassUrl.substring(0, jarFileSelectorStartIndex);
+                URL mfUrl = new URL(jarUrl + "!/" + JarFile.MANIFEST_NAME);
+
+                mfStream = mfUrl.openStream();
+            }
+
             Manifest manifest = new Manifest(mfStream);
             return manifest.getMainAttributes();
+        } finally {
+            if (mfStream != null) {
+                mfStream.close();
+            }
         }
     }
 }
