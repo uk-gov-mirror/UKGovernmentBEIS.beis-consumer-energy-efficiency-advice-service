@@ -9,7 +9,7 @@ import {UserStateService} from "../user-state-service/user-state-service";
 export class NeedHelpComponent implements OnInit {
 
     expanded: boolean;
-    reference: string;
+    reference: string = "";
 
     constructor(private userStateService: UserStateService) {}
 
