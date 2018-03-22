@@ -61,7 +61,7 @@ describe('PostcodeApiService', () => {
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
             const matchesExpectedUrl =
-                (request.urlWithParams === `angular-theme/v1/postcode/${ postcodeWithoutSpaces }`);
+                (request.urlWithParams === `http://postcodes.io/postcodes/${ postcodeWithoutSpaces }`);
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });
