@@ -12,8 +12,8 @@ export class AdminPageGuard implements CanActivate {
         if (Config().hasAdminIpAddress) {
             return true;
         }
-        // If the user does not have admin rights, we navigate to the home page
-        this.router.navigate(['/']);
+        // If the user does not have admin rights, we show the forbidden page
+        this.router.navigate(['/js/forbidden']);
         return false;
     }
 }
