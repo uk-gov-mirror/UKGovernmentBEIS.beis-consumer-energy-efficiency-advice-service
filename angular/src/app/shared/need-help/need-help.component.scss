@@ -52,11 +52,9 @@ $height: 60px;
 // Breakpoint specific styling
 .need-help {
   @include mobile() {
-    display: none;
   }
 
   @include tablet() {
-    display: none;
   }
 
   @include desktop() {
