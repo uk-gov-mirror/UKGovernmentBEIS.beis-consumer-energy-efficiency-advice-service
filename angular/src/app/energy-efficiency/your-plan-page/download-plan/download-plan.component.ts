@@ -13,25 +13,12 @@ export class DownloadPlanComponent {
     constructor(private responseData: ResponseData) {
     }
 
-    public listenForExpansion() {
-        // Create an array of step rows
-        // Create an array of expanded step rows
-        // Create a mutation observer for each step row
-        // Have the mutation observer count up whenever a mutation happens within the function
-        // Call a click event on each element which is not in both arrays
-        // Have some count for whenever the count has reached a certain amount, when it has you can do the PDF
-        // Call another onclick on the step rows which aren't in both
-    }
-
     public onPdfClicked() {
         const expandableElements = document.getElementsByClassName("step-details-drawer");
         const elementsArray = Array.from(expandableElements);
 
         const expandedElements = document.querySelectorAll(".expanded.step-details-drawer");
         const exElementsArray = Array.from(expandedElements);
-
-        // console.log(expandableElements);
-        // console.log(expandedElements);
 
         const nonExElementsArray = [];
         for (let i = 0; i < elementsArray.length; i++) {
@@ -55,10 +42,6 @@ export class DownloadPlanComponent {
             nonExElementSiblings.push(elem.parentNode.childNodes[0].nextSibling);
         }
 
-        // console.log(nonExElementSiblings);
-        //
-        // console.log(nonExElementsArray);
-
         let mutationCount = 0;
 
         const observer = new MutationObserver((mutations) => {
@@ -66,11 +49,25 @@ export class DownloadPlanComponent {
                 mutationCount++;
 
                 if (mutationCount === nonExCount) {
-                    const pdfBody = document.getElementsByClassName("your-plan-content")[0];
+                    for (const elem of Array.from(<HTMLCollection>document.querySelectorAll('.headline'))) {
+                        (<HTMLElement>elem).style.marginLeft = "20px";
+                        (<HTMLElement>elem.nextElementSibling).style.marginLeft = "20px";
+                    }
+
+                    (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "hidden";
+
+                    const pdfBody = document.getElementsByClassName("your-plan-page")[0];
                     html2pdf(pdfBody);
-                    // console.log(nonExElementSiblings);
+
                     this.clickElems(nonExElementSiblings);
                     observer.disconnect();
+
+                    for (const elem of Array.from(document.getElementsByClassName('.headline'))) {
+                        (<HTMLElement>elem).style.marginLeft = "0px";
+                        (<HTMLElement>elem.nextElementSibling).style.marginLeft = "0px";
+                    }
+
+                    (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
                 }
             });
         });
