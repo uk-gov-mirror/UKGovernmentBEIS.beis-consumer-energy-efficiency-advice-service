@@ -94,7 +94,8 @@ describe('QuestionnaireComponent', () => {
     class MockActivatedRoute {
 
         public snapshot = {
-            paramMap: {get: MockActivatedRoute.paramMapGet}
+            paramMap: {get: MockActivatedRoute.paramMapGet},
+            queryParamMap: {get: MockActivatedRoute.queryParamMapGet}
         };
 
         public paramMap = Observable.of({
@@ -149,10 +150,10 @@ describe('QuestionnaireComponent', () => {
     }));
 
     beforeEach(() => {
+        startingQuestion = null;
         fixture = TestBed.createComponent(QuestionnaireComponent);
         component = fixture.componentInstance;
         component.questionnaireName = questionnaireName;
-        startingQuestion = null;
         spyOn(component.onQuestionnaireComplete, 'emit');
     });
 
@@ -239,12 +240,17 @@ describe('QuestionnaireComponent', () => {
     describe('#queryParams', () => {
         it('should set the starting question if there is a query param', () => {
             // given
+            startingQuestion = 1;
+            // We need to recreate the component after setting the starting question since
+            // this is used on init
+            fixture = TestBed.createComponent(QuestionnaireComponent);
+            component = fixture.componentInstance;
+            component.questionnaireName = questionnaireName;
             allQuestionsContent = {
                 [questionId]: {questionHeading: 'heading 1', helpText: '', questionReason: ''},
                 [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
             };
             component.currentQuestionIndex = 0;
-            startingQuestion = 1;
 
             // when
             fixture.detectChanges();
