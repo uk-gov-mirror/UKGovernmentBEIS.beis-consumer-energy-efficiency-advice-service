@@ -27,7 +27,10 @@ public class IpValidationService {
 
         String proxiedIpsOrNull = request.getHeader("X-FORWARDED-FOR");
         if (proxiedIpsOrNull != null) {
-            ipAddresses.addAll(Arrays.asList(proxiedIpsOrNull.split(", ")));
+            // Only select the last entry in the X-FORWARDED-FOR header as this will be
+            // supplied by cloud foundry and should be trusted
+            String[] proxiedIps = proxiedIpsOrNull.split(", ");
+            ipAddresses.add(proxiedIps[proxiedIps.length - 1]);
         }
 
         for (String ipAddress : ipAddresses) {
