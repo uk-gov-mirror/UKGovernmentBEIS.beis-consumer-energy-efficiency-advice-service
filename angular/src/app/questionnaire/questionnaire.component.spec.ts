@@ -252,7 +252,6 @@ describe('QuestionnaireComponent', () => {
                 [questionId]: {questionHeading: 'heading 1', helpText: '', questionReason: ''},
                 [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
             };
-            component.currentQuestionIndex = 0;
 
             // when
             fixture.detectChanges();
