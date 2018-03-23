@@ -1,4 +1,5 @@
 @import "styles/page";
+@import "styles/var/colors";
 
 // Component specific variables
 $mobile-nav-height: 70px;
@@ -22,26 +23,31 @@ $desktop-width: 80px;
 }
 
 .need-help {
+  position: relative;
   height: 100%;
+  width: 100%;
   padding: 0;
 
   .header-bar {
     width: 100%;
     height: 100%;
-    background-color: #D0021B;
+    background-color: $pink;
     color: white;
     font-size: 20px;
     font-weight: 500;
     padding: 8px;
     box-sizing: border-box;
-
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .contents {
-    background-color: white;
+    position: absolute;
+    right: 0;
+    box-sizing: border-box;
+    color: white;
+    background-color: $pink;
     padding: 16px;
     font-size: 14px;
 
@@ -62,6 +68,16 @@ $desktop-width: 80px;
     width: $mobile-width;
     height: $mobile-nav-height;
   }
+
+  .need-help {
+    .help-icon {
+      width: 32px;
+    }
+
+    .contents {
+      width: 100vw;
+    }
+  }
 }
 
 @include tablet() {
@@ -69,11 +85,31 @@ $desktop-width: 80px;
     width: $tablet-width;
     height: $tablet-nav-height;
   }
+
+  .need-help {
+    .help-icon {
+      width: 40px;
+    }
+
+    .contents {
+      width: 375px;
+    }
+  }
 }
 
 @include desktop() {
   :host {
     width: $desktop-width;
     height: $desktop-nav-height;
+  }
+
+  .need-help {
+    .help-icon {
+      width: 40px;
+    }
+
+    .contents {
+      width: 375px;
+    }
   }
 }

@@ -1,6 +1,8 @@
 <button class="need-help"
         (click)="expanded = !expanded">
-    <div class="header-bar">Need any help?</div>
+    <div class="header-bar">
+        <div class="help-icon" [inlineSVG]="'icons/help.svg'"></div>
+    </div>
     <div class="contents" *ngIf="expanded">
         <div>
             “If you would like some help using the site and would like to talk to one of our trained advisors, use our
