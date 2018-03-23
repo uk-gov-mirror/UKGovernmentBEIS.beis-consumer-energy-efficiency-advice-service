@@ -239,49 +239,6 @@ describe('QuestionnaireComponent', () => {
         }));
     });
 
-    describe('#queryParams', () => {
-        it('should set the starting question if there is a query param', () => {
-            // given
-            startingQuestion = 1;
-            // We need to recreate the component after setting the starting question since
-            // this is used on init
-            fixture = TestBed.createComponent(QuestionnaireComponent);
-            component = fixture.componentInstance;
-            component.questionnaireName = questionnaireName;
-            allQuestionsContent = {
-                [questionId]: {questionHeading: 'heading 1', helpText: '', questionReason: ''},
-                [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
-            };
-
-            // when
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const questionHeadingElement = fixture.debugElement.query(By.css('.question-heading'));
-                expect(questionHeadingElement.nativeElement.innerText).toBe('heading 2');
-            });
-        });
-
-        it('should not set the starting question if there is not a query param', () => {
-            // given
-            allQuestionsContent = {
-                [questionId]: {questionHeading: 'heading 1', helpText: '', questionReason: ''},
-                [anotherQuestionId]: {questionHeading: 'heading 2', helpText: '', questionReason: ''}
-            };
-            component.currentQuestionIndex = 0;
-
-            // when
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const questionHeadingElement = fixture.debugElement.query(By.css('.question-heading'));
-                expect(questionHeadingElement.nativeElement.innerText).toBe('heading 1');
-            });
-        });
-    });
-
     describe('#goForwards', () => {
         it('should not emit completion event if there is another question', () => {
             // given
