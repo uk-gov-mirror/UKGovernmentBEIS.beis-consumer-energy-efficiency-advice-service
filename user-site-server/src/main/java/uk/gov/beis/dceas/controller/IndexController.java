@@ -12,7 +12,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import uk.gov.beis.dceas.service.IpValidationService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -40,15 +42,17 @@ public class IndexController {
     private String staticRoot;
 
     private final Environment environment;
+    private final IpValidationService ipValidationService;
 
     private final String angularHeadContent;
 
     private final String angularBodyContent;
 
     @Autowired
-    public IndexController(Environment environment) throws IOException {
+    public IndexController(Environment environment, IpValidationService ipValidationService) throws IOException {
         // TODO:BEIS-196 env is "dev" on CF at the moment, fix or rename
         this.environment = environment;
+        this.ipValidationService = ipValidationService;
 
         // We read the "dist" index.html from Angular, and inject it into our
         // index page, to use things like Angular's content hash stamping etc.
@@ -75,10 +79,11 @@ public class IndexController {
         "/js/**"  // TODO:BEIS-196 tidy up js routing for prettier URLs
     },
         method = GET)
-    public String index(Model model) throws IOException {
+    public String index(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("environment", getEnvName());
+        model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
 

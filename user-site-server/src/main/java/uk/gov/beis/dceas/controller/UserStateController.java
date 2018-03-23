@@ -13,7 +13,10 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
 import uk.gov.beis.dceas.data.RandomWordList;
+import uk.gov.beis.dceas.service.IpValidationService;
+import uk.gov.beis.dceas.spring.ForbiddenException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
@@ -32,14 +35,19 @@ public class UserStateController {
     private static Random rnd = new SecureRandom();
 
     private final DSLContext dslContext;
+    private final IpValidationService ipValidationService;
 
-    public UserStateController(DSLContext dslContext) {
+    public UserStateController(DSLContext dslContext, IpValidationService ipValidationService) {
         this.dslContext = dslContext;
+        this.ipValidationService = ipValidationService;
     }
 
 
     @GetMapping("/{reference}")
-    public UserState getByReference(@PathVariable String reference) throws UnsupportedEncodingException {
+    public UserState getByReference(@PathVariable String reference, HttpServletRequest request) throws UnsupportedEncodingException {
+        if (!ipValidationService.requestIsInIpWhitelist(request)) {
+            throw new ForbiddenException();
+        }
         return notFoundIfNull(
             dslContext
                 .selectFrom(USER_STATE)

@@ -76,6 +76,8 @@ Build the site locally, and deploy:
 Add necessary config:
 
     cf set-env dceas-user-site dceas-admin-site-url https://dceas-admin-site-int.cloudapps.digital
+    # comma separated list of IPv4 and IPv6 address ranges
+    cf set-env dceas-user-site dceas.admin-ip-whitelist XXX
 
 Build the site locally, and deploy:
 
