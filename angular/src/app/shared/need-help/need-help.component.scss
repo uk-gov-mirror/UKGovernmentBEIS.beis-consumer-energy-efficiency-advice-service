@@ -1,26 +1,33 @@
 @import "styles/page";
 
 // Component specific variables
-$width: 204px;
-$height: 60px;
-
+$mobile-nav-height: 70px;
+$tablet-nav-height: 70px;
+$desktop-nav-height: 82px;
+$mobile-width: 60px;
+$tablet-width: 70px;
+$desktop-width: 80px;
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
-.need-help {
+:host {
+  position: fixed;
   z-index: 1;
   cursor: pointer;
   border: none;
   background: none;
-  position: fixed;
   padding: 0;
   right: 0;
-  top: 182px;
-  width: 204px;
+  top: 0;
+}
+
+.need-help {
+  height: 100%;
+  padding: 0;
 
   .header-bar {
     width: 100%;
-    height: 60px;
+    height: 100%;
     background-color: #D0021B;
     color: white;
     font-size: 20px;
@@ -50,13 +57,23 @@ $height: 60px;
 }
 
 // Breakpoint specific styling
-.need-help {
-  @include mobile() {
+@include mobile() {
+  :host {
+    width: $mobile-width;
+    height: $mobile-nav-height;
   }
+}
 
-  @include tablet() {
+@include tablet() {
+  :host {
+    width: $tablet-width;
+    height: $tablet-nav-height;
   }
+}
 
-  @include desktop() {
+@include desktop() {
+  :host {
+    width: $desktop-width;
+    height: $desktop-nav-height;
   }
 }

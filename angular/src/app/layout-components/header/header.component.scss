@@ -7,6 +7,10 @@ $search-container-vertical-padding: 10px;
 $animation-duration-horizontal: 0.5s;
 $animation-duration-vertical: 0.5s;
 
+$mobile-help-button-width: 60px;
+$tablet-help-button-width: 70px;
+$desktop-help-button-width: 80px;
+
 // Component specific mixins
 @mixin has-small-ehc-logo() {
   .ehc-logo {
@@ -41,6 +45,10 @@ $animation-duration-vertical: 0.5s;
 
   .mobile-icons {
     display: block;
+
+    .mobile-search-icon {
+      display: none;
+    }
   }
 
   .page-row-content .search-container {
@@ -276,6 +284,10 @@ $animation-duration-vertical: 0.5s;
           height: 18px;
         }
       }
+
+      .mobile-menu-icon {
+        margin-right: $mobile-help-button-width;
+      }
     }
   }
 }
@@ -302,6 +314,10 @@ $animation-duration-vertical: 0.5s;
           height: 18px;
         }
       }
+
+      .mobile-menu-icon {
+        margin-right: $tablet-help-button-width;
+      }
     }
   }
 }
@@ -327,6 +343,10 @@ $animation-duration-vertical: 0.5s;
         .gov-logo {
           height: 24px;
         }
+      }
+
+      .search-container {
+        margin-right: $desktop-help-button-width;
       }
     }
   }
