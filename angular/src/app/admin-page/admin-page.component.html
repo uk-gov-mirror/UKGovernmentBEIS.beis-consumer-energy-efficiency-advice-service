@@ -1,0 +1,26 @@
+<div class="admin-page">
+    <div class="page-row heading-section">
+        <div class="page-row-content">
+            <div class="heading">Admin Page</div>
+            <div class="help-text">Enter the user's reference below to be taken into their session</div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content">
+            <form (submit)="handleFormSubmit()" #adminForm="ngForm">
+                <label for="sessionReference">Reference:</label>
+                <input id="sessionReference" type="text" name="sessionReference" [(ngModel)]="sessionReference" required>
+                <button type="submit" [disabled]="!adminForm.form.valid">Go</button>
+            </form>
+            <div class="page-loading-container" *ngIf="!error && loading">
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="page-error-container" *ngIf="error">
+                <div class="error">
+                    <div class="error-header">Oh no!</div>
+                    Unable to load the user's session. Is the reference (including spaces) definitely correct?
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

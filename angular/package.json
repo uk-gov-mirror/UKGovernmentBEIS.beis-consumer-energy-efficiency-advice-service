@@ -34,6 +34,7 @@
     "js-base64": "^2.4.0",
     "js-yaml": "^3.10.0",
     "lodash-es": "^4.17.4",
+    "loglevel": "^1.6.1",
     "mathsass": "^0.10.1",
     "mime": "^1.6.0",
     "ng-inline-svg": "^3.4.0",

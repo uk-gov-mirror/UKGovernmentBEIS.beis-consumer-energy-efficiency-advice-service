@@ -25,6 +25,9 @@ import {BoilerAdvicePageComponent} from './boiler/advice-page/boiler-advice-page
 import {YourPlanPageComponent} from './energy-efficiency/your-plan-page/your-plan-page.component';
 import {YourPlanPageGuard} from './energy-efficiency/your-plan-page/your-plan-page.guard';
 import {GreenerHomeComponent} from './landing-page/greener-home/greener-home.component';
+import {AdminPageComponent} from "./admin-page/admin-page.component";
+import {AdminPageGuard} from "./admin-page/admin-page.guard";
+import {ForbiddenPageComponent} from "./shared/forbidden-page/forbidden-page.component";
 
 const routes: Routes = [
     {
@@ -102,6 +105,15 @@ const routes: Routes = [
         path: 'js/boiler/results',
         component: BoilerResultsPageComponent,
         canActivate: [BoilerResultsPageRouteGuard]
+    },
+    {
+        path: 'js/admin',
+        component: AdminPageComponent,
+        canActivate: [AdminPageGuard]
+    },
+    {
+        path: 'js/forbidden',
+        component: ForbiddenPageComponent
     },
     {
         path: 'js/measures/:slug',

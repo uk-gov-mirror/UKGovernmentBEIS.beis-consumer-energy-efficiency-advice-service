@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import * as log from 'loglevel';
 import {ResponseData} from '../shared/response-data/response-data';
 import {getJourneyDescription, UserJourneyType} from '../shared/response-data/user-journey-type';
 import {QuestionContentService} from '../shared/question-content/question-content.service';
@@ -32,7 +33,7 @@ export class LandingPageComponent implements OnInit {
         this.questionContentService.fetchQuestionsContent()
             .subscribe(questionsContent => this.postcodeQuestionReason = questionsContent['postcode_epc'].questionReason,
                 (err) => {
-                    console.log(err);
+                    log.error(err);
                     this.questionContentError = true;
                 });
         this.heading = getJourneyDescription(this.userJourneyType);

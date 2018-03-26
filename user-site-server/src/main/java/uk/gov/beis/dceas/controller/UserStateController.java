@@ -13,7 +13,11 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
 import uk.gov.beis.dceas.data.RandomWordList;
+import uk.gov.beis.dceas.service.IpValidationService;
+import uk.gov.beis.dceas.spring.ForbiddenException;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -31,18 +35,23 @@ public class UserStateController {
     private static Random rnd = new SecureRandom();
 
     private final DSLContext dslContext;
+    private final IpValidationService ipValidationService;
 
-    public UserStateController(DSLContext dslContext) {
+    public UserStateController(DSLContext dslContext, IpValidationService ipValidationService) {
         this.dslContext = dslContext;
+        this.ipValidationService = ipValidationService;
     }
 
 
     @GetMapping("/{reference}")
-    public UserState getByReference(@PathVariable String reference) {
+    public UserState getByReference(@PathVariable String reference, HttpServletRequest request) throws UnsupportedEncodingException {
+        if (!ipValidationService.requestIsInIpWhitelist(request)) {
+            throw new ForbiddenException();
+        }
         return notFoundIfNull(
             dslContext
                 .selectFrom(USER_STATE)
-                .where(USER_STATE.ID.eq(reference))
+                .where(USER_STATE.ID.eq(reference.toLowerCase()))
                 .fetchOne(UserState::fromDb)
         );
     }
@@ -67,7 +76,7 @@ public class UserStateController {
     }
 
     @PutMapping("/{reference}")
-    public ResponseEntity<?> updateUserState(@PathVariable String reference, @RequestBody String state) {
+    public ResponseEntity<?> updateUserState(@PathVariable String reference, @RequestBody String state) throws UnsupportedEncodingException {
         int entriesUpdated = dslContext
             .update(USER_STATE)
             .set(USER_STATE.STATE, state)

@@ -23,11 +23,13 @@ import {QuestionReasonComponent} from '../shared/question-reason/question-reason
 
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {UserStateService} from "../shared/user-state-service/user-state-service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
     let fixture: ComponentFixture<QuestionnaireComponent>;
     let allQuestionsContent: AllQuestionsContent = {};
+    let startingQuestion;
 
     const questionnaireName = 'test';
     const questionId = 'test-question-id';
@@ -39,6 +41,10 @@ describe('QuestionnaireComponent', () => {
         fetchQuestionsContent() {
             return Observable.of(allQuestionsContent);
         }
+    };
+
+    const userStateServiceStub = {
+        sendState: () => {}
     };
 
     class TestQuestionComponent extends QuestionBaseComponent {
@@ -89,12 +95,26 @@ describe('QuestionnaireComponent', () => {
     class MockActivatedRoute {
 
         public snapshot = {
-            paramMap: {get: MockActivatedRoute.paramMapGet}
+            paramMap: {get: MockActivatedRoute.paramMapGet},
+            queryParamMap: {get: MockActivatedRoute.queryParamMapGet}
         };
 
         public paramMap = Observable.of({
             get: MockActivatedRoute.paramMapGet
         });
+
+        public queryParamMap = Observable.of({
+            get: MockActivatedRoute.queryParamMapGet
+        });
+
+        private static queryParamMapGet(key) {
+            if (key === 'startingQuestion') {
+                return startingQuestion;
+            } else {
+                throw new Error('Unexpected query parameter name');
+            }
+        }
+
         private static paramMapGet(key) {
             if (key === 'name') {
                 return questionnaireName;
@@ -124,13 +144,15 @@ describe('QuestionnaireComponent', () => {
                 {provide: QuestionnaireService, useClass: MockQuestionnaireService},
                 {provide: QuestionHeadingProcessor, useClass: MockQuestionHeadingProcessor},
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
-                {provide: ResponseData, useValue: responseDataStub}
+                {provide: UserStateService, useValue: userStateServiceStub},
+                {provide: ResponseData, useValue: responseDataStub},
             ],
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
+        startingQuestion = null;
         fixture = TestBed.createComponent(QuestionnaireComponent);
         component = fixture.componentInstance;
         component.questionnaireName = questionnaireName;

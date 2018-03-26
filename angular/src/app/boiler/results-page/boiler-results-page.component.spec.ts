@@ -16,6 +16,7 @@ import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
+import {UserStateService} from "../../shared/user-state-service/user-state-service";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -34,6 +35,10 @@ describe('BoilerResultsPageComponent', () => {
 
     const questionnaireServiceStub = {
         isComplete: () => true
+    };
+
+    const userStateServiceStub = {
+        sendState: () => {}
     };
 
     beforeEach(async(() => {
@@ -55,6 +60,7 @@ describe('BoilerResultsPageComponent', () => {
                 {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
+                {provide: UserStateService, useValue: userStateServiceStub},
             ],
         })
             .compileComponents();

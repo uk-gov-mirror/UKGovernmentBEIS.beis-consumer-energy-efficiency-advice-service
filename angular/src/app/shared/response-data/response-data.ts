@@ -18,6 +18,11 @@ import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/f
 import {FloorLevel} from '../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 
+/**
+ * This is a global mutable singleton which tracks the user's answers to the questionnaires.
+ *
+ * Services which need to read or write this data can request that the singleton is injected.
+ */
 @Injectable()
 export class ResponseData {
     public userJourneyType: UserJourneyType;
@@ -77,4 +82,25 @@ export class ResponseData {
 
 export function isComplete(responseData: ResponseData) {
     return new RdSapInput(responseData).isMinimalDataSet();
+}
+
+export function replaceOldResponseData(oldResponseData: ResponseData, newResponseData: ResponseData) {
+    deleteOldResponseData(oldResponseData);
+    addNewResponseData(oldResponseData, newResponseData);
+}
+
+function addNewResponseData(oldResponseData: ResponseData, newResponseData: ResponseData) {
+    for (const i in newResponseData) {
+        if (newResponseData.hasOwnProperty(i)) {
+            oldResponseData[i] = newResponseData[i];
+        }
+    }
+}
+
+function deleteOldResponseData(responseData: ResponseData) {
+    for (const i in responseData) {
+        if (responseData.hasOwnProperty(i)) {
+            delete responseData[i];
+        }
+    }
 }

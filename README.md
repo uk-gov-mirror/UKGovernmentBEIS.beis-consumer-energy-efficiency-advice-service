@@ -45,6 +45,8 @@ This is compiled into the `user-site-server/src/main/resources/public/dist`
 folder for use on the site; however, for ease of config
 and development, the source code lives in this folder.
 
+Please see the [angular/README.md] file for documentation specific to this module.
+
  * `integration-tests/`
  
 Simple integration tests to check that the application is generally working as expected.
@@ -71,9 +73,17 @@ site you will need PHP. Follow the "Development Setup - Admin Site" section belo
 You will need the database installed locally, follow
 the "Development Setup - MySQL Database" section below.
 
-TODO:BEISDEAS-156 hopefully just press "play" in IntelliJ
+Ensure that you have Node 8.2.* and `npm` 5.3.* installed.
 
-TODO:BEISDEAS-156 for now, you will need the WordPress site running locally as well
+In the `angular` dir, run:
+
+    npm install
+
+In IntelliJ, run both the "ng build --watch" and the "DceasApplication" run configurations
+and visit the site at http://localhost:8080
+
+TODO:BEISDEAS-156 for now, you will need the WordPress site running locally as well,
+see the "Development Setup - Admin Site" section below. Run the "Wordpress on local server" item.
 
 ### Development Setup - Admin Site
 
@@ -91,7 +101,7 @@ fill in the config values. This file will be ignored by git, so
 you can safely fill in the template values with real values.
 
 You should be able to launch the site by selecting the "on local server"
-run configuration and clicking "Play".
+run configuration in IntelliJ and clicking "Play".
 
 Open the site at http://localhost:81
 

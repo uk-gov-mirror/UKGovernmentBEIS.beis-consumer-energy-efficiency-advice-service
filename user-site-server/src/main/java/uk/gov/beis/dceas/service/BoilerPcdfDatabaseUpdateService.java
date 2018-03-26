@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.db.gen.tables.records.BoilersRecord;
 
@@ -23,6 +24,7 @@ import static uk.gov.beis.dceas.db.gen.Tables.BOILERS;
  * Code relating to fetching the Boiler database from
  * http://www.boilers.org.uk/data1/pcdf2012.dat
  */
+@Service
 public class BoilerPcdfDatabaseUpdateService {
 
     /**
@@ -46,7 +48,7 @@ public class BoilerPcdfDatabaseUpdateService {
     @Autowired
     public BoilerPcdfDatabaseUpdateService(
         RestTemplate httpClient,
-        @Value("dceas.boiler-pcdf-database-url") String databaseUrl,
+        @Value("${dceas.boiler-pcdf-database-url}") String databaseUrl,
         DSLContext database) {
 
         this.httpClient = httpClient;
