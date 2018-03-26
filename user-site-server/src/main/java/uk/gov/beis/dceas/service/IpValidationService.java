@@ -24,6 +24,10 @@ public class IpValidationService {
     public boolean requestIsInIpWhitelist(HttpServletRequest request) {
         List<String> ipAddresses = new ArrayList<String>();
         ipAddresses.add(request.getRemoteAddr());
+        System.out.println("Remote Addr:");
+        System.out.println(request.getRemoteAddr());
+        System.out.println("X-FORWARDED-FOR header:");
+        System.out.println(request.getHeader("X-FORWARDED-FOR"));
 
         String proxiedIpsOrNull = request.getHeader("X-FORWARDED-FOR");
         if (proxiedIpsOrNull != null) {
