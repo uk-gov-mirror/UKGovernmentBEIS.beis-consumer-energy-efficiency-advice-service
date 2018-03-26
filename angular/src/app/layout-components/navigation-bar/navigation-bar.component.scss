@@ -85,9 +85,9 @@ button {
   background: none;
   outline: none;
   color: white;
-  text-decoration: none !important;
+  text-decoration: none;
 }
-.badge {
+.finance-text {
   background-color: #A0A0A0;
   height: 44px;
   overflow: visible;
@@ -97,7 +97,7 @@ button {
   background: none;
   outline: none;
   color: white;
-  text-decoration: none !important;
+  text-decoration: none;
   font-size: 13px;
   position: relative;
   bottom: 2px;
@@ -106,10 +106,6 @@ button {
 a:hover, a:visited, a:link, a:active
 {
   text-decoration:none;
-}
-
-a:hover {
-  color: cyan !important;
 }
 
 // Breakpoint specific styling

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
 
 import {Suboption} from "./Suboptions Class";
 
@@ -50,48 +50,56 @@ export class NavigationBarComponent implements OnInit {
             url: "/Landlords"
         }
     ];
-    showVar1: boolean = false;
-    showVar2: boolean = false;
-    showVar3: boolean = false;
+    showAboutMenu: boolean = false;
+    showHomeMenu: boolean = false;
+    showRightsMenu: boolean = false;
 
 
     @Input() shouldExpandNav: boolean;
     @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
 
-    constructor() {
-        document.addEventListener("click", this.offClick);
+    @ViewChild('aboutMenu') aboutMenu;
+    @ViewChild('homeMenu') homeMenu;
+    @ViewChild('rightsMenu') rightsMenu;
+
+    private deregisterClickListener: () => void;
+
+    constructor(private renderer: Renderer2) {
     }
 
     ngOnInit() {
     }
-    offClick() {
-        this.showVar1 = false;
-        this.showVar2 = false;
-        this.showVar3 = false;
+
+    clickOffNavBar(): void {
+        if (this.deregisterClickListener) {
+            this.deregisterClickListener();
+        }
+        this.deregisterClickListener = this.renderer.listen('window', 'click', event => this.handleClick(event));
     }
 
-    toggleSuboption1() {
-        this.showVar1 = !this.showVar1;
+    handleClick(event): void {
+        const clickedElement = event.target;
+        const inAboutMenu = clickedElement && this.aboutMenu.nativeElement.contains(clickedElement);
+        const inHomeMenu = clickedElement && this.homeMenu.nativeElement.contains(clickedElement);
+        const inRightsMenu = clickedElement && this.rightsMenu.nativeElement.contains(clickedElement);
+        if (!inAboutMenu && !inHomeMenu) {this.showAboutMenu = this.showHomeMenu = false; }
+        if (!inAboutMenu && !inRightsMenu) {this.showAboutMenu = this.showRightsMenu = false; }
+        if (!inHomeMenu && !inRightsMenu) {this.showHomeMenu = this.showRightsMenu = false; }
     }
 
-    toggleSuboption2() {
-        this.showVar2 = !this.showVar2;
+    toggleAboutMenu() {
+        this.showAboutMenu = !this.showAboutMenu;
     }
 
-    toggleSuboption3() {
-        this.showVar3 = !this.showVar3;
+    toggleHomeMenu() {
+        this.showHomeMenu = !this.showHomeMenu;
     }
 
-    hideSuboptions() {
-        this.showVar1 = false;
-        this.showVar2 = false;
-        this.showVar3 = false;
+    toggleRightsMenu() {
+        this.showRightsMenu = !this.showRightsMenu;
     }
 
     hideMobileNav() {
         this.onHideMobileNav.emit();
-        this.showVar1 = false;
-        this.showVar2 = false;
-        this.showVar3 = false;
     }
 }

@@ -1,33 +1,39 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
     <div class="page-row-content">
 
+        <div #aboutMenu>
             <button type="button" label="About-this-site"
-                        (click)="toggleSuboption1()">
+                        (click)="toggleAboutMenu()" (focus)="clickOffNavBar()">
                 About this site
-                <div *ngIf="showVar1">
+                <div *ngIf="showAboutMenu">
                     <app-nav-bar-suboption [suboptionInput]="suboptionAbout"></app-nav-bar-suboption>
                 </div>
             </button>
+        </div>
 
+        <div #homeMenu>
             <button type="button" label="Your-Home"
-                    (click)="toggleSuboption2()">
+                    (click)="toggleHomeMenu()" (focus)="clickOffNavBar()">
                 Your Home
-                <div *ngIf="showVar2">
+                <div *ngIf="showHomeMenu">
                     <app-nav-bar-suboption [suboptionInput]="suboptionHome"></app-nav-bar-suboption>
                 </div>
             </button>
+        </div>
 
+        <div #rightsMenu>
             <button type="button" label="Rights"
-                    (click)="toggleSuboption3()">
+                    (click)="toggleRightsMenu()" (focus)="clickOffNavBar()">
                 Rights and Responsibilities
-                <div *ngIf="showVar3">
+                <div *ngIf="showRightsMenu">
                     <app-nav-bar-suboption [suboptionInput]="suboptionRights"></app-nav-bar-suboption>
                 </div>
             </button>
+        </div>
 
         <li label="Financial">
             <a routerLink="/financial-assistance/" class="finance">
-                <span class="badge">Financial Assistance</span>
+                <span class="finance-text">Financial Assistance</span>
             </a>
         </li>
 
