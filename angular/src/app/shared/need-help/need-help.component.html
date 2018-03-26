@@ -1,16 +1,16 @@
-<button class="need-help"
+<div class="need-help"
         (click)="expanded = !expanded">
     <div class="header-bar">
         <div class="help-icon" [inlineSVG]="'icons/help.svg'"></div>
     </div>
     <div class="contents" *ngIf="expanded">
         <div>
-            “If you would like some help using the site and would like to talk to one of our trained advisors, use our
-            <strong>free</strong> phoneline:
-        </div>
-        <div class="phone-number">0800 123 4567</div>
-        <div>
-            Quote this reference to pick up where you left off: {{reference.toUpperCase()}}
+            If you would like some help using the site, call 0800 9374805 for free to
+            talk to one of our trainer advisors.
+            <ng-container *ngIf="reference">
+                Quote this reference to pick up where you left off:<br /><br />
+                <strong>{{reference.toUpperCase()}}</strong>
+            </ng-container>
         </div>
     </div>
-</button>
+</div>

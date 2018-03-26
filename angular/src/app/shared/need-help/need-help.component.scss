@@ -1,5 +1,6 @@
 @import "styles/page";
 @import "styles/var/colors";
+@import "styles/mixins/font";
 
 // Component specific variables
 $mobile-nav-height: 70px;
@@ -13,7 +14,7 @@ $desktop-width: 80px;
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   cursor: pointer;
   border: none;
   background: none;
@@ -27,6 +28,7 @@ $desktop-width: 80px;
   height: 100%;
   width: 100%;
   padding: 0;
+  cursor: pointer;
 
   .header-bar {
     width: 100%;
@@ -48,17 +50,10 @@ $desktop-width: 80px;
     box-sizing: border-box;
     color: white;
     background-color: $pink;
-    padding: 16px;
-    font-size: 14px;
+    @include need-help-font;
 
     display: flex;
     flex-direction: column;
-
-    .phone-number {
-      font-weight: 500;
-      font-size: 20px;
-      padding: 4px 0 8px;
-    }
   }
 }
 
@@ -76,6 +71,7 @@ $desktop-width: 80px;
 
     .contents {
       width: 100vw;
+      padding: 26px 20px;
     }
   }
 }
@@ -93,6 +89,7 @@ $desktop-width: 80px;
 
     .contents {
       width: 375px;
+      padding: 26px 20px;
     }
   }
 }
@@ -110,6 +107,7 @@ $desktop-width: 80px;
 
     .contents {
       width: 375px;
+      padding: 26px 24px;
     }
   }
 }
