@@ -10,6 +10,7 @@ $animation-duration-vertical: 0.5s;
 $mobile-help-button-width: 60px;
 $tablet-help-button-width: 70px;
 $desktop-help-button-width: 80px;
+$desktop-header-height: 82px;
 
 // Component specific mixins
 @mixin has-small-ehc-logo() {
@@ -45,10 +46,6 @@ $desktop-help-button-width: 80px;
 
   .mobile-icons {
     display: block;
-
-    .mobile-search-icon {
-      display: none;
-    }
   }
 
   .page-row-content .search-container {
@@ -288,6 +285,11 @@ $desktop-help-button-width: 80px;
       .mobile-menu-icon {
         margin-right: $mobile-help-button-width;
       }
+
+      // The search is in the hamburger menu at mobile sizes
+      .mobile-search-icon {
+        display: none;
+      }
     }
   }
 }
@@ -346,7 +348,12 @@ $desktop-help-button-width: 80px;
       }
 
       .search-container {
-        margin-right: $desktop-help-button-width;
+        margin-right: $desktop-help-button-width - $desktop-side-margin;
+        height: 100%;
+
+        .search-details-dropdown {
+          margin-top: $desktop-header-height;
+        }
       }
     }
   }
