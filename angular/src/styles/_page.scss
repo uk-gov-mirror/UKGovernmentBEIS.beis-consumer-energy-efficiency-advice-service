@@ -5,6 +5,7 @@ $mobile-side-margin: 20px;
 $tablet-side-margin: 34px;
 $desktop-side-margin: 40px;
 $content-max-width: 1180px;
+$content-and-margins-max-width: $content-max-width + (2 * $desktop-side-margin);
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .page-row {
