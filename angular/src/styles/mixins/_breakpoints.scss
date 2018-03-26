@@ -1,5 +1,6 @@
 $max-mobile-breakpoint: 600px;
 $max-tablet-breakpoint: 992px;
+$min-large-desktop-breakpoint: 1260px;
 
 @mixin mobile() {
   @media (max-width: $max-mobile-breakpoint) {
@@ -15,6 +16,13 @@ $max-tablet-breakpoint: 992px;
 
 @mixin desktop() {
   @media (min-width: ($max-tablet-breakpoint + 1px)) {
+    @content;
+  }
+}
+
+// Only to be used in essential situations, will conflict with desktop() above
+@mixin large-desktop() {
+  @media (min-width: ($min-large-desktop-breakpoint)) {
     @content;
   }
 }
