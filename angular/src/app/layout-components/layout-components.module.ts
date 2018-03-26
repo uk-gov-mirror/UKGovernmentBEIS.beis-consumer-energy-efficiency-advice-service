@@ -5,6 +5,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
 
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
+import {SearchBarComponent} from "./search-bar/search-bar.component";
 import {SharedModule} from '../shared/shared.module';
 import {RoutingModule} from '../app-routing.module';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
@@ -14,11 +15,13 @@ import { OneTimePopupComponent } from './one-time-popup/one-time-popup.component
     declarations: [
         HeaderComponent,
         FooterComponent,
+        SearchBarComponent,
         OneTimePopupComponent
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
+        SearchBarComponent,
         OneTimePopupComponent
     ],
     imports: [
