@@ -1,4 +1,5 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
+    <app-search-bar *ngIf="displaySearch"></app-search-bar>
     <div class="page-row-content">
         <a class="menu-item" *ngFor="let page of topLevelPages"
            [routerLink]="page.route" [innerHTML]="page.title"

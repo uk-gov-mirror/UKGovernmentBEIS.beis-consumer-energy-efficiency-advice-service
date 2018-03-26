@@ -14,6 +14,5 @@ export class HeaderComponent {
 
     toggleSearchMobileBox(): void {
         this.displaySearch = !this.displaySearch;
-        console.log(this.displaySearch);
     }
 }
