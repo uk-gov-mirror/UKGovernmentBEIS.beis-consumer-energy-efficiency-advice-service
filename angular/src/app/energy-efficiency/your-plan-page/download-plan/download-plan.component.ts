@@ -13,75 +13,20 @@ export class DownloadPlanComponent {
     constructor(private responseData: ResponseData) {
     }
 
-    public onPdfClicked() {
-        const expandableElements = document.getElementsByClassName("step-details-drawer");
-        const elementsArray = Array.from(expandableElements);
-
-        const expandedElements = document.querySelectorAll(".expanded.step-details-drawer");
-        const exElementsArray = Array.from(expandedElements);
-
-        const nonExElementsArray = [];
-        for (let i = 0; i < elementsArray.length; i++) {
-            let found = false;
-
-            for (let j = 0; j < exElementsArray.length; j++) { // j < is missed;
-                if (elementsArray[i] === exElementsArray[j]) {
-                    found = true;
-                    break;
-                }
-            }
-            if (found === false) {
-                nonExElementsArray.push(elementsArray[i]);
-            }
-        }
-
-        const nonExCount = nonExElementsArray.length;
-
-        const nonExElementSiblings = [];
-        for (const elem of nonExElementsArray) {
-            nonExElementSiblings.push(elem.parentNode.childNodes[0].nextSibling);
-        }
-
-        let mutationCount = 0;
-
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                mutationCount++;
-
-                if (mutationCount === nonExCount) {
-                    for (const elem of Array.from(<HTMLCollection>document.querySelectorAll('.headline'))) {
-                        (<HTMLElement>elem).style.marginLeft = "20px";
-                        (<HTMLElement>elem.nextElementSibling).style.marginLeft = "20px";
-                    }
-
-                    (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "hidden";
-
-                    const pdfBody = document.getElementsByClassName("your-plan-page")[0];
-                    html2pdf(pdfBody);
-
-                    this.clickElems(nonExElementSiblings);
-                    observer.disconnect();
-
-                    for (const elem of Array.from(document.getElementsByClassName('.headline'))) {
-                        (<HTMLElement>elem).style.marginLeft = "0px";
-                        (<HTMLElement>elem.nextElementSibling).style.marginLeft = "0px";
-                    }
-
-                    (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
-                }
-            });
+    static clickElems(elems) {
+        return elems.map(elem => {
+            return this.eventFire(elem, 'click');
         });
+    }
 
-        for (const elem of elementsArray) {
-            observer.observe(elem, {
-                attributes: true,
-                childList: true,
-                characterData: true,
-                attributeOldValue: true
-            });
+    static eventFire(el, etype) {
+        if (el.fireEvent) {
+            return el.fireEvent('on' + etype);
+        } else {
+            const evObj = document.createEvent('Events');
+            evObj.initEvent(etype, true, false);
+            return el.dispatchEvent(evObj);
         }
-
-        this.clickElems(nonExElementSiblings);
     }
 
     isTenant(): boolean {
@@ -89,19 +34,95 @@ export class DownloadPlanComponent {
             !!this.responseData.tenureType;
     }
 
-    public clickElems(elems) {
-        return elems.map(elem => {
-            return this.eventFire(elem, 'click');
-        });
+    public onPdfClicked() {
+        const expandableElements = document.getElementsByClassName("step-details-drawer"); // Find all expandable elements
+        const elementsArray = Array.from(expandableElements); // Convert to array because they are less limited than iterables
+
+        const expandedElements = document.querySelectorAll(".expanded.step-details-drawer"); // Find all elements already expanded
+        const exElementsArray = Array.from(expandedElements);
+
+        const nonExElementsArray = [];
+
+        // By filtering out elements which are both expandable and expanded, find the non-expanded elements
+        this.filterNonUnique(elementsArray, exElementsArray, nonExElementsArray);
+
+        const nonExCount = nonExElementsArray.length;
+
+        const nonExElementSiblings = [];
+        for (const elem of nonExElementsArray) {
+            // Find the sibling of the non-expanded element (Only one) and push it
+            nonExElementSiblings.push(elem.parentNode.childNodes[0].nextSibling);
+        }
+
+        let mutationCount = 0;
+
+        const callback = function(observer) {
+            mutationCount++;
+
+            if (mutationCount === nonExCount) { // If all drop downs have been opened
+                // Do some styling
+                for (const elem of Array.from(<HTMLCollection>document.querySelectorAll('.headline'))) {
+                    (<HTMLElement>elem).style.marginLeft = "20px";
+                    (<HTMLElement>elem.nextElementSibling).style.marginLeft = "20px";
+                }
+
+                (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "hidden";
+
+                // Create the PDF
+                const pdfBody = document.getElementsByClassName("your-plan-page")[0];
+                html2pdf(pdfBody);
+
+                // Close all the drop downs
+                DownloadPlanComponent.clickElems(nonExElementSiblings);
+
+                // Undo the styling
+                for (const elem of Array.from(document.getElementsByClassName('.headline'))) {
+                    (<HTMLElement>elem).style.marginLeft = "0px";
+                    (<HTMLElement>elem.nextElementSibling).style.marginLeft = "0px";
+                }
+
+                (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
+
+                // Disconnect the observer so the user cant trigger this callback afterwards
+                observer.disconnect();
+            }
+        };
+
+        const observer = this.instantiateObserver(callback);
+
+        for (const elem of elementsArray) {
+            observer.observe(elem, { // Attributes which should be observed
+                attributes: true,
+                childList: true,
+                characterData: true,
+                attributeOldValue: true
+            });
+        }
+
+        DownloadPlanComponent.clickElems(nonExElementSiblings);
     }
 
-    public eventFire(el, etype) {
-        if (el.fireEvent) {
-            return el.fireEvent('on' + etype);
-        } else {
-            const evObj = document.createEvent('Events');
-            evObj.initEvent(etype, true, false);
-            return el.dispatchEvent(evObj);
+    private instantiateObserver(callback) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => callback(observer));
+        });
+
+        return observer;
+    }
+
+    private filterNonUnique(array1, array2, targetArray) {
+        for (let i = 0; i < array1.length; i++) {
+            let found = false;
+
+            for (let j = 0; j < array2.length; j++) {
+                if (array1[i] === array2[j]) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found === false) {
+                targetArray.push(array1[i]);
+            }
         }
     }
 }
