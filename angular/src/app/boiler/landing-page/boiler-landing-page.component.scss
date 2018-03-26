@@ -1,5 +1,3 @@
-@import "styles/var/colors";
-@import "styles/mixins/font";
 @import "styles/boiler";
 
 // Component specific variables
@@ -228,6 +226,33 @@
     .mobile-hidden > *:not(.mobile-expander) {
       display: none;
     }
+
+    .troubleshooting {
+      background-color: $focus-blue;
+      padding: 25px 0 20px;
+    }
+
+    .heading {
+      color: $lighter-grey;
+    }
+
+    .body-text {
+      color: $lighter-grey;
+    }
+
+    .expand-step-icon {
+      margin-left: auto;
+      fill: $light-grey;
+      display: block;
+      width: 14px;
+      height: 8px;
+      line-height: 0;
+
+      &.troubleshootingMobileExpanded {
+        transform: rotate(180deg);
+      }
+    }
+
   }
 
   @include tablet() {

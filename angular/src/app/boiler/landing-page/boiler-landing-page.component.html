@@ -6,8 +6,13 @@
     </div>
     <div class="troubleshooting page-row">
         <div class="page-row-content" [ngClass]="{'mobile-hidden': !troubleshootingMobileExpanded}">
-            <div class="heading mobile-expander" (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded">Troubleshooting tips</div>
-            <div class="body-text">Try these 5 fixes before calling an engineer</div>
+            <div class="mobile-expander" (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded">
+                <div class="heading">Troubleshooting tips</div>
+                <div class="expand-step-icon" [class.troubleshootingMobileExpanded]="troubleshootingMobileExpanded"
+                     title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+
+                <div class="body-text">Try these 5 fixes before calling an engineer</div>
+            </div>
             <div class="tips">
                 <app-carousel class="carousel"></app-carousel>
                 <div class="links">
