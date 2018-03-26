@@ -1,8 +1,37 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
     <div class="page-row-content">
-        <a class="menu-item" *ngFor="let page of topLevelPages"
-           [routerLink]="page.route" [innerHTML]="page.title"
-           (click)="hideMobileNav()"></a>
+
+            <button type="button" label="About-this-site"
+                        (click)="toggleSuboption1()">
+                About this site
+                <div *ngIf="showVar1">
+                    <app-nav-bar-suboption [suboptionInput]="suboptionAbout"></app-nav-bar-suboption>
+                </div>
+            </button>
+
+            <button type="button" label="Your-Home"
+                    (click)="toggleSuboption2()">
+                Your Home
+                <div *ngIf="showVar2">
+                    <app-nav-bar-suboption [suboptionInput]="suboptionHome"></app-nav-bar-suboption>
+                </div>
+            </button>
+
+            <button type="button" label="Rights"
+                    (click)="toggleSuboption3()">
+                Rights and Responsibilities
+                <div *ngIf="showVar3">
+                    <app-nav-bar-suboption [suboptionInput]="suboptionRights"></app-nav-bar-suboption>
+                </div>
+            </button>
+
+        <li label="Financial">
+            <a routerLink="/financial-assistance/" class="finance">
+                <span class="badge">Financial Assistance</span>
+            </a>
+        </li>
+
     </div>
     <div class="navigation-bar-mobile-overlay" (click)="hideMobileNav()"></div>
 </div>
+
