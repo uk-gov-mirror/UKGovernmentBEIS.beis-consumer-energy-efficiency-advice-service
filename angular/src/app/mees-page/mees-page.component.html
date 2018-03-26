@@ -1,0 +1,32 @@
+<!-- TODO BEISDEAS-209 Combine this with questionnaire.component.html -->
+<app-need-help [showReference]="false"></app-need-help>
+<div class="questions-container">
+    <div class="progress-indicator-component">
+        <div class="progress-indicator">
+            <div class="pre-questionnaire-sections"></div>
+            <div class="questionnaire-sections">
+                <div class="questionnaire-section information-section">
+                    <span class="journey-heading">Identify your MEES responsibilities</span>
+                    <span class="clock" [inlineSVG]="'icons/timer.svg'"></span>
+                    <span class="time-needed">2 mins</span>
+                </div>
+            </div>
+            <div class="post-questionnaire-sections"></div>
+        </div>
+    </div>
+    <span class="question-type-icon">
+        <span class="house" [inlineSVG]="'question-types/house.svg'"></span>
+    </span>
+    <span class="question-type-icon-baseline"></span>
+    <div class="question-heading-container">
+        <div id="question-heading" class="question-heading" [innerHtml]="currentState.prompt"></div>
+    </div>
+    <div class="help-text" *ngIf="currentState?.helpText" [innerHtml]="currentState?.helpText"></div>
+    <div class="question" *ngIf="currentState.actions.length > 0">
+        <div class="question-component">
+            <div class="answer-grid multiple-choice-options">
+                <button class="multiple-choice-option" *ngFor="let action of currentState.actions" (click)="action.action()">{{ action.text }}</button>
+            </div>
+        </div>
+    </div>
+</div>
