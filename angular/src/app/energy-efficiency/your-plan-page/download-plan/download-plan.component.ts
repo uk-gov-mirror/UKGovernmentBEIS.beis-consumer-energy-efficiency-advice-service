@@ -92,10 +92,7 @@ export class DownloadPlanComponent {
 
         for (const elem of elementsArray) {
             observer.observe(elem, { // Attributes which should be observed
-                attributes: true,
-                childList: true,
-                characterData: true,
-                attributeOldValue: true
+                attributes: true
             });
         }
 
