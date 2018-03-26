@@ -10,6 +10,6 @@
             <div #mobileSearchButton class="mobile-search-icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" (click)="toggleSearchMobileBox()"></div>
             <div class="mobile-menu-icon" [inlineSVG]="'controls/menu.svg'" aria-label="Menu" (click)="toggleMobileNav()"></div>
         </div>
-        <app-search-bar></app-search-bar>
+        <app-search-bar *ngIf="displaySearch"></app-search-bar>
     </div>
 </div>
