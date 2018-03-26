@@ -85,19 +85,9 @@ export class NavigationBarComponent implements OnInit {
         if (!inAboutMenu && !inHomeMenu) {this.showAboutMenu = this.showHomeMenu = false; }
         if (!inAboutMenu && !inRightsMenu) {this.showAboutMenu = this.showRightsMenu = false; }
         if (!inHomeMenu && !inRightsMenu) {this.showHomeMenu = this.showRightsMenu = false; }
+        if (!inHomeMenu && !inRightsMenu && !inAboutMenu && this.deregisterClickListener) {this.deregisterClickListener(); }
     }
 
-    toggleAboutMenu() {
-        this.showAboutMenu = !this.showAboutMenu;
-    }
-
-    toggleHomeMenu() {
-        this.showHomeMenu = !this.showHomeMenu;
-    }
-
-    toggleRightsMenu() {
-        this.showRightsMenu = !this.showRightsMenu;
-    }
 
     hideMobileNav() {
         this.onHideMobileNav.emit();
