@@ -3,9 +3,13 @@
 @import "styles/mixins/_buttons";
 @import "styles/var/colors";
 
+// Component specific variables
 $grant-cards-per-row: 4;
 $grant-card-margin: 24px;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   flex-grow: 1;
   display: flex;
@@ -24,23 +28,11 @@ $grant-card-margin: 24px;
   }
 
   .results-header-row.page-row {
-    padding: 20px 0;
-
     .page-row-content {
       display: flex;
 
-      & > * {
-        border-right: 1px solid $light-grey;
-      }
-
-      & > :last-child {
-        margin-right: $add-to-plan-column-width;
-      }
-
       .heading-text {
         @include page-heading-small;
-        padding-right: 20px;
-        flex: 1 0 1px;
         display: flex;
         align-items: center;
       }
@@ -54,11 +46,9 @@ $grant-card-margin: 24px;
     .page-row-content {
       display: flex;
       flex-direction: column;
-      padding: 40px 0 32px 0;
 
       .recommendations-heading {
         @include card-heading-font;
-        margin-bottom: 6px;
       }
 
       .recommendations-subheading {
@@ -114,5 +104,88 @@ $grant-card-margin: 24px;
       }
     }
   }
+}
 
+// Breakpoint specific styling
+.results-page {
+  @include mobile() {
+    .results-header-row.page-row {
+      .page-row-content {
+        .heading-text {
+          width: 100%;
+          padding: 24px 0 15px;
+
+          app-data-card:first-of-type {
+            border-right: 1px solid $light-grey;
+          }
+        }
+      }
+    }
+
+    .recommendations.page-row {
+      .page-row-content {
+        padding: 34px 0 24px 0;
+
+        .recommendations-heading {
+          margin-bottom: 14px;
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    .results-header-row.page-row {
+      .page-row-content {
+        .heading-text {
+          width: 100%;
+          padding: 34px 0;
+
+          app-data-card:not(:last-of-type) {
+            border-right: 1px solid $light-grey;
+          }
+        }
+      }
+    }
+
+    .recommendations.page-row {
+      .page-row-content {
+        padding: 34px 0 40px 0;
+
+        .recommendations-heading {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+
+  @include desktop() {
+    .results-header-row.page-row {
+      padding: 20px 0;
+
+      .page-row-content {
+        & > * {
+          border-right: 1px solid $light-grey;
+        }
+
+        & > :last-child {
+          margin-right: $add-to-plan-column-width;
+        }
+
+        .heading-text {
+          padding-right: 20px;
+          flex: 1 0 1px;
+        }
+      }
+    }
+
+    .recommendations.page-row {
+      .page-row-content {
+        padding: 40px 0 32px 0;
+
+        .recommendations-heading {
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
 }
