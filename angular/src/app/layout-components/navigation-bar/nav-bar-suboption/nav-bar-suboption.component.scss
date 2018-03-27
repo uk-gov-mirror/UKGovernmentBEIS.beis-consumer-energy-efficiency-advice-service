@@ -1,27 +1,72 @@
 @import "styles/var/colors";
 @import "styles/mixins/_font";
 
-.nav-bar-suboptions {
-    position: absolute;
-    background-color: $light-grey;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    padding: 12px;
-    text-decoration: none;
-    color: white;
-    outline: none;
-    cursor: pointer;
-    overflow: visible;
-    height: auto;
-    top: 51px;
-}
-
 a:hover, a:visited, a:link, a:active
 {
   text-decoration:none;
 }
 
-.nav-bar-suboption {
+.nav-bar-suboptions {
     @include desktop() {
+            position: absolute;
+            background-color: $light-grey;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            overflow: visible;
+            height: auto;
+            top: 51px;
+    }
+
+   @include mobile() {
+        position: relative;
+        width: 100%;
+        z-index: 100;
+        padding: 10px 0 0 0;
+        text-decoration: none;
+        color: white;
+        outline: none;
+        cursor: pointer;
+        overflow: visible;
+        height: auto;
+        display: block;
+        align-items: center;
+
+        .nav-bar-suboption {
+            padding: 10px 0 5px 0;
+            color: white;
+        }
+        a:hover, a:visited, a:link, a:active
+        {
+            color: white;
+        }
+    }
+
+   @include tablet() {
+        position: relative;
+        width: 100%;
+        z-index: 100;
+        padding: 10px 0 0 0;
+        text-decoration: none;
+        color: white;
+        outline: none;
+        cursor: pointer;
+        overflow: visible;
+        height: auto;
+        display: block;
+        align-items: center;
+
+        .nav-bar-suboption {
+            padding: 10px 0 10px 0;
+            color: white;
+        }
+        a:hover, a:visited, a:link, a:active
+        {
+            color: white;
+        }
     }
 }

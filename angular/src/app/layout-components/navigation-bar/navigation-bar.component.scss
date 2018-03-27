@@ -40,8 +40,8 @@
       padding: 10px;
     }
 
-    .rights-menu {
-      color: white;
+    .rights-menu {    /* Combining these under menu-item (and therefore the element containing finance-text) causes */
+      color: white;   /* the formatting to screw up - will work on a fix or will have to resort to defining another class in html */
       display: block;
       width: 100%;
       margin: 0;
@@ -124,18 +124,12 @@
     }
 
     .finance-text {
-      padding: 0 20px 0 0;
       position: relative;
-      bottom: 1px;
     }
 
     .menu-item {
       padding: 0 15px 0 5px;
       cursor: pointer;
-    }
-
-    .rights-menu {
-      padding: 0 30px 0 10px;
     }
 
     a:hover, a:visited, a:link, a:active
