@@ -34,7 +34,7 @@ $grant-card-margin: 24px;
       flex-wrap: wrap;
 
       .heading-text {
-        @include page-heading-small;
+        @include page-heading-small-font;
         display: flex;
         align-items: center;
       }
@@ -82,6 +82,7 @@ $grant-card-margin: 24px;
           flex: 1 0 100%;
           padding: 24px 20px 15px;
           background-color: $lighter-grey;
+          color: $darkened-blue;
         }
 
         .header-data-cards {
@@ -125,6 +126,7 @@ $grant-card-margin: 24px;
           flex: 1 0 100%;
           padding: 34px;
           background-color: $lighter-grey;
+          color: $darkened-blue;
         }
 
         .header-data-cards {

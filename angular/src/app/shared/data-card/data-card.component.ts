@@ -9,4 +9,5 @@ export class DataCardComponent {
     @Input() heading: string;
     @Input() value: string;
     @Input() colorCircleClassName: string;
+    @Input() isVerticalAtMobile: boolean = false;
 }

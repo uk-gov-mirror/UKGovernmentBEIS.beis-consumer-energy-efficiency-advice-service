@@ -17,7 +17,7 @@
   .heading {
     align-self: stretch;
     text-align: center;
-    height: $heading-height;
+    min-height: $heading-height;
   }
 
   .number-value {
@@ -68,11 +68,20 @@
 // Breakpoint specific styling
 .data-card {
   @include mobile() {
-    @include has-children-side-by-side();
-    width: 100%;
+    &.vertical-mobile {
+      @include is-vertical-app-card($padding: 0, $heading-height: 32px, $value-height: 70px);
+      .heading {
+        margin-bottom: 14px;
+      }
+    }
 
-    .heading, .number-value {
-      flex: 0 0 40%;
+    &:not(.vertical-mobile) {
+      @include has-children-side-by-side();
+      width: 100%;
+
+      .heading, .number-value {
+        flex: 0 0 40%;
+      }
     }
   }
 
