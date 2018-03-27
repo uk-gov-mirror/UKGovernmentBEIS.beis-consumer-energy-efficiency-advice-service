@@ -9,6 +9,28 @@ $animation-duration-vertical: 0.5s;
 
 // Component specific mixins
 
+@mixin is-clickable-icon($size) {
+  height: $size;
+  width: $size;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  display: inline-block;
+}
+
+@mixin is-search-icon($size) {
+  @include is-clickable-icon($size);
+  stroke: $primary-blue;
+  margin-right: 16px;
+}
+
+@mixin is-menu-icon($size) {
+  @include is-clickable-icon($size);
+  stroke: $dark-grey;
+}
+
 // General styling (shouldn't contain many widths/sizes etc.)
 
     .search-container {
@@ -47,6 +69,7 @@ $animation-duration-vertical: 0.5s;
         }
 
         .icon {
+          @include is-search-icon(20px);
           flex-shrink: 0;
 
           &:focus {
