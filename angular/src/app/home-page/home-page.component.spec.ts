@@ -11,6 +11,7 @@ import {QuestionnaireService} from '../questionnaire/questionnaire.service';
 import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
+import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -25,7 +26,8 @@ describe('HomePageComponent', () => {
     beforeEach(async(() => {
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [HomePageComponent, LatestNewsSectionComponent, LatestNewsCardComponent, NavigationBarComponent],
+            declarations: [HomePageComponent, LatestNewsSectionComponent, LatestNewsCardComponent, NavigationBarComponent,
+                NavBarSuboptionComponent],
             imports: [RouterTestingModule.withRoutes([
                 {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
                 {path: 'js/energy-efficiency/results', component: DummyComponent},
@@ -34,7 +36,7 @@ describe('HomePageComponent', () => {
                 {path: 'js/reduce-bills', component: DummyComponent},
                 {path: 'js/warmer-home', component: DummyComponent},
                 {path: 'js/home-improvements', component: DummyComponent},
-                {path: 'js/greener-home', component: DummyComponent},
+                {path: 'js/greener-home', component: DummyComponent}
             ])],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},

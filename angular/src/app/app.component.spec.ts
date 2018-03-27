@@ -16,6 +16,7 @@ import {OneTimePopupComponent} from './layout-components/one-time-popup/one-time
 import {PopupComponent} from './shared/popup/popup.component';
 import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
+import {NavBarSuboptionComponent} from "./layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -37,6 +38,7 @@ describe('AppComponent', () => {
                 NavigationBarComponent,
                 OneTimePopupComponent,
                 PopupComponent,
+                NavBarSuboptionComponent
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

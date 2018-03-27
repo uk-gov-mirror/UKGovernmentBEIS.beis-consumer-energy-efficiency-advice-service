@@ -20,6 +20,7 @@ import {StaticMeasureCardComponent} from './static-measure-card/static-measure-c
 import { PopupComponent } from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
+import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -58,7 +59,8 @@ describe('LandingPageComponent', () => {
                 MockPostcodeLookupComponent,
                 StaticMeasureCardComponent,
                 PopupComponent,
-                DataCardComponent
+                DataCardComponent,
+                NavBarSuboptionComponent,
             ],
             imports: [
                 CommonModule,
