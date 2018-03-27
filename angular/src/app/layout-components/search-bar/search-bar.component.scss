@@ -27,7 +27,7 @@ $animation-duration-vertical: 0.5s;
 
       &.focussed {
         box-shadow: 3px 3px 6px black;
-        max-width: 0.4 * $content-max-width;
+        max-width: 100%;
         transition-delay: 0s;
       }
 
@@ -166,6 +166,7 @@ $animation-duration-vertical: 0.5s;
 
 @include tablet() {
   .search-container {
+    max-width: none;
   }
 }
 

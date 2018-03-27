@@ -324,13 +324,21 @@ $desktop-header-height: 82px;
 
       .ui-elems {
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-end;
         align-items: center;
         height: 100%;
+        width: 100%;
 
         .searchBarContainer {
           display: none;
           margin-right: 120px;
+          position: absolute;
+          top: 100%;
+          width: calc(100% + 20px);
+        }
+
+        app-search-bar {
+          width: 100%;
         }
 
         .mobile-menu-icon {
