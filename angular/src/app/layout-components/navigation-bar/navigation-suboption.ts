@@ -1,4 +1,4 @@
-export class Suboption {
+export class NavigationSuboption {
     name: string;
     url: string;
 }

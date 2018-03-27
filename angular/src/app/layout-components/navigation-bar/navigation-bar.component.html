@@ -1,34 +1,33 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
     <div class="page-row-content">
 
-        <div #aboutMenu class="about-menu" (click)="showAboutMenu = !showAboutMenu; clickOffNavBar()">
+        <div #aboutMenu class="about-menu menu-item" (click)="showAboutMenu = !showAboutMenu; registerSingleClickListener()">
                 About this site
-                <div *ngIf="showAboutMenu">
-                    <app-nav-bar-suboption [suboptionInput]="suboptionAbout"></app-nav-bar-suboption>
-                </div>
+                <ng-container *ngIf="showAboutMenu">
+                    <app-nav-bar-suboption [suboptions]="aboutSuboptions"></app-nav-bar-suboption>
+                </ng-container>
         </div>
 
-        <div #homeMenu class="home-menu" (click)="showHomeMenu = !showHomeMenu; clickOffNavBar()">
+        <div #homeMenu class="home-menu menu-item" (click)="showHomeMenu = !showHomeMenu; registerSingleClickListener()">
                 Your Home
-                <div *ngIf="showHomeMenu">
-                    <app-nav-bar-suboption [suboptionInput]="suboptionHome"></app-nav-bar-suboption>
-                </div>
+                <ng-container *ngIf="showHomeMenu">
+                    <app-nav-bar-suboption [suboptions]="homeSuboptions"></app-nav-bar-suboption>
+                </ng-container>
         </div>
 
-        <div #rightsMenu class="rights-menu" (click)="showRightsMenu = !showRightsMenu; clickOffNavBar()">
+        <div #rightsMenu class="rights-menu menu-item" (click)="showRightsMenu = !showRightsMenu; registerSingleClickListener()">
                 Rights and Responsibilities
-                <div *ngIf="showRightsMenu">
-                    <app-nav-bar-suboption [suboptionInput]="suboptionRights"></app-nav-bar-suboption>
-                </div>
+                <ng-container *ngIf="showRightsMenu">
+                    <app-nav-bar-suboption [suboptions]="rightsSuboptions"></app-nav-bar-suboption>
+                </ng-container>
         </div>
 
-        <div label="Financial">
-            <a routerLink="/financial-assistance/" class="finance">
-                <span class="finance-text">Financial Assistance</span>
+        <div>
+            <a routerLink="/financial-assistance/" class="menu-item">
+                <div class="finance-text">Financial Assistance</div>
             </a>
         </div>
 
     </div>
     <div class="navigation-bar-mobile-overlay" (click)="hideMobileNav()"></div>
 </div>
-

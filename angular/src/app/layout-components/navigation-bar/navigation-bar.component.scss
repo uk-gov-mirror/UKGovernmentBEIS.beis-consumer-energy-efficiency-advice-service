@@ -20,7 +20,7 @@
     display: block;
     position: absolute;
     z-index: 2;
-    background-color: #4a4a4a;
+    background-color: $dark-grey;
     margin: 0;
     padding: 10px 20px;
 
@@ -77,8 +77,6 @@
 
     .menu-item {
       @include navbar-item;
-      padding: 12px 0 15px 0;
-      cursor: pointer;
       border: none;
       background: none;
       outline: none;
@@ -89,9 +87,6 @@
         margin-right: 34px;
       }
 
-      &:focus {
-        text-decoration: underline;
-      }
     }
   }
 
@@ -120,49 +115,27 @@
 
   @include desktop() {
     .page-row-content {
-      background-color: #A0A0A0;
       height: 44px;
       overflow: visible;
-      padding: 8px 40px 10px 40px;
-      border: none;
-      background: none;
-      outline: none;
-      color: white;
-      text-decoration: none;
+      padding: 8px 30px 10px 30px;
       font-size: 14px;
       position: relative;
-      bottom: 9px;
+      bottom: 7px;
     }
 
     .finance-text {
-      background-color: #A0A0A0;
-      height: 44px;
-      overflow: visible;
-      padding: 8px 30px 10px 0;
-      cursor: pointer;
-      border: none;
-      background: none;
-      outline: none;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
+      padding: 0 20px 0 0;
       position: relative;
-      bottom: 0px;
+      bottom: 1px;
     }
 
-    .about-menu {
-      padding: 0 20px 0 10px;
-      cursor: pointer;
-    }
-
-    .home-menu {
-      padding: 0 20px 0 10px;
+    .menu-item {
+      padding: 0 15px 0 5px;
       cursor: pointer;
     }
 
     .rights-menu {
       padding: 0 30px 0 10px;
-      cursor: pointer;
     }
 
     a:hover, a:visited, a:link, a:active

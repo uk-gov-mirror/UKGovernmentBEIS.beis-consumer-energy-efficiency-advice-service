@@ -1,14 +1,14 @@
 import {Component, OnInit, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
 
-import {Suboption} from "./Suboptions Class";
+import {NavigationSuboption} from "./navigation-suboption";
 
 @Component({
     selector: 'app-navigation-bar',
     templateUrl: './navigation-bar.component.html',
     styleUrls: ['./navigation-bar.component.scss']
 })
-export class NavigationBarComponent implements OnInit {
-    suboptionAbout: Suboption[] = [
+export class NavigationBarComponent {
+    aboutSuboptions: NavigationSuboption[] = [
         {
             name: "Mission statement",
             url: "/mission-statement"
@@ -26,7 +26,7 @@ export class NavigationBarComponent implements OnInit {
             url: "/contact"
         }
     ];
-    suboptionHome: Suboption[] = [
+    homeSuboptions: NavigationSuboption[] = [
         {
             name: "Heating & Hot Water",
             url: "/Heating&Hot-Water"
@@ -40,7 +40,7 @@ export class NavigationBarComponent implements OnInit {
             url: "/Renewable-Energy"
         }
     ];
-    suboptionRights: Suboption[] = [
+    rightsSuboptions: NavigationSuboption[] = [
         {
             name: "Tenants",
             url: "/Tenants"
@@ -54,7 +54,6 @@ export class NavigationBarComponent implements OnInit {
     showHomeMenu: boolean = false;
     showRightsMenu: boolean = false;
 
-
     @Input() shouldExpandNav: boolean;
     @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
 
@@ -67,10 +66,7 @@ export class NavigationBarComponent implements OnInit {
     constructor(private renderer: Renderer2) {
     }
 
-    ngOnInit() {
-    }
-
-    clickOffNavBar(): void {
+    registerSingleClickListener(): void {
         if (this.deregisterClickListener) {
             this.deregisterClickListener();
         }
@@ -82,10 +78,21 @@ export class NavigationBarComponent implements OnInit {
         const inAboutMenu = clickedElement && this.aboutMenu.nativeElement.contains(clickedElement);
         const inHomeMenu = clickedElement && this.homeMenu.nativeElement.contains(clickedElement);
         const inRightsMenu = clickedElement && this.rightsMenu.nativeElement.contains(clickedElement);
-        if (!inAboutMenu && !inHomeMenu) {this.showAboutMenu = this.showHomeMenu = false; }
-        if (!inAboutMenu && !inRightsMenu) {this.showAboutMenu = this.showRightsMenu = false; }
-        if (!inHomeMenu && !inRightsMenu) {this.showHomeMenu = this.showRightsMenu = false; }
-        if (!inHomeMenu && !inRightsMenu && !inAboutMenu && this.deregisterClickListener) {this.deregisterClickListener(); }
+        if (!inAboutMenu && !inHomeMenu) {
+            this.showAboutMenu = false;
+            this.showHomeMenu = false;
+        }
+        if (!inAboutMenu && !inRightsMenu) {
+            this.showAboutMenu = false;
+            this.showRightsMenu = false;
+        }
+        if (!inHomeMenu && !inRightsMenu) {
+            this.showHomeMenu = false;
+            this.showRightsMenu = false;
+        }
+        if (!inHomeMenu && !inRightsMenu && !inAboutMenu && this.deregisterClickListener) {
+            this.deregisterClickListener();
+        }
     }
 
 

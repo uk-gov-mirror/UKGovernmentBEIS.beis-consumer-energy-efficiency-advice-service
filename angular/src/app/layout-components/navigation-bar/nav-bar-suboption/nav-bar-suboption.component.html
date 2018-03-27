@@ -1,5 +1,5 @@
-<div class="nav-bar-suboptions" label="dropdownmenu">
-  <li class="suboptions" *ngFor="let suboption of suboptionInput" label="dropdownoptions">
+<div class="nav-bar-suboptions">
+  <li class="nav-bar-suboption" *ngFor="let suboption of suboptions">
     <a routerLink="{{suboption.url}}">
       {{suboption.name}}
     </a>
