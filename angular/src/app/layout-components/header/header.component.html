@@ -10,6 +10,44 @@
             <div #mobileSearchButton class="mobile-search-icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" (click)="toggleSearchMobileBox()"></div>
             <div class="mobile-menu-icon" [inlineSVG]="'controls/menu.svg'" aria-label="Menu" (click)="toggleMobileNav()"></div>
         </div>
-        <app-search-bar *ngIf="displaySearch"></app-search-bar>
+        <div #searchContainer class="search-container" [ngClass]="{focussed: shouldDisplaySearchDetailsDropdown}">
+            <form class="search-form" (submit)="search()">
+                <input #searchInput class="search-input" aria-label="Search text" name="search-text" type="text"
+                       [(ngModel)]="searchText" (focus)="handleSearchBoxFocussed()"/>
+                <button class="icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" title="Search" type="submit"></button>
+            </form>
+            <div class="search-details-dropdown" [ngClass]="{expanded: shouldDisplaySearchDetailsDropdown}">
+                <div class="search-results-container">
+                    <div class="search-empty" *ngIf="searchState === searchStates.Initial">
+                        <div class="hint">To search, type in the box above and press enter or click the search icon</div>
+                    </div>
+                    <div class="search-loading" *ngIf="searchState === searchStates.Loading">
+                        <div class="loading-spinner-small"></div>
+                    </div>
+                    <div class="search-results" *ngIf="searchState === searchStates.Results">
+                        <div class="header">Results</div>
+                        <a class="text-row" *ngFor="let result of getSearchResultsToDisplay()" [routerLink]="result.route"
+                           [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" (click)="collapseSearchBox()" [innerHtml]="result.title"></a>
+                        <form (ngSubmit)="displayExpandedSearchResults()">
+                            <input type="submit" value="See all" [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1"
+                                   *ngIf="shouldDisplayExpandSearchResultsButton" class="see-all" />
+                        </form>
+                    </div>
+                    <div class="search-no-results" *ngIf="searchState === searchStates.NoResults">
+                        <div class="hint">We can't find any matching pages. Please try a different search.</div>
+                    </div>
+                    <div class="search-error" *ngIf="searchState === searchStates.Error">
+                        <div class="error">Sorry, there was an error fetching search results. Please try again later.</div>
+                    </div>
+                </div>
+                <div class="popular-searches" *ngIf="!shouldDisplayExpandedSearchResults">
+                    <div class="header">Popular searches</div>
+                    <a [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" class="text-row">What is micro generation?</a>
+                    <a [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" class="text-row">How does switching work?</a>
+                    <a [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" class="text-row">Are there any boiler grants in Northern Ireland?</a>
+                </div>
+            </div>
+        </div>
+        <app-need-help></app-need-help>
     </div>
 </div>
