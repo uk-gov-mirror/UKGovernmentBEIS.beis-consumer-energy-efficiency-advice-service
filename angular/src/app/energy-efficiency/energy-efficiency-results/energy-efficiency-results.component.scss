@@ -1,6 +1,7 @@
 @import "../_energy-efficiency-page-sizes";
 @import "styles/mixins/_font";
 @import "styles/mixins/_buttons";
+@import "styles/mixins/_layout";
 @import "styles/var/colors";
 
 // Component specific variables
@@ -30,11 +31,16 @@ $grant-card-margin: 24px;
   .results-header-row.page-row {
     .page-row-content {
       display: flex;
+      flex-wrap: wrap;
 
       .heading-text {
         @include page-heading-small;
         display: flex;
         align-items: center;
+      }
+
+      .header-data-cards {
+        display: flex;
       }
     }
   }
@@ -95,12 +101,26 @@ $grant-card-margin: 24px;
   @include tablet() {
     .results-header-row.page-row {
       .page-row-content {
-        .heading-text {
-          width: 100%;
-          padding: 34px 0;
+        margin: 0;
 
-          app-data-card:not(:last-of-type) {
-            border-right: 1px solid $light-grey;
+        .heading-text {
+          flex: 1 0 100%;
+          padding: 34px;
+          background-color: $lighter-grey;
+        }
+
+        .header-data-cards {
+          @include is-grid(50px);
+          padding: 24px 34px;
+
+          app-data-card {
+            @include is-grid-item($number-of-items: 3);
+            margin: 25px 0;
+            padding: 0 50px;
+
+            &:not(:last-of-type) {
+              border-right: 1px solid $light-grey;
+            }
           }
         }
       }
@@ -122,13 +142,20 @@ $grant-card-margin: 24px;
       padding: 20px 0;
 
       .page-row-content {
-        & > * {
+        .heading-text, .header-data-cards > * {
           border-right: 1px solid $light-grey;
         }
 
-        & > :last-child {
-          margin-right: $add-to-plan-column-width;
+        .header-data-cards {
+          $desktop-header-cards-width: (3 * ($data-card-width + 1)) + $add-to-plan-column-width;
+          flex: 0 0 $desktop-header-cards-width;
+
+          & > :last-child {
+            margin-right: $add-to-plan-column-width;
+          }
         }
+
+
 
         .heading-text {
           padding-right: 20px;
