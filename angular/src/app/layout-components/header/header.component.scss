@@ -316,19 +316,30 @@ $desktop-header-height: 82px;
           margin: 0 20px;
           height: 42px;
 
-        .gov-logo {
-          height: 18px;
+          .gov-logo {
+            height: 18px;
+          }
         }
       }
 
-      app-search-bar {
-        margin-right: $desktop-help-button-width - $desktop-side-margin;
+      .ui-elems {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         height: 100%;
-      }
 
-      .mobile-menu-icon {
-        margin-right: $tablet-help-button-width;
-      }
+        .searchBarContainer {
+          display: none;
+          margin-right: 120px;
+        }
+
+        .mobile-menu-icon {
+          margin-right: 30px;
+        }
+
+        .tablet-search-icon {
+          margin-right: 50px;
+        }
       }
     }
   }
@@ -358,7 +369,8 @@ $desktop-header-height: 82px;
       }
 
       .searchBarContainer {
-        display: none;
+        display: flex;
+        margin-right: 20px;
       }
 
       app-search-bar {

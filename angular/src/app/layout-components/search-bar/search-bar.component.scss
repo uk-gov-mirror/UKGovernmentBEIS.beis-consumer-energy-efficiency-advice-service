@@ -18,7 +18,7 @@ $animation-duration-vertical: 0.5s;
       align-items: center;
       height: $search-container-height;
       position: relative;
-      max-width: 150px;
+      max-width: 130px;
       transition: max-width $animation-duration-horizontal;
       transition-delay: $animation-duration-vertical;
       flex-grow: 1;
@@ -170,5 +170,7 @@ $animation-duration-vertical: 0.5s;
 }
 
 @include desktop() {
-
+  .search-container {
+    max-width: 180px;
+  }
 }

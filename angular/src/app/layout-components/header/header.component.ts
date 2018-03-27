@@ -20,10 +20,10 @@ export class HeaderComponent {
     }
 
     toggleSearchTabletBox(): void {
-        if (this.searchBarContainer.nativeElement.style.display === "none") {
-            this.searchBarContainer.nativeElement.style.display = "flex";
-        } else {
+        if (this.searchBarContainer.nativeElement.style.display === "flex") {
             this.searchBarContainer.nativeElement.style.display = "none";
+        } else {
+            this.searchBarContainer.nativeElement.style.display = "flex";
         }
     }
 
