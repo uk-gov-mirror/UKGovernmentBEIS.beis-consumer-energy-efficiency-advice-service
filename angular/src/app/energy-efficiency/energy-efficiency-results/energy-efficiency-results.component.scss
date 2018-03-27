@@ -52,9 +52,7 @@ $grant-card-margin: 24px;
       }
 
       .recommendations-subheading {
-        font-family: $font-family-light;
-        font-size: 13px;
-        line-height: 16px;
+        @include recommendations-sub-heading-font;
       }
 
       .recommendations-filter {
@@ -62,45 +60,6 @@ $grant-card-margin: 24px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-      }
-
-      .recommendation-cards {
-        .expand-recommendations-list {
-          margin-top: 10px;
-          @include default-button(100%, 50px);
-          text-transform: uppercase;
-        }
-      }
-    }
-  }
-
-  .local-grants.page-row-content {
-    flex-direction: column;
-    margin-top: 30px;
-
-    .subheading {
-      @include page-subheading-font;
-      margin-bottom: 8px;
-    }
-
-    .local-authority {
-      @include body-uppercase;
-    }
-
-    .grant-cards {
-      margin-top: 32px;
-      flex-wrap: wrap;
-
-      display: flex;
-      align-items: stretch;
-      justify-content: space-between;
-
-      .grant-card {
-        flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
-        margin-bottom: $grant-card-margin;
-        &:not(:nth-child(#{$grant-cards-per-row}n)) {
-          margin-right: $grant-card-margin;
-        }
       }
     }
   }

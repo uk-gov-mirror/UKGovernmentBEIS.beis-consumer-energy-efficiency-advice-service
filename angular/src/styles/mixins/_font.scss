@@ -126,6 +126,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   text-transform: uppercase;
 }
 
+@mixin recommendations-sub-heading-font {
+  @include has-font-sizes-at-breakpoints(13px, 16px, 14px, 20px, 14px, 20px);
+  font-family: $font-family-light;
+}
+
 @mixin page-section-heading-font {
   @include has-font-sizes-at-breakpoints(24px, 32px, 24px, 32px, 20px, 20px);
   font-weight: bold;
