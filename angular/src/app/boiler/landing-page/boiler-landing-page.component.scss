@@ -218,41 +218,84 @@
       }
     }
   }
+
+  .expand-step-icon {
+    display: none;
+  }
 }
 
 // Breakpoint specific styling
 .boiler-landing-page {
   @include mobile() {
-    .mobile-hidden > *:not(.mobile-expander) {
+
+    .mobile-hidden {
       display: none;
     }
 
-    .troubleshooting {
-      background-color: $focus-blue;
+    .page-row {
+      padding: 0 0 0;
+      background-color: white;
+    }
+
+    .page-heading {
+      background-color: $lighter-grey;
       padding: 25px 0 20px;
     }
 
-    .heading {
-      color: $lighter-grey;
-    }
-
     .body-text {
-      color: $lighter-grey;
+      display: none;
     }
 
-    .expand-step-icon {
-      margin-left: auto;
-      fill: $light-grey;
-      display: block;
-      width: 14px;
-      height: 8px;
-      line-height: 0;
+    .mobile-body-text {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      margin-right: 96px;
+    }
 
-      &.troubleshootingMobileExpanded {
-        transform: rotate(180deg);
+    .collapsible-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .expand-step-icon {
+        margin-left: auto;
+        fill: $focus-blue;
+        display: block;
+        width: 14px;
+        height: 8px;
+        line-height: 0;
       }
     }
 
+    .mobile-expander {
+      padding: 25px 25px 20px;
+
+      .large-heading {
+        font-size: 28px;
+        line-height: 32px;
+        font-weight: bold;
+        color: #01abce;
+        // Raam to change this.
+      }
+
+      &.selected-expander {
+        background-color: $action-button-blue;
+
+        .collapsible-heading {
+          color: $lighter-grey;
+        }
+
+        .expand-step-icon {
+          transform: rotate(180deg);
+          fill: $lighter-grey;
+        }
+
+        .mobile-body-text {
+          color: $lighter-grey;
+        }
+      }
+    }
   }
 
   @include tablet() {

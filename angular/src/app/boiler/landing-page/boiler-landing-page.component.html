@@ -5,102 +5,133 @@
         </div>
     </div>
     <div class="troubleshooting page-row">
-        <div class="page-row-content" [ngClass]="{'mobile-hidden': !troubleshootingMobileExpanded}">
-            <div class="mobile-expander" (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded">
-                <div class="heading">Troubleshooting tips</div>
-                <div class="expand-step-icon" [class.troubleshootingMobileExpanded]="troubleshootingMobileExpanded"
-                     title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+        <div class="page-row-content">
+            <div class="mobile-expander" [ngClass]="{'selected-expander': troubleshootingMobileExpanded}"
+                 (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded">
+                <div class="collapsible-header">
+                    <div class="heading collapsible-heading">Troubleshooting tips</div>
+                    <div class="expand-step-icon"
+                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                </div>
+                <div class="body-text mobile-body-text">Try these 5 fixes before calling an engineer</div>
 
-                <div class="body-text">Try these 5 fixes before calling an engineer</div>
             </div>
-            <div class="tips">
+            <div class="tips" [ngClass]="{'mobile-hidden': !troubleshootingMobileExpanded}">
                 <app-carousel class="carousel"></app-carousel>
                 <div class="links">
                     <div class="still-not-working">
                         <div class="body-large">Still not working?</div>
-                        <app-boiler-link-button text="Check out our list of certified repairers"></app-boiler-link-button>
+                        <app-boiler-link-button
+                                text="Check out our list of certified repairers"></app-boiler-link-button>
                     </div>
                     <div class="tenant">
                         <div class="body-large">Are you a tenant?</div>
-                        <app-boiler-link-button text="Find out about your landlord's obligations"></app-boiler-link-button>
+                        <app-boiler-link-button
+                                text="Find out about your landlord's obligations"></app-boiler-link-button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="replacing page-row">
-        <div class="page-row-content" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
-            <div class="large-heading mobile-expander" (click)="replacingMobileExpanded = !replacingMobileExpanded">Thinking about replacing your boiler?</div>
-            <div class="boiler-options">
-                <div class="body-text">
-                    If you're replacing your boiler or heating system, there are many options to choose from.<br>
-                    Review all the different types or use our heating system calculator to find the right option for your home.
+        <div class="page-row-content">
+            <div class="mobile-expander" [ngClass]="{'selected-expander': replacingMobileExpanded}"
+                 (click)="replacingMobileExpanded = !replacingMobileExpanded">
+                <div class="collapsible-header">
+                    <div class="large-heading collapsible-heading">Thinking about replacing your boiler?</div>
+                    <div class="expand-step-icon"
+                         [class.troubleshootingMobileExpanded]="troubleshootingMobileExpanded"
+                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+
+                </div>
+                <div class="boiler-options" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+                    <div class="body-text">
+                        If you're replacing your boiler or heating system, there are many options to choose from.<br>
+                        Review all the different types or use our heating system calculator to find the right option for
+                        your home.
+                    </div>
+                    <div class="mobile-body-text">
+                        Review all the different types or use our heating system calculator.
+                    </div>
                 </div>
             </div>
-            <div class="replace-options">
-                <div class="body">
-                    <div class="replace-column">
-                        <div class="text-content">
-                            <div class="small-heading">Yes. My boiler needs replacing</div>
-                            <div class="help-text">
-                                We can provide you with information about the range of boiler types that are available,
-                                including average lifetimes and running costs
+
+                <div class="replace-options" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+                    <div class="body">
+                        <div class="replace-column">
+                            <div class="text-content">
+                                <div class="small-heading">Yes. My boiler needs replacing</div>
+                                <div class="help-text">
+                                    We can provide you with information about the range of boiler types that are
+                                    available,
+                                    including average lifetimes and running costs
+                                </div>
                             </div>
+                            <app-boiler-link-button class="link-button"
+                                                    [ngClass]="{'mobile-hidden': !replacingMobileExpanded}"
+                                                    text="Let's look at some boiler options"
+                                                    path="/js/boiler/replace"></app-boiler-link-button>
                         </div>
+                        <div class="postcode-lookup-column" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+                            <div class="small-heading">I'm not sure if my boiler needs replacing</div>
+                            <div class="help-text">
+                                We can try your postcode to see if the Energy Performance Certificate (EPC) for your
+                                home
+                                has any information on your boiler
+                            </div>
+                            <app-postcode-lookup class="postcode-epc input-grey"
+                                                 (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grants page-row">
+            <div class="page-row-content" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
+                <div class="heading mobile-expander" (click)="grantsMobileExpanded = !grantsMobileExpanded">Grants &
+                    incentives
+                </div>
+                <div class="body">
+                    <div class="body-text">
+                        Find out if you are eligible to receive financial support from the government if you are
+                        struggling
+                        to replace your boiler. There are also incentives available if you are using a renewable energy
+                        source
+                    </div>
+                    <div class="links">
                         <app-boiler-link-button class="link-button"
-                                                text="Let's look at some boiler options"
-                                                path="/js/boiler/replace"></app-boiler-link-button>
-                    </div>
-                    <div class="postcode-lookup-column">
-                        <div class="small-heading">I'm not sure if my boiler needs replacing</div>
-                        <div class="help-text">
-                            We can try your postcode to see if the Energy Performance Certificate (EPC) for your home
-                            has any information on your boiler
-                        </div>
-                        <app-postcode-lookup class="postcode-epc input-grey" (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
+                                                text="Find out about boiler grants"></app-boiler-link-button>
+                        <app-boiler-link-button class="link-button"
+                                                text="Earn money via the renewable heat incentive"></app-boiler-link-button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="grants page-row">
-        <div class="page-row-content" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
-            <div class="heading mobile-expander" (click)="grantsMobileExpanded = !grantsMobileExpanded">Grants & incentives</div>
-            <div class="body">
-                <div class="body-text">
-                    Find out if you are eligible to receive financial support from the government if you are struggling
-                    to replace your boiler. There are also incentives available if you are using a renewable energy source
+        <div class="page-row">
+            <div class="find-installer page-row-content" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
+                <div class="heading mobile-expander" (click)="installerMobileExpanded = !installerMobileExpanded">Find a
+                    trustworthy installer
                 </div>
-                <div class="links">
-                    <app-boiler-link-button class="link-button" text="Find out about boiler grants"></app-boiler-link-button>
-                    <app-boiler-link-button class="link-button" text="Earn money via the renewable heat incentive"></app-boiler-link-button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="page-row">
-        <div class="find-installer page-row-content" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
-            <div class="heading mobile-expander" (click)="installerMobileExpanded = !installerMobileExpanded">Find a trustworthy installer</div>
-            <div class="installers">
-                <div class="installer">
-                    <div class="installer-section">For plumbing</div>
-                    <a class="installer-link">Competent Persons Register</a>
-                </div>
-                <div class="installer">
-                    <a class="installer-link">Scottish & Northern Ireland Plumbing Employers' Federation</a>
-                </div>
-                <div class="installer">
-                    <a class="installer-link">Heating and Hotwater Industry Council</a>
-                </div>
-                <div class="installer">
-                    <div class="installer-section">For oil boilers</div>
-                    <a class="installer-link">Oil Firing Technical Association</a>
-                </div>
-                <div class="installer">
-                    <div class="installer-section">For gas and LPG boilers</div>
-                    <a class="installer-link">Gas Safe Register</a>
+                <div class="installers">
+                    <div class="installer">
+                        <div class="installer-section">For plumbing</div>
+                        <a class="installer-link">Competent Persons Register</a>
+                    </div>
+                    <div class="installer">
+                        <a class="installer-link">Scottish & Northern Ireland Plumbing Employers' Federation</a>
+                    </div>
+                    <div class="installer">
+                        <a class="installer-link">Heating and Hotwater Industry Council</a>
+                    </div>
+                    <div class="installer">
+                        <div class="installer-section">For oil boilers</div>
+                        <a class="installer-link">Oil Firing Technical Association</a>
+                    </div>
+                    <div class="installer">
+                        <div class="installer-section">For gas and LPG boilers</div>
+                        <a class="installer-link">Gas Safe Register</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
