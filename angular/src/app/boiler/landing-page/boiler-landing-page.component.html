@@ -7,7 +7,10 @@
     <div class="troubleshooting page-row">
         <div class="page-row-content">
             <div class="mobile-expander" [ngClass]="{'selected-expander': troubleshootingMobileExpanded}"
-                 (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded">
+                 (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded;
+                    replacingMobileExpanded = false;
+                    grantsMobileExpanded = false;
+                    installerMobileExpanded = false">
                 <div class="collapsible-header">
                     <div class="heading collapsible-heading">Troubleshooting tips</div>
                     <div class="expand-step-icon"
@@ -22,12 +25,12 @@
                     <div class="still-not-working">
                         <div class="body-large mobile-button-heading">Still not working?</div>
                         <app-boiler-link-button class="link-button"
-                                text="Check out our list of certified repairers"></app-boiler-link-button>
+                                                text="Check out our list of certified repairers"></app-boiler-link-button>
                     </div>
                     <div class="tenant">
                         <div class="body-large mobile-button-heading">Are you a tenant?</div>
                         <app-boiler-link-button class="link-button"
-                                text="Find out about your landlord's obligations"></app-boiler-link-button>
+                                                text="Find out about your landlord's obligations"></app-boiler-link-button>
                     </div>
                 </div>
             </div>
@@ -36,7 +39,10 @@
     <div class="replacing page-row">
         <div class="page-row-content">
             <div class="mobile-expander" [ngClass]="{'selected-expander': replacingMobileExpanded}"
-                 (click)="replacingMobileExpanded = !replacingMobileExpanded">
+                 (click)="replacingMobileExpanded = !replacingMobileExpanded;
+                    troubleshootingMobileExpanded = false;
+                    grantsMobileExpanded = false;
+                    installerMobileExpanded = false">
                 <div class="collapsible-header">
                     <div class="large-heading collapsible-heading">Thinking about replacing your boiler?</div>
                     <div class="expand-step-icon"
@@ -54,97 +60,103 @@
                 </div>
             </div>
 
-                <div class="replace-options" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
-                    <div class="body">
-                        <div class="replace-column">
-                            <div class="text-content">
-                                <div class="small-heading">Yes. My boiler needs replacing</div>
-                                <div class="help-text">
-                                    We can provide you with information about the range of boiler types that are
-                                    available,
-                                    including average lifetimes and running costs
-                                </div>
-                            </div>
-                            <app-boiler-link-button class="link-button"
-                                                    [ngClass]="{'mobile-hidden': !replacingMobileExpanded}"
-                                                    text="Let's look at some boiler options"
-                                                    path="/js/boiler/replace"></app-boiler-link-button>
-                        </div>
-                        <div class="postcode-lookup-column" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
-                            <div class="small-heading">I'm not sure if my boiler needs replacing</div>
+            <div class="replace-options" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+                <div class="body">
+                    <div class="replace-column">
+                        <div class="text-content">
+                            <div class="small-heading">Yes. My boiler needs replacing</div>
                             <div class="help-text">
-                                We can try your postcode to see if the Energy Performance Certificate (EPC) for your
-                                home
-                                has any information on your boiler
+                                We can provide you with information about the range of boiler types that are
+                                available,
+                                including average lifetimes and running costs
                             </div>
-                            <app-postcode-lookup class="postcode-epc input-grey"
-                                                 (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="grants page-row">
-            <div class="page-row-content">
-                <div class="mobile-expander" [ngClass]="{'selected-expander': grantsMobileExpanded}"
-                     (click)="grantsMobileExpanded = !grantsMobileExpanded">
-                    <div class="collapsible-header">
-                        <div class="large-heading collapsible-heading">Grants & incentives</div>
-                        <div class="expand-step-icon"
-                             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                    </div>
-                    <div class="body">
-                        <div class="body-text">
-                            Find out if you are eligible to receive financial support from the government if you are
-                            struggling
-                            to replace your boiler. There are also incentives available if you are using a renewable energy
-                            source.
-                        </div>
-                        <div class="mobile-body-text">
-                            Find out if you are eligible to receive financial support from the government.
-                        </div>
-                    </div>
-                </div>
-                <div class="body grants-body">
-                    <div class="links" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
                         <app-boiler-link-button class="link-button"
-                                                text="Find out about boiler grants"></app-boiler-link-button>
-                        <app-boiler-link-button class="link-button"
-                                                text="Earn money via the renewable heat incentive"></app-boiler-link-button>
+                                                [ngClass]="{'mobile-hidden': !replacingMobileExpanded}"
+                                                text="Let's look at some boiler options"
+                                                path="/js/boiler/replace"></app-boiler-link-button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="find-installer page-row">
-            <div class=" page-row-content">
-                <div class="mobile-expander"  [ngClass]="{'selected-expander': installerMobileExpanded}"
-                     (click)="installerMobileExpanded = !installerMobileExpanded">
-                    <div class="collapsible-header">
-                        <div class="heading collapsible-heading">Find a trustworthy installer</div>
-                        <div class="expand-step-icon"
-                             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                    </div>
-                </div>
-                <div class="installers" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
-                    <div class="installer">
-                        <div class="installer-section">For plumbing</div>
-                        <a class="installer-link">Competent Persons Register</a>
-                    </div>
-                    <div class="installer">
-                        <a class="installer-link">Scottish & Northern Ireland Plumbing Employers' Federation</a>
-                    </div>
-                    <div class="installer">
-                        <a class="installer-link">Heating and Hotwater Industry Council</a>
-                    </div>
-                    <div class="installer">
-                        <div class="installer-section">For oil boilers</div>
-                        <a class="installer-link">Oil Firing Technical Association</a>
-                    </div>
-                    <div class="installer">
-                        <div class="installer-section">For gas and LPG boilers</div>
-                        <a class="installer-link">Gas Safe Register</a>
+                    <div class="postcode-lookup-column" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+                        <div class="small-heading">I'm not sure if my boiler needs replacing</div>
+                        <div class="help-text">
+                            We can try your postcode to see if the Energy Performance Certificate (EPC) for your
+                            home
+                            has any information on your boiler
+                        </div>
+                        <app-postcode-lookup class="postcode-epc input-grey"
+                                             (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="grants page-row">
+        <div class="page-row-content">
+            <div class="mobile-expander" [ngClass]="{'selected-expander': grantsMobileExpanded}"
+                 (click)="grantsMobileExpanded = !grantsMobileExpanded;
+                    troubleshootingMobileExpanded = false;
+                    replacingMobileExpanded = false;
+                    installerMobileExpanded = false">
+                <div class="collapsible-header">
+                    <div class="large-heading collapsible-heading">Grants & incentives</div>
+                    <div class="expand-step-icon"
+                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                </div>
+                <div class="body">
+                    <div class="body-text">
+                        Find out if you are eligible to receive financial support from the government if you are
+                        struggling
+                        to replace your boiler. There are also incentives available if you are using a renewable energy
+                        source.
+                    </div>
+                    <div class="mobile-body-text">
+                        Find out if you are eligible to receive financial support from the government.
+                    </div>
+                </div>
+            </div>
+            <div class="body grants-body">
+                <div class="links" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
+                    <app-boiler-link-button class="link-button"
+                                            text="Find out about boiler grants"></app-boiler-link-button>
+                    <app-boiler-link-button class="link-button"
+                                            text="Earn money via the renewable heat incentive"></app-boiler-link-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="find-installer page-row">
+        <div class=" page-row-content">
+            <div class="mobile-expander" [ngClass]="{'selected-expander': installerMobileExpanded}"
+                 (click)="installerMobileExpanded = !installerMobileExpanded;
+                    troubleshootingMobileExpanded = false;
+                    replacingMobileExpanded = false;
+                    grantsMobileExpanded = false">
+                <div class="collapsible-header">
+                    <div class="heading collapsible-heading">Find a trustworthy installer</div>
+                    <div class="expand-step-icon"
+                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                </div>
+            </div>
+            <div class="installers" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
+                <div class="installer">
+                    <div class="installer-section">For plumbing</div>
+                    <a class="installer-link">Competent Persons Register</a>
+                </div>
+                <div class="installer">
+                    <a class="installer-link">Scottish & Northern Ireland Plumbing Employers' Federation</a>
+                </div>
+                <div class="installer">
+                    <a class="installer-link">Heating and Hotwater Industry Council</a>
+                </div>
+                <div class="installer">
+                    <div class="installer-section">For oil boilers</div>
+                    <a class="installer-link">Oil Firing Technical Association</a>
+                </div>
+                <div class="installer">
+                    <div class="installer-section">For gas and LPG boilers</div>
+                    <a class="installer-link">Gas Safe Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
