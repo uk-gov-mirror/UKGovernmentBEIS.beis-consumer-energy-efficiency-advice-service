@@ -22,13 +22,45 @@
     z-index: 2;
     background-color: #4a4a4a;
     margin: 0;
-    padding: 0 20px;
+    padding: 10px 20px;
 
-    .menu-item {
+    .about-menu {
+      color: white;
       display: block;
       width: 100%;
       margin: 0;
+      padding: 10px;
     }
+
+    .home-menu {
+      color: white;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .rights-menu {
+      color: white;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .finance-text {
+      color: white;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+
+    a:hover, a:visited, a:link, a:active
+    {
+      text-decoration:none;
+    }
+
   }
 }
 
