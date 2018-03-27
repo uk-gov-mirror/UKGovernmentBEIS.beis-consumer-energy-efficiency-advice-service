@@ -1,8 +1,9 @@
-import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from '@angular/core';
+import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter, ElementRef} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-searchable';
+
 
 @Component({
     selector: 'app-header',
@@ -13,12 +14,17 @@ export class HeaderComponent {
 
     displaySearch: boolean = false;
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
+    @ViewChild('searchBarContainer') searchBarContainer: ElementRef;
 
     constructor() {
     }
 
-    toggleSearchMobileBox(): void {
-        this.displaySearch = !this.displaySearch;
+    toggleSearchTabletBox(): void {
+        if (this.searchBarContainer.nativeElement.style.display === "none") {
+            this.searchBarContainer.nativeElement.style.display = "flex";
+        } else {
+            this.searchBarContainer.nativeElement.style.display = "none";
+        }
     }
 
     toggleMobileNav(): void {

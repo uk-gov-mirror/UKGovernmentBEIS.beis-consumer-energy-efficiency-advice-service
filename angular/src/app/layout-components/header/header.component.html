@@ -6,11 +6,11 @@
             <div class="vertical-line"></div>
             <img class="gov-logo" src="/dist/assets/images/logos/gov-uk.png" alt="Gov.uk logo" />
         </a>
-        <div class="mobile-icons">
-            <div #mobileSearchButton class="mobile-search-icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" (click)="toggleSearchMobileBox()"></div>
-            <div class="mobile-menu-icon" [inlineSVG]="'controls/menu.svg'" aria-label="Menu" (click)="toggleMobileNav()"></div>
+        <div class="mobile-menu-icon" [inlineSVG]="'controls/menu.svg'" aria-label="Menu" (click)="toggleMobileNav()"></div>
+        <div #mobileSearchButton class="tablet-search-icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" (click)="toggleSearchTabletBox()"></div>
+        <div #searchBarContainer  class="searchBarContainer">
+            <app-search-bar></app-search-bar>
         </div>
-        <app-search-bar *ngIf="displaySearch"></app-search-bar>
         <app-need-help></app-need-help>
     </div>
 </div>

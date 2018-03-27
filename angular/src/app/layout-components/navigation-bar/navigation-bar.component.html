@@ -1,6 +1,6 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
-    <app-search-bar *ngIf="displaySearch"></app-search-bar>
     <div class="page-row-content">
+        <app-search-bar></app-search-bar>
         <a class="menu-item" *ngFor="let page of topLevelPages"
            [routerLink]="page.route" [innerHTML]="page.title"
            (click)="hideMobileNav()"></a>

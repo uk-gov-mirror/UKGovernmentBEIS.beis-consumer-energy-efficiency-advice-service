@@ -11,15 +11,6 @@ $animation-duration-vertical: 0.5s;
 
 // General styling (shouldn't contain many widths/sizes etc.)
 
-    .logos {
-      display: flex;
-      align-items: center;
-
-      .vertical-line {
-        border-left: 1px solid black;
-      }
-    }
-
     .search-container {
       background-color: $lighter-grey;
       padding: $search-container-vertical-padding;
@@ -31,6 +22,7 @@ $animation-duration-vertical: 0.5s;
       transition: max-width $animation-duration-horizontal;
       transition-delay: $animation-duration-vertical;
       flex-grow: 1;
+      z-index: 3;
       width: 100%;
 
       &.focussed {
@@ -168,52 +160,15 @@ $animation-duration-vertical: 0.5s;
 
 // Breakpoint specific styling
 @include mobile() {
-      .logos {
-        .ehc-logo, .ehc-logo--small {
-          height: 50px;
-        }
-
-        .vertical-line {
-          margin: 0 19px;
-          height: 42px;
-        }
-
-        .gov-logo {
-          height: 18px;
-        }
-      }
+  .search-container {
+  }
 }
 
 @include tablet() {
-      .logos {
-        margin-right: 20px;
-
-        .vertical-line {
-          margin: 0 20px;
-          height: 42px;
-        }
-
-        .gov-logo {
-          height: 18px;
-        }
-      }
+  .search-container {
+  }
 }
 
 @include desktop() {
-      .logos {
-        margin-right: 20px;
 
-        .ehc-logo, .ehc-logo--small {
-          height: 62px;
-        }
-
-        .vertical-line {
-          margin: 0 20px;
-          height: 50px;
-        }
-
-        .gov-logo {
-          height: 24px;
-        }
-      }
 }

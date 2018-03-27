@@ -39,7 +39,6 @@
   overflow: visible;
 
   .page-row-content {
-
     display: flex;
     align-items: center;
 
@@ -83,8 +82,15 @@
 
   @include tablet() {
     @include is-expandable-nav-bar();
+    app-search-bar {
+      display: none;
+    }
   }
 
   @include desktop() {
+
+    app-search-bar {
+      display: none;
+    }
   }
 }
