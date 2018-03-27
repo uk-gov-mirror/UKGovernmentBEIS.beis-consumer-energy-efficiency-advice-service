@@ -1,6 +1,7 @@
 @import "styles/var/colors";
+@import "styles/boiler";
 
-$item-margin: 16px;
+
 
 :host {
   display: block;
@@ -40,29 +41,17 @@ $item-margin: 16px;
       }
     }
 
+    .carousel-items {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      transition: left 500ms;
+    }
+
     .mask {
       overflow-x: hidden;
       flex: 1 1 auto;
-
-      .carousel-items {
-        position: relative;
-        width: 100%;
-        display: flex;
-        align-items: stretch;
-        transition: left 500ms;
-
-        .carousel-item {
-          flex: 0 0 auto;
-          flex-basis: calc((100% - 2 * #{$item-margin}) / 3);
-          margin-right: $item-margin;
-        }
-
-        @for $i from 0 through 100 {
-          &[data-first-item="#{$i}"] {
-            left: calc(-#{$i} * (100% + #{$item-margin}) / 3);
-          }
-        }
-      }
     }
   }
 
@@ -86,5 +75,48 @@ $item-margin: 16px;
         margin-right: 6px;
       }
     }
+  }
+}
+
+.carousel {
+  @include mobile() {
+    $item-margin: 10px;
+
+    .carousel-items {
+
+      .carousel-item {
+        flex: 0 0 auto;
+        flex-basis: calc((100% - 2 * #{$item-margin}) / 1);
+        margin-right: $item-margin;
+      }
+
+      @for $i from 0 through 100 {
+        &[data-first-item="#{$i}"] {
+          left: calc(-#{$i} * (100% + #{$item-margin}) / 1);
+        }
+      }
+    }
+  }
+  @include tablet() {
+  }
+
+  @include desktop() {
+    $item-margin: 16px;
+
+    .carousel-items {
+
+      .carousel-item {
+        flex: 0 0 auto;
+        flex-basis: calc((100% - 2 * #{$item-margin}) / 3);
+        margin-right: $item-margin;
+      }
+
+      @for $i from 0 through 100 {
+        &[data-first-item="#{$i}"] {
+          left: calc(-#{$i} * (100% + #{$item-margin}) / 3);
+        }
+      }
+    }
+
   }
 }

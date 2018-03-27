@@ -22,6 +22,8 @@
                 aria-label="Scroll right to see later tips"></button>
     </div>
     <div class="dots">
-        <div class="dot" *ngFor="let idx of carouselItems.length | times" [class.active]="idx >= currentItem && idx - 2 <= currentItem"></div>
+        <div class="dot"
+             *ngFor="let idx of carouselItems.length | times"
+             [class.active]="idx >= currentItem && idx - 2 <= currentItem"></div>
     </div>
 </div>

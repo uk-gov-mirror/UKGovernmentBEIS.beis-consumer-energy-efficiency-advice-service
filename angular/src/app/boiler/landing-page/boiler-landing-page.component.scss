@@ -14,48 +14,6 @@
       margin-bottom: 8px;
     }
 
-    .tips {
-      margin-top: 32px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch;
-
-      .carousel {
-        flex: 1 1 auto;
-        padding-right: 24px;
-        border-right: 1px solid $light-medium-grey;
-      }
-
-      .links {
-        flex: 0 0 260px;
-        padding-left: 60px;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .still-not-working, .tenant {
-          flex: 0 0 50%;
-
-          display: flex;
-          flex-direction: column;
-
-          .body-large {
-            margin-bottom: 20px;
-          }
-        }
-
-        .still-not-working {
-          justify-content: flex-start;
-          border-bottom: 1px solid $light-medium-grey;
-        }
-
-        .tenant {
-          justify-content: flex-end;
-        }
-      }
-    }
   }
 
   .replacing {
@@ -69,12 +27,6 @@
       justify-content: space-between;
       padding-bottom: 32px;
       border-bottom: 1px solid $light-medium-grey;
-
-      .body-text {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: center;
-      }
 
       .link-button {
         flex: 0 0 250px;
@@ -133,92 +85,6 @@
     }
   }
 
-  .grants {
-    background: $lighter-grey;
-
-    .heading {
-      margin-bottom: 27px;
-    }
-
-    .body {
-      display: flex;
-      align-items: stretch;
-      justify-content: space-between;
-
-      .body-text {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: center;
-        margin-right: 96px;
-      }
-
-      .links {
-        flex: 0 0 524px;
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-
-        > .link-button {
-          flex: 0 0 260px;
-
-          &:first-child {
-            margin-right: 18px;
-          }
-        }
-      }
-    }
-  }
-
-  .find-installer {
-
-    .heading {
-      margin-bottom: 28px;
-    }
-
-    .installers {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-
-      .installer {
-        flex: 1 0 1px;
-        &:not(:last-child) {
-          margin-right: 24px;
-        }
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-end;
-
-        .installer-section {
-          font-size: 13px;
-          line-height: 16px;
-          font-family: $font-family-light;
-          text-transform: uppercase;
-        }
-
-        .installer-link {
-          width: 100%;
-          min-height: 125px;
-          margin-top: 12px;
-          padding: 20px;
-          box-sizing: border-box;
-
-          background: $lighter-grey;
-
-          display: flex;
-          align-items: flex-start;
-          justify-content: flex-start;
-
-          font-size: 16px;
-          line-height: 19px;
-          font-weight: bold;
-        }
-      }
-    }
-  }
-
   .expand-step-icon {
     display: none;
   }
@@ -246,11 +112,14 @@
       display: none;
     }
 
+
     .mobile-body-text {
       flex: 1 1 auto;
       display: flex;
       align-items: center;
       margin-right: 96px;
+      font-size: 16px;
+      font-family: GothamLight, Gotham, Arial, sans-serif;
     }
 
     .collapsible-header {
@@ -269,18 +138,18 @@
     }
 
     .mobile-expander {
-      padding: 25px 25px 20px;
+      padding: 25px 0 20px;
 
       .large-heading {
         font-size: 28px;
         line-height: 32px;
         font-weight: bold;
-        color: #01abce;
-        // Raam to change this.
+        color: $action-button-blue;
       }
 
       &.selected-expander {
         background-color: $action-button-blue;
+        padding-left: 20px;
 
         .collapsible-heading {
           color: $lighter-grey;
@@ -302,5 +171,140 @@
   }
 
   @include desktop() {
+    .tips {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+
+      .carousel {
+        flex: 1 1 auto;
+        padding-right: 24px;
+        border-right: 1px solid $light-medium-grey;
+      }
+
+      .links {
+        flex: 0 0 260px;
+        padding-left: 60px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .still-not-working, .tenant {
+          flex: 0 0 50%;
+
+          display: flex;
+          flex-direction: column;
+
+          .body-large {
+            margin-bottom: 20px;
+          }
+        }
+
+        .still-not-working {
+          justify-content: flex-start;
+          border-bottom: 1px solid $light-medium-grey;
+        }
+
+        .tenant {
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    .replacing {
+      .body-text {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .grants {
+      background: $lighter-grey;
+
+      .heading {
+        margin-bottom: 27px;
+      }
+
+      .body {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+
+        .body-text {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          margin-right: 96px;
+        }
+
+        .links {
+          flex: 0 0 524px;
+          display: flex;
+          align-items: stretch;
+          justify-content: space-between;
+
+          > .link-button {
+            flex: 0 0 260px;
+
+            &:first-child {
+              margin-right: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    .find-installer {
+
+      .heading {
+        margin-bottom: 28px;
+      }
+
+      .installers {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .installer {
+          flex: 1 0 1px;
+          &:not(:last-child) {
+            margin-right: 24px;
+          }
+
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+
+          .installer-section {
+            font-size: 13px;
+            line-height: 16px;
+            font-family: $font-family-light;
+            text-transform: uppercase;
+          }
+
+          .installer-link {
+            width: 100%;
+            min-height: 125px;
+            margin-top: 12px;
+            padding: 20px;
+            box-sizing: border-box;
+
+            background: $lighter-grey;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
   }
 }

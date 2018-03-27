@@ -40,11 +40,9 @@
                 <div class="collapsible-header">
                     <div class="large-heading collapsible-heading">Thinking about replacing your boiler?</div>
                     <div class="expand-step-icon"
-                         [class.troubleshootingMobileExpanded]="troubleshootingMobileExpanded"
                          title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-
                 </div>
-                <div class="boiler-options" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
+                <div class="boiler-options">
                     <div class="body-text">
                         If you're replacing your boiler or heating system, there are many options to choose from.<br>
                         Review all the different types or use our heating system calculator to find the right option for
@@ -87,18 +85,28 @@
             </div>
         </div>
         <div class="grants page-row">
-            <div class="page-row-content" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
-                <div class="heading mobile-expander" (click)="grantsMobileExpanded = !grantsMobileExpanded">Grants &
-                    incentives
+            <div class="page-row-content">
+                <div class="mobile-expander" [ngClass]="{'selected-expander': grantsMobileExpanded}"
+                     (click)="grantsMobileExpanded = !grantsMobileExpanded">
+                    <div class="collapsible-header">
+                        <div class="large-heading collapsible-heading">Grants & incentives</div>
+                        <div class="expand-step-icon"
+                             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                    </div>
+                    <div class="body">
+                        <div class="body-text">
+                            Find out if you are eligible to receive financial support from the government if you are
+                            struggling
+                            to replace your boiler. There are also incentives available if you are using a renewable energy
+                            source.
+                        </div>
+                        <div class="mobile-body-text">
+                            Find out if you are eligible to receive financial support from the government.
+                        </div>
+                    </div>
                 </div>
                 <div class="body">
-                    <div class="body-text">
-                        Find out if you are eligible to receive financial support from the government if you are
-                        struggling
-                        to replace your boiler. There are also incentives available if you are using a renewable energy
-                        source
-                    </div>
-                    <div class="links">
+                    <div class="links" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
                         <app-boiler-link-button class="link-button"
                                                 text="Find out about boiler grants"></app-boiler-link-button>
                         <app-boiler-link-button class="link-button"
@@ -107,12 +115,17 @@
                 </div>
             </div>
         </div>
-        <div class="page-row">
-            <div class="find-installer page-row-content" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
-                <div class="heading mobile-expander" (click)="installerMobileExpanded = !installerMobileExpanded">Find a
-                    trustworthy installer
+        <div class="find-installer page-row">
+            <div class=" page-row-content">
+                <div class="mobile-expander"  [ngClass]="{'selected-expander': installerMobileExpanded}"
+                     (click)="installerMobileExpanded = !installerMobileExpanded">
+                    <div class="collapsible-header">
+                        <div class="heading collapsible-heading">Find a trustworthy installer</div>
+                        <div class="expand-step-icon"
+                             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                    </div>
                 </div>
-                <div class="installers">
+                <div class="installers" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
                     <div class="installer">
                         <div class="installer-section">For plumbing</div>
                         <a class="installer-link">Competent Persons Register</a>
