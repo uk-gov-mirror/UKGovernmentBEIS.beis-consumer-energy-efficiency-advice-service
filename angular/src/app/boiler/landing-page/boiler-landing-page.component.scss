@@ -13,79 +13,54 @@
     .heading {
       margin-bottom: 8px;
     }
-
   }
 
-  .replacing {
-    .large-heading {
-      margin-bottom: 18px;
+  .find-installer {
+    .heading {
+      margin-bottom: 28px;
     }
 
-    .boiler-options {
-      display: flex;
-      align-items: stretch;
-      justify-content: space-between;
-      padding-bottom: 32px;
-      border-bottom: 1px solid $light-medium-grey;
+    .installers {
 
-      .link-button {
-        flex: 0 0 250px;
-        margin-left: 64px;
-      }
-    }
-
-    .replace-options {
-      padding-top: 64px;
-
-      .body {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-
-        .replace-column, .postcode-lookup-column {
-          flex: 1 1 auto;
-          flex-basis: calc(50% - 96px);
-
-          .small-heading {
-            margin-bottom: 17px;
-          }
-
-          .help-text {
-            font-size: 18px;
-            line-height: 22px;
-            font-family: $font-family-light;
-            width: 100%;
-          }
-
-          .link-button {
-            width: 100%;
-            height: 70px;
-          }
+      .installer {
+        flex: 1 0 1px;
+        &:not(:last-child) {
+          margin-right: 24px;
         }
 
-        .replace-column {
-          padding-right: 96px;
-          border-right: 1px solid $light-medium-grey;
+        .installer-section {
+          font-size: 13px;
+          line-height: 16px;
+          font-family: $font-family-light;
+          text-transform: uppercase;
+        }
 
-          .link-button {
-            height: 72px;
-            display: flex;
-            align-items: center;
-          }
+        .installer-link {
+          width: 100%;
+          min-height: 125px;
+          margin-top: 12px;
+          padding: 20px;
+          box-sizing: border-box;
+
+          background: $lighter-grey;
 
           display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
+          align-items: flex-start;
+          justify-content: flex-start;
 
-        .postcode-lookup-column {
-          padding-left: 96px;
+          font-size: 16px;
+          line-height: 19px;
+          font-weight: bold;
         }
       }
     }
   }
 
   .expand-step-icon {
+    display: none;
+  }
+
+  .mobile-body-text {
     display: none;
   }
 }
@@ -112,6 +87,77 @@
       display: none;
     }
 
+    .mobile-button-heading {
+      width: 100%;
+      height: 72px;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: bold;
+      color: $darkened-blue;
+      background-color: $lighter-grey;
+      font-family: Gotham, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      padding: 0 20px 0 20px;
+      border-style: solid;
+      border-width: 1px 0 0 0;
+      border-color: $light-medium-grey;
+    }
+
+    .link-button {
+      padding: 0 20px 20px 20px;
+      background-color: $lighter-grey;
+    }
+
+    .grants-body {
+      background-color: $lighter-grey;
+    }
+
+    .find-installer {
+      .heading {
+        margin-bottom: 28px;
+      }
+
+      .installers {
+
+        .installer {
+          flex: 1 0 1px;
+          &:not(:last-child) {
+            margin-right: 24px;
+          }
+
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+
+          .installer-section {
+            font-size: 13px;
+            line-height: 16px;
+            font-family: $font-family-light;
+            text-transform: uppercase;
+          }
+
+          .installer-link {
+            width: 100%;
+            min-height: 125px;
+            margin-top: 12px;
+            padding: 20px;
+            box-sizing: border-box;
+
+            background: $lighter-grey;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
 
     .mobile-body-text {
       flex: 1 1 auto;
@@ -214,10 +260,77 @@
     }
 
     .replacing {
-      .body-text {
-        flex: 1 1 auto;
+      .large-heading {
+        margin-bottom: 18px;
+      }
+
+      .boiler-options {
         display: flex;
-        align-items: center;
+        align-items: stretch;
+        justify-content: space-between;
+        padding-bottom: 32px;
+        border-bottom: 1px solid $light-medium-grey;
+
+        .link-button {
+          flex: 0 0 250px;
+          margin-left: 64px;
+        }
+      }
+
+      .replace-options {
+        padding-top: 64px;
+
+        .body {
+          display: flex;
+          align-items: stretch;
+          justify-content: space-between;
+
+          .body-text {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+          }
+
+          .replace-column, .postcode-lookup-column {
+            flex: 1 1 auto;
+            flex-basis: calc(50% - 96px);
+
+            .small-heading {
+              margin-bottom: 17px;
+            }
+
+            .help-text {
+              font-size: 18px;
+              line-height: 22px;
+              font-family: $font-family-light;
+              width: 100%;
+            }
+
+            .link-button {
+              width: 100%;
+              height: 70px;
+            }
+          }
+
+          .replace-column {
+            padding-right: 96px;
+            border-right: 1px solid $light-medium-grey;
+
+            .link-button {
+              height: 72px;
+              display: flex;
+              align-items: center;
+            }
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          .postcode-lookup-column {
+            padding-left: 96px;
+          }
+        }
       }
     }
 

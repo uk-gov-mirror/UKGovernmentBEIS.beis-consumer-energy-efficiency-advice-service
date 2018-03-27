@@ -1,8 +1,6 @@
 @import "styles/var/colors";
 @import "styles/boiler";
 
-
-
 :host {
   display: block;
 }
@@ -18,29 +16,6 @@
     align-items: stretch;
     justify-content: space-between;
 
-    .arrow {
-      border: none;
-      background: none;
-      cursor: pointer;
-      outline: none;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &::before {
-        width: 32px;
-      }
-
-      &.left {
-        margin-right: 16px;
-      }
-
-      &.right {
-        margin-left: 16px;
-      }
-    }
-
     .carousel-items {
       position: relative;
       width: 100%;
@@ -48,11 +23,11 @@
       align-items: stretch;
       transition: left 500ms;
     }
+  }
 
-    .mask {
-      overflow-x: hidden;
-      flex: 1 1 auto;
-    }
+  .mask {
+    overflow-x: hidden;
+    flex: 1 1 auto;
   }
 
   .dots {
@@ -76,11 +51,17 @@
       }
     }
   }
+
 }
 
 .carousel {
   @include mobile() {
     $item-margin: 10px;
+
+    .content {
+      padding: 20px;
+      background-color: $lighter-grey;
+    }
 
     .carousel-items {
 
@@ -96,6 +77,30 @@
         }
       }
     }
+
+    .arrow {
+      border: none;
+      background-color: $lighter-grey;
+      cursor: pointer;
+      outline: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        width: 32px;
+      }
+
+      &.left {
+        margin-right: 16px;
+      }
+
+      &.right {
+        margin-left: 16px;
+      }
+    }
+
   }
   @include tablet() {
   }
@@ -118,5 +123,27 @@
       }
     }
 
+    .arrow {
+      border: none;
+      background: none;
+      cursor: pointer;
+      outline: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        width: 32px;
+      }
+
+      &.left {
+        margin-right: 16px;
+      }
+
+      &.right {
+        margin-left: 16px;
+      }
+    }
   }
 }
