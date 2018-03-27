@@ -12,6 +12,7 @@ import {ResponseData} from './response-data/response-data';
 import {FeatureFlagService} from './feature-flag/feature-flag.service';
 import {EnergyCalculationApiService} from './energy-calculation-api-service/energy-calculation-api-service';
 import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
+import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {RoutingModule} from '../app-routing.module';
 import {LatestNewsCardComponent} from './latest-news-card/latest-news-card.component';
 import {RadialPercentageComponent} from './radial-percentage/radial-percentage.component';
@@ -45,6 +46,7 @@ import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component"
         PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
+        SearchBarComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
@@ -64,6 +66,7 @@ import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component"
         PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
+        SearchBarComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
