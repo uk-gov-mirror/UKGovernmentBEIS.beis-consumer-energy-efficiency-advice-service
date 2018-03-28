@@ -28,7 +28,7 @@ import {GreenerHomeComponent} from './landing-page/greener-home/greener-home.com
 import {AdminPageComponent} from "./admin-page/admin-page.component";
 import {AdminPageGuard} from "./admin-page/admin-page.guard";
 import {ForbiddenPageComponent} from "./shared/forbidden-page/forbidden-page.component";
-import {MeesPageComponent} from "./mees-page/mees-page.component";
+import {MeesQuestionnaireComponent} from "./mees/mees-questionnaire/mees-questionnaire.component";
 
 const routes: Routes = [
     {
@@ -108,8 +108,8 @@ const routes: Routes = [
         canActivate: [BoilerResultsPageRouteGuard]
     },
     {
-        path: 'js/minimum-energy-efficiency-standards',
-        component: MeesPageComponent,
+        path: 'js/minimum-energy-efficiency-standards/questionnaire',
+        component: MeesQuestionnaireComponent,
         pathMatch: 'full'
     },
     {

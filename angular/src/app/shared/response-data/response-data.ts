@@ -78,6 +78,16 @@ export class ResponseData {
             this.numberOfAdultsAged64To80 +
             this.numberOfAdultsAgedOver80;
     }
+
+    public isDomesticPropertyAfter2018: boolean;
+    public isPropertyAfter2020: boolean;
+    public isEpcBelowE: boolean;
+    public isEpcRequired: boolean;
+    public willPropertyBeDevalued: boolean;
+    public hasRecommendedImprovements: boolean;
+    public hasTemporaryExclusions: boolean;
+    public relevantTenancy: boolean;
+    public hasRelevantConsent: boolean;
 }
 
 export function isComplete(responseData: ResponseData) {

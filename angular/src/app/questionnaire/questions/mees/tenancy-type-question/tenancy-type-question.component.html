@@ -1,0 +1,24 @@
+<div class="question-component">
+    <div class="answer-grid multiple-choice-options">
+        <button class="multiple-choice-option"
+                [class.selected]="response"
+                (click)="response = true; complete.emit()">
+            Assured Tenancy
+        </button>
+        <button class="multiple-choice-option"
+                [class.selected]="response"
+                (click)="response = true; complete.emit()">
+            Regulated Tenancy
+        </button>
+        <button class="multiple-choice-option"
+                [class.selected]="response"
+                (click)="response = true; complete.emit()">
+            Agricultural Tenancy
+        </button>
+        <button class="multiple-choice-option"
+                [class.selected]="!response"
+                (click)="response = false; complete.emit()">
+            No
+        </button>
+    </div>
+</div>

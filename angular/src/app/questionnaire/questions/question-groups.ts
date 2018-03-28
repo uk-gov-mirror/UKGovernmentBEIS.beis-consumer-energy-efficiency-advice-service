@@ -31,6 +31,15 @@ import {FloorLevelQuestionMetadata} from './floor-level-question/floor-level-que
 import {FloorSpanQuestionMetadata} from './floor-span-question/floor-span-question-metadata';
 import {FlatExposedWallQuestionMetadata} from './flat-exposed-wall-question/flat-exposed-wall-question-metadata';
 import {HouseExposedWallQuestionMetadata} from './house-exposed-wall-question/house-exposed-wall-question-metadata';
+import {DomesticPropertyAfter2018QuestionMetadata} from
+    './mees/domestic-property-after-2018-question/domestic-property-after-2018-question-metadata';
+import {TemporaryExclusionsQuestionMetadata} from './mees/temporary-exclusions-question/temporary-exclusions-question-metadata';
+import {PropertyDevaluationQuestionMetadata} from './mees/property-devaluation-question/property-devaluation-question-metadata';
+import {RecommendedImprovementsQuestionMetadata} from './mees/recommended-improvements-question/recommended-improvements-question-metadata';
+import {EpcBelowEQuestionMetadata} from './mees/epc-below-e-question/epc-below-e-question-metadata';
+import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
+import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
+import {PropertyAfter2020QuestionMetadata} from './mees/property-after-2020-question/property-after-2020-question-metadata';
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -94,4 +103,15 @@ export const BOILER_QUESTIONS = [
     new FuelTypeQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new ShowersAndBathsQuestionMetadata(),
+];
+
+export const MEES_QUESTIONS = [
+    new DomesticPropertyAfter2018QuestionMetadata(),
+    new PropertyAfter2020QuestionMetadata(),
+    new EpcRequiredQuestionMetadata(),
+    new TenancyTypeQuestionMetadata(),
+    new EpcBelowEQuestionMetadata(),
+    new RecommendedImprovementsQuestionMetadata(),
+    new PropertyDevaluationQuestionMetadata(),
+    new TemporaryExclusionsQuestionMetadata(),
 ];
