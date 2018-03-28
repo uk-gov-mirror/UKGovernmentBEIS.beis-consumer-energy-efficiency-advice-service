@@ -5,6 +5,8 @@
   display: flex;
 
   .tags {
+    flex-wrap: wrap;
+
     .tag {
       cursor: pointer;
       outline: none;
