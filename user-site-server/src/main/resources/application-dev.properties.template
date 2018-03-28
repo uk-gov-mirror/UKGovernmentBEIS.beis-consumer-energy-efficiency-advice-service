@@ -1,0 +1,12 @@
+# This file contains application configuration for development machines
+#
+# Please make a copy of this file and remove ".template" from the filename.
+# Do not commit the copy.
+#
+# Ask your project manager for values to put in this file.
+#
+# These settings take precedence over those in application.properties,
+# see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+
+# Previously called EPC_API_TOKEN
+epc.opendatacommunities.org.auth=

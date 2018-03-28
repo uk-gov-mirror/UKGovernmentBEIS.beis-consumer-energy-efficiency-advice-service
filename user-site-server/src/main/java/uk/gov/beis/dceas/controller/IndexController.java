@@ -1,6 +1,5 @@
 package uk.gov.beis.dceas.controller;
 
-import com.google.common.collect.Iterables;
 import com.google.common.io.Resources;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
@@ -82,7 +80,7 @@ public class IndexController {
     public String index(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
-        model.addAttribute("environment", getEnvName());
+        model.addAttribute("environment", environment.getActiveProfiles());
         model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
@@ -98,12 +96,6 @@ public class IndexController {
             attributes.getValue("Jenkins-Build-Number"));
 
         return "index";
-    }
-
-    public String getEnvName() {
-        return Iterables.getFirst(
-            Arrays.asList(environment.getActiveProfiles()),
-            "UNKNOWN ENV");
     }
 
     private Attributes getBuildAttributes() throws IOException {

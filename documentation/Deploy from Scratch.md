@@ -57,7 +57,6 @@ You will need to update the `wp_options` table to change the hostname & port:
 
 Add necessary config:
 
-    cf set-env dceas-admin-site EPC_API_TOKEN xxx
     cf set-env dceas-admin-site GOOGLE_ANALYTICS_ID xxx
     cf set-env dceas-admin-site HOTJAR_ID xxx
     cf set-env dceas-admin-site BRE_API_USERNAME xxx
@@ -78,6 +77,7 @@ Add necessary config:
     cf set-env dceas-user-site dceas-admin-site-url https://dceas-admin-site-int.cloudapps.digital
     # comma separated list of IPv4 and IPv6 address ranges
     cf set-env dceas-user-site dceas.admin-ip-whitelist XXX
+    cf set-env dceas-user-site epc.opendatacommunities.org.auth XXX
 
 Build the site locally, and deploy:
 

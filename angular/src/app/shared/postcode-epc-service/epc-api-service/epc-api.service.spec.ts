@@ -14,6 +14,7 @@ describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: EpcApiService;
+    (window as any).CONFIG = {apiRoot: "/api"};
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -76,7 +77,7 @@ describe('EpcApiService', () => {
             const matchesExpectedMethod = request.method === 'GET';
             const encodedPostcode = encodeURI(postcode);
             const matchesExpectedUrlWithParams =
-                (request.urlWithParams === 'angular-theme/v1/epc?postcode=' + encodedPostcode + '&size=100');
+                (request.urlWithParams === '/api/epc?postcode=' + encodedPostcode + '&size=100');
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });
@@ -103,7 +104,7 @@ describe('EpcApiService', () => {
             const matchesExpectedMethod = request.method === 'GET';
             const encodedLmkKey = encodeURI(lmkKey);
             const matchesExpectedUrlWithParams =
-                (request.urlWithParams === 'angular-theme/v1/epc-recommendations?lmkKey=' + encodedLmkKey);
+                (request.urlWithParams === '/api/epc-recommendations?lmkKey=' + encodedLmkKey);
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });
