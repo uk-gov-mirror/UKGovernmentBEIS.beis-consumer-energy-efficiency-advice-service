@@ -41,7 +41,7 @@ import {MeesModule} from './mees/mees.module';
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
         BoilerModule.forRoot(),
-        MeesModule,
+        MeesModule.forRoot(),
         InlineSVGModule
     ],
     bootstrap: [AppComponent],

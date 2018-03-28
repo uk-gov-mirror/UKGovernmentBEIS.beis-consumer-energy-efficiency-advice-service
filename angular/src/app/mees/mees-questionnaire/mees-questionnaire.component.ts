@@ -12,6 +12,6 @@ export class MeesQuestionnaireComponent {
     }
 
     onQuestionnaireComplete() {
-        this.router.navigate(['']);
+        this.router.navigate(['/js/minimum-energy-efficiency-standards/results']);
     }
 }
