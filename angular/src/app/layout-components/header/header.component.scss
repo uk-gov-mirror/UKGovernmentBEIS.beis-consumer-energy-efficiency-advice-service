@@ -111,152 +111,6 @@ $desktop-header-height: 82px;
     .mobile-menu-icon {
       @include is-menu-icon(22px);
     }
-
-    .search-container {
-      background-color: $lighter-grey;
-      padding: $search-container-vertical-padding;
-      display: flex;
-      align-items: center;
-      height: $search-container-height;
-      position: relative;
-      max-width: 150px;
-      transition: max-width $animation-duration-horizontal;
-      transition-delay: $animation-duration-vertical;
-      flex-grow: 1;
-      width: 100%;
-
-      &.focussed {
-        box-shadow: 3px 3px 6px black;
-        max-width: 0.4 * $content-max-width;
-        transition-delay: 0s;
-      }
-
-      .search-form {
-        display: flex;
-        flex-grow: 1;
-        width: 100%;
-
-        .search-input {
-          background: none;
-          outline: none;
-          border: none;
-          padding: 0;
-          font-size: 16px;
-          flex-grow: 1;
-          min-width: 1px;
-        }
-
-        .icon {
-          @include is-search-icon(20px);
-          flex-shrink: 0;
-
-          &:focus {
-            height: 24px;
-            width: 24px;
-          }
-        }
-      }
-
-      .search-details-dropdown {
-        background-color: white;
-        width: 100%;
-        max-height: 0;
-        position: absolute;
-        top: 0;
-        margin-top: $search-container-height + 2 * $search-container-vertical-padding;
-        left: 0;
-        transition: max-height $animation-duration-vertical ease-in-out;
-        transition-delay: 0s;
-        display: flex;
-        align-items: stretch;
-        overflow: hidden;
-        z-index: 1;
-
-        &.expanded {
-          max-height: 300px;
-          transition-delay: $animation-duration-horizontal;
-          box-shadow: 3px 3px 6px black;
-        }
-
-        .popular-searches, .search-results {
-
-          & > :not(:last-child) {
-            margin-bottom: 10px;
-          }
-
-          .header {
-            font-weight: bold;
-          }
-
-          .see-all {
-            text-transform: uppercase;
-            font-weight: bold;
-          }
-
-          .text-row, .see-all {
-            text-align: left;
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-            padding: 0;
-            flex-shrink: 0;
-            text-decoration: none;
-            color: black;
-            font-weight: normal;
-
-            &:focus {
-              text-decoration: underline;
-            }
-          }
-        }
-
-        .search-results-container {
-          flex: 1;
-
-          .search-empty, .search-loading, .search-results, .search-no-results, .search-error {
-            display: flex;
-            flex-direction: column;
-            font-size: 12px;
-            padding: 20px;
-          }
-
-          .search-empty, .search-loading, .search-no-results, .search-error {
-            justify-content: center;
-            align-items: center;
-          }
-
-          .search-empty, .search-no-results {
-            .hint {
-              font-weight: bold;
-              width: 100%;
-            }
-          }
-
-          .search-results {
-            max-height: 50vh;
-            overflow-y: auto;
-          }
-
-          .search-error {
-            .error {
-              background-color: crimson;
-              color: white;
-              border-radius: 5px;
-              padding: 5px;
-            }
-          }
-        }
-
-        .popular-searches {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          font-size: 12px;
-          padding: 20px;
-        }
-      }
-    }
   }
 }
 
@@ -336,6 +190,10 @@ $desktop-header-height: 82px;
           position: absolute;
           top: 100%;
           width: calc(100% + 20px);
+        }
+
+        .showSearch {
+          display: flex;
         }
 
         app-search-bar {

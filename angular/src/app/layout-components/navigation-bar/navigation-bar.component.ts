@@ -11,6 +11,7 @@ export class NavigationBarComponent implements OnInit {
 
     topLevelPages: WordpressPage[] = [];
     @Input() shouldExpandNav: boolean;
+    @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
 
     constructor(private wordpressPagesService: WordpressPagesService) {
     }
@@ -19,5 +20,9 @@ export class NavigationBarComponent implements OnInit {
         this.wordpressPagesService
             .getTopLevelPages()
             .subscribe(wordpressPages => this.topLevelPages = wordpressPages);
+    }
+
+    hideMobileNav() {
+        this.onHideMobileNav.emit();
     }
 }

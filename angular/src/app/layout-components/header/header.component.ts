@@ -1,10 +1,5 @@
-import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ViewChild, Output, EventEmitter, ElementRef, Input, OnInit} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
-import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
-import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
-import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-searchable';
-
 
 @Component({
     selector: 'app-header',
@@ -25,17 +20,17 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this.shouldCloseSearchBar.subscribe(event => {
-            this.searchBarContainer.nativeElement.style.display = "none";
+            this.searchBarContainer.nativeElement.classList.remove("showSearch");
         });
     }
 
     toggleSearchTabletBox(): void {
         this.closeNav.emit();
 
-        if (this.searchBarContainer.nativeElement.style.display === "flex") {
-            this.searchBarContainer.nativeElement.style.display = "none";
+        if (this.searchBarContainer.nativeElement.classList.contains("showSearch")) {
+            this.searchBarContainer.nativeElement.classList.remove("showSearch");
         } else {
-            this.searchBarContainer.nativeElement.style.display = "flex";
+            this.searchBarContainer.nativeElement.classList.add("showSearch");
         }
     }
 
