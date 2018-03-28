@@ -11,7 +11,6 @@ $icon-column-width: $add-to-plan-column-width;
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .energy-efficiency-recommendation-card {
-  background-color: white;
   display: flex;
 
   margin: 16px 0;
@@ -20,6 +19,10 @@ $icon-column-width: $add-to-plan-column-width;
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 100%;
+
+    & > * {
+      background-color: white;
+    }
 
     .recommendation-icon {
       display: flex;
@@ -60,7 +63,6 @@ $icon-column-width: $add-to-plan-column-width;
 
       .more-detail-row {
         width: 100%;
-        border-top: 1px solid $light-grey;
         padding: 10px 0;
         display: flex;
         cursor: pointer;
@@ -190,10 +192,6 @@ $icon-column-width: $add-to-plan-column-width;
       border-left: 2px solid $lighter-grey;
     }
 
-    .investment-required-card, .monthly-savings-card {
-      margin-top: 22px;
-    }
-
     .add-to-plan-column {
       display: flex;
       flex-direction: column;
@@ -254,6 +252,10 @@ $icon-column-width: $add-to-plan-column-width;
       }
     }
   }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 // Breakpoint specific styling
@@ -263,7 +265,7 @@ $icon-column-width: $add-to-plan-column-width;
 
     .main-row {
       .recommendation-icon {
-        flex: 0 0 $add-to-plan-column-width;
+        flex: 0 0 $icon-column-width;
       }
 
       .recommendation-basic-details {
@@ -285,13 +287,17 @@ $icon-column-width: $add-to-plan-column-width;
       .add-to-plan-column {
         flex: 0 0 100%;
       }
+
+      .more-details-row {
+        margin-bottom: 5px;
+      }
     }
   }
 
   @include tablet() {
     .main-row {
       .recommendation-icon {
-        flex: 0 0 $add-to-plan-column-width;
+        flex: 0 0 $icon-column-width;
         order: 1;
       }
 
@@ -323,13 +329,17 @@ $icon-column-width: $add-to-plan-column-width;
         flex-basis: $add-to-plan-column-width;
         order: 3;
       }
+
+      .more-details-row {
+        border-bottom: 1px solid $light-grey;
+      }
     }
   }
 
   @include desktop() {
     .main-row {
       .recommendation-icon {
-        flex: 0 0 $add-to-plan-column-width;
+        flex: 0 0 $icon-column-width;
         order: 1;
       }
 
@@ -357,6 +367,10 @@ $icon-column-width: $add-to-plan-column-width;
       .add-to-plan-column {
         flex: 0 0 $add-to-plan-column-width;
         order: 5;
+      }
+
+      .more-details-row {
+        border-top: 1px solid $light-grey;
       }
     }
   }
