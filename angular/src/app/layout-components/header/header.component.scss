@@ -235,22 +235,40 @@ $desktop-header-height: 82px;
         }
       }
 
-      .searchBarContainer {
+      .ui-elems {
         display: flex;
-        margin-right: 20px;
-      }
-
-      app-search-bar {
-        margin-right: $desktop-help-button-width - $desktop-side-margin;
+        justify-content: flex-end;
+        align-items: center;
         height: 100%;
-      }
+        width: 100%;
+        margin: -20px -10px 0px 0px;
 
-      .mobile-menu-icon {
-        display: none;
-      }
+        .searchBarContainer {
+          display: flex;
+          margin-right: 20px;
+          height: 100%;
 
-      .tablet-search-icon {
-        display: none;
+          app-search-bar {
+            margin-right: $desktop-help-button-width - $desktop-side-margin;
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .showSearch {
+          display: flex;
+        }
+
+
+        .mobile-menu-icon {
+          display: none;
+        }
+
+        .tablet-search-icon {
+          display: none;
+        }
+
+
       }
     }
   }
