@@ -35,21 +35,18 @@ public class IndexController {
 
     @Value("${dceas.apiRoot}")
     private String apiRoot;
-
     @Value("${dceas.staticRoot}")
     private String staticRoot;
-
     private final Environment environment;
     private final IpValidationService ipValidationService;
-
     private final String angularHeadContent;
-
     private final String angularBodyContent;
+    private final Attributes buildAttributes;
 
     @Autowired
     public IndexController(Environment environment, IpValidationService ipValidationService) throws IOException {
-        // TODO:BEIS-196 env is "dev" on CF at the moment, fix or rename
         this.environment = environment;
+        buildAttributes = getBuildAttributes(environment);
         this.ipValidationService = ipValidationService;
 
         // We read the "dist" index.html from Angular, and inject it into our
@@ -85,41 +82,45 @@ public class IndexController {
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
 
-        Attributes attributes = getBuildAttributes();
         model.addAttribute("buildTimestamp",
-            attributes.getValue("Build-Timestamp"));
+            buildAttributes.getValue("Build-Timestamp"));
         model.addAttribute("buildGitCommit",
-            attributes.getValue("Git-Commit"));
+            buildAttributes.getValue("Git-Commit"));
         model.addAttribute("buildJenkinsUrl",
-            attributes.getValue("Jenkins-Build-Url"));
+            buildAttributes.getValue("Jenkins-Build-Url"));
         model.addAttribute("buildJenkinsNumber",
-            attributes.getValue("Jenkins-Build-Number"));
+            buildAttributes.getValue("Jenkins-Build-Number"));
 
         return "index";
     }
 
-    private Attributes getBuildAttributes() throws IOException {
+    private Attributes getBuildAttributes(Environment environment) throws IOException {
+        if (environment.acceptsProfiles("dev")) {
+            return new Attributes();
+        }
+
         InputStream mfStream = null;
         try {
-            // The cloud foundry Java buildpack unzips the JAR, so normal classloading
-            // should work
-            mfStream = this.getClass().getClassLoader().getResourceAsStream("META-INF/MANIFEST.MF");
+            URL mfUrl;
 
-            if (mfStream == null) {
-                // Can't use normal resource loading in Spring Boot
-                // https://stackoverflow.com/questions/32293962/how-to-read-my-meta-inf-manifest-mf-file-in-a-spring-boot-app
-                String jarClassUrl = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-                int jarFileSelectorStartIndex = jarClassUrl.indexOf('!');
-                if (jarFileSelectorStartIndex < 0) {
-                    // Not running inside a JAR
-                    return new Attributes();
-                }
+            // Can't use normal resource loading in Spring Boot
+            // https://stackoverflow.com/questions/32293962/how-to-read-my-meta-inf-manifest-mf-file-in-a-spring-boot-app
+            String jarClassUrl = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+            int jarFileSelectorStartIndex = jarClassUrl.indexOf('!');
+            if (jarFileSelectorStartIndex > 0) {
                 String jarUrl = jarClassUrl.substring(0, jarFileSelectorStartIndex);
-                URL mfUrl = new URL(jarUrl + "!/" + JarFile.MANIFEST_NAME);
-
-                mfStream = mfUrl.openStream();
+                mfUrl = new URL(jarUrl + "!/" + JarFile.MANIFEST_NAME);
+            } else if (jarClassUrl.equals("file:/home/vcap/app/BOOT-INF/classes/")) {
+                // The Cloud Foundry Java bootpack seems to part-unpack our JAR, and I
+                // can't see how to get to our MANIFEST via the classpath.
+                mfUrl = new URL("file:/home/vcap/app/META-INF/MANIFEST.MF");
+            } else {
+                log.error("Failed to find our MANIFEST.MF. jarClassUrl = " + jarClassUrl);
+                return new Attributes();
             }
 
+            log.info("Using MANIFEST.MF from: " + mfUrl);
+            mfStream = mfUrl.openStream();
             Manifest manifest = new Manifest(mfStream);
             return manifest.getMainAttributes();
         } finally {
