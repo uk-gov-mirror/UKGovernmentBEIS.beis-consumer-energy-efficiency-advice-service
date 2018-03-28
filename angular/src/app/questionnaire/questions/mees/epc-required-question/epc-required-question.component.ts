@@ -9,8 +9,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 })
 export class EpcRequiredQuestionComponent extends QuestionBaseComponent {
     get responseForAnalytics(): string {
-        return 'test'; // TODO
-        // return HouseExposedWall[this.response];
+        return this.response ? 'Property EPC is required' : 'Property EPC is not required';
     }
 
     get response(): boolean {

@@ -9,8 +9,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 })
 export class TemporaryExclusionsQuestionComponent extends QuestionBaseComponent {
     get responseForAnalytics(): string {
-        return 'test'; // TODO
-        // return HouseExposedWall[this.response];
+        return this.response ? 'Has temporary exclusions' : 'Does not have temporary exclusions';
     }
 
     get response(): boolean {

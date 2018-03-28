@@ -9,8 +9,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 })
 export class TenantConsentQuestionComponent extends QuestionBaseComponent {
     get responseForAnalytics(): string {
-        return 'test'; // TODO
-        // return HouseExposedWall[this.response];
+        return this.response ? 'Has relevant consent' : 'Does not have relevant consent';
     }
 
     get response(): boolean {

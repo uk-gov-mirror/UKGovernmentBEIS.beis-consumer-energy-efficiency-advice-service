@@ -31,8 +31,7 @@ export class TenancyTypeQuestionComponent extends QuestionBaseComponent {
     }
 
     get responseForAnalytics(): string {
-        return 'test'; // TODO
-        // return HouseExposedWall[this.response];
+        return TenancyType[this.response];
     }
 
     get response(): TenancyType {

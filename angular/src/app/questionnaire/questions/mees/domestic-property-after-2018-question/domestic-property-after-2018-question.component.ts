@@ -9,8 +9,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 })
 export class DomesticPropertyAfter2018QuestionComponent extends QuestionBaseComponent {
     get responseForAnalytics(): string {
-        return 'test'; // TODO
-        // return HouseExposedWall[this.response];
+        return this.response ? 'Will rent domestic property after 2018' : 'Will not rent domestic property after 2018';
     }
 
     get response(): boolean {

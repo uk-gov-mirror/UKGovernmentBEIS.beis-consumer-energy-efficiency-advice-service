@@ -9,8 +9,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 })
 export class PropertyDevaluationQuestionComponent extends QuestionBaseComponent {
     get responseForAnalytics(): string {
-        return 'test'; // TODO
-        // return HouseExposedWall[this.response];
+        return this.response ? 'Property will be devalued' : 'Property will not be devalued';
     }
 
     get response(): boolean {
