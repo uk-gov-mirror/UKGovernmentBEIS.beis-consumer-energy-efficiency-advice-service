@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 
 @Component({
     selector: 'app-recommended-improvements-question',
-    templateUrl: './recommended-improvements-question.component.html',
-    styleUrls: ['./recommended-improvements-question.component.scss'],
+    templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class RecommendedImprovementsQuestionComponent extends QuestionBaseComponent {

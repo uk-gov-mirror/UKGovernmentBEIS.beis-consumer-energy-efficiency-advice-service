@@ -13,12 +13,10 @@ export class TemporaryExclusionsQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.willPropertyBeDevalued === false;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.hasTemporaryExclusions != null;
+        return responseData.hasTemporaryExclusions !== undefined;
     }
 }

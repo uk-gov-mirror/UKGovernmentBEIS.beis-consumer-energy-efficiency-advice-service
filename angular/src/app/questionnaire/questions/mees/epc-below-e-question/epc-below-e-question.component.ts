@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 
 @Component({
     selector: 'app-epc-below-e-question',
-    templateUrl: './epc-below-e-question.component.html',
-    styleUrls: ['./epc-below-e-question.component.scss'],
+    templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class EpcBelowEQuestionComponent extends QuestionBaseComponent {

@@ -13,12 +13,10 @@ export class TenancyTypeQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.isEpcRequired;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.relevantTenancy != null;
+        return responseData.tenancyType !== undefined;
     }
 }

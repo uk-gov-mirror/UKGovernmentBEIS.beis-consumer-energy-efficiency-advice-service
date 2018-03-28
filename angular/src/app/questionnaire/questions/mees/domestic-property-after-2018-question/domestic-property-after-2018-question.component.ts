@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 
 @Component({
     selector: 'app-domestic-property-after-2018-question',
-    templateUrl: './domestic-property-after-2018-question.component.html',
-    styleUrls: ['./domestic-property-after-2018-question.component.scss'],
+    templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class DomesticPropertyAfter2018QuestionComponent extends QuestionBaseComponent {

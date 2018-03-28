@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 
 @Component({
     selector: 'app-property-devaluation-question',
-    templateUrl: './property-devaluation-question.component.html',
-    styleUrls: ['./property-devaluation-question.component.scss'],
+    templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class PropertyDevaluationQuestionComponent extends QuestionBaseComponent {

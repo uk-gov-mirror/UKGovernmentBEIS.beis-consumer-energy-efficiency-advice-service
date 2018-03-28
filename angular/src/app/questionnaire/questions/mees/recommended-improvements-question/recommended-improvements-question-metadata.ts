@@ -1,7 +1,7 @@
 import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
-import {RecommendedImprovementsQuestionComponent} from "./recommended-improvements-question.component";
+import {RecommendedImprovementsQuestionComponent} from './recommended-improvements-question.component';
 
 export class RecommendedImprovementsQuestionMetadata extends QuestionMetadata {
     constructor() {
@@ -13,12 +13,10 @@ export class RecommendedImprovementsQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.isEpcBelowE;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.hasRecommendedImprovements != null;
+        return responseData.hasRecommendedImprovements !== undefined;
     }
 }

@@ -13,12 +13,10 @@ export class TenantConsentQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.hasRecommendedImprovements;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.hasRelevantConsent != null;
+        return responseData.hasRelevantConsent !== undefined;
     }
 }

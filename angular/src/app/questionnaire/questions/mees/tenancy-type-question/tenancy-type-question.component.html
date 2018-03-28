@@ -1,24 +1,11 @@
 <div class="question-component">
     <div class="answer-grid multiple-choice-options">
         <button class="multiple-choice-option"
-                [class.selected]="response"
-                (click)="response = true; complete.emit()">
-            Assured Tenancy
-        </button>
-        <button class="multiple-choice-option"
-                [class.selected]="response"
-                (click)="response = true; complete.emit()">
-            Regulated Tenancy
-        </button>
-        <button class="multiple-choice-option"
-                [class.selected]="response"
-                (click)="response = true; complete.emit()">
-            Agricultural Tenancy
-        </button>
-        <button class="multiple-choice-option"
-                [class.selected]="!response"
-                (click)="response = false; complete.emit()">
-            No
+                *ngFor="let option of tenancyTypeOptions"
+                [class.selected]="response === option.value"
+                [ngClass]="option.className"
+                (click)="response = option.value; complete.emit()">
+            {{option.name}}
         </button>
     </div>
 </div>

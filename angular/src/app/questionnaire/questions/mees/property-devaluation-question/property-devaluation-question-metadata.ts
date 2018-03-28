@@ -1,7 +1,7 @@
 import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
-import {PropertyDevaluationQuestionComponent} from "./property-devaluation-question.component";
+import {PropertyDevaluationQuestionComponent} from './property-devaluation-question.component';
 
 export class PropertyDevaluationQuestionMetadata extends QuestionMetadata {
     constructor() {
@@ -13,12 +13,10 @@ export class PropertyDevaluationQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.hasRelevantConsent;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.willPropertyBeDevalued != null;
+        return responseData.willPropertyBeDevalued !== undefined;
     }
 }

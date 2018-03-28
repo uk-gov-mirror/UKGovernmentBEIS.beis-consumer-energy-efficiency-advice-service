@@ -13,12 +13,10 @@ export class DomesticPropertyAfter2018QuestionMetadata extends QuestionMetadata 
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return true;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.isDomesticPropertyAfter2018 != null;
+        return responseData.isDomesticPropertyAfter2018 !== undefined;
     }
 }

@@ -13,12 +13,10 @@ export class PropertyAfter2020QuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return !responseData.isDomesticPropertyAfter2018;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.isPropertyAfter2020 != null;
+        return responseData.isPropertyAfter2020 !== undefined;
     }
 }

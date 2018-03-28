@@ -5,7 +5,7 @@ import {HomeBasicsQuestionnaire} from './questionnaires/home-basics/home-basics-
 import {BehaviourQuestionnaire} from './questionnaires/behaviour/behaviour-questionnaire';
 import {GrantsQuestionnaire} from './questionnaires/grants/grants-questionnaire';
 import {BoilerQuestionnaire} from './questionnaires/boiler/boiler-questionnaire';
-import {MeesQuestionnaire} from "./questionnaires/mees/mees-questionnaire";
+import {MeesQuestionnaire} from './questionnaires/mees/mees-questionnaire';
 
 type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 

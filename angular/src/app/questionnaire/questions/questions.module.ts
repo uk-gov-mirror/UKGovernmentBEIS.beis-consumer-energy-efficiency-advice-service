@@ -40,14 +40,15 @@ import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question/fla
 import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/house-exposed-wall-question.component';
 import {DomesticPropertyAfter2018QuestionComponent} from
     './mees/domestic-property-after-2018-question/domestic-property-after-2018-question.component';
-import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-question/temporary-exclusions-question.component';
-import {PropertyDevaluationQuestionComponent} from './mees/property-devaluation-question/property-devaluation-question.component';
+import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-question/property-after-2020-question.component';
+import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
+import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
+import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-e-question.component";
 import {RecommendedImprovementsQuestionComponent} from
     './mees/recommended-improvements-question/recommended-improvements-question.component';
-import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-e-question.component";
-import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
-import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
-import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-question/property-after-2020-question.component';
+import {TenantConsentQuestionComponent} from './mees/tenant-consent-question/tenant-consent-question.component';
+import {PropertyDevaluationQuestionComponent} from './mees/property-devaluation-question/property-devaluation-question.component';
+import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-question/temporary-exclusions-question.component';
 
 @NgModule({
     declarations: [
@@ -89,6 +90,7 @@ import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-que
         TenancyTypeQuestionComponent,
         EpcBelowEQuestionComponent,
         RecommendedImprovementsQuestionComponent,
+        TenantConsentQuestionComponent,
         PropertyDevaluationQuestionComponent,
         TemporaryExclusionsQuestionComponent,
     ],
@@ -131,6 +133,7 @@ import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-que
         TenancyTypeQuestionComponent,
         EpcBelowEQuestionComponent,
         RecommendedImprovementsQuestionComponent,
+        TenantConsentQuestionComponent,
         PropertyDevaluationQuestionComponent,
         TemporaryExclusionsQuestionComponent,
     ],
@@ -180,6 +183,7 @@ import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-que
         TenancyTypeQuestionComponent,
         EpcBelowEQuestionComponent,
         RecommendedImprovementsQuestionComponent,
+        TenantConsentQuestionComponent,
         PropertyDevaluationQuestionComponent,
         TemporaryExclusionsQuestionComponent,
     ]

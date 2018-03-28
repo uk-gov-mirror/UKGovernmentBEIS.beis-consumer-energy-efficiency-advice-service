@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 
 @Component({
     selector: 'app-temporary-exclusions-question',
-    templateUrl: './temporary-exclusions-question.component.html',
-    styleUrls: ['./temporary-exclusions-question.component.scss'],
+    templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class TemporaryExclusionsQuestionComponent extends QuestionBaseComponent {

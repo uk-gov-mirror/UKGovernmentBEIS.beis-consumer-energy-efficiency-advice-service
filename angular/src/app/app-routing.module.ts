@@ -25,10 +25,10 @@ import {BoilerAdvicePageComponent} from './boiler/advice-page/boiler-advice-page
 import {YourPlanPageComponent} from './energy-efficiency/your-plan-page/your-plan-page.component';
 import {YourPlanPageGuard} from './energy-efficiency/your-plan-page/your-plan-page.guard';
 import {GreenerHomeComponent} from './landing-page/greener-home/greener-home.component';
-import {AdminPageComponent} from "./admin-page/admin-page.component";
-import {AdminPageGuard} from "./admin-page/admin-page.guard";
-import {ForbiddenPageComponent} from "./shared/forbidden-page/forbidden-page.component";
-import {MeesQuestionnaireComponent} from "./mees/mees-questionnaire/mees-questionnaire.component";
+import {AdminPageComponent} from './admin-page/admin-page.component';
+import {AdminPageGuard} from './admin-page/admin-page.guard';
+import {ForbiddenPageComponent} from './shared/forbidden-page/forbidden-page.component';
+import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 
 const routes: Routes = [
     {

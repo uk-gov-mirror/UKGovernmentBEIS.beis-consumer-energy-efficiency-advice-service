@@ -17,6 +17,7 @@ import {RoofSpace} from '../../questionnaire/questions/roof-space-question/roof-
 import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/floor-area-unit';
 import {FloorLevel} from '../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
+import {TenancyType} from '../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -86,7 +87,7 @@ export class ResponseData {
     public willPropertyBeDevalued: boolean;
     public hasRecommendedImprovements: boolean;
     public hasTemporaryExclusions: boolean;
-    public relevantTenancy: boolean;
+    public tenancyType: TenancyType;
     public hasRelevantConsent: boolean;
 }
 

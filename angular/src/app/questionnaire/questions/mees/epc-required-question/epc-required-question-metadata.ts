@@ -13,9 +13,7 @@ export class EpcRequiredQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return true; // TODO
-        // return responseData.homeType == null ||
-        //     (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.isDomesticPropertyAfter2018 || responseData.isPropertyAfter2020;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

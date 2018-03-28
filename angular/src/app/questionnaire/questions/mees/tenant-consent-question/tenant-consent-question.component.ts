@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 
 @Component({
     selector: 'app-tenant-consent-question',
-    templateUrl: './tenant-consent-question.component.html',
-    styleUrls: ['./tenant-consent-question.component.scss'],
+    templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class TenantConsentQuestionComponent extends QuestionBaseComponent {
