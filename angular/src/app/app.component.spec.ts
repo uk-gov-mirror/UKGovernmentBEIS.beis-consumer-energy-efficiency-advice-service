@@ -18,6 +18,7 @@ import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
 import {UserStateService} from "./shared/user-state-service/user-state-service";
 import {NeedHelpComponent} from "./shared/need-help/need-help.component";
+import {SearchBarComponent} from "./layout-components/search-bar/search-bar.component";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -40,7 +41,8 @@ describe('AppComponent', () => {
                 NavigationBarComponent,
                 OneTimePopupComponent,
                 PopupComponent,
-                NeedHelpComponent
+                NeedHelpComponent,
+                SearchBarComponent
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

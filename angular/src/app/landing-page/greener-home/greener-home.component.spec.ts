@@ -20,7 +20,9 @@ import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpr
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 
 describe('CarbonFootprintComponent', () => {
 
@@ -49,12 +51,14 @@ describe('CarbonFootprintComponent', () => {
                 StaticMeasureCardComponent,
                 DataCardComponent,
                 PopupComponent,
+                SearchBarComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                InlineSVGModule
             ],
             providers: [
                 ResponseData,

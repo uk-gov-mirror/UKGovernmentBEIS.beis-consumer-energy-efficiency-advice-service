@@ -20,6 +20,8 @@ import {StaticMeasureCardComponent} from './static-measure-card/static-measure-c
 import { PopupComponent } from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -58,12 +60,14 @@ describe('LandingPageComponent', () => {
                 MockPostcodeLookupComponent,
                 StaticMeasureCardComponent,
                 PopupComponent,
-                DataCardComponent
+                DataCardComponent,
+                SearchBarComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule.withRoutes([]),
+                InlineSVGModule
             ],
             providers: [
                 ResponseData,

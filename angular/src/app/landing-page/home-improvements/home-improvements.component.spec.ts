@@ -17,12 +17,14 @@ import {QuestionContentService} from '../../shared/question-content/question-con
 import {PostcodeDetails} from '../../shared/postcode-epc-service/model/postcode-details';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {PostcodeBasicDetailsResponse} from '../../shared/postcode-epc-service/model/response/postcode-basic-details-response';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -58,11 +60,13 @@ describe('HomeImprovementsComponent', () => {
                 StaticMeasureCardComponent,
                 DataCardComponent,
                 PopupComponent,
+                SearchBarComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                InlineSVGModule
             ],
             providers: [
                 ResponseData,
