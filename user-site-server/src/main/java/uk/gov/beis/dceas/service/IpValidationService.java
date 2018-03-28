@@ -21,6 +21,11 @@ public class IpValidationService {
     }
 
     public boolean requestIsInIpWhitelist(HttpServletRequest request) {
+        System.out.println("Remote Addr:");
+        System.out.println(request.getRemoteAddr());
+        System.out.println("X-FORWARDED-FOR header:");
+        System.out.println(request.getHeader("X-FORWARDED-FOR"));
+
         // TODO BEISDEAS-208 The original client's address is being returned from "getRemoteAddr"
         // There is a chance that further down the line, a load balancer or proxy will
         // be added. At this point, we should check the X-FORWARDED-FOR header and use
