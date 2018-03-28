@@ -285,6 +285,7 @@ $desktop-header-height: 82px;
       app-search-bar {
         display: none;
         margin-right: $desktop-help-button-width - $desktop-side-margin;
+        width: 100%;
         height: 100%;
       }
 

@@ -78,6 +78,17 @@
 .navigation-bar {
   @include mobile() {
     @include is-expandable-nav-bar();
+    .page-row-content {
+      padding: 0px;
+
+      app-search-bar {
+        width: 100%;
+      }
+
+      .menu-item {
+        padding-left: 20px;
+      }
+    }
   }
 
   @include tablet() {

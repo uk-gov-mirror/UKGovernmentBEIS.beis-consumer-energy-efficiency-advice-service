@@ -1,6 +1,6 @@
 <div id="main-content" class="main-content">
     <app-one-time-popup></app-one-time-popup>
-    <app-header (onMobileNavToggled)="toggleMobileNav()"></app-header>
+    <app-header (onMobileNavToggled)="toggleMobileNav()" (closeSearch)="closeSearchBar()" (closeNav)="hideMobileNav()" [shouldCloseSearchBar]="shouldCloseSearchBar"></app-header>
     <div class="page-component">
         <app-navigation-bar (onHideMobileNav)="hideMobileNav()" [shouldExpandNav]="shouldExpandNav"></app-navigation-bar>
         <router-outlet></router-outlet>

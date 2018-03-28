@@ -184,6 +184,9 @@ $animation-duration-vertical: 0.5s;
 // Breakpoint specific styling
 @include mobile() {
   .search-container {
+    width: calc(100% - 20px);
+    max-width: none;
+
   }
 }
 
