@@ -4,20 +4,24 @@
 @import "styles/mixins/_buttons";
 @import "styles/var/colors";
 
+// Component specific variables
 $icon-column-width: $add-to-plan-column-width;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .energy-efficiency-recommendation-card {
   background-color: white;
   display: flex;
-  flex-direction: column;
 
   margin: 16px 0;
 
   .main-row {
     display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
 
     .recommendation-icon {
-      flex: 0 0 $icon-column-width;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -30,7 +34,6 @@ $icon-column-width: $add-to-plan-column-width;
     }
 
     .recommendation-basic-details {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -92,6 +95,97 @@ $icon-column-width: $add-to-plan-column-width;
       }
     }
 
+    .expanded-view-row {
+      display: none;
+      border-top: 2px solid $light-grey;
+      padding: 20px 0;
+
+      &.expanded {
+        display: flex;
+      }
+
+      & > :first-child {
+        margin-left: $icon-column-width;
+      }
+
+      & > :not(:last-child) {
+        margin-right: 40px;
+      }
+
+      .grants {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 $data-card-width;
+
+        .grant-info-card {
+          background-color: $light-grey;
+          padding: 10px;
+
+          .grant-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+
+          .grant-description {
+            margin-bottom: 10px;
+            font-family: $font-family-light;
+          }
+
+          .grant-more-info-link-row {
+            display: flex;
+
+            .grant-more-info-link {
+              outline: none;
+              background: none;
+              border: none;
+              cursor: pointer;
+              padding: 0;
+              font-family: $font-family-light;
+
+              &:focus, &:hover {
+                text-decoration: underline;
+              }
+            }
+
+            .chevron {
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+
+      .grants, .benefits {
+        .heading {
+          text-transform: uppercase;
+          font-size: 12px;
+          margin-bottom: 10px;
+          color: $focus-text-blue;
+        }
+      }
+
+      .benefits {
+        flex: 1;
+
+        .benefits-list {
+          padding: 0 20px;
+          font-family: $font-family-light;
+        }
+      }
+
+      .action-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 0 0;
+        flex-basis: calc(2 * #{$data-card-width} + #{$add-to-plan-column-width});
+
+        .action-button {
+          @include arrow-button(200px, 60px);
+          text-transform: uppercase;
+        }
+      }
+    }
+
     .investment-required-card, .monthly-savings-card, .add-to-plan-column {
       border-left: 2px solid $lighter-grey;
     }
@@ -101,8 +195,6 @@ $icon-column-width: $add-to-plan-column-width;
     }
 
     .add-to-plan-column {
-      flex: 0 0;
-      flex-basis: $add-to-plan-column-width;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -162,94 +254,109 @@ $icon-column-width: $add-to-plan-column-width;
       }
     }
   }
+}
 
-  .expanded-view-row {
-    display: none;
-    border-top: 2px solid $light-grey;
-    padding: 20px 0;
+// Breakpoint specific styling
+.energy-efficiency-recommendation-card {
+  @include mobile() {
+    flex-wrap: wrap;
 
-    &.expanded {
-      display: flex;
-    }
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $add-to-plan-column-width;
+      }
 
-    & > :first-child {
-      margin-left: $icon-column-width;
-    }
+      .recommendation-basic-details {
+        flex: 1;
+      }
 
-    & > :not(:last-child) {
-      margin-right: 40px;
-    }
+      .expanded-view-row {
+        flex: 0 0 100%;
+      }
 
-    .grants {
-      display: flex;
-      flex-direction: column;
-      flex: 0 0 $data-card-width;
+      .investment-required-card {
+        flex: 0 0 100%;
+      }
 
-      .grant-info-card {
-        background-color: $light-grey;
-        padding: 10px;
+      .monthly-savings-card {
+        flex: 0 0 100%;
+      }
 
-        .grant-name {
-          font-weight: bold;
-          margin-bottom: 10px;
-        }
-
-        .grant-description {
-          margin-bottom: 10px;
-          font-family: $font-family-light;
-        }
-
-        .grant-more-info-link-row {
-          display: flex;
-
-          .grant-more-info-link {
-            outline: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            font-family: $font-family-light;
-
-            &:focus, &:hover {
-              text-decoration: underline;
-            }
-          }
-
-          .chevron {
-            margin-left: 4px;
-          }
-        }
+      .add-to-plan-column {
+        flex: 0 0 100%;
       }
     }
+  }
 
-    .grants, .benefits {
-      .heading {
-        text-transform: uppercase;
-        font-size: 12px;
-        margin-bottom: 10px;
-        color: $focus-text-blue;
+  @include tablet() {
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $add-to-plan-column-width;
+        order: 1;
+      }
+
+      .recommendation-basic-details {
+        flex: 1;
+        order: 2;
+      }
+
+      .expanded-view-row {
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        order: 4;
+      }
+
+      .investment-required-card {
+        flex: 0 0;
+        flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
+        order: 5;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0;
+        flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
+        order: 6;
+      }
+
+      .add-to-plan-column {
+        flex: 0 0;
+        flex-basis: $add-to-plan-column-width;
+        order: 3;
       }
     }
+  }
 
-    .benefits {
-      flex: 1;
-
-      .benefits-list {
-        padding: 0 20px;
-        font-family: $font-family-light;
+  @include desktop() {
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $add-to-plan-column-width;
+        order: 1;
       }
-    }
 
-    .action-button-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex: 0 0;
-      flex-basis: calc(2 * #{$data-card-width} + #{$add-to-plan-column-width});
+      .recommendation-basic-details {
+        flex: 1;
+        order: 2;
+      }
 
-      .action-button {
-        @include arrow-button(200px, 60px);
-        text-transform: uppercase;
+      .expanded-view-row {
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        order: 6;
+      }
+
+      .investment-required-card {
+        flex: 0 0 $data-card-width;
+        order: 3;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0 $data-card-width;
+        order: 4;
+      }
+
+      .add-to-plan-column {
+        flex: 0 0 $add-to-plan-column-width;
+        order: 5;
       }
     }
   }
