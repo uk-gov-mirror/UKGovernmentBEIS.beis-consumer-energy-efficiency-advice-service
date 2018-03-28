@@ -7,8 +7,6 @@ import {Subject} from 'rxjs/Subject';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-    displaySearch: boolean = false;
     @Input() shouldCloseSearchBar: Subject<any>;
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
     @Output() closeSearch: EventEmitter<null> = new EventEmitter<null>();
