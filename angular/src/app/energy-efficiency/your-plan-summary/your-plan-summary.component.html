@@ -1,8 +1,8 @@
-<app-data-card
+<app-data-card class="no-tablet"
         heading="Your potential score is"
         [value]="potentialScore"
         [colorCircleClassName]="currentScoreColorCircleClassName"></app-data-card>
-<app-data-card
+<app-data-card class="no-mobile"
         heading="Total investment required"
         [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'">
 </app-data-card>

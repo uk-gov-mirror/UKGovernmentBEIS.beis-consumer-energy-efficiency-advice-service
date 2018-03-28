@@ -2,147 +2,422 @@
 @import "styles/mixins/font";
 @import "../../_energy-efficiency-page-sizes";
 
-$do-button-height: 110px;
-$do-button-width: $add-to-plan-column-width;
-$do-button-left-chevron-width: 20px;
-$do-button-right-chevron-width: 30px;
-
 .your-plan {
-  background: white;
+  @include mobile() {
+    $do-button-height: 110px;
+    $do-button-width: $add-to-plan-column-width;
+    $do-button-left-chevron-width: 19px;
+    $do-button-right-chevron-width: 29px;
 
-  .page-row-content {
-    display: flex;
-    padding: 20px 0;
+      background: white;
 
-    & > :not(:last-child) {
-      border-left: 1px solid $light-grey;
-    }
-
-    .plan-details {
-      flex: 1 0 1px;
-      padding: 0 80px;
-      display: flex;
-      flex-direction: column;
-
-      .heading {
-        font-weight: bold;
-        text-transform: capitalize;
-        margin-bottom: 10px;
-        @include card-heading-font;
-      }
-
-      .subheading {
-        font-size: 16px;
-        line-height: 20px;
-      }
-
-      .recommendations-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        font-size: 16px;
-        line-height: 20px;
+      .page-row-content {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 20px 0;
 
-        .recommendations-list-item {
+        .no-mobile {
+          display: none;
+        }
+
+        & > :not(:last-child) {
+          border-left: 1px solid $light-grey;
+        }
+
+        .plan-details {
+          flex: 1 0 1px;
+          padding: 0 80px;
           display: flex;
-          cursor: pointer;
-          align-items: center;
+          flex-direction: column;
 
-          &:hover {
-            .remove-recommendation-button {
-              visibility: visible;
-            }
+          .heading {
+            font-weight: bold;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+            @include card-heading-font;
           }
 
-          .list-icon {
-            fill: $focus-text-blue;
-            margin-right: 10px;
-            height: 12px;
-            width: 10px;
-            line-height: 0;
-          }
-
-          .recommendation-name {
-            outline: none;
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
-            cursor: inherit;
-            font-family: $font-family-light;
+          .subheading {
             font-size: 16px;
             line-height: 20px;
           }
 
-          .remove-recommendation-button {
-            display: block;
-            width: 12px;
-            height: 12px;
-            margin-left: 10px;
-            line-height: 0;
-            stroke: $red;
-            visibility: hidden;
+          .recommendations-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 16px;
+            line-height: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .recommendations-list-item {
+              display: flex;
+              cursor: pointer;
+              align-items: center;
+
+              &:hover {
+                .remove-recommendation-button {
+                  visibility: visible;
+                }
+              }
+
+              .list-icon {
+                fill: $focus-text-blue;
+                margin-right: 10px;
+                height: 12px;
+                width: 10px;
+                line-height: 0;
+              }
+
+              .recommendation-name {
+                outline: none;
+                background: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                cursor: inherit;
+                font-family: $font-family-light;
+                font-size: 16px;
+                line-height: 20px;
+              }
+
+              .remove-recommendation-button {
+                display: block;
+                width: 12px;
+                height: 12px;
+                margin-left: 10px;
+                line-height: 0;
+                stroke: $red;
+                visibility: hidden;
+              }
+            }
+          }
+
+          .subheading {
+            font-family: $font-family-light;
+
+            &.plan-empty {
+              color: $focus-text-blue;
+            }
+          }
+        }
+
+        .plan-summary {
+          .tablet-only-your-plan-title {
+            display: inline-block;
+            position: absolute;
+            .tablet-your-plan-heading {
+              font-size: 20px;
+              float: left;
+              width: 20%;
+              position:relative;
+            }
+            .tablet-recommendations-sentence {
+              font-size: 10px;
+              float: right;
+              width: 75%;
+              position:relative;
+            }
+          }
+        }
+
+        .do-button {
+          background-color: $action-button-blue;
+          position: relative;
+          box-sizing: border-box;
+          width: $do-button-width;
+          height: $do-button-height;
+          padding-left: $do-button-left-chevron-width;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 26px;
+          color: white;
+          cursor: pointer;
+          text-decoration: none;
+
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: $do-button-left-chevron-width solid white;
+            border-top: $do-button-height/2 solid transparent;
+            border-bottom: $do-button-height/2 solid transparent;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            right: -$do-button-right-chevron-width;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: $do-button-height/2 solid transparent;
+            border-bottom: $do-button-height/2 solid transparent;
+            border-left: $do-button-right-chevron-width solid $action-button-blue;
+          }
+
+          &.disabled {
+            pointer-events: none;
+            opacity: 0;
+            cursor: default;
           }
         }
       }
+    }
 
-      .subheading {
-        font-family: $font-family-light;
 
-        &.plan-empty {
-          color: $focus-text-blue;
+  @include tablet() {
+
+    $do-button-height: 110px;
+    $do-button-width: $add-to-plan-column-width;
+    $do-button-left-chevron-width: 20px;
+    $do-button-right-chevron-width: 30px;
+
+      background: white;
+
+
+      .page-row-content {
+        display: flex;
+        padding: 20px 0;
+        margin-left: 80px;
+
+        .plan-details {
+          display: none;
+          flex-direction: column;
+          padding: 0 80px 0 0;
+        }
+
+        .plan-summary {
+          padding: 5px;
+          .tablet-only-your-plan-title {
+            display: inline-block;
+            position: absolute;
+            padding:  0 5px;
+            .tablet-your-plan-heading {
+              font-size: 21px;
+              float: left;
+              bottom: 6px;
+              position: relative;
+              font-weight: bold;
+            }
+            .tablet-recommendations-sentence {
+              font-size: 14px;
+              float: right;
+              bottom: 0;
+              margin-left: 15px;
+            }
+          }
+        }
+
+      .do-button {
+        background-color: $action-button-blue;
+        position: absolute;
+        right: 75px;
+        box-sizing: border-box;
+        width: $do-button-width;
+        height: $do-button-height;
+        padding-left: $do-button-left-chevron-width;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 26px;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -1px;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-left: $do-button-left-chevron-width solid white;
+          border-top: $do-button-height/2 solid transparent;
+          border-bottom: $do-button-height/2 solid transparent;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: -$do-button-right-chevron-width+1;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-top: $do-button-height/2 solid transparent;
+          border-bottom: $do-button-height/2 solid transparent;
+          border-left: $do-button-right-chevron-width solid $action-button-blue;
+        }
+
+        &.disabled {
+          pointer-events: none;
+          opacity: 0;
+          cursor: default;
         }
       }
     }
+  }
 
-    .do-button {
-      background-color: $action-button-blue;
-      position: relative;
-      box-sizing: border-box;
-      width: $do-button-width;
-      height: $do-button-height;
-      padding-left: $do-button-left-chevron-width;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 26px;
-      color: white;
-      cursor: pointer;
-      text-decoration: none;
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-left: $do-button-left-chevron-width solid white;
-        border-top: $do-button-height/2 solid transparent;
-        border-bottom: $do-button-height/2 solid transparent;
-      }
+  @include desktop() {
+    $do-button-height: 110px;
+    $do-button-width: $add-to-plan-column-width;
+    $do-button-left-chevron-width: 19px;
+    $do-button-right-chevron-width: 29px;
 
-      &::after {
-        content: '';
-        position: absolute;
-        right: -$do-button-right-chevron-width;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-top: $do-button-height/2 solid transparent;
-        border-bottom: $do-button-height/2 solid transparent;
-        border-left: $do-button-right-chevron-width solid $action-button-blue;
-      }
 
-      &.disabled {
-        pointer-events: none;
-        opacity: 0;
-        cursor: default;
+      background: white;
+
+      .page-row-content {
+        display: flex;
+        padding: 20px 0;
+
+        & > :not(:last-child) {
+          border-left: 1px solid $light-grey;
+        }
+
+        .plan-details {
+          flex: 1 0 1px;
+          padding: 0 80px;
+          display: flex;
+          flex-direction: column;
+
+          .heading {
+            font-weight: bold;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+            @include card-heading-font;
+          }
+
+          .subheading {
+            font-size: 16px;
+            line-height: 20px;
+          }
+
+          .recommendations-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 16px;
+            line-height: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .recommendations-list-item {
+              display: flex;
+              cursor: pointer;
+              align-items: center;
+
+              &:hover {
+                .remove-recommendation-button {
+                  visibility: visible;
+                }
+              }
+
+              .list-icon {
+                fill: $focus-text-blue;
+                margin-right: 10px;
+                height: 12px;
+                width: 10px;
+                line-height: 0;
+              }
+
+              .recommendation-name {
+                outline: none;
+                background: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                cursor: inherit;
+                font-family: $font-family-light;
+                font-size: 16px;
+                line-height: 20px;
+              }
+
+              .remove-recommendation-button {
+                display: block;
+                width: 12px;
+                height: 12px;
+                margin-left: 10px;
+                line-height: 0;
+                stroke: $red;
+                visibility: hidden;
+              }
+            }
+          }
+
+          .subheading {
+            font-family: $font-family-light;
+
+            &.plan-empty {
+              color: $focus-text-blue;
+            }
+          }
+        }
+
+        .plan-summary {
+          .tablet-only-your-plan-title {
+            display: none;
+          }
+        }
+
+        .do-button {
+          background-color: $action-button-blue;
+          position: relative;
+          right: -25px;
+          box-sizing: border-box;
+          width: $do-button-width;
+          height: $do-button-height;
+          padding-left: $do-button-left-chevron-width;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 26px;
+          color: white;
+          cursor: pointer;
+          text-decoration: none;
+
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: $do-button-left-chevron-width solid white;
+            border-top: $do-button-height/2 solid transparent;
+            border-bottom: $do-button-height/2 solid transparent;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            right: -$do-button-right-chevron-width;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: $do-button-height/2 solid transparent;
+            border-bottom: $do-button-height/2 solid transparent;
+            border-left: $do-button-right-chevron-width solid $action-button-blue;
+          }
+
+          &.disabled {
+            pointer-events: none;
+            opacity: 0;
+            cursor: default;
+          }
+        }
       }
     }
   }
-}
+
+

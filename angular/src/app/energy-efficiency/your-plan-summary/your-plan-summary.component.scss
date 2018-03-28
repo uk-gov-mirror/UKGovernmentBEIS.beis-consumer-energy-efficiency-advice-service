@@ -1,5 +1,7 @@
 @import "styles/var/colors";
+@import "styles/mixins/font";
 @import "../energy-efficiency-page-sizes";
+@import "styles/mixins/breakpoints";
 
 $your-plan-summary-border-width: 1px;
 
@@ -9,5 +11,23 @@ $your-plan-summary-border-width: 1px;
 
   & > :not(:first-child) {
     border-left: 1px solid $light-grey;
+  }
+
+  @include tablet() {
+    & :nth-child(2) {
+      border-left: none;
+    }
+  }
+}
+
+.no-mobile {
+  @include mobile() {
+    display: none;
+  }
+}
+
+.no-tablet{
+  @include tablet() {
+    display: none;
   }
 }

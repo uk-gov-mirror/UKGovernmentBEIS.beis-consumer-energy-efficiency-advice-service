@@ -1,6 +1,6 @@
 <div class="your-plan page-row">
     <div class="page-row-content">
-        <div class="plan-details">
+        <div class="plan-details no-mobile">
             <div class="heading">Your plan</div>
             <div class="subheading"
                  [class.plan-empty]="recommendations.length === 0">
@@ -16,7 +16,17 @@
                 </div>
             </div>
         </div>
-        <app-your-plan-summary></app-your-plan-summary>
+
+        <div class="plan-summary">
+            <div class="tablet-only-your-plan-title" >
+                <div class="tablet-your-plan-heading">Your plan </div>
+                <div class="tablet-recommendations-sentence" [class.plan-empty]="recommendations.length === 0">
+                    {{recommendations.length > 0 ? 'You have added '+recommendations.length+' recommendations' : 'Try adding some recommendations to your plan'}}
+                </div>
+            </div>
+            <app-your-plan-summary></app-your-plan-summary>
+        </div>
+
         <a class="do-button"
            [class.disabled]="recommendations.length === 0"
            routerLink="/js/energy-efficiency/your-plan">
@@ -24,3 +34,5 @@
         </a>
     </div>
 </div>
+
+
