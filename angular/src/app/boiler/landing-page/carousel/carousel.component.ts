@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
     selector: 'app-carousel',
@@ -9,6 +9,8 @@ export class CarouselComponent implements OnInit {
 
     carouselItems: {summary: string, details: string}[];
     currentItem: number;
+    xDown: number;
+    yDown: number;
 
     ngOnInit() {
         this.carouselItems = [
@@ -44,9 +46,15 @@ export class CarouselComponent implements OnInit {
             },
         ];
         this.currentItem = 0;
+        this.xDown = null;
+        this.yDown = null;
     }
 
     canScrollForwards(): boolean {
+        // can we get this from CSS?
+        if (window.outerWidth <= 600) {
+            return this.currentItem < this.carouselItems.length - 1;
+        }
         return this.currentItem < this.carouselItems.length - 3;
     }
 
@@ -64,5 +72,42 @@ export class CarouselComponent implements OnInit {
         if (this.canScrollBackwards()) {
             this.currentItem--;
         }
+    }
+
+    @HostListener('document:touchstart', ['$event'])
+    handleTouchStart(event: any) {
+        this.xDown = event.touches[0].clientX;
+        this.yDown = event.touches[0].clientY;
+    }
+
+    @HostListener('document:touchmove', ['$event'])
+    handleTouchMove(event: any) {
+        if ( ! this.xDown || ! this.yDown ) {
+            return;
+        }
+
+        const xUp = event.touches[0].clientX;
+        const yUp = event.touches[0].clientY;
+
+        const xDiff = this.xDown - xUp;
+        const yDiff = this.yDown - yUp;
+
+        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+            if ( xDiff > 0 ) {
+                /* left swipe */
+                if (this.canScrollForwards()) {
+                    this.currentItem++;
+                }
+            } else {
+                /* right swipe */
+                if (this.canScrollBackwards()) {
+                    this.currentItem--;
+                }
+            }
+        }
+
+        /* reset values */
+        this.xDown = null;
+        this.yDown = null;
     }
 }

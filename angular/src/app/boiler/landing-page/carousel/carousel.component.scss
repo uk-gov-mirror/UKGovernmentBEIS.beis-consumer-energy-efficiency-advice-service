@@ -29,29 +29,6 @@
     overflow-x: hidden;
     flex: 1 1 auto;
   }
-
-  .dots {
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background-color: $lighter-medium-grey;
-
-      &.active {
-        background-color: $dark-medium-grey;
-      }
-
-      &:not(:last-child) {
-        margin-right: 6px;
-      }
-    }
-  }
-
 }
 
 .carousel {
@@ -59,10 +36,14 @@
     $item-margin: 16px;
 
     .content {
-      padding: 20px;
+      //padding: 20px 0;
       background-color: $lighter-grey;
       width: 100%;
       box-sizing: border-box;
+    }
+
+    .mask {
+      padding: 20px 0;
     }
 
     .carousel-items {
@@ -71,35 +52,40 @@
         flex: 0 0 auto;
         width: 100%;
         box-sizing: border-box;
+        flex-basis: calc((100% - 2 * #{$item-margin}) / 1);
+        margin-right: $item-margin;
       }
 
       @for $i from 0 through 100 {
         &[data-first-item="#{$i}"] {
-          left: calc(-#{$i} * (100% + #{$item-margin}) / 1);
+          left: calc(-#{$i} * (100% - #{$item-margin}) / 1);
         }
       }
     }
 
     .arrow {
-      border: none;
-      background-color: $lighter-grey;
-      cursor: pointer;
-      outline: none;
+      display: none;
+    }
 
+    .dots {
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      &::before {
-        width: 32px;
-      }
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: $lighter-medium-grey;
 
-      &.left {
-        margin-right: 16px;
-      }
+        &.active-mobile {
+          background-color: $dark-medium-grey;
+        }
 
-      &.right {
-        margin-left: 16px;
+        &:not(:last-child) {
+          margin-right: 6px;
+        }
       }
     }
 
@@ -147,5 +133,28 @@
         margin-left: 16px;
       }
     }
+
+    .dots {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: $lighter-medium-grey;
+
+        &.active {
+          background-color: $dark-medium-grey;
+        }
+
+        &:not(:last-child) {
+          margin-right: 6px;
+        }
+      }
+    }
+
   }
 }

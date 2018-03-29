@@ -18,4 +18,8 @@ export class BoilerLandingPageComponent {
             this.router.navigate(['/js/boiler/epc-replace/unknown']);
         }
     }
+
+    scrollTo(event: MouseEvent) {
+        event.srcElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    }
 }
