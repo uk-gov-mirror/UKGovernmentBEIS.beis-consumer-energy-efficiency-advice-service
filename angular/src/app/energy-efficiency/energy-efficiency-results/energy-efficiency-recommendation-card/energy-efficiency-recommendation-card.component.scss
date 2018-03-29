@@ -40,7 +40,6 @@ $icon-column-width: $add-to-plan-column-width;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 10px 4px;
 
       & > :not(:first-child) {
         margin-top: 14px;
@@ -188,10 +187,6 @@ $icon-column-width: $add-to-plan-column-width;
       }
     }
 
-    .investment-required-card, .monthly-savings-card, .add-to-plan-column {
-      border-left: 2px solid $lighter-grey;
-    }
-
     .add-to-plan-column {
       display: flex;
       flex-direction: column;
@@ -266,29 +261,36 @@ $icon-column-width: $add-to-plan-column-width;
     .main-row {
       .recommendation-icon {
         flex: 0 0 $icon-column-width;
+        order: 2;
       }
 
       .recommendation-basic-details {
+        order: 1;
         flex: 1;
+        padding: 20px 0 20px 20px;
       }
 
       .expanded-view-row {
         flex: 0 0 100%;
+        order: 3;
       }
 
       .investment-required-card {
         flex: 0 0 100%;
+        order: 4;
       }
 
       .monthly-savings-card {
         flex: 0 0 100%;
+        order: 5;
       }
 
       .add-to-plan-column {
         flex: 0 0 100%;
+        order: 6;
       }
 
-      .more-details-row {
+      .more-detail-row {
         margin-bottom: 5px;
       }
     }
@@ -304,6 +306,7 @@ $icon-column-width: $add-to-plan-column-width;
       .recommendation-basic-details {
         flex: 1;
         order: 2;
+        padding: 10px 80px 0 4px;
       }
 
       .expanded-view-row {
@@ -316,22 +319,26 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0;
         flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
         order: 5;
+        padding-top: 20px;
+        border-right: 1px solid $light-grey;
       }
 
       .monthly-savings-card {
         flex: 0 0;
         flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
         order: 6;
+        padding-top: 20px;
       }
 
       .add-to-plan-column {
         flex: 0 0;
         flex-basis: $add-to-plan-column-width;
         order: 3;
+        border-left: 2px solid $lighter-grey;
       }
 
-      .more-details-row {
-        border-bottom: 1px solid $light-grey;
+      .more-detail-row {
+        border-bottom: 2px solid $light-grey;
       }
     }
   }
@@ -346,6 +353,7 @@ $icon-column-width: $add-to-plan-column-width;
       .recommendation-basic-details {
         flex: 1;
         order: 2;
+        padding: 10px 60px 10px 4px;
       }
 
       .expanded-view-row {
@@ -369,8 +377,12 @@ $icon-column-width: $add-to-plan-column-width;
         order: 5;
       }
 
-      .more-details-row {
+      .more-detail-row {
         border-top: 1px solid $light-grey;
+      }
+
+      .investment-required-card, .monthly-savings-card, .add-to-plan-column {
+        border-left: 2px solid $lighter-grey;
       }
     }
   }
