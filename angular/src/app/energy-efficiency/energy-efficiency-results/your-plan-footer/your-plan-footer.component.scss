@@ -13,10 +13,9 @@
 
       .page-row-content {
         display: flex;
-        padding: 20px 0;
+        padding: 18px 0 15px;
 
         .plan-details {
-          padding: 0 40px;
           display: none;
         }
         .plan-summary {
@@ -32,12 +31,6 @@
             .tablet-recommendations-sentence {
             display: none;
             }
-          }
-
-          .mobile-title {
-            left: 5px;
-            position: relative;
-            float: left;
           }
         }
 
