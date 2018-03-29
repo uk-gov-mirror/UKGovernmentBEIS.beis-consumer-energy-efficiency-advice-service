@@ -2,6 +2,7 @@
 
 user-site-server/src/main/resources/public/dist/
 wordpress/wp-content/themes/angular-theme/config/config.php
+user-site-server/src/main/resources/application-dev.properties
 /.idea/workspace.xml
 /.idea/tasks.xml
 node_modules

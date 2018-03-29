@@ -111,6 +111,17 @@ $arrow-height: 48px;
 .home-page {
   background: white;
 
+  .banner {
+    background: #2a759c;
+    padding: 10px;
+    color: white;
+
+    > a {
+      margin-left: 10px;
+      color: white;
+    }
+  }
+
   .heading-section {
     background: url('/assets/images/home-page/background.jpg') right bottom;
     background-size: cover;

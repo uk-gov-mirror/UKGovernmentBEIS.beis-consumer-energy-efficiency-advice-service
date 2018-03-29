@@ -79,6 +79,12 @@ In the `angular` dir, run:
 
     npm install
 
+Copy the file
+`user-site-server/src/main/resources/application-dev.properties.template`
+to a new file called `application-dev.properties` in the same directory and
+fill in the config values. This file will be ignored by git, so
+you can safely fill in the template values with real values.
+
 In IntelliJ, run both the "ng build --watch" and the "DceasApplication" run configurations
 and visit the site at http://localhost:8080
 
