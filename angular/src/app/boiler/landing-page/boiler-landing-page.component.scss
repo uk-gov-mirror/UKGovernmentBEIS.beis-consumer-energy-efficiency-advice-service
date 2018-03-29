@@ -12,7 +12,7 @@
     display: none;
   }
 
-  .mobile-body-text {
+  .body-text-mobile {
     display: none;
   }
 }
@@ -87,7 +87,7 @@
         padding: 20px 0;
       }
 
-      .links {
+      .links:not(.mobile-hidden) {
         display: flex;
         flex-direction: column;
       }
@@ -174,7 +174,7 @@
       }
     }
 
-    .mobile-body-text {
+    .body-text-mobile {
       flex: 1 1 auto;
       display: flex;
       align-items: center;
@@ -225,7 +225,7 @@
           fill: $lighter-grey;
         }
 
-        .mobile-body-text {
+        .body-text-mobile {
           color: $lighter-grey;
         }
       }
@@ -244,6 +244,7 @@
         margin-bottom: 8px;
       }
     }
+
 
     .tips {
       margin-top: 32px;
