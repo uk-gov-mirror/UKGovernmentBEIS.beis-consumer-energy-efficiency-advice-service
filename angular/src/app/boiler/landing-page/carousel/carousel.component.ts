@@ -51,7 +51,6 @@ export class CarouselComponent implements OnInit {
     }
 
     canScrollForwards(): boolean {
-        // can we get this from CSS?
         if (window.outerWidth <= 600) {
             return this.currentItem < this.carouselItems.length - 1;
         }
@@ -92,21 +91,18 @@ export class CarouselComponent implements OnInit {
         const xDiff = this.xDown - xUp;
         const yDiff = this.yDown - yUp;
 
-        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
             if ( xDiff > 0 ) {
-                /* left swipe */
                 if (this.canScrollForwards()) {
                     this.currentItem++;
                 }
             } else {
-                /* right swipe */
                 if (this.canScrollBackwards()) {
                     this.currentItem--;
                 }
             }
         }
 
-        /* reset values */
         this.xDown = null;
         this.yDown = null;
     }
