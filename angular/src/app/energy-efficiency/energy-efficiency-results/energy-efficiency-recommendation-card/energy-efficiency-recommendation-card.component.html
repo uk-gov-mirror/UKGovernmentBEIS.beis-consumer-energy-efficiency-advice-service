@@ -15,11 +15,11 @@
                     {{recommendation.summary}}
                 </div>
             </div>
-            <div class="more-detail-row"  (click)="toggleExpandedView()">
+            <div class="more-detail-row"  [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
                 <button class="more-detail-button">
                     {{isExpandedView ? 'Hide detail' : 'See more detail'}}
                 </button>
-                <div class="more-detail-icon" [class.expanded]="isExpandedView" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                <div class="more-detail-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             </div>
         </div>
         <div class="expanded-view-row" [class.expanded]="isExpandedView">

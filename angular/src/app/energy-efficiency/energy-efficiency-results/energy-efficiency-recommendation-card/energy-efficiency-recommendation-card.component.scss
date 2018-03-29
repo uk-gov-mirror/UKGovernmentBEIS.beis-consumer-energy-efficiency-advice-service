@@ -88,10 +88,10 @@ $icon-column-width: $add-to-plan-column-width;
           display: block;
           line-height: 0;
           fill: $action-button-blue;
+        }
 
-          &.expanded {
-            transform: rotate(180deg);
-          }
+        &.expanded .more-detail-icon {
+          transform: rotate(180deg);
         }
       }
     }
@@ -99,6 +99,7 @@ $icon-column-width: $add-to-plan-column-width;
     .expanded-view-row {
       display: none;
       border-top: 2px solid $light-grey;
+      border-bottom: 2px solid $light-grey;
       padding: 20px 0;
 
       &.expanded {
@@ -189,7 +190,6 @@ $icon-column-width: $add-to-plan-column-width;
 
     .add-to-plan-column {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
@@ -211,10 +211,8 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .add-to-plan-text {
-        margin-top: 44px;
         color: $focus-text-blue;
         text-transform: uppercase;
-        margin-bottom: 10px;
         font-size: 11px;
         text-align: center;
         font-weight: bold;
@@ -273,25 +271,36 @@ $icon-column-width: $add-to-plan-column-width;
       .expanded-view-row {
         flex: 0 0 100%;
         order: 3;
+        border: none;
       }
 
       .investment-required-card {
         flex: 0 0 100%;
         order: 4;
+        border-top: 5px solid $light-grey;
+        padding: 20px;
       }
 
       .monthly-savings-card {
         flex: 0 0 100%;
         order: 5;
+        border-top: 2px solid $light-grey;
+        padding: 20px;
       }
 
       .add-to-plan-column {
         flex: 0 0 100%;
         order: 6;
+        border-top: 5px solid $light-grey;
+        padding: 20px;
+
+        .add-to-plan-text {
+          margin-right: 44px;
+        }
       }
 
-      .more-detail-row {
-        margin-bottom: 5px;
+      .more-detail-row.expanded {
+        border-bottom: 5px solid $light-grey;
       }
     }
   }
@@ -327,7 +336,7 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0;
         flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
         order: 6;
-        padding-top: 20px;
+        padding: 20px 0;
       }
 
       .add-to-plan-column {
@@ -335,9 +344,15 @@ $icon-column-width: $add-to-plan-column-width;
         flex-basis: $add-to-plan-column-width;
         order: 3;
         border-left: 2px solid $lighter-grey;
+        flex-direction: column;
+
+        .add-to-plan-text {
+          margin-top: 44px;
+          margin-bottom: 10px;
+        }
       }
 
-      .more-detail-row {
+      .more-detail-row:not(.expanded) {
         border-bottom: 2px solid $light-grey;
       }
 
@@ -379,6 +394,12 @@ $icon-column-width: $add-to-plan-column-width;
       .add-to-plan-column {
         flex: 0 0 $add-to-plan-column-width;
         order: 5;
+        flex-direction: column;
+
+        .add-to-plan-text {
+          margin-top: 44px;
+          margin-bottom: 10px;
+        }
       }
 
       .more-detail-row {

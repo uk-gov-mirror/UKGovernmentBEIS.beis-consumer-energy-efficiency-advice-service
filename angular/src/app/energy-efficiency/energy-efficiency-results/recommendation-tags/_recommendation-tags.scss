@@ -13,6 +13,7 @@
     color: white;
     text-transform: uppercase;
     font-size: 11px;
+    text-align: center;
   }
 
   .tag-quick-win {
@@ -39,10 +40,10 @@
 // Breakpoint specific styling
 .tags {
   @include mobile() {
-    @include is-grid($margin-compensation: 20px);
+    @include is-grid($margin-compensation: 14px);
 
     .tag {
-      @include is-grid-item($number-of-items: 2, $margin: 20px);
+      @include is-grid-item($number-of-items: 2, $margin: 14px);
       height: 28px;
       border-radius: 28px;
     }
