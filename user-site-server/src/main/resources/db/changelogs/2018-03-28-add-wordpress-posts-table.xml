@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <!-- This is only run on H2.
+       =
+       = Any MySQL databases are assumed to be based on a snapshot of a live
+       = database (or are a live database), so should already have all the WP tables
+       -->
+    <changeSet id="2018-03-28-add-wordpress-posts-table.xml"
+               author="richard.bradley@softwire.com"
+               dbms="h2">
+        <createTable tableName="wp_posts">
+            <column name="ID" type="int"><constraints nullable="false" primaryKey="true" /></column>
+            <column name="post_author" type="int"><constraints nullable="false" /></column>
+            <column name="post_date" type="datetime"><constraints nullable="false" /></column>
+            <column name="post_date_gmt" type="datetime"><constraints nullable="false" /></column>
+            <column name="post_content" type="text"><constraints nullable="false" /></column>
+            <column name="post_title" type="text"><constraints nullable="false" /></column>
+            <column name="post_status" type="varchar(20)"><constraints nullable="false" /></column>
+            <column name="post_name" type="varchar(200)"><constraints nullable="false" /></column>
+            <column name="post_type" type="varchar(20)"><constraints nullable="false" /></column>
+        </createTable>
+
+        <createTable tableName="wp_postmeta">
+            <column name="meta_id" type="int"><constraints nullable="false" primaryKey="true" /></column>
+            <column name="post_id" type="int"><constraints nullable="false" /></column>
+            <column name="meta_key" type="varchar(255)" />
+            <column name="meta_value" type="text" />
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="wp_postmeta" baseColumnNames="post_id"
+                                 constraintName="FK_wp_postmeta__wp_posts"
+                                 referencedTableName="wp_posts"
+                                 referencedColumnNames="ID" />
+
+    </changeSet>
+</databaseChangeLog>

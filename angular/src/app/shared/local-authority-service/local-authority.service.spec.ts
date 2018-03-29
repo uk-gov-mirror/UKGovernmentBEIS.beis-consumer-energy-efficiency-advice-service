@@ -3,13 +3,13 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpRequest} from '@angular/common/http';
 import {LocalAuthorityService} from './local-authority.service';
 import {LocalAuthorityResponse} from './local-authority-response';
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 import 'rxjs/add/operator/toPromise';
 
 describe('LocalAuthorityService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: LocalAuthorityService;
+    (window as any).CONFIG = {apiRoot: "/api"};
 
     const localAuthorityCode = 'E09000033';
     const mockApiResponse: LocalAuthorityResponse = {
@@ -26,8 +26,7 @@ describe('LocalAuthorityService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [LocalAuthorityService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
+            providers: [LocalAuthorityService],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -100,7 +99,7 @@ describe('LocalAuthorityService', () => {
 
     function matchesExpectedRequest(request: HttpRequest<any>): boolean {
         const matchesExpectedMethod = request.method === 'GET';
-        const matchesExpectedUrl = request.urlWithParams === `angular-theme/v1/local-authority/${ localAuthorityCode }`;
+        const matchesExpectedUrl = request.urlWithParams === `/api/local-authority/${ localAuthorityCode }`;
         return matchesExpectedMethod && matchesExpectedUrl;
     }
 });
