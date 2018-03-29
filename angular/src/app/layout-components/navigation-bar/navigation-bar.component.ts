@@ -8,58 +8,58 @@ import {NavigationSuboption} from "./navigation-suboption";
     styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent {
-    aboutSuboptions: NavigationSuboption[] = [
-        {
-            name: "Mission statement",
-            url: "/mission-statement"
-        },
-        {
-            name: "FAQ",
-            url: "/FAQ"
-        },
-        {
-            name: "Help section",
-            url: "/help-section"
-        },
-        {
-            name: "Contact",
-            url: "/contact"
-        }
-    ];
     homeSuboptions: NavigationSuboption[] = [
         {
             name: "Heating & Hot Water",
-            url: "/Heating&Hot-Water"
+            url: "/heating&hot-water"
         },
         {
-            name: "Insulation & Glazing",
-            url: "/Insulation&Glazing"
+            name: "Windows & Doors",
+            url: "/windows&doors"
         },
         {
-            name: "Renewable Energy",
-            url: "/Renewable-Energy"
+            name: "Floors, Walls & Roofs",
+            url: "/floors-walls&roofs"
+        },
+        {
+            name: "Solar Energy",
+            url: "/solar-energy"
         }
     ];
-    rightsSuboptions: NavigationSuboption[] = [
+    rentedSuboptions: NavigationSuboption[] = [
         {
-            name: "Tenants",
-            url: "/Tenants"
+            name: "Information for Tenants",
+            url: "/information-for-tenants"
         },
         {
-            name: "Landlords",
-            url: "/Landlords"
+            name: "Information for Landlords",
+            url: "/information-for-landlords"
+        },
+    ];
+    financeSuboptions: NavigationSuboption[] = [
+        {
+            name: "Support for Home Improvements",
+            url: "/support-for-home-improvements"
+        },
+        {
+            name: "Support for Renewable Heating",
+            url: "/support-for-renewable-heating"
+        },
+        {
+            name: "Support for",
+            url: "/support-for-rewnewable-electricity"
         }
     ];
-    showAboutMenu: boolean = false;
     showHomeMenu: boolean = false;
-    showRightsMenu: boolean = false;
+    showRentedMenu: boolean = false;
+    showFinanceMenu: boolean = false;
 
     @Input() shouldExpandNav: boolean;
     @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
 
-    @ViewChild('aboutMenu') aboutMenu;
     @ViewChild('homeMenu') homeMenu;
-    @ViewChild('rightsMenu') rightsMenu;
+    @ViewChild('rentedMenu') rentedMenu;
+    @ViewChild('financeMenu') financeMenu;
 
     private deregisterClickListener: () => void;
 
@@ -75,22 +75,22 @@ export class NavigationBarComponent {
 
     handleClick(event): void {
         const clickedElement = event.target;
-        const inAboutMenu = clickedElement && this.aboutMenu.nativeElement.contains(clickedElement);
         const inHomeMenu = clickedElement && this.homeMenu.nativeElement.contains(clickedElement);
-        const inRightsMenu = clickedElement && this.rightsMenu.nativeElement.contains(clickedElement);
-        if (!inAboutMenu && !inHomeMenu) {
-            this.showAboutMenu = false;
+        const inRentedMenu = clickedElement && this.rentedMenu.nativeElement.contains(clickedElement);
+        const inFinanceMenu = clickedElement && this.financeMenu.nativeElement.contains(clickedElement);
+        if (!inHomeMenu && !inRentedMenu) {
             this.showHomeMenu = false;
+            this.showRentedMenu = false;
         }
-        if (!inAboutMenu && !inRightsMenu) {
-            this.showAboutMenu = false;
-            this.showRightsMenu = false;
-        }
-        if (!inHomeMenu && !inRightsMenu) {
+        if (!inHomeMenu && !inFinanceMenu) {
             this.showHomeMenu = false;
-            this.showRightsMenu = false;
+            this.showFinanceMenu = false;
         }
-        if (!inHomeMenu && !inRightsMenu && !inAboutMenu && this.deregisterClickListener) {
+        if (!inRentedMenu && !inFinanceMenu) {
+            this.showRentedMenu = false;
+            this.showFinanceMenu = false;
+        }
+        if (!inRentedMenu && !inFinanceMenu && !inHomeMenu && this.deregisterClickListener) {
             this.deregisterClickListener();
         }
     }

@@ -1,12 +1,13 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
     <div class="page-row-content">
 
-        <div #aboutMenu class="about-menu menu-item" (click)="showAboutMenu = !showAboutMenu; registerSingleClickListener()">
-                About this site
-                <ng-container *ngIf="showAboutMenu">
-                    <app-nav-bar-suboption [suboptions]="aboutSuboptions"></app-nav-bar-suboption>
-                </ng-container>
-        </div>
+        <a routerLink="/about-this-site/" class="menu-item">
+            <div class="about-text">About this Site</div>
+        </a>
+
+        <a routerLink="/simple-savings/" class="menu-item">
+            <div class="simple-savings-text">Simple Savings</div>
+        </a>
 
         <div #homeMenu class="home-menu menu-item" (click)="showHomeMenu = !showHomeMenu; registerSingleClickListener()">
                 Your Home
@@ -15,16 +16,20 @@
                 </ng-container>
         </div>
 
-        <div #rightsMenu class="rights-menu menu-item" (click)="showRightsMenu = !showRightsMenu; registerSingleClickListener()">
-                Rights and Responsibilities
-                <ng-container *ngIf="showRightsMenu">
-                    <app-nav-bar-suboption [suboptions]="rightsSuboptions"></app-nav-bar-suboption>
+        <div #rentedMenu class="rented-menu menu-item" (click)="showRentedMenu = !showRentedMenu; registerSingleClickListener()">
+                Rented Properties
+                <ng-container *ngIf="showRentedMenu">
+                    <app-nav-bar-suboption [suboptions]="rentedSuboptions"></app-nav-bar-suboption>
                 </ng-container>
         </div>
 
-            <a routerLink="/financial-assistance/" class="menu-item">
-                <div class="finance-text">Financial Assistance</div>
-            </a>
+        <div #financeMenu class="finance-menu menu-item" (click)="showFinanceMenu = !showFinanceMenu; registerSingleClickListener()">
+                Financial Assistance
+                <ng-container *ngIf="showFinanceMenu">
+                    <app-nav-bar-suboption [suboptions]="financeSuboptions"></app-nav-bar-suboption>
+                </ng-container>
+        </div>
+
 
     </div>
     <div class="navigation-bar-mobile-overlay" (click)="hideMobileNav()"></div>

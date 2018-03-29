@@ -48,7 +48,15 @@
       padding: 10px;
     }
 
-    .finance-text {
+    .about-text {
+      color: white;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .simple-savings-text { /* this could be same class as above */
       color: white;
       display: block;
       width: 100%;
@@ -123,7 +131,11 @@
       bottom: 7px;
     }
 
-    .finance-text {
+    .about-text {
+      position: relative;
+    }
+
+    .simple-savings-text {
       position: relative;
     }
 
