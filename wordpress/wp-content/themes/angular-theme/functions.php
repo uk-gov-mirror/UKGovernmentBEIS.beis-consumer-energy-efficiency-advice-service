@@ -12,7 +12,6 @@ if (!isset($_SERVER["EPC_API_TOKEN"])) {
         "On a server, please ensure the relevant ENV vars are set.");
 }
 
-require_once("functions/analytics.php");
 require_once("functions/initialise_page_post_type.php");
 require_once("functions/initialise_question_post_type.php");
 require_once("functions/initialise_feature_flag_post_type.php");
