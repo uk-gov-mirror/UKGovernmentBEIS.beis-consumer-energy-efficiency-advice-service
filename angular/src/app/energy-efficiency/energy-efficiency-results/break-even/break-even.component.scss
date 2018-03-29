@@ -1,8 +1,10 @@
 @import "styles/var/_colors";
+@import "styles/mixins/breakpoints";
 @import "../../_energy-efficiency-page-sizes";
 @import "~mathsass/dist/_math";
 @import "~mathsass/dist/_constants";
 
+// Component specific variables
 $graph-height-pixels: 140;
 $graph-width-pixels: 2 * $data-card-width / 1px;
 $graph-line-width: 2px;
@@ -10,15 +12,12 @@ $graph-line-width: 2px;
 $graph-angle-radians: atan($graph-height-pixels / $graph-width-pixels);
 $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-height-pixels, 2));
 
-:host {
-  margin-left: 40px;
-  margin-right: $add-to-plan-column-width;
-}
+// Component specific mixins
 
+// General styling (shouldn't contain many widths/sizes etc.)
 .break-even-component {
   display: flex;
   flex-direction: column;
-  width: $graph-width-pixels * 1px;
 
   .header-row {
     display: flex;
@@ -78,5 +77,71 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
       border-left: $graph-line-width dashed $light-medium-grey;
       top: 0;
     }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  :host {
+    flex: 0 0 100%;
+  }
+
+  .break-even-component {
+    .header-row {
+      flex: 0 0 100%;
+      flex-wrap: wrap;
+      margin: 0;
+
+      .lifespan, .break-even-point {
+        flex: 0 0 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        border-top: 2px solid $lighter-grey;
+        padding: 20px 0;
+      }
+    }
+
+    .graph {
+      display: none;
+    }
+  }
+}
+
+@include tablet() {
+  :host {
+    flex: 0 0 100%;
+    margin-top: 20px;
+    border-top: 2px solid $light-grey;
+  }
+
+  .break-even-component {
+    .header-row {
+      flex: 0 0 100%;
+      margin: 0;
+
+      .lifespan, .break-even-point {
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        padding: 20px 0 0;
+      }
+
+      .lifespan {
+        padding-right: 20px;
+      }
+    }
+
+    .graph {
+      display: none;
+    }
+  }
+}
+
+@include desktop() {
+  :host {
+    margin-left: 20px;
+    margin-right: $add-to-plan-column-width;
+    flex: 0 0 $graph-width-pixels * 1px;
   }
 }

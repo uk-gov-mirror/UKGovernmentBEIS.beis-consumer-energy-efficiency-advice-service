@@ -100,24 +100,14 @@ $icon-column-width: $add-to-plan-column-width;
       display: none;
       border-top: 2px solid $light-grey;
       border-bottom: 2px solid $light-grey;
-      padding: 20px 0;
 
       &.expanded {
         display: flex;
       }
 
-      & > :first-child {
-        margin-left: $icon-column-width;
-      }
-
-      & > :not(:last-child) {
-        margin-right: 40px;
-      }
-
       .grants {
         display: flex;
         flex-direction: column;
-        flex: 0 0 $data-card-width;
 
         .grant-info-card {
           background-color: $light-grey;
@@ -272,6 +262,16 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0 100%;
         order: 3;
         border: none;
+        flex-wrap: wrap;
+        padding: 20px;
+
+        .grants, .benefits {
+          flex: 0 0 100%;
+        }
+
+        .grants {
+          padding-bottom: 20px;
+        }
       }
 
       .investment-required-card {
@@ -322,6 +322,16 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0;
         flex-basis: calc(100% - #{$add-to-plan-column-width});
         order: 4;
+        flex-wrap: wrap;
+        padding: 20px;
+
+        .grants {
+          padding-right: 20px;
+        }
+
+        .grants, .benefits {
+          flex: 0 0 50%;
+        }
       }
 
       .investment-required-card {
@@ -379,6 +389,19 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0;
         flex-basis: calc(100% - #{$add-to-plan-column-width});
         order: 6;
+        padding: 20px 0;
+
+        & > :first-child {
+          margin-left: $icon-column-width;
+        }
+
+        & > :not(:last-child) {
+          margin-right: 36px;
+        }
+
+        .grants {
+          flex: 1;
+        }
       }
 
       .investment-required-card {
