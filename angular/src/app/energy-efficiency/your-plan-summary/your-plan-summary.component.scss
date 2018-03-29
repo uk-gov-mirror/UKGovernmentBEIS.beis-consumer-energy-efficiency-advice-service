@@ -17,6 +17,10 @@ $your-plan-summary-border-width: 1px;
     & :nth-child(2) {
       border-left: none;
     }
+
+    .no-tablet {
+      display: none;
+    }
   }
   @include mobile() {
     .data-card-component {
@@ -27,22 +31,14 @@ $your-plan-summary-border-width: 1px;
       height: 30px;
     }
 
+    .no-mobile {
+      display: none;
+    }
+
     & :nth-child(3) {
       border-left: 1px solid $light-grey;
       padding: 0 0 0 10px;
       margin-left: 10px;
     }
-  }
-}
-
-.no-mobile {
-  @include mobile() {
-    display: none;
-  }
-}
-
-.no-tablet{
-  @include tablet() {
-    display: none;
   }
 }

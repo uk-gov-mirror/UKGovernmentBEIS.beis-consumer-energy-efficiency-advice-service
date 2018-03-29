@@ -2,6 +2,32 @@
 @import "styles/mixins/font";
 @import "../../_energy-efficiency-page-sizes";
 
+/*@mixin is-button-with-chevrons($do-button-left-chevron-width, $do-button-height, $do-button-right-chevron-width) {
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: $do-button-left-chevron-width solid white;
+    border-top: $do-button-height/2 solid transparent;
+    border-bottom: $do-button-height/2 solid transparent;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -$do-button-right-chevron-width;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: $do-button-height/2 solid transparent;
+    border-bottom: $do-button-height/2 solid transparent;
+    border-left: $do-button-right-chevron-width solid $action-button-blue;
+  }
+}*/
+
 :host {
   background: white;
   @include mobile() {
@@ -9,7 +35,6 @@
     $do-button-width: $add-to-plan-column-width;
     $do-button-left-chevron-width: 12px;
     $do-button-right-chevron-width: 16px;
-
     .mobile-your-plan-title {
       position: relative;
       font-size: 16px;
@@ -89,6 +114,10 @@
             pointer-events: none;
             opacity: 0;
             cursor: default;
+          }
+          .do-string {
+            margin-left: 8px;
+            z-index: 2;
           }
         }
       }
