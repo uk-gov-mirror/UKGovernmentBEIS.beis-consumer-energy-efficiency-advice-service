@@ -1,28 +1,11 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
-    <app-progress-indicator class="page-row" [questionnaire]="questionnaire"
-                        [currentQuestionIndex]="currentQuestionIndex"
-                        [allQuestionsContent]="allQuestionsContent"
-                        (clickedOnLink)="animateToQuestion($event)"></app-progress-indicator>
     <span class="question-type-icon">
         <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionTypeIconClassName !== 'icon-house'"></div>
         <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionTypeIconClassName !== 'icon-thermostat'"></div>
         <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionTypeIconClassName !== 'icon-person'"></div>
     </span>
     <span class="question-type-icon-baseline"></span>
-    <div class="question-heading-container">
-        <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()"
-                (click)="goBackOneQuestion()" aria-label="Go back">
-            <div class="left-chevron-icon" [inlineSVG]="'controls/chevron-left.svg'"></div>
-            PREV
-        </button>
-        <div id="question-heading" class="question-heading">{{currentQuestionContent.questionHeading}}</div>
-        <button class="right-arrow" [disabled]="!hasBeenAnswered()"
-                (click)="goForwards()" aria-label="Go forwards">
-            GO
-            <div class="right-chevron-icon" [inlineSVG]="'controls/chevron-right.svg'"></div>
-        </button>
-    </div>
     <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>
     <div class="question">
         <ng-template app-question-host></ng-template>
@@ -31,3 +14,20 @@
                      [isExpanded]="currentQuestionContent.autoOpenQuestionReason"
                      [questionReason]="currentQuestionContent.questionReason"></app-question-reason>
 </div>
+<app-sticky-row-wrapper>
+    <div class="sticky-row-content">
+        <app-small-indicator [questionnaire]="questionnaire"
+                             [currentQuestionIndex]="currentQuestionIndex"></app-small-indicator>
+
+        <div class="question-heading-container">
+            <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()"
+                    (click)="goBackOneQuestion()" aria-label="Go back">
+                <div class="left-chevron-icon" [inlineSVG]="'controls/chevron-left.svg'"></div>
+            </button>
+            <button class="right-arrow" [disabled]="!hasBeenAnswered()"
+                    (click)="goForwards()" aria-label="Go forwards">
+                <div class="right-chevron-icon" [inlineSVG]="'controls/chevron-right.svg'"></div>
+            </button>
+        </div>
+    </div>
+</app-sticky-row-wrapper>

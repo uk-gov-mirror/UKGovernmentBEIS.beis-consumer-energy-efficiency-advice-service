@@ -3,6 +3,7 @@
 @import "styles/var/colors";
 
 // Component specific variables
+$greyed-out: #a9a9a9;
 
 // Component specific mixins
 
@@ -14,7 +15,6 @@
 }
 
 .questions-container {
-  $greyed-out: #a9a9a9;
 
   width: 100%;
   display: flex;
@@ -63,94 +63,6 @@
     margin-bottom: 20px;
   }
 
-  .question-heading-container {
-    width: 100%;
-  }
-
-  .question-heading-container {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    width: 100%;
-
-    > button {
-      flex: 0 0 auto;
-    }
-
-    .question-heading {
-      @include question-heading-font;
-    }
-
-    .left-arrow, .right-arrow {
-      font-size: 14px;
-      line-height: 17px;
-      font-weight: 500;
-      height: 48px;
-      width: 84px;
-
-      background-color: white;
-      color: $greyed-out;
-      fill: $greyed-out;
-
-      display: inline-flex;
-      align-items: center;
-
-      outline: none;
-      border: none;
-
-      .left-chevron-icon, .right-chevron-icon {
-        width: 20px;
-
-        ::ng-deep svg {
-          fill: $greyed-out;
-          vertical-align: middle;
-        }
-      }
-
-      &.hidden {
-        visibility: hidden;
-      }
-
-      &:not([disabled]) {
-        cursor: pointer;
-        &:focus, &:hover {
-          background-color: $lighter-medium-grey;
-        }
-      }
-    }
-
-    .left-arrow {
-      border-radius: 0 10px 10px 0;
-      justify-content: flex-start;
-
-      .left-chevron-icon {
-        margin-right: 10px;
-      }
-    }
-
-    .right-arrow {
-      border-radius: 10px 0 0 10px;
-      justify-content: flex-end;
-
-      .right-chevron-icon {
-        margin-left: 10px;
-      }
-
-      &:not([disabled]) {
-        background-color: $green;
-        color: white;
-
-        .right-chevron-icon ::ng-deep svg {
-          fill: white;
-        }
-
-        &:focus, &:hover {
-          background-color: $primary-blue;
-        }
-      }
-    }
-  }
 
   .help-text {
     color: $focus-blue;
@@ -165,6 +77,88 @@
 
   app-question-reason {
     margin-top: auto;
+  }
+}
+
+.sticky-row-content {
+  padding: 20px;
+  border-top: 2px $separator-grey solid;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+
+  .question-heading-container {
+    padding-top: 15px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    > button {
+      flex: 0 0 auto;
+    }
+
+    .question-heading {
+      @include question-heading-font;
+    }
+
+    .left-arrow, .right-arrow {
+      height: 48px;
+      width: 48px;
+
+      background-color: white;
+      color: $greyed-out;
+      fill: $greyed-out;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      outline: none;
+      border: none;
+
+      user-select: none;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -o-user-select: none;
+
+      .left-chevron-icon, .right-chevron-icon {
+        width: auto;
+
+        ::ng-deep svg {
+          fill: $greyed-out;
+          vertical-align: middle;
+        }
+      }
+
+      &.hidden {
+        display: none;
+      }
+
+      &:not([disabled]) {
+        cursor: pointer;
+      }
+    }
+
+    .left-arrow {
+      padding-right: 10px;
+    }
+
+    .right-arrow {
+      padding-left: 10px;
+
+      &:not([disabled]) {
+        background-color: $green;
+        color: white;
+
+        .right-chevron-icon ::ng-deep svg {
+          fill: white;
+        }
+      }
+    }
   }
 }
 

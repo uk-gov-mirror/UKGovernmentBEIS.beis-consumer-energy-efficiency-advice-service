@@ -1,0 +1,46 @@
+@import "styles/page";
+@import 'styles/var/colors';
+@import "~mathsass/dist/_constants";
+
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+
+.small-progress-indicator {
+  padding: 20px;
+
+  .completion-percentage {
+    margin-bottom: 10px;
+  }
+
+  .completion-bar {
+    position: relative;
+    background-color: $dark-grey;
+    height: 10px;
+    display: flex;
+    align-content: flex-start;
+    width: 100%;
+
+    .completion-bar-content {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $focus-blue;
+    }
+  }
+}
+
+// Breakpoint specific styling
+.small-progress-indicator {
+  @include mobile() {
+  }
+
+  @include tablet() {
+  }
+
+  @include desktop() {
+  }
+}

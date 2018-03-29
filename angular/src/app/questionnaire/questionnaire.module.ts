@@ -6,6 +6,7 @@ import {QuestionnaireComponent} from './questionnaire.component';
 import {QuestionDirective} from './question.directive';
 import {QuestionnaireService} from './questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
+import {SmallIndicatorComponent} from "./small-progress-indicator/small-indicator.component";
 import {SharedModule} from '../shared/shared.module';
 import {QuestionsModule} from './questions/questions.module';
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
@@ -16,6 +17,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
         QuestionnaireComponent,
         QuestionDirective,
         ProgressIndicatorComponent,
+        SmallIndicatorComponent
     ],
     exports: [
         QuestionnaireComponent,
