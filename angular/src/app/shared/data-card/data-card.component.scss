@@ -83,6 +83,13 @@
         flex: 0 0 40%;
       }
     }
+
+    &.small-data-card {
+      .heading, .number-value {
+        height: auto;
+        min-height: auto;
+      }
+    }
   }
 
   @include tablet() {

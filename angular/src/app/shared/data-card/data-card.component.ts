@@ -10,4 +10,5 @@ export class DataCardComponent {
     @Input() value: string;
     @Input() colorCircleClassName: string;
     @Input() isVerticalAtMobile: boolean = false;
+    @Input() isSmallCard: boolean = false;
 }
