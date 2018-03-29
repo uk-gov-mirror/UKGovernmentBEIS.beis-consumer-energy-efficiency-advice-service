@@ -18,4 +18,12 @@ export class YourPlanFooterComponent {
     removeFromPlan(recommendation: EnergyEfficiencyRecommendation): void {
         recommendation.isAddedToPlan = false;
     }
+
+    youHaveAddedRecommendations() {
+        if (this.recommendations.length === 1) {
+            return 'You have added 1 recommendation';
+        } else {
+            return 'You have added ' + this.recommendations.length + ' recommendations';
+        }
+    }
 }

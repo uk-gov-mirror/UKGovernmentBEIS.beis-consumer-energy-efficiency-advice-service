@@ -2,18 +2,33 @@
 @import "styles/mixins/font";
 @import "../../_energy-efficiency-page-sizes";
 
-.your-plan {
+:host {
+  background: white;
   @include mobile() {
     $do-button-height: 60px;
     $do-button-width: $add-to-plan-column-width;
     $do-button-left-chevron-width: 12px;
     $do-button-right-chevron-width: 16px;
 
+    .mobile-your-plan-title {
+      position: relative;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      float: top;
+      flex-direction: column;
       background: white;
+      padding-left: 12px;
+      padding-top: 4px;
+    }
+
+    .your-plan {
+      background: white;
+      height: 82px;
 
       .page-row-content {
         display: flex;
-        padding: 18px 0 15px;
+        padding: 8px 0 4px;
 
         .plan-details {
           display: none;
@@ -23,14 +38,6 @@
           position: relative;
           .tablet-only-your-plan-title {
             display: none;
-            .tablet-your-plan-heading {
-             /* font-size: 20px;
-              font-weight: bold;
-              padding-bottom: 5px; */
-            }
-            .tablet-recommendations-sentence {
-            display: none;
-            }
           }
         }
 
@@ -38,19 +45,21 @@
           background-color: $action-button-blue;
           position: relative;
           box-sizing: border-box;
-          width: $do-button-width*0.55;
+          width: $do-button-width*0.44;
           height: $do-button-height;
           padding-left: $do-button-left-chevron-width;
           display: flex;
           justify-content: center;
           align-items: center;
           font-weight: bold;
-          font-size: 18px;
+          font-size: 15px;
           color: white;
           cursor: pointer;
           text-decoration: none;
           float: right;
-          margin-left: 7px;
+          margin-left: 2px;
+          margin-right: 7px;
+          top: -7px;
 
           &::before {
             content: '';
@@ -84,6 +93,7 @@
         }
       }
     }
+  }
 
   @include tablet() {
 
@@ -92,6 +102,10 @@
     $do-button-left-chevron-width: 18px;
     $do-button-right-chevron-width: 27px;
 
+    .mobile-your-plan-title {
+      display: none;
+    }
+    .your-plan {
       background: white;
 
       .page-row-content {
@@ -109,7 +123,7 @@
           .tablet-only-your-plan-title {
             display: inline-block;
             position: relative;
-            padding:  0 5px;
+            padding: 0 5px;
             .tablet-your-plan-heading {
               font-size: 21px;
               float: left;
@@ -126,51 +140,53 @@
           }
         }
 
-      .do-button {
-        background-color: $action-button-blue;
-        position: absolute;
-        right: 65px;
-        box-sizing: border-box;
-        width: $do-button-width*0.7;
-        height: $do-button-height;
-        padding-left: $do-button-left-chevron-width;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        font-size: 20px;
-        color: white;
-        cursor: pointer;
-        text-decoration: none;
-
-        &::before {
-          content: '';
+        .do-button {
+          background-color: $action-button-blue;
           position: absolute;
-          left: -1px;
-          top: 0;
-          width: 0;
-          height: 0;
-          border-left: $do-button-left-chevron-width solid white;
-          border-top: $do-button-height/2 solid transparent;
-          border-bottom: $do-button-height/2 solid transparent;
-        }
+          right: 65px;
+          bottom: 30px;
+          box-sizing: border-box;
+          width: $do-button-width*0.7;
+          height: $do-button-height;
+          padding-left: $do-button-left-chevron-width;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+          font-size: 20px;
+          color: white;
+          cursor: pointer;
+          text-decoration: none;
 
-        &::after {
-          content: '';
-          position: absolute;
-          right: -$do-button-right-chevron-width+1;
-          top: 0;
-          width: 0;
-          height: 0;
-          border-top: $do-button-height/2 solid transparent;
-          border-bottom: $do-button-height/2 solid transparent;
-          border-left: $do-button-right-chevron-width solid $action-button-blue;
-        }
+          &::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: $do-button-left-chevron-width solid white;
+            border-top: $do-button-height/2 solid transparent;
+            border-bottom: $do-button-height/2 solid transparent;
+          }
 
-        &.disabled {
-          pointer-events: none;
-          opacity: 0;
-          cursor: default;
+          &::after {
+            content: '';
+            position: absolute;
+            right: -$do-button-right-chevron-width+1;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: $do-button-height/2 solid transparent;
+            border-bottom: $do-button-height/2 solid transparent;
+            border-left: $do-button-right-chevron-width solid $action-button-blue;
+          }
+
+          &.disabled {
+            pointer-events: none;
+            opacity: 0;
+            cursor: default;
+          }
         }
       }
     }
@@ -182,7 +198,11 @@
     $do-button-left-chevron-width: 19px;
     $do-button-right-chevron-width: 29px;
 
+    .mobile-your-plan-title {
+      display: none;
+    }
 
+    .your-plan {
       background: white;
 
       .page-row-content {
@@ -329,5 +349,6 @@
       }
     }
   }
+}
 
 

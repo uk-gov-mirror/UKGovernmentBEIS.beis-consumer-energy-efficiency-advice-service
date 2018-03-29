@@ -1,3 +1,4 @@
+<div class="mobile-your-plan-title">Your Plan</div>
 <div class="your-plan page-row">
     <div class="page-row-content">
         <div class="plan-details no-mobile">
@@ -21,7 +22,7 @@
             <div class="tablet-only-your-plan-title" >
                 <div class="tablet-your-plan-heading">Your plan </div>
                 <div class="tablet-recommendations-sentence" [class.plan-empty]="recommendations.length === 0">
-                    {{recommendations.length > 0 ? 'You have added '+recommendations.length+' recommendations' : 'Try adding some recommendations to your plan'}}
+                    {{recommendations.length > 0 ? youHaveAddedRecommendations() : 'Try adding some recommendations to your plan'}}
                 </div>
             </div>
             <app-your-plan-summary></app-your-plan-summary>
