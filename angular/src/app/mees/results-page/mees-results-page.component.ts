@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ResponseData} from '../../shared/response-data/response-data';
-import {TenancyType} from "../../questionnaire/questions/mees/tenancy-type-question/tenancy-type";
+import {TenancyType} from '../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 
 enum MeesResultsStatus {
     NoActionRequired,
@@ -13,17 +13,19 @@ enum MeesResultsStatus {
     templateUrl: './mees-results-page.component.html',
     styleUrls: ['./mees-results-page.component.scss']
 })
-export class MeesResultsPageComponent {
-    MeesResultsStatus = MeesResultsStatus;
+export class MeesResultsPageComponent implements OnInit {
     status: MeesResultsStatus;
 
-    constructor(responseData: ResponseData) {
-        if (responseData.hasTemporaryExclusions === false) { // We reached the end of the form
+    constructor(private responseData: ResponseData) {
+    }
+
+    ngOnInit() {
+        if (this.responseData.hasTemporaryExclusions === false) { // We reached the end of the form
             this.status = MeesResultsStatus.InstallRecommendedImprovements;
-        } else if (!(responseData.isDomesticPropertyAfter2018 || responseData.isPropertyAfter2020)
-            || !responseData.isEpcRequired
-            || responseData.tenancyType === TenancyType.Other
-            || !responseData.isEpcBelowE) {
+        } else if (!(this.responseData.isDomesticPropertyAfter2018 || this.responseData.isPropertyAfter2020)
+            || !this.responseData.isEpcRequired
+            || this.responseData.tenancyType === TenancyType.Other
+            || !this.responseData.isEpcBelowE) {
             this.status = MeesResultsStatus.NoActionRequired;
         } else {
             this.status = MeesResultsStatus.RegisterExemption;
@@ -44,7 +46,7 @@ export class MeesResultsPageComponent {
     get bodyText() {
         switch (this.status) {
             case MeesResultsStatus.NoActionRequired:
-                return `You are not affected by the Minimum Standards Regulations and may let the property.`
+                return `You are not affected by the Minimum Standards Regulations and may let the property.`;
             case MeesResultsStatus.RegisterExemption:
                 return `Follow the instructions
             <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"

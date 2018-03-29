@@ -6,7 +6,7 @@ import {getTenancyTypeDescription, TenancyType} from './tenancy-type';
 class TenancyTypeOption {
     public readonly name: string;
 
-    constructor(public readonly value: TenancyType) {
+    constructor(public readonly value: TenancyType, public readonly className: string) {
         this.name = getTenancyTypeDescription(value);
     }
 }
@@ -23,10 +23,10 @@ export class TenancyTypeQuestionComponent extends QuestionBaseComponent {
     constructor(responseData: ResponseData) {
         super(responseData);
         this.tenancyTypeOptions = [
-            new TenancyTypeOption(TenancyType.AssuredTenancy),
-            new TenancyTypeOption(TenancyType.RegulatedTenancy),
-            new TenancyTypeOption(TenancyType.AgriculturalTenancy),
-            new TenancyTypeOption(TenancyType.Other),
+            new TenancyTypeOption(TenancyType.AssuredTenancy, 'assured-tenancy'),
+            new TenancyTypeOption(TenancyType.RegulatedTenancy, 'regulated-tenancy'),
+            new TenancyTypeOption(TenancyType.DomesticAgriculturalTenancy, 'agricultural-tenancy'),
+            new TenancyTypeOption(TenancyType.Other, 'other-tenancy'),
         ];
     }
 

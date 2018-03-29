@@ -21,6 +21,7 @@ import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-questio
 import {FlatExposedWall} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatLevel} from './flat-level';
+import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 
 describe('RdsapInput', () => {
 
@@ -79,6 +80,16 @@ describe('RdsapInput', () => {
             gardenSizeSquareMetres: 100,
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
+
+            isDomesticPropertyAfter2018: false,
+            isPropertyAfter2020: false,
+            isEpcBelowE: false,
+            isEpcRequired: false,
+            willPropertyBeDevalued: false,
+            hasRecommendedImprovements: false,
+            hasTemporaryExclusions: false,
+            tenancyType: TenancyType.Other,
+            hasRelevantConsent: false,
         };
 
         it('should calculate the number of occupants correctly', () => {
