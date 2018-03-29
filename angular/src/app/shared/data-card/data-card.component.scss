@@ -94,6 +94,13 @@
 
   @include tablet() {
     @include is-vertical-app-card($padding: 0, $heading-height: 36px, $value-height: 70px);
+
+    &.small-data-card {
+      .heading, .number-value {
+        height: auto;
+        min-height: auto;
+      }
+    }
   }
 
   @include desktop() {

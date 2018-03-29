@@ -10,5 +10,6 @@ export class DataCardComponent {
     @Input() value: string;
     @Input() colorCircleClassName: string;
     @Input() isVerticalAtMobile: boolean = false;
+    // Causes the height of a data card to be reduced at mobile and tablet sizes
     @Input() isSmallCard: boolean = false;
 }
