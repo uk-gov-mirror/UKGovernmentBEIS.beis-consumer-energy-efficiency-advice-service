@@ -16,6 +16,13 @@ $greyed-out: #a9a9a9;
 
 .questions-container {
 
+  .question-heading {
+    font-size: 44px;
+    font-weight: bold;
+    color: $darker-grey;
+    line-height: 18px;
+  }
+
   width: 100%;
   display: flex;
   flex-direction: column;
