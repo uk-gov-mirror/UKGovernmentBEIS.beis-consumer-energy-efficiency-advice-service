@@ -226,6 +226,17 @@
         }
 
         .body-text-mobile {
+          display: none;
+        }
+
+        .body-text {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          margin-right: 96px;
+          font-size: 16px;
+          font-family: $font-family-light;
+          line-height: 20px;
           color: $lighter-grey;
         }
       }
