@@ -1,11 +1,12 @@
-<app-data-card class="no-tablet"
+<app-data-card class="no-tablet data-card-component"
         heading="Your potential score is"
         [value]="potentialScore"
         [colorCircleClassName]="currentScoreColorCircleClassName"></app-data-card>
-<app-data-card class="no-mobile"
+<app-data-card class="no-mobile data-card-component"
         heading="Total investment required"
         [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'">
 </app-data-card>
-<app-data-card
+<app-data-card class="savings data-card-component"
         heading="Total savings per month"
-        [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"></app-data-card>
+        [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"
+        [isVerticalAtMobile]="true"></app-data-card>

@@ -18,6 +18,21 @@ $your-plan-summary-border-width: 1px;
       border-left: none;
     }
   }
+  @include mobile() {
+    .data-card-component {
+      flex: 0 0 40%;
+    }
+
+    .savings {
+      height: 38px;
+    }
+
+    & :nth-child(3) {
+      border-left: 1px solid $light-grey;
+      padding: 0 0 0 15px;
+      margin-left: 15px;
+    }
+  }
 }
 
 .no-mobile {
