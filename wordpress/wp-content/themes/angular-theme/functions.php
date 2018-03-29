@@ -14,7 +14,6 @@ if (!isset($_SERVER["EPC_API_TOKEN"])) {
 
 require_once("functions/initialise_page_post_type.php");
 require_once("functions/initialise_question_post_type.php");
-require_once("functions/initialise_feature_flag_post_type.php");
 require_once("functions/initialise_local_authority_post_type.php");
 require_once("functions/initialise_boiler_post_type.php");
 require_once("functions/initialise_income_thresholds.php");
