@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="benefits">
+            <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length">
                 <div class="heading">Benefits</div>
                 <ul class="benefits-list">
                     <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
