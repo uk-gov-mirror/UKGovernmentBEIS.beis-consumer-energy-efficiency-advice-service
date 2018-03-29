@@ -4,7 +4,6 @@ import {HttpRequest} from '@angular/common/http';
 
 import {EpcApiService} from './epc-api.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
 import {JsonApiResponse} from '../../epc-api-service/model/response/json-api-response';
 import {Epc} from '../model/epc';
 import {EpcResponse} from '../model/response/epc-response';
@@ -14,11 +13,11 @@ describe('EpcApiService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: EpcApiService;
+    (window as any).CONFIG = {apiRoot: "/api"};
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [EpcApiService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
+            providers: [EpcApiService],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -76,7 +75,7 @@ describe('EpcApiService', () => {
             const matchesExpectedMethod = request.method === 'GET';
             const encodedPostcode = encodeURI(postcode);
             const matchesExpectedUrlWithParams =
-                (request.urlWithParams === 'angular-theme/v1/epc?postcode=' + encodedPostcode + '&size=100');
+                (request.urlWithParams === '/api/epc?postcode=' + encodedPostcode + '&size=100');
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });
@@ -103,7 +102,7 @@ describe('EpcApiService', () => {
             const matchesExpectedMethod = request.method === 'GET';
             const encodedLmkKey = encodeURI(lmkKey);
             const matchesExpectedUrlWithParams =
-                (request.urlWithParams === 'angular-theme/v1/epc-recommendations?lmkKey=' + encodedLmkKey);
+                (request.urlWithParams === '/api/epc-recommendations?lmkKey=' + encodedLmkKey);
             return matchesExpectedMethod && matchesExpectedUrlWithParams;
         }
     });

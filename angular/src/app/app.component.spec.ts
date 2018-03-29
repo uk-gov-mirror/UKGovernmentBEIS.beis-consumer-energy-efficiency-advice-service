@@ -16,12 +16,15 @@ import {OneTimePopupComponent} from './layout-components/one-time-popup/one-time
 import {PopupComponent} from './shared/popup/popup.component';
 import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
+import {UserStateService} from "./shared/user-state-service/user-state-service";
+import {NeedHelpComponent} from "./shared/need-help/need-help.component";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
     let app: AppComponent;
 
     const mockWordpressPagesService = {getTopLevelPages: () => Observable.of([])};
+    const mockUserStateService = {getSessionReference: () => "reference"};
 
     const mockCookieService = {
         check: () => {},
@@ -37,6 +40,7 @@ describe('AppComponent', () => {
                 NavigationBarComponent,
                 OneTimePopupComponent,
                 PopupComponent,
+                NeedHelpComponent
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
@@ -44,7 +48,8 @@ describe('AppComponent', () => {
                 {provide: WordpressMeasuresService, useValue: {}},
                 GoogleAnalyticsService,
                 {provide: SVGCacheService, useValue: {setBaseUrl: () => {}}},
-                {provide: CookieService, useValue: mockCookieService}
+                {provide: CookieService, useValue: mockCookieService},
+                {provide: UserStateService, useValue: mockUserStateService},
             ]
         }).compileComponents();
     }));

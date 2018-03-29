@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {NeedHelpComponent} from './need-help.component';
 import {By} from '@angular/platform-browser';
@@ -15,6 +16,7 @@ describe('NeedHelpComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ NeedHelpComponent ],
+            imports: [InlineSVGModule],
             providers: [{provide: UserStateService, useValue: userStateServiceStub}]
         })
             .compileComponents();

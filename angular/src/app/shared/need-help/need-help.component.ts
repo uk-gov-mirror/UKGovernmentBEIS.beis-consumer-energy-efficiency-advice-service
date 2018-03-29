@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserStateService} from "../user-state-service/user-state-service";
 
 @Component({
@@ -8,12 +8,16 @@ import {UserStateService} from "../user-state-service/user-state-service";
 })
 export class NeedHelpComponent implements OnInit {
 
+    @Input() showReference: boolean = true;
     expanded: boolean;
     reference: string = "";
 
-    constructor(private userStateService: UserStateService) {}
+    constructor(private userStateService: UserStateService) {
+    }
 
     async ngOnInit() {
-        this.reference = await this.userStateService.getSessionReference();
+        if (this.showReference) {
+            this.reference = await this.userStateService.getSessionReference();
+        }
     }
 }
