@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
+import {Component, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
+import {Router, NavigationStart} from "@angular/router";
 
 import {NavigationSuboption} from "./navigation-suboption";
 
@@ -63,7 +64,12 @@ export class NavigationBarComponent {
 
     private deregisterClickListener: () => void;
 
-    constructor(private renderer: Renderer2) {
+    constructor(private renderer: Renderer2, private router: Router) {
+        router.events.subscribe((event) => {
+            if (event instanceof NavigationStart && this.shouldExpandNav) {
+                this.hideMobileNav();
+            }
+        });
     }
 
     registerSingleClickListener(): void {
