@@ -1,22 +1,22 @@
 import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
-import {TenantConsentQuestionComponent} from './tenant-consent-question.component';
+import {ImprovementsAtNoCostQuestionComponent} from './improvements-at-no-cost-question.component';
 
-export class TenantConsentQuestionMetadata extends QuestionMetadata {
+export class ImprovementsAtNoCostQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            TenantConsentQuestionComponent,
-            'tenant-consent',
+            ImprovementsAtNoCostQuestionComponent,
+            'improvements-at-no-cost',
             QuestionType.House
         );
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.hasImprovementsAtNoCost;
+        return responseData.hasRecommendedImprovements;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.hasRelevantConsent !== undefined;
+        return responseData.hasImprovementsAtNoCost !== undefined;
     }
 }

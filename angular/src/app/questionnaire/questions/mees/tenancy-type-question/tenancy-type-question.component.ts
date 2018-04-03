@@ -14,7 +14,6 @@ class TenancyTypeOption {
 @Component({
     selector: 'app-tenancy-type-question',
     templateUrl: './tenancy-type-question.component.html',
-    styleUrls: ['./tenancy-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class TenancyTypeQuestionComponent extends QuestionBaseComponent {

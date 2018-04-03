@@ -87,6 +87,7 @@ describe('RdsapInput', () => {
             isEpcRequired: false,
             willPropertyBeDevalued: false,
             hasRecommendedImprovements: false,
+            hasImprovementsAtNoCost: false,
             hasTemporaryExclusions: false,
             tenancyType: TenancyType.Other,
             hasRelevantConsent: false,

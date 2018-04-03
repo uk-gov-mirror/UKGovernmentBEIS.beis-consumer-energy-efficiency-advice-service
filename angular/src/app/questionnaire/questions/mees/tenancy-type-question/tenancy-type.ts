@@ -8,7 +8,7 @@ export enum TenancyType {
 export function getTenancyTypeDescription(tenancyType: TenancyType): string {
     switch (tenancyType) {
         case TenancyType.AssuredTenancy:
-            return 'Assured Tenancy';
+            return 'Assured Tenancy (including Assured Shorthold)';
         case TenancyType.RegulatedTenancy:
             return 'Regulated Tenancy';
         case TenancyType.DomesticAgriculturalTenancy:

@@ -46,20 +46,24 @@ export class MeesResultsPageComponent implements OnInit {
     get bodyText() {
         switch (this.status) {
             case MeesResultsStatus.NoActionRequired:
-                return `You are not affected by the Minimum Standards Regulations and may let the property.`;
+                return `You are not affected by the Minimum Energy Efficiency Standards regulations and may let the property.`;
             case MeesResultsStatus.RegisterExemption:
-                return `Follow the instructions
+                return `You may be exempt from the need to make improvements to the property under the Minimum Energy Efficiency Standards
+            regulations. You’ll need to register this exemption by following the instructions
             <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
             target="_blank">
                 here</a>.`;
             case MeesResultsStatus.InstallRecommendedImprovements:
-                return `If your property still has an EPC of F or G after installing the recommended measures, you must register
-            an exemption on the PRS Exemptions register
+                return `Based on the information you have provided your property is covered by the Minimum Energy Efficiency Standards
+            regulations and you will now need to take steps to improve the EPC score to E.
+            When you’ve installed improvements, you’ll need to get your EPC evaluated again.
+            If the property is now rated E or above then you are compliant with the legislation.
+            However, if there are legitimate reasons why the property cannot be improved to E, you may qualify for an exemption
+            which you can register for
             <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
             target="_blank">
                 here</a>.
-            Otherwise, if your property has an EPC of E or above, your property is compliant with the Minimum Energy
-            Efficiency Standards and no further action is required.`;
+            (You may want to bookmark this link.)`;
         }
 
     }

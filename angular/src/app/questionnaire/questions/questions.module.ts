@@ -46,6 +46,7 @@ import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy
 import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-e-question.component";
 import {RecommendedImprovementsQuestionComponent} from
     './mees/recommended-improvements-question/recommended-improvements-question.component';
+import {ImprovementsAtNoCostQuestionComponent} from './mees/improvements-at-no-cost-question/improvements-at-no-cost-question.component';
 import {TenantConsentQuestionComponent} from './mees/tenant-consent-question/tenant-consent-question.component';
 import {PropertyDevaluationQuestionComponent} from './mees/property-devaluation-question/property-devaluation-question.component';
 import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-question/temporary-exclusions-question.component';
@@ -90,6 +91,7 @@ import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-
         TenancyTypeQuestionComponent,
         EpcBelowEQuestionComponent,
         RecommendedImprovementsQuestionComponent,
+        ImprovementsAtNoCostQuestionComponent,
         TenantConsentQuestionComponent,
         PropertyDevaluationQuestionComponent,
         TemporaryExclusionsQuestionComponent,
@@ -133,6 +135,7 @@ import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-
         TenancyTypeQuestionComponent,
         EpcBelowEQuestionComponent,
         RecommendedImprovementsQuestionComponent,
+        ImprovementsAtNoCostQuestionComponent,
         TenantConsentQuestionComponent,
         PropertyDevaluationQuestionComponent,
         TemporaryExclusionsQuestionComponent,
@@ -183,6 +186,7 @@ import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-
         TenancyTypeQuestionComponent,
         EpcBelowEQuestionComponent,
         RecommendedImprovementsQuestionComponent,
+        ImprovementsAtNoCostQuestionComponent,
         TenantConsentQuestionComponent,
         PropertyDevaluationQuestionComponent,
         TemporaryExclusionsQuestionComponent,
