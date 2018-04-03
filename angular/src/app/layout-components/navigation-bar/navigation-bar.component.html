@@ -11,6 +11,7 @@
 
         <div #homeMenu class="home-menu menu-item" (click)="showHomeMenu = !showHomeMenu; registerSingleClickListener()">
                 Your Home
+                <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                 <ng-container *ngIf="showHomeMenu">
                     <app-nav-bar-suboption [suboptions]="homeSuboptions"></app-nav-bar-suboption>
                 </ng-container>
@@ -18,6 +19,7 @@
 
         <div #rentedMenu class="rented-menu menu-item" (click)="showRentedMenu = !showRentedMenu; registerSingleClickListener()">
                 Rented Properties
+                <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                 <ng-container *ngIf="showRentedMenu">
                     <app-nav-bar-suboption [suboptions]="rentedSuboptions"></app-nav-bar-suboption>
                 </ng-container>
@@ -25,6 +27,7 @@
 
         <div #financeMenu class="finance-menu menu-item" (click)="showFinanceMenu = !showFinanceMenu; registerSingleClickListener()">
                 Financial Assistance
+                <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                 <ng-container *ngIf="showFinanceMenu">
                     <app-nav-bar-suboption [suboptions]="financeSuboptions"></app-nav-bar-suboption>
                 </ng-container>

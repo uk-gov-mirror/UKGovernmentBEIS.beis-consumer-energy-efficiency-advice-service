@@ -46,7 +46,7 @@ export class NavigationBarComponent {
             url: "/support-for-renewable-heating"
         },
         {
-            name: "Support for",
+            name: "Support for Renewable Electricity",
             url: "/support-for-rewnewable-electricity"
         }
     ];

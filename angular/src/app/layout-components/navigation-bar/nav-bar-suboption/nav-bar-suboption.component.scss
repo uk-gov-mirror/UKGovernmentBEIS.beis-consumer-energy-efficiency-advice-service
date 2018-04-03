@@ -4,30 +4,24 @@
 a:hover, a:visited, a:link, a:active
 {
   text-decoration:none;
+  color: white;
 }
 
 .nav-bar-suboptions {
-  @include desktop() {
-    position: absolute;
-    background-color: $light-grey;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    outline: none;
-    cursor: pointer;
-    overflow: visible;
-    height: auto;
-    top: 51px;
-  }
+  background-color: $dark-grey;
 
+  .nav-bar-suboption {
+    list-style: none;
+    padding-bottom: 8px;
+  }
+}
+
+.nav-bar-suboptions {
   @include mobile() {
     position: relative;
     width: 100%;
     padding: 10px 0 0 0;
     text-decoration: none;
-    color: white;
     outline: none;
     cursor: pointer;
     overflow: visible;
@@ -38,10 +32,6 @@ a:hover, a:visited, a:link, a:active
       padding: 10px 0 5px 0;
       color: white;
     }
-    a:hover, a:visited, a:link, a:active
-    {
-      color: white;
-    }
   }
 
   @include tablet() {
@@ -50,7 +40,6 @@ a:hover, a:visited, a:link, a:active
     z-index: 100;
     padding: 10px 0 0 0;
     text-decoration: none;
-    color: white;
     outline: none;
     cursor: pointer;
     overflow: visible;
@@ -60,11 +49,19 @@ a:hover, a:visited, a:link, a:active
 
     .nav-bar-suboption {
       padding: 10px 0 10px 0;
-      color: white;
     }
-    a:hover, a:visited, a:link, a:active
-    {
-      color: white;
-    }
+  }
+
+  @include desktop() {
+    position: absolute;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    padding: 10px 10px 0 10px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    overflow: visible;
+    height: auto;
+    top: 51px;
   }
 }
