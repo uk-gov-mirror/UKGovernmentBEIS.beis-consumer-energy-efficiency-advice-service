@@ -24,44 +24,16 @@
     margin: 0;
     padding: 10px 20px;
 
-    .about-menu {
+    .menu-item {
       color: white;
       display: block;
       width: 100%;
-      margin: 0;
-      padding: 10px;
-    }
+      margin: 16px 0 0;
+      cursor: pointer;
 
-    .home-menu {
-      color: white;
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 10px;
-    }
-
-    .rights-menu {    /* TODO BEISDEAS-192 Combining these under menu-item (and therefore the element containing finance-text) causes */
-      color: white;   /* the formatting to screw up - will work on a fix or will have to resort to defining another class in html */
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 10px;
-    }
-
-    .about-text {
-      color: white;
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 10px;
-    }
-
-    .simple-savings-text { /* this could be same class as above */
-      color: white;
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 10px;
+      app-nav-bar-suboption {
+        margin-left: 10px;
+      }
     }
 
     a:hover, a:visited, a:link, a:active
@@ -138,11 +110,7 @@
       bottom: 7px;
     }
 
-    .about-text {
-      position: relative;
-    }
-
-    .simple-savings-text {
+    .menu-link-text {
       position: relative;
     }
 
