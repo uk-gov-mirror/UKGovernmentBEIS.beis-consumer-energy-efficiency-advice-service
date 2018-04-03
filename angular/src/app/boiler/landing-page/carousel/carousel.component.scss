@@ -88,9 +88,63 @@
         }
       }
     }
-
   }
   @include tablet() {
+    $item-margin: 16px;
+
+    .content {
+      background-color: white;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .mask {
+      padding: 20px 0;
+    }
+
+    .carousel-items {
+
+      .carousel-item {
+        flex: 0 0 auto;
+        width: 100%;
+        box-sizing: border-box;
+        flex-basis: calc((100% - 2 * #{$item-margin}) / 2);
+        margin-right: $item-margin;
+        background-color: $lighter-grey;
+      }
+
+      @for $i from 0 through 100 {
+        &[data-first-item="#{$i}"] {
+          left: calc(-#{$i} * (100% - #{$item-margin}) / 2);
+        }
+      }
+    }
+
+    .arrow {
+      display: none;
+    }
+
+    .dots {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: $lighter-medium-grey;
+
+        &.active-tablet {
+          background-color: $dark-medium-grey;
+        }
+
+        &:not(:last-child) {
+          margin-right: 6px;
+        }
+      }
+    }
   }
 
   @include desktop() {

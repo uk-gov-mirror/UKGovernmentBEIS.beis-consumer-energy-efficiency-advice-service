@@ -53,8 +53,11 @@ export class CarouselComponent implements OnInit {
     canScrollForwards(): boolean {
         if (window.outerWidth <= 600) {
             return this.currentItem < this.carouselItems.length - 1;
+        }else if (window.outerWidth > 600 && window.outerWidth <= 992) {
+            return this.currentItem < this.carouselItems.length - 2;
+        } else {
+            return this.currentItem < this.carouselItems.length - 3;
         }
-        return this.currentItem < this.carouselItems.length - 3;
     }
 
     canScrollBackwards(): boolean {

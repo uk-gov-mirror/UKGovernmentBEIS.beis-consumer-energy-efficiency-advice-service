@@ -27,6 +27,7 @@
         <div class="dot"
              *ngFor="let idx of carouselItems.length | times"
              [class.active]="idx >= currentItem && idx - 2 <= currentItem"
+             [class.active-tablet]="idx >= currentItem && idx - 1 <= currentItem"
              [class.active-mobile]="idx == currentItem"
         ></div>
     </div>
