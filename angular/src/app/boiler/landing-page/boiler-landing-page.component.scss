@@ -322,7 +322,6 @@
           flex-basis: 50%;
         }
 
-
         .postcode-lookup-column {
           padding-left: 30px;
           display: flex;
@@ -382,7 +381,8 @@
           flex-direction: column;
           align-items: flex-start;
           justify-content: flex-end;
-          flex: 0 0 31%;
+          flex: 0 0 33%;
+          box-sizing: border-box;
 
           .small-heading-mobile {
             font-size: 13px;
