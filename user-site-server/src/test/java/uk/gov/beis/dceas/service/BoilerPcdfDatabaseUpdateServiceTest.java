@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.api.Boiler;
@@ -36,10 +37,12 @@ public class BoilerPcdfDatabaseUpdateServiceTest {
             .thenReturn(Resources.toString(
                 getClass().getResource("pcdf2012.dat"),
                 Charset.defaultCharset()));
+        RestTemplateBuilder restTemplateBuilder = mock(RestTemplateBuilder.class);
+        when(restTemplateBuilder.build()).thenReturn(httpClient);
 
         BoilerPcdfDatabaseUpdateService service =
             new BoilerPcdfDatabaseUpdateService(
-                httpClient,
+                restTemplateBuilder,
                 databaseUrl,
                 database);
 

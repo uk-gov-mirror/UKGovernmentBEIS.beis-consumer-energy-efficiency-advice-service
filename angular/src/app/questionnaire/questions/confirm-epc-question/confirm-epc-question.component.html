@@ -1,18 +1,22 @@
 <div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
     <div class="epc-section">
-        <app-data-card heading="Your energy performance certificate rating is"
-                       [value]="EpcRating[epcRating]"
-                       [colorCircleClassName]="getEpcMetadata(epcRating).colorCircleClassName"></app-data-card>
-        <div class="epc-diagram-card">
-            <div class="heading">This means your home is low efficiency. Most homes appear around grade D.</div>
-            <div class="epc-diagram">
-                <img src="/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg">
+        <div>
+            <app-data-card class="energy-performance" heading="Your energy performance certificate rating is"
+                           [value]="EpcRating[epcRating]"
+                           [colorCircleClassName]="getEpcMetadata(epcRating).colorCircleClassName"></app-data-card>
+            <div class="epc-diagram-card">
+                <div class="heading">This means your home is low efficiency. Most homes appear around grade D.</div>
+                <div class="epc-diagram">
+                    <img src="/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg">
+                </div>
             </div>
         </div>
-        <app-data-card heading="The average cost of energy for a property in your band is"
-                       [value]="'£' + getEpcMetadata(epcRating).averageEnergyCost"></app-data-card>
-        <app-data-card heading="For reference, for a Band {{EpcRating[averageEpcRating]}} property this is around"
-                       [value]="'£' + getEpcMetadata(averageEpcRating).averageEnergyCost"></app-data-card>
+        <div class="data-card-row">
+            <app-data-card heading="The average cost of energy for a property in your band is"
+                           [value]="'£' + getEpcMetadata(epcRating).averageEnergyCost"></app-data-card>
+            <app-data-card heading="For reference, for a Band {{EpcRating[averageEpcRating]}} property this is around"
+                           [value]="'£' + getEpcMetadata(averageEpcRating).averageEnergyCost"></app-data-card>
+        </div>
     </div>
     <div class="confirm-epc-details-section">
         <div class="confirm-epc-details-background"></div>
@@ -42,10 +46,13 @@
             <div class="confirm-epc-details">
                 <div class="confirm-epc-details-row">
                     <div class="confirm-epc-details-question">Are these details correct?</div>
-                    <button class="confirm-epc-details-button yes-button" (click)="confirmEpcDetails()">Yes</button>
-                    <button class="confirm-epc-details-button no-button" (click)="rejectEpcDetails()">No</button>
+                    <div class = "confirm-epc-details-buttons">
+                        <button class="confirm-epc-details-button yes-button" (click)="confirmEpcDetails()">Yes</button>
+                        <button class="confirm-epc-details-button no-button" (click)="rejectEpcDetails()">No</button>
+                    </div>
                 </div>
                 <div class="confirm-epc-details-row">
+                    <div class="button-main-tablet">Great! Let's get a few more details</div>
                     <button class="need-more-details-button" (click)="confirmEpcDetails()">
                         <div class="need-more-details-body">
                             <div class="button-main">Great! Let's get a few more details</div>

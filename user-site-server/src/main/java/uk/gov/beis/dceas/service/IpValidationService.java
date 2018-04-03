@@ -5,7 +5,6 @@ import org.springframework.security.web.util.matcher.IpAddressMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,19 +21,14 @@ public class IpValidationService {
     }
 
     public boolean requestIsInIpWhitelist(HttpServletRequest request) {
-        List<String> ipAddresses = new ArrayList<String>();
-        ipAddresses.add(request.getRemoteAddr());
-
-        String proxiedIpsOrNull = request.getHeader("X-FORWARDED-FOR");
-        if (proxiedIpsOrNull != null) {
-            ipAddresses.addAll(Arrays.asList(proxiedIpsOrNull.split(", ")));
-        }
-
-        for (String ipAddress : ipAddresses) {
-            for (String subnet : ipWhitelist) {
-                if (matches(ipAddress, subnet)) {
-                    return true;
-                }
+        // TODO BEISDEAS-208 The original client's address is being returned from "getRemoteAddr"
+        // There is a chance that further down the line, a load balancer or proxy will
+        // be added. At this point, we should check the X-FORWARDED-FOR header and use
+        // that to find out the user's IP address
+        String ipAddress = request.getRemoteAddr();
+        for (String subnet : ipWhitelist) {
+            if (matches(ipAddress, subnet)) {
+                return true;
             }
         }
         return false;

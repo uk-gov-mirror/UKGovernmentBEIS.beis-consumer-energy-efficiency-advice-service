@@ -19,7 +19,6 @@ import {EnergyEfficiencyRecommendationCardComponent} from
     './energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
-import {NeedHelpComponent} from '../../shared/need-help/need-help.component';
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
 import {RecommendationFilterControlComponent} from './recommendation-filter-control/recommendation-filter-control.component';
 import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
@@ -153,7 +152,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 EnergyEfficiencyRecommendationCardComponent,
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
-                NeedHelpComponent,
                 GrantCardComponent,
                 RecommendationFilterControlComponent,
                 BreakEvenComponent,

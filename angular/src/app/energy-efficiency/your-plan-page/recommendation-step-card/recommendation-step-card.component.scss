@@ -110,8 +110,8 @@ $step-number-bullet-margin: 20px;
           margin-bottom: 10px;
         }
 
-        &:not(:nth-child(#{$more-info-link-buttons-per-row}n + 1)) {
-          margin-left: 10px;
+        &:not(:last-child) {
+          margin-right: 10px;
         }
 
         .more-info-description, .more-info-icon-container {

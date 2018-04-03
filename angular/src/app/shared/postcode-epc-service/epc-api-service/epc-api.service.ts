@@ -8,22 +8,21 @@ import orderBy from 'lodash-es/orderBy';
 import head from 'lodash-es/head';
 import {Epc} from '../model/epc';
 import {EpcRecommendation} from '../../epc-api-service/model/response/epc-recommendation';
-import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
 import {JsonApiResponse} from '../../epc-api-service/model/response/json-api-response';
 import {EpcResponse} from '../model/response/epc-response';
 import {EpcRecommendationResponse} from '../../epc-api-service/model/response/epc-recommendation-response';
+import Config from '../../../config';
 
 @Injectable()
 export class EpcApiService {
     static readonly MAX_NUMBER_OF_EPCS_PER_RESPONSE: number = 100;
-    private static readonly epcSearchEndpoint = 'angular-theme/v1/epc';
-    private static readonly recommendationEndpoint = 'angular-theme/v1/epc-recommendations';
+    private readonly epcSearchEndpoint = Config().apiRoot + '/epc';
+    private readonly recommendationEndpoint = Config().apiRoot + '/epc-recommendations';
 
     private epcs: {[postcode: string]: Observable<Epc[]>} = {};
     private recommendations: {[lmkKey: string]: Observable<EpcRecommendation[]>} = {};
 
-    constructor(private http: HttpClient,
-                private wordpressApiService: WordpressApiService) {
+    constructor(private http: HttpClient) {
     }
 
     getEpcsForPostcode(postcode: string): Observable<Epc[]> {
@@ -32,7 +31,7 @@ export class EpcApiService {
                 .set('postcode', postcode)
                 .set('size', EpcApiService.MAX_NUMBER_OF_EPCS_PER_RESPONSE.toString());
             this.epcs[postcode] = this.http
-                .get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.epcSearchEndpoint), {params: params})
+                .get(this.epcSearchEndpoint, {params: params})
                 .map((result: JsonApiResponse<EpcResponse>) => EpcParserService.parse(result))
                 .map(epcs => this.getMostRecentEpcs(epcs))
                 .shareReplay(1);
@@ -44,7 +43,7 @@ export class EpcApiService {
         if (!this.recommendations[lmkKey]) {
             const params = new HttpParams().set('lmkKey', lmkKey);
             this.recommendations[lmkKey] = this.http
-                .get(this.wordpressApiService.getFullApiEndpoint(EpcApiService.recommendationEndpoint), {params: params})
+                .get(this.recommendationEndpoint, {params: params})
                 .map((result: JsonApiResponse<EpcRecommendationResponse>) =>
                     result.rows.map(recResponse => new EpcRecommendation(recResponse)))
                 .shareReplay(1);

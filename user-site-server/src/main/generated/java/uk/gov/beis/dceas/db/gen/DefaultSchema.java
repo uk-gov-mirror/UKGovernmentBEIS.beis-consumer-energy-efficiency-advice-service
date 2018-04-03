@@ -29,6 +29,8 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
+import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
+import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 
 
 /**
@@ -44,7 +46,7 @@ import uk.gov.beis.dceas.db.gen.tables.UserState;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSchema extends SchemaImpl {
 
-    private static final long serialVersionUID = 139594046;
+    private static final long serialVersionUID = 1111948934;
 
     /**
      * The reference instance of <code></code>
@@ -127,6 +129,16 @@ public class DefaultSchema extends SchemaImpl {
     public final UserState USER_STATE = uk.gov.beis.dceas.db.gen.tables.UserState.USER_STATE;
 
     /**
+     * The table <code>wp_postmeta</code>.
+     */
+    public final WpPostmeta WP_POSTMETA = uk.gov.beis.dceas.db.gen.tables.WpPostmeta.WP_POSTMETA;
+
+    /**
+     * The table <code>wp_posts</code>.
+     */
+    public final WpPosts WP_POSTS = uk.gov.beis.dceas.db.gen.tables.WpPosts.WP_POSTS;
+
+    /**
      * No further instances allowed
      */
     private DefaultSchema() {
@@ -165,6 +177,8 @@ public class DefaultSchema extends SchemaImpl {
             QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS,
             QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS,
             QrtzTriggers.QRTZ_TRIGGERS,
-            UserState.USER_STATE);
+            UserState.USER_STATE,
+            WpPostmeta.WP_POSTMETA,
+            WpPosts.WP_POSTS);
     }
 }

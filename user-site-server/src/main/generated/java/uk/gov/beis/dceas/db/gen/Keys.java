@@ -23,6 +23,8 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
+import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
+import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 import uk.gov.beis.dceas.db.gen.tables.records.BoilersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.DatabasechangeloglockRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzCalendarsRecord;
@@ -36,6 +38,8 @@ import uk.gov.beis.dceas.db.gen.tables.records.QrtzSimpleTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzSimpropTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.UserStateRecord;
+import uk.gov.beis.dceas.db.gen.tables.records.WpPostmetaRecord;
+import uk.gov.beis.dceas.db.gen.tables.records.WpPostsRecord;
 
 
 /**
@@ -74,6 +78,8 @@ public class Keys {
     public static final UniqueKey<QrtzSimpropTriggersRecord> PK_QRTZ_SIMPROP_TRIGGERS = UniqueKeys0.PK_QRTZ_SIMPROP_TRIGGERS;
     public static final UniqueKey<QrtzTriggersRecord> PK_QRTZ_TRIGGERS = UniqueKeys0.PK_QRTZ_TRIGGERS;
     public static final UniqueKey<UserStateRecord> PK_USER_STATE = UniqueKeys0.PK_USER_STATE;
+    public static final UniqueKey<WpPostmetaRecord> PK_WP_POSTMETA = UniqueKeys0.PK_WP_POSTMETA;
+    public static final UniqueKey<WpPostsRecord> PK_WP_POSTS = UniqueKeys0.PK_WP_POSTS;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -83,6 +89,7 @@ public class Keys {
     public static final ForeignKey<QrtzSimpleTriggersRecord, QrtzTriggersRecord> FK_QRTZ_SIMPLE_TRIGGERS_QRTZ_TRIGGERS = ForeignKeys0.FK_QRTZ_SIMPLE_TRIGGERS_QRTZ_TRIGGERS;
     public static final ForeignKey<QrtzSimpropTriggersRecord, QrtzTriggersRecord> FK_QRTZ_SIMPROP_TRIGGERS_QRTZ_TRIGGERS = ForeignKeys0.FK_QRTZ_SIMPROP_TRIGGERS_QRTZ_TRIGGERS;
     public static final ForeignKey<QrtzTriggersRecord, QrtzJobDetailsRecord> FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS = ForeignKeys0.FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS;
+    public static final ForeignKey<WpPostmetaRecord, WpPostsRecord> FK_WP_POSTMETA__WP_POSTS = ForeignKeys0.FK_WP_POSTMETA__WP_POSTS;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -102,6 +109,8 @@ public class Keys {
         public static final UniqueKey<QrtzSimpropTriggersRecord> PK_QRTZ_SIMPROP_TRIGGERS = createUniqueKey(QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS, "pk_qrtz_simprop_triggers", QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.SCHED_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<QrtzTriggersRecord> PK_QRTZ_TRIGGERS = createUniqueKey(QrtzTriggers.QRTZ_TRIGGERS, "pk_qrtz_triggers", QrtzTriggers.QRTZ_TRIGGERS.SCHED_NAME, QrtzTriggers.QRTZ_TRIGGERS.TRIGGER_NAME, QrtzTriggers.QRTZ_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<UserStateRecord> PK_USER_STATE = createUniqueKey(UserState.USER_STATE, "pk_user_state", UserState.USER_STATE.ID);
+        public static final UniqueKey<WpPostmetaRecord> PK_WP_POSTMETA = createUniqueKey(WpPostmeta.WP_POSTMETA, "pk_wp_postmeta", WpPostmeta.WP_POSTMETA.META_ID);
+        public static final UniqueKey<WpPostsRecord> PK_WP_POSTS = createUniqueKey(WpPosts.WP_POSTS, "pk_wp_posts", WpPosts.WP_POSTS.ID);
     }
 
     private static class ForeignKeys0 extends AbstractKeys {
@@ -109,5 +118,6 @@ public class Keys {
         public static final ForeignKey<QrtzSimpleTriggersRecord, QrtzTriggersRecord> FK_QRTZ_SIMPLE_TRIGGERS_QRTZ_TRIGGERS = createForeignKey(uk.gov.beis.dceas.db.gen.Keys.PK_QRTZ_TRIGGERS, QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS, "fk_qrtz_simple_triggers_qrtz_triggers", QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS.SCHED_NAME, QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS.TRIGGER_NAME, QrtzSimpleTriggers.QRTZ_SIMPLE_TRIGGERS.TRIGGER_GROUP);
         public static final ForeignKey<QrtzSimpropTriggersRecord, QrtzTriggersRecord> FK_QRTZ_SIMPROP_TRIGGERS_QRTZ_TRIGGERS = createForeignKey(uk.gov.beis.dceas.db.gen.Keys.PK_QRTZ_TRIGGERS, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS, "fk_qrtz_simprop_triggers_qrtz_triggers", QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.SCHED_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_GROUP);
         public static final ForeignKey<QrtzTriggersRecord, QrtzJobDetailsRecord> FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS = createForeignKey(uk.gov.beis.dceas.db.gen.Keys.PK_QRTZ_JOB_DETAILS, QrtzTriggers.QRTZ_TRIGGERS, "fk_qrtz_triggers_qrtz_job_details", QrtzTriggers.QRTZ_TRIGGERS.SCHED_NAME, QrtzTriggers.QRTZ_TRIGGERS.JOB_NAME, QrtzTriggers.QRTZ_TRIGGERS.JOB_GROUP);
+        public static final ForeignKey<WpPostmetaRecord, WpPostsRecord> FK_WP_POSTMETA__WP_POSTS = createForeignKey(uk.gov.beis.dceas.db.gen.Keys.PK_WP_POSTS, WpPostmeta.WP_POSTMETA, "fk_wp_postmeta__wp_posts", WpPostmeta.WP_POSTMETA.POST_ID);
     }
 }
