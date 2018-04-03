@@ -13,18 +13,9 @@ $your-plan-summary-border-width: 1px;
     border-left: 1px solid $light-grey;
   }
 
-  @include tablet() {
-    & :nth-child(2) {
-      border-left: none;
-    }
-
-    .no-tablet {
-      display: none;
-    }
-  }
   @include mobile() {
-    .data-card-component {
-      flex: 0 0 40%;
+    app-data-card {
+      flex: 1;
     }
 
     .savings {
@@ -39,6 +30,16 @@ $your-plan-summary-border-width: 1px;
       border-left: 1px solid $light-grey;
       padding: 0 0 0 10px;
       margin-left: 10px;
+    }
+  }
+
+  @include tablet() {
+    & :nth-child(2) {
+      border-left: none;
+    }
+
+    .no-tablet {
+      display: none;
     }
   }
 }

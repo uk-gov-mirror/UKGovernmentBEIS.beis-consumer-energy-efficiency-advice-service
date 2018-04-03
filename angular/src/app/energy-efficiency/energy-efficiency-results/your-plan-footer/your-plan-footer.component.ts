@@ -19,11 +19,11 @@ export class YourPlanFooterComponent {
         recommendation.isAddedToPlan = false;
     }
 
-    youHaveAddedRecommendations() {
+    getYouHaveAddedRecommendations() {
         if (this.recommendations.length === 1) {
             return 'You have added 1 recommendation';
         } else {
-            return 'You have added ' + this.recommendations.length + ' recommendations';
+            return `You have added ${this.recommendations.length} recommendations`;
         }
     }
 }

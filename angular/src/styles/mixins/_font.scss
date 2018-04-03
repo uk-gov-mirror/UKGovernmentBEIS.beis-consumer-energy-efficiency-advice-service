@@ -283,6 +283,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin break-even-data-value-font {
+  @include has-font-sizes-at-breakpoints(32px, 34px, 32px, 24px, 28px, 32px);
+  font-weight: bold;
+}
+
 // TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 
 @mixin page-subheadline-small {

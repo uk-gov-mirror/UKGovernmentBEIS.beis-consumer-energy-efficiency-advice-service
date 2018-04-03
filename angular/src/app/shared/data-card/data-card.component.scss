@@ -68,7 +68,6 @@
 // Breakpoint specific styling
 .data-card {
   @include mobile() {
-
     &.vertical-mobile {
       @include is-vertical-app-card($padding: 0, $heading-height: 32px, $value-height: 70px);
       .heading {
@@ -84,7 +83,7 @@
         flex: 0 0 40%;
       }
 
-      .number-value {
+      .number-value.color-circle {
         width: 40px;
         height: 40px;
         font-size: 20px;

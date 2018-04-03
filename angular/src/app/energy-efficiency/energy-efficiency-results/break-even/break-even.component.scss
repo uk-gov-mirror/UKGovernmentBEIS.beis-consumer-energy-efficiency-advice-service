@@ -1,5 +1,6 @@
 @import "styles/var/_colors";
 @import "styles/mixins/breakpoints";
+@import "styles/mixins/font";
 @import "../../_energy-efficiency-page-sizes";
 @import "~mathsass/dist/_math";
 @import "~mathsass/dist/_constants";
@@ -39,8 +40,7 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
       }
 
       .data-value {
-        font-weight: bold;
-        font-size: 32px;
+        @include break-even-data-value-font;
       }
     }
   }
@@ -99,6 +99,7 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
         margin: 0;
         border-top: 2px solid $lighter-grey;
         padding: 20px 0;
+        color: $focus-text-blue;
       }
     }
 
