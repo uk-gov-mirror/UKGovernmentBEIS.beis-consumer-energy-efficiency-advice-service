@@ -38,12 +38,14 @@ import {LatestNewsSectionComponent} from './latest-news-section/latest-news-sect
 import {UserStateApiService} from "./user-state-api-service/user-state-api-service";
 import {UserStateService} from "./user-state-service/user-state-service";
 import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
+import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 @NgModule({
     declarations: [
         PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
+        NavBarSuboptionComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
@@ -63,6 +65,7 @@ import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component"
         PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
+        NavBarSuboptionComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
