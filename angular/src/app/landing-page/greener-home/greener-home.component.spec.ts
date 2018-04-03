@@ -3,6 +3,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {GreenerHomeComponent} from './greener-home.component';
 import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
@@ -56,7 +57,8 @@ describe('CarbonFootprintComponent', () => {
                 CommonModule,
                 FormsModule,
                 RouterTestingModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,

@@ -3,6 +3,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {HomeImprovementsComponent} from './home-improvements.component';
 import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
@@ -64,7 +65,8 @@ describe('HomeImprovementsComponent', () => {
             imports: [
                 CommonModule,
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,

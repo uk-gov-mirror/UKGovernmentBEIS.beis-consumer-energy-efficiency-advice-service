@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {HomePageComponent} from './home-page.component';
 import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
 import {ResponseData} from '../shared/response-data/response-data';
@@ -28,16 +29,19 @@ describe('HomePageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [HomePageComponent, LatestNewsSectionComponent, LatestNewsCardComponent, NavigationBarComponent,
                 NavBarSuboptionComponent],
-            imports: [RouterTestingModule.withRoutes([
-                {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
-                {path: 'js/energy-efficiency/results', component: DummyComponent},
-                {path: 'js/grants', component: DummyComponent},
-                {path: 'js/boiler', component: DummyComponent},
-                {path: 'js/reduce-bills', component: DummyComponent},
-                {path: 'js/warmer-home', component: DummyComponent},
-                {path: 'js/home-improvements', component: DummyComponent},
-                {path: 'js/greener-home', component: DummyComponent}
-            ])],
+            imports: [
+                RouterTestingModule.withRoutes([
+                    {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
+                    {path: 'js/energy-efficiency/results', component: DummyComponent},
+                    {path: 'js/grants', component: DummyComponent},
+                    {path: 'js/boiler', component: DummyComponent},
+                    {path: 'js/reduce-bills', component: DummyComponent},
+                    {path: 'js/warmer-home', component: DummyComponent},
+                    {path: 'js/home-improvements', component: DummyComponent},
+                    {path: 'js/greener-home', component: DummyComponent}
+                ]),
+                InlineSVGModule,
+            ],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},
                 {

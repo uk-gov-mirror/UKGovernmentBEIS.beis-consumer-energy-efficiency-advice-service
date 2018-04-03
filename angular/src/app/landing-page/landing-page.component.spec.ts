@@ -5,6 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {LargeVideoCardComponent} from '../shared/large-video-card/large-video-card.component';
 import {ArticleCardComponent} from './article-card/article-card.component';
@@ -66,6 +67,7 @@ describe('LandingPageComponent', () => {
                 CommonModule,
                 FormsModule,
                 RouterTestingModule.withRoutes([]),
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,
