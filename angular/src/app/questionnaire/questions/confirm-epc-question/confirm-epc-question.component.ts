@@ -119,9 +119,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     }
 
     confirmEpcDetails() {
-        // TODO:BEIS-15 Think about what to do on confirmation/rejection of EPC
-        // For now we just autopopulate future questions based on data in the EPC, and we do this whether the user
-        // confirms or rejects the data.
         this.response = {
             confirmed: true,
             homeType: this.homeType,
