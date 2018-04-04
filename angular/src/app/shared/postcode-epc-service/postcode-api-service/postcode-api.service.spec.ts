@@ -2,7 +2,6 @@ import {async, getTestBed, TestBed} from '@angular/core/testing';
 import 'rxjs/add/operator/toPromise';
 
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
 import {HttpRequest} from '@angular/common/http';
 import {PostcodeApiService} from './postcode-api.service';
 import {PostcodeBasicDetailsResponse} from '../model/response/postcode-basic-details-response';
@@ -14,8 +13,7 @@ describe('PostcodeApiService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [PostcodeApiService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
+            providers: [PostcodeApiService],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();

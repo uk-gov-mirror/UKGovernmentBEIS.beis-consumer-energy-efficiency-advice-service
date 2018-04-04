@@ -81,6 +81,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin page-heading-small-font {
+  @include has-font-sizes-at-breakpoints(40px, 42px, 36px, 40px, 32px, 34px);
+  font-weight: bold;
+}
+
 @mixin measures-page-subheading-font {
   @include has-font-sizes-at-breakpoints(32px, 36px, 32px, 36px, 24px, 28px);
   font-weight: bold;
@@ -129,6 +134,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   @include has-font-sizes-at-breakpoints(13px, 16px, 13px, 16px, 13px, 16px);
   font-weight: 500;
   text-transform: uppercase;
+}
+
+@mixin recommendations-sub-heading-font {
+  @include has-font-sizes-at-breakpoints(13px, 16px, 14px, 20px, 14px, 20px);
+  font-family: $font-family-light;
 }
 
 @mixin page-section-heading-font {
@@ -273,13 +283,12 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
-// TODO:BEIS-164 Convert the below rules to match the same format as the above rules
-
-@mixin page-heading-small {
-  font-size: 40px;
-  line-height: 42px;
+@mixin break-even-data-value-font {
+  @include has-font-sizes-at-breakpoints(32px, 34px, 32px, 24px, 28px, 32px);
   font-weight: bold;
 }
+
+// TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 
 @mixin page-subheadline-small {
   font-size: 13px;

@@ -57,8 +57,6 @@ You will need to update the `wp_options` table to change the hostname & port:
 
 Add necessary config:
 
-    cf set-env dceas-admin-site GOOGLE_ANALYTICS_ID xxx
-    cf set-env dceas-admin-site HOTJAR_ID xxx
     cf set-env dceas-admin-site BRE_API_USERNAME xxx
     cf set-env dceas-admin-site BRE_API_PASSWORD xxx
     
@@ -78,6 +76,8 @@ Add necessary config:
     # comma separated list of IPv4 and IPv6 address ranges
     cf set-env dceas-user-site dceas.admin-ip-whitelist XXX
     cf set-env dceas-user-site epc.opendatacommunities.org.auth XXX
+    cf set-env dceas-user-site google.analytics.id XXX
+    cf set-env dceas-user-site hotjar.id XXX
 
 Build the site locally, and deploy:
 

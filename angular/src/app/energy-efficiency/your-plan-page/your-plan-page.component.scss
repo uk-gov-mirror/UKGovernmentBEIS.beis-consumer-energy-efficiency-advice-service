@@ -23,7 +23,7 @@ $grant-card-margin: 10px;
         flex: 1 0 1px;
 
         .heading {
-          @include page-heading-small;
+          @include page-heading-small-font;
           color: $headline-dark-blue;
           margin-bottom: 10px;
         }

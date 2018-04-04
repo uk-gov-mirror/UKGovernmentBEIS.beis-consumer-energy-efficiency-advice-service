@@ -4,7 +4,6 @@ import {HttpRequest} from '@angular/common/http';
 
 import {EpcApiService} from './epc-api.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {WordpressApiService} from '../../wordpress-api-service/wordpress-api-service';
 import {JsonApiResponse} from '../../epc-api-service/model/response/json-api-response';
 import {Epc} from '../model/epc';
 import {EpcResponse} from '../model/response/epc-response';
@@ -18,8 +17,7 @@ describe('EpcApiService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [EpcApiService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
+            providers: [EpcApiService],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
