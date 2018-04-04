@@ -7,6 +7,10 @@ $grant-card-margin: 10px;
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
+* {
+  box-sizing: border-box;
+}
+
 .your-plan-page {
   .your-plan-header {
     .heading-container {
@@ -19,7 +23,7 @@ $grant-card-margin: 10px;
       }
 
       .subheading {
-        @include page-subheadline-small;
+        @include page-subheadline-small-font;
       }
     }
   }
@@ -48,7 +52,7 @@ $grant-card-margin: 10px;
         }
 
         .description {
-          @include page-subheadline-small;
+          @include page-subheadline-small-font;
           margin-bottom: 20px;
         }
       }
@@ -68,7 +72,7 @@ $grant-card-margin: 10px;
     }
 
     .local-authority {
-      @include page-subheadline-small;
+      @include page-subheadline-small-font;
       margin-bottom: 4px;
     }
 
@@ -94,27 +98,65 @@ $grant-card-margin: 10px;
 // Breakpoint specific styling
 .your-plan-page {
   @include mobile() {
+    .your-plan-header {
+      .page-row-content {
+        margin: 0;
+      }
+
+      .heading-container {
+        flex-wrap: wrap;
+
+        .heading {
+          flex: 0 0 100%;
+          padding: 25px 20px 16px;
+          background-color: $lighter-grey;
+          color: $darkened-blue;
+        }
+
+        .subheading {
+          flex: 0 0 100%;
+          padding: 0 20px 33px;
+          background-color: $lighter-grey;
+        }
+
+        app-your-plan-summary {
+          flex: 0 0 100%;
+          padding: 20px;
+        }
+      }
+    }
 
   }
 
   @include tablet() {
     .your-plan-header {
+      .page-row-content {
+        margin: 0;
+      }
+
       .heading-container {
         flex-wrap: wrap;
 
         .heading {
           flex: 0 0 100%;
           order: 1;
+          padding: 34px;
+          background-color: $lighter-grey;
+          color: $darkened-blue;
         }
 
         .subheading {
           flex: 0 0 100%;
           order: 3;
+          padding: 30px 34px;
+          background-color: $primary-blue;
+          color: white;
         }
 
         app-your-plan-summary {
           flex: 0 0 100%;
           order: 2;
+          padding: 20px 34px;
         }
       }
     }

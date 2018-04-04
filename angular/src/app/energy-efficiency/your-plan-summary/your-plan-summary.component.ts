@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import sumBy from 'lodash-es/sumBy';
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
@@ -10,6 +10,8 @@ import {RoundingService} from '../../shared/rounding-service/rounding.service';
     styleUrls: ['./your-plan-summary.component.scss']
 })
 export class YourPlanSummaryComponent {
+
+    @Input() isFooter: boolean = false;
 
     get recommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
