@@ -19,7 +19,6 @@ $mobile-step-number-margin: 12px;
 
   .step-main-row {
     display: flex;
-    @include step-title-font;
     align-items: center;
     cursor: pointer;
 
@@ -32,11 +31,15 @@ $mobile-step-number-margin: 12px;
     }
 
     .step-number {
+      @include step-title-font;
       color: $focus-text-blue;
       text-transform: uppercase;
     }
 
     .step-headline {
+      text-align:left;
+      @include step-title-font;
+      color: $dark-grey;
       background: none;
       outline: none;
       border: none;
