@@ -588,6 +588,23 @@
     .grants {
       background: $lighter-grey;
 
+      .page-row-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .mobile-expander {
+          flex-basis: 50%;
+        }
+
+        .grants-body {
+          box-sizing: border-box;
+          height: 72px;
+          flex-basis: 50%;
+          margin-right: inherit;
+        }
+      }
+
       .heading {
         margin-bottom: 27px;
       }
@@ -606,16 +623,22 @@
         }
 
         .links {
-          flex: 0 0 524px;
+          flex: 0 0 100%;
           display: flex;
           align-items: stretch;
           justify-content: space-between;
 
-          > .link-button {
-            flex: 0 0 260px;
+          .link-button {
+            flex: 0 0 50%;
+            min-height: 41px;
+            box-sizing: border-box;
 
-            &:first-child {
-              margin-right: 18px;
+            &:not(:first-of-type) {
+              margin-left: 20px;
+            }
+
+            &:not(:last-of-type) {
+              margin-right: 20px;
             }
           }
         }
@@ -651,7 +674,7 @@
           }
 
           .installer-link {
-            min-height: 125px;
+            min-height: 165px;
             margin-top: 12px;
             width: 100%;
             padding: 20px;
@@ -664,6 +687,19 @@
             line-height: 19px;
             font-weight: bold;
           }
+        }
+
+        .plumbing-installers {
+          display: flex;
+          flex-direction: row;
+          margin-right: 20px;
+          flex-basis: 60%;
+        }
+
+        .other-installers {
+          display: flex;
+          flex-direction: row;
+          flex-basis: 40%;
         }
       }
     }
