@@ -29,6 +29,7 @@ import {AdminPageComponent} from "./admin-page/admin-page.component";
 import {AdminPageGuard} from "./admin-page/admin-page.guard";
 import {ForbiddenPageComponent} from "./shared/forbidden-page/forbidden-page.component";
 import {MeesPageComponent} from "./mees-page/mees-page.component";
+import {YourHomeComponent} from "./your-home/your-home.component";
 
 const routes: Routes = [
     {
@@ -124,6 +125,11 @@ const routes: Routes = [
     {
         path: 'js/measures/:slug',
         component: MeasurePageComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'js/your-home/:slug',
+        component: YourHomeComponent,
         pathMatch: 'full'
     },
     {
