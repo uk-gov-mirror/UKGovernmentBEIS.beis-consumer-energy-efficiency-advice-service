@@ -26,6 +26,8 @@ export class YourHomeComponent implements OnInit {
                 measures => this.measures = measures.map(measure => measure.acf.headline)
             );
 
-        this.tag = this.route.snapshot.paramMap.get('tag');
+        this.route.paramMap.subscribe(params => {
+            this.tag = params.get('tag');
+        });
     }
 }
