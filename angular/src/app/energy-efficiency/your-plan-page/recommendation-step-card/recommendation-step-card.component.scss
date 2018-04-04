@@ -1,41 +1,42 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
+@import "styles/mixins/layout";
 
+// Component specific variables
 $more-info-link-buttons-per-row: 2;
 $step-number-bullet-diameter: 22px;
 $step-number-bullet-margin: 20px;
 
+$mobile-step-number-width: 44px;
+$mobile-step-number-margin: 12px;
+
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .recommendation-step-card {
   background-color: white;
-  margin-bottom: 4px;
-
-  .step-main-row, .step-details-drawer {
-    padding: 20px 30px;
-  }
 
   .step-main-row {
     display: flex;
-    font-weight: bold;
-    font-size: 20px;
+    @include step-title-font;
     align-items: center;
     cursor: pointer;
 
     .bullet {
-      width: 22px;
-      height: 22px;
+      width: $step-number-bullet-diameter;
+      height: $step-number-bullet-diameter;
       border: 1px solid $light-medium-grey;
       border-radius: 50%;
-      margin-right: 20px;
+      margin-right: $step-number-bullet-margin;
     }
 
     .step-number {
       color: $focus-text-blue;
       text-transform: uppercase;
-      margin-right: 20px;
     }
 
     .step-headline {
-      @include card-heading-font;
       background: none;
       outline: none;
       border: none;
@@ -64,11 +65,6 @@ $step-number-bullet-margin: 20px;
     }
 
     .step-info {
-      border-right: 1px solid $lighter-medium-grey;
-      padding-right: 40px;
-      margin-left: $step-number-bullet-diameter + $step-number-bullet-margin;
-      margin-right: 40px;
-      width: 420px;
       font-family: $font-family-light;
 
       .read-more-button {
@@ -96,23 +92,13 @@ $step-number-bullet-margin: 20px;
     .more-info-links {
       display: flex;
       flex-wrap: wrap;
-      width: 50%;
+      box-sizing: border-box;
 
       .more-info-link {
         color: white;
         display: flex;
-        flex: 0 0 260px;
         cursor: pointer;
         text-decoration: none;
-        height: 80px;
-
-        &:nth-last-child(-n + #{$more-info-link-buttons-per-row}) {
-          margin-bottom: 10px;
-        }
-
-        &:not(:last-child) {
-          margin-right: 10px;
-        }
 
         .more-info-description, .more-info-icon-container {
           padding: 20px;
@@ -143,6 +129,115 @@ $step-number-bullet-margin: 20px;
             display: block;
             line-height: 0;
           }
+        }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.recommendation-step-card {
+  @include mobile() {
+    margin-bottom: 10px;
+
+    .step-main-row, .step-details-drawer {
+      padding: 12px 20px;
+    }
+
+    .bullet {
+      display: none;
+    }
+
+    .step-number {
+      margin-right: $mobile-step-number-margin;
+      width: $mobile-step-number-width;
+    }
+
+    .step-details-drawer {
+      flex-direction: column;
+
+      .step-info {
+        box-sizing: border-box;
+        padding-left: $mobile-step-number-width + $mobile-step-number-margin;
+        width: 100%;
+        padding-bottom: 22px;
+      }
+
+      .more-info-links {
+        padding-left: $mobile-step-number-width + $mobile-step-number-margin;
+
+        .more-info-link {
+          box-sizing: border-box;
+          width: 100%;
+          margin-bottom: 12px;
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    margin-bottom: 4px;
+
+    .step-main-row, .step-details-drawer {
+      padding: 25px 20px;
+    }
+
+    .step-number {
+      margin-right: 12px;
+    }
+
+    .step-details-drawer {
+      flex-direction: column;
+
+      .step-info {
+        box-sizing: border-box;
+        padding-left: $step-number-bullet-diameter + $step-number-bullet-margin;
+        padding-right: 40px;
+        width: 100%;
+        padding-bottom: 22px;
+      }
+
+      .more-info-links {
+        padding-left: $step-number-bullet-diameter + $step-number-bullet-margin;
+        padding-right: 40px;
+        @include is-grid($margin-compensation: 20px);
+
+        .more-info-link {
+          @include is-grid-item($number-of-items: 2, $margin: 20px);
+          height: 70px;
+        }
+      }
+    }
+  }
+
+  @include desktop() {
+    margin-bottom: 4px;
+
+    .step-main-row, .step-details-drawer {
+      padding: 25px 20px;
+    }
+
+    .step-number {
+      margin-right: 20px;
+    }
+
+    .step-details-drawer {
+      .step-info {
+        border-right: 1px solid $lighter-medium-grey;
+        padding-right: 40px;
+        margin-left: $step-number-bullet-diameter + $step-number-bullet-margin;
+        margin-right: 40px;
+        width: 420px;
+      }
+
+      .more-info-links {
+        @include is-grid($margin-compensation: 10px);
+        width: 50%;
+
+        .more-info-link {
+          @include is-grid-item($number-of-items: 2, $margin: 10px);
+          height: 80px;
         }
       }
     }

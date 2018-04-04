@@ -294,6 +294,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin step-title-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 19px, 14px, 17px);
+  font-weight: bold;
+}
+
 // TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 @mixin focus-text {
   font-size: 32px;
