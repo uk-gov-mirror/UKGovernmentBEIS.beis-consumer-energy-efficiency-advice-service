@@ -128,7 +128,7 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'js/your-home/:slug',
+        path: 'js/your-home/:tag',
         component: YourHomeComponent,
         pathMatch: 'full'
     },

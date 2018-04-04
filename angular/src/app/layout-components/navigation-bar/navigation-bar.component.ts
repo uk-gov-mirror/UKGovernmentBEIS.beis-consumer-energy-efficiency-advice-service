@@ -12,19 +12,19 @@ export class NavigationBarComponent {
     homeSuboptions: NavigationSuboption[] = [
         {
             name: "Heating & Hot Water",
-            url: "/heating&hot-water"
+            url: "/js/your-home/heating&hot-water"
         },
         {
             name: "Windows & Doors",
-            url: "/windows&doors"
+            url: "/js/your-home/windows&doors"
         },
         {
             name: "Floors, Walls & Roofs",
-            url: "/floors-walls&roofs"
+            url: "/js/your-home/floors-walls&roofs"
         },
         {
             name: "Solar Energy",
-            url: "/solar-energy"
+            url: "/js/your-home/solar-energy"
         }
     ];
     rentedSuboptions: NavigationSuboption[] = [
