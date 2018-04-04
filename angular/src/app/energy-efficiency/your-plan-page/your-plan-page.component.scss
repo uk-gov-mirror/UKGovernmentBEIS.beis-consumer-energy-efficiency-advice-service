@@ -34,16 +34,10 @@ $grant-card-margin: 10px;
     .page-row-content {
       display: flex;
       flex-direction: column;
-      padding: 20px 0;
-
-      & > :not(:last-child) {
-        border-bottom: 1px solid $light-grey;
-      }
 
       .recommendation-steps-card {
         display: flex;
         flex-direction: column;
-        padding: 40px 0;
 
         .headline {
           font-weight: bold;
@@ -126,6 +120,15 @@ $grant-card-margin: 10px;
       }
     }
 
+    .recommendations {
+      .page-row-content {
+        padding: 34px 0 0;
+
+        .recommendation-steps-card {
+          padding-bottom: 40px;
+        }
+      }
+    }
   }
 
   @include tablet() {
@@ -160,6 +163,21 @@ $grant-card-margin: 10px;
         }
       }
     }
+
+    .recommendations {
+      .page-row-content {
+        padding: 34px 0 0;
+
+        .recommendation-steps-card {
+          padding-bottom: 40px;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid $light-grey;
+            margin-bottom: 40px;
+          }
+        }
+      }
+    }
   }
 
   @include desktop() {
@@ -181,6 +199,21 @@ $grant-card-margin: 10px;
         app-your-plan-summary {
           page-break-before: always;
           flex: 1;
+        }
+      }
+    }
+
+    .recommendations {
+      .page-row-content {
+        padding: 65px 0 0;
+
+        .recommendation-steps-card {
+          padding-bottom: 40px;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid $light-grey;
+            margin-bottom: 40px;
+          }
         }
       }
     }
