@@ -38,6 +38,7 @@
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getDisplayedRecommendations()"
                         [recommendation]="recommendation"
+                        [showMonthlySavings]="showMonthlySavings"
                 ></app-energy-efficiency-recommendation-card>
             </div>
         </div>
