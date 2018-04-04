@@ -1,5 +1,7 @@
 @import "styles/var/colors";
+@import "styles/mixins/font";
 @import "../energy-efficiency-page-sizes";
+@import "styles/mixins/breakpoints";
 
 $your-plan-summary-border-width: 1px;
 
@@ -9,5 +11,35 @@ $your-plan-summary-border-width: 1px;
 
   & > :not(:first-child) {
     border-left: 1px solid $light-grey;
+  }
+
+  @include mobile() {
+    app-data-card {
+      flex: 1;
+    }
+
+    .savings {
+      height: 30px;
+    }
+
+    .no-mobile {
+      display: none;
+    }
+
+    & :nth-child(3) {
+      border-left: 1px solid $light-grey;
+      padding: 0 0 0 10px;
+      margin-left: 10px;
+    }
+  }
+
+  @include tablet() {
+    & :nth-child(2) {
+      border-left: none;
+    }
+
+    .no-tablet {
+      display: none;
+    }
   }
 }

@@ -4,20 +4,27 @@
 @import "styles/mixins/_buttons";
 @import "styles/var/colors";
 
+// Component specific variables
 $icon-column-width: $add-to-plan-column-width;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .energy-efficiency-recommendation-card {
-  background-color: white;
   display: flex;
-  flex-direction: column;
 
   margin: 16px 0;
 
   .main-row {
     display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+
+    & > * {
+      background-color: white;
+    }
 
     .recommendation-icon {
-      flex: 0 0 $icon-column-width;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -30,11 +37,9 @@ $icon-column-width: $add-to-plan-column-width;
     }
 
     .recommendation-basic-details {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 10px 4px;
 
       & > :not(:first-child) {
         margin-top: 14px;
@@ -57,7 +62,6 @@ $icon-column-width: $add-to-plan-column-width;
 
       .more-detail-row {
         width: 100%;
-        border-top: 1px solid $light-grey;
         padding: 10px 0;
         display: flex;
         cursor: pointer;
@@ -84,27 +88,98 @@ $icon-column-width: $add-to-plan-column-width;
           display: block;
           line-height: 0;
           fill: $action-button-blue;
+        }
 
-          &.expanded {
-            transform: rotate(180deg);
-          }
+        &.expanded .more-detail-icon {
+          transform: rotate(180deg);
         }
       }
     }
 
-    .investment-required-card, .monthly-savings-card, .add-to-plan-column {
-      border-left: 2px solid $lighter-grey;
-    }
+    .expanded-view-row {
+      display: none;
+      border-top: 2px solid $light-grey;
+      border-bottom: 2px solid $light-grey;
 
-    .investment-required-card, .monthly-savings-card {
-      margin-top: 22px;
+      &.expanded {
+        display: flex;
+      }
+
+      .grants {
+        display: flex;
+        flex-direction: column;
+
+        .grant-info-card {
+          background-color: $light-grey;
+          padding: 10px;
+
+          .grant-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+
+          .grant-description {
+            margin-bottom: 10px;
+            font-family: $font-family-light;
+          }
+
+          .grant-more-info-link-row {
+            display: flex;
+
+            .grant-more-info-link {
+              outline: none;
+              background: none;
+              border: none;
+              cursor: pointer;
+              padding: 0;
+              font-family: $font-family-light;
+
+              &:focus, &:hover {
+                text-decoration: underline;
+              }
+            }
+
+            .chevron {
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+
+      .grants, .benefits {
+        .heading {
+          text-transform: uppercase;
+          font-size: 12px;
+          margin-bottom: 10px;
+          color: $focus-text-blue;
+        }
+      }
+
+      .benefits {
+        flex: 1;
+
+        .benefits-list {
+          padding: 0 20px;
+          font-family: $font-family-light;
+        }
+      }
+
+      .action-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 0 0;
+        flex-basis: calc(2 * #{$data-card-width} + #{$add-to-plan-column-width});
+
+        .action-button {
+          @include arrow-button(200px, 60px);
+          text-transform: uppercase;
+        }
+      }
     }
 
     .add-to-plan-column {
-      flex: 0 0;
-      flex-basis: $add-to-plan-column-width;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
@@ -126,10 +201,8 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .add-to-plan-text {
-        margin-top: 44px;
         color: $focus-text-blue;
         text-transform: uppercase;
-        margin-bottom: 10px;
         font-size: 11px;
         text-align: center;
         font-weight: bold;
@@ -163,93 +236,201 @@ $icon-column-width: $add-to-plan-column-width;
     }
   }
 
-  .expanded-view-row {
-    display: none;
-    border-top: 2px solid $light-grey;
-    padding: 20px 0;
+  * {
+    box-sizing: border-box;
+  }
+}
 
-    &.expanded {
-      display: flex;
+// Breakpoint specific styling
+.energy-efficiency-recommendation-card {
+  @include mobile() {
+    flex-wrap: wrap;
+
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $icon-column-width;
+        order: 2;
+      }
+
+      .recommendation-basic-details {
+        flex: 1 1 calc(100% - #{$add-to-plan-column-width});
+        order: 1;
+        padding: 20px 0 20px 20px;
+      }
+
+      .expanded-view-row {
+        flex: 0 0 100%;
+        order: 3;
+        border: none;
+        flex-wrap: wrap;
+        padding: 20px;
+
+        .grants, .benefits {
+          flex: 0 0 100%;
+        }
+
+        .grants {
+          padding-bottom: 20px;
+        }
+      }
+
+      .investment-required-card {
+        flex: 0 0 100%;
+        order: 4;
+        border-top: 5px solid $light-grey;
+        padding: 20px;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0 100%;
+        order: 5;
+        border-top: 2px solid $light-grey;
+        padding: 20px;
+      }
+
+      .add-to-plan-column {
+        flex: 0 0 100%;
+        order: 6;
+        border-top: 5px solid $light-grey;
+        padding: 20px;
+
+        .add-to-plan-text {
+          margin-right: 44px;
+        }
+      }
+
+      .more-detail-row.expanded {
+        border-bottom: 5px solid $light-grey;
+      }
     }
+  }
 
-    & > :first-child {
-      margin-left: $icon-column-width;
-    }
+  @include tablet() {
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $icon-column-width;
+        order: 1;
+      }
 
-    & > :not(:last-child) {
-      margin-right: 40px;
-    }
+      .recommendation-basic-details {
+        flex: 1 1 calc(100% - (2 * #{$add-to-plan-column-width}));
+        order: 2;
+        padding: 10px 80px 0 4px;
+      }
 
-    .grants {
-      display: flex;
-      flex-direction: column;
-      flex: 0 0 $data-card-width;
+      .expanded-view-row {
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        order: 4;
+        flex-wrap: wrap;
+        padding: 20px;
 
-      .grant-info-card {
-        background-color: $light-grey;
-        padding: 10px;
+        .grants {
+          padding-right: 20px;
+        }
 
-        .grant-name {
-          font-weight: bold;
+        .grants, .benefits {
+          flex: 0 0 50%;
+        }
+      }
+
+      .investment-required-card {
+        flex: 0 0;
+        flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
+        order: 5;
+        padding-top: 20px;
+        border-right: 1px solid $light-grey;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0;
+        flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
+        order: 6;
+        padding: 20px 0;
+      }
+
+      .add-to-plan-column {
+        flex: 0 0;
+        flex-basis: $add-to-plan-column-width;
+        order: 3;
+        border-left: 2px solid $lighter-grey;
+        flex-direction: column;
+
+        .add-to-plan-text {
+          margin-top: 44px;
           margin-bottom: 10px;
         }
+      }
 
-        .grant-description {
+      .more-detail-row:not(.expanded) {
+        border-bottom: 2px solid $light-grey;
+      }
+
+      .tag {
+        @include is-grid-item($number-of-items: 3, $margin: 20px);
+      }
+    }
+  }
+
+  @include desktop() {
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $icon-column-width;
+        order: 1;
+      }
+
+      .recommendation-basic-details {
+        flex: 1;
+        order: 2;
+        padding: 10px 60px 10px 4px;
+      }
+
+      .expanded-view-row {
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        order: 6;
+        padding: 20px 0;
+
+        & > :first-child {
+          margin-left: $icon-column-width;
+        }
+
+        & > :not(:last-child) {
+          margin-right: 36px;
+        }
+
+        .grants {
+          flex: 1;
+        }
+      }
+
+      .investment-required-card {
+        flex: 0 0 $data-card-width;
+        order: 3;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0 $data-card-width;
+        order: 4;
+      }
+
+      .add-to-plan-column {
+        flex: 0 0 $add-to-plan-column-width;
+        order: 5;
+        flex-direction: column;
+
+        .add-to-plan-text {
+          margin-top: 44px;
           margin-bottom: 10px;
-          font-family: $font-family-light;
-        }
-
-        .grant-more-info-link-row {
-          display: flex;
-
-          .grant-more-info-link {
-            outline: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            font-family: $font-family-light;
-
-            &:focus, &:hover {
-              text-decoration: underline;
-            }
-          }
-
-          .chevron {
-            margin-left: 4px;
-          }
         }
       }
-    }
 
-    .grants, .benefits {
-      .heading {
-        text-transform: uppercase;
-        font-size: 12px;
-        margin-bottom: 10px;
-        color: $focus-text-blue;
+      .more-detail-row {
+        border-top: 1px solid $light-grey;
       }
-    }
 
-    .benefits {
-      flex: 1;
-
-      .benefits-list {
-        padding: 0 20px;
-        font-family: $font-family-light;
-      }
-    }
-
-    .action-button-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex: 0 0;
-      flex-basis: calc(2 * #{$data-card-width} + #{$add-to-plan-column-width});
-
-      .action-button {
-        @include arrow-button(200px, 60px);
-        text-transform: uppercase;
+      .investment-required-card, .monthly-savings-card, .add-to-plan-column {
+        border-left: 2px solid $lighter-grey;
       }
     }
   }
