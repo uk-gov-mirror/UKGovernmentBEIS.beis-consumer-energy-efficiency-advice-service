@@ -1,12 +1,16 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 
+// Component specific variables
 $pdf-button-width: 53px;
 $pdf-button-arrow-height: 12px;
 $send-email-button-height: 40px;
 $send-email-button-arrow-width: 10px;
 $action-divider-circle-diameter: 40px;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .download-plan.page-row {
   padding: 34px 0 27px 0;
   background-color: white;
@@ -25,7 +29,6 @@ $action-divider-circle-diameter: 40px;
 
     .download-your-plan, .download-landlord-report, .email-your-plan {
       display: flex;
-      padding: 0 40px 0 80px;
       flex: 1 0 1px;
       justify-content: space-around;
 
@@ -149,6 +152,33 @@ $action-divider-circle-diameter: 40px;
             border-bottom: $send-email-button-height/2 solid transparent;
           }
         }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.download-plan {
+  @include mobile() {
+    .page-row-content {
+      .download-landlord-report {
+        display: none;
+      }
+    }
+  }
+
+  @include tablet() {
+    .page-row-content {
+      .download-landlord-report {
+        display: none;
+      }
+    }
+  }
+
+  @include desktop() {
+    .page-row-content {
+      .download-your-plan, .download-landlord-report, .email-your-plan {
+        padding: 0 40px;
       }
     }
   }
