@@ -1,5 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
+@import "styles/mixins/layout";
+
 // Component specific variables
 $grant-cards-per-row: 4;
 $grant-card-margin: 10px;
@@ -54,8 +56,6 @@ $grant-card-margin: 10px;
   }
 
   .local-authority-grants.page-row {
-    padding: 48px 0;
-
     .page-row-content {
       display: flex;
       flex-direction: column;
@@ -67,24 +67,6 @@ $grant-card-margin: 10px;
 
     .local-authority {
       @include page-subheadline-small-font;
-      margin-bottom: 4px;
-    }
-
-    .grant-cards {
-      margin-top: 32px;
-      flex-wrap: wrap;
-      display: flex;
-
-      align-items: stretch;
-      justify-content: space-between;
-
-      .grant-card {
-        flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
-        margin-bottom: $grant-card-margin;
-        &:not(:nth-child(#{$grant-cards-per-row}n)) {
-          margin-right: $grant-card-margin;
-        }
-      }
     }
   }
 }
@@ -126,6 +108,26 @@ $grant-card-margin: 10px;
 
         .recommendation-steps-card {
           padding-bottom: 40px;
+        }
+      }
+    }
+
+    .local-authority-grants.page-row {
+      padding: 48px 0;
+
+      .subheading {
+        margin-bottom: 14px;
+      }
+
+      .local-authority {
+        margin-bottom: 30px;
+      }
+
+      .grant-cards {
+        @include is-grid($margin-compensation: 10px);
+
+        .grant-card {
+          @include is-grid-item($number-of-items: 1, $margin: 10px);
         }
       }
     }
@@ -178,6 +180,26 @@ $grant-card-margin: 10px;
         }
       }
     }
+
+    .local-authority-grants.page-row {
+      padding: 40px 0;
+
+      .subheading {
+        margin-bottom: 10px;
+      }
+
+      .local-authority {
+        margin-bottom: 20px;
+      }
+
+      .grant-cards {
+        @include is-grid($margin-compensation: 20px);
+
+        .grant-card {
+          @include is-grid-item($number-of-items: 2, $margin: 20px);
+        }
+      }
+    }
   }
 
   @include desktop() {
@@ -214,6 +236,26 @@ $grant-card-margin: 10px;
             border-bottom: 1px solid $light-grey;
             margin-bottom: 40px;
           }
+        }
+      }
+    }
+
+    .local-authority-grants.page-row {
+      padding: 48px 0;
+
+      .subheading {
+        margin-bottom: 8px;
+      }
+
+      .local-authority {
+        margin-bottom: 35px;
+      }
+
+      .grant-cards {
+        @include is-grid($margin-compensation: 20px);
+
+        .grant-card {
+          @include is-grid-item($number-of-items: 4, $margin: 20px);
         }
       }
     }
