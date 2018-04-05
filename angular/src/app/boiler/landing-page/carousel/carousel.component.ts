@@ -1,3 +1,5 @@
+// TODO:BEISDEAS-228 delete the carousel component when we have new designs
+
 import {Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
