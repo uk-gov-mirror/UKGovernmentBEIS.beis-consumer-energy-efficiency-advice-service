@@ -4,12 +4,14 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {GrantsQuestionnaireComponent} from './grants-questionnaire.component';
+import {ResponseData} from "../../shared/response-data/response-data";
 
 describe('GrantsQuestionnaireComponent', () => {
     let component: GrantsQuestionnaireComponent;
     let fixture: ComponentFixture<GrantsQuestionnaireComponent>;
     let router: Router;
     let mockQuestionnaireComponent: MockQuestionnaireComponent;
+    const responseData = new ResponseData();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -17,7 +19,10 @@ describe('GrantsQuestionnaireComponent', () => {
                 GrantsQuestionnaireComponent,
                 MockQuestionnaireComponent
             ],
-            imports: [RouterTestingModule.withRoutes([])]
+            imports: [RouterTestingModule.withRoutes([])],
+            providers: [
+                {provide: ResponseData, useValue: responseData},
+            ]
         })
             .compileComponents();
     }));
