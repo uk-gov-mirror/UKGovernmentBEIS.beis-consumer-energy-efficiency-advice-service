@@ -17,7 +17,7 @@ export class EnergyEfficiencyResultsRouteGuard implements CanActivate {
         // If the response data is not complete then we can't
         // display the results page so we navigate to the home page
         // TODO:BEISDEAS-201 display a user-visible error here
-        console.error("Cannot show results; questions are incomplete")
+        console.error("Cannot show results; questions are incomplete");
 
         this.router.navigate(['/']);
         return false;
