@@ -16,7 +16,7 @@ export class YourPlanPageGuard implements CanActivate {
         }
 
         // TODO:BEISDEAS-201 display a user-visible error here
-        console.error("Cannot show plan; no data")
+        console.error("Cannot show plan; no data");
 
         this.router.navigate(['/']);
         return false;

@@ -14,7 +14,7 @@ export class BoilerResultsPageRouteGuard implements CanActivate {
             return true;
         } else {
             // TODO:BEISDEAS-201 display a user-visible error here
-            console.error("Cannot show results; questions are incomplete")
+            console.error("Cannot show results; questions are incomplete");
             this.router.navigate(['/js/boiler/questionnaire']);
             return false;
         }

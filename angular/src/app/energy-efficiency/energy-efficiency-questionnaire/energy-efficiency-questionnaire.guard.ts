@@ -19,7 +19,7 @@ export class EnergyEfficiencyQuestionnaireGuard implements CanActivate {
         }
 
         // TODO:BEISDEAS-201 display a user-visible error here
-        console.error("Cannot show questionnaire; unrecognised")
+        console.error("Cannot show questionnaire; unrecognised");
 
         this.router.navigate(['/']);
         return false;
