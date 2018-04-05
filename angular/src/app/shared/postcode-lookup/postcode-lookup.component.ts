@@ -70,6 +70,7 @@ export class PostcodeLookupComponent {
                                     error => this.handlePostcodeSearchError(error)
                                 );
                         } else {
+                            this.loadingEpcs = false;
                             this.scottishPostcode = true;
                         }
                     },

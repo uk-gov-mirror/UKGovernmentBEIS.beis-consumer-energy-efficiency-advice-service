@@ -18,6 +18,8 @@ import {EnergyEfficiencyRecommendationTag} from
     '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {EnergySavingMeasureResponse} from '../energy-calculation-api-service/response/energy-saving-measure-response';
 import {HabitMeasureResponse} from '../energy-calculation-api-service/response/habit-measure-response';
+import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
+import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 
 @Injectable()
 export class RecommendationsService {
@@ -69,7 +71,10 @@ export class RecommendationsService {
                         .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants
                         .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
-                    return this.getHomeImprovementRecommendationsContent(energyCalculation.measures, measuresContent)
+                    return this.getHomeImprovementRecommendationsContent(
+                        this.getMeasuresFromEnergyCalculation(energyCalculation),
+                        measuresContent
+                    )
                         .map(homeImprovementRecommendations => {
                             const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
                             const orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
@@ -102,6 +107,16 @@ export class RecommendationsService {
                     });
             })
             .filter(measure => measure));
+    }
+
+    private getMeasuresFromEnergyCalculation(energyCalculation: EnergyCalculationResponse): MeasuresResponse<EnergySavingMeasureResponse> {
+        if (this.responseData.tenureType !== TenureType.OwnerOccupancy
+            && !!this.responseData.tenureType
+            && energyCalculation.measures_rented
+        ) {
+            return energyCalculation.measures_rented;
+        }
+        return energyCalculation.measures;
     }
 
     private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,

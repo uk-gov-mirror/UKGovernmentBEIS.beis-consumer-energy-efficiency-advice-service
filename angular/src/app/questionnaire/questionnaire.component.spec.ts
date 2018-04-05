@@ -16,7 +16,6 @@ import {QuestionMetadata} from './base-question/question-metadata';
 import {Questionnaire} from './base-questionnaire/questionnaire';
 import {ResponseData} from '../shared/response-data/response-data';
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
-import {NeedHelpComponent} from '../shared/need-help/need-help.component';
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {QuestionReasonComponent} from '../shared/question-reason/question-reason.component';
@@ -132,7 +131,6 @@ describe('QuestionnaireComponent', () => {
                 QuestionnaireComponent,
                 ProgressIndicatorComponent,
                 SpinnerAndErrorContainerComponent,
-                NeedHelpComponent,
                 QuestionReasonComponent
             ],
             imports: [RouterTestingModule.withRoutes([]), InlineSVGModule, HttpClientTestingModule],

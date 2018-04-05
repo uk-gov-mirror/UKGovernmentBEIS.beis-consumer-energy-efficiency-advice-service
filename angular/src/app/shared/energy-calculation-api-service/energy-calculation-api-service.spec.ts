@@ -2,8 +2,6 @@ import {async, getTestBed, TestBed} from '@angular/core/testing';
 import 'rxjs/add/operator/toPromise';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HttpRequest} from '@angular/common/http';
-
-import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 import {EnergyCalculationApiService} from './energy-calculation-api-service';
 import {RdSapInput} from './request/rdsap-input';
 
@@ -11,6 +9,7 @@ describe('EnergyCalculationApiService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: EnergyCalculationApiService;
+    (window as any).CONFIG = {apiRoot: "/api"};
 
     const rdSapInput: RdSapInput = {
         epc: undefined,
@@ -42,8 +41,7 @@ describe('EnergyCalculationApiService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [EnergyCalculationApiService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
+            providers: [EnergyCalculationApiService],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -103,7 +101,7 @@ describe('EnergyCalculationApiService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'POST';
-            const matchesExpectedUrl = request.urlWithParams === 'angular-theme/v1/energy-calculation';
+            const matchesExpectedUrl = request.urlWithParams === '/api/energy-calculation';
             const matchesExpectedBody = request.body === rdSapInput;
             return matchesExpectedMethod && matchesExpectedUrl && matchesExpectedBody;
         }

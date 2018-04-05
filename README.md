@@ -79,6 +79,12 @@ In the `angular` dir, run:
 
     npm install
 
+Copy the file
+`user-site-server/src/main/resources/application-dev.properties.template`
+to a new file called `application-dev.properties` in the same directory and
+fill in the config values. This file will be ignored by git, so
+you can safely fill in the template values with real values.
+
 In IntelliJ, run both the "ng build --watch" and the "DceasApplication" run configurations
 and visit the site at http://localhost:8080
 
@@ -93,12 +99,6 @@ the "Development Setup - MySQL Database" section below.
 You will need PHP installed and registered in IntelliJ.
 You can install PHP using the Microsoft Web Platform Insaller at
 https://www.iis.net/downloads/microsoft/web-platform-installer
-
-Copy the file
-`wordpress/wp-content/themes/angular-theme/config/config.php.template`
-to a new file called `config.php` in the same directory and
-fill in the config values. This file will be ignored by git, so
-you can safely fill in the template values with real values.
 
 You should be able to launch the site by selecting the "on local server"
 run configuration in IntelliJ and clicking "Play".

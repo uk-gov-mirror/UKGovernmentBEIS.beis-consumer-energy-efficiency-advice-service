@@ -15,26 +15,54 @@
                     {{recommendation.summary}}
                 </div>
             </div>
-            <div class="more-detail-row"  (click)="toggleExpandedView()">
+            <div class="more-detail-row"  [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
                 <button class="more-detail-button">
                     {{isExpandedView ? 'Hide detail' : 'See more detail'}}
                 </button>
-                <div class="more-detail-icon" [class.expanded]="isExpandedView" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                <div class="more-detail-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             </div>
         </div>
+        <div class="expanded-view-row" [class.expanded]="isExpandedView">
+            <div class="grants" *ngIf="recommendation.grant">
+                <div class="heading">Grants</div>
+                <div class="grant-info-card">
+                    <div class="grant-name">{{recommendation.grant.name}}</div>
+                    <div class="grant-description">{{recommendation.grant.description}}</div>
+                    <div class="grant-more-info-link-row">
+                        <a class="grant-more-info-link">Find out more</a>
+                        <div class="chevron">></div>
+                    </div>
+                </div>
+            </div>
+            <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length">
+                <div class="heading">Benefits</div>
+                <ul class="benefits-list">
+                    <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
+                        {{advantage}}
+                    </li>
+                </ul>
+            </div>
+            <app-break-even *ngIf="recommendation.investmentPounds > 0"
+                            [investmentPounds]="recommendation.investmentPounds"
+                            [lifespanYears]="recommendation.lifetimeYears"
+                            [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
+            </app-break-even>
+        </div>
         <app-data-card class="investment-required-card"
-               heading="Investment required"
-               [value]="'£' + roundedInvestmentRequired"
+                heading="Investment required"
+                [value]="'£' + roundedInvestmentRequired"
+                isSmallCard="true"
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
                 heading="Savings per month up to"
                 [value]="'£' + roundedMonthlySaving"
+                isSmallCard="true"
         ></app-data-card>
         <div class="add-to-plan-column"
-             [class.selected]="recommendation.isAddedToPlan"
-             (mouseenter)="mouseEnterAddToPlanButton()"
-             (mouseleave)="mouseLeaveAddToPlanButton()"
-             (click)="toggleAddedToPlan()">
+                [class.selected]="recommendation.isAddedToPlan"
+                (mouseenter)="mouseEnterAddToPlanButton()"
+                (mouseleave)="mouseLeaveAddToPlanButton()"
+                (click)="toggleAddedToPlan()">
             <button class="add-to-plan-text">
                 {{getAddToPlanButtonText()}}
             </button>
@@ -49,31 +77,5 @@
                  *ngIf="recommendation.isAddedToPlan && isMouseOverAddToPlanButton"
                  [inlineSVG]="'controls/remove.svg'"></div>
         </div>
-    </div>
-    <div class="expanded-view-row" [class.expanded]="isExpandedView">
-        <div class="grants" *ngIf="recommendation.grant">
-            <div class="heading">Grants</div>
-            <div class="grant-info-card">
-                <div class="grant-name">{{recommendation.grant.name}}</div>
-                <div class="grant-description">{{recommendation.grant.description}}</div>
-                <div class="grant-more-info-link-row">
-                    <a class="grant-more-info-link">Find out more</a>
-                    <div class="chevron">></div>
-                </div>
-            </div>
-        </div>
-        <div class="benefits">
-            <div class="heading">Benefits</div>
-            <ul class="benefits-list">
-                <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
-                    {{advantage}}
-                </li>
-            </ul>
-        </div>
-        <app-break-even *ngIf="recommendation.investmentPounds > 0"
-                [investmentPounds]="recommendation.investmentPounds"
-                [lifespanYears]="recommendation.lifetimeYears"
-                [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
-        </app-break-even>
     </div>
 </div>

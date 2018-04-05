@@ -5,7 +5,6 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
 import {PostcodeApiService} from './postcode-api-service/postcode-api.service';
-import {FeatureFlagService} from '../feature-flag/feature-flag.service';
 import {PostcodeErrorResponse} from './model/response/postcode-error-response';
 import {PostcodeDetails} from './model/postcode-details';
 import {EpcApiService} from './epc-api-service/epc-api.service';
@@ -17,8 +16,7 @@ export class PostcodeEpcService {
     private static readonly POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
 
     constructor(private epcApiService: EpcApiService,
-                private postcodeApiService: PostcodeApiService,
-                private featureFlagService: FeatureFlagService, ) {
+                private postcodeApiService: PostcodeApiService, ) {
     }
 
     static isValidPostcode(postcode: string) {
@@ -29,8 +27,7 @@ export class PostcodeEpcService {
         if (!PostcodeEpcService.isValidPostcode(postcode)) {
             return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
         }
-        return this.featureFlagService.fetchFeatureFlags()
-            .switchMap(flags => flags.fetch_epc_data ? this.fetchEpcsForPostcode(postcode) : this.fetchBasicPostcodeDetails(postcode))
+        return this.fetchEpcsForPostcode(postcode)
             .catch(() => this.fetchBasicPostcodeDetails(postcode));
     }
 

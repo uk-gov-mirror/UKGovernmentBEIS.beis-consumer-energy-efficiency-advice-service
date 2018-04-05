@@ -177,7 +177,13 @@
       <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
     </module>
     <module name="NoWhitespaceBefore"/>
-    <module name="OperatorWrap"/>
+    <!-- See http://checkstyle.sourceforge.net/property_types.html#wrapOp
+       =
+       = This rule enforces that operators which break a line need to go at the start
+       = of the next line. This is very irritating to devs, as people have different styles.
+       = Let's turn it off and see if anything bad happens.
+       -->
+    <!-- <module name="OperatorWrap"/> -->
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>

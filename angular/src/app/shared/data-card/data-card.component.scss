@@ -17,7 +17,7 @@
   .heading {
     align-self: stretch;
     text-align: center;
-    height: $heading-height;
+    min-height: $heading-height;
   }
 
   .number-value {
@@ -68,18 +68,47 @@
 // Breakpoint specific styling
 .data-card {
   @include mobile() {
-    @include has-children-side-by-side();
-    width: 100%;
+    &.vertical-mobile {
+      @include is-vertical-app-card($padding: 0, $heading-height: 32px, $value-height: 70px);
+      .heading {
+        margin-bottom: 14px;
+      }
+    }
 
-    .heading, .number-value {
-      flex: 0 0 40%;
+    &:not(.vertical-mobile) {
+      @include has-children-side-by-side();
+      width: 100%;
+
+      .heading {
+        flex: 0 0 40%;
+      }
+
+      .number-value.color-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        text-align: center;
+      }
+    }
+
+    &.small-data-card {
+      .heading, .number-value {
+        height: auto;
+        min-height: auto;
+      }
     }
   }
-
   @include tablet() {
-    @include is-vertical-app-card($padding: 0, $heading-height: 36px, $value-height: 52px);
-  }
+    @include is-vertical-app-card($padding: 0, $heading-height: 36px, $value-height: 70px);
 
+    &.small-data-card {
+      .heading, .number-value {
+        height: auto;
+        min-height: auto;
+      }
+    }
+  }
   @include desktop() {
     @include is-vertical-app-card($padding: 10px, $heading-height: 20px, $value-height: 70px);
   }

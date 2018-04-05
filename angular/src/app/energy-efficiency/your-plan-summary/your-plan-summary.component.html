@@ -1,11 +1,18 @@
-<app-data-card
+<app-data-card [class.no-tablet]="isFooter"
         heading="Your potential score is"
         [value]="potentialScore"
-        [colorCircleClassName]="currentScoreColorCircleClassName"></app-data-card>
-<app-data-card
-        heading="Total investment required"
-        [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'">
+        [isVerticalAtMobile]="!isFooter"
+        [colorCircleClassName]="currentScoreColorCircleClassName">
 </app-data-card>
-<app-data-card
+<app-data-card class="no-mobile"
+        heading="Total investment required"
+        [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'"
+        [isVerticalAtMobile]="!isFooter"
+        [isSmallCard]="isFooter">
+</app-data-card>
+<app-data-card class="savings"
         heading="Total savings per month"
-        [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"></app-data-card>
+        [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"
+        [isVerticalAtMobile]="true"
+        [isSmallCard]="isFooter">
+</app-data-card>

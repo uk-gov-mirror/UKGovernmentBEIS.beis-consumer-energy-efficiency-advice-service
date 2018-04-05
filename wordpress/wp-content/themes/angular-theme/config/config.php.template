@@ -1,9 +1,0 @@
-<?php
-
-// Copy this file to "config.php" and fill in the secret values below.
-
-$_SERVER["EPC_API_TOKEN"] = "";
-$_SERVER["GOOGLE_ANALYTICS_ID"] = "";
-$_SERVER["HOTJAR_ID"] = "";
-$_SERVER["BRE_API_USERNAME"] = "";
-$_SERVER["BRE_API_PASSWORD"] = "";
