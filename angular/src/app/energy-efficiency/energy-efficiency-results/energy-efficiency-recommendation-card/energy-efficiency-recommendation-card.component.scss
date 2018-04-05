@@ -54,7 +54,7 @@ $icon-column-width: $add-to-plan-column-width;
         width: 100%;
 
         .summary {
-          @include page-subheadline-small;
+          @include page-subheadline-small-font;
           margin-right: 20px;
           flex: 1;
         }
