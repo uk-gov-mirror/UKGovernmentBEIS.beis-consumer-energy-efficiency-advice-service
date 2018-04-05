@@ -15,6 +15,12 @@ export class YourHomeComponent implements OnInit {
     isLoading: boolean;
     isError: boolean;
     measures: String[];
+    yourHomeContent: object;
+
+    solar = {
+        title: 'Solar Energy',
+        text: 'Solar panels are a good long term investment and are easy to have installed if your house is suitable.',
+    };
 
     constructor(private route: ActivatedRoute,
                 private measureService: EnergySavingMeasureContentService) {
@@ -29,5 +35,7 @@ export class YourHomeComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
             this.tag = params.get('tag');
         });
+
+        this.yourHomeContent = this.solar;
     }
 }
