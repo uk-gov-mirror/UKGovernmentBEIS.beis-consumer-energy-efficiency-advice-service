@@ -53,5 +53,9 @@ $your-plan-summary-border-width: 1px;
 
   @include desktop() {
     flex: 0 0 3*$data-card-width + 2*$your-plan-summary-border-width;
+
+    &:not(.is-footer) > app-data-card {
+      flex: 1;
+    }
   }
 }
