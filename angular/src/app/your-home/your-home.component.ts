@@ -11,11 +11,11 @@ import {YourHomeContent} from "./your-home-content";
 })
 export class YourHomeComponent implements OnInit {
 
-    tag: string;
     isLoading: boolean;
     isError: boolean;
-    measures: String[];
+    tag: string;
     yourHomeContent: YourHomeContent;
+    measures: String[];
 
     heatingAndHotwater: YourHomeContent = {
         tag: 'heating&hot-water',
@@ -35,7 +35,7 @@ export class YourHomeComponent implements OnInit {
         text: 'Simple measures like loft insulation can make a huge impact.',
     };
 
-    solar: YourHomeContent = {
+    solarEnergy: YourHomeContent = {
         tag: 'solar-energy',
         title: 'Solar Energy',
         text: 'Solar panels are a good long term investment and are easy to have installed if your house is suitable.',
@@ -46,21 +46,30 @@ export class YourHomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.route.paramMap.subscribe(params => {
+            this.tag = params.get('tag');
+            this.yourHomeContent = this.getHomeContent(this.tag);
+        });
+
         this.measureService.fetchMeasureDetails()
             .subscribe(
                 measures => this.measures = measures.map(measure => measure.acf.headline)
             );
 
-        this.route.paramMap.subscribe(params => {
-            this.tag = params.get('tag');
-        });
-
-        switch(this.tag) {
-            case this.tag === this.heatingAndHotwater.tag:
-                this.yourHomeContent = this.heatingAndHotwater;
-                break;
-        }
-
-        this.yourHomeContent = this.solar;
     }
+
+    private getHomeContent(tag: string) {
+        switch (tag) {
+            case this.heatingAndHotwater.tag:
+                return this.heatingAndHotwater;
+            case this.windowsAndDoors.tag:
+                return this.windowsAndDoors;
+            case this.floorsWallsAndRoofs.tag:
+                return this.floorsWallsAndRoofs;
+            case this.solarEnergy.tag:
+                return this.solarEnergy;
+        }
+    }
+
+
 }
