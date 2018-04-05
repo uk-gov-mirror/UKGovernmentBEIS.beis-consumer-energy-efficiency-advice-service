@@ -10,13 +10,10 @@ import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    static readonly reducedSearchResultsQuantity = 3;
 
     shouldDisplaySearchDetailsDropdown: boolean = false;
-    shouldDisplayExpandSearchResultsButton: boolean = false;
-    shouldDisplayExpandedSearchResults: boolean = false;
-    shouldExpandNav: boolean = false;
     searchText: string;
+    searchResults: WordpressSearchable[] = [];
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
@@ -26,7 +23,6 @@ export class HeaderComponent {
     @ViewChild('searchInput') searchInput;
     @ViewChild('mobileSearchButton') mobileSearchButton;
 
-    private allSearchResults: WordpressSearchable[] = [];
     private deregisterWindowClickListener: () => void;
 
     constructor(
@@ -101,9 +97,7 @@ export class HeaderComponent {
     }
 
     resetSearchResults(): void {
-        this.allSearchResults = [];
-        this.shouldDisplayExpandedSearchResults = false;
-        this.shouldDisplayExpandSearchResultsButton = false;
+        this.searchResults = [];
     }
 
     handleSearchResponse(results: WordpressSearchable[]): void {
@@ -111,28 +105,12 @@ export class HeaderComponent {
             this.searchState = SearchStates.NoResults;
             return;
         }
-        this.allSearchResults = results;
-        if (results.length > HeaderComponent.reducedSearchResultsQuantity) {
-            this.shouldDisplayExpandSearchResultsButton = true;
-        }
+        this.searchResults = results;
         this.searchState = SearchStates.Results;
     }
 
     handleSearchError(): void {
         this.searchState = SearchStates.Error;
-    }
-
-    displayExpandedSearchResults(): void {
-        this.shouldDisplayExpandedSearchResults = true;
-        this.shouldDisplayExpandSearchResultsButton = false;
-        // Maintain focus inside searchContainer to prevent focusout listener causing searchContainer to collapse
-        this.searchInput.nativeElement.focus();
-    }
-
-    getSearchResultsToDisplay(): WordpressSearchable[] {
-        return this.shouldDisplayExpandedSearchResults ?
-            this.allSearchResults :
-            this.allSearchResults.slice(0, HeaderComponent.reducedSearchResultsQuantity);
     }
 }
 

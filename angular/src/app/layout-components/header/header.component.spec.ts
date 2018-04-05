@@ -65,11 +65,6 @@ describe('HeaderComponent', () => {
             const searchDetailsDropdown = fixture.debugElement.query(By.css('.search-details-dropdown'));
             expect(searchDetailsDropdown.nativeElement.clientHeight).toBe(0);
         });
-
-        it('should initialise with elements in search box outside tab navigation', () => {
-            const seeAllSearchResultsButton = fixture.debugElement.query(By.css('.popular-searches .text-row'));
-            expect(seeAllSearchResultsButton.nativeElement.tabIndex).toBe(-1);
-        });
     });
 
     describe('#handleSearchBoxFocussed', () => {
@@ -90,16 +85,18 @@ describe('HeaderComponent', () => {
 
         it('should add elements in the search box to tab navigation', async(() => {
             // given
+            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
             const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
 
             // when
             searchBoxElement.triggerEventHandler('focus', null);
+            component.search();
             fixture.detectChanges();
 
             // then
             fixture.whenStable().then(() => {
-                const seeAllSearchResultsButton = fixture.debugElement.query(By.css('.popular-searches .text-row'));
-                expect(seeAllSearchResultsButton.nativeElement.tabIndex).toBe(0);
+                const firstSearchResult = fixture.debugElement.query(By.css('.search-results .text-row'));
+                expect(firstSearchResult.nativeElement.tabIndex).toBe(0);
             });
         }));
 
@@ -165,7 +162,7 @@ describe('HeaderComponent', () => {
             });
         }));
 
-        it('should display first search results returned', async(() => {
+        it('should display search results returned', async(() => {
             // given
             injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
 
@@ -177,23 +174,7 @@ describe('HeaderComponent', () => {
             fixture.whenStable().then(() => {
                 expect(component.searchState).toEqual(component.searchStates.Results);
                 const allSearchResultElements = fixture.debugElement.queryAll(By.css('.search-results .text-row'));
-                expect(allSearchResultElements.length).toEqual(HeaderComponent.reducedSearchResultsQuantity);
-            });
-        }));
-    });
-
-    describe('#displayExpandedSearchResults', () => {
-        it('should display all search results', async(() => {
-            // given
-            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
-            component.search();
-
-            // when
-            component.displayExpandedSearchResults();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.getSearchResultsToDisplay().length).toEqual(mockSearchResult.length * 2);
+                expect(allSearchResultElements.length).toEqual(mockSearchResult.length * 2);
             });
         }));
     });
