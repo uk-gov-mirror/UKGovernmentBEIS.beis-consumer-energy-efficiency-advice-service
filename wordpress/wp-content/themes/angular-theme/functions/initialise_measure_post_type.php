@@ -154,7 +154,11 @@ function setup_measure_acf_group() {
                     'choices' => array (
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
-                        'tag_longer_term' => 'Longer term'
+                        'tag_longer_term' => 'Longer term',
+                        'tag_heating&hot-water' => 'Heating & Hotwater',
+                        'tag_windows&doors' => 'Windows & Doors',
+                        'tag_floors-walls&roofs' => 'Floors, Walls & Roofs',
+                        'tag_solar-energy' => 'Solar Energy',
                     ),
                     'default_value' => '',
                     'layout' => 'vertical',

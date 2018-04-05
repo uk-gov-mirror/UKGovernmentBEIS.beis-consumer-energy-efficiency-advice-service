@@ -19,13 +19,13 @@ export class YourHomeComponent implements OnInit {
 
     heatingAndHotwater: YourHomeContent = {
         tag: 'heating&hot-water',
-        title: 'Heating and Hotwater',
+        title: 'Heating & Hotwater',
         text: 'Heating your home can be expensive. Here are a few options for reducing the overall costs.',
     };
 
     windowsAndDoors: YourHomeContent = {
         tag: 'windows&doors',
-        title: 'Windows and Doors',
+        title: 'Windows & Doors',
         text: 'Double glazing and draught excluders keep the cold out and keep your home warm for less.',
     };
 
