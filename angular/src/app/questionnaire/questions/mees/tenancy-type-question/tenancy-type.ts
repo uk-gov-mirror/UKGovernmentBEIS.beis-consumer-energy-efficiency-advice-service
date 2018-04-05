@@ -1,8 +1,8 @@
 export enum TenancyType {
-    AssuredTenancy = 1,
-    RegulatedTenancy = 2,
-    DomesticAgriculturalTenancy = 3,
-    Other = 4
+    AssuredTenancy,
+    RegulatedTenancy,
+    DomesticAgriculturalTenancy,
+    Other
 }
 
 export function getTenancyTypeDescription(tenancyType: TenancyType): string {

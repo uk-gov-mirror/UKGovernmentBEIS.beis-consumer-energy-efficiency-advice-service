@@ -107,6 +107,7 @@ export const BOILER_QUESTIONS = [
     new ShowersAndBathsQuestionMetadata(),
 ];
 
+// Questions for the "Minimum Energy Efficiency Standards" questionnaire ("MEES"), aimed at landlords.
 export const MEES_QUESTIONS = [
     new DomesticPropertyAfter2018QuestionMetadata(),
     new PropertyAfter2020QuestionMetadata(),
