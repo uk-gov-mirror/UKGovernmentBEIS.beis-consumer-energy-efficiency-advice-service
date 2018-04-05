@@ -23,8 +23,7 @@
             <div class="right-chevron-icon" [inlineSVG]="'controls/chevron-right.svg'"></div>
         </button>
     </div>
-    <!-- TODO BEISDEAS-209 Do we trust the WP users enough to allow this? Or should we add a separate "more information" link element? -->
-    <div class="help-text" *ngIf="currentQuestionContent?.helpText" [innerHtml]="currentQuestionContent?.helpText"></div>
+    <div class="help-text" *ngIf="currentQuestionContent?.helpHtml" [innerHtml]="currentQuestionContent?.helpHtml"></div>
     <div class="question">
         <ng-template app-question-host></ng-template>
     </div>

@@ -176,7 +176,7 @@ describe('QuestionnaireComponent', () => {
             allQuestionsContent = {
                 [questionId]: {
                     questionHeading: expectedQuestionHeading,
-                    helpText: 'some help text',
+                    helpHtml: 'some help text',
                     questionReason: 'this question helps us show you useful results'
                 }
             };
@@ -194,11 +194,11 @@ describe('QuestionnaireComponent', () => {
 
         it('should display the question help text correctly', async(() => {
             // given
-            const expectedHelpText = 'test question help text';
+            const expectedHelpHtml = 'test question help text';
             allQuestionsContent = {
                 [questionId]: {
                     questionHeading: 'test question heading',
-                    helpText: expectedHelpText,
+                    helpHtml: expectedHelpHtml,
                     questionReason: 'this question helps us show you useful results'
                 }
             };
@@ -210,7 +210,7 @@ describe('QuestionnaireComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 const helpTextElement = fixture.debugElement.query(By.css('.help-text'));
-                expect(helpTextElement.nativeElement.innerText).toBe(expectedHelpText);
+                expect(helpTextElement.nativeElement.innerText).toBe(expectedHelpHtml);
             });
         }));
 
@@ -219,7 +219,7 @@ describe('QuestionnaireComponent', () => {
             allQuestionsContent = {
                 [questionId]: {
                     questionHeading: 'test question heading',
-                    helpText: '',
+                    helpHtml: '',
                     questionReason: 'this question helps us show you useful results',
                     autoOpenQuestionReason: false
                 }
@@ -241,8 +241,8 @@ describe('QuestionnaireComponent', () => {
         it('should not emit completion event if there is another question', () => {
             // given
             allQuestionsContent = {
-                [questionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''},
-                [anotherQuestionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''}
+                [questionId]: {questionHeading: 'test question heading', helpHtml: '', questionReason: ''},
+                [anotherQuestionId]: {questionHeading: 'test question heading', helpHtml: '', questionReason: ''}
             };
             component.currentQuestionIndex = 0;
             fixture.detectChanges();
@@ -257,8 +257,8 @@ describe('QuestionnaireComponent', () => {
         it('should emit completion event if on the last question', () => {
             // given
             allQuestionsContent = {
-                [questionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''},
-                [anotherQuestionId]: {questionHeading: 'test question heading', helpText: '', questionReason: ''}
+                [questionId]: {questionHeading: 'test question heading', helpHtml: '', questionReason: ''},
+                [anotherQuestionId]: {questionHeading: 'test question heading', helpHtml: '', questionReason: ''}
             };
             component.currentQuestionIndex = 1;
             fixture.detectChanges();

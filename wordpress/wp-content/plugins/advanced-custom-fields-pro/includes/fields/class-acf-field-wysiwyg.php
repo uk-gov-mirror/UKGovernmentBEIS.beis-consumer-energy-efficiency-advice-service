@@ -73,7 +73,7 @@ class acf_field_wysiwyg extends acf_field {
 			add_filter( 'acf_the_content', 'convert_chars' );
 		}
 		
-		add_filter( 'acf_the_content', 'wpautop' );
+		// add_filter( 'acf_the_content', 'wpautop' );
 		add_filter( 'acf_the_content', 'shortcode_unautop' );
 		
 		
@@ -153,7 +153,12 @@ class acf_field_wysiwyg extends acf_field {
    		$toolbars['Basic'] = array(
    			1 => apply_filters('teeny_mce_buttons', $teeny_mce_buttons, $editor_id)
    		);
-   		
+
+        // Minimal
+        $toolbars['Minimal'] = array(
+            1 => array('bold', 'italic', 'link', 'unlink')
+        );
+
    		
    		// Filter for 3rd party
    		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', $toolbars );
