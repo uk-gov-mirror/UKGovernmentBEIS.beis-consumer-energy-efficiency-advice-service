@@ -19,37 +19,17 @@ $action-divider-circle-diameter: 40px;
     display: flex;
     position: relative;
 
-    & > * {
-      border-left: 1px solid $light-grey;
-    }
-
-    & > :last-child {
-      border-right: 1px solid $light-grey;
-    }
-
     .download-your-plan, .download-landlord-report, .email-your-plan {
       display: flex;
       flex: 1 0 1px;
       justify-content: space-around;
 
-      .action-details {
-        display: flex;
-        flex-direction: column;
-        margin-right: 20px;
-        flex: 1;
+      .header {
+        @include plan-footer-header-font;
+      }
 
-        .header {
-          font-size: 20px;
-          color: $dark-grey;
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
-
-        .description {
-          font-size: 16px;
-          line-height: 20px;
-          font-family: $font-family-light;
-        }
+      .description {
+        @include plan-footer-description-font;
       }
 
       .download-pdf {
@@ -64,6 +44,7 @@ $action-divider-circle-diameter: 40px;
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
+        margin-left: 12px;
 
         &::after {
           content: '';
@@ -126,7 +107,9 @@ $action-divider-circle-diameter: 40px;
           margin: 0;
           background-color: $lighter-grey;
           padding: 10px;
-          font-size: 16px;
+          @include plan-footer-description-font;
+          width: calc(100% - 60px);
+          box-sizing: border-box;
         }
 
         .send-email {
@@ -158,11 +141,41 @@ $action-divider-circle-diameter: 40px;
 }
 
 // Breakpoint specific styling
-.download-plan {
+.download-plan.page-row {
   @include mobile() {
     .page-row-content {
       .download-landlord-report {
         display: none;
+      }
+
+      .download-your-plan {
+        padding-right: 20px;
+        border-right: 1px solid $light-grey;
+      }
+
+      .email-your-plan {
+        padding-left: 20px;
+      }
+
+      .download-your-plan, .email-your-plan {
+        .header {
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        .description {
+          display: none;
+        }
+
+        .email-form {
+          .email-input {
+            width: calc(100% - 40px);
+          }
+
+          .send-email {
+            flex: 0 0 40px;
+          }
+        }
       }
     }
   }
@@ -172,13 +185,42 @@ $action-divider-circle-diameter: 40px;
       .download-landlord-report {
         display: none;
       }
+
+      .download-your-plan {
+        padding-right: 38px;
+        border-right: 1px solid $light-grey;
+      }
+
+      .email-your-plan {
+        padding-left: 38px;
+      }
+
+      .download-your-plan, .email-your-plan {
+        .header {
+          margin-bottom: 10px;
+          font-family: $font-family-light;
+        }
+      }
     }
   }
 
   @include desktop() {
     .page-row-content {
+      & > * {
+        border-left: 1px solid $light-grey;
+      }
+
+      & > :last-child {
+        border-right: 1px solid $light-grey;
+      }
+
       .download-your-plan, .download-landlord-report, .email-your-plan {
         padding: 0 40px;
+
+        .header {
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
       }
     }
   }

@@ -299,6 +299,17 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin plan-footer-header-font {
+  @include has-font-sizes-at-breakpoints(20px, 22px, 16px, 22px, 14px, 16px);
+  color: $dark-grey;
+}
+
+@mixin plan-footer-description-font {
+  @include has-font-sizes-at-breakpoints(16px, 20px, 14px, 20px, 14px, 20px);
+  color: $dark-grey;
+  font-family: $font-family-light;
+}
+
 // TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 @mixin focus-text {
   font-size: 32px;
