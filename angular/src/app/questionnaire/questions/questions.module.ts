@@ -38,6 +38,18 @@ import {FloorLevelQuestionComponent} from './floor-level-question/floor-level-qu
 import {FloorSpanQuestionComponent} from './floor-span-question/floor-span-question.component';
 import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question/flat-exposed-wall-question.component';
 import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/house-exposed-wall-question.component';
+import {DomesticPropertyAfter2018QuestionComponent} from
+    './mees/domestic-property-after-2018-question/domestic-property-after-2018-question.component';
+import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-question/property-after-2020-question.component';
+import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
+import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
+import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-e-question.component";
+import {RecommendedImprovementsQuestionComponent} from
+    './mees/recommended-improvements-question/recommended-improvements-question.component';
+import {ImprovementsAtNoCostQuestionComponent} from './mees/improvements-at-no-cost-question/improvements-at-no-cost-question.component';
+import {TenantConsentQuestionComponent} from './mees/tenant-consent-question/tenant-consent-question.component';
+import {PropertyDevaluationQuestionComponent} from './mees/property-devaluation-question/property-devaluation-question.component';
+import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-question/temporary-exclusions-question.component';
 
 @NgModule({
     declarations: [
@@ -73,6 +85,16 @@ import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/h
         WaterTankQuestionComponent,
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
+        DomesticPropertyAfter2018QuestionComponent,
+        PropertyAfter2020QuestionComponent,
+        EpcRequiredQuestionComponent,
+        TenancyTypeQuestionComponent,
+        EpcBelowEQuestionComponent,
+        RecommendedImprovementsQuestionComponent,
+        ImprovementsAtNoCostQuestionComponent,
+        TenantConsentQuestionComponent,
+        PropertyDevaluationQuestionComponent,
+        TemporaryExclusionsQuestionComponent,
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -107,6 +129,16 @@ import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/h
         WaterTankQuestionComponent,
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
+        DomesticPropertyAfter2018QuestionComponent,
+        PropertyAfter2020QuestionComponent,
+        EpcRequiredQuestionComponent,
+        TenancyTypeQuestionComponent,
+        EpcBelowEQuestionComponent,
+        RecommendedImprovementsQuestionComponent,
+        ImprovementsAtNoCostQuestionComponent,
+        TenantConsentQuestionComponent,
+        PropertyDevaluationQuestionComponent,
+        TemporaryExclusionsQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -148,6 +180,16 @@ import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/h
         WaterTankQuestionComponent,
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
+        DomesticPropertyAfter2018QuestionComponent,
+        PropertyAfter2020QuestionComponent,
+        EpcRequiredQuestionComponent,
+        TenancyTypeQuestionComponent,
+        EpcBelowEQuestionComponent,
+        RecommendedImprovementsQuestionComponent,
+        ImprovementsAtNoCostQuestionComponent,
+        TenantConsentQuestionComponent,
+        PropertyDevaluationQuestionComponent,
+        TemporaryExclusionsQuestionComponent,
     ]
 })
 export class QuestionsModule {

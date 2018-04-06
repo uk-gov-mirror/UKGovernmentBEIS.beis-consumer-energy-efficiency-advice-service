@@ -1,0 +1,14 @@
+<div class="question-component boolean-question">
+    <div class="answer-grid multiple-choice-options boolean-options">
+        <button class="multiple-choice-option boolean-option yes-button"
+                [class.selected]="response === true"
+                (click)="response = true; complete.emit()">
+            Yes
+        </button>
+        <button class="multiple-choice-option boolean-option no-button"
+                [class.selected]="response === false"
+                (click)="response = false; complete.emit()">
+            No
+        </button>
+    </div>
+</div>

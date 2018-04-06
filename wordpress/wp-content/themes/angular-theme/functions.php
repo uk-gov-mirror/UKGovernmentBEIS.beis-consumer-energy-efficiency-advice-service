@@ -12,3 +12,4 @@ require_once("functions/initialise_supplier_post_type.php");
 require_once("functions/configure_api_caching.php");
 require_once("functions/hide_admin_bar.php");
 require_once("functions/limit-page-hierarchy-depth.php");
+require_once("functions/acf_wysiwyg.php");

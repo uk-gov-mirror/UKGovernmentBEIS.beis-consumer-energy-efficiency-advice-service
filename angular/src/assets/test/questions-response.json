@@ -52,7 +52,7 @@
     "id": 38,
     "acf": {
       "questionHeading": "Do you have a condensing boiler?",
-      "helpText": "Dummy help text for boiler type question"
+      "helpHtml": "Dummy help text for boiler type question"
     },
     "slug": "boiler_type"
   },
@@ -74,7 +74,7 @@
     "id": 35,
     "acf": {
       "questionHeading": "What's your postcode?",
-      "helpText": ""
+      "helpHtml": ""
     },
     "slug": "postcode_epc"
   }

@@ -3,11 +3,13 @@
 
 @include mobile() {
 }
+
 @include tablet() {
 }
+
 @include desktop() {
-  .boiler-type-question .boiler-type-options {
-    .boiler-type-option {
+  .boolean-question .boolean-options {
+    .boolean-option {
       @include is-grid-item($number-of-items: 2, $margin: 20px);
     }
   }

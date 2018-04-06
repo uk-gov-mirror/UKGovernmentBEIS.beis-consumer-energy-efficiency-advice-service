@@ -57,4 +57,5 @@
     <include file="changelogs/2018-04-06-change-question-postcode-epc-reason.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-06-add-wordpress-options-table.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-06-remove-wp-upload-permissions.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-06-update-help-text-post-type.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
