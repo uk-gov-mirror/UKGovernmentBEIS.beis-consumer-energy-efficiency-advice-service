@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {YourHomeContent} from "./your-home-content";
+import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 
 @Component({
     selector: 'app-your-home',
@@ -15,7 +16,8 @@ export class YourHomeComponent implements OnInit {
     isError: boolean;
     tag: string;
     yourHomeContent: YourHomeContent;
-    measures: String[];
+    measures: MeasureContent[];
+    filteredMeasures: MeasureContent[];
 
     heatingAndHotwater: YourHomeContent = {
         tag: 'heating&hot-water',
@@ -53,7 +55,7 @@ export class YourHomeComponent implements OnInit {
 
         this.measureService.fetchMeasureDetails()
             .subscribe(
-                measures => this.measures = measures.map(measure => measure.acf.headline)
+                measures => this.measures = measures
             );
 
     }
@@ -71,5 +73,12 @@ export class YourHomeComponent implements OnInit {
         }
     }
 
+    // private filterMeasures(measures: MeasureContent[], tag: string) {
+    //     return measures.filter(measure => measure.acf.tags.includes(tag))
+    // }
+
+    private filterMeasures(measures: MeasureContent[]) {
+        return measures.filter(measure => measure.acf.tags.includes('tag_solar-energy'));
+    }
 
 }

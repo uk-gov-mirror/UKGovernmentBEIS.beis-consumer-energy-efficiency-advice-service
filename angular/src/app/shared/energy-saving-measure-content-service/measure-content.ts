@@ -14,3 +14,11 @@ export interface MeasureContent {
         steps: RecommendationStepResponse[]
     };
 }
+
+interface MeasureContent2 extends  MeasureContent {
+    tags: string[];
+}
+
+const variable = {} as MeasureContent2;
+
+const string = variable.tags[1];
