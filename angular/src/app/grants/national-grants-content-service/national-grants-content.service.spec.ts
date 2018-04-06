@@ -1,7 +1,6 @@
 import {async, getTestBed, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HttpRequest} from '@angular/common/http';
-import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
 import 'rxjs/add/operator/toPromise';
 import {NationalGrantsContentService} from './national-grants-content.service';
 import {NationalGrantContent} from './national-grants-content';
@@ -10,6 +9,7 @@ describe('NationalGrantsContentService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: NationalGrantsContentService;
+    (window as any).CONFIG = {apiRoot: "/api"};
 
     const mockApiResponse: NationalGrantContent[] = [
         {
@@ -19,9 +19,7 @@ describe('NationalGrantsContentService', () => {
             display_without_measures: false,
             link_to_measures: true,
             slug: 'an-eligible-grant',
-            advantages: [{
-                advantage: 'get paid for energy'
-            }],
+            advantages: [ 'get paid for energy' ],
             steps: []
         },
         {
@@ -48,8 +46,7 @@ describe('NationalGrantsContentService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [NationalGrantsContentService,
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}],
+            providers: [NationalGrantsContentService],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -120,7 +117,7 @@ describe('NationalGrantsContentService', () => {
 
     function matchesExpectedRequest(request: HttpRequest<any>): boolean {
         const matchesExpectedMethod = request.method === 'GET';
-        const matchesExpectedUrl = request.urlWithParams === 'angular-theme/v1/national-grants';
+        const matchesExpectedUrl = request.urlWithParams === '/api/national-grants';
         return matchesExpectedMethod && matchesExpectedUrl;
     }
 });

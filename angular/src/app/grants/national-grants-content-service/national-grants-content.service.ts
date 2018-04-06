@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-api-service';
 import {NationalGrantContent} from './national-grants-content';
+import Config from '../../config';
 
 @Injectable()
 export class NationalGrantsContentService {
-    private static readonly nationalGrantsEndpoint = 'angular-theme/v1/national-grants';
+    private readonly nationalGrantsEndpoint = Config().apiRoot + '/national-grants';
     private nationalGrantsContent: Observable<NationalGrantContent[]>;
 
-    constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
+    constructor(private http: HttpClient) {
     }
 
     static getContentForGrant(grantsContent: NationalGrantContent[], grantId: string) {
@@ -24,7 +24,7 @@ export class NationalGrantsContentService {
     fetchNationalGrantsContent(): Observable<NationalGrantContent[]> {
         if (!this.nationalGrantsContent) {
             this.nationalGrantsContent = this.http.get<NationalGrantContent[]>(
-                this.wordpressApiService.getFullApiEndpoint(NationalGrantsContentService.nationalGrantsEndpoint))
+                this.nationalGrantsEndpoint)
                 .shareReplay(1);
         }
         return this.nationalGrantsContent;

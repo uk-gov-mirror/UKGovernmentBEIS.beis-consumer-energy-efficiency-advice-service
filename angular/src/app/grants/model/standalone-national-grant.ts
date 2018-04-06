@@ -18,8 +18,7 @@ export class StandaloneNationalGrant implements Grant {
         this.grantId = nationalGrantContent.slug;
         this.name = nationalGrantContent.heading;
         this.description = nationalGrantContent.description;
-        this.advantages = nationalGrantContent.advantages &&
-            nationalGrantContent.advantages.map(x => x.advantage);
+        this.advantages = nationalGrantContent.advantages;
         this.steps = nationalGrantContent.steps && nationalGrantContent.steps
                 .map(stepResponse => new RecommendationStep(stepResponse));
     }
