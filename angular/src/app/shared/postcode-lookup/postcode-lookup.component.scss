@@ -4,6 +4,20 @@
 // Component specific variables
 
 // Component specific mixins
+@mixin postcode-button() {
+  background-color: $pink;
+  color: white;
+
+  border: none;
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
@@ -91,19 +105,16 @@
   }
 
   .go-button {
-    background-color: $pink;
-    color: white;
-
+    @include postcode-button;
     flex: 0 0 50px;
-    border: none;
-    cursor: pointer;
+  }
 
-    font-size: 18px;
-    font-weight: bold;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .not-listed-button {
+    @include postcode-button;
+    margin-top: 12px;
+    padding: 0 14px;
+    height: 50px;
+    align-self: flex-end;
   }
 
   .validation-error {
