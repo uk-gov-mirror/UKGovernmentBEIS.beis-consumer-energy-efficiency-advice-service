@@ -52,10 +52,11 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     }
 
     /**
-     * Sends user data to the BRE energy calcul
+     * Sends user data to the BRE energy calculation API, returns their
+     * JSON unmodified to the js frontend.
      */
     @PostMapping("/energy-calculation")
-    public String getByAddress(
+    public String post(
         @RequestBody String requestJson) throws IOException {
 
         String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
