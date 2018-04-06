@@ -49,7 +49,7 @@ export class RdSapInput {
     constructor(responseData: ResponseData) {
         this.epc = responseData.epc;
 
-        // TODO:BEISDEAS-28 This is not currently a full correct mapping
+        // TODO:BEISDEAS-230 This is not currently a full correct mapping
         // to RdSAP. For a full mapping, the homeType question needs to be
         // changed. This is a 'best possible' mapping based on the current
         // questions, to enable a PoC connection to the BRE API. See
