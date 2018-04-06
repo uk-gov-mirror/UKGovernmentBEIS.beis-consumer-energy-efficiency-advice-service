@@ -14,7 +14,9 @@
             <div class="row-heading">Measures You Can Take</div>
             <div class="measures-list">
                 <ul>
-                    <li *ngFor="let measure of filteredMeasures">{{measure.acf.headline}} | {{measure.acf.tags[1]}}</li>
+                    <li *ngFor="let measure of measures">
+                        <a href="/js/measures/{{measure.slug}}">{{measure.acf.headline}}</a>
+                    </li>
                 </ul>
             </div>
         </div>

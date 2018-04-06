@@ -17,7 +17,6 @@ export class YourHomeComponent implements OnInit {
     parameterString: string;
     yourHomeContent: YourHomeContent;
     measures: RawMeasureContent[];
-    filteredMeasures?: RawMeasureContent[];
 
     heatingAndHotwater: YourHomeContent = {
         parameterString: 'heating&hot-water',
@@ -55,15 +54,10 @@ export class YourHomeComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
             this.parameterString = params.get('tag');
             this.yourHomeContent = this.getHomeContent(this.parameterString);
-            this.filteredMeasures = this.filterMeasures();
-
+            this.measureService.fetchMeasureDetails().subscribe(measures => {
+                this.measures = this.filterMeasures(measures);
+            });
         });
-
-        this.measureService.fetchMeasureDetails()
-            .subscribe(
-                measures => this.measures = measures
-            );
-
     }
 
     private getHomeContent(parameterString: string) {
@@ -79,8 +73,8 @@ export class YourHomeComponent implements OnInit {
         }
     }
 
-    private filterMeasures() {
-        return this.measures.filter(measure =>
+    private filterMeasures(measures: RawMeasureContent[]) {
+        return measures.filter(measure =>
             measure.acf.tags && measure.acf.tags.some((tag) => tag === this.yourHomeContent.tag));
     }
 }
