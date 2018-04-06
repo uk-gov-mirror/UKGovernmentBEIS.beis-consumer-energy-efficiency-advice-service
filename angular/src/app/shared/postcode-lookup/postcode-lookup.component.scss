@@ -26,7 +26,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 
   .postcode-input {
     width: 100%;
@@ -64,10 +64,14 @@
     margin-bottom: 0;
   }
 
+  .address-help-text {
+    margin-top: 12px;
+  }
+
   .address-select {
     width: 100%;
     height: 50px;
-    margin-top: 24px;
+    margin-top: 12px;
     display: flex;
     align-items: stretch;
     justify-content: space-between;

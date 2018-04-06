@@ -8,11 +8,13 @@
         <div class="page-row-content">
             <div class="heading">Enter your postcode for personalised advice</div>
             <div class="postcode-input">
-                <div *ngIf="!questionContentError" class="postcode-reason-container">
-                    <div *ngIf="postcodeQuestionReason; else spinner">{{postcodeQuestionReason}}</div>
-                    <ng-template #spinner>
-                        <div class="loading-spinner"></div>
-                    </ng-template>
+                <div class="postcode-reason-container">
+                    By asking you some questions about your property, we can provide you
+                    with advice tailored to your situation. We'll start by checking whether
+                    your property has an Energy Performance Certificate (EPC) - if so, we may
+                    be able to find some of the information about your property from that report.
+                    <br /><br />
+                    Enter your postcode and select your address (if available) to get started.
                 </div>
                 <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
             </div>
