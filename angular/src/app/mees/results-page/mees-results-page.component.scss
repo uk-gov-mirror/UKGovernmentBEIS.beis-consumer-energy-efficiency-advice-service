@@ -10,10 +10,7 @@
     padding: 48px 0;
 
     .heading-text {
-      font-size: 48px;
-      line-height: 62px;
-      font-weight: bold;
-
+      @include page-heading-font;
       color: $darkened-blue;
     }
   }
@@ -22,9 +19,7 @@
     background-color: $lighter-grey;
 
     .body-text {
-      font-size: 20px;
-      line-height: 24px;
-      font-family: $font-family-light;
+      @include article-summary-font;
     }
   }
 }
