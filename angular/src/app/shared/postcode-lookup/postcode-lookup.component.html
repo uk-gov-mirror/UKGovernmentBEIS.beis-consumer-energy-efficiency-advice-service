@@ -16,6 +16,7 @@
                     [ngValue]="epc">{{epc.getDisplayAddress()}}</option>
             </select>
             <button class="go-button" (click)="onAddressSelected()">Go</button>
+            <button class="not-listed-button" (click)="onAddressNotListed()">My address is not listed</button>
         </div>
     </ng-container>
     <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
