@@ -14,8 +14,7 @@
             <div class="row-heading">Measures You Can Take</div>
             <div class="measures-list">
                 <ul>
-                    <li *ngFor="let measure of measures">{{measure.acf.headline}} | {{measure.acf.tags[1]}}</li>
-                    <!--<li *ngFor="let measure of measures | filter:{acf.headline: 'tag_quick_win'}">{{measure.acf.headline}} | {{measure.acf.tags}}</li>-->
+                    <li *ngFor="let measure of filteredMeasures">{{measure.acf.headline}} | {{measure.acf.tags[1]}}</li>
                 </ul>
             </div>
         </div>

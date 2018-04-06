@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {YourHomeContent} from "./your-home-content";
-import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
+import {RawMeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 
 @Component({
     selector: 'app-your-home',
@@ -14,31 +14,35 @@ export class YourHomeComponent implements OnInit {
 
     isLoading: boolean;
     isError: boolean;
-    tag: string;
+    parameterString: string;
     yourHomeContent: YourHomeContent;
-    measures: MeasureContent[];
-    filteredMeasures: MeasureContent[];
+    measures: RawMeasureContent[];
+    filteredMeasures?: RawMeasureContent[];
 
     heatingAndHotwater: YourHomeContent = {
-        tag: 'heating&hot-water',
+        parameterString: 'heating&hot-water',
+        tag: 'tag_heating&hot-water',
         title: 'Heating & Hotwater',
         text: 'Heating your home can be expensive. Here are a few options for reducing the overall costs.',
     };
 
     windowsAndDoors: YourHomeContent = {
-        tag: 'windows&doors',
+        parameterString: 'windows&doors',
+        tag: 'tag_windows&doors',
         title: 'Windows & Doors',
         text: 'Double glazing and draught excluders keep the cold out and keep your home warm for less.',
     };
 
     floorsWallsAndRoofs: YourHomeContent = {
-        tag: 'floors-walls&roofs',
+        parameterString: 'floors-walls&roofs',
+        tag: 'tag_floors-walls&roofs',
         title: 'Floors, Walls & Roofs',
         text: 'Simple measures like loft insulation can make a huge impact.',
     };
 
     solarEnergy: YourHomeContent = {
-        tag: 'solar-energy',
+        parameterString: 'solar-energy',
+        tag: 'tag_solar-energy',
         title: 'Solar Energy',
         text: 'Solar panels are a good long term investment and are easy to have installed if your house is suitable.',
     };
@@ -49,8 +53,10 @@ export class YourHomeComponent implements OnInit {
 
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
-            this.tag = params.get('tag');
-            this.yourHomeContent = this.getHomeContent(this.tag);
+            this.parameterString = params.get('tag');
+            this.yourHomeContent = this.getHomeContent(this.parameterString);
+            this.filteredMeasures = this.filterMeasures();
+
         });
 
         this.measureService.fetchMeasureDetails()
@@ -60,25 +66,21 @@ export class YourHomeComponent implements OnInit {
 
     }
 
-    private getHomeContent(tag: string) {
-        switch (tag) {
-            case this.heatingAndHotwater.tag:
+    private getHomeContent(parameterString: string) {
+        switch (parameterString) {
+            case this.heatingAndHotwater.parameterString:
                 return this.heatingAndHotwater;
-            case this.windowsAndDoors.tag:
+            case this.windowsAndDoors.parameterString:
                 return this.windowsAndDoors;
-            case this.floorsWallsAndRoofs.tag:
+            case this.floorsWallsAndRoofs.parameterString:
                 return this.floorsWallsAndRoofs;
-            case this.solarEnergy.tag:
+            case this.solarEnergy.parameterString:
                 return this.solarEnergy;
         }
     }
 
-    // private filterMeasures(measures: MeasureContent[], tag: string) {
-    //     return measures.filter(measure => measure.acf.tags.includes(tag))
-    // }
-
-    private filterMeasures(measures: MeasureContent[]) {
-        return measures.filter(measure => measure.acf.tags.includes('tag_solar-energy'));
+    private filterMeasures() {
+        return this.measures.filter(measure =>
+            measure.acf.tags && measure.acf.tags.some((tag) => tag === this.yourHomeContent.tag));
     }
-
 }
