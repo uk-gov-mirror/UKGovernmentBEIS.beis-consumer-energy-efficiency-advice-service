@@ -15,7 +15,6 @@ import {NavigationBarComponent} from '../layout-components/navigation-bar/naviga
 import {ResponseData} from '../shared/response-data/response-data';
 import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {Component, EventEmitter, Output} from '@angular/core';
-import {QuestionContentService} from '../shared/question-content/question-content.service';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
 import { PopupComponent } from '../shared/popup/popup.component';
@@ -35,18 +34,6 @@ describe('LandingPageComponent', () => {
     const staticMeasures = [];
     const articles = [];
     const video = {title: '', synopsis: ''};
-
-    const postcodeReason = 'a reason here';
-
-    class QuestionContentServiceStub {
-        fetchQuestionsContent() {
-            return Observable.of({
-                'postcode_epc': {
-                    questionReason: postcodeReason
-                }
-            });
-        }
-    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -71,7 +58,6 @@ describe('LandingPageComponent', () => {
             ],
             providers: [
                 ResponseData,
-                {provide: QuestionContentService, useClass: QuestionContentServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
             ]
         })
@@ -124,13 +110,6 @@ describe('LandingPageComponent', () => {
 
         // then
         expect(responseData.userJourneyType).toBe(userJourneyType);
-    });
-
-    it('should have retrieved the correct postcode question reason', () => {
-        // when
-
-        // then
-        expect(component.postcodeQuestionReason).toBe(postcodeReason);
     });
 });
 
