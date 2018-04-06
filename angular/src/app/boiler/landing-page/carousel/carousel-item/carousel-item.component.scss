@@ -48,3 +48,9 @@
     font-family: $font-family-light;
   }
 }
+
+@include tablet() {
+  .carousel-item {
+    background-color: $lighter-grey;
+  }
+}

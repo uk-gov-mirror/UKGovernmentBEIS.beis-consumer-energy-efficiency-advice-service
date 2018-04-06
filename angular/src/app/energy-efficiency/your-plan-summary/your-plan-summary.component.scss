@@ -1,13 +1,61 @@
 @import "styles/var/colors";
+@import "styles/mixins/font";
 @import "../energy-efficiency-page-sizes";
+@import "styles/mixins/breakpoints";
 
 $your-plan-summary-border-width: 1px;
 
 :host {
   display: flex;
-  flex: 0 0 3*$data-card-width + 2*$your-plan-summary-border-width;
 
   & > :not(:first-child) {
     border-left: 1px solid $light-grey;
+  }
+
+  @include mobile() {
+    &.is-footer {
+      .savings {
+        height: 30px;
+      }
+
+
+      & :nth-child(3) {
+        border-left: 1px solid $light-grey;
+        padding: 0 0 0 10px;
+        margin-left: 10px;
+      }
+    }
+
+    app-data-card {
+      flex: 1;
+    }
+
+    .no-mobile {
+      display: none;
+    }
+  }
+
+  @include tablet() {
+    &.is-footer {
+      &:nth-child(2) {
+        border-left: none;
+      }
+    }
+
+    &:not(.is-footer) > app-data-card {
+      flex: 1;
+    }
+
+    .no-tablet {
+      display: none;
+    }
+  }
+
+  @include desktop() {
+    flex: 0 0 3*$data-card-width + 2*$your-plan-summary-border-width;
+
+    &:not(.is-footer) > app-data-card {
+      flex: 1;
+    }
   }
 }

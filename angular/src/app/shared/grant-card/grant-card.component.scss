@@ -1,6 +1,11 @@
 @import "styles/mixins/_font";
 @import "styles/var/colors";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 :host {
   display: block;
 }
@@ -15,7 +20,6 @@
   justify-content: flex-end;
 
   background-color: $lighter-grey;
-  padding: 16px;
   box-sizing: border-box;
 
   .heading, .description, .read-more {
@@ -33,10 +37,36 @@
 
   .description {
     @include card-body;
-    margin: 16px 0;
   }
 
   .read-more {
     @include card-more-info-link;
+  }
+}
+
+// Breakpoint specific styling
+.grant-card {
+  @include mobile() {
+    padding: 26px 24px;
+
+    .description {
+      margin: 16px 0 26px;
+    }
+  }
+
+  @include tablet() {
+    padding: 25px;
+
+    .description {
+      margin: 16px 0 40px;
+    }
+  }
+
+  @include desktop() {
+    padding: 25px 20px;
+
+    .description {
+      margin: 16px 0 44px;
+    }
   }
 }

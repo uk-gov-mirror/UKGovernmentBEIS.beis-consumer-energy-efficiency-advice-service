@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -12,8 +13,6 @@ import {PostcodeLookupComponent} from '../../shared/postcode-lookup/postcode-loo
 import {ResponseData} from '../../shared/response-data/response-data';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
-import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
-import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 
 describe('BoilerLandingPageComponent', () => {
@@ -41,7 +40,8 @@ describe('BoilerLandingPageComponent', () => {
             ],
             imports: [
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},

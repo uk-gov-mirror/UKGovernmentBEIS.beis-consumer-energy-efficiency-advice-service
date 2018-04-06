@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 
 @Injectable()
@@ -17,6 +17,10 @@ export class EnergyEfficiencyQuestionnaireGuard implements CanActivate {
         if (isAllowedQuestionnaire) {
             return true;
         }
+
+        // TODO:BEISDEAS-201 display a user-visible error here
+        console.error("Cannot show questionnaire; unrecognised");
+
         this.router.navigate(['/']);
         return false;
     }

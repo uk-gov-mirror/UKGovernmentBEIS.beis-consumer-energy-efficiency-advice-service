@@ -134,12 +134,12 @@
     min-width: 0;
 
     .postcode-input {
-        height: 66px;
-        margin-top: 48px;
+      height: 66px;
+      margin-top: 48px;
 
-        .postcode-input-text {
-          padding: 0 18px;
-        }
+      .postcode-input-text {
+        padding: 0 18px;
+      }
     }
 
     .address-select {
@@ -153,26 +153,26 @@
     min-width: 0;
 
     .postcode-input {
-        height: 64px;
-        margin-top: 32px;
+      height: 64px;
+      margin-top: 32px;
 
-        .postcode-input-text {
-          padding: 0 34px;
-        }
+      .postcode-input-text {
+        padding: 0 34px;
+        background: white;
+      }
     }
-
   }
 
   @include desktop() {
     min-width: 455px;
 
     .postcode-input {
-        height: 72px;
-        margin-top: 48px;
+      height: 72px;
+      margin-top: 48px;
 
-        .postcode-input-text {
-          padding: 0 24px;
-        }
+      .postcode-input-text {
+        padding: 0 24px;
+      }
     }
   }
 }

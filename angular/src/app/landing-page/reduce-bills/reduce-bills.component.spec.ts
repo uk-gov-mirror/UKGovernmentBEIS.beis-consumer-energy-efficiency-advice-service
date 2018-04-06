@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {ReduceBillsComponent} from './reduce-bills.component';
 import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
@@ -20,6 +21,7 @@ import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import { PopupComponent } from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 
 describe('ReduceBillsComponent', () => {
@@ -48,11 +50,13 @@ describe('ReduceBillsComponent', () => {
                 StaticMeasureCardComponent,
                 DataCardComponent,
                 PopupComponent,
+                NavBarSuboptionComponent,
             ],
             imports: [
                 CommonModule,
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,

@@ -1,6 +1,0 @@
-<?php
-
-// Copy this file to "config.php" and fill in the secret values below.
-
-$_SERVER["BRE_API_USERNAME"] = "";
-$_SERVER["BRE_API_PASSWORD"] = "";

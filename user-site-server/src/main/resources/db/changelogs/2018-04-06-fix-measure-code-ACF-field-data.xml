@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-06-fix-measure-code-ACF-field-data.xml"
+               author="richard.bradley@softwire.com">
+        <sql><![CDATA[
+-- The field was renamed in f9a9407f9d9e but many databases have old data
+
+UPDATE wp_postmeta
+SET meta_key = 'measure_code'
+WHERE meta_key = 'rdsap_measure_code';
+
+UPDATE wp_postmeta
+SET meta_key = '_measure_code'
+WHERE meta_key = '_rdsap_measure_code';
+
+        ]]></sql>
+    </changeSet>
+</databaseChangeLog>
