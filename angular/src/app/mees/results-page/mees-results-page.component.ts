@@ -15,6 +15,7 @@ enum MeesResultsStatus {
 })
 export class MeesResultsPageComponent implements OnInit {
     status: MeesResultsStatus;
+    // Import the above enum into the component scope so it can be used in the component html:
     MeesResultsStatus = MeesResultsStatus;
 
     constructor(private responseData: ResponseData) {
