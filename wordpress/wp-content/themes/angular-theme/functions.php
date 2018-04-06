@@ -13,4 +13,3 @@ require_once("functions/configure_api_caching.php");
 require_once("functions/hide_admin_bar.php");
 require_once("functions/limit-page-hierarchy-depth.php");
 require_once("functions/configure_wp_routing.php");
-require_once("functions/measure.php");

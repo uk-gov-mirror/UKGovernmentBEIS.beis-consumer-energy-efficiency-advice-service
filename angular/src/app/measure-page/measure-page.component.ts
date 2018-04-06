@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {WordpressMeasure} from '../shared/wordpress-measures-service/wordpress-measure';
@@ -35,6 +35,7 @@ export class MeasurePageComponent implements OnInit {
     displayMeasure(measureData: WordpressMeasure): void {
         if (!measureData) {
             this.isError = true;
+            // TODO:BEISDEAS-201 display a user-visible error here
             this.router.navigate(['/']);
         }
         this.measureData = measureData;
