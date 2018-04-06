@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <!-- This is only run on H2.
+       =
+       = Any MySQL databases are assumed to be based on a snapshot of a live
+       = database (or are a live database), so should already have all the WP tables
+       -->
+    <changeSet id="2018-04-06-add-wordpress-options-table.xml"
+               author="david.broder-rodgers@softwire.com"
+               dbms="h2">
+        <createTable tableName="wp_options">
+            <column name="option_id" type="bigint(20)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="option_name" type="varchar(191)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="option_name"/>
+            </column>
+            <column name="option_value" type="clob">
+                <constraints nullable="false"/>
+            </column>
+            <column name="autoload" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
