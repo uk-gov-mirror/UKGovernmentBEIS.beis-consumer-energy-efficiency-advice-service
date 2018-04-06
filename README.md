@@ -16,6 +16,7 @@ It is public-facing.
     + [Development Setup - MySQL Database](#development-setup---mysql-database)
   * [Development Notes](#development-notes)
     + [Adding files from .idea/ to git](#adding-files-from-idea-to-git)
+- [Glossary](#glossary)
 - [Older dev setup instructions - TODO:BEISDEAS-156 sort out](#older-dev-setup-instructions---todobeisdeas-156-sort-out)
   * [Angular setup](#angular-setup)
   * [Tests](#tests)
@@ -140,6 +141,11 @@ However, please do commit any `.idea/` changes which you are sure are:
  * something we want all developers to have
  * not auto-generated from Gradle or NPM
  * the same for all developers (i.e. ensure that your user name doesn't appear in any file paths)
+
+# Glossary
+
+* MEES: Minimum Energy Efficiency Standards - regulations which require landlords to improve their properties if they 
+have an EPC below E provided they meet certain criteria.
 
 # Older dev setup instructions - TODO:BEISDEAS-156 sort out
 
