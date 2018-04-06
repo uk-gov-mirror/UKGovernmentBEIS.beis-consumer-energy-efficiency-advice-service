@@ -661,7 +661,6 @@ function populate_roles_160() {
 	$role->add_cap('moderate_comments');
 	$role->add_cap('manage_categories');
 	$role->add_cap('manage_links');
-	$role->add_cap('upload_files');
 	$role->add_cap('import');
 	$role->add_cap('unfiltered_html');
 	$role->add_cap('edit_posts');
@@ -687,7 +686,6 @@ function populate_roles_160() {
 	$role->add_cap('moderate_comments');
 	$role->add_cap('manage_categories');
 	$role->add_cap('manage_links');
-	$role->add_cap('upload_files');
 	$role->add_cap('unfiltered_html');
 	$role->add_cap('edit_posts');
 	$role->add_cap('edit_others_posts');
@@ -706,7 +704,6 @@ function populate_roles_160() {
 
 	// Add caps for Author role
 	$role = get_role('author');
-	$role->add_cap('upload_files');
 	$role->add_cap('edit_posts');
 	$role->add_cap('edit_published_posts');
 	$role->add_cap('publish_posts');
