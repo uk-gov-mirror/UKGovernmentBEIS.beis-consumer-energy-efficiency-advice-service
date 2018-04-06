@@ -14,7 +14,8 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
-import {UserStateService} from "../../shared/user-state-service/user-state-service";
+import {UserStateService} from '../../shared/user-state-service/user-state-service';
+import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -74,6 +75,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 }
                 return requiredTags & recommendation.tags;
             });
+    }
+
+    get showMonthlySavings() {
+        return this.responseData.tenureType !== TenureType.OwnerOccupancy;
     }
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {

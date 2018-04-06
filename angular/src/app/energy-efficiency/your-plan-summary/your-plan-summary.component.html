@@ -11,8 +11,8 @@
         [isSmallCard]="isFooter">
 </app-data-card>
 <app-data-card class="savings"
-        heading="Total savings per month"
-        [value]="getRoundedTotalSavingsPerMonth() > 0 ? '£' + getRoundedTotalSavingsPerMonth() : '-'"
+        heading="Total savings per {{showMonthlySavings ? 'month' : 'year'}}"
+        [value]="roundedTotalSavings > 0 ? '£' + roundedTotalSavings : '-'"
         [isVerticalAtMobile]="true"
         [isSmallCard]="isFooter">
 </app-data-card>
