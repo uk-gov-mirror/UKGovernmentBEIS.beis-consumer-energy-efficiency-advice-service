@@ -53,4 +53,5 @@
     <include file="changelogs/2018-03-08-add-boilers-dev-data.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-03-15-add-user-state-table.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-03-28-add-wordpress-posts-table.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-06-fix-measure-code-ACF-field-data.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

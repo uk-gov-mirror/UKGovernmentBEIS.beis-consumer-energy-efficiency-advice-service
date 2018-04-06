@@ -4,6 +4,8 @@ import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-servi
 import {EnergyEfficiencyRecommendationTag} from '../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 
 describe('YourPlanSummaryComponent', () => {
     let component: YourPlanSummaryComponent;
@@ -64,6 +66,10 @@ describe('YourPlanSummaryComponent', () => {
         getRecommendationsInPlan: () => recommendations
     };
 
+    const responseDataStub = {
+        tenureType: TenureType.PrivateTenancy,
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -71,7 +77,10 @@ describe('YourPlanSummaryComponent', () => {
                 DataCardComponent,
                 YourPlanSummaryComponent
             ],
-            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}]
+            providers: [
+                {provide: RecommendationsService, useValue: recommendationsServiceStub},
+                {provide: ResponseData, useValue: responseDataStub},
+            ]
         })
             .compileComponents();
     }));
@@ -91,6 +100,6 @@ describe('YourPlanSummaryComponent', () => {
     });
 
     it('should calculate the total monthly saving and round it correctly', () => {
-        expect(component.getRoundedTotalSavingsPerMonth()).toBe(25);
+        expect(component.roundedTotalSavings).toBe(25);
     });
 });
