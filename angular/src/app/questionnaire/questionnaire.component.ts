@@ -182,7 +182,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (!!question) {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.currentQuestionId = question.questionId;
-            this.currentQuestionContent = this.allQuestionsContent[this.currentQuestionId];
+            this.currentQuestionContent = Object.assign({}, this.allQuestionsContent[this.currentQuestionId]);
             if (!(this.currentQuestionContent && this.currentQuestionContent.questionHeading)) {
                 this.displayErrorAndLogMessage(`Missing question content for question with id "${ this.currentQuestionId }"`);
                 return;
