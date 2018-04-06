@@ -55,15 +55,11 @@ function setup_question_acf_group() {
                 array (
                     'key' => 'field_59e8cfc09ab2a',
                     'label' => 'Help HTML',
-                    'name' => 'helpHtml', // TODO: write SQL query for migration
+                    'name' => 'helpHtml',
                     'type' => 'wysiwyg',
                     'instructions' => 'Optional hint to user',
-                    'default_value' => '',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
                     'toolbar' => 'minimal',
-                    'maxlength' => '',
+                    'tabs' => 'visual',
                 ),
                 array (
                     'key' => 'field_5a0179b00e182',
