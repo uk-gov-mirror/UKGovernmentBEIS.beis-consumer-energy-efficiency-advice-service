@@ -8,7 +8,6 @@ import {UserStateService} from "../user-state-service/user-state-service";
 })
 export class NeedHelpComponent implements OnInit {
 
-    @Input() showReference: boolean = true;
     expanded: boolean;
     reference: string = "";
 
@@ -16,8 +15,6 @@ export class NeedHelpComponent implements OnInit {
     }
 
     async ngOnInit() {
-        if (this.showReference) {
-            this.reference = await this.userStateService.getSessionReference();
-        }
+        this.reference = await this.userStateService.getSessionReference();
     }
 }

@@ -3,8 +3,8 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 
 @Component({
     selector: 'app-boiler-type-question',
-    templateUrl: './boiler-type-question.component.html',
-    styleUrls: ['./boiler-type-question.component.scss'],
+    templateUrl: '../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation],
 })
 export class BoilerTypeQuestionComponent extends QuestionBaseComponent {

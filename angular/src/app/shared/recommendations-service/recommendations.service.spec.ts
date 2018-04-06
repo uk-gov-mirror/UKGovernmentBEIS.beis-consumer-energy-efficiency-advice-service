@@ -14,6 +14,7 @@ import {EnergyEfficiencyRecommendationTag} from
     '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
 import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
+import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 
 describe('RecommendationsService', () => {
     let injector: TestBed;
@@ -73,6 +74,7 @@ describe('RecommendationsService', () => {
     beforeEach(async(() => {
         measuresResponse = Observable.of(dummyMeasures);
         responseData = new ResponseData();
+        responseData.tenureType = TenureType.OwnerOccupancy;
         standaloneNationalGrantsResponse = Observable.of(standaloneNationalGrants);
         nationalGrantsForMeasureResponse = Observable.of([nationalGrantForMeasure]);
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
@@ -155,6 +157,29 @@ describe('RecommendationsService', () => {
             // given
             const expectedMeasures = Object.values(dummyEnergyCalculations.habit_measures)
                 .map(measure => [measure.cost_saving, measure.energy_saving]);
+
+            // when
+            const recommendationsObservable = service.getAllRecommendations();
+
+            // then
+            recommendationsObservable.toPromise().then(recommendations => {
+                const actualRecommendations = recommendations
+                    .map(rec => [rec.costSavingPoundsPerYear, rec.energySavingKwhPerYear]);
+                expectedMeasures.forEach(measure => expect(actualRecommendations).toContain(measure));
+            });
+        }));
+
+        it('should only include renter measures if renter', async(() => {
+            // given
+            responseData.tenureType = TenureType.PrivateTenancy;
+            const expectedMeasures = Object.keys(dummyEnergyCalculations.measures_rented)
+                .map(measureCode => {
+                    const costSavingFromGrant = nationalGrantForMeasure.annualPaymentPoundsForMeasure;
+                    const costSavingFromMeasure = dummyEnergyCalculations.measures[measureCode].cost_saving || 0;
+                    const costSaving = costSavingFromGrant + costSavingFromMeasure;
+                    const energySaving = dummyEnergyCalculations.measures[measureCode].energy_saving;
+                    return [costSaving, energySaving];
+                });
 
             // when
             const recommendationsObservable = service.getAllRecommendations();

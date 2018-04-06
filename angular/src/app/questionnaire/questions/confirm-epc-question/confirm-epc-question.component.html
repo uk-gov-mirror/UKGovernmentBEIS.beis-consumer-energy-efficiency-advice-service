@@ -45,17 +45,10 @@
             </div>
             <div class="confirm-epc-details">
                 <div class="confirm-epc-details-row">
-                    <div class="confirm-epc-details-question">Are these details correct?</div>
-                    <div class = "confirm-epc-details-buttons">
-                        <button class="confirm-epc-details-button yes-button" (click)="confirmEpcDetails()">Yes</button>
-                        <button class="confirm-epc-details-button no-button" (click)="rejectEpcDetails()">No</button>
-                    </div>
-                </div>
-                <div class="confirm-epc-details-row">
-                    <div class="button-main-tablet">Great! Let's get a few more details</div>
+                    <div class="button-main-tablet">Let's get a few more details</div>
                     <button class="need-more-details-button" (click)="confirmEpcDetails()">
                         <div class="need-more-details-body">
-                            <div class="button-main">Great! Let's get a few more details</div>
+                            <div class="button-main">Let's get a few more details</div>
                             <div class="button-go">GO</div>
                         </div>
                     </button>
@@ -67,7 +60,7 @@
 <div class="question-component confirm-epc-question" *ngIf="!isEpcAvailable">
     <div class="need-more-details-container">
         <div class="no-details">We couldn't find any details about energy efficiency at your property based on your postcode.</div>
-        <button class="need-more-details-button" (click)="rejectEpcDetails()">
+        <button class="need-more-details-button" (click)="confirmEpcDetails()">
             <div class="need-more-details-body">
                 <div class="button-main">Let's get a few more details</div>
                 <div class="button-go">GO</div>

@@ -16,6 +16,7 @@ It is public-facing.
     + [Development Setup - MySQL Database](#development-setup---mysql-database)
   * [Development Notes](#development-notes)
     + [Adding files from .idea/ to git](#adding-files-from-idea-to-git)
+- [Glossary](#glossary)
 - [Older dev setup instructions - TODO:BEISDEAS-156 sort out](#older-dev-setup-instructions---todobeisdeas-156-sort-out)
   * [Angular setup](#angular-setup)
   * [Tests](#tests)
@@ -100,12 +101,6 @@ You will need PHP installed and registered in IntelliJ.
 You can install PHP using the Microsoft Web Platform Insaller at
 https://www.iis.net/downloads/microsoft/web-platform-installer
 
-Copy the file
-`wordpress/wp-content/themes/angular-theme/config/config.php.template`
-to a new file called `config.php` in the same directory and
-fill in the config values. This file will be ignored by git, so
-you can safely fill in the template values with real values.
-
 You should be able to launch the site by selecting the "on local server"
 run configuration in IntelliJ and clicking "Play".
 
@@ -140,6 +135,11 @@ However, please do commit any `.idea/` changes which you are sure are:
  * something we want all developers to have
  * not auto-generated from Gradle or NPM
  * the same for all developers (i.e. ensure that your user name doesn't appear in any file paths)
+
+# Glossary
+
+* MEES: Minimum Energy Efficiency Standards - regulations which require landlords to improve their properties if they 
+have an EPC below E provided they meet certain criteria.
 
 # Older dev setup instructions - TODO:BEISDEAS-156 sort out
 

@@ -1,36 +1,31 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
+@import "styles/mixins/layout";
 
+// Component specific variables
 $grant-cards-per-row: 4;
 $grant-card-margin: 10px;
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+* {
+  box-sizing: border-box;
+}
+
 .your-plan-page {
-
   .your-plan-header {
-
-    .page-row-content {
-      padding: 20px 0;
+    .heading-container {
       display: flex;
 
-      & > * {
-        border-right: 1px solid $light-grey;
+      .heading {
+        @include page-heading-small-font;
+        color: $headline-dark-blue;
+        padding-bottom: 10px;
       }
 
-      .heading-container {
-        padding: 20px 20px 20px 0;
-        display: flex;
-        flex-direction: column;
-        flex: 1 0 1px;
-
-        .heading {
-          @include page-heading-small-font;
-          color: $headline-dark-blue;
-          margin-bottom: 10px;
-        }
-
-        .subheading {
-          @include page-subheadline-small;
-        }
+      .subheading {
+        @include page-subheadline-small-font;
       }
     }
   }
@@ -41,16 +36,10 @@ $grant-card-margin: 10px;
     .page-row-content {
       display: flex;
       flex-direction: column;
-      padding: 20px 0;
-
-      & > :not(:last-child) {
-        border-bottom: 1px solid $light-grey;
-      }
 
       .recommendation-steps-card {
         display: flex;
         flex-direction: column;
-        padding: 40px 0;
 
         .headline {
           font-weight: bold;
@@ -59,7 +48,7 @@ $grant-card-margin: 10px;
         }
 
         .description {
-          @include page-subheadline-small;
+          @include page-subheadline-small-font;
           margin-bottom: 20px;
         }
       }
@@ -67,8 +56,6 @@ $grant-card-margin: 10px;
   }
 
   .local-authority-grants.page-row {
-    padding: 48px 0;
-
     .page-row-content {
       display: flex;
       flex-direction: column;
@@ -79,23 +66,197 @@ $grant-card-margin: 10px;
     }
 
     .local-authority {
-      @include page-subheadline-small;
-      margin-bottom: 4px;
+      @include page-subheadline-small-font;
+    }
+  }
+}
+
+// Breakpoint specific styling
+.your-plan-page {
+  @include mobile() {
+    .your-plan-header {
+      .page-row-content {
+        margin: 0;
+      }
+
+      .heading-container {
+        flex-wrap: wrap;
+
+        .heading {
+          flex: 0 0 100%;
+          padding: 25px 20px 16px;
+          background-color: $lighter-grey;
+          color: $darkened-blue;
+        }
+
+        .subheading {
+          flex: 0 0 100%;
+          padding: 0 20px 33px;
+          background-color: $lighter-grey;
+        }
+
+        app-your-plan-summary {
+          flex: 0 0 100%;
+          padding: 20px;
+        }
+      }
     }
 
-    .grant-cards {
-      margin-top: 32px;
-      flex-wrap: wrap;
-      display: flex;
+    .recommendations {
+      .page-row-content {
+        padding: 34px 0 0;
 
-      align-items: stretch;
-      justify-content: space-between;
+        .recommendation-steps-card {
+          padding-bottom: 40px;
+        }
+      }
+    }
 
-      .grant-card {
-        flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
-        margin-bottom: $grant-card-margin;
-        &:not(:nth-child(#{$grant-cards-per-row}n)) {
-          margin-right: $grant-card-margin;
+    .local-authority-grants.page-row {
+      padding: 48px 0;
+
+      .subheading {
+        margin-bottom: 14px;
+      }
+
+      .local-authority {
+        margin-bottom: 30px;
+      }
+
+      .grant-cards {
+        @include is-grid($margin-compensation: 10px);
+
+        .grant-card {
+          @include is-grid-item($number-of-items: 1, $margin: 10px);
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    .your-plan-header {
+      .page-row-content {
+        margin: 0;
+      }
+
+      .heading-container {
+        flex-wrap: wrap;
+
+        .heading {
+          flex: 0 0 100%;
+          order: 1;
+          padding: 34px;
+          background-color: $lighter-grey;
+          color: $darkened-blue;
+        }
+
+        .subheading {
+          flex: 0 0 100%;
+          order: 3;
+          padding: 30px 34px;
+          background-color: $primary-blue;
+          color: white;
+        }
+
+        app-your-plan-summary {
+          flex: 0 0 100%;
+          order: 2;
+          padding: 20px 34px;
+        }
+      }
+    }
+
+    .recommendations {
+      .page-row-content {
+        padding: 34px 0 0;
+
+        .recommendation-steps-card {
+          padding-bottom: 40px;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid $light-grey;
+            margin-bottom: 40px;
+          }
+        }
+      }
+    }
+
+    .local-authority-grants.page-row {
+      padding: 40px 0;
+
+      .subheading {
+        margin-bottom: 10px;
+      }
+
+      .local-authority {
+        margin-bottom: 20px;
+      }
+
+      .grant-cards {
+        @include is-grid($margin-compensation: 20px);
+
+        .grant-card {
+          @include is-grid-item($number-of-items: 2, $margin: 20px);
+        }
+      }
+    }
+  }
+
+  @include desktop() {
+    .your-plan-header {
+      .heading-container {
+        padding: 20px 0;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        & > * {
+          border-right: 1px solid $light-grey;
+        }
+
+        .heading, .subheading {
+          flex: 1;
+          width: 45%;
+        }
+
+        app-your-plan-summary {
+          page-break-before: always;
+          flex: 1;
+          width: 55%;
+        }
+      }
+    }
+
+    .recommendations {
+      .page-row-content {
+        padding: 65px 0 0;
+
+        .recommendation-steps-card {
+          padding-bottom: 40px;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid $light-grey;
+            margin-bottom: 40px;
+          }
+        }
+      }
+    }
+
+    .local-authority-grants.page-row {
+      padding: 48px 0;
+
+      .subheading {
+        margin-bottom: 8px;
+      }
+
+      .local-authority {
+        margin-bottom: 35px;
+      }
+
+      .grant-cards {
+        @include is-grid($margin-compensation: 20px);
+
+        .grant-card {
+          @include is-grid-item($number-of-items: 4, $margin: 20px);
         }
       }
     }

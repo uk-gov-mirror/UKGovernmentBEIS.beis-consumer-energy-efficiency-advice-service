@@ -54,8 +54,8 @@
                 isSmallCard="true"
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
-                heading="Savings per month up to"
-                [value]="'£' + roundedMonthlySaving"
+                heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                [value]="'£' + roundedSaving"
                 isSmallCard="true"
         ></app-data-card>
         <div class="add-to-plan-column"

@@ -87,6 +87,12 @@ export class PostcodeLookupComponent {
             this.addressSelected.emit();
         }
     }
+
+    onAddressNotListed() {
+        this.epc = undefined;
+        this.addressSelected.emit();
+    }
+
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
         this.localAuthorityCode = postcodeDetails.localAuthorityCode;
         this.postcode = postcodeDetails.postcode;

@@ -8,6 +8,11 @@ import {Router} from '@angular/router';
 })
 export class BoilerLandingPageComponent {
 
+    troubleshootingMobileExpanded = false;
+    replacingMobileExpanded = false;
+    grantsMobileExpanded = false;
+    installerMobileExpanded = false;
+
     constructor(private router: Router) {
     }
 
@@ -17,5 +22,9 @@ export class BoilerLandingPageComponent {
         } else {
             this.router.navigate(['/js/boiler/epc-replace/unknown']);
         }
+    }
+
+    scrollTo(event: MouseEvent) {
+        event.srcElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     }
 }

@@ -1,6 +1,5 @@
 package uk.gov.beis.dceas.controller;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
 import org.jooq.DSLContext;
 import org.jooq.Record;
@@ -12,19 +11,16 @@ import uk.gov.beis.dceas.api.LocalAuthority;
 import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
-import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.jooq.impl.DSL.inline;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTMETA;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
+import static uk.gov.beis.dceas.service.AcfDataTranslator.deserializePhpStringArrayOfInts;
+import static uk.gov.beis.dceas.service.AcfDataTranslator.toBool;
 import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
 
 /**
@@ -38,23 +34,10 @@ import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
 @RequestMapping("/api")
 public class LocalAuthorityController {
 
-    /**
-     * See https://stackoverflow.com/questions/14297926/structure-of-a-serialized-php-string
-     *
-     * If we need more complex PHP deserialization, consider
-     * https://github.com/ironpinguin/serialized-php-parser
-     *
-     * This matches an array containing Strings which contain numbers.
-     */
-    private static final Pattern PHP_SERIALIZED_ARRAY_PAT = Pattern.compile(
-        "a:(?<arrlen>\\d+):\\{(?<contents>.*)}");
-
-    private static final Pattern PHP_SERIALIZED_ARRAY_ENTRY_PAT = Pattern.compile(
-        "\\Gi:(?<key>\\d+);s:(?<valstrlen>\\d+):\"(?<valstrdata>\\d+)\";");
-
     private final DSLContext dslContext;
 
-    public LocalAuthorityController(DSLContext dslContext) {
+    public LocalAuthorityController(
+        DSLContext dslContext) {
         this.dslContext = dslContext;
     }
 
@@ -112,14 +95,14 @@ public class LocalAuthorityController {
             .fetchOne());
 
         String grantsListEncoded = postMetaForGrantsList.META_VALUE.get(localAuthPost);
-        List<Integer> grantPostIds = deserializePhpStringArray(grantsListEncoded);
+        List<Integer> grantPostIds = deserializePhpStringArrayOfInts(grantsListEncoded);
 
         List<LocalAuthority.Grant> grants = fetchGrantsByPostIds(grantPostIds);
 
         return new LocalAuthority(
             onsCode,
             postMetaForDisplayName.META_VALUE.get(localAuthPost),
-            "1".equals(postMetaForIsEcoFlexActive.META_VALUE.get(localAuthPost)),
+            toBool(postMetaForIsEcoFlexActive.META_VALUE.get(localAuthPost)),
             postMetaForEcoFlexFurtherInfoLink.META_VALUE.get(localAuthPost),
             grants);
     }
@@ -145,6 +128,7 @@ public class LocalAuthorityController {
                     .and(postMetaForDescription.META_KEY.eq("description")))
 
             .where(WP_POSTS.ID.in(grantPostIds))
+            .and(WP_POSTS.POST_STATUS.eq(inline("publish")))
             .groupBy(WP_POSTS.ID)
             .fetchGroups(
                 WP_POSTS.ID,
@@ -159,38 +143,5 @@ public class LocalAuthorityController {
             .filter(Objects::nonNull)
             .map(Iterables::getOnlyElement)
             .collect(toList());
-    }
-
-    /**
-     * See https://stackoverflow.com/questions/14297926/structure-of-a-serialized-php-string
-     *
-     * If we need more complex PHP deserialization, consider
-     * https://github.com/ironpinguin/serialized-php-parser
-     */
-    @VisibleForTesting
-    static List<Integer> deserializePhpStringArray(String listEncoded) {
-        if (isNullOrEmpty(listEncoded)) {
-            return emptyList();
-        }
-        Matcher arrayOuterMatcher = PHP_SERIALIZED_ARRAY_PAT.matcher(listEncoded);
-        if (!arrayOuterMatcher.matches()) {
-            throw new IllegalArgumentException(
-                "Unrecgonised format: \"" + listEncoded + "\"");
-        }
-        String arrayContentsStr = arrayOuterMatcher.group("contents");
-        Matcher keyValMatcher = PHP_SERIALIZED_ARRAY_ENTRY_PAT.matcher(arrayContentsStr);
-        List<Integer> acc = new ArrayList<>();
-        int lastMatchEnd = 0;
-        while (keyValMatcher.find()) {
-            acc.add(Integer.parseInt(keyValMatcher.group("valstrdata")));
-            lastMatchEnd = keyValMatcher.end();
-        }
-
-        if (lastMatchEnd != arrayContentsStr.length()) {
-            throw new IllegalArgumentException(
-                "Unrecgonised format: \"" + listEncoded + "\"");
-        }
-
-        return acc;
     }
 }

@@ -23,6 +23,7 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
+import uk.gov.beis.dceas.db.gen.tables.WpOptions;
 import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
 import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 import uk.gov.beis.dceas.db.gen.tables.records.BoilersRecord;
@@ -38,6 +39,7 @@ import uk.gov.beis.dceas.db.gen.tables.records.QrtzSimpleTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzSimpropTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.UserStateRecord;
+import uk.gov.beis.dceas.db.gen.tables.records.WpOptionsRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.WpPostmetaRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.WpPostsRecord;
 
@@ -78,6 +80,8 @@ public class Keys {
     public static final UniqueKey<QrtzSimpropTriggersRecord> PK_QRTZ_SIMPROP_TRIGGERS = UniqueKeys0.PK_QRTZ_SIMPROP_TRIGGERS;
     public static final UniqueKey<QrtzTriggersRecord> PK_QRTZ_TRIGGERS = UniqueKeys0.PK_QRTZ_TRIGGERS;
     public static final UniqueKey<UserStateRecord> PK_USER_STATE = UniqueKeys0.PK_USER_STATE;
+    public static final UniqueKey<WpOptionsRecord> PK_WP_OPTIONS = UniqueKeys0.PK_WP_OPTIONS;
+    public static final UniqueKey<WpOptionsRecord> OPTION_NAME = UniqueKeys0.OPTION_NAME;
     public static final UniqueKey<WpPostmetaRecord> PK_WP_POSTMETA = UniqueKeys0.PK_WP_POSTMETA;
     public static final UniqueKey<WpPostsRecord> PK_WP_POSTS = UniqueKeys0.PK_WP_POSTS;
 
@@ -109,6 +113,8 @@ public class Keys {
         public static final UniqueKey<QrtzSimpropTriggersRecord> PK_QRTZ_SIMPROP_TRIGGERS = createUniqueKey(QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS, "pk_qrtz_simprop_triggers", QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.SCHED_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_NAME, QrtzSimpropTriggers.QRTZ_SIMPROP_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<QrtzTriggersRecord> PK_QRTZ_TRIGGERS = createUniqueKey(QrtzTriggers.QRTZ_TRIGGERS, "pk_qrtz_triggers", QrtzTriggers.QRTZ_TRIGGERS.SCHED_NAME, QrtzTriggers.QRTZ_TRIGGERS.TRIGGER_NAME, QrtzTriggers.QRTZ_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<UserStateRecord> PK_USER_STATE = createUniqueKey(UserState.USER_STATE, "pk_user_state", UserState.USER_STATE.ID);
+        public static final UniqueKey<WpOptionsRecord> PK_WP_OPTIONS = createUniqueKey(WpOptions.WP_OPTIONS, "pk_wp_options", WpOptions.WP_OPTIONS.OPTION_ID);
+        public static final UniqueKey<WpOptionsRecord> OPTION_NAME = createUniqueKey(WpOptions.WP_OPTIONS, "option_name", WpOptions.WP_OPTIONS.OPTION_NAME);
         public static final UniqueKey<WpPostmetaRecord> PK_WP_POSTMETA = createUniqueKey(WpPostmeta.WP_POSTMETA, "pk_wp_postmeta", WpPostmeta.WP_POSTMETA.META_ID);
         public static final UniqueKey<WpPostsRecord> PK_WP_POSTS = createUniqueKey(WpPosts.WP_POSTS, "pk_wp_posts", WpPosts.WP_POSTS.ID);
     }

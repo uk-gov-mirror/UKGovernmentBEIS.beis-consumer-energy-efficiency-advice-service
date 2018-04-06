@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-06-change-question-postcode-epc-reason.xml"
+               author="anthony.pengelly@softwire.com">
+        <sql><![CDATA[
+
+UPDATE wp_postmeta
+SET meta_value = 'By asking you some questions about your property, we can provide you with advice tailored to your situation.
+We''ll start by checking whether your property has an Energy Performance Certificate (EPC) - if so, we may be able to find
+some of the information about your property from that report. Enter your postcode and select your address (if available) to get started.'
+WHERE meta_key = 'questionReason'
+AND post_id = (SELECT ID FROM wp_posts WHERE post_name = 'postcode_epc');
+
+        ]]></sql>
+    </changeSet>
+</databaseChangeLog>

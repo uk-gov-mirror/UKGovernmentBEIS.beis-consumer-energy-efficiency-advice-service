@@ -19,6 +19,7 @@ import {GrantsModule} from './grants/grants.module';
 import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.module';
 import {AdminPageModule} from "./admin-page/admin-page.module";
 import {YourHomeModule} from "./your-home/your-home.module";
+import {MeesModule} from './mees/mees.module';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import {YourHomeModule} from "./your-home/your-home.module";
         LayoutComponentsModule.forRoot(),
         BoilerModule.forRoot(),
         InlineSVGModule,
-        YourHomeModule
+        YourHomeModule,
+        MeesModule.forRoot(),
     ],
     bootstrap: [AppComponent],
 })

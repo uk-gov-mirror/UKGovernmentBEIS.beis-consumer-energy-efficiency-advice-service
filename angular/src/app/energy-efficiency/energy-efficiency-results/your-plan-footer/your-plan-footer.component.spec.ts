@@ -8,6 +8,8 @@ import {RecommendationsService} from '../../../shared/recommendations-service/re
 import {YourPlanFooterComponent} from './your-plan-footer.component';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ResponseData} from '../../../shared/response-data/response-data';
+import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 
 describe('YourPlanFooterComponent', () => {
     let component: YourPlanFooterComponent;
@@ -68,6 +70,10 @@ describe('YourPlanFooterComponent', () => {
         getRecommendationsInPlan: () => recommendations
     };
 
+    const responseDataStub = {
+        tenureType: TenureType.PrivateTenancy,
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -75,7 +81,10 @@ describe('YourPlanFooterComponent', () => {
                 DataCardComponent,
                 YourPlanSummaryComponent
             ],
-            providers: [{provide: RecommendationsService, useValue: recommendationsServiceStub}],
+            providers: [
+                {provide: RecommendationsService, useValue: recommendationsServiceStub},
+                {provide: ResponseData, useValue: responseDataStub},
+            ],
             imports: [
                 InlineSVGModule,
                 HttpClientTestingModule
