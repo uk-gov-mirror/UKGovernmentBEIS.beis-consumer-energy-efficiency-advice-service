@@ -54,6 +54,19 @@ $grant-card-margin: 10px;
       }
     }
   }
+  .print-mode {
+
+    .headline {
+      margin-left: 20px;
+    }
+    .description {
+      margin-left: 20px;
+    }
+
+    .step-details-drawer {
+      display: flex;
+    }
+  }
 
   .local-authority-grants.page-row {
     .page-row-content {
