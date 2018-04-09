@@ -11,7 +11,6 @@ import {RawMeasureContent} from "../shared/energy-saving-measure-content-service
     styleUrls: ['./your-home.component.scss']
 })
 export class YourHomeComponent implements OnInit {
-
     isLoading: boolean;
     isError: boolean;
     parameterString: string;
