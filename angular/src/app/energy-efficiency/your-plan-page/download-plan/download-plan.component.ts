@@ -13,43 +13,22 @@ export class DownloadPlanComponent {
     constructor(private responseData: ResponseData) {
     }
 
-    static clickElems(elems) {
-        return elems.map(elem => {
-            elem.className += " expanded";
-        });
-    }
-
-    static eventFire(el, etype) {
-        if (el.fireEvent) {
-            return el.fireEvent('on' + etype);
-        } else {
-            const evObj = document.createEvent('Events');
-            evObj.initEvent(etype, true, false);
-            return el.dispatchEvent(evObj);
-        }
-    }
-
     isTenant(): boolean {
         return this.responseData.tenureType !== TenureType.OwnerOccupancy &&
             !!this.responseData.tenureType;
     }
 
     public onPdfClicked() {
-        // Apply a class to the whole page that tells it how to style everything
-        // Use a mutation observer to make sure everything's printed afterwards
 
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
         const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
 
         const reccomendationPageRow = document.getElementsByClassName("recommendations")[0];
 
-        console.log(reccomendationPageRow)
-
         let mutationCount = 0;
 
         const callback = function(observer) {
             mutationCount++;
-            console.log(mutationCount);
 
             if (mutationCount === (stepCards.length + 1)) { // If all drop downs have been opened
 
