@@ -13,5 +13,6 @@ export interface EnergyCalculationResponse {
     'Current-SAP-Rating': string;
     'Potential-SAP-Band': string;
     measures: MeasuresResponse<EnergySavingMeasureResponse>;
+    measures_rented: MeasuresResponse<EnergySavingMeasureResponse>;
     habit_measures: MeasuresResponse<HabitMeasureResponse>;
 }

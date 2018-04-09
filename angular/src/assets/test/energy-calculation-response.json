@@ -64,5 +64,23 @@
       "max_installation_cost": 1000,
       "min_installation_cost": 500
     }
+  },
+  "measures_rented": {
+    "B": {
+      "cost_saving": 124.95,
+      "energy_saving": 5006.1,
+      "number": "6",
+      "lifetime": 42,
+      "max_installation_cost": 1500,
+      "min_installation_cost": 500
+    },
+    "C": {
+      "cost_saving": 13.34,
+      "energy_saving": 408.74,
+      "number": "1",
+      "lifetime": 10,
+      "max_installation_cost": 30,
+      "min_installation_cost": 15
+    }
   }
 }

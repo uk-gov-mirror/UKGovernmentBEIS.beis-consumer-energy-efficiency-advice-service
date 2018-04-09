@@ -1,4 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -20,6 +21,7 @@ import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -47,11 +49,13 @@ describe('WarmerHomeComponent', () => {
                 StaticMeasureCardComponent,
                 DataCardComponent,
                 PopupComponent,
+                NavBarSuboptionComponent,
             ],
             imports: [
                 CommonModule,
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,

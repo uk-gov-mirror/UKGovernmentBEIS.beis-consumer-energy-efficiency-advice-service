@@ -9,7 +9,7 @@
     <div class="question-heading">
         {{currentQuestionContent.questionHeading}}
     </div>
-    <div class="help-text" *ngIf="currentQuestionContent?.helpText">{{currentQuestionContent.helpText}}</div>
+    <div class="help-text" *ngIf="currentQuestionContent?.helpHtml" [innerHtml]="currentQuestionContent?.helpHtml"></div>
     <div class="question">
         <ng-template app-question-host></ng-template>
     </div>

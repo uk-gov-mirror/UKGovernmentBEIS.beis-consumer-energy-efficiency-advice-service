@@ -29,7 +29,8 @@ export function getHomeTypeDescription(homeType: HomeType): string {
 }
 
 export function getHomeTypeFromEpc(epc: Epc): HomeType {
-    // TODO:BEIS-15 this is very fragile!
+    // TODO:BEISDEAS-230 As with the TODO in rdsap-input.ts, there is not a complete mapping from propertyType / builtForm <=> HomeType.
+    // We may need to update our questions to improve this.
     if (epc.propertyType === 'flat') {
         return HomeType.FlatDuplexOrMaisonette;
     } else if (epc.propertyType === 'house') {

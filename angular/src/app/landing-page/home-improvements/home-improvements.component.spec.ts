@@ -3,6 +3,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {HomeImprovementsComponent} from './home-improvements.component';
 import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
@@ -23,6 +24,7 @@ import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api
 import {PostcodeBasicDetailsResponse} from '../../shared/postcode-epc-service/model/response/postcode-basic-details-response';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -58,11 +60,13 @@ describe('HomeImprovementsComponent', () => {
                 StaticMeasureCardComponent,
                 DataCardComponent,
                 PopupComponent,
+                NavBarSuboptionComponent,
             ],
             imports: [
                 CommonModule,
                 FormsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,

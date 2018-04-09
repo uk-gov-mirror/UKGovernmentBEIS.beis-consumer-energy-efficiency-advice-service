@@ -8,5 +8,17 @@
 # These settings take precedence over those in application.properties,
 # see https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
 
-# Previously called EPC_API_TOKEN
-epc.opendatacommunities.org.auth=
+epc.opendatacommunities.org.auth=...
+bre.energyUse.username=...
+bre.energyUse.password=...
+google.analytics.id=...
+hotjar.id=...
+
+# This section will cause Java to connect to a local MySQL instead of temp H2.
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost/wordpress
+spring.datasource.schema=wordpress
+spring.datasource.username=wordpress
+spring.datasource.password=wordpressPassword123
+jooq.sql.dialect=MySQL
+spring.jooq.sql-dialect=MySQL

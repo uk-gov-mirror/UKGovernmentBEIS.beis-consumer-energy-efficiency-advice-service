@@ -10,11 +10,15 @@
   width: calc(100% + #{$margin-compensation})
 }
 
-@mixin is-grid-item($number-of-items, $margin) {
+@mixin is-grid-item($number-of-items, $margin: 0) {
   flex: 0 0 auto;
   box-sizing: border-box;
   width: calc((100% / #{$number-of-items}) - #{$margin});
   margin: $margin / 2;
+  @if $margin == 0 {
+    width: calc((100% / #{$number-of-items}));
+    margin: 0;
+  }
 }
 
 @mixin has-children-side-by-side() {

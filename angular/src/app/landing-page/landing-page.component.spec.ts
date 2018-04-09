@@ -5,6 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {LargeVideoCardComponent} from '../shared/large-video-card/large-video-card.component';
 import {ArticleCardComponent} from './article-card/article-card.component';
@@ -14,12 +15,12 @@ import {NavigationBarComponent} from '../layout-components/navigation-bar/naviga
 import {ResponseData} from '../shared/response-data/response-data';
 import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {Component, EventEmitter, Output} from '@angular/core';
-import {QuestionContentService} from '../shared/question-content/question-content.service';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
 import { PopupComponent } from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
+import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -34,18 +35,6 @@ describe('LandingPageComponent', () => {
     const articles = [];
     const video = {title: '', synopsis: ''};
 
-    const postcodeReason = 'a reason here';
-
-    class QuestionContentServiceStub {
-        fetchQuestionsContent() {
-            return Observable.of({
-                'postcode_epc': {
-                    questionReason: postcodeReason
-                }
-            });
-        }
-    }
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -58,16 +47,17 @@ describe('LandingPageComponent', () => {
                 MockPostcodeLookupComponent,
                 StaticMeasureCardComponent,
                 PopupComponent,
-                DataCardComponent
+                DataCardComponent,
+                NavBarSuboptionComponent,
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule.withRoutes([]),
+                InlineSVGModule,
             ],
             providers: [
                 ResponseData,
-                {provide: QuestionContentService, useClass: QuestionContentServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
             ]
         })
@@ -120,13 +110,6 @@ describe('LandingPageComponent', () => {
 
         // then
         expect(responseData.userJourneyType).toBe(userJourneyType);
-    });
-
-    it('should have retrieved the correct postcode question reason', () => {
-        // when
-
-        // then
-        expect(component.postcodeQuestionReason).toBe(postcodeReason);
     });
 });
 

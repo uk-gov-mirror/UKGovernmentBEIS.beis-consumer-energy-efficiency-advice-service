@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {WordpressMeasure} from '../shared/wordpress-measures-service/wordpress-measure';
 import {WordpressMeasuresService} from '../shared/wordpress-measures-service/wordpress-measures.service';
+import padStart from 'lodash-es/padStart';
 
 @Component({
   selector: 'app-measure-page',
@@ -32,9 +33,18 @@ export class MeasurePageComponent implements OnInit {
             );
     }
 
+    scrollToStep(index: number): void {
+        const element = document.querySelector('#step-' + index);
+        if (element) {
+            console.log(element);
+            element.scrollIntoView();
+        }
+    }
+
     displayMeasure(measureData: WordpressMeasure): void {
         if (!measureData) {
             this.isError = true;
+            // TODO:BEISDEAS-201 display a user-visible error here
             this.router.navigate(['/']);
         }
         this.measureData = measureData;
@@ -45,5 +55,10 @@ export class MeasurePageComponent implements OnInit {
         console.error(err);
         this.isLoading = false;
         this.isError = true;
+    }
+
+    getFormattedNumberFromIndex(index: number): string {
+        const stepNumber = index + 1;
+        return padStart(stepNumber.toString(), 2, '0');
     }
 }

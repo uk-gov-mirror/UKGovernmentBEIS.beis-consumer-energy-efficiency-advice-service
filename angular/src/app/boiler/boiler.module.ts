@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {BoilerLandingPageComponent} from './landing-page/boiler-landing-page.component';
 import {CarouselComponent} from './landing-page/carousel/carousel.component';
@@ -47,6 +48,7 @@ import {BoilerLinkButtonComponent} from './boiler-link-button/boiler-link-button
         FormsModule,
         RoutingModule,
         QuestionnaireModule,
+        InlineSVGModule
     ],
     exports: [
         BoilerLandingPageComponent,

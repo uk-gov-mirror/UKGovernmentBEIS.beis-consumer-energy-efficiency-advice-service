@@ -37,6 +37,11 @@ public class IndexController {
     private String apiRoot;
     @Value("${dceas.staticRoot}")
     private String staticRoot;
+    @Value("${google.analytics.id}")
+    private String gaId;
+    @Value("${hotjar.id}")
+    private String hotjarId;
+
     private final Environment environment;
     private final IpValidationService ipValidationService;
     private final String angularHeadContent;
@@ -44,7 +49,10 @@ public class IndexController {
     private final Attributes buildAttributes;
 
     @Autowired
-    public IndexController(Environment environment, IpValidationService ipValidationService) throws IOException {
+    public IndexController(
+        Environment environment,
+        IpValidationService ipValidationService) throws IOException {
+
         this.environment = environment;
         buildAttributes = getBuildAttributes(environment);
         this.ipValidationService = ipValidationService;
@@ -77,6 +85,8 @@ public class IndexController {
     public String index(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
+        model.addAttribute("gaId", gaId);
+        model.addAttribute("hotjarId", hotjarId);
         model.addAttribute("environment", environment.getActiveProfiles());
         model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);

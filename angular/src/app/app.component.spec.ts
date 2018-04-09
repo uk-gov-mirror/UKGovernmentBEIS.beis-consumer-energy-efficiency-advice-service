@@ -16,6 +16,7 @@ import {OneTimePopupComponent} from './layout-components/one-time-popup/one-time
 import {PopupComponent} from './shared/popup/popup.component';
 import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
+import {NavBarSuboptionComponent} from "./layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {UserStateService} from "./shared/user-state-service/user-state-service";
 import {NeedHelpComponent} from "./shared/need-help/need-help.component";
 
@@ -40,7 +41,8 @@ describe('AppComponent', () => {
                 NavigationBarComponent,
                 OneTimePopupComponent,
                 PopupComponent,
-                NeedHelpComponent
+                NavBarSuboptionComponent,
+                NeedHelpComponent,
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

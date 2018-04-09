@@ -25,10 +25,12 @@ import {BoilerAdvicePageComponent} from './boiler/advice-page/boiler-advice-page
 import {YourPlanPageComponent} from './energy-efficiency/your-plan-page/your-plan-page.component';
 import {YourPlanPageGuard} from './energy-efficiency/your-plan-page/your-plan-page.guard';
 import {GreenerHomeComponent} from './landing-page/greener-home/greener-home.component';
-import {AdminPageComponent} from "./admin-page/admin-page.component";
-import {AdminPageGuard} from "./admin-page/admin-page.guard";
-import {ForbiddenPageComponent} from "./shared/forbidden-page/forbidden-page.component";
-import {MeesPageComponent} from "./mees-page/mees-page.component";
+import {AdminPageComponent} from './admin-page/admin-page.component';
+import {AdminPageGuard} from './admin-page/admin-page.guard';
+import {ForbiddenPageComponent} from './shared/forbidden-page/forbidden-page.component';
+import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
+import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
+import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
 
 const routes: Routes = [
     {
@@ -108,9 +110,13 @@ const routes: Routes = [
         canActivate: [BoilerResultsPageRouteGuard]
     },
     {
-        path: 'js/minimum-energy-efficiency-standards',
-        component: MeesPageComponent,
-        pathMatch: 'full'
+        path: 'js/minimum-energy-efficiency-standards/questionnaire',
+        component: MeesQuestionnaireComponent,
+    },
+    {
+        path: 'js/minimum-energy-efficiency-standards/results',
+        component: MeesResultsPageComponent,
+        canActivate: [MeesResultsPageRouteGuard]
     },
     {
         path: 'js/admin',

@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import * as log from 'loglevel';
 import {ResponseData} from '../shared/response-data/response-data';
 import {getJourneyDescription, UserJourneyType} from '../shared/response-data/user-journey-type';
-import {QuestionContentService} from '../shared/question-content/question-content.service';
 import {StaticMeasure} from './static-measure-card/static-measure';
 import {Article} from './article-card/article';
 import {Video} from '../shared/large-video-card/video';
@@ -20,22 +18,14 @@ export class LandingPageComponent implements OnInit {
     @Input() video: Video;
     @Input() articles: Article[];
 
-    questionContentError: boolean = false;
     postcodeQuestionReason: string;
     heading: string;
 
     constructor(private router: Router,
-                private responseData: ResponseData,
-                private questionContentService: QuestionContentService) {
+                private responseData: ResponseData) {
     }
 
     ngOnInit() {
-        this.questionContentService.fetchQuestionsContent()
-            .subscribe(questionsContent => this.postcodeQuestionReason = questionsContent['postcode_epc'].questionReason,
-                (err) => {
-                    log.error(err);
-                    this.questionContentError = true;
-                });
         this.heading = getJourneyDescription(this.userJourneyType);
     }
 

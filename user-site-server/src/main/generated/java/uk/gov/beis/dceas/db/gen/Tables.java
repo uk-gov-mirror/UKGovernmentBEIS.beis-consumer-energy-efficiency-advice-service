@@ -21,6 +21,9 @@ import uk.gov.beis.dceas.db.gen.tables.QrtzSimpleTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzSimpropTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzTriggers;
 import uk.gov.beis.dceas.db.gen.tables.UserState;
+import uk.gov.beis.dceas.db.gen.tables.WpOptions;
+import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
+import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 
 
 /**
@@ -110,4 +113,19 @@ public class Tables {
      * The table <code>user_state</code>.
      */
     public static final UserState USER_STATE = uk.gov.beis.dceas.db.gen.tables.UserState.USER_STATE;
+
+    /**
+     * The table <code>wp_options</code>.
+     */
+    public static final WpOptions WP_OPTIONS = uk.gov.beis.dceas.db.gen.tables.WpOptions.WP_OPTIONS;
+
+    /**
+     * The table <code>wp_postmeta</code>.
+     */
+    public static final WpPostmeta WP_POSTMETA = uk.gov.beis.dceas.db.gen.tables.WpPostmeta.WP_POSTMETA;
+
+    /**
+     * The table <code>wp_posts</code>.
+     */
+    public static final WpPosts WP_POSTS = uk.gov.beis.dceas.db.gen.tables.WpPosts.WP_POSTS;
 }
