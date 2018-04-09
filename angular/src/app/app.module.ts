@@ -19,6 +19,7 @@ import {GrantsModule} from './grants/grants.module';
 import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.module';
 import {AdminPageModule} from "./admin-page/admin-page.module";
 import {MeesModule} from './mees/mees.module';
+import {SuppliersPageModule} from "./suppliers-page/suppliers-page.module";
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {MeesModule} from './mees/mees.module';
         GrantsModule.forRoot(),
         PageModule,
         MeasurePageModule,
+        SuppliersPageModule,
         AdminPageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),

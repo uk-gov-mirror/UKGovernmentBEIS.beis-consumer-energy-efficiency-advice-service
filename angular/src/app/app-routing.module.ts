@@ -31,6 +31,7 @@ import {ForbiddenPageComponent} from './shared/forbidden-page/forbidden-page.com
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
+import {SuppliersPageComponent} from "./suppliers-page/suppliers-page.component";
 
 const routes: Routes = [
     {
@@ -126,6 +127,11 @@ const routes: Routes = [
     {
         path: 'js/forbidden',
         component: ForbiddenPageComponent
+    },
+    {
+        path: 'js/suppliers',
+        component: SuppliersPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'js/measures/:slug',
