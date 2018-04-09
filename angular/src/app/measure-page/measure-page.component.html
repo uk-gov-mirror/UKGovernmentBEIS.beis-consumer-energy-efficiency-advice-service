@@ -23,7 +23,7 @@
             <div *ngFor="let step of measureData.steps; let i = index">
                 <div class="contents-link" routerLink="." fragment="step-{{i}}">
                     <div class="contents-number">{{getFormattedNumberFromIndex(i)}}</div>
-                    {{step.headline}}
+                    <div class="contents-item">{{step.headline}}</div>
                 </div>
             </div>
         </div>
