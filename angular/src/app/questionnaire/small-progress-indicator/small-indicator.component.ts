@@ -16,9 +16,6 @@ export class SmallIndicatorComponent implements OnChanges {
     constructor() {
     }
 
-    setPercentage(): void {
-    }
-
     ngOnChanges () {
         if (this.questionnaire.getQuestions().length !== 0) {
             this.currentPercentage = Math.floor((this.currentQuestionIndex / this.questionnaire.getQuestions().length) * 100);

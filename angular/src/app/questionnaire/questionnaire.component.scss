@@ -87,83 +87,85 @@ $greyed-out: #a9a9a9;
     margin-top: auto;
   }
 }
-
-.sticky-row-content {
-  padding: 20px;
-  border-top: 2px $separator-grey solid;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-
-  .question-heading-container {
-    padding-top: 15px;
+app-sticky-row-wrapper {
+  z-index: 5;
+  .sticky-row-content {
+    padding: 20px;
+    border-top: 2px $separator-grey solid;
+    background-color: white;
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 12px;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
 
-    > button {
-      flex: 0 0 auto;
-    }
-
-    .question-heading {
-      @include question-heading-font;
-    }
-
-    .left-arrow, .right-arrow {
-      height: 48px;
-      width: 48px;
-
-      background-color: white;
-      color: $greyed-out;
-      fill: $greyed-out;
-
+    .question-heading-container {
+      padding-top: 15px;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
 
-      outline: none;
-      border: none;
+      > button {
+        flex: 0 0 auto;
+      }
 
-      user-select: none;
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      -o-user-select: none;
+      .question-heading {
+        @include question-heading-font;
+      }
 
-      .left-chevron-icon, .right-chevron-icon {
-        width: auto;
+      .left-arrow, .right-arrow {
+        height: 48px;
+        width: 48px;
 
-        ::ng-deep svg {
-          fill: $greyed-out;
-          vertical-align: middle;
+        background-color: white;
+        color: $greyed-out;
+        fill: $greyed-out;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        outline: none;
+        border: none;
+
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+
+        .left-chevron-icon, .right-chevron-icon {
+          width: auto;
+
+          ::ng-deep svg {
+            fill: $greyed-out;
+            vertical-align: middle;
+          }
+        }
+
+        &.hidden {
+          display: none;
+        }
+
+        &:not([disabled]) {
+          cursor: pointer;
         }
       }
 
-      &.hidden {
-        display: none;
+      .left-arrow {
+        padding-right: 10px;
       }
 
-      &:not([disabled]) {
-        cursor: pointer;
-      }
-    }
+      .right-arrow {
+        padding-left: 10px;
 
-    .left-arrow {
-      padding-right: 10px;
-    }
+        &:not([disabled]) {
+          background-color: $green;
+          color: white;
 
-    .right-arrow {
-      padding-left: 10px;
-
-      &:not([disabled]) {
-        background-color: $green;
-        color: white;
-
-        .right-chevron-icon ::ng-deep svg {
-          fill: white;
+          .right-chevron-icon ::ng-deep svg {
+            fill: white;
+          }
         }
       }
     }
