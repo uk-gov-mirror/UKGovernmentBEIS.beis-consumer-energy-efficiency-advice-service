@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewChecked} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {WordpressMeasure} from '../shared/wordpress-measures-service/wordpress-measure';
 import {WordpressMeasuresService} from '../shared/wordpress-measures-service/wordpress-measures.service';
+import padStart from 'lodash-es/padStart';
 
 @Component({
   selector: 'app-measure-page',
   templateUrl: './measure-page.component.html',
   styleUrls: ['./measure-page.component.scss']
 })
-export class MeasurePageComponent implements OnInit {
+export class MeasurePageComponent implements OnInit, AfterViewChecked {
 
     measureData: WordpressMeasure;
     isLoading: boolean;
@@ -32,6 +33,16 @@ export class MeasurePageComponent implements OnInit {
             );
     }
 
+    ngAfterViewChecked() {
+        this.route.fragment.subscribe(fragment => {
+            console.log(fragment);
+            const element = document.querySelector('#' + fragment);
+            if (element) {
+                element.scrollIntoView();
+            }
+        });
+    }
+
     displayMeasure(measureData: WordpressMeasure): void {
         if (!measureData) {
             this.isError = true;
@@ -46,5 +57,10 @@ export class MeasurePageComponent implements OnInit {
         console.error(err);
         this.isLoading = false;
         this.isError = true;
+    }
+
+    getFormattedNumberFromIndex(index: number): string {
+        const stepNumber = index + 1;
+        return padStart(stepNumber.toString(), 2, '0');
     }
 }

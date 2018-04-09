@@ -14,9 +14,23 @@
             </div>
         </div>
     </div>
+    <div class="page-row contents-section" *ngIf="measureData.steps && measureData.steps.length > 1">
+        <div class="page-row-content">
+            <div class="contents-title">
+                <div class="contents-title-icon" [inlineSVG]="'controls/menu.svg'"></div>
+                Contents
+            </div>
+            <div *ngFor="let step of measureData.steps; let i = index">
+                <div class="contents-link" routerLink="." fragment="step-{{i}}">
+                    <div class="contents-number">{{getFormattedNumberFromIndex(i)}}</div>
+                    {{step.headline}}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="page-row steps-section" *ngIf="measureData.steps && measureData.steps.length">
         <div class="page-row-content">
-            <div class="step" *ngFor="let step of measureData.steps">
+            <div class="step" *ngFor="let step of measureData.steps; let i = index" id="step-{{i}}">
                 <div class="step-title">{{step.headline}}</div>
                 <div class="step-content">
                     <div class="step-text">
