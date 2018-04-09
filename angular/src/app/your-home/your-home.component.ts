@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
-import {RawMeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
+import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 
 @Component({
     selector: 'app-your-home',
@@ -14,7 +14,7 @@ export class YourHomeComponent implements OnInit {
     isError: boolean;
     parameterString: string;
     yourHomeContent: YourHomeContent;
-    measures: RawMeasureContent[];
+    measures: MeasureContent[];
 
     sectionsByParameterString = {
         'heating&hot-water': {
@@ -59,7 +59,7 @@ export class YourHomeComponent implements OnInit {
         });
     }
 
-    private filterMeasures(measures: RawMeasureContent[]) {
+    private filterMeasures(measures: MeasureContent[]) {
         return measures.filter(measure =>
             measure.acf.tags && measure.acf.tags.some((tag) => tag === this.yourHomeContent.tag));
     }
