@@ -21,7 +21,7 @@
                 Contents
             </div>
             <div *ngFor="let step of measureData.steps; let i = index">
-                <div class="contents-link" routerLink="." fragment="step-{{i}}">
+                <div class="contents-link" (click)="scrollToStep(i)">
                     <div class="contents-number">{{getFormattedNumberFromIndex(i)}}</div>
                     <div class="contents-item">{{step.headline}}</div>
                 </div>

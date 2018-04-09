@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewChecked} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {WordpressMeasure} from '../shared/wordpress-measures-service/wordpress-measure';
@@ -10,7 +10,7 @@ import padStart from 'lodash-es/padStart';
   templateUrl: './measure-page.component.html',
   styleUrls: ['./measure-page.component.scss']
 })
-export class MeasurePageComponent implements OnInit, AfterViewChecked {
+export class MeasurePageComponent implements OnInit {
 
     measureData: WordpressMeasure;
     isLoading: boolean;
@@ -33,14 +33,12 @@ export class MeasurePageComponent implements OnInit, AfterViewChecked {
             );
     }
 
-    ngAfterViewChecked() {
-        this.route.fragment.subscribe(fragment => {
-            console.log(fragment);
-            const element = document.querySelector('#' + fragment);
-            if (element) {
-                element.scrollIntoView();
-            }
-        });
+    scrollToStep(index: number): void {
+        const element = document.querySelector('#step-' + index);
+        if (element) {
+            console.log(element);
+            element.scrollIntoView();
+        }
     }
 
     displayMeasure(measureData: WordpressMeasure): void {
