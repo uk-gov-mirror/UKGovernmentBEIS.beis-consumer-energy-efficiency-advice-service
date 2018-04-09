@@ -53,19 +53,6 @@ function setup_supplier_acf_group() {
                     'maxlength' => '',
                 ),
                 array (
-                    'key' => 'field_5a9578576836b',
-                    'label' => 'Supplier\'s ECO webpage' ,
-                    'name' => 'supplier_eco_link',
-                    'type' => 'text',
-                    'instructions' => 'Link to supplier\'s detailed ECO page allowing people to apply (if applicable)',
-                    'default_value' => '',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'formatting' => 'html',
-                    'maxlength' => ''
-                ),
-                array (
                     'key' => 'field_5a9578756836c',
                     'label' => 'Supplier\'s website' ,
                     'name' => 'supplier_info_link',
@@ -78,29 +65,6 @@ function setup_supplier_acf_group() {
                     'append' => '',
                     'formatting' => 'html',
                     'maxlength' => ''
-                ),
-                array (
-                    'key' => 'field_5a95788b6836d',
-                    'label' => 'Phone number' ,
-                    'name' => 'supplier_telephone_number',
-                    'type' => 'text',
-                    'instructions' => 'Supplier\'s telephone number',
-                    'required' => 1,
-                    'default_value' => '',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'formatting' => 'html',
-                    'maxlength' => ''
-                ),
-                array (
-                    'key' => 'field_5a9578a26836e',
-                    'label' => 'Image' ,
-                    'name' => 'supplier_image',
-                    'type' => 'image',
-                    'instructions' => 'Image for supplier',
-                    'required' => 1,
-                    'formatting' => 'html'
                 )
             ),
             'options' => array (
