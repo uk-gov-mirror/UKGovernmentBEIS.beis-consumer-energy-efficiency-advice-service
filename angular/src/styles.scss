@@ -23,6 +23,7 @@ html, body {
   @include desktop() {
     overflow-y: visible;
   }
+  overflow-x: hidden;
   font-family: $font-family;
   color: $dark-grey;
   margin: 0;
