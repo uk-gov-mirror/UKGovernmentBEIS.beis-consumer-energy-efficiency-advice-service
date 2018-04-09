@@ -51,6 +51,8 @@ describe('MeasurePageComponent', () => {
             get: MockActivatedRoute.paramMapGet
         });
 
+        public fragment = Observable.of(null);
+
         private static paramMapGet(key) {
             if (key === 'slug') {
                 return testSlug;
