@@ -14,6 +14,10 @@ SET meta_value = 'a:2:{i:0;s:15:"tag_small_spend";i:1;s:21:"tag_heating&hot-wate
 WHERE post_id in (3727) and meta_key = 'tags';
 
 UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:13:"tag_quick_win";i:1;s:21:"tag_heating&hot-water";}'
+WHERE post_id in (3141) and meta_key = 'tags';
+
+UPDATE wp_postmeta
 SET meta_value = 'a:3:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";i:2;s:16:"tag_solar-energy";}'
 WHERE post_id in (3745) and meta_key = 'tags';
 
