@@ -94,6 +94,7 @@ public class IndexController {
         "/forbidden/**",
         "/measures/**",
         "/your-home/**",
+        "/suppliers/**",
         "/pages/**",
     },
         method = GET)
