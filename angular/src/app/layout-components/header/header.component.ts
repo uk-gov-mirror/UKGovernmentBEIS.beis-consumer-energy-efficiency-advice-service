@@ -82,14 +82,9 @@ export class HeaderComponent {
         }, 500);
     }
 
-    // TODO:BEIS-196 how does this page work?
-    // https://dceas-user-site-int.cloudapps.digital/quick-tips/5-tips-to-save-energy-this-winter
-    // -> PageComponent
-
     search(): void {
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
-        // TODO:BEIS-196 ensure pages can be searched
         Observable.forkJoin(
             this.wordpressPagesService.searchPages(this.searchText),
             this.wordpressMeasuresService.searchMeasures(this.searchText)
