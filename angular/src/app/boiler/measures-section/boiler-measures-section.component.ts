@@ -18,8 +18,8 @@ export class BoilerMeasuresSectionComponent {
 
     goToEnergyEfficiency() {
         const route = this.questionnaireService.isComplete('home-basics')
-            ? '/js/energy-efficiency/results'
-            : '/js/energy-efficiency/questionnaire/home-basics';
+            ? '/energy-efficiency/results'
+            : '/energy-efficiency/questionnaire/home-basics';
         this.router.navigate([route]);
     }
 }

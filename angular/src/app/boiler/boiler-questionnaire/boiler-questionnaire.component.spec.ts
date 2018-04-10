@@ -45,7 +45,7 @@ describe('BoilerQuestionnaireComponent', () => {
         mockQuestionnaireComponent.onQuestionnaireComplete.emit();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/boiler/results']);
+        expect(router.navigate).toHaveBeenCalledWith(['/boiler/results']);
     });
 });
 

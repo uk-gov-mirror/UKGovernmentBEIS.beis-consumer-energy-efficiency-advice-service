@@ -79,7 +79,7 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/results']);
+            expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/results']);
         });
     }));
 
@@ -92,7 +92,7 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
 
         // then
         fixture.whenStable().then(() => {
-            expect(router.navigate).toHaveBeenCalledWith(['/js/grants/questionnaire']);
+            expect(router.navigate).toHaveBeenCalledWith(['/grants/questionnaire']);
         });
     }));
 });

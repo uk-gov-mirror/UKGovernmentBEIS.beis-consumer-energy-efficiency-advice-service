@@ -15,7 +15,7 @@ export class MeesResultsPageRouteGuard implements CanActivate {
         } else {
             // TODO:BEISDEAS-201 display a user-visible error here
             console.error('Cannot show results; questions are incomplete');
-            this.router.navigate(['/js/minimum-energy-efficiency-standards/questionnaire']);
+            this.router.navigate(['/minimum-energy-efficiency-standards/questionnaire']);
             return false;
         }
     }

@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
-import {Router, NavigationStart} from "@angular/router";
+import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
+import {NavigationStart, Router} from "@angular/router";
 
 import {NavigationSuboption} from "./navigation-suboption";
 
@@ -12,19 +12,19 @@ export class NavigationBarComponent {
     homeSuboptions: NavigationSuboption[] = [
         {
             name: "Heating & Hot Water",
-            url: "/heating&hot-water"
+            url: "/your-home/heating&hot-water"
         },
         {
             name: "Windows & Doors",
-            url: "/windows&doors"
+            url: "/your-home/windows&doors"
         },
         {
             name: "Floors, Walls & Roofs",
-            url: "/floors-walls&roofs"
+            url: "/your-home/floors-walls&roofs"
         },
         {
             name: "Solar Energy",
-            url: "/solar-energy"
+            url: "/your-home/solar-energy"
         }
     ];
     rentedSuboptions: NavigationSuboption[] = [

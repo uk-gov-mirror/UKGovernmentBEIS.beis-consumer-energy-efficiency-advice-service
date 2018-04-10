@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-10-remove-obsolete-wp-posts.xml"
+               author="richard.bradley@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- The following WP posts are no longer needed.
+-- These pages were created for each Measure, in anticipation of static content
+-- describing that Measure. We will instead use ACF fields on the Measure post
+-- directly for this content.
+
+-- Delete the meta about the measure Pages
+DELETE page_meta
+FROM wp_postmeta AS page_meta
+JOIN wp_posts
+  ON page_meta.post_id = id
+JOIN wp_postmeta measure_post_meta
+  ON measure_post_meta.meta_value = id
+WHERE measure_post_meta.meta_key = 'featured_page';
+
+-- Delete the measure Pages
+DELETE wp_posts
+FROM wp_posts
+JOIN wp_postmeta
+  ON meta_value = id
+WHERE meta_key = 'featured_page';
+
+-- Delete the "featured_page" field on the Measure posts
+DELETE FROM wp_postmeta
+WHERE meta_key = 'featured_page'
+OR meta_key = '_featured_page';
+
+        ]]></sql>
+    </changeSet>
+</databaseChangeLog>

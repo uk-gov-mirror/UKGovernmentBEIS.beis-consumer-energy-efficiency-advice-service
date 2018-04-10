@@ -45,7 +45,7 @@ describe('MeesQuestionnaireComponent', () => {
         mockQuestionnaireComponent.onQuestionnaireComplete.emit();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/minimum-energy-efficiency-standards/results']);
+        expect(router.navigate).toHaveBeenCalledWith(['/minimum-energy-efficiency-standards/results']);
     });
 });
 
