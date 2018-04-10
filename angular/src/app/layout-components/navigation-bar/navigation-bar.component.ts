@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
 import {Router, NavigationStart} from "@angular/router";
-
 import {NavigationSuboption} from "./navigation-suboption";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 
 @Component({
     selector: 'app-navigation-bar',
@@ -54,6 +54,7 @@ export class NavigationBarComponent {
     showHomeMenu: boolean = false;
     showRentedMenu: boolean = false;
     showFinanceMenu: boolean = false;
+    showYourPlan: boolean = false;
 
     @Input() shouldExpandNav: boolean;
     @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
@@ -64,11 +65,14 @@ export class NavigationBarComponent {
 
     private deregisterClickListener: () => void;
 
-    constructor(private renderer: Renderer2, private router: Router) {
+    constructor(private renderer: Renderer2,
+                private router: Router,
+                private recommendationsService: RecommendationsService) {
         router.events.subscribe((event) => {
             if (event instanceof NavigationStart && this.shouldExpandNav) {
                 this.hideMobileNav();
             }
+            this.showYourPlan = this.recommendationsService.getRecommendationsInPlan().length > 0;
         });
     }
 
