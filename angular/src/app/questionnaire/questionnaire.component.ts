@@ -76,7 +76,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')
         );
-        this.setCurrentIndexFromRouteParams();
     }
 
     ngOnDestroy() {
@@ -139,7 +138,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
         this.isLoading = false;
         this.allQuestionsContent = questionContent;
-        this.jumpToQuestion(this.currentQuestionIndex);
+        this.setCurrentIndex();
     }
 
     private jumpToQuestion(index) {
@@ -217,14 +216,21 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         }
     }
 
-    private setCurrentIndexFromRouteParams() {
+    private setCurrentIndex() {
         return this.route.queryParamMap
             .subscribe(queryParams => {
                 const indexOrNull = parseInt(queryParams.get('startingQuestion'), 10);
                 if (indexOrNull) {
                     this.currentQuestionIndex = indexOrNull;
+                } else {
+                    while (this.questionnaire.getQuestion(this.currentQuestionIndex + 1)
+                        && (!this.questionnaire.isApplicable(this.currentQuestionIndex)
+                            || this.questionnaire.hasBeenAnswered(this.currentQuestionIndex))) {
+                        this.currentQuestionIndex++;
+                    }
                 }
                 this.userStateService.sendState(this.currentQuestionIndex);
+                this.jumpToQuestion(this.currentQuestionIndex);
             });
     }
 }
