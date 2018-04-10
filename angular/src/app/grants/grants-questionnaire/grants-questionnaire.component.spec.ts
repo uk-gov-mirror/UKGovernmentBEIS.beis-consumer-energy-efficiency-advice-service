@@ -50,7 +50,7 @@ describe('GrantsQuestionnaireComponent', () => {
         mockQuestionnaireComponent.onQuestionnaireComplete.emit();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/results']);
+        expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/results']);
     });
 });
 

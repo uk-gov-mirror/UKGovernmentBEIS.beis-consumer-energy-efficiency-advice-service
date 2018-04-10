@@ -1,6 +1,5 @@
 import {WordpressSearchable} from '../wordpress-api-service/wordpress-searchable';
 import {WordpressPageResponse} from './wordpress-page-response';
-import * as parse from 'url-parse';
 import {AcfImage} from './acf-image';
 
 export class WordpressPage implements WordpressSearchable {
@@ -10,7 +9,7 @@ export class WordpressPage implements WordpressSearchable {
     videoEmbed: string;
 
     constructor(wordpressPageResponse: WordpressPageResponse) {
-        this.route = parse(wordpressPageResponse.link).pathname;
+        this.route = '/pages/' + encodeURIComponent(wordpressPageResponse.slug);
         this.title = wordpressPageResponse.title.rendered;
         this.coverImage = wordpressPageResponse.acf.cover_image;
         this.videoEmbed = wordpressPageResponse.acf.video_embed;

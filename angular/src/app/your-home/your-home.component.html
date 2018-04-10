@@ -1,0 +1,24 @@
+<div class="your-home-page">
+    <div class="page-heading page-row">
+        <div class="page-row-content">
+            <div class="heading-text">{{yourHomeContent.title}}</div>
+        </div>
+    </div>
+    <div class="tag-text page-row">
+        <div class="page-row-content">
+            <div class="body-text">{{yourHomeContent.text}}</div>
+        </div>
+    </div>
+    <div class="measures page-row">
+        <div class="page-row-content">
+            <div class="row-heading">Measures You Can Take</div>
+            <div class="measures-list">
+                <ul>
+                    <li *ngFor="let measure of measures">
+                        <a href="/measures/{{measure.slug}}">{{measure.acf.headline}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

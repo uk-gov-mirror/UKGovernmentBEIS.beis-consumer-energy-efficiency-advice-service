@@ -21,13 +21,13 @@ describe('RecommendationStepCardComponent', () => {
             {
                 buttonText: 'Test static page 1',
                 isExternalLink: true,
-                route: '/js/static-page-1',
+                route: '/static-page-1',
                 externalLink: 'http://google.com'
             },
             {
                 buttonText: 'Test static page 2',
                 isExternalLink: false,
-                route: '/js/static-page-2',
+                route: '/static-page-2',
                 externalLink: ''
             }
         ]

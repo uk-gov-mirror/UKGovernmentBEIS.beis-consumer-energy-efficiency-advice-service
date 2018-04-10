@@ -127,19 +127,6 @@ function setup_measure_acf_group() {
                     ),
                 ),
                 array (
-                    'key' => 'field_59f9b923b1d33',
-                    'label' => 'Featured page',
-                    'name' => 'featured_page',
-                    'type' => 'page_link',
-                    'instructions' => 'The advice page to display when user clicks \'Read More\' for this recommendation',
-                    'required' => 1,
-                    'post_type' => array (
-                        0 => 'page',
-                    ),
-                    'allow_null' => 0,
-                    'multiple' => 0
-                ),
-                array (
                     'key' => 'field_5a1c53f320255',
                     'label' => 'Tags',
                     'name' => 'tags_tab',
@@ -154,7 +141,11 @@ function setup_measure_acf_group() {
                     'choices' => array (
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
-                        'tag_longer_term' => 'Longer term'
+                        'tag_longer_term' => 'Longer term',
+                        'tag_heating&hot-water' => 'Heating & Hotwater',
+                        'tag_windows&doors' => 'Windows & Doors',
+                        'tag_floors-walls&roofs' => 'Floors, Walls & Roofs',
+                        'tag_solar-energy' => 'Solar Energy',
                     ),
                     'default_value' => '',
                     'layout' => 'vertical',

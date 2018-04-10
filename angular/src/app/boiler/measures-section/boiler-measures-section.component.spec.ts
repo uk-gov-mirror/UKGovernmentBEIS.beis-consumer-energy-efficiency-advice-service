@@ -65,7 +65,7 @@ describe('BoilerMeasuresSectionComponent', () => {
         fixture.debugElement.query(By.css('.link-button')).nativeElement.click();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/questionnaire/home-basics']);
+        expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/questionnaire/home-basics']);
     });
 
     it('should navigate to the main results page when the link is clicked and the basics questionnaire is complete', () => {
@@ -76,7 +76,7 @@ describe('BoilerMeasuresSectionComponent', () => {
         fixture.debugElement.query(By.css('.link-button')).nativeElement.click();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/results']);
+        expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/results']);
     });
 
     it('should show a recommendation card for each measure', () => {
