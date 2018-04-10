@@ -13,7 +13,7 @@ export class AdminPageGuard implements CanActivate {
             return true;
         }
         // If the user does not have admin rights, we show the forbidden page
-        this.router.navigate(['/js/forbidden']);
+        this.router.navigate(['/forbidden']);
         return false;
     }
 }
