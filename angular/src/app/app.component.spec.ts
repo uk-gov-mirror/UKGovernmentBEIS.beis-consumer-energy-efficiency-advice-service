@@ -19,6 +19,7 @@ import {WordpressMeasuresService} from './shared/wordpress-measures-service/word
 import {NavBarSuboptionComponent} from "./layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {UserStateService} from "./shared/user-state-service/user-state-service";
 import {NeedHelpComponent} from "./shared/need-help/need-help.component";
+import {SearchBarComponent} from "./layout-components/search-bar/search-bar.component";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -43,6 +44,7 @@ describe('AppComponent', () => {
                 PopupComponent,
                 NavBarSuboptionComponent,
                 NeedHelpComponent,
+                SearchBarComponent
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

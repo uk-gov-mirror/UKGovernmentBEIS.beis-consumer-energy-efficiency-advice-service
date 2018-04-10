@@ -1,0 +1,218 @@
+@import "styles/page";
+@import "styles/var/colors";
+
+// Component specific variables
+$search-container-height: 24px;
+$search-container-vertical-padding: 10px;
+$animation-duration-horizontal: 0.5s;
+$animation-duration-vertical: 0.5s;
+
+// Component specific mixins
+
+@mixin is-clickable-icon($size) {
+  height: $size;
+  width: $size;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  display: inline-block;
+}
+
+@mixin is-search-icon($size) {
+  @include is-clickable-icon($size);
+  stroke: $primary-blue;
+  margin-right: 16px;
+}
+
+@mixin is-menu-icon($size) {
+  @include is-clickable-icon($size);
+  stroke: $dark-grey;
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
+
+.search-container {
+  background-color: $lighter-grey;
+  padding: $search-container-vertical-padding;
+  display: flex;
+  align-items: center;
+  height: $search-container-height;
+  position: relative;
+  max-width: 130px;
+  transition: max-width $animation-duration-horizontal;
+  transition-delay: $animation-duration-vertical;
+  flex-grow: 1;
+  z-index: 3;
+  width: 100%;
+
+  &.focussed {
+    box-shadow: 3px 3px 6px black;
+    max-width: 100%;
+    transition-delay: 0s;
+  }
+
+  .search-form {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+
+    .search-input {
+      background: none;
+      outline: none;
+      border: none;
+      padding: 0;
+      font-size: 16px;
+      flex-grow: 1;
+      min-width: 1px;
+    }
+
+    .icon {
+      @include is-search-icon(20px);
+      flex-shrink: 0;
+
+      &:focus {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+  .search-details-dropdown {
+    background-color: white;
+    width: 100%;
+    max-height: 0;
+    position: absolute;
+    top: 0;
+    margin-top: $search-container-height + 2 * $search-container-vertical-padding;
+    left: 0;
+    transition: max-height $animation-duration-vertical ease-in-out;
+    transition-delay: 0s;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    z-index: 1;
+
+    &.expanded {
+      max-height: 300px;
+      transition-delay: $animation-duration-horizontal;
+      box-shadow: 3px 3px 6px black;
+    }
+
+    .popular-searches, .search-results {
+
+      & > :not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .header {
+        font-weight: bold;
+      }
+
+      .see-all {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .text-row, .see-all {
+        text-align: left;
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+        padding: 0;
+        flex-shrink: 0;
+        text-decoration: none;
+        color: black;
+        font-weight: normal;
+
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .search-results-container {
+      flex: 1;
+
+      .search-empty, .search-loading, .search-results, .search-no-results, .search-error {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        padding: 20px;
+      }
+
+      .search-empty, .search-loading, .search-no-results, .search-error {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .search-empty, .search-no-results {
+        .hint {
+          font-weight: bold;
+          width: 100%;
+        }
+      }
+
+      .search-results {
+        max-height: 50vh;
+        overflow-y: auto;
+      }
+
+      .search-error {
+        .error {
+          background-color: crimson;
+          color: white;
+          border-radius: 5px;
+          padding: 5px;
+        }
+      }
+    }
+
+    .popular-searches {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      padding: 20px;
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .search-container {
+    width: calc(100% - 20px);
+    max-width: none;
+
+  }
+}
+
+@include tablet() {
+  .search-container {
+    max-width: none;
+  }
+}
+
+@include desktop() {
+  .search-container {
+    max-width: 180px;
+    height: calc(100% - 20px);
+    position: absolute;
+    right: 50px;
+    top: 0px;
+
+    transition: max-width $animation-duration-horizontal;
+    transition-delay: $animation-duration-vertical;
+
+    &.focussed {
+      transition-delay: 0s;
+      max-width: 450px;
+    }
+
+    .search-details-dropdown {
+      margin-top: 84px;
+    }
+  }
+}

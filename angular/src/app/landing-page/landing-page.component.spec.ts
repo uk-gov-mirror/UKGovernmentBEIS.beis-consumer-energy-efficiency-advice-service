@@ -5,7 +5,6 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
-import {InlineSVGModule} from 'ng-inline-svg';
 
 import {LargeVideoCardComponent} from '../shared/large-video-card/large-video-card.component';
 import {ArticleCardComponent} from './article-card/article-card.component';
@@ -21,6 +20,8 @@ import { PopupComponent } from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {InlineSVGModule} from 'ng-inline-svg';
+import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -49,12 +50,14 @@ describe('LandingPageComponent', () => {
                 PopupComponent,
                 DataCardComponent,
                 NavBarSuboptionComponent,
+                DataCardComponent,
+                SearchBarComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule.withRoutes([]),
-                InlineSVGModule,
+                InlineSVGModule
             ],
             providers: [
                 ResponseData,
