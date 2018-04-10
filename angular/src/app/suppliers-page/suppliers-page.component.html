@@ -1,1 +1,10 @@
-<a *ngFor="let supplier of suppliers$ | async" [href]="supplier.link">{{supplier.name}}</a>
+<div class="suppliers-page page-row">
+    <div class="page-row-content">
+        <div *ngFor="let supplier of suppliers$ | async">
+            <a [href]="supplier.link">
+                <img src="/dist/assets/images/eco-suppliers/{{supplier.slug}}.jpeg" [alt]="supplier.name"/>
+                <span>{{supplier.name}}</span>
+            </a>
+        </div>
+    </div>
+</div>
