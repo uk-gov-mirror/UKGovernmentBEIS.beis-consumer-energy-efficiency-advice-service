@@ -39,8 +39,6 @@ public class IndexController {
     private String staticRoot;
     @Value("${google.analytics.id}")
     private String gaId;
-    @Value("${hotjar.id}")
-    private String hotjarId;
 
     private final Environment environment;
     private final IpValidationService ipValidationService;
@@ -103,7 +101,6 @@ public class IndexController {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("gaId", gaId);
-        model.addAttribute("hotjarId", hotjarId);
         model.addAttribute("environment", environment.getActiveProfiles());
         model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);
