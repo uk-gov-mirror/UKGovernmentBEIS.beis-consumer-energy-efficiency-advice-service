@@ -56,7 +56,7 @@ export class DownloadPlanComponent {
 
         let mutationCount = 0;
 
-        const callback = function(observer) {
+        const callback = function(elemObserver) {
             mutationCount++;
 
             if (mutationCount === nonExCount) { // If all drop downs have been opened
@@ -84,7 +84,7 @@ export class DownloadPlanComponent {
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
 
                 // Disconnect the observer so the user cant trigger this callback afterwards
-                observer.disconnect();
+                elemObserver.disconnect();
             }
         };
 

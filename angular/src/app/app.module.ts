@@ -20,10 +20,12 @@ import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.modu
 import {AdminPageModule} from './admin-page/admin-page.module';
 import {YourHomeModule} from './your-home/your-home.module';
 import {MeesModule} from './mees/mees.module';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        PageNotFoundComponent,
     ],
     imports: [
         BrowserModule,

@@ -19,18 +19,18 @@ export class HomePageComponent {
     onEnergyCalculatorButtonClick() {
         this.responseData.userJourneyType = UserJourneyType.Calculator;
         const route = this.questionnaireService.isComplete('home-basics')
-            ? '/js/energy-efficiency/results'
-            : '/js/energy-efficiency/questionnaire/home-basics';
+            ? '/energy-efficiency/results'
+            : '/energy-efficiency/questionnaire/home-basics';
         this.router.navigate([route]);
     }
 
     onBoilerButtonClick() {
         this.responseData.userJourneyType = UserJourneyType.Boiler;
-        this.router.navigate(['/js/boiler']);
+        this.router.navigate(['/boiler']);
     }
 
     onGrantsButtonClick() {
         this.responseData.userJourneyType = UserJourneyType.Grants;
-        this.router.navigate(['/js/grants']);
+        this.router.navigate(['/grants']);
     }
 }

@@ -12,7 +12,11 @@
   <property name="severity" value="error"/>
   <module name="SuppressWarningsFilter" />
   <module name="TreeWalker">
-    <module name="AnnotationUseStyle"/>
+    <module name="AnnotationUseStyle">
+      <!-- Trailing comma is useful where the list is expected to be added to in future
+          (it makes diffs cleaner), but not required everywhere, so we set "ignore" -->
+      <property name="trailingArrayComma" value="ignore" />
+    </module>
     <module name="MissingOverride"/>
     <module name="EmptyBlock">
       <!-- This will need changing if/when we update Checkstyle

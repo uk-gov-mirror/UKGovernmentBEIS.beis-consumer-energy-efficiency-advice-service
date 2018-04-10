@@ -21,6 +21,6 @@ export class GrantsQuestionnaireComponent {
         }
 
 
-        this.router.navigate(['/js/energy-efficiency/results']);
+        this.router.navigate(['/energy-efficiency/results']);
     }
 }
