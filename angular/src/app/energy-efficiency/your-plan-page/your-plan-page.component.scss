@@ -55,16 +55,11 @@ $grant-card-margin: 10px;
     }
   }
   .print-mode {
-
     .headline {
       margin-left: 20px;
     }
     .description {
       margin-left: 20px;
-    }
-
-    .step-details-drawer {
-      display: flex;
     }
   }
 
@@ -80,6 +75,12 @@ $grant-card-margin: 10px;
 
     .local-authority {
       @include page-subheadline-small-font;
+    }
+  }
+
+  @media print {
+    app-sticky-row-wrapper {
+      display: none;
     }
   }
 }

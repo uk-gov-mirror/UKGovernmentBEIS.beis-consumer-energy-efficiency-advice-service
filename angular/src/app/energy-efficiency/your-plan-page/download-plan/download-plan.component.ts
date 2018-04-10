@@ -73,7 +73,7 @@ export class DownloadPlanComponent {
 
     private instantiateObserver(callback) {
         const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {console.log(mutation); callback(observer); });
+            mutations.forEach((mutation) => callback(observer));
         });
 
         return observer;
