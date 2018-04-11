@@ -193,6 +193,11 @@ const routes: Routes = [
         canActivate: [MeesResultsPageRouteGuard]
     },
     {
+        path: 'page-not-created',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'admin',
         component: AdminPageComponent,
         canActivate: [AdminPageGuard]
