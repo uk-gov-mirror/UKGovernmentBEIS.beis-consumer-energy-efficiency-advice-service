@@ -29,13 +29,9 @@
             </ng-container>
         </div>
 
-        <div #financeMenu class="finance-menu menu-item" (click)="showFinanceMenu = !showFinanceMenu; registerSingleClickListener()">
-            Financial Assistance
-            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-            <ng-container *ngIf="showFinanceMenu">
-                <app-nav-bar-suboption [suboptions]="financeSuboptions"></app-nav-bar-suboption>
-            </ng-container>
-        </div>
+        <a routerLink="/grants/" class="menu-item">
+            <div class="menu-link-text">Financial Assistance</div>
+        </a>
 
         <ng-container *ngIf="showYourPlan">
             <a routerLink="/energy-efficiency/your-plan/" class="menu-item">

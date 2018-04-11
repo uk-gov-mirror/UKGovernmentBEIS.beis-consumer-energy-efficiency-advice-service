@@ -21,11 +21,13 @@ import {AdminPageModule} from './admin-page/admin-page.module';
 import {YourHomeModule} from './your-home/your-home.module';
 import {MeesModule} from './mees/mees.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         PageNotFoundComponent,
+        PageNotCreatedComponent
     ],
     imports: [
         BrowserModule,

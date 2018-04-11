@@ -35,7 +35,7 @@ export class NavigationBarComponent {
         },
         {
             name: "Information for Landlords",
-            url: "/information-for-landlords"
+            url: "/minimum-energy-efficiency-standards/questionnaire"
         },
     ];
     financeSuboptions: NavigationSuboption[] = [
