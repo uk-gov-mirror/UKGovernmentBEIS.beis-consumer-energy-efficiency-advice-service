@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-searchable';
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-search-bar',
@@ -28,6 +29,7 @@ export class SearchBarComponent {
         private renderer: Renderer2,
         private changeDetector: ChangeDetectorRef,
         private wordpressPagesService: WordpressPagesService,
+        private googleAnalyticsService: GoogleAnalyticsService,
         private wordpressMeasuresService: WordpressMeasuresService) {
     }
 
@@ -51,6 +53,7 @@ export class SearchBarComponent {
     }
 
     handleSearchBoxFocussed(): void {
+        this.sendEventToAnalytics('search_focused');
         this.shouldDisplaySearchDetailsDropdown = true;
         // Ensure there is only ever one click listener
         if (this.deregisterWindowClickListener) {
@@ -80,6 +83,7 @@ export class SearchBarComponent {
     }
 
     search(): void {
+        this.sendEventToAnalytics('search_submitted', this.searchText);
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
         Observable.forkJoin(
@@ -108,6 +112,10 @@ export class SearchBarComponent {
 
     handleSearchError(): void {
         this.searchState = SearchStates.Error;
+    }
+
+    sendEventToAnalytics(eventName: string, eventLabel?: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'search', eventLabel);
     }
 }
 

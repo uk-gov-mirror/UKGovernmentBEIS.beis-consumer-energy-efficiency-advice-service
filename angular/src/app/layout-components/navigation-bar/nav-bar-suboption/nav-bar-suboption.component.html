@@ -1,6 +1,6 @@
 <div class="nav-bar-suboptions">
   <li class="nav-bar-suboption" *ngFor="let suboption of suboptions">
-    <a routerLink="{{suboption.url}}">
+    <a routerLink="{{suboption.url}}" (click)="linkClicked(suboption.name)">
       {{suboption.name}}
     </a>
   </li>

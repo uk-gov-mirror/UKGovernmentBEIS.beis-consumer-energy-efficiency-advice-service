@@ -15,6 +15,7 @@ import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -50,7 +51,9 @@ describe('HomePageComponent', () => {
                 {
                     provide: WordpressPagesService,
                     useValue: {getLatestPages: () => Observable.of([])}
-                }]
+                },
+                GoogleAnalyticsService,
+            ]
         })
             .compileComponents();
     }));

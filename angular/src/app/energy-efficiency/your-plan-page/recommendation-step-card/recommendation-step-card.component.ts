@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
 import padStart from 'lodash-es/padStart';
 
@@ -11,8 +11,10 @@ export class RecommendationStepCardComponent implements OnInit {
 
     @Input() step: RecommendationStep;
     @Input() stepIndex: number;
+    @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
     isExpanded: boolean;
+    isReadMoreExpanded: boolean;
 
     private static readonly INITIAL_STEP_NUMBER: number = 1;
 
@@ -27,5 +29,15 @@ export class RecommendationStepCardComponent implements OnInit {
 
     toggleIsExpanded(): void {
         this.isExpanded = !this.isExpanded;
+        if (this.isExpanded) {
+            this.onAnalyticsEvent.emit('expand-step_clicked');
+        }
+    }
+
+    toggleIsReadMoreExpanded(): void {
+        this.isReadMoreExpanded = !this.isReadMoreExpanded;
+        if (this.isReadMoreExpanded) {
+            this.onAnalyticsEvent.emit('read-more_clicked');
+        }
     }
 }

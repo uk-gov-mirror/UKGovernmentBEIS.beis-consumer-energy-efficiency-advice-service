@@ -12,6 +12,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('SearchBarComponent', () => {
     let component: SearchBarComponent;
@@ -44,6 +45,7 @@ describe('SearchBarComponent', () => {
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
                 {provide: UserStateService, useValue: mockUserStateService},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

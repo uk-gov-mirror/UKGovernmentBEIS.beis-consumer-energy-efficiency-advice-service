@@ -30,7 +30,8 @@
 
         <a class="do-button"
            [class.disabled]="recommendations.length === 0"
-           routerLink="/energy-efficiency/your-plan">
+           routerLink="/energy-efficiency/your-plan"
+            (click)="DoPlanClicked()">
             <span class="do-string">DO</span>
         </a>
     </div>

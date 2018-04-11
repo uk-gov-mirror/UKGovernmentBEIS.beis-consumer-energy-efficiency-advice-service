@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import { LatestNewsSectionComponent } from './latest-news-section.component';
 import {WordpressPagesService} from '../wordpress-pages-service/wordpress-pages.service';
 import {LatestNewsCardComponent} from '../latest-news-card/latest-news-card.component';
+import {GoogleAnalyticsService} from "../analytics/google-analytics.service";
 
 describe('LatestNewsSectionComponent', () => {
     let component: LatestNewsSectionComponent;
@@ -17,7 +18,8 @@ describe('LatestNewsSectionComponent', () => {
                 RouterTestingModule.withRoutes([])
             ],
             providers: [
-                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                GoogleAnalyticsService,
             ]
         })
         .compileComponents();

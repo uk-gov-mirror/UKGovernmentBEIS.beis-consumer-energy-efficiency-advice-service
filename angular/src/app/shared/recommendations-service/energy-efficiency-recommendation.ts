@@ -25,7 +25,8 @@ export class EnergyEfficiencyRecommendation {
                 public grant: NationalGrantForMeasure,
                 public advantages: string[],
                 public steps: RecommendationStep[],
-                public isAddedToPlan: boolean) {
+                public isAddedToPlan: boolean,
+                public codeForAnalytics: string) {
     }
 
     get costSavingPoundsPerMonth(): number {
@@ -72,7 +73,8 @@ export class EnergyEfficiencyRecommendation {
             grant,
             advantages,
             concat(measureSteps, grantSteps),
-            false
+            false,
+            measureContent.slug,
         );
     }
 
@@ -91,7 +93,8 @@ export class EnergyEfficiencyRecommendation {
             null,
             grant.advantages,
             grant.steps,
-            false
+            false,
+            grant.grantId,
         );
     }
 
