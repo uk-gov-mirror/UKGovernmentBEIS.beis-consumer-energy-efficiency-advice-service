@@ -31,6 +31,6 @@ export class LandingPageComponent implements OnInit {
 
     onAddressSelected() {
         this.responseData.userJourneyType = this.userJourneyType;
-        this.router.navigate(['/js/energy-efficiency/questionnaire/home-basics']);
+        this.router.navigate(['/energy-efficiency/questionnaire/home-basics']);
     }
 }

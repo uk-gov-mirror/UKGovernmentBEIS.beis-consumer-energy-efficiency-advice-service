@@ -21,9 +21,9 @@ export class EnergyEfficiencyQuestionnaireComponent {
 
     onQuestionnaireComplete(): void {
         if (this.responseData.shouldIncludeGrantsQuestionnaire) {
-            this.router.navigate(['/js/grants/questionnaire']);
+            this.router.navigate(['/grants/questionnaire']);
         } else {
-            this.router.navigate(['/js/energy-efficiency/results']);
+            this.router.navigate(['/energy-efficiency/results']);
         }
     }
 }

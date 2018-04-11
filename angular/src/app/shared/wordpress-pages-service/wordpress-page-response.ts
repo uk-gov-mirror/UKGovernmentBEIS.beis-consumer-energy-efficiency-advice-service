@@ -1,7 +1,7 @@
 import {AcfImage} from './acf-image';
 
 export interface WordpressPageResponse {
-    link: string;
+    slug: string;
     title: PageContent;
     content: PageContent;
     acf: {

@@ -5,6 +5,7 @@ import {WordpressApiService} from '../wordpress-api-service/wordpress-api-servic
 import {WordpressPage} from './wordpress-page';
 import {WordpressPageResponse} from './wordpress-page-response';
 import {ExtendedWordpressPage} from './extended-wordpress-page';
+import * as parse from 'url-parse';
 
 @Injectable()
 export class WordpressPagesService {
@@ -15,6 +16,22 @@ export class WordpressPagesService {
     private pages: {[slug: string]: Observable<ExtendedWordpressPage>} = {};
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
+    }
+
+    /**
+     * Any ACF fields which link to Page Posts in Wordpress will return the Wordpress URL
+     * for that page, i.e. http://admin-site/category/slug
+     *
+     * To visit that page on the user-site, we need to route users to /pages/slug
+     */
+    static getRouteForWordpressPageFromPageUrl(url: string): string {
+        if (!url) {
+            return null;
+        }
+        const parsed = parse(url);
+        const path = parsed.pathname;
+        const slug = path && path.match(/([^\/]*)\/?$/)[1];
+        return slug && ("/pages/" + slug);
     }
 
     searchPages(searchText: string): Observable<WordpressPage[]> {

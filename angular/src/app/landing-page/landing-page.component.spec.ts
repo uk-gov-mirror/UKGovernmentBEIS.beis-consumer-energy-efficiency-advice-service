@@ -17,7 +17,7 @@ import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {Component, EventEmitter, Output} from '@angular/core';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
-import { PopupComponent } from '../shared/popup/popup.component';
+import {PopupComponent} from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
@@ -98,7 +98,7 @@ describe('LandingPageComponent', () => {
         mockPostcodeLookupComponent.addressSelected.emit();
 
         // then
-        expect(router.navigate).toHaveBeenCalledWith(['/js/energy-efficiency/questionnaire/home-basics']);
+        expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/questionnaire/home-basics']);
     });
 
     it('should save the user journey type upon entering a valid postcode', () => {

@@ -12,6 +12,6 @@ export class BoilerQuestionnaireComponent {
     }
 
     onQuestionnaireComplete() {
-        this.router.navigate(['/js/boiler/results']);
+        this.router.navigate(['/boiler/results']);
     }
 }

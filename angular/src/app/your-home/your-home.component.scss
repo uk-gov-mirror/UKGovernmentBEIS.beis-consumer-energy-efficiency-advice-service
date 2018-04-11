@@ -1,0 +1,99 @@
+@import "styles/var/colors";
+@import "styles/page";
+
+.your-home-page {
+  .page-heading {
+    background-color: $primary-blue;
+    color: white;
+
+    .page-row-content {
+      padding: 60px 0;
+    }
+
+    .heading-text {
+      font-size: 48px;
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+    .body-text {
+      padding: 30px 0 0;
+    }
+  }
+
+  .measures {
+    background-color: $lighter-grey;
+
+    .measures-list {
+      display: flex;
+      flex-flow: row wrap;
+
+      &:first-of-type {
+        margin-top: 30px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+
+      .measure-card {
+        background-color: white;
+        padding: 20px;
+        margin: 10px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 250px;
+
+        .icon {
+          padding: 20px 0;
+          width: 36px;
+          height: 36px;
+        }
+
+        .headline {
+          font-size: 20px;
+          line-height: 30px;
+          font-weight: bold;
+        }
+
+        .summary {
+          padding: 20px 0;
+          font-size: 12px;
+        }
+
+        .link {
+          color: $action-button-blue;
+          font-size: 12px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.your-home-page {
+  @include mobile() {
+    .measures {
+      .measure-cards {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  @include tablet() {
+    .measures {
+      .measure-cards {
+        flex-basis: 50%;
+      }
+    }
+  }
+
+  @include desktop() {
+    .measures {
+      .measure-cards {
+        flex-basis: 50%;
+      }
+    }
+  }
+}

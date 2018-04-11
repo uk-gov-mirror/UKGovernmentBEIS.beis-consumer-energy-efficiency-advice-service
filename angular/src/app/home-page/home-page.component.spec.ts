@@ -31,14 +31,14 @@ describe('HomePageComponent', () => {
                 NavBarSuboptionComponent],
             imports: [
                 RouterTestingModule.withRoutes([
-                    {path: 'js/energy-efficiency/questionnaire/home-basics', component: DummyComponent},
-                    {path: 'js/energy-efficiency/results', component: DummyComponent},
-                    {path: 'js/grants', component: DummyComponent},
-                    {path: 'js/boiler', component: DummyComponent},
-                    {path: 'js/reduce-bills', component: DummyComponent},
-                    {path: 'js/warmer-home', component: DummyComponent},
-                    {path: 'js/home-improvements', component: DummyComponent},
-                    {path: 'js/greener-home', component: DummyComponent}
+                    {path: 'energy-efficiency/questionnaire/home-basics', component: DummyComponent},
+                    {path: 'energy-efficiency/results', component: DummyComponent},
+                    {path: 'grants', component: DummyComponent},
+                    {path: 'boiler', component: DummyComponent},
+                    {path: 'energy-efficiency/reduce-bills', component: DummyComponent},
+                    {path: 'energy-efficiency/warmer-home', component: DummyComponent},
+                    {path: 'energy-efficiency/home-improvements', component: DummyComponent},
+                    {path: 'energy-efficiency/greener-home', component: DummyComponent}
                 ]),
                 InlineSVGModule,
             ],
@@ -67,19 +67,19 @@ describe('HomePageComponent', () => {
     });
 
     it('should set the user journey type and move to the reduce bills landing page when the link is clicked', async () => {
-        checkLink('.landing-page-link.reduce-bills', '/js/reduce-bills');
+        checkLink('.landing-page-link.reduce-bills', '/energy-efficiency/reduce-bills');
     });
 
     it('should set the user journey type and move to the warmer home landing page when the link is clicked', async () => {
-        checkLink('.landing-page-link.warmer-home', '/js/warmer-home');
+        checkLink('.landing-page-link.warmer-home', '/energy-efficiency/warmer-home');
     });
 
     it('should set the user journey type and move to the home improvements landing page when the link is clicked', async () => {
-        checkLink('.landing-page-link.home-improvements', '/js/home-improvements');
+        checkLink('.landing-page-link.home-improvements', '/energy-efficiency/home-improvements');
     });
 
     it('should set the user journey type and move to the greener home landing page when the link is clicked', async () => {
-        checkLink('.landing-page-link.greener-home', '/js/greener-home');
+        checkLink('.landing-page-link.greener-home', '/energy-efficiency/greener-home');
     });
 
     it('should set the user journey type and move to the questionnaire when the appropriate button is clicked, if questionnaire incomplete',
@@ -87,7 +87,7 @@ describe('HomePageComponent', () => {
         // given
         questionnaireComplete = false;
 
-        checkLink('.calculator', '/js/energy-efficiency/questionnaire/home-basics', UserJourneyType.Calculator);
+        checkLink('.calculator', '/energy-efficiency/questionnaire/home-basics', UserJourneyType.Calculator);
     });
 
     it('should set the user journey type and move to the results page when the appropriate button is clicked, if questionnaire complete',
@@ -95,15 +95,15 @@ describe('HomePageComponent', () => {
         // given
         questionnaireComplete = true;
 
-        checkLink('.calculator', '/js/energy-efficiency/results', UserJourneyType.Calculator);
+        checkLink('.calculator', '/energy-efficiency/results', UserJourneyType.Calculator);
     });
 
     it('should set the user journey type and move to the grants page when the appropriate button is clicked', async () => {
-        checkLink('.grants', '/js/grants', UserJourneyType.Grants);
+        checkLink('.grants', '/grants', UserJourneyType.Grants);
     });
 
     it('should set the user journey type and move to the boilers page when the appropriate button is clicked', async () => {
-        checkLink('.boiler', '/js/boiler', UserJourneyType.Boiler);
+        checkLink('.boiler', '/boiler', UserJourneyType.Boiler);
     });
 
     const checkLink = (selector: string, path: string, journeyType?: UserJourneyType) => {
