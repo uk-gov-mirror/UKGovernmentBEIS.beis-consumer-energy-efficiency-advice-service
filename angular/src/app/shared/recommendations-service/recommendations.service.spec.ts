@@ -10,8 +10,7 @@ import {EnergyCalculationApiService} from '../energy-calculation-api-service/ene
 import {EnergySavingMeasureContentService} from '../energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {GrantEligibilityService} from '../../grants/grant-eligibility-service/grant-eligibility.service';
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
-import {EnergyEfficiencyRecommendationTag} from
-    '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {EnergyEfficiencyRecommendationTag} from '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
 import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
@@ -201,7 +200,7 @@ describe('RecommendationsService', () => {
                 // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
                 // for measure code U
                 expect(recommendations[0].headline).toBe('Solar photovoltaic panels');
-                expect(recommendations[0].readMoreRoute).toContain('home-improvements/solar-photovoltaic-panels');
+                expect(recommendations[0].readMoreRoute).toEqual('/measures/meta_solar_photovoltaic_panels');
                 expect(recommendations[0].iconPath).toBe(EnergySavingMeasureContentService.measureIcons['U']);
                 expect(recommendations[0].advantages).toEqual(['Green', 'Cost effective']);
                 const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
