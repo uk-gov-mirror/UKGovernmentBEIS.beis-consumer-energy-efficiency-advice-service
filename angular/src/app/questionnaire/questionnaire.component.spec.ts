@@ -8,7 +8,6 @@ import {ActivatedRoute} from '@angular/router';
 import {QuestionnaireComponent} from './questionnaire.component';
 import {QuestionnaireService} from './questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
-import {SmallIndicatorComponent} from "./small-progress-indicator/small-indicator.component";
 import {StickyRowWrapperComponent} from "../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 import {QuestionContentService} from '../shared/question-content/question-content.service';
 import {AllQuestionsContent} from '../shared/question-content/all-questions-content';
@@ -131,7 +130,7 @@ describe('QuestionnaireComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 QuestionnaireComponent,
-                SmallIndicatorComponent,
+                ProgressIndicatorComponent,
                 StickyRowWrapperComponent,
                 ProgressIndicatorComponent,
                 SpinnerAndErrorContainerComponent,

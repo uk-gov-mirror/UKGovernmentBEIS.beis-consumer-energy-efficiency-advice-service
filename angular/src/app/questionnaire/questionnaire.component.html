@@ -19,8 +19,8 @@
 </div>
 <app-sticky-row-wrapper>
     <div class="sticky-row-content">
-        <app-small-indicator [questionnaire]="questionnaire"
-                             [currentQuestionIndex]="currentQuestionIndex"></app-small-indicator>
+        <app-progress-indicator [questionnaire]="questionnaire"
+                             [currentQuestionIndex]="currentQuestionIndex"></app-progress-indicator>
 
         <div class="question-heading-container">
             <button class="left-arrow" [class.hidden]="!previousQuestionExists()" [disabled]="!canGoBack()"
