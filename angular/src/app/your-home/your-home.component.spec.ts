@@ -1,6 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+import {InlineSVGModule} from 'ng-inline-svg';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import {YourHomeComponent} from './your-home.component';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
@@ -12,6 +14,10 @@ describe('YourHomeComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [YourHomeComponent],
+            imports: [
+                InlineSVGModule,
+                RouterTestingModule
+            ],
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: Router, useValue: {'navigate': function() {}}},

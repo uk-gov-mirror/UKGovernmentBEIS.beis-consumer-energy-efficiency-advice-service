@@ -48,6 +48,7 @@ export class YourHomeComponent implements OnInit {
                 // TODO:BEISDEAS-201 display a user-visible error here
                 console.error("Cannot find page content");
                 this.router.navigate(['/']);
+                return;
             }
             this.measureService.fetchMeasureDetails().subscribe(measures => {
                 this.measures = this.filterMeasures(measures);

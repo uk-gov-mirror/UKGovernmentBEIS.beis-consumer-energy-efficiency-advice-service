@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import {HeaderComponent} from './header.component';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {WordpressPageResponse} from '../../shared/wordpress-pages-service/wordpress-page-response';
@@ -11,6 +12,8 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
+import {SearchBarComponent} from "../search-bar/search-bar.component";
+import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -35,7 +38,9 @@ describe('HeaderComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [
-                HeaderComponent
+                HeaderComponent,
+                NeedHelpComponent,
+                SearchBarComponent
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
@@ -51,6 +56,7 @@ describe('HeaderComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HeaderComponent);
         component = fixture.componentInstance;
+        component.shouldCloseSearchBar = new Subject();
         fixture.detectChanges();
     });
 
@@ -58,123 +64,6 @@ describe('HeaderComponent', () => {
         it('should create', () => {
             expect(component).toBeTruthy();
         });
-
-        it('should initialise with search box collapsed', () => {
-            const searchDetailsDropdown = fixture.debugElement.query(By.css('.search-details-dropdown'));
-            expect(searchDetailsDropdown.nativeElement.clientHeight).toBe(0);
-        });
-    });
-
-    describe('#handleSearchBoxFocussed', () => {
-        it('should expand the search box', async(() => {
-            // given
-            const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
-
-            // when
-            searchBoxElement.triggerEventHandler('focus', null);
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const searchDetailsDropdown = fixture.debugElement.query(By.css('.search-details-dropdown'));
-                expect(searchDetailsDropdown.nativeElement.clientHeight).toBeGreaterThan(0);
-            });
-        }));
-
-        it('should add elements in the search box to tab navigation', async(() => {
-            // given
-            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
-            const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
-
-            // when
-            searchBoxElement.triggerEventHandler('focus', null);
-            component.search();
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const firstSearchResult = fixture.debugElement.query(By.css('.search-results .text-row'));
-                expect(firstSearchResult.nativeElement.tabIndex).toBe(0);
-            });
-        }));
-
-        it('should display search box in initial state', async(() => {
-            // given
-            const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
-
-            // when
-            searchBoxElement.triggerEventHandler('focus', null);
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.searchState).toEqual(component.searchStates.Initial);
-            });
-        }));
-    });
-
-    describe('#search', () => {
-
-        beforeEach(() => {
-            const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
-            searchBoxElement.triggerEventHandler('focus', null);
-            fixture.detectChanges();
-        });
-
-        it('should search with the correct search string', () => {
-            // given
-            const searchString = 'dummy search text';
-            component.searchText = searchString;
-
-            // when
-            component.search();
-
-            // then
-            expect(mockWordpressPagesService.searchPages).toHaveBeenCalledWith(searchString);
-            expect(mockWordpressMeasuresService.searchMeasures).toHaveBeenCalledWith(searchString);
-        });
-
-        it('should display an error if the search returns an error', async(() => {
-            // given
-            injectSearchCallbackAndDetectChanges(() => ErrorObservable.create('error'));
-
-            // when
-            component.search();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.searchState).toEqual(component.searchStates.Error);
-            });
-        }));
-
-        it('should display no-results if the search returns no results', async(() => {
-            // given
-            injectSearchCallbackAndDetectChanges(() => Observable.of([]));
-
-            // when
-            component.search();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.searchState).toEqual(component.searchStates.NoResults);
-            });
-        }));
-
-        it('should display search results returned', async(() => {
-            // given
-            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
-
-            // when
-            component.search();
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                expect(component.searchState).toEqual(component.searchStates.Results);
-                const allSearchResultElements = fixture.debugElement.queryAll(By.css('.search-results .text-row'));
-                expect(allSearchResultElements.length).toEqual(mockSearchResult.length * 2);
-            });
-        }));
     });
 
     function injectSearchCallbackAndDetectChanges(callback: (searchText: string) => Observable<WordpressPageResponse[]>) {

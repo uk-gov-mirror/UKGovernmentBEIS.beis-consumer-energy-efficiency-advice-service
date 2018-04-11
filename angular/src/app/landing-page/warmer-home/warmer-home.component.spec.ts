@@ -1,5 +1,4 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {InlineSVGModule} from 'ng-inline-svg';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -21,6 +20,8 @@ import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
+import {InlineSVGModule} from 'ng-inline-svg';
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 
 describe('WarmerHomeComponent', () => {
@@ -50,12 +51,13 @@ describe('WarmerHomeComponent', () => {
                 DataCardComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
+                SearchBarComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule,
-                InlineSVGModule,
+                InlineSVGModule
             ],
             providers: [
                 ResponseData,

@@ -1,0 +1,27 @@
+<div #searchContainer class="search-container" [ngClass]="{focussed: shouldDisplaySearchDetailsDropdown}">
+    <form class="search-form" (submit)="search()">
+        <input #searchInput class="search-input" aria-label="Search text" name="search-text" type="text"
+               [(ngModel)]="searchText" (focus)="handleSearchBoxFocussed()"/>
+        <button class="icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" title="Search" type="submit"></button>
+    </form>
+    <div class="search-details-dropdown" [ngClass]="{expanded: shouldDisplaySearchDetailsDropdown}">
+        <div class="search-results-container">
+            <div class="search-empty" *ngIf="searchState === searchStates.Initial">
+                <div class="hint">To search, type in the box above and press enter or click the search icon</div>
+            </div>
+            <div class="search-loading" *ngIf="searchState === searchStates.Loading">
+                <div class="loading-spinner-small"></div>
+            </div>
+            <div class="search-results" *ngIf="searchState === searchStates.Results">
+                <a class="text-row" *ngFor="let result of searchResults" [routerLink]="result.route"
+                   [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" (click)="collapseSearchBox()" [innerHtml]="result.title"></a>
+            </div>
+            <div class="search-no-results" *ngIf="searchState === searchStates.NoResults">
+                <div class="hint">We can't find any matching pages. Please try a different search.</div>
+            </div>
+            <div class="search-error" *ngIf="searchState === searchStates.Error">
+                <div class="error">Sorry, there was an error fetching search results. Please try again later.</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -51,7 +51,6 @@
   overflow: visible;
 
   .page-row-content {
-
     display: flex;
     align-items: center;
 
@@ -94,10 +93,24 @@
 .navigation-bar {
   @include mobile() {
     @include is-expandable-nav-bar();
+    .page-row-content {
+      padding: 0px;
+
+      app-search-bar {
+        width: 100%;
+      }
+
+      .menu-item {
+        padding-left: 20px;
+      }
+    }
   }
 
   @include tablet() {
     @include is-expandable-nav-bar();
+    app-search-bar {
+      display: none;
+    }
   }
 
   @include desktop() {
@@ -119,9 +132,12 @@
       cursor: pointer;
     }
 
-    a:hover, a:visited, a:link, a:active
-    {
-      text-decoration:none;
+    app-search-bar {
+      display: none;
+    }
+
+    a:hover, a:visited, a:link, a:active {
+      text-decoration: none;
     }
   }
 }
