@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Location} from '@angular/common';
 
 declare const gtag: any;
-declare const gaId: any;
+declare const gaId: string;
 
 @Injectable()
 export class GoogleAnalyticsService {
@@ -30,5 +30,15 @@ export class GoogleAnalyticsService {
                 event_category: 'question_answered'
             });
         }
+    }
+
+    sendEvent(eventName: string, eventCategory: string): void {
+        if (!GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
+            return;
+        }
+
+        gtag('event', eventName, {
+            event_category: eventCategory
+        });
     }
 }
