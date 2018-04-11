@@ -14,6 +14,7 @@ import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {SearchBarComponent} from "../search-bar/search-bar.component";
 import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -47,6 +48,7 @@ describe('HeaderComponent', () => {
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
                 {provide: UserStateService, useValue: mockUserStateService},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

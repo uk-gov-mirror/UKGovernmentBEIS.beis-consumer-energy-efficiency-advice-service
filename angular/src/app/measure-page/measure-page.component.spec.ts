@@ -14,6 +14,7 @@ import {WordpressMeasuresService} from '../shared/wordpress-measures-service/wor
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 describe('MeasurePageComponent', () => {
     let component: MeasurePageComponent;
@@ -75,7 +76,8 @@ describe('MeasurePageComponent', () => {
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: WordpressMeasuresService, useValue: measuresServiceStub},
-                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

@@ -30,7 +30,8 @@ describe('YourPlanFooterComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 999,
@@ -46,7 +47,8 @@ describe('YourPlanFooterComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 20,
@@ -62,7 +64,8 @@ describe('YourPlanFooterComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         }
     ];
 

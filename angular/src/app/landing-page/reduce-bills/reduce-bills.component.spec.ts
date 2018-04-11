@@ -23,6 +23,7 @@ import { PopupComponent } from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
 import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 
 describe('ReduceBillsComponent', () => {
@@ -65,7 +66,8 @@ describe('ReduceBillsComponent', () => {
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
-                {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

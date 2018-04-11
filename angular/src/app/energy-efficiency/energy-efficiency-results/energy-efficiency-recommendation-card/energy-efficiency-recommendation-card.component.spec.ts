@@ -10,8 +10,8 @@ import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-se
 import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {GrantEligibility} from '../../../grants/grant-eligibility-service/grant-eligibility';
 import {BreakEvenComponent} from '../break-even/break-even.component';
-import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {NationalGrantForMeasure} from '../../../grants/model/national-grant-for-measure';
+import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -41,7 +41,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         grant: grant,
         advantages: advantages,
         steps: [],
-        isAddedToPlan: false
+        isAddedToPlan: false,
+        codeForAnalytics: ''
     };
 
     beforeEach(async(() => {
@@ -55,6 +56,9 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
                 RouterTestingModule,
                 InlineSVGModule,
                 HttpClientTestingModule
+            ],
+            providers: [
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

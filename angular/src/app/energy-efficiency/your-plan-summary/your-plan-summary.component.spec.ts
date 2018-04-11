@@ -26,7 +26,8 @@ describe('YourPlanSummaryComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 999,
@@ -42,7 +43,8 @@ describe('YourPlanSummaryComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 20,
@@ -58,7 +60,8 @@ describe('YourPlanSummaryComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         }
     ];
 
