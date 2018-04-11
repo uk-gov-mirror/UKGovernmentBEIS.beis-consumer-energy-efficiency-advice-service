@@ -13,13 +13,8 @@
                 <div class="loading-spinner-small"></div>
             </div>
             <div class="search-results" *ngIf="searchState === searchStates.Results">
-                <div class="header">Results</div>
-                <a class="text-row" *ngFor="let result of getSearchResultsToDisplay()" [routerLink]="result.route"
+                <a class="text-row" *ngFor="let result of searchResults" [routerLink]="result.route"
                    [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" (click)="collapseSearchBox()" [innerHtml]="result.title"></a>
-                <form (ngSubmit)="displayExpandedSearchResults()">
-                    <input type="submit" value="See all" [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1"
-                           *ngIf="shouldDisplayExpandSearchResultsButton" class="see-all" />
-                </form>
             </div>
             <div class="search-no-results" *ngIf="searchState === searchStates.NoResults">
                 <div class="hint">We can't find any matching pages. Please try a different search.</div>
@@ -27,12 +22,6 @@
             <div class="search-error" *ngIf="searchState === searchStates.Error">
                 <div class="error">Sorry, there was an error fetching search results. Please try again later.</div>
             </div>
-        </div>
-        <div class="popular-searches" *ngIf="!shouldDisplayExpandedSearchResults">
-            <div class="header">Popular searches</div>
-            <a [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" class="text-row">What is micro generation?</a>
-            <a [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" class="text-row">How does switching work?</a>
-            <a [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" class="text-row">Are there any boiler grants in Northern Ireland?</a>
         </div>
     </div>
 </div>
