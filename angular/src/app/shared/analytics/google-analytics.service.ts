@@ -23,15 +23,6 @@ export class GoogleAnalyticsService {
         gtag('config', gaId, {'page_path': path});
     }
 
-    recordQuestionAnswer(questionId: string, answer: string) {
-        if (GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
-            gtag('event', questionId, {
-                event_label: answer,
-                event_category: 'question_answered'
-            });
-        }
-    }
-
     sendEvent(eventName: string, eventCategory: string, eventLabel?: string): void {
         if (!GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
             return;
@@ -39,7 +30,6 @@ export class GoogleAnalyticsService {
         const eventParams: EventParams = {
             event_category: eventCategory
         };
-
         if (eventLabel) {
             eventParams.event_label = eventLabel;
         }
