@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import * as html2pdf from 'html2pdf.js';
+import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-download-plan',
@@ -10,7 +11,8 @@ import * as html2pdf from 'html2pdf.js';
 })
 export class DownloadPlanComponent {
 
-    constructor(private responseData: ResponseData) {
+    constructor(private googleAnalyticsService: GoogleAnalyticsService,
+                private responseData: ResponseData) {
     }
 
     static clickElems(elems) {
@@ -35,6 +37,8 @@ export class DownloadPlanComponent {
     }
 
     public onPdfClicked() {
+        this.sendEventToAnalytics('download-plan_clicked');
+
         const expandableElements = document.getElementsByClassName("step-details-drawer"); // Find all expandable elements
         const elementsArray = Array.from(expandableElements); // Convert to array because they are less limited than iterables
 
@@ -97,6 +101,10 @@ export class DownloadPlanComponent {
         }
 
         DownloadPlanComponent.clickElems(nonExElementSiblings);
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'plan-page');
     }
 
     private instantiateObserver(callback) {
