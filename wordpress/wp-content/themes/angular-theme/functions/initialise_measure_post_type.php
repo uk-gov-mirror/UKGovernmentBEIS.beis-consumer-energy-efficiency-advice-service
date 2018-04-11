@@ -142,6 +142,7 @@ function setup_measure_acf_group() {
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
                         'tag_longer_term' => 'Longer term',
+                        'tag_simple_saving' => 'Simple Saving',
                         'tag_heating&hot-water' => 'Heating & Hotwater',
                         'tag_windows&doors' => 'Windows & Doors',
                         'tag_floors-walls&roofs' => 'Floors, Walls & Roofs',

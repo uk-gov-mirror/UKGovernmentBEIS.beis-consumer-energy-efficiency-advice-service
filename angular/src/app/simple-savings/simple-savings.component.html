@@ -1,0 +1,24 @@
+<div class="simple-savings-page">
+  <div class="page-heading page-row">
+    <div class="page-row-content">
+      <div class="heading-text">Simple savings</div>
+      <div class="body-text">We can help you find the right option for
+        your home or you can review all the different types below.
+      </div>
+    </div>
+  </div>
+  <div class="measures page-row">
+    <div class="page-row-content">
+      <div class="measures-list">
+        <div class="measure-cards" *ngFor="let measure of measures">
+          <div class="measure-card">
+            <div class="icon" [inlineSVG]="getMeasureIcon(measure)"></div>
+            <div class="headline">{{measure.acf.headline}}</div>
+            <div class="summary">{{measure.acf.summary}}</div>
+            <a class="link" routerLink="/measures/{{measure.slug}}">READ MORE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

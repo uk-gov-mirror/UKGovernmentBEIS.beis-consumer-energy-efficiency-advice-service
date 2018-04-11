@@ -21,6 +21,7 @@ import {AdminPageModule} from './admin-page/admin-page.module';
 import {YourHomeModule} from './your-home/your-home.module';
 import {MeesModule} from './mees/mees.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {SimpleSavingsModule} from './simple-savings/simple-savings.module';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
         InlineSVGModule,
         YourHomeModule,
         MeesModule.forRoot(),
+        SimpleSavingsModule,
     ],
     bootstrap: [AppComponent],
 })

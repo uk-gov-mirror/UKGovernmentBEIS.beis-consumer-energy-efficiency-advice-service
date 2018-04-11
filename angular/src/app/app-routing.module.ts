@@ -31,6 +31,7 @@ import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questio
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {SimpleSavingsComponent} from "./simple-savings/simple-savings.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -153,6 +154,11 @@ const routes: Routes = [
     {
         path: 'your-home/:tag',
         component: YourHomeComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'simple-savings',
+        component: SimpleSavingsComponent,
         pathMatch: 'full'
     },
     {
