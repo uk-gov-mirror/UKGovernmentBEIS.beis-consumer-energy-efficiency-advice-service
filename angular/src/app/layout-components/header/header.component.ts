@@ -35,6 +35,5 @@ export class HeaderComponent implements OnInit {
 
     toggleMobileNav(): void {
         this.onMobileNavToggled.emit();
-        this.closeSearch.emit();
     }
 }
