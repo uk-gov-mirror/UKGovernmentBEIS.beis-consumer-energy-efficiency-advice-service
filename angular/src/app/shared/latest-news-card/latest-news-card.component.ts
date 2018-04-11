@@ -8,7 +8,7 @@ import {WordpressPage} from '../wordpress-pages-service/wordpress-page';
 })
 export class LatestNewsCardComponent {
     @Input() page: WordpressPage;
-    @Output() onArticleClicked: EventEmitter<null> = new EventEmitter<null>();;
+    @Output() onArticleClicked: EventEmitter<null> = new EventEmitter<null>();
 
     onClick() {
         this.onArticleClicked.emit();

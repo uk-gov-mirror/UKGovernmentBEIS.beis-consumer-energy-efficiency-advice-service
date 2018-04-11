@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 
@@ -8,6 +8,8 @@ import {RecommendationsService} from '../../../shared/recommendations-service/re
     styleUrls: ['./your-plan-footer.component.scss']
 })
 export class YourPlanFooterComponent {
+    @Output() onDoPlan: EventEmitter<null> = new EventEmitter<null>();;
+
     get recommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
     }
@@ -25,5 +27,9 @@ export class YourPlanFooterComponent {
         } else {
             return `You have added ${this.recommendations.length} recommendations`;
         }
+    }
+
+    DoPlanClicked() {
+        this.onDoPlan.emit();
     }
 }

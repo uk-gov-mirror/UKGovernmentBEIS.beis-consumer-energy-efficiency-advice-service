@@ -32,13 +32,23 @@ export class GoogleAnalyticsService {
         }
     }
 
-    sendEvent(eventName: string, eventCategory: string): void {
+    sendEvent(eventName: string, eventCategory: string, eventLabel?: string): void {
         if (!GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
             return;
         }
-
-        gtag('event', eventName, {
+        const eventParams: EventParams = {
             event_category: eventCategory
-        });
+        };
+
+        if (eventLabel) {
+            eventParams.event_label = eventLabel;
+        }
+
+        gtag('event', eventName, eventParams);
     }
+}
+
+interface EventParams {
+    event_category: string;
+    event_label?: string;
 }
