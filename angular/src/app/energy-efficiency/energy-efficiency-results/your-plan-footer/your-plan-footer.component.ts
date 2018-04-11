@@ -8,7 +8,7 @@ import {RecommendationsService} from '../../../shared/recommendations-service/re
     styleUrls: ['./your-plan-footer.component.scss']
 })
 export class YourPlanFooterComponent {
-    @Output() onDoPlan: EventEmitter<null> = new EventEmitter<null>();;
+    @Output() onDoPlan: EventEmitter<null> = new EventEmitter<null>();
 
     get recommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
