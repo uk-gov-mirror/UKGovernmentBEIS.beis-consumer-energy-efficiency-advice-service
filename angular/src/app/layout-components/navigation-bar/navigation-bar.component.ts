@@ -73,6 +73,8 @@ export class NavigationBarComponent {
                 this.hideMobileNav();
             }
             this.showYourPlan = this.recommendationsService.getRecommendationsInPlan().length > 0;
+            // This needs to be regularly checked as it could change quite often.
+            // Performing it on a routing change is a suitable time to do this.
         });
     }
 
