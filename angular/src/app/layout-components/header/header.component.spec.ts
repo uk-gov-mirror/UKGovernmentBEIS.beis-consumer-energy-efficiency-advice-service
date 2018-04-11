@@ -10,7 +10,6 @@ import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpr
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
-import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 
 describe('HeaderComponent', () => {
@@ -36,8 +35,7 @@ describe('HeaderComponent', () => {
 
         TestBed.configureTestingModule({
             declarations: [
-                HeaderComponent,
-                NeedHelpComponent
+                HeaderComponent
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

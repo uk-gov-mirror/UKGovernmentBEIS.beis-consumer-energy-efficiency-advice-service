@@ -314,7 +314,9 @@ $desktop-header-height: 82px;
 
 @include desktop() {
   .header {
+    height: $desktop-header-height;
     @include is-full-size-header();
+
     .page-row-content {
       padding: 10px 0;
 
