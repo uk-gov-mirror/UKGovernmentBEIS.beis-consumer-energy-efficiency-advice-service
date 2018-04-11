@@ -4,13 +4,12 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {NavigationBarComponent} from './navigation-bar.component';
 import {Observable} from 'rxjs/Observable';
 import {RouterTestingModule} from '@angular/router/testing';
-import {By} from '@angular/platform-browser';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {WordpressPageResponse} from '../../shared/wordpress-pages-service/wordpress-page-response';
-import {WordpressPage} from '../../shared/wordpress-pages-service/wordpress-page';
 import {SearchBarComponent} from "../search-bar/search-bar.component";
 import {WordpressMeasuresService} from "../../shared/wordpress-measures-service/wordpress-measures.service";
 import {NavBarSuboptionComponent} from "./nav-bar-suboption/nav-bar-suboption.component";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
@@ -40,7 +39,8 @@ describe('NavigationBarComponent', () => {
             ],
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
-                {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService}
+                {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
+                {provide: RecommendationsService, useValue: {}},
             ]
         })
             .compileComponents();
