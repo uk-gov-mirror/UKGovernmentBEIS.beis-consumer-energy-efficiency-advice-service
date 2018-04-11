@@ -36,6 +36,13 @@
                 <app-nav-bar-suboption [suboptions]="financeSuboptions"></app-nav-bar-suboption>
             </ng-container>
         </div>
+
+        <ng-container *ngIf="showYourPlan">
+            <a routerLink="/energy-efficiency/your-plan/" class="menu-item">
+                <div class="menu-link-text">Your Plan</div>
+            </a>
+        </ng-container>
+
     </div>
     <div class="navigation-bar-mobile-overlay" (click)="hideMobileNav()"></div>
 </div>

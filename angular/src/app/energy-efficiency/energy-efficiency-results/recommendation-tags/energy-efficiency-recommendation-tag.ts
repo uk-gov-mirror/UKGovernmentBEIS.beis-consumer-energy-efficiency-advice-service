@@ -41,8 +41,8 @@ export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficie
     let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
     if (measureContent.acf.tags) {
         tags = measureContent.acf.tags
-            .filter(tagName => RECOMMENDATION_TAGS_BY_JSON_NAME[tagName])
             .map(tagName => RECOMMENDATION_TAGS_BY_JSON_NAME[tagName])
+            .filter(x => x)
             .reduce((result, value) => {
                 result |= value;
                 return result;

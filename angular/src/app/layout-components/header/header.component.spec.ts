@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import {HeaderComponent} from './header.component';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {WordpressPageResponse} from '../../shared/wordpress-pages-service/wordpress-page-response';
@@ -10,8 +11,9 @@ import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpr
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
-import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
+import {SearchBarComponent} from "../search-bar/search-bar.component";
+import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -37,7 +39,8 @@ describe('HeaderComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 HeaderComponent,
-                NeedHelpComponent
+                NeedHelpComponent,
+                SearchBarComponent
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
@@ -53,6 +56,7 @@ describe('HeaderComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HeaderComponent);
         component = fixture.componentInstance;
+        component.shouldCloseSearchBar = new Subject();
         fixture.detectChanges();
     });
 

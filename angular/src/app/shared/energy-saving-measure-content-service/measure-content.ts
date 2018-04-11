@@ -6,7 +6,6 @@ export interface MeasureContent  {
         measure_code: string;
         headline: string;
         summary: string;
-        featured_page: string;
         advantages: {advantage: string}[];
         tags: string[],
         steps: RecommendationStepResponse[]
