@@ -36,10 +36,11 @@ import {DataCardComponent} from './data-card/data-card.component';
 import {PopupComponent} from './popup/popup.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
 import {LatestNewsSectionComponent} from './latest-news-section/latest-news-section.component';
-import {UserStateApiService} from "./user-state-api-service/user-state-api-service";
-import {UserStateService} from "./user-state-service/user-state-service";
-import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
-import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {UserStateApiService} from './user-state-api-service/user-state-api-service';
+import {UserStateService} from './user-state-service/user-state-service';
+import {ForbiddenPageComponent} from './forbidden-page/forbidden-page.component';
+import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
+import {WordpressSearchService} from './wordpress-search-service/wordpress-search.service';
 
 @NgModule({
     declarations: [
@@ -99,6 +100,7 @@ export class SharedModule {
             providers: [
                 QuestionContentService,
                 WordpressApiService,
+                WordpressSearchService,
                 WordpressMeasuresService,
                 ResponseData,
                 EnergyCalculationApiService,

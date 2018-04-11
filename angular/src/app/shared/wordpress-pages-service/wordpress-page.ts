@@ -1,8 +1,7 @@
-import {WordpressSearchable} from '../wordpress-api-service/wordpress-searchable';
 import {WordpressPageResponse} from './wordpress-page-response';
 import {AcfImage} from './acf-image';
 
-export class WordpressPage implements WordpressSearchable {
+export class WordpressPage {
     route: string;
     title: string;
     coverImage?: AcfImage;
