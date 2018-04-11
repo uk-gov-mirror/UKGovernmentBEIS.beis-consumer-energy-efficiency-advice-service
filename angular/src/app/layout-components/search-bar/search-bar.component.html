@@ -14,7 +14,9 @@
             </div>
             <div class="search-results" *ngIf="searchState === searchStates.Results">
                 <a class="text-row" *ngFor="let result of searchResults" [routerLink]="result.route"
-                   [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" (click)="collapseSearchBox()" [innerHtml]="result.title"></a>
+                   [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" [innerHtml]="result.title"
+                   (click)="collapseSearchBox(); sendEventToAnalytics('search-result_clicked', result.route)"
+                ></a>
             </div>
             <div class="search-no-results" *ngIf="searchState === searchStates.NoResults">
                 <div class="hint">We can't find any matching pages. Please try a different search.</div>
