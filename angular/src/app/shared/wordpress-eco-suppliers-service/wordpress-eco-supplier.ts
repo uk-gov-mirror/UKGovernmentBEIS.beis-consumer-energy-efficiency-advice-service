@@ -3,7 +3,7 @@
  */
 export class WordpressECOSupplier {
     // The slug is used to fetch the logo for the ECO supplier from
-    // /assets/images/eco-suppliers/{{slug}}.jpeg
+    // /wp-content/uploads/eco-suppliers/{{slug}}.jpeg
     slug: string;
     name: string;
     link: string;

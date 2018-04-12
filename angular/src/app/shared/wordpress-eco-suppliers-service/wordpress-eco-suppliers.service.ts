@@ -3,6 +3,9 @@ import {Observable} from 'rxjs/Observable';
 import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 import {RawWordpressECOSupplier, WordpressECOSupplier} from './wordpress-eco-supplier';
 
+/**
+ * Fetches suppliers participating in the Energy Company Obligation (ECO)
+ */
 @Injectable()
 export class WordpressECOSuppliersService {
     private static readonly ecoSuppliersEndpoint = 'acf/v3/eco-supplier';
