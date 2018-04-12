@@ -25,4 +25,9 @@ export class WordpressApiService {
         return this.http.get<T[]>(this.getFullApiEndpoint(urlPath), {params: params})
             .map(posts => posts.length === 1 ? posts[0] : null);
     }
+
+    getPosts<T>(urlPath: string): Observable<T[]> {
+        const params = new HttpParams().set('per_page', '1000');
+        return this.http.get<T[]>(this.getFullApiEndpoint(urlPath), {params: params});
+    }
 }

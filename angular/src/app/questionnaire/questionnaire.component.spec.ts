@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, ComponentFactoryResolver} from '@angular/core';
+import {ChangeDetectorRef, Component, NgModule} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
@@ -46,17 +46,6 @@ describe('QuestionnaireComponent', () => {
     const userStateServiceStub = {
         sendState: () => {}
     };
-
-    class TestQuestionComponent extends QuestionBaseComponent {
-        responseForAnalytics: string;
-
-        get response(): void {
-            return null;
-        }
-
-        set response(val: void) {
-        }
-    }
 
     class TestQuestion extends QuestionMetadata {
         hasBeenAnswered() {
@@ -134,11 +123,15 @@ describe('QuestionnaireComponent', () => {
                 StickyRowWrapperComponent,
                 ProgressIndicatorComponent,
                 SpinnerAndErrorContainerComponent,
-                QuestionReasonComponent
+                QuestionReasonComponent,
             ],
-            imports: [RouterTestingModule.withRoutes([]), InlineSVGModule, HttpClientTestingModule],
+            imports: [
+                RouterTestingModule.withRoutes([]),
+                InlineSVGModule,
+                HttpClientTestingModule,
+                TestQuestionModule
+            ],
             providers: [
-                ComponentFactoryResolver,
                 ChangeDetectorRef,
                 GoogleAnalyticsService,
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
@@ -274,3 +267,24 @@ describe('QuestionnaireComponent', () => {
         });
     });
 });
+
+@Component({template: ''})
+class TestQuestionComponent extends QuestionBaseComponent {
+    responseForAnalytics: string;
+
+    get response(): void {
+        return null;
+    }
+
+    set response(val: void) {
+    }
+}
+
+@NgModule({
+    declarations: [TestQuestionComponent],
+    imports: [],
+    entryComponents: [TestQuestionComponent], // <-- very important!
+    exports: [TestQuestionComponent]
+})
+export class TestQuestionModule {
+}

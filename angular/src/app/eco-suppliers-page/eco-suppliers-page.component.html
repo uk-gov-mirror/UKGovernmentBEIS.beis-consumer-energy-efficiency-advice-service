@@ -1,0 +1,10 @@
+<div class="eco-suppliers-page page-row">
+    <div class="page-row-content">
+        <div *ngFor="let supplier of suppliers$ | async">
+            <a [href]="supplier.link">
+                <img src="/wp-content/uploads/eco-suppliers/{{supplier.slug}}.jpeg" [alt]="supplier.name"/>
+                <span>{{supplier.name}}</span>
+            </a>
+        </div>
+    </div>
+</div>

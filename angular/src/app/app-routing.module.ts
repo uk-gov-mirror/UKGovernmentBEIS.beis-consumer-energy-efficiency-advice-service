@@ -30,6 +30,7 @@ import {YourHomeComponent} from './your-home/your-home.component';
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
+import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
 
@@ -205,6 +206,11 @@ const routes: Routes = [
     {
         path: 'forbidden',
         component: ForbiddenPageComponent
+    },
+    {
+        path: 'eco-suppliers',
+        component: ECOSuppliersPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'measures/:slug',
