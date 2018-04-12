@@ -54,6 +54,16 @@ module.exports = function (config) {
                 ]
             }
         },
+        // These "proxies" fix 404s during the tests
+        // See https://github.com/angular/angular-cli/issues/2803
+        proxies: {
+            '/dist/assets': '/base/src/assets',
+            // I'm not sure why these SVG files are being accessed without the /assets/images
+            // prefix during tests, but they load OK in the compiled app.
+            '/controls': '/base/src/assets/images/controls',
+            '/question-types': '/base/src/assets/images/question-types',
+            '/icons': '/base/src/assets/images/icons',
+        },
         browserNoActivityTimeout: 60000, //default 10000
         browserDisconnectTimeout: 10000, // default 2000
         browserDisconnectTolerance: 1, // default 0

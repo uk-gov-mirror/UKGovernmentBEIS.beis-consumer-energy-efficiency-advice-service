@@ -20,22 +20,18 @@ export class YourHomeComponent implements OnInit {
         'heating&hot-water': {
             tag: 'tag_heating&hot-water',
             title: 'Heating & Hotwater',
-            text: 'Heating your home can be expensive. Here are a few options for reducing the overall costs.',
         },
         'windows&doors': {
             tag: 'tag_windows&doors',
             title: 'Windows & Doors',
-            text: 'Double glazing and draught excluders keep the cold out and keep your home warm for less.',
         },
         'floors-walls&roofs': {
             tag: 'tag_floors-walls&roofs',
             title: 'Floors, Walls & Roofs',
-            text: 'Simple measures like loft insulation can make a huge impact.',
         },
         'solar-energy': {
             tag: 'tag_solar-energy',
             title: 'Solar Energy',
-            text: 'Solar panels are a good long term investment and are easy to have installed if your house is suitable.',
         }
     };
 
@@ -52,11 +48,16 @@ export class YourHomeComponent implements OnInit {
                 // TODO:BEISDEAS-201 display a user-visible error here
                 console.error("Cannot find page content");
                 this.router.navigate(['/']);
+                return;
             }
             this.measureService.fetchMeasureDetails().subscribe(measures => {
                 this.measures = this.filterMeasures(measures);
             });
         });
+    }
+
+    getMeasureIcon(measure: MeasureContent) {
+        return EnergySavingMeasureContentService.measureIcons[measure.acf.measure_code];
     }
 
     private filterMeasures(measures: MeasureContent[]) {
@@ -69,5 +70,4 @@ interface YourHomeContent {
     parameterString: string;
     tag: string;
     title: string;
-    text: string;
 }

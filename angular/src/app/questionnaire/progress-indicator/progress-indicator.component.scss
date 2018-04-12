@@ -7,190 +7,38 @@
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
-:host {
-  background: white;
-}
 
-.progress-indicator-component {
-  $color-list: (
-    #2a759c, $primary-blue, #52cea9, #78d523
-  );
+.progress-indicator {
+  padding: 20px;
 
-  $progress-indicator-height: 40px;
+  .completion-percentage {
+    margin-bottom: 10px;
+  }
 
-  display: flex;
-  height: $progress-indicator-height;
-  width: 100%;
-
-  .progress-indicator {
+  .completion-bar {
+    position: relative;
+    background-color: $dark-grey;
+    height: 10px;
     display: flex;
-    flex-grow: 1;
+    align-content: flex-start;
+    width: 100%;
 
-    .pre-questionnaire-sections {
-      background-color: nth($color-list, 1);
-      flex: 1 1 auto;
-    }
-
-    .questionnaire-sections {
-      max-width: $content-max-width;
-      flex: 1 1 100%;
-      display: flex;
-    }
-
-    .post-questionnaire-sections {
-      background-color: #d8d8d8;
-      flex: 1 1 auto;
-    }
-
-    .questionnaire-section {
-      flex-grow: 1;
-      display: flex;
-      position: relative;
-      align-items: center;
-
-      &:not(:first-child) {
-        padding-left: 20px;
-      }
-
-      &::after {
-        position: absolute;
-        top: 6px;
-        right: calc(-1 * #{$progress-indicator-height} / (2 * #{$SQRT2}));
-        content: '';
-        transform: rotate(-45deg);
-        width: calc(#{$progress-indicator-height} / #{$SQRT2});
-        height: calc(#{$progress-indicator-height} / #{$SQRT2});
-      }
-
-      &.information-section {
-        flex: 0 0 auto;
-        text-transform: uppercase;
-        color: white;
-        font-size: 11px;
-        font-weight: bold;
-        padding-right: 18px;
-
-        .journey-heading {
-          margin-right: 35px;
-        }
-
-        .clock ::ng-deep svg {
-          fill: white;
-        }
-
-        .time-needed {
-          margin-left: 10px;
-        }
-      }
-
-      @for $i from 1 through length($color-list) {
-        &:nth-child(#{$i}) {
-          z-index: #{10 - $i};
-          background-color: nth($color-list, $i);
-
-          &::after {
-            background-color: nth($color-list, $i);
-          }
-        }
-      }
-
-      .horizontal-dashed-line {
-        border-bottom: 1px dashed white;
-        flex: 1;
-      }
-
-      .question-type-icon-container, .progress-indicator-step {
-        display: flex;
-        align-items: center;
-        z-index: 1;
-      }
-
-      .question-type-icon-container {
-        flex: 1.5;
-
-        .question-type-icon {
-          margin-left: 10px;
-          margin-right: 10px;
-
-          ::ng-deep svg {
-            width: 28px;
-            height: 28px;
-          }
-
-          .person ::ng-deep svg {
-            path {
-              fill: white;
-            }
-          }
-
-          .house ::ng-deep svg {
-            polygon {
-              fill: white;
-            }
-
-            polyline {
-              stroke: white;
-            }
-          }
-
-          .thermostat ::ng-deep svg {
-            path {
-              stroke: white;
-            }
-
-            circle {
-              fill: white;
-            }
-          }
-        }
-      }
-
-      .progress-indicator-step {
-        flex: 1;
-
-        &:last-child {
-          .horizontal-dashed-line {
-            margin-right: -15px;
-          }
-        }
-
-        .step-link {
-          padding: 0;
-          width: 10px;
-          height: 10px;
-          border-radius: 15px;
-          border: none;
-          background: white;
-
-          &.active {
-            background-color: black;
-          }
-
-          &:not(:disabled) {
-            cursor: pointer;
-
-            &:hover {
-              background-color: black;
-            }
-          }
-
-          &.not-applicable {
-            background-color: $light-medium-grey;
-          }
-        }
-      }
+    .completion-bar-content {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $focus-blue;
     }
   }
 }
 
 // Breakpoint specific styling
-.progress-indicator-component {
+.progress-indicator {
   @include mobile() {
-    display: none;
   }
 
   @include tablet() {
-    display: none;
   }
 
   @include desktop() {

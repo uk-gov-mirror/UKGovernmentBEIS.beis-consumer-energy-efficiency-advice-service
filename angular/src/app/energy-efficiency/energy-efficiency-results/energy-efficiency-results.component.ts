@@ -16,6 +16,7 @@ import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 import {UserStateService} from '../../shared/user-state-service/user-state-service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -49,7 +50,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
                 private energyCalculationService: EnergyCalculationApiService,
-                private userStateService: UserStateService) {
+                private userStateService: UserStateService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
     ngOnInit() {
@@ -83,6 +85,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getRecommendationsInPlan();
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page');
     }
 
     private onDisplayedRecommendationCardsChanged() {

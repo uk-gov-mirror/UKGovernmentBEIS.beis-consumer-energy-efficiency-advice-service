@@ -19,6 +19,7 @@ import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -50,7 +51,8 @@ describe('YourPlanPageComponent', () => {
                 moreInfoLinks: []
             }
             ],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 999,
@@ -66,7 +68,8 @@ describe('YourPlanPageComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 20,
@@ -82,7 +85,8 @@ describe('YourPlanPageComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         }
     ];
 
@@ -137,7 +141,8 @@ describe('YourPlanPageComponent', () => {
             providers: [
                 {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
-                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub}
+                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
+                GoogleAnalyticsService,
             ],
             imports: [
                 RouterTestingModule,

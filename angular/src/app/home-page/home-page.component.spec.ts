@@ -1,5 +1,4 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {InlineSVGModule} from 'ng-inline-svg';
 import {HomePageComponent} from './home-page.component';
 import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
 import {ResponseData} from '../shared/response-data/response-data';
@@ -9,10 +8,14 @@ import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {Location} from '@angular/common';
 import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
 import {QuestionnaireService} from '../questionnaire/questionnaire.service';
+import {FormsModule} from '@angular/forms';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
+import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -27,21 +30,18 @@ describe('HomePageComponent', () => {
     beforeEach(async(() => {
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
-            declarations: [HomePageComponent, LatestNewsSectionComponent, LatestNewsCardComponent, NavigationBarComponent,
-                NavBarSuboptionComponent],
-            imports: [
-                RouterTestingModule.withRoutes([
-                    {path: 'energy-efficiency/questionnaire/home-basics', component: DummyComponent},
-                    {path: 'energy-efficiency/results', component: DummyComponent},
-                    {path: 'grants', component: DummyComponent},
-                    {path: 'boiler', component: DummyComponent},
-                    {path: 'energy-efficiency/reduce-bills', component: DummyComponent},
-                    {path: 'energy-efficiency/warmer-home', component: DummyComponent},
-                    {path: 'energy-efficiency/home-improvements', component: DummyComponent},
-                    {path: 'energy-efficiency/greener-home', component: DummyComponent}
-                ]),
-                InlineSVGModule,
-            ],
+            declarations: [HomePageComponent, LatestNewsSectionComponent,
+                LatestNewsCardComponent, NavBarSuboptionComponent, NavigationBarComponent, SearchBarComponent],
+            imports: [RouterTestingModule.withRoutes([
+                {path: 'energy-efficiency/questionnaire/home-basics', component: DummyComponent},
+                {path: 'energy-efficiency/results', component: DummyComponent},
+                {path: 'grants', component: DummyComponent},
+                {path: 'boiler', component: DummyComponent},
+                {path: 'energy-efficiency/reduce-bills', component: DummyComponent},
+                {path: 'energy-efficiency/warmer-home', component: DummyComponent},
+                {path: 'energy-efficiency/home-improvements', component: DummyComponent},
+                {path: 'energy-efficiency/greener-home', component: DummyComponent},
+            ]), FormsModule, InlineSVGModule],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},
                 {
@@ -51,7 +51,9 @@ describe('HomePageComponent', () => {
                 {
                     provide: WordpressPagesService,
                     useValue: {getLatestPages: () => Observable.of([])}
-                }]
+                },
+                GoogleAnalyticsService,
+            ]
         })
             .compileComponents();
     }));

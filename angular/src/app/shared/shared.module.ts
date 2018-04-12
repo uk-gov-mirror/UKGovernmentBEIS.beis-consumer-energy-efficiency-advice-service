@@ -11,6 +11,7 @@ import {WordpressApiService} from './wordpress-api-service/wordpress-api-service
 import {ResponseData} from './response-data/response-data';
 import {EnergyCalculationApiService} from './energy-calculation-api-service/energy-calculation-api-service';
 import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
+import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {RoutingModule} from '../app-routing.module';
 import {LatestNewsCardComponent} from './latest-news-card/latest-news-card.component';
 import {RadialPercentageComponent} from './radial-percentage/radial-percentage.component';
@@ -46,6 +47,7 @@ import {WordpressSuppliersService} from "./wordpress-suppliers-service/wordpress
         PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
+        SearchBarComponent,
         NavBarSuboptionComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
@@ -67,6 +69,7 @@ import {WordpressSuppliersService} from "./wordpress-suppliers-service/wordpress
         TimesPipe,
         NavigationBarComponent,
         NavBarSuboptionComponent,
+        SearchBarComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,

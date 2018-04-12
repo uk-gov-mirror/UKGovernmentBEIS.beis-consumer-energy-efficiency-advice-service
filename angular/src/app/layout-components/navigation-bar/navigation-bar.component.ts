@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@ang
 import {NavigationStart, Router} from "@angular/router";
 
 import {NavigationSuboption} from "./navigation-suboption";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-navigation-bar',
@@ -54,6 +56,7 @@ export class NavigationBarComponent {
     showHomeMenu: boolean = false;
     showRentedMenu: boolean = false;
     showFinanceMenu: boolean = false;
+    showYourPlan: boolean = false;
 
     @Input() shouldExpandNav: boolean;
     @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
@@ -64,11 +67,17 @@ export class NavigationBarComponent {
 
     private deregisterClickListener: () => void;
 
-    constructor(private renderer: Renderer2, private router: Router) {
+    constructor(private renderer: Renderer2,
+                private router: Router,
+                private recommendationsService: RecommendationsService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
         router.events.subscribe((event) => {
             if (event instanceof NavigationStart && this.shouldExpandNav) {
                 this.hideMobileNav();
             }
+            this.showYourPlan = this.recommendationsService.getRecommendationsInPlan().length > 0;
+            // This needs to be regularly checked as it could change quite often.
+            // Performing it on a routing change is a suitable time to do this.
         });
     }
 
@@ -101,8 +110,15 @@ export class NavigationBarComponent {
         }
     }
 
-
     hideMobileNav() {
         this.onHideMobileNav.emit();
+    }
+
+    navLinkClicked(name: string) {
+        this.sendEventToAnalytics('nav-link_clicked', name);
+    }
+
+    sendEventToAnalytics(eventName: string, eventLabel: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'nav-bar', eventLabel);
     }
 }
