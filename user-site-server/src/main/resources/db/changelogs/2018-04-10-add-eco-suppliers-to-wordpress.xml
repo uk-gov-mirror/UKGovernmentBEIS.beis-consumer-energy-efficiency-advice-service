@@ -18,213 +18,213 @@
 
 -- British Gas
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9435, 1, 'British Gas', 'british-gas', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9535, 1, 'British Gas', 'british-gas', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9435, 'name', 'British Gas');
+VALUES (9535, 'name', 'British Gas');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9435, '_name', 'field_5a9577ec6836a');
+VALUES (9535, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9435, 'supplier_info_link', 'https://www.britishgas.co.uk/');
+VALUES (9535, 'supplier_info_link', 'https://www.britishgas.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9435, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9535, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- E.ON Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9436, 1, 'E.ON Energy', 'e-on-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9536, 1, 'E.ON Energy', 'e-on-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9436, 'name', 'E.ON Energy');
+VALUES (9536, 'name', 'E.ON Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9436, '_name', 'field_5a9577ec6836a');
+VALUES (9536, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9436, 'supplier_info_link', 'https://www.eonenergy.com/');
+VALUES (9536, 'supplier_info_link', 'https://www.eonenergy.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9436, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9536, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- npower
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9437, 1, 'npower', 'npower', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9537, 1, 'npower', 'npower', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9437, 'name', 'npower');
+VALUES (9537, 'name', 'npower');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9437, '_name', 'field_5a9577ec6836a');
+VALUES (9537, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9437, 'supplier_info_link', 'http://www.npower.com/');
+VALUES (9537, 'supplier_info_link', 'http://www.npower.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9437, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9537, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- EDF Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9438, 1, 'EDF Energy', 'edf-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9538, 1, 'EDF Energy', 'edf-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9438, 'name', 'EDF Energy');
+VALUES (9538, 'name', 'EDF Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9438, '_name', 'field_5a9577ec6836a');
+VALUES (9538, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9438, 'supplier_info_link', 'https://www.edfenergy.com/');
+VALUES (9538, 'supplier_info_link', 'https://www.edfenergy.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9438, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9538, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- Scottish and Southern Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9439, 1, 'Scottish and Southern Energy', 'scottish-and-southern-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9539, 1, 'Scottish and Southern Energy', 'scottish-and-southern-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9439, 'name', 'Scottish and Southern Energy');
+VALUES (9539, 'name', 'Scottish and Southern Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9439, '_name', 'field_5a9577ec6836a');
+VALUES (9539, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9439, 'supplier_info_link', 'https://sse.co.uk/');
+VALUES (9539, 'supplier_info_link', 'https://sse.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9439, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9539, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- ScottishPower
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9440, 1, 'ScottishPower', 'scottishpower', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9540, 1, 'ScottishPower', 'scottishpower', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9440, 'name', 'ScottishPower');
+VALUES (9540, 'name', 'ScottishPower');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9440, '_name', 'field_5a9577ec6836a');
+VALUES (9540, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9440, 'supplier_info_link', 'https://www.scottishpower.co.uk/');
+VALUES (9540, 'supplier_info_link', 'https://www.scottishpower.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9440, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9540, '_supplier_info_link', 'field_5a9578756836c');
 
 
 
 -- First Utility
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9441, 1, 'First Utility', 'first-utility', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9541, 1, 'First Utility', 'first-utility', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9441, 'name', 'First Utility');
+VALUES (9541, 'name', 'First Utility');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9441, '_name', 'field_5a9577ec6836a');
+VALUES (9541, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9441, 'supplier_info_link', 'https://www.first-utility.com/');
+VALUES (9541, 'supplier_info_link', 'https://www.first-utility.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9441, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9541, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- The Co-operative Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9442, 1, 'The Co-operative Energy', 'the-co-operative-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9542, 1, 'The Co-operative Energy', 'the-co-operative-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9442, 'name', 'The Co-operative Energy');
+VALUES (9542, 'name', 'The Co-operative Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9442, '_name', 'field_5a9577ec6836a');
+VALUES (9542, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9442, 'supplier_info_link', 'https://www.cooperativeenergy.coop/');
+VALUES (9542, 'supplier_info_link', 'https://www.cooperativeenergy.coop/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9442, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9542, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- Utilita
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9443, 1, 'Utilita', 'utilita', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9543, 1, 'Utilita', 'utilita', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9443, 'name', 'Utilita');
+VALUES (9543, 'name', 'Utilita');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9443, '_name', 'field_5a9577ec6836a');
+VALUES (9543, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9443, 'supplier_info_link', 'https://utilita.co.uk/');
+VALUES (9543, 'supplier_info_link', 'https://utilita.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9443, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9543, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- OVO
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9444, 1, 'OVO', 'ovo', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9544, 1, 'OVO', 'ovo', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9444, 'name', 'OVO');
+VALUES (9544, 'name', 'OVO');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9444, '_name', 'field_5a9577ec6836a');
+VALUES (9544, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9444, 'supplier_info_link', 'https://www.ovoenergy.com/');
+VALUES (9544, 'supplier_info_link', 'https://www.ovoenergy.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9444, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9544, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- The Utility Warehouse
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9445, 1, 'The Utility Warehouse', 'the-utility-warehouse', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9545, 1, 'The Utility Warehouse', 'the-utility-warehouse', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9445, 'name', 'The Utility Warehouse');
+VALUES (9545, 'name', 'The Utility Warehouse');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9445, '_name', 'field_5a9577ec6836a');
+VALUES (9545, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9445, 'supplier_info_link', 'https://www.utilitywarehouse.co.uk/');
+VALUES (9545, 'supplier_info_link', 'https://www.utilitywarehouse.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9445, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9545, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- Extra Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9446, 1, 'Extra Energy', 'extra-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9546, 1, 'Extra Energy', 'extra-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9446, 'name', 'Extra Energy');
+VALUES (9546, 'name', 'Extra Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9446, '_name', 'field_5a9577ec6836a');
+VALUES (9546, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9446, 'supplier_info_link', 'http://www.extraenergy.com/');
+VALUES (9546, 'supplier_info_link', 'http://www.extraenergy.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9446, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9546, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- Economy Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9447, 1, 'Economy Energy', 'economy-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9547, 1, 'Economy Energy', 'economy-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9447, 'name', 'Economy Energy');
+VALUES (9547, 'name', 'Economy Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9447, '_name', 'field_5a9577ec6836a');
+VALUES (9547, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9447, 'supplier_info_link', 'https://www.economyenergy.co.uk/');
+VALUES (9547, 'supplier_info_link', 'https://www.economyenergy.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9447, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9547, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- Flow Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9448, 1, 'Flow Energy', 'flow-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9548, 1, 'Flow Energy', 'flow-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9448, 'name', 'Flow Energy');
+VALUES (9548, 'name', 'Flow Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9448, '_name', 'field_5a9577ec6836a');
+VALUES (9548, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9448, 'supplier_info_link', 'https://www.flowenergy.uk.com/');
+VALUES (9548, 'supplier_info_link', 'https://www.flowenergy.uk.com/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9448, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9548, '_supplier_info_link', 'field_5a9578756836c');
 
 
 -- Spark Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9449, 1, 'Spark Energy', 'spark-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9549, 1, 'Spark Energy', 'spark-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9449, 'name', 'Spark Energy');
+VALUES (9549, 'name', 'Spark Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9449, '_name', 'field_5a9577ec6836a');
+VALUES (9549, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9449, 'supplier_info_link', 'https://sparkenergy.co.uk/');
+VALUES (9549, 'supplier_info_link', 'https://sparkenergy.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (9449, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (9549, '_supplier_info_link', 'field_5a9578756836c');
 
 
 ]]></sql>
