@@ -20,11 +20,15 @@
       .body-text {
         padding: 20px 0;
       }
+
+      .link-button {
+        display: flex;
+      }
     }
 
     .boiler-types {
       background-color: $lighter-grey;
-      padding: 20px;
+      padding: 20px 0;
 
       .body-text {
         padding: 20px 0;

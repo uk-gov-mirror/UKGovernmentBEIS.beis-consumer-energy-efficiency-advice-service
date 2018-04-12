@@ -1,158 +1,214 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
 
-:host {
-  display: block;
-}
+// Component specific variables
 
-:host.white {
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+
+// Breakpoint specific styling
+@include mobile() {
+
   .boiler-replacement-card {
-    .main-row {
-      background: white;
-      border-bottom: 2px solid $lighter-grey;
-      .details {
-        border-right: 2px solid $lighter-grey;
-      }
-      .installation {
-        border-right: 2px solid $lighter-grey;
-      }
-    }
-    .secondary-row {
-      background: white;
-    }
-  }
-}
-
-.boiler-replacement-card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-
-  cursor: pointer;
-  text-decoration: none;
-  color: $dark-grey;
-  &:focus, &:hover {
-    .main-row .details .content .name {
-      text-decoration: underline;
-    }
-  }
-
-  .main-row {
-    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: stretch;
 
-    background: $lighter-grey;
-    border-bottom: 2px solid white;
-
-    .details, .box {
-      padding: 64px 16px 44px 16px;
-    }
+    text-decoration: none;
+    color: $dark-grey;
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 30px 20px;
 
     .details {
-      flex: 1 1 auto;
       display: flex;
+      flex-direction: row-reverse;
       align-items: flex-start;
-
-      padding-left: 8px;
-      padding-right: 36px;
-      border-right: 2px solid white;
-
-      .icon {
-        position: relative;
-        top: -2px;
-        margin-right: 12px;
-      }
 
       .content {
         .name {
           font-size: 24px;
-          line-height: 32px;
           font-weight: bold;
-
-          margin-bottom: 16px;
+          margin-bottom: 20px;
         }
 
         .description {
-          font-size: 14px;
-          line-height: 18px;
-          font-family: $font-family-light;
+          font-family: $font-family;
+          padding-bottom: 20px;
         }
       }
     }
 
     .box {
-      flex: 0 0 auto;
-      width: 200px;
       box-sizing: border-box;
+      margin: 0 -20px;
+      padding: 10px 20px;
+      border-top: 5px solid $lighter-grey;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      .title {
-        font-size: 11px;
-        line-height: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-
-        height: 30px;
-        margin-bottom: 10px;
-      }
-
-      .value {
-        font-size: 36px;
-        line-height: 48px;
-        font-weight: bold;
-        text-align: center;
+      &:last-of-type {
+        border-bottom: 5px solid $lighter-grey;
       }
     }
 
-    .installation {
-      border-right: 2px solid white;
+
+  }
+}
+
+@include desktop() {
+  :host {
+    display: block;
+  }
+
+  :host.white {
+    .boiler-replacement-card {
+      .main-row {
+        background: white;
+        border-bottom: 2px solid $lighter-grey;
+        .details {
+          border-right: 2px solid $lighter-grey;
+        }
+        .installation {
+          border-right: 2px solid $lighter-grey;
+        }
+      }
+      .secondary-row {
+        background: white;
+      }
     }
   }
 
-  .secondary-row {
-    width: 100%;
+  .boiler-replacement-card {
     display: flex;
+    flex-direction: column;
     align-items: stretch;
 
-    background: $lighter-grey;
+    cursor: pointer;
+    text-decoration: none;
+    color: $dark-grey;
+    &:focus, &:hover {
+      .main-row .details .content .name {
+        text-decoration: underline;
+      }
+    }
 
-    .content {
-      width: calc(100% - 400px);
-      padding: 36px 36px 64px 68px;
-      box-sizing: border-box;
-
+    .main-row {
+      width: 100%;
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
 
-      .lifetime, .space {
-        flex: 0 0 50%;
+      background: $lighter-grey;
+      border-bottom: 2px solid white;
+
+      .details, .box {
+        padding: 64px 16px 44px 16px;
+      }
+
+      .details {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: flex-start;
+
+        padding-left: 8px;
+        padding-right: 36px;
+        border-right: 2px solid white;
+
+        .icon {
+          position: relative;
+          top: -2px;
+          margin-right: 12px;
+        }
+
+        .content {
+          .name {
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: bold;
+
+            margin-bottom: 16px;
+          }
+
+          .description {
+            font-size: 14px;
+            line-height: 18px;
+            font-family: $font-family-light;
+          }
+        }
+      }
+
+      .box {
+        flex: 0 0 auto;
+        width: 200px;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .title {
+          font-size: 11px;
+          line-height: 15px;
+          font-weight: bold;
+          text-transform: uppercase;
+          text-align: center;
+
+          height: 30px;
+          margin-bottom: 10px;
+        }
+
+        .value {
+          font-size: 36px;
+          line-height: 48px;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+
+      .installation {
+        border-right: 2px solid white;
+      }
+    }
+
+    .secondary-row {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+
+      background: $lighter-grey;
+
+      .content {
+        width: calc(100% - 400px);
+        padding: 36px 36px 64px 68px;
+        box-sizing: border-box;
 
         display: flex;
         align-items: flex-start;
 
-        .title {
-          font-size: 11px;
-          line-height: 18px;
-          font-weight: 500;
-          text-transform: uppercase;
-          color: $primary-blue;
+        .lifetime, .space {
+          flex: 0 0 50%;
 
-          flex: 0 0 auto;
-          margin-right: 24px;
-        }
+          display: flex;
+          align-items: flex-start;
 
-        .value {
-          font-size: 14px;
-          line-height: 18px;
-          font-family: $font-family-light;
+          .title {
+            font-size: 11px;
+            line-height: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $primary-blue;
 
-          flex: 1 1 auto;
+            flex: 0 0 auto;
+            margin-right: 24px;
+          }
+
+          .value {
+            font-size: 14px;
+            line-height: 18px;
+            font-family: $font-family-light;
+
+            flex: 1 1 auto;
+          }
         }
       }
     }
