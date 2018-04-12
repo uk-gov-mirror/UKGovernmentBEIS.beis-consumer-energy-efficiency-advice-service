@@ -22,6 +22,7 @@ import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-n
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {InlineSVGModule} from 'ng-inline-svg';
 import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -61,7 +62,8 @@ describe('LandingPageComponent', () => {
             ],
             providers: [
                 ResponseData,
-                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}}
+                {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

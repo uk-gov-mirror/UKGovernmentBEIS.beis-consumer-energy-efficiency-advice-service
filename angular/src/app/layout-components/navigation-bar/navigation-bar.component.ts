@@ -3,6 +3,7 @@ import {NavigationStart, Router} from "@angular/router";
 
 import {NavigationSuboption} from "./navigation-suboption";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-navigation-bar',
@@ -68,7 +69,8 @@ export class NavigationBarComponent {
 
     constructor(private renderer: Renderer2,
                 private router: Router,
-                private recommendationsService: RecommendationsService) {
+                private recommendationsService: RecommendationsService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
         router.events.subscribe((event) => {
             if (event instanceof NavigationStart && this.shouldExpandNav) {
                 this.hideMobileNav();
@@ -108,8 +110,15 @@ export class NavigationBarComponent {
         }
     }
 
-
     hideMobileNav() {
         this.onHideMobileNav.emit();
+    }
+
+    navLinkClicked(name: string) {
+        this.sendEventToAnalytics('nav-link_clicked', name);
+    }
+
+    sendEventToAnalytics(eventName: string, eventLabel: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'nav-bar', eventLabel);
     }
 }

@@ -71,7 +71,10 @@ public class IndexController {
             log.error("The angular files were not found in the resources dir. "
                 + "The application will not work!");
             angularHeadContent = "";
-            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly";
+            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly.<p>" +
+                "On a dev machine, ensure that you have 'ng build --watch' running, then " +
+                "right click on the project in IntelliJ, click 'synchronise', then re-build " +
+                "and re-launch the Java app.";
         }
     }
 
@@ -94,6 +97,7 @@ public class IndexController {
         "/forbidden/**",
         "/measures/**",
         "/your-home/**",
+        "/eco-suppliers/**",
         "/pages/**",
     },
         method = GET)

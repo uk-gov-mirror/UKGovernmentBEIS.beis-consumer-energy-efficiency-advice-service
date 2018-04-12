@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-searchable';
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-search-bar',
@@ -10,13 +11,10 @@ import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-
     styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
-    static readonly reducedSearchResultsQuantity = 3;
 
     shouldDisplaySearchDetailsDropdown: boolean = false;
-    shouldDisplayExpandSearchResultsButton: boolean = false;
-    shouldDisplayExpandedSearchResults: boolean = false;
-    shouldExpandNav: boolean = false;
     searchText: string;
+   searchResults: WordpressSearchable[] = [];
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
@@ -25,13 +23,13 @@ export class SearchBarComponent {
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
 
-    private allSearchResults: WordpressSearchable[] = [];
     private deregisterWindowClickListener: () => void;
 
     constructor(
         private renderer: Renderer2,
         private changeDetector: ChangeDetectorRef,
         private wordpressPagesService: WordpressPagesService,
+        private googleAnalyticsService: GoogleAnalyticsService,
         private wordpressMeasuresService: WordpressMeasuresService) {
     }
 
@@ -55,6 +53,7 @@ export class SearchBarComponent {
     }
 
     handleSearchBoxFocussed(): void {
+        this.sendEventToAnalytics('search_focused');
         this.shouldDisplaySearchDetailsDropdown = true;
         // Ensure there is only ever one click listener
         if (this.deregisterWindowClickListener) {
@@ -84,6 +83,7 @@ export class SearchBarComponent {
     }
 
     search(): void {
+        this.sendEventToAnalytics('search_submitted', this.searchText);
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
         Observable.forkJoin(
@@ -98,9 +98,7 @@ export class SearchBarComponent {
     }
 
     resetSearchResults(): void {
-        this.allSearchResults = [];
-        this.shouldDisplayExpandedSearchResults = false;
-        this.shouldDisplayExpandSearchResultsButton = false;
+        this.searchResults = [];
     }
 
     handleSearchResponse(results: WordpressSearchable[]): void {
@@ -108,10 +106,7 @@ export class SearchBarComponent {
             this.searchState = SearchStates.NoResults;
             return;
         }
-        this.allSearchResults = results;
-        if (results.length > SearchBarComponent.reducedSearchResultsQuantity) {
-            this.shouldDisplayExpandSearchResultsButton = true;
-        }
+        this.searchResults = results;
         this.searchState = SearchStates.Results;
     }
 
@@ -119,17 +114,8 @@ export class SearchBarComponent {
         this.searchState = SearchStates.Error;
     }
 
-    displayExpandedSearchResults(): void {
-        this.shouldDisplayExpandedSearchResults = true;
-        this.shouldDisplayExpandSearchResultsButton = false;
-        // Maintain focus inside searchContainer to prevent focusout listener causing searchContainer to collapse
-        this.searchInput.nativeElement.focus();
-    }
-
-    getSearchResultsToDisplay(): WordpressSearchable[] {
-        return this.shouldDisplayExpandedSearchResults ?
-            this.allSearchResults :
-            this.allSearchResults.slice(0, SearchBarComponent.reducedSearchResultsQuantity);
+    sendEventToAnalytics(eventName: string, eventLabel?: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'search', eventLabel);
     }
 }
 

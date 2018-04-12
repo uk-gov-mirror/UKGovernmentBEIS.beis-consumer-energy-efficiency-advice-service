@@ -23,6 +23,7 @@ import {LatestNewsSectionComponent} from '../../shared/latest-news-section/lates
 import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 import {InlineSVGModule} from 'ng-inline-svg';
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -64,7 +65,8 @@ describe('WarmerHomeComponent', () => {
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
-                {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

@@ -3,6 +3,7 @@ import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {ResponseData} from '../shared/response-data/response-data';
 import {Router} from '@angular/router';
 import {QuestionnaireService} from '../questionnaire/questionnaire.service';
+import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-home-page',
@@ -13,10 +14,12 @@ export class HomePageComponent {
 
     constructor(private responseData: ResponseData,
                 private questionnaireService: QuestionnaireService,
+                private googleAnalyticsService: GoogleAnalyticsService,
                 private router: Router) {
     }
 
     onEnergyCalculatorButtonClick() {
+        this.sendEventToAnalytics('calculator_clicked');
         this.responseData.userJourneyType = UserJourneyType.Calculator;
         const route = this.questionnaireService.isComplete('home-basics')
             ? '/energy-efficiency/results'
@@ -25,12 +28,18 @@ export class HomePageComponent {
     }
 
     onBoilerButtonClick() {
+        this.sendEventToAnalytics('boilers_clicked');
         this.responseData.userJourneyType = UserJourneyType.Boiler;
         this.router.navigate(['/boiler']);
     }
 
     onGrantsButtonClick() {
+        this.sendEventToAnalytics('grants_clicked');
         this.responseData.userJourneyType = UserJourneyType.Grants;
         this.router.navigate(['/grants']);
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'home-page');
     }
 }

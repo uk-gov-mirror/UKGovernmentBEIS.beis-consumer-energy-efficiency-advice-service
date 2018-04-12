@@ -1,15 +1,15 @@
 <div class="navigation-bar page-row" [ngClass]="{expanded: shouldExpandNav}">
     <div class="page-row-content">
         <app-search-bar></app-search-bar>
-        <a routerLink="/" class="menu-item">
+        <a routerLink="/" class="menu-item" (click)="navLinkClicked('Home')">
             <div class="menu-link-text">Home</div>
         </a>
 
-        <a routerLink="/about-this-site/" class="menu-item">
+        <a routerLink="/about-this-site/" class="menu-item" (click)="navLinkClicked('About this Site')">
             <div class="menu-link-text">About this Site</div>
         </a>
 
-        <a routerLink="/simple-savings/" class="menu-item">
+        <a routerLink="/simple-savings/" class="menu-item" (click)="navLinkClicked('Simple Savings')">
             <div class="menu-link-text">Simple Savings</div>
         </a>
 
@@ -17,7 +17,10 @@
             Your Home
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showHomeMenu">
-                <app-nav-bar-suboption [suboptions]="homeSuboptions"></app-nav-bar-suboption>
+                <app-nav-bar-suboption
+                        [suboptions]="homeSuboptions"
+                        (onNavLinkClicked)="navLinkClicked($event)"
+                ></app-nav-bar-suboption>
             </ng-container>
         </div>
 
@@ -25,7 +28,10 @@
             Rented Properties
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showRentedMenu">
-                <app-nav-bar-suboption [suboptions]="rentedSuboptions"></app-nav-bar-suboption>
+                <app-nav-bar-suboption
+                        [suboptions]="rentedSuboptions"
+                        (onNavLinkClicked)="navLinkClicked($event)"
+                ></app-nav-bar-suboption>
             </ng-container>
         </div>
 
@@ -33,12 +39,15 @@
             Financial Assistance
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showFinanceMenu">
-                <app-nav-bar-suboption [suboptions]="financeSuboptions"></app-nav-bar-suboption>
+                <app-nav-bar-suboption
+                        [suboptions]="financeSuboptions"
+                        (onNavLinkClicked)="navLinkClicked($event)"
+                ></app-nav-bar-suboption>
             </ng-container>
         </div>
 
         <ng-container *ngIf="showYourPlan">
-            <a routerLink="/energy-efficiency/your-plan/" class="menu-item">
+            <a routerLink="/energy-efficiency/your-plan/" class="menu-item" (click)="navLinkClicked('Your Plan')">
                 <div class="menu-link-text">Your Plan</div>
             </a>
         </ng-container>

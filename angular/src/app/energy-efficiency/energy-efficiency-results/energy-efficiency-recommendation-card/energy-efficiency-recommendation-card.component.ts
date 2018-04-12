@@ -7,6 +7,7 @@ import {
     getTagDescription
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
+import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -22,6 +23,9 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
+
+    constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+    }
 
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
@@ -44,6 +48,9 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     toggleExpandedView(): void {
         this.isExpandedView = !this.isExpandedView;
+        if (this.isExpandedView) {
+            this.sendEventToAnalytics('see-more_clicked');
+        }
     }
 
     mouseEnterAddToPlanButton(): void {
@@ -64,5 +71,12 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     toggleAddedToPlan(): void {
         this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
+        if (this.recommendation.isAddedToPlan) {
+            this.sendEventToAnalytics('add-to-plan_clicked');
+        }
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.codeForAnalytics);
     }
 }

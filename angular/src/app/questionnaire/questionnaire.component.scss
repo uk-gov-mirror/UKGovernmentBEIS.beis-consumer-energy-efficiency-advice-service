@@ -22,6 +22,7 @@ $greyed-out: #a9a9a9;
     color: $darkened-blue;
     line-height: 38px;
     text-align: center;
+    margin-bottom: 20px;
   }
 
   width: 100%;
@@ -234,12 +235,6 @@ app-sticky-row-wrapper {
     .question {
       width: 100vw;
       margin-top: 96px;
-
-      .question-heading-container {
-        .question-heading {
-          text-align: center;
-        }
-      }
     }
 
     .help-text {

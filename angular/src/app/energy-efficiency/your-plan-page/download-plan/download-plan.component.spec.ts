@@ -1,10 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 import {By} from '@angular/platform-browser';
 import {DownloadPlanComponent} from './download-plan.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 
 describe('DownloadPlanComponent', () => {
     let component: DownloadPlanComponent;
@@ -19,10 +21,14 @@ describe('DownloadPlanComponent', () => {
             declarations: [
                 DownloadPlanComponent,
             ],
-            providers: [{provide: ResponseData, useValue: responseData}],
+            providers: [
+                {provide: ResponseData, useValue: responseData},
+                GoogleAnalyticsService,
+            ],
             imports: [
                 InlineSVGModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                RouterTestingModule,
             ]
         })
             .compileComponents();

@@ -13,7 +13,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {SearchBarComponent} from "../search-bar/search-bar.component";
-import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -39,7 +39,6 @@ describe('HeaderComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 HeaderComponent,
-                NeedHelpComponent,
                 SearchBarComponent
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
@@ -47,6 +46,7 @@ describe('HeaderComponent', () => {
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
                 {provide: UserStateService, useValue: mockUserStateService},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

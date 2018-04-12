@@ -18,7 +18,6 @@ import {EpcApiService} from '../../shared/postcode-epc-service/epc-api-service/e
 import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
 import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measures-section.component';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
-import {GasAndOilBoiler} from '../gas-and-oil-boilers/gas-and-oil-boiler';
 import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
 import values from 'lodash-es/values';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';

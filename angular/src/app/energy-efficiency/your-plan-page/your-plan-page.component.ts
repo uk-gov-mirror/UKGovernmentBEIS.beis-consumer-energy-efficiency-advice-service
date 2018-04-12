@@ -5,6 +5,7 @@ import {LocalAuthorityService} from '../../shared/local-authority-service/local-
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -22,6 +23,7 @@ export class YourPlanPageComponent implements OnInit {
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
+                private googleAnalyticsService: GoogleAnalyticsService,
                 private responseData: ResponseData) {
     }
 
@@ -40,5 +42,9 @@ export class YourPlanPageComponent implements OnInit {
 
     handleLocalAuthorityServiceError(err: any) {
         console.error(err);
+    }
+
+    sendEventToAnalytics(eventName: string, eventLabel?: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'plan-page', eventLabel);
     }
 }
