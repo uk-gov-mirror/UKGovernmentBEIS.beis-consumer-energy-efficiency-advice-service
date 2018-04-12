@@ -119,7 +119,7 @@ describe('WordpressApiService', () => {
             actualResponse.then((posts) => {
                 // match data in 'assets/test/search-pages-response.json'
                 expect(posts.length).toBe(7);
-                expect(posts[0].link).toContain('microgen-7');
+                expect(posts[0].slug).toContain('microgen-7');
                 expect(posts[0].title.rendered).toBe('Microgen 7');
             });
             httpMock.verify();
