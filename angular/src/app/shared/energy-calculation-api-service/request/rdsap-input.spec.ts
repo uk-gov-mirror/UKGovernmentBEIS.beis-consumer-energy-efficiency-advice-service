@@ -91,6 +91,7 @@ describe('RdsapInput', () => {
             hasTemporaryExclusions: false,
             tenancyType: TenancyType.Other,
             hasRelevantConsent: false,
+            reset: () => {},
         };
 
         it('should calculate the number of occupants correctly', () => {

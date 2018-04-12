@@ -90,6 +90,10 @@ export class ResponseData {
     public hasTemporaryExclusions: boolean;
     public tenancyType: TenancyType;
     public hasRelevantConsent: boolean;
+
+    reset() {
+        Object.keys(this).forEach(k => this[k] = undefined);
+    }
 }
 
 export function isComplete(responseData: ResponseData) {

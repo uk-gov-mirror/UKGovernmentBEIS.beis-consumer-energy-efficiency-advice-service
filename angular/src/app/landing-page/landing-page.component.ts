@@ -27,6 +27,7 @@ export class LandingPageComponent implements OnInit {
 
     ngOnInit() {
         this.heading = getJourneyDescription(this.userJourneyType);
+        this.responseData.reset();
     }
 
     onAddressSelected() {
