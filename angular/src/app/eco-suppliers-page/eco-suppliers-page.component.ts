@@ -18,6 +18,10 @@ export class ECOSuppliersPageComponent implements OnInit {
     constructor(private wordpressECOSuppliersService: WordpressECOSuppliersService) {}
 
     ngOnInit() {
-        this.suppliers$ = this.wordpressECOSuppliersService.fetchAllECOSuppliers();
+        // The suppliers are stored in the database in the order that they appear here:
+        // https://www.ofgem.gov.uk/environmental-programmes/eco/contacts-guidance-and-resources/supplier-contact-details
+        // Wordpress returns them in the opposite order, so we reverse them here
+        this.suppliers$ = this.wordpressECOSuppliersService.fetchAllECOSuppliers()
+            .map(suppliers => suppliers.reverse());
     }
 }
