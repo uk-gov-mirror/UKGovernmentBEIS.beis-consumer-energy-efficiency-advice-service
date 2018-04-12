@@ -30,6 +30,7 @@ import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.compo
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -75,7 +76,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 999,
@@ -91,7 +93,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         },
         {
             investmentPounds: 20,
@@ -114,7 +117,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             },
             advantages: [],
             steps: [],
-            isAddedToPlan: false
+            isAddedToPlan: false,
+            codeForAnalytics: ''
         }
     ];
 
@@ -170,6 +174,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

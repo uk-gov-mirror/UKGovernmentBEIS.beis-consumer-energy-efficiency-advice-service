@@ -10,6 +10,7 @@ import {SearchBarComponent} from "../search-bar/search-bar.component";
 import {WordpressMeasuresService} from "../../shared/wordpress-measures-service/wordpress-measures.service";
 import {NavBarSuboptionComponent} from "./nav-bar-suboption/nav-bar-suboption.component";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
@@ -41,6 +42,7 @@ describe('NavigationBarComponent', () => {
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
                 {provide: RecommendationsService, useValue: {}},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

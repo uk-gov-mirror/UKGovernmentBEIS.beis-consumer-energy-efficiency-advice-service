@@ -2,7 +2,8 @@
   <div class="heading">Other things you might be interested in</div>
   <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
     <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
-                          [page]="page"></app-latest-news-card>
+                          [page]="page"
+                          (onArticleClicked)="sendEventToAnalytics(idx)"></app-latest-news-card>
   </div>
   <ng-template #latestNewsSpinner>
     <div class="spinner-container">

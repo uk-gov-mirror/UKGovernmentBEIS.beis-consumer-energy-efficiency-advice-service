@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import * as html2pdf from 'html2pdf.js';
+import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-download-plan',
@@ -10,7 +11,8 @@ import * as html2pdf from 'html2pdf.js';
 })
 export class DownloadPlanComponent {
 
-    constructor(private responseData: ResponseData) {
+    constructor(private googleAnalyticsService: GoogleAnalyticsService,
+                private responseData: ResponseData) {
     }
 
     isTenant(): boolean {
@@ -19,6 +21,7 @@ export class DownloadPlanComponent {
     }
 
     public onPdfClicked() {
+        this.sendEventToAnalytics('download-plan_clicked');
 
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
         const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
@@ -69,6 +72,10 @@ export class DownloadPlanComponent {
             elem.className += " print-mode";
         });
         reccomendationPageRow.className += " print-mode";
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'plan-page');
     }
 
     private instantiateObserver(callback) {
