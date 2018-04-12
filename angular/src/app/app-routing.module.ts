@@ -30,7 +30,7 @@ import {YourHomeComponent} from './your-home/your-home.component';
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
-import {SuppliersPageComponent} from "./suppliers-page/suppliers-page.component";
+import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 /**
@@ -147,8 +147,8 @@ const routes: Routes = [
         component: ForbiddenPageComponent
     },
     {
-        path: 'suppliers',
-        component: SuppliersPageComponent,
+        path: 'eco-suppliers',
+        component: ECOSuppliersPageComponent,
         pathMatch: 'full'
     },
     {

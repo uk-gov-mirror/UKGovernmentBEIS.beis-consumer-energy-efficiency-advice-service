@@ -60,5 +60,5 @@
     <include file="changelogs/2018-04-06-update-help-text-post-type.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-06-add-extra-tags-to-measures.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-10-remove-obsolete-wp-posts.xml" relativeToChangelogFile="true" />
-    <include file="changelogs/2018-04-10-add-suppliers-to-wordpress.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-10-add-eco-suppliers-to-wordpress.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

@@ -1,21 +1,21 @@
 <?php require_once('post_type_functions.php');
 
-add_action( 'init', 'create_supplier_post_type' );
-add_action( 'init', 'setup_supplier_acf_group');
+add_action( 'init', 'create_eco_supplier_post_type' );
+add_action( 'init', 'setup_eco_supplier_acf_group');
 
-// Disable the quick-edit link to prevent users editing the slug for a supplier
-add_filter( 'post_row_actions', disable_quick_edit_for('supplier'), 10, 2 );
+// Disable the quick-edit link to prevent users editing the slug for an eco_supplier
+add_filter( 'post_row_actions', disable_quick_edit_for('eco-supplier'), 10, 2 );
 
 // Add slug to returned ACF fields
-add_filter('acf/rest_api/supplier/get_items', 'add_slug');
+add_filter('acf/rest_api/eco-supplier/get_items', 'add_slug');
 
-function create_supplier_post_type() {
+function create_eco_supplier_post_type() {
 
-    register_post_type('supplier',
+    register_post_type('eco-supplier',
         array(
             'labels'                => array(
-                'name' => __( 'Suppliers' ),
-                'singular_name' => __( 'Supplier' )
+                'name' => __( 'ECO Suppliers' ),
+                'singular_name' => __( 'ECO Supplier' )
             ),
             'description'           => 'Energy suppliers participating in the Energy Company Obligation (ECO) scheme',
             'exclude_from_search'   => true,
@@ -30,13 +30,13 @@ function create_supplier_post_type() {
         ));
 }
 
-function setup_supplier_acf_group() {
+function setup_eco_supplier_acf_group() {
 
     if(function_exists("acf_add_local_field_group"))
     {
         acf_add_local_field_group(array (
-            'id' => 'acf_supplier',
-            'title' => 'Supplier',
+            'id' => 'acf_eco_supplier',
+            'title' => 'ECO Supplier',
             'fields' => array (
                 array (
                     'key' => 'field_5a9577ec6836a',
@@ -57,7 +57,7 @@ function setup_supplier_acf_group() {
                     'label' => 'Supplier\'s website' ,
                     'name' => 'supplier_info_link',
                     'type' => 'text',
-                    'instructions' => 'Link to supplier\'s general website for information',
+                    'instructions' => 'Link to ECO supplier\'s general website for information',
                     'required' => 1,
                     'default_value' => '',
                     'placeholder' => '',
@@ -76,7 +76,7 @@ function setup_supplier_acf_group() {
                     array (
                         'param' => 'post_type',
                         'operator' => '==',
-                        'value' => 'supplier',
+                        'value' => 'eco-supplier',
                         'order_no' => 0,
                         'group_no' => 0,
                     ),

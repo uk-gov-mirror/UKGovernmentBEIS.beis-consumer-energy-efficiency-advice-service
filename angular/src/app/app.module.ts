@@ -20,7 +20,7 @@ import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.modu
 import {AdminPageModule} from './admin-page/admin-page.module';
 import {YourHomeModule} from './your-home/your-home.module';
 import {MeesModule} from './mees/mees.module';
-import {SuppliersPageModule} from "./suppliers-page/suppliers-page.module";
+import {ECOSuppliersPageModule} from "./eco-suppliers-page/eco-suppliers-page.module";
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
@@ -41,7 +41,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
         GrantsModule.forRoot(),
         PageModule,
         MeasurePageModule,
-        SuppliersPageModule,
+        ECOSuppliersPageModule,
         AdminPageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),

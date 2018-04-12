@@ -5,13 +5,13 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="2018-04-10-add-suppliers-to-wordpress.xml"
+    <changeSet id="2018-04-10-add-eco-suppliers-to-wordpress.xml"
                author="anthony.pengelly@softwire.com">
         <sql><![CDATA[
 
 -- British Gas
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9435, 1, 'British Gas', 'british-gas', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9435, 1, 'British Gas', 'british-gas', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9435, 'name', 'British Gas');
@@ -25,7 +25,7 @@ VALUES (9435, '_supplier_info_link', 'field_5a9578756836c');
 
 -- E.ON Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9436, 1, 'E.ON Energy', 'e-on-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9436, 1, 'E.ON Energy', 'e-on-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9436, 'name', 'E.ON Energy');
@@ -39,7 +39,7 @@ VALUES (9436, '_supplier_info_link', 'field_5a9578756836c');
 
 -- npower
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9437, 1, 'npower', 'npower', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9437, 1, 'npower', 'npower', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9437, 'name', 'npower');
@@ -53,7 +53,7 @@ VALUES (9437, '_supplier_info_link', 'field_5a9578756836c');
 
 -- EDF Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9438, 1, 'EDF Energy', 'edf-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9438, 1, 'EDF Energy', 'edf-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9438, 'name', 'EDF Energy');
@@ -67,7 +67,7 @@ VALUES (9438, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Scottish and Southern Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9439, 1, 'Scottish and Southern Energy', 'scottish-and-southern-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9439, 1, 'Scottish and Southern Energy', 'scottish-and-southern-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9439, 'name', 'Scottish and Southern Energy');
@@ -81,7 +81,7 @@ VALUES (9439, '_supplier_info_link', 'field_5a9578756836c');
 
 -- ScottishPower
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9440, 1, 'ScottishPower', 'scottishpower', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9440, 1, 'ScottishPower', 'scottishpower', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9440, 'name', 'ScottishPower');
@@ -96,7 +96,7 @@ VALUES (9440, '_supplier_info_link', 'field_5a9578756836c');
 
 -- First Utility
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9441, 1, 'First Utility', 'first-utility', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9441, 1, 'First Utility', 'first-utility', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9441, 'name', 'First Utility');
@@ -110,7 +110,7 @@ VALUES (9441, '_supplier_info_link', 'field_5a9578756836c');
 
 -- The Co-operative Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9442, 1, 'The Co-operative Energy', 'the-co-operative-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9442, 1, 'The Co-operative Energy', 'the-co-operative-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9442, 'name', 'The Co-operative Energy');
@@ -124,7 +124,7 @@ VALUES (9442, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Utilita
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9443, 1, 'Utilita', 'utilita', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9443, 1, 'Utilita', 'utilita', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9443, 'name', 'Utilita');
@@ -138,7 +138,7 @@ VALUES (9443, '_supplier_info_link', 'field_5a9578756836c');
 
 -- OVO
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9444, 1, 'OVO', 'ovo', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9444, 1, 'OVO', 'ovo', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9444, 'name', 'OVO');
@@ -152,7 +152,7 @@ VALUES (9444, '_supplier_info_link', 'field_5a9578756836c');
 
 -- The Utility Warehouse
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9445, 1, 'The Utility Warehouse', 'the-utility-warehouse', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9445, 1, 'The Utility Warehouse', 'the-utility-warehouse', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9445, 'name', 'The Utility Warehouse');
@@ -166,7 +166,7 @@ VALUES (9445, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Extra Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9446, 1, 'Extra Energy', 'extra-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9446, 1, 'Extra Energy', 'extra-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9446, 'name', 'Extra Energy');
@@ -180,7 +180,7 @@ VALUES (9446, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Economy Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9447, 1, 'Economy Energy', 'economy-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9447, 1, 'Economy Energy', 'economy-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9447, 'name', 'Economy Energy');
@@ -194,7 +194,7 @@ VALUES (9447, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Flow Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9448, 1, 'Flow Energy', 'flow-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9448, 1, 'Flow Energy', 'flow-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9448, 'name', 'Flow Energy');
@@ -208,7 +208,7 @@ VALUES (9448, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Spark Energy
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (9449, 1, 'Spark Energy', 'spark-energy', 0, 'supplier', 'closed', 'closed', '', '', '', '', '');
+VALUES (9449, 1, 'Spark Energy', 'spark-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
 VALUES (9449, 'name', 'Spark Energy');

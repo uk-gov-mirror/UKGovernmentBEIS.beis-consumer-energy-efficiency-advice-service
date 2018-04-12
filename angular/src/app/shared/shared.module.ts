@@ -40,7 +40,7 @@ import {UserStateApiService} from "./user-state-api-service/user-state-api-servi
 import {UserStateService} from "./user-state-service/user-state-service";
 import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
-import {WordpressSuppliersService} from "./wordpress-suppliers-service/wordpress-suppliers.service";
+import {WordpressECOSuppliersService} from "./wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
 
 @NgModule({
     declarations: [
@@ -101,7 +101,7 @@ export class SharedModule {
                 QuestionContentService,
                 WordpressApiService,
                 WordpressMeasuresService,
-                WordpressSuppliersService,
+                WordpressECOSuppliersService,
                 ResponseData,
                 EnergyCalculationApiService,
                 UserStateApiService,

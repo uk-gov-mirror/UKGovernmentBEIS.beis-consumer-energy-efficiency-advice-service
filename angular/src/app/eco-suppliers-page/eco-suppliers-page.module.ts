@@ -3,14 +3,14 @@ import {CommonModule} from '@angular/common';
 
 import {SharedModule} from '../shared/shared.module';
 import {RoutingModule} from '../app-routing.module';
-import {SuppliersPageComponent} from './suppliers-page.component';
+import {ECOSuppliersPageComponent} from './eco-suppliers-page.component';
 
 @NgModule({
     declarations: [
-        SuppliersPageComponent,
+        ECOSuppliersPageComponent,
     ],
     exports: [
-        SuppliersPageComponent
+        ECOSuppliersPageComponent
     ],
     imports: [
         SharedModule,
@@ -18,5 +18,5 @@ import {SuppliersPageComponent} from './suppliers-page.component';
         RoutingModule,
     ]
 })
-export class SuppliersPageModule {
+export class ECOSuppliersPageModule {
 }
