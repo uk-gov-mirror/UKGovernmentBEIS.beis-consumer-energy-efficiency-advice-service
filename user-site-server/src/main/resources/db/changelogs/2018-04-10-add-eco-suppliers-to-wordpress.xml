@@ -9,6 +9,10 @@
                author="anthony.pengelly@softwire.com">
         <sql><![CDATA[
 
+-- List of energy suppliers participating in the Energy Company Obligation. The up to date list can be found at:
+-- https://www.ofgem.gov.uk/environmental-programmes/eco/contacts-guidance-and-resources/supplier-contact-details
+-- This list will change very infrequently, since it's a list of all the companies that have over 250,000 users
+
 -- British Gas
 INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
 VALUES (9435, 1, 'British Gas', 'british-gas', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
