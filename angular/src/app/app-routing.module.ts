@@ -30,7 +30,9 @@ import {YourHomeComponent} from './your-home/your-home.component';
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
+import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -82,6 +84,41 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'grants/winter-fuel-payments',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/warm-home-discount',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/cold-weather-payments',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'simple-savings',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'about-this-site',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'information-for-tenants',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'information-for-landlords',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'energy-efficiency/greener-home',
         component: GreenerHomeComponent
     },
@@ -128,6 +165,26 @@ const routes: Routes = [
         canActivate: [BoilerResultsPageRouteGuard]
     },
     {
+        path: 'boiler-grants',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'boiler/heat-incentive',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'landlord-obligations',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'certified-repairers',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'minimum-energy-efficiency-standards/questionnaire',
         component: MeesQuestionnaireComponent,
     },
@@ -137,6 +194,11 @@ const routes: Routes = [
         canActivate: [MeesResultsPageRouteGuard]
     },
     {
+        path: 'page-not-created',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'admin',
         component: AdminPageComponent,
         canActivate: [AdminPageGuard]
@@ -144,6 +206,11 @@ const routes: Routes = [
     {
         path: 'forbidden',
         component: ForbiddenPageComponent
+    },
+    {
+        path: 'eco-suppliers',
+        component: ECOSuppliersPageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'measures/:slug',

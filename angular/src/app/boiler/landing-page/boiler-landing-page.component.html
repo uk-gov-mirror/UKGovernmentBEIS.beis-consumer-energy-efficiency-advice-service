@@ -25,12 +25,12 @@
                 <div class="links">
                     <div class="still-not-working">
                         <div class="body-large button-heading-mobile">Still not working?</div>
-                        <app-boiler-link-button class="link-button"
+                        <app-boiler-link-button routerLink="/certified-repairers/" class="link-button"
                                                 text="Check out our list of certified repairers"></app-boiler-link-button>
                     </div>
                     <div class="tenant">
                         <div class="body-large button-heading-mobile">Are you a tenant?</div>
-                        <app-boiler-link-button class="link-button"
+                        <app-boiler-link-button routerLink="/landlord-obligations/" class="link-button"
                                                 text="Find out about your landlord's obligations"></app-boiler-link-button>
                     </div>
                 </div>
@@ -116,9 +116,9 @@
             </div>
             <div class="body grants-body">
                 <div class="links" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
-                    <app-boiler-link-button class="link-button"
+                    <app-boiler-link-button routerLink="/boiler-grants/" class="link-button"
                                             text="Find out about boiler grants"></app-boiler-link-button>
-                    <app-boiler-link-button class="link-button"
+                    <app-boiler-link-button routerLink="/boiler/heat-incentive/"  class="link-button"
                                             text="Earn money via the renewable heat incentive"></app-boiler-link-button>
                 </div>
             </div>

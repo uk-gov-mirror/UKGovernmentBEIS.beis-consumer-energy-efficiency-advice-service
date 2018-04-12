@@ -13,7 +13,7 @@
             <div class="menu-link-text">Simple Savings</div>
         </a>
 
-        <div #homeMenu class="home-menu menu-item" (click)="toggleShowHomeMenu(); registerSingleClickListener()">
+        <div #homeMenu class="home-menu menu-item" (click)="showHomeMenu = !showHomeMenu; registerSingleClickListener()">
             Your Home
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showHomeMenu">
@@ -24,7 +24,7 @@
             </ng-container>
         </div>
 
-        <div #rentedMenu class="rented-menu menu-item" (click)="toggleShowRentedMenu(); registerSingleClickListener()">
+        <div #rentedMenu class="rented-menu menu-item" (click)="showRentedMenu = !showRentedMenu; registerSingleClickListener()">
             Rented Properties
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showRentedMenu">
@@ -35,16 +35,9 @@
             </ng-container>
         </div>
 
-        <div #financeMenu class="finance-menu menu-item" (click)="toggleShowFinanceMenu(); registerSingleClickListener()">
-            Financial Assistance
-            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-            <ng-container *ngIf="showFinanceMenu">
-                <app-nav-bar-suboption
-                        [suboptions]="financeSuboptions"
-                        (onNavLinkClicked)="navLinkClicked($event)"
-                ></app-nav-bar-suboption>
-            </ng-container>
-        </div>
+        <a routerLink="/grants/" class="menu-item">
+            <div class="menu-link-text">Financial Assistance</div>
+        </a>
 
         <ng-container *ngIf="showYourPlan">
             <a routerLink="/energy-efficiency/your-plan/" class="menu-item" (click)="navLinkClicked('Your Plan')">

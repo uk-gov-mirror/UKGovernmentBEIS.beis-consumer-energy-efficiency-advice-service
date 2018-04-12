@@ -36,7 +36,7 @@ export class NavigationBarComponent {
         },
         {
             name: "Information for Landlords",
-            url: "/information-for-landlords"
+            url: "/minimum-energy-efficiency-standards/questionnaire"
         },
     ];
     financeSuboptions: NavigationSuboption[] = [
@@ -110,27 +110,6 @@ export class NavigationBarComponent {
         }
     }
 
-    toggleShowHomeMenu() {
-        this.showHomeMenu = !this.showHomeMenu;
-        if (this.showHomeMenu) {
-            this.sendEventToAnalytics('nav-dropdown_opened', 'Your Home');
-        }
-    }
-
-    toggleShowRentedMenu() {
-        this.showRentedMenu = !this.showRentedMenu;
-        if (this.showRentedMenu) {
-            this.sendEventToAnalytics('nav-dropdown_opened', 'Rented Properties');
-        }
-    }
-
-    toggleShowFinanceMenu() {
-        this.showFinanceMenu = !this.showFinanceMenu;
-        if (this.showFinanceMenu) {
-            this.sendEventToAnalytics('nav-dropdown_opened', 'Financial Assistance');
-        }
-    }
-
     hideMobileNav() {
         this.onHideMobileNav.emit();
     }
@@ -139,7 +118,7 @@ export class NavigationBarComponent {
         this.sendEventToAnalytics('nav-link_clicked', name);
     }
 
-    sendEventToAnalytics(eventName: string, eventLabel?: string) {
+    sendEventToAnalytics(eventName: string, eventLabel: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'nav-bar', eventLabel);
     }
 }
