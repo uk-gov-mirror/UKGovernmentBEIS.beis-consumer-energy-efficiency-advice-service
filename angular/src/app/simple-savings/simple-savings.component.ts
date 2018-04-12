@@ -18,8 +18,7 @@ export class SimpleSavingsComponent implements OnInit {
     ngOnInit() {
 
         this.measureService.fetchMeasureDetails().subscribe(measures => {
-            // this.measures = this.filterMeasures(measures);
-            this.measures = measures;
+            this.measures = this.filterMeasures(measures);
         });
     }
 
