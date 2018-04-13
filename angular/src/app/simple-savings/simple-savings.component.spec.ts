@@ -5,6 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {SimpleSavingsComponent} from './simple-savings.component';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('SimpleSavingsComponent', () => {
     let component: SimpleSavingsComponent;
@@ -12,7 +13,7 @@ describe('SimpleSavingsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SimpleSavingsComponent],
+            declarations: [SimpleSavingsComponent, SpinnerAndErrorContainerComponent],
             imports: [
                 InlineSVGModule,
                 RouterTestingModule
