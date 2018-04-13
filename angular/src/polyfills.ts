@@ -13,7 +13,8 @@
  *
  * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
  */
-
+// TODO:BEIS-200 this is a lot of code; can we reduce it?
+// See https://github.com/angular/angular-cli/issues/6577
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */

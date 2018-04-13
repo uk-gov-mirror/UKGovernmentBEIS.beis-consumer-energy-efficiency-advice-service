@@ -86,6 +86,7 @@ public class IndexController {
      * All paths which correspond to pages in the Angular app should be added here.
      * (The main alternative to this would be to show the index page as a custom
      * 404 page, see e.g. https://stackoverflow.com/a/28633189/8261 )
+     * (The unit test, IndexControllerTest, checks this mapping)
      */
     @RequestMapping(value = {
         "/",
