@@ -9,7 +9,7 @@ import 'zone.js/dist/fake-async-test';
 import {getTestBed} from '@angular/core/testing';
 import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-
+import {SVGCacheService} from 'ng-inline-svg';
 // Common rxjs operators
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/defer';
@@ -30,6 +30,10 @@ getTestBed().initTestEnvironment(
     ],
     platformBrowserDynamicTesting()
 );
+
+// This global config is set in app.component.ts during normal operation
+SVGCacheService.prototype.setBaseUrl({baseUrl: '/dist/assets/images/'});
+
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
