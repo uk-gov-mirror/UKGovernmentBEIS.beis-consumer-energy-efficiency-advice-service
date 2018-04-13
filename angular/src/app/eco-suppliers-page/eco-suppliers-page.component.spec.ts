@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 
 import { ECOSuppliersPageComponent } from './eco-suppliers-page.component';
 import {WordpressECOSuppliersService} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('ECOSuppliersPageComponent', () => {
     let component: ECOSuppliersPageComponent;
@@ -18,7 +19,10 @@ describe('ECOSuppliersPageComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ECOSuppliersPageComponent],
+            declarations: [
+                ECOSuppliersPageComponent,
+                SpinnerAndErrorContainerComponent,
+            ],
             providers: [
                 {provide: WordpressECOSuppliersService, useValue: wordpressECOSuppliersServiceStub}
             ]
