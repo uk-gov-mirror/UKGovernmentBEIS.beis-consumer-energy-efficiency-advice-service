@@ -1,0 +1,22 @@
+<div class="eco-suppliers-page">
+    <div class="heading-row page-row">
+        <div class="page-row-content">
+            <div class="title">ECO Suppliers</div>
+            <div class="summary">We can help you find the right option for your home or you can review all the different suppliers below.</div>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content">
+            <div class="supplier-list-title">Select an energy supplier to find out more</div>
+            <div class="supplier-list-summary">
+                Below is a list of all of the energy suppliers participating in the Energy Company Obligation (ECO).
+            </div>
+            <app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+            <div class="supplier-list" *ngIf="!loading && !error && suppliers">
+                <a class="supplier" *ngFor="let supplier of suppliers" [href]="supplier.link">
+                    <img src="/wp-content/uploads/eco-suppliers/{{supplier.slug}}.jpeg" [alt]="supplier.name"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

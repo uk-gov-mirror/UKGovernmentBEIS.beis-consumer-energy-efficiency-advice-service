@@ -11,6 +11,7 @@ import {WordpressApiService} from './wordpress-api-service/wordpress-api-service
 import {ResponseData} from './response-data/response-data';
 import {EnergyCalculationApiService} from './energy-calculation-api-service/energy-calculation-api-service';
 import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
+import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {RoutingModule} from '../app-routing.module';
 import {LatestNewsCardComponent} from './latest-news-card/latest-news-card.component';
 import {RadialPercentageComponent} from './radial-percentage/radial-percentage.component';
@@ -39,12 +40,14 @@ import {UserStateApiService} from "./user-state-api-service/user-state-api-servi
 import {UserStateService} from "./user-state-service/user-state-service";
 import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {WordpressECOSuppliersService} from "./wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
 
 @NgModule({
     declarations: [
         PostcodeLookupComponent,
         TimesPipe,
         NavigationBarComponent,
+        SearchBarComponent,
         NavBarSuboptionComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
@@ -66,6 +69,7 @@ import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-
         TimesPipe,
         NavigationBarComponent,
         NavBarSuboptionComponent,
+        SearchBarComponent,
         LatestNewsCardComponent,
         RadialPercentageComponent,
         SpinnerAndErrorContainerComponent,
@@ -97,6 +101,7 @@ export class SharedModule {
                 QuestionContentService,
                 WordpressApiService,
                 WordpressMeasuresService,
+                WordpressECOSuppliersService,
                 ResponseData,
                 EnergyCalculationApiService,
                 UserStateApiService,

@@ -1,6 +1,6 @@
 // TODO:BEISDEAS-228 delete the carousel component when we have new designs
 
-import {Component, OnInit, HostListener } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-carousel',
@@ -55,7 +55,7 @@ export class CarouselComponent implements OnInit {
     canScrollForwards(): boolean {
         if (window.outerWidth <= 600) {
             return this.currentItem < this.carouselItems.length - 1;
-        }else if (window.outerWidth > 600 && window.outerWidth <= 992) {
+        } else if (window.outerWidth > 600 && window.outerWidth <= 992) {
             return this.currentItem < this.carouselItems.length - 2;
         } else {
             return this.currentItem < this.carouselItems.length - 3;

@@ -54,6 +54,11 @@ module.exports = function (config) {
                 ]
             }
         },
+        // These "proxies" fix 404s during the tests
+        // See https://github.com/angular/angular-cli/issues/2803
+        proxies: {
+            '/dist/assets': '/base/src/assets',
+        },
         browserNoActivityTimeout: 60000, //default 10000
         browserDisconnectTimeout: 10000, // default 2000
         browserDisconnectTolerance: 1, // default 0

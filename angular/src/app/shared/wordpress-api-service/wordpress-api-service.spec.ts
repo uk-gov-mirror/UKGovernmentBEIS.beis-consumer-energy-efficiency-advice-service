@@ -45,7 +45,7 @@ describe('WordpressApiService', () => {
             actualResponse.then((posts) => {
                 // match data in 'assets/test/search-pages-response.json'
                 expect(posts.length).toBe(7);
-                expect(posts[0].link).toContain('microgen-7');
+                expect(posts[0].slug).toContain('microgen-7');
                 expect(posts[0].title.rendered).toBe('Microgen 7');
             });
             httpMock.verify();
@@ -93,7 +93,7 @@ describe('WordpressApiService', () => {
             // then
             actualResponse.then((postResponse) => {
                 // match data in 'assets/test/search-pages-response.json'
-                expect(postResponse.link).toContain('microgen-7');
+                expect(postResponse.slug).toContain('microgen-7');
                 expect(postResponse.title.rendered).toBe('Microgen 7');
                 expect(postResponse.content.rendered).toBe('<p>Microgen 7</p>\n');
             });
@@ -103,6 +103,31 @@ describe('WordpressApiService', () => {
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
             const matchesExpectedUrl = request.urlWithParams === `/wp-json/post?per_page=1&slug=${testSlug}`;
+            return matchesExpectedMethod && matchesExpectedUrl;
+        }
+    });
+
+    describe('#getPosts', () => {
+        const testSlug = 'my-test-post';
+
+        it('calls API and returns data correctly', async(() => {
+            // when
+            const actualResponse = service.getPosts<WordpressPageResponse>(postUrl).toPromise();
+            httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
+
+            // then
+            actualResponse.then((posts) => {
+                // match data in 'assets/test/search-pages-response.json'
+                expect(posts.length).toBe(7);
+                expect(posts[0].slug).toContain('microgen-7');
+                expect(posts[0].title.rendered).toBe('Microgen 7');
+            });
+            httpMock.verify();
+        }));
+
+        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
+            const matchesExpectedMethod = request.method === 'GET';
+            const matchesExpectedUrl = request.urlWithParams === `/wp-json/post?per_page=1000`;
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

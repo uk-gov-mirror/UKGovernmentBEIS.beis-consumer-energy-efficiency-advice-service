@@ -14,6 +14,8 @@
   * [Application logs](#application-logs)
 - [Troubleshooting](#troubleshooting)
 - [Backup and recovery](#backup-and-recovery)
+- [Regular tasks](#regular-tasks)
+  * [Update Energy Company Obligation (ECO) Suppliers](#update-energy-company-obligation-eco-suppliers)
 
 <!-- tocstop -->
 
@@ -104,3 +106,19 @@ TODO:BEIS-163 document Troubleshooting
 ## Backup and recovery
 
 TODO:BEIS-163 document backup and recovery
+
+## Regular tasks
+
+### Update Energy Company Obligation (ECO) Suppliers
+
+The list of suppliers participating in the Energy Company Obligation (ECO) will need to be kept up to date
+with [this list](https://www.ofgem.gov.uk/environmental-programmes/eco/contacts-guidance-and-resources/supplier-contact-details).
+
+The "name" and "URL" of a supplier can be updated via wordpress. In an ideal world, this will be done with a database
+migration which will then propagate through the environments.
+
+To update the logo, you will need to change the image file in `wordpress/wp-content/uploads/eco-suppliers`.
+
+To add a new supplier, a new entry will need to be created in Wordpress (again, ideally with a database migration (see
+`db/changelogs/2018-04-10-add-eco-suppliers-to-wordpress.xml`), and a logo will need to be added to the
+logo folder with the name `{{supplier slug}}.jpeg`.

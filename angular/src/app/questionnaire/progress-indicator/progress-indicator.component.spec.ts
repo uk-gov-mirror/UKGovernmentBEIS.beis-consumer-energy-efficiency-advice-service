@@ -17,20 +17,6 @@ import includes from 'lodash-es/includes';
 describe('ProgressIndicatorComponent', () => {
     let component: ProgressIndicatorComponent;
     let fixture: ComponentFixture<ProgressIndicatorComponent>;
-    let availableQuestions: number[];
-    const question1TitleText = 'Question 1 heading';
-    const allQuestionsContent: AllQuestionsContent = {
-        question0: {questionHeading: 'Question 0 heading', helpHtml: 'Question 0 help text', questionReason: ''},
-        question1: {questionHeading: question1TitleText, helpHtml: 'Question 1 help text', questionReason: ''},
-        question2: {questionHeading: 'Question 2 heading', helpHtml: 'Question 2 help text', questionReason: ''},
-        question3: {questionHeading: 'Question 3 heading', helpHtml: 'Question 3 help text', questionReason: ''},
-        question4: {questionHeading: 'Question 4 heading', helpHtml: 'Question 4 help text', questionReason: ''},
-        question5: {questionHeading: 'Question 5 heading', helpHtml: 'Question 5 help text', questionReason: ''},
-        question6: {questionHeading: 'Question 6 heading', helpHtml: 'Question 6 help text', questionReason: ''},
-        question7: {questionHeading: 'Question 7 heading', helpHtml: 'Question 7 help text', questionReason: ''},
-        question8: {questionHeading: 'Question 8 heading', helpHtml: 'Question 8 help text', questionReason: ''},
-        question9: {questionHeading: 'Question 9 heading', helpHtml: 'Question 9 help text', questionReason: ''}
-    };
 
     class TestQuestionComponent extends QuestionBaseComponent {
         get responseForAnalytics(): string {
@@ -68,14 +54,6 @@ describe('ProgressIndicatorComponent', () => {
         constructor() {
             super(new ResponseData(), TestQuestionnaire.questions);
         }
-
-        isAvailable(index) {
-            return availableQuestions !== undefined && includes(availableQuestions, index);
-        }
-
-        isApplicable(index) {
-            return true;
-        }
     }
 
     beforeEach(async(() => {
@@ -90,9 +68,7 @@ describe('ProgressIndicatorComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProgressIndicatorComponent);
         component = fixture.componentInstance;
-        component.allQuestionsContent = allQuestionsContent;
         component.questionnaire = new TestQuestionnaire();
-        spyOn(component.clickedOnLink, 'emit');
         fixture.detectChanges();
     });
 
@@ -100,136 +76,12 @@ describe('ProgressIndicatorComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should display the current question as active', () => {
+    it('should display the correct percentage completed', () => {
         // given
-        const currentQuestionIndex = 3;
-        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
-
-        // when
-        component.currentQuestionIndex = currentQuestionIndex;
-        const currentProgressIndicatorStep = allProgressIndicatorSteps[currentQuestionIndex];
-        fixture.detectChanges();
+        component.currentQuestionIndex = 3;
+        const completionPercentage = fixture.debugElement.query(By.css('.completion-percentage'));
 
         // then
-        expect(isActive(currentProgressIndicatorStep)).toBeTruthy();
+        expect(completionPercentage.nativeElement.innerText).toEqual(component.currentPercentage + "% Completed");
     });
-
-    it('should display non-current questions as inactive', () => {
-        // given
-        const currentQuestionIndex = 3;
-        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
-
-        // when
-        component.currentQuestionIndex = currentQuestionIndex;
-        const nonCurrentProgressIndicatorSteps = allProgressIndicatorSteps.filter(
-            step => allProgressIndicatorSteps.indexOf(step) !== currentQuestionIndex);
-        fixture.detectChanges();
-
-        // then
-        nonCurrentProgressIndicatorSteps.forEach((progressIndicatorStep) => expect(isActive(progressIndicatorStep)).toBeFalsy());
-    });
-
-    it('should display the correct number of sections', () => {
-        // given
-        const expectedNumberOfQuestionnaireSections = Object.keys(groupBy(TestQuestionnaire.questions, q => q.questionType)).length;
-
-        // when
-        const questionnaireSectionsExcludingInformationSection =
-            fixture.debugElement.queryAll(By.css('.questionnaire-section:not(.information-section)'));
-
-        // then
-        expect(questionnaireSectionsExcludingInformationSection.length).toEqual(expectedNumberOfQuestionnaireSections);
-    });
-
-    it('should display the correct number of questions in each section', () => {
-        // given
-        const expectedNumberOfHeatingQuestions = TestQuestionnaire.questions
-            .filter(q => q.questionType === QuestionType.Heating)
-            .length;
-        const allQuestionnaireSections = fixture.debugElement.queryAll(By.css('.questionnaire-section'));
-
-        // when
-        const heatingSection = allQuestionnaireSections.find(section => {
-            return !!section.query(By.css('.question-type-icon .thermostat'));
-        });
-
-        // then
-        const allHeatingQuestions = heatingSection.queryAll(By.css('.progress-indicator-step'));
-        expect(allHeatingQuestions.length).toEqual(expectedNumberOfHeatingQuestions);
-    });
-
-    it('should display the correct total number of questions', () => {
-        // given
-        const allQuestions = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
-
-        // then
-        expect(allQuestions.length).toEqual(TestQuestionnaire.questions.length);
-    });
-
-    it('should not allow the button for an unavailable question link to be clicked', () => {
-        // given
-        availableQuestions = [1];
-        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
-
-        // when
-        const progressIndicatorStep = allProgressIndicatorSteps[0];
-        fixture.detectChanges();
-
-        // then
-        expect(isDisabled(progressIndicatorStep)).toBeTruthy();
-
-    });
-
-    it('should allow the button for an available question link to be clicked', () => {
-        // given
-        availableQuestions = [1];
-        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
-
-        // when
-        const progressIndicatorStep = allProgressIndicatorSteps[1];
-        fixture.detectChanges();
-
-        // then
-        expect(isDisabled(progressIndicatorStep)).toBeFalsy();
-
-    });
-
-    it('should emit an event when an available question link is clicked', () => {
-        // given
-        availableQuestions = [1];
-        const allProgressIndicatorSteps = fixture.debugElement.queryAll(By.css('.progress-indicator-step'));
-
-        // when
-        const progressIndicatorStep = allProgressIndicatorSteps[1];
-        getStepLink(progressIndicatorStep).nativeElement.click();
-        fixture.detectChanges();
-
-        // then
-        expect(component.clickedOnLink.emit).toHaveBeenCalledWith(1);
-    });
-
-    it('should display the correct question heading for an applicable available question', () => {
-        // given
-        const question1Step = component.questionnaireSections[0].questions[1];
-
-        // when
-        const titleText = component.getTitleText(question1Step);
-
-        // then
-        expect(titleText).toContain(question1TitleText);
-    });
-
-    function getStepLink(progressIndicatorStep: DebugElement): DebugElement {
-        return progressIndicatorStep.children.find(el => el.nativeElement.classList.contains('step-link'));
-    }
-
-    function isActive(progressIndicatorStep: DebugElement): boolean {
-        const stepDisplay = getStepLink(progressIndicatorStep);
-        return stepDisplay.nativeElement.classList.contains('active');
-    }
-
-    function isDisabled(progressIndicatorStep: DebugElement): boolean {
-        const stepDisplay = getStepLink(progressIndicatorStep);
-        return stepDisplay.nativeElement.getAttribute('disabled') !== null;
-    }
 });

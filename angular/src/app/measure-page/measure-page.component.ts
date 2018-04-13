@@ -36,7 +36,6 @@ export class MeasurePageComponent implements OnInit {
     scrollToStep(index: number): void {
         const element = document.querySelector('#step-' + index);
         if (element) {
-            console.log(element);
             element.scrollIntoView();
         }
     }

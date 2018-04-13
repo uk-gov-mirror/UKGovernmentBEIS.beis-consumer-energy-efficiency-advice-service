@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-06-add-extra-tags-to-measures.xml"
+               author="raam.chauhan@softwire.com">
+        <sql><![CDATA[
+ 
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_small_spend";i:1;s:21:"tag_heating&hot-water";}'
+WHERE post_id in (3727) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:13:"tag_quick_win";i:1;s:21:"tag_heating&hot-water";}'
+WHERE post_id in (3141) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:3:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";i:2;s:16:"tag_solar-energy";}'
+WHERE post_id in (3745) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:16:"tag_solar-energy";}'
+WHERE post_id in (3753) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";}'
+WHERE post_id in (3747, 3746, 3744, 3743, 3742, 3741, 3740, 3739, 3738, 3737, 3736, 3735, 3734, 3733, 3732, 3731, 3730, 3729, 3728) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:22:"tag_floors-walls&roofs";}'
+WHERE post_id in (3724, 3723, 3722, 3721, 3720, 3719, 3718, 3717, 3716, 3715) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:17:"tag_windows&doors";}'
+WHERE post_id in (3752, 3751, 3750, 3749, 3748, 3725) and meta_key = 'tags';
+
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>

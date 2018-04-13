@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, ComponentFactoryResolver} from '@angular/core';
+import {ChangeDetectorRef, Component, NgModule} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 import {QuestionnaireComponent} from './questionnaire.component';
 import {QuestionnaireService} from './questionnaire.service';
 import {ProgressIndicatorComponent} from './progress-indicator/progress-indicator.component';
+import {StickyRowWrapperComponent} from "../shared/sticky-row-wrapper/sticky-row-wrapper.component";
 import {QuestionContentService} from '../shared/question-content/question-content.service';
 import {AllQuestionsContent} from '../shared/question-content/all-questions-content';
 import {QuestionType} from './questions/question-type';
@@ -45,17 +46,6 @@ describe('QuestionnaireComponent', () => {
     const userStateServiceStub = {
         sendState: () => {}
     };
-
-    class TestQuestionComponent extends QuestionBaseComponent {
-        responseForAnalytics: string;
-
-        get response(): void {
-            return null;
-        }
-
-        set response(val: void) {
-        }
-    }
 
     class TestQuestion extends QuestionMetadata {
         hasBeenAnswered() {
@@ -130,12 +120,18 @@ describe('QuestionnaireComponent', () => {
             declarations: [
                 QuestionnaireComponent,
                 ProgressIndicatorComponent,
+                StickyRowWrapperComponent,
+                ProgressIndicatorComponent,
                 SpinnerAndErrorContainerComponent,
-                QuestionReasonComponent
+                QuestionReasonComponent,
             ],
-            imports: [RouterTestingModule.withRoutes([]), InlineSVGModule, HttpClientTestingModule],
+            imports: [
+                RouterTestingModule.withRoutes([]),
+                InlineSVGModule,
+                HttpClientTestingModule,
+                TestQuestionModule
+            ],
             providers: [
-                ComponentFactoryResolver,
                 ChangeDetectorRef,
                 GoogleAnalyticsService,
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
@@ -271,3 +267,24 @@ describe('QuestionnaireComponent', () => {
         });
     });
 });
+
+@Component({template: ''})
+class TestQuestionComponent extends QuestionBaseComponent {
+    responseForAnalytics: string;
+
+    get response(): void {
+        return null;
+    }
+
+    set response(val: void) {
+    }
+}
+
+@NgModule({
+    declarations: [TestQuestionComponent],
+    imports: [],
+    entryComponents: [TestQuestionComponent], // <-- very important!
+    exports: [TestQuestionComponent]
+})
+export class TestQuestionModule {
+}

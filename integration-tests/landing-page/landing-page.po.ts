@@ -2,7 +2,7 @@ import {browser, by, element, protractor} from "protractor";
 
 export class LandingPage {
     navigateToReduceBills() {
-        return browser.get('/js/reduce-bills');
+        return browser.get('/energy-efficiency/reduce-bills');
     }
 
     getHeadingText() {

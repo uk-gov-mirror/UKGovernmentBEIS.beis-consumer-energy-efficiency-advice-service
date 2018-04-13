@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import * as html2pdf from 'html2pdf.js';
+import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-download-plan',
@@ -10,23 +11,8 @@ import * as html2pdf from 'html2pdf.js';
 })
 export class DownloadPlanComponent {
 
-    constructor(private responseData: ResponseData) {
-    }
-
-    static clickElems(elems) {
-        return elems.map(elem => {
-            return this.eventFire(elem, 'click');
-        });
-    }
-
-    static eventFire(el, etype) {
-        if (el.fireEvent) {
-            return el.fireEvent('on' + etype);
-        } else {
-            const evObj = document.createEvent('Events');
-            evObj.initEvent(etype, true, false);
-            return el.dispatchEvent(evObj);
-        }
+    constructor(private googleAnalyticsService: GoogleAnalyticsService,
+                private responseData: ResponseData) {
     }
 
     isTenant(): boolean {
@@ -35,36 +21,19 @@ export class DownloadPlanComponent {
     }
 
     public onPdfClicked() {
-        const expandableElements = document.getElementsByClassName("step-details-drawer"); // Find all expandable elements
-        const elementsArray = Array.from(expandableElements); // Convert to array because they are less limited than iterables
+        this.sendEventToAnalytics('download-plan_clicked');
 
-        const expandedElements = document.querySelectorAll(".expanded.step-details-drawer"); // Find all elements already expanded
-        const exElementsArray = Array.from(expandedElements);
+        const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
+        const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
 
-        const nonExElementsArray = [];
-
-        // By filtering out elements which are both expandable and expanded, find the non-expanded elements
-        this.filterNonUnique(elementsArray, exElementsArray, nonExElementsArray);
-
-        const nonExCount = nonExElementsArray.length;
-
-        const nonExElementSiblings = [];
-        for (const elem of nonExElementsArray) {
-            // Find the sibling of the non-expanded element (Only one) and push it
-            nonExElementSiblings.push(elem.parentNode.childNodes[0].nextSibling);
-        }
+        const reccomendationPageRow = document.getElementsByClassName("recommendations")[0];
 
         let mutationCount = 0;
 
-        const callback = function(observer) {
+        const callback = function(elemObserver) {
             mutationCount++;
 
-            if (mutationCount === nonExCount) { // If all drop downs have been opened
-                // Do some styling
-                for (const elem of Array.from(<HTMLCollection>document.querySelectorAll('.headline'))) {
-                    (<HTMLElement>elem).style.marginLeft = "20px";
-                    (<HTMLElement>elem.nextElementSibling).style.marginLeft = "20px";
-                }
+            if (mutationCount === (stepCards.length + 1)) { // If all drop downs have been opened
 
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "hidden";
 
@@ -73,30 +42,40 @@ export class DownloadPlanComponent {
                 html2pdf(pdfBody);
 
                 // Close all the drop downs
-                DownloadPlanComponent.clickElems(nonExElementSiblings);
-
-                // Undo the styling
-                for (const elem of Array.from(document.getElementsByClassName('.headline'))) {
-                    (<HTMLElement>elem).style.marginLeft = "0px";
-                    (<HTMLElement>elem.nextElementSibling).style.marginLeft = "0px";
-                }
+                stepCardArray.map(elem => {
+                    elem.className = elem.className.slice(0, -11);
+                });
+                reccomendationPageRow.className = reccomendationPageRow.className.slice(0, -11);
 
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
 
                 // Disconnect the observer so the user cant trigger this callback afterwards
-                observer.disconnect();
+                elemObserver.disconnect();
             }
         };
 
         const observer = this.instantiateObserver(callback);
 
-        for (const elem of elementsArray) {
+        for (const elem of stepCardArray) {
             observer.observe(elem, { // Attributes which should be observed
-                attributes: true
+                attributes: true,
+                subtree: true
             });
         }
 
-        DownloadPlanComponent.clickElems(nonExElementSiblings);
+        observer.observe(reccomendationPageRow, { // Attributes which should be observed
+            attributes: true,
+            subtree: true
+        });
+
+        stepCardArray.map(elem => {
+            elem.className += " print-mode";
+        });
+        reccomendationPageRow.className += " print-mode";
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'plan-page');
     }
 
     private instantiateObserver(callback) {

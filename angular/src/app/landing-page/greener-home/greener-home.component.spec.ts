@@ -3,7 +3,6 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
-import {InlineSVGModule} from 'ng-inline-svg';
 
 import {GreenerHomeComponent} from './greener-home.component';
 import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
@@ -21,10 +20,13 @@ import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpr
 import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
+import {InlineSVGModule} from 'ng-inline-svg';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
+import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
-describe('CarbonFootprintComponent', () => {
+describe('GreenerHomeComponent', () => {
 
     let component: GreenerHomeComponent;
     let fixture: ComponentFixture<GreenerHomeComponent>;
@@ -52,20 +54,22 @@ describe('CarbonFootprintComponent', () => {
                 DataCardComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
+                SearchBarComponent
             ],
             imports: [
                 CommonModule,
                 FormsModule,
                 RouterTestingModule,
                 HttpClientTestingModule,
-                InlineSVGModule,
+                InlineSVGModule
             ],
             providers: [
                 ResponseData,
                 {provide: QuestionContentService, useValue: {fetchQuestionsContent: () => Observable.throw('error')}},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
-                {provide: PostcodeApiService, useValue: postcodeApiServiceStub}
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                GoogleAnalyticsService,
             ]
         })
             .compileComponents();

@@ -1,7 +1,7 @@
-<a class="latest-news-card" [routerLink]="page.route">
+<a class="latest-news-card" [routerLink]="page.route" (click)="onClick()">
     <div class="latest-news-icon-container"
-         [ngClass]="{'no-image': !page.coverImage}"
-         [style.backgroundImage]="page.coverImage ? 'url(' + page.coverImage.url + ')' : null">
+         [ngClass]="{'no-image': !imageUrl}"
+         [style.backgroundImage]="imageUrl">
         <span *ngIf="page.videoEmbed" class="icon-video-play"></span>
     </div>
     <div class="text-container">

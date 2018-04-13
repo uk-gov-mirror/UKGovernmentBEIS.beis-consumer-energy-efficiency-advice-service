@@ -1,7 +1,9 @@
-import {Component, Input, Output, EventEmitter, ViewChild, Renderer2 } from '@angular/core';
-import {Router, NavigationStart} from "@angular/router";
+import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
+import {NavigationStart, Router} from "@angular/router";
 
 import {NavigationSuboption} from "./navigation-suboption";
+import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
+import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 
 @Component({
     selector: 'app-navigation-bar',
@@ -12,19 +14,19 @@ export class NavigationBarComponent {
     homeSuboptions: NavigationSuboption[] = [
         {
             name: "Heating & Hot Water",
-            url: "/heating&hot-water"
+            url: "/your-home/heating&hot-water"
         },
         {
             name: "Windows & Doors",
-            url: "/windows&doors"
+            url: "/your-home/windows&doors"
         },
         {
             name: "Floors, Walls & Roofs",
-            url: "/floors-walls&roofs"
+            url: "/your-home/floors-walls&roofs"
         },
         {
             name: "Solar Energy",
-            url: "/solar-energy"
+            url: "/your-home/solar-energy"
         }
     ];
     rentedSuboptions: NavigationSuboption[] = [
@@ -34,41 +36,33 @@ export class NavigationBarComponent {
         },
         {
             name: "Information for Landlords",
-            url: "/information-for-landlords"
+            url: "/minimum-energy-efficiency-standards/questionnaire"
         },
     ];
-    financeSuboptions: NavigationSuboption[] = [
-        {
-            name: "Support for Home Improvements",
-            url: "/support-for-home-improvements"
-        },
-        {
-            name: "Support for Renewable Heating",
-            url: "/support-for-renewable-heating"
-        },
-        {
-            name: "Support for Renewable Electricity",
-            url: "/support-for-rewnewable-electricity"
-        }
-    ];
+
     showHomeMenu: boolean = false;
     showRentedMenu: boolean = false;
-    showFinanceMenu: boolean = false;
+    showYourPlan: boolean = false;
 
     @Input() shouldExpandNav: boolean;
     @Output() onHideMobileNav: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('homeMenu') homeMenu;
     @ViewChild('rentedMenu') rentedMenu;
-    @ViewChild('financeMenu') financeMenu;
 
     private deregisterClickListener: () => void;
 
-    constructor(private renderer: Renderer2, private router: Router) {
+    constructor(private renderer: Renderer2,
+                private router: Router,
+                private recommendationsService: RecommendationsService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
         router.events.subscribe((event) => {
             if (event instanceof NavigationStart && this.shouldExpandNav) {
                 this.hideMobileNav();
             }
+            this.showYourPlan = this.recommendationsService.getRecommendationsInPlan().length > 0;
+            // This needs to be regularly checked as it could change quite often.
+            // Performing it on a routing change is a suitable time to do this.
         });
     }
 
@@ -83,26 +77,26 @@ export class NavigationBarComponent {
         const clickedElement = event.target;
         const inHomeMenu = clickedElement && this.homeMenu.nativeElement.contains(clickedElement);
         const inRentedMenu = clickedElement && this.rentedMenu.nativeElement.contains(clickedElement);
-        const inFinanceMenu = clickedElement && this.financeMenu.nativeElement.contains(clickedElement);
-        if (!inHomeMenu && !inRentedMenu) {
+        if (!inHomeMenu) {
             this.showHomeMenu = false;
+        }
+        if (!inRentedMenu) {
             this.showRentedMenu = false;
         }
-        if (!inHomeMenu && !inFinanceMenu) {
-            this.showHomeMenu = false;
-            this.showFinanceMenu = false;
-        }
-        if (!inRentedMenu && !inFinanceMenu) {
-            this.showRentedMenu = false;
-            this.showFinanceMenu = false;
-        }
-        if (!inRentedMenu && !inFinanceMenu && !inHomeMenu && this.deregisterClickListener) {
+        if (!inRentedMenu && !inHomeMenu && this.deregisterClickListener) {
             this.deregisterClickListener();
         }
     }
 
-
     hideMobileNav() {
         this.onHideMobileNav.emit();
+    }
+
+    navLinkClicked(name: string) {
+        this.sendEventToAnalytics('nav-link_clicked', name);
+    }
+
+    sendEventToAnalytics(eventName: string, eventLabel: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'nav-bar', eventLabel);
     }
 }

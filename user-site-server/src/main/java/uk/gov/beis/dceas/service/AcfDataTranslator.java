@@ -48,7 +48,8 @@ public class AcfDataTranslator {
         String repeaterFieldName,
         Function<Map<String, String>, T> childBuilder) {
 
-        int childCount = Integer.parseInt(metaFields.getOrDefault(repeaterFieldName, "0"));
+        String childCountStr = metaFields.get(repeaterFieldName);
+        int childCount = isNullOrEmpty(childCountStr) ? 0 : Integer.parseInt(childCountStr);
 
         List<T> acc = new ArrayList<>();
         for (int i = 0; i < childCount; i++) {

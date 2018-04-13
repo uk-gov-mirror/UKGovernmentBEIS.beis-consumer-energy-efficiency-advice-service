@@ -22,9 +22,12 @@
                     <div class="headline">{{recommendation.headline}}</div>
                     <div class="description">{{recommendation.summary}}</div>
                     <div class="steps">
-                        <app-recommendation-step-card *ngFor="let step of recommendation.steps; let i = index"
-                                                      [step]="step"
-                                                      [stepIndex]="i"></app-recommendation-step-card>
+                        <app-recommendation-step-card
+                                *ngFor="let step of recommendation.steps; let i = index"
+                                [step]="step"
+                                [stepIndex]="i"
+                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.codeForAnalytics)"
+                        ></app-recommendation-step-card>
                     </div>
                 </div>
             </div>
@@ -44,7 +47,9 @@
             </div>
         </div>
     </div>
-    <app-sticky-row-wrapper>
-        <app-download-plan></app-download-plan>
-    </app-sticky-row-wrapper>
+    <div class="sticky-row-container">
+        <app-sticky-row-wrapper>
+            <app-download-plan></app-download-plan>
+        </app-sticky-row-wrapper>
+    </div>
 </div>

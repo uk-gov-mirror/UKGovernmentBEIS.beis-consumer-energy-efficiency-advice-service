@@ -85,13 +85,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         }
     }
 
-    animateToQuestion(index) {
-        this.recordQuestionAnswer();
-        const direction = this.getAnimationDirection(index);
-        this.currentQuestionIndex = index;
-        this.renderQuestion(direction);
-    }
-
     previousQuestionExists() {
         return this.questionnaire.getPreviousQuestionIndex(this.currentQuestionIndex) !== -1;
     }
@@ -113,7 +106,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     goBackOneQuestion() {
-        this.recordQuestionAnswer();
         const prevIndex = this.questionnaire.getPreviousQuestionIndex(this.currentQuestionIndex);
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
@@ -132,7 +124,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     goForwards() {
-        this.recordQuestionAnswer();
+        this.sendQuestionEventToAnalytics();
         if (this.nextQuestionExists()) {
             this.goForwardsOneQuestion();
         } else {
@@ -171,9 +163,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         this.isError = true;
     }
 
-    private recordQuestionAnswer() {
-        if (this.currentQuestionId && this.questionComponent) {
-            this.googleAnalyticsService.recordQuestionAnswer(this.currentQuestionId, this.questionComponent.responseForAnalytics);
+    private sendQuestionEventToAnalytics() {
+        if (this.currentQuestionId) {
+            this.googleAnalyticsService.sendEvent(this.currentQuestionId, 'question_answered');
         }
     }
 
@@ -182,8 +174,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (!!question) {
             this.questionTypeIconClassName = QuestionTypeUtil.getIconClassName(question.questionType);
             this.currentQuestionId = question.questionId;
-            // Some properties on this.currentQuestionContent are modified, which would cause them to change in the
-            // original array. For this reason, we perform a shallow clone to maintain this.allQuestionsContent
+            // The questionHeading of this.currentQuestionContent is modified - the placeholders in the string are
+            // replaced. This modified value is used in a number of places. This change causes a change in the original
+            // array. For this reason, we perform a shallow clone to maintain this.allQuestionsContent.
             this.currentQuestionContent = Object.assign({}, this.allQuestionsContent[this.currentQuestionId]);
             if (!(this.currentQuestionContent && this.currentQuestionContent.questionHeading)) {
                 this.displayErrorAndLogMessage(`Missing question content for question with id "${ this.currentQuestionId }"`);

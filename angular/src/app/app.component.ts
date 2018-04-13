@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
+import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {SVGCacheService} from 'ng-inline-svg';
@@ -12,6 +13,7 @@ import {SVGCacheService} from 'ng-inline-svg';
 })
 export class AppComponent implements OnInit {
     shouldExpandNav: boolean = false;
+    shouldCloseSearchBar: Subject<any> = new Subject();
 
     constructor(
         private router: Router,
@@ -41,6 +43,10 @@ export class AppComponent implements OnInit {
 
     toggleMobileNav(): void {
         this.shouldExpandNav = !this.shouldExpandNav;
+    }
+
+    closeSearchBar(): void {
+        this.shouldCloseSearchBar.next("close");
     }
 
     hideMobileNav(): void {

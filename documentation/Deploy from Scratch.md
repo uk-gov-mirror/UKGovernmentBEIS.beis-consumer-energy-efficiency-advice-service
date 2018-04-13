@@ -76,7 +76,6 @@ Add necessary config:
     cf set-env dceas-user-site bre.energyUse.username XXX
     cf set-env dceas-user-site bre.energyUse.password XXX
     cf set-env dceas-user-site google.analytics.id XXX
-    cf set-env dceas-user-site hotjar.id XXX
 
 Build the site locally, and deploy:
 

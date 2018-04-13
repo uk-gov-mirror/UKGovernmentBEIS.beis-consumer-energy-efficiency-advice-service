@@ -104,7 +104,7 @@ $desktop-header-height: 82px;
       }
     }
 
-    .mobile-search-icon {
+    .tablet-search-icon {
       @include is-search-icon(24px);
     }
 
@@ -169,8 +169,8 @@ $desktop-header-height: 82px;
         transition-delay: 0s;
         display: flex;
         align-items: stretch;
-        overflow: hidden;
-        z-index: 1;
+        overflow-y: auto;
+        z-index: 10;
 
         &.expanded {
           max-height: 300px;
@@ -178,14 +178,10 @@ $desktop-header-height: 82px;
           box-shadow: 3px 3px 6px black;
         }
 
-        .popular-searches, .search-results {
+        .search-results {
 
           & > :not(:last-child) {
             margin-bottom: 10px;
-          }
-
-          .header {
-            font-weight: bold;
           }
 
           .see-all {
@@ -247,14 +243,6 @@ $desktop-header-height: 82px;
             }
           }
         }
-
-        .popular-searches {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          font-size: 12px;
-          padding: 20px;
-        }
       }
     }
   }
@@ -282,12 +270,18 @@ $desktop-header-height: 82px;
         }
       }
 
+      app-search-bar {
+        display: none;
+        margin-right: $desktop-help-button-width - $desktop-side-margin;
+        width: 100%;
+        height: 100%;
+      }
+
       .mobile-menu-icon {
         margin-right: $mobile-help-button-width;
       }
 
-      // The search is in the hamburger menu at mobile sizes
-      .mobile-search-icon {
+      .tablet-search-icon {
         display: none;
       }
     }
@@ -310,15 +304,43 @@ $desktop-header-height: 82px;
         .vertical-line {
           margin: 0 20px;
           height: 42px;
-        }
 
-        .gov-logo {
-          height: 18px;
+          .gov-logo {
+            height: 18px;
+          }
         }
       }
 
-      .mobile-menu-icon {
-        margin-right: $tablet-help-button-width;
+      .ui-elems {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .searchBarContainer {
+          display: none;
+          margin-right: 120px;
+          position: absolute;
+          top: 100%;
+          width: calc(100% + 20px);
+        }
+
+        .showSearch {
+          display: flex;
+        }
+
+        app-search-bar {
+          width: 100%;
+        }
+
+        .mobile-menu-icon {
+          margin-right: 30px;
+        }
+
+        .tablet-search-icon {
+          margin-right: 50px;
+        }
       }
     }
   }
@@ -326,7 +348,9 @@ $desktop-header-height: 82px;
 
 @include desktop() {
   .header {
+    height: $desktop-header-height;
     @include is-full-size-header();
+
     .page-row-content {
       padding: 10px 0;
 
@@ -335,8 +359,8 @@ $desktop-header-height: 82px;
 
         .ehc-logo, .ehc-logo--small {
           height: 62px;
-        }
 
+      }
         .vertical-line {
           margin: 0 20px;
           height: 50px;
@@ -347,13 +371,40 @@ $desktop-header-height: 82px;
         }
       }
 
-      .search-container {
-        margin-right: $desktop-help-button-width - $desktop-side-margin;
+      .ui-elems {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         height: 100%;
+        width: 100%;
+        margin: -20px -10px 0px 0px;
 
-        .search-details-dropdown {
-          margin-top: $desktop-header-height;
+        .searchBarContainer {
+          display: flex;
+          margin-right: 20px;
+          height: 100%;
+
+          app-search-bar {
+            margin-right: $desktop-help-button-width - $desktop-side-margin;
+            height: 100%;
+            width: 100%;
+          }
         }
+
+        .showSearch {
+          display: flex;
+        }
+
+
+        .mobile-menu-icon {
+          display: none;
+        }
+
+        .tablet-search-icon {
+          display: none;
+        }
+
+
       }
     }
   }

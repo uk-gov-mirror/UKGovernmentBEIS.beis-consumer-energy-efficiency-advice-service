@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as parse from 'url-parse';
 import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
 import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {MeasureContent} from '../../shared/energy-saving-measure-content-service/measure-content';
@@ -69,7 +68,7 @@ export class BoilerPageMeasuresService {
         if (measureContent !== undefined) {
             return {
                 ...partialMeasure,
-                readMoreRoute: parse(measureContent.acf.featured_page).pathname,
+                readMoreRoute: '/measures/' + encodeURIComponent(measureContent.slug),
                 headline: measureContent.acf.headline,
                 summary: measureContent.acf.summary,
             };

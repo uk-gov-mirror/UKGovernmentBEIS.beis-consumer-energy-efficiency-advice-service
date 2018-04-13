@@ -32,7 +32,9 @@
             </div>
             <div class="recommendations-filter">
                 <app-recommendation-filter-control
-                        [(selectedTags)]="activeTagFilters"></app-recommendation-filter-control>
+                        [(selectedTags)]="activeTagFilters"
+                        (selectedTagsChange)="sendEventToAnalytics('filter_clicked')"
+                ></app-recommendation-filter-control>
             </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
@@ -44,6 +46,8 @@
         </div>
     </div>
     <app-sticky-row-wrapper>
-        <app-your-plan-footer></app-your-plan-footer>
+        <app-your-plan-footer
+                (onDoPlan)="sendEventToAnalytics('do_clicked')"
+        ></app-your-plan-footer>
     </app-sticky-row-wrapper>
 </div>

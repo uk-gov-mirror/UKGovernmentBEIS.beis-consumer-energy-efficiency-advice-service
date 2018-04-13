@@ -1,4 +1,3 @@
-import * as parse from 'url-parse';
 import {RecommendationStep} from './recommendation-step';
 import {
     EnergyEfficiencyRecommendationTag,
@@ -26,7 +25,8 @@ export class EnergyEfficiencyRecommendation {
                 public grant: NationalGrantForMeasure,
                 public advantages: string[],
                 public steps: RecommendationStep[],
-                public isAddedToPlan: boolean) {
+                public isAddedToPlan: boolean,
+                public codeForAnalytics: string) {
     }
 
     get costSavingPoundsPerMonth(): number {
@@ -65,7 +65,7 @@ export class EnergyEfficiencyRecommendation {
             lifetime,
             costSavingPerYear,
             measureResponse.energy_saving,
-            parse(measureContent.acf.featured_page).pathname,
+            '/measures/' + encodeURIComponent(measureContent.slug),
             measureContent.acf.headline,
             measureContent.acf.summary,
             iconClassName,
@@ -73,7 +73,8 @@ export class EnergyEfficiencyRecommendation {
             grant,
             advantages,
             concat(measureSteps, grantSteps),
-            false
+            false,
+            measureContent.slug,
         );
     }
 
@@ -92,7 +93,8 @@ export class EnergyEfficiencyRecommendation {
             null,
             grant.advantages,
             grant.steps,
-            false
+            false,
+            grant.grantId,
         );
     }
 

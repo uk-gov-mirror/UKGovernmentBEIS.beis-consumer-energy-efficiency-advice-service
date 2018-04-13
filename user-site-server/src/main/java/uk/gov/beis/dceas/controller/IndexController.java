@@ -39,8 +39,6 @@ public class IndexController {
     private String staticRoot;
     @Value("${google.analytics.id}")
     private String gaId;
-    @Value("${hotjar.id}")
-    private String hotjarId;
 
     private final Environment environment;
     private final IpValidationService ipValidationService;
@@ -73,20 +71,50 @@ public class IndexController {
             log.error("The angular files were not found in the resources dir. "
                 + "The application will not work!");
             angularHeadContent = "";
-            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly";
+            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly.<p>" +
+                "On a dev machine, ensure that you have 'ng build --watch' running, then " +
+                "right click on the project in IntelliJ, click 'synchronise', then re-build " +
+                "and re-launch the Java app.";
         }
     }
 
+    /**
+     * The homepage for the user SPA.
+     *
+     * See comments in `app-routing.module.ts`
+     *
+     * All paths which correspond to pages in the Angular app should be added here.
+     * (The main alternative to this would be to show the index page as a custom
+     * 404 page, see e.g. https://stackoverflow.com/a/28633189/8261 )
+     * (The unit test, IndexControllerTest, checks this mapping)
+     */
     @RequestMapping(value = {
         "/",
-        "/js/**"  // TODO:BEIS-196 tidy up js routing for prettier URLs
+        "/energy-efficiency/**",
+        "/grants/**",
+        "/boiler/**",
+        "/minimum-energy-efficiency-standards/**",
+        "/admin/**",
+        "/forbidden/**",
+        "/measures/**",
+        "/your-home/**",
+        "/eco-suppliers/**",
+        "/pages/**",
+        "/boiler-grants/**",
+        "/landlord-obligations/**",
+        "/certified-repairers/**",
+        "/page-not-created/**",
+        "/information-for-landlords/**",
+        "/information-for-tenants/**",
+        "/about-this-site/**",
+        "/simple-savings/**",
+
     },
         method = GET)
     public String index(Model model, HttpServletRequest request) throws IOException {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("gaId", gaId);
-        model.addAttribute("hotjarId", hotjarId);
         model.addAttribute("environment", environment.getActiveProfiles());
         model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);
@@ -100,6 +128,8 @@ public class IndexController {
             buildAttributes.getValue("Jenkins-Build-Url"));
         model.addAttribute("buildJenkinsNumber",
             buildAttributes.getValue("Jenkins-Build-Number"));
+
+        model.addAttribute("host", request.getServerName());
 
         return "index";
     }
