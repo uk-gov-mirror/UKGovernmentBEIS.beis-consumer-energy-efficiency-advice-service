@@ -51,6 +51,12 @@ import {PageNotCreatedComponent} from "./page-not-created/page-not-created.compo
  *
  * To this end, ALL routes that you add here need to be added to the
  * `RequestMapping` annotation on the IndexController in the Java codebase.
+ *
+ * (The Java unit test, IndexControllerTest, checks that Java and Angular agree.)
+ *
+ * (If we remove any routes from here in future, it might be best to leave
+ * them in the Java mapping, so that visitors get an Angular 404, rather than
+ * a Java 404.)
  */
 const routes: Routes = [
     {
