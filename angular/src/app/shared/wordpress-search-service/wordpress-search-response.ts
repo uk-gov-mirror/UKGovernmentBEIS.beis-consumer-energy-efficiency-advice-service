@@ -1,8 +1,4 @@
 export interface WordpressSearchResponse {
-    link: string;
-    title: PageContent;
-}
-
-export interface PageContent {
-    rendered: string;
+    title: { rendered: string };
+    type: string;
 }

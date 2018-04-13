@@ -1,7 +1,8 @@
 import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
 import {RecommendationStep} from '../recommendations-service/recommendation-step';
+import {WordpressSearchable} from '../wordpress-search-service/wordpress-searchable';
 
-export class WordpressMeasure {
+export class WordpressMeasure implements WordpressSearchable {
     route: string;
     title: string;
     summary: string;
