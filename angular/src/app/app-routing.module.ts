@@ -100,11 +100,6 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'simple-savings',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
         path: 'about-this-site',
         component: PageNotCreatedComponent,
         pathMatch: 'full'
