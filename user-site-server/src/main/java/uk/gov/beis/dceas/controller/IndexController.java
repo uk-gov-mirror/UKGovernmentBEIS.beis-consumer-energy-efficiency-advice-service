@@ -129,6 +129,8 @@ public class IndexController {
         model.addAttribute("buildJenkinsNumber",
             buildAttributes.getValue("Jenkins-Build-Number"));
 
+        model.addAttribute("host", request.getServerName());
+
         return "index";
     }
 

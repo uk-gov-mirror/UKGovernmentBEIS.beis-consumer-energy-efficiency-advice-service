@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {UserStateService} from "../user-state-service/user-state-service";
 import {GoogleAnalyticsService} from "../analytics/google-analytics.service";
 
@@ -13,7 +14,8 @@ export class NeedHelpComponent implements OnInit {
     reference: string = "";
 
     constructor(private userStateService: UserStateService,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private location: Location) {
     }
 
     async ngOnInit() {
@@ -28,7 +30,9 @@ export class NeedHelpComponent implements OnInit {
     }
 
     sendEventToAnalytics(eventName: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'assisted-digital');
+        // Send the current path as the label
+        const path = this.location.path() ? this.location.path() : '/';
+        this.googleAnalyticsService.sendEvent(eventName, 'assisted-digital', path);
     }
 
 }

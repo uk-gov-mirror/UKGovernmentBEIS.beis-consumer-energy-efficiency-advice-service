@@ -9,7 +9,7 @@
 
   .card-section {
     &:not(:last-child) {
-      border-right: 2px solid $lighter-grey;
+      border-right: 2px solid white;
     }
   }
 
@@ -31,7 +31,7 @@
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .static-measure-card {
-  background-color: white;
+  background-color: $lighter-grey;
 
   .heading {
     @include card-heading-font;
@@ -39,7 +39,7 @@
 
   .card-section {
     box-sizing: border-box;
-    border-bottom: 2px solid $lighter-grey;
+    border-bottom: 2px solid white;
   }
 
   .basic-info {
@@ -115,7 +115,7 @@
       border-bottom: none;
 
       &:not(:last-child) {
-        border-right: 2px solid $lighter-grey;
+        border-right: 2px solid white;
         padding-right: 38px;
       }
     }
