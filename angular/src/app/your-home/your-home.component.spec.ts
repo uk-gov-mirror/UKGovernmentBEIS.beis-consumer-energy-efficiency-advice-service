@@ -14,7 +14,7 @@ describe('YourHomeComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [YourHomeComponent, SpinnerAndErrorContainerComponent,],
+            declarations: [YourHomeComponent, SpinnerAndErrorContainerComponent, ],
             imports: [
                 InlineSVGModule,
                 RouterTestingModule
