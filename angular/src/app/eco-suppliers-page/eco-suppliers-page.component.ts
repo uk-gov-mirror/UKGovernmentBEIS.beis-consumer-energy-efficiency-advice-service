@@ -21,7 +21,7 @@ export class ECOSuppliersPageComponent implements OnInit {
 
     ngOnInit() {
         this.wordpressECOSuppliersService.fetchAllECOSuppliers()
-            .map(suppliers => suppliers.reverse())
+            .map(suppliers => suppliers.sort((a, b) => a.name.localeCompare(b.name)))
             .subscribe(
                 suppliers => this.suppliers = suppliers,
                 err => this.handleError(err),
