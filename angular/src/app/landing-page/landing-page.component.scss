@@ -182,14 +182,17 @@ $mobile-browse-cards-margin: 20px;
     }
 
     .postcode {
+      .page-row-content {
+        max-width: 800px;
+        text-align: center;
+      }
+
       .postcode-reason-container {
         padding-right: 40px;
         margin-top: 48px;
       }
 
       .postcode-input {
-        @include has-children-side-by-side();
-        align-items: flex-start;
       }
     }
 
