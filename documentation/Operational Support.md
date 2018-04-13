@@ -14,6 +14,8 @@
   * [Application logs](#application-logs)
 - [Troubleshooting](#troubleshooting)
 - [Backup and recovery](#backup-and-recovery)
+- [Regular tasks](#regular-tasks)
+  * [Update Energy Company Obligation (ECO) Suppliers](#update-energy-company-obligation-eco-suppliers)
 
 <!-- tocstop -->
 

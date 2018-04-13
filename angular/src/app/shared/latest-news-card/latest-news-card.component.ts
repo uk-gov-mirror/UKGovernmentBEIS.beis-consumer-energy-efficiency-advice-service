@@ -18,8 +18,8 @@ export class LatestNewsCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        // Look for the smallest image with width > 200
-        const imageUrl = getAcfImageUrlForMinSize(200, this.page.coverImage);
+        // Look for the smallest image that works
+        const imageUrl = getAcfImageUrlForMinSize(600, this.page.coverImage);
         this.imageUrl = imageUrl
             ? 'url(' + imageUrl + ')'
             : null;

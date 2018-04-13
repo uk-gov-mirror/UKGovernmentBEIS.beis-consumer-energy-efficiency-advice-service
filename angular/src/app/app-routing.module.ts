@@ -32,6 +32,7 @@ import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.co
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
 import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
 import {SimpleSavingsComponent} from "./simple-savings/simple-savings.component";
 
 /**
@@ -84,6 +85,41 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'grants/winter-fuel-payments',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/warm-home-discount',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/cold-weather-payments',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'simple-savings',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'about-this-site',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'information-for-tenants',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'information-for-landlords',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'energy-efficiency/greener-home',
         component: GreenerHomeComponent
     },
@@ -130,6 +166,26 @@ const routes: Routes = [
         canActivate: [BoilerResultsPageRouteGuard]
     },
     {
+        path: 'boiler-grants',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'boiler/heat-incentive',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'landlord-obligations',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'certified-repairers',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'minimum-energy-efficiency-standards/questionnaire',
         component: MeesQuestionnaireComponent,
     },
@@ -137,6 +193,11 @@ const routes: Routes = [
         path: 'minimum-energy-efficiency-standards/results',
         component: MeesResultsPageComponent,
         canActivate: [MeesResultsPageRouteGuard]
+    },
+    {
+        path: 'page-not-created',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
     },
     {
         path: 'admin',

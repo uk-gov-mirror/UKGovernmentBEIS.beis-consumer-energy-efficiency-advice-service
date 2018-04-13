@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {Observable} from 'rxjs/Observable';
+import {By} from '@angular/platform-browser';
 
 import { ECOSuppliersPageComponent } from './eco-suppliers-page.component';
 import {WordpressECOSuppliersService} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('ECOSuppliersPageComponent', () => {
     let component: ECOSuppliersPageComponent;
@@ -17,7 +19,10 @@ describe('ECOSuppliersPageComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ECOSuppliersPageComponent],
+            declarations: [
+                ECOSuppliersPageComponent,
+                SpinnerAndErrorContainerComponent,
+            ],
             providers: [
                 {provide: WordpressECOSuppliersService, useValue: wordpressECOSuppliersServiceStub}
             ]
@@ -42,7 +47,9 @@ describe('ECOSuppliersPageComponent', () => {
         // then
         fixture.whenStable()
             .then(() => {
-                expect(fixture.debugElement.nativeElement.textContent).toContain(expectedSuppliers[0].name);
+                const allSupplierImages = fixture.debugElement.queryAll(By.css('.supplier img'));
+                expect(allSupplierImages.length).toEqual(1);
+                expect(allSupplierImages[0].nativeElement.attributes['alt'].value).toEqual(expectedSuppliers[0].name);
             });
     }));
 });
