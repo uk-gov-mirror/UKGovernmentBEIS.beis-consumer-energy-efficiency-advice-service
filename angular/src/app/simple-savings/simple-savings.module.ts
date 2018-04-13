@@ -13,12 +13,12 @@ import {SimpleSavingsComponent} from './simple-savings.component';
     exports: [
         SimpleSavingsComponent
     ],
-  imports: [
-      SharedModule,
-      CommonModule,
-      RoutingModule,
-      InlineSVGModule
-  ],
+    imports: [
+        SharedModule,
+        CommonModule,
+        RoutingModule,
+        InlineSVGModule
+    ],
 })
 export class SimpleSavingsModule {
 }

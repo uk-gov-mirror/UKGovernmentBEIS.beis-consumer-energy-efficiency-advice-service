@@ -99,6 +99,7 @@ public class IndexController {
         "/your-home/**",
         "/eco-suppliers/**",
         "/pages/**",
+        "/simple-savings/**",
     },
         method = GET)
     public String index(Model model, HttpServletRequest request) throws IOException {

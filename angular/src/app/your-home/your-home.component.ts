@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
+import * as log from 'loglevel';
 
 @Component({
     selector: 'app-your-home',
@@ -38,6 +39,8 @@ export class YourHomeComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private measureService: EnergySavingMeasureContentService) {
+        this.isLoading = true;
+        this.isError = false;
     }
 
     ngOnInit() {
@@ -46,13 +49,17 @@ export class YourHomeComponent implements OnInit {
             this.yourHomeContent = this.sectionsByParameterString[this.parameterString];
             if (!this.yourHomeContent) {
                 // TODO:BEISDEAS-201 display a user-visible error here
-                console.error("Cannot find page content");
+                this.displayErrorAndLogMessage('Cannot find page content');
                 this.router.navigate(['/']);
                 return;
             }
-            this.measureService.fetchMeasureDetails().subscribe(measures => {
-                this.measures = this.filterMeasures(measures);
-            });
+            this.measureService.fetchMeasureDetails().subscribe(
+                measures => {
+                    this.measures = this.filterMeasures(measures);
+                    this.isLoading = false;
+                },
+                () => this.displayErrorAndLogMessage('No measures found for ${this.yourHomeContent.title}')
+            );
         });
     }
 
@@ -63,6 +70,13 @@ export class YourHomeComponent implements OnInit {
     private filterMeasures(measures: MeasureContent[]) {
         return measures.filter(measure =>
             measure.acf.tags && measure.acf.tags.some((tag) => tag === this.yourHomeContent.tag));
+    }
+
+    private displayErrorAndLogMessage(err: any) {
+        log.error(err);
+        log.warn(err);
+        this.isLoading = false;
+        this.isError = true;
     }
 }
 
