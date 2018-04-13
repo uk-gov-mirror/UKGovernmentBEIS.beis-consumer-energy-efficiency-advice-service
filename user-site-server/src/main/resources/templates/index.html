@@ -37,14 +37,14 @@
         gtag('config', gaId, { 'send_page_view': false });
     </script>
     <!-- Social Meta Tags -->
-    <meta property="og:title" content="BEIS" />
+    <meta property="og:title" content="Energy Saving Advice Service BEIS" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="This is a energy saving advice website" />
+    <meta property="og:description" content="Advice on energy saving from the UK government for homeowners, renters and landlords." />
     <meta property="og:site_name" content="Energy Saving Advice Service" />
     <!-- Change the tag below to link to the image on the real website -->
-    <meta property="og:image" content="http://dceas-user-site-int.cloudapps.digital/dist/assets/images/logos/ehc-small.png" />
-    <meta property="og:image:secure_url" content="https://dceas-user-site-int.cloudapps.digital/dist/assets/images/logos/ehc-small.png" />
+    <meta property="og:image" th:attr="content=@{${host}/dist/assets/images/logos/ehc-small.png}" />
+    <meta property="og:image:secure_url" th:attr="content=@{${host}/dist/assets/images/logos/ehc-small.png}" />
 </head>
 <body th:utext="${angularBodyContent}">
 </body>

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import uk.gov.beis.dceas.service.IpValidationService;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -127,6 +128,8 @@ public class IndexController {
             buildAttributes.getValue("Jenkins-Build-Url"));
         model.addAttribute("buildJenkinsNumber",
             buildAttributes.getValue("Jenkins-Build-Number"));
+
+        model.addAttribute("host", request.getServerName());
 
         return "index";
     }
