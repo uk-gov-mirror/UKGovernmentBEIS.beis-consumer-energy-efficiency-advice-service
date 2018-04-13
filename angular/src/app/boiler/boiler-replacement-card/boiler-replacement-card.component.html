@@ -1,22 +1,22 @@
-<a class="boiler-replacement-card" routerLink="/js/boiler/advice/{{boilerType.slug}}">
-    <div class="main-row">
-        <div class="details">
+<div class="boiler-replacement-card">
+    <div class="title-section">
+        <a class="boiler-link" routerLink="/js/boiler/advice/{{boilerType.slug}}">
             <span class="icon icon-heating"></span>
             <div class="content">
                 <div class="name">{{boilerType.name}}</div>
                 <div class="description">{{boilerType.description}}</div>
             </div>
-        </div>
-        <div class="box installation">
-            <div class="title">Average installation cost</div>
-            <div class="value">£{{boilerType.averageInstallationCost.toFixed(0)}}</div>
-        </div>
-        <div class="box running-cost">
-            <div class="title">Average running cost</div>
-            <div class="value">£{{boilerType.runningCostPerYear.toFixed(0)}}</div>
-        </div>
+        </a>
     </div>
-    <div class="secondary-row">
+    <div class="box installation">
+        <div class="title">Average installation cost</div>
+        <div class="value">£{{boilerType.averageInstallationCost.toFixed(0)}}</div>
+    </div>
+    <div class="box running-cost">
+        <div class="title">Average running cost</div>
+        <div class="value">£{{boilerType.runningCostPerYear.toFixed(0)}}</div>
+    </div>
+    <div class="more-details">
         <div class="content">
             <div class="lifetime">
                 <div class="title">Average lifetime</div>
@@ -28,4 +28,4 @@
             </div>
         </div>
     </div>
-</a>
+</div>

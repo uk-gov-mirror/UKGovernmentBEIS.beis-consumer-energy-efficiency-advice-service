@@ -19,12 +19,13 @@
     color: $dark-grey;
     background-color: white;
     margin-bottom: 30px;
-    padding: 30px 20px;
+    padding: 30px 20px 0;
 
     .details {
       display: flex;
       flex-direction: row-reverse;
       align-items: flex-start;
+      order: 1;
 
       .content {
         .name {
@@ -34,8 +35,8 @@
         }
 
         .description {
-          font-family: $font-family;
-          padding-bottom: 20px;
+          font-family: $font-family-light;
+          padding-bottom: 14px;
         }
       }
     }
@@ -45,17 +46,67 @@
       margin: 0 -20px;
       padding: 10px 20px;
       border-top: 5px solid $lighter-grey;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        font-size: 11px;
+        text-transform: uppercase;
+        margin-right: 24px;
+      }
+
+      .value {
+        font-size: 24px;
+        font-weight: bold;
+      }
 
       &:last-of-type {
         border-bottom: 5px solid $lighter-grey;
       }
+
+      .installation {
+        order: 3;
+      }
+
+      .running-cost {
+        order: 4;
+      }
     }
 
+    .secondary-row {
+
+      display: flex;
+      margin: 20px 0;
+
+      .content {
+        order: 2;
+      }
+
+      .title {
+        font-size: 11px;
+        line-height: 18px;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: $primary-blue;
+        flex: 0 0 auto;
+        margin-right: 24px;
+        padding: 2px 0;
+      }
+
+      .value {
+        font-size: 14px;
+        line-height: 18px;
+        font-family: $font-family-light;
+        padding: 2px 0;
+        flex: 1 1 auto;
+      }
+    }
 
   }
 }
 
-@include desktop() {
+@include tablet() {
   :host {
     display: block;
   }
@@ -172,6 +223,144 @@
 
     .secondary-row {
       width: 100%;
+      display: flex;
+      align-items: stretch;
+
+      background: $lighter-grey;
+
+      .content {
+        width: calc(100% - 400px);
+        padding: 36px 36px 64px 68px;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: flex-start;
+
+        .lifetime, .space {
+          flex: 0 0 50%;
+
+          display: flex;
+          align-items: flex-start;
+
+          .title {
+            font-size: 11px;
+            line-height: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $primary-blue;
+
+            flex: 0 0 auto;
+            margin-right: 24px;
+          }
+
+          .value {
+            font-size: 14px;
+            line-height: 18px;
+            font-family: $font-family-light;
+
+            flex: 1 1 auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  :host {
+    display: block;
+  }
+
+  .boiler-replacement-card {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    align-content: stretch;
+
+    .title-section {
+      color: $dark-grey;
+      background: $lighter-grey;
+      border-bottom: 2px solid white;
+      height: 200px;
+      box-sizing: border-box;
+
+      display: flex;
+      align-items: stretch;
+
+      //padding-left: 8px;
+      //padding-right: 36px;
+      //padding: 64px 16px 44px 16px;
+      //border-right: 2px solid white;
+
+      .boiler-link {
+        text-decoration: none;
+        display: flex;
+        align-items: stretch;
+
+        &:focus, &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .icon {
+        position: relative;
+        top: -2px;
+        margin-right: 12px;
+      }
+
+      .content {
+        .name {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: bold;
+
+          margin-bottom: 16px;
+        }
+
+        .description {
+          font-size: 14px;
+          line-height: 18px;
+          font-family: $font-family-light;
+        }
+      }
+    }
+
+    .box {
+      padding: 64px 16px 44px 16px;
+      background: $lighter-grey;
+      border-bottom: 2px solid white;
+
+      flex: 0 0 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .title {
+        font-size: 11px;
+        line-height: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+
+        height: 30px;
+        margin-bottom: 10px;
+      }
+
+      .value {
+        font-size: 36px;
+        line-height: 48px;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+
+    .installation {
+      border-right: 2px solid white;
+    }
+
+    .more-details {
+      flex-basis: 100%;
       display: flex;
       align-items: stretch;
 
