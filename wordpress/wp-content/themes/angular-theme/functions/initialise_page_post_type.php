@@ -14,7 +14,7 @@ function setup_page_acf_group()
                     'label' => 'Cover Image',
                     'name' => 'cover_image',
                     'type' => 'image',
-                    'instructions' => '',
+                    'instructions' => WP_DEBUG ? '' : 'This is disabled in production. See BEISDEAS-197.',
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -31,7 +31,7 @@ function setup_page_acf_group()
                     'max_width' => '',
                     'max_height' => '',
                     'max_size' => '',
-                    'mime_types' => '',
+                    'mime_types' => WP_DEBUG ? '' : 'disabled-in-production',
                 ),
                 array(
                     'key' => 'field_5a1ecc8553fc4',
