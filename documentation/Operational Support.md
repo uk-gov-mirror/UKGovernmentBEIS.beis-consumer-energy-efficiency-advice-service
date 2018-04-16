@@ -135,7 +135,7 @@ To copy the database from `staging` to `int`, do:
 
 ## Monitoring
 
-TODO:BEIS-163 document monitoring
+TODO:BEIS-203 document monitoring
 
 Logs, graphs etc.
 
@@ -151,11 +151,11 @@ For the user site, run
 
 ## Troubleshooting
 
-TODO:BEIS-163 document Troubleshooting
+TODO:BEIS-203 document Troubleshooting
 
 ## Backup and recovery
 
-TODO:BEIS-163 document backup and recovery
+TODO:BEIS-202 document backup and recovery
 
 ## Regular tasks
 
