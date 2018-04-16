@@ -58,8 +58,8 @@ You will need to update the `wp_options` table to change the hostname & port:
 Add necessary config:
 
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
-    cf set-env dceas-admin-site 'NONCE_KEY' '...'
-    # Do the same for the 7 other secret keys
+    cf create-user-provided-service dceas-wordpress-secrets \
+        -p AUTH_KEY,AUTH_SALT,LOGGED_IN_KEY,LOGGED_IN_SALT,NONCE_KEY,NONCE_SALT,SECURE_AUTH_KEY,SECURE_AUTH_SALT
 
 Build the site locally, and deploy:
  
