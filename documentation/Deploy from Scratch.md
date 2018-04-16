@@ -69,13 +69,13 @@ Build the site locally, and deploy:
 
 Add necessary config:
 
-    cf set-env dceas-user-site dceas-admin-site-url https://dceas-admin-site-int.cloudapps.digital
-    # comma separated list of IPv4 and IPv6 address ranges
-    cf set-env dceas-user-site dceas.admin-ip-whitelist XXX
-    cf set-env dceas-user-site epc.opendatacommunities.org.auth XXX
-    cf set-env dceas-user-site bre.energyUse.username XXX
-    cf set-env dceas-user-site bre.energyUse.password XXX
-    cf set-env dceas-user-site google.analytics.id XXX
+    cf create-user-provided-service epc.opendatacommunities.org -p username,password
+    cf create-user-provided-service bre.energyUse -p username,password
+    cf create-user-provided-service google.analytics -p id
+
+    # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges
+    # `admin-site-url` is e.g. "https://dceas-admin-site-int.cloudapps.digital"
+    cf create-user-provided-service dceas-user-site.config -p admin-ip-whitelist,admin-site-url
 
 Build the site locally, and deploy:
 

@@ -41,14 +41,18 @@ See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
 
 ## Configuration
 
-The configuration for the site is stored in Cloud Foundry environment settings.
+The configuration for the site is stored in Cloud Foundry in two places:
 
-Run `cf env X` to list the current settings for app `X`.
-(Run `cf apps` to see the list of apps in the selected space.)
+ 1. Environment settings in the manifest.yml for settings like `dceas.httpClient.connectTimeoutMs`
+ 2. User-provided services for passwords and settings which need to vary
+    by environment (staging / live)
 
-Run `cf set-env` to update the config.
+To change (1), add the env setting to the `manifest.yml` in the code and
+re-release. See https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#env-block
 
-The list of settings is shown in [Deploying the site from scratch](Deploy%20from%20Scratch.md).
+To change (2), update the service settings.
+See https://docs.cloudfoundry.org/devguide/services/user-provided.html#update
+and [Deploying the site from scratch](Deploy%20from%20Scratch.md).
 
 The effect of each setting is documented in the codebase, in `application.properties` for the User
 app, and in `wp-config.php` for the Admin site.
@@ -77,7 +81,8 @@ You would see lots of error logs coming from the `EpcLookupController`
 This API powers the main questionnaire, recommending energy saving Measures to users
 based on their answers.
 
-The URL for this service is configured by "`bre.energyUse.url`"
+The URL for this service is configured by the "`bre.energyUse`" CF service,
+see [Deploying the site from scratch](Deploy%20from%20Scratch.md).
 
 If this service is down, users will see an error page at the end of the questionnaire.
 
