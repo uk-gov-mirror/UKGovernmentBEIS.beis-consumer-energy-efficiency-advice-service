@@ -1,24 +1,23 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-installer-search',
-  templateUrl: './installer-search.component.html',
-  styleUrls: ['./installer-search.component.scss']
+    selector: 'app-installer-search',
+    templateUrl: './installer-search.component.html',
+    styleUrls: ['./installer-search.component.scss']
 })
 export class InstallerSearchComponent implements OnInit {
 
-  constructor(private router: Router) { }
+    measureCode = null;
+    postcode = null;
+
+    constructor(private route: ActivatedRoute) {
+    }
 
     ngOnInit() {
-        this.route.paramMap
-            .switchMap(params => {
-                this.isLoading = true;
-                return this.measureService.getMeasure(params.get('slug'));
-            })
-            .subscribe(
-                (measureData) => this.displayMeasure(measureData),
-                (err) => this.displayErrorAndLogMessage(err)
-            );
+        this.route.params.subscribe(params => {
+            this.measureCode = params["measure-code"];
+            this.postcode = params["postcode"];
+        });
     }
 }

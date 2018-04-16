@@ -23,6 +23,7 @@ import {MeesModule} from './mees/mees.module';
 import {ECOSuppliersPageModule} from "./eco-suppliers-page/eco-suppliers-page.module";
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
+import {InstallerSearchModule} from "./installer-search/installer-search.module";
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import {PageNotCreatedComponent} from "./page-not-created/page-not-created.compo
         BoilerModule.forRoot(),
         InlineSVGModule,
         YourHomeModule,
+        InstallerSearchModule,
         MeesModule.forRoot(),
     ],
     bootstrap: [AppComponent],
