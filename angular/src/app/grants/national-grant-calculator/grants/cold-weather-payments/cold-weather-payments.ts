@@ -17,7 +17,13 @@ export class ColdWeatherPayments extends NationalGrantCalculator {
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
-        // TODO: Improve this calculation (BEISDEAS-172)
+        // This is a bit rough-and-ready. It might be possible to
+        // improve rather than just saying 'may be eligible'.
+        // See // https://www.gov.uk/cold-weather-payment/eligibility
+        // for eligibility criteria.
+        //
+        // However, if you're eligible then you should get
+        // this automatically - so it is not a priority.
         let eligibility: GrantEligibility;
         if (responseData.benefits & ColdWeatherPayments.AUTOMATICALLY_QUALIFYING_BENEFITS) {
             eligibility = GrantEligibility.LikelyEligible;
