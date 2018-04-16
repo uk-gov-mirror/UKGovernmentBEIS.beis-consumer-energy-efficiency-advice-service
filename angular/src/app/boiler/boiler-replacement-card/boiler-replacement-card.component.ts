@@ -6,6 +6,13 @@ import {BoilerType} from '../boiler-types-service/boiler-type';
     templateUrl: './boiler-replacement-card.component.html',
     styleUrls: ['./boiler-replacement-card.component.scss']
 })
-export class BoilerReplacementCardComponent {
+export class BoilerReplacementCardComponent{
+
+    isExpandedView: boolean = false;
     @Input() boilerType: BoilerType;
+    constructor() {}
+
+    toggleExpandedView(): void {
+        this.isExpandedView = !this.isExpandedView;
+    }
 }

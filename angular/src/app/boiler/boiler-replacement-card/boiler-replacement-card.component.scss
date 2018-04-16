@@ -6,400 +6,305 @@
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
+.boiler-replacement-card {
+  display: flex;
+  margin: 16px 0;
+  text-decoration: none;
 
-// Breakpoint specific styling
-@include mobile() {
-
-  .boiler-replacement-card {
+  .main-row {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
 
-    text-decoration: none;
-    color: $dark-grey;
-    background-color: white;
-    margin-bottom: 30px;
-    padding: 30px 20px 0;
+    .icon {
+      padding: 50px 20px;
+    }
 
     .details {
       display: flex;
-      flex-direction: row-reverse;
+      flex-direction: column;
       align-items: flex-start;
-      order: 1;
 
-      .content {
-        .name {
-          font-size: 24px;
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
+      & > :not(:first-child) {
+        margin-top: 14px;
+      }
+
+      .name {
+        @include card-heading-font;
+      }
+
+      .description-row {
+        display: flex;
+        width: 100%;
 
         .description {
-          font-family: $font-family-light;
-          padding-bottom: 14px;
+          @include page-subheadline-small-font;
+          margin-right: 20px;
+          flex: 1;
         }
       }
     }
-
-    .box {
-      box-sizing: border-box;
-      margin: 0 -20px;
-      padding: 10px 20px;
-      border-top: 5px solid $lighter-grey;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .title {
-        font-size: 11px;
-        text-transform: uppercase;
-        margin-right: 24px;
-      }
-
-      .value {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      &:last-of-type {
-        border-bottom: 5px solid $lighter-grey;
-      }
-
-      .installation {
-        order: 3;
-      }
-
-      .running-cost {
-        order: 4;
-      }
-    }
-
-    .secondary-row {
-
-      display: flex;
-      margin: 20px 0;
-
-      .content {
-        order: 2;
-      }
-
-      .title {
-        font-size: 11px;
-        line-height: 18px;
-        font-weight: 500;
-        text-transform: uppercase;
-        color: $primary-blue;
-        flex: 0 0 auto;
-        margin-right: 24px;
-        padding: 2px 0;
-      }
-
-      .value {
-        font-size: 14px;
-        line-height: 18px;
-        font-family: $font-family-light;
-        padding: 2px 0;
-        flex: 1 1 auto;
-      }
-    }
-
   }
+
+  // Breakpoint specific styling
+  @include mobile() {
+    flex-wrap: wrap;
+
+    .main-row {
+
+      .details {
+        flex: 1 1 100%;
+        order: 1;
+        padding: 20px 0 20px 20px;
+      }
+
+      & > * {
+        background-color: white;
+      }
+
+      .more-detail-row {
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+
+        .more-detail-button {
+          background: none;
+          outline: none;
+          border: none;
+          text-transform: uppercase;
+          padding: 0;
+          @include card-expand-drawer;
+          cursor: inherit;
+
+          &:focus, &:hover {
+            text-decoration: underline;
+          }
+        }
+
+
+        .more-detail-icon {
+          margin-left: 6px;
+          width: 14px;
+          height: 8px;
+          display: block;
+          line-height: 0;
+          fill: $action-button-blue;
+        }
+
+        &.expanded .more-detail-icon {
+          transform: rotate(180deg);
+        }
+      }
+
+      .expanded-view-row {
+        display: none;
+        border-top: 2px solid $light-grey;
+        border-bottom: 2px solid $light-grey;
+
+        &.expanded {
+          display: flex;
+        }
+
+        .grants, .benefits {
+          .heading {
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: $focus-text-blue;
+          }
+        }
+
+        .benefits {
+          flex: 1;
+
+          .benefits-list {
+            padding: 0 20px;
+            font-family: $font-family-light;
+          }
+        }
+
+      }
+
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .expanded-view-row {
+      flex: 0 0 100%;
+      order: 3;
+      border: none;
+      flex-wrap: wrap;
+      padding: 20px;
+
+      //.grants, .benefits {
+      //  flex: 0 0 100%;
+      //}
+      //
+      //.grants {
+      //  padding-bottom: 20px;
+      //}
+    }
+
+    .installation-card {
+      flex: 0 0 100%;
+      order: 4;
+      border-top: 5px solid $light-grey;
+      padding: 20px;
+    }
+
+    .running-cost-card {
+      flex: 0 0 100%;
+      order: 5;
+      border-top: 2px solid $light-grey;
+      padding: 20px;
+    }
+
+    .add-to-plan-column {
+      flex: 0 0 100%;
+      order: 6;
+      border-top: 5px solid $light-grey;
+      padding: 20px;
+
+      .add-to-plan-text {
+        margin-right: 44px;
+      }
+    }
+
+    .more-detail-row.expanded {
+      border-bottom: 5px solid $light-grey;
+    }
+  }
+
 }
 
 @include tablet() {
-  :host {
-    display: block;
-  }
+  .main-row {
 
-  :host.white {
-    .boiler-replacement-card {
-      .main-row {
-        background: white;
-        border-bottom: 2px solid $lighter-grey;
-        .details {
-          border-right: 2px solid $lighter-grey;
-        }
-        .installation {
-          border-right: 2px solid $lighter-grey;
-        }
-      }
-      .secondary-row {
-        background: white;
-      }
-    }
-  }
-
-  .boiler-replacement-card {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    cursor: pointer;
-    text-decoration: none;
-    color: $dark-grey;
-    &:focus, &:hover {
-      .main-row .details .content .name {
-        text-decoration: underline;
-      }
+    .details {
+      flex: 1 1 100%;
+      order: 2;
+      padding: 10px 80px 0 4px;
     }
 
-    .main-row {
-      width: 100%;
-      display: flex;
-      align-items: stretch;
-
-      background: $lighter-grey;
-      border-bottom: 2px solid white;
-
-      .details, .box {
-        padding: 64px 16px 44px 16px;
-      }
-
-      .details {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: flex-start;
-
-        padding-left: 8px;
-        padding-right: 36px;
-        border-right: 2px solid white;
-
-        .icon {
-          position: relative;
-          top: -2px;
-          margin-right: 12px;
-        }
-
-        .content {
-          .name {
-            font-size: 24px;
-            line-height: 32px;
-            font-weight: bold;
-
-            margin-bottom: 16px;
-          }
-
-          .description {
-            font-size: 14px;
-            line-height: 18px;
-            font-family: $font-family-light;
-          }
-        }
-      }
-
-      .box {
-        flex: 0 0 auto;
-        width: 200px;
-        box-sizing: border-box;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        .title {
-          font-size: 11px;
-          line-height: 15px;
-          font-weight: bold;
-          text-transform: uppercase;
-          text-align: center;
-
-          height: 30px;
-          margin-bottom: 10px;
-        }
-
-        .value {
-          font-size: 36px;
-          line-height: 48px;
-          font-weight: bold;
-          text-align: center;
-        }
-      }
-
-      .installation {
-        border-right: 2px solid white;
-      }
+    & > * {
+      background-color: white;
     }
 
-    .secondary-row {
-      width: 100%;
-      display: flex;
-      align-items: stretch;
+    .expanded-view-row {
+      flex: 0 0;
+      flex-basis: 100%;
+      order: 4;
+      flex-wrap: wrap;
+      padding: 20px;
 
-      background: $lighter-grey;
-
-      .content {
-        width: calc(100% - 400px);
-        padding: 36px 36px 64px 68px;
-        box-sizing: border-box;
-
-        display: flex;
-        align-items: flex-start;
-
-        .lifetime, .space {
-          flex: 0 0 50%;
-
-          display: flex;
-          align-items: flex-start;
-
-          .title {
-            font-size: 11px;
-            line-height: 18px;
-            font-weight: 500;
-            text-transform: uppercase;
-            color: $primary-blue;
-
-            flex: 0 0 auto;
-            margin-right: 24px;
-          }
-
-          .value {
-            font-size: 14px;
-            line-height: 18px;
-            font-family: $font-family-light;
-
-            flex: 1 1 auto;
-          }
-        }
-      }
+      //.grants {
+      //  padding-right: 20px;
+      //}
+      //
+      //.grants, .benefits {
+      //  flex: 0 0 50%;
+      //}
     }
+
+    .installation-card {
+      flex: 0 0;
+      flex-basis: 100%;
+      order: 5;
+      padding-top: 20px;
+      border-right: 1px solid $light-grey;
+    }
+
+    .running-cost-card {
+      flex: 0 0;
+      flex-basis: 100%;
+      order: 6;
+      padding: 20px 0;
+    }
+
+    .more-detail-row:not(.expanded) {
+      border-bottom: 2px solid $light-grey;
+    }
+
   }
 }
 
 @include desktop() {
-  :host {
-    display: block;
-  }
-
-  .boiler-replacement-card {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: stretch;
-    align-content: stretch;
-
-    .title-section {
-      color: $dark-grey;
-      background: $lighter-grey;
-      border-bottom: 2px solid white;
-      height: 200px;
-      box-sizing: border-box;
-
-      display: flex;
-      align-items: stretch;
-
-      //padding-left: 8px;
-      //padding-right: 36px;
-      //padding: 64px 16px 44px 16px;
-      //border-right: 2px solid white;
-
-      .boiler-link {
-        text-decoration: none;
-        display: flex;
-        align-items: stretch;
-
-        &:focus, &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .icon {
-        position: relative;
-        top: -2px;
-        margin-right: 12px;
-      }
-
-      .content {
-        .name {
-          font-size: 24px;
-          line-height: 32px;
-          font-weight: bold;
-
-          margin-bottom: 16px;
-        }
-
-        .description {
-          font-size: 14px;
-          line-height: 18px;
-          font-family: $font-family-light;
-        }
-      }
+  .main-row {
+    .details {
+      flex: 1;
+      order: 2;
+      padding: 50px 60px 10px 0px;
     }
 
-    .box {
-      padding: 64px 16px 44px 16px;
-      background: $lighter-grey;
-      border-bottom: 2px solid white;
-
-      flex: 0 0 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      .title {
-        font-size: 11px;
-        line-height: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-
-        height: 30px;
-        margin-bottom: 10px;
-      }
-
-      .value {
-        font-size: 36px;
-        line-height: 48px;
-        font-weight: bold;
-        text-align: center;
-      }
+    & > * {
+      background-color: $lighter-grey;
     }
 
-    .installation {
-      border-right: 2px solid white;
-    }
-
-    .more-details {
+    .expanded-view-row {
+      flex: 0 0;
       flex-basis: 100%;
-      display: flex;
-      align-items: stretch;
+      order: 6;
+      padding: 20px 0;
+      border-top: 2px white solid;
 
-      background: $lighter-grey;
+      & > :not(:last-child) {
+        margin-right: 36px;
+      }
 
       .content {
-        width: calc(100% - 400px);
-        padding: 36px 36px 64px 68px;
-        box-sizing: border-box;
+        padding-left: 80px;
 
-        display: flex;
-        align-items: flex-start;
-
-        .lifetime, .space {
-          flex: 0 0 50%;
-
+        .lifetime {
           display: flex;
-          align-items: flex-start;
+          flex-direction: row;
+        }
 
-          .title {
-            font-size: 11px;
-            line-height: 18px;
-            font-weight: 500;
-            text-transform: uppercase;
-            color: $primary-blue;
+        .space {
+          display: flex;
+          flex-direction: row;
+        }
 
-            flex: 0 0 auto;
-            margin-right: 24px;
-          }
+        .title {
+          font-family: $font-family;
+          text-transform: uppercase;
+          font-size: 12px;
+          margin-bottom: 10px;
+          color: $focus-text-blue;
 
-          .value {
-            font-size: 14px;
-            line-height: 18px;
-            font-family: $font-family-light;
+          min-width: 200px;
+        }
 
-            flex: 1 1 auto;
-          }
+        .value {
+          font-family: $font-family-light;
+          font-size: 12px;
+          margin-bottom: 10px;
+          margin-right: 400px;
         }
       }
+    }
+
+    .installation-card {
+      flex: 0 0 200px;
+      order: 3;
+    }
+
+    .running-cost-card {
+      flex: 0 0 200px;
+      order: 4;
+    }
+
+    .more-detail-row {
+      display: none;
+    }
+
+    .installation-card, .running-cost-card {
+      color: $dark-grey;
+      height: 200px;
+      border-left: 2px solid white;
     }
   }
 }

@@ -77,6 +77,10 @@
 }
 
 @include desktop() {
+
+  .page-heading {
+    background-color: white;
+  }
   .get-started {
     background-color: $lighter-grey;
 
@@ -101,6 +105,8 @@
   }
 
   .boiler-types {
+    background-color: white;
+
     .heading {
       margin-bottom: 8px;
     }
