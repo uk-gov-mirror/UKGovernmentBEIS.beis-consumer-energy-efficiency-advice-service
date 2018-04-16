@@ -2,13 +2,13 @@
 
 <!-- This file lists all the database changelogs for the BEIS DCEAS
    =
-   = TODO:BEIS-163 update terminology here to match GOV.UK
-   = Changelogs which have been released to "test" or "live" must not be modified.
+   = Changelogs which have been released to "staging" or "live" must not be modified.
    = If you find a mistake in such a changelog, you must create a second fixup
    = changelog to correct it.
    =
    = Changelogs which have not yet been released beyond "int" may be modified, but
-   = it is better to avoid doing so.
+   = it is better to avoid doing so. You will need to connect to the "int" database
+   = in the cloud and update the CHANGELOGS table.
    =
    = Please add Changelogs in the same commit as the code which uses the new schema,
    = so that changes are atomic and the codebase is in a consistent state.
