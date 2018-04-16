@@ -37,8 +37,13 @@
   }
 
   @include tablet() {
-    .get-started {
+
+    .page-heading {
       background-color: $lighter-grey;
+    }
+
+    .get-started {
+      background-color: white;
 
       .page-row-content {
         display: flex;
@@ -61,6 +66,8 @@
     }
 
     .boiler-types {
+      background-color: $lighter-grey;
+
       .heading {
         margin-bottom: 8px;
       }

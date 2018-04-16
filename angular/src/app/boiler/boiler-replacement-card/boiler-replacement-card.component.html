@@ -6,7 +6,7 @@
             <div class="description-row">
                 <div class="description">{{boilerType.description}}</div>
             </div>
-            <div class="more-detail-row" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+            <div class="more-detail-row" [class.expanded]="isExpandedView" (click)="toggleExpandedView($event)">
                 <button class="more-detail-button">
                     {{isExpandedView ? 'Hide detail' : 'See more detail'}}
                 </button>

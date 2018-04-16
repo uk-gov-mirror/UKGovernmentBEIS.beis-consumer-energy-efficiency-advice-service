@@ -12,7 +12,9 @@ export class BoilerReplacementCardComponent{
     @Input() boilerType: BoilerType;
     constructor() {}
 
-    toggleExpandedView(): void {
+    toggleExpandedView(event): void {
+        event.stopPropagation();
+        event.preventDefault();
         this.isExpandedView = !this.isExpandedView;
     }
 }

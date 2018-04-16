@@ -2,6 +2,7 @@
 @import "styles/var/colors";
 
 // Component specific variables
+$icon-column-width: 40px;
 
 // Component specific mixins
 
@@ -17,17 +18,13 @@
     flex: 1 1 100%;
 
     .icon {
-      padding: 50px 20px;
+      padding: 35px 20px;
     }
 
     .details {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-
-      & > :not(:first-child) {
-        margin-top: 14px;
-      }
 
       .name {
         @include card-heading-font;
@@ -82,7 +79,6 @@
             text-decoration: underline;
           }
         }
-
 
         .more-detail-icon {
           margin-left: 6px;
@@ -183,56 +179,133 @@
 
 @include tablet() {
   .main-row {
-
-    .details {
-      flex: 1 1 100%;
-      order: 2;
-      padding: 10px 80px 0 4px;
-    }
+    align-content: stretch;
 
     & > * {
       background-color: white;
     }
 
-    .expanded-view-row {
-      flex: 0 0;
-      flex-basis: 100%;
-      order: 4;
-      flex-wrap: wrap;
-      padding: 20px;
+    .icon {
+      padding: 35px 20px;
+      order: 1;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
 
-      //.grants {
-      //  padding-right: 20px;
-      //}
-      //
-      //.grants, .benefits {
-      //  flex: 0 0 50%;
-      //}
+    .details {
+      order: 2;
+      padding: 35px 80px 0 0;
+      flex: 1 1 60%;
+
+      .name {
+        padding-bottom: 10px;
+      }
+    }
+
+    more-detail-row:not(.expanded) {
+      border-bottom: 0;
+    }
+
+    .more-detail-row {
+      width: 100%;
+      padding: 30px 0 20px;
+      display: flex;
+      align-items: center;
+
+      .more-detail-button {
+        background: none;
+        outline: none;
+        border: none;
+        padding: 0;
+        @include card-expand-drawer;
+      }
+
+      .more-detail-icon {
+        margin-left: 6px;
+        width: 14px;
+        height: 8px;
+        display: block;
+        line-height: 0;
+        fill: $action-button-blue;
+      }
+
+      &.expanded .more-detail-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .expanded-view-row {
+      display: none;
+
+      &.expanded {
+        display: flex;
+        flex: 0 0;
+        flex-basis: 100%;
+        order: 4;
+        flex-wrap: wrap;
+        padding: 20px 0;
+
+        .content {
+          padding-right: 20px;
+          display: flex;
+        }
+
+        .content {
+          padding-left: 76px;
+
+          .lifetime, .space {
+            flex: 0 0 50%;
+            box-sizing: border-box;
+            display: flex;
+          }
+
+          .title {
+            font-family: $font-family;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: $focus-text-blue;
+            min-width: 180px;
+          }
+
+          .value {
+            font-family: $font-family-light;
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: $dark-grey;
+          }
+        }
+      }
     }
 
     .installation-card {
-      flex: 0 0;
-      flex-basis: 100%;
       order: 5;
-      padding-top: 20px;
-      border-right: 1px solid $light-grey;
+      border-right: 2px solid $light-grey;
     }
 
     .running-cost-card {
-      flex: 0 0;
-      flex-basis: 100%;
       order: 6;
+    }
+
+    .installation-card, .running-cost-card {
+      box-sizing: border-box;
+      flex: 0 0 50%;
+      color: $dark-grey;
+      border-top: 2px solid $light-grey;
       padding: 20px 0;
     }
-
-    .more-detail-row:not(.expanded) {
-      border-bottom: 2px solid $light-grey;
-    }
-
   }
 }
 
 @include desktop() {
+  .boiler-replacement-card {
+    &:focus, &:hover {
+      .name {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .main-row {
     .details {
       flex: 1;
@@ -244,6 +317,14 @@
       background-color: $lighter-grey;
     }
 
+    .more-detail-row {
+      display: none;
+    }
+
+    .icon {
+      padding: 35px 20px;
+    }
+
     .expanded-view-row {
       flex: 0 0;
       flex-basis: 100%;
@@ -251,19 +332,10 @@
       padding: 20px 0;
       border-top: 2px white solid;
 
-      & > :not(:last-child) {
-        margin-right: 36px;
-      }
-
       .content {
         padding-left: 80px;
 
-        .lifetime {
-          display: flex;
-          flex-direction: row;
-        }
-
-        .space {
+        .lifetime, .space {
           display: flex;
           flex-direction: row;
         }
@@ -295,10 +367,6 @@
     .running-cost-card {
       flex: 0 0 200px;
       order: 4;
-    }
-
-    .more-detail-row {
-      display: none;
     }
 
     .installation-card, .running-cost-card {
