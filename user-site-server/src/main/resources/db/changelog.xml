@@ -62,4 +62,5 @@
     <include file="changelogs/2018-04-10-remove-obsolete-wp-posts.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-10-add-eco-suppliers-to-wordpress.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-12-update-tags-on-measure.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-16-remove-dummy-local-authority-grants.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
