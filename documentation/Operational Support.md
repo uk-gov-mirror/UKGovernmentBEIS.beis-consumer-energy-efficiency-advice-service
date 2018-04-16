@@ -5,6 +5,7 @@
 <!-- toc -->
 
 - [Deployment](#deployment)
+  * [Rolling back a deployment](#rolling-back-a-deployment)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
   * [MHCLG, Energy Performance of Buildings Data: England and Wales](#mhclg-energy-performance-of-buildings-data-england-and-wales)
@@ -25,7 +26,13 @@
 
 ## Deployment
 
-The "live" sites can be released using the Jenkins job at TODO:BEIS-190
+The "live" sites can be released using the Jenkins job at
+http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/5.%20BEIS%20DCEAS%20-%20Deploy%20to%20Live/
+which deploys to:
+  * https://dceas-user-site.cloudapps.digital/
+  * https://dceas-admin-site.cloudapps.digital/
+
+TODO:BEIS-189 this releases "master"; can we release the version on "staging"?
 
 The "staging" sites (for UAT) can be released using the Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
@@ -39,7 +46,18 @@ which deploys to:
   * https://dceas-user-site-int.cloudapps.digital/
   * https://dceas-admin-site-int.cloudapps.digital/
 
-BEISDEAS-189 document how to roll back a release etc.
+### Rolling back a deployment
+
+To roll back a live release, you need to manually remap the routes onto
+the "-old" instances of the apps.
+
+TODO:BEIS-189 how?
+
+See https://github.com/bluemixgaragelondon/cf-blue-green-deploy/issues/7
+for a possible future enhancement to automate this.
+
+There is not currently any way to roll back int or staging; you just have
+to revert the code and re-release.
 
 See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
 
