@@ -10,7 +10,6 @@ import {WordpressPagesService} from './shared/wordpress-pages-service/wordpress-
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {InlineSVGModule, SVGCacheService} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {OneTimePopupComponent} from './layout-components/one-time-popup/one-time-popup.component';
 import {PopupComponent} from './shared/popup/popup.component';
 import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
@@ -39,7 +38,6 @@ describe('AppComponent', () => {
                 HeaderComponent,
                 FooterComponent,
                 NavigationBarComponent,
-                OneTimePopupComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
                 NeedHelpComponent,
