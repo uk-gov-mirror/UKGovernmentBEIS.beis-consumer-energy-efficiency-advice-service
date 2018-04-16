@@ -1,8 +1,27 @@
-<div class="page-heading page-row">
-    <h2 class="page-row-content">Installer Search</h2>
-</div>
-<div class="page-row">
-    <p class="page-row-content">
-        Something about installer search
-    </p>
+<div class="installer-search">
+    <div class="page-heading page-row">
+        <h3 class="page-row-content">Find an installer</h3>
+        <p class="page-row-content">Troubleshooting your boiler or finding the best replacement</p>
+    </div>
+    <div class="page-content page-row">
+        <div class="field-container postcode">
+            <p class="field-heading">Postcode</p>
+            <form>
+                <input [(ngModel)]="postcode" type="text" name="postcode" class="text-container postcode-input">
+                <button></button>
+            </form>
+        </div>
+        <div class="field-container measure-code">
+            <p class="field-heading">Measure Code</p>
+            <form>
+                <input [(ngModel)]="measureCode" type="text" name="measure-code" class="text-container measure-code-input">
+                <button></button>
+            </form>
+        </div>
+    </div>
+    <div class="page-row">
+        <p class="page-row-content">
+            Something about installers
+        </p>
+    </div>
 </div>

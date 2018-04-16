@@ -292,7 +292,7 @@ function setup_measure_acf_group() {
                                     'key' => 'field_5a1d8a1c2d97f',
                                     'label' => 'Linked page',
                                     'name' => 'linked_page',
-                                    'type' => 'page_link',
+                                    'type' => 'text',
                                     'instructions' => '',
                                     'required' => 0,
                                     'conditional_logic' => array(
@@ -309,14 +309,8 @@ function setup_measure_acf_group() {
                                         'class' => '',
                                         'id' => '',
                                     ),
-                                    'post_type' => array(
-                                        0 => 'page',
-                                    ),
-                                    'taxonomy' => array(
-                                    ),
-                                    'allow_null' => 0,
-                                    'allow_archives' => 1,
-                                    'multiple' => 0,
+                                    'default_value' => '',
+                                    'placeholder' => '',
                                 ),
                                 array(
                                     'key' => 'field_5a96d9bfa67e7',

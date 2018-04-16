@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 import {RoutingModule} from '../app-routing.module';
 import {InstallerSearchComponent} from "./installer-search.component";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import {InstallerSearchComponent} from "./installer-search.component";
         SharedModule,
         CommonModule,
         RoutingModule,
+        FormsModule,
     ]
 })
 export class InstallerSearchModule {
