@@ -18,10 +18,13 @@ export class WarmHomeDiscount extends NationalGrantCalculator {
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
         let eligibility: GrantEligibility;
         if (responseData.benefits & WarmHomeDiscount.QUALIFYING_BENEFIT) {
+            // This is a bit rough-and-ready.
+            // It might be possible to improve rather than just saying 'may be eligible'.
+            //
+            // Eligibility depends on income and your energy supplier
             eligibility = GrantEligibility.LikelyEligible;
         } else {
             eligibility = GrantEligibility.Ineligible;
-            // TODO: improve this (BEISDEAS-173)
         }
         return Observable.of(eligibility);
     }
