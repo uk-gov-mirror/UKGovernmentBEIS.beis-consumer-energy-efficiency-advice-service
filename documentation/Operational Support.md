@@ -41,15 +41,65 @@ See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
 
 ## Configuration
 
-TODO:BEIS-163 document how to configure the site
+The configuration for the site is stored in Cloud Foundry environment settings.
 
-Use `cf env`, mostly...
+Run `cf env X` to list the current settings for app `X`.
+(Run `cf apps` to see the list of apps in the selected space.)
+
+Run `cf set-env` to update the config.
+
+The list of settings is shown in [Deploying the site from scratch](Deploy%20from%20Scratch.md).
+
+The effect of each setting is documented in the codebase, in `application.properties` for the User
+app, and in `wp-config.php` for the Admin site.
 
 ## Dependencies
 
-TODO:BEIS-163 document deps
+The app depends on:
 
-### Updating Wordpress
+### MHCLG, Energy Performance of Buildings Data: England and Wales
+
+The Ministry of Housing, Communities & Local Government has an API for EPC
+data at
+
+https://epc.opendatacommunities.org/
+
+We have an API key for this service, which is stored in config.
+
+If this service is down, then the site should continue to work OK, except that no EPC
+data will be available. The questionnaire should continue to work without this data,
+so users should not notice any issues.
+
+You would see lots of error logs coming from the `EpcLookupController`
+
+### BRE Energy Use API
+
+This API powers the main questionnaire, recommending energy saving Measures to users
+based on their answers.
+
+The URL for this service is configured by "`bre.energyUse.url`"
+
+If this service is down, users will see an error page at the end of the questionnaire.
+
+You would see lots of error logs coming from the `EnergyCalculationController`
+
+### Postcodes.io
+
+The site uses https://postcodes.io/ to look up Local Authority info from a postcode.
+
+If this service is down, then the site should continue to work OK, except that no EPC
+data will be available. The questionnaire should continue to work without this data,
+so users should not notice any issues.
+
+If this service is down then TODO:BEISDEAS-258 things go wrong...
+
+### Google Analytics
+
+The site uses Google Analytics to track users.
+
+If this service is down, users should hopefully not see any errors.
+
+## Updating Wordpress
 
 You cannot update Wordpress or its Plugins using the web GUI in the admin site,
 any changes made this way would be lost when the web server is recycled or if new
