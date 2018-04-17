@@ -27,4 +27,9 @@ esac
 cd wordpress
 
 cf target -o beis-domestic-energy-advice-service -s $SPACE
-cf push --hostname $HOSTNAME
+
+if [[ $SPACE == "live" ]]; then
+    cf blue-green-deploy dceas-admin-site
+else
+    cf push --hostname $HOSTNAME
+fi

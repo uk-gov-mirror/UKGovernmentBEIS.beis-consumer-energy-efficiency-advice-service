@@ -5,9 +5,17 @@
 <!-- toc -->
 
 - [Deployment](#deployment)
+  * [Live deployment](#live-deployment)
+  * [Staging deployment](#staging-deployment)
+  * [Int deployment](#int-deployment)
+  * [Rolling back a live deployment](#rolling-back-a-live-deployment)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
-  * [Updating Wordpress](#updating-wordpress)
+  * [MHCLG, Energy Performance of Buildings Data: England and Wales](#mhclg-energy-performance-of-buildings-data-england-and-wales)
+  * [BRE Energy Use API](#bre-energy-use-api)
+  * [Postcodes.io](#postcodesio)
+  * [Google Analytics](#google-analytics)
+- [Updating Wordpress](#updating-wordpress)
 - [Database](#database)
   * [Copying database from one env to another](#copying-database-from-one-env-to-another)
 - [Monitoring](#monitoring)
@@ -21,41 +29,89 @@
 
 ## Deployment
 
-The "live" sites can be released using the Jenkins job at TODO:BEIS-190
+### Live deployment
 
-The "staging" sites (for UAT) can be released using the Jenkins job at
+The "live" site tracks the "`live`" branch in `git`.
+To release to "live", you should fast-forward merge the "`live`" branch to
+the "`staging`" branch.
+The Jenkins job at
+http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/5.%20BEIS%20DCEAS%20-%20Deploy%20to%20Live/
+watches this branch and will deploy it to:
+  * https://dceas-user-site.cloudapps.digital/
+  * https://dceas-admin-site.cloudapps.digital/
+
+You should only release to live changes that have already been tested on staging.
+
+You can update the branch with a git command like:
+
+    git fetch origin staging:live
+    git push origin live:live
+
+(See https://stackoverflow.com/questions/3216360/merge-update-and-pull-git-branches-without-using-checkouts )
+
+Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=staging&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=live&merge_request%5Btarget_project_id%5D=459)
+
+### Staging deployment
+
+The same as "live", except that the branch name is "`staging`" and it should
+track `master`:
+
+    git fetch origin live:master
+    git push origin staging:staging
+
+Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=master&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=staging&merge_request%5Btarget_project_id%5D=459)
+
+The Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
-which deploys to:
+watches this branch and will deploy it to:
   * https://dceas-user-site-staging.cloudapps.digital/
   * https://dceas-admin-site-staging.cloudapps.digital/
 
-The "int" site is automatically updated after each code change by the Jenkins job at
+### Int deployment
+
+The "int" site is automatically updated after each code change on `master` by the Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/2.%20BEIS%20DCEAS%20-%20Deploy%20to%20Int/
 which deploys to:
   * https://dceas-user-site-int.cloudapps.digital/
   * https://dceas-admin-site-int.cloudapps.digital/
 
-BEISDEAS-189 document how to roll back a release etc.
+### Rolling back a live deployment
 
-See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
+To roll back a live release, you can manually remap the routes onto
+the "-old" instances of the apps:
+
+    cf map-route dceas-user-site-old --hostname dceas-user-site cloudapps.digital
+    cf unmap-route dceas-user-site --hostname dceas-user-site cloudapps.digital
+
+See https://github.com/bluemixgaragelondon/cf-blue-green-deploy/issues/7
+for a possible future enhancement to automate this.
+
+You can also force-push the "{{live}}" branch onto an older version, and
+Jenkins will re-release the old version.
+
+Do the same to roll back staging, if necessary.
 
 ## Configuration
 
-The configuration for the site is stored in Cloud Foundry environment settings.
+The configuration for the site is stored in Cloud Foundry in two places:
 
-Run `cf env X` to list the current settings for app `X`.
-(Run `cf apps` to see the list of apps in the selected space.)
+ 1. Environment settings in the manifest.yml for settings like `dceas.httpClient.connectTimeoutMs`
+ 2. User-provided services for passwords and settings which need to vary
+    by environment (staging / live)
 
-Run `cf set-env` to update the config.
+To change (1), add the env setting to the `manifest.yml` in the code and
+re-release. See https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#env-block
 
-The list of settings is shown in [Deploying the site from scratch](Deploy%20from%20Scratch.md).
+To change (2), update the service settings.
+See https://docs.cloudfoundry.org/devguide/services/user-provided.html#update
+and [Deploying the site from scratch](Deploy%20from%20Scratch.md).
 
 The effect of each setting is documented in the codebase, in `application.properties` for the User
 app, and in `wp-config.php` for the Admin site.
 
 ## Dependencies
 
-The app depends on:
+The app depends on the following external services:
 
 ### MHCLG, Energy Performance of Buildings Data: England and Wales
 
@@ -77,7 +133,8 @@ You would see lots of error logs coming from the `EpcLookupController`
 This API powers the main questionnaire, recommending energy saving Measures to users
 based on their answers.
 
-The URL for this service is configured by "`bre.energyUse.url`"
+The URL for this service is configured by the "`bre.energyUse`" CF service,
+see [Deploying the site from scratch](Deploy%20from%20Scratch.md).
 
 If this service is down, users will see an error page at the end of the questionnaire.
 

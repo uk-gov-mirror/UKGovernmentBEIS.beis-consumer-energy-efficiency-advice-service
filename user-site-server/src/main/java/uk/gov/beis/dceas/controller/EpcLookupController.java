@@ -14,27 +14,37 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.util.Base64;
 
 import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 @RestController
 @RequestMapping("/api")
 public class EpcLookupController implements ClientHttpRequestInterceptor {
 
-    private final String apiToken;
+    private final String apiAuthHeaderValue;
     private final String apiRoot;
     private final RestTemplate restTemplate;
 
     public EpcLookupController(
-        @Value("${epc.opendatacommunities.org.auth}")
-            String apiToken,
-        @Value("${epc.opendatacommunities.org.apiRoot}")
+        @Value("${vcap.services.epc.opendatacommunities.org.credentials.username}")
+            String apiUsername,
+        @Value("${vcap.services.epc.opendatacommunities.org.credentials.password}")
+                String apiPassword,
+        @Value("${vcap.services.epc.opendatacommunities.org.credentials.apiRoot}")
             String apiRoot,
         RestTemplateBuilder restTemplateBuilder) {
 
         this.apiRoot = apiRoot;
-        this.apiToken = apiToken;
+        if (isNullOrEmpty(apiUsername) || isNullOrEmpty(apiPassword)) {
+            this.apiAuthHeaderValue = null; // will throw at runtime; see below
+        } else {
+            this.apiAuthHeaderValue =
+                    "Basic " + Base64.getEncoder().encodeToString(
+                    (apiUsername + ":" + apiPassword).getBytes(UTF_8));
+        }
 
         this.restTemplate = restTemplateBuilder
             .interceptors(this)
@@ -84,12 +94,12 @@ public class EpcLookupController implements ClientHttpRequestInterceptor {
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
 
         checkState(
-            !isNullOrEmpty(apiToken),
-            "Cannot contact 'epc.opendatacommunities.org', no API token has been set\n" +
-                "On a production server, check the ENV vars as per 'Deploy from Scratch.md'.\n" +
+            !isNullOrEmpty(apiAuthHeaderValue),
+            "Cannot contact 'epc.opendatacommunities.org', no API auth has been set\n" +
+                "On a production server, check the services as per 'Deploy from Scratch.md'.\n" +
                 "On a dev machine, check `application-dev.properties.template`.");
 
-        request.getHeaders().add("Authorization", "Basic " + apiToken);
+        request.getHeaders().add("Authorization", apiAuthHeaderValue);
 
         // This would be added automatically by RestTemplate if we were deserializing the response
         request.getHeaders().add("Accept", "application/json");

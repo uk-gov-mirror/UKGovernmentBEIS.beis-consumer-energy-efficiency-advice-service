@@ -11,12 +11,12 @@
         <div class="page-row-content">
             <div class="measures-list">
                 <div class="measure-cards" *ngFor="let measure of measures">
-                    <div class="measure-card">
+                    <a class="measure-card" routerLink="/measures/{{measure.slug}}">
                         <div class="icon" [inlineSVG]="getMeasureIcon(measure)"></div>
                         <div class="headline">{{measure.acf.headline}}</div>
                         <div class="summary">{{measure.acf.summary}}</div>
-                        <a class="link" routerLink="/measures/{{measure.slug}}">READ MORE</a>
-                    </div>
+                        <div class="link">READ MORE</div>
+                    </a>
                 </div>
             </div>
         </div>

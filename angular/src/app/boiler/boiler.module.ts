@@ -24,7 +24,6 @@ import {BoilerMakeModelReplaceComponent} from './make-model-replace/boiler-make-
 import {BoilerAdvicePageComponent} from './advice-page/boiler-advice-page.component';
 import {BoilerRegulationCardComponent} from './advice-page/boiler-regulation-card/boiler-regulation-card.component';
 import {BoilerLinkButtonComponent} from './boiler-link-button/boiler-link-button.component';
-import {DataCardComponent} from "../shared/data-card/data-card.component";
 
 @NgModule({
     declarations: [
@@ -41,8 +40,7 @@ import {DataCardComponent} from "../shared/data-card/data-card.component";
         BoilerMakeModelReplaceComponent,
         BoilerAdvicePageComponent,
         BoilerRegulationCardComponent,
-        BoilerLinkButtonComponent,
-        DataCardComponent
+        BoilerLinkButtonComponent
     ],
     imports: [
         CommonModule,

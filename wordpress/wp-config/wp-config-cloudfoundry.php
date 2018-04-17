@@ -9,6 +9,7 @@ if (!defined('ABSPATH')) exit();
  */
 $service_blob = json_decode($_ENV['VCAP_SERVICES'], true);
 $mysql_service = null;
+$wordpress_secrets = null;
 foreach($service_blob as $service_provider => $service_list) {
     foreach ($service_list as $some_service) {
         // looks for tags of 'mysql'
@@ -18,10 +19,17 @@ foreach($service_blob as $service_provider => $service_list) {
             }
             $mysql_service = $some_service;
         }
+
+        if ($some_service['name'] === 'dceas-wordpress-secrets') {
+            $wordpress_secrets = $some_service;
+        }
     }
 }
 if (!isset($mysql_service)) {
     exit("Did not find an entry in VCAP_SERVICES tagged 'mysql'");
+}
+if (!isset($wordpress_secrets)) {
+    exit("Did not find an entry in VCAP_SERVICES with name 'dceas-wordpress-secrets'");
 }
 
 /** The name of the database for WordPress */
@@ -39,21 +47,14 @@ define('DB_HOST', $mysql_service['credentials']['host'] . ":" . $mysql_service['
 // MySQL on CF RDS requires SSL connections
 define( 'MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL );
 
-function getEnvOrThrow($key) {
-    if (!isset($_ENV[$key])) {
-        throw new Exception("Missing required ENV var '$key''");
-    }
-    return $_ENV[$key];
-}
-
-/** Secret keys retrieved from Azure app settings */
-define('AUTH_KEY',         getEnvOrThrow('AUTH_KEY'));
-define('SECURE_AUTH_KEY',  getEnvOrThrow('SECURE_AUTH_KEY'));
-define('LOGGED_IN_KEY',    getEnvOrThrow('LOGGED_IN_KEY'));
-define('NONCE_KEY',        getEnvOrThrow('NONCE_KEY'));
-define('AUTH_SALT',        getEnvOrThrow('AUTH_SALT'));
-define('SECURE_AUTH_SALT', getEnvOrThrow('SECURE_AUTH_SALT'));
-define('LOGGED_IN_SALT',   getEnvOrThrow('LOGGED_IN_SALT'));
-define('NONCE_SALT',       getEnvOrThrow('NONCE_SALT'));
+/** Secret keys retrieved from CF app settings */
+define('AUTH_KEY',         $wordpress_secrets['credentials']['AUTH_KEY']);
+define('SECURE_AUTH_KEY',  $wordpress_secrets['credentials']['SECURE_AUTH_KEY']);
+define('LOGGED_IN_KEY',    $wordpress_secrets['credentials']['LOGGED_IN_KEY']);
+define('NONCE_KEY',        $wordpress_secrets['credentials']['NONCE_KEY']);
+define('AUTH_SALT',        $wordpress_secrets['credentials']['AUTH_SALT']);
+define('SECURE_AUTH_SALT', $wordpress_secrets['credentials']['SECURE_AUTH_SALT']);
+define('LOGGED_IN_SALT',   $wordpress_secrets['credentials']['LOGGED_IN_SALT']);
+define('NONCE_SALT',       $wordpress_secrets['credentials']['NONCE_SALT']);
 
 define('WP_DEBUG', false);
