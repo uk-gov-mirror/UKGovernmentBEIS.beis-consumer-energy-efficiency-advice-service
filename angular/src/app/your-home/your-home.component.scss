@@ -1,5 +1,6 @@
 @import "styles/var/colors";
 @import "styles/page";
+@import "styles/mixins/layout";
 
 .your-home-page {
   .page-heading {
@@ -25,26 +26,19 @@
     background-color: $lighter-grey;
 
     .measures-list {
-      display: flex;
-      flex-flow: row wrap;
-
-      &:first-of-type {
-        margin-top: 30px;
-      }
-
-      &:last-of-type {
-        margin-bottom: 30px;
-      }
+      padding: 30px 0;
+      @include is-grid($margin-compensation: 20px);
 
       .measure-card {
         text-decoration: none;
         background-color: white;
         color: $dark-grey;
         padding: 20px;
-        margin: 10px;
         flex-grow: 0;
         display: flex;
         flex-direction: column;
+        box-sizing: border-box;
+        height: 100%;
         min-height: 250px;
 
         .icon {
@@ -69,6 +63,10 @@
           font-size: 12px;
           text-decoration: none;
         }
+
+        &:hover .link {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -78,7 +76,7 @@
   @include mobile() {
     .measures {
       .measure-cards {
-        flex-basis: 100%;
+        @include is-grid-item($number-of-items: 1, $margin: 20px);
       }
     }
   }
@@ -86,7 +84,7 @@
   @include tablet() {
     .measures {
       .measure-cards {
-        flex-basis: 50%;
+        @include is-grid-item($number-of-items: 2, $margin: 20px);
       }
     }
   }
@@ -94,7 +92,7 @@
   @include desktop() {
     .measures {
       .measure-cards {
-        flex-basis: 50%;
+        @include is-grid-item($number-of-items: 2, $margin: 20px);
       }
     }
   }
