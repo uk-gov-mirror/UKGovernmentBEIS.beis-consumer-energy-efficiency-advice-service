@@ -18,15 +18,15 @@ export class YourHomeComponent implements OnInit {
     measures: MeasureContent[];
 
     sectionsByParameterString = {
-        'heating&hot-water': {
+        'heating-and-hot-water': {
             tag: 'tag_heating&hot-water',
             title: 'Heating & Hotwater',
         },
-        'windows&doors': {
+        'windows-and-doors': {
             tag: 'tag_windows&doors',
             title: 'Windows & Doors',
         },
-        'floors-walls&roofs': {
+        'floors-walls-and-roofs': {
             tag: 'tag_floors-walls&roofs',
             title: 'Floors, Walls & Roofs',
         },
