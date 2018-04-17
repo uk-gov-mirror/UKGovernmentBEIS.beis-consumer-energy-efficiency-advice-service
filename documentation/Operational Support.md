@@ -56,7 +56,7 @@ Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge
 The same as "live", except that the branch name is "`staging`" and it should
 track `master`:
 
-    git fetch origin live:master
+    git fetch origin master:staging
     git push origin staging:staging
 
 Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=master&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=staging&merge_request%5Btarget_project_id%5D=459)
