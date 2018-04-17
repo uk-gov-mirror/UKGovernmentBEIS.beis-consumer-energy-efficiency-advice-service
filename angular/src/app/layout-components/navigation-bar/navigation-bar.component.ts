@@ -36,26 +36,12 @@ export class NavigationBarComponent {
         },
         {
             name: "Information for Landlords",
-            url: "/information-for-landlords"
+            url: "/minimum-energy-efficiency-standards/questionnaire"
         },
     ];
-    financeSuboptions: NavigationSuboption[] = [
-        {
-            name: "Support for Home Improvements",
-            url: "/support-for-home-improvements"
-        },
-        {
-            name: "Support for Renewable Heating",
-            url: "/support-for-renewable-heating"
-        },
-        {
-            name: "Support for Renewable Electricity",
-            url: "/support-for-rewnewable-electricity"
-        }
-    ];
+
     showHomeMenu: boolean = false;
     showRentedMenu: boolean = false;
-    showFinanceMenu: boolean = false;
     showYourPlan: boolean = false;
 
     @Input() shouldExpandNav: boolean;
@@ -63,7 +49,6 @@ export class NavigationBarComponent {
 
     @ViewChild('homeMenu') homeMenu;
     @ViewChild('rentedMenu') rentedMenu;
-    @ViewChild('financeMenu') financeMenu;
 
     private deregisterClickListener: () => void;
 
@@ -92,20 +77,13 @@ export class NavigationBarComponent {
         const clickedElement = event.target;
         const inHomeMenu = clickedElement && this.homeMenu.nativeElement.contains(clickedElement);
         const inRentedMenu = clickedElement && this.rentedMenu.nativeElement.contains(clickedElement);
-        const inFinanceMenu = clickedElement && this.financeMenu.nativeElement.contains(clickedElement);
-        if (!inHomeMenu && !inRentedMenu) {
+        if (!inHomeMenu) {
             this.showHomeMenu = false;
+        }
+        if (!inRentedMenu) {
             this.showRentedMenu = false;
         }
-        if (!inHomeMenu && !inFinanceMenu) {
-            this.showHomeMenu = false;
-            this.showFinanceMenu = false;
-        }
-        if (!inRentedMenu && !inFinanceMenu) {
-            this.showRentedMenu = false;
-            this.showFinanceMenu = false;
-        }
-        if (!inRentedMenu && !inFinanceMenu && !inHomeMenu && this.deregisterClickListener) {
+        if (!inRentedMenu && !inHomeMenu && this.deregisterClickListener) {
             this.deregisterClickListener();
         }
     }

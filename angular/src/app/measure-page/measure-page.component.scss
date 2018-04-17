@@ -17,7 +17,7 @@
     }
 
     .summary {
-      @include measures-page-summary-font;
+      @include page-summary-font;
       color: white;
     }
   }
@@ -32,7 +32,7 @@
     }
 
     .benefit-text {
-      @include measures-page-font;
+      @include page-body-font;
       list-style-type: disc;
       display: list-item;
       margin-left: 1em;
@@ -69,7 +69,7 @@
 
     .contents-item {
       display: inline-block;
-      @include measures-page-font;
+      @include page-body-font;
     }
   }
 
@@ -89,7 +89,7 @@
     }
 
     .step-read-more {
-      @include measures-page-font;
+      @include page-body-font;
     }
 
     .step-link {

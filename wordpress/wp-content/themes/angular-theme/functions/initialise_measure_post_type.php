@@ -18,7 +18,7 @@ function create_measure_post_type() {
                 'singular_name' => __( 'Measure' )
             ),
             'description'           => 'Energy saving measures',
-            'exclude_from_search'   => true,
+            'exclude_from_search'   => false,
             'publicly_queryable'    => false,
             'show_in_nav_menus'     => false,
             'show_ui'               => true,
@@ -142,6 +142,7 @@ function setup_measure_acf_group() {
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
                         'tag_longer_term' => 'Longer term',
+                        'tag_simple_saving' => 'Simple Saving',
                         'tag_heating&hot-water' => 'Heating & Hotwater',
                         'tag_windows&doors' => 'Windows & Doors',
                         'tag_floors-walls&roofs' => 'Floors, Walls & Roofs',

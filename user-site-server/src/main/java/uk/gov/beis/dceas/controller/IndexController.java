@@ -71,7 +71,10 @@ public class IndexController {
             log.error("The angular files were not found in the resources dir. "
                 + "The application will not work!");
             angularHeadContent = "";
-            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly";
+            angularBodyContent = "INTERNAL ERROR - javascript files not built correctly.<p>" +
+                "On a dev machine, ensure that you have 'ng build --watch' running, then " +
+                "right click on the project in IntelliJ, click 'synchronise', then re-build " +
+                "and re-launch the Java app.";
         }
     }
 
@@ -83,6 +86,7 @@ public class IndexController {
      * All paths which correspond to pages in the Angular app should be added here.
      * (The main alternative to this would be to show the index page as a custom
      * 404 page, see e.g. https://stackoverflow.com/a/28633189/8261 )
+     * (The unit test, IndexControllerTest, checks this mapping)
      */
     @RequestMapping(value = {
         "/",
@@ -94,7 +98,17 @@ public class IndexController {
         "/forbidden/**",
         "/measures/**",
         "/your-home/**",
+        "/eco-suppliers/**",
         "/pages/**",
+        "/boiler-grants/**",
+        "/landlord-obligations/**",
+        "/certified-repairers/**",
+        "/page-not-created/**",
+        "/information-for-landlords/**",
+        "/information-for-tenants/**",
+        "/about-this-site/**",
+        "/simple-savings/**",
+
     },
         method = GET)
     public String index(Model model, HttpServletRequest request) throws IOException {
@@ -114,6 +128,8 @@ public class IndexController {
             buildAttributes.getValue("Jenkins-Build-Url"));
         model.addAttribute("buildJenkinsNumber",
             buildAttributes.getValue("Jenkins-Build-Number"));
+
+        model.addAttribute("host", request.getServerName());
 
         return "index";
     }

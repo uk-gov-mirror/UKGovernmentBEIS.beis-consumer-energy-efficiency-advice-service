@@ -30,7 +30,10 @@ import {YourHomeComponent} from './your-home/your-home.component';
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
+import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
+import {SimpleSavingsComponent} from "./simple-savings/simple-savings.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -49,6 +52,12 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
  *
  * To this end, ALL routes that you add here need to be added to the
  * `RequestMapping` annotation on the IndexController in the Java codebase.
+ *
+ * (The Java unit test, IndexControllerTest, checks that Java and Angular agree.)
+ *
+ * (If we remove any routes from here in future, it might be best to leave
+ * them in the Java mapping, so that visitors get an Angular 404, rather than
+ * a Java 404.)
  */
 const routes: Routes = [
     {
@@ -79,6 +88,36 @@ const routes: Routes = [
     {
         path: 'grants/questionnaire',
         component: GrantsQuestionnaireComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/winter-fuel-payments',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/warm-home-discount',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grants/cold-weather-payments',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'about-this-site',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'information-for-tenants',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'information-for-landlords',
+        component: PageNotCreatedComponent,
         pathMatch: 'full'
     },
     {
@@ -128,6 +167,26 @@ const routes: Routes = [
         canActivate: [BoilerResultsPageRouteGuard]
     },
     {
+        path: 'boiler-grants',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'boiler/heat-incentive',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'landlord-obligations',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'certified-repairers',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'minimum-energy-efficiency-standards/questionnaire',
         component: MeesQuestionnaireComponent,
     },
@@ -135,6 +194,11 @@ const routes: Routes = [
         path: 'minimum-energy-efficiency-standards/results',
         component: MeesResultsPageComponent,
         canActivate: [MeesResultsPageRouteGuard]
+    },
+    {
+        path: 'page-not-created',
+        component: PageNotCreatedComponent,
+        pathMatch: 'full'
     },
     {
         path: 'admin',
@@ -146,6 +210,11 @@ const routes: Routes = [
         component: ForbiddenPageComponent
     },
     {
+        path: 'eco-suppliers',
+        component: ECOSuppliersPageComponent,
+        pathMatch: 'full'
+    },
+    {
         path: 'measures/:slug',
         component: MeasurePageComponent,
         pathMatch: 'full'
@@ -153,6 +222,11 @@ const routes: Routes = [
     {
         path: 'your-home/:tag',
         component: YourHomeComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'simple-savings',
+        component: SimpleSavingsComponent,
         pathMatch: 'full'
     },
     {

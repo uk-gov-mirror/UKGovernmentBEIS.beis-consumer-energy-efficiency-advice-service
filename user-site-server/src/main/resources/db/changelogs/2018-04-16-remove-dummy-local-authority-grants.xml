@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-16-remove-dummy-local-authority-grants.xml"
+               author="anthony.pengelly@softwire.com">
+        <sql><![CDATA[
+
+-- Remove all of the dummy data for local authority grants. The data for Camden is correct, so we are keeping that
+
+-- Unlink grants to local authorities
+UPDATE wp_postmeta
+SET meta_value = ''
+WHERE meta_key = 'grants'
+AND post_id in (SELECT ID FROM wp_posts WHERE post_type = 'local_authority' and post_title != 'Camden');
+
+-- Delete grants metadata
+DELETE FROM wp_postmeta
+WHERE post_id in (SELECT ID FROM wp_posts WHERE post_type = 'local_grant' AND post_title not like '%Camden');
+
+-- Delete grants posts
+DELETE FROM wp_posts WHERE post_type = 'local_grant' AND post_title not like '%Camden';
+
+
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>

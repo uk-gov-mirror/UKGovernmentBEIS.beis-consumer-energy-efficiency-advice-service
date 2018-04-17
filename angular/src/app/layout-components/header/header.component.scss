@@ -98,10 +98,6 @@ $desktop-header-height: 82px;
     .logos {
       display: flex;
       align-items: center;
-
-      .vertical-line {
-        border-left: 1px solid black;
-      }
     }
 
     .tablet-search-icon {
@@ -259,15 +255,6 @@ $desktop-header-height: 82px;
         .ehc-logo, .ehc-logo--small {
           height: 50px;
         }
-
-        .vertical-line {
-          margin: 0 19px;
-          height: 42px;
-        }
-
-        .gov-logo {
-          height: 18px;
-        }
       }
 
       app-search-bar {
@@ -299,15 +286,6 @@ $desktop-header-height: 82px;
 
         .ehc-logo, .ehc-logo--small {
           height: 50px;
-        }
-
-        .vertical-line {
-          margin: 0 20px;
-          height: 42px;
-
-          .gov-logo {
-            height: 18px;
-          }
         }
       }
 
@@ -360,14 +338,6 @@ $desktop-header-height: 82px;
         .ehc-logo, .ehc-logo--small {
           height: 62px;
 
-      }
-        .vertical-line {
-          margin: 0 20px;
-          height: 50px;
-        }
-
-        .gov-logo {
-          height: 24px;
         }
       }
 

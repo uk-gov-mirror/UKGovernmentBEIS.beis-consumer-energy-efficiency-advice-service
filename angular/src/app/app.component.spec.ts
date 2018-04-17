@@ -10,15 +10,15 @@ import {WordpressPagesService} from './shared/wordpress-pages-service/wordpress-
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {InlineSVGModule, SVGCacheService} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {OneTimePopupComponent} from './layout-components/one-time-popup/one-time-popup.component';
 import {PopupComponent} from './shared/popup/popup.component';
 import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
-import {NavBarSuboptionComponent} from "./layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
-import {UserStateService} from "./shared/user-state-service/user-state-service";
-import {NeedHelpComponent} from "./shared/need-help/need-help.component";
-import {SearchBarComponent} from "./layout-components/search-bar/search-bar.component";
-import {RecommendationsService} from "./shared/recommendations-service/recommendations.service";
+import {NavBarSuboptionComponent} from './layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
+import {UserStateService} from './shared/user-state-service/user-state-service';
+import {NeedHelpComponent} from './shared/need-help/need-help.component';
+import {SearchBarComponent} from './layout-components/search-bar/search-bar.component';
+import {RecommendationsService} from './shared/recommendations-service/recommendations.service';
+import {WordpressSearchService} from './shared/wordpress-search-service/wordpress-search.service';
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -39,7 +39,6 @@ describe('AppComponent', () => {
                 HeaderComponent,
                 FooterComponent,
                 NavigationBarComponent,
-                OneTimePopupComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
                 NeedHelpComponent,
@@ -49,6 +48,7 @@ describe('AppComponent', () => {
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressMeasuresService, useValue: {}},
+                {provide: WordpressSearchService, useValue: {}},
                 GoogleAnalyticsService,
                 {provide: SVGCacheService, useValue: {setBaseUrl: () => {}}},
                 {provide: CookieService, useValue: mockCookieService},

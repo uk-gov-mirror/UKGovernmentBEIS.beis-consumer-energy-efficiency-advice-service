@@ -222,6 +222,8 @@ $grant-card-margin: 10px;
         padding: 20px 0;
         flex-direction: column;
         flex-wrap: wrap;
+        position: relative;
+        min-height: 150px;
 
         & > * {
           border-right: 1px solid $light-grey;
@@ -233,8 +235,11 @@ $grant-card-margin: 10px;
         }
 
         app-your-plan-summary {
-          page-break-before: always;
-          flex: 1;
+          // At desktop, we want this section on the right. Given the HTML restrictions (caused by other breakpoints),
+          // we can't achieve this using flex. By keeping the absolute positioning confined to the heading-container
+          // with the widths of the contents set as %, we should avoid any unexpected side effects
+          position: absolute;
+          right: 0;
           width: 55%;
         }
       }

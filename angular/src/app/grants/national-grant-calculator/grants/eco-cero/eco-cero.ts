@@ -11,7 +11,8 @@ export class EcoCero extends NationalGrantCalculator {
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
-        // TODO:BEISDEAS-171 add ECO CERO API lookup
+        // We would have to integrate with the ECO CERO API lookup to determine
+        // this more accurately, which we have decided not to do for now.
         return Observable.of(GrantEligibility.MayBeEligible);
     }
 }
