@@ -2,7 +2,6 @@
 @import "styles/var/colors";
 
 // Component specific variables
-$icon-column-width: 40px;
 
 // Component specific mixins
 
@@ -16,10 +15,6 @@ $icon-column-width: 40px;
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 100%;
-
-    .icon {
-      padding: 35px 20px;
-    }
 
     .details {
       display: flex;
@@ -42,139 +37,117 @@ $icon-column-width: 40px;
       }
     }
   }
+}
 
-  // Breakpoint specific styling
-  @include mobile() {
-    flex-wrap: wrap;
+// Breakpoint specific styling
+@include mobile() {
 
-    .main-row {
+  .main-row {
+    align-content: stretch;
 
-      .details {
-        flex: 1 1 100%;
-        order: 1;
-        padding: 20px 0 20px 20px;
-      }
+    .details {
+      flex: 1 1 60%;
+      order: 1;
+      padding: 20px 0 20px 20px;
+    }
 
-      & > * {
-        background-color: white;
-      }
+    .name, .description {
+      padding-bottom: 10px;
+    }
 
-      .more-detail-row {
-        width: 100%;
-        padding: 10px 0;
-        display: flex;
-        cursor: pointer;
-        align-items: center;
+    .icon {
+      order: 2;
+      flex: 0 0;
+      padding: 20px 10px;
+    }
 
-        .more-detail-button {
-          background: none;
-          outline: none;
-          border: none;
-          text-transform: uppercase;
-          padding: 0;
-          @include card-expand-drawer;
-          cursor: inherit;
-
-          &:focus, &:hover {
-            text-decoration: underline;
-          }
-        }
-
-        .more-detail-icon {
-          margin-left: 6px;
-          width: 14px;
-          height: 8px;
-          display: block;
-          line-height: 0;
-          fill: $action-button-blue;
-        }
-
-        &.expanded .more-detail-icon {
-          transform: rotate(180deg);
-        }
-      }
-
-      .expanded-view-row {
-        display: none;
-        border-top: 2px solid $light-grey;
-        border-bottom: 2px solid $light-grey;
-
-        &.expanded {
-          display: flex;
-        }
-
-        .grants, .benefits {
-          .heading {
-            text-transform: uppercase;
-            font-size: 12px;
-            margin-bottom: 10px;
-            color: $focus-text-blue;
-          }
-        }
-
-        .benefits {
-          flex: 1;
-
-          .benefits-list {
-            padding: 0 20px;
-            font-family: $font-family-light;
-          }
-        }
-
-      }
-
+    & > * {
+      background-color: white;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    .expanded-view-row {
-      flex: 0 0 100%;
-      order: 3;
-      border: none;
-      flex-wrap: wrap;
-      padding: 20px;
+    .more-detail-row {
+      width: 100%;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
 
-      //.grants, .benefits {
-      //  flex: 0 0 100%;
-      //}
-      //
-      //.grants {
-      //  padding-bottom: 20px;
-      //}
-    }
+      .more-detail-button {
+        background: none;
+        outline: none;
+        border: none;
+        text-transform: uppercase;
+        padding: 0;
+        @include card-expand-drawer;
+      }
 
-    .installation-card {
-      flex: 0 0 100%;
-      order: 4;
-      border-top: 5px solid $light-grey;
-      padding: 20px;
-    }
+      .more-detail-icon {
+        margin-left: 6px;
+        width: 14px;
+        height: 8px;
+        display: block;
+        line-height: 0;
+        fill: $action-button-blue;
+      }
 
-    .running-cost-card {
-      flex: 0 0 100%;
-      order: 5;
-      border-top: 2px solid $light-grey;
-      padding: 20px;
-    }
-
-    .add-to-plan-column {
-      flex: 0 0 100%;
-      order: 6;
-      border-top: 5px solid $light-grey;
-      padding: 20px;
-
-      .add-to-plan-text {
-        margin-right: 44px;
+      &.expanded .more-detail-icon {
+        transform: rotate(180deg);
       }
     }
 
-    .more-detail-row.expanded {
-      border-bottom: 5px solid $light-grey;
+    .expanded-view-row {
+      display: none;
+      border-top: 2px solid $light-grey;
+      border-bottom: 2px solid $light-grey;
+
+      &.expanded {
+        display: flex;
+      }
+
+      .lifetime, .space {
+        .title {
+          text-transform: uppercase;
+          font-size: 12px;
+          margin-bottom: 10px;
+          color: $focus-text-blue;
+        }
+
+        .value {
+          font-family: $font-family-light;
+          color: $dark-grey;
+          font-size: 12px;
+          margin-bottom: 15px;
+        }
+      }
     }
   }
 
+  .expanded-view-row {
+    flex: 0 0 100%;
+    order: 3;
+    border: none;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .installation-card, .running-cost-card {
+    color: $dark-grey;
+    flex: 0 0 100%;
+    padding: 20px;
+  }
+
+  .installation-card {
+    order: 4;
+    border-top: 5px solid $light-grey;
+  }
+
+  .running-cost-card {
+    order: 5;
+    border-top: 2px solid $light-grey;
+  }
 }
 
 @include tablet() {
@@ -243,15 +216,12 @@ $icon-column-width: 40px;
         flex-basis: 100%;
         order: 4;
         flex-wrap: wrap;
-        padding: 20px 0;
-
-        .content {
-          padding-right: 20px;
-          display: flex;
-        }
+        padding: 0 0 10px;
 
         .content {
           padding-left: 76px;
+          padding-right: 20px;
+          display: flex;
 
           .lifetime, .space {
             flex: 0 0 50%;
@@ -278,6 +248,14 @@ $icon-column-width: 40px;
       }
     }
 
+    .installation-card, .running-cost-card {
+      box-sizing: border-box;
+      flex: 0 0 50%;
+      color: $dark-grey;
+      border-top: 2px solid $light-grey;
+      padding: 20px 0;
+    }
+
     .installation-card {
       order: 5;
       border-right: 2px solid $light-grey;
@@ -285,14 +263,6 @@ $icon-column-width: 40px;
 
     .running-cost-card {
       order: 6;
-    }
-
-    .installation-card, .running-cost-card {
-      box-sizing: border-box;
-      flex: 0 0 50%;
-      color: $dark-grey;
-      border-top: 2px solid $light-grey;
-      padding: 20px 0;
     }
   }
 }
@@ -311,6 +281,10 @@ $icon-column-width: 40px;
       flex: 1;
       order: 2;
       padding: 50px 60px 10px 0px;
+
+      .name, .description {
+        padding-bottom: 15px;
+      }
     }
 
     & > * {
@@ -346,7 +320,6 @@ $icon-column-width: 40px;
           font-size: 12px;
           margin-bottom: 10px;
           color: $focus-text-blue;
-
           min-width: 200px;
         }
 
@@ -355,8 +328,15 @@ $icon-column-width: 40px;
           font-size: 12px;
           margin-bottom: 10px;
           margin-right: 400px;
+          color: $dark-grey;
         }
       }
+    }
+
+    .installation-card, .running-cost-card {
+      color: $dark-grey;
+      height: 200px;
+      border-left: 2px solid white;
     }
 
     .installation-card {
@@ -367,12 +347,6 @@ $icon-column-width: 40px;
     .running-cost-card {
       flex: 0 0 200px;
       order: 4;
-    }
-
-    .installation-card, .running-cost-card {
-      color: $dark-grey;
-      height: 200px;
-      border-left: 2px solid white;
     }
   }
 }
