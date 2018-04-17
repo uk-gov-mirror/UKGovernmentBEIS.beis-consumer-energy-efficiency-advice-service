@@ -81,6 +81,11 @@
   .address-section {
     margin-top: 30px;
     width: 100%;
+
+    .no-properties {
+      flex: 0 0 100%;
+      text-align: right;
+    }
   }
 
   .address-select {
@@ -112,7 +117,7 @@
 
   .not-listed-button {
     @include postcode-button;
-    margin-top: 12px;
+    margin: 12px 0 0 auto;
     padding: 0 14px;
     height: 50px;
   }
@@ -188,6 +193,7 @@
     .address-section {
       display: flex;
       align-items: flex-end;
+      flex-wrap: wrap;
 
       .address-dropdown-wrapper {
         border-right: 1px solid $light-medium-grey;
@@ -213,6 +219,7 @@
     .address-section {
       display: flex;
       align-items: flex-end;
+      flex-wrap: wrap;
 
       .address-dropdown-wrapper {
         border-right: 1px solid $light-medium-grey;
