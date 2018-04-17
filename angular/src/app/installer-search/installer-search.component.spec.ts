@@ -1,26 +1,25 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-
-import {ActivatedRoute} from '@angular/router';
 import {InstallerSearchComponent} from './installer-search.component';
-import {FormsModule} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
 import {ResponseData} from "../shared/response-data/response-data";
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
     let fixture: ComponentFixture<InstallerSearchComponent>;
 
+    let measureCode;
+
     beforeEach(async(() => {
+        measureCode = null;
+
         TestBed.configureTestingModule({
             declarations: [InstallerSearchComponent],
-            imports: [
-                FormsModule,
-            ],
-            providers: [
-                {provide: ActivatedRoute, useClass: MockActivatedRoute},
-                {provide: ResponseData},
-            ]
+            imports: [FormsModule],
+            providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
+                {provide: ResponseData, useClass: MockResponseData}]
         })
             .compileComponents();
     }));
@@ -32,33 +31,34 @@ describe('InstallerSearchComponent', () => {
     });
 
     it('should create', () => {
+        console.log(component);
         expect(component).toBeTruthy();
     });
 
     it('should display the value of postcode', () => {
-        // given
-        component.postcode = "NP3 3YO";
-
-        // when
-        fixture.detectChanges();
-
-        // then
-        const inputElement = fixture.debugElement.query(By.css('.text-container .postcode-input')).nativeElement;
-        expect(inputElement.innerText).toEqual(component.postcode);
+        fixture.whenStable().then(() => {
+            fixture.detectChanges();
+            const inputElement = fixture.debugElement.query(By.css('.postcode-input')).nativeElement;
+            expect(inputElement.value).toEqual(component.postcode);
+        });
     });
 
     it('should display the value of the measure code', () => {
-        // given
-        component.measureCode = "A123";
-
-        // when
-        fixture.detectChanges();
-
-        // then
-        const inputElement = fixture.debugElement.query(By.css('.text-container .measure-code-input')).nativeElement;
-        expect(inputElement.innerText).toEqual(component.measureCode);
+        fixture.whenStable().then( () => {
+            fixture.detectChanges();
+            const inputElement = fixture.debugElement.query(By.css('.measure-code-input')).nativeElement;
+            expect(inputElement.value).toEqual(component.measureCode);
+        });
     });
 
     class MockActivatedRoute {
+
+        public params = Observable.of({
+            "measure-code": "some measure code",
+        });
+    }
+
+    class MockResponseData {
+        public postcode = "some postcode";
     }
 });

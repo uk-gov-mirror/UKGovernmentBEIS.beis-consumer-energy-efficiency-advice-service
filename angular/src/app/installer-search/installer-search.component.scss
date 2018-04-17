@@ -23,7 +23,7 @@
       font-size: 16px;
     }
   }
-  .page-content {
+  .selector-container {
     background-color: $light-grey;
     display: flex;
     justify-content: space-around;
@@ -64,6 +64,9 @@
       }
     }
   }
+  .page-content {
+    padding: 20px;
+  }
 }
 
 p {
@@ -86,7 +89,7 @@ p {
         padding-bottom: 10px;
       }
     }
-    .page-content {
+    .selector-container {
       padding: 80px 0px 80px 0px;
     }
   }
