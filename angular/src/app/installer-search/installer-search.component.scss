@@ -45,8 +45,15 @@
         .text-container {
           padding: 0;
           height: 36px;
-          width: 200px;
           font-size: 20px;
+        }
+
+        .measure-name-input {
+          width: 500px;
+        }
+
+        .postcode-input {
+          width: 200px;
         }
 
         button {

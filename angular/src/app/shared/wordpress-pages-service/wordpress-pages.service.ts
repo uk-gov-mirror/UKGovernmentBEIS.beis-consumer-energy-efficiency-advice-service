@@ -31,7 +31,7 @@ export class WordpressPagesService {
         const parsed = parse(url);
         const path = parsed.pathname;
         const slug = path && path.match(/([^\/]*)\/?$/)[1];
-        return slug && ("/pages/" + slug);
+        return slug && ("/installer-search/" + slug);
     }
 
     searchPages(searchText: string): Observable<WordpressPage[]> {

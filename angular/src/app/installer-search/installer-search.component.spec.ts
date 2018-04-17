@@ -5,6 +5,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -19,7 +20,8 @@ describe('InstallerSearchComponent', () => {
             declarations: [InstallerSearchComponent],
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
-                {provide: ResponseData, useClass: MockResponseData}]
+                {provide: ResponseData, useClass: MockResponseData},
+                {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent}]
         })
             .compileComponents();
     }));
@@ -47,7 +49,7 @@ describe('InstallerSearchComponent', () => {
         fixture.whenStable().then( () => {
             fixture.detectChanges();
             const inputElement = fixture.debugElement.query(By.css('.measure-code-input')).nativeElement;
-            expect(inputElement.value).toEqual(component.measureCode);
+            expect(inputElement.value).toEqual(component.measureName);
         });
     });
 
@@ -60,5 +62,8 @@ describe('InstallerSearchComponent', () => {
 
     class MockResponseData {
         public postcode = "some postcode";
+    }
+
+    class MockMeasureContent {
     }
 });

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResponseData} from "../shared/response-data/response-data";
-
+import {RecommendationsService} from "../shared/recommendations-service/recommendations.service";
+import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 @Component({
     selector: 'app-installer-search',
@@ -10,17 +11,23 @@ import {ResponseData} from "../shared/response-data/response-data";
 })
 export class InstallerSearchComponent implements OnInit {
 
-    measureCode = null;
+    measureName = null;
     postcode = null;
 
     constructor(private route: ActivatedRoute,
-                private responseData: ResponseData) {
+                private responseData: ResponseData,
+                private measureContentService: EnergySavingMeasureContentService) {
     }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
-            this.measureCode = params["measure-code"];
-            this.postcode = this.responseData.postcode;
+            if (params["measure-code"]) {
+                this.postcode = this.responseData.postcode;
+                this.measureContentService.fetchMeasureDetails().subscribe(measures => {
+                    const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
+                    this.measureName = chosenMeasure.acf.headline;
+                });
+            }
         });
     }
 }

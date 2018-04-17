@@ -26,7 +26,8 @@ export class EnergyEfficiencyRecommendation {
                 public advantages: string[],
                 public steps: RecommendationStep[],
                 public isAddedToPlan: boolean,
-                public codeForAnalytics: string) {
+                public codeForAnalytics: string,
+                public measureCode: string) {
     }
 
     get costSavingPoundsPerMonth(): number {
@@ -75,6 +76,7 @@ export class EnergyEfficiencyRecommendation {
             concat(measureSteps, grantSteps),
             false,
             measureContent.slug,
+            measureContent.acf.measure_code,
         );
     }
 
@@ -95,6 +97,7 @@ export class EnergyEfficiencyRecommendation {
             grant.steps,
             false,
             grant.grantId,
+            null,
         );
     }
 
