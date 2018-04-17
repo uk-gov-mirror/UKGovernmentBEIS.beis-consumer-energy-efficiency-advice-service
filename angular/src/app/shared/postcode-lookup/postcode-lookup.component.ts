@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {Epc} from "../../shared/postcode-epc-service/model/epc";
 import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
@@ -14,7 +14,7 @@ import {PostcodeBasicDetailsResponse} from "../postcode-epc-service/model/respon
     templateUrl: './postcode-lookup.component.html',
     styleUrls: ['./postcode-lookup.component.scss']
 })
-export class PostcodeLookupComponent {
+export class PostcodeLookupComponent implements OnInit {
 
     postcodeInput: string;
     loadingEpcs: boolean = false;
@@ -28,6 +28,10 @@ export class PostcodeLookupComponent {
     constructor(private responseData: ResponseData,
                 private postcodeApiService: PostcodeApiService,
                 private postcodeEpcService: PostcodeEpcService) {
+    }
+
+    ngOnInit(): void {
+        this.postcodeInput = this.responseData.postcode;
     }
 
     get postcode(): string {
@@ -128,6 +132,7 @@ export class PostcodeLookupComponent {
                 return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
             });
     }
+
     private isScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse): boolean {
         if (postcodeDetails.result.country === "Scotland") {
             return true;
