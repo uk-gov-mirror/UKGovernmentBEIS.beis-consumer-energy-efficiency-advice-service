@@ -5,7 +5,10 @@
 <!-- toc -->
 
 - [Deployment](#deployment)
-  * [Rolling back a deployment](#rolling-back-a-deployment)
+  * [Live deployment](#live-deployment)
+  * [Staging deployment](#staging-deployment)
+  * [Int deployment](#int-deployment)
+  * [Rolling back a live deployment](#rolling-back-a-live-deployment)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
   * [MHCLG, Energy Performance of Buildings Data: England and Wales](#mhclg-energy-performance-of-buildings-data-england-and-wales)
@@ -26,40 +29,63 @@
 
 ## Deployment
 
-The "live" sites can be released using the Jenkins job at
+### Live deployment
+
+The "live" site tracks the "`live`" branch in `git`.
+To release to "live", you should fast-forward merge the "`live`" branch to
+the "`staging`" branch.
+The Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/5.%20BEIS%20DCEAS%20-%20Deploy%20to%20Live/
-which deploys to:
+watches this branch and will deploy it to:
   * https://dceas-user-site.cloudapps.digital/
   * https://dceas-admin-site.cloudapps.digital/
 
-TODO:BEIS-189 this releases "master"; can we release the version on "staging"?
+You should only release to live changes that have already been tested on staging.
 
-The "staging" sites (for UAT) can be released using the Jenkins job at
+You can update the branch with a git command like:
+
+    git fetch origin staging:live
+    git push origin live:live
+
+(See https://stackoverflow.com/questions/3216360/merge-update-and-pull-git-branches-without-using-checkouts )
+
+### Staging deployment
+
+The same as "live", except that the branch name is "`staging`" and it should
+track `master`:
+
+    git fetch origin live:master
+    git push origin staging:staging
+
+The Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
-which deploys to:
+watches this branch and will deploy it to:
   * https://dceas-user-site-staging.cloudapps.digital/
   * https://dceas-admin-site-staging.cloudapps.digital/
 
-The "int" site is automatically updated after each code change by the Jenkins job at
+### Int deployment
+
+The "int" site is automatically updated after each code change on `master` by the Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/2.%20BEIS%20DCEAS%20-%20Deploy%20to%20Int/
 which deploys to:
   * https://dceas-user-site-int.cloudapps.digital/
   * https://dceas-admin-site-int.cloudapps.digital/
 
-### Rolling back a deployment
+### Rolling back a live deployment
 
-To roll back a live release, you need to manually remap the routes onto
-the "-old" instances of the apps.
+To roll back a live release, you can manually remap the routes onto
+the "-old" instances of the apps:
 
-TODO:BEIS-189 how?
+    cf map-route dceas-user-site-old --hostname dceas-user-site cloudapps.digital
+    cf unmap-route dceas-user-site --hostname dceas-user-site cloudapps.digital
 
 See https://github.com/bluemixgaragelondon/cf-blue-green-deploy/issues/7
 for a possible future enhancement to automate this.
 
-There is not currently any way to roll back int or staging; you just have
-to revert the code and re-release.
+You can also force-push the "{{live}}" branch onto an older version, and
+Jenkins will re-release the old version.
 
-See [Deploying the site from scratch](Deploy%20from%20Scratch.md)
+Do the same to roll back staging, if necessary.
 
 ## Configuration
 
@@ -81,7 +107,7 @@ app, and in `wp-config.php` for the Admin site.
 
 ## Dependencies
 
-The app depends on:
+The app depends on the following external services:
 
 ### MHCLG, Energy Performance of Buildings Data: England and Wales
 
