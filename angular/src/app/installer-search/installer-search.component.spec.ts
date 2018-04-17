@@ -65,5 +65,8 @@ describe('InstallerSearchComponent', () => {
     }
 
     class MockMeasureContent {
+        public fetchMeasureDetails() {
+            return Observable.of(); // fix this at some point
+        }
     }
 });
