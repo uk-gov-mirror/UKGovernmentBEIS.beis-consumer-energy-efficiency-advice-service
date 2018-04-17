@@ -47,7 +47,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
                 () => this.handleError(),
                 () => this.isLoading = false,
             );
-        this.userStateService.sendState();
+        this.userStateService.saveState();
     }
 
     ngAfterViewInit() {

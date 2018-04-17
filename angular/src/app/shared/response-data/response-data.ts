@@ -91,8 +91,44 @@ export class ResponseData {
     public tenancyType: TenancyType;
     public hasRelevantConsent: boolean;
 
-    reset() {
-        Object.keys(this).forEach(k => this[k] = undefined);
+    constructor() {
+        if (!sessionStorageAvailable()) {
+            return;
+        }
+        const storedResponseData = sessionStorage.getItem(responseDataSessionStorageKey);
+        if (storedResponseData) {
+            replaceOldResponseData(this, JSON.parse(storedResponseData));
+        }
+    }
+
+    saveToSessionStorage() {
+        if (sessionStorageAvailable()) {
+            sessionStorage.setItem(responseDataSessionStorageKey, JSON.stringify(this));
+        }
+    }
+}
+
+const responseDataSessionStorageKey = 'responseData';
+
+function sessionStorageAvailable() {
+    try {
+        const x = '__storage_test__';
+        sessionStorage.setItem(x, x);
+        sessionStorage.removeItem(x);
+        return true;
+    } catch (e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            sessionStorage.length !== 0;
     }
 }
 
@@ -113,7 +149,7 @@ function addNewResponseData(oldResponseData: ResponseData, newResponseData: Resp
     }
 }
 
-function deleteOldResponseData(responseData: ResponseData) {
+export function deleteOldResponseData(responseData: ResponseData) {
     for (const i in responseData) {
         if (responseData.hasOwnProperty(i)) {
             delete responseData[i];

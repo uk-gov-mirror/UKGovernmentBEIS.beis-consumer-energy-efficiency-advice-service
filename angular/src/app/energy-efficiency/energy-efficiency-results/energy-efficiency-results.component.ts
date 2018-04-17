@@ -65,7 +65,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                     this.onLoadingComplete(allRecommendations, localAuthority, energyCalculationResponse),
                 (err) => this.displayErrorMessage(err),
             );
-        this.userStateService.sendState();
+        this.userStateService.saveState();
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {

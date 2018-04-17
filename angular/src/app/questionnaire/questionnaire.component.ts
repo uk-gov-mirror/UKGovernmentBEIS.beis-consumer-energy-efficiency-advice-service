@@ -109,7 +109,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
-            this.userStateService.sendState(this.currentQuestionIndex);
+            this.userStateService.saveState(this.currentQuestionIndex);
         }
     }
 
@@ -118,7 +118,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
-            this.userStateService.sendState(this.currentQuestionIndex);
+            this.userStateService.saveState(this.currentQuestionIndex);
         }
     }
 
@@ -229,7 +229,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                         this.currentQuestionIndex++;
                     }
                 }
-                this.userStateService.sendState(this.currentQuestionIndex);
+                this.userStateService.saveState(this.currentQuestionIndex);
                 this.jumpToQuestion(this.currentQuestionIndex);
             });
     }
