@@ -10,8 +10,6 @@ describe('WordpressApiService', () => {
     let injector: TestBed;
     let service: WordpressApiService;
 
-    const searchString = 'Dummy search string';
-    const searchUrl = 'search';
     const postUrl = 'post';
     const mockApiResponse = require('assets/test/search-pages-response.json');
 
@@ -32,54 +30,6 @@ describe('WordpressApiService', () => {
         it('should be created', () => {
             expect(service).toBeTruthy();
         });
-    });
-
-    describe('#searchPosts', () => {
-
-        it('calls API and returns data correctly', async(() => {
-            // when
-            const actualResponse = service.searchPosts<WordpressPageResponse>(searchUrl, searchString).toPromise();
-            httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
-
-            // then
-            actualResponse.then((posts) => {
-                // match data in 'assets/test/search-pages-response.json'
-                expect(posts.length).toBe(7);
-                expect(posts[0].slug).toContain('microgen-7');
-                expect(posts[0].title.rendered).toBe('Microgen 7');
-            });
-            httpMock.verify();
-        }));
-
-        it('throws an error if API returns an error', async(() => {
-            // given
-            const expectedStatus = 400;
-            const expectedStatusText = 'bad request';
-
-            // when
-            const actualResponse = service.searchPosts(searchUrl, searchString).toPromise();
-            httpMock.expectOne(matchesExpectedRequest)
-                .error(
-                    new ErrorEvent('mock network error'),
-                    {
-                        status: expectedStatus,
-                        statusText: expectedStatusText
-                    }
-                );
-
-            // then
-            actualResponse.catch((errorResponse) => {
-                expect(errorResponse.statusText).toBe(expectedStatusText);
-                expect(errorResponse.status).toBe(expectedStatus);
-            });
-            httpMock.verify();
-        }));
-
-        function matchesExpectedRequest(request: HttpRequest<any>): boolean {
-            const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === `/wp-json/search?search=${ encodeURI(searchString) }&context=embed`;
-            return matchesExpectedMethod && matchesExpectedUrl;
-        }
     });
 
     describe('#getPost', () => {

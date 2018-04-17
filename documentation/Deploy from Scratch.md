@@ -23,7 +23,7 @@ Get a GOV.UK account.
 
 Install the `cf` CLI from https://github.com/cloudfoundry/cli#downloads
 
-    cf login -a api.cloud.service.gov.uk -u Tim.Charters@beis.gov.uk -p XXX
+    cf login -a api.cloud.service.gov.uk -u XXX -p XXX
     cf target -o beis-domestic-energy-advice-service
     cf create-space int
     cf target -o "beis-domestic-energy-advice-service" -s "int"

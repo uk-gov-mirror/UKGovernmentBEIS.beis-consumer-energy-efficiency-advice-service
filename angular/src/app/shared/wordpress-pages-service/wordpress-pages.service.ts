@@ -34,11 +34,6 @@ export class WordpressPagesService {
         return slug && ("/pages/" + slug);
     }
 
-    searchPages(searchText: string): Observable<WordpressPage[]> {
-        return this.wordpressApiService.searchPosts<WordpressPageResponse>(WordpressPagesService.pagesEndpoint, searchText)
-            .map(pageResponses => pageResponses.map(pageResponse => new WordpressPage(pageResponse)));
-    }
-
     getTopLevelPages(): Observable<WordpressPage[]> {
         if (!this.topLevelPages) {
             const params = new HttpParams().set('parent', '0').set('context', 'embed');

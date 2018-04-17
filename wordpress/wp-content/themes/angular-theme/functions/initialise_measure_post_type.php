@@ -18,7 +18,7 @@ function create_measure_post_type() {
                 'singular_name' => __( 'Measure' )
             ),
             'description'           => 'Energy saving measures',
-            'exclude_from_search'   => true,
+            'exclude_from_search'   => false,
             'publicly_queryable'    => false,
             'show_in_nav_menus'     => false,
             'show_ui'               => true,
