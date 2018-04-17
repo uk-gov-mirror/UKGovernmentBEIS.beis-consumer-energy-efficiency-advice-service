@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-13-add-rest-api-search-plugin.xml"
+               author="david.broder-rodgers@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+UPDATE wp_options
+SET option_value = 'a:5:{i:0;s:41:"acf-to-rest-api/class-acf-to-rest-api.php";i:1;s:34:"advanced-custom-fields-pro/acf.php";i:2;s:35:"rest-api-search/rest-api-search.php";i:3;s:41:"wordpress-importer/wordpress-importer.php";i:4;s:41:"wp-rest-api-cache/class-wp-rest-cache.php";}'
+WHERE option_name = 'active_plugins'
+AND option_value = 'a:4:{i:0;s:41:"acf-to-rest-api/class-acf-to-rest-api.php";i:1;s:34:"advanced-custom-fields-pro/acf.php";i:3;s:41:"wordpress-importer/wordpress-importer.php";i:4;s:41:"wp-rest-api-cache/class-wp-rest-cache.php";}'
+
+        ]]></sql>
+    </changeSet>
+</databaseChangeLog>

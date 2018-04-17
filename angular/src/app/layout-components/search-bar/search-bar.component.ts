@@ -1,9 +1,7 @@
 import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
-import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
-import {WordpressSearchable} from '../../shared/wordpress-api-service/wordpress-searchable';
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {WordpressSearchable} from '../../shared/wordpress-search-service/wordpress-searchable';
+import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
 
 @Component({
     selector: 'app-search-bar',
@@ -14,7 +12,7 @@ export class SearchBarComponent {
 
     shouldDisplaySearchDetailsDropdown: boolean = false;
     searchText: string;
-   searchResults: WordpressSearchable[] = [];
+    searchResults: WordpressSearchable[] = [];
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
 
@@ -28,9 +26,8 @@ export class SearchBarComponent {
     constructor(
         private renderer: Renderer2,
         private changeDetector: ChangeDetectorRef,
-        private wordpressPagesService: WordpressPagesService,
         private googleAnalyticsService: GoogleAnalyticsService,
-        private wordpressMeasuresService: WordpressMeasuresService) {
+        private wordpressSearchService: WordpressSearchService) {
     }
 
     toggleMobileNav(): void {
@@ -83,18 +80,20 @@ export class SearchBarComponent {
     }
 
     search(): void {
+        if (!this.searchText) {
+            // Empty searchbox
+            return;
+        }
         this.sendEventToAnalytics('search_submitted', this.searchText);
+
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
-        Observable.forkJoin(
-            this.wordpressPagesService.searchPages(this.searchText),
-            this.wordpressMeasuresService.searchMeasures(this.searchText)
-        ).subscribe(([pages, measures]) => {
-                const results = (pages as WordpressSearchable[]).concat(measures);
-                this.handleSearchResponse(results);
-            },
-            () => this.handleSearchError()
-        );
+        this.wordpressSearchService.search(this.searchText)
+            .subscribe(results => {
+                    this.handleSearchResponse(results);
+                },
+                () => this.handleSearchError()
+            );
     }
 
     resetSearchResults(): void {
