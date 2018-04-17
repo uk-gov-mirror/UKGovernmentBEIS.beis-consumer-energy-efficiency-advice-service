@@ -8,6 +8,15 @@
     <changeSet id="2018-04-13-add-eco-supplier-images-to-wordpress.xml"
                author="richard.bradley@softwire.com"
                dbms="mysql">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*)
+                FROM wp_posts
+                WHERE ID = 9535
+                AND post_name = 'british-gas'
+            </sqlCheck>
+        </preConditions>
+
         <sql><![CDATA[
 
 -- This is only run on MySQL as the H2 database does not have the correct fields
@@ -15,119 +24,193 @@
 -- The eco energy supplier images are now stored in WP as ACF image fields.
 -- (previously they were looked up in static files by post "slug").
 
--- The post IDs here match those from the previous migration
+-- The parent post IDs here match those from the previous migration
 -- i.e. 9535-9549, 15 entries
 
 INSERT INTO `wp_posts`
-(9552,1,'2018-04-13 14:57:48','2018-04-13 13:57:48','','british-gas.jpeg','','inherit','open','closed','','british-gas-jpeg','','','2018-04-13 14:57:48','2018-04-13 13:57:48','',9535,'http://localhost:81/wp-content/uploads/2018/04/british-gas.jpeg',0,'attachment','image/jpeg',0),
-(9554,1,'2018-04-13 15:12:22','2018-04-13 14:12:22','','e-on-energy.jpeg','','inherit','open','closed','','e-on-energy-jpeg','','','2018-04-13 15:12:22','2018-04-13 14:12:22','',9536,'http://localhost:81/wp-content/uploads/2018/04/e-on-energy.jpeg',0,'attachment','image/jpeg',0),
-(9556,1,'2018-04-13 15:12:30','2018-04-13 14:12:30','','npower.jpeg','','inherit','open','closed','','npower-jpeg','','','2018-04-13 15:12:30','2018-04-13 14:12:30','',9537,'http://localhost:81/wp-content/uploads/2018/04/npower.jpeg',0,'attachment','image/jpeg',0),
-(9558,1,'2018-04-13 15:12:38','2018-04-13 14:12:38','','edf-energy.jpeg','','inherit','open','closed','','edf-energy-jpeg','','','2018-04-13 15:12:38','2018-04-13 14:12:38','',9538,'http://localhost:81/wp-content/uploads/2018/04/edf-energy.jpeg',0,'attachment','image/jpeg',0),
-(9560,1,'2018-04-13 15:12:47','2018-04-13 14:12:47','','scottish-and-southern-energy.jpeg','','inherit','open','closed','','scottish-and-southern-energy-jpeg','','','2018-04-13 15:12:47','2018-04-13 14:12:47','',9539,'http://localhost:81/wp-content/uploads/2018/04/scottish-and-southern-energy.jpeg',0,'attachment','image/jpeg',0),
-(9562,1,'2018-04-13 15:13:03','2018-04-13 14:13:03','','scottishpower.jpeg','','inherit','open','closed','','scottishpower-jpeg','','','2018-04-13 15:13:03','2018-04-13 14:13:03','',9540,'http://localhost:81/wp-content/uploads/2018/04/scottishpower.jpeg',0,'attachment','image/jpeg',0),
-(9564,1,'2018-04-13 15:13:12','2018-04-13 14:13:12','','first-utility.jpeg','','inherit','open','closed','','first-utility-jpeg','','','2018-04-13 15:13:12','2018-04-13 14:13:12','',9541,'http://localhost:81/wp-content/uploads/2018/04/first-utility.jpeg',0,'attachment','image/jpeg',0),
-(9566,1,'2018-04-13 15:13:21','2018-04-13 14:13:21','','the-co-operative-energy.jpeg','','inherit','open','closed','','the-co-operative-energy-jpeg','','','2018-04-13 15:13:21','2018-04-13 14:13:21','',9542,'http://localhost:81/wp-content/uploads/2018/04/the-co-operative-energy.jpeg',0,'attachment','image/jpeg',0),
-(9568,1,'2018-04-13 15:13:29','2018-04-13 14:13:29','','utilita.jpeg','','inherit','open','closed','','utilita-jpeg','','','2018-04-13 15:13:29','2018-04-13 14:13:29','',9543,'http://localhost:81/wp-content/uploads/2018/04/utilita.jpeg',0,'attachment','image/jpeg',0),
-(9570,1,'2018-04-13 15:13:38','2018-04-13 14:13:38','','ovo.jpeg','','inherit','open','closed','','ovo-jpeg','','','2018-04-13 15:13:38','2018-04-13 14:13:38','',9544,'http://localhost:81/wp-content/uploads/2018/04/ovo.jpeg',0,'attachment','image/jpeg',0),
-(9572,1,'2018-04-13 15:13:46','2018-04-13 14:13:46','','the-utility-warehouse.jpeg','','inherit','open','closed','','the-utility-warehouse-jpeg','','','2018-04-13 15:13:46','2018-04-13 14:13:46','',9545,'http://localhost:81/wp-content/uploads/2018/04/the-utility-warehouse.jpeg',0,'attachment','image/jpeg',0),
-(9575,1,'2018-04-13 15:14:23','2018-04-13 14:14:23','','extra-energy.jpeg','','inherit','open','closed','','extra-energy-jpeg','','','2018-04-13 15:14:23','2018-04-13 14:14:23','',9546,'http://localhost:81/wp-content/uploads/2018/04/extra-energy.jpeg',0,'attachment','image/jpeg',0),
-(9577,1,'2018-04-13 15:14:33','2018-04-13 14:14:33','','economy-energy.jpeg','','inherit','open','closed','','economy-energy-jpeg','','','2018-04-13 15:14:33','2018-04-13 14:14:33','',9547,'http://localhost:81/wp-content/uploads/2018/04/economy-energy.jpeg',0,'attachment','image/jpeg',0),
-(9579,1,'2018-04-13 15:14:43','2018-04-13 14:14:43','','flow-energy.jpeg','','inherit','open','closed','','flow-energy-jpeg','','','2018-04-13 15:14:43','2018-04-13 14:14:43','',9548,'http://localhost:81/wp-content/uploads/2018/04/flow-energy.jpeg',0,'attachment','image/jpeg',0),
-(9581,1,'2018-04-13 15:14:53','2018-04-13 14:14:53','','spark-energy.jpeg','','inherit','open','closed','','spark-energy-jpeg','','','2018-04-13 15:14:53','2018-04-13 14:14:53','',9549,'http://localhost:81/wp-content/uploads/2018/04/spark-energy.jpeg',0,'attachment','image/jpeg',0);
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count) 
+VALUES
+(1,'2018-04-13 14:57:48','2018-04-13 13:57:48','','british-gas.jpeg','','inherit','open','closed','','british-gas-jpeg','','','2018-04-13 14:57:48','2018-04-13 13:57:48','',9535,'/wp-content/uploads/2018/04/british-gas.jpeg',0,'attachment','image/jpeg',0);
+SET @p_1 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:12:22','2018-04-13 14:12:22','','e-on-energy.jpeg','','inherit','open','closed','','e-on-energy-jpeg','','','2018-04-13 15:12:22','2018-04-13 14:12:22','',9536,'/wp-content/uploads/2018/04/e-on-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_2 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:12:30','2018-04-13 14:12:30','','npower.jpeg','','inherit','open','closed','','npower-jpeg','','','2018-04-13 15:12:30','2018-04-13 14:12:30','',9537,'/wp-content/uploads/2018/04/npower.jpeg',0,'attachment','image/jpeg',0);
+SET @p_3 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:12:38','2018-04-13 14:12:38','','edf-energy.jpeg','','inherit','open','closed','','edf-energy-jpeg','','','2018-04-13 15:12:38','2018-04-13 14:12:38','',9538,'/wp-content/uploads/2018/04/edf-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_4 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:12:47','2018-04-13 14:12:47','','scottish-and-southern-energy.jpeg','','inherit','open','closed','','scottish-and-southern-energy-jpeg','','','2018-04-13 15:12:47','2018-04-13 14:12:47','',9539,'/wp-content/uploads/2018/04/scottish-and-southern-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_5 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:13:03','2018-04-13 14:13:03','','scottishpower.jpeg','','inherit','open','closed','','scottishpower-jpeg','','','2018-04-13 15:13:03','2018-04-13 14:13:03','',9540,'/wp-content/uploads/2018/04/scottishpower.jpeg',0,'attachment','image/jpeg',0);
+SET @p_6 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:13:12','2018-04-13 14:13:12','','first-utility.jpeg','','inherit','open','closed','','first-utility-jpeg','','','2018-04-13 15:13:12','2018-04-13 14:13:12','',9541,'/wp-content/uploads/2018/04/first-utility.jpeg',0,'attachment','image/jpeg',0);
+SET @p_7 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:13:21','2018-04-13 14:13:21','','the-co-operative-energy.jpeg','','inherit','open','closed','','the-co-operative-energy-jpeg','','','2018-04-13 15:13:21','2018-04-13 14:13:21','',9542,'/wp-content/uploads/2018/04/the-co-operative-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_8 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:13:29','2018-04-13 14:13:29','','utilita.jpeg','','inherit','open','closed','','utilita-jpeg','','','2018-04-13 15:13:29','2018-04-13 14:13:29','',9543,'/wp-content/uploads/2018/04/utilita.jpeg',0,'attachment','image/jpeg',0);
+SET @p_9 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:13:38','2018-04-13 14:13:38','','ovo.jpeg','','inherit','open','closed','','ovo-jpeg','','','2018-04-13 15:13:38','2018-04-13 14:13:38','',9544,'/wp-content/uploads/2018/04/ovo.jpeg',0,'attachment','image/jpeg',0);
+SET @p_10 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:13:46','2018-04-13 14:13:46','','the-utility-warehouse.jpeg','','inherit','open','closed','','the-utility-warehouse-jpeg','','','2018-04-13 15:13:46','2018-04-13 14:13:46','',9545,'/wp-content/uploads/2018/04/the-utility-warehouse.jpeg',0,'attachment','image/jpeg',0);
+SET @p_11 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:14:23','2018-04-13 14:14:23','','extra-energy.jpeg','','inherit','open','closed','','extra-energy-jpeg','','','2018-04-13 15:14:23','2018-04-13 14:14:23','',9546,'/wp-content/uploads/2018/04/extra-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_12 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:14:33','2018-04-13 14:14:33','','economy-energy.jpeg','','inherit','open','closed','','economy-energy-jpeg','','','2018-04-13 15:14:33','2018-04-13 14:14:33','',9547,'/wp-content/uploads/2018/04/economy-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_13 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:14:43','2018-04-13 14:14:43','','flow-energy.jpeg','','inherit','open','closed','','flow-energy-jpeg','','','2018-04-13 15:14:43','2018-04-13 14:14:43','',9548,'/wp-content/uploads/2018/04/flow-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_14 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-04-13 15:14:53','2018-04-13 14:14:53','','spark-energy.jpeg','','inherit','open','closed','','spark-energy-jpeg','','','2018-04-13 15:14:53','2018-04-13 14:14:53','',9549,'/wp-content/uploads/2018/04/spark-energy.jpeg',0,'attachment','image/jpeg',0);
+SET @p_15 = LAST_INSERT_ID();
+
 
 INSERT INTO `wp_postmeta` 
 (post_id, meta_key, meta_value)
 VALUES
 
-(9535,'logo_image','9552'),
+(9535,'logo_image',@p_1),
 (9535,'_logo_image','field_5a1ecb4e53f99'),
-(9552,'_wp_attached_file','2018/04/british-gas.jpeg'),
-(9552,'_wp_attachment_context','acf-upload'),
-(9552,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2018/04/british-gas.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_1,'_wp_attached_file','2018/04/british-gas.jpeg'),
+(@p_1,'_wp_attachment_context','acf-upload'),
+(@p_1,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2018/04/british-gas.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9536,'logo_image','9554'),
+(9536,'logo_image',@p_2),
 (9536,'_logo_image','field_5a1ecb4e53f99'),
-(9554,'_wp_attached_file','2018/04/e-on-energy.jpeg'),
-(9554,'_wp_attachment_context','acf-upload'),
-(9554,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:24:\"2018/04/e-on-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_2,'_wp_attached_file','2018/04/e-on-energy.jpeg'),
+(@p_2,'_wp_attachment_context','acf-upload'),
+(@p_2,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:24:\"2018/04/e-on-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9537,'logo_image','9556'),
+(9537,'logo_image',@p_3),
 (9537,'_logo_image','field_5a1ecb4e53f99'),
-(9556,'_wp_attached_file','2018/04/npower.jpeg'),
-(9556,'_wp_attachment_context','acf-upload'),
-(9556,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:49;s:4:\"file\";s:19:\"2018/04/npower.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_3,'_wp_attached_file','2018/04/npower.jpeg'),
+(@p_3,'_wp_attachment_context','acf-upload'),
+(@p_3,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:49;s:4:\"file\";s:19:\"2018/04/npower.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9538,'logo_image','9558'),
+(9538,'logo_image',@p_4),
 (9538,'_logo_image','field_5a1ecb4e53f99'),
-(9558,'_wp_attached_file','2018/04/edf-energy.jpeg'),
-(9558,'_wp_attachment_context','acf-upload'),
-(9558,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:118;s:6:\"height\";i:160;s:4:\"file\";s:23:\"2018/04/edf-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_4,'_wp_attached_file','2018/04/edf-energy.jpeg'),
+(@p_4,'_wp_attachment_context','acf-upload'),
+(@p_4,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:118;s:6:\"height\";i:160;s:4:\"file\";s:23:\"2018/04/edf-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9539,'logo_image','9560'),
+(9539,'logo_image',@p_5),
 (9539,'_logo_image','field_5a1ecb4e53f99'),
-(9560,'_wp_attached_file','2018/04/scottish-and-southern-energy.jpeg'),
-(9560,'_wp_attachment_context','acf-upload'),
-(9560,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:75;s:4:\"file\";s:41:\"2018/04/scottish-and-southern-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_5,'_wp_attached_file','2018/04/scottish-and-southern-energy.jpeg'),
+(@p_5,'_wp_attachment_context','acf-upload'),
+(@p_5,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:75;s:4:\"file\";s:41:\"2018/04/scottish-and-southern-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9540,'logo_image','9562'),
+(9540,'logo_image',@p_6),
 (9540,'_logo_image','field_5a1ecb4e53f99'),
-(9562,'_wp_attached_file','2018/04/scottishpower.jpeg'),
-(9562,'_wp_attachment_context','acf-upload'),
-(9562,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:48;s:4:\"file\";s:26:\"2018/04/scottishpower.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_6,'_wp_attached_file','2018/04/scottishpower.jpeg'),
+(@p_6,'_wp_attachment_context','acf-upload'),
+(@p_6,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:48;s:4:\"file\";s:26:\"2018/04/scottishpower.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9541,'logo_image','9564'),
+(9541,'logo_image',@p_7),
 (9541,'_logo_image','field_5a1ecb4e53f99'),
-(9564,'_wp_attached_file','2018/04/first-utility.jpeg'),
-(9564,'_wp_attachment_context','acf-upload'),
-(9564,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:151;s:4:\"file\";s:26:\"2018/04/first-utility.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_7,'_wp_attached_file','2018/04/first-utility.jpeg'),
+(@p_7,'_wp_attachment_context','acf-upload'),
+(@p_7,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:151;s:4:\"file\";s:26:\"2018/04/first-utility.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9542,'logo_image','9566'),
+(9542,'logo_image',@p_8),
 (9542,'_logo_image','field_5a1ecb4e53f99'),
-(9566,'_wp_attached_file','2018/04/the-co-operative-energy.jpeg'),
-(9566,'_wp_attachment_context','acf-upload'),
-(9566,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:61;s:4:\"file\";s:36:\"2018/04/the-co-operative-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_8,'_wp_attached_file','2018/04/the-co-operative-energy.jpeg'),
+(@p_8,'_wp_attachment_context','acf-upload'),
+(@p_8,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:61;s:4:\"file\";s:36:\"2018/04/the-co-operative-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9543,'logo_image','9568'),
+(9543,'logo_image',@p_9),
 (9543,'_logo_image','field_5a1ecb4e53f99'),
-(9568,'_wp_attached_file','2018/04/utilita.jpeg'),
-(9568,'_wp_attachment_context','acf-upload'),
-(9568,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:615;s:6:\"height\";i:280;s:4:\"file\";s:20:\"2018/04/utilita.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:5:\"Print\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_9,'_wp_attached_file','2018/04/utilita.jpeg'),
+(@p_9,'_wp_attachment_context','acf-upload'),
+(@p_9,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:615;s:6:\"height\";i:280;s:4:\"file\";s:20:\"2018/04/utilita.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:5:\"Print\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9544,'logo_image','9570'),
+(9544,'logo_image',@p_10),
 (9544,'_logo_image','field_5a1ecb4e53f99'),
-(9570,'_wp_attached_file','2018/04/ovo.jpeg'),
-(9570,'_wp_attachment_context','acf-upload'),
-(9570,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:62;s:4:\"file\";s:16:\"2018/04/ovo.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_10,'_wp_attached_file','2018/04/ovo.jpeg'),
+(@p_10,'_wp_attachment_context','acf-upload'),
+(@p_10,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:62;s:4:\"file\";s:16:\"2018/04/ovo.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9545,'logo_image','9572'),
+(9545,'logo_image',@p_11),
 (9545,'_logo_image','field_5a1ecb4e53f99'),
-(9572,'_wp_attached_file','2018/04/the-utility-warehouse.jpeg'),
-(9572,'_wp_attachment_context','acf-upload'),
-(9572,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:417;s:6:\"height\";i:238;s:4:\"file\";s:34:\"2018/04/the-utility-warehouse.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_11,'_wp_attached_file','2018/04/the-utility-warehouse.jpeg'),
+(@p_11,'_wp_attachment_context','acf-upload'),
+(@p_11,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:417;s:6:\"height\";i:238;s:4:\"file\";s:34:\"2018/04/the-utility-warehouse.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9546,'logo_image','9575'),
+(9546,'logo_image',@p_12),
 (9546,'_logo_image','field_5a1ecb4e53f99'),
-(9575,'_wp_attached_file','2018/04/extra-energy.jpeg'),
-(9575,'_wp_attachment_context','acf-upload'),
-(9575,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:66;s:4:\"file\";s:25:\"2018/04/extra-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_12,'_wp_attached_file','2018/04/extra-energy.jpeg'),
+(@p_12,'_wp_attachment_context','acf-upload'),
+(@p_12,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:66;s:4:\"file\";s:25:\"2018/04/extra-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9547,'logo_image','9577'),
+(9547,'logo_image',@p_13),
 (9547,'_logo_image','field_5a1ecb4e53f99'),
-(9577,'_wp_attached_file','2018/04/economy-energy.jpeg'),
-(9577,'_wp_attachment_context','acf-upload'),
-(9577,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:198;s:6:\"height\";i:149;s:4:\"file\";s:27:\"2018/04/economy-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_13,'_wp_attached_file','2018/04/economy-energy.jpeg'),
+(@p_13,'_wp_attachment_context','acf-upload'),
+(@p_13,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:198;s:6:\"height\";i:149;s:4:\"file\";s:27:\"2018/04/economy-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9548,'logo_image','9579'),
+(9548,'logo_image',@p_14),
 (9548,'_logo_image','field_5a1ecb4e53f99'),
-(9579,'_wp_attached_file','2018/04/flow-energy.jpeg'),
-(9579,'_wp_attachment_context','acf-upload'),
-(9579,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:151;s:4:\"file\";s:24:\"2018/04/flow-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(@p_14,'_wp_attached_file','2018/04/flow-energy.jpeg'),
+(@p_14,'_wp_attachment_context','acf-upload'),
+(@p_14,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:151;s:4:\"file\";s:24:\"2018/04/flow-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(9549,'logo_image','9581'),
+(9549,'logo_image',@p_15),
 (9549,'_logo_image','field_5a1ecb4e53f99'),
-(9581,'_wp_attached_file','2018/04/spark-energy.jpeg'),
-(9581,'_wp_attachment_context','acf-upload'),
-(9581,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:151;s:4:\"file\";s:25:\"2018/04/spark-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}');
+(@p_15,'_wp_attached_file','2018/04/spark-energy.jpeg'),
+(@p_15,'_wp_attachment_context','acf-upload'),
+(@p_15,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:151;s:4:\"file\";s:25:\"2018/04/spark-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}');
 
 ]]></sql>
     </changeSet>
