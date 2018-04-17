@@ -16,7 +16,7 @@ import java.util.List;
 public class IpValidationService {
     private final List<String> ipWhitelist;
 
-    public IpValidationService(@Value("${dceas.admin-ip-whitelist}") String ipWhitelist) {
+    public IpValidationService(@Value("${vcap.services.dceas-user-site.config.credentials.admin-ip-whitelist}") String ipWhitelist) {
         this.ipWhitelist = Arrays.asList(ipWhitelist.split(","));
     }
 

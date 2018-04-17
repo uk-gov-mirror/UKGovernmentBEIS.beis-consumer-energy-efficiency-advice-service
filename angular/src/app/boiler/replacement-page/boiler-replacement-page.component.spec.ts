@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
-
+import {InlineSVGModule} from 'ng-inline-svg';
 import {BoilerReplacementPageComponent} from './boiler-replacement-page.component';
 import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
@@ -10,6 +10,7 @@ import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-me
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
 
 describe('BoilerReplacementPageComponent', () => {
     let component: BoilerReplacementPageComponent;
@@ -28,9 +29,11 @@ describe('BoilerReplacementPageComponent', () => {
                 BoilerReplacementCardComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerLinkButtonComponent,
+                DataCardComponent
             ],
             imports: [
                 RouterTestingModule,
+                InlineSVGModule
             ],
             providers: [
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub}

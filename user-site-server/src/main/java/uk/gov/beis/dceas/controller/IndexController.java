@@ -37,7 +37,7 @@ public class IndexController {
     private String apiRoot;
     @Value("${dceas.staticRoot}")
     private String staticRoot;
-    @Value("${google.analytics.id}")
+    @Value("${vcap.services.google.analytics.credentials.id}")
     private String gaId;
 
     private final Environment environment;

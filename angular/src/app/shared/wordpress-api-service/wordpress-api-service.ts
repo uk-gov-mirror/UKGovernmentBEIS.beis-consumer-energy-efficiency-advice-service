@@ -14,12 +14,6 @@ export class WordpressApiService {
         return this.location.prepareExternalUrl(WordpressApiService.WORDPRESS_API_ROOT + path);
     }
 
-    searchPosts<T>(urlPath: string, searchText: string): Observable<T[]> {
-        const params = new HttpParams().set('search', searchText).set('context', 'embed');
-        const endpoint = this.getFullApiEndpoint(urlPath);
-        return this.http.get<T[]>(endpoint, {params: params});
-    }
-
     getPost<T>(urlPath: string, slug: string): Observable<T> {
         const params = new HttpParams().set('per_page', '1').set('slug', slug);
         return this.http.get<T[]>(this.getFullApiEndpoint(urlPath), {params: params})

@@ -9,7 +9,6 @@ describe('WordpressPagesService', () => {
     let injector: TestBed;
     let service: WordpressPagesService;
 
-    const searchString = 'Dummy search string';
     const mockApiResponse = require('assets/test/search-pages-response.json');
 
     beforeEach(() => {

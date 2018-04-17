@@ -17,6 +17,7 @@ import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -50,6 +51,7 @@ describe('BoilerResultsPageComponent', () => {
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerLinkButtonComponent,
+                DataCardComponent,
             ],
             imports: [
                 RouterTestingModule,

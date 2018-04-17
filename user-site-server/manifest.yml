@@ -12,6 +12,7 @@ applications:
   path: build/libs/user-site-server-0.0.1-SNAPSHOT.jar
   services:
     - dceas-database
-
-# TODO:BEIS-163 need any env? http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
-# TODO:BEIS-163 services, VCAP_SERVICES
+    - epc.opendatacommunities.org
+    - bre.energyUse
+    - google.analytics
+    - dceas-user-site.config

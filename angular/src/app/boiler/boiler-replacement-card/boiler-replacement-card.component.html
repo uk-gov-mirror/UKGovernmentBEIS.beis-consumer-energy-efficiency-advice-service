@@ -1,31 +1,40 @@
 <a class="boiler-replacement-card" routerLink="/boiler/advice/{{boilerType.slug}}">
     <div class="main-row">
+        <span class="icon icon-heating"></span>
         <div class="details">
-            <span class="icon icon-heating"></span>
-            <div class="content">
-                <div class="name">{{boilerType.name}}</div>
+            <div class="name">{{boilerType.name}}</div>
+            <div class="description-row">
                 <div class="description">{{boilerType.description}}</div>
             </div>
-        </div>
-        <div class="box installation">
-            <div class="title">Average installation cost</div>
-            <div class="value">£{{boilerType.averageInstallationCost.toFixed(0)}}</div>
-        </div>
-        <div class="box running-cost">
-            <div class="title">Average running cost</div>
-            <div class="value">£{{boilerType.runningCostPerYear.toFixed(0)}}</div>
-        </div>
-    </div>
-    <div class="secondary-row">
-        <div class="content">
-            <div class="lifetime">
-                <div class="title">Average lifetime</div>
-                <div class="value">{{boilerType.lifetimeYears}} years</div>
-            </div>
-            <div class="space">
-                <div class="title">Space requirement</div>
-                <div class="value">{{boilerType.spaceRequirement}}</div>
+            <div class="more-detail-row" [class.expanded]="isExpandedView" (click)="toggleExpandedView($event)">
+                <button class="more-detail-button">
+                    {{isExpandedView ? 'Hide detail' : 'See more detail'}}
+                </button>
+                <div class="more-detail-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             </div>
         </div>
+
+        <div class="expanded-view-row" [class.expanded]="isExpandedView">
+            <div class="content">
+                <div class="lifetime">
+                    <div class="title">Average lifetime</div>
+                    <div class="value">{{boilerType.lifetimeYears}} years</div>
+                </div>
+                <div class="space">
+                    <div class="title">Space requirement</div>
+                    <div class="value">{{boilerType.spaceRequirement}}</div>
+                </div>
+            </div>
+        </div>
+        <app-data-card class="installation-card"
+                       heading="Average installation cost"
+                       [value]="'£' + boilerType.averageInstallationCost.toFixed(0)"
+                       isSmallCard="true"
+        ></app-data-card>
+        <app-data-card class="running-cost-card"
+                       heading="Average running cost"
+                       [value]="'£' + boilerType.runningCostPerYear.toFixed(0)"
+                       isSmallCard="true"
+        ></app-data-card>
     </div>
 </a>

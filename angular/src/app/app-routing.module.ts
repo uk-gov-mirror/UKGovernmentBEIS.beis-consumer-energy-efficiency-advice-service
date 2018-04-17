@@ -33,6 +33,7 @@ import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.g
 import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
+import {SimpleSavingsComponent} from "./simple-savings/simple-savings.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -101,11 +102,6 @@ const routes: Routes = [
     },
     {
         path: 'grants/cold-weather-payments',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'simple-savings',
         component: PageNotCreatedComponent,
         pathMatch: 'full'
     },
@@ -226,6 +222,11 @@ const routes: Routes = [
     {
         path: 'your-home/:tag',
         component: YourHomeComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'simple-savings',
+        component: SimpleSavingsComponent,
         pathMatch: 'full'
     },
     {

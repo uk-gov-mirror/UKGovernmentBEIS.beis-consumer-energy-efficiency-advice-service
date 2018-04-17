@@ -34,11 +34,11 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
 
 
     public EnergyCalculationController(
-        @Value("${bre.energyUse.url}")
+        @Value("${vcap.services.bre.energyUse.credentials.url}")
             String apiUrl,
-        @Value("${bre.energyUse.username}")
+        @Value("${vcap.services.bre.energyUse.credentials.username}")
             String apiUsername,
-        @Value("${bre.energyUse.password}")
+        @Value("${vcap.services.bre.energyUse.credentials.password}")
             String apiPassword,
         RestTemplateBuilder restTemplateBuilder) {
 

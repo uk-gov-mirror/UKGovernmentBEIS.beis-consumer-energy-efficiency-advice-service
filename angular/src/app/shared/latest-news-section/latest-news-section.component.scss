@@ -31,7 +31,6 @@
 .latest-news-section {
   .heading {
     @include page-section-heading-font;
-    color: $primary-blue;
   }
 
   .spinner-container {

@@ -48,4 +48,9 @@ time gzip --keep --best -r user-site-server/src/main/resources/public
 cd user-site-server
 
 cf target -o beis-domestic-energy-advice-service -s $SPACE
-cf push --hostname $HOSTNAME
+
+if [[ $SPACE == "live" ]]; then
+    cf blue-green-deploy dceas-user-site
+else
+    cf push --hostname $HOSTNAME
+fi
