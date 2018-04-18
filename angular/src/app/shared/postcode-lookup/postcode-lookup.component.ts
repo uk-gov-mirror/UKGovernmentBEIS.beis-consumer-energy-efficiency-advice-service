@@ -112,6 +112,7 @@ export class PostcodeLookupComponent {
     private displayPostcodeValidationError(): void {
         this.resetSearchState();
         this.validationError = true;
+        this.loadingEpcs = false;
     }
 
     private resetSearchState(): void {
