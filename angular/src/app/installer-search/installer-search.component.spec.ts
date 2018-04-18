@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -21,7 +22,7 @@ describe('InstallerSearchComponent', () => {
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
-                {provide: EnergySavingMeasureContentService}]
+                {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent}],
         })
             .compileComponents();
     }));
@@ -56,17 +57,29 @@ describe('InstallerSearchComponent', () => {
     class MockActivatedRoute {
 
         public params = Observable.of({
-            "measure-code": "some measure code",
+            "measure-code": "Test Measure Code",
         });
     }
 
     class MockResponseData {
-        public postcode = "some postcode";
+        public postcode = "Test Postcode";
     }
 
     class MockMeasureContent {
-        public fetchMeasureDetails() {
-            return Observable.of(); // fix this at some point
+        measures: Observable<MeasureContent[]>;
+
+        public fetchMeasureDetails(): Observable<MeasureContent[]> {
+            return Observable.of([{
+                slug: null,
+                acf: {
+                    measure_code: "Test Measure Code",
+                    headline: "Test Headline",
+                    summary: null,
+                    advantages: [{advantage: null}],
+                    tags: null,
+                    steps: null
+                }
+            }]);
         }
     }
 });
