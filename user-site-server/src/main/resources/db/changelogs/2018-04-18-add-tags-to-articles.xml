@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<changeSet id="2018-04-18-add-tags-to-articles.xml"
+           author="raam.chauhan@softwire.com"
+           dbms="mysql">
+    <sql><![CDATA[
+
+INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+VALUES
+(3850, 'tags', 'a:1:{i:0;s:12:"tag_homepage";}'),
+(3802, 'tags', 'a:1:{i:0;s:12:"tag_homepage";}'),
+(3051, 'tags', 'a:1:{i:0;s:12:"tag_homepage";}'),
+(3052, 'tags', 'a:1:{i:0;s:12:"tag_homepage";}'),
+
+(3040, 'tags', 'a:1:{i:0;s:21:"tag_home_improvements";}'),
+(3793, 'tags', 'a:1:{i:0;s:16:"tag_reduce_bills";}'),
+
+(3857, 'tags', 'a:2:{i:0;s:16:"tag_reduce_bills";i:1;s:20:"tag_make_home_warmer";}'),
+(3852, 'tags', 'a:2:{i:0;s:16:"tag_reduce_bills";i:1;s:20:"tag_make_home_warmer";}'),
+
+(3855, 'tags', 'a:2:{i:0;s:20:"tag_make_home_warmer";i:1;s:21:"tag_home_improvements";}'),
+
+(3839, 'tags', 'a:3:{i:0;s:16:"tag_reduce_bills";i:1;s:20:"tag_make_home_warmer";i:2;s:21:"tag_make_home_greener";}');
+
+       ]]></sql>
+</changeSet>
+</databaseChangeLog>

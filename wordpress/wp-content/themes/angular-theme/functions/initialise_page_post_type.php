@@ -9,6 +9,12 @@ function setup_page_acf_group()
             'key' => 'group_5a1d8632971ff',
             'title' => 'sdfsdf',
             'fields' => array(
+                array (
+                    'key' => 'field_000001',
+                    'label' => 'Basic Details',
+                    'name' => 'basic_details_tab',
+                    'type' => 'tab',
+                ),
                 array(
                     'key' => 'field_5a1ecb4e53fc3',
                     'label' => 'Cover Image',
@@ -48,6 +54,28 @@ function setup_page_acf_group()
                     ),
                     'width' => '',
                     'height' => '',
+                ),
+                array (
+                    'key' => 'field_000002',
+                    'label' => 'Tags',
+                    'name' => 'tags_tab',
+                    'type' => 'tab',
+                ),
+                array (
+                    'key' => 'field_000003',
+                    'label' => 'Tags',
+                    'name' => 'tags',
+                    'instructions' => 'Tags to determine where this article should be displayed',
+                    'type' => 'checkbox',
+                    'choices' => array (
+                        'tag_homepage' => 'Homepage',
+                        'tag_reduce_bills' => 'Reduce your bills',
+                        'tag_make_home_warmer' => 'Make your home warmer',
+                        'tag_make_home_greener' => 'Make your home greener',
+                        'tag_home_improvements' => 'Home improvements',
+                    ),
+                    'default_value' => '',
+                    'layout' => 'vertical',
                 ),
             ),
             'location' => array(
