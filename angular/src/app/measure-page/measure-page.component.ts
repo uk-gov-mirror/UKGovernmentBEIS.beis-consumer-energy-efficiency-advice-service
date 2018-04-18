@@ -15,6 +15,7 @@ export class MeasurePageComponent implements OnInit {
     measureData: WordpressMeasure;
     isLoading: boolean;
     isError: boolean;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
 
     constructor(private router: Router,
                 private route: ActivatedRoute,

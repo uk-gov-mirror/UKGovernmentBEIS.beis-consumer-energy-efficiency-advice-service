@@ -1,4 +1,4 @@
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="page-row" *ngIf="!isLoading && !isError">
     <div class="page-row-content page-component" *ngIf="pageData">
         <div class="title" [innerHTML]="pageData.title"></div>

@@ -14,6 +14,7 @@ import {WordpressECOSuppliersService} from "../shared/wordpress-eco-suppliers-se
 export class ECOSuppliersPageComponent implements OnInit {
     loading = true;
     error = false;
+    errorMessage: string = "Something went wrong and we can't load this list of suppliers right now. Please try again later";
 
     suppliers: WordpressECOSupplier[];
 

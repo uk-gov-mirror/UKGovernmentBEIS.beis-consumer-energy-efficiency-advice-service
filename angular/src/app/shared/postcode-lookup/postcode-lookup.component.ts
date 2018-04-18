@@ -22,6 +22,7 @@ export class PostcodeLookupComponent {
     selectedEpc: Epc;
     validationError: boolean = false;
     scottishPostcode: boolean = false;
+    errorMessage: string = "Please enter a valid UK postcode";
 
     @Output() addressSelected: EventEmitter<string> = new EventEmitter<string>();
 

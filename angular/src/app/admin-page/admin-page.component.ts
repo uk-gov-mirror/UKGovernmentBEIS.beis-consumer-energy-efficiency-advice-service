@@ -11,6 +11,7 @@ export class AdminPageComponent {
     sessionReference: string;
     error: boolean = false;
     loading: boolean = false;
+    errorMessage: string = "Unable to load the user's session. Is the reference (including spaces) definitely correct?";
 
     constructor(private userStateService: UserStateService) { }
 
