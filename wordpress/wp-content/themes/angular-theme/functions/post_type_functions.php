@@ -17,13 +17,3 @@ function disable_quick_edit_for($post_type = null) {
         return $actions;
     };
 }
-
-function add_slug($response) {
-    $data_with_slug = array_map(function ($datum) {
-        $datum['slug'] = get_post_field('post_name', $datum['id']);
-        return $datum;
-    }, $response->data);
-
-    $response->data = $data_with_slug;
-    return $response;
-}

@@ -2,6 +2,9 @@
 @import 'styles/mixins/layout';
 @import "styles/var/colors";
 
+// If you change the width of a supplier logo (currently max 230px), then
+// please update the image selector in `wordpress-eco-supplier.ts`
+
 // Component specific variables
 $mobile-vertical-grid-margin: 30px;
 $mobile-horizontal-grid-margin: 80px;

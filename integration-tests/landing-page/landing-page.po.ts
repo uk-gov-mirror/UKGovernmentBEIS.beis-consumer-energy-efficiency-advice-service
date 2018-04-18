@@ -6,7 +6,7 @@ export class LandingPage {
     }
 
     getHeadingText() {
-        return element(by.css('.heading')).getText();
+        return element(by.css('.page-heading .heading')).getText();
     }
 
     enterPostcode(postcode: string) {

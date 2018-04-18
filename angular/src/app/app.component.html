@@ -1,9 +1,11 @@
-<div id="main-content" class="main-content">
-    <app-need-help></app-need-help>
-    <app-header (onMobileNavToggled)="toggleMobileNav()" (closeSearch)="closeSearchBar()" (closeNav)="hideMobileNav()" [shouldCloseSearchBar]="shouldCloseSearchBar"></app-header>
-    <div class="page-component">
-        <app-navigation-bar (onHideMobileNav)="hideMobileNav()" [shouldExpandNav]="shouldExpandNav"></app-navigation-bar>
-        <router-outlet></router-outlet>
-    </div>
-    <app-footer></app-footer>
+<div class="main-content-wrapper">
+    <div id="main-content" class="main-content">
+        <app-need-help></app-need-help>
+        <app-header (onMobileNavToggled)="toggleMobileNav()" (closeSearch)="closeSearchBar()" (closeNav)="hideMobileNav()" [shouldCloseSearchBar]="shouldCloseSearchBar"></app-header>
+        <div class="page-component">
+            <app-navigation-bar (onHideMobileNav)="hideMobileNav()" [shouldExpandNav]="shouldExpandNav"></app-navigation-bar>
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+</div>
 </div>
