@@ -36,6 +36,8 @@ describe('EnergyCalculationApiService', () => {
         fridge_freezers: 5,
         fridges: 0,
         freezers: 26,
+        condensing_boiler: false,
+        hot_water_cylinder: false,
         isMinimalDataSet: () => true
     };
 
