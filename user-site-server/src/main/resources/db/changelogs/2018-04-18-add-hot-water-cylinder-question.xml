@@ -23,9 +23,7 @@ VALUES
 (@postid, 'questionReason', 'We will use this information to tailor our advice about insulation.'),
 (@postid, '_questionReason', 'field_5a0179b00e182'),
 (@postid, 'autoOpenQuestionReason', '0'),
-(@postid, '_autoOpenQuestionReason', 'field_5a0c5ddf40b11'),
-(@postid, '_edit_last', '1'),
-(@postid, '_edit_lock', '1523979527:1')
+(@postid, '_autoOpenQuestionReason', 'field_5a0c5ddf40b11')
 ;
 
        ]]></sql>
