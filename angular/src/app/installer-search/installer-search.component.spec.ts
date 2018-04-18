@@ -21,7 +21,7 @@ describe('InstallerSearchComponent', () => {
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
-                {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent}]
+                {provide: EnergySavingMeasureContentService}]
         })
             .compileComponents();
     }));
