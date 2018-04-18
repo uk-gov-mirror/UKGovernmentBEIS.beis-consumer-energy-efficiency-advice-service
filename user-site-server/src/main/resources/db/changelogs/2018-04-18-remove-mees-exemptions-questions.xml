@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-18-remove-mees-exemptions-questions.xml"
+               author="david.broder-rodgers@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+-- This migration removes the MEES exemptions questions.
+
+DELETE post, postmeta
+FROM wp_posts post
+JOIN wp_postmeta postmeta on postmeta.post_id = post.id
+WHERE post.post_name IN ('recommended-improvements', 'improvements-at-no-cost', 'tenant-consent', 'property-devaluation', 'temporary-exclusions');
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

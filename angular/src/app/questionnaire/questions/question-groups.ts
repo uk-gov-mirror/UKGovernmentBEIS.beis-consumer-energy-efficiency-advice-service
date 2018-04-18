@@ -37,11 +37,6 @@ import {PropertyAfter2020QuestionMetadata} from './mees/property-after-2020-ques
 import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
 import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
 import {EpcBelowEQuestionMetadata} from './mees/epc-below-e-question/epc-below-e-question-metadata';
-import {RecommendedImprovementsQuestionMetadata} from './mees/recommended-improvements-question/recommended-improvements-question-metadata';
-import {ImprovementsAtNoCostQuestionMetadata} from './mees/improvements-at-no-cost-question/improvements-at-no-cost-question-metadata';
-import {TenantConsentQuestionMetadata} from './mees/tenant-consent-question/tenant-consent-question-metadata';
-import {TemporaryExclusionsQuestionMetadata} from './mees/temporary-exclusions-question/temporary-exclusions-question-metadata';
-import {PropertyDevaluationQuestionMetadata} from './mees/property-devaluation-question/property-devaluation-question-metadata';
 import {HotWaterCylinderQuestionMetadata} from "./hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 
 export const ADDRESS = [
@@ -116,9 +111,4 @@ export const MEES_QUESTIONS = [
     new EpcRequiredQuestionMetadata(),
     new TenancyTypeQuestionMetadata(),
     new EpcBelowEQuestionMetadata(),
-    new RecommendedImprovementsQuestionMetadata(),
-    new ImprovementsAtNoCostQuestionMetadata(),
-    new TenantConsentQuestionMetadata(),
-    new PropertyDevaluationQuestionMetadata(),
-    new TemporaryExclusionsQuestionMetadata(),
 ];
