@@ -35,6 +35,8 @@ export class RdSapInput {
     readonly number_of_heating_off_hours_normal: number[];
     readonly measures: boolean;
     readonly rented: boolean;
+    readonly condensing_boiler: boolean;
+    readonly hot_water_cylinder: boolean;
 
     readonly living_room_temperature: number;
     readonly occupants: number;
@@ -68,6 +70,8 @@ export class RdSapInput {
         this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
         this.measures = true;
         this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
+        this.condensing_boiler = responseData.condensingBoiler;
+        this.hot_water_cylinder = responseData.hotWaterCylinder;
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;

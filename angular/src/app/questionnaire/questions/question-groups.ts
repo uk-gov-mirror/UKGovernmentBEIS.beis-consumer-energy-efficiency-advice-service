@@ -42,6 +42,7 @@ import {ImprovementsAtNoCostQuestionMetadata} from './mees/improvements-at-no-co
 import {TenantConsentQuestionMetadata} from './mees/tenant-consent-question/tenant-consent-question-metadata';
 import {TemporaryExclusionsQuestionMetadata} from './mees/temporary-exclusions-question/temporary-exclusions-question-metadata';
 import {PropertyDevaluationQuestionMetadata} from './mees/property-devaluation-question/property-devaluation-question-metadata';
+import {HotWaterCylinderQuestionMetadata} from "./hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -67,6 +68,7 @@ export const CORE_BRE_QUESTIONS = [
     new ConstructionQuestionMetadata(),
     new GardenQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
+    new HotWaterCylinderQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
     new HeatingCostQuestionMetadata(),

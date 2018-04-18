@@ -64,4 +64,5 @@
     <include file="changelogs/2018-04-12-update-tags-on-measure.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-13-add-rest-api-search-plugin.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-16-remove-dummy-local-authority-grants.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-18-add-hot-water-cylinder.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
