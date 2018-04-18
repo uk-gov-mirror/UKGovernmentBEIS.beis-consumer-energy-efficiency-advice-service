@@ -70,6 +70,7 @@ export class ResponseData {
     public gardenSizeSquareMetres: number;
     public roofSpace: RoofSpace;
     public floorLevels: FloorLevel[];
+    public hotWaterCylinder: boolean;
 
     public benefits: Benefits;
     public income: number;

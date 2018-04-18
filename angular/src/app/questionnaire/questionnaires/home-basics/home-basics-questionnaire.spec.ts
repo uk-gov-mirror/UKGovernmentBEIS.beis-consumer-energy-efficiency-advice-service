@@ -28,6 +28,7 @@ import {FlatStoreysQuestionMetadata} from '../../questions/flat-storeys-question
 import {FloorLevelQuestionMetadata} from '../../questions/floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/floor-span-question-metadata';
 import {PostcodeEpcQuestionMetadata} from '../../questions/postcode-epc-question/postcode-epc-question-metadata';
+import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -58,6 +59,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConstructionQuestionMetadata(),
             new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
@@ -95,6 +97,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConstructionQuestionMetadata(),
             new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
@@ -132,6 +135,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConstructionQuestionMetadata(),
             new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
@@ -169,6 +173,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConstructionQuestionMetadata(),
             new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),
@@ -203,6 +208,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConstructionQuestionMetadata(),
             new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new HeatingCostQuestionMetadata(),

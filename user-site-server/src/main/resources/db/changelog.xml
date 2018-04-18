@@ -65,4 +65,5 @@
     <include file="changelogs/2018-04-13-add-eco-supplier-images-to-wordpress.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-13-add-rest-api-search-plugin.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-16-remove-dummy-local-authority-grants.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-18-add-hot-water-cylinder-question.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
