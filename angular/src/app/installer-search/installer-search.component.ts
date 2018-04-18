@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResponseData} from "../shared/response-data/response-data";
-import {RecommendationsService} from "../shared/recommendations-service/recommendations.service";
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 @Component({
