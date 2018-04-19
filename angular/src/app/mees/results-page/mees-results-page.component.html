@@ -2,31 +2,30 @@
     <div class="page-row page-heading">
         <div class="page-row-content">
             <div class="heading-text" [ngSwitch]="status">
-                <span *ngSwitchCase="MeesResultsStatus.NoActionRequired">
+                <ng-container *ngSwitchCase="MeesResultsStatus.NoActionRequired">
                     No action required
-                </span>
-                <span *ngSwitchCase="MeesResultsStatus.EpcRequired">
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.EpcRequired">
                     You need to get an EPC assessment
-                </span>
-                <span *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
                     You are required to install the recommended improvements
-                </span>
+                </ng-container>
             </div>
         </div>
     </div>
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
-                <div *ngSwitchCase="MeesResultsStatus.NoActionRequired">
-                    <!--TODO BEISDEAS-262 Add reason for no action required-->
-                    You are not affected by the Minimum Energy Efficiency Standards regulations and may let the
-                    property.
-                </div>
-                <div *ngSwitchCase="MeesResultsStatus.EpcRequired">
+                <ng-container *ngSwitchCase="MeesResultsStatus.NoActionRequired">
+                    {{noActionReason}}, you are not affected by the Minimum Energy Efficiency Standards regulations
+                    and may let the property.
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.EpcRequired">
                     Once your property has been assessed, if your rating is F or G you may be required to make
                     improvements - you can take this questionnaire again to clarify.
-                </div>
-                <div *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
                     <p>
                         Based on the information you have provided your property is covered by the Minimum Energy
                         Efficiency Standards regulations and you will now need to take steps to improve the EPC score to
@@ -43,7 +42,7 @@
                         <a routerLink="/minimum-energy-efficiency-standards/exemption">
                             here</a>.
                     </p>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>
