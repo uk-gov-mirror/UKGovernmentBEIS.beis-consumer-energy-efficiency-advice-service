@@ -47,7 +47,9 @@ export class WordpressPagesService {
 
     getLatestPages(): Observable<WordpressPage[]> {
         if (!this.latestPages) {
-            const params = new HttpParams().set('per_page', '4')
+            const params = new HttpParams()
+                .set('tag', 'tag_reduce_bills')
+                .set('per_page', '4')
                 .set('orderby', 'date')
                 .set('order', 'desc')
                 .set('context', 'embed');

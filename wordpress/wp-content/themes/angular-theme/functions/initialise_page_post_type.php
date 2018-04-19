@@ -7,7 +7,7 @@ function setup_page_acf_group()
     if (function_exists("acf_add_local_field_group")) {
         acf_add_local_field_group(array(
             'key' => 'group_5a1d8632971ff',
-            'title' => 'sdfsdf',
+            'title' => 'Custom Options',
             'fields' => array(
                 array (
                     'key' => 'field_000001',
@@ -68,6 +68,8 @@ function setup_page_acf_group()
                     'instructions' => 'Tags to determine where this article should be displayed',
                     'type' => 'checkbox',
                     'choices' => array (
+                        // When adding new tags here, avoid using special characters as it may break
+                        // the filtering. See filter_article_pages.php.
                         'tag_homepage' => 'Homepage',
                         'tag_reduce_bills' => 'Reduce your bills',
                         'tag_make_home_warmer' => 'Make your home warmer',
