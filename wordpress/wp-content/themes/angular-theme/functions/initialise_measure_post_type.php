@@ -84,7 +84,7 @@ function setup_measure_acf_group() {
                     'prepend' => '',
                     'append' => '',
                     'formatting' => 'html',
-                    'maxlength' => '10',
+                    'maxlength' => '127',
                 ),
                 array(
                     'key' => 'field_5a211dcaac12b',
