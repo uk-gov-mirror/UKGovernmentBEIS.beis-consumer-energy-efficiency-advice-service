@@ -31,11 +31,7 @@ export class WordpressPagesService {
         const parsed = parse(url);
         const path = parsed.pathname;
         const slug = path && path.match(/([^\/]*)\/?$/)[1];
-        console.log(url)
-        console.log(parsed)
-        console.log(path)
-        console.log(slug);
-        return slug && ("/pages/" + slug);
+        return slug && path;
     }
 
     getTopLevelPages(): Observable<WordpressPage[]> {

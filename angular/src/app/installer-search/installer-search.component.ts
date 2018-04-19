@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ResponseData} from "../shared/response-data/response-data";
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
@@ -13,7 +13,8 @@ export class InstallerSearchComponent implements OnInit {
     measureName = null;
     postcode = null;
 
-    constructor(private route: ActivatedRoute,
+    constructor(private router: Router,
+                private route: ActivatedRoute,
                 private responseData: ResponseData,
                 private measureContentService: EnergySavingMeasureContentService) {
     }
@@ -24,7 +25,12 @@ export class InstallerSearchComponent implements OnInit {
                 this.postcode = this.responseData.postcode;
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
                     const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
-                    this.measureName = chosenMeasure.acf.headline;
+                    if(chosenMeasure){
+                        this.measureName = chosenMeasure.acf.headline;
+                    }
+                    else {
+                        this.router.navigate(['/installer-search']);
+                    }
                 });
             }
         });
