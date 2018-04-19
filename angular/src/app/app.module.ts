@@ -23,6 +23,7 @@ import {MeesModule} from './mees/mees.module';
 import {ECOSuppliersPageModule} from "./eco-suppliers-page/eco-suppliers-page.module";
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
+import {SimpleSavingsModule} from './simple-savings/simple-savings.module';
 import {InstallerSearchModule} from "./installer-search/installer-search.module";
 
 @NgModule({
@@ -53,6 +54,7 @@ import {InstallerSearchModule} from "./installer-search/installer-search.module"
         YourHomeModule,
         InstallerSearchModule,
         MeesModule.forRoot(),
+        SimpleSavingsModule,
     ],
     bootstrap: [AppComponent],
 })

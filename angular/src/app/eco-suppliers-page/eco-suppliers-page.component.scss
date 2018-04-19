@@ -1,5 +1,134 @@
+@import 'styles/mixins/font';
+@import 'styles/mixins/layout';
+@import "styles/var/colors";
+
+// If you change the width of a supplier logo (currently max 230px), then
+// please update the image selector in `wordpress-eco-supplier.ts`
+
+// Component specific variables
+$mobile-vertical-grid-margin: 30px;
+$mobile-horizontal-grid-margin: 80px;
+$tablet-vertical-grid-margin: 20px;
+$tablet-horizontal-grid-margin: 180px;
+$desktop-vertical-grid-margin: 20px;
+$desktop-horizontal-grid-margin: 200px;
+
+// Component specific mixins
+@mixin is-supplier-grid($number-of-items, $vertical-margin, $horizontal-margin) {
+  @include is-grid();
+  margin: (-$vertical-margin / 2) (-$horizontal-margin / 2);
+
+  .supplier {
+    @include is-grid-item($number-of-items: $number-of-items, $margin: $horizontal-margin);
+    margin: ($vertical-margin / 2) ($horizontal-margin / 2);
+  }
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .eco-suppliers-page {
-  img {
-    width: 40px;
+  .heading-row {
+    background-color: $primary-blue;
+    color: white;
+
+    .title {
+      @include page-heading-font;
+    }
+
+    .summary {
+      @include page-summary-font;
+    }
+  }
+
+  .supplier-list-title {
+    @include page-subheading-font;
+    color: $headline-dark-blue;
+  }
+
+  .supplier-list-summary {
+    @include page-body-font;
+  }
+
+  .supplier-list {
+    .supplier {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.eco-suppliers-page {
+  @include mobile() {
+    .heading-row {
+      padding: 25px 0;
+
+      .title {
+        padding-bottom: 15px;
+      }
+    }
+
+    .supplier-list-title {
+      padding: 30px 0 12px;
+    }
+
+    .supplier-list {
+      padding: 30px 0;
+      @include is-supplier-grid(
+              $number-of-items: 2,
+              $vertical-margin: $mobile-vertical-grid-margin,
+              $horizontal-margin: $mobile-horizontal-grid-margin
+      );
+    }
+  }
+
+  @include tablet() {
+    .heading-row {
+      padding: 30px 0;
+
+      .title {
+        padding-bottom: 20px;
+      }
+    }
+
+    .supplier-list-title {
+      padding: 40px 0 12px;
+    }
+
+    .supplier-list {
+      padding: 40px 0;
+      @include is-supplier-grid(
+              $number-of-items: 3,
+              $vertical-margin: $tablet-vertical-grid-margin,
+              $horizontal-margin: $tablet-horizontal-grid-margin
+      );
+    }
+  }
+
+  @include desktop() {
+    .heading-row {
+      padding: 30px 0;
+
+      .title {
+        padding-bottom: 12px;
+      }
+    }
+
+    .supplier-list-title {
+      padding: 60px 0 12px;
+    }
+
+    .supplier-list {
+      padding: 60px 0;
+      @include is-supplier-grid(
+        $number-of-items: 4,
+        $vertical-margin: $desktop-vertical-grid-margin,
+        $horizontal-margin: $desktop-horizontal-grid-margin
+      );
+    }
   }
 }

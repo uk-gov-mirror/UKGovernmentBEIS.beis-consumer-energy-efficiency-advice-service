@@ -6,6 +6,7 @@ import {NouisliderModule} from 'ng2-nouislider';
 import {SharedModule} from '../../shared/shared.module';
 import {BedroomsQuestionComponent} from './bedrooms-question/bedrooms-question.component';
 import {BoilerTypeQuestionComponent} from './boiler-type-question/boiler-type-question.component';
+import {HotWaterCylinderQuestionComponent} from "./hot-water-cylinder-question/hot-water-cylinder-question.component";
 import {ConfirmEpcQuestionComponent} from './confirm-epc-question/confirm-epc-question.component';
 import {ElectricityTariffQuestionComponent} from './electricity-tariff-question/electricity-tariff-question.component';
 import {FridgeFreezerQuestionComponent} from './fridge-freezer-question/fridge-freezer-question.component';
@@ -69,6 +70,7 @@ import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-
         HeatingCostQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        HotWaterCylinderQuestionComponent,
         HouseExposedWallQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
@@ -113,6 +115,7 @@ import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-
         HeatingCostQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        HotWaterCylinderQuestionComponent,
         HouseExposedWallQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
@@ -164,6 +167,7 @@ import {TemporaryExclusionsQuestionComponent} from './mees/temporary-exclusions-
         HeatingCostQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
+        HotWaterCylinderQuestionComponent,
         HouseExposedWallQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,

@@ -51,6 +51,7 @@ describe('RdsapInput', () => {
             floorAreaUnit: FloorAreaUnit.SquareMetre,
             floorLevels: [FloorLevel.TopFloor],
             fuelType: FuelType.MainsGas,
+            hotWaterCylinder: false,
             condensingBoiler: false,
             electricityTariff: undefined,
             heatingCost: undefined,

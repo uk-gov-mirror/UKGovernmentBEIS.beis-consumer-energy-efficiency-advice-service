@@ -102,7 +102,8 @@ $grant-card-margin: 24px;
             border: none;
             background-color: white;
             &:hover, &:focus {
-              background-color: $light-grey;
+              background-color: $primary-blue;
+              color: white;
             }
 
             padding: 24px 16px;
@@ -129,11 +130,11 @@ $grant-card-margin: 24px;
           }
 
           .link-button-arrow:hover:after{
-            border-left: 20px solid $light-grey;
+            border-left: 20px solid $primary-blue;
           }
 
           .link-button-arrow:focus:after{
-            border-left: 20px solid $light-grey;
+            border-left: 20px solid $primary-blue;
           }
 
           .grant-info-column {

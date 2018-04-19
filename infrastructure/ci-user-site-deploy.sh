@@ -36,10 +36,21 @@ npm run build -- --prod
 
 popd
 
+echo "Gzipping all static files, so they are served compressed:"
+# We use "--keep", because Spring needs the uncompressed copy of the resource
+# for any clients who do not support gzip.
+# We use "--best", to spend max CPU at build time to save space at runtime.
+# It should not be more expensive to decompress the files.
+time gzip --keep --best -r user-site-server/src/main/resources/public
 
 ./gradlew build
 
 cd user-site-server
 
 cf target -o beis-domestic-energy-advice-service -s $SPACE
-cf push --hostname $HOSTNAME
+
+if [[ $SPACE == "live" ]]; then
+    cf blue-green-deploy dceas-user-site
+else
+    cf push --hostname $HOSTNAME
+fi

@@ -33,6 +33,7 @@ import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.g
 import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
+import {SimpleSavingsComponent} from "./simple-savings/simple-savings.component";
 import {InstallerSearchComponent} from "./installer-search/installer-search.component";
 
 /**
@@ -52,6 +53,12 @@ import {InstallerSearchComponent} from "./installer-search/installer-search.comp
  *
  * To this end, ALL routes that you add here need to be added to the
  * `RequestMapping` annotation on the IndexController in the Java codebase.
+ *
+ * (The Java unit test, IndexControllerTest, checks that Java and Angular agree.)
+ *
+ * (If we remove any routes from here in future, it might be best to leave
+ * them in the Java mapping, so that visitors get an Angular 404, rather than
+ * a Java 404.)
  */
 const routes: Routes = [
     {
@@ -96,11 +103,6 @@ const routes: Routes = [
     },
     {
         path: 'grants/cold-weather-payments',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'simple-savings',
         component: PageNotCreatedComponent,
         pathMatch: 'full'
     },
@@ -229,6 +231,11 @@ const routes: Routes = [
     {
         path: 'your-home/:tag',
         component: YourHomeComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'simple-savings',
+        component: SimpleSavingsComponent,
         pathMatch: 'full'
     },
     {

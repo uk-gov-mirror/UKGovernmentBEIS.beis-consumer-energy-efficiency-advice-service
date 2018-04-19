@@ -71,11 +71,6 @@ $animation-duration-vertical: 0.5s;
     .icon {
       @include is-search-icon(20px);
       flex-shrink: 0;
-
-      &:focus {
-        height: 24px;
-        width: 24px;
-      }
     }
   }
 

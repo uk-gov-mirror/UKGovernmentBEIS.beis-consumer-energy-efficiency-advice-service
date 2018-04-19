@@ -19,4 +19,3 @@ function acf_wysiwyg_add_minimal_toolbar($toolbars)
 }
 
 add_action('acf/fields/wysiwyg/toolbars', 'acf_wysiwyg_add_minimal_toolbar');
-

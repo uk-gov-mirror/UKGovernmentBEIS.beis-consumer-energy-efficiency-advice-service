@@ -5,35 +5,32 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
 import {SearchBarComponent} from './search-bar.component';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {WordpressPageResponse} from '../../shared/wordpress-pages-service/wordpress-page-response';
-import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {WordpressMeasuresService} from '../../shared/wordpress-measures-service/wordpress-measures.service';
-import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
-import {UserStateService} from "../../shared/user-state-service/user-state-service";
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {NeedHelpComponent} from '../../shared/need-help/need-help.component';
+import {UserStateService} from '../../shared/user-state-service/user-state-service';
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
+import {WordpressSearchable} from '../../shared/wordpress-search-service/wordpress-searchable';
 
 describe('SearchBarComponent', () => {
     let component: SearchBarComponent;
     let fixture: ComponentFixture<SearchBarComponent>;
     let injector: TestBed;
 
-    const mockSearchResult: WordpressPageResponse[] = [
-        {slug: 'page-1', title: {rendered: 'Test page 1'}, content: {rendered: 'Test page 1'}, acf: null},
-        {slug: 'page-2', title: {rendered: 'Test page 2'}, content: {rendered: 'Test page 2'}, acf: null},
-        {slug: 'page-3', title: {rendered: 'Test page 3'}, content: {rendered: 'Test page 3'}, acf: null},
-        {slug: 'page-3', title: {rendered: 'Test page 4'}, content: {rendered: 'Test page 4'}, acf: null},
-        {slug: 'page-3', title: {rendered: 'Test page 5'}, content: {rendered: 'Test page 5'}, acf: null}
+    const mockSearchResult: WordpressSearchable[] = [
+        {route: 'page-1', title: 'Test page 1'},
+        {route: 'page-2', title: 'Test page 2'},
+        {route: 'page-3', title: 'Test page 3'},
+        {route: 'page-3', title: 'Test page 4'},
+        {route: 'page-3', title: 'Test page 5'}
     ];
 
-    const mockWordpressPagesService = {searchPages: (searchString) => Observable.of(mockSearchResult)};
-    const mockWordpressMeasuresService = {searchMeasures: (searchString) => Observable.of(mockSearchResult)};
+    const mockWordpressSearchService = {search: () => Observable.of(mockSearchResult)};
     const mockUserStateService = {getSessionReference: () => "reference"};
 
     beforeEach(async(() => {
-        spyOn(mockWordpressPagesService, 'searchPages').and.callThrough();
-        spyOn(mockWordpressMeasuresService, 'searchMeasures').and.callThrough();
+        spyOn(mockWordpressSearchService, 'search').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
@@ -42,8 +39,7 @@ describe('SearchBarComponent', () => {
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
-                {provide: WordpressPagesService, useValue: mockWordpressPagesService},
-                {provide: WordpressMeasuresService, useValue: mockWordpressMeasuresService},
+                {provide: WordpressSearchService, useValue: mockWordpressSearchService},
                 {provide: UserStateService, useValue: mockUserStateService},
                 GoogleAnalyticsService,
             ]
@@ -85,23 +81,6 @@ describe('SearchBarComponent', () => {
             });
         }));
 
-        it('should add elements in the search box to tab navigation', async(() => {
-            // given
-            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
-            const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
-
-            // when
-            searchBoxElement.triggerEventHandler('focus', null);
-            component.search();
-            fixture.detectChanges();
-
-            // then
-            fixture.whenStable().then(() => {
-                const firstSearchResult = fixture.debugElement.query(By.css('.search-results .text-row'));
-                expect(firstSearchResult.nativeElement.tabIndex).toBe(0);
-            });
-        }));
-
         it('should display search box in initial state', async(() => {
             // given
             const searchBoxElement = fixture.debugElement.query(By.css('.search-input'));
@@ -125,6 +104,19 @@ describe('SearchBarComponent', () => {
             fixture.detectChanges();
         });
 
+        it('should do nothing if the search text is empty', async(() => {
+            // given
+            component.searchText = '';
+
+            // when
+            component.search();
+
+            // then
+            fixture.whenStable().then(() => {
+                expect(component.searchState).toEqual(component.searchStates.Initial);
+            });
+        }));
+
         it('should search with the correct search string', () => {
             // given
             const searchString = 'dummy search text';
@@ -134,13 +126,13 @@ describe('SearchBarComponent', () => {
             component.search();
 
             // then
-            expect(mockWordpressPagesService.searchPages).toHaveBeenCalledWith(searchString);
-            expect(mockWordpressMeasuresService.searchMeasures).toHaveBeenCalledWith(searchString);
+            expect(mockWordpressSearchService.search).toHaveBeenCalledWith(searchString);
         });
 
         it('should display an error if the search returns an error', async(() => {
             // given
             injectSearchCallbackAndDetectChanges(() => ErrorObservable.create('error'));
+            component.searchText = 'dummy search text';
 
             // when
             component.search();
@@ -154,6 +146,7 @@ describe('SearchBarComponent', () => {
         it('should display no-results if the search returns no results', async(() => {
             // given
             injectSearchCallbackAndDetectChanges(() => Observable.of([]));
+            component.searchText = 'dummy search text';
 
             // when
             component.search();
@@ -167,6 +160,7 @@ describe('SearchBarComponent', () => {
         it('should display search results returned', async(() => {
             // given
             injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
+            component.searchText = 'dummy search text';
 
             // when
             component.search();
@@ -176,16 +170,31 @@ describe('SearchBarComponent', () => {
             fixture.whenStable().then(() => {
                 expect(component.searchState).toEqual(component.searchStates.Results);
                 const allSearchResultElements = fixture.debugElement.queryAll(By.css('.search-results .text-row'));
-                expect(allSearchResultElements.length).toEqual(mockSearchResult.length * 2);
+                expect(allSearchResultElements.length).toEqual(mockSearchResult.length);
+            });
+        }));
+
+
+        it('should add elements in the search box to tab navigation', async(() => {
+            // given
+            injectSearchCallbackAndDetectChanges(() => Observable.of(mockSearchResult));
+            component.searchText = 'dummy search text';
+
+            // when
+            component.search();
+            fixture.detectChanges();
+
+            // then
+            fixture.whenStable().then(() => {
+                const firstSearchResult = fixture.debugElement.query(By.css('.search-results .text-row'));
+                expect(firstSearchResult.nativeElement.tabIndex).toBe(0);
             });
         }));
     });
 
-    function injectSearchCallbackAndDetectChanges(callback: (searchText: string) => Observable<WordpressPageResponse[]>) {
-        const injectedSearchPageService = injector.get(WordpressPagesService);
-        const injectedSearchMeasuresService = injector.get(WordpressMeasuresService);
-        injectedSearchPageService.searchPages = callback;
-        injectedSearchMeasuresService.searchMeasures = callback;
+    function injectSearchCallbackAndDetectChanges(callback: (searchText: string) => Observable<WordpressSearchable[]>) {
+        const injectedSearchService = injector.get(WordpressSearchService);
+        injectedSearchService.search = callback;
         fixture.detectChanges();
     }
 });

@@ -23,7 +23,7 @@ Get a GOV.UK account.
 
 Install the `cf` CLI from https://github.com/cloudfoundry/cli#downloads
 
-    cf login -a api.cloud.service.gov.uk -u Tim.Charters@beis.gov.uk -p XXX
+    cf login -a api.cloud.service.gov.uk -u XXX -p XXX
     cf target -o beis-domestic-energy-advice-service
     cf create-space int
     cf target -o "beis-domestic-energy-advice-service" -s "int"
@@ -58,8 +58,8 @@ You will need to update the `wp_options` table to change the hostname & port:
 Add necessary config:
 
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
-    cf set-env dceas-admin-site 'NONCE_KEY' '...'
-    # Do the same for the 7 other secret keys
+    cf create-user-provided-service dceas-wordpress-secrets \
+        -p AUTH_KEY,AUTH_SALT,LOGGED_IN_KEY,LOGGED_IN_SALT,NONCE_KEY,NONCE_SALT,SECURE_AUTH_KEY,SECURE_AUTH_SALT
 
 Build the site locally, and deploy:
  
@@ -69,13 +69,13 @@ Build the site locally, and deploy:
 
 Add necessary config:
 
-    cf set-env dceas-user-site dceas-admin-site-url https://dceas-admin-site-int.cloudapps.digital
-    # comma separated list of IPv4 and IPv6 address ranges
-    cf set-env dceas-user-site dceas.admin-ip-whitelist XXX
-    cf set-env dceas-user-site epc.opendatacommunities.org.auth XXX
-    cf set-env dceas-user-site bre.energyUse.username XXX
-    cf set-env dceas-user-site bre.energyUse.password XXX
-    cf set-env dceas-user-site google.analytics.id XXX
+    cf create-user-provided-service epc.opendatacommunities.org -p username,password
+    cf create-user-provided-service bre.energyUse -p username,password
+    cf create-user-provided-service google.analytics -p id
+
+    # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges
+    # `admin-site-url` is e.g. "https://dceas-admin-site-int.cloudapps.digital"
+    cf create-user-provided-service dceas-user-site.config -p admin-ip-whitelist,admin-site-url
 
 Build the site locally, and deploy:
 

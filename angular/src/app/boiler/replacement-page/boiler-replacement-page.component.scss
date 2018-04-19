@@ -1,8 +1,94 @@
 @import "styles/var/colors";
 @import "styles/boiler";
 
-.boiler-replacement-page {
+// Component specific variables
 
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+
+// Breakpoint specific styling
+.boiler-replacement-page {
+  @include mobile() {
+    .page-heading {
+      background-color: $lighter-grey;
+    }
+
+    .get-started {
+      padding: 20px 0;
+
+      .body-text {
+        padding: 20px 0;
+      }
+
+      .link-button {
+        display: flex;
+      }
+    }
+
+    .boiler-types {
+      background-color: $lighter-grey;
+      padding: 20px 0;
+
+      .body-text {
+        padding: 20px 0;
+      }
+    }
+  }
+
+  @include tablet() {
+
+    .page-heading {
+      background-color: $lighter-grey;
+    }
+
+    .get-started {
+      background-color: white;
+
+      .page-row-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .content {
+          flex: 1 1 auto;
+          margin-right: 60px;
+
+          .heading {
+            margin-bottom: 8px;
+          }
+        }
+
+        .link-button {
+          flex: 0 0 300px;
+          height: 70px;
+        }
+      }
+    }
+
+    .boiler-types {
+      background-color: $lighter-grey;
+
+      .heading {
+        margin-bottom: 8px;
+      }
+
+      .boiler-replacement-cards {
+        margin-top: 48px;
+
+        .replacement-card:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+
+  .page-heading {
+    background-color: white;
+  }
   .get-started {
     background-color: $lighter-grey;
 
@@ -13,6 +99,7 @@
 
       .content {
         flex: 1 1 auto;
+        margin-right: 60px;
 
         .heading {
           margin-bottom: 8px;
@@ -27,6 +114,8 @@
   }
 
   .boiler-types {
+    background-color: white;
+
     .heading {
       margin-bottom: 8px;
     }
@@ -40,3 +129,5 @@
     }
   }
 }
+
+

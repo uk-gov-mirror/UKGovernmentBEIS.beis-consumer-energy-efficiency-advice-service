@@ -21,6 +21,7 @@ import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
 import values from 'lodash-es/values';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -77,6 +78,7 @@ describe('BoilerEpcReplaceComponent', () => {
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerLinkButtonComponent,
+                DataCardComponent
             ],
             imports: [
                 RouterTestingModule,
