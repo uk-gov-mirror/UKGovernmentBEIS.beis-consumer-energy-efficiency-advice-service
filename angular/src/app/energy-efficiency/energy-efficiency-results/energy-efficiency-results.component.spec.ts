@@ -56,7 +56,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
     };
 
     const userStateServiceStub = {
-        sendState: () => {}
+        saveState: () => {}
     };
 
     let responseData: ResponseData;

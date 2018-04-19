@@ -39,7 +39,7 @@ describe('BoilerResultsPageComponent', () => {
     };
 
     const userStateServiceStub = {
-        sendState: () => {}
+        saveState: () => {}
     };
 
     beforeEach(async(() => {

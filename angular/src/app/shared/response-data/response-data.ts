@@ -91,6 +91,37 @@ export class ResponseData {
     public hasTemporaryExclusions: boolean;
     public tenancyType: TenancyType;
     public hasRelevantConsent: boolean;
+
+    constructor() {
+        if (!sessionStorageAvailable()) {
+            return;
+        }
+        const storedResponseData = sessionStorage.getItem(responseDataSessionStorageKey);
+        if (storedResponseData) {
+            replaceOldResponseData(this, JSON.parse(storedResponseData));
+        }
+    }
+
+    saveToSessionStorage() {
+        if (sessionStorageAvailable()) {
+            sessionStorage.setItem(responseDataSessionStorageKey, JSON.stringify(this));
+        }
+    }
+}
+
+const responseDataSessionStorageKey = 'responseData';
+
+// Simplified version of
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Feature-detecting_localStorage
+function sessionStorageAvailable() {
+    try {
+        const x = '__storage_test__';
+        sessionStorage.setItem(x, x);
+        sessionStorage.removeItem(x);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 export function isComplete(responseData: ResponseData) {
@@ -110,7 +141,7 @@ function addNewResponseData(oldResponseData: ResponseData, newResponseData: Resp
     }
 }
 
-function deleteOldResponseData(responseData: ResponseData) {
+export function deleteOldResponseData(responseData: ResponseData) {
     for (const i in responseData) {
         if (responseData.hasOwnProperty(i)) {
             delete responseData[i];

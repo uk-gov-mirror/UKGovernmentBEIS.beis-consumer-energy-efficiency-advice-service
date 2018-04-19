@@ -1,24 +1,25 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {ResponseData} from "../../shared/response-data/response-data";
-import {Epc} from "../../shared/postcode-epc-service/model/epc";
-import {EpcParserService} from "../../shared/postcode-epc-service/epc-api-service/epc-parser.service";
-import {Observable} from "rxjs/Observable";
-import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
-import {PostcodeErrorResponse} from "../../shared/postcode-epc-service/model/response/postcode-error-response";
-import {PostcodeEpcService} from "../postcode-epc-service/postcode-epc.service";
-import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
-import {PostcodeBasicDetailsResponse} from "../postcode-epc-service/model/response/postcode-basic-details-response";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {deleteOldResponseData, ResponseData} from '../response-data/response-data';
+import {Epc} from '../postcode-epc-service/model/epc';
+import {EpcParserService} from '../postcode-epc-service/epc-api-service/epc-parser.service';
+import {Observable} from 'rxjs/Observable';
+import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/postcode-api.service';
+import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
+import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
+import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
 
 @Component({
     selector: 'app-postcode-lookup',
     templateUrl: './postcode-lookup.component.html',
     styleUrls: ['./postcode-lookup.component.scss']
 })
-export class PostcodeLookupComponent {
+export class PostcodeLookupComponent implements OnInit {
 
     postcodeInput: string;
     loadingEpcs: boolean = false;
     epcs: Epc[];
+    selectedLocalAuthorityCode: string;
+    selectedPostcode: string;
     selectedEpc: Epc;
     validationError: boolean = false;
     scottishPostcode: boolean = false;
@@ -30,28 +31,8 @@ export class PostcodeLookupComponent {
                 private postcodeEpcService: PostcodeEpcService) {
     }
 
-    get postcode(): string {
-        return this.responseData.postcode;
-    }
-
-    set postcode(val: string) {
-        this.responseData.postcode = val;
-    }
-
-    get epc(): Epc {
-        return this.responseData.epc;
-    }
-
-    set epc(val: Epc) {
-        this.responseData.epc = val;
-    }
-
-    get localAuthorityCode(): string {
-        return this.responseData.localAuthorityCode;
-    }
-
-    set localAuthorityCode(val: string) {
-        this.responseData.localAuthorityCode = val;
+    ngOnInit(): void {
+        this.postcodeInput = this.responseData.postcode;
     }
 
     onPostcodeSubmit() {
@@ -80,22 +61,31 @@ export class PostcodeLookupComponent {
     }
 
     onAddressSelected() {
-        if (this.selectedEpc !== undefined) {
-            this.epc = this.selectedEpc;
-            this.addressSelected.emit(this.epc.lmkKey);
-        } else {
-            this.addressSelected.emit();
-        }
+        this.setResponseData(this.selectedEpc);
     }
 
     onAddressNotListed() {
-        this.epc = undefined;
-        this.addressSelected.emit();
+        this.setResponseData();
+    }
+
+    private setResponseData(selectedEpc?: Epc) {
+        if (this.selectedPostcode !== this.responseData.postcode
+            || this.selectedLocalAuthorityCode !== this.responseData.localAuthorityCode
+            || JSON.stringify(selectedEpc) !== JSON.stringify(this.responseData.epc)) {
+            // The address has changed so we should clear the existing responses
+            deleteOldResponseData(this.responseData);
+
+            this.responseData.postcode = this.selectedPostcode;
+            this.responseData.localAuthorityCode = this.selectedLocalAuthorityCode;
+            this.responseData.epc = selectedEpc;
+        }
+
+        this.addressSelected.emit(selectedEpc && selectedEpc.lmkKey);
     }
 
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
-        this.localAuthorityCode = postcodeDetails.localAuthorityCode;
-        this.postcode = postcodeDetails.postcode;
+        this.selectedPostcode = postcodeDetails.postcode;
+        this.selectedLocalAuthorityCode = postcodeDetails.localAuthorityCode;
         this.epcs = postcodeDetails.allEpcsForPostcode
             .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
         this.loadingEpcs = false;
@@ -105,8 +95,8 @@ export class PostcodeLookupComponent {
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             return this.displayPostcodeValidationError();
         }
-        this.postcode = this.postcodeInput.replace(/\s/g, '');
-        this.localAuthorityCode = null;
+        this.selectedPostcode = this.postcodeInput.replace(/\s/g, '');
+        this.selectedLocalAuthorityCode = null;
     }
 
     private displayPostcodeValidationError(): void {
@@ -128,6 +118,7 @@ export class PostcodeLookupComponent {
                 return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
             });
     }
+
     private isScottishPostcode(postcodeDetails: PostcodeBasicDetailsResponse): boolean {
         if (postcodeDetails.result.country === "Scotland") {
             return true;
