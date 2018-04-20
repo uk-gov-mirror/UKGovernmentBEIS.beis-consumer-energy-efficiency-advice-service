@@ -94,22 +94,23 @@ describe('WordpressPagesService', () => {
     describe('#getLatestPages', () => {
         it('calls API and returns data correctly', async(() => {
             // when
-            const actualResponse = service.getLatestPages().toPromise();
+            const actualResponse = service.getLatestPages('tag_homepage').toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
             actualResponse.then((pagesResponse) => {
                 // match data in 'assets/test/search-pages-response.json'
                 expect(pagesResponse.length).toBe(7);
-                expect(pagesResponse[0].route).toContain('microgen-7');
-                expect(pagesResponse[0].title).toBe('Microgen 7');
+                expect(pagesResponse[1].route).toContain('grants');
+                expect(pagesResponse[1].title).toBe('Grants');
             });
             httpMock.verify();
         }));
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === 'wp/v2/pages?per_page=4&orderby=date&order=desc&context=embed';
+            const matchesExpectedUrl = request.urlWithParams ===
+                'wp/v2/pages?tag=tag_homepage&per_page=4&orderby=date&order=desc&context=embed';
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });
