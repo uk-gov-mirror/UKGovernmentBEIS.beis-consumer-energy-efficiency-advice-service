@@ -30,7 +30,7 @@ export class MeesResultsPageComponent implements OnInit {
     ngOnInit() {
         if (!this.responseData.isDomesticPropertyAfter2018 && !this.responseData.isPropertyAfter2020) {
             this.status = MeesResultsStatus.NoActionRequired;
-            this.noActionReason = `As you're not renting a property relevant to the legislation`;
+            this.noActionReason = `As you're not letting a property relevant to the legislation`;
         } else if (this.responseData.tenancyType === TenancyType.Other) {
             this.status = MeesResultsStatus.NoActionRequired;
             this.noActionReason = `As your tenancy type is not relevant to the legislation`;
