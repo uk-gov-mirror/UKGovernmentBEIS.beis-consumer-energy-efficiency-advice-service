@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question/question-base-component';
-import {ResponseData} from '../../../../shared/response-data/response-data';
 import {getTenancyTypeDescription, TenancyType} from './tenancy-type';
 
 class TenancyTypeOption {
@@ -17,17 +16,12 @@ class TenancyTypeOption {
     animations: [slideInOutAnimation]
 })
 export class TenancyTypeQuestionComponent extends QuestionBaseComponent {
-    tenancyTypeOptions: TenancyTypeOption[] = [];
-
-    constructor(responseData: ResponseData) {
-        super(responseData);
-        this.tenancyTypeOptions = [
-            new TenancyTypeOption(TenancyType.AssuredTenancy, 'assured-tenancy'),
-            new TenancyTypeOption(TenancyType.RegulatedTenancy, 'regulated-tenancy'),
-            new TenancyTypeOption(TenancyType.DomesticAgriculturalTenancy, 'agricultural-tenancy'),
-            new TenancyTypeOption(TenancyType.Other, 'other-tenancy'),
-        ];
-    }
+    tenancyTypeOptions = [
+        new TenancyTypeOption(TenancyType.AssuredTenancy, 'assured-tenancy'),
+        new TenancyTypeOption(TenancyType.RegulatedTenancy, 'regulated-tenancy'),
+        new TenancyTypeOption(TenancyType.DomesticAgriculturalTenancy, 'agricultural-tenancy'),
+        new TenancyTypeOption(TenancyType.Other, 'other-tenancy'),
+    ];
 
     get responseForAnalytics(): string {
         return TenancyType[this.response];

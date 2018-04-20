@@ -44,7 +44,8 @@ import {DomesticPropertyAfter2018QuestionComponent} from
 import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-question/property-after-2020-question.component';
 import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
 import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
-import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-e-question.component";
+import {PropertyEpcQuestionComponent} from './mees/property-epc-question/property-epc-question.component';
+import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.component';
 
 @NgModule({
     declarations: [
@@ -85,7 +86,8 @@ import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-
         PropertyAfter2020QuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
-        EpcBelowEQuestionComponent,
+        PropertyEpcQuestionComponent,
+        EpcNotFoundComponent,
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -125,7 +127,8 @@ import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-
         PropertyAfter2020QuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
-        EpcBelowEQuestionComponent,
+        PropertyEpcQuestionComponent,
+        EpcNotFoundComponent,
     ],
     imports: [
         CommonModule,
@@ -172,7 +175,8 @@ import {EpcBelowEQuestionComponent} from "./mees/epc-below-e-question/epc-below-
         PropertyAfter2020QuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
-        EpcBelowEQuestionComponent,
+        PropertyEpcQuestionComponent,
+        EpcNotFoundComponent,
     ]
 })
 export class QuestionsModule {

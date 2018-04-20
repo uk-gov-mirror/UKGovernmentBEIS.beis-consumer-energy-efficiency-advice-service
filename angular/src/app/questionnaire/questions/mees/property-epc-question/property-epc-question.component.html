@@ -1,0 +1,11 @@
+<div class="question-component property-epc-question">
+    <div class="answer-grid multiple-choice-options property-epc-options">
+        <button class="multiple-choice-option property-epc-option"
+                *ngFor="let option of propertyEpcOptions"
+                [class.selected]="response === option.value"
+                [ngClass]="option.className"
+                (click)="response = option.value; complete.emit()">
+            {{option.name}}
+        </button>
+    </div>
+</div>

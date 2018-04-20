@@ -1,0 +1,16 @@
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
+
+@include mobile() {
+}
+
+@include tablet() {
+}
+
+@include desktop() {
+  .property-epc-question .property-epc-options {
+    .property-epc-option {
+      //@include is-grid-item($number-of-items: 3, $margin: 20px);
+    }
+  }
+}

@@ -69,4 +69,5 @@
     <include file="changelogs/2018-04-18-add-tags-to-articles.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-18-add-mees-questions-to-wordpress.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-18-remove-mees-exemptions-questions.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-19-update-mees-questions.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
