@@ -45,10 +45,10 @@ export class WordpressPagesService {
         return this.topLevelPages;
     }
 
-    getLatestPages(): Observable<WordpressPage[]> {
+    getLatestPages(tag: string): Observable<WordpressPage[]> {
         if (!this.latestPages) {
             const params = new HttpParams()
-                .set('tag', 'tag_reduce_bills')
+                .set('tag', tag)
                 .set('per_page', '4')
                 .set('orderby', 'date')
                 .set('order', 'desc')

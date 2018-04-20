@@ -14,7 +14,7 @@ add_filter( 'rest_page_query', function( $args, $request ) {
     if ( ! empty( $tag ) ) {
         $args['meta_query'] = array(
             array(
-                'key'     => 'tag',
+                'key'     => 'tags',
                 'value'   => "\"$tag\"",
                 'compare' => 'LIKE',
             )

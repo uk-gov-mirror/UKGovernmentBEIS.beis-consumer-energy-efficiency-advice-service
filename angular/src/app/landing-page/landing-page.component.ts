@@ -20,6 +20,7 @@ export class LandingPageComponent implements OnInit {
 
     postcodeQuestionReason: string;
     heading: string;
+    tag: string;
 
     constructor(private router: Router,
                 private responseData: ResponseData) {
@@ -27,10 +28,21 @@ export class LandingPageComponent implements OnInit {
 
     ngOnInit() {
         this.heading = getJourneyDescription(this.userJourneyType);
+        this.tag = this.getTagFromUserJourneyType();
     }
 
     onAddressSelected() {
         this.responseData.userJourneyType = this.userJourneyType;
         this.router.navigate(['/energy-efficiency/questionnaire/home-basics']);
+    }
+
+    getTagFromUserJourneyType() {
+        switch (this.userJourneyType) {
+            case UserJourneyType.MakeHomeGreener:       { return 'tag_make_home_greener'; }
+            case UserJourneyType.PlanHomeImprovements:  { return 'tag_home_improvements'; }
+            case UserJourneyType.ReduceEnergyBills:     { return 'tag_reduce_bills'; }
+            case UserJourneyType.MakeHomeWarmer:        { return 'tag_make_home_warmer'; }
+            default:                                    { return null; }
+        }
     }
 }
