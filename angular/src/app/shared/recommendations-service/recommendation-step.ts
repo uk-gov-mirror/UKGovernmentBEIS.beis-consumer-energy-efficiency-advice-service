@@ -7,9 +7,10 @@ export class RecommendationStep {
     readMore: string;
     moreInfoLinks: {
         buttonText: string;
-        isExternalLink: boolean;
-        route: string;
-        externalLink: string;
+        linkProps: {
+            route: string;
+            isRelativeURL: boolean;
+        }
     }[];
 
     constructor(measureStep: RecommendationStepResponse) {
@@ -20,11 +21,9 @@ export class RecommendationStep {
             .map(link => {
                 return {
                     buttonText: link.button_text,
-                    isExternalLink: link.is_external_link,
                     // The linked_page is a Wordpress Post URL, like:
                     //   http://admin-site/category/slug
-                    route: WordpressPagesService.getRouteForWordpressPageFromPageUrl(link.linked_page),
-                    externalLink: link.external_link
+                    linkProps: WordpressPagesService.getRouteForPageFromUrl(link.page_link),
                 };
             });
     }

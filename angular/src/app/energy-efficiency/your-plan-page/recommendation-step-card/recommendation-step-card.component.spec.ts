@@ -20,15 +20,17 @@ describe('RecommendationStepCardComponent', () => {
         moreInfoLinks: [
             {
                 buttonText: 'Test static page 1',
-                isExternalLink: true,
-                route: '/static-page-1',
-                externalLink: 'http://google.com'
+                linkProps: {
+                    route: '/static-page-1',
+                    isRelativeURL: true
+                }
             },
             {
                 buttonText: 'Test static page 2',
-                isExternalLink: false,
-                route: '/static-page-2',
-                externalLink: ''
+                linkProps: {
+                    route: '/static-page-2',
+                    isRelativeURL: true
+                }
             }
         ]
     };

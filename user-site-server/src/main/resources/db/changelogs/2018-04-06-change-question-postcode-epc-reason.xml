@@ -14,7 +14,7 @@ SET meta_value = 'By asking you some questions about your property, we can provi
 We''ll start by checking whether your property has an Energy Performance Certificate (EPC) - if so, we may be able to find
 some of the information about your property from that report. Enter your postcode and select your address (if available) to get started.'
 WHERE meta_key = 'questionReason'
-AND post_id = (SELECT ID FROM wp_posts WHERE post_name = 'postcode_epc');
+AND post_id = (SELECT ID  WHERE post_name = 'postcode_epc');
 
         ]]></sql>
     </changeSet>
