@@ -223,9 +223,22 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 if (indexOrNull) {
                     this.currentQuestionIndex = indexOrNull;
                 } else {
-                    while (this.questionnaire.getQuestion(this.currentQuestionIndex + 1)
-                        && (!this.questionnaire.isApplicable(this.currentQuestionIndex)
-                            || this.questionnaire.hasBeenAnswered(this.currentQuestionIndex))) {
+                    let lastAnsweredIndex = 0;
+                    while (true) {
+                        if (!this.questionnaire.getQuestion(this.currentQuestionIndex)) {
+                            this.currentQuestionIndex = lastAnsweredIndex;
+                            break;
+                        }
+
+                        if (this.questionnaire.isApplicable(this.currentQuestionIndex)
+                            && !this.questionnaire.hasBeenAnswered(this.currentQuestionIndex)) {
+                            break;
+                        }
+
+                        if (this.questionnaire.hasBeenAnswered(this.currentQuestionIndex)) {
+                            lastAnsweredIndex = this.currentQuestionIndex;
+                        }
+
                         this.currentQuestionIndex++;
                     }
                 }

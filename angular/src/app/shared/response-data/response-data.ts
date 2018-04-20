@@ -85,12 +85,7 @@ export class ResponseData {
     public isPropertyAfter2020: boolean;
     public isEpcBelowE: boolean;
     public isEpcRequired: boolean;
-    public willPropertyBeDevalued: boolean;
-    public hasRecommendedImprovements: boolean;
-    public hasImprovementsAtNoCost: boolean;
-    public hasTemporaryExclusions: boolean;
     public tenancyType: TenancyType;
-    public hasRelevantConsent: boolean;
 
     constructor() {
         if (!sessionStorageAvailable()) {
