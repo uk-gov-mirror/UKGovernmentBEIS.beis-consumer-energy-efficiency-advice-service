@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-20-add-tags-for-landing-page-measures.xml"
+               author="raam.chauhan@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+UPDATE wp_postmeta
+SET meta_value = 'a:4:{i:0;s:15:"tag_longer_term";i:1;s:22:"tag_floors-walls&roofs";i:2;s:20:"tag_make_home_warmer";i:3;s:21:"tag_home_improvements";}'
+WHERE post_id in (3715) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:3:{i:0;s:15:"tag_longer_term";i:1;s:17:"tag_windows&doors";i:2;s:20:"tag_make_home_warmer";}'
+WHERE post_id in (3725) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:3:{i:0;s:15:"tag_longer_term";i:1;s:16:"tag_reduce_bills";i:2;s:21:"tag_make_home_greener";}'
+WHERE post_id in (3726) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:4:{i:0;s:13:"tag_quick_win";i:1;s:17:"tag_simple_saving";i:2;s:16:"tag_reduce_bills";i:3;s:21:"tag_make_home_greener";}'
+WHERE post_id in (3141) and meta_key = 'tags';
+
+UPDATE wp_postmeta
+SET meta_value = 'a:4:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";i:2;s:20:"tag_make_home_warmer";i:3;s:21:"tag_home_improvements";}'
+WHERE post_id in (3738) and meta_key = 'tags';
+
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>
