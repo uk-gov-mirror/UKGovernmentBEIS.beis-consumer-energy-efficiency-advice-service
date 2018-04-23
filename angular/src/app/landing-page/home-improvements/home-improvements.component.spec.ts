@@ -27,6 +27,7 @@ import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 import {MeasureCardComponent} from "../measure-card/measure-card.component";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -77,6 +78,9 @@ describe('HomeImprovementsComponent', () => {
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                {provide: EnergySavingMeasureContentService, useValue: {
+                    'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
+                }},
                 GoogleAnalyticsService,
             ]
         })

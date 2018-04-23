@@ -23,6 +23,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 import {MeasureCardComponent} from "./measure-card/measure-card.component";
+import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -63,6 +64,9 @@ describe('LandingPageComponent', () => {
             providers: [
                 ResponseData,
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                {provide: EnergySavingMeasureContentService, useValue: {
+                    'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
+                }},
                 GoogleAnalyticsService,
             ]
         })
