@@ -15,7 +15,6 @@ import {ResponseData} from '../shared/response-data/response-data';
 import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {Component, EventEmitter, Output} from '@angular/core';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
-import {StaticMeasureCardComponent} from './static-measure-card/static-measure-card.component';
 import {PopupComponent} from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
@@ -23,6 +22,7 @@ import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-
 import {InlineSVGModule} from 'ng-inline-svg';
 import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {MeasureCardComponent} from "./measure-card/measure-card.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -33,7 +33,7 @@ describe('LandingPageComponent', () => {
 
     const headingText = 'heading';
     const userJourneyType = UserJourneyType.MakeHomeGreener;
-    const staticMeasures = [];
+    const measures = [];
     const articles = [];
     const video = {title: '', synopsis: ''};
 
@@ -47,12 +47,12 @@ describe('LandingPageComponent', () => {
                 LatestNewsCardComponent,
                 LatestNewsSectionComponent,
                 MockPostcodeLookupComponent,
-                StaticMeasureCardComponent,
                 PopupComponent,
                 DataCardComponent,
                 NavBarSuboptionComponent,
                 DataCardComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                MeasureCardComponent
             ],
             imports: [
                 CommonModule,
@@ -72,7 +72,7 @@ describe('LandingPageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LandingPageComponent);
         component = fixture.componentInstance;
-        component.staticMeasures = staticMeasures;
+        component.measures = measures;
         component.video = video;
         component.articles = articles;
         router = TestBed.get(Router);
