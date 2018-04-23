@@ -32,7 +32,7 @@ export class NavigationBarComponent {
     rentedSuboptions: NavigationSuboption[] = [
         {
             name: "Information for Tenants",
-            url: "/pages/information-for-tenants"
+            url: "/pages/home-improvements-for-tenants"
         },
         {
             name: "Information for Landlords",
