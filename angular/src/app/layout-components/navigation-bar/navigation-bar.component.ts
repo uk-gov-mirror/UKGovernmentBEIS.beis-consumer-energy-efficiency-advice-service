@@ -14,15 +14,15 @@ export class NavigationBarComponent {
     homeSuboptions: NavigationSuboption[] = [
         {
             name: "Heating & Hot Water",
-            url: "/your-home/heating&hot-water"
+            url: "/your-home/heating-and-hot-water"
         },
         {
             name: "Windows & Doors",
-            url: "/your-home/windows&doors"
+            url: "/your-home/windows-and-doors"
         },
         {
             name: "Floors, Walls & Roofs",
-            url: "/your-home/floors-walls&roofs"
+            url: "/your-home/floors-walls-and-roofs"
         },
         {
             name: "Solar Energy",
