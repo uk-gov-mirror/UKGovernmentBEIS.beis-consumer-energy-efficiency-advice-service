@@ -11,6 +11,8 @@ export class CommonPageHelpers {
 
     static clickWhenClickable(e: ElementFinder) {
         browser.wait(protractor.ExpectedConditions.elementToBeClickable(e), this.MAXIMUM_WAITING_TIME_IN_SECONDS);
+        // Make sure that the element is in view when it is clicked - it is sometimes behind a sticky footer
+        browser.executeScript("arguments[0].scrollIntoView();", e.getWebElement());
         e.click();
     }
 

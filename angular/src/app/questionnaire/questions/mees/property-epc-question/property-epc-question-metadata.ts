@@ -1,14 +1,14 @@
 import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
-import {EpcBelowEQuestionComponent} from './epc-below-e-question.component';
+import {PropertyEpcQuestionComponent} from './property-epc-question.component';
 import {TenancyType} from '../tenancy-type-question/tenancy-type';
 
-export class EpcBelowEQuestionMetadata extends QuestionMetadata {
+export class PropertyEpcQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            EpcBelowEQuestionComponent,
-            'epc-below-e',
+            PropertyEpcQuestionComponent,
+            'property-epc',
             QuestionType.House
         );
     }
@@ -18,6 +18,6 @@ export class EpcBelowEQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.isEpcBelowE !== undefined;
+        return responseData.propertyEpc !== undefined;
     }
 }

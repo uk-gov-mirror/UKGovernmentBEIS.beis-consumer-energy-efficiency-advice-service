@@ -1,22 +1,22 @@
 import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
-import {TenancyTypeQuestionComponent} from './tenancy-type-question.component';
+import {EpcNotFoundComponent} from './epc-not-found.component';
 
-export class TenancyTypeQuestionMetadata extends QuestionMetadata {
+export class EpcNotFoundMetadata extends QuestionMetadata {
     constructor() {
         super(
-            TenancyTypeQuestionComponent,
-            'tenancy-type',
+            EpcNotFoundComponent,
+            'epc-not-found',
             QuestionType.House
         );
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.isDomesticPropertyAfter2018 || responseData.isPropertyAfter2020;
+        return !!responseData.postcode && !responseData.epc;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.tenancyType !== undefined;
+        return responseData.confirmEpcNotFound !== undefined;
     }
 }

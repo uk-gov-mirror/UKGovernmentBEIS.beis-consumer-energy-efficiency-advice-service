@@ -36,8 +36,10 @@ import {DomesticPropertyAfter2018QuestionMetadata} from
 import {PropertyAfter2020QuestionMetadata} from './mees/property-after-2020-question/property-after-2020-question-metadata';
 import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
 import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
-import {EpcBelowEQuestionMetadata} from './mees/epc-below-e-question/epc-below-e-question-metadata';
-import {HotWaterCylinderQuestionMetadata} from "./hot-water-cylinder-question/hot-water-cylinder-question-metadata";
+import {PropertyEpcQuestionMetadata} from './mees/property-epc-question/property-epc-question-metadata';
+import {MeesPostcodeEpcQuestionMetadata} from './mees/mees-postcode-epc-question/mees-postcode-epc-question-metadata';
+import {EpcNotFoundMetadata} from './mees/epc-not-found-question/epc-not-found-metadata';
+import {HotWaterCylinderQuestionMetadata} from './hot-water-cylinder-question/hot-water-cylinder-question-metadata';
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -108,7 +110,9 @@ export const BOILER_QUESTIONS = [
 export const MEES_QUESTIONS = [
     new DomesticPropertyAfter2018QuestionMetadata(),
     new PropertyAfter2020QuestionMetadata(),
-    new EpcRequiredQuestionMetadata(),
     new TenancyTypeQuestionMetadata(),
-    new EpcBelowEQuestionMetadata(),
+    new PropertyEpcQuestionMetadata(),
+    new MeesPostcodeEpcQuestionMetadata(),
+    new EpcNotFoundMetadata(),
+    new EpcRequiredQuestionMetadata(),
 ];

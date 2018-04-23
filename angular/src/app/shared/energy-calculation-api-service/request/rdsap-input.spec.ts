@@ -22,6 +22,7 @@ import {FlatExposedWall} from '../../../questionnaire/questions/flat-exposed-wal
 import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatLevel} from './flat-level';
 import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
+import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 
 describe('RdsapInput', () => {
 
@@ -84,8 +85,9 @@ describe('RdsapInput', () => {
 
             isDomesticPropertyAfter2018: false,
             isPropertyAfter2020: false,
-            isEpcBelowE: false,
+            propertyEpc: UserEpcRating.AtLeastE,
             isEpcRequired: false,
+            confirmEpcNotFound: false,
             tenancyType: TenancyType.Other,
             saveToSessionStorage: () => {},
         };
