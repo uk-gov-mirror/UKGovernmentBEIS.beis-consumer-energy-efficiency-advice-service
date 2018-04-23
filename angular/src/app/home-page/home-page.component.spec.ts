@@ -16,6 +16,7 @@ import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-n
 import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -31,7 +32,8 @@ describe('HomePageComponent', () => {
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
             declarations: [HomePageComponent, LatestNewsSectionComponent,
-                LatestNewsCardComponent, NavBarSuboptionComponent, NavigationBarComponent, SearchBarComponent],
+                LatestNewsCardComponent, NavBarSuboptionComponent, NavigationBarComponent,
+                SearchBarComponent, SpinnerAndErrorContainerComponent],
             imports: [RouterTestingModule.withRoutes([
                 {path: 'energy-efficiency/questionnaire/home-basics', component: DummyComponent},
                 {path: 'energy-efficiency/results', component: DummyComponent},

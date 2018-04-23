@@ -24,6 +24,7 @@ import {LatestNewsSectionComponent} from '../../shared/latest-news-section/lates
 import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 
 describe('ReduceBillsComponent', () => {
@@ -54,6 +55,7 @@ describe('ReduceBillsComponent', () => {
                 PopupComponent,
                 SearchBarComponent,
                 NavBarSuboptionComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             imports: [
                 CommonModule,

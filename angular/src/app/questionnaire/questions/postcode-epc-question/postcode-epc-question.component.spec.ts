@@ -10,6 +10,7 @@ import {Epc} from '../../../shared/postcode-epc-service/model/epc';
 import {EpcParserService} from '../../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
 import {PostcodeEpcService} from '../../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../../../shared/postcode-epc-service/model/postcode-details';
+import {SpinnerAndErrorContainerComponent} from "../../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -38,7 +39,7 @@ describe('PostcodeEpcQuestionComponent', () => {
         spyOn(postcodeEpcServiceStub, 'fetchPostcodeDetails').and.callThrough();
 
         TestBed.configureTestingModule({
-            declarations: [PostcodeEpcQuestionComponent],
+            declarations: [PostcodeEpcQuestionComponent, SpinnerAndErrorContainerComponent],
             imports: [FormsModule],
             providers: [
                 ResponseData,
