@@ -31,7 +31,6 @@ export class RdSapInput {
     readonly num_storeys: number;
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
-    readonly heating_cost: number;
     readonly number_of_heating_off_hours_normal: number[];
     readonly measures: boolean;
     readonly rented: boolean;
@@ -66,7 +65,6 @@ export class RdSapInput {
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
-        this.heating_cost = responseData.heatingCost;
         this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
         this.measures = true;
         this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;

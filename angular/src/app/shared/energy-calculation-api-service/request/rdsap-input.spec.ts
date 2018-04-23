@@ -3,7 +3,7 @@ import {ResponseData} from '../../response-data/response-data';
 import {UserJourneyType} from '../../response-data/user-journey-type';
 import {HomeType} from '../../../questionnaire/questions/home-type-question/home-type';
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
-import {HouseExposedWall, } from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
+import {HouseExposedWall,} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
@@ -55,7 +55,6 @@ describe('RdsapInput', () => {
             hotWaterCylinder: false,
             condensingBoiler: false,
             electricityTariff: undefined,
-            heatingCost: undefined,
             detailedLengthOfHeatingOnEarlyHours: undefined,
             detailedLengthOfHeatingOnMorning: undefined,
             detailedLengthOfHeatingOnAfternoon: undefined,

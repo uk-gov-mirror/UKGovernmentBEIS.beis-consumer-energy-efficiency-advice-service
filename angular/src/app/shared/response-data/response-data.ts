@@ -46,7 +46,6 @@ export class ResponseData {
     public fuelType: FuelType;
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
-    public heatingCost: number;
     public detailedLengthOfHeatingOnEarlyHours: number;
     public detailedLengthOfHeatingOnMorning: number;
     public detailedLengthOfHeatingOnAfternoon: number;

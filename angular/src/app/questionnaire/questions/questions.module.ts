@@ -23,7 +23,6 @@ import {CommonQuestionsModule} from '../common-questions/common-questions.module
 import {TenureTypeQuestionComponent} from './tenure-type-question/tenure-type-question.component';
 import {GrantsQuestionnaireQuestionComponent} from './grants-questionnaire-question/grants-questionnaire-question.component';
 import {BenefitsQuestionComponent} from './benefits-question/benefits-question.component';
-import {HeatingCostQuestionComponent} from './heating-cost-question/heating-cost-question.component';
 import {IncomeQuestionComponent} from './income-question/income-question.component';
 import {TumbleDryQuestionComponent} from './tumble-dry-question/tumble-dry-question.component';
 import {ConstructionQuestionComponent} from './construction-question/construction-question.component';
@@ -32,15 +31,13 @@ import {GardenQuestionComponent} from './garden-question/garden-question.compone
 import {RoofSpaceQuestionComponent} from './roof-space-question/roof-space-question.component';
 import {OptionalPropertyQuestionComponent} from './optional-property-question/optional-property-question.component';
 import {FloorAreaQuestionComponent} from './floor-area-question/floor-area-question.component';
-import {DetailedLengthOfHeatingOnQuestionComponent} from
-    './detailed-length-of-heating-on-question/detailed-length-of-heating-on-question.component';
+import {DetailedLengthOfHeatingOnQuestionComponent} from './detailed-length-of-heating-on-question/detailed-length-of-heating-on-question.component';
 import {FlatStoreysQuestionComponent} from './flat-storeys-question/flat-storeys-question.component';
 import {FloorLevelQuestionComponent} from './floor-level-question/floor-level-question.component';
 import {FloorSpanQuestionComponent} from './floor-span-question/floor-span-question.component';
 import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question/flat-exposed-wall-question.component';
 import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/house-exposed-wall-question.component';
-import {DomesticPropertyAfter2018QuestionComponent} from
-    './mees/domestic-property-after-2018-question/domestic-property-after-2018-question.component';
+import {DomesticPropertyAfter2018QuestionComponent} from './mees/domestic-property-after-2018-question/domestic-property-after-2018-question.component';
 import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-question/property-after-2020-question.component';
 import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
 import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
@@ -62,7 +59,6 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         FloorSpanQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
-        HeatingCostQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
@@ -103,7 +99,6 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         FloorSpanQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
-        HeatingCostQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
@@ -151,7 +146,6 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         FloorSpanQuestionComponent,
         FridgeFreezerQuestionComponent,
         FuelTypeQuestionComponent,
-        HeatingCostQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,

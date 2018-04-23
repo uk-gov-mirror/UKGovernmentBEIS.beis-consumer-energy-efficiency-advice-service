@@ -16,7 +16,6 @@ import {TenureTypeQuestionMetadata} from './tenure-type-question/tenure-type-que
 import {GrantsQuestionnaireQuestionMetadata} from './grants-questionnaire-question/grants-questionnaire-question-metadata';
 import {BenefitsQuestionMetadata} from './benefits-question/benefits-question-metadata';
 import {IncomeQuestionMetadata} from './income-question/income-question-metadata';
-import {HeatingCostQuestionMetadata} from './heating-cost-question/heating-cost-question-metadata';
 import {TumbleDryQuestionMetadata} from './tumble-dry-question/tumble-dry-question-metadata';
 import {ConstructionQuestionMetadata} from './construction-question/construction-question-metadata';
 import {WaterTankQuestionMetadata} from './water-tank-question/water-tank-question-metadata';
@@ -24,15 +23,13 @@ import {GardenQuestionMetadata} from './garden-question/garden-question-metadata
 import {RoofSpaceQuestionMetadata} from './roof-space-question/roof-space-question-metadata';
 import {OptionalPropertyQuestionMetadata} from './optional-property-question/optional-property-question-metadata';
 import {FloorAreaQuestionMetadata} from './floor-area-question/floor-area-question-metadata';
-import {DetailedLengthOfHeatingOnQuestionMetadata} from
-    './detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata';
+import {DetailedLengthOfHeatingOnQuestionMetadata} from './detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata';
 import {FlatStoreysQuestionMetadata} from './flat-storeys-question/flat-storeys-question-metadata';
 import {FloorLevelQuestionMetadata} from './floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from './floor-span-question/floor-span-question-metadata';
 import {FlatExposedWallQuestionMetadata} from './flat-exposed-wall-question/flat-exposed-wall-question-metadata';
 import {HouseExposedWallQuestionMetadata} from './house-exposed-wall-question/house-exposed-wall-question-metadata';
-import {DomesticPropertyAfter2018QuestionMetadata} from
-    './mees/domestic-property-after-2018-question/domestic-property-after-2018-question-metadata';
+import {DomesticPropertyAfter2018QuestionMetadata} from './mees/domestic-property-after-2018-question/domestic-property-after-2018-question-metadata';
 import {PropertyAfter2020QuestionMetadata} from './mees/property-after-2020-question/property-after-2020-question-metadata';
 import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
 import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
@@ -68,7 +65,6 @@ export const CORE_BRE_QUESTIONS = [
     new HotWaterCylinderQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
-    new HeatingCostQuestionMetadata(),
     new DetailedLengthOfHeatingOnQuestionMetadata()
 ];
 
