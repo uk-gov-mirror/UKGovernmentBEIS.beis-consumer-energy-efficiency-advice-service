@@ -16,11 +16,13 @@
     h2 {
       @include page-summary-font;
       color: $primary-blue;
+      margin: 24px 0;
     }
 
     h3 {
       border-top: 1px solid $primary-blue;
-      padding-top: 12px;
+      padding-top: 24px;
+      margin: 24px 0;
       color: $primary-blue;
       @include page-section-heading-font;
     }
