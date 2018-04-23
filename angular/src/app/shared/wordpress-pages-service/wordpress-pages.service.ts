@@ -33,10 +33,11 @@ export class WordpressPagesService {
         }
         const parsed = parse(url);
         const path = parsed.pathname;
+        console.log(path);
         return {
             route: url,
             isRelativeURL: url === parsed.pathname
-        }
+        };
     }
 
     getTopLevelPages(): Observable<WordpressPage[]> {

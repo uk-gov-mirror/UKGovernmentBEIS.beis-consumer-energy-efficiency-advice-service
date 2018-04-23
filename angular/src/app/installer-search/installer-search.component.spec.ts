@@ -3,7 +3,7 @@ import {By} from '@angular/platform-browser';
 import {InstallerSearchComponent} from './installer-search.component';
 import {ResponseData} from "../shared/response-data/response-data";
 import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
@@ -22,6 +22,7 @@ describe('InstallerSearchComponent', () => {
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
+                {provide: Router, useValue: {'navigate': function() {}}},
                 {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent}],
         })
             .compileComponents();

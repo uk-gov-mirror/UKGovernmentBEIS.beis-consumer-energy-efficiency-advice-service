@@ -23,8 +23,10 @@ export class RecommendationStep {
                     buttonText: link.button_text,
                     // The linked_page is a Wordpress Post URL, like:
                     //   http://admin-site/category/slug
-                    linkProps: WordpressPagesService.getRouteForPageFromUrl(link.page_link),
+                    linkProps: WordpressPagesService.getRouteForPageFromUrl(link.link_url),
                 };
             });
+        console.log("mmemems")
+        console.log(this.moreInfoLinks);
     }
 }
