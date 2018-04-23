@@ -1,8 +1,11 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
-<div class="page-row" *ngIf="!isLoading && !isError">
-    <div class="page-row-content page-component" *ngIf="pageData">
-        <div class="title" [innerHTML]="pageData.title"></div>
-        <div class="video-embed" *ngIf="pageData.videoEmbed" [innerHTML]="pageData.videoEmbed | safe"></div>
-        <div class="content" [innerHTML]="pageData.content"></div>
+<div class="page-component" *ngIf="!isLoading && !isError && pageData">
+    <div class="page-row header-row">
+        <div class="page-row-content">
+            <h1>{{pageData.title}}</h1>
+        </div>
+    </div>
+    <div class="page-row main-row">
+        <div class="page-row-content" [innerHTML]="pageData.content"></div>
     </div>
 </div>
