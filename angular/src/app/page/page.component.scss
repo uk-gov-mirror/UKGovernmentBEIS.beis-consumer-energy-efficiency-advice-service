@@ -1,19 +1,105 @@
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
 .page-component {
-  flex-direction: column;
+  .header-row {
+    background-color: $primary-blue;
 
-  .title {
-    font-weight: bold;
-    font-size: 36px;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    h1 {
+      @include page-heading-font;
+      color: white;
+      margin: 0;
+    }
   }
 
-  .video-embed {
-    display: flex;
-    justify-content: center;
+  .main-row {
+    h2 {
+      @include page-summary-font;
+      color: $primary-blue;
+    }
+
+    h3 {
+      border-top: 1px solid $primary-blue;
+      padding-top: 12px;
+      color: $primary-blue;
+      @include page-section-heading-font;
+    }
+
+    ul {
+      padding-left: 1em;
+    }
+
+    .beis-button {
+      color: white;
+      display: flex;
+      cursor: pointer;
+      text-decoration: none;
+      min-height: 60px;
+      max-width: 300px;
+      margin: 16px 0;
+
+      .beis-button-text {
+        background-color: $button-dark-blue;
+        @include more-info-button-font;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+      }
+
+      .beis-button-icon-container {
+        background-color: $action-button-blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+
+        .beis-button-icon {
+          width: 15px;
+          line-height: 23px;
+          font-size: 23px;
+          font-weight: bold;
+          color: white;
+          display: block;
+        }
+      }
+    }
+
+    p, ul, a {
+      @include page-body-font;
+    }
+  }
+}
+
+.page-component {
+  @include mobile() {
+    .header-row {
+      padding: 25px 0;
+    }
+
+    .main-row {
+      padding: 28px 0 44px;
+    }
   }
 
-  .content {
+  @include tablet() {
+    .header-row {
+      padding: 40px 0;
+    }
 
+    .main-row {
+      padding: 33px 0 40px;
+    }
+  }
+
+  @include desktop() {
+    .header-row {
+      padding: 70px 0;
+    }
+
+    .main-row {
+      padding: 30px 0;
+    }
   }
 }

@@ -23,11 +23,12 @@
                         }],
                     onsubmit: function (e) {
                         editor.insertContent(
-                            `<div class="beis-button">
-                                <a href="${e.data.url}" ${e.data.new_tab ? 'target="_blank"' : ''}>
-                                    ${e.data.text}
-                                </a>
-                            </div>`
+                            `<a class="beis-button" href="${e.data.url}" ${e.data.new_tab ? 'target="_blank"' : ''}>
+                                <span class="beis-button-text">${e.data.text}</span>
+                                <span class="beis-button-icon-container">
+                                    <span class="beis-button-icon">></span>
+                                </span>
+                            </a>`
                         );
                     }
                 });
