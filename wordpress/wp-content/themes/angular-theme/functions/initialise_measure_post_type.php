@@ -139,6 +139,8 @@ function setup_measure_acf_group() {
                     'instructions' => 'Tags to be displayed with this measure on the results page',
                     'type' => 'checkbox',
                     'choices' => array (
+                        // When adding new tags here, avoid using special characters as it may break
+                        // the filtering. See filter_article_pages.php.
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
                         'tag_longer_term' => 'Longer term',

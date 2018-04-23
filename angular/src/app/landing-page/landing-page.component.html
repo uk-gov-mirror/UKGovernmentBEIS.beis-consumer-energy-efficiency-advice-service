@@ -27,10 +27,11 @@
                 Here are a few things you can do immediately to help save money.<br/>
                 If you answer some more questions we can recommend other measures you can take.
             </div>
-            <div class="static-measure-cards">
-                <app-static-measure-card *ngFor="let staticMeasure of staticMeasures"
-                                         [measure]="staticMeasure"></app-static-measure-card>
-            </div>
+            <!--<div class="static-measure-cards">-->
+                <!--<app-static-measure-card *ngFor="let staticMeasure of staticMeasures"-->
+                                         <!--[measure]="staticMeasure"></app-static-measure-card>-->
+            <!--</div>-->
+            <div *ngFor="let measure of measures">{{measure.acf.headline}}</div>
         </div>
     </div>
     <div class="browse page-row">
