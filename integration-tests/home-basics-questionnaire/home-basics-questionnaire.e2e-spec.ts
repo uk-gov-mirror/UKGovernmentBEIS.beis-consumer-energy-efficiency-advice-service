@@ -88,6 +88,11 @@ describe('Home basics questionnaire', () => {
         page.clickOption('electricity');
         CommonPageHelpers.sleep(1000);
 
+        // Hot water cylinder
+        expect(page.getHeading()).toContain('hot water cylinder');
+        page.clickOption('Yes');
+        CommonPageHelpers.sleep(1000);
+
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
         page.clickOption('Standard');
@@ -100,5 +105,5 @@ describe('Home basics questionnaire', () => {
 
         // Length of heating on
         expect(page.getHeading()).toContain('How many hours');
-    })
+    });
 });
