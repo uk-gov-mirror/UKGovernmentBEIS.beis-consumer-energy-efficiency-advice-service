@@ -20,7 +20,6 @@ export class RecommendationStepCardComponent implements OnInit {
 
     ngOnInit() {
         this.isExpanded = this.stepIndex === 0;
-        console.log(this.step);
     }
 
     get formattedStepNumber(): string {

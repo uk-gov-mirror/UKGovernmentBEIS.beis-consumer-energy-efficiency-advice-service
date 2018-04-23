@@ -26,7 +26,5 @@ export class RecommendationStep {
                     linkProps: WordpressPagesService.getRouteForPageFromUrl(link.link_url),
                 };
             });
-        console.log("mmemems")
-        console.log(this.moreInfoLinks);
     }
 }

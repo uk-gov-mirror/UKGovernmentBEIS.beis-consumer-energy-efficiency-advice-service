@@ -20,7 +20,7 @@ export class YourPlanSummaryComponent {
     }
 
     get recommendations(): EnergyEfficiencyRecommendation[] {
-        return this.recommendationsService.getRecommendationsInPlan();
+        return null;
     }
 
     get roundedTotalSavings(): number {
