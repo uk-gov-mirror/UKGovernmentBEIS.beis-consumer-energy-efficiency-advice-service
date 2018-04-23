@@ -112,16 +112,6 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'information-for-tenants',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'information-for-landlords',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
         path: 'energy-efficiency/greener-home',
         component: GreenerHomeComponent
     },
