@@ -25,10 +25,9 @@ export class InstallerSearchComponent implements OnInit {
                 this.postcode = this.responseData.postcode;
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
                     const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
-                    if(chosenMeasure){
+                    if (chosenMeasure) {
                         this.measureName = chosenMeasure.acf.headline;
-                    }
-                    else {
+                    } else {
                         this.router.navigate(['/installer-search']);
                     }
                 });

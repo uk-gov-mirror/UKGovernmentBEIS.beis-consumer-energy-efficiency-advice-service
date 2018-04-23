@@ -272,9 +272,9 @@ function setup_measure_acf_group() {
                                     'maxlength' => '',
                                 ),
                                 array(
-                                    'key' => 'field_5a96d9bfa67e7',
-                                    'label' => 'Page link',
-                                    'name' => 'page_link',
+                                    'key' => 'field_1234d9bfa97e7',
+                                    'label' => 'Link url',
+                                    'name' => 'link_url',
                                     'type' => 'text',
                                     'instructions' => '',
                                     'required' => 0,
