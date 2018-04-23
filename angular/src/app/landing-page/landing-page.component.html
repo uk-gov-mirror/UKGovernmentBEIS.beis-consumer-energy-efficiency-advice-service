@@ -13,25 +13,23 @@
                     with advice tailored to your situation. We'll start by checking whether
                     your property has an Energy Performance Certificate (EPC) - if so, we may
                     be able to find some of the information about your property from that report.
-                    <br /><br />
+                    <br/><br/>
                     Enter your postcode and select your address (if available) to get started.
                 </div>
                 <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
             </div>
         </div>
     </div>
-    <div class="static-measures page-row">
+    <div class="measures page-row">
         <div class="page-row-content">
             <div class="heading">Measures you can take right now</div>
             <div class="body-text">
                 Here are a few things you can do immediately to help save money.<br/>
                 If you answer some more questions we can recommend other measures you can take.
             </div>
-            <!--<div class="static-measure-cards">-->
-                <!--<app-static-measure-card *ngFor="let staticMeasure of staticMeasures"-->
-                                         <!--[measure]="staticMeasure"></app-static-measure-card>-->
-            <!--</div>-->
-            <div *ngFor="let measure of measures">{{measure.acf.headline}}</div>
+            <div class="measure-cards">
+                <app-measure-card *ngFor="let measure of measures" [measure]="measure"></app-measure-card>
+            </div>
         </div>
     </div>
     <div class="browse page-row">
@@ -50,6 +48,6 @@
         </div>
     </div>
     <div class="other-suggestions page-row">
-        <app-latest-news-section [tag]="tag" ></app-latest-news-section>
+        <app-latest-news-section [tag]="tag"></app-latest-news-section>
     </div>
 </div>

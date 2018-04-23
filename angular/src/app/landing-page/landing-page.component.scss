@@ -61,14 +61,8 @@ $mobile-browse-cards-margin: 20px;
     }
   }
 
-  .static-measures {
-    .page-row-content {
-      .body-text {
-        @include static-measures-body-font();
-      }
-    }
-
-    app-static-measure-card {
+  .measures {
+    app-measure-card {
       display: block;
       margin: 20px 0;
     }
@@ -108,7 +102,7 @@ $mobile-browse-cards-margin: 20px;
       }
     }
 
-    .static-measures {
+    .measures {
       .page-row-content {
         padding-bottom: 44px;
 
@@ -147,7 +141,7 @@ $mobile-browse-cards-margin: 20px;
       }
     }
 
-    .static-measures {
+    .measures {
       .page-row-content {
         padding-bottom: 50px;
 
@@ -196,7 +190,7 @@ $mobile-browse-cards-margin: 20px;
       }
     }
 
-    .static-measures {
+    .measures {
       .page-row-content {
         padding-bottom: 82px;
 
