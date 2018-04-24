@@ -101,7 +101,7 @@ describe('PageComponent', () => {
         // then
         fixture.whenStable()
             .then(() => {
-                const pageContent = fixture.debugElement.query(By.css('.page-component .content'));
+                const pageContent = fixture.debugElement.query(By.css('.page-component .main-row .page-row-content'));
                 expect(pageContent.nativeElement.textContent).toBe(expectedPage.content);
             });
     }));
