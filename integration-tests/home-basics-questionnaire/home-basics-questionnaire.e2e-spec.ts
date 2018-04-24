@@ -78,11 +78,6 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
-        // Garden
-        expect(page.getHeading()).toContain('Is your garden accessible to digging machinery');
-        CommonPageHelpers.clickButton('No garden');
-        CommonPageHelpers.sleep(1000);
-
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');

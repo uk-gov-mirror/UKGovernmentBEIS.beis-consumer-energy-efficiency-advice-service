@@ -60,7 +60,6 @@ export const CORE_BRE_QUESTIONS = [
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),
     new ConstructionQuestionMetadata(),
-    new GardenQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new HotWaterCylinderQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
