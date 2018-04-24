@@ -139,6 +139,8 @@ function setup_measure_acf_group() {
                     'instructions' => 'Tags to be displayed with this measure on the results page',
                     'type' => 'checkbox',
                     'choices' => array (
+                        // When adding new tags here, avoid using special characters as it may break
+                        // the filtering. See filter_article_pages.php.
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
                         'tag_longer_term' => 'Longer term',
@@ -147,6 +149,10 @@ function setup_measure_acf_group() {
                         'tag_windows&doors' => 'Windows & Doors',
                         'tag_floors-walls&roofs' => 'Floors, Walls & Roofs',
                         'tag_solar-energy' => 'Solar Energy',
+                        'tag_reduce_bills' => 'Reduce your bills',
+                        'tag_make_home_warmer' => 'Make your home warmer',
+                        'tag_make_home_greener' => 'Make your home greener',
+                        'tag_home_improvements' => 'Home improvements',
                     ),
                     'default_value' => '',
                     'layout' => 'vertical',

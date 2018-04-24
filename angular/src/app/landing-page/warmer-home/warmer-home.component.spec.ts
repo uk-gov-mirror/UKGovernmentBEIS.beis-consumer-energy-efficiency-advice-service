@@ -15,15 +15,16 @@ import {PostcodeLookupComponent} from '../../shared/postcode-lookup/postcode-loo
 import {QuestionContentService} from '../../shared/question-content/question-content.service';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
-import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
-import { PopupComponent } from '../../shared/popup/popup.component';
+import {PopupComponent} from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
 import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
 import {InlineSVGModule} from 'ng-inline-svg';
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {MeasureCardComponent} from "../measure-card/measure-card.component";
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -48,11 +49,11 @@ describe('WarmerHomeComponent', () => {
                 LatestNewsSectionComponent,
                 LatestNewsCardComponent,
                 PostcodeLookupComponent,
-                StaticMeasureCardComponent,
                 DataCardComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                MeasureCardComponent
             ],
             imports: [
                 CommonModule,
@@ -66,6 +67,9 @@ describe('WarmerHomeComponent', () => {
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                {provide: EnergySavingMeasureContentService, useValue: {
+                    'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
+                }},
                 GoogleAnalyticsService,
             ]
         })

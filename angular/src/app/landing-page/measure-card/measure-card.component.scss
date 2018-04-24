@@ -1,0 +1,194 @@
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
+// Component specific variables
+$arrow-width: 100px;
+$arrow-height: 48px;
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.measure-card {
+  background-color: $lighter-grey;
+  display: flex;
+  align-content: stretch;
+  text-decoration: none;
+  color: $dark-grey;
+
+
+  .details {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .headline {
+      color: $focus-blue;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 30px 0 20px;
+    }
+
+    .summary {
+      font-family: $font-family-light;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .measure-card {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .link {
+    width: 250px;
+    padding: 20px 0;
+    box-sizing: border-box;
+
+    .arrow-button {
+      height: $arrow-height;
+      width: 160px;
+      padding-left: 20px;
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+      background: white;
+      color: $primary-blue;
+
+
+      &:after {
+        position: absolute;
+        right: -20px;
+        top: 0;
+        content: " ";
+        border: ($arrow-height / 2) solid transparent;
+        border-right-width: 0;
+        border-left: 20px solid white;
+      }
+
+    }
+  }
+}
+
+@include tablet() {
+  .measure-card {
+    min-height: 200px;
+
+    .details {
+      flex: 1 1 60%;
+    }
+
+    .icon {
+      padding: 30px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .link {
+      width: 250px;
+      padding: 30px;
+      box-sizing: border-box;
+
+      .arrow-button {
+        height: $arrow-height;
+        width: 160px;
+        padding-left: 20px;
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        background: white;
+        color: $primary-blue;
+
+
+        &:after {
+          position: absolute;
+          right: -20px;
+          top: 0;
+          content: " ";
+          border: ($arrow-height / 2) solid transparent;
+          border-right-width: 0;
+          border-left: 20px solid white;
+        }
+
+        &:focus, &:hover {
+          color: white;
+          background: $primary-blue;
+          &:after {
+            border-left-color: $primary-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .measure-card {
+    min-height: 200px;
+
+
+
+    .icon {
+      padding: 30px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .details {
+      flex: 1 1 60%;
+    }
+
+    .link {
+      width: 250px;
+      padding: 30px;
+      box-sizing: border-box;
+
+      .arrow-button {
+        height: $arrow-height;
+        width: 160px;
+        padding-left: 20px;
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+        background: white;
+        color: $primary-blue;
+
+
+        &:after {
+          position: absolute;
+          right: -20px;
+          top: 0;
+          content: " ";
+          border: ($arrow-height / 2) solid transparent;
+          border-right-width: 0;
+          border-left: 20px solid white;
+        }
+      }
+    }
+
+    &:focus, &:hover {
+      .link {
+        .arrow-button {
+          color: white;
+          background: $primary-blue;
+          &:after {
+            border-left-color: $primary-blue;
+          }
+        }
+      }
+    }
+  }
+}
