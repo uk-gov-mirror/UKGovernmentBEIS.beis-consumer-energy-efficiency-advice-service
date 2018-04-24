@@ -1,31 +1,11 @@
-<div class="postcode-epc">
+<div class="postcode-lookup">
     <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
         <input class="postcode-input-text" spellcheck="false" type="text" [(ngModel)]="postcodeInput"
             name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
         <button class="postcode-input-submit" type="submit"
             title="Submit" aria-label="Submit"></button>
     </form>
-    <div class="loading-spinner" *ngIf="loadingEpcs"></div>
-    <div class="address-section" *ngIf="epcs !== undefined && !loadingEpcs">
-        <div class="no-properties" *ngIf="epcs.length === 0">
-            We couldn't find any properties with an EPC at that postcode.
-        </div>
-        <div class="address-dropdown-wrapper" *ngIf="epcs.length > 0">
-            <div class="address-help-text">We've found EPCs for the following properties:</div>
-            <div class="address-select">
-                <select class="address-dropdown" [(ngModel)]="selectedEpc" >
-                    <option class="address-option" [ngValue]="undefined" selected disabled hidden>-- Please select your address --</option>
-                    <option class="address-option"
-                        *ngFor="let epc of epcs"
-                        [ngValue]="epc">{{epc.getDisplayAddress()}}</option>
-                </select>
-                <button class="go-button" (click)="onAddressSelected()">Go</button>
-            </div>
-        </div>
-        <button class="not-listed-button" (click)="onAddressNotListed()">
-            {{epcs.length > 0 ? 'My address is not listed' : 'Continue'}}
-        </button>
-    </div>
+    <div class="loading-spinner" *ngIf="loading"></div>
     <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
     <div class="scottish-postcode" *ngIf="scottishPostcode">We do not think this service is suitable/accurate for you (as your home is in Scotland)</div>
 </div>

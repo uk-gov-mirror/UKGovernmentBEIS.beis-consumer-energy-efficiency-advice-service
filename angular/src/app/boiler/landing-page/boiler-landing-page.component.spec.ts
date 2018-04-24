@@ -14,6 +14,7 @@ import {ResponseData} from '../../shared/response-data/response-data';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
@@ -35,6 +36,7 @@ describe('BoilerLandingPageComponent', () => {
                 CarouselItemComponent,
                 BoilerMakeModelLookupComponent,
                 PostcodeLookupComponent,
+                EpcLookupComponent,
                 TimesPipe,
                 BoilerLinkButtonComponent,
             ],

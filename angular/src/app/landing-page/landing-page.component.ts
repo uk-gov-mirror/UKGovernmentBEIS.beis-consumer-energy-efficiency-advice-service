@@ -18,9 +18,9 @@ export class LandingPageComponent implements OnInit {
     @Input() video: Video;
     @Input() articles: Article[];
 
-    postcodeQuestionReason: string;
     heading: string;
     tag: string;
+    postcode: string;
 
     constructor(private router: Router,
                 private responseData: ResponseData) {
@@ -31,7 +31,11 @@ export class LandingPageComponent implements OnInit {
         this.tag = this.getTagFromUserJourneyType();
     }
 
-    onAddressSelected() {
+    onPostcodeSelected() {
+        this.postcode = this.responseData.postcode;
+    }
+
+    onEpcSelected() {
         this.responseData.userJourneyType = this.userJourneyType;
         this.router.navigate(['/energy-efficiency/questionnaire/home-basics']);
     }

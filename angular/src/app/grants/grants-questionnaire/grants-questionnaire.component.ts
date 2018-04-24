@@ -14,13 +14,6 @@ export class GrantsQuestionnaireComponent {
     }
 
     onQuestionnaireComplete() {
-        if (!isComplete(this.responseData)) {
-            alert("TODO:BEIS-213 there is not yet a separate grants results page. " +
-                "You can view grants by completing the main questionnaire " +
-                "and selecting an improvement plan.");
-        }
-
-
         this.router.navigate(['/energy-efficiency/results']);
     }
 }

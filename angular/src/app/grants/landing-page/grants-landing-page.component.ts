@@ -21,10 +21,7 @@ export class GrantsLandingPageComponent {
     isLoading: boolean = false;
     isError: boolean = false;
 
-    constructor(
-        private responseData: ResponseData,
-        private router: Router
-    ) {
+    constructor(private responseData: ResponseData) {
     }
 
     setJourneyTypeToBoiler(): void {
@@ -35,7 +32,7 @@ export class GrantsLandingPageComponent {
         this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
     }
 
-    onAddressSelected() {
-        this.router.navigate(['js/grants/questionnaire']);
+    onPostcodeSelected() {
+        alert(`show grants for ${this.responseData.localAuthorityCode}`);
     }
 }

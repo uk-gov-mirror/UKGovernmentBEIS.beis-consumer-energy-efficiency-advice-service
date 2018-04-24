@@ -1,0 +1,24 @@
+<div class="epc-lookup">
+    <div class="loading-spinner" *ngIf="loading"></div>
+    <div class="address-section" *ngIf="epcs !== undefined && !loading">
+        <div class="no-properties" *ngIf="epcs.length === 0">
+            We couldn't find any properties with an EPC at that postcode.
+        </div>
+        <div class="address-dropdown-wrapper" *ngIf="epcs.length > 0">
+            <div class="address-help-text">We've found EPCs for the following properties:</div>
+            <div class="address-select">
+                <select class="address-dropdown" [(ngModel)]="selectedEpc" >
+                    <option class="address-option" [ngValue]="undefined" selected disabled hidden>-- Please select your address --</option>
+                    <option class="address-option"
+                        *ngFor="let epc of epcs"
+                        [ngValue]="epc">{{epc.getDisplayAddress()}}</option>
+                </select>
+                <button class="go-button" (click)="onAddressSelected()">Go</button>
+            </div>
+        </div>
+        <button class="not-listed-button" (click)="onAddressNotListed()">
+            {{epcs.length > 0 ? 'My address is not listed' : 'Continue'}}
+        </button>
+    </div>
+    <div class="validation-error" *ngIf="error">Please enter a valid UK postcode</div>
+</div>
