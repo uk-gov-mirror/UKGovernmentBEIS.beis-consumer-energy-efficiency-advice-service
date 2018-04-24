@@ -5,7 +5,7 @@ import * as log from 'loglevel';
 import {AppModule} from './app/app.module';
 import Config from './app/config';
 
-if (!Config().environment.includes("dev")) {
+if (Config().environment.indexOf("dev") === -1) {
     enableProdMode();
 }
 
