@@ -98,11 +98,6 @@ describe('Home basics questionnaire', () => {
         page.clickOption('Standard');
         CommonPageHelpers.sleep(1000);
 
-        // Heating cost
-        expect(page.getHeading()).toContain('pay a month');
-        page.goForwards();
-        CommonPageHelpers.sleep(1000);
-
         // Length of heating on
         expect(page.getHeading()).toContain('How many hours');
     });
