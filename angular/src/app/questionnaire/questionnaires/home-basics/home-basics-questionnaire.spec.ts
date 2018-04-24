@@ -17,7 +17,6 @@ import {ShowersAndBathsQuestionMetadata} from '../../questions/showers-and-baths
 import {OptionalPropertyQuestionMetadata} from '../../questions/optional-property-question/optional-property-question-metadata';
 import {FloorAreaQuestionMetadata} from '../../questions/floor-area-question/floor-area-question-metadata';
 import {ConstructionQuestionMetadata} from '../../questions/construction-question/construction-question-metadata';
-import {GardenQuestionMetadata} from '../../questions/garden-question/garden-question-metadata';
 import {DetailedLengthOfHeatingOnQuestionMetadata} from '../../questions/detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata';
 import {FlatExposedWallQuestionMetadata} from '../../questions/flat-exposed-wall-question/flat-exposed-wall-question-metadata';
 import {HouseExposedWallQuestionMetadata} from '../../questions/house-exposed-wall-question/house-exposed-wall-question-metadata';
@@ -54,7 +53,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -91,7 +89,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -128,7 +125,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -165,7 +161,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -199,7 +194,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),

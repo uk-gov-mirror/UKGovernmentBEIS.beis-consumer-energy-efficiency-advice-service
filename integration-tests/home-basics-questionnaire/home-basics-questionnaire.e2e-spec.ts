@@ -78,11 +78,6 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
-        // Garden
-        expect(page.getHeading()).toContain('Is your garden accessible to digging machinery');
-        CommonPageHelpers.clickButton('No garden');
-        CommonPageHelpers.sleep(1000);
-
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
@@ -96,11 +91,6 @@ describe('Home basics questionnaire', () => {
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
         page.clickOption('Standard');
-        CommonPageHelpers.sleep(1000);
-
-        // Heating cost
-        expect(page.getHeading()).toContain('pay a month');
-        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Length of heating on
