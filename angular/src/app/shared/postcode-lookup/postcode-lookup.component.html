@@ -7,7 +7,10 @@
     </form>
     <div class="loading-spinner" *ngIf="loadingEpcs"></div>
     <div class="address-section" *ngIf="epcs !== undefined && !loadingEpcs">
-        <div class="address-dropdown-wrapper">
+        <div class="no-properties" *ngIf="epcs.length === 0">
+            We couldn't find any properties with an EPC at that postcode.
+        </div>
+        <div class="address-dropdown-wrapper" *ngIf="epcs.length > 0">
             <div class="address-help-text">We've found EPCs for the following properties:</div>
             <div class="address-select">
                 <select class="address-dropdown" [(ngModel)]="selectedEpc" >
@@ -19,7 +22,9 @@
                 <button class="go-button" (click)="onAddressSelected()">Go</button>
             </div>
         </div>
-        <button class="not-listed-button" (click)="onAddressNotListed()">My address is not listed</button>
+        <button class="not-listed-button" (click)="onAddressNotListed()">
+            {{epcs.length > 0 ? 'My address is not listed' : 'Continue'}}
+        </button>
     </div>
     <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
     <div class="scottish-postcode" *ngIf="scottishPostcode">We do not think this service is suitable/accurate for you (as your home is in Scotland)</div>

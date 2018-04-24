@@ -11,5 +11,8 @@ require_once("functions/initialise_measure_post_type.php");
 require_once("functions/initialise_supplier_post_type.php");
 require_once("functions/configure_api_caching.php");
 require_once("functions/hide_admin_bar.php");
+require_once("functions/hide_post_type_posts.php");
 require_once("functions/acf_image.php");
 require_once("functions/acf_wysiwyg.php");
+require_once("functions/filter_article_pages.php");
+require_once("functions/add_beis_editor_button.php");

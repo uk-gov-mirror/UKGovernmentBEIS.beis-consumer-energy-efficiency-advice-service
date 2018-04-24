@@ -18,6 +18,7 @@ import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/f
 import {FloorLevel} from '../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 import {TenancyType} from '../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
+import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -45,7 +46,6 @@ export class ResponseData {
     public fuelType: FuelType;
     public condensingBoiler: boolean;
     public electricityTariff: ElectricityTariff;
-    public heatingCost: number;
     public detailedLengthOfHeatingOnEarlyHours: number;
     public detailedLengthOfHeatingOnMorning: number;
     public detailedLengthOfHeatingOnAfternoon: number;
@@ -70,6 +70,7 @@ export class ResponseData {
     public gardenSizeSquareMetres: number;
     public roofSpace: RoofSpace;
     public floorLevels: FloorLevel[];
+    public hotWaterCylinder: boolean;
 
     public benefits: Benefits;
     public income: number;
@@ -82,14 +83,41 @@ export class ResponseData {
 
     public isDomesticPropertyAfter2018: boolean;
     public isPropertyAfter2020: boolean;
-    public isEpcBelowE: boolean;
+    public propertyEpc: UserEpcRating;
+    public confirmEpcNotFound: boolean;
     public isEpcRequired: boolean;
-    public willPropertyBeDevalued: boolean;
-    public hasRecommendedImprovements: boolean;
-    public hasImprovementsAtNoCost: boolean;
-    public hasTemporaryExclusions: boolean;
     public tenancyType: TenancyType;
-    public hasRelevantConsent: boolean;
+
+    constructor() {
+        if (!sessionStorageAvailable()) {
+            return;
+        }
+        const storedResponseData = sessionStorage.getItem(responseDataSessionStorageKey);
+        if (storedResponseData) {
+            replaceOldResponseData(this, JSON.parse(storedResponseData));
+        }
+    }
+
+    saveToSessionStorage() {
+        if (sessionStorageAvailable()) {
+            sessionStorage.setItem(responseDataSessionStorageKey, JSON.stringify(this));
+        }
+    }
+}
+
+const responseDataSessionStorageKey = 'responseData';
+
+// Simplified version of
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Feature-detecting_localStorage
+function sessionStorageAvailable() {
+    try {
+        const x = '__storage_test__';
+        sessionStorage.setItem(x, x);
+        sessionStorage.removeItem(x);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 export function isComplete(responseData: ResponseData) {
@@ -109,7 +137,7 @@ function addNewResponseData(oldResponseData: ResponseData, newResponseData: Resp
     }
 }
 
-function deleteOldResponseData(responseData: ResponseData) {
+export function deleteOldResponseData(responseData: ResponseData) {
     for (const i in responseData) {
         if (responseData.hasOwnProperty(i)) {
             delete responseData[i];

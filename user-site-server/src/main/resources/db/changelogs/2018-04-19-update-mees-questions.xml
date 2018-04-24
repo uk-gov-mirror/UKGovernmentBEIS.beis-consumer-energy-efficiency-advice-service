@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-19-update-mees-questions.xml"
+               author="david.broder-rodgers@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+-- This migration removes the MEES exemptions questions.
+
+DELETE post, postmeta
+FROM wp_posts post
+JOIN wp_postmeta postmeta on postmeta.post_id = post.id
+WHERE post.post_name = 'epc-below-e';
+
+
+INSERT INTO `wp_posts`
+    (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+    (1, '2018-04-19 10:00:00', '2018-04-19 10:00:00', '', 'Property EPC', '', 'publish', 'closed', 'closed', '', 'property-epc', '', '', '2018-04-19 10:00:00', '2018-04-19 10:00:00', '', 0, '', 0, 'question', '', 0);
+SET @post_id = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta`
+    (post_id, meta_key, meta_value)
+VALUES
+    (@post_id, '_autoOpenQuestionReason', 'field_5a0c5ddf40b11'),
+    (@post_id, 'autoOpenQuestionReason', '0'),
+    (@post_id, '_questionReason', 'field_5a0179b00e182'),
+    (@post_id, 'questionReason', ''),
+    (@post_id, '_helpHtml', 'field_59e8cfc09ab2a'),
+    (@post_id, 'helpHtml', ''),
+    (@post_id, '_questionHeading', 'field_59e8be23eda3e'),
+    (@post_id, 'questionHeading', 'What is the property\'s EPC rating?');
+
+INSERT INTO `wp_posts`
+    (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+    (1, '2018-04-19 10:00:00', '2018-04-19 10:00:00', '', 'EPC Not Found', '', 'publish', 'closed', 'closed', '', 'epc-not-found', '', '', '2018-04-19 10:00:00', '2018-04-19 10:00:00', '', 0, '', 0, 'question', '', 0);
+SET @post_id = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta`
+    (post_id, meta_key, meta_value)
+VALUES
+    (@post_id, '_autoOpenQuestionReason', 'field_5a0c5ddf40b11'),
+    (@post_id, 'autoOpenQuestionReason', '0'),
+    (@post_id, '_questionReason', 'field_5a0179b00e182'),
+    (@post_id, 'questionReason', ''),
+    (@post_id, '_helpHtml', 'field_59e8cfc09ab2a'),
+    (@post_id, 'helpHtml', 'The EPC register does not contain details of an EPC for your property. If you think it should have one, you may need to be reassessed or get in contact with <a href=\"https://www.epcregister.com\" target=\"_blank\" rel=\"noopener\">the EPC register</a>. Otherwise, continue.'),
+    (@post_id, '_questionHeading', 'field_59e8be23eda3e'),
+    (@post_id, 'questionHeading', 'We couldn\'t find an EPC rating for your property');
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

@@ -13,7 +13,7 @@ export class TenancyTypeQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.isEpcRequired;
+        return responseData.isDomesticPropertyAfter2018 || responseData.isPropertyAfter2020;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

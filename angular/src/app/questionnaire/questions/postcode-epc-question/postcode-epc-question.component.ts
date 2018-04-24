@@ -68,14 +68,16 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     }
 
     handlePostcodeEntered(): void {
-        this.postcodeInput = this.postcodeInput.replace(/\s/g, '');
-        this.resetSearchState();
-        this.shouldDisplayLoadingSpinner = true;
-        this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput)
-            .subscribe(
-                postcodeDetails => this.handlePostcodeDetails(postcodeDetails),
-                error => this.handlePostcodeSearchError(error)
-            );
+        if (this.postcodeInput) {
+            this.postcodeInput = this.postcodeInput.replace(/\s/g, '');
+            this.resetSearchState();
+            this.shouldDisplayLoadingSpinner = true;
+            this.postcodeEpcService.fetchPostcodeDetails(this.postcodeInput)
+                .subscribe(
+                    postcodeDetails => this.handlePostcodeDetails(postcodeDetails),
+                    error => this.handlePostcodeSearchError(error)
+                );
+        }
     }
 
     isSelected(epc: Epc): boolean {

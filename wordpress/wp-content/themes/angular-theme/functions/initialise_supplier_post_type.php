@@ -65,7 +65,32 @@ function setup_eco_supplier_acf_group() {
                     'append' => '',
                     'formatting' => 'html',
                     'maxlength' => ''
-                )
+                ),
+                // TODO:BEIS-197 apply no-upload-on-live-site fix here too...
+                array(
+                    'key' => 'field_5a1ecb4e53f99',
+                    'label' => 'Logo Image',
+                    'name' => 'logo_image',
+                    'type' => 'image',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'return_format' => 'array',
+                    'preview_size' => 'thumbnail',
+                    'library' => 'all',
+                    'min_width' => '',
+                    'min_height' => '',
+                    'min_size' => '',
+                    'max_width' => '',
+                    'max_height' => '',
+                    'max_size' => '',
+                    'mime_types' => '',
+                ),
             ),
             'options' => array (
                 'position' => 'normal',

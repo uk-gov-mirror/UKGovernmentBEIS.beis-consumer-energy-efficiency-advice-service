@@ -80,3 +80,11 @@ Add necessary config:
 Build the site locally, and deploy:
 
     ./infrastructure/ci-user-site-deploy.sh
+    
+## Jenkins (Deploy Server)
+
+Create a new space for Jenkins
+
+    cf create-space ci
+    cf target -o "beis-domestic-energy-advice-service" -s "ci"
+

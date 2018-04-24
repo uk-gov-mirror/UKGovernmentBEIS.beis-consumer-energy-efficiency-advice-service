@@ -62,6 +62,13 @@
     <include file="changelogs/2018-04-10-remove-obsolete-wp-posts.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-10-add-eco-suppliers-to-wordpress.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-12-update-tags-on-measure.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-13-add-eco-supplier-images-to-wordpress.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-13-add-rest-api-search-plugin.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-16-remove-dummy-local-authority-grants.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-18-add-hot-water-cylinder-question.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-18-add-tags-to-articles.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-18-add-mees-questions-to-wordpress.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-18-remove-mees-exemptions-questions.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-19-update-mees-questions.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-23-remove-heating-cost-question.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

@@ -5,12 +5,12 @@ import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 
 import {PostcodeLookupComponent} from './postcode-lookup.component';
-import {ResponseData} from '../../shared/response-data/response-data';
-import {EpcParserService} from '../../shared/postcode-epc-service/epc-api-service/epc-parser.service';
+import {ResponseData} from '../response-data/response-data';
+import {EpcParserService} from '../postcode-epc-service/epc-api-service/epc-parser.service';
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
-import {PostcodeApiService} from "../postcode-epc-service/postcode-api-service/postcode-api.service";
-import {PostcodeBasicDetailsResponse} from "../postcode-epc-service/model/response/postcode-basic-details-response";
+import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/postcode-api.service';
+import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
 
 describe('PostcodeLookupComponent', () => {
     let component: PostcodeLookupComponent;
@@ -109,8 +109,8 @@ describe('PostcodeLookupComponent', () => {
         // then
         const selectOptions = fixture.debugElement.queryAll(By.css('.address-option'));
         postcodeEpcServiceStub.fetchPostcodeDetails(component.postcodeInput).toPromise().then(postcodeDetails =>
-           postcodeDetails.allEpcsForPostcode.forEach(epc =>
-            expect(selectOptions.some(option => option.nativeElement.innerText === epc.address)).toBeTruthy())
+            postcodeDetails.allEpcsForPostcode.forEach(epc =>
+                expect(selectOptions.some(option => option.nativeElement.innerText === epc.address)).toBeTruthy())
         );
     });
 
@@ -162,6 +162,6 @@ describe('PostcodeLookupComponent', () => {
         fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
 
         // then
-        expect(component.addressSelected.emit).toHaveBeenCalledWith(component.epc.lmkKey);
+        expect(component.addressSelected.emit).toHaveBeenCalled();
     });
 });

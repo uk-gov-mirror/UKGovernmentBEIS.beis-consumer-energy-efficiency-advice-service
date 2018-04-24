@@ -1,8 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
-
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {BoilerReplacementCardComponent} from './boiler-replacement-card.component';
+import {InlineSVGModule} from 'ng-inline-svg';
+
 import {BoilerType} from '../boiler-types-service/boiler-type';
 
 describe('BoilerReplacementCardComponent', () => {
@@ -23,8 +25,8 @@ describe('BoilerReplacementCardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [BoilerReplacementCardComponent],
-            imports: [RouterTestingModule]
+            declarations: [DataCardComponent, BoilerReplacementCardComponent],
+            imports: [RouterTestingModule, InlineSVGModule]
         })
             .compileComponents();
     }));
@@ -51,8 +53,8 @@ describe('BoilerReplacementCardComponent', () => {
     });
 
     it('should display the correct installation costs', () => {
-        const installationCostElement = fixture.debugElement.query(By.css('.installation .value')).nativeElement;
-        expect(installationCostElement.innerText).toBe(`£${boilerType.averageInstallationCost}`);
+        const installationCostElement = fixture.debugElement.query(By.css('.installation-card .number-value')).nativeElement;
+        expect(installationCostElement.innerText.trim()).toBe(`£${boilerType.averageInstallationCost}`);
     });
 
     it('should display the correct lifetime', () => {
@@ -61,7 +63,7 @@ describe('BoilerReplacementCardComponent', () => {
     });
 
     it('should display the correct running cost', () => {
-        const runningCostElement = fixture.debugElement.query(By.css('.running-cost .value')).nativeElement;
+        const runningCostElement = fixture.debugElement.query(By.css('.running-cost-card .number-value')).nativeElement;
         expect(runningCostElement.innerText).toBe(`£${boilerType.runningCostPerYear}`);
     });
 });

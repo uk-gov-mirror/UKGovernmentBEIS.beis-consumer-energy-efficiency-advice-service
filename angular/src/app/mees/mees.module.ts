@@ -7,11 +7,13 @@ import {FormsModule} from '@angular/forms';
 import {MeesQuestionnaireComponent} from './mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './results-page/mees-results-page.guard';
+import {MeesExemptionPageComponent} from './exemption-page/mees-exemption-page.component';
 
 @NgModule({
     declarations: [
         MeesQuestionnaireComponent,
         MeesResultsPageComponent,
+        MeesExemptionPageComponent,
     ],
     imports: [
         CommonModule,
@@ -23,6 +25,7 @@ import {MeesResultsPageRouteGuard} from './results-page/mees-results-page.guard'
     exports: [
         MeesQuestionnaireComponent,
         MeesResultsPageComponent,
+        MeesExemptionPageComponent,
     ],
 })
 export class MeesModule {

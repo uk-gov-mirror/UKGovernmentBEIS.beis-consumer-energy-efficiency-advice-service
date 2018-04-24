@@ -12,13 +12,14 @@ export class LatestNewsSectionComponent implements OnInit {
     latestNews: WordpressPage[];
 
     @Input() googleAnalyticsCategory: string;
+    @Input() tag: string;
 
     constructor(private pageService: WordpressPagesService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
     ngOnInit() {
-        this.pageService.getLatestPages()
+        this.pageService.getLatestPages(this.tag)
             .subscribe(pages => this.latestNews = pages);
     }
 

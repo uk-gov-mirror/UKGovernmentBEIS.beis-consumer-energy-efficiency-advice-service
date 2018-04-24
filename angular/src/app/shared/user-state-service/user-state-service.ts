@@ -1,9 +1,12 @@
 import {Location} from '@angular/common';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {replaceOldResponseData, ResponseData} from "../response-data/response-data";
-import {UserState} from "../user-state-api-service/user-state";
-import {UserStateApiService} from "../user-state-api-service/user-state-api-service";
+import {
+    replaceOldResponseData,
+    ResponseData,
+} from '../response-data/response-data';
+import {UserState} from '../user-state-api-service/user-state';
+import {UserStateApiService} from '../user-state-api-service/user-state-api-service';
 
 @Injectable()
 export class UserStateService {
@@ -25,7 +28,9 @@ export class UserStateService {
         });
     }
 
-    sendState(questionIndex?: number) {
+    saveState(questionIndex?: number) {
+        this.responseData.saveToSessionStorage();
+
         if (this.reference) {
             this.userStateApiService.sendStateUsingSessionReference(this.reference, this.buildUserState(questionIndex));
         } else {

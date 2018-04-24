@@ -104,8 +104,6 @@ public class IndexController {
         "/landlord-obligations/**",
         "/certified-repairers/**",
         "/page-not-created/**",
-        "/information-for-landlords/**",
-        "/information-for-tenants/**",
         "/about-this-site/**",
         "/simple-savings/**",
 

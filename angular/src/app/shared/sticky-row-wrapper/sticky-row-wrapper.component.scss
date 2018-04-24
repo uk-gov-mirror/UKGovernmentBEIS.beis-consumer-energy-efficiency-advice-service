@@ -5,6 +5,7 @@
 
   &.fixed-position {
     position: fixed;
+    z-index: 5;
     bottom: 0;
     border-top: 3px solid $light-grey;
   }
