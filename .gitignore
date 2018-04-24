@@ -1,5 +1,5 @@
 # Custom ignored files
-# Temp comment
+
 user-site-server/src/main/resources/public/dist/
 wordpress/wp-content/themes/angular-theme/config/config.php
 user-site-server/src/main/resources/application-dev.properties
