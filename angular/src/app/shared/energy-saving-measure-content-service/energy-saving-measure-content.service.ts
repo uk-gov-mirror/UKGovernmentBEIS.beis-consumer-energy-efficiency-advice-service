@@ -75,12 +75,12 @@ export class EnergySavingMeasureContentService {
     }
 
     fetchMeasureDetailsForLandingPage(tag: string, numberOfMeasures: number): Observable<MeasureContent[]> {
-        const params = new HttpParams()
-            .set('tag', tag)
-            .set('per_page', numberOfMeasures.toString())
-            .set('orderby', 'date')
-            .set('order', 'desc');
         if (!this.measuresByTag[tag]) {
+            const params = new HttpParams()
+                .set('tag', tag)
+                .set('per_page', numberOfMeasures.toString())
+                .set('orderby', 'date')
+                .set('order', 'desc');
             this.measuresByTag[tag] = this.http.get<MeasureContent[]>(
                 this.wordpressApiService.getFullApiEndpoint(
                     EnergySavingMeasureContentService.measuresEndpoint), {params: params})
