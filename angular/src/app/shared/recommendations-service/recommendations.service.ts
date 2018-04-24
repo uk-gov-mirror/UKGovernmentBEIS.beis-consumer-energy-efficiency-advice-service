@@ -14,7 +14,9 @@ import {EnergyEfficiencyRecommendation} from './energy-efficiency-recommendation
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 import {MeasuresResponse} from '../energy-calculation-api-service/response/measures-response';
 import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
-import {EnergyEfficiencyRecommendationTag} from
+import {
+    EnergyEfficiencyRecommendationTag
+} from
     '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {EnergySavingMeasureResponse} from '../energy-calculation-api-service/response/energy-saving-measure-response';
 import {HabitMeasureResponse} from '../energy-calculation-api-service/response/habit-measure-response';
@@ -76,8 +78,8 @@ export class RecommendationsService {
                         measuresContent
                     )
                         .map(homeImprovementRecommendations => {
-                            const allRecommendations = concat(homeImprovementRecommendations, habitRecommendations, grantRecommendations);
-                            const orderedRecommendations = orderBy(allRecommendations, ['costSavingPoundsPerYear'], ['desc']);
+                            const allRecommendations = [homeImprovementRecommendations, habitRecommendations, grantRecommendations];
+                            const orderedRecommendations = RecommendationsService.orderRecommendations(allRecommendations);
                             RecommendationsService.tagTopRecommendations(orderedRecommendations);
                             return orderedRecommendations;
                         });
@@ -145,5 +147,29 @@ export class RecommendationsService {
         recommendations
             .slice(0, RecommendationsService.TOP_RECOMMENDATIONS)
             .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
+    }
+
+    private static orderRecommendations(recommendationArrays:
+        (EnergyEfficiencyRecommendation[])[]): EnergyEfficiencyRecommendation[] {
+        const maxLength = RecommendationsService.getMaxLengthOfRecommendationArrays(recommendationArrays);
+        const orderedRecommendations = [];
+        for (let i = 0; i < maxLength; i++) {
+            recommendationArrays.forEach(recommendationArray => {
+                if (i < recommendationArray.length) {
+                    orderedRecommendations.push(recommendationArray[i]);
+                }
+            });
+        }
+        return orderedRecommendations;
+    }
+
+    private static getMaxLengthOfRecommendationArrays(recommendationArrays) {
+        let maxLength = 0;
+        recommendationArrays.forEach(recommendationArray => {
+            if (recommendationArray.length > maxLength) {
+                maxLength = recommendationArray.length;
+            }
+        });
+        return maxLength;
     }
 }
