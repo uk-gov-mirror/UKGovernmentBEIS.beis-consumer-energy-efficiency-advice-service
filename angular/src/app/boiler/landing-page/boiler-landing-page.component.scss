@@ -292,7 +292,7 @@
         flex-basis: 50%;
       }
 
-      .tenant {
+      .troubleshooting-link {
         padding-left: 8px;
         flex-basis: 50%;
       }
@@ -460,12 +460,31 @@
 
   @include desktop() {
 
+    .page-heading {
+      background-color: $focus-blue;
+      color: white;
+
+      .heading-text {
+        color: white;
+      }
+    }
+
+    .boiler-options {
+      display: flex;
+    }
+
     .troubleshooting {
       background-color: $lighter-grey;
+      flex: 1 1 50%;
 
       .heading {
         margin-bottom: 8px;
       }
+
+    }
+
+    .replacing {
+      flex: 1 1 50%;
     }
 
     .tips {
@@ -488,7 +507,7 @@
         flex-direction: column;
         justify-content: space-between;
 
-        .still-not-working, .tenant {
+        .still-not-working, .troubleshooting-link {
           flex: 0 0 50%;
           display: flex;
           flex-direction: column;
@@ -503,7 +522,7 @@
           border-bottom: 1px solid $light-medium-grey;
         }
 
-        .tenant {
+        .troubleshooting-link {
           justify-content: flex-end;
         }
       }

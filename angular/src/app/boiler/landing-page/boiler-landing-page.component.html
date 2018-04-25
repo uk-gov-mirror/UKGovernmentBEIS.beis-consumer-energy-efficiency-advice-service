@@ -2,90 +2,61 @@
     <div class="page-heading page-row">
         <div class="page-row-content">
             <div class="heading-text">Boilers & Heating Systems</div>
+            <div class="subheading-text">Troubleshooting your boiler or finding the best replacement</div>
         </div>
     </div>
-    <div class="troubleshooting page-row">
-        <div class="page-row-content">
-            <div class="mobile-expander" [ngClass]="{'selected-expander': troubleshootingMobileExpanded}"
-                 (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded;
+    <div class="boiler-options">
+        <div class="troubleshooting page-row">
+            <div class="page-row-content">
+                <div class="mobile-expander" [ngClass]="{'selected-expander': troubleshootingMobileExpanded}"
+                     (click)="troubleshootingMobileExpanded = !troubleshootingMobileExpanded;
                     replacingMobileExpanded = false;
                     grantsMobileExpanded = false;
                     installerMobileExpanded = false;
                     scrollTo($event)">
-                <div class="collapsible-header">
-                    <div class="heading collapsible-heading">Troubleshooting tips</div>
-                    <div class="expand-step-icon"
-                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                </div>
-                <div class="body-text body-text-mobile">Try these 5 fixes before calling an engineer</div>
-
-            </div>
-            <div class="tips" [ngClass]="{'mobile-hidden': !troubleshootingMobileExpanded}">
-                <app-carousel class="carousel"></app-carousel>
-                <div class="links">
-                    <div class="still-not-working">
-                        <div class="body-large button-heading-mobile">Still not working?</div>
-                        <app-boiler-link-button routerLink="/certified-repairers/" class="link-button"
-                                                text="Check out our list of certified repairers"></app-boiler-link-button>
+                    <div class="collapsible-header">
+                        <div class="heading collapsible-heading">Is your boiler having trouble?</div>
+                        <div class="expand-step-icon"
+                             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                     </div>
-                    <div class="tenant">
-                        <div class="body-large button-heading-mobile">Are you a tenant?</div>
-                        <app-boiler-link-button routerLink="/landlord-obligations/" class="link-button"
-                                                text="Find out about your landlord's obligations"></app-boiler-link-button>
+                    <div class="body-text">Try these 5 fixes before calling an engineer</div>
+
+                </div>
+                <div class="tips" [ngClass]="{'mobile-hidden': !troubleshootingMobileExpanded}">
+                    <div class="troubleshooting-link">
+                        <app-boiler-link-button routerLink="/boiler/troubleshooting" class="link-button"
+                                                text="Troubleshooting tips"></app-boiler-link-button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="replacing page-row">
-        <div class="page-row-content">
-            <div class="mobile-expander" [ngClass]="{'selected-expander': replacingMobileExpanded}"
-                 (click)="replacingMobileExpanded = !replacingMobileExpanded;
+        <div class="replacing page-row">
+            <div class="page-row-content">
+                <div class="mobile-expander" [ngClass]="{'selected-expander': replacingMobileExpanded}"
+                     (click)="replacingMobileExpanded = !replacingMobileExpanded;
                     troubleshootingMobileExpanded = false;
                     grantsMobileExpanded = false;
                     installerMobileExpanded = false;
                     scrollTo($event)">
-                <div class="collapsible-header">
-                    <div class="large-heading collapsible-heading">Thinking about replacing your boiler?</div>
-                    <div class="expand-step-icon"
-                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                </div>
-                <div class="boiler-options">
-                    <div class="body-text">
-                        If you're replacing your boiler or heating system, there are many options to choose from.
-                        Review all the different types or use our heating system calculator to find the right option for
-                        your home.
+                    <div class="collapsible-header">
+                        <div class="large-heading collapsible-heading">Thinking about replacing your boiler?</div>
+                        <div class="expand-step-icon"
+                             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                     </div>
-                    <div class="body-text-mobile">
-                        Review all the different types or use our heating system calculator.
-                    </div>
-                </div>
-            </div>
-
-            <div class="replace-options" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
-                <div class="body">
-                    <div class="replace-column">
-                        <div class="text-content">
-                            <div class="small-heading small-heading-mobile">Yes. My boiler needs replacing</div>
-                            <div class="help-text">
-                                We can provide you with information about the range of boiler types that are
-                                available, including average lifetimes and running costs
-                            </div>
+                    <div class="boiler-options">
+                        <div class="body-text">
+                            Review all the different types or use our heating system calculator to find the right option
+                            for
+                            your home.
                         </div>
-                        <app-boiler-link-button class="link-button"
-                                                [ngClass]="{'mobile-hidden': !replacingMobileExpanded}"
-                                                text="Let's look at some boiler options"
-                                                path="/boiler/replace"></app-boiler-link-button>
-                    </div>
-                    <div class="postcode-lookup-column" [ngClass]="{'mobile-hidden': !replacingMobileExpanded}">
-                        <div class="small-heading small-heading-mobile">I'm not sure if my boiler needs replacing</div>
-                        <div class="help-text">
-                            We can try your postcode to see if the Energy Performance Certificate (EPC) for your
-                            home has any information on your boiler
+                        <div class="body-text-mobile">
+                            Review all the different types or use our heating system calculator.
                         </div>
-                        <app-postcode-lookup class="postcode-epc input-grey"
-                                             (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
                     </div>
+                    <app-boiler-link-button class="link-button"
+                                            [ngClass]="{'mobile-hidden': !replacingMobileExpanded}"
+                                            text="Boiler options"
+                                            path="/boiler/replace"></app-boiler-link-button>
                 </div>
             </div>
         </div>
@@ -118,7 +89,7 @@
                 <div class="links" [ngClass]="{'mobile-hidden': !grantsMobileExpanded}">
                     <app-boiler-link-button routerLink="/boiler-grants/" class="link-button"
                                             text="Find out about boiler grants"></app-boiler-link-button>
-                    <app-boiler-link-button routerLink="/boiler/heat-incentive/"  class="link-button"
+                    <app-boiler-link-button routerLink="/boiler/heat-incentive/" class="link-button"
                                             text="Earn money via the renewable heat incentive"></app-boiler-link-button>
                 </div>
             </div>

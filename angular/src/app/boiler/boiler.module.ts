@@ -4,8 +4,6 @@ import {FormsModule} from '@angular/forms';
 import {InlineSVGModule} from 'ng-inline-svg';
 
 import {BoilerLandingPageComponent} from './landing-page/boiler-landing-page.component';
-import {CarouselComponent} from './landing-page/carousel/carousel.component';
-import {CarouselItemComponent} from './landing-page/carousel/carousel-item/carousel-item.component';
 import {SharedModule} from '../shared/shared.module';
 import {BoilerEpcReplaceComponent} from './epc-replace/boiler-epc-replace.component';
 import {BoilerMakeModelLookupComponent} from './make-model-lookup/boiler-make-model-lookup.component';
@@ -24,12 +22,11 @@ import {BoilerMakeModelReplaceComponent} from './make-model-replace/boiler-make-
 import {BoilerAdvicePageComponent} from './advice-page/boiler-advice-page.component';
 import {BoilerRegulationCardComponent} from './advice-page/boiler-regulation-card/boiler-regulation-card.component';
 import {BoilerLinkButtonComponent} from './boiler-link-button/boiler-link-button.component';
+import {TroubleshootingPageComponent} from './troubleshooting-page/troubleshooting-page.component';
 
 @NgModule({
     declarations: [
         BoilerLandingPageComponent,
-        CarouselComponent,
-        CarouselItemComponent,
         BoilerEpcReplaceComponent,
         BoilerMakeModelLookupComponent,
         BoilerReplacementCardComponent,
@@ -40,7 +37,8 @@ import {BoilerLinkButtonComponent} from './boiler-link-button/boiler-link-button
         BoilerMakeModelReplaceComponent,
         BoilerAdvicePageComponent,
         BoilerRegulationCardComponent,
-        BoilerLinkButtonComponent
+        BoilerLinkButtonComponent,
+        TroubleshootingPageComponent
     ],
     imports: [
         CommonModule,
