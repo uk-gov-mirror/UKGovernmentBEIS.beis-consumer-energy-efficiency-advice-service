@@ -13,6 +13,6 @@ set -ex
 
 cf --version
 cf login -a api.cloud.service.gov.uk -u $USERNAME -p $PASSWORD -o "beis-domestic-energy-advice-service" -s $SPACE
-./ci-admin-site-deploy.sh
-./ci-user-site-deploy.sh
+./infrastructure/ci-admin-site-deploy.sh
+./infrastructure/ci-user-site-deploy.sh
 cf logout
