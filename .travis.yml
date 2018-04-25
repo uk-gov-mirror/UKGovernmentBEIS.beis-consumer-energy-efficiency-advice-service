@@ -1,4 +1,9 @@
 sudo: required
+language: java
+node_js: 8.5.0
+npm: 8.5.0
 addons:
   chrome: stable
-script: ./infrastructure/ci-user-site-test.sh
+script:
+  - ./infrastructure/ci-user-site-test.sh
+  - ./infrastructure/ci-admin-site-test.sh
