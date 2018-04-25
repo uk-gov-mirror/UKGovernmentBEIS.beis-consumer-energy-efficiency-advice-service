@@ -148,7 +148,8 @@ If this service is down, then the site should continue to work OK, except that n
 data will be available. The questionnaire should continue to work without this data,
 so users should not notice any issues.
 
-If this service is down then TODO:BEISDEAS-258 things go wrong...
+If this service is down then users will be able to continue completing questionnaires, but
+will not receive information about local grants, and we will not send EPC data to BRE.
 
 ### Google Analytics
 
