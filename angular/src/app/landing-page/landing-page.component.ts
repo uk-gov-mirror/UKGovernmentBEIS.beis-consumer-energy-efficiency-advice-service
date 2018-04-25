@@ -33,6 +33,11 @@ export class LandingPageComponent implements OnInit {
 
     onPostcodeSelected() {
         this.postcode = this.responseData.postcode;
+        if (!this.postcode) {
+            // If the postcode lookup has failed, we should send them on to the questionnaire,
+            // as it can still be completed without this information
+            this.router.navigate(['/energy-efficiency/questionnaire/home-basics']);
+        }
     }
 
     onEpcSelected() {
