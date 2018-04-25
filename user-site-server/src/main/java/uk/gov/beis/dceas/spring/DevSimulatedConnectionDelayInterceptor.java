@@ -26,8 +26,8 @@ public class DevSimulatedConnectionDelayInterceptor extends HandlerInterceptorAd
         ModelAndView modelAndView) throws Exception {
         long responseDelay = 500 - (System.currentTimeMillis() - reqStartTime);
         if (responseDelay > 0) {
+            log.debug("Sleeping for {}ms to simulate connection delays in real usage", responseDelay);
             TimeUnit.MILLISECONDS.sleep(responseDelay);
         }
-        log.debug("Sleeping for {}ms to simulate connection delays in real usage", responseDelay);
     }
 }

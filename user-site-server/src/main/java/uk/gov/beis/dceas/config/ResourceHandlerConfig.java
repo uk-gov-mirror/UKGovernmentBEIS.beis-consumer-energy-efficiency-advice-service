@@ -46,8 +46,6 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
             config.addResourceLocations(
                     "file:user-site-server/src/main/resources/public/");
 
-            // If on a dev machine, add an interceptor which adds a 500ms delay
-            addInterceptors(new InterceptorRegistry());
         } else {
             config.addResourceLocations("classpath:/public/");
             // Browser cache:
@@ -62,6 +60,9 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(new DevSimulatedConnectionDelayInterceptor());
+        if(environment.acceptsProfiles("dev")){
+            // If in a dev environment, add an interceptor which adds a 500ms delay to all requests
+            registry.addInterceptor(new DevSimulatedConnectionDelayInterceptor());
+        }
     }
 }
