@@ -1,0 +1,1 @@
+script: ./infrastructure/ci-user-site-test.sh
