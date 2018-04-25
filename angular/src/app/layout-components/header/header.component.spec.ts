@@ -9,6 +9,7 @@ import {UserStateService} from '../../shared/user-state-service/user-state-servi
 import {SearchBarComponent} from '../search-bar/search-bar.component';
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -21,7 +22,8 @@ describe('HeaderComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 HeaderComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

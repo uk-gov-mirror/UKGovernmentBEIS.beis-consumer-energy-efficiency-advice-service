@@ -13,6 +13,7 @@ import * as log from 'loglevel';
 export class YourHomeComponent implements OnInit {
     isLoading: boolean;
     isError: boolean;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     parameterString: string;
     yourHomeContent: YourHomeContent;
     measures: MeasureContent[];

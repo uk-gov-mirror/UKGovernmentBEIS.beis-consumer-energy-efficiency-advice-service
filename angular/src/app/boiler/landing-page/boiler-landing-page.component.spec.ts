@@ -14,6 +14,7 @@ import {ResponseData} from '../../shared/response-data/response-data';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
@@ -37,6 +38,7 @@ describe('BoilerLandingPageComponent', () => {
                 PostcodeLookupComponent,
                 TimesPipe,
                 BoilerLinkButtonComponent,
+                SpinnerAndErrorContainerComponent
             ],
             imports: [
                 FormsModule,

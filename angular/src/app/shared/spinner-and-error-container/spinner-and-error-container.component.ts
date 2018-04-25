@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 export class SpinnerAndErrorContainerComponent {
     @Input() loading: boolean;
     @Input() error: boolean;
+    @Input() errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later";
 }

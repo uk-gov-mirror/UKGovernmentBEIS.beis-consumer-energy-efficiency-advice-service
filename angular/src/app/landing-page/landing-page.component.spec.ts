@@ -23,6 +23,7 @@ import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-
 import {InlineSVGModule} from 'ng-inline-svg';
 import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -52,7 +53,8 @@ describe('LandingPageComponent', () => {
                 DataCardComponent,
                 NavBarSuboptionComponent,
                 DataCardComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             imports: [
                 CommonModule,

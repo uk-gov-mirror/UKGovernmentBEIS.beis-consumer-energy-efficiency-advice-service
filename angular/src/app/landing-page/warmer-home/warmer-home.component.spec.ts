@@ -24,6 +24,7 @@ import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.
 import {InlineSVGModule} from 'ng-inline-svg';
 import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -52,7 +53,8 @@ describe('WarmerHomeComponent', () => {
                 DataCardComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             imports: [
                 CommonModule,
