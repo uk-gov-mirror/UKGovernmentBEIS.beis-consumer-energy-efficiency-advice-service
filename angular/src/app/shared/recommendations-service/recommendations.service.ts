@@ -149,6 +149,8 @@ export class RecommendationsService {
             .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
     }
 
+    // The entries in "recommendationArrays" are arrays of recommendations from different sources
+    // We interleave them into a single list, taking one from each array in turn until they are exhausted
     private static orderRecommendations(recommendationArrays:
         (EnergyEfficiencyRecommendation[])[]): EnergyEfficiencyRecommendation[] {
         const maxLength = RecommendationsService.getMaxLengthOfRecommendationArrays(recommendationArrays);
@@ -164,12 +166,6 @@ export class RecommendationsService {
     }
 
     private static getMaxLengthOfRecommendationArrays(recommendationArrays) {
-        let maxLength = 0;
-        recommendationArrays.forEach(recommendationArray => {
-            if (recommendationArray.length > maxLength) {
-                maxLength = recommendationArray.length;
-            }
-        });
-        return maxLength;
+        return recommendationArrays.map(a => a.length).reduce((x, y) => Math.max(x, y), 0);
     }
 }
