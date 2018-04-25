@@ -1,48 +1,73 @@
 <div class="mees-page">
     <div class="page-row page-heading">
-        <div class="page-row-content">
-            <div class="heading-text" [ngSwitch]="status">
-                <ng-container *ngSwitchCase="MeesResultsStatus.NoActionRequired">
-                    No action required
-                </ng-container>
-                <ng-container *ngSwitchCase="MeesResultsStatus.EpcRequired">
-                    You need to get an EPC assessment
-                </ng-container>
-                <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
-                    You are required to install the recommended improvements
-                </ng-container>
+        <div class="page-row-content" [ngSwitch]="status">
+            <div class="heading-text" *ngSwitchCase="MeesResultsStatus.NoActionRequired">
+                No action required
             </div>
+            <div class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
+                You need to get an EPC assessment
+            </div>
+            <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
+                <div class="heading-text">
+                    You are required to install the recommended improvements
+                </div>
+                <div class="subheading-text">
+                    You will now need to take steps to improve the EPC score to:
+                    <div class="subheading-epc">E</div>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
                 <ng-container *ngSwitchCase="MeesResultsStatus.NoActionRequired">
-                    {{noActionReason}}, you are not affected by the Minimum Energy Efficiency Standards regulations
-                    and may let the property.
+                    <div class="summary tick">
+                        {{noActionReason}}, you are not affected by the Minimum Energy Efficiency Standards regulations
+                        and may let the property.
+                    </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcRequired">
-                    Once your property has been assessed, if your rating is F or G you may be required to make
-                    improvements - you can take this questionnaire again to clarify.
+                    <div class="summary">
+                        Once your property has been assessed, if your rating is F or G you may be required to make
+                        improvements - you can take this questionnaire again to clarify.
+                    </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
-                    <p>
+                    <div class="summary">
                         Based on the information you have provided your property is covered by the Minimum Energy
-                        Efficiency Standards regulations and you will now need to take steps to improve the EPC score to
-                        E. To find funding to help you make these improvements,
-                        <a routerLink="/pages/funding-opportunities-for-landlords">click here</a>.
-                    </p>
-                    <p>
-                        When you’ve installed any recommended improvements which can be funded, you’ll need to get your
-                        EPC evaluated again. If the property is now rated E or above then you are compliant with the
-                        legislation.
-                    </p>
-                    <p>
-                        If you think your property may be exempt,
-                        <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>.
-                    </p>
+                        Efficiency Standards regulations and you will now need to take steps to improve your property's
+                        EPC rating.
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            When you’ve installed any recommended improvements which can be funded, you’ll need to get
+                            your EPC evaluated again. If the property is now rated E or above then you are compliant
+                            with the legislation. To find funding to help you make these improvements,
+                            <a routerLink="/pages/funding-opportunities-for-landlords">click here</a>.
+                        </div>
+                        <div class="column">
+                            If you think your property may be exempt,
+                            <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>.
+                        </div>
+                    </div>
                 </ng-container>
             </div>
+        </div>
+    </div>
+    <div class="page-row">
+        <app-latest-news-section tag="tag_homepage" googleAnalyticsCategory="minimum-energy-efficiency-standards"></app-latest-news-section>
+    </div>
+    <div class="page-row calculator">
+        <div class="page-row-content banner">
+            <div class="image"></div>
+            <div class="heading">Try our energy efficiency calculator</div>
+            <a routerLink="/energy-efficiency/reduce-bills" class="link">
+                <div class="description">
+                    It takes 5 minutes to complete to receive your recommendations
+                </div>
+                <div class="arrow-button">Try now</div>
+            </a>
         </div>
     </div>
 </div>
