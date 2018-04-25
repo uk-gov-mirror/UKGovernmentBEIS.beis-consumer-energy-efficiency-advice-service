@@ -65,14 +65,15 @@ export class PostcodeLookupComponent implements OnInit {
     }
 
     private handleSearchError(error: any): void {
-        if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
-            this.validationError = true;
-        }
-
         this.responseData.postcode = null;
         this.responseData.localAuthorityCode = null;
 
         this.loading = false;
+
+        if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
+            this.validationError = true;
+            return;
+        }
         this.postcodeSelected.emit();
     }
 }
