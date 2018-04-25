@@ -4,57 +4,37 @@
         <div class="body-text">Troubleshooting your boiler or finding the best replacement</div>
     </div>
 </div>
-<div class="boiler-options">
-    <div class="troubleshooting boiler-option page-row">
-        <div class="page-row-content">
-            <div class="heading">Is your boiler having trouble?</div>
-            <div class="body-text">Try these 5 fixes before calling an engineer</div>
-            <div class="link">
-                <app-boiler-link-button routerLink="/boiler/troubleshooting" class="link-button"
-                                        text="Troubleshooting tips"></app-boiler-link-button>
+<div class="page-row quick-links">
+    <div class="quick-links-content page-row-content">
+        <a class="troubleshooting" (click)="onTroubleshootingClick()">
+            <div class="troubleshooting-content">
+                <div class="heading">Is your boiler having trouble?</div>
+                <div class="body-text">Try these 5 fixes before calling an engineer</div>
+                <div class="arrow-button">Troubleshooting tips</div>
+                <span class="boiler-image"></span>
             </div>
-        </div>
-    </div>
-    <div class="replacing boiler-option page-row">
-        <div class="page-row-content">
-            <div class="heading">Thinking about replacing your boiler?</div>
-            <div class="body-text">Review all the different types or use our heating system
-                calculator to find the right option for your home.
+        </a>
+        <a class="replacing" (click)="onReplacingBoilerClick()">
+            <div class="replacing-content">
+                <div class="heading">Thinking about replacing your boiler?</div>
+                <div class="body-text">Review all the different types or use our heating system
+                    calculator to find the right option for your home.
+                </div>
+                <div class="arrow-button">Boiler options</div>
+                <span class="boiler-image"></span>
             </div>
-            <div class="link">
-                <app-boiler-link-button routerLink="/boiler/replace" class="link-button"
-                                        text="Boiler options"></app-boiler-link-button>
-            </div>
-        </div>
+        </a>
     </div>
 </div>
-<div class="find-installer page-row">
+<div class="installer page-row">
     <div class=" page-row-content">
         <div class="heading">Find a trustworthy installer</div>
-    </div>
-</div>
-<div class="installers" [ngClass]="{'mobile-hidden': !installerMobileExpanded}">
-    <div class="plumbing-installers">
-        <div class="installer">
-            <div class="installer-section small-heading-mobile">For plumbing</div>
-            <a class="installer-link">Competent Persons Register</a>
+        <div class="body-text">Telling us your postcode and address lets us find information about energy
+            efficiency at your property from previous surveys. It also means we can show you relevant information,
+            such as grants that might be available in your area.
         </div>
-        <div class="installer">
-            <a class="installer-link">Scottish & Northern Ireland Plumbing Employers' Federation</a>
-        </div>
-        <div class="installer">
-            <a class="installer-link">Heating and Hotwater Industry Council</a>
-        </div>
-    </div>
-    <div class="other-installers">
-        <div class="installer">
-            <div class="installer-section small-heading-mobile">For oil boilers</div>
-            <a class="installer-link">Oil Firing Technical Association</a>
-        </div>
-        <div class="installer">
-            <div class="installer-section small-heading-mobile">For gas and LPG boilers</div>
-            <a class="installer-link">Gas Safe Register</a>
-        </div>
+        <app-postcode-lookup class="postcode-epc input-grey"
+                             (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
     </div>
 </div>
 <div class="grants page-row">

@@ -27,4 +27,12 @@ export class BoilerLandingPageComponent {
     scrollTo(event: MouseEvent) {
         event.srcElement.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     }
+
+    onTroubleshootingClick() {
+        this.router.navigate(['/boiler/troubleshooting']);
+    }
+
+    onReplacingBoilerClick() {
+        this.router.navigate(['/boiler/replace']);
+    }
 }

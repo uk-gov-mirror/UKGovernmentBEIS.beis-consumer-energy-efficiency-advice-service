@@ -2,8 +2,27 @@
 @import "styles/page";
 
 // Component specific variables
+$boiler-image: "/assets/images/home-page/boiler-flame.svg";
+$arrow-width: 20px;
+$arrow-height: 48px;
 
 // Component specific mixins
+@mixin is-quick-link-image($url, $distance-from-right, $distance-from-top, $height, $width) {
+  background: url($url) no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+  position: absolute;
+  content: "";
+  right: $distance-from-right;
+  top: $distance-from-top;
+  height: $height;
+  width: $width;
+}
+
+@mixin is-boiler-link-image($distance-from-right, $distance-from-top, $height, $width) {
+  @include is-quick-link-image($boiler-image, $distance-from-right, $distance-from-top, $height, $width);
+}
+
 
 // General styling (shouldn't contain many widths/sizes etc.)
 
@@ -17,29 +36,100 @@
   }
 }
 
-.boiler-options {
-  display: flex;
+.quick-links {
   background-color: $lighter-grey;
 
-
-  .body-text {
-    color: $headline-dark-blue;
-    font-family: $font-family-light;
+  .quick-links-content {
+    display: flex;
   }
 
-  .body-option {
-    padding: 80px 40px;
+  .troubleshooting, .replacing {
+    display: flex;
+    flex: 1 1 50%;
     min-height: 300px;
+    margin: -80px 0;
+    box-sizing: border-box;
+    padding: 80px 0;
+
+    .page-row-content {
+      flex-direction: column;
+    }
+
+    .heading, .body-text {
+      margin-bottom: 40px;
+      padding-right: 196px;
+    }
+
+    .body-text {
+      color: $headline-dark-blue;
+      font-family: $font-family-light;
+    }
+
+    .arrow-button {
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+      @include quick-link-font;
+      height: $arrow-height;
+      padding-left: 20px;
+      width: 50%;
+
+      background: white;
+      color: $primary-blue;
+
+      &:after {
+        position: absolute;
+        right: -$arrow-width;
+        top: 0;
+        content: " ";
+        border: ($arrow-height / 2) solid transparent;
+        border-right-width: 0;
+        border-left: $arrow-width solid white;
+      }
+    }
   }
 
   .troubleshooting {
-    flex: 1 1 50%;
     border-right: 2px white solid;
+
+    &:focus, &:hover {
+      .arrow-button {
+        color: white;
+        background: $primary-blue;
+        &:after {
+          border-left-color: $primary-blue;
+        }
+      }
+    }
   }
 
   .replacing {
-    flex: 1 1 50%;
     border-left: 2px white solid;
+    padding-left: 40px;
+
+    &:focus, &:hover {
+      .arrow-button {
+        color: white;
+        background: $primary-blue;
+        &:after {
+          border-left-color: $primary-blue;
+        }
+      }
+    }
+  }
+
+  .boiler-image:after {
+    @include is-boiler-link-image(330px, -300px, 55%, 77px);
+  }
+}
+
+.installer {
+  .page-row-content {
+    box-sizing: border-box;
+    padding: 0 225px;
+    text-align: center;
   }
 }
 
