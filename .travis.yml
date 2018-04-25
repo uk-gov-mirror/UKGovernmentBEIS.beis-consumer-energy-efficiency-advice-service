@@ -1,9 +1,15 @@
 sudo: required
-language: java
-node_js: 8.5.0
-npm: 8.5.0
 addons:
   chrome: stable
 script:
-  - ./infrastructure/ci-user-site-test.sh
-  - ./infrastructure/ci-admin-site-test.sh
+- "./infrastructure/ci-user-site-test.sh"
+- "./infrastructure/ci-admin-site-test.sh"
+- cf --version
+- cf login -a api.cloud.service.gov.uk -u $USERNAME -p $PASSWORD -o "beis-domestic-energy-advice-service" -s int
+- "./infrastructure/ci-admin-site-deploy.sh"
+- "./infrastructure/ci-user-site-deploy.sh"
+- cf logout
+env:
+  global:
+  - secure: aCI9py4qcP9fJFBy5R1FAQizh4tz1wmNrLRHPQjOCaUB9KmlKdcN9bYxRErcZv4ycfmVmR1LPtpAjKqbpVmBqTVGbQf8VBrwm1Wm+zh8XIbToB+5OZDFZiLeU8VT4c79aCnONKDlly2NcI52mzZGs7F97R4DKt8lux1YjlyhxCBxbidJ+Qdk0nRYAx1qrcBZHNp8sGJhQV9LAOnSx3K8ilT4bFIKDIBVjmq1+TZnss8Qtr5jrqDCdFBBhqS0IFiVT3b2ijQncyrpEHOlP0folEXE61dp9dx2NldaKB50D4oH0WMiEIK3lOuqFiwoe9EQh5Lu8i/nm6id9JcuIUVvYTN53CNGTAes5AI73IkekZVGTW21SlGDnyZWagTxvORhq5VO0d/tJ6hat2XyeUCINSpW/tpjHBajlANpBw5NdVpaN0ZBk84cA+UPnKmfLBzzt7hBw9eeOug85f6Z/Vl411a2LrqWA/269D8hr1mdxlBwOlRHOLa0mEUI6UkaJ5AbrpS9d5+15mbYmtCSgB58UvOIkb4AAAQjXarMnN0qzB1qgXaALd9MDVUiRG3+7izyqa0HXS9F16zWNWnwPqMgCcNDZJqNVM5fKGOckgpEEA05s9dr6rGf/gknMbLJLXNw7YGBURh8QMS7Z3qedVMsWp9pZvdcvaWNIRkU1C2sTyY=
+  - secure: PIxBYbpTqwkRQ72t6oVwWO4qsxA7dxJxJrIcX2+hcJe+g/xRJ7pRXVSHaRJOFpHa+LMYFiI5suirdo+xb+qXe6e6z+962iQNvJz0SnNYMHWnTq6clfYhOIA3EDqcrR6LzNxCvnIrTzvs05h/04inlmk+gTXdYqGccmknmP7y2w70N3d09t+wf+OiEihLRaGiybUilbI7IwaAi76xzHQukciGUAucaoaBgO6l1X5vz93YgwLiTTP0i8/HfA3LhTr3BjeCvShzUAHJdXma4RSgR56zRZ158C5q6xKWbCO/OXKr2bB5vVbW2RjYfrbXrsaV9yq7mUBh1hy5blMnNdNLhSmO9mZjpfjt4OeV78ZnIpdCIdnsoPVG2fNVRQyAqW+MI3QoqMuEtnsNO9mNqoDQmEnl/ni5kEpw5o/SUcXkmNfOwZu5mxQIN3739fJJ0bdvaNxPVm/nMKHKzHTzTmo4yFyZW4GFxS6eIUMCb6sw5yzAdHHmmEBsIM/5AxK8o63NmqapGDrAz3ZZym0zOjLNXeAj722JDpHGOh/NA7W6vNiqGmshP/P9ujv8dH4VA3Pz9AaIA/LMqNYCnE0ti5lq9MWNxoxTtkomJYsO60L7LOQLFnJIrFk1uIJZGK5dFE42xUo3DH4BK3Ub81kKd0dyUi0lcD5GbxwjF/d+Bfi5iyo=
