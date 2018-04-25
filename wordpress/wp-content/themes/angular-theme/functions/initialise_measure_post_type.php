@@ -238,7 +238,8 @@ function setup_measure_acf_group() {
                             'name' => 'more_info_links',
                             'type' => 'repeater',
                             'instructions' => 'If you want to link to a page within the site, use a relative URL like
-                             "/installer-search/measure-code", otherwise you can give the absolute URL of the site',
+                             "/installer-search/measure-code", otherwise you can give the absolute URL of the site 
+                             like http://google.co.uk',
                             'required' => 0,
                             'conditional_logic' => 0,
                             'wrapper' => array(

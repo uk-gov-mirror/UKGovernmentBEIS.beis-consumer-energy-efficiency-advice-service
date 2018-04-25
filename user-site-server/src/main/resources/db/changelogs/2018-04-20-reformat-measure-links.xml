@@ -10,6 +10,17 @@
                dbms="mysql">
         <sql><![CDATA[
 
+/*
+This migration is reformatting the measure links so that instead of there being a choice between external and page links,
+there is instead one type of link: "link_url", and the details of whether it is external or internal is handled on the website
+itself. This was done because not all internal links are links to Wordpress pages, and Wordpress doesn't support relative links.
+*/
+
+-- 1a INSERT "link_url" for each old "linked_page" WHERE is_external_link=0
+-- 1b INSERT "link_url for each old "external_link" WHERE is_external_link = 1
+
+-- The number of steps progress up to 6 because that, at the time of writing, is the highest number of steps any measure has
+
 -- 1a
 
 INSERT into wp_postmeta
