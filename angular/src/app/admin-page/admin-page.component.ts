@@ -19,11 +19,11 @@ export class AdminPageComponent {
         this.error = false;
         this.loading = true;
         this.userStateService.joinSession(this.sessionReference, (error) => this.handleError(error));
+        this.loading = false;
     }
 
     private handleError(error) {
         this.error = true;
-        this.loading = false;
         log.error(error);
     }
 }

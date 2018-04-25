@@ -14,7 +14,7 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import java.time.Duration;
 import static java.time.temporal.ChronoUnit.DAYS;
 
-import uk.gov.beis.dceas.spring.Interceptor;
+import uk.gov.beis.dceas.spring.DevSimulatedConnectionDelayInterceptor;
 
 @Configuration
 public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
@@ -62,6 +62,6 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(new Interceptor());
+        registry.addInterceptor(new DevSimulatedConnectionDelayInterceptor());
     }
 }
