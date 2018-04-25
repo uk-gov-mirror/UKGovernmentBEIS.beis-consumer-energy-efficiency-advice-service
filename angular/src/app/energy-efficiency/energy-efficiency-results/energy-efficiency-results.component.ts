@@ -64,7 +64,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             .subscribe(
                 ([allRecommendations, localAuthority, energyCalculationResponse]) =>
                     this.onLoadingComplete(allRecommendations, localAuthority, energyCalculationResponse),
-                (err) => this.displayErrorMessage(err),
+                (err) => {
+                    this.errorMessage = "Sorry, we couldn't find any recommendations for you";
+                    this.displayErrorMessage(err);
+                },
             );
         this.userStateService.saveState();
     }
