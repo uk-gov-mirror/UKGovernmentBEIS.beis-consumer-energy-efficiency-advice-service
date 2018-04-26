@@ -10,6 +10,7 @@ jobs:
   include:
     - stage: test
       script: "./infrastructure/ci-user-site-test.sh"
+    - stage: test
       script: "./infrastructure/ci-admin-site-test.sh"
     - stage: deploy-to-int
       if: branch=master
