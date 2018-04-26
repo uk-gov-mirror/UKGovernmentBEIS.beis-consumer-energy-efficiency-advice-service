@@ -1,6 +1,4 @@
 sudo: required
-addons:
-  chrome: stable
 branches:
   only:
   - master
@@ -10,6 +8,8 @@ jobs:
   include:
     - stage: test
       script: "./infrastructure/ci-angular-user-site-test.sh"
+      addons:
+        chrome: stable
     - stage: test
       script: "./infrastructure/ci-java-user-site-test.sh"
     - stage: test
