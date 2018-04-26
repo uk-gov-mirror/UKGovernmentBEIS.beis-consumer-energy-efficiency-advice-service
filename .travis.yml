@@ -7,16 +7,15 @@ branches:
   - staging
   - live
 before_install:
-  # Make sure cf is installed
-  - wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-  - echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-  - sudo apt-get -qq update
-  - sudo apt-get install cf-cli
+- wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key |
+  sudo apt-key add -
+- echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+- sudo apt-get -qq update
+- sudo apt-get install cf-cli
 script:
-  - "./infrastructure/ci-user-site-test.sh"
-  - "./infrastructure/ci-admin-site-test.sh"
+- "./infrastructure/ci-user-site-test.sh"
+- "./infrastructure/ci-admin-site-test.sh"
 deploy:
-  # Deploy to int on changes to the master branch
   provider: script
   script: SPACE=int ./infrastructure/deploy.sh
   on:
@@ -24,5 +23,5 @@ deploy:
 after_deploy: "./infrastructure/ci-integration-test.sh"
 env:
   global:
-  - secure: aCI9py4qcP9fJFBy5R1FAQizh4tz1wmNrLRHPQjOCaUB9KmlKdcN9bYxRErcZv4ycfmVmR1LPtpAjKqbpVmBqTVGbQf8VBrwm1Wm+zh8XIbToB+5OZDFZiLeU8VT4c79aCnONKDlly2NcI52mzZGs7F97R4DKt8lux1YjlyhxCBxbidJ+Qdk0nRYAx1qrcBZHNp8sGJhQV9LAOnSx3K8ilT4bFIKDIBVjmq1+TZnss8Qtr5jrqDCdFBBhqS0IFiVT3b2ijQncyrpEHOlP0folEXE61dp9dx2NldaKB50D4oH0WMiEIK3lOuqFiwoe9EQh5Lu8i/nm6id9JcuIUVvYTN53CNGTAes5AI73IkekZVGTW21SlGDnyZWagTxvORhq5VO0d/tJ6hat2XyeUCINSpW/tpjHBajlANpBw5NdVpaN0ZBk84cA+UPnKmfLBzzt7hBw9eeOug85f6Z/Vl411a2LrqWA/269D8hr1mdxlBwOlRHOLa0mEUI6UkaJ5AbrpS9d5+15mbYmtCSgB58UvOIkb4AAAQjXarMnN0qzB1qgXaALd9MDVUiRG3+7izyqa0HXS9F16zWNWnwPqMgCcNDZJqNVM5fKGOckgpEEA05s9dr6rGf/gknMbLJLXNw7YGBURh8QMS7Z3qedVMsWp9pZvdcvaWNIRkU1C2sTyY=
-  - secure: PIxBYbpTqwkRQ72t6oVwWO4qsxA7dxJxJrIcX2+hcJe+g/xRJ7pRXVSHaRJOFpHa+LMYFiI5suirdo+xb+qXe6e6z+962iQNvJz0SnNYMHWnTq6clfYhOIA3EDqcrR6LzNxCvnIrTzvs05h/04inlmk+gTXdYqGccmknmP7y2w70N3d09t+wf+OiEihLRaGiybUilbI7IwaAi76xzHQukciGUAucaoaBgO6l1X5vz93YgwLiTTP0i8/HfA3LhTr3BjeCvShzUAHJdXma4RSgR56zRZ158C5q6xKWbCO/OXKr2bB5vVbW2RjYfrbXrsaV9yq7mUBh1hy5blMnNdNLhSmO9mZjpfjt4OeV78ZnIpdCIdnsoPVG2fNVRQyAqW+MI3QoqMuEtnsNO9mNqoDQmEnl/ni5kEpw5o/SUcXkmNfOwZu5mxQIN3739fJJ0bdvaNxPVm/nMKHKzHTzTmo4yFyZW4GFxS6eIUMCb6sw5yzAdHHmmEBsIM/5AxK8o63NmqapGDrAz3ZZym0zOjLNXeAj722JDpHGOh/NA7W6vNiqGmshP/P9ujv8dH4VA3Pz9AaIA/LMqNYCnE0ti5lq9MWNxoxTtkomJYsO60L7LOQLFnJIrFk1uIJZGK5dFE42xUo3DH4BK3Ub81kKd0dyUi0lcD5GbxwjF/d+Bfi5iyo=
+  - secure: Wes650c57YRdfzOvzSodNvPOfb3hRbqM+WKmMZGg0MR8eMkF2PLZrZXrRWHvmsxJ0leyAy9OU97veuuLEECg5Jm82K8TGWqsX9yCCkeqsDbMZgH/ErvQJx5sotldbj3u6EZtujUbGuu0zf7gAEmCrOoq6h30k59pGWgQYHDOYCXrQQwOgctQvQ1a3j6atrAFER2WNISlhW1zHwfUvn8qovcdo0yjHLy4vvYZAkrmapfe2eXl+q/FArx503oDIFkGtCgN57lFvxKNBMZltiMmY1QGOAvuuJFTTJbza1/xI0TFJCYWG9dPKLnT68yGySwcuZ6yVpUAI18RJE3EUn2wAkROUDl3cg9zL6j9W+TwXN5sfoNjKD0OoTBuMEcllNM+VQIZZUHCf6TqdLXkF76vZW/apQwarmeDmHsUzAQeoRpy+Uh2PJbUSn1Tp8Gkk+WYl30f84akqWYsnMuxZ1IokG8BeJ0X9tC+g2LnDrlTyAuJ8twjE0559BbqQb37nGY24ha2C+zh9mz6QvVBAArJ7zTTSy914oJBh13Uvi6ybl2HC0fF2sw1PfXmINyXYjaLXACtqi4ptZJi8b3For7RtdoEvEhKbLMj8g3Y2falPG0fZscpPHWPvMVZM7azeokfTuNFYAmu99g/SvGhYN/iZeuKqi0w3ESuh0mskz7qMz8=
+  - secure: TNxnkUvgHeJJws/x/43xdV3tul2AkshRrdJ3C3OD9M+TGwhH89UuHIhb7IpRb6cnji515EaKjSQNObnKqdmQHco/2ilZeNHNoqL6CAvhALoM6KezjuWKoDND3QmoOcWuLbasJ0MrUHXdGRd4/r4Q+esDH8A9bJ/+mlr2TWRjYqe0YnmSGvrA9xYPYDoG3esAinasy3icLk6CeKNX4aQbZH6Je4Ur2T/t0LropIpb5Z5L6SHfzKD4jOeun+LIiXnjFQlVWny/paoK0ltfRwQv7niaLq7UMXR1Pd36Wdlgy4pXB9o3Ak+3WFjvfwJUJGK4OAbd+spxDzYCOfiP+4GrRMK22YXROYOKAhN4VjTdx7YYXWrYcMfEcWIUubx4VEi49K/ouBsGhONuuNvBJeQTky25lWSlSzQSvrUbA0anfVAXh7heOamlHdoKcFTGAoDjLBQKLvh8ERiqpJmEritctyRiWrrLGvSAGz/MKUvUxgAZFuo3JhwfT2U5CKuLbImLRxRtlFRyjiBP1/JDhQ6fgOPtJq6g/cps7p0g7uOVbu/1yEAgCSWUFLkEuo9unoQoRXlkvcJjBrmX2SwzhWOK2zymnBv8Xqb5ClJpKg8J+Ak6RI3UF704ir84ItpKGuq1JpyprJzQl94nJvIWrnp9lghPlK0RDC+HmcFNr0LKdq4=
