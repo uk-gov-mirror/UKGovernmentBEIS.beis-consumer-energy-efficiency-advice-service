@@ -5,6 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {LargeVideoCardComponent} from '../shared/large-video-card/large-video-card.component';
 import {ArticleCardComponent} from './article-card/article-card.component';
@@ -13,31 +14,36 @@ import {LandingPageComponent} from './landing-page.component';
 import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
 import {ResponseData} from '../shared/response-data/response-data';
 import {UserJourneyType} from '../shared/response-data/user-journey-type';
-import {Component, EventEmitter, Output} from '@angular/core';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {PopupComponent} from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
-import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
+import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
 import {InlineSVGModule} from 'ng-inline-svg';
-import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
-import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
-import {MeasureCardComponent} from "./measure-card/measure-card.component";
-import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {SearchBarComponent} from '../layout-components/search-bar/search-bar.component';
+import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
+import {MeasureCardComponent} from './measure-card/measure-card.component';
+import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
+import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {PostcodeLookupComponent} from '../shared/postcode-lookup/postcode-lookup.component';
+import {PostcodeApiService} from '../shared/postcode-epc-service/postcode-api-service/postcode-api.service';
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
     let fixture: ComponentFixture<LandingPageComponent>;
     let router: Router;
     let responseData: ResponseData;
-    let mockPostcodeLookupComponent: MockPostcodeLookupComponent;
+    let mockEpcLookupComponent: MockEpcLookupComponent;
 
     const headingText = 'heading';
     const userJourneyType = UserJourneyType.MakeHomeGreener;
     const measures = [];
     const articles = [];
     const video = {title: '', synopsis: ''};
+
+    const postcodeApiServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -48,7 +54,8 @@ describe('LandingPageComponent', () => {
                 ArticleCardComponent,
                 LatestNewsCardComponent,
                 LatestNewsSectionComponent,
-                MockPostcodeLookupComponent,
+                PostcodeLookupComponent,
+                MockEpcLookupComponent,
                 PopupComponent,
                 DataCardComponent,
                 NavBarSuboptionComponent,
@@ -66,6 +73,7 @@ describe('LandingPageComponent', () => {
             ],
             providers: [
                 ResponseData,
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
                 {provide: EnergySavingMeasureContentService, useValue: {
                     'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
@@ -86,7 +94,7 @@ describe('LandingPageComponent', () => {
         responseData = TestBed.get(ResponseData);
         spyOn(router, 'navigate');
         fixture.detectChanges();
-        mockPostcodeLookupComponent = fixture.debugElement.query(By.directive(MockPostcodeLookupComponent)).componentInstance;
+        mockEpcLookupComponent = fixture.debugElement.query(By.directive(MockEpcLookupComponent)).componentInstance;
     });
 
     it('should create', () => {
@@ -105,20 +113,20 @@ describe('LandingPageComponent', () => {
         expect(headingElement.innerText).toEqual(headingText);
     });
 
-    it('should navigate to the questionnaire upon entering a valid postcode', () => {
+    it('should navigate to the questionnaire upon entering a valid EPC', () => {
         // when
-        mockPostcodeLookupComponent.addressSelected.emit();
+        mockEpcLookupComponent.epcSelected.emit();
 
         // then
         expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/questionnaire/home-basics']);
     });
 
-    it('should save the user journey type upon entering a valid postcode', () => {
+    it('should save the user journey type upon entering a valid EPC', () => {
         // given
         component.userJourneyType = userJourneyType;
 
         // when
-        mockPostcodeLookupComponent.addressSelected.emit();
+        mockEpcLookupComponent.epcSelected.emit();
 
         // then
         expect(responseData.userJourneyType).toBe(userJourneyType);
@@ -126,9 +134,10 @@ describe('LandingPageComponent', () => {
 });
 
 @Component({
-    selector: 'app-postcode-lookup',
-    template: '<p>Mock Postcode Lookup Component</p>'
+    selector: 'app-epc-lookup',
+    template: '<p>Mock EPC Lookup Component</p>'
 })
-class MockPostcodeLookupComponent {
-    @Output() public addressSelected: EventEmitter<void> = new EventEmitter<void>();
+class MockEpcLookupComponent {
+    @Input() postcode: string;
+    @Output() public epcSelected: EventEmitter<void> = new EventEmitter<void>();
 }

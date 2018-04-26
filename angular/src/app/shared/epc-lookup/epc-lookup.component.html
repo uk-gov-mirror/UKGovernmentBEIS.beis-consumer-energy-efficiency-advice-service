@@ -1,12 +1,6 @@
-<div class="postcode-lookup">
-    <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
-        <input class="postcode-input-text" spellcheck="false" type="text" [(ngModel)]="postcodeInput"
-            name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode">
-        <button class="postcode-input-submit" type="submit"
-            title="Submit" aria-label="Submit"></button>
-    </form>
-    <app-spinner-and-error-container [loading]="loading" [error]="validationError" errorMessage="Please enter a valid UK postcode"></app-spinner-and-error-container>
-    <div class="address-section" *ngIf="epcs !== undefined && !loadingEpcs">
+<div class="epc-lookup">
+    <app-spinner-and-error-container [loading]="loading" [error]="error" errorMessage="Please enter a valid UK postcode"></app-spinner-and-error-container>
+    <div class="address-section" *ngIf="epcs !== undefined && !loading">
         <div class="no-properties" *ngIf="epcs.length === 0">
             We couldn't find any properties with an EPC at that postcode.
         </div>
@@ -26,5 +20,4 @@
             {{epcs.length > 0 ? 'My address is not listed' : 'Continue'}}
         </button>
     </div>
-    <div class="scottish-postcode" *ngIf="scottishPostcode">We do not think this service is suitable/accurate for you (as your home is in Scotland)</div>
 </div>

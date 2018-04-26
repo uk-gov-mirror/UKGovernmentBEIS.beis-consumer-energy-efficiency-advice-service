@@ -16,7 +16,8 @@
                     <br/><br/>
                     Enter your postcode and select your address (if available) to get started.
                 </div>
-                <app-postcode-lookup class="postcode-epc" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
+                <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+                <app-epc-lookup class="postcode-epc" [postcode]="postcode" (epcSelected)="onEpcSelected()"></app-epc-lookup>
             </div>
         </div>
     </div>
