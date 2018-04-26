@@ -3,6 +3,7 @@ import {FormsModule}   from '@angular/forms';
 
 import { AdminPageComponent } from './admin-page.component';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('AdminPageComponent', () => {
     let component: AdminPageComponent;
@@ -15,7 +16,8 @@ describe('AdminPageComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                AdminPageComponent
+                AdminPageComponent,
+                SpinnerAndErrorContainerComponent
             ],
             imports: [
                 FormsModule

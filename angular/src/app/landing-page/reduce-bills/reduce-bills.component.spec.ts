@@ -25,6 +25,7 @@ import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/n
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 import {MeasureCardComponent} from "../measure-card/measure-card.component";
 import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 
 describe('ReduceBillsComponent', () => {
@@ -54,7 +55,8 @@ describe('ReduceBillsComponent', () => {
                 PopupComponent,
                 SearchBarComponent,
                 NavBarSuboptionComponent,
-                MeasureCardComponent
+                MeasureCardComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             imports: [
                 CommonModule,

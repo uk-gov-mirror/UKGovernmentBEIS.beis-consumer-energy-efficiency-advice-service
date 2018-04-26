@@ -23,6 +23,7 @@ export class PostcodeLookupComponent implements OnInit {
     selectedEpc: Epc;
     validationError: boolean = false;
     scottishPostcode: boolean = false;
+    errorMessage: string = "Please enter a valid UK postcode";
 
     @Output() addressSelected: EventEmitter<string> = new EventEmitter<string>();
 
@@ -102,6 +103,7 @@ export class PostcodeLookupComponent implements OnInit {
     private displayPostcodeValidationError(): void {
         this.resetSearchState();
         this.validationError = true;
+        this.loadingEpcs = false;
     }
 
     private resetSearchState(): void {

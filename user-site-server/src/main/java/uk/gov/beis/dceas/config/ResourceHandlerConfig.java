@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -11,8 +12,9 @@ import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import java.time.Duration;
-
 import static java.time.temporal.ChronoUnit.DAYS;
+
+import uk.gov.beis.dceas.spring.DevSimulatedConnectionDelayInterceptor;
 
 @Configuration
 public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
@@ -43,6 +45,7 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
             log.warn("Dev mode: Serving static files from src/ dir, for live reloading");
             config.addResourceLocations(
                     "file:user-site-server/src/main/resources/public/");
+
         } else {
             config.addResourceLocations("classpath:/public/");
             // Browser cache:
@@ -53,5 +56,13 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
                 .resourceChain(cacheResourceLookupResults)
                 .addResolver(new GzipResourceResolver())
                 .addResolver(new PathResourceResolver());
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        if(environment.acceptsProfiles("dev")){
+            // If in a dev environment, add an interceptor which adds a 500ms delay to all requests
+            registry.addInterceptor(new DevSimulatedConnectionDelayInterceptor());
+        }
     }
 }

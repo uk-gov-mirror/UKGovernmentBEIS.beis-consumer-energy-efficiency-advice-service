@@ -18,6 +18,7 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
 
     loading: boolean = true;
     error: boolean = false;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     productIndexNumber: string;
 
     boiler: GasAndOilBoiler;

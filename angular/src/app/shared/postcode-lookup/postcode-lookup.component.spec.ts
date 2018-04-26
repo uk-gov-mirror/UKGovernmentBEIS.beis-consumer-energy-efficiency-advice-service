@@ -11,6 +11,7 @@ import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/postcode-api.service';
 import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
+import {SpinnerAndErrorContainerComponent} from "../spinner-and-error-container/spinner-and-error-container.component";
 
 describe('PostcodeLookupComponent', () => {
     let component: PostcodeLookupComponent;
@@ -56,7 +57,7 @@ describe('PostcodeLookupComponent', () => {
         spyOn(PostcodeEpcService, 'isValidPostcode').and.callFake(mockPostcodeValidator);
 
         TestBed.configureTestingModule({
-            declarations: [PostcodeLookupComponent],
+            declarations: [PostcodeLookupComponent, SpinnerAndErrorContainerComponent],
             providers: [{provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
                 ResponseData
@@ -142,7 +143,7 @@ describe('PostcodeLookupComponent', () => {
         fixture.detectChanges();
 
         // then
-        const errorMessage = fixture.debugElement.query(By.css('.validation-error'));
+        const errorMessage = fixture.debugElement.query(By.css('.error'));
         expect(errorMessage).not.toBeNull();
     });
 

@@ -24,6 +24,7 @@ angular/out-tsc
 
 # IDEs and editors
 # /.idea
+.idea/dictionaries/
 .idea/libraries/
 .idea/codeStyles/
 .idea/uiDesigner.xml

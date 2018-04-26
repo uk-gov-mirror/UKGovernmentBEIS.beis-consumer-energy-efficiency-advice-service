@@ -36,6 +36,6 @@ export class GrantsLandingPageComponent {
     }
 
     onAddressSelected() {
-        this.router.navigate(['js/grants/questionnaire']);
+        this.router.navigate(['grants/questionnaire']);
     }
 }
