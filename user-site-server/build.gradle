@@ -202,7 +202,7 @@ jar {
                 'Build-Url': System.getenv("TRAVIS_BUILD_ID")
                         // There is currently no sensible way to construct the travis build url
                         // https://github.com/travis-ci/travis-ci/issues/8935
-                        ? "https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/jobs/" + System.getenv("TRAVIS_BUILD_ID")
+                        ? "https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/builds/" + System.getenv("TRAVIS_BUILD_ID")
                         : "dev",
                 'Build-Number': System.getenv("TRAVIS_BUILD_NUMBER") ?: "dev"
         )
