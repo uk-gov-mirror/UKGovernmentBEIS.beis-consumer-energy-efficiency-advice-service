@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-04-20-reformat-measure-links.xml"
+               author="fuad.ashanike@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+/*
+This migration is reformatting the measure links so that instead of there being a choice between external and page links,
+there is instead one type of link: "link_url", and the details of whether it is external or internal is handled on the website
+itself. This was done because not all internal links are links to Wordpress pages, and Wordpress doesn't support relative links.
+*/
+
+-- 1a INSERT "link_url" for each old "linked_page" WHERE is_external_link=0
+-- 1b INSERT "link_url for each old "external_link" WHERE is_external_link = 1
+
+-- The number of steps progress up to 6 because that, at the time of writing, is the highest number of steps any measure has
+
+-- 1a
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_0_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_0_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_0_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_0_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_0_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_0_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_1_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_1_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_1_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_1_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_1_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_1_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_2_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_2_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_2_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_2_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_2_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_2_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_3_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_3_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_3_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_3_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_3_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_3_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_4_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_4_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_4_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_4_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_4_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_4_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_5_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_5_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_5_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_5_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_5_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_5_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, 'steps_6_more_info_links_0_link_url', concat('/pages/', linked_page.post_name)
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_6_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_6_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT measure.id, '_steps_6_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts measure
+join wp_postmeta old_is_ext on measure.id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_6_more_info_links_0_is_external_link'
+join wp_postmeta old_val on measure.id = old_val.post_id and old_val.meta_key = 'steps_6_more_info_links_0_linked_page'
+join wp_posts linked_page
+on old_val.meta_value = linked_page.id
+WHERE old_is_ext.meta_value = 0;
+
+
+-- 1b.
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_0_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_0_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_0_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_0_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_0_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_0_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_1_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_1_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_1_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_1_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_1_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_1_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_2_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_2_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_2_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_2_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_2_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_2_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_3_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_3_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_3_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_3_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_3_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_3_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_4_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_4_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_4_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_4_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_4_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_4_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_5_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_5_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_5_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_5_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_5_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_5_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, 'steps_6_more_info_links_0_link_url', old_val.meta_value
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_6_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_6_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+INSERT into wp_postmeta
+(post_id, meta_key, meta_value)
+SELECT id, '_steps_6_more_info_links_0_link_url', 'field_1234d9bfa97e7'
+from wp_posts
+join wp_postmeta old_is_ext on id = old_is_ext.post_id and old_is_ext.meta_key = 'steps_6_more_info_links_0_is_external_link'
+join wp_postmeta old_val on id = old_val.post_id and old_val.meta_key = 'steps_6_more_info_links_0_external_link'
+WHERE old_is_ext.meta_value = 1;
+
+-- 1c.
+
+DELETE FROM wordpress.wp_postmeta
+WHERE post_id IN (SELECT ID from wordpress.wp_posts WHERE post_type = "measure")
+AND (meta_key LIKE '%is\_external\_link' OR meta_key LIKE '%external\_link' OR meta_key LIKE '%linked\_page');
+
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>

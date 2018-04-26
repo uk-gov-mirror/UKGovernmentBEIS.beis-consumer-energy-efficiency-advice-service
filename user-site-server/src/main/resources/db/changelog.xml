@@ -71,5 +71,6 @@
     <include file="changelogs/2018-04-18-remove-mees-exemptions-questions.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-19-update-mees-questions.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-20-add-tags-for-landing-page-measures.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-04-20-reformat-measure-links.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-23-remove-heating-cost-question.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
