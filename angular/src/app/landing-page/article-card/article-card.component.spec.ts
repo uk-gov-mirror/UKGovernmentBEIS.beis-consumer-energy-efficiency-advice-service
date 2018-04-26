@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 
 import {ArticleCardComponent} from './article-card.component';
 import {Article} from './article';
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('ArticleCardComponent', () => {
     let component: ArticleCardComponent;
@@ -16,7 +17,7 @@ describe('ArticleCardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ArticleCardComponent ]
+            declarations: [ ArticleCardComponent, SpinnerAndErrorContainerComponent ]
         })
             .compileComponents();
     }));

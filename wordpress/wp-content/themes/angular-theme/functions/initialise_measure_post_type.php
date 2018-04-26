@@ -139,6 +139,8 @@ function setup_measure_acf_group() {
                     'instructions' => 'Tags to be displayed with this measure on the results page',
                     'type' => 'checkbox',
                     'choices' => array (
+                        // When adding new tags here, avoid using special characters as it may break
+                        // the filtering. See filter_article_pages.php.
                         'tag_quick_win' => 'Quick win',
                         'tag_small_spend' => 'Small spend',
                         'tag_longer_term' => 'Longer term',
@@ -147,6 +149,10 @@ function setup_measure_acf_group() {
                         'tag_windows&doors' => 'Windows & Doors',
                         'tag_floors-walls&roofs' => 'Floors, Walls & Roofs',
                         'tag_solar-energy' => 'Solar Energy',
+                        'tag_reduce_bills' => 'Reduce your bills',
+                        'tag_make_home_warmer' => 'Make your home warmer',
+                        'tag_make_home_greener' => 'Make your home greener',
+                        'tag_home_improvements' => 'Home improvements',
                     ),
                     'default_value' => '',
                     'layout' => 'vertical',
@@ -237,7 +243,9 @@ function setup_measure_acf_group() {
                             'label' => 'More info links',
                             'name' => 'more_info_links',
                             'type' => 'repeater',
-                            'instructions' => '',
+                            'instructions' => 'If you want to link to a page within the site, use a relative URL like
+                             "/installer-search/measure-code", otherwise you can give the absolute URL of the site 
+                             like http://google.co.uk',
                             'required' => 0,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -271,70 +279,12 @@ function setup_measure_acf_group() {
                                     'maxlength' => '',
                                 ),
                                 array(
-                                    'key' => 'field_5a96d91da67e6',
-                                    'label' => 'Is external link?',
-                                    'name' => 'is_external_link',
-                                    'type' => 'true_false',
+                                    'key' => 'field_1234d9bfa97e7',
+                                    'label' => 'Link url',
+                                    'name' => 'link_url',
+                                    'type' => 'text',
                                     'instructions' => '',
                                     'required' => 0,
-                                    'conditional_logic' => 0,
-                                    'wrapper' => array(
-                                        'width' => '',
-                                        'class' => '',
-                                        'id' => '',
-                                    ),
-                                    'message' => '',
-                                    'default_value' => 0,
-                                    'ui' => 0,
-                                    'ui_on_text' => '',
-                                    'ui_off_text' => '',
-                                ),
-                                array(
-                                    'key' => 'field_5a1d8a1c2d97f',
-                                    'label' => 'Linked page',
-                                    'name' => 'linked_page',
-                                    'type' => 'page_link',
-                                    'instructions' => '',
-                                    'required' => 0,
-                                    'conditional_logic' => array(
-                                        array(
-                                            array(
-                                                'field' => 'field_5a96d91da67e6',
-                                                'operator' => '!=',
-                                                'value' => '1',
-                                            ),
-                                        ),
-                                    ),
-                                    'wrapper' => array(
-                                        'width' => '',
-                                        'class' => '',
-                                        'id' => '',
-                                    ),
-                                    'post_type' => array(
-                                        0 => 'page',
-                                    ),
-                                    'taxonomy' => array(
-                                    ),
-                                    'allow_null' => 0,
-                                    'allow_archives' => 1,
-                                    'multiple' => 0,
-                                ),
-                                array(
-                                    'key' => 'field_5a96d9bfa67e7',
-                                    'label' => 'External Link',
-                                    'name' => 'external_link',
-                                    'type' => 'url',
-                                    'instructions' => '',
-                                    'required' => 0,
-                                    'conditional_logic' => array(
-                                        array(
-                                            array(
-                                                'field' => 'field_5a96d91da67e6',
-                                                'operator' => '==',
-                                                'value' => '1',
-                                            ),
-                                        ),
-                                    ),
                                     'wrapper' => array(
                                         'width' => '',
                                         'class' => '',

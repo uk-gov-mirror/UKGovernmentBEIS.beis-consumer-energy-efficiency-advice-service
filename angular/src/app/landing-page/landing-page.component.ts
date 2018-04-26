@@ -2,9 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ResponseData} from '../shared/response-data/response-data';
 import {getJourneyDescription, UserJourneyType} from '../shared/response-data/user-journey-type';
-import {StaticMeasure} from './static-measure-card/static-measure';
+import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
+import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {Article} from './article-card/article';
 import {Video} from '../shared/large-video-card/video';
+import * as log from 'loglevel';
 
 @Component({
     selector: 'app-landing-page',
@@ -14,24 +16,41 @@ import {Video} from '../shared/large-video-card/video';
 export class LandingPageComponent implements OnInit {
 
     @Input() userJourneyType: UserJourneyType;
-    @Input() staticMeasures: StaticMeasure[];
     @Input() video: Video;
     @Input() articles: Article[];
 
-    postcodeQuestionReason: string;
+    isLoading: boolean;
+    isError: boolean;
     heading: string;
     tag: string;
+    measures: MeasureContent[];
+    postcode: string;
 
     constructor(private router: Router,
-                private responseData: ResponseData) {
+                private responseData: ResponseData,
+                private measureService: EnergySavingMeasureContentService) {
+        this.isLoading = true;
+        this.isError = false;
     }
 
     ngOnInit() {
         this.heading = getJourneyDescription(this.userJourneyType);
         this.tag = this.getTagFromUserJourneyType();
+
+        this.measureService.fetchMeasureDetailsForLandingPage(this.tag, 2).subscribe(
+            measures => {
+                this.measures = measures;
+                this.isLoading = false;
+            },
+            () => this.displayErrorAndLogMessage('No measures found for ${this.heading}')
+        );
     }
 
-    onAddressSelected() {
+    onPostcodeSelected() {
+        this.postcode = this.responseData.postcode;
+    }
+
+    onEpcSelected() {
         this.responseData.userJourneyType = this.userJourneyType;
         this.router.navigate(['/energy-efficiency/questionnaire/home-basics']);
     }
@@ -44,5 +63,11 @@ export class LandingPageComponent implements OnInit {
             case UserJourneyType.MakeHomeWarmer:        { return 'tag_make_home_warmer'; }
             default:                                    { return null; }
         }
+    }
+
+    private displayErrorAndLogMessage(err: any) {
+        log.error(err);
+        this.isLoading = false;
+        this.isError = true;
     }
 }

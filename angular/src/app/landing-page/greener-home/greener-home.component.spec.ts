@@ -17,14 +17,17 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
-import {StaticMeasureCardComponent} from '../static-measure-card/static-measure-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
-import { PopupComponent } from '../../shared/popup/popup.component';
+import {PopupComponent} from '../../shared/popup/popup.component';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
-import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
-import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {SearchBarComponent} from '../../layout-components/search-bar/search-bar.component';
+import {NavBarSuboptionComponent} from '../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {MeasureCardComponent} from '../measure-card/measure-card.component';
+import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
 
 describe('GreenerHomeComponent', () => {
 
@@ -50,11 +53,13 @@ describe('GreenerHomeComponent', () => {
                 LatestNewsSectionComponent,
                 LatestNewsCardComponent,
                 PostcodeLookupComponent,
-                StaticMeasureCardComponent,
+                EpcLookupComponent,
                 DataCardComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                SpinnerAndErrorContainerComponent,
+                MeasureCardComponent
             ],
             imports: [
                 CommonModule,
@@ -69,6 +74,9 @@ describe('GreenerHomeComponent', () => {
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                {provide: EnergySavingMeasureContentService, useValue: {
+                    'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
+                }},
                 GoogleAnalyticsService,
             ]
         })

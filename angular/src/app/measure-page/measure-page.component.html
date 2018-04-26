@@ -1,4 +1,4 @@
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="measure-page" *ngIf="!isLoading && !isError">
     <div class="page-row heading-section">
         <div class="page-row-content">
@@ -58,6 +58,6 @@
         </div>
     </div>
     <div class="page-row latest-news-section">
-        <app-latest-news-section></app-latest-news-section>
+        <app-latest-news-section tag="tag_general"></app-latest-news-section>
     </div>
 </div>

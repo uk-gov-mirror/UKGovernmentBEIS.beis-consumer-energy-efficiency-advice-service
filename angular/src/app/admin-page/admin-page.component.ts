@@ -11,6 +11,7 @@ export class AdminPageComponent {
     sessionReference: string;
     error: boolean = false;
     loading: boolean = false;
+    errorMessage: string = "Unable to load the user's session. Is the reference (including spaces) definitely correct?";
 
     constructor(private userStateService: UserStateService) { }
 
@@ -18,11 +19,11 @@ export class AdminPageComponent {
         this.error = false;
         this.loading = true;
         this.userStateService.joinSession(this.sessionReference, (error) => this.handleError(error));
+        this.loading = false;
     }
 
     private handleError(error) {
         this.error = true;
-        this.loading = false;
         log.error(error);
     }
 }

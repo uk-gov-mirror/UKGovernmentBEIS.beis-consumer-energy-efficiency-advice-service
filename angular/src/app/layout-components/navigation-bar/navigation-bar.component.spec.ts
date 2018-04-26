@@ -10,6 +10,7 @@ import {NavBarSuboptionComponent} from './nav-bar-suboption/nav-bar-suboption.co
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('NavigationBarComponent', () => {
     let component: NavigationBarComponent;
@@ -23,7 +24,9 @@ describe('NavigationBarComponent', () => {
         TestBed.configureTestingModule({
             declarations: [ NavigationBarComponent,
                 NavBarSuboptionComponent,
-                SearchBarComponent],
+                SearchBarComponent,
+                SpinnerAndErrorContainerComponent,
+            ],
             imports: [RouterTestingModule,
                 InlineSVGModule,
                 FormsModule

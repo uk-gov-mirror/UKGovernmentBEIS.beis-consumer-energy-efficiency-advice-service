@@ -6,7 +6,7 @@
         </div>
     </div>
 </div>
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="measures page-row">
     <div class="page-row-content measures-list">
         <div class="measure-cards" *ngFor="let measure of measures">

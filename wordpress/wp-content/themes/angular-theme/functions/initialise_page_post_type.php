@@ -70,7 +70,7 @@ function setup_page_acf_group()
                     'choices' => array (
                         // When adding new tags here, avoid using special characters as it may break
                         // the filtering. See filter_article_pages.php.
-                        'tag_homepage' => 'Homepage',
+                        'tag_general' => 'General - for Home page and measures pages',
                         'tag_reduce_bills' => 'Reduce your bills',
                         'tag_make_home_warmer' => 'Make your home warmer',
                         'tag_make_home_greener' => 'Make your home greener',

@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {UserJourneyType} from '../../shared/response-data/user-journey-type';
 import {Video} from '../../shared/large-video-card/video';
-import {StaticMeasure} from '../static-measure-card/static-measure';
 import { Article } from '../article-card/article';
 
 @Component({
@@ -11,26 +10,6 @@ import { Article } from '../article-card/article';
 })
 export class WarmerHomeComponent {
     warmerHomeJourneyType: UserJourneyType = UserJourneyType.MakeHomeWarmer;
-
-    staticMeasures: StaticMeasure[] = [
-        {
-            iconClassName: 'icon-lightbulb',
-            basicInfoValue: '15%',
-            basicInfoHeadline: 'of your electricity bill is accounted for by lighting',
-            measureHeadline: 'Energy efficient lighting',
-            measureSummary: 'You can cut your lighting bill and energy use by changing which bulbs you use and how you use them',
-            averageSavings: 75
-        },
-        {
-            iconClassName: 'icon-switch',
-            basicInfoValue: '40%',
-            basicInfoHeadline: 'of people could save money by switching energy suppliers',
-            measureHeadline: 'Switching energy supplier',
-            measureSummary: 'Comparing energy tariffs and deals regularly can help you make sure you’re getting the best gas or \
-                electricity tariff for your usage and the best service offer.',
-            averageSavings: 30
-        }
-    ];
 
     video: Video = {
         title: 'How to control your heating',

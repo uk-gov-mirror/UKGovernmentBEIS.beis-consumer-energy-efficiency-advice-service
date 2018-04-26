@@ -12,6 +12,7 @@ import {UserStateService} from '../../shared/user-state-service/user-state-servi
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
 import {WordpressSearchable} from '../../shared/wordpress-search-service/wordpress-searchable';
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('SearchBarComponent', () => {
     let component: SearchBarComponent;
@@ -35,7 +36,8 @@ describe('SearchBarComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SearchBarComponent,
-                NeedHelpComponent
+                NeedHelpComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

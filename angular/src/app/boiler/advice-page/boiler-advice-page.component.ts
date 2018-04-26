@@ -14,6 +14,7 @@ export class BoilerAdvicePageComponent implements OnInit {
 
     loading = true;
     error = false;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     boilerSlug: string;
     boilerType: BoilerType;
 
