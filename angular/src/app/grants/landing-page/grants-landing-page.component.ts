@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ResponseData} from '../../shared/response-data/response-data';
+import {UserJourneyType} from '../../shared/response-data/user-journey-type';
 import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 
@@ -16,6 +17,14 @@ export class GrantsLandingPageComponent {
 
     constructor(private localAuthorityService: LocalAuthorityService,
                 private responseData: ResponseData) {
+    }
+
+    setJourneyTypeToBoiler(): void {
+        this.responseData.userJourneyType = UserJourneyType.Boiler;
+    }
+
+    setJourneyTypeToHomeImprovements(): void {
+        this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
     }
 
     onPostcodeSelected() {
