@@ -198,9 +198,13 @@ jar {
     manifest {
         attributes(
                 'Build-Timestamp': buildTimeStr,
-                'Git-Commit': System.getenv("GIT_COMMIT") ?: "dev",
-                'Jenkins-Build-Url': System.getenv("BUILD_URL") ?: "dev",
-                'Jenkins-Build-Number': System.getenv("BUILD_NUMBER") ?: "dev"
+                'Git-Commit': System.getenv("TRAVIS_COMMIT") ?: "dev",
+                'Build-Url': System.getenv("TRAVIS_BUILD_ID")
+                        // There is currently no sensible way to construct the travis build url
+                        // https://github.com/travis-ci/travis-ci/issues/8935
+                        ? "https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/jobs/" + System.getenv("TRAVIS_BUILD_ID")
+                        : "dev",
+                'Build-Number': System.getenv("TRAVIS_BUILD_NUMBER") ?: "dev"
         )
     }
 }

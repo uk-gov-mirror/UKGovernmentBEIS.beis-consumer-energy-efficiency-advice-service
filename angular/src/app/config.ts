@@ -8,8 +8,8 @@ class Config {
     hasAdminIpAddress: boolean;
     buildTimestamp: string;
     buildGitCommit: string;
-    buildJenkinsUrl: string;
-    buildJenkinsNumber: string;
+    buildUrl: string;
+    buildNumber: string;
 }
 
 export default () => (window as any).CONFIG as Config;
