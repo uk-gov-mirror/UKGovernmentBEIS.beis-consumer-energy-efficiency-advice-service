@@ -19,16 +19,18 @@ describe('RecommendationStepCardComponent', () => {
         readMore: 'More things to read',
         moreInfoLinks: [
             {
-                buttonText: 'Test static page 1',
-                isExternalLink: true,
-                route: '/static-page-1',
-                externalLink: 'http://google.com'
+                buttonText: 'Test page 1',
+                linkProps: {
+                    route: 'http://google.com',
+                    isRelativeURL: false
+                }
             },
             {
-                buttonText: 'Test static page 2',
-                isExternalLink: false,
-                route: '/static-page-2',
-                externalLink: ''
+                buttonText: 'Test page 2',
+                linkProps: {
+                    route: '/static-page-2',
+                    isRelativeURL: true
+                }
             }
         ]
     };

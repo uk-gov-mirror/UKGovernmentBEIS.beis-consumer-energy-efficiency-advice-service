@@ -32,9 +32,9 @@ export class BoilerMakeModelLookupComponent {
 
     onBoilerSelected() {
         if (this.selectedBoiler !== undefined) {
-            this.router.navigate(['js/boiler/make-model-replace', this.selectedBoiler.productIndexNumber]);
+            this.router.navigate(['boiler/make-model-replace', this.selectedBoiler.productIndexNumber]);
         } else {
-            this.router.navigate(['js/boiler/replace']);
+            this.router.navigate(['boiler/replace']);
         }
     }
 

@@ -78,14 +78,14 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
-        // Garden
-        expect(page.getHeading()).toContain('Is your garden accessible to digging machinery');
-        CommonPageHelpers.clickButton('No garden');
-        CommonPageHelpers.sleep(1000);
-
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
+        CommonPageHelpers.sleep(1000);
+
+        // Hot water cylinder
+        expect(page.getHeading()).toContain('hot water cylinder');
+        page.clickOption('Yes');
         CommonPageHelpers.sleep(1000);
 
         // Tariff
@@ -93,12 +93,7 @@ describe('Home basics questionnaire', () => {
         page.clickOption('Standard');
         CommonPageHelpers.sleep(1000);
 
-        // Heating cost
-        expect(page.getHeading()).toContain('pay a month');
-        page.goForwards();
-        CommonPageHelpers.sleep(1000);
-
         // Length of heating on
         expect(page.getHeading()).toContain('How many hours');
-    })
+    });
 });

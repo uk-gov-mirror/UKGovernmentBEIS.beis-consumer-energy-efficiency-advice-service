@@ -34,6 +34,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     questionnaire: Questionnaire;
     isLoading: boolean;
     isError: boolean;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     currentQuestionIndex: number;
     allQuestionsContent: AllQuestionsContent;
     currentQuestionContent: QuestionContent;
@@ -76,7 +77,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')
         );
-        this.setCurrentIndexFromRouteParams();
     }
 
     ngOnDestroy() {
@@ -110,7 +110,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (prevIndex !== -1) {
             this.currentQuestionIndex = prevIndex;
             this.renderQuestion('left');
-            this.userStateService.sendState(this.currentQuestionIndex);
+            this.userStateService.saveState(this.currentQuestionIndex);
         }
     }
 
@@ -119,7 +119,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (nextIndex !== -1) {
             this.currentQuestionIndex = nextIndex;
             this.renderQuestion('right');
-            this.userStateService.sendState(this.currentQuestionIndex);
+            this.userStateService.saveState(this.currentQuestionIndex);
         }
     }
 
@@ -139,7 +139,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private onQuestionContentLoaded(questionContent: AllQuestionsContent) {
         this.isLoading = false;
         this.allQuestionsContent = questionContent;
-        this.jumpToQuestion(this.currentQuestionIndex);
+        this.setCurrentIndex();
     }
 
     private jumpToQuestion(index) {
@@ -217,14 +217,34 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         }
     }
 
-    private setCurrentIndexFromRouteParams() {
+    private setCurrentIndex() {
         return this.route.queryParamMap
             .subscribe(queryParams => {
                 const indexOrNull = parseInt(queryParams.get('startingQuestion'), 10);
                 if (indexOrNull) {
                     this.currentQuestionIndex = indexOrNull;
+                } else {
+                    let lastAnsweredIndex = 0;
+                    while (true) {
+                        if (!this.questionnaire.getQuestion(this.currentQuestionIndex)) {
+                            this.currentQuestionIndex = lastAnsweredIndex;
+                            break;
+                        }
+
+                        if (this.questionnaire.isApplicable(this.currentQuestionIndex)
+                            && !this.questionnaire.hasBeenAnswered(this.currentQuestionIndex)) {
+                            break;
+                        }
+
+                        if (this.questionnaire.hasBeenAnswered(this.currentQuestionIndex)) {
+                            lastAnsweredIndex = this.currentQuestionIndex;
+                        }
+
+                        this.currentQuestionIndex++;
+                    }
                 }
-                this.userStateService.sendState(this.currentQuestionIndex);
+                this.userStateService.saveState(this.currentQuestionIndex);
+                this.jumpToQuestion(this.currentQuestionIndex);
             });
     }
 }

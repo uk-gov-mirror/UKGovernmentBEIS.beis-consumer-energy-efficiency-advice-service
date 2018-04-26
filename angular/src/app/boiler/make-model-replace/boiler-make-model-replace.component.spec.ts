@@ -19,6 +19,7 @@ import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measure
 import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
+import {DataCardComponent} from '../../shared/data-card/data-card.component';
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
@@ -57,6 +58,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
                 BoilerLinkButtonComponent,
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
+                DataCardComponent
             ],
             imports: [
                 RouterTestingModule,

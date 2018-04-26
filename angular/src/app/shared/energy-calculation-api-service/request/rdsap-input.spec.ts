@@ -3,7 +3,7 @@ import {ResponseData} from '../../response-data/response-data';
 import {UserJourneyType} from '../../response-data/user-journey-type';
 import {HomeType} from '../../../questionnaire/questions/home-type-question/home-type';
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
-import {HouseExposedWall, } from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
+import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
@@ -22,6 +22,7 @@ import {FlatExposedWall} from '../../../questionnaire/questions/flat-exposed-wal
 import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
 import {FlatLevel} from './flat-level';
 import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
+import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 
 describe('RdsapInput', () => {
 
@@ -51,9 +52,9 @@ describe('RdsapInput', () => {
             floorAreaUnit: FloorAreaUnit.SquareMetre,
             floorLevels: [FloorLevel.TopFloor],
             fuelType: FuelType.MainsGas,
+            hotWaterCylinder: false,
             condensingBoiler: false,
             electricityTariff: undefined,
-            heatingCost: undefined,
             detailedLengthOfHeatingOnEarlyHours: undefined,
             detailedLengthOfHeatingOnMorning: undefined,
             detailedLengthOfHeatingOnAfternoon: undefined,
@@ -83,14 +84,11 @@ describe('RdsapInput', () => {
 
             isDomesticPropertyAfter2018: false,
             isPropertyAfter2020: false,
-            isEpcBelowE: false,
+            propertyEpc: UserEpcRating.AtLeastE,
             isEpcRequired: false,
-            willPropertyBeDevalued: false,
-            hasRecommendedImprovements: false,
-            hasImprovementsAtNoCost: false,
-            hasTemporaryExclusions: false,
+            confirmEpcNotFound: false,
             tenancyType: TenancyType.Other,
-            hasRelevantConsent: false,
+            saveToSessionStorage: () => {},
         };
 
         it('should calculate the number of occupants correctly', () => {

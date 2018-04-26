@@ -30,10 +30,12 @@ import {YourHomeComponent} from './your-home/your-home.component';
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
-import {ECOSuppliersPageComponent} from "./eco-suppliers-page/eco-suppliers-page.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
-import {SimpleSavingsComponent} from "./simple-savings/simple-savings.component";
+import {MeesExemptionPageComponent} from './mees/exemption-page/mees-exemption-page.component';
+import {ECOSuppliersPageComponent} from './eco-suppliers-page/eco-suppliers-page.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {PageNotCreatedComponent} from './page-not-created/page-not-created.component';
+import {SimpleSavingsComponent} from './simple-savings/simple-savings.component';
+import {InstallerSearchComponent} from "./installer-search/installer-search.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -107,16 +109,6 @@ const routes: Routes = [
     },
     {
         path: 'about-this-site',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'information-for-tenants',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'information-for-landlords',
         component: PageNotCreatedComponent,
         pathMatch: 'full'
     },
@@ -196,6 +188,10 @@ const routes: Routes = [
         canActivate: [MeesResultsPageRouteGuard]
     },
     {
+        path: 'minimum-energy-efficiency-standards/exemption',
+        component: MeesExemptionPageComponent,
+    },
+    {
         path: 'page-not-created',
         component: PageNotCreatedComponent,
         pathMatch: 'full'
@@ -213,6 +209,14 @@ const routes: Routes = [
         path: 'eco-suppliers',
         component: ECOSuppliersPageComponent,
         pathMatch: 'full'
+    },
+    {
+        path: 'installer-search',
+        component: InstallerSearchComponent,
+    },
+    {
+        path: 'installer-search/:measure-code',
+        component: InstallerSearchComponent,
     },
     {
         path: 'measures/:slug',

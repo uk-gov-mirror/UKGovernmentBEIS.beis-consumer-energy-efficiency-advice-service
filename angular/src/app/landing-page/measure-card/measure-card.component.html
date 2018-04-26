@@ -1,0 +1,10 @@
+<a class="measure-card" routerLink="/measures/{{measure.slug}}">
+    <div class="icon" [inlineSVG]="getMeasureIcon(measure)"></div>
+    <div class="details">
+        <div class="headline">{{measure.acf.headline}}</div>
+        <div class="summary">{{measure.acf.summary}}</div>
+    </div>
+    <div class="link">
+        <div class="arrow-button">Find out more</div>
+    </div>
+</a>

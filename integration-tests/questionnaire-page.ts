@@ -7,7 +7,7 @@ export class QuestionnairePage {
     }
 
     getHeading() {
-        return element(by.id('question-heading')).getText();
+        return element(by.className('question-heading')).getText();
     }
 
     clickOption(text: string) {

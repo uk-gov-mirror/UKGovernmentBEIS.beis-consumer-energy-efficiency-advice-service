@@ -44,7 +44,7 @@ describe('QuestionnaireComponent', () => {
     };
 
     const userStateServiceStub = {
-        sendState: () => {}
+        saveState: () => {}
     };
 
     class TestQuestion extends QuestionMetadata {

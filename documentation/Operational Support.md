@@ -49,13 +49,17 @@ You can update the branch with a git command like:
 
 (See https://stackoverflow.com/questions/3216360/merge-update-and-pull-git-branches-without-using-checkouts )
 
+Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=staging&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=live&merge_request%5Btarget_project_id%5D=459)
+
 ### Staging deployment
 
 The same as "live", except that the branch name is "`staging`" and it should
 track `master`:
 
-    git fetch origin live:master
+    git fetch origin master:staging
     git push origin staging:staging
+
+Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=master&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=staging&merge_request%5Btarget_project_id%5D=459)
 
 The Jenkins job at
 http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
@@ -144,7 +148,8 @@ If this service is down, then the site should continue to work OK, except that n
 data will be available. The questionnaire should continue to work without this data,
 so users should not notice any issues.
 
-If this service is down then TODO:BEISDEAS-258 things go wrong...
+If this service is down then users will be able to continue completing questionnaires, but
+will not receive information about local grants, and we will not send EPC data to BRE.
 
 ### Google Analytics
 

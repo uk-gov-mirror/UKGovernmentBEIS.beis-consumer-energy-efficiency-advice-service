@@ -2,8 +2,7 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
 import {HomeBasicsQuestionnaire} from './home-basics-questionnaire';
 import {OccupantsQuestionMetadata} from '../../questions/occupants-question/occupants-question-metadata';
-import {LivingRoomTemperatureQuestionMetadata} from
-    '../../questions/living-room-temperature-question/living-room-temperature-question-metadata';
+import {LivingRoomTemperatureQuestionMetadata} from '../../questions/living-room-temperature-question/living-room-temperature-question-metadata';
 import {ElectricityTariffQuestionMetadata} from '../../questions/electricity-tariff-question/electricity-tariff-question-metadata';
 import {BoilerTypeQuestionMetadata} from '../../questions/boiler-type-question/boiler-type-question-metadata';
 import {FuelTypeQuestionMetadata} from '../../questions/fuel-type-question/fuel-type-question-metadata';
@@ -15,19 +14,17 @@ import {ConfirmEpcQuestionMetadata} from '../../questions/confirm-epc-question/c
 import {TenureTypeQuestionMetadata} from '../../questions/tenure-type-question/tenure-type-question-metadata';
 import {GrantsQuestionnaireQuestionMetadata} from '../../questions/grants-questionnaire-question/grants-questionnaire-question-metadata';
 import {ShowersAndBathsQuestionMetadata} from '../../questions/showers-and-baths-question/showers-and-baths-question-metadata';
-import {HeatingCostQuestionMetadata} from '../../questions/heating-cost-question/heating-cost-question-metadata';
 import {OptionalPropertyQuestionMetadata} from '../../questions/optional-property-question/optional-property-question-metadata';
 import {FloorAreaQuestionMetadata} from '../../questions/floor-area-question/floor-area-question-metadata';
 import {ConstructionQuestionMetadata} from '../../questions/construction-question/construction-question-metadata';
-import {GardenQuestionMetadata} from '../../questions/garden-question/garden-question-metadata';
-import {DetailedLengthOfHeatingOnQuestionMetadata} from
-    '../../questions/detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata';
+import {DetailedLengthOfHeatingOnQuestionMetadata} from '../../questions/detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata';
 import {FlatExposedWallQuestionMetadata} from '../../questions/flat-exposed-wall-question/flat-exposed-wall-question-metadata';
 import {HouseExposedWallQuestionMetadata} from '../../questions/house-exposed-wall-question/house-exposed-wall-question-metadata';
 import {FlatStoreysQuestionMetadata} from '../../questions/flat-storeys-question/flat-storeys-question-metadata';
 import {FloorLevelQuestionMetadata} from '../../questions/floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/floor-span-question-metadata';
 import {PostcodeEpcQuestionMetadata} from '../../questions/postcode-epc-question/postcode-epc-question-metadata';
+import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -56,11 +53,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
-            new HeatingCostQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
@@ -93,11 +89,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
-            new HeatingCostQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
@@ -130,11 +125,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
-            new HeatingCostQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
@@ -167,11 +161,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
-            new HeatingCostQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata()
         ];
@@ -201,11 +194,10 @@ describe('HomeBasicsQuestionnaire', () => {
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new GardenQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
+            new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
-            new HeatingCostQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata()
         ];

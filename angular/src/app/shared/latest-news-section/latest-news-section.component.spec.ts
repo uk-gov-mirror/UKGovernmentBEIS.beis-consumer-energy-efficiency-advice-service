@@ -6,6 +6,7 @@ import { LatestNewsSectionComponent } from './latest-news-section.component';
 import {WordpressPagesService} from '../wordpress-pages-service/wordpress-pages.service';
 import {LatestNewsCardComponent} from '../latest-news-card/latest-news-card.component';
 import {GoogleAnalyticsService} from "../analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../spinner-and-error-container/spinner-and-error-container.component";
 
 describe('LatestNewsSectionComponent', () => {
     let component: LatestNewsSectionComponent;
@@ -13,13 +14,14 @@ describe('LatestNewsSectionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ LatestNewsSectionComponent, LatestNewsCardComponent ],
+            declarations: [ LatestNewsSectionComponent, LatestNewsCardComponent, SpinnerAndErrorContainerComponent ],
             imports: [
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
             ],
             providers: [
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
                 GoogleAnalyticsService,
+                SpinnerAndErrorContainerComponent
             ]
         })
         .compileComponents();

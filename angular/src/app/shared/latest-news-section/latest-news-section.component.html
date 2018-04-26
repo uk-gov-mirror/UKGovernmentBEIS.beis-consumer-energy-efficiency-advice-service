@@ -1,13 +1,12 @@
 <div class="latest-news-section page-row-content">
-  <div class="heading">Other things you might be interested in</div>
-  <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
-    <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
-                          [page]="page"
-                          (onArticleClicked)="sendEventToAnalytics(idx)"></app-latest-news-card>
-  </div>
-  <ng-template #latestNewsSpinner>
-    <div class="spinner-container">
-      <div class="loading-spinner"></div>
+    <div class="heading">Other things you might be interested in</div>
+    <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
+        <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
+                              [page]="page"
+                              (onArticleClicked)="sendEventToAnalytics(idx)"></app-latest-news-card>
     </div>
-  </ng-template>
+    <ng-template #latestNewsSpinner>
+        <app-spinner-and-error-container [loading]="true" [error]="false"
+                                         [errorMessage]=""></app-spinner-and-error-container>
+    </ng-template>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, AfterViewChecked} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
@@ -22,6 +22,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
 
     isLoading: boolean = true;
     isError: boolean = false;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     applicableBoilerTypes: BoilerType[];
     measures: EnergySavingRecommendation[];
 
@@ -47,7 +48,7 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
                 () => this.handleError(),
                 () => this.isLoading = false,
             );
-        this.userStateService.sendState();
+        this.userStateService.saveState();
     }
 
     ngAfterViewInit() {

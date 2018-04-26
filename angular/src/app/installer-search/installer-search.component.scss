@@ -1,0 +1,103 @@
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+
+.installer-search {
+  .page-heading {
+    @include page-heading-font;
+    display: flex;
+    flex-direction: column;
+    background-color: $focus-blue;
+
+    h3 {
+      color: $lighter-grey;
+    }
+
+    p {
+      color: $lighter-grey;
+      font-size: 16px;
+    }
+  }
+  .selector-container {
+    background-color: $light-grey;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+
+    .field-container {
+      flex-direction: column;
+
+      .field-heading {
+        color: $focus-text-blue;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      form {
+        background-color: white;
+        display: flex;
+
+        .text-container {
+          padding: 0;
+          height: 36px;
+          font-size: 20px;
+        }
+
+        .measure-name-input {
+          width: 500px;
+        }
+
+        .postcode-input {
+          width: 200px;
+        }
+
+        button {
+          width: 40px;
+          height: 40px;
+          background: crimson;
+          border: none;
+          cursor: pointer;
+          font-size: 30px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .page-content {
+    padding: 20px;
+  }
+}
+
+p {
+  @include page-subheading-font;
+  color: $focus-text-blue;
+}
+
+// Breakpoint specific styling
+@include mobile() {
+}
+
+@include tablet() {
+}
+
+@include desktop() {
+  .installer-search {
+    .page-heading {
+      padding: 40px 0px 40px 0px;
+      h3 {
+        padding-bottom: 10px;
+      }
+    }
+    .selector-container {
+      padding: 80px 0px 80px 0px;
+    }
+  }
+}

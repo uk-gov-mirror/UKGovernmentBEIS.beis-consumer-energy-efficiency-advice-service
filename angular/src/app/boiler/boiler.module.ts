@@ -40,7 +40,7 @@ import {BoilerLinkButtonComponent} from './boiler-link-button/boiler-link-button
         BoilerMakeModelReplaceComponent,
         BoilerAdvicePageComponent,
         BoilerRegulationCardComponent,
-        BoilerLinkButtonComponent,
+        BoilerLinkButtonComponent
     ],
     imports: [
         CommonModule,

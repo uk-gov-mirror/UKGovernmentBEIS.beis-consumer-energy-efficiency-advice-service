@@ -2,6 +2,6 @@
   <div class="question-reason" [class.visible]="isExpanded">{{questionReason}}</div>
   <button (click)="toggleDisplay()" class="question-reason-button" [title]="questionReason">
     <div class="question-reason-icon">i</div>
-    <div class="question-reason-header">Why do we need this?</div>
+    <div class="question-reason-header">{{isExpanded ? 'Hide' : 'Why do we need this?'}}</div>
   </button>
 </div>

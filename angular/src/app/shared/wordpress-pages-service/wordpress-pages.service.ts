@@ -12,10 +12,11 @@ export class WordpressPagesService {
     private static readonly pagesEndpoint = 'wp/v2/pages';
 
     private topLevelPages: Observable<WordpressPage[]>;
-    private latestPages: Observable<WordpressPage[]>;
+    private latestPagesByTag: {[tag: string]: Observable<WordpressPage[]>};
     private pages: {[slug: string]: Observable<ExtendedWordpressPage>} = {};
 
     constructor(private http: HttpClient, private wordpressApiService: WordpressApiService) {
+        this.latestPagesByTag = {};
     }
 
     /**
@@ -24,14 +25,19 @@ export class WordpressPagesService {
      *
      * To visit that page on the user-site, we need to route users to /pages/slug
      */
-    static getRouteForWordpressPageFromPageUrl(url: string): string {
+    static getRouteForPageFromUrl(url: string): {route: string, isRelativeURL: boolean} {
         if (!url) {
-            return null;
+            return {
+                route: null,
+                isRelativeURL: true
+            };
         }
         const parsed = parse(url);
         const path = parsed.pathname;
-        const slug = path && path.match(/([^\/]*)\/?$/)[1];
-        return slug && ("/pages/" + slug);
+        return {
+            route: url,
+            isRelativeURL: url === parsed.pathname
+        };
     }
 
     getTopLevelPages(): Observable<WordpressPage[]> {
@@ -45,18 +51,20 @@ export class WordpressPagesService {
         return this.topLevelPages;
     }
 
-    getLatestPages(): Observable<WordpressPage[]> {
-        if (!this.latestPages) {
-            const params = new HttpParams().set('per_page', '4')
+    getLatestPages(tag: string): Observable<WordpressPage[]> {
+        if (!this.latestPagesByTag[tag]) {
+            const params = new HttpParams()
+                .set('tag', tag)
+                .set('per_page', '4')
                 .set('orderby', 'date')
                 .set('order', 'desc')
                 .set('context', 'embed');
             const endpoint = this.wordpressApiService.getFullApiEndpoint(WordpressPagesService.pagesEndpoint);
-            this.latestPages = this.http.get(endpoint, {params: params})
+            return this.latestPagesByTag[tag] = this.http.get(endpoint, {params: params})
                 .map((pageResponses: WordpressPageResponse[]) => pageResponses.map(pageResponse => new WordpressPage(pageResponse)))
                 .shareReplay(1);
         }
-        return this.latestPages;
+        return this.latestPagesByTag[tag];
     }
 
     getPage(slug: string): Observable<ExtendedWordpressPage> {

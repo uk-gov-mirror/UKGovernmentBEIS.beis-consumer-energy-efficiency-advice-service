@@ -84,9 +84,8 @@ $arrow-height: 48px;
 }
 
 @mixin is-quick-link-image($url, $distance-from-right, $distance-from-top, $height, $width) {
-  background: url($url) no-repeat;
+  background: url($url) no-repeat bottom;
   background-size: 100%;
-  background-position: bottom;
   position: absolute;
   content: "";
   right: $distance-from-right;
@@ -323,7 +322,7 @@ $arrow-height: 48px;
     );
 
     @include has-quick-links-section(
-      $grid-margin: 4px,
+      $grid-margin: 0,
       $number-of-items-in-row: 3,
       $link-padding: 70px 0 40px 40px,
       $heading-padding-right: 196px,
@@ -335,7 +334,19 @@ $arrow-height: 48px;
     );
 
     .quick-links {
+      width: 100%;
+
       .quick-link {
+        // Unfortunately, IE suffers from rounding errors, causing these to overflow onto a new line
+        // We have added a 1px buffer to the width to allow for this
+        width: calc((100%/3) - 5px);
+        margin-right: 4px;
+
+        &:last-of-type {
+          width: calc(100% / 3);
+          margin: 0;
+        }
+
         .calculator-image:after {
           @include is-calculator-link-image(8%, 40%, 109px, 132px);
         }

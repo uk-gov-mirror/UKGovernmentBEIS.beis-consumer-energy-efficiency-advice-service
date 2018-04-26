@@ -7,8 +7,14 @@ function setup_page_acf_group()
     if (function_exists("acf_add_local_field_group")) {
         acf_add_local_field_group(array(
             'key' => 'group_5a1d8632971ff',
-            'title' => 'sdfsdf',
+            'title' => 'Custom Options',
             'fields' => array(
+                array (
+                    'key' => 'field_000001',
+                    'label' => 'Basic Details',
+                    'name' => 'basic_details_tab',
+                    'type' => 'tab',
+                ),
                 array(
                     'key' => 'field_5a1ecb4e53fc3',
                     'label' => 'Cover Image',
@@ -48,6 +54,30 @@ function setup_page_acf_group()
                     ),
                     'width' => '',
                     'height' => '',
+                ),
+                array (
+                    'key' => 'field_000002',
+                    'label' => 'Tags',
+                    'name' => 'tags_tab',
+                    'type' => 'tab',
+                ),
+                array (
+                    'key' => 'field_000003',
+                    'label' => 'Tags',
+                    'name' => 'tags',
+                    'instructions' => 'Tags to determine where this article should be displayed',
+                    'type' => 'checkbox',
+                    'choices' => array (
+                        // When adding new tags here, avoid using special characters as it may break
+                        // the filtering. See filter_article_pages.php.
+                        'tag_general' => 'General - for Home page and measures pages',
+                        'tag_reduce_bills' => 'Reduce your bills',
+                        'tag_make_home_warmer' => 'Make your home warmer',
+                        'tag_make_home_greener' => 'Make your home greener',
+                        'tag_home_improvements' => 'Home improvements',
+                    ),
+                    'default_value' => '',
+                    'layout' => 'vertical',
                 ),
             ),
             'location' => array(

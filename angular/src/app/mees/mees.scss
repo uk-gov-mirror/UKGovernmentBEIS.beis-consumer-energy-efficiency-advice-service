@@ -1,0 +1,286 @@
+@import "styles/mixins/layout";
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
+$calculator-image: "/assets/images/home-page/home-calc.svg";
+$arrow-width: 20px;
+$arrow-height: 48px;
+
+.mees-page {
+  .page-heading {
+    padding: 48px 0;
+
+    .page-row-content {
+      display: flex;
+      flex-wrap: wrap;
+
+      .heading-text {
+        @include page-heading-font;
+        color: $darkened-blue;
+        flex: 2;
+      }
+
+      .subheading-text {
+        flex: 1;
+        font-family: $font-family;
+        font-weight: bold;
+
+        .subheading-epc {
+          font-size: 24px;
+          text-align: center;
+          margin: 10px;
+          padding: 24px 0;
+          color: white;
+          border-radius: 50%;
+          width: 70px;
+          height: 70px;
+          background-color: $amber;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+
+  .more-information {
+    background-color: $lighter-grey;
+    padding: 40px 0;
+
+    .body-text {
+      @include page-body-font;
+
+      .summary {
+        font-family: $font-family;
+        font-weight: bold;
+        padding: 10px 0;
+
+        &.tick {
+          padding: 40px 40px 40px 100px;
+          background: url("/assets/images/topics/circle-tick.svg") no-repeat left;
+          background-size: 80px;
+        }
+      }
+
+      .columns {
+        @include is-grid($margin-compensation: 0);
+        padding: 10px 0;
+      }
+    }
+  }
+
+  .calculator {
+    background: $light-grey;
+    padding: 40px 0;
+
+    .banner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > div, > a {
+        height: 120px;
+        border-left: 1px solid $primary-blue;
+        padding: 0 40px;
+        box-sizing: border-box;
+      }
+
+      .image {
+        background: url($calculator-image) no-repeat center center;
+        background-size: 100% 100%;
+        content: "";
+      }
+
+      .heading {
+        @include quick-link-heading-font;
+        color: $primary-blue;
+        display: flex;
+        align-items: center;
+      }
+
+      .link {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 40px;
+
+        &:focus, &:hover {
+          .arrow-button {
+            color: white;
+            background: $primary-blue;
+            &:after {
+              border-left-color: $primary-blue;
+            }
+          }
+        }
+
+        .description {
+          @include quick-link-font;
+          color: $darkened-blue;
+          box-sizing: border-box;
+          width: 100%;
+        }
+
+        .arrow-button {
+          position: relative;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          margin-top: auto;
+          @include quick-link-font;
+          height: $arrow-height;
+          width: 80%;
+          padding-left: 18px;
+
+          background: white;
+          color: $primary-blue;
+
+          &:after {
+            position: absolute;
+            right: -$arrow-width;
+            top: 0;
+            content: " ";
+            border: ($arrow-height / 2) solid transparent;
+            border-right-width: 0;
+            border-left: $arrow-width solid white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .mees-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          flex: 0 0 100%;
+          padding-bottom: 20px;
+        }
+
+        .subheading-text {
+          flex: 0 0 100%;
+        }
+      }
+    }
+
+    .more-information {
+      .columns {
+        .column {
+          @include is-grid-item($number-of-items: 1, $margin: 0);
+        }
+      }
+    }
+
+    .calculator {
+      .banner {
+        .image {
+          flex: 0 0 100%;
+        }
+
+        .heading {
+          flex: 0 0 100%;
+        }
+
+        .link {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .mees-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          flex: 0 0 100%;
+          padding-bottom: 20px;
+        }
+
+        .subheading-text {
+          flex: 0 0 100%;
+        }
+      }
+    }
+
+    .more-information {
+      .columns {
+        .column {
+          @include is-grid-item($number-of-items: 1, $margin: 0);
+        }
+      }
+    }
+
+    .calculator {
+      .banner {
+        .image {
+          flex: 0 0 40%;
+        }
+
+        .heading {
+          flex: 0 0 60%;
+          border-left: none;
+        }
+
+        .link {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .mees-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          flex: 2;
+          padding-right: 40px;
+        }
+
+        .subheading-text {
+          flex: 1;
+          padding-left: 40px;
+          border-left: 1px solid $separator-grey;
+        }
+      }
+    }
+
+    .more-information {
+      .columns {
+        .column {
+          @include is-grid-item($number-of-items: 2, $margin: 0);
+
+          &:not(:first-child) {
+            padding-left: 40px;
+          }
+
+          &:not(:last-child) {
+            right: 40px;
+          }
+        }
+      }
+    }
+
+    .calculator {
+      .banner {
+        .image {
+          flex: 0 0 20%;
+        }
+
+        .heading {
+          flex: 0 0 50%;
+        }
+
+        .link {
+          flex: 0 0 30%;
+        }
+      }
+    }
+  }
+}

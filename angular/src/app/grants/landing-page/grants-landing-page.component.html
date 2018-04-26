@@ -14,10 +14,9 @@
                             that you might be eligible for.</p>
                     </div>
                 <div class="enter-postcode-form">
-                        <app-postcode-lookup class="postcode-epc input-grey" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
+                    <app-postcode-lookup class="postcode-epc input-grey" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
                 </div>
             </div>
-            <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
             <div class="loading-grants" *ngIf="isLoading"></div>
             <div class="network-error" *ngIf="isError">
                 Something went wrong and we can't load this information right now. Please try again later.
@@ -58,7 +57,7 @@
                         </div>
 
                         <a class="link-button link-button-arrow" (click)="setJourneyTypeToHomeImprovements()"
-                           routerLink="/page-not-created/">
+                           routerLink="/pages/energy-company-obligation">
                             Find out more
                         </a>
                     </div>
@@ -72,7 +71,8 @@
                         <div class="grant-description">
                             If you use renewable energy to heat your home, you can benefit financially from the Renewable Heat Incentive (RHI) scheme.
                         </div>
-                        <a class="link-button link-button-arrow" (click)="setJourneyTypeToBoiler()" routerLink="/page-not-created/">
+                        <a class="link-button link-button-arrow" (click)="setJourneyTypeToBoiler()"
+                           routerLink="/pages/renewable-heat-incentive">
                             Find out more
                         </a>
                     </div>
@@ -87,7 +87,7 @@
                             Guaranteed payments for producing electricity using renewable technologies under the Feed-In Tariff (FIT) scheme.
                         </div>
                         <a class="link-button link-button-arrow" (click)="setJourneyTypeToHomeImprovements()"
-                           routerLink="/page-not-created/">
+                           routerLink="/pages/feed-in-tariff">
                             Find out more
                         </a>
                     </div>

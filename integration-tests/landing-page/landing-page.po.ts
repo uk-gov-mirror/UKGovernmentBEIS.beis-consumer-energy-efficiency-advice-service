@@ -6,10 +6,13 @@ export class LandingPage {
     }
 
     getHeadingText() {
-        return element(by.css('.heading')).getText();
+        return element(by.css('.page-heading .heading')).getText();
     }
 
     enterPostcode(postcode: string) {
-        element(by.css('.postcode-input-text')).sendKeys(postcode, protractor.Key.ENTER);
+        const postcodeInput = element(by.css('.postcode-input-text'));
+        // Send ctrl + a, Del to clear the current postcode
+        postcodeInput.sendKeys(protractor.Key.chord(protractor.Key.CONTROL, 'a'), protractor.Key.DELETE);
+        postcodeInput.sendKeys(postcode, protractor.Key.ENTER);
     }
 }

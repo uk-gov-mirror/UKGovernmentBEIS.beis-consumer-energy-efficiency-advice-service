@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
@@ -16,13 +16,17 @@ import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-
 @Component({
     selector: 'app-page',
     templateUrl: './page.component.html',
-    styleUrls: ['./page.component.scss']
+    styleUrls: ['./page.component.scss'],
+    // This component does not contain any other components, and most of the styling is applied to
+    // HTML injected via the innerHtml attribute, so it's easiest to turn off encapsulation for this
+    encapsulation: ViewEncapsulation.None,
 })
 export class PageComponent implements OnInit {
 
     pageData: ExtendedWordpressPage;
     isLoading: boolean;
     isError: boolean;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
