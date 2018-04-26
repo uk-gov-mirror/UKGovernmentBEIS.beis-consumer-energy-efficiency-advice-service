@@ -34,6 +34,7 @@ describe('LandingPageComponent', () => {
     let router: Router;
     let responseData: ResponseData;
     let mockEpcLookupComponent: MockEpcLookupComponent;
+    let mockPostcodeLookupComponent: MockPostcodeLookupComponent;
 
     const headingText = 'heading';
     const userJourneyType = UserJourneyType.MakeHomeGreener;
@@ -54,7 +55,7 @@ describe('LandingPageComponent', () => {
                 ArticleCardComponent,
                 LatestNewsCardComponent,
                 LatestNewsSectionComponent,
-                PostcodeLookupComponent,
+                MockPostcodeLookupComponent,
                 MockEpcLookupComponent,
                 PopupComponent,
                 DataCardComponent,
@@ -95,6 +96,7 @@ describe('LandingPageComponent', () => {
         spyOn(router, 'navigate');
         fixture.detectChanges();
         mockEpcLookupComponent = fixture.debugElement.query(By.directive(MockEpcLookupComponent)).componentInstance;
+        mockPostcodeLookupComponent = fixture.debugElement.query(By.directive(MockPostcodeLookupComponent)).componentInstance;
     });
 
     it('should create', () => {
@@ -140,4 +142,12 @@ describe('LandingPageComponent', () => {
 class MockEpcLookupComponent {
     @Input() postcode: string;
     @Output() public epcSelected: EventEmitter<void> = new EventEmitter<void>();
+}
+
+@Component({
+    selector: 'app-postcode-lookup',
+    template: '<p>Mock Postcode Lookup Component</p>'
+})
+class MockPostcodeLookupComponent {
+    @Output() public postcodeSelected: EventEmitter<void> = new EventEmitter<void>();
 }

@@ -6,6 +6,7 @@ import {LocalAuthority} from '../../shared/local-authority-service/local-authori
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import * as logger from "loglevel";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -40,8 +41,8 @@ export class YourPlanPageComponent implements OnInit {
         this.localAuthorityName = response.name;
     }
 
-    handleLocalAuthorityServiceError(err: any) {
-        console.error(err);
+    handleLocalAuthorityServiceError(err: Error) {
+        logger.error(err.message);
     }
 
     sendEventToAnalytics(eventName: string, eventLabel?: string) {

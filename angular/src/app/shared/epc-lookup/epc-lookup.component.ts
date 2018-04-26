@@ -28,6 +28,17 @@ export class EpcLookupComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        // A null postcode means that we have been unable to get postcode information from the users input
+        // They have either entered an invalid postcode, or the lookup has failed. The postcode-lookup
+        // component handles the error messages for this.
+        // Allow users to continue in this case
+        if (this.postcode === null) {
+            this.epcs = [];
+            return;
+        }
+
+        // An undefined postcode means that the user is yet to enter a postcode.
+        // Don't show any EPC info in this case
         if (!this.postcode) {
             this.epcs = undefined;
             return;
