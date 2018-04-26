@@ -21,8 +21,7 @@ deploy:
   script: SPACE=int ./infrastructure/deploy.sh
   on:
     branch: master
-after_deploy:
-  - "./infrastructure/ci-integration-test.sh"
+after_deploy: "./infrastructure/ci-integration-test.sh"
 env:
   global:
   - secure: aCI9py4qcP9fJFBy5R1FAQizh4tz1wmNrLRHPQjOCaUB9KmlKdcN9bYxRErcZv4ycfmVmR1LPtpAjKqbpVmBqTVGbQf8VBrwm1Wm+zh8XIbToB+5OZDFZiLeU8VT4c79aCnONKDlly2NcI52mzZGs7F97R4DKt8lux1YjlyhxCBxbidJ+Qdk0nRYAx1qrcBZHNp8sGJhQV9LAOnSx3K8ilT4bFIKDIBVjmq1+TZnss8Qtr5jrqDCdFBBhqS0IFiVT3b2ijQncyrpEHOlP0folEXE61dp9dx2NldaKB50D4oH0WMiEIK3lOuqFiwoe9EQh5Lu8i/nm6id9JcuIUVvYTN53CNGTAes5AI73IkekZVGTW21SlGDnyZWagTxvORhq5VO0d/tJ6hat2XyeUCINSpW/tpjHBajlANpBw5NdVpaN0ZBk84cA+UPnKmfLBzzt7hBw9eeOug85f6Z/Vl411a2LrqWA/269D8hr1mdxlBwOlRHOLa0mEUI6UkaJ5AbrpS9d5+15mbYmtCSgB58UvOIkb4AAAQjXarMnN0qzB1qgXaALd9MDVUiRG3+7izyqa0HXS9F16zWNWnwPqMgCcNDZJqNVM5fKGOckgpEEA05s9dr6rGf/gknMbLJLXNw7YGBURh8QMS7Z3qedVMsWp9pZvdcvaWNIRkU1C2sTyY=
