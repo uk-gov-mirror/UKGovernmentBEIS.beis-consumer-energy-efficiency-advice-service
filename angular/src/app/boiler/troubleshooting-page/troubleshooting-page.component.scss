@@ -1,21 +1,55 @@
 @import "styles/var/colors";
 @import "styles/page";
+@import "styles/boiler";
 
 .page-heading {
   background-color: $primary-blue;
   color: white;
 
-  .page-row-content {
-    padding: 60px 0;
-  }
-
   .heading-text {
-    font-size: 48px;
-    line-height: 40px;
-    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+  }
+}
+
+.tips {
+  > :nth-child(2n-1) {
+    background-color: $lighter-grey;
   }
 
-  .body-text {
-    padding: 30px 0 0;
+  .page-row-content {
+    display: flex;
+    justify-content: flex-start;
+
+    .tip {
+      flex: 0 0 33%;
+
+      .index {
+        margin-bottom: 20px;
+      }
+
+      .summary {
+        color: $headline-dark-blue;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .details {
+        font-family: $font-family-light;
+      }
+    }
+  }
+}
+
+.repairer {
+  .page-row-content {
+    box-sizing: border-box;
+    padding: 0 225px;
+    text-align: center;
+
+    .heading {
+      margin-bottom: 20px;
+    }
   }
 }

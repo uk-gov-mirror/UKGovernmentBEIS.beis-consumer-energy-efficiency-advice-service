@@ -87,28 +87,25 @@
 @include desktop() {
 
   .page-heading {
-    background-color: white;
+    background-color: $action-button-blue;
+    color: white;
+
+    .heading-text {
+      margin-bottom: 20px;
+      color: white;
+    }
   }
-  .get-started {
+
+  .checkEPC {
     background-color: $lighter-grey;
 
     .page-row-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 225px;
+      text-align: center;
 
-      .content {
-        flex: 1 1 auto;
-        margin-right: 60px;
-
-        .heading {
-          margin-bottom: 8px;
-        }
-      }
-
-      .link-button {
-        flex: 0 0 300px;
-        height: 70px;
+      .heading {
+        margin-bottom: 20px;
       }
     }
   }

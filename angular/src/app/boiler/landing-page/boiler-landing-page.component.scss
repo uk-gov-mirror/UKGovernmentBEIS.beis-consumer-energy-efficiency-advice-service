@@ -50,10 +50,7 @@ $arrow-height: 48px;
     margin: -80px 0;
     box-sizing: border-box;
     padding: 80px 0;
-
-    .page-row-content {
-      flex-direction: column;
-    }
+    position: relative;
 
     .heading, .body-text {
       margin-bottom: 40px;
@@ -63,6 +60,7 @@ $arrow-height: 48px;
     .body-text {
       color: $headline-dark-blue;
       font-family: $font-family-light;
+      min-height: 80px;
     }
 
     .arrow-button {
@@ -94,6 +92,10 @@ $arrow-height: 48px;
   .troubleshooting {
     border-right: 2px white solid;
 
+    .boiler-image:after {
+      @include is-boiler-link-image(8%, 0, 266px, 103px);
+    }
+
     &:focus, &:hover {
       .arrow-button {
         color: white;
@@ -109,6 +111,10 @@ $arrow-height: 48px;
     border-left: 2px white solid;
     padding-left: 40px;
 
+    .boiler-image:after {
+      @include is-boiler-link-image(8%, 0, 266px, 103px);
+    }
+
     &:focus, &:hover {
       .arrow-button {
         color: white;
@@ -120,9 +126,7 @@ $arrow-height: 48px;
     }
   }
 
-  .boiler-image:after {
-    @include is-boiler-link-image(330px, -300px, 55%, 77px);
-  }
+
 }
 
 .installer {
@@ -130,6 +134,10 @@ $arrow-height: 48px;
     box-sizing: border-box;
     padding: 0 225px;
     text-align: center;
+
+    .heading {
+      margin-bottom: 20px;
+    }
   }
 }
 
