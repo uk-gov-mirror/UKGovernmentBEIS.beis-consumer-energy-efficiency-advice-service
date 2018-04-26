@@ -10,7 +10,7 @@
     <div class="error" *ngIf="validationError">
         <div class="error-message">{{validationError}}</div>
     </div>
-    <div class="loading-spinner" *ngIf="shouldDisplayLoadingSpinner"></div>
+    <app-spinner-and-error-container [loading]="shouldDisplayLoadingSpinner" [error]="false"></app-spinner-and-error-container>
     <div *ngIf="allEpcsForPostcode && allEpcsForPostcode.length > 0">
         <div class="select-address">Please select your address:</div>
         <div class="list-select">

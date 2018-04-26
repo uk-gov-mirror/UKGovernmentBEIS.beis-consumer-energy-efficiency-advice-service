@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
+import {FormsModule}   from '@angular/forms';
 
 import {SpinnerAndErrorContainerComponent} from './spinner-and-error-container.component';
 
@@ -7,9 +8,16 @@ describe('SpinnerAndErrorContainerComponent', () => {
     let component: SpinnerAndErrorContainerComponent;
     let fixture: ComponentFixture<SpinnerAndErrorContainerComponent>;
 
+    const loading: boolean = false;
+    const error: boolean = false;
+    const errorMessage: string = "Test Error";
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SpinnerAndErrorContainerComponent]
+            declarations: [SpinnerAndErrorContainerComponent],
+            imports: [
+                FormsModule
+            ],
         })
             .compileComponents();
     }));
@@ -17,6 +25,9 @@ describe('SpinnerAndErrorContainerComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SpinnerAndErrorContainerComponent);
         component = fixture.componentInstance;
+        component.loading = loading;
+        component.error = error;
+        component.errorMessage = errorMessage;
         fixture.detectChanges();
     });
 

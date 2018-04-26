@@ -17,6 +17,9 @@ export class LocalAuthorityService {
     }
 
     fetchLocalAuthorityDetails(localAuthorityCode: string): Observable<LocalAuthority> {
+        if (!localAuthorityCode) {
+            return Observable.throw(new Error('No local authority code'));
+        }
         if (!this.localAuthorities[localAuthorityCode]) {
             const endpoint = this.localAuthorityEndpoint +
                 encodeURIComponent(localAuthorityCode);

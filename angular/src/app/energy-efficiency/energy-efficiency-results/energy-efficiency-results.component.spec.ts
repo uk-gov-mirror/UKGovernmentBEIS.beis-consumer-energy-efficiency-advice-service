@@ -11,8 +11,6 @@ import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-ser
 import {ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
 import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
-import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
-import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results.component';
 import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
 import {EnergyEfficiencyRecommendationCardComponent} from
@@ -27,7 +25,6 @@ import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.c
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.component';
-import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
@@ -39,13 +36,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
     let energyCalculationResponse: Observable<EnergyCalculationResponse>;
     const energyCalculationApiServiceStub = {
         fetchEnergyCalculation: () => energyCalculationResponse
-    };
-    const localAuthorityCode = 'E09000033';
-    const localAuthorityName = 'Westminster';
-
-    let localAuthorityResponse: Observable<LocalAuthority>;
-    const localAuthorityServiceStub = {
-        fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
 
     let recommendationsResponse: Observable<EnergyEfficiencyRecommendation[]>;
@@ -125,29 +115,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
     beforeEach(async(() => {
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
         recommendationsResponse = Observable.of(recommendations);
-        localAuthorityResponse = Observable.of({
-            name: localAuthorityName,
-            isEcoFlexActive: true,
-            ecoFlexMoreInfoLink: 'http://www.example.com',
-            grants: [
-                new LocalAuthorityGrant({
-                    display_name: 'LA Grant 1',
-                    description: 'some local grant',
-                    slug: 'la-grant-1'
-                }),
-                new LocalAuthorityGrant({
-                    display_name: 'LA Grant 2',
-                    description: 'another local grant',
-                    slug: 'la-grant-1'
-                })
-            ]
-        });
 
         responseData = new ResponseData();
-        responseData.localAuthorityCode = localAuthorityCode;
 
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
-        spyOn(localAuthorityServiceStub, 'fetchLocalAuthorityDetails').and.callThrough();
         spyOn(recommendationsServiceStub, 'getAllRecommendations').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -171,7 +142,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
-                {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
                 GoogleAnalyticsService,
@@ -280,29 +250,4 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // match annual savings from recommendations above
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(309);
     });
-
-    it('should call local authority API service with code from response data', () => {
-        // when
-        fixture.detectChanges();
-
-        // then
-        expect(localAuthorityServiceStub.fetchLocalAuthorityDetails)
-            .toHaveBeenCalledWith(localAuthorityCode);
-    });
-
-    it('should display an error message if local authority API responds with an error', () => {
-        // given
-        localAuthorityResponse = ErrorObservable.create('some error text');
-
-        // when
-        fixture.detectChanges();
-
-        // then
-        expect(fixture.debugElement.query(By.css('.page-error-container'))).toBeTruthy();
-    });
-
-    function clearFilters(): void {
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.None;
-        fixture.detectChanges();
-    }
 });

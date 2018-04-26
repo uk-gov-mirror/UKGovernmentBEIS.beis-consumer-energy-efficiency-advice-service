@@ -35,6 +35,7 @@ import {ECOSuppliersPageComponent} from './eco-suppliers-page/eco-suppliers-page
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {PageNotCreatedComponent} from './page-not-created/page-not-created.component';
 import {SimpleSavingsComponent} from './simple-savings/simple-savings.component';
+import {InstallerSearchComponent} from "./installer-search/installer-search.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -208,6 +209,14 @@ const routes: Routes = [
         path: 'eco-suppliers',
         component: ECOSuppliersPageComponent,
         pathMatch: 'full'
+    },
+    {
+        path: 'installer-search',
+        component: InstallerSearchComponent,
+    },
+    {
+        path: 'installer-search/:measure-code',
+        component: InstallerSearchComponent,
     },
     {
         path: 'measures/:slug',

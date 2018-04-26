@@ -42,10 +42,12 @@ import {ForbiddenPageComponent} from './forbidden-page/forbidden-page.component'
 import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
 import {WordpressECOSuppliersService} from './wordpress-eco-suppliers-service/wordpress-eco-suppliers.service';
 import {WordpressSearchService} from './wordpress-search-service/wordpress-search.service';
+import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
 
 @NgModule({
     declarations: [
         PostcodeLookupComponent,
+        EpcLookupComponent,
         TimesPipe,
         NavigationBarComponent,
         SearchBarComponent,
@@ -67,6 +69,7 @@ import {WordpressSearchService} from './wordpress-search-service/wordpress-searc
     ],
     exports: [
         PostcodeLookupComponent,
+        EpcLookupComponent,
         TimesPipe,
         NavigationBarComponent,
         NavBarSuboptionComponent,

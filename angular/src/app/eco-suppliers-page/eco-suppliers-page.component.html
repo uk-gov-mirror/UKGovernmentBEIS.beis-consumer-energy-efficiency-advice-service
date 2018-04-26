@@ -11,7 +11,7 @@
             <div class="supplier-list-summary">
                 Below is a list of all of the energy suppliers participating in the Energy Company Obligation (ECO).
             </div>
-            <app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+            <app-spinner-and-error-container [loading]="loading" [error]="error" errorMessage="errorMessage"></app-spinner-and-error-container>
             <div class="supplier-list" *ngIf="!loading && !error && suppliers">
                 <a class="supplier" *ngFor="let supplier of suppliers" [href]="supplier.link" target="_blank">
                     <img [src]="supplier.logo_image_src"

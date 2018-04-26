@@ -21,11 +21,13 @@ import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {PopupComponent} from '../../shared/popup/popup.component';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
-import {SearchBarComponent} from "../../layout-components/search-bar/search-bar.component";
-import {NavBarSuboptionComponent} from "../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
-import {MeasureCardComponent} from "../measure-card/measure-card.component";
-import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {SearchBarComponent} from '../../layout-components/search-bar/search-bar.component';
+import {NavBarSuboptionComponent} from '../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {MeasureCardComponent} from '../measure-card/measure-card.component';
+import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
+import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
 
 describe('GreenerHomeComponent', () => {
 
@@ -51,10 +53,12 @@ describe('GreenerHomeComponent', () => {
                 LatestNewsSectionComponent,
                 LatestNewsCardComponent,
                 PostcodeLookupComponent,
+                EpcLookupComponent,
                 DataCardComponent,
                 PopupComponent,
                 NavBarSuboptionComponent,
                 SearchBarComponent,
+                SpinnerAndErrorContainerComponent,
                 MeasureCardComponent
             ],
             imports: [

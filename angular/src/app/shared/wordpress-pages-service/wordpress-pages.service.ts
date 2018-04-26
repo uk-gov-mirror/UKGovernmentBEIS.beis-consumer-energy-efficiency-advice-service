@@ -25,14 +25,19 @@ export class WordpressPagesService {
      *
      * To visit that page on the user-site, we need to route users to /pages/slug
      */
-    static getRouteForWordpressPageFromPageUrl(url: string): string {
+    static getRouteForPageFromUrl(url: string): {route: string, isRelativeURL: boolean} {
         if (!url) {
-            return null;
+            return {
+                route: null,
+                isRelativeURL: true
+            };
         }
         const parsed = parse(url);
         const path = parsed.pathname;
-        const slug = path && path.match(/([^\/]*)\/?$/)[1];
-        return slug && ("/pages/" + slug);
+        return {
+            route: url,
+            isRelativeURL: url === parsed.pathname
+        };
     }
 
     getTopLevelPages(): Observable<WordpressPage[]> {

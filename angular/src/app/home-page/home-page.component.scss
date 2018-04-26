@@ -84,9 +84,8 @@ $arrow-height: 48px;
 }
 
 @mixin is-quick-link-image($url, $distance-from-right, $distance-from-top, $height, $width) {
-  background: url($url) no-repeat;
+  background: url($url) no-repeat bottom;
   background-size: 100%;
-  background-position: bottom;
   position: absolute;
   content: "";
   right: $distance-from-right;

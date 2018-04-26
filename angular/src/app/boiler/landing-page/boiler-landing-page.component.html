@@ -84,7 +84,10 @@
                             home has any information on your boiler
                         </div>
                         <app-postcode-lookup class="postcode-epc input-grey"
-                                             (addressSelected)="onAddressSelected($event)"></app-postcode-lookup>
+                                             (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+                        <app-epc-lookup class="postcode-epc input-grey"
+                                             [postcode]="postcode"
+                                             (epcSelected)="onEpcSelected($event)"></app-epc-lookup>
                     </div>
                 </div>
             </div>

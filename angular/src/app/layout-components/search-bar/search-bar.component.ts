@@ -15,6 +15,7 @@ export class SearchBarComponent {
     searchResults: WordpressSearchable[] = [];
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
+    errorMessage: string = "Sorry, there was an error fetching search results. Please try again later.";
 
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
