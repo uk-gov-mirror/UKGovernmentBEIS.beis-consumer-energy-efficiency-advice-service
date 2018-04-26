@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.TimeUnit;
 
 public class DevSimulatedConnectionDelayInterceptor extends HandlerInterceptorAdapter {
-    long reqStartTime;
+    private long reqStartTime;
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws InterruptedException{
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws InterruptedException {
         reqStartTime = System.currentTimeMillis();
         return true;
     }

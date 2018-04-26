@@ -59,8 +59,8 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry){
-        if(environment.acceptsProfiles("dev")){
+    public void addInterceptors(InterceptorRegistry registry) {
+        if (environment.acceptsProfiles("dev")) {
             // If in a dev environment, add an interceptor which adds a 500ms delay to all requests
             registry.addInterceptor(new DevSimulatedConnectionDelayInterceptor());
         }
