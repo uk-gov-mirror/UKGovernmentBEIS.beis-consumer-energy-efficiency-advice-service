@@ -21,12 +21,6 @@ export class BoilerLandingPageComponent {
 
     onPostcodeSelected() {
         this.postcode = this.responseData.postcode;
-        if (!this.postcode) {
-            // If the postcode lookup has failed for some reason, we should send them onwards without
-            // their epc rather than display an error. The unknown page contains an apology for not
-            // finding their boiler info
-            this.router.navigate(['/boiler/epc-replace/unknown']);
-        }
     }
 
     onEpcSelected(lmkKey: string) {

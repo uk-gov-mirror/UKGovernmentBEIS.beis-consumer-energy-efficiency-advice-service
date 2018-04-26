@@ -126,18 +126,6 @@ describe('LandingPageComponent', () => {
         // then
         expect(responseData.userJourneyType).toBe(userJourneyType);
     });
-
-    it('should move on to the questionnaire if the postcode lookup fails', () => {
-        // given
-        responseData.postcode = null;
-
-        // when
-        mockPostcodeLookupComponent.postcodeSelected.emit();
-
-        // then
-        expect(component.postcode).toBeNull();
-        expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/questionnaire/home-basics']);
-    });
 });
 
 @Component({

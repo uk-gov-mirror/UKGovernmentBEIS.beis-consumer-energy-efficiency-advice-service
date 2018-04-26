@@ -15,6 +15,7 @@ export class PostcodeLookupComponent implements OnInit {
     postcodeInput: string;
     loading: boolean = false;
     validationError: boolean = false;
+    lookupError: boolean = false;
     scottishPostcode: boolean = false;
 
     @Output() postcodeSelected: EventEmitter<void> = new EventEmitter<void>();
@@ -35,6 +36,7 @@ export class PostcodeLookupComponent implements OnInit {
         this.loading = true;
         this.scottishPostcode = false;
         this.validationError = false;
+        this.lookupError = false;
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {
@@ -65,15 +67,15 @@ export class PostcodeLookupComponent implements OnInit {
     }
 
     private handleSearchError(error: any): void {
+        if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
+            this.validationError = true;
+        } else {
+            this.lookupError = true;
+        }
         this.responseData.postcode = null;
         this.responseData.localAuthorityCode = null;
 
         this.loading = false;
-
-        if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
-            this.validationError = true;
-            return;
-        }
         this.postcodeSelected.emit();
     }
 }
