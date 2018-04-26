@@ -25,6 +25,8 @@ jobs:
       script: SPACE=live ./infrastructure/deploy.sh
     - stage: integration-tests
       script: ./infrastructure/ci-integration-tests.sh
+      addons:
+        chrome: stable
 #notifications:
 #  email:
 #    - anthony.pengelly@softwire.com
