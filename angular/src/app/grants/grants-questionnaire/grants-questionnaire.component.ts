@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {isComplete, ResponseData} from "../../shared/response-data/response-data";
 
 @Component({
     selector: 'app-grants-questionnaire',
@@ -9,8 +8,7 @@ import {isComplete, ResponseData} from "../../shared/response-data/response-data
 })
 export class GrantsQuestionnaireComponent {
 
-    constructor(private responseData: ResponseData,
-                private router: Router) {
+    constructor(private router: Router) {
     }
 
     onQuestionnaireComplete() {

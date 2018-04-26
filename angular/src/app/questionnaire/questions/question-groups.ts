@@ -9,14 +9,11 @@ import {ElectricityTariffQuestionMetadata} from './electricity-tariff-question/e
 import {FuelTypeQuestionMetadata} from './fuel-type-question/fuel-type-question-metadata';
 import {LivingRoomTemperatureQuestionMetadata} from './living-room-temperature-question/living-room-temperature-question-metadata';
 import {OccupantsQuestionMetadata} from './occupants-question/occupants-question-metadata';
-import {ShowerTypeQuestionMetadata} from './shower-type-question/shower-type-question-metadata';
 import {ShowersAndBathsQuestionMetadata} from './showers-and-baths-question/showers-and-baths-question-metadata';
-import {FridgeFreezerQuestionMetadata} from './fridge-freezer-question/fridge-freezer-question-metadata';
 import {TenureTypeQuestionMetadata} from './tenure-type-question/tenure-type-question-metadata';
 import {GrantsQuestionnaireQuestionMetadata} from './grants-questionnaire-question/grants-questionnaire-question-metadata';
 import {BenefitsQuestionMetadata} from './benefits-question/benefits-question-metadata';
 import {IncomeQuestionMetadata} from './income-question/income-question-metadata';
-import {TumbleDryQuestionMetadata} from './tumble-dry-question/tumble-dry-question-metadata';
 import {ConstructionQuestionMetadata} from './construction-question/construction-question-metadata';
 import {WaterTankQuestionMetadata} from './water-tank-question/water-tank-question-metadata';
 import {GardenQuestionMetadata} from './garden-question/garden-question-metadata';
@@ -73,31 +70,38 @@ export const BASIC_BEHAVIOURAL_QUESTIONS = [
     new ShowersAndBathsQuestionMetadata()
 ];
 
-export const OTHER_BEHAVIOURAL_QUESTIONS = [
-    new ShowerTypeQuestionMetadata(),
-    new TumbleDryQuestionMetadata(),
-    new FridgeFreezerQuestionMetadata(),
-];
-
 export const GRANTS_QUESTIONNAIRE_QUESTION = [
     new GrantsQuestionnaireQuestionMetadata()
 ];
 
 export const GRANTS_QUESTIONS = [
+    // Used to determine the applicable Local Authority
     new PostcodeEpcQuestionMetadata(),
+    // Used to show savings per-month or per-year,
+    // and for some grant applicability e.g. EcoHhcroSocialEfg
     new TenureTypeQuestionMetadata(),
+    // Used  for some grant applicability e.g. ColdWeatherPayments
     new BenefitsQuestionMetadata(),
+    // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
     new OccupantsQuestionMetadata(),
+    // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
     new IncomeQuestionMetadata()
 ];
 
 export const BOILER_QUESTIONS = [
+    // Used to decide if the property is "well insulated", restricts which boilers are offered
     new ConstructionQuestionMetadata(),
+    // Used to decide if boilers with tanks can be offered
     new WaterTankQuestionMetadata(),
+    // Used to decide if ground-source-heat-pump boilers can be offered
     new GardenQuestionMetadata(),
+    // Used to decide if solar boilers can be offered
     new RoofSpaceQuestionMetadata(),
+    // Restricts which boilers are offered
     new FuelTypeQuestionMetadata(),
+    // Not currently used!
     new OccupantsQuestionMetadata(),
+    // Not currently used!
     new ShowersAndBathsQuestionMetadata(),
 ];
 

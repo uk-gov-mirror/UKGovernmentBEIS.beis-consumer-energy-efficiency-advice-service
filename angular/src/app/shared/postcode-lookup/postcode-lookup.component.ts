@@ -36,6 +36,7 @@ export class PostcodeLookupComponent implements OnInit {
         this.loading = true;
         this.scottishPostcode = false;
         this.error = false;
+        // TODO:BEIS-201 page will spin forever if API is offline or unreachable
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {

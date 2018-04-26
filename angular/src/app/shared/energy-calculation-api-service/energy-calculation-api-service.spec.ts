@@ -12,6 +12,7 @@ describe('EnergyCalculationApiService', () => {
     (window as any).CONFIG = {apiRoot: "/api"};
 
     const rdSapInput: RdSapInput = {
+        postcode: undefined,
         epc: undefined,
         property_type: '2',
         built_form: '4',
@@ -31,11 +32,11 @@ describe('EnergyCalculationApiService', () => {
         baths_per_week: 0,
         showers_per_week: 123,
         shower_type: '4',
-        tumble_dry_percentage: 50,
-        fridge_freezers: 5,
-        fridges: 0,
-        freezers: 26,
         condensing_boiler: false,
+        electricity_tariff: undefined,
+        roof_type: undefined,
+        wall_type: undefined,
+        glazing_type: undefined,
         hot_water_cylinder: false,
         isMinimalDataSet: () => true
     };
