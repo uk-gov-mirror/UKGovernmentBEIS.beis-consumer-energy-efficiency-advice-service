@@ -18,6 +18,7 @@ itself. This was done because not all internal links are links to Wordpress page
 
 -- 1a INSERT "link_url" for each old "linked_page" WHERE is_external_link=0
 -- 1b INSERT "link_url for each old "external_link" WHERE is_external_link = 1
+-- 1c DELETE redundant Wordpress data
 
 -- The number of steps progress up to 6 because that, at the time of writing, is the highest number of steps any measure has
 
@@ -280,8 +281,8 @@ WHERE old_is_ext.meta_value = 1;
 
 -- 1c.
 
-DELETE FROM wordpress.wp_postmeta
-WHERE post_id IN (SELECT ID from wordpress.wp_posts WHERE post_type = "measure")
+DELETE FROM wp_postmeta
+WHERE post_id IN (SELECT ID from wp_posts WHERE post_type = "measure")
 AND (meta_key LIKE '%is\_external\_link' OR meta_key LIKE '%external\_link' OR meta_key LIKE '%linked\_page');
 
        ]]></sql>
