@@ -122,10 +122,10 @@ public class IndexController {
             buildAttributes.getValue("Build-Timestamp"));
         model.addAttribute("buildGitCommit",
             buildAttributes.getValue("Git-Commit"));
-        model.addAttribute("buildJenkinsUrl",
-            buildAttributes.getValue("Jenkins-Build-Url"));
-        model.addAttribute("buildJenkinsNumber",
-            buildAttributes.getValue("Jenkins-Build-Number"));
+        model.addAttribute("buildUrl",
+            buildAttributes.getValue("Build-Url"));
+        model.addAttribute("buildNumber",
+            buildAttributes.getValue("Build-Number"));
 
         model.addAttribute("host", request.getServerName());
 

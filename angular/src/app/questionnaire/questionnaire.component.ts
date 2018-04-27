@@ -73,6 +73,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             log.warn(`Questionnaire "${ this.questionnaireName } is empty"`);
             this.onQuestionnaireComplete.emit();
         }
+        // TODO:BEIS-201 needs loading/error spinner
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')

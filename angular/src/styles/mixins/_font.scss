@@ -310,6 +310,15 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-family: $font-family-light;
 }
 
+@mixin phase-font {
+  @include has-font-sizes-at-breakpoints(16px, 20px, 16px, 20px, 14px, 16px);
+  color: white;
+  background-color: $govuk-blue;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 // TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 @mixin focus-text {
   font-size: 32px;

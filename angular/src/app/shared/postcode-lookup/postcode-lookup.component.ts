@@ -18,6 +18,15 @@ export class PostcodeLookupComponent implements OnInit {
     errorMessage: string;
     scottishPostcode: boolean = false;
 
+    /**
+     * When the postcode has been entered by the user and validated as non-Scottish,
+     * this event will be fired.
+     * Collaborators who want to see the postcode should then consult `responseData.postcode`
+     *
+     * In the case of an error or an invalid postcode, `responseData.postcode`
+     * will be set to null. (This is distinct to `undefined`, which
+     * means that the user hasn't answered that question yet)
+     */
     @Output() postcodeSelected: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private responseData: ResponseData,
@@ -36,6 +45,7 @@ export class PostcodeLookupComponent implements OnInit {
         this.loading = true;
         this.scottishPostcode = false;
         this.error = false;
+        // TODO:BEIS-201 page will spin forever if API is offline or unreachable
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {
@@ -70,7 +80,8 @@ export class PostcodeLookupComponent implements OnInit {
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             this.errorMessage = "Please enter a valid UK postcode";
         } else {
-            this.errorMessage = "Oh no! The postcode lookup has failed.";
+            this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
+                "may lead to less applicable suggestions. Alternatively, click '>' to try again";
         }
         this.responseData.postcode = null;
         this.responseData.localAuthorityCode = null;

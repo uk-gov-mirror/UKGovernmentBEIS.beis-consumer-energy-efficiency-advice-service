@@ -1,5 +1,6 @@
 @import "styles/page";
 @import "styles/var/colors";
+@import "styles/mixins/font";
 
 // Component specific variables
 $search-container-height: 24px;
@@ -84,6 +85,14 @@ $desktop-header-height: 82px;
     .logos {
       display: flex;
       align-items: center;
+      text-decoration: none;
+
+      .phase-tag {
+        margin: 0 8px;
+        padding: 2px 5px;
+        @include phase-font;
+        letter-spacing: 1px;
+      }
     }
 
     .tablet-search-icon {
@@ -188,7 +197,12 @@ $desktop-header-height: 82px;
 
         .ehc-logo, .ehc-logo--small {
           height: 62px;
+        }
 
+        .phase-tag {
+          // At desktop, the ehc image has some text which is not quite aligned centrally
+          // The phase-tag is moved down slightly to match this
+          margin-top: 4px;
         }
       }
 
