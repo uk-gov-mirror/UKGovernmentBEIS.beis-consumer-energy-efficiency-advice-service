@@ -9,4 +9,6 @@ echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/
 sudo apt-get -qq update
 sudo apt-get install cf-cli
 
+cf install-plugin -f blue-green-deploy
+
 
