@@ -49,7 +49,7 @@ You can update the branch with a git command like:
 
 (See https://stackoverflow.com/questions/3216360/merge-update-and-pull-git-branches-without-using-checkouts )
 
-Or TODO BEISDEAS-242 change to github [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=staging&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=live&merge_request%5Btarget_project_id%5D=459)
+Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/live...staging?expand=1)
 
 ### Staging deployment
 
@@ -59,7 +59,7 @@ track `master`:
     git fetch origin master:staging
     git push origin staging:staging
 
-Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=master&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=staging&merge_request%5Btarget_project_id%5D=459)
+Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/staging...master?expand=1)
 
 The Travis job at
 https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service
