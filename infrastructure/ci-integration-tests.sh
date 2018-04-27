@@ -16,19 +16,22 @@ fi
 
 URL="https://dceas-user-site-int.cloudapps.digital/"
 n=0
+OK=false
 until [ $n -ge 6 ]
 do
     echo "Attempt: $n"
     RESPONSE_CODE=$(curl --silent --write-out "%{http_code}" $URL -o /dev/null)
     echo "Response code: $RESPONSE_CODE"
     if [ $RESPONSE_CODE -eq 200 ]; then
+        OK=true
         break
     fi
     n=$[$n+1]
     sleep 30
 done
 
-if [ $n == 6 ]; then
+if [ "$OK" != true ]; then
+    echo "Timed out waiting for the site to deploy"
     exit 1
 fi
 
