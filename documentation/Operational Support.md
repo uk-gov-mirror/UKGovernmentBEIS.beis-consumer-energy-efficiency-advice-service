@@ -22,8 +22,11 @@
   * [Application logs](#application-logs)
 - [Troubleshooting](#troubleshooting)
 - [Backup and recovery](#backup-and-recovery)
+  * [Database data](#database-data)
+  * [Application code and images](#application-code-and-images)
 - [Regular tasks](#regular-tasks)
   * [Update Energy Company Obligation (ECO) Suppliers](#update-energy-company-obligation-eco-suppliers)
+  * [Regular backups](#regular-backups)
 
 <!-- tocstop -->
 
@@ -213,7 +216,46 @@ TODO:BEIS-203 document Troubleshooting
 
 ## Backup and recovery
 
-TODO:BEIS-202 document backup and recovery
+### Database data
+
+The site is hosted in the cloud PaaS, GOV.UK, which should deal with most backup
+and recovery concerns. Specifically, the site should be protected against hardware
+failure automatically.
+
+We recommend that periodically the content of the database is backed up to a location
+outside of this cloud, to guard against malicious or accidental damage by trusted users.
+
+To backup the database, run
+
+    cf conduit dceas-database -- mysqldump --all-databases > FILENAME.sql
+
+Zip the resulting file and store it somewhere oustide of the GOV.UK cloud.
+
+To restore the database from such a backup, you will need to edit the file and
+remove the database name (the "CREATE DATABSE" and "USE" lines, near the top),
+then run:
+
+    cf conduit dceas-database -- mysql < FILENAME.sql
+
+### Application code and images
+
+The code and images for the site are stored in GitHub (see the main project README),
+so they should deal with most backup and recovery concerns for that data.
+Specifically, the GitHub repository data should be protected against hardware failure
+automatically.
+
+Any developer who has "cloned" this repository will be holding a full backup of the
+application code and its history. If the GitHub repository is deleted or damaged
+accidentally or maliciously, any developer should be able to restore it from their
+local copy.
+
+We recommend that periodically the content of the GitHub repository is backed up to
+a location outside of GitHub, to guard against malicious or accidental damage by
+trusted users.
+
+You can do this with:
+
+    git fetch
 
 ## Regular tasks
 
@@ -230,3 +272,7 @@ To update the logo, you will need to change the image file in `wordpress/wp-cont
 To add a new supplier, a new entry will need to be created in Wordpress (again, ideally with a database migration (see
 `db/changelogs/2018-04-10-add-eco-suppliers-to-wordpress.xml`), and a logo will need to be added to the
 logo folder with the name `{{supplier slug}}.jpeg`.
+
+### Regular backups
+
+See "Backup and recovery", above
