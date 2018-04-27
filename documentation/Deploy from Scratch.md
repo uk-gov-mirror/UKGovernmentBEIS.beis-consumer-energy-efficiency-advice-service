@@ -14,7 +14,6 @@ These instructions are kept for future reference.
 - [Database](#database)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
-- [Jenkins (Deploy Server)](#jenkins-deploy-server)
 
 <!-- tocstop -->
 
