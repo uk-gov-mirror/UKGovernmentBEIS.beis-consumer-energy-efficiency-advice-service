@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Questionnaire} from './base-questionnaire/questionnaire';
 import {ResponseData} from '../shared/response-data/response-data';
 import {HomeBasicsQuestionnaire} from './questionnaires/home-basics/home-basics-questionnaire';
-import {BehaviourQuestionnaire} from './questionnaires/behaviour/behaviour-questionnaire';
 import {GrantsQuestionnaire} from './questionnaires/grants/grants-questionnaire';
 import {BoilerQuestionnaire} from './questionnaires/boiler/boiler-questionnaire';
 import {MeesQuestionnaire} from './questionnaires/mees/mees-questionnaire';
@@ -13,7 +12,6 @@ type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 export class QuestionnaireService {
     private static readonly QUESTIONNAIRES: {[s: string]: QuestionnaireFactory} = {
         'home-basics': HomeBasicsQuestionnaire.getInstance,
-        'behaviour': BehaviourQuestionnaire.getInstance,
         'grants': GrantsQuestionnaire.getInstance,
         'boiler': BoilerQuestionnaire.getInstance,
         'mees': MeesQuestionnaire.getInstance,

@@ -7,7 +7,6 @@ import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age'
 import {HomeType} from '../../questionnaire/questions/home-type-question/home-type';
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 import {UserJourneyType} from './user-journey-type';
-import {ShowerType} from '../../questionnaire/questions/shower-type-question/shower-type';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 import {Benefits} from '../../questionnaire/questions/benefits-question/benefits';
 import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
@@ -23,56 +22,96 @@ import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-que
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
  *
+ * This includes all questionnaires: the energy-calculation journey as well as
+ * the boiler journey and others.
+ *
  * Services which need to read or write this data can request that the singleton is injected.
+ *
+ * See RdSapInput for the data we send to the BRE energy-calculation endpoint.
  */
 @Injectable()
 export class ResponseData {
+    // UI state settings:
     public userJourneyType: UserJourneyType;
     public shouldIncludeGrantsQuestionnaire: boolean;
     public shouldIncludeOptionalPropertyQuestions: boolean;
+
+    // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public postcode: string;
+    // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public epc: Epc;
+    // Set by PostcodeEpcQuestionComponent, used for showing grants
     public localAuthorityCode: string;
+    // Always set to `true` by ConfirmEpcQuestionComponent, not used
     public confirmEpc: boolean;
+    // Set by TenureTypeQuestionComponent, sent to BRE energy-calculation, used by grants
     public tenureType: TenureType;
+    // Set by HomeTypeQuestionComponent, sent to BRE energy-calculation
     public homeType: HomeType;
+    // Set by HomeAgeQuestionComponent, sent to BRE energy-calculation
     public homeAge: HomeAge;
+    // Set by FlatExposedWallQuestionComponent, sent to BRE energy-calculation
     public numberOfExposedWallsInFlat: FlatExposedWall;
+    // Set by HouseExposedWallQuestionComponent, sent to BRE energy-calculation
     public numberOfExposedWallsInHouse: HouseExposedWall;
+    // Set by FlatStoreysQuestionComponent / HouseStoreysQuestionComponent, sent to BRE energy-calculation
     public numberOfStoreys: number;
+    // Set by BedroomsQuestionComponent, sent to BRE energy-calculation
     public numberOfBedrooms: number;
+    // Set by FloorAreaQuestionComponent, sent to BRE energy-calculation
     public floorArea: number;
+    // Set by FloorAreaQuestionComponent, sent to BRE energy-calculation
     public floorAreaUnit: FloorAreaUnit;
+    // Set by FuelTypeQuestionComponent, sent to BRE energy-calculation, used by BoilerResultsPageComponent
     public fuelType: FuelType;
+    // Set by BoilerTypeQuestionComponent, sent to BRE energy-calculation
     public condensingBoiler: boolean;
+    // Set by ElectricityTariffQuestionComponent, sent to BRE energy-calculation
     public electricityTariff: ElectricityTariff;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
     public detailedLengthOfHeatingOnEarlyHours: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
     public detailedLengthOfHeatingOnMorning: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
     public detailedLengthOfHeatingOnAfternoon: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
     public detailedLengthOfHeatingOnEvening: number;
+    // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedUnder64: number;
+    // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAged64To80: number;
+    // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedOver80: number;
+    // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`), used by grants
     public numberOfChildren: number;
+    // Set by ShowersAndBathsQuestionComponent, sent to BRE energy-calculation
     public numberOfShowersPerWeek: number;
-    public showerType: ShowerType;
-    public numberOfFridgeFreezers: number;
-    public numberOfFridges: number;
-    public numberOfFreezers: number;
-    public livingRoomTemperature: number;
+    // Set by ShowersAndBathsQuestionComponent, sent to BRE energy-calculation
     public numberOfBathsPerWeek: number;
-    public tumbleDryPercentage: number;
+    // Set by LivingRoomTemperatureQuestionComponent, sent to BRE energy-calculation
+    public livingRoomTemperature: number;
+    // Set by ConstructionQuestionComponent, sent to BRE energy-calculation, used by BoilerResultsPageComponent
     public roofType: RoofType;
+    // Set by ConstructionQuestionComponent, sent to BRE energy-calculation, used by BoilerResultsPageComponent
     public wallType: WallType;
+    // Set by ConstructionQuestionComponent, sent to BRE energy-calculation, used by BoilerResultsPageComponent
     public glazingType: GlazingType;
+    // Set by WaterTankQuestionComponent, used by BoilerResultsPageComponent
     public waterTankSpace: WaterTankSpace;
+    // Set by GardenQuestionComponent, used by BoilerResultsPageComponent
     public gardenAccessibility: GardenAccessibility;
+    // Set by GardenQuestionComponent, used by BoilerResultsPageComponent
     public gardenSizeSquareMetres: number;
+    // Set by RoofSpaceQuestionComponent, used by BoilerResultsPageComponent
     public roofSpace: RoofSpace;
+    // Set by FloorSpanQuestionComponent, sent to BRE energy-calculation
     public floorLevels: FloorLevel[];
+    // Set by HotWaterCylinderQuestionComponent, sent to BRE energy-calculation
     public hotWaterCylinder: boolean;
 
+    // Set by BenefitsQuestionComponent, used by grants
     public benefits: Benefits;
+    // Set by IncomeQuestionComponent, used by grants
     public income: number;
 
     get numberOfAdults(): number {
@@ -81,11 +120,17 @@ export class ResponseData {
             this.numberOfAdultsAgedOver80;
     }
 
+    // Used by MeesResultsPageComponent
     public isDomesticPropertyAfter2018: boolean;
+    // Used by MeesResultsPageComponent
     public isPropertyAfter2020: boolean;
+    // Used by MeesResultsPageComponent
     public propertyEpc: UserEpcRating;
+    // Used by MeesResultsPageComponent
     public confirmEpcNotFound: boolean;
+    // Used by MeesResultsPageComponent
     public isEpcRequired: boolean;
+    // Used by MeesResultsPageComponent
     public tenancyType: TenancyType;
 
     constructor() {

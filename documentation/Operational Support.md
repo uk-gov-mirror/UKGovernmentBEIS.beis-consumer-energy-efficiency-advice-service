@@ -22,8 +22,11 @@
   * [Application logs](#application-logs)
 - [Troubleshooting](#troubleshooting)
 - [Backup and recovery](#backup-and-recovery)
+  * [Database data](#database-data)
+  * [Application code and images](#application-code-and-images)
 - [Regular tasks](#regular-tasks)
   * [Update Energy Company Obligation (ECO) Suppliers](#update-energy-company-obligation-eco-suppliers)
+  * [Regular backups](#regular-backups)
 
 <!-- tocstop -->
 
@@ -34,8 +37,8 @@
 The "live" site tracks the "`live`" branch in `git`.
 To release to "live", you should fast-forward merge the "`live`" branch to
 the "`staging`" branch.
-The Jenkins job at
-http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/5.%20BEIS%20DCEAS%20-%20Deploy%20to%20Live/
+The Travis job at
+https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service
 watches this branch and will deploy it to:
   * https://dceas-user-site.cloudapps.digital/
   * https://dceas-admin-site.cloudapps.digital/
@@ -49,7 +52,7 @@ You can update the branch with a git command like:
 
 (See https://stackoverflow.com/questions/3216360/merge-update-and-pull-git-branches-without-using-checkouts )
 
-Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=staging&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=live&merge_request%5Btarget_project_id%5D=459)
+Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/live...staging?expand=1)
 
 ### Staging deployment
 
@@ -59,18 +62,18 @@ track `master`:
     git fetch origin master:staging
     git push origin staging:staging
 
-Or [use the gitlab web UI](https://gitlab.softwire.com/softwire/beis-dceas/merge_requests/new?merge_request%5Bsource_branch%5D=master&merge_request%5Bsource_project_id%5D=459&merge_request%5Btarget_branch%5D=staging&merge_request%5Btarget_project_id%5D=459)
+Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/staging...master?expand=1)
 
-The Jenkins job at
-http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/4.%20BEIS%20DCEAS%20-%20Deploy%20to%20Staging/
+The Travis job at
+https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service
 watches this branch and will deploy it to:
   * https://dceas-user-site-staging.cloudapps.digital/
   * https://dceas-admin-site-staging.cloudapps.digital/
 
 ### Int deployment
 
-The "int" site is automatically updated after each code change on `master` by the Jenkins job at
-http://jenkins.zoo.lan/job/BEIS%20DCEAS/job/2.%20BEIS%20DCEAS%20-%20Deploy%20to%20Int/
+The "int" site is automatically updated after each code change on `master` by the Travis job at
+https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service
 which deploys to:
   * https://dceas-user-site-int.cloudapps.digital/
   * https://dceas-admin-site-int.cloudapps.digital/
@@ -87,7 +90,7 @@ See https://github.com/bluemixgaragelondon/cf-blue-green-deploy/issues/7
 for a possible future enhancement to automate this.
 
 You can also force-push the "{{live}}" branch onto an older version, and
-Jenkins will re-release the old version.
+Travis will re-release the old version.
 
 Do the same to roll back staging, if necessary.
 
@@ -213,7 +216,46 @@ TODO:BEIS-203 document Troubleshooting
 
 ## Backup and recovery
 
-TODO:BEIS-202 document backup and recovery
+### Database data
+
+The site is hosted in the cloud PaaS, GOV.UK, which should deal with most backup
+and recovery concerns. Specifically, the site should be protected against hardware
+failure automatically.
+
+We recommend that periodically the content of the database is backed up to a location
+outside of this cloud, to guard against malicious or accidental damage by trusted users.
+
+To backup the database, run
+
+    cf conduit dceas-database -- mysqldump --all-databases > FILENAME.sql
+
+Zip the resulting file and store it somewhere oustide of the GOV.UK cloud.
+
+To restore the database from such a backup, you will need to edit the file and
+remove the database name (the "CREATE DATABSE" and "USE" lines, near the top),
+then run:
+
+    cf conduit dceas-database -- mysql < FILENAME.sql
+
+### Application code and images
+
+The code and images for the site are stored in GitHub (see the main project README),
+so they should deal with most backup and recovery concerns for that data.
+Specifically, the GitHub repository data should be protected against hardware failure
+automatically.
+
+Any developer who has "cloned" this repository will be holding a full backup of the
+application code and its history. If the GitHub repository is deleted or damaged
+accidentally or maliciously, any developer should be able to restore it from their
+local copy.
+
+We recommend that periodically the content of the GitHub repository is backed up to
+a location outside of GitHub, to guard against malicious or accidental damage by
+trusted users.
+
+You can do this with:
+
+    git fetch
 
 ## Regular tasks
 
@@ -230,3 +272,7 @@ To update the logo, you will need to change the image file in `wordpress/wp-cont
 To add a new supplier, a new entry will need to be created in Wordpress (again, ideally with a database migration (see
 `db/changelogs/2018-04-10-add-eco-suppliers-to-wordpress.xml`), and a logo will need to be added to the
 logo folder with the name `{{supplier slug}}.jpeg`.
+
+### Regular backups
+
+See "Backup and recovery", above

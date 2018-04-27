@@ -7,7 +7,6 @@ import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-a
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import toString from 'lodash-es/toString';
 import {Epc} from '../../postcode-epc-service/model/epc';
-import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
 import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
 import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
 import {getNumberOfExposedWallsInFlat} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
@@ -20,6 +19,7 @@ export class RdSapInput {
     public static readonly NUMBER_OF_HOURS_PER_QUARTER_DAY = 6;
     public static readonly NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY = 4;
 
+    readonly postcode: string;
     readonly epc: Epc;
     readonly property_type: string;
     readonly built_form: string;
@@ -36,18 +36,19 @@ export class RdSapInput {
     readonly rented: boolean;
     readonly condensing_boiler: boolean;
     readonly hot_water_cylinder: boolean;
+    readonly electricity_tariff: number;
+    readonly roof_type: number;
+    readonly wall_type: number;
+    readonly glazing_type: number;
 
     readonly living_room_temperature: number;
     readonly occupants: number;
     readonly showers_per_week: number;
     readonly baths_per_week: number;
     readonly shower_type: string;
-    readonly tumble_dry_percentage: number;
-    readonly fridge_freezers: number;
-    readonly fridges: number;
-    readonly freezers: number;
 
     constructor(responseData: ResponseData) {
+        this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
         // TODO:BEISDEAS-230 This is not currently a full correct mapping
@@ -70,6 +71,10 @@ export class RdSapInput {
         this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
         this.condensing_boiler = responseData.condensingBoiler;
         this.hot_water_cylinder = responseData.hotWaterCylinder;
+        this.electricity_tariff = responseData.electricityTariff;
+        this.roof_type = responseData.roofType;
+        this.wall_type = responseData.wallType;
+        this.glazing_type = responseData.glazingType;
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;
@@ -77,13 +82,6 @@ export class RdSapInput {
             responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
-        if (responseData.showerType) {
-            this.shower_type = RdSapInput.getShowerTypeEncoding(responseData.showerType);
-        }
-        this.tumble_dry_percentage = responseData.tumbleDryPercentage;
-        this.fridge_freezers = responseData.numberOfFridgeFreezers;
-        this.fridges = responseData.numberOfFridges;
-        this.freezers = responseData.numberOfFreezers;
     }
 
     public isMinimalDataSet() {
@@ -208,10 +206,6 @@ export class RdSapInput {
             return fuelType.toString(10);
         }
         return undefined;
-    }
-
-    private static getShowerTypeEncoding(showerType: ShowerType): string {
-        return toString(showerType);
     }
 
     private static getNumberOfHeatingOffHoursNormal(responseData: ResponseData): number[] {
