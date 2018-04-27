@@ -18,6 +18,15 @@ export class PostcodeLookupComponent implements OnInit {
     errorMessage: string;
     scottishPostcode: boolean = false;
 
+    /**
+     * When the postcode has been entered by the user and validated as non-Scottish,
+     * this event will be fired.
+     * Collaborators who want to see the postcode should then consult `responseData.postcode`
+     *
+     * In the case of an error or an invalid postcode, `responseData.postcode`
+     * will be set to null. (This is distinct to `undefined`, which
+     * means that the user hasn't answered that question yet)
+     */
     @Output() postcodeSelected: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private responseData: ResponseData,
