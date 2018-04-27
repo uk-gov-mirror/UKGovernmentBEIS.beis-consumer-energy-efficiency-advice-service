@@ -1,6 +1,7 @@
 import {Epc} from '../../../shared/postcode-epc-service/model/epc';
 import includes from 'lodash-es/includes';
 
+// The indices here are BRE constants; do not change them unless BRE have changed
 export enum FuelType {
     Electricity = 29,
     MainsGas = 26,
