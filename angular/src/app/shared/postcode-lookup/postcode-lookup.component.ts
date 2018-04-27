@@ -80,7 +80,8 @@ export class PostcodeLookupComponent implements OnInit {
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             this.errorMessage = "Please enter a valid UK postcode";
         } else {
-            this.errorMessage = "Oh no! The postcode lookup has failed.";
+            this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
+                "may lead to less applicable suggestions. Alternatively, click '>' to try again";
         }
         this.responseData.postcode = null;
         this.responseData.localAuthorityCode = null;
