@@ -54,6 +54,12 @@ $desktop-width: 80px;
 
     display: flex;
     flex-direction: column;
+
+    .phone-number {
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
   }
 }
 

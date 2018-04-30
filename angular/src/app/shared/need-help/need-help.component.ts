@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {UserStateService} from "../user-state-service/user-state-service";
 import {GoogleAnalyticsService} from "../analytics/google-analytics.service";
+import Config from "../../config";
 
 @Component({
     selector: 'app-need-help',
@@ -12,6 +13,7 @@ export class NeedHelpComponent implements OnInit {
 
     expanded: boolean;
     reference: string = "";
+    phoneNumber: string = Config().phoneNumber;
 
     constructor(private userStateService: UserStateService,
                 private googleAnalyticsService: GoogleAnalyticsService,
@@ -35,4 +37,9 @@ export class NeedHelpComponent implements OnInit {
         this.googleAnalyticsService.sendEvent(eventName, 'assisted-digital', path);
     }
 
+    getPhoneNumberForLink() {
+        return this.phoneNumber
+            ? this.phoneNumber.replace(/\s/g, '')
+            : '';
+    }
 }
