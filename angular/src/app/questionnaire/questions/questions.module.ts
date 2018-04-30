@@ -39,6 +39,7 @@ import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-req
 import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
 import {PropertyEpcQuestionComponent} from './mees/property-epc-question/property-epc-question.component';
 import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.component';
+import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
 
 @NgModule({
     declarations: [
@@ -74,6 +75,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         LettingDomesticPropertyQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
+        AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
     ],
@@ -110,6 +112,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         LettingDomesticPropertyQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
+        AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
     ],
@@ -153,6 +156,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         LettingDomesticPropertyQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
+        AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
     ]

@@ -23,6 +23,7 @@ import {FlatLevel} from './flat-level';
 import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
+import {AgriculturalTenancyType} from "../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type";
 
 describe('RdsapInput', () => {
 
@@ -82,6 +83,7 @@ describe('RdsapInput', () => {
             isEpcRequired: false,
             confirmEpcNotFound: false,
             tenancyType: TenancyType.Other,
+            agriculturalTenancyType: AgriculturalTenancyType.AssuredTenancy,
             saveToSessionStorage: () => {},
         };
 
