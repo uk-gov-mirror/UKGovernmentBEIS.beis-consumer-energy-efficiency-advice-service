@@ -207,7 +207,11 @@ $grant-card-margin: 24px;
 
         .enter-postcode-form{
           display: flex;
-          height: 230px;
+          height: 250px;
+
+          ::ng-deep .address-dropdown-wrapper {
+            border-right: 0px;
+          }
 
           form {
 
