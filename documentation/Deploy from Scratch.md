@@ -75,7 +75,8 @@ Add necessary config:
 
     # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges
     # `admin-site-url` is e.g. "https://dceas-admin-site-int.cloudapps.digital"
-    cf create-user-provided-service dceas-user-site.config -p admin-ip-whitelist,admin-site-url
+    # `phone-number` is e.g. "0300 123 1234"
+    cf create-user-provided-service dceas-user-site.config -p admin-ip-whitelist,admin-site-url,phone-number
 
 Build the site locally, and deploy:
 
