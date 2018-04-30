@@ -1,22 +1,22 @@
 import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
-import {PropertyAfter2020QuestionComponent} from "./property-after-2020-question.component";
+import {LettingDomesticPropertyQuestionComponent} from './letting-domestic-property-question.component';
 
-export class PropertyAfter2020QuestionMetadata extends QuestionMetadata {
+export class LettingDomesticPropertyQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            PropertyAfter2020QuestionComponent,
-            'property-after-2020',
+            LettingDomesticPropertyQuestionComponent,
+            'letting-domestic-property',
             QuestionType.House
         );
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return !responseData.isDomesticPropertyAfter2018;
+        return true;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.isPropertyAfter2020 !== undefined;
+        return responseData.lettingDomesticPropertyStage !== undefined;
     }
 }

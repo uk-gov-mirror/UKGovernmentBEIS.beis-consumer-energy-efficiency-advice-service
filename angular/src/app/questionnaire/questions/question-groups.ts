@@ -26,8 +26,7 @@ import {FloorLevelQuestionMetadata} from './floor-level-question/floor-level-que
 import {FloorSpanQuestionMetadata} from './floor-span-question/floor-span-question-metadata';
 import {FlatExposedWallQuestionMetadata} from './flat-exposed-wall-question/flat-exposed-wall-question-metadata';
 import {HouseExposedWallQuestionMetadata} from './house-exposed-wall-question/house-exposed-wall-question-metadata';
-import {DomesticPropertyAfter2018QuestionMetadata} from './mees/domestic-property-after-2018-question/domestic-property-after-2018-question-metadata';
-import {PropertyAfter2020QuestionMetadata} from './mees/property-after-2020-question/property-after-2020-question-metadata';
+import {LettingDomesticPropertyQuestionMetadata} from './mees/letting-domestic-property-question/letting-domestic-property-question-metadata';
 import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
 import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
 import {PropertyEpcQuestionMetadata} from './mees/property-epc-question/property-epc-question-metadata';
@@ -107,8 +106,7 @@ export const BOILER_QUESTIONS = [
 
 // Questions for the "Minimum Energy Efficiency Standards" questionnaire ("MEES"), aimed at landlords.
 export const MEES_QUESTIONS = [
-    new DomesticPropertyAfter2018QuestionMetadata(),
-    new PropertyAfter2020QuestionMetadata(),
+    new LettingDomesticPropertyQuestionMetadata(),
     new TenancyTypeQuestionMetadata(),
     new PropertyEpcQuestionMetadata(),
     new MeesPostcodeEpcQuestionMetadata(),

@@ -34,8 +34,7 @@ import {FloorLevelQuestionComponent} from './floor-level-question/floor-level-qu
 import {FloorSpanQuestionComponent} from './floor-span-question/floor-span-question.component';
 import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question/flat-exposed-wall-question.component';
 import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/house-exposed-wall-question.component';
-import {DomesticPropertyAfter2018QuestionComponent} from './mees/domestic-property-after-2018-question/domestic-property-after-2018-question.component';
-import {PropertyAfter2020QuestionComponent} from './mees/property-after-2020-question/property-after-2020-question.component';
+import {LettingDomesticPropertyQuestionComponent} from './mees/letting-domestic-property-question/letting-domestic-property-question.component';
 import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
 import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
 import {PropertyEpcQuestionComponent} from './mees/property-epc-question/property-epc-question.component';
@@ -72,8 +71,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         WaterTankQuestionComponent,
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
-        DomesticPropertyAfter2018QuestionComponent,
-        PropertyAfter2020QuestionComponent,
+        LettingDomesticPropertyQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
@@ -109,8 +107,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         WaterTankQuestionComponent,
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
-        DomesticPropertyAfter2018QuestionComponent,
-        PropertyAfter2020QuestionComponent,
+        LettingDomesticPropertyQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
@@ -153,8 +150,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
         WaterTankQuestionComponent,
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
-        DomesticPropertyAfter2018QuestionComponent,
-        PropertyAfter2020QuestionComponent,
+        LettingDomesticPropertyQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,

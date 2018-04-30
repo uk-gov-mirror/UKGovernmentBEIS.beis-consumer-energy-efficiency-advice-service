@@ -6,6 +6,7 @@ import {
     UserEpcRating
 } from '../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 import {EpcRating} from '../../shared/postcode-epc-service/model/epc-rating';
+import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 
 enum MeesResultsStatus {
     NoActionRequired,
@@ -28,7 +29,7 @@ export class MeesResultsPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (!this.responseData.isDomesticPropertyAfter2018 && !this.responseData.isPropertyAfter2020) {
+        if (this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.BeforeApril2018) {
             this.status = MeesResultsStatus.NoActionRequired;
             this.noActionReason = `As you're not letting a property relevant to the legislation`;
         } else if (this.responseData.tenancyType === TenancyType.Other) {
