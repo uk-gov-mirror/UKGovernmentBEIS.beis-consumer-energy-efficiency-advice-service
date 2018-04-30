@@ -115,6 +115,6 @@ $desktop-width: 80px;
 @include large-desktop() {
   :host {
     // Always sit on the far right of the content
-    right: calc(50vw - (#{$content-and-margins-max-width} / 2));
+    right: calc(50vw - (#{$content-max-width} / 2));
   }
 }
