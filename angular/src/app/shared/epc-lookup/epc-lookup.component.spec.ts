@@ -98,6 +98,7 @@ describe('EpcLookupComponent', () => {
         showerTypeSelect.nativeElement.value = '1: 1';
         showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
+        component.selectedEpc = dummyEpcsResponse;
         fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
 
         // then
