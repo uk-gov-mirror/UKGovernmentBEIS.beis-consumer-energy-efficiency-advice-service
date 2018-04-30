@@ -1,11 +1,9 @@
-<div class="home-age-question">
-    <div #timeline class="home-age-timeline">
-        <div #option class="home-age-option" *ngFor="let homeAgeOption of homeAgeOptions"
-             (click)="selectResponse(homeAgeOption.value)">
-            <div class="home-age-timeline-section"></div>
-            <button class="home-age-option-button">{{homeAgeOption.name}}</button>
+<div class="home-age-question question-component">
+    <form class="answer-grid questionnaire-form" (submit)="complete.emit()">
+        <div class="home-age-input">
+            <select name="home-age" class="dropdown-input text-input home-age" aria-labelledby="home-age-label" [(ngModel)]="homeAge">
+                <option *ngFor="let homeAge of homeAges" [ngValue]="homeAge.value">{{homeAge.name}}</option>
+            </select>
         </div>
-        <div #slider class="home-age-timeline-slider" [style.left.px]="sliderLeftPosition"
-             [class.selected]="isSliderSelected"></div>
-    </div>
+    </form>
 </div>
