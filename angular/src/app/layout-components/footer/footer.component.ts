@@ -10,6 +10,8 @@ export class FooterComponent {
     phoneNumber: string = Config().phoneNumber;
 
     getPhoneNumberForLink() {
-        return this.phoneNumber.replace(/\s/g, '');
+        return this.phoneNumber
+            ? this.phoneNumber.replace(/\s/g, '')
+            : '';
     }
 }

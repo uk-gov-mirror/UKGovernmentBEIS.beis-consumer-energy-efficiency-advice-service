@@ -24,7 +24,6 @@ import {SpinnerAndErrorContainerComponent} from "./shared/spinner-and-error-cont
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
     let app: AppComponent;
-    (window as any).CONFIG = {phoneNumber: "1234"};
 
     const mockWordpressPagesService = {getTopLevelPages: () => Observable.of([])};
     const mockUserStateService = {getSessionReference: () => "reference"};
