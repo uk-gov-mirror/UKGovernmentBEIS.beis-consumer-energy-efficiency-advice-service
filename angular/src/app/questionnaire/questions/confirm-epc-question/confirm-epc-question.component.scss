@@ -68,14 +68,6 @@ $go-button-right-chevron-width: 20px;
             background-color: $lighter-medium-grey;
           }
 
-          &.yes-button {
-            background-color: $action-button-blue;
-            color: white;
-
-            &:hover, &:focus {
-              background-color: $button-dark-blue;
-            }
-          }
         }
       }
     }
@@ -138,10 +130,6 @@ $go-button-right-chevron-width: 20px;
 
   @include mobile() {
     width: 90vw;
-
-    .horizontal-line {
-      width: 100%;
-    }
 
     .epc-section {
       display: flex;
@@ -268,22 +256,6 @@ $go-button-right-chevron-width: 20px;
             height: 30px;
             width: 70px;
             border-style: none;
-          }
-
-          .yes-button{
-            background-color: $action-button-blue;
-            color: $lighter-grey;
-          }
-
-          .no-button{
-            background-color: $light-grey;
-            color: $darker-grey;
-          }
-
-          .button-main-tablet {
-            visibility: hidden;
-            width: 0px;
-            height: 0px;
           }
 
           .need-more-details-button{
@@ -439,12 +411,6 @@ $go-button-right-chevron-width: 20px;
             border-style: none;
           }
 
-          .button-main-tablet {
-            color: $focus-text-blue;
-            padding-right: 10px;
-            width: 50%;
-          }
-
           .need-more-details-button{
             background-color: transparent;
             background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
@@ -480,9 +446,6 @@ $go-button-right-chevron-width: 20px;
   }
 
   @include desktop() {
-    .horizontal-line {
-      width: 100%;
-    }
 
     .epc-section {
       display: flex;
@@ -617,16 +580,8 @@ $go-button-right-chevron-width: 20px;
             box-sizing: border-box;
             outline: none;
 
-            &.yes-button {
-              margin-right: 32px;
-            }
           }
 
-          .button-main-tablet {
-            visibility: hidden;
-            width: 0px;
-            height: 0px;
-          }
         }
       }
     }
