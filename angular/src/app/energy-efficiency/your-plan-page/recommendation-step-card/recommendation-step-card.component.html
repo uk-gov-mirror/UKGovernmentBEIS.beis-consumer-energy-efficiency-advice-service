@@ -13,7 +13,9 @@
             </div>
             <ng-container *ngIf="step.readMore">
                 <!-- innerHTML is used here as wordpress supplies <br /> tags for us -->
-                <div class="read-more-content" *ngIf="isReadMoreExpanded" innerHTML="<br />{{step.readMore}}"></div>
+                <div class="read-more-content-container" [class.read-more-expanded]="isReadMoreExpanded">
+                    <div class="read-more-content" innerHTML="<br />{{step.readMore}}"></div>
+                </div>
                 <div class="read-more-button" (click)="toggleIsReadMoreExpanded()">
                     <div class="read-more-button-text">{{isReadMoreExpanded ? "Read Less" : "Read More"}}</div>
                     <div class="read-more-button-icon" [class.expanded]="isReadMoreExpanded"

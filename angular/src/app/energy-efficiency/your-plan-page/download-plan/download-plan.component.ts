@@ -26,11 +26,14 @@ export class DownloadPlanComponent {
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
         const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
 
+        const readMoreContent = document.getElementsByClassName("read-more-content-container");
+        const readMoreArray = Array.from(readMoreContent);
+
         const reccomendationPageRow = document.getElementsByClassName("recommendations")[0];
 
         let mutationCount = 0;
 
-        const callback = function(elemObserver) {
+        const callback = function (elemObserver) {
             mutationCount++;
 
             if (mutationCount === (stepCards.length + 1)) { // If all drop downs have been opened
@@ -39,9 +42,13 @@ export class DownloadPlanComponent {
 
                 // Create the PDF
                 const pdfBody = document.getElementsByClassName("your-plan-page")[0];
-                html2pdf(pdfBody);
+                html2pdf(pdfBody, {filename: 'EnergyEfficiencyPlan.pdf'});
 
                 // Close all the drop downs
+                readMoreArray.map(elem => {
+                    elem.className += elem.className.slice(0, -19);
+                });
+
                 stepCardArray.map(elem => {
                     elem.className = elem.className.slice(0, -11);
                 });
@@ -72,6 +79,10 @@ export class DownloadPlanComponent {
             elem.className += " print-mode";
         });
         reccomendationPageRow.className += " print-mode";
+
+        readMoreArray.map(elem => {
+            elem.className += " read-more-expanded";
+        });
     }
 
     sendEventToAnalytics(eventName: string) {

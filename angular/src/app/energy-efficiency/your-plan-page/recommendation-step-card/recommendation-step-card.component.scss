@@ -71,6 +71,18 @@ $mobile-step-number-margin: 12px;
     .step-info {
       font-family: $font-family-light;
 
+      .read-more-content-container {
+        &.read-more-expanded {
+          .read-more-content {
+            display: flex;
+          }
+        }
+
+        .read-more-content {
+          display: none;
+        }
+      }
+
       .read-more-button {
         cursor: pointer;
         @include read-more-font;
