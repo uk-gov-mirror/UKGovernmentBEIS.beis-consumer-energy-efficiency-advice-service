@@ -41,6 +41,8 @@ fi
 
 set -x
 
+# This could be simplified by using `SELECT DATABASE();` in `cf conduit`, rather than
+# looking through `cf env` as we currently do.
 failIfMoreThanOneLine() {
     NL='
 '

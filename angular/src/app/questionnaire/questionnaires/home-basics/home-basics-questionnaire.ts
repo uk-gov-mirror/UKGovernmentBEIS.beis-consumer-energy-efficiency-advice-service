@@ -2,8 +2,11 @@ import {Questionnaire} from '../../base-questionnaire/questionnaire';
 import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
 import {QuestionMetadata} from '../../base-question/question-metadata';
 import {
-    EPC_AND_OWNERSHIP_STATUS, BASIC_BEHAVIOURAL_QUESTIONS,
-    CORE_BRE_QUESTIONS, GRANTS_QUESTIONNAIRE_QUESTION, ADDRESS
+    ADDRESS,
+    BASIC_BEHAVIOURAL_QUESTIONS,
+    CORE_BRE_QUESTIONS,
+    EPC_AND_OWNERSHIP_STATUS,
+    GRANTS_QUESTIONNAIRE_QUESTION
 } from '../../questions/question-groups';
 import concat from 'lodash-es/concat';
 import {ResponseData} from '../../../shared/response-data/response-data';
@@ -29,7 +32,7 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
         switch (journeyType) {
             case UserJourneyType.Calculator:
                 return concat(
-                    ADDRESS,
+                    ADDRESS, // TODO:BEIS-278 consolidate with epc-lookup component
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
                     BASIC_BEHAVIOURAL_QUESTIONS,

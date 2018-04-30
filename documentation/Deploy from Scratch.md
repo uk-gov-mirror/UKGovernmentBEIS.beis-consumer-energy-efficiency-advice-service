@@ -14,6 +14,7 @@ These instructions are kept for future reference.
 - [Database](#database)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
+- [Jenkins (Deploy Server)](#jenkins-deploy-server)
 
 <!-- tocstop -->
 
@@ -70,7 +71,7 @@ Build the site locally, and deploy:
 Add necessary config:
 
     cf create-user-provided-service epc.opendatacommunities.org -p username,password
-    cf create-user-provided-service bre.energyUse -p username,password
+    cf create-user-provided-service bre.energyUse -p username,password,url
     cf create-user-provided-service google.analytics -p id
 
     # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges

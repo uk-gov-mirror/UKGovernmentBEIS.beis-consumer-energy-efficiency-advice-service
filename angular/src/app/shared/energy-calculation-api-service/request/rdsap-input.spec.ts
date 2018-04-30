@@ -5,7 +5,6 @@ import {HomeType} from '../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
 import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
-import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
 import toString from 'lodash-es/toString';
@@ -63,13 +62,8 @@ describe('RdsapInput', () => {
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,
             numberOfChildren: numberOfChildren,
-            showerType: ShowerType.None,
             numberOfShowersPerWeek: 0,
             numberOfBathsPerWeek: 45,
-            tumbleDryPercentage: undefined,
-            numberOfFridgeFreezers: 0,
-            numberOfFridges: 0,
-            numberOfFreezers: 0,
             livingRoomTemperature: 20,
             benefits: Benefits.None,
             income: 123,
