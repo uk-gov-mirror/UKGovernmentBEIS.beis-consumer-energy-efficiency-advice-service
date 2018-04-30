@@ -6,6 +6,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 describe('FooterComponent', () => {
     let component: FooterComponent;
     let fixture: ComponentFixture<FooterComponent>;
+    (window as any).CONFIG = {phoneNumber: "1234"};
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

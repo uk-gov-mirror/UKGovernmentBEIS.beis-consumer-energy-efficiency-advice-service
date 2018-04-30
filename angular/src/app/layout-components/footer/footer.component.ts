@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import Config from '../../config';
 
 @Component({
     selector: 'app-footer',
@@ -6,5 +7,11 @@ import {Component} from '@angular/core';
     styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+    phoneNumber: string = Config().phoneNumber;
 
+    getPhoneNumberForLink() {
+        return this.phoneNumber
+            ? this.phoneNumber.replace(/\s/g, '')
+            : '';
+    }
 }

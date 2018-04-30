@@ -39,6 +39,8 @@ public class IndexController {
     private String staticRoot;
     @Value("${vcap.services.google.analytics.credentials.id}")
     private String gaId;
+    @Value("${vcap.services.dceas-user-site.config.credentials.phone-number}")
+    private String phoneNumber;
 
     private final Environment environment;
     private final IpValidationService ipValidationService;
@@ -113,6 +115,7 @@ public class IndexController {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("gaId", gaId);
+        model.addAttribute("phoneNumber", phoneNumber);
         model.addAttribute("environment", environment.getActiveProfiles());
         model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);
@@ -122,10 +125,10 @@ public class IndexController {
             buildAttributes.getValue("Build-Timestamp"));
         model.addAttribute("buildGitCommit",
             buildAttributes.getValue("Git-Commit"));
-        model.addAttribute("buildJenkinsUrl",
-            buildAttributes.getValue("Jenkins-Build-Url"));
-        model.addAttribute("buildJenkinsNumber",
-            buildAttributes.getValue("Jenkins-Build-Number"));
+        model.addAttribute("buildUrl",
+            buildAttributes.getValue("Build-Url"));
+        model.addAttribute("buildNumber",
+            buildAttributes.getValue("Build-Number"));
 
         model.addAttribute("host", request.getServerName());
 

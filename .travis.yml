@@ -1,0 +1,40 @@
+sudo: required
+branches:
+  only:
+  - master
+  - staging
+  - live
+jobs:
+  include:
+    - stage: test
+      script: ./infrastructure/ci-angular-user-site-test.sh
+      addons:
+        chrome: stable
+    - stage: test
+      script: ./infrastructure/ci-java-user-site-test.sh
+    - stage: test
+      script: ./infrastructure/ci-admin-site-test.sh
+    - stage: deploy-to-int
+      if: branch=master
+      script: SPACE=int ./infrastructure/deploy.sh
+    - stage: deploy-to-staging
+      if: branch=staging
+      script: SPACE=staging ./infrastructure/deploy.sh
+    - stage: deploy-to-live
+      if: branch=live
+      script: SPACE=live ./infrastructure/deploy.sh
+    - stage: integration-tests
+      script: ./infrastructure/ci-integration-tests.sh
+      addons:
+        chrome: stable
+notifications:
+  email:
+    - anthony.pengelly@softwire.com
+    - richard.bradley@softwire.com
+    - fuad.ashanike@softwire.com
+    - raam.chauhan@softwire.com
+    - david.broder-rogers@softwire.com
+env:
+  global:
+  - secure: 5LQBlg/NMVYTH5bYoqRP1ATKzekwHBwLm9isOFK43tLFVvIzhYLlbQDDfscafNsNpvxf63FchpPvt5/RoG9lBezFZANezkBoZ3PczhsWC4x8tuPVJ9C06fhE32rqU/uAqxvkyhf5JiR7OiJbFQl0CeUuGX3Yly7OSpSxiRrqcv+VN06TMJarSzWcFnQK6vHXlKIFAx+sCXIiJphnfXSluxk6tyulrNRH5vVmvRnJyK8RcX2Gdi7P3Cb+xVcj4l9cdjVufAhSaiuJV+NeqmBdjMjTRjeKTzahPygeyMsSLtt/0klVjjlH7P4fd0Mdd4nMEJo10RMDBeWKZdXcdZtiVSIaWRNwdwR4T1BfEtren7FvfYktjEO2DlPszEWS485ETotwQ/YHWhcWwo0bjeCEMHh65X+Y/MM4JVFITbcuuoYt/3NiZManahTnNLvp6OYDCIguArXcsnjRVnicbEinpIk4tdIgCxu+QjmJ4QSNtPSv2ZR8/Txd22CCMJiOkEf+1WeN7JDuzH1XmbuvJKspoM26WWqJaxbd0d+sCRolg1R+U3c4571/Wa1pqvVKeUcV2Tmo73XtZd58/pmja9ZbRt1RjU6xKG+bul0zEd/+0VXgw9q9o2V8u1WD4H0FHaOOgn+v5EMO520fZ3uidMocaYjTDQR6gMJOL9rua7pXJm0=
+  - secure: SZPaqrNwQ9UA5Z17tHNnq1b9Vr9Nm9OFxfrNpS+GtwHvTagi1ntHz2dug40Ac/uMGdyrEr2bbSRnp9kZ1ciPGY7fNgvbpbT504K5P97Ldy7mfK8sHWWB2WXlrfQ6JCni9zc98+U+4ZAdcs0Hs50DCDnVJOhelQ3Cp9HgcWDiNzu5iTsRXylCkwR+zALd/0mNPDTZsC553IRBkq1pyV7sc76nTGy6ubmTtqSShStXcivsZNzDUrO0F0K3cKkSKSv8VgsqSS1WTNwmQY/TlNTG+JV9FSySDKTF3qxbcCWYl1m//Tbe7EozGW5xRgneqa8707hwNizzIcymLesTVEZAcyNSMSOXmkuc1WwQkUzg7kjAE8W2dP9QlNmFdzij/YXA1EtaMjTRyp8HPsc31aj+3zRg4BaoruUUwahJBR0cnsFxEZr4eUwYgzdnoAzS2KaBl7YIIB+sbu9CvOHIwVhdxzJSMUKr85F06ndVNEun4UpAexcW8uXb9rQrYJv4lw1eCsMdRjB4RfjYM+Ct2Dmkg5WZCHOwyB6TBj83JGfsQob5gDS1f9WUiecUaXSKMVN2uTR2NwzfiodVum9ncmRYoo/tNTkMvdflL4waDLjeOsLCvrwkQPDh33YsT788Au8eiZ/h5smuaPDIpvZy32/Hz7rrCbk1WeDYpz7ZVy6l2Gw=
