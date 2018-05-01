@@ -1,16 +1,16 @@
 <div class="mees-page">
     <div class="page-row page-heading">
         <div class="page-row-content" [ngSwitch]="status">
-            <div class="heading-text" *ngSwitchCase="MeesResultsStatus.NoActionRequired">
+            <h1 class="heading-text" *ngSwitchCase="MeesResultsStatus.NoActionRequired">
                 No action required
-            </div>
-            <div class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
+            </h1>
+            <h1 class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
                 You need to get an EPC assessment
-            </div>
+            </h1>
             <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
-                <div class="heading-text">
+                <h1 class="heading-text">
                     You are required to install the recommended improvements
-                </div>
+                </h1>
                 <div class="subheading-text">
                     You will now need to take steps to improve the EPC score to:
                     <div class="subheading-epc">E</div>
