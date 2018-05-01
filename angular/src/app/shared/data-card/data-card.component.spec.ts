@@ -34,7 +34,7 @@ describe('DataCardComponent', () => {
     });
 
     it('should display the correct value', () => {
-        const valueElement = fixture.debugElement.query(By.css('.number-value')).nativeElement;
+        const valueElement = fixture.debugElement.query(By.css('.value')).nativeElement;
         expect(valueElement.innerText).toEqual(value);
     });
 });
