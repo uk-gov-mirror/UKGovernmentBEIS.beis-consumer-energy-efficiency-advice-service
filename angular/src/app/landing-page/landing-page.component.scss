@@ -62,9 +62,20 @@ $mobile-browse-cards-margin: 20px;
   }
 
   .measures {
-    app-measure-card {
-      display: block;
-      margin: 20px 0;
+
+    .measure-cards {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      app-measure-card {
+        min-height: 500px;
+        max-height: 500px;
+        display: block;
+        margin: 20px 0px 40px 10px;
+        width: 30vw;
+      }
     }
   }
 
@@ -103,6 +114,11 @@ $mobile-browse-cards-margin: 20px;
     }
 
     .measures {
+      .measure-cards{
+        app-measure-card {
+          width: 80vw;
+        }
+      }
       .page-row-content {
         padding-bottom: 44px;
 
@@ -142,6 +158,11 @@ $mobile-browse-cards-margin: 20px;
     }
 
     .measures {
+      .measure-cards{
+        app-measure-card {
+          width: 40vw;
+        }
+      }
       .page-row-content {
         padding-bottom: 50px;
 
@@ -191,6 +212,11 @@ $mobile-browse-cards-margin: 20px;
     }
 
     .measures {
+      .measure-cards{
+        app-measure-card {
+          width: 30vw;
+        }
+      }
       .page-row-content {
         padding-bottom: 82px;
 
