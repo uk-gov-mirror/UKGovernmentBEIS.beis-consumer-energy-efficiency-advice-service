@@ -9,11 +9,10 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 100 110"
    version="1.1"
-   id="svg849"
    sodipodi:docname="do-chevron-blue.svg"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
   <metadata
-     id="metadata853">
+    >
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -35,7 +34,6 @@
      inkscape:pageshadow="2"
      inkscape:window-width="3840"
      inkscape:window-height="2035"
-     id="namedview851"
      showgrid="false"
      inkscape:zoom="15.709091"
      inkscape:cx="49.522569"
@@ -46,22 +44,19 @@
      inkscape:current-layer="svg849" />
   <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
   <title
-     id="title840">button/do-chevron-blue</title>
+    >button/do-chevron-blue</title>
   <desc
-     id="desc842">Created with Sketch.</desc>
+    >Created with Sketch.</desc>
   <defs
-     id="defs844" />
+     />
   <g
-     id="Assets"
      stroke="none"
      stroke-width="1"
      fill-rule="evenodd"
      style="fill:#00abcf;fill-opacity:1">
     <g
-       id="button/do-chevron"
        style="fill:#00abcf;fill-opacity:1">
       <polygon
-         id="Rectangle-13-Copy"
          points="0 0 70 0 100 55 70 110 0 110 20 55"
          style="fill:#00abcf;fill-opacity:1" />
     </g>
