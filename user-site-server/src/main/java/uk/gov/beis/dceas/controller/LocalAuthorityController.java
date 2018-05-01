@@ -99,11 +99,23 @@ public class LocalAuthorityController {
 
         List<LocalAuthority.Grant> grants = fetchGrantsByPostIds(grantPostIds);
 
+        boolean isEcoFlexActive = toBool(postMetaForIsEcoFlexActive.META_VALUE.get(localAuthPost));
+
+        // Although the ACF "eco_flex_further_info_link" list is conditional on "is_eco_flex_active",
+        // the former value is not cleared in the database when the latter is set to
+        // false. To prevent sending stale data, we must guard against that here
+        String ecoFlexFurtherInfoLink;
+        if (!isEcoFlexActive) {
+            ecoFlexFurtherInfoLink = null;
+        } else {
+            ecoFlexFurtherInfoLink = postMetaForEcoFlexFurtherInfoLink.META_VALUE.get(localAuthPost);
+        }
+
         return new LocalAuthority(
             onsCode,
             postMetaForDisplayName.META_VALUE.get(localAuthPost),
-            toBool(postMetaForIsEcoFlexActive.META_VALUE.get(localAuthPost)),
-            postMetaForEcoFlexFurtherInfoLink.META_VALUE.get(localAuthPost),
+            isEcoFlexActive,
+            ecoFlexFurtherInfoLink,
             grants);
     }
 

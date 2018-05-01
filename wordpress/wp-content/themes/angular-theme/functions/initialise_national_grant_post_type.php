@@ -118,7 +118,12 @@ function setup_national_grant_acf_group() {
                     'label' => 'Display without matching measures?',
                     'name' => 'display_without_measures',
                     'type' => 'true_false',
-                    'instructions' => 'Should this grant be included as a standalone recommendation on the results page without any matching measures?',
+                    'instructions' =>
+                        'Should this grant be included as a standalone recommendation on the results page without any matching measures?<br/>' .
+                        '(If "Link to measures?" is not ticked above, you should tick this or the grant will never be shown ' .
+                        'unless it is returned by BRE in the energy-calculation API.)',
+                        // (See grant-elegibility.service.ts, where a couple of grants are hardcoded that BRE
+                        // might return).
                     'default_value' => ''
                 ),
                 array(
@@ -247,7 +252,9 @@ function setup_national_grant_acf_group() {
                             'label' => 'More info links',
                             'name' => 'more_info_links',
                             'type' => 'repeater',
-                            'instructions' => '',
+                            'instructions' => 'If you want to link to a page within the site, use a relative URL like
+                             "/installer-search/measure-code", otherwise you can give the absolute URL of the site 
+                             like http://google.co.uk',
                             'required' => 0,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -281,70 +288,12 @@ function setup_national_grant_acf_group() {
                                     'maxlength' => '',
                                 ),
                                 array(
-                                    'key' => 'field_5a97f4817ed9d',
-                                    'label' => 'Is external link?',
-                                    'name' => 'is_external_link',
-                                    'type' => 'true_false',
+                                    'key' => 'field_1234d9bfa97e7',
+                                    'label' => 'Link url',
+                                    'name' => 'link_url',
+                                    'type' => 'text',
                                     'instructions' => '',
                                     'required' => 0,
-                                    'conditional_logic' => 0,
-                                    'wrapper' => array(
-                                        'width' => '',
-                                        'class' => '',
-                                        'id' => '',
-                                    ),
-                                    'message' => '',
-                                    'default_value' => 0,
-                                    'ui' => 0,
-                                    'ui_on_text' => '',
-                                    'ui_off_text' => '',
-                                ),
-                                array(
-                                    'key' => 'field_5a1d96253944b',
-                                    'label' => 'Linked page',
-                                    'name' => 'linked_page',
-                                    'type' => 'page_link',
-                                    'instructions' => '',
-                                    'required' => 0,
-                                    'conditional_logic' => array(
-                                        array(
-                                            array(
-                                                'field' => 'field_5a97f4817ed9d',
-                                                'operator' => '!=',
-                                                'value' => '1',
-                                            ),
-                                        ),
-                                    ),
-                                    'wrapper' => array(
-                                        'width' => '',
-                                        'class' => '',
-                                        'id' => '',
-                                    ),
-                                    'post_type' => array(
-                                        0 => 'page',
-                                    ),
-                                    'taxonomy' => array(
-                                    ),
-                                    'allow_null' => 0,
-                                    'allow_archives' => 1,
-                                    'multiple' => 0,
-                                ),
-                                array(
-                                    'key' => 'field_5a97f4a17ed9e',
-                                    'label' => 'External Link',
-                                    'name' => 'external_link',
-                                    'type' => 'url',
-                                    'instructions' => '',
-                                    'required' => 0,
-                                    'conditional_logic' => array(
-                                        array(
-                                            array(
-                                                'field' => 'field_5a97f4817ed9d',
-                                                'operator' => '==',
-                                                'value' => '1',
-                                            ),
-                                        ),
-                                    ),
                                     'wrapper' => array(
                                         'width' => '',
                                         'class' => '',
