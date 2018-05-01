@@ -19,9 +19,7 @@ import static java.util.stream.Collectors.toMap;
 import static org.jooq.impl.DSL.inline;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTMETA;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.deserializePhpStringArrayOfInts;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.getAcfRepeaterList;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.toBool;
+import static uk.gov.beis.dceas.service.AcfDataTranslator.*;
 
 /**
  * Gets info on National Grants from the database.
@@ -90,18 +88,29 @@ public class NationalGrantsController {
                 String postName = e.getKey();
                 Map<String, String> metaFields = e.getValue();
 
+                boolean linkToMeasures = toBool(metaFields.get("link_to_measures"));
+
+                List<String> linkedMeasureCodes;
+                // Although the ACF "measures" list is conditional on "link_to_measures",
+                // the former list is not cleared in the database when the latter is set to
+                // false. To prevent sending stale data, we must guard against that here
+                if (!linkToMeasures) {
+                    linkedMeasureCodes = emptyList();
+                } else {
+                    // This is 1+N database round-trips, but it is no worse than WP
+                    // We should consider caching if necessary
+                    linkedMeasureCodes = getMeasureCodesFromIds(
+                            deserializePhpStringArrayOfInts(metaFields.get("measures")));
+                }
+
                 return NationalGrant.builder()
                     .heading(metaFields.get("heading"))
                     .description(metaFields.get("description"))
-                    .linkToMeasures(toBool(metaFields.get("link_to_measures")))
+                    .linkToMeasures(linkToMeasures)
                     .displayWithoutMeasures(toBool(metaFields.get("display_without_measures")))
                     .advantages(getAcfRepeaterList(metaFields, "advantages", a -> a.get("advantage")))
                     .steps(getAcfRepeaterList(metaFields, "steps", this::stepFromFields))
-                    .linkedMeasureCodes(
-                        // This is 1+N database round-trips, but it is no worse than WP
-                        // We should consider caching if necessary
-                        getMeasureCodesFromIds(
-                            deserializePhpStringArrayOfInts(metaFields.get("measures"))))
+                    .linkedMeasureCodes(linkedMeasureCodes)
                     .slug(postName)
                     .build();
             })
