@@ -5,8 +5,10 @@
     </div>
     <div class="contents" *ngIf="expanded">
         <div>
-            If you would like some help using the site, call 0800 937 4805 for free to
-            talk to one of our trainer advisors.
+            If you would like some help using the site, call
+            <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number">{{phoneNumber}}</a>
+            for free to
+            talk to one of our trained advisors.
             <ng-container *ngIf="reference">
                 Quote this reference to pick up where you left off:<br /><br />
                 <strong>{{reference.toUpperCase()}}</strong>
