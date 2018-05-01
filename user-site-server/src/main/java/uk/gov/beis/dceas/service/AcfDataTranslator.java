@@ -67,7 +67,7 @@ public class AcfDataTranslator {
         return acc;
     }
 
-    public static Boolean toBool(String acfValue) {
+    public static boolean toBool(String acfValue) {
         return "1".equals(acfValue);
     }
 
