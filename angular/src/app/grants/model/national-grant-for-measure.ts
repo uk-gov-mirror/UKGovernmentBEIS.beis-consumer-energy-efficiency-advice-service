@@ -7,6 +7,7 @@ export class NationalGrantForMeasure implements Grant {
     grantId: string;
     name: string;
     description: string;
+    findOutMoreLink: string;
     steps: RecommendationStep[];
 
     constructor(
@@ -17,6 +18,7 @@ export class NationalGrantForMeasure implements Grant {
         this.grantId = nationalGrantContent.slug;
         this.name = nationalGrantContent.heading;
         this.description = nationalGrantContent.description;
+        this.findOutMoreLink = nationalGrantContent.find_out_more_link;
         this.steps = nationalGrantContent.steps && nationalGrantContent.steps
                 .map(stepResponse => new RecommendationStep(stepResponse));
     }

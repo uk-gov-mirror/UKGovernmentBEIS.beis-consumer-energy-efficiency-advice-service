@@ -127,6 +127,17 @@ function setup_national_grant_acf_group() {
                     'default_value' => ''
                 ),
                 array(
+                    'key' => 'field_5ae88bd1f488f',
+                    'label' => 'Find out more link',
+                    'name' => 'find_out_more_link',
+                    'type' => 'text',
+                    'instructions' =>
+                        '(Optional) <strong>Relative</strong> link that the user can follow to learn more about the grant e.g. /pages/energy-company-obligation <br/>' .
+                        'This link will be attached to "Find out more >" when this grant is attached to a measure',
+                    'required' => 0,
+                    'default_value' => '',
+                ),
+                array(
                     'key' => 'field_5a16a911c5cea',
                     'label' => 'Advantages',
                     'name' => 'advantages',

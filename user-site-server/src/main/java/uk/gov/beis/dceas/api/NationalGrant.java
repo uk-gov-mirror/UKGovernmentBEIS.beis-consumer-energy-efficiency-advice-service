@@ -20,6 +20,7 @@ public class NationalGrant {
     String description;
     Boolean linkToMeasures;
     Boolean displayWithoutMeasures;
+    String findOutMoreLink;
     List<String> advantages;
     List<Step> steps;
     List<String> linkedMeasureCodes;

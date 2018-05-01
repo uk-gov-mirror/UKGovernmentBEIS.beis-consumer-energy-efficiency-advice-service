@@ -108,6 +108,7 @@ public class NationalGrantsController {
                     .description(metaFields.get("description"))
                     .linkToMeasures(linkToMeasures)
                     .displayWithoutMeasures(toBool(metaFields.get("display_without_measures")))
+                    .findOutMoreLink(metaFields.get("find_out_more_link"))
                     .advantages(getAcfRepeaterList(metaFields, "advantages", a -> a.get("advantage")))
                     .steps(getAcfRepeaterList(metaFields, "steps", this::stepFromFields))
                     .linkedMeasureCodes(linkedMeasureCodes)
