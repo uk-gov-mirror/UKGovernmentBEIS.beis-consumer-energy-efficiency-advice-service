@@ -7,7 +7,7 @@ export class NationalGrantForMeasure implements Grant {
     grantId: string;
     name: string;
     description: string;
-    findOutMoreLink: string;
+    findOutMoreLink?: string;
     steps: RecommendationStep[];
 
     constructor(
