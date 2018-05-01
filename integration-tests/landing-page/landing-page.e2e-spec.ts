@@ -19,6 +19,7 @@ describe('Landing page', () => {
         page.enterPostcode('nw19pq');
 
         const dropDownMenu = element(by.className('address-dropdown'));
+        CommonPageHelpers.waitUntilElementIsVisible(dropDownMenu);
         dropDownMenu.click();
 
         const dropDownOption = element.all(by.className('address-option')).last();
