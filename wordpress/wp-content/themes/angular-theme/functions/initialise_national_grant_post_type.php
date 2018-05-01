@@ -120,8 +120,8 @@ function setup_national_grant_acf_group() {
                     'type' => 'true_false',
                     'instructions' =>
                         'Should this grant be included as a standalone recommendation on the results page without any matching measures?<br/>' .
-                        '(If "Link to measures?" is not ticked above, you should tick this or the grant will never be shown ' .
-                        'unless it is returned by BRE in the energy-calculation API.)',
+                        '(You should tick either this option or "Link to measures?" above, otherwise the grant will never be shown<br/>' .
+                        '(Except for FIT or RHI which are returned by BRE in the energy-calculation API.))',
                         // (See grant-elegibility.service.ts, where a couple of grants are hardcoded that BRE
                         // might return).
                     'default_value' => ''
