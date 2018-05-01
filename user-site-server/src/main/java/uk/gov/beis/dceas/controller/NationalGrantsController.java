@@ -145,13 +145,7 @@ public class NationalGrantsController {
             .moreInfoLinks(getAcfRepeaterList(fields, "more_info_links", linkFields ->
                     NationalGrant.Link.builder()
                         .buttonText(linkFields.get("button_text"))
-                        // This is 1+N database round-trips, but it is no worse than WP
-                        // We should consider caching if necessary
-                        // TODO:BEISDEAS-233 links to "pages" don't work on GOV, used to work on Azure but all pages were empty.
-                        // Not sure what the correct fix is here.
-                        .linkedPage(acfDataTranslator.getPostLinkById(linkFields.get("linked_page")))
-                        .isExternalLink(toBool(linkFields.get("is_external_link")))
-                        .externalLink(linkFields.get("external_link"))
+                        .linkUrl(linkFields.get("link_url"))
                         .build()))
             .build();
     }

@@ -42,8 +42,6 @@ public class NationalGrant {
     @JsonNaming(SnakeCaseStrategy.class)
     public static class Link {
         String buttonText;
-        Boolean isExternalLink;
-        String linkedPage;
-        String externalLink;
+        String linkUrl;
     }
 }
