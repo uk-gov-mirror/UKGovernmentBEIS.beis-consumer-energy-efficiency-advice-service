@@ -133,7 +133,7 @@ function setup_measure_acf_group() {
                     'instructions' => 'A statistic to be displayed with this measure on the landing pages, should be written beginning with a number or percentage.
                     For example: "10% of heat loss is through doors"',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'default_value' => '',
                     'placeholder' => '',
                     'prepend' => '',
