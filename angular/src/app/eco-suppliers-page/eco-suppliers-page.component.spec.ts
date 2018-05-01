@@ -10,7 +10,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 describe('ECOSuppliersPageComponent', () => {
     let component: ECOSuppliersPageComponent;
     let fixture: ComponentFixture<ECOSuppliersPageComponent>;
-    const responseData: ResponseData = new ResponseData();
+    let responseData: ResponseData;
     const expectedSuppliers = [{
         name: 'British Gas',
         link: 'https://britishgas.co.uk'
@@ -20,6 +20,7 @@ describe('ECOSuppliersPageComponent', () => {
     };
 
     beforeEach(async(() => {
+        responseData = new ResponseData();
         TestBed.configureTestingModule({
             declarations: [
                 ECOSuppliersPageComponent,
@@ -27,7 +28,7 @@ describe('ECOSuppliersPageComponent', () => {
             ],
             providers: [
                 {provide: WordpressECOSuppliersService, useValue: wordpressECOSuppliersServiceStub},
-                {provide: ResponseData, useClass: responseData},
+                {provide: ResponseData, useValue: responseData},
             ]
         })
         .compileComponents();
