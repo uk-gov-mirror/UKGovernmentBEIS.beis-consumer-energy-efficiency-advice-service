@@ -46,13 +46,13 @@ export class DownloadPlanComponent {
 
                 // Close all the drop downs
                 readMoreArray.map(elem => {
-                    elem.className += elem.className.slice(0, -19);
+                    elem.classList.remove("read-more-expanded");
                 });
 
                 stepCardArray.map(elem => {
-                    elem.className = elem.className.slice(0, -11);
+                    elem.classList.remove("print-mode");
                 });
-                reccomendationPageRow.className = reccomendationPageRow.className.slice(0, -11);
+                reccomendationPageRow.classList.remove("print-mode");
 
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
 
@@ -76,12 +76,12 @@ export class DownloadPlanComponent {
         });
 
         stepCardArray.map(elem => {
-            elem.className += " print-mode";
+            elem.classList.add("print-mode");
         });
-        reccomendationPageRow.className += " print-mode";
+        reccomendationPageRow.classList.add("print-mode");
 
         readMoreArray.map(elem => {
-            elem.className += " read-more-expanded";
+            elem.classList.add("read-more-expanded");
         });
     }
 
