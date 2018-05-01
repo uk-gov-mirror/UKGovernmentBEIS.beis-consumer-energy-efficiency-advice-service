@@ -209,36 +209,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
-    it('should initialise with the top-recommendations filter selected', () => {
+    it('should show recommendations', async(() => {
         // when
-        fixture.detectChanges();
-
-        // then
-        expect(component.activeTagFilters).toEqual(EnergyEfficiencyRecommendationTag.TopRecommendations);
-    });
-
-    it('should apply filters', () => {
-        // given
-        fixture.detectChanges();
-
-        // when
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.Grant;
-        fixture.detectChanges();
-
-        // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(
-            By.directive(EnergyEfficiencyRecommendationCardComponent)
-        );
-        const expectedNumberOfElements = recommendations.filter(rec => !!rec.grant).length;
-        expect(recommendationElements.length).toEqual(expectedNumberOfElements);
-    });
-
-    it('should show recommendations matching any of multiple selected filters', async(() => {
-        // given
-        fixture.detectChanges();
-
-        // when
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm;
         fixture.detectChanges();
 
         // then

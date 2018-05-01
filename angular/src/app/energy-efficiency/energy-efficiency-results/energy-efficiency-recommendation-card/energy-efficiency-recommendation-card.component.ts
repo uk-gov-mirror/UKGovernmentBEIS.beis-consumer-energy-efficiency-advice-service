@@ -63,7 +63,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     getAddToPlanButtonText(): string {
         if (!this.recommendation.isAddedToPlan) {
-            return 'Add to plan';
+            return 'Show me how';
         } else {
             return this.isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
         }
