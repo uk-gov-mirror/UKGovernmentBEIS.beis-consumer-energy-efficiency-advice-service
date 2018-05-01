@@ -9,6 +9,7 @@ import {
     getElectricityTariffDescription,
     getElectricityTariffFromEpc
 } from '../electricity-tariff-question/electricity-tariff';
+import {Epc} from "../../../shared/postcode-epc-service/model/epc";
 
 interface EpcMetadata {
     averageEnergyCost: number;
@@ -36,6 +37,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     fuelTypeDescription: string;
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
+    savingsPerYear: number;
 
     private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
 
@@ -116,6 +118,8 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
         this.numberHabitableRooms = epc.numberHabitableRooms;
         this.localAuthorityDescription = epc.localAuthorityLabel;
+
+        this.savingsPerYear = ConfirmEpcQuestionComponent.getSavingsPerYearFromEpc(epc);
     }
 
     confirmEpcDetails() {
@@ -126,5 +130,21 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
             electricityTariff: this.electricityTariff
         };
         this.complete.emit();
+    }
+
+    private static getSavingsPerYearFromEpc(epc: Epc): number {
+        let heatingSaving = 0;
+        let hotWaterSaving = 0;
+        let lightingSaving = 0;
+        if (parseInt(epc.heatingCostCurrent) && parseInt(epc.heatingCostPotential)) {
+            heatingSaving = parseInt(epc.heatingCostCurrent) - parseInt(epc.heatingCostPotential);
+        }
+        if (parseInt(epc.hotWaterCostCurrent) && parseInt(epc.hotWaterCostPotential)) {
+            hotWaterSaving = parseInt(epc.hotWaterCostCurrent) - parseInt(epc.hotWaterCostPotential);
+        }
+        if (parseInt(epc.lightingCostCurrent) && parseInt(epc.lightingCostPotential)) {
+            lightingSaving = parseInt(epc.lightingCostCurrent) - parseInt(epc.lightingCostPotential);
+        }
+        return heatingSaving + hotWaterSaving + lightingSaving;
     }
 }
