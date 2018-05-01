@@ -338,7 +338,7 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0;
         flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
         order: 5;
-        padding-top: 20px;
+        padding: 20px 0;
         border-right: 1px solid $light-grey;
       }
 

@@ -3,13 +3,15 @@
 @import "../energy-efficiency-page-sizes";
 @import "styles/mixins/breakpoints";
 
-$your-plan-summary-border-width: 1px;
-
 :host {
   display: flex;
 
   & > :not(:first-child) {
     border-left: 1px solid $light-grey;
+  }
+
+  app-data-card {
+    flex: 1;
   }
 
   @include mobile() {
@@ -26,10 +28,6 @@ $your-plan-summary-border-width: 1px;
       }
     }
 
-    app-data-card {
-      flex: 1;
-    }
-
     .no-mobile {
       display: none;
     }
@@ -42,20 +40,8 @@ $your-plan-summary-border-width: 1px;
       }
     }
 
-    &:not(.is-footer) > app-data-card {
-      flex: 1;
-    }
-
     .no-tablet {
       display: none;
-    }
-  }
-
-  @include desktop() {
-    flex: 0 0 3*$data-card-width + 2*$your-plan-summary-border-width;
-
-    &:not(.is-footer) > app-data-card {
-      flex: 1;
     }
   }
 }
