@@ -17,9 +17,19 @@ describe('Landing page', () => {
     it('should navigate to the questionnaire when a postcode is entered', () => {
         page.navigateToReduceBills();
         page.enterPostcode('nw19pq');
+
+        const dropDownMenu = element(by.id('address-dropdown'));
+        CommonPageHelpers.waitUntilElementIsVisible(dropDownMenu);
+        dropDownMenu.click();
+
+        const dropDownOption = element.all(by.className('address-option')).last();
+        CommonPageHelpers.waitUntilElementIsVisible(dropDownOption);
+        dropDownOption.click();
+
         const goElement = element(by.partialButtonText('Go'));
         CommonPageHelpers.waitUntilElementIsVisible(goElement);
         CommonPageHelpers.clickButton('Go');
+
         expect(browser.getCurrentUrl()).toContain('/questionnaire/home-basics');
     });
 });

@@ -214,3 +214,9 @@ $animation-duration-vertical: 0.5s;
     }
   }
 }
+
+@include large-desktop() {
+  .search-container {
+    right: 80px;
+  }
+}
