@@ -10,35 +10,24 @@
     $do-button-left-chevron-width: 12px;
     $do-button-right-chevron-width: 16px;
 
-    .mobile-your-plan-title {
-      position: relative;
-      font-size: 16px;
-      font-weight: bold;
-      display: flex;
-      flex-direction: column;
-      background: white;
-      padding-left: 12px;
-      padding-top: 10px;
-    }
-
     .your-plan {
       background: white;
       position: relative;
-      height: 82px;
+      height: 100px;
 
       .page-row-content {
         display: flex;
         padding: 8px 0 4px;
+        flex-wrap: wrap;
 
         .plan-details {
-          display: none;
+          flex: 0 0 100%;
+          margin: 0 -5px 10px;
         }
+
         .plan-summary {
           display: inline-block;
           position: relative;
-          .tablet-only-your-plan-title {
-            display: none;
-          }
         }
 
         .do-button {
@@ -105,10 +94,6 @@
     $do-button-left-chevron-width: 18px;
     $do-button-right-chevron-width: 27px;
 
-    .mobile-your-plan-title {
-      display: none;
-    }
-
     .your-plan {
       background: white;
 
@@ -116,32 +101,11 @@
         display: flex;
         padding: 20px 0;
         margin-left: 60px;
+        flex-wrap: wrap;
 
         .plan-details {
-          display: none;
-          flex-direction: column;
-          padding: 0 80px 0 0;
-        }
-
-        .plan-summary {
-          .tablet-only-your-plan-title {
-            display: inline-block;
-            position: relative;
-            padding: 0 5px 10px;
-            .tablet-your-plan-heading {
-              font-size: 21px;
-              float: left;
-              bottom: 6px;
-              position: relative;
-              font-weight: bold;
-            }
-            .tablet-recommendations-sentence {
-              font-size: 14px;
-              float: right;
-              bottom: 0;
-              margin-left: 15px;
-            }
-          }
+          flex: 0 0 100%;
+          padding: 0 5px 10px;
         }
 
         .do-button {
@@ -202,10 +166,6 @@
     $do-button-left-chevron-width: 19px;
     $do-button-right-chevron-width: 29px;
 
-    .mobile-your-plan-title {
-      display: none;
-    }
-
     .your-plan {
       background: white;
 
@@ -221,7 +181,8 @@
           flex: 1 0 1px;
           padding: 0 20px;
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          align-items: center;
 
           .heading {
             font-weight: bold;
@@ -229,82 +190,10 @@
             margin-bottom: 10px;
             @include card-heading-font;
           }
-
-          .subheading {
-            font-size: 16px;
-            line-height: 20px;
-          }
-
-          .recommendations-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            font-size: 16px;
-            line-height: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            .recommendations-list-item {
-              display: flex;
-              cursor: pointer;
-              align-items: center;
-
-              &:hover, &:focus {
-                .remove-recommendation-button {
-                  visibility: visible;
-                }
-              }
-
-              .list-icon {
-                fill: $focus-text-blue;
-                margin-right: 10px;
-                height: 12px;
-                width: 10px;
-                line-height: 0;
-                flex: 0 0 10px;
-              }
-
-              .recommendation-name {
-                outline: none;
-                background: none;
-                border: none;
-                padding: 0;
-                margin: 0;
-                cursor: inherit;
-                font-family: $font-family-light;
-                font-size: 16px;
-                line-height: 20px;
-                text-align: left;
-              }
-
-              .remove-recommendation-button {
-                display: block;
-                width: 12px;
-                height: 12px;
-                margin-left: 10px;
-                line-height: 0;
-                stroke: $red;
-                visibility: hidden;
-              }
-            }
-          }
-
-          .subheading {
-            font-family: $font-family-light;
-
-            &.plan-empty {
-              color: $focus-text-blue;
-            }
-          }
         }
 
         .plan-summary {
           flex: 1 1 auto;
-
-          .tablet-only-your-plan-title {
-            display: none;
-          }
         }
 
         .do-button {
