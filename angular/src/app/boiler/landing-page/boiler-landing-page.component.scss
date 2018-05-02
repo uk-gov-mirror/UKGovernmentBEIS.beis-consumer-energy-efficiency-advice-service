@@ -23,11 +23,10 @@ $arrow-height: 48px;
   @include is-quick-link-image($boiler-image, $distance-from-right, $distance-from-top, $height, $width);
 }
 
-
 // General styling (shouldn't contain many widths/sizes etc.)
 
 .page-heading {
-  background-color: $focus-blue;
+  background-color: $primary-blue;
   color: white;
 
   .heading-text {
@@ -45,17 +44,8 @@ $arrow-height: 48px;
 
   .troubleshooting, .replacing {
     display: flex;
-    flex: 1 1 50%;
-    min-height: 300px;
-    margin: -80px 0;
     box-sizing: border-box;
-    padding: 80px 0;
     position: relative;
-
-    .heading, .body-text {
-      margin-bottom: 40px;
-      padding-right: 196px;
-    }
 
     .body-text {
       color: $headline-dark-blue;
@@ -72,7 +62,6 @@ $arrow-height: 48px;
       @include quick-link-font;
       height: $arrow-height;
       padding-left: 20px;
-      width: 50%;
 
       background: white;
       color: $primary-blue;
@@ -88,45 +77,6 @@ $arrow-height: 48px;
       }
     }
   }
-
-  .troubleshooting {
-    border-right: 2px white solid;
-
-    .boiler-image:after {
-      @include is-boiler-link-image(8%, 0, 266px, 103px);
-    }
-
-    &:focus, &:hover {
-      .arrow-button {
-        color: white;
-        background: $primary-blue;
-        &:after {
-          border-left-color: $primary-blue;
-        }
-      }
-    }
-  }
-
-  .replacing {
-    border-left: 2px white solid;
-    padding-left: 40px;
-
-    .boiler-image:after {
-      @include is-boiler-link-image(8%, 0, 266px, 103px);
-    }
-
-    &:focus, &:hover {
-      .arrow-button {
-        color: white;
-        background: $primary-blue;
-        &:after {
-          border-left-color: $primary-blue;
-        }
-      }
-    }
-  }
-
-
 }
 
 .installer {
@@ -178,10 +128,212 @@ $arrow-height: 48px;
 // Breakpoint specific styling
 
 @include mobile() {
+  .page-heading {
+    .heading-text {
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  .quick-links {
+    .quick-links-content {
+      flex-direction: column;
+    }
+
+    .troubleshooting, .replacing {
+      flex: 1 1 100%;
+
+      .body-text {
+      }
+
+      .heading, .body-text {
+        margin-bottom: 20px;
+        padding-right: 196px;
+      }
+
+      .arrow-button {
+        width: 60%;
+      }
+    }
+
+    .troubleshooting {
+      border-bottom: 4px white solid;
+      box-sizing: border-box;
+
+      margin: -80px -20px;
+      padding: 20px 40px;
+
+      .boiler-image:after {
+        margin-right: 16px;
+        @include is-boiler-link-image(8%, 0, 220px, 103px);
+      }
+    }
+
+    .replacing {
+      margin-top: 80px;
+      padding-left: 20px;
+
+      .heading {
+        padding-top: 20px;
+      }
+
+      .boiler-image:after {
+        @include is-boiler-link-image(8%, 0, 220px, 103px);
+      }
+    }
+  }
 }
 
 @include tablet() {
+  .quick-links {
+    .quick-links-content {
+      flex-direction: column;
+    }
+
+    .troubleshooting, .replacing {
+      flex: 1 1 100%;
+      min-height: 300px;
+
+      .heading, .body-text {
+        margin-bottom: 40px;
+        padding-right: 196px;
+      }
+
+      .body-text {
+        min-height: 50px;
+      }
+
+      .arrow-button {
+        width: 400px;
+      }
+    }
+
+    .troubleshooting {
+      border-bottom: 4px white solid;
+      margin: -80px;
+      padding: 80px;
+      box-sizing: border-box;
+
+      .boiler-image:after {
+        margin-right: 64px;
+        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      }
+    }
+
+    .replacing {
+      margin-top: 80px;
+      padding-top: 80px;
+
+      .boiler-image:after {
+        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      }
+    }
+  }
 }
 
 @include desktop() {
+  .quick-links {
+    .troubleshooting, .replacing {
+      flex: 1 1 50%;
+      min-height: 300px;
+      margin: -80px 0;
+      padding: 80px 0;
+
+      .heading, .body-text {
+        margin-bottom: 40px;
+        padding-right: 196px;
+      }
+
+      .body-text {
+        min-height: 80px;
+      }
+
+      .arrow-button {
+        width: 50%;
+      }
+    }
+
+    .troubleshooting {
+      .boiler-image:after {
+        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      }
+
+      border-right: 2px white solid;
+
+      &:focus, &:hover {
+        .arrow-button {
+          color: white;
+          background: $primary-blue;
+          &:after {
+            border-left-color: $primary-blue;
+          }
+        }
+      }
+    }
+
+    .replacing {
+      .boiler-image:after {
+        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      }
+
+      border-left: 2px white solid;
+      padding-left: 40px;
+
+      &:focus, &:hover {
+        .arrow-button {
+          color: white;
+          background: $primary-blue;
+          &:after {
+            border-left-color: $primary-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .installer {
+    .page-row-content {
+      box-sizing: border-box;
+      padding: 0 225px;
+      text-align: center;
+
+      .heading {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .grants {
+    background-color: $lighter-grey;
+
+    .header {
+      font-weight: bold;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .body {
+      font-family: $font-family-light;
+    }
+
+    .page-row-content {
+      display: flex;
+    }
+
+    .details {
+      flex: 1 1 50%;
+      margin-right: 40px;
+    }
+
+    .links {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: row;
+
+      .grants-button, .incentives-button {
+        flex: 1 1 50%;
+        padding: 15px;
+      }
+    }
+  }
 }
