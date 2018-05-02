@@ -16,9 +16,9 @@ describe('LocalAuthorityService', () => {
         local_authority_code: localAuthorityCode,
         display_name: 'Westminster',
         grants: [
-            {display_name: 'Grant 1', description: 'Grant 1', slug: 'grant-1'},
-            {display_name: 'Grant 2', description: 'Grant 2', slug: 'grant-2'},
-            {display_name: 'Grant 3', description: 'Grant 3', slug: 'grant-3'},
+            {display_name: 'Grant 1', description: 'Grant 1', eligibility_criteria: '', phone_number: '', website_url: '', slug: 'grant-1'},
+            {display_name: 'Grant 2', description: 'Grant 2', eligibility_criteria: '', phone_number: '', website_url: '', slug: 'grant-2'},
+            {display_name: 'Grant 3', description: 'Grant 3', eligibility_criteria: '', phone_number: '', website_url: '', slug: 'grant-3'},
         ],
         is_eco_flex_active: true,
         eco_flex_further_info_link: 'http://www.example.com'
