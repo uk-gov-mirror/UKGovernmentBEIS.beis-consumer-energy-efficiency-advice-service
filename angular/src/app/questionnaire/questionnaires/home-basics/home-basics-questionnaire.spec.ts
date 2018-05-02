@@ -23,7 +23,6 @@ import {HouseExposedWallQuestionMetadata} from '../../questions/house-exposed-wa
 import {FlatStoreysQuestionMetadata} from '../../questions/flat-storeys-question/flat-storeys-question-metadata';
 import {FloorLevelQuestionMetadata} from '../../questions/floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/floor-span-question-metadata';
-import {PostcodeEpcQuestionMetadata} from '../../questions/postcode-epc-question/postcode-epc-question-metadata';
 import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
@@ -32,43 +31,6 @@ describe('HomeBasicsQuestionnaire', () => {
 
     beforeEach(() => {
         responseData = {} as ResponseData;
-    });
-
-    it('contains the right questions for a user with journey type Calculator', () => {
-        // given
-        responseData.userJourneyType = UserJourneyType.Calculator;
-        const expectedQuestions = [
-            new PostcodeEpcQuestionMetadata(),
-            new ConfirmEpcQuestionMetadata(),
-            new TenureTypeQuestionMetadata(),
-            new HomeTypeQuestionMetadata(),
-            new HouseStoreysQuestionMetadata(),
-            new FlatStoreysQuestionMetadata(),
-            new FloorLevelQuestionMetadata(),
-            new FloorSpanQuestionMetadata(),
-            new HouseExposedWallQuestionMetadata(),
-            new FlatExposedWallQuestionMetadata(),
-            new HomeAgeQuestionMetadata(),
-            new BedroomsQuestionMetadata(),
-            new OptionalPropertyQuestionMetadata(),
-            new FloorAreaQuestionMetadata(),
-            new ConstructionQuestionMetadata(),
-            new FuelTypeQuestionMetadata(),
-            new HotWaterCylinderQuestionMetadata(),
-            new BoilerTypeQuestionMetadata(),
-            new ElectricityTariffQuestionMetadata(),
-            new DetailedLengthOfHeatingOnQuestionMetadata(),
-            new LivingRoomTemperatureQuestionMetadata(),
-            new OccupantsQuestionMetadata(),
-            new ShowersAndBathsQuestionMetadata(),
-            new GrantsQuestionnaireQuestionMetadata()
-        ];
-
-        // when
-        const behaviourQuestionnaire = HomeBasicsQuestionnaire.getInstance(responseData);
-
-        // then
-        expect(behaviourQuestionnaire.getQuestions()).toEqual(expectedQuestions);
     });
 
     it('contains the right questions for a user with journey type ReduceEnergyBills', () => {

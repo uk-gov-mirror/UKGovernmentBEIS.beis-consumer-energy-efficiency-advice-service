@@ -9,7 +9,6 @@
  */
 export enum UserJourneyType {
     // "home-basics" journeys. See HomeBasicsQuestionnaire.questionsForJourneyType
-    Calculator,
     ReduceEnergyBills,
     MakeHomeWarmer,
     PlanHomeImprovements,

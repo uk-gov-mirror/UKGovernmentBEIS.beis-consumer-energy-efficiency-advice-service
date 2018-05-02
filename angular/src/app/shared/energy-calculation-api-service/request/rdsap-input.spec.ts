@@ -35,7 +35,7 @@ describe('RdsapInput', () => {
         const numberOfChildren = 3;
 
         const responseData: ResponseData = {
-            userJourneyType: UserJourneyType.Calculator,
+            userJourneyType: UserJourneyType.ReduceEnergyBills,
             shouldIncludeGrantsQuestionnaire: false,
             shouldIncludeOptionalPropertyQuestions: false,
             postcode: 'sw1h0et',
