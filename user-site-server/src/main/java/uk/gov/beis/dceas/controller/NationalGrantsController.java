@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.beis.dceas.api.NationalGrant;
-import uk.gov.beis.dceas.service.AcfDataTranslator;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,11 +35,9 @@ import static uk.gov.beis.dceas.service.AcfDataTranslator.*;
 public class NationalGrantsController {
 
     private final DSLContext dslContext;
-    private final AcfDataTranslator acfDataTranslator;
 
-    public NationalGrantsController(DSLContext dslContext, AcfDataTranslator acfDataTranslator) {
+    public NationalGrantsController(DSLContext dslContext) {
         this.dslContext = dslContext;
-        this.acfDataTranslator = acfDataTranslator;
     }
 
     @GetMapping("/national-grants")
