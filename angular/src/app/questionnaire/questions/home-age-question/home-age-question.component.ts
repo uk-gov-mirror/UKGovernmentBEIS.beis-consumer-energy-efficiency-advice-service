@@ -1,10 +1,9 @@
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
-import {HomeAge, HomeAgeUtil} from './home-age';
-import {Component, HostListener, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {HomeAge} from './home-age';
+import {Component, HostListener,  OnInit, Renderer2} from '@angular/core';
 import {ResponseData} from '../../../shared/response-data/response-data';
-import keys from 'lodash-es/keys';
 
-interface HomeAgeOption {
+interface DropdownOption<T> {
     name: string;
     value: HomeAge;
 }
@@ -15,141 +14,39 @@ interface HomeAgeOption {
     styleUrls: ['./home-age-question.component.scss'],
     animations: [slideInOutAnimation]
 })
-export class HomeAgeQuestionComponent extends QuestionBaseComponent implements OnInit, OnDestroy {
-    sliderLeftPosition: number = 0;
-    isSliderSelected: boolean = false;
+export class HomeAgeQuestionComponent extends QuestionBaseComponent implements OnInit {
 
-    @ViewChild('slider') slider;
-    @ViewChild('timeline') timeline;
-    @ViewChild('option') option;
-
-    private homeAges: HomeAge[] = keys(HomeAge)
-        .map(x => parseInt(x))
-        .filter(homeAge => !isNaN(homeAge));
-
-    // tslint:disable-next-line:member-ordering - the private "homeAges" property must be declared before this
-    homeAgeOptions: HomeAgeOption[] = this.homeAges
-        .map(homeAge => {
-            return {
-                name: HomeAgeUtil.getDisplayName(homeAge),
-                value: homeAge
-            };
-        });
-
-    private mouseOffsetFromSliderX: number = 0;
-    private currentSliderCentreX: number = 0;
-
-    private deregisterMouseMoveListener: () => void;
-    private deregisterMouseUpListener: () => void;
+    readonly homeAges: DropdownOption<HomeAge>[] = [
+        {name: 'Pre 1900', value: HomeAge.pre1900},
+        {name: '1900 - 1929', value: HomeAge.from1900to1929},
+        {name: '1930 - 1949', value: HomeAge.from1930to1949},
+        {name: '1950 - 1966', value: HomeAge.from1950to1966},
+        {name: '1967 - 1975', value: HomeAge.from1967to1975},
+        {name: '1976 - 1982', value: HomeAge.from1976to1982},
+        {name: '1983 - 1990', value: HomeAge.from1983to1990},
+        {name: '1991 - 1995', value: HomeAge.from1991to1995},
+        {name: '1996 - 2002', value: HomeAge.from1996to2002},
+        {name: '2003 - 2006', value: HomeAge.from2003to2006},
+        {name: '2007 - 2011', value: HomeAge.from2007to2011},
+        {name: '2011 - Present', value: HomeAge.from2011toPresent},
+    ];
 
 
     get responseForAnalytics(): string {
-        return HomeAge[this.response];
-    }
-
-    constructor(responseData: ResponseData, private renderer: Renderer2) {
-        super(responseData);
-    }
-
-    static boundBy(target: number, min: number, max: number): number {
-        const boundedBelow = Math.max(target, min);
-        return Math.min(boundedBelow, max);
-    }
-
-    ngOnInit() {
-        this.response = this.response || this.homeAges[0];
-        setTimeout(() => {
-            this.moveSliderToCentreOfOption(this.response);
+        return JSON.stringify({
+            homeAge: HomeAge[this.homeAge],
         });
     }
 
-    ngOnDestroy() {
-        this.deregisterEventListeners();
+    ngOnInit() {
+        this.homeAge = HomeAge.pre1900;
     }
 
-    get response(): HomeAge {
+    get homeAge(): HomeAge {
         return this.responseData.homeAge;
     }
 
-    set response(val: HomeAge) {
+    set homeAge(val: HomeAge) {
         this.responseData.homeAge = val;
-    }
-
-    selectResponse(homeAge: HomeAge) {
-        this.moveSliderToCentreOfOption(homeAge);
-        this.response = homeAge;
-    }
-
-    @HostListener('window:resize', ['$event']) onResizeWindow() {
-        this.moveSliderToCentreOfOption(this.response);
-    }
-
-    @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
-        event.preventDefault();
-        if (event.target === this.slider.nativeElement) {
-            this.isSliderSelected = true;
-            this.mouseOffsetFromSliderX = event.pageX - this.currentSliderCentreX;
-            this.deregisterMouseMoveListener = this.renderer.listen('document', 'mousemove', mouseEvent => this.onMouseMove(mouseEvent));
-            this.deregisterMouseUpListener = this.renderer.listen('document', 'mouseup', mouseEvent => this.onMouseUp(mouseEvent));
-        }
-    }
-
-    moveSliderToCentreOfOption(homeAge: HomeAge): void {
-        const optionIndex = this.homeAges.indexOf(homeAge) >= 0 ? this.homeAges.indexOf(homeAge) : 0;
-        const optionWidth = this.getOptionWidthInPixels();
-        const newX = optionIndex * optionWidth + optionWidth / 2;
-        this.setSliderLocation(newX);
-    }
-
-    setSliderLocation(newX: number): void {
-        this.currentSliderCentreX = newX;
-        const sliderWidth = this.slider.nativeElement.clientWidth;
-        this.sliderLeftPosition = this.currentSliderCentreX - sliderWidth / 2;
-    }
-
-    onMouseMove(event: MouseEvent) {
-        event.preventDefault();
-        const unboundedNewLocationX = event.pageX - this.mouseOffsetFromSliderX;
-        const newLocationX = HomeAgeQuestionComponent.boundBy(unboundedNewLocationX, 0, this.getTotalWidthOfSlideRangeInPixels());
-        this.setSliderLocation(newLocationX);
-    }
-
-    onMouseUp(event: MouseEvent) {
-        this.isSliderSelected = false;
-        this.deregisterEventListeners();
-        event.preventDefault();
-        this.selectResponseFromSliderLocation(event.pageX - this.mouseOffsetFromSliderX);
-    }
-
-    deregisterEventListeners(): void {
-        if (this.deregisterMouseMoveListener) {
-            this.deregisterMouseMoveListener();
-        }
-        if (this.deregisterMouseUpListener) {
-            this.deregisterMouseUpListener();
-        }
-    }
-
-    selectResponseFromSliderLocation(x: number): void {
-        const selectedOption = this.getSelectedOptionFromSliderLocation(x);
-        this.selectResponse(selectedOption);
-    }
-
-    getSelectedOptionFromSliderLocation(x: number): HomeAge {
-        const rawIndex = Math.floor(x / this.getOptionWidthInPixels());
-        const optionIndex = HomeAgeQuestionComponent.boundBy(rawIndex, 0, this.getNumberOfResponseOptions() - 1);
-        return this.homeAges[optionIndex];
-    }
-
-    getTotalWidthOfSlideRangeInPixels(): number {
-        return this.timeline.nativeElement.scrollWidth;
-    }
-
-    getNumberOfResponseOptions(): number {
-        return this.homeAges.length;
-    }
-
-    getOptionWidthInPixels(): number {
-        return this.option.nativeElement.scrollWidth;
     }
 }

@@ -1,6 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/epc-rating";
 @import "styles/mixins/buttons";
+@import "styles/mixins/font";
 
 // Component specific variables
 
@@ -17,15 +18,32 @@ $go-button-right-chevron-width: 20px;
 
 .confirm-epc-question {
   width: $component-width;
+  display: flex;
+  flex-direction: column;
 
   .epc-section {
-    // Copied from data-card.scss
-    .epc-diagram-card {
+    .energy-performance, .epc-diagram-card, .potential-savings {
+      box-sizing: border-box;
+    }
 
+    .epc-diagram-card {
       .heading {
-        text-transform: uppercase;
-        color: $dark-grey;
         text-align: center;
+        align-self: stretch;
+        margin-bottom: 20px;
+        @include data-card-heading-font;
+      }
+
+      .epc-diagram {
+        width: 100%;
+        box-sizing: border-box;
+
+        img {
+          display: block;
+          margin: auto;
+          width: 100%;
+          max-width: 270px;
+        }
       }
     }
   }
@@ -64,17 +82,12 @@ $go-button-right-chevron-width: 20px;
           box-sizing: border-box;
           outline: none;
 
+          font-size: 16px;
+          line-height: 30px;
+          padding: 2px 36px;
+
           &:hover, &:focus {
             background-color: $lighter-medium-grey;
-          }
-
-          &.yes-button {
-            background-color: $action-button-blue;
-            color: white;
-
-            &:hover, &:focus {
-              background-color: $button-dark-blue;
-            }
           }
         }
       }
@@ -87,27 +100,54 @@ $go-button-right-chevron-width: 20px;
       overflow: visible;
       background-color: $button-dark-blue;
       cursor: pointer;
+      padding: 0;
 
       .need-more-details-body {
         color: white;
         border: none;
+        flex-grow: 1;
+        height: $go-button-height;
+        font-size: 20px;
+        line-height: 24px;
+        display: flex;
+        padding: 0;
 
         .button-main, .button-go {
           height: 100%;
           position: relative;
+          display: flex;
+          align-items: center;
 
           &::after {
             content: '';
             position: absolute;
+            right: -$go-button-right-chevron-width;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-top: $go-button-height/2 solid transparent;
+            border-bottom: $go-button-height/2 solid transparent;
           }
         }
 
         .button-main {
           z-index: 1;
+          padding-left: 20px;
+          flex-grow: 1;
+
+          &::after {
+            border-left: $go-button-right-chevron-width solid $button-dark-blue;
+          }
         }
 
         .button-go {
           background-color: $action-button-blue;
+          padding-left: $go-button-right-chevron-width + 16px;
+          padding-right: 4px;
+
+          &::after {
+            border-left: $go-button-right-chevron-width solid $action-button-blue;
+          }
         }
       }
 
@@ -115,6 +155,9 @@ $go-button-right-chevron-width: 20px;
         background-color: $action-button-blue;
 
         .need-more-details-body {
+          .button-main::after {
+            border-left-color: $action-button-blue
+          }
 
           .button-go {
             background-color: $button-dark-blue;
@@ -130,28 +173,11 @@ $go-button-right-chevron-width: 20px;
 }
 
 // Breakpoint specific styling
-
 .confirm-epc-question {
-  display: flex;
-  flex-direction: column;
-  width: $component-width;
-
   @include mobile() {
-    width: 90vw;
-
-    .horizontal-line {
-      width: 100%;
-    }
-
     .epc-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-
-      .energy-performance{
+      .energy-performance, .potential-savings {
         width: 100%;
-        flex: 0 0 auto;
-        align-self: flex-start;
         border-top: 2px $separator-grey solid;
 
         ::ng-deep .data-card {
@@ -161,64 +187,41 @@ $go-button-right-chevron-width: 20px;
           justify-content: space-between;
           align-items: center;
 
-          .heading {
-            width: 30vm;
-          }
-
-          ::ng-deep .color-circle{
+          .color-circle {
             flex: 0 0 auto;
             height: 80px;
             width: 80px;
-            margin-right: 40px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
           }
-        }
-      }
 
-      .epc-diagram-card{
-        border-top: 2px $separator-grey solid;
-
-        .heading{
-          padding: 20px 0px 20px 0px;
-        }
-
-        .epc-diagram {
-          padding: 10px 10px 20px 10px;
-
-          ::ng-deep img {
-            width: 70vw;
+          .number-value {
+            margin-right: 40px;
           }
         }
       }
 
-      .data-card-row {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+      .epc-diagram-card {
         border-top: 2px $separator-grey solid;
 
-        app-data-card {
-          padding: 25px 10px 25px 10px;
+        .heading {
+          padding: 20px 0;
+          text-align: left;
+        }
 
-          ::ng-deep .data-card{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 30vw;
+        .epc-diagram {
+          padding: 10px 0;
 
-            .heading{
-              padding-bottom: 20px
-            }
+          img {
+            margin: 0;
           }
         }
       }
     }
 
     .confirm-epc-details-section {
-
       border-top: 2px $separator-grey solid;
       padding-top: 25px;
 
@@ -234,22 +237,20 @@ $go-button-right-chevron-width: 20px;
         margin: 0px 0px 0px 15px;
         padding: 15px 0px 5px 0px;
 
-        ::ng-deep .epc-detail{
+        ::ng-deep .epc-detail {
           margin-bottom: 15px;
         }
       }
 
-      .confirm-epc-details{
+      .confirm-epc-details {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         height: 80px;
         background-color: $lighter-grey;
-        position: fixed;
         left: 0;
         bottom: 0;
         border-top: 2px solid $light-grey;
-        width: 100vw;
         z-index: 3;
         font-weight: bold;
 
@@ -261,136 +262,50 @@ $go-button-right-chevron-width: 20px;
           display: flex;
           align-items: center;
           justify-content: space-around;
-
-          .confirm-epc-details-button{
-            border-radius: 100000000px;
-            margin-right: 10px;
-            height: 30px;
-            width: 70px;
-            border-style: none;
-          }
-
-          .yes-button{
-            background-color: $action-button-blue;
-            color: $lighter-grey;
-          }
-
-          .no-button{
-            background-color: $light-grey;
-            color: $darker-grey;
-          }
-
-          .button-main-tablet {
-            visibility: hidden;
-            width: 0px;
-            height: 0px;
-          }
-
-          .need-more-details-button{
-            background-color: transparent;
-            color: $lighter-grey;
-            height: 55px;
-            width: 55px;
-            border-style: none;
-            background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
-            background-size: cover;
-
-            .need-more-details-body{
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-
-              .button-main{
-                visibility: hidden;
-                height: 0px;
-              }
-            }
-          }
+          padding: 80px 0;
         }
       }
+    }
+
+    .no-details {
+      padding-bottom: 40px;
     }
   }
 
   @include tablet() {
-    width: 90vw;
-
     .epc-section {
+      display: flex;
+      flex-wrap: wrap;
 
-      div:first-child {
-        display: flex;
-        flex-direction: row;
-        border-top: 2px $separator-grey solid;
-        justify-content: space-evenly;
-
-        .energy-performance{
-          flex: 1 0 50%;
-          padding: 25px 30px 25px 10px;
-          margin: 30px 0px 30px 0px;
-
-          :ng-deep .data-card {
-            display: flex;
-            align-items: center;
-          }
-
-          ::ng-deep .color-circle{
-            flex: 0 0 auto;
-            height: 80px;
-            width: 80px;
-            margin-right: 40px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-        }
-
-        .epc-diagram-card {
-          flex: 1 0 50%;
-          margin: 20px 0px 20px 0px;
-          padding: 25px 0px 25px 40px;
-
-          border-left: 2px $separator-grey solid;
-
-          .heading {
-            border-top: none;
-          }
-        }
+      .energy-performance {
+        // Minus border
+        flex: 0 0 calc(50% - 2px);
+        border-right: 2px solid $separator-grey;
+        padding-right: 16px;
       }
 
-      .data-card-row{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
+      .epc-diagram-card {
+        padding-left: 16px;
+        flex: 0 0 50%;
+      }
 
-        border-top: 2px $separator-grey solid;
+      .potential-savings {
+        border-top: 2px solid $separator-grey;;
+        padding-top: 16px;
+        margin-top: 16px;
+        flex: 0 0 100%;
+      }
 
-        app-data-card {
-          flex-grow: 0.5;
-          padding: 25px 10px 25px 10px;
-          margin: 30px 0px 30px 0px;
+      ::ng-deep .data-card {
+        justify-content: baseline;
 
-          ::ng-deep .data-card{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 30vw;
-
-            .heading{
-              padding-bottom: 20px
-            }
-          }
-        }
-
-        app-data-card:first-child{
-          border-right: 2px $separator-grey solid;
+        .number-value {
+          margin: auto;
         }
       }
     }
 
     .confirm-epc-details-section {
-
       border-top: 2px $separator-grey solid;
       padding-top: 25px;
 
@@ -406,22 +321,20 @@ $go-button-right-chevron-width: 20px;
         margin: 0px 0px 0px 15px;
         padding: 15px 0px 5px 0px;
 
-        ::ng-deep .epc-detail{
+        ::ng-deep .epc-detail {
           margin-bottom: 15px;
         }
       }
 
-      .confirm-epc-details{
+      .confirm-epc-details {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         height: 80px;
         background-color: $lighter-grey;
-        position: fixed;
         left: 0;
         bottom: 0;
         border-top: 4px solid $separator-grey;
-        width: 100vw;
         z-index: 3;
         font-weight: bold;
 
@@ -430,95 +343,40 @@ $go-button-right-chevron-width: 20px;
           align-items: center;
           justify-content: space-around;
           flex: 1 0 50%;
-
-          .confirm-epc-details-button{
-            border-radius: 100000000px;
-            margin-right: 10px;
-            height: 30px;
-            width: 70px;
-            border-style: none;
-          }
-
-          .button-main-tablet {
-            color: $focus-text-blue;
-            padding-right: 10px;
-            width: 50%;
-          }
-
-          .need-more-details-button{
-            background-color: transparent;
-            background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
-            background-size: cover;
-            color: $lighter-grey;
-            height: 55px;
-            width: 55px;
-            border-style: none;
-
-            .need-more-details-body{
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              height: 100%;
-
-              .button-main {
-                visibility: hidden;
-                height: 0px;
-                width: 0px;
-              }
-
-              .button-go {
-                display: flex;
-                align-items: center;
-              }
-            }
-          }
+          padding: 80px 0;
         }
+      }
+    }
+
+    .need-more-details-container {
+      display: flex;
+      flex-direction: column;
+
+      .no-details {
+        padding-bottom: 40px;
       }
     }
   }
 
   @include desktop() {
-    .horizontal-line {
-      width: 100%;
-    }
 
     .epc-section {
       display: flex;
-      min-width: 700px;
 
-      ::ng-deep > * {
-        display: flex;
-        flex-direction: row;
-        flex: 1 1 auto;
-        width: 15vw;
-        min-width: 1px;
-        border-right: none;
+      > * {
+        flex: 0 0 33%;
         margin-bottom: 40px;
 
-        .energy-performance {
-          flex: 1 1 50%;
-        }
-
         ::ng-deep .data-card {
-          justify-content: space-between;
+          justify-content: baseline;
+
+          .number-value {
+            margin: auto;
+          }
         }
 
-        > * {
-          padding: 10px 20px 10px 20px;
-        }
-      }
-
-      div:first-child {
-        > * {
-          border-right: 2px solid #d8d8d8;
-        }
-      }
-
-      div:last-child {
-        app-data-card:first-child {
-          border-right: 2px solid #d8d8d8;
+        &:not(:last-child) {
+          border-right: 2px solid $separator-grey;
         }
       }
 
@@ -526,26 +384,8 @@ $go-button-right-chevron-width: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        min-width: 1px;
+        padding: 10px;
         justify-content: space-around;
-        flex: 1 1 50%;
-
-        .heading {
-          align-self: stretch;
-          text-transform: uppercase;
-          font-size: 11px;
-          line-height: 14px;
-          color: $dark-grey;
-          text-align: center;
-          height: 72px;
-        }
-
-        .epc-diagram{
-          width: 100%;
-          img {
-            width: 13vw;
-          }
-        }
       }
     }
 
@@ -608,25 +448,6 @@ $go-button-right-chevron-width: 20px;
         .confirm-epc-details-row {
           display: flex;
           align-items: center;
-
-          .confirm-epc-details-button {
-            @include capsule-button;
-            font-size: 16px;
-            line-height: 30px;
-            padding: 2px 36px;
-            box-sizing: border-box;
-            outline: none;
-
-            &.yes-button {
-              margin-right: 32px;
-            }
-          }
-
-          .button-main-tablet {
-            visibility: hidden;
-            width: 0px;
-            height: 0px;
-          }
         }
       }
     }
@@ -638,80 +459,6 @@ $go-button-right-chevron-width: 20px;
 
       .no-details {
         padding-bottom: 48px;
-      }
-    }
-
-    .need-more-details-container, .confirm-epc-details-section {
-      .need-more-details-button {
-        padding: 0;
-        border: none;
-        overflow: visible;
-
-        .need-more-details-body {
-          flex-grow: 1;
-          border: none;
-          height: $go-button-height;
-          font-size: 20px;
-          line-height: 24px;
-          display: flex;
-          padding: 0;
-
-          .button-main, .button-go {
-            height: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-
-            &::after {
-              content: '';
-              position: absolute;
-              right: -$go-button-right-chevron-width;
-              top: 0;
-              width: 0;
-              height: 0;
-              border-top: $go-button-height/2 solid transparent;
-              border-bottom: $go-button-height/2 solid transparent;
-            }
-          }
-
-          .button-main {
-            z-index: 1;
-            padding-left: 20px;
-            flex-grow: 1;
-
-            &::after {
-              border-left: $go-button-right-chevron-width solid $button-dark-blue;
-            }
-          }
-
-          .button-go {
-            background-color: $action-button-blue;
-            padding-left: $go-button-right-chevron-width + 16px;
-            padding-right: 4px;
-
-            &::after {
-              border-left: $go-button-right-chevron-width solid $action-button-blue;
-            }
-          }
-        }
-
-        &:hover {
-          background-color: $action-button-blue;
-
-          .need-more-details-body {
-            .button-main::after {
-              border-left-color: $action-button-blue
-            }
-
-            .button-go {
-              background-color: $button-dark-blue;
-
-              &::after {
-                border-left-color: $button-dark-blue;
-              }
-            }
-          }
-        }
       }
     }
   }
