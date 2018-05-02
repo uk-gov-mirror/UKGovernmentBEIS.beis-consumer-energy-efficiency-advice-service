@@ -1,6 +1,5 @@
 package uk.gov.beis.dceas.controller;
 
-import com.google.common.collect.Iterables;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +10,12 @@ import uk.gov.beis.dceas.api.LocalAuthority;
 import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static org.jooq.impl.DSL.inline;
@@ -174,10 +176,25 @@ public class LocalAuthorityController {
                         postMetaForEndDate.META_VALUE.get(r),
                         WP_POSTS.POST_NAME.get(r)));
 
+        Date now = new Date();
         return grantPostIds.stream()
             .map(grants::get)
             .filter(Objects::nonNull)
-            .map(Iterables::getOnlyElement)
+            .flatMap(x -> LocalAuthorityController.filterExpiredGrants(x, now))
             .collect(toList());
+    }
+
+    private static Stream<LocalAuthority.Grant> filterExpiredGrants(List<LocalAuthority.Grant> grantsList, Date now) {
+        return grantsList.stream()
+            .filter(Objects::nonNull)
+            .filter(grant -> {
+                try {
+                    Date expiryDate = new SimpleDateFormat("yyyyMMdd").parse(grant.getEndDate());
+                    return !expiryDate.before(now);
+                } catch (Exception e) {
+                    // Grant must have an end date in a parsable form. Otherwise, it is filtered out
+                    return false;
+                }
+            });
     }
 }
