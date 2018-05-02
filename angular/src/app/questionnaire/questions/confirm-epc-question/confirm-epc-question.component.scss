@@ -262,25 +262,13 @@ $go-button-right-chevron-width: 20px;
           display: flex;
           align-items: center;
           justify-content: space-around;
-
-          .need-more-details-button {
-            background-color: transparent;
-            color: $lighter-grey;
-            height: 55px;
-            width: 55px;
-            border-style: none;
-            background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
-            background-size: cover;
-
-            .need-more-details-body {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-            }
-          }
+          padding: 80px 0;
         }
       }
+    }
+
+    .no-details {
+      padding-bottom: 40px;
     }
   }
 
@@ -355,31 +343,17 @@ $go-button-right-chevron-width: 20px;
           align-items: center;
           justify-content: space-around;
           flex: 1 0 50%;
-
-          .need-more-details-button {
-            background-color: transparent;
-            background-image: url("../../../../assets/images/controls/do-chevron-blue.svg");
-            background-size: cover;
-            color: $lighter-grey;
-            height: 55px;
-            width: 55px;
-            border-style: none;
-
-            .need-more-details-body {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              height: 100%;
-
-              .button-go {
-                display: flex;
-                align-items: center;
-              }
-            }
-          }
+          padding: 80px 0;
         }
+      }
+    }
+
+    .need-more-details-container {
+      display: flex;
+      flex-direction: column;
+
+      .no-details {
+        padding-bottom: 40px;
       }
     }
   }
