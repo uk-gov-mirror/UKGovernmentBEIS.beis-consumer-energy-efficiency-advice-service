@@ -7,6 +7,9 @@ export class LocalAuthorityGrant implements Grant {
     public grantId: string;
     public name: string;
     public description: string;
+    public eligibilityCriteria: string;
+    public phoneNumber: string;
+    public websiteUrl: string;
     public eligibility: GrantEligibility = GrantEligibility.MayBeEligible;
     public steps: RecommendationStep[] = [];
 
@@ -14,5 +17,8 @@ export class LocalAuthorityGrant implements Grant {
         this.grantId = localGrantResponse.slug;
         this.name = localGrantResponse.display_name;
         this.description = localGrantResponse.description;
+        this.eligibilityCriteria = localGrantResponse.eligibility_criteria;
+        this.phoneNumber = localGrantResponse.phone_number;
+        this.websiteUrl = localGrantResponse.website_url;
     }
 }

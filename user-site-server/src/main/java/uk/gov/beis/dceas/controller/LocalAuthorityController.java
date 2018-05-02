@@ -123,13 +123,21 @@ public class LocalAuthorityController {
 
         final WpPostmeta postMetaForDisplayName = WP_POSTMETA.as("post_meta_for_display_name");
         final WpPostmeta postMetaForDescription = WP_POSTMETA.as("post_meta_for_description");
+        final WpPostmeta postMetaForEligibilityCriteria = WP_POSTMETA.as("post_meta_for_eligibility_criteria");
+        final WpPostmeta postMetaForPhoneNumber = WP_POSTMETA.as("post_meta_for_phone_number");
+        final WpPostmeta postMetaForWebsiteUrl = WP_POSTMETA.as("post_meta_for_website_url");
+        final WpPostmeta postMetaForEndDate = WP_POSTMETA.as("post_meta_for_end_date");
 
         Map<Integer, List<LocalAuthority.Grant>> grants = dslContext
             .select(
                 WP_POSTS.ID,
                 WP_POSTS.POST_NAME,
                 postMetaForDisplayName.META_VALUE,
-                postMetaForDescription.META_VALUE)
+                postMetaForDescription.META_VALUE,
+                postMetaForEligibilityCriteria.META_VALUE,
+                postMetaForPhoneNumber.META_VALUE,
+                postMetaForWebsiteUrl.META_VALUE,
+                postMetaForEndDate.META_VALUE)
             .from(WP_POSTS)
 
             .leftJoin(postMetaForDisplayName).on(
@@ -138,6 +146,18 @@ public class LocalAuthorityController {
             .leftJoin(postMetaForDescription).on(
                 postMetaForDescription.POST_ID.eq(WP_POSTS.ID)
                     .and(postMetaForDescription.META_KEY.eq("description")))
+            .leftJoin(postMetaForEligibilityCriteria).on(
+                postMetaForEligibilityCriteria.POST_ID.eq(WP_POSTS.ID)
+                    .and(postMetaForEligibilityCriteria.META_KEY.eq("eligibility_criteria")))
+            .leftJoin(postMetaForPhoneNumber).on(
+                postMetaForPhoneNumber.POST_ID.eq(WP_POSTS.ID)
+                    .and(postMetaForPhoneNumber.META_KEY.eq("phone_number")))
+            .leftJoin(postMetaForWebsiteUrl).on(
+                postMetaForWebsiteUrl.POST_ID.eq(WP_POSTS.ID)
+                    .and(postMetaForWebsiteUrl.META_KEY.eq("website_url")))
+            .leftJoin(postMetaForEndDate).on(
+                        postMetaForEndDate.POST_ID.eq(WP_POSTS.ID)
+                    .and(postMetaForEndDate.META_KEY.eq("end_date")))
 
             .where(WP_POSTS.ID.in(grantPostIds))
             .and(WP_POSTS.POST_STATUS.eq(inline("publish")))
@@ -148,6 +168,10 @@ public class LocalAuthorityController {
                     new LocalAuthority.Grant(
                         postMetaForDisplayName.META_VALUE.get(r),
                         postMetaForDescription.META_VALUE.get(r),
+                        postMetaForEligibilityCriteria.META_VALUE.get(r),
+                        postMetaForPhoneNumber.META_VALUE.get(r),
+                        postMetaForWebsiteUrl.META_VALUE.get(r),
+                        postMetaForEndDate.META_VALUE.get(r),
                         WP_POSTS.POST_NAME.get(r)));
 
         return grantPostIds.stream()
