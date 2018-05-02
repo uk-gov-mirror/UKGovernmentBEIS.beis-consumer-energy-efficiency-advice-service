@@ -216,15 +216,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 this.goForwards();
             });
 
-            this.scrollToTop();
-        }
-    }
-
-    private scrollToTop = () => {
-        const c = document.documentElement.scrollTop || document.body.scrollTop;
-        if (c > 0) {
-            window.requestAnimationFrame(this.scrollToTop);
-            window.scrollTo(0, c - c / 8);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     }
 
