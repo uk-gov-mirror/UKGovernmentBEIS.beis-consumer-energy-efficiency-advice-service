@@ -14,7 +14,7 @@ export function getUserEpcRatingDescription(rating: UserEpcRating): string {
         case UserEpcRating.NoRating:
             return 'No EPC rating';
         case UserEpcRating.DontKnow:
-            return 'Look it up';
+            return 'I don\'t know';
         default:
             return null;
     }

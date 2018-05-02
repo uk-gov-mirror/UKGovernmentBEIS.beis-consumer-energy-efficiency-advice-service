@@ -1,22 +1,23 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../../shared/response-data/response-data';
-import {DomesticPropertyAfter2018QuestionComponent} from './domestic-property-after-2018-question.component';
+import {LettingDomesticPropertyQuestionComponent} from './letting-domestic-property-question.component';
+import {LettingDomesticPropertyStage} from "./letting-domestic-property-stage";
 
-describe('DomesticPropertyAfter2018QuestionComponent', () => {
-    let component: DomesticPropertyAfter2018QuestionComponent;
-    let fixture: ComponentFixture<DomesticPropertyAfter2018QuestionComponent>;
+describe('LettingDomesticPropertyQuestionComponent', () => {
+    let component: LettingDomesticPropertyQuestionComponent;
+    let fixture: ComponentFixture<LettingDomesticPropertyQuestionComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DomesticPropertyAfter2018QuestionComponent],
+            declarations: [LettingDomesticPropertyQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(DomesticPropertyAfter2018QuestionComponent);
+        fixture = TestBed.createComponent(LettingDomesticPropertyQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
@@ -30,18 +31,18 @@ describe('DomesticPropertyAfter2018QuestionComponent', () => {
         // given
 
         // when
-        const yes = fixture.debugElement.query(By.css('.yes-button'));
+        const yes = fixture.debugElement.query(By.css('.before-2018'));
         yes.nativeElement.click();
 
         // then
-        expect(component.response).toBe(true);
+        expect(component.response).toBe(LettingDomesticPropertyStage.BeforeApril2018);
     });
 
     it('should notify of completion when clicking on one of the buttons', () => {
         // given
 
         // when
-        const no = fixture.debugElement.query(By.css('.no-button'));
+        const no = fixture.debugElement.query(By.css('.after-2018'));
         no.nativeElement.click();
 
         // then

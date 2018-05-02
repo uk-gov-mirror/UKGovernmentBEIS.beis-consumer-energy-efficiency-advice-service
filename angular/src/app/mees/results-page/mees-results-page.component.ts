@@ -6,10 +6,17 @@ import {
     UserEpcRating
 } from '../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 import {EpcRating} from '../../shared/postcode-epc-service/model/epc-rating';
+import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
+import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 
 enum MeesResultsStatus {
-    NoActionRequired,
+    IrrelevantTenancyStartDate,
+    IrrelevantTenancyType,
+    EpcAtLeastE,
+    DetectedEpcAtLeastE,
+    EpcNotRequired,
     EpcRequired,
+    InstallRecommendedImprovementsAsap,
     InstallRecommendedImprovements,
 }
 
@@ -22,36 +29,43 @@ export class MeesResultsPageComponent implements OnInit {
     status: MeesResultsStatus;
     // Import the above enum into the component scope so it can be used in the component html:
     MeesResultsStatus = MeesResultsStatus;
-    noActionReason: string;
 
     constructor(private responseData: ResponseData) {
     }
 
     ngOnInit() {
-        if (!this.responseData.isDomesticPropertyAfter2018 && !this.responseData.isPropertyAfter2020) {
-            this.status = MeesResultsStatus.NoActionRequired;
-            this.noActionReason = `As you're not letting a property relevant to the legislation`;
-        } else if (this.responseData.tenancyType === TenancyType.Other) {
-            this.status = MeesResultsStatus.NoActionRequired;
-            this.noActionReason = `As your tenancy type is not relevant to the legislation`;
+        if (this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.BeforeApril2018) {
+            this.status = MeesResultsStatus.IrrelevantTenancyStartDate;
+        } else if (this.responseData.tenancyType === TenancyType.Other
+            || (this.responseData.tenancyType === TenancyType.DomesticAgriculturalTenancy
+                && this.responseData.agriculturalTenancyType !== AgriculturalTenancyType.AssuredTenancy)) {
+            this.status = MeesResultsStatus.IrrelevantTenancyType;
         } else if (this.responseData.propertyEpc === UserEpcRating.AtLeastE) {
-            this.status = MeesResultsStatus.NoActionRequired;
-            this.noActionReason = `As your property has an EPC rating of ${getUserEpcRatingDescription(this.responseData.propertyEpc)}`;
+            this.status = MeesResultsStatus.EpcAtLeastE;
         } else if (this.responseData.propertyEpc === UserEpcRating.DontKnow
             && this.responseData.epc
             && this.responseData.epc.currentEnergyRating <= EpcRating.E) {
 
-            this.status = MeesResultsStatus.NoActionRequired;
-            this.noActionReason =
-                `We found that your property has a rating of ${EpcRating[this.responseData.epc.currentEnergyRating]}. As a result`;
+            this.status = MeesResultsStatus.DetectedEpcAtLeastE;
         } else if (this.responseData.isEpcRequired === false) {
-            this.status = MeesResultsStatus.NoActionRequired;
-            this.noActionReason = `As your property is not required to have an EPC`;
+            this.status = MeesResultsStatus.EpcNotRequired;
+        } else if (this.isEpcBelowE()
+            && this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.AfterApril2018) {
+
+            this.status = MeesResultsStatus.InstallRecommendedImprovementsAsap;
         } else if (this.isEpcBelowE()) {
             this.status = MeesResultsStatus.InstallRecommendedImprovements;
         } else {
             this.status = MeesResultsStatus.EpcRequired;
         }
+    }
+
+    getUserEpc() {
+        return getUserEpcRatingDescription(this.responseData.propertyEpc);
+    }
+
+    getDetectedEpc() {
+        return EpcRating[this.responseData.epc.currentEnergyRating];
     }
 
     private isEpcBelowE() {
