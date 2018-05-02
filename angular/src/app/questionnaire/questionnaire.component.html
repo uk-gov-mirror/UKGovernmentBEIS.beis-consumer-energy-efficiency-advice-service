@@ -17,7 +17,7 @@
                      [isExpanded]="currentQuestionContent.autoOpenQuestionReason"
                      [questionReason]="currentQuestionContent.questionReason"></app-question-reason>
 </div>
-<app-sticky-row-wrapper>
+<app-sticky-row-wrapper *ngIf="shouldShowIndicator">
     <div class="sticky-row-content">
         <app-progress-indicator [questionnaire]="questionnaire"
                              [currentQuestionIndex]="currentQuestionIndex"></app-progress-indicator>

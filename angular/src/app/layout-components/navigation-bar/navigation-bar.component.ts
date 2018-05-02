@@ -51,6 +51,7 @@ export class NavigationBarComponent {
     @ViewChild('rentedMenu') rentedMenu;
 
     private deregisterClickListener: () => void;
+    private registerKeyupListener: () => void;
 
     constructor(private renderer: Renderer2,
                 private router: Router,
@@ -64,11 +65,27 @@ export class NavigationBarComponent {
             // This needs to be regularly checked as it could change quite often.
             // Performing it on a routing change is a suitable time to do this.
         });
+        this.registerKeyupListener = this.renderer.listen('window', 'keyup', event => this.handleKeyup(event));
     }
 
     registerSingleClickListener(): void {
         if (this.deregisterClickListener) {
             this.deregisterClickListener();
+        }
+        this.deregisterClickListener = this.renderer.listen('window', 'click', event => this.handleClick(event));
+    }
+
+    handleKeyup(event): void {
+        if (this.homeMenu.nativeElement.contains(event.target) || this.homeMenu.nativeElement === event.target) {
+            this.showHomeMenu = true;
+        } else {
+            this.showHomeMenu = false;
+        }
+
+        if (this.rentedMenu.nativeElement.contains(event.target) || this.rentedMenu.nativeElement === event.target) {
+            this.showRentedMenu = true;
+        } else {
+            this.showRentedMenu = false;
         }
         this.deregisterClickListener = this.renderer.listen('window', 'click', event => this.handleClick(event));
     }

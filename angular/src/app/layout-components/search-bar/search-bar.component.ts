@@ -23,6 +23,7 @@ export class SearchBarComponent {
     @ViewChild('searchInput') searchInput;
 
     private deregisterWindowClickListener: () => void;
+    private deregisterWindowTabListener: () => void;
 
     constructor(
         private renderer: Renderer2,
@@ -58,6 +59,7 @@ export class SearchBarComponent {
             this.deregisterWindowClickListener();
         }
         this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
+        this.deregisterWindowTabListener = this.renderer.listen('window', 'keyup', event => this.handleWindowClick(event));
     }
 
     handleWindowClick(event): void {

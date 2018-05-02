@@ -7,7 +7,8 @@ import {
     OnDestroy,
     OnInit,
     Output,
-    ViewChild
+    ViewChild,
+    OnChanges
 } from '@angular/core';
 import * as log from 'loglevel';
 import {ActivatedRoute} from '@angular/router';
@@ -29,7 +30,7 @@ import {UserStateService} from "../shared/user-state-service/user-state-service"
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss']
 })
-export class QuestionnaireComponent implements OnInit, OnDestroy {
+export class QuestionnaireComponent implements OnInit, OnDestroy{
 
     questionnaire: Questionnaire;
     isLoading: boolean;
@@ -50,6 +51,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private questionContentSubscription: Subscription;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
+    private shouldShowIndicator: boolean;
 
     constructor(private route: ActivatedRoute,
                 private questionContentService: QuestionContentService,
@@ -113,6 +115,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.renderQuestion('left');
             this.userStateService.saveState(this.currentQuestionIndex);
         }
+        this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
+        (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
     }
 
     goForwardsOneQuestion() {
@@ -122,6 +126,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.renderQuestion('right');
             this.userStateService.saveState(this.currentQuestionIndex);
         }
+        this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
+        (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
     }
 
     goForwards() {
@@ -246,6 +252,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 }
                 this.userStateService.saveState(this.currentQuestionIndex);
                 this.jumpToQuestion(this.currentQuestionIndex);
+                console.log(this.currentQuestionIndex);
+                this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
             });
     }
 }
