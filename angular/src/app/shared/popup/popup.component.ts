@@ -1,5 +1,9 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
+/**
+ * This component has accessibility issues; please don't use it except
+ * for debug / or "to do" markers.
+ */
 @Component({
     selector: 'app-popup',
     templateUrl: './popup.component.html',
