@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {ResponseData} from '../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-boiler-landing-page',
@@ -12,11 +13,17 @@ export class BoilerLandingPageComponent {
     replacingMobileExpanded = false;
     grantsMobileExpanded = false;
     installerMobileExpanded = false;
+    postcode: string;
 
-    constructor(private router: Router) {
+    constructor(private responseData: ResponseData,
+        private router: Router) {
     }
 
-    onAddressSelected(lmkKey: string) {
+    onPostcodeSelected() {
+        this.postcode = this.responseData.postcode;
+    }
+
+    onEpcSelected(lmkKey: string) {
         if (lmkKey) {
             this.router.navigate(['/boiler/epc-replace', lmkKey]);
         } else {

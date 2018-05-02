@@ -1,0 +1,159 @@
+@import "styles/var/colors";
+@import "styles/mixins/font";
+
+// Component specific variables
+
+// Component specific mixins
+@mixin postcode-button() {
+  background-color: $pink;
+  color: white;
+
+  border: none;
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
+:host {
+  display: block;
+}
+
+.epc-lookup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .loading-spinner {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 0;
+  }
+
+  .address-section {
+    margin-top: 30px;
+    width: 100%;
+
+    .no-properties {
+      flex: 0 0 100%;
+      text-align: left;
+    }
+  }
+
+  .address-select {
+    width: 100%;
+    height: 50px;
+    margin-top: 24px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+
+    .address-dropdown {
+      flex: 1 1 auto;
+      padding: 8px;
+      box-sizing: border-box;
+      @include postcode-dropdown-font();
+      text-align: center;
+      min-width: 0;
+
+      .address-option {
+        @include postcode-options-font();
+      }
+    }
+  }
+
+  .go-button {
+    @include postcode-button;
+    flex: 0 0 50px;
+
+    &.grey-go {
+      background-color: $light-medium-grey;
+    }
+  }
+
+  .not-listed-button {
+    @include postcode-button;
+    margin: 12px 0 0 auto;
+    padding: 0 14px;
+    height: 50px;
+  }
+
+  .validation-error {
+    margin-top: 20px;
+    background-color: crimson;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    color: white;
+
+    width: 300px;
+    float: right;
+    position: relative;
+    right: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Breakpoint specific styling
+.epc-lookup {
+  @include mobile() {
+    min-width: 0;
+
+    .address-select {
+      .address-dropdown {
+        width: 100%;
+      }
+    }
+
+    .address-section {
+      .address-dropdown-wrapper {
+        border-bottom: 1px solid $light-medium-grey;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  @include tablet() {
+    min-width: 0;
+
+    .address-section {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+
+      .address-dropdown-wrapper {
+        border-right: 1px solid $light-medium-grey;
+        padding-right: 20px;
+        margin-right: 20px;
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  @include desktop() {
+    min-width: 455px;
+
+    .address-section {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+
+      .address-dropdown-wrapper {
+        border-right: 1px solid $light-medium-grey;
+        padding-right: 30px;
+        margin-right: 30px;
+        flex: 1 1 auto;
+      }
+    }
+  }
+}

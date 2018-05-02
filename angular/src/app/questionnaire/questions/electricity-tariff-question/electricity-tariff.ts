@@ -1,9 +1,10 @@
 import {Epc} from '../../../shared/postcode-epc-service/model/epc';
 import includes from 'lodash-es/includes';
 
+// The indices here are BRE constants; do not change them unless BRE have changed
 export enum ElectricityTariff {
-    Standard,
-    OffPeak,
+    Standard = 1,
+    OffPeak = 2,
 }
 
 export function getElectricityTariffDescription(electricityTariff: ElectricityTariff) {

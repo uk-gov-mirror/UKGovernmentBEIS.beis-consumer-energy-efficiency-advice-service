@@ -1,7 +1,7 @@
 <div class="grants-landing-page">
     <div class="page-heading page-row">
         <div class="page-row-content">
-            <div class="heading-text">Home energy grants</div>
+            <h1 class="heading-text">Home energy grants</h1>
         </div>
     </div>
     <div class="local-grants page-row">
@@ -14,10 +14,9 @@
                             that you might be eligible for.</p>
                     </div>
                 <div class="enter-postcode-form">
-                        <app-postcode-lookup class="postcode-epc input-grey" (addressSelected)="onAddressSelected()"></app-postcode-lookup>
+                    <app-postcode-lookup class="postcode-epc input-grey" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
                 </div>
             </div>
-            <div class="validation-error" *ngIf="validationError">Please enter a valid UK postcode</div>
             <div class="loading-grants" *ngIf="isLoading"></div>
             <div class="network-error" *ngIf="isError">
                 Something went wrong and we can't load this information right now. Please try again later.

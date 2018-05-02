@@ -70,21 +70,14 @@ Build the site locally, and deploy:
 Add necessary config:
 
     cf create-user-provided-service epc.opendatacommunities.org -p username,password
-    cf create-user-provided-service bre.energyUse -p username,password
+    cf create-user-provided-service bre.energyUse -p username,password,url
     cf create-user-provided-service google.analytics -p id
 
     # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges
     # `admin-site-url` is e.g. "https://dceas-admin-site-int.cloudapps.digital"
-    cf create-user-provided-service dceas-user-site.config -p admin-ip-whitelist,admin-site-url
+    # `phone-number` is e.g. "0300 123 1234"
+    cf create-user-provided-service dceas-user-site.config -p admin-ip-whitelist,admin-site-url,phone-number
 
 Build the site locally, and deploy:
 
     ./infrastructure/ci-user-site-deploy.sh
-    
-## Jenkins (Deploy Server)
-
-Create a new space for Jenkins
-
-    cf create-space ci
-    cf target -o "beis-domestic-energy-advice-service" -s "ci"
-

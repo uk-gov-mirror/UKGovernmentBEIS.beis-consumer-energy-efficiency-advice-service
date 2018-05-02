@@ -5,7 +5,6 @@ import {HomeType} from '../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
 import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
-import {ShowerType} from '../../../questionnaire/questions/shower-type-question/shower-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
 import toString from 'lodash-es/toString';
@@ -23,6 +22,8 @@ import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/
 import {FlatLevel} from './flat-level';
 import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
+import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
+import {AgriculturalTenancyType} from "../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type";
 
 describe('RdsapInput', () => {
 
@@ -34,7 +35,7 @@ describe('RdsapInput', () => {
         const numberOfChildren = 3;
 
         const responseData: ResponseData = {
-            userJourneyType: UserJourneyType.Calculator,
+            userJourneyType: UserJourneyType.ReduceEnergyBills,
             shouldIncludeGrantsQuestionnaire: false,
             shouldIncludeOptionalPropertyQuestions: false,
             postcode: 'sw1h0et',
@@ -63,13 +64,8 @@ describe('RdsapInput', () => {
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,
             numberOfChildren: numberOfChildren,
-            showerType: ShowerType.None,
             numberOfShowersPerWeek: 0,
             numberOfBathsPerWeek: 45,
-            tumbleDryPercentage: undefined,
-            numberOfFridgeFreezers: 0,
-            numberOfFridges: 0,
-            numberOfFreezers: 0,
             livingRoomTemperature: 20,
             benefits: Benefits.None,
             income: 123,
@@ -82,12 +78,12 @@ describe('RdsapInput', () => {
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
 
-            isDomesticPropertyAfter2018: false,
-            isPropertyAfter2020: false,
+            lettingDomesticPropertyStage: LettingDomesticPropertyStage.BeforeApril2018,
             propertyEpc: UserEpcRating.AtLeastE,
             isEpcRequired: false,
             confirmEpcNotFound: false,
             tenancyType: TenancyType.Other,
+            agriculturalTenancyType: AgriculturalTenancyType.AssuredTenancy,
             saveToSessionStorage: () => {},
         };
 

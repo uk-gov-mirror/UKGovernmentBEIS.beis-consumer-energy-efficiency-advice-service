@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>icon/heat</title>
-    <desc>Created with Sketch.</desc>
+        <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon/heat">
-            <g id="Group" transform="translate(8.000000, 2.000000)">
-                <path d="M10,0.0147000769 C10,-0.487919025 20,12.0184578 20,19.1160402 C20,26.2136227 15.8703273,29.4434286 10,32 C4.12967268,29.4434286 0,26.2136227 0,19.1160402 C0,12.0184578 10.1586825,0.463115158 10,0.0147000769 Z" id="Combined-Shape-Copy" fill="#4A4A4A"></path>
-                <path d="M10,16 C12.3481309,17.1371633 14,19.8429945 14,23 C14,26.1570055 12.3481309,28.8628367 10,30 C7.65186907,28.8628367 6,26.1570055 6,23 C6,19.8429945 7.65186907,17.1371633 10,16 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(8.000000, 2.000000)">
+                <path d="M10,0.0147000769 C10,-0.487919025 20,12.0184578 20,19.1160402 C20,26.2136227 15.8703273,29.4434286 10,32 C4.12967268,29.4434286 0,26.2136227 0,19.1160402 C0,12.0184578 10.1586825,0.463115158 10,0.0147000769 Z" fill="#4A4A4A"></path>
+                <path d="M10,16 C12.3481309,17.1371633 14,19.8429945 14,23 C14,26.1570055 12.3481309,28.8628367 10,30 C7.65186907,28.8628367 6,26.1570055 6,23 C6,19.8429945 7.65186907,17.1371633 10,16 Z" fill="#FFFFFF"></path>
             </g>
         </g>
     </g>

@@ -1,8 +1,8 @@
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="boiler-results-page" *ngIf="!isLoading && !isError">
     <div class="page-row page-heading">
         <div class="page-row-content">
-            <div class="heading-text">Your boiler recommendations</div>
+            <h1 class="heading-text">Your boiler recommendations</h1>
         </div>
     </div>
     <div class="page-row found-options">

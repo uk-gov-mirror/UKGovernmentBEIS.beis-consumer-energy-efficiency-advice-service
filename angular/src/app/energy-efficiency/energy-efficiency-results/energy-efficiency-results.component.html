@@ -1,8 +1,8 @@
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="results-page" *ngIf="!isLoading && !isError">
     <div class="page-row results-header-row">
         <div class="page-row-content">
-            <div class="heading-text">Your energy recommendations</div>
+            <h1 class="heading-text">Now build your plan</h1>
             <div class="header-data-cards">
                 <app-data-card
                         heading="Your current score is"
@@ -25,7 +25,7 @@
     <div class="page-row recommendations">
         <div class="page-row-content">
             <div class="recommendations-heading">
-                Add recommendations to your plan
+                Choose from the following recommendations
             </div>
             <div class="recommendations-subheading">
                 We've selected our top recommendations but you can filter by the following:

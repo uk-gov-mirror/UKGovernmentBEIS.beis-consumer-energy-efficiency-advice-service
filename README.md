@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service.svg?branch=master)](https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service)
 # BEIS DCEAS - Energy Efficiency Website
 
 This project is the BEIS Energy Efficiency Website.

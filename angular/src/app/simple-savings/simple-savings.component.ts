@@ -12,6 +12,7 @@ import * as log from 'loglevel';
 export class SimpleSavingsComponent implements OnInit {
     isLoading: boolean;
     isError: boolean;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     measures: MeasureContent[];
 
     constructor(private measureService: EnergySavingMeasureContentService) {

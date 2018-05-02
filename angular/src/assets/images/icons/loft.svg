@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>icon/loft</title>
-    <desc>Created with Sketch.</desc>
+        <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon/loft">
-            <g id="Group-18" transform="translate(4.000000, 2.000000)">
-                <g id="Group-4-Copy-2">
-                    <polygon id="Rectangle-5" fill="#4A4A4A" points="2.5 14.5483871 13.9376085 5.32258065 25.5 14.5483871 25.5 33 2.5 33"></polygon>
-                    <polyline id="Path-2" stroke="#4A4A4A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="0 11.7096774 13.8968948 0 28 11.7096774"></polyline>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(4.000000, 2.000000)">
+                <g>
+                    <polygon fill="#4A4A4A" points="2.5 14.5483871 13.9376085 5.32258065 25.5 14.5483871 25.5 33 2.5 33"></polygon>
+                    <polyline stroke="#4A4A4A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="0 11.7096774 13.8968948 0 28 11.7096774"></polyline>
                 </g>
             </g>
-            <polygon id="&gt;-copy" fill="#FFFFFF" transform="translate(17.635000, 19.850000) rotate(-90.000000) translate(-17.635000, -19.850000) " points="22.27 19.85 18.42 16 16.78 16 20.04 19.23 13 19.23 13 20.46 20.04 20.46 16.78 23.7 18.42 23.7"></polygon>
+            <polygon fill="#FFFFFF" transform="translate(17.635000, 19.850000) rotate(-90.000000) translate(-17.635000, -19.850000) " points="22.27 19.85 18.42 16 16.78 16 20.04 19.23 13 19.23 13 20.46 20.04 20.46 16.78 23.7 18.42 23.7"></polygon>
         </g>
     </g>
 </svg>

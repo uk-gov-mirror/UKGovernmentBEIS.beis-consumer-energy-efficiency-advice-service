@@ -37,7 +37,7 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
     &.savings {
       flex: 0 0 auto;
       width: $savings-box-width;
-      background-color: $dark-medium-grey;
+      background-color: $darkened-blue;
       font-weight: bold;
       color: white;
     }
@@ -93,6 +93,7 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
 
         .heading {
           @include card-heading-small;
+          color: $focus-text-blue;
           margin-bottom: 16px;
           width: 100%;
         }
@@ -112,7 +113,7 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
 
       text-decoration: none;
       cursor: pointer;
-      color: black;
+      color: $primary-blue;
 
       .read-more-text {
         @include body-uppercase;

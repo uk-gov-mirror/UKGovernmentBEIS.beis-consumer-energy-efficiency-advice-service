@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
 import {YourPlanPageComponent} from './your-plan-page.component';
 import {Observable} from 'rxjs/Observable';
+
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
 import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.component';
@@ -190,6 +191,21 @@ describe('YourPlanPageComponent', () => {
         fixture.whenStable().then(() => {
             const grantsCards = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
             expect(grantsCards.length).toEqual(2);
+        });
+    }));
+
+    it('should load but not show local authority grants if an error is thrown', async(() => {
+        localAuthorityResponse = Observable.throw(new Error('Test error'));
+
+        fixture = TestBed.createComponent(YourPlanPageComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+        fixture.whenStable().then(() => {
+            const headingText = fixture.debugElement.query(By.css('.your-plan-header .heading')).nativeElement.innerText;
+            expect(headingText).toEqual('Your plan');
+            const localAuthoritySection = fixture.debugElement.query(By.css('.local-authority-grants'));
+            expect(localAuthoritySection).toBeFalsy();
         });
     }));
 });

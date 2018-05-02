@@ -19,6 +19,7 @@ import {NeedHelpComponent} from './shared/need-help/need-help.component';
 import {SearchBarComponent} from './layout-components/search-bar/search-bar.component';
 import {RecommendationsService} from './shared/recommendations-service/recommendations.service';
 import {WordpressSearchService} from './shared/wordpress-search-service/wordpress-search.service';
+import {SpinnerAndErrorContainerComponent} from "./shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -42,7 +43,8 @@ describe('AppComponent', () => {
                 PopupComponent,
                 NavBarSuboptionComponent,
                 NeedHelpComponent,
-                SearchBarComponent
+                SearchBarComponent,
+                SpinnerAndErrorContainerComponent
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

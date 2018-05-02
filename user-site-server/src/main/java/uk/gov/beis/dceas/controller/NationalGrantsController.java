@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.beis.dceas.api.NationalGrant;
-import uk.gov.beis.dceas.service.AcfDataTranslator;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,9 +18,7 @@ import static java.util.stream.Collectors.toMap;
 import static org.jooq.impl.DSL.inline;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTMETA;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.deserializePhpStringArrayOfInts;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.getAcfRepeaterList;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.toBool;
+import static uk.gov.beis.dceas.service.AcfDataTranslator.*;
 
 /**
  * Gets info on National Grants from the database.
@@ -38,11 +35,9 @@ import static uk.gov.beis.dceas.service.AcfDataTranslator.toBool;
 public class NationalGrantsController {
 
     private final DSLContext dslContext;
-    private final AcfDataTranslator acfDataTranslator;
 
-    public NationalGrantsController(DSLContext dslContext, AcfDataTranslator acfDataTranslator) {
+    public NationalGrantsController(DSLContext dslContext) {
         this.dslContext = dslContext;
-        this.acfDataTranslator = acfDataTranslator;
     }
 
     @GetMapping("/national-grants")
@@ -90,18 +85,30 @@ public class NationalGrantsController {
                 String postName = e.getKey();
                 Map<String, String> metaFields = e.getValue();
 
+                boolean linkToMeasures = toBool(metaFields.get("link_to_measures"));
+
+                List<String> linkedMeasureCodes;
+                // Although the ACF "measures" list is conditional on "link_to_measures",
+                // the former list is not cleared in the database when the latter is set to
+                // false. To prevent sending stale data, we must guard against that here
+                if (!linkToMeasures) {
+                    linkedMeasureCodes = emptyList();
+                } else {
+                    // This is 1+N database round-trips, but it is no worse than WP
+                    // We should consider caching if necessary
+                    linkedMeasureCodes = getMeasureCodesFromIds(
+                            deserializePhpStringArrayOfInts(metaFields.get("measures")));
+                }
+
                 return NationalGrant.builder()
                     .heading(metaFields.get("heading"))
                     .description(metaFields.get("description"))
-                    .linkToMeasures(toBool(metaFields.get("link_to_measures")))
+                    .linkToMeasures(linkToMeasures)
                     .displayWithoutMeasures(toBool(metaFields.get("display_without_measures")))
+                    .findOutMoreLink(metaFields.get("find_out_more_link"))
                     .advantages(getAcfRepeaterList(metaFields, "advantages", a -> a.get("advantage")))
                     .steps(getAcfRepeaterList(metaFields, "steps", this::stepFromFields))
-                    .linkedMeasureCodes(
-                        // This is 1+N database round-trips, but it is no worse than WP
-                        // We should consider caching if necessary
-                        getMeasureCodesFromIds(
-                            deserializePhpStringArrayOfInts(metaFields.get("measures"))))
+                    .linkedMeasureCodes(linkedMeasureCodes)
                     .slug(postName)
                     .build();
             })
@@ -136,13 +143,7 @@ public class NationalGrantsController {
             .moreInfoLinks(getAcfRepeaterList(fields, "more_info_links", linkFields ->
                     NationalGrant.Link.builder()
                         .buttonText(linkFields.get("button_text"))
-                        // This is 1+N database round-trips, but it is no worse than WP
-                        // We should consider caching if necessary
-                        // TODO:BEISDEAS-233 links to "pages" don't work on GOV, used to work on Azure but all pages were empty.
-                        // Not sure what the correct fix is here.
-                        .linkedPage(acfDataTranslator.getPostLinkById(linkFields.get("linked_page")))
-                        .isExternalLink(toBool(linkFields.get("is_external_link")))
-                        .externalLink(linkFields.get("external_link"))
+                        .linkUrl(linkFields.get("link_url"))
                         .build()))
             .build();
     }

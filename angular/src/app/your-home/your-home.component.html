@@ -1,12 +1,13 @@
 <div class="your-home-page" *ngIf="yourHomeContent">
     <div class="page-heading page-row">
         <div class="page-row-content">
-            <div class="heading-text">{{yourHomeContent.title}}</div>
+            <h1 class="heading-text">{{yourHomeContent.title}}</h1>
             <div class="body-text">We can help you find the right option for
                 your home or you can review all the different types below.
             </div>
         </div>
     </div>
+    <app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
     <div class="measures page-row">
         <div class="page-row-content">
             <div class="measures-list">

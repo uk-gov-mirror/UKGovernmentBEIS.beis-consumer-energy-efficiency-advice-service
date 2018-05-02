@@ -34,6 +34,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     questionnaire: Questionnaire;
     isLoading: boolean;
     isError: boolean;
+    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     currentQuestionIndex: number;
     allQuestionsContent: AllQuestionsContent;
     currentQuestionContent: QuestionContent;
@@ -72,6 +73,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             log.warn(`Questionnaire "${ this.questionnaireName } is empty"`);
             this.onQuestionnaireComplete.emit();
         }
+        // TODO:BEIS-201 needs loading/error spinner
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')

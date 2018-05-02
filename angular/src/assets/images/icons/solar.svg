@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>icon/solar</title>
-    <desc>Created with Sketch.</desc>
+        <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon/solar">
-            <g id="Group-10" transform="translate(1.500000, 1.500000)">
-                <circle id="Oval-3" fill="#4A4A4A" cx="16.5" cy="16.5" r="8.47297297"></circle>
-                <g id="Group-8" stroke-linecap="square" stroke="#4A4A4A" stroke-width="3">
-                    <g id="Group-6" transform="translate(15.162162, 0.000000)">
-                        <path d="M1.33783784,4.01351351 L1.33783784,0.445945946" id="Line-2"></path>
-                        <path d="M1.33783784,32.5540541 L1.33783784,28.9864865" id="Line-2-Copy"></path>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(1.500000, 1.500000)">
+                <circle fill="#4A4A4A" cx="16.5" cy="16.5" r="8.47297297"></circle>
+                <g stroke-linecap="square" stroke="#4A4A4A" stroke-width="3">
+                    <g transform="translate(15.162162, 0.000000)">
+                        <path d="M1.33783784,4.01351351 L1.33783784,0.445945946"></path>
+                        <path d="M1.33783784,32.5540541 L1.33783784,28.9864865"></path>
                     </g>
-                    <g id="Group-6" transform="translate(16.500000, 16.662162) rotate(90.000000) translate(-16.500000, -16.662162) translate(15.000000, 0.162162)">
-                        <path d="M1.33783784,4.01351351 L1.33783784,0.445945946" id="Line-2"></path>
-                        <path d="M1.33783784,32.5540541 L1.33783784,28.9864865" id="Line-2-Copy"></path>
+                    <g transform="translate(16.500000, 16.662162) rotate(90.000000) translate(-16.500000, -16.662162) translate(15.000000, 0.162162)">
+                        <path d="M1.33783784,4.01351351 L1.33783784,0.445945946"></path>
+                        <path d="M1.33783784,32.5540541 L1.33783784,28.9864865"></path>
                     </g>
                 </g>
-                <g id="Group-6" transform="translate(16.614666, 16.614666) rotate(45.000000) translate(-16.614666, -16.614666) translate(15.114666, 0.114666)" stroke="#4A4A4A" stroke-width="3" stroke-linecap="square">
-                    <path d="M1.33783784,4.01351351 L1.33783784,0.445945946" id="Line-2"></path>
-                    <path d="M1.33783784,32.5540541 L1.33783784,28.9864865" id="Line-2-Copy"></path>
+                <g transform="translate(16.614666, 16.614666) rotate(45.000000) translate(-16.614666, -16.614666) translate(15.114666, 0.114666)" stroke="#4A4A4A" stroke-width="3" stroke-linecap="square">
+                    <path d="M1.33783784,4.01351351 L1.33783784,0.445945946"></path>
+                    <path d="M1.33783784,32.5540541 L1.33783784,28.9864865"></path>
                 </g>
-                <g id="Group-6" transform="translate(16.385334, 16.614666) scale(-1, 1) rotate(45.000000) translate(-16.385334, -16.614666) translate(14.885334, 0.114666)" stroke="#4A4A4A" stroke-width="3" stroke-linecap="square">
-                    <path d="M1.33783784,4.01351351 L1.33783784,0.445945946" id="Line-2"></path>
-                    <path d="M1.33783784,32.5540541 L1.33783784,28.9864865" id="Line-2-Copy"></path>
+                <g transform="translate(16.385334, 16.614666) scale(-1, 1) rotate(45.000000) translate(-16.385334, -16.614666) translate(14.885334, 0.114666)" stroke="#4A4A4A" stroke-width="3" stroke-linecap="square">
+                    <path d="M1.33783784,4.01351351 L1.33783784,0.445945946"></path>
+                    <path d="M1.33783784,32.5540541 L1.33783784,28.9864865"></path>
                 </g>
             </g>
         </g>

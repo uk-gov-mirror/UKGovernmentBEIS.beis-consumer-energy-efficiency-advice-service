@@ -7,6 +7,7 @@ export interface NationalGrantContent {
     linked_measure_codes: string[];
     link_to_measures: boolean;
     display_without_measures: boolean;
+    find_out_more_link?: string;
     advantages: string[];
     steps: RecommendationStepResponse[];
 }

@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="131px" height="138px" viewBox="0 0 131 138" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>image/grants-globe</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="image/grants-globe">
-            <g id="Group-4" transform="translate(3.000000, 2.000000)">
-                <g id="Group" transform="translate(23.000000, 23.000000)">
-                    <circle id="Oval-2" fill="#FFFFFF" cx="40" cy="40" r="40"></circle>
-                    <path d="M33.304,38.816 L30.568,38.816 L30.568,43.388 L33.304,43.388 L33.304,48.464 L30.568,49.364 L30.568,53 L49.864,53 L49.864,48.212 L38.92,48.212 L38.92,43.388 L47.128,43.388 L47.128,38.816 L38.92,38.816 L38.92,36.044 C38.92,33.884 40.072,32.588 41.908,32.588 C43.456,32.588 44.5,33.38 45.724,34.964 L49.936,31.58 C48.208,29.24 45.904,27.44 41.836,27.44 C36.364,27.44 33.304,30.608 33.304,35.9 L33.304,38.816 Z" id="£" fill="#01ABCE"></path>
-                    <polygon id="Line-4" fill="#29759B" fill-rule="nonzero" points="21 85 59 85 59 76 21 76"></polygon>
-                    <polygon id="Line-4-Copy" fill="#01ABCE" fill-rule="nonzero" points="21 94 59 94 59 85 21 85"></polygon>
-                    <polygon id="Line-4-Copy-2" fill="#50E2E3" fill-rule="nonzero" points="21 102 59 102 59 93 21 93"></polygon>
-                    <path d="M29,102 C29,108.075132 33.9248678,113 40,113 C46.0751322,113 51,108.075132 51,102 L29,102 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(3.000000, 2.000000)">
+                <g transform="translate(23.000000, 23.000000)">
+                    <circle fill="#FFFFFF" cx="40" cy="40" r="40"></circle>
+                    <path d="M33.304,38.816 L30.568,38.816 L30.568,43.388 L33.304,43.388 L33.304,48.464 L30.568,49.364 L30.568,53 L49.864,53 L49.864,48.212 L38.92,48.212 L38.92,43.388 L47.128,43.388 L47.128,38.816 L38.92,38.816 L38.92,36.044 C38.92,33.884 40.072,32.588 41.908,32.588 C43.456,32.588 44.5,33.38 45.724,34.964 L49.936,31.58 C48.208,29.24 45.904,27.44 41.836,27.44 C36.364,27.44 33.304,30.608 33.304,35.9 L33.304,38.816 Z" fill="#01ABCE"></path>
+                    <polygon fill="#29759B" fill-rule="nonzero" points="21 85 59 85 59 76 21 76"></polygon>
+                    <polygon fill="#01ABCE" fill-rule="nonzero" points="21 94 59 94 59 85 21 85"></polygon>
+                    <polygon fill="#50E2E3" fill-rule="nonzero" points="21 102 59 102 59 93 21 93"></polygon>
+                    <path d="M29,102 C29,108.075132 33.9248678,113 40,113 C46.0751322,113 51,108.075132 51,102 L29,102 Z" fill="#FFFFFF"></path>
                 </g>
-                <g id="Group-3" transform="translate(0.000000, 62.000000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
-                    <path d="M12.5,1.5 L0.458405421,1.5" id="Line-5"></path>
-                    <path d="M125.5,1.5 L113.458405,1.5" id="Line-5-Copy"></path>
+                <g transform="translate(0.000000, 62.000000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
+                    <path d="M12.5,1.5 L0.458405421,1.5"></path>
+                    <path d="M125.5,1.5 L113.458405,1.5"></path>
                 </g>
-                <g id="Group-3" transform="translate(63.000000, 7.000000) rotate(90.000000) translate(-63.000000, -7.000000) translate(56.500000, 5.500000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
-                    <path d="M12.5,1.5 L0.458405421,1.5" id="Line-5"></path>
+                <g transform="translate(63.000000, 7.000000) rotate(90.000000) translate(-63.000000, -7.000000) translate(56.500000, 5.500000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
+                    <path d="M12.5,1.5 L0.458405421,1.5"></path>
                 </g>
-                <g id="Group-3" transform="translate(63.000000, 63.500000) rotate(45.000000) translate(-63.000000, -63.500000) translate(0.000000, 62.000000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
-                    <path d="M12.5,1.5 L0.458405421,1.5" id="Line-5"></path>
-                    <path d="M125.5,1.5 L113.458405,1.5" id="Line-5-Copy"></path>
+                <g transform="translate(63.000000, 63.500000) rotate(45.000000) translate(-63.000000, -63.500000) translate(0.000000, 62.000000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
+                    <path d="M12.5,1.5 L0.458405421,1.5"></path>
+                    <path d="M125.5,1.5 L113.458405,1.5"></path>
                 </g>
-                <g id="Group-3" transform="translate(63.000000, 63.500000) scale(-1, 1) rotate(45.000000) translate(-63.000000, -63.500000) translate(0.000000, 62.000000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
-                    <path d="M12.5,1.5 L0.458405421,1.5" id="Line-5"></path>
-                    <path d="M125.5,1.5 L113.458405,1.5" id="Line-5-Copy"></path>
+                <g transform="translate(63.000000, 63.500000) scale(-1, 1) rotate(45.000000) translate(-63.000000, -63.500000) translate(0.000000, 62.000000)" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square">
+                    <path d="M12.5,1.5 L0.458405421,1.5"></path>
+                    <path d="M125.5,1.5 L113.458405,1.5"></path>
                 </g>
             </g>
         </g>

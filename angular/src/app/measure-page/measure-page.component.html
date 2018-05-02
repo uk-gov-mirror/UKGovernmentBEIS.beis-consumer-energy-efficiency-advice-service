@@ -1,8 +1,8 @@
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="measure-page" *ngIf="!isLoading && !isError">
     <div class="page-row heading-section">
         <div class="page-row-content">
-            <div class="title">{{measureData.title}}</div>
+            <h1 class="title">{{measureData.title}}</h1>
             <div class="summary">{{measureData.summary}}</div>
         </div>
     </div>
@@ -39,13 +39,13 @@
                     </div>
                     <div class="step-links" *ngIf="step.moreInfoLinks && step.moreInfoLinks.length">
                         <ng-container *ngFor="let moreInfoLink of step.moreInfoLinks">
-                            <a class="step-link" *ngIf="moreInfoLink.isExternalLink" target="_blank" [href]="moreInfoLink.externalLink">
+                            <a class="step-link" *ngIf="!moreInfoLink.linkProps.isRelativeURL" target="_blank" [href]="moreInfoLink.linkProps.route">
                                 <div class="step-link-text">{{moreInfoLink.buttonText}}</div>
                                 <div class="step-link-icon-container">
                                     <div class="step-link-icon" [inlineSVG]="'controls/new-window.svg'"></div>
                                 </div>
                             </a>
-                            <a class="step-link" *ngIf="!moreInfoLink.isExternalLink" [routerLink]="moreInfoLink.route">
+                            <a class="step-link" *ngIf="moreInfoLink.linkProps.isRelativeURL" [routerLink]="moreInfoLink.linkProps.route">
                                 <div class="step-link-text">{{moreInfoLink.buttonText}}</div>
                                 <div class="step-link-icon-container">
                                     <div class="step-link-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>

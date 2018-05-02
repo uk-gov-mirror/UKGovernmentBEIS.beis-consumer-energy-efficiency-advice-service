@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>search</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Supply" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="search" stroke-width="5">
-            <g id="Group" transform="translate(3.000000, 3.000000)">
-                <circle id="Oval-4" stroke="#01abce" cx="9.51724138" cy="9.51724138" r="9.51724138"></circle>
-                <path d="M16.137931,16.137931 L23.1845737,23.1845737" stroke="#01abce" id="Line-2" stroke-linecap="square"></path>
+    <g stroke-width="1" fill="none" fill-rule="evenodd">
+        <g stroke-width="5">
+            <g transform="translate(3.000000, 3.000000)">
+                <circle stroke="#01abce" cx="9.51724138" cy="9.51724138" r="9.51724138"></circle>
+                <path d="M16.137931,16.137931 L23.1845737,23.1845737" stroke="#01abce" stroke-linecap="square"></path>
             </g>
         </g>
     </g>

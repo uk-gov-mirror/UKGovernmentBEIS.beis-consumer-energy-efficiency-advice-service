@@ -199,26 +199,30 @@ describe('RecommendationsService', () => {
             recommendationsObservable.toPromise().then((recommendations) => {
                 // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
                 // for measure code U
-                expect(recommendations[0].headline).toBe('Solar photovoltaic panels');
-                expect(recommendations[0].readMoreRoute).toEqual('/measures/meta_solar_photovoltaic_panels');
-                expect(recommendations[0].iconPath).toBe(EnergySavingMeasureContentService.measureIcons['U']);
-                expect(recommendations[0].advantages).toEqual(['Green', 'Cost effective']);
+                expect(recommendations[8].headline).toBe('Solar photovoltaic panels');
+                expect(recommendations[8].readMoreRoute).toEqual('/measures/meta_solar_photovoltaic_panels');
+                expect(recommendations[8].iconPath).toBe(EnergySavingMeasureContentService.measureIcons['U']);
+                expect(recommendations[8].advantages).toEqual(['Green', 'Cost effective']);
                 const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
-                    EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.TopRecommendations;
-                expect(recommendations[0].tags).toEqual(expectedTags);
-                expect(recommendations[0].lifetimeYears).toEqual(30);
-                expect(recommendations[0].investmentPounds).toEqual(750);
+                    EnergyEfficiencyRecommendationTag.Grant;
+                expect(recommendations[8].tags).toEqual(expectedTags);
+                expect(recommendations[8].lifetimeYears).toEqual(30);
+                expect(recommendations[8].investmentPounds).toEqual(750);
             });
         }));
 
-        it('should sort recommendations by cost saving descending', async(() => {
+        it('should sort recommendations by interleaving the behavioural and grant measures within the BRE "main" measures', async(() => {
             // when
             const recommendationsObservable = service.getAllRecommendations();
 
             // then
             recommendationsObservable.toPromise().then((recommendations) => {
-                expect(recommendations[0].costSavingPoundsPerYear).toBe(350.64);
-                expect(recommendations[0].energySavingKwhPerYear).toBe(0);
+                // match data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
+                expect(recommendations[0].headline).toBe('Cavity wall insulation');
+                expect(recommendations[1].headline).toBe('Lower thermostat by one degree');
+                expect(recommendations[2].headline).toBe('National Grant 1');
+                expect(recommendations[3].headline).toBe('Hot water cylinder insulation');
+                expect(recommendations[4].headline).toBe('National Grant 2');
             });
         }));
 

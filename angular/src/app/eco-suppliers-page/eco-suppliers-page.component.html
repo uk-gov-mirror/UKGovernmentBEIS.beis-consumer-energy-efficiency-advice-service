@@ -1,17 +1,21 @@
 <div class="eco-suppliers-page">
     <div class="heading-row page-row">
         <div class="page-row-content">
-            <div class="title">ECO Suppliers</div>
-            <div class="summary">We can help you find the right option for your home or you can review all the different suppliers below.</div>
+            <h1 class="title">ECO Suppliers</h1>
+            <div class="summary">
+                All of the companies below provide support through ECO, but the support they offer and the households they support will be different.
+            </div>
         </div>
     </div>
     <div class="page-row">
         <div class="page-row-content">
-            <div class="supplier-list-title">Select an energy supplier to find out more</div>
-            <div class="supplier-list-summary">
-                Below is a list of all of the energy suppliers participating in the Energy Company Obligation (ECO).
+            <div class="supplier-list-title"> Click on the links below to see what each of these companies is offering at the moment.</div>
+            <div *ngIf="!hasCompletedQuestionnaire" class="supplier-list-summary">
+                If you’re not sure what energy improvements your home might need, why not use
+                <a routerLink="/energy-efficiency/reduce-bills">our tool</a>
+                to find out, before you contact any ECO suppliers?
             </div>
-            <app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+            <app-spinner-and-error-container [loading]="loading" [error]="error" errorMessage="errorMessage"></app-spinner-and-error-container>
             <div class="supplier-list" *ngIf="!loading && !error && suppliers">
                 <a class="supplier" *ngFor="let supplier of suppliers" [href]="supplier.link" target="_blank">
                     <img [src]="supplier.logo_image_src"

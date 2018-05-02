@@ -21,10 +21,10 @@ export class LandingPageComponent implements OnInit {
 
     isLoading: boolean;
     isError: boolean;
-    postcodeQuestionReason: string;
     heading: string;
     tag: string;
     measures: MeasureContent[];
+    postcode: string;
 
     constructor(private router: Router,
                 private responseData: ResponseData,
@@ -46,7 +46,11 @@ export class LandingPageComponent implements OnInit {
         );
     }
 
-    onAddressSelected() {
+    onPostcodeSelected() {
+        this.postcode = this.responseData.postcode;
+    }
+
+    onEpcSelected() {
         this.responseData.userJourneyType = this.userJourneyType;
         this.router.navigate(['/energy-efficiency/questionnaire/home-basics']);
     }
@@ -63,7 +67,6 @@ export class LandingPageComponent implements OnInit {
 
     private displayErrorAndLogMessage(err: any) {
         log.error(err);
-        log.warn(err);
         this.isLoading = false;
         this.isError = true;
     }

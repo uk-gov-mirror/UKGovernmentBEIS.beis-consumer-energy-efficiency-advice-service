@@ -19,6 +19,12 @@ $content-and-margins-max-width: $content-max-width + (2 * $desktop-side-margin);
   }
 }
 
+h1 {
+  // Stop browser styles for h1s. Any margin/padding applied to h1s by us should override this
+  margin: 0;
+  padding: 0;
+}
+
 // Breakpoint specific styling
 @include mobile() {
   .page-row .page-row-content {

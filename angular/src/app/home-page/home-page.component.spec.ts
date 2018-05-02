@@ -7,22 +7,21 @@ import {By} from '@angular/platform-browser';
 import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {Location} from '@angular/common';
 import {NavigationBarComponent} from '../layout-components/navigation-bar/navigation-bar.component';
-import {QuestionnaireService} from '../questionnaire/questionnaire.service';
 import {FormsModule} from '@angular/forms';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {Observable} from 'rxjs/Observable';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
-import {SearchBarComponent} from "../layout-components/search-bar/search-bar.component";
-import {NavBarSuboptionComponent} from "../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component";
-import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {SearchBarComponent} from '../layout-components/search-bar/search-bar.component';
+import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
+import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
+import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
     let fixture: ComponentFixture<HomePageComponent>;
 
     let responseDataStub: ResponseData;
-    let questionnaireComplete: boolean;
 
     class DummyComponent {
     }
@@ -31,9 +30,9 @@ describe('HomePageComponent', () => {
         responseDataStub = new ResponseData();
         TestBed.configureTestingModule({
             declarations: [HomePageComponent, LatestNewsSectionComponent,
-                LatestNewsCardComponent, NavBarSuboptionComponent, NavigationBarComponent, SearchBarComponent],
+                LatestNewsCardComponent, NavBarSuboptionComponent, NavigationBarComponent,
+                SearchBarComponent, SpinnerAndErrorContainerComponent],
             imports: [RouterTestingModule.withRoutes([
-                {path: 'energy-efficiency/questionnaire/home-basics', component: DummyComponent},
                 {path: 'energy-efficiency/results', component: DummyComponent},
                 {path: 'grants', component: DummyComponent},
                 {path: 'boiler', component: DummyComponent},
@@ -44,10 +43,6 @@ describe('HomePageComponent', () => {
             ]), FormsModule, InlineSVGModule],
             providers: [
                 {provide: ResponseData, useValue: responseDataStub},
-                {
-                    provide: QuestionnaireService,
-                    useValue: {isComplete: () => questionnaireComplete}
-                },
                 {
                     provide: WordpressPagesService,
                     useValue: {getLatestPages: () => Observable.of([])}
@@ -84,20 +79,8 @@ describe('HomePageComponent', () => {
         checkLink('.landing-page-link.greener-home', '/energy-efficiency/greener-home');
     });
 
-    it('should set the user journey type and move to the questionnaire when the appropriate button is clicked, if questionnaire incomplete',
-    async () => {
-        // given
-        questionnaireComplete = false;
-
-        checkLink('.calculator', '/energy-efficiency/questionnaire/home-basics', UserJourneyType.Calculator);
-    });
-
-    it('should set the user journey type and move to the results page when the appropriate button is clicked, if questionnaire complete',
-    async () => {
-        // given
-        questionnaireComplete = true;
-
-        checkLink('.calculator', '/energy-efficiency/results', UserJourneyType.Calculator);
+    it('should redirect the "calculator" button to the "reduce-bills" landing page', async () => {
+        checkLink('.calculator', '/energy-efficiency/reduce-bills', undefined);
     });
 
     it('should set the user journey type and move to the grants page when the appropriate button is clicked', async () => {

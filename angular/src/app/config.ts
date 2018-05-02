@@ -6,10 +6,11 @@ class Config {
     apiRoot: string;
     environment: string;
     hasAdminIpAddress: boolean;
+    phoneNumber: string;
     buildTimestamp: string;
     buildGitCommit: string;
-    buildJenkinsUrl: string;
-    buildJenkinsNumber: string;
+    buildUrl: string;
+    buildNumber: string;
 }
 
 export default () => (window as any).CONFIG as Config;
