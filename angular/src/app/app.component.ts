@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -15,7 +15,11 @@ export class AppComponent implements OnInit {
     shouldExpandNav: boolean = false;
     shouldCloseSearchBar: Subject<any> = new Subject();
 
+    readonly referrerDimensionIndex = 1;
+    readonly referrerDimensionName = "referrer id";
+
     constructor(
+        private activatedRoute: ActivatedRoute,
         private router: Router,
         private meta: Meta,
         private googleAnalyticsService: GoogleAnalyticsService,
@@ -37,6 +41,8 @@ export class AppComponent implements OnInit {
             this.googleAnalyticsService.recordPageView();
         });
 
+        this.handleAdReferral();
+
         // Set base URL for inline-svg directive
         this.svgService.setBaseUrl({baseUrl: '/dist/assets/images/'});
     }
@@ -51,5 +57,16 @@ export class AppComponent implements OnInit {
 
     hideMobileNav(): void {
         this.shouldExpandNav = false;
+    }
+
+    private handleAdReferral(): void {
+        this.activatedRoute.queryParamMap.subscribe(queryParams => {
+            const referrerId = queryParams.get('referrerid');
+            if (referrerId) {
+                this.googleAnalyticsService.setSessionDimension(this.referrerDimensionName, this.referrerDimensionIndex, referrerId);
+            }
+
+            return {unsubscribe() {}};
+        });
     }
 }
