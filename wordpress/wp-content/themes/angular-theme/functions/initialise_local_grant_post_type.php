@@ -102,8 +102,10 @@ function setup_local_authority_grant_acf_group() {
                     'label' => 'End Date',
                     'name' => 'end_date',
                     'type' => 'date_picker',
-                    'instructions' => '',
-                    'required' => 0,
+                    'instructions' =>
+                        'The date at which this grant expires. This is to stop stale information being displayed to the user.<br />' .
+                        'Note that if this is not set, the grant will not be shown',
+                    'required' => 1,
                     'display_format' => 'd/m/Y',
                     'return_format' => 'd/m/Y',
                     'first_day' => 1,
