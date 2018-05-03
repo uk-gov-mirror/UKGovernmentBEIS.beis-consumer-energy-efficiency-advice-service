@@ -1,5 +1,6 @@
 @import "styles/mixins/_font";
 @import "styles/var/colors";
+@import "styles/mixins/buttons";
 
 // Component specific variables
 
@@ -11,62 +12,108 @@
 }
 
 .grant-card {
-  width: 100%;
   height: 100%;
-
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
 
-  background-color: $lighter-grey;
-  box-sizing: border-box;
-
-  .heading, .description, .read-more {
-    max-width: 100%;
+  .heading-container, .extra-info-container {
+    flex: 1 1 auto;
   }
 
   .heading {
-    @include card-heading-small;
-    flex-grow: 1;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    @include page-summary-font;
   }
 
   .description {
-    @include card-body;
+    @include card-body-font;
   }
 
-  .read-more {
-    @include card-more-info-link;
+  .extra-info-container {
+    display: flex;
+    flex-direction: row;
+
+    .eligibility-criteria {
+      flex: 0 0 60%;
+      @include eligibility-font;
+
+      .eligibility-text {
+        font-weight: bold;
+      }
+    }
+
+    .find-out-more-container {
+      flex: 0 0 40%;
+      box-sizing: border-box;
+      margin-left: auto;
+    }
+
+    .find-out-more-text {
+      @include more-info-button-font;
+      color: $focus-text-blue;
+      margin-bottom: 10px;
+    }
+
+    .phone-number {
+      @include grant-phone-number-font;
+      color: $dark-grey;
+      text-decoration: none;
+    }
+
+    .find-out-more-link {
+      @include blue-arrow-button(20px, 48px);
+      padding: 15px;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+  }
+
+
+  &.blue-theme {
+    .heading-container {
+      background-color: $primary-blue;
+      color: white;
+    }
+
+    .extra-info-container {
+      background-color: $lighter-grey;
+    }
+  }
+
+  &.default-theme {
+    .heading-container {
+      background-color: white;
+    }
+
+    .extra-info-container {
+      background-color: $lighter-grey;
+    }
   }
 }
 
 // Breakpoint specific styling
 .grant-card {
   @include mobile() {
-    padding: 26px 24px;
-
-    .description {
-      margin: 16px 0 26px;
-    }
   }
 
   @include tablet() {
-    padding: 25px;
-
-    .description {
-      margin: 16px 0 40px;
-    }
   }
 
   @include desktop() {
-    padding: 25px 20px;
+    .heading-container {
+      padding: 35px 40px;
 
-    .description {
-      margin: 16px 0 44px;
+      .heading {
+        margin-bottom: 14px;
+      }
+    }
+
+    .extra-info-container {
+      padding: 35px 40px;
+
+      .find-out-more-container {
+        padding-left: 40px;
+      }
     }
   }
 }

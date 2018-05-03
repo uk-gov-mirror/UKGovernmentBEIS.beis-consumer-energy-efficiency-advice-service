@@ -277,7 +277,7 @@ $desktop-heading-vertical-padding: 20px;
         @include is-grid($margin-compensation: 20px);
 
         .grant-card {
-          @include is-grid-item($number-of-items: 4, $margin: 20px);
+          @include is-grid-item($number-of-items: 2, $margin: 20px);
         }
       }
     }

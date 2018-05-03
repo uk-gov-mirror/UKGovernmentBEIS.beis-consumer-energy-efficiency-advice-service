@@ -8,6 +8,7 @@ import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 })
 export class LocalGrantCardComponent {
     @Input() grant: LocalAuthorityGrant;
+    @Input() theme: 'default' | 'blue' = 'default';
 
     getPhoneNumberForLink() {
         return this.grant.phoneNumber

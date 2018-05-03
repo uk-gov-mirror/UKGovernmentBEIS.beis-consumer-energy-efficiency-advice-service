@@ -1,9 +1,9 @@
-<a class="grant-card">
+<a class="grant-card {{theme}}-theme">
     <div class="heading-container">
         <div class="heading">{{grant.name}}</div>
         <div class="description">{{grant.description}}</div>
     </div>
-    <div class="extra-info-container">
+    <div class="extra-info-container" *ngIf="grant.eligibilityCriteria || grant.websiteUrl || grant.phoneNumber">
         <div class="eligibility-criteria" *ngIf="grant.eligibilityCriteria">
             <span class="eligibility-text">Eligibility: </span>{{grant.eligibilityCriteria}}
         </div>
