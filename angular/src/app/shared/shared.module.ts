@@ -29,7 +29,7 @@ import {AssetsService} from './assets-service/assets.service';
 import {PostcodeLookupComponent} from './postcode-lookup/postcode-lookup.component';
 import {LargeVideoCardComponent} from './large-video-card/large-video-card.component';
 import {SafePipe} from './safe/safe.pipe';
-import {GrantCardComponent} from './grant-card/grant-card.component';
+import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.component';
 import {RecommendationsService} from './recommendations-service/recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
@@ -60,7 +60,7 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
         QuestionReasonComponent,
         LargeVideoCardComponent,
         SafePipe,
-        GrantCardComponent,
+        LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
@@ -82,7 +82,7 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
         QuestionReasonComponent,
         LargeVideoCardComponent,
         SafePipe,
-        GrantCardComponent,
+        LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,

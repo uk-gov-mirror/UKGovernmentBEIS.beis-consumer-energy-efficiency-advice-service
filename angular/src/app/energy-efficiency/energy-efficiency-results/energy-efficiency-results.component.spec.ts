@@ -10,7 +10,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
-import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {LocalGrantCardComponent} from '../../shared/local-grant-card/local-grant-card.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results.component';
 import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
 import {EnergyEfficiencyRecommendationCardComponent} from
@@ -127,7 +127,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 EnergyEfficiencyRecommendationCardComponent,
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
-                GrantCardComponent,
+                LocalGrantCardComponent,
                 RecommendationFilterControlComponent,
                 BreakEvenComponent,
                 YourPlanFooterComponent,
