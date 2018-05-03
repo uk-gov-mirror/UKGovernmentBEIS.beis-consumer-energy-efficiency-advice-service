@@ -15,6 +15,8 @@ describe('MeasureCardComponent', () => {
             measure_code: '1',
             headline: 'Test Measure',
             summary: 'This is a test measure',
+            what_it_is: null,
+            is_it_right_for_me: null,
             advantages: [],
             tags: [],
             steps: []

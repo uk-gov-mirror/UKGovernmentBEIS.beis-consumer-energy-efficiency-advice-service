@@ -146,7 +146,7 @@ $icon-column-width: $add-to-plan-column-width;
         }
       }
 
-      .grants, .benefits {
+      .grants, .benefits, .what-it-is, .right-for-me {
         .heading {
           text-transform: uppercase;
           font-size: 12px;
@@ -161,6 +161,15 @@ $icon-column-width: $add-to-plan-column-width;
         .benefits-list {
           padding: 0 20px;
           font-family: $font-family-light;
+        }
+      }
+
+      .what-it-is, .right-for-me {
+        flex: 1;
+
+        .description {
+          font-family: $font-family-light;
+          margin-bottom: 16px;
         }
       }
 
@@ -229,7 +238,7 @@ $icon-column-width: $add-to-plan-column-width;
           stroke: $action-button-blue;
         }
 
-        &.remove, &.added{
+        &.remove, &.added {
           stroke: white;
         }
       }
@@ -265,7 +274,7 @@ $icon-column-width: $add-to-plan-column-width;
         flex-wrap: wrap;
         padding: 20px;
 
-        .grants, .benefits {
+        .grants, .benefits, .what-it-is, .right-for-me {
           flex: 0 0 100%;
         }
 
@@ -329,7 +338,7 @@ $icon-column-width: $add-to-plan-column-width;
           padding-right: 20px;
         }
 
-        .grants, .benefits {
+        .grants, .benefits, .what-it-is, .right-for-me {
           flex: 0 0 50%;
         }
       }

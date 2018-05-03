@@ -75,6 +75,8 @@ describe('InstallerSearchComponent', () => {
                     measure_code: "Test Measure Code",
                     headline: "Test Headline",
                     summary: null,
+                    what_it_is: null,
+                    is_it_right_for_me: null,
                     advantages: [{advantage: null}],
                     tags: null,
                     steps: null

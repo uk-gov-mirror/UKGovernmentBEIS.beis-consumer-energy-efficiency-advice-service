@@ -37,6 +37,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         iconPath: 'icons/dummy.svg',
         headline: 'Loft insulation',
         summary: 'No description available',
+        whatItIs: '',
+        isItRightForMe: '',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
         grant: grant,
         advantages: advantages,
