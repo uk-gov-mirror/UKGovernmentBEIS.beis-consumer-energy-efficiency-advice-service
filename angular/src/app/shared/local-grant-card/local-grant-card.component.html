@@ -5,7 +5,7 @@
     </div>
     <div class="extra-info-container">
         <div class="eligibility-criteria" *ngIf="grant.eligibilityCriteria">
-            {{grant.eligibilityCriteria}}
+            <span class="eligibility-text">Eligibility: </span>{{grant.eligibilityCriteria}}
         </div>
         <div class="find-out-more-container" *ngIf="grant.websiteUrl || grant.phoneNumber">
             <a class="find-out-more-link" *ngIf="grant.websiteUrl" [href]="grant.websiteUrl" target="_blank">

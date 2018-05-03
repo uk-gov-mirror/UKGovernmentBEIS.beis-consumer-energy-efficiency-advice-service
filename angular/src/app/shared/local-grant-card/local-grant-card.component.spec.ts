@@ -50,7 +50,7 @@ describe('LocalGrantCardComponent', () => {
 
     it('should display the correct eligibility criteria', () => {
         const elegibilityElement = fixture.debugElement.query(By.css('.eligibility-criteria')).nativeElement;
-        expect(elegibilityElement.innerText).toBe(grant.eligibilityCriteria);
+        expect(elegibilityElement.innerText).toContain(grant.eligibilityCriteria);
     });
 
     it('should display the website only if it exists', () => {
