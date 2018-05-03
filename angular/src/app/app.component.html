@@ -4,6 +4,7 @@
             <app-need-help></app-need-help>
             <app-header (onMobileNavToggled)="toggleMobileNav()" (closeSearch)="closeSearchBar()" (closeNav)="hideMobileNav()" [shouldCloseSearchBar]="shouldCloseSearchBar"></app-header>
             <app-navigation-bar (onHideMobileNav)="hideMobileNav()" [shouldExpandNav]="shouldExpandNav"></app-navigation-bar>
+            <app-error-banner></app-error-banner>
         </div>
         <div class="page-component" role="main">
             <router-outlet></router-outlet>

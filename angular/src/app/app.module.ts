@@ -1,6 +1,6 @@
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
@@ -27,6 +27,7 @@ import {SimpleSavingsModule} from './simple-savings/simple-savings.module';
 import {InstallerSearchModule} from "./installer-search/installer-search.module";
 import {ErrorBannerComponent} from './error-banner/error-banner.component';
 import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
+import {GlobalErrorHandler} from "./shared/global-error-handler";
 
 @NgModule({
     declarations: [
@@ -59,11 +60,17 @@ import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
         MeesModule.forRoot(),
         SimpleSavingsModule,
     ],
-    providers: [{
-        provide: HTTP_INTERCEPTORS,
-        useClass: HttpErrorInterceptor,
-        multi: true,
-    }],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        },
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {
