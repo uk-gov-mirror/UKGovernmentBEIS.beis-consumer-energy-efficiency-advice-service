@@ -1,10 +1,22 @@
 <a class="grant-card">
-    <div class="heading">{{grant.name}}</div>
-    <div class="description">{{grant.description}}</div>
-    <div class="read-more">
-        <!--TODO:BEISDEAS-295 this link needs to go somewhere...
-            This component is only used for local authorities, so it might be worth changing
-            it to accept a local authority grant, instead of just a regular one -->
-        Read more
+    <div class="heading-container">
+        <div class="heading">{{grant.name}}</div>
+        <div class="description">{{grant.description}}</div>
+    </div>
+    <div class="extra-info-container">
+        <div class="eligibility-criteria" *ngIf="grant.eligibilityCriteria">
+            {{grant.eligibilityCriteria}}
+        </div>
+        <div class="find-out-more-container" *ngIf="grant.websiteUrl || grant.phoneNumber">
+            <a class="find-out-more-link" *ngIf="grant.websiteUrl" [href]="grant.websiteUrl" target="_blank">
+                Find out more
+            </a>
+            <ng-container *ngIf="!grant.websiteUrl && grant.phoneNumber">
+                <div class="find-out-more-text">Find out more</div>
+                <a class="phone-number" href="tel:{{getPhoneNumberForLink()}}">
+                    {{grant.phoneNumber}}
+                </a>
+            </ng-container>
+        </div>
     </div>
 </a>

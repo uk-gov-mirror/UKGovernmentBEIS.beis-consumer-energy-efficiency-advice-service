@@ -8,4 +8,10 @@ import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
 })
 export class LocalGrantCardComponent {
     @Input() grant: LocalAuthorityGrant;
+
+    getPhoneNumberForLink() {
+        return this.grant.phoneNumber
+            ? this.grant.phoneNumber.replace(/\s/g, '')
+            : '';
+    }
 }
