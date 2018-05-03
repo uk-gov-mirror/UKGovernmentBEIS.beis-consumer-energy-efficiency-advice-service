@@ -1,0 +1,150 @@
+@import "styles/mixins/_font";
+@import "styles/var/colors";
+@import "styles/mixins/buttons";
+
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+:host {
+  display: block;
+}
+
+.grant-card {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .heading-container {
+    flex: 0;
+
+    .heading {
+      @include page-section-heading-font;
+    }
+
+    .description {
+      @include card-body-font;
+    }
+  }
+
+  .extra-info-container {
+    flex: 1 1 auto;
+
+    .eligibility-criteria {
+      @include eligibility-font;
+
+      .eligibility-text {
+        font-weight: bold;
+      }
+    }
+
+    .find-out-more-text {
+      @include more-info-button-font;
+      color: $focus-text-blue;
+      margin-bottom: 10px;
+    }
+
+    .phone-number {
+      @include grant-phone-number-font;
+      color: $dark-grey;
+      text-decoration: none;
+    }
+
+    .find-out-more-link {
+      @include blue-arrow-button(20px, 48px);
+      padding: 15px;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+  }
+
+
+  &.blue-theme {
+    .heading-container {
+      background-color: $primary-blue;
+      color: white;
+    }
+
+    .extra-info-container {
+      background-color: $lighter-grey;
+    }
+  }
+
+  &.default-theme {
+    .heading-container {
+      background-color: white;
+    }
+
+    .extra-info-container {
+      background-color: $lighter-grey;
+    }
+  }
+}
+
+// Breakpoint specific styling
+.grant-card {
+  @include mobile() {
+    .heading-container {
+      padding: 20px 24px;
+
+      .heading {
+        margin-bottom: 12px;
+      }
+    }
+
+    .extra-info-container {
+      padding: 20px 24px 0;
+
+      .eligibility-criteria, .find-out-more-container {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  @include tablet() {
+    .heading-container {
+      padding: 28px 34px;
+
+      .heading {
+        margin-bottom: 14px;
+      }
+    }
+
+    .extra-info-container {
+      padding: 28px 34px 0;
+
+      .eligibility-criteria, .find-out-more-container {
+        padding-bottom: 28px;
+      }
+    }
+  }
+
+  @include desktop() {
+    .heading-container {
+      padding: 35px 40px;
+
+      .heading {
+        margin-bottom: 14px;
+      }
+    }
+
+    .extra-info-container {
+      display: flex;
+      flex-direction: row;
+      padding: 35px 40px;
+
+      .eligibility-criteria {
+        flex: 0 0 55%;
+      }
+
+      .find-out-more-container {
+        padding-left: 40px;
+        flex: 0 0 45%;
+        box-sizing: border-box;
+        margin-left: auto;
+      }
+    }
+  }
+}

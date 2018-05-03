@@ -158,6 +158,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   color: $dark-grey;
 }
 
+@mixin card-body-font {
+  @include has-font-sizes-at-breakpoints(16px, 19px, 16px, 19px, 16px, 19px);
+  font-family: $font-family-light;
+}
+
 @mixin read-more-font {
   @include has-font-sizes-at-breakpoints(11px, 13px, 11px, 13px, 11px, 13px);
   font-weight: 500;
@@ -319,6 +324,16 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   letter-spacing: 1px;
 }
 
+@mixin eligibility-font {
+  @include has-font-sizes-at-breakpoints(13px, 18px, 13px, 18px, 13px, 18px);
+  font-family: $font-family-light;
+}
+
+@mixin grant-phone-number-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 18px, 22px, 14px, 16px);
+  font-weight: bold;
+}
+
 // TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 @mixin focus-text {
   font-size: 32px;
@@ -337,25 +352,10 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   color: $dark-grey;
 }
 
-@mixin card-body {
-  font-size: 16px;
-  line-height: 19px;
-  color: $dark-grey;
-  font-family: $font-family-light;
-}
-
 @mixin card-expand-drawer {
   font-size: 11px;
   line-height: 13px;
   color: $dark-grey;
-  text-transform: uppercase;
-  font-family: $font-family-light;
-}
-
-@mixin card-more-info-link {
-  font-size: 13px;
-  line-height: 16px;
-  color: $focus-text-blue;
   text-transform: uppercase;
   font-family: $font-family-light;
 }
