@@ -54,6 +54,7 @@
       min-width: 0;
 
       @include postcode-input-font;
+      color: $dark-grey !important;
     }
 
     .postcode-input-submit {

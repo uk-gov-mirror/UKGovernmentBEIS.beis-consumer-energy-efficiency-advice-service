@@ -8,6 +8,7 @@ export class StandaloneNationalGrant implements Grant {
     name: string;
     description: string;
     advantages: string[];
+    findOutMoreLink?: string;
     steps: RecommendationStep[];
 
     constructor(
@@ -18,6 +19,7 @@ export class StandaloneNationalGrant implements Grant {
         this.grantId = nationalGrantContent.slug;
         this.name = nationalGrantContent.heading;
         this.description = nationalGrantContent.description;
+        this.findOutMoreLink = nationalGrantContent.find_out_more_link;
         this.advantages = nationalGrantContent.advantages;
         this.steps = nationalGrantContent.steps && nationalGrantContent.steps
                 .map(stepResponse => new RecommendationStep(stepResponse));

@@ -1,30 +1,68 @@
 <div class="mees-page">
     <div class="page-row page-heading">
         <div class="page-row-content" [ngSwitch]="status">
-            <div class="heading-text" *ngSwitchCase="MeesResultsStatus.NoActionRequired">
-                No action required
-            </div>
-            <div class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
+            <h1 class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
                 You need to get an EPC assessment
-            </div>
-            <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
-                <div class="heading-text">
+            </h1>
+            <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovementsAsap">
+                <h1 class="heading-text">
                     You are required to install the recommended improvements
-                </div>
+                </h1>
                 <div class="subheading-text">
                     You will now need to take steps to improve the EPC score to:
                     <div class="subheading-epc">E</div>
                 </div>
             </ng-container>
+            <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
+                <h1 class="heading-text">
+                    You are required to install the recommended improvements
+                </h1>
+                <div class="subheading-text">
+                    You will now need to take steps to improve the EPC score to:
+                    <div class="subheading-epc">E</div>
+                </div>
+            </ng-container>
+            <h1 class="heading-text" *ngSwitchDefault>
+                No action required
+            </h1>
         </div>
     </div>
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
-                <ng-container *ngSwitchCase="MeesResultsStatus.NoActionRequired">
+                <ng-container *ngSwitchCase="MeesResultsStatus.IrrelevantTenancyStartDate">
                     <div class="summary tick">
-                        {{noActionReason}}, you are not affected by the Minimum Energy Efficiency Standards regulations
-                        and may let the property.
+                        You are not affected by the Minimum Energy Efficiency Standards regulations at this time and may
+                        let the property.
+                    </div>
+                    <div class="columns">
+                        However, if your property is legally required to have an EPC, the minimum standard will apply at
+                        the point at which you enter into a new relevant tenancy (with either a new or existing tenant),
+                        or by 1 April 2020 (even if there has been no change in tenancy), whichever comes soonest.
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.IrrelevantTenancyType">
+                    <div class="summary tick">
+                        As your tenancy type is not relevant to the legislation, you are not affected by the Minimum
+                        Energy Efficiency Standards regulations and may let the property.
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.EpcAtLeastE">
+                    <div class="summary tick">
+                        As your property has an EPC rating of {{getUserEpc()}}, you are not affected by the Minimum
+                        Energy Efficiency Standards regulations and may let the property.
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.DetectedEpcAtLeastE">
+                    <div class="summary tick">
+                        We found that your property has a rating of {{getDetectedEpc()}}. As a result, you are not
+                        affected by the Minimum Energy Efficiency Standards regulations and may let the property.
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.EpcNotRequired">
+                    <div class="summary tick">
+                        As your property is not required to have an EPC, you are not affected by the Minimum Energy
+                        Efficiency Standards regulations and may let the property.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcRequired">
@@ -33,11 +71,31 @@
                         improvements - you can take this questionnaire again to clarify.
                     </div>
                 </ng-container>
+                <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovementsAsap">
+                    <div class="summary">
+                        Your property is covered by the minimum standard regulations, and you may already be letting it
+                        unlawfully (unless you have already registered a valid exemption) which could attract a fine.
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            You should take steps immediately to improve the energy efficiency of your property to a
+                            minimum of E using available third party funding, unless a valid exemption applies. To find
+                            funding to help you make these improvements,
+                            <a routerLink="/pages/funding-opportunities-for-landlords">click here</a>.
+                        </div>
+                        <div class="column">
+                            If an exemption applies you should register it as soon as possible. If you think your
+                            property may be exempt,
+                            <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>.
+                        </div>
+                    </div>
+                </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
                     <div class="summary">
-                        Based on the information you have provided your property is covered by the Minimum Energy
-                        Efficiency Standards regulations and you will now need to take steps to improve your property's
-                        EPC rating.
+                        Based on the information you have provided, your property is covered by the minimum standard
+                        regulations and you are required to make the improvements using Green Deal, ECO and third party
+                        funding before you enter into a new tenancy agreement, or by 1 April 2020, whichever comes
+                        soonest.
                     </div>
                     <div class="columns">
                         <div class="column">
@@ -56,7 +114,8 @@
         </div>
     </div>
     <div class="page-row">
-        <app-latest-news-section tag="tag_homepage" googleAnalyticsCategory="minimum-energy-efficiency-standards"></app-latest-news-section>
+        <app-latest-news-section tag="tag_general"
+                                 googleAnalyticsCategory="minimum-energy-efficiency-standards"></app-latest-news-section>
     </div>
     <div class="page-row calculator">
         <div class="page-row-content banner">

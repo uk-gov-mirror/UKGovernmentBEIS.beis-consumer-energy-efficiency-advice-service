@@ -98,6 +98,9 @@ describe('YourPlanPageComponent', () => {
             grantId: 'grant-1',
             name: 'Grant 1',
             description: 'some grant',
+            eligibilityCriteria: '',
+            phoneNumber: '',
+            websiteUrl: '',
             eligibility: GrantEligibility.MayBeEligible,
             steps: []
         },
@@ -105,6 +108,9 @@ describe('YourPlanPageComponent', () => {
             grantId: 'grant-1',
             name: 'Grant 2',
             description: 'another grant',
+            eligibilityCriteria: '',
+            phoneNumber: '',
+            websiteUrl: '',
             eligibility: GrantEligibility.MayBeEligible,
             steps: []
         }

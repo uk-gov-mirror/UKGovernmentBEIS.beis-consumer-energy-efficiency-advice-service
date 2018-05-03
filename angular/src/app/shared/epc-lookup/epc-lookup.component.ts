@@ -52,7 +52,9 @@ export class EpcLookupComponent implements OnChanges {
     }
 
     onAddressSelected() {
-        this.setResponseData(this.selectedEpc);
+        if (this.selectedEpc) {
+            this.setResponseData(this.selectedEpc);
+        }
     }
 
     onAddressNotListed() {

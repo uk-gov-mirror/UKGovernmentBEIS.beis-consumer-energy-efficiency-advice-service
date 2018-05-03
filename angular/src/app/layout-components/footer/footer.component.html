@@ -3,7 +3,7 @@
             <div class="header">Contact us if you require further assistance using the site on the freephone helpline:</div>
             <div class="contact-us-details">
                 <div class="icon" [inlineSVG]="'controls/phone.svg'"></div>
-                <a href="tel:08009374805" class="phone-number">0800 937 4805</a>
+                <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number">{{phoneNumber}}</a>
             </div>
     </div>
 </div>

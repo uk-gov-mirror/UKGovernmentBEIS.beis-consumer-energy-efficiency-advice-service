@@ -25,6 +25,14 @@ public class LocalAuthority {
     public static class Grant {
         String displayName;
         String description;
+        String eligibilityCriteria;
+        String phoneNumber;
+        String websiteUrl;
+        String endDate;
         String slug;
+
+        public String getEndDate() {
+            return endDate;
+        }
     }
 }

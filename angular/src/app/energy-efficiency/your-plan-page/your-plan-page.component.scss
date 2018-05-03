@@ -5,6 +5,7 @@
 // Component specific variables
 $grant-cards-per-row: 4;
 $grant-card-margin: 10px;
+$desktop-heading-vertical-padding: 20px;
 
 // Component specific mixins
 
@@ -219,7 +220,7 @@ $grant-card-margin: 10px;
   @include desktop() {
     .your-plan-header {
       .heading-container {
-        padding: 20px 0;
+        padding: $desktop-heading-vertical-padding 0;
         flex-direction: column;
         flex-wrap: wrap;
         position: relative;
@@ -230,7 +231,7 @@ $grant-card-margin: 10px;
         }
 
         .heading, .subheading {
-          flex: 1;
+          flex: 1 0 auto;
           width: 45%;
         }
 
@@ -240,6 +241,7 @@ $grant-card-margin: 10px;
           // with the widths of the contents set as %, we should avoid any unexpected side effects
           position: absolute;
           right: 0;
+          top: $desktop-heading-vertical-padding;
           width: 55%;
         }
       }

@@ -232,7 +232,7 @@ To backup the database, run
 Zip the resulting file and store it somewhere oustide of the GOV.UK cloud.
 
 To restore the database from such a backup, you will need to edit the file and
-remove the database name (the "CREATE DATABSE" and "USE" lines, near the top),
+remove the database name (the "CREATE DATABASE" and "USE" lines, near the top),
 then run:
 
     cf conduit dceas-database -- mysql < FILENAME.sql

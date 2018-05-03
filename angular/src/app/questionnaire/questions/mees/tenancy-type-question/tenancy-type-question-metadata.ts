@@ -2,6 +2,7 @@ import {QuestionMetadata} from '../../../base-question/question-metadata';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {QuestionType} from '../../question-type';
 import {TenancyTypeQuestionComponent} from './tenancy-type-question.component';
+import {LettingDomesticPropertyStage} from '../letting-domestic-property-question/letting-domestic-property-stage';
 
 export class TenancyTypeQuestionMetadata extends QuestionMetadata {
     constructor() {
@@ -13,7 +14,11 @@ export class TenancyTypeQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.isDomesticPropertyAfter2018 || responseData.isPropertyAfter2020;
+        return [
+            LettingDomesticPropertyStage.AfterApril2018,
+            LettingDomesticPropertyStage.InPlanning,
+            LettingDomesticPropertyStage.InProcess,
+        ].includes(responseData.lettingDomesticPropertyStage);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

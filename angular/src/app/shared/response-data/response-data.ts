@@ -18,6 +18,8 @@ import {FloorLevel} from '../../questionnaire/questions/floor-level-question/flo
 import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 import {TenancyType} from '../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
+import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
+import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -121,9 +123,7 @@ export class ResponseData {
     }
 
     // Used by MeesResultsPageComponent
-    public isDomesticPropertyAfter2018: boolean;
-    // Used by MeesResultsPageComponent
-    public isPropertyAfter2020: boolean;
+    public lettingDomesticPropertyStage: LettingDomesticPropertyStage;
     // Used by MeesResultsPageComponent
     public propertyEpc: UserEpcRating;
     // Used by MeesResultsPageComponent
@@ -132,6 +132,8 @@ export class ResponseData {
     public isEpcRequired: boolean;
     // Used by MeesResultsPageComponent
     public tenancyType: TenancyType;
+    // Used by MeesResultsPageComponent
+    public agriculturalTenancyType: AgriculturalTenancyType;
 
     constructor() {
         if (!sessionStorageAvailable()) {

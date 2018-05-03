@@ -3,6 +3,7 @@ import {PostcodeEpcQuestionComponent} from './postcode-epc-question.component';
 import {QuestionType} from '../question-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
 
+// TODO:BEIS-278 consolidate this with the epc-lookup component
 export class PostcodeEpcQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(

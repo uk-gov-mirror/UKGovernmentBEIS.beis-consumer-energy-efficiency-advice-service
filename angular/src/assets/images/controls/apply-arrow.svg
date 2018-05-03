@@ -3,11 +3,11 @@
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Assets" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
-        <g id="icon/apply-arrow" stroke-width="3">
-            <g id="Group-2" transform="translate(1.000000, 2.000000)">
-                <polyline id="Line-3-Copy-15" points="18.3253425 0.95890411 33.1865958 15.8201574 18.3253425 31.739726"></polyline>
-                <path d="M16.6746575,0.609589041 L16.6746575,31.1134149" id="Line-3-Copy-16" transform="translate(16.674658, 15.849315) rotate(-90.000000) translate(-16.674658, -15.849315) "></path>
+    <g stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g stroke-width="3">
+            <g transform="translate(1.000000, 2.000000)">
+                <polyline points="18.3253425 0.95890411 33.1865958 15.8201574 18.3253425 31.739726"></polyline>
+                <path d="M16.6746575,0.609589041 L16.6746575,31.1134149" transform="translate(16.674658, 15.849315) rotate(-90.000000) translate(-16.674658, -15.849315) "></path>
             </g>
         </g>
     </g>

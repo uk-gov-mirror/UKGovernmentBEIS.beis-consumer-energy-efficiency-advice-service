@@ -3,18 +3,18 @@
     <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
         <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon/green">
-            <g id="Page-1" transform="translate(7.000000, 7.000000)">
-                <path d="M11.5145667,4.96745238 L11.5145667,0.924928571" id="Stroke-1" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M6.88488571,6.88521429 L4.02631429,4.02664286" id="Stroke-3" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M4.96767143,11.5143476 L0.924052381,11.5143476" id="Stroke-5" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M6.88488571,16.1433714 L4.02631429,19.0019429" id="Stroke-7" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M11.5145667,18.0611333 L11.5145667,22.1036571" id="Stroke-9" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M16.1435905,16.1433714 L19.0021619,19.0019429" id="Stroke-11" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M18.0608048,11.5143476 L22.1044238,11.5143476" id="Stroke-13" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M16.1435905,6.88521429 L19.0021619,4.02664286" id="Stroke-15" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
-                <path d="M16.2093103,9.67779417 C17.2652322,12.2276053 16.0536215,15.1515394 13.503589,16.2086251 C10.9523009,17.2644553 8.02936854,16.0542052 6.97219111,13.5031386 C5.91626923,10.9533275 7.12787994,8.02939336 9.67791244,6.9723077 C12.2292005,5.91522203 15.1521329,7.12672758 16.2093103,9.67779417" id="Fill-17" fill="#FFFFFF"></path>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(7.000000, 7.000000)">
+                <path d="M11.5145667,4.96745238 L11.5145667,0.924928571" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M6.88488571,6.88521429 L4.02631429,4.02664286" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M4.96767143,11.5143476 L0.924052381,11.5143476" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M6.88488571,16.1433714 L4.02631429,19.0019429" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M11.5145667,18.0611333 L11.5145667,22.1036571" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M16.1435905,16.1433714 L19.0021619,19.0019429" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M18.0608048,11.5143476 L22.1044238,11.5143476" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M16.1435905,6.88521429 L19.0021619,4.02664286" stroke="#4A4A4A" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M16.2093103,9.67779417 C17.2652322,12.2276053 16.0536215,15.1515394 13.503589,16.2086251 C10.9523009,17.2644553 8.02936854,16.0542052 6.97219111,13.5031386 C5.91626923,10.9533275 7.12787994,8.02939336 9.67791244,6.9723077 C12.2292005,5.91522203 15.1521329,7.12672758 16.2093103,9.67779417" fill="#FFFFFF"></path>
             </g>
         </g>
     </g>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {error} from "loglevel";
 import {WordpressECOSupplier} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-supplier";
 import {WordpressECOSuppliersService} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
+import {isComplete, ResponseData} from "../shared/response-data/response-data";
 
 /**
  * Page listing energy suppliers which have an Energy Company Obligation
@@ -15,10 +16,12 @@ export class ECOSuppliersPageComponent implements OnInit {
     loading = true;
     error = false;
     errorMessage: string = "Something went wrong and we can't load this list of suppliers right now. Please try again later";
+    hasCompletedQuestionnaire = false;
 
     suppliers: WordpressECOSupplier[];
 
-    constructor(private wordpressECOSuppliersService: WordpressECOSuppliersService) {}
+    constructor(private wordpressECOSuppliersService: WordpressECOSuppliersService,
+                private responseData: ResponseData) {}
 
     ngOnInit() {
         this.wordpressECOSuppliersService.fetchAllECOSuppliers()
@@ -28,6 +31,7 @@ export class ECOSuppliersPageComponent implements OnInit {
                 err => this.handleError(err),
                 () => this.loading = false,
             );
+        this.hasCompletedQuestionnaire = isComplete(this.responseData);
     }
 
     private handleError(err) {

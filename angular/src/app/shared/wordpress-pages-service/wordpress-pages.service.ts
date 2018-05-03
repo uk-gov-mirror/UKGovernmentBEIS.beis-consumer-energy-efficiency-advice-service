@@ -33,7 +33,6 @@ export class WordpressPagesService {
             };
         }
         const parsed = parse(url);
-        const path = parsed.pathname;
         return {
             route: url,
             isRelativeURL: url === parsed.pathname

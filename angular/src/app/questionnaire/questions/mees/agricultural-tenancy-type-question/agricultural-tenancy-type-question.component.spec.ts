@@ -1,22 +1,23 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../../shared/response-data/response-data';
-import {PropertyAfter2020QuestionComponent} from './property-after-2020-question.component';
+import {AgriculturalTenancyTypeQuestionComponent} from './agricultural-tenancy-type-question.component';
+import {AgriculturalTenancyType} from './agricultural-tenancy-type';
 
-describe('PropertyAfter2020QuestionComponent', () => {
-    let component: PropertyAfter2020QuestionComponent;
-    let fixture: ComponentFixture<PropertyAfter2020QuestionComponent>;
+describe('AgriculturalTenancyTypeQuestionComponent', () => {
+    let component: AgriculturalTenancyTypeQuestionComponent;
+    let fixture: ComponentFixture<AgriculturalTenancyTypeQuestionComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PropertyAfter2020QuestionComponent],
+            declarations: [AgriculturalTenancyTypeQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PropertyAfter2020QuestionComponent);
+        fixture = TestBed.createComponent(AgriculturalTenancyTypeQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
@@ -30,19 +31,19 @@ describe('PropertyAfter2020QuestionComponent', () => {
         // given
 
         // when
-        const yes = fixture.debugElement.query(By.css('.yes-button'));
-        yes.nativeElement.click();
+        const assured = fixture.debugElement.query(By.css('.assured-tenancy'));
+        assured.nativeElement.click();
 
         // then
-        expect(component.response).toBe(true);
+        expect(component.response).toBe(AgriculturalTenancyType.AssuredTenancy);
     });
 
     it('should notify of completion when clicking on one of the buttons', () => {
         // given
 
         // when
-        const no = fixture.debugElement.query(By.css('.no-button'));
-        no.nativeElement.click();
+        const assured = fixture.debugElement.query(By.css('.assured-tenancy'));
+        assured.nativeElement.click();
 
         // then
         expect(component.complete.emit).toHaveBeenCalled();

@@ -20,6 +20,7 @@ public class NationalGrant {
     String description;
     Boolean linkToMeasures;
     Boolean displayWithoutMeasures;
+    String findOutMoreLink;
     List<String> advantages;
     List<Step> steps;
     List<String> linkedMeasureCodes;
@@ -42,8 +43,6 @@ public class NationalGrant {
     @JsonNaming(SnakeCaseStrategy.class)
     public static class Link {
         String buttonText;
-        Boolean isExternalLink;
-        String linkedPage;
-        String externalLink;
+        String linkUrl;
     }
 }

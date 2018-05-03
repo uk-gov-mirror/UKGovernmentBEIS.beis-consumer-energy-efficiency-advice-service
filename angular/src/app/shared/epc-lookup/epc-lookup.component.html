@@ -13,7 +13,7 @@
                         *ngFor="let epc of epcs"
                         [ngValue]="epc">{{epc.getDisplayAddress()}}</option>
                 </select>
-                <button class="go-button" (click)="onAddressSelected()">Go</button>
+                <button class="go-button" (click)="onAddressSelected()" [class.grey-go]="!this.selectedEpc">Go</button>
             </div>
         </div>
         <button class="not-listed-button" (click)="onAddressNotListed()">

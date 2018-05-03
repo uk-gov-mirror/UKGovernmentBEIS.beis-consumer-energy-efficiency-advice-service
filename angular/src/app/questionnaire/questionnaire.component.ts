@@ -215,6 +215,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.onQuestionCompleteSubscription = this.questionComponent.complete.subscribe((answer) => {
                 this.goForwards();
             });
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     }
 

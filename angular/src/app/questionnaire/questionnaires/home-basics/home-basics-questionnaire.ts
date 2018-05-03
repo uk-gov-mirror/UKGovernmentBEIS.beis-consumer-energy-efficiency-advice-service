@@ -30,14 +30,6 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
 
     private static questionsForJourneyType(journeyType: UserJourneyType): QuestionMetadata[] {
         switch (journeyType) {
-            case UserJourneyType.Calculator:
-                return concat(
-                    ADDRESS, // TODO:BEIS-278 consolidate with epc-lookup component
-                    EPC_AND_OWNERSHIP_STATUS,
-                    CORE_BRE_QUESTIONS,
-                    BASIC_BEHAVIOURAL_QUESTIONS,
-                    GRANTS_QUESTIONNAIRE_QUESTION
-                );
             case UserJourneyType.ReduceEnergyBills:
             case UserJourneyType.MakeHomeGreener:
                 return concat(

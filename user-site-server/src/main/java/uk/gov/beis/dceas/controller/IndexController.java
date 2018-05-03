@@ -39,6 +39,8 @@ public class IndexController {
     private String staticRoot;
     @Value("${vcap.services.google.analytics.credentials.id}")
     private String gaId;
+    @Value("${vcap.services.dceas-user-site.config.credentials.phone-number}")
+    private String phoneNumber;
 
     private final Environment environment;
     private final IpValidationService ipValidationService;
@@ -84,9 +86,16 @@ public class IndexController {
      * See comments in `app-routing.module.ts`
      *
      * All paths which correspond to pages in the Angular app should be added here.
-     * (The main alternative to this would be to show the index page as a custom
-     * 404 page, see e.g. https://stackoverflow.com/a/28633189/8261 )
      * (The unit test, IndexControllerTest, checks this mapping)
+     *
+     * We also render this endpoint as a custom 404 page, so that browser clients
+     * will see a pretty 404 page (Angular renders a "page not found" message).
+     * However, we still need this big list of paths here, so that we can distinguish
+     * between "200 OK" and "404 Not Found" status codes, even though the same body
+     * is returned in both cases. The status code is important for programmatic clients,
+     * such as AJAX fetches.
+     *
+     * See https://stackoverflow.com/a/28633189/8261
      */
     @RequestMapping(value = {
         "/",
@@ -113,6 +122,7 @@ public class IndexController {
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("gaId", gaId);
+        model.addAttribute("phoneNumber", phoneNumber);
         model.addAttribute("environment", environment.getActiveProfiles());
         model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
         model.addAttribute("angularHeadContent", angularHeadContent);
