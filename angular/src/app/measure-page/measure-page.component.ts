@@ -44,8 +44,7 @@ export class MeasurePageComponent implements OnInit {
     displayMeasure(measureData: WordpressMeasure): void {
         if (!measureData) {
             this.isError = true;
-            // TODO:BEISDEAS-201 display a user-visible error here
-            this.router.navigate(['/']);
+            this.router.navigate(['/404'], {skipLocationChange: true});
         }
         this.measureData = measureData;
         this.isLoading = false;

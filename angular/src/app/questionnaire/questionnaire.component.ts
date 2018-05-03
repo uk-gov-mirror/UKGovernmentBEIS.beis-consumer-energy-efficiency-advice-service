@@ -10,7 +10,7 @@ import {
     ViewChild
 } from '@angular/core';
 import * as log from 'loglevel';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionDirective} from './question.directive';
 import {QuestionTypeUtil} from './questions/question-type';
 import {oppositeDirection, QuestionBaseComponent, SlideInFrom} from './base-question/question-base-component';
@@ -52,6 +52,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private currentQuestionId: string;
 
     constructor(private route: ActivatedRoute,
+                private router: Router,
                 private questionContentService: QuestionContentService,
                 private questionnaireService: QuestionnaireService,
                 private componentFactoryResolver: ComponentFactoryResolver,
@@ -65,9 +66,12 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // TODO:BEIS-201 http://localhost:8080/energy-efficiency/questionnaire/qq still throws NPE
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
         if (!this.questionnaire) {
             this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);
+            this.router.navigate(['/404'], {skipLocationChange: true});
+            return;
         }
         if (this.questionnaire.getQuestions().length === 0) {
             log.warn(`Questionnaire "${ this.questionnaireName } is empty"`);
