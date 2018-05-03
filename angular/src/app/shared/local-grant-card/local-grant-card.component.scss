@@ -17,19 +17,21 @@
   display: flex;
   flex-direction: column;
 
-  .heading-container, .extra-info-container {
-    flex: 1 1 auto;
-  }
+  .heading-container {
+    flex: 0;
 
-  .heading {
-    @include page-section-heading-font;
-  }
+    .heading {
+      @include page-section-heading-font;
+    }
 
-  .description {
-    @include card-body-font;
+    .description {
+      @include card-body-font;
+    }
   }
 
   .extra-info-container {
+    flex: 1 1 auto;
+
     .eligibility-criteria {
       @include eligibility-font;
 
