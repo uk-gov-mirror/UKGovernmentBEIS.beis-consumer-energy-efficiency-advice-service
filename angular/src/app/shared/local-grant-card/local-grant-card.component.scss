@@ -22,7 +22,7 @@
   }
 
   .heading {
-    @include page-summary-font;
+    @include page-section-heading-font;
   }
 
   .description {
@@ -30,22 +30,12 @@
   }
 
   .extra-info-container {
-    display: flex;
-    flex-direction: row;
-
     .eligibility-criteria {
-      flex: 0 0 60%;
       @include eligibility-font;
 
       .eligibility-text {
         font-weight: bold;
       }
-    }
-
-    .find-out-more-container {
-      flex: 0 0 40%;
-      box-sizing: border-box;
-      margin-left: auto;
     }
 
     .find-out-more-text {
@@ -94,9 +84,39 @@
 // Breakpoint specific styling
 .grant-card {
   @include mobile() {
+    .heading-container {
+      padding: 20px 24px;
+
+      .heading {
+        margin-bottom: 12px;
+      }
+    }
+
+    .extra-info-container {
+      padding: 20px 24px 0;
+
+      .eligibility-criteria, .find-out-more-container {
+        padding-bottom: 20px;
+      }
+    }
   }
 
   @include tablet() {
+    .heading-container {
+      padding: 28px 34px;
+
+      .heading {
+        margin-bottom: 14px;
+      }
+    }
+
+    .extra-info-container {
+      padding: 28px 34px 0;
+
+      .eligibility-criteria, .find-out-more-container {
+        padding-bottom: 28px;
+      }
+    }
   }
 
   @include desktop() {
@@ -109,10 +129,19 @@
     }
 
     .extra-info-container {
+      display: flex;
+      flex-direction: row;
       padding: 35px 40px;
+
+      .eligibility-criteria {
+        flex: 0 0 55%;
+      }
 
       .find-out-more-container {
         padding-left: 40px;
+        flex: 0 0 45%;
+        box-sizing: border-box;
+        margin-left: auto;
       }
     }
   }

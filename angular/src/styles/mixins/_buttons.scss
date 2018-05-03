@@ -93,6 +93,7 @@ $border-width: 1px;
   background-color: white;
   color: $focus-text-blue;
   height: $height;
+  margin-right: $arrow-width;
 
   &:after {
     position: absolute;
