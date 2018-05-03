@@ -30,9 +30,5 @@ public class LocalAuthority {
         String websiteUrl;
         String endDate;
         String slug;
-
-        public String getEndDate() {
-            return endDate;
-        }
     }
 }
