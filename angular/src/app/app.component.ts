@@ -1,3 +1,4 @@
+import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
+        private location: Location,
         private router: Router,
         private meta: Meta,
         private googleAnalyticsService: GoogleAnalyticsService,
@@ -64,6 +66,9 @@ export class AppComponent implements OnInit {
             const referrerId = queryParams.get('referrerid');
             if (referrerId) {
                 this.googleAnalyticsService.setSessionDimension(this.referrerDimensionName, this.referrerDimensionIndex, referrerId);
+
+                const currentPath = this.location.path().split("?")[0];
+                this.router.navigate([currentPath]);
             }
 
             return {unsubscribe() {}};
