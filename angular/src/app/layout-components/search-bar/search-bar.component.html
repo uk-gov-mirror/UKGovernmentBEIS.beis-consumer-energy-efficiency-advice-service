@@ -14,6 +14,7 @@
                 <li class="text-row" *ngFor="let result of searchResults" [routerLink]="result.route"
                    [tabindex]="shouldDisplaySearchDetailsDropdown ? null : -1" [innerHtml]="result.title"
                    (click)="collapseSearchBox(); sendEventToAnalytics('search-result_clicked', result.route)"
+                   (keypress)="goToRoute($event, result.route)"
                 ></li>
             </ul>
             <div class="search-no-results" *ngIf="searchState === searchStates.NoResults">

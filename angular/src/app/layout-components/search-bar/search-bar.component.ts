@@ -2,6 +2,7 @@ import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchable} from '../../shared/wordpress-search-service/wordpress-searchable';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-search-bar',
@@ -29,7 +30,8 @@ export class SearchBarComponent {
         private renderer: Renderer2,
         private changeDetector: ChangeDetectorRef,
         private googleAnalyticsService: GoogleAnalyticsService,
-        private wordpressSearchService: WordpressSearchService) {
+        private wordpressSearchService: WordpressSearchService,
+        private router: Router) {
     }
 
     toggleMobileNav(): void {
@@ -97,6 +99,14 @@ export class SearchBarComponent {
                 },
                 () => this.handleSearchError()
             );
+    }
+
+    goToRoute(event, route: string): void {
+        if (event.keyCode === 13) {
+            this.router.navigate([route]);
+            this.collapseSearchBox();
+            this.sendEventToAnalytics('search-result_clicked', route);
+        }
     }
 
     resetSearchResults(): void {
