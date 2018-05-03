@@ -2,6 +2,11 @@
 @import "styles/page";
 @import "styles/boiler";
 
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 .page-heading {
   background-color: $primary-blue;
   color: white;
@@ -22,7 +27,6 @@
     justify-content: flex-start;
 
     .tip {
-      flex: 0 0 33%;
 
       .index {
         margin-bottom: 20px;
@@ -45,7 +49,6 @@
 .repairer {
   .page-row-content {
     box-sizing: border-box;
-    padding: 0 225px;
     text-align: center;
 
     .heading {
@@ -53,3 +56,60 @@
     }
   }
 }
+// Breakpoint specific styling
+
+@include mobile() {
+  .page-heading {
+    .heading-text {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  .repairer {
+     .page-row-content {
+       padding: 0 25px;
+     }
+   }
+
+  .tips {
+    .page-row-content {
+      .tip {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .tips {
+    .page-row-content {
+      .tip {
+        flex: 1 1 100%;
+      }
+    }
+  }
+
+  .repairer {
+    .page-row-content {
+      padding: 0 75px;
+    }
+  }
+}
+
+@include desktop() {
+  .tips {
+    .page-row-content {
+      .tip {
+        flex: 0 0 33%;
+      }
+    }
+  }
+
+  .repairer {
+    .page-row-content {
+      padding: 0 225px;
+    }
+  }
+}
+
