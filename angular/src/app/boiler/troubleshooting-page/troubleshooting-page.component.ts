@@ -43,4 +43,6 @@ export class TroubleshootingPageComponent implements OnInit {
         ];
     }
 
+    onPostcodeSelected() {
+    }
 }

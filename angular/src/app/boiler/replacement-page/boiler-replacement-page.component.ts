@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import sortBy from 'lodash-es/sortBy';
+import {Router} from '@angular/router';
+import {ResponseData} from '../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-boiler-replacement-page',
@@ -14,8 +16,22 @@ export class BoilerReplacementPageComponent implements OnInit {
     error: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     boilers: BoilerType[];
+    postcode: string;
 
-    constructor(private boilerTypesService: BoilerTypesService) {
+    constructor(private boilerTypesService: BoilerTypesService,
+                private router: Router, private responseData: ResponseData) {
+    }
+
+    onPostcodeSelected() {
+        this.postcode = this.responseData.postcode;
+    }
+
+    onEpcSelected(lmkKey: string) {
+        if (lmkKey) {
+            this.router.navigate(['/boiler/epc-replace', lmkKey]);
+        } else {
+            this.router.navigate(['/boiler/epc-replace/unknown']);
+        }
     }
 
     ngOnInit() {
