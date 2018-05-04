@@ -20,7 +20,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
     roundedSaving: number;
-    tags: EnergyEfficiencyRecommendationTag[];
+    grantTag: EnergyEfficiencyRecommendationTag;
     isMouseOverAddToPlanButton: boolean = false;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
@@ -34,7 +34,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.roundedSaving = this.showMonthlySavings
             ? RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerMonth)
             : RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerYear);
-        this.tags = getActiveTags(this.recommendation.tags);
+        this.grantTag = getActiveTags(this.recommendation.tags).filter(t => t === EnergyEfficiencyRecommendationTag.Grant)[0];
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {

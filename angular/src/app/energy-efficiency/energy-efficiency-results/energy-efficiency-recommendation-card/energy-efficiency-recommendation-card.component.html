@@ -4,16 +4,16 @@
             <div [inlineSVG]="recommendation.iconPath" class="icon"></div>
         </div>
         <div class="recommendation-basic-details">
-            <div class="tags">
-                <div *ngFor="let tag of tags"
-                     [ngClass]="getTagClassName(tag)"
-                     class="tag">{{getTagDescription(tag)}}
-                </div>
-            </div>
             <div class="heading">{{recommendation.headline}}</div>
             <div class="summary-row">
                 <div class="summary">
                     {{recommendation.summary}}
+                </div>
+            </div>
+            <div class="tags">
+                <div *ngIf="!!grantTag"
+                     [ngClass]="getTagClassName(grantTag)"
+                     class="tag">{{getTagDescription(grantTag)}}
                 </div>
             </div>
             <div class="more-detail-row" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
@@ -30,7 +30,8 @@
                     <div class="grant-name">{{recommendation.grant.name}}</div>
                     <div class="grant-description">{{recommendation.grant.description}}</div>
                     <div class="grant-more-info-link-row" *ngIf="recommendation.grant.findOutMoreLink">
-                        <a class="grant-more-info-link" [routerLink]="recommendation.grant.findOutMoreLink">Find out more</a>
+                        <a class="grant-more-info-link" [routerLink]="recommendation.grant.findOutMoreLink">
+                            Find out more</a>
                         <div class="chevron">&gt;</div>
                     </div>
                 </div>

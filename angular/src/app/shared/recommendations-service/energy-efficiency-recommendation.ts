@@ -103,14 +103,4 @@ export class EnergyEfficiencyRecommendation {
             grant.grantId,
         );
     }
-
-    private static getDummyInvestmentAmount(tags: EnergyEfficiencyRecommendationTag): number {
-        if (tags & EnergyEfficiencyRecommendationTag.QuickWin) {
-            return 0;
-        } else if (tags & EnergyEfficiencyRecommendationTag.SmallSpend) {
-            return Math.floor(Math.random() * 99);
-        } else if (tags & EnergyEfficiencyRecommendationTag.LongerTerm) {
-            return Math.floor(Math.random() * 999);
-        }
-    }
 }
