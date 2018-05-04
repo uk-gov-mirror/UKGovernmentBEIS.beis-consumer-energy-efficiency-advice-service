@@ -50,6 +50,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private questionContentSubscription: Subscription;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
+    private shouldShowIndicator: boolean;
 
     constructor(private route: ActivatedRoute,
                 private questionContentService: QuestionContentService,
@@ -113,6 +114,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.renderQuestion('left');
             this.userStateService.saveState(this.currentQuestionIndex);
         }
+        this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
+        (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
     }
 
     goForwardsOneQuestion() {
@@ -122,6 +125,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.renderQuestion('right');
             this.userStateService.saveState(this.currentQuestionIndex);
         }
+        this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
+        (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
     }
 
     goForwards() {
@@ -248,6 +253,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 }
                 this.userStateService.saveState(this.currentQuestionIndex);
                 this.jumpToQuestion(this.currentQuestionIndex);
+                this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
             });
     }
 }
