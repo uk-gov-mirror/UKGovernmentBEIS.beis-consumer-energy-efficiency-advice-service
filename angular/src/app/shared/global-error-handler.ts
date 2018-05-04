@@ -20,10 +20,14 @@ import * as log from 'loglevel';
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
 
-    errorStream: Observable<any> ;
+    errorStream: Observable<any>;
     private errorStreamSubscribers: Subscriber<any>[] = [];
 
     constructor() {
+        // Send script errors from outside Angular to our subscribers:
+        window.addEventListener("error",
+            e => this.broadcastErrorToSubscribers(e));
+
         this.errorStream = Observable.create(
             subscriber => {
 
@@ -39,11 +43,15 @@ export class GlobalErrorHandler implements ErrorHandler {
     }
 
     handleError(error: any) {
-        this.errorStreamSubscribers.forEach(sub => sub.next(error));
+        this.broadcastErrorToSubscribers(error);
 
         log.error(error);
 
         // Rethrow the error otherwise it gets swallowed
         throw error;
+    }
+
+    private broadcastErrorToSubscribers(error: any) {
+        this.errorStreamSubscribers.forEach(sub => sub.next(error));
     }
 }
