@@ -40,6 +40,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     currentQuestionContent: QuestionContent;
     questionTypeIconClassName: string;
     shouldDisplayQuestionReason: boolean;
+    shouldShowIndicator: boolean;
 
     @Input() questionnaireName: string;
     @Output() onQuestionnaireComplete = new EventEmitter<void>();
@@ -50,7 +51,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     private questionContentSubscription: Subscription;
     private onQuestionCompleteSubscription: Subscription;
     private currentQuestionId: string;
-    private shouldShowIndicator: boolean;
 
     constructor(private route: ActivatedRoute,
                 private questionContentService: QuestionContentService,
