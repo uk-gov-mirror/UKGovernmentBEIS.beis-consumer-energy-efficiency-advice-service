@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Questionnaire} from '../base-questionnaire/questionnaire';
-import {ResponseData} from '../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-progress-indicator',
@@ -18,6 +17,9 @@ export class ProgressIndicatorComponent implements OnChanges {
     }
 
     ngOnChanges () {
+        if (!this.questionnaire) {
+            return;
+        }
         if (this.shouldShowIndicator) {
             if (this.questionnaire.getQuestions().length !== 0) {
                 this.currentPercentage = Math.floor((this.currentQuestionIndex / this.questionnaire.getQuestions().length) * 100);

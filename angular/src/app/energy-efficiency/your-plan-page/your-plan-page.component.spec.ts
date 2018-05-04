@@ -21,6 +21,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -143,7 +144,8 @@ describe('YourPlanPageComponent', () => {
                 LocalGrantCardComponent,
                 DownloadPlanComponent,
                 DataCardComponent,
-                StickyRowWrapperComponent
+                StickyRowWrapperComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             providers: [
                 {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},

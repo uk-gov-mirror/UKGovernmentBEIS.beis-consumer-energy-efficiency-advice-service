@@ -1,0 +1,16 @@
+<div *ngIf="error">
+  <h1>Something has gone wrong</h1>
+  <p>
+    Sorry, an error has occurred on this website.
+    All or part of the page may have inaccurate data.
+  </p>
+  <p>
+    You might be able to try the failed action again, or you might try refreshing the page,
+    or you might like to try again later.
+  </p>
+  <button class="dismiss-error"
+          title="Dismiss this error message"
+          [inlineSVG]="'icons/cross.svg'"
+          (click)="dismissError()">
+  </button>
+</div>

@@ -9,11 +9,9 @@ import {WarmerHomeComponent} from './landing-page/warmer-home/warmer-home.compon
 import {BoilerLandingPageComponent} from './boiler/landing-page/boiler-landing-page.component';
 import {GrantsQuestionnaireComponent} from './grants/grants-questionnaire/grants-questionnaire.component';
 import {EnergyEfficiencyQuestionnaireComponent} from './energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.component';
-import {EnergyEfficiencyQuestionnaireGuard} from './energy-efficiency/energy-efficiency-questionnaire/energy-efficiency-questionnaire.guard';
 import {BoilerEpcReplaceComponent} from './boiler/epc-replace/boiler-epc-replace.component';
 import {GrantsLandingPageComponent} from './grants/landing-page/grants-landing-page.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency/energy-efficiency-results/energy-efficiency-results.component';
-import {EnergyEfficiencyResultsRouteGuard} from './energy-efficiency/energy-efficiency-results/energy-efficiency-results.guard';
 import {BoilerQuestionnaireComponent} from './boiler/boiler-questionnaire/boiler-questionnaire.component';
 import {BoilerResultsPageComponent} from './boiler/results-page/boiler-results-page.component';
 import {BoilerResultsPageRouteGuard} from './boiler/results-page/boiler-results-page.guard';
@@ -21,7 +19,6 @@ import {BoilerReplacementPageComponent} from './boiler/replacement-page/boiler-r
 import {BoilerMakeModelReplaceComponent} from './boiler/make-model-replace/boiler-make-model-replace.component';
 import {BoilerAdvicePageComponent} from './boiler/advice-page/boiler-advice-page.component';
 import {YourPlanPageComponent} from './energy-efficiency/your-plan-page/your-plan-page.component';
-import {YourPlanPageGuard} from './energy-efficiency/your-plan-page/your-plan-page.guard';
 import {GreenerHomeComponent} from './landing-page/greener-home/greener-home.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {AdminPageGuard} from './admin-page/admin-page.guard';
@@ -29,7 +26,6 @@ import {ForbiddenPageComponent} from './shared/forbidden-page/forbidden-page.com
 import {YourHomeComponent} from './your-home/your-home.component';
 import {MeesQuestionnaireComponent} from './mees/mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './mees/results-page/mees-results-page.component';
-import {MeesResultsPageRouteGuard} from './mees/results-page/mees-results-page.guard';
 import {MeesExemptionPageComponent} from './mees/exemption-page/mees-exemption-page.component';
 import {ECOSuppliersPageComponent} from './eco-suppliers-page/eco-suppliers-page.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
@@ -70,17 +66,14 @@ const routes: Routes = [
     {
         path: 'energy-efficiency/questionnaire/:name',
         component: EnergyEfficiencyQuestionnaireComponent,
-        canActivate: [EnergyEfficiencyQuestionnaireGuard],
     },
     {
         path: 'energy-efficiency/results',
         component: EnergyEfficiencyResultsComponent,
-        canActivate: [EnergyEfficiencyResultsRouteGuard]
     },
     {
         path: 'energy-efficiency/your-plan',
         component: YourPlanPageComponent,
-        canActivate: [YourPlanPageGuard]
     },
     {
         path: 'grants',
@@ -185,7 +178,6 @@ const routes: Routes = [
     {
         path: 'minimum-energy-efficiency-standards/results',
         component: MeesResultsPageComponent,
-        canActivate: [MeesResultsPageRouteGuard]
     },
     {
         path: 'minimum-energy-efficiency-standards/exemption',
@@ -247,7 +239,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [EnergyEfficiencyResultsRouteGuard]
 })
 export class RoutingModule {
 }
