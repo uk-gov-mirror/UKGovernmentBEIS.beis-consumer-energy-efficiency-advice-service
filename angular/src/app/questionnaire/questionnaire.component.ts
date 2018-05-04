@@ -115,7 +115,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.userStateService.saveState(this.currentQuestionIndex);
         }
         this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
-        (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
+        this.focusOnPage();
     }
 
     goForwardsOneQuestion() {
@@ -126,7 +126,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.userStateService.saveState(this.currentQuestionIndex);
         }
         this.shouldShowIndicator = (this.questionnaire.getQuestion(this.currentQuestionIndex).questionId !== "confirm_epc");
-        (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
+        this.focusOnPage();
     }
 
     goForwards() {
@@ -135,6 +135,12 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.goForwardsOneQuestion();
         } else {
             this.onQuestionnaireComplete.emit();
+        }
+    }
+
+    focusOnPage() {
+        if ((<HTMLElement>document.getElementsByClassName("page-component")[0])) {
+            (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
         }
     }
 
