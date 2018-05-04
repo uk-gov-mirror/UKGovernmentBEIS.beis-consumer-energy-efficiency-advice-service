@@ -8,6 +8,7 @@ import {
 import {EpcRating} from '../../shared/postcode-epc-service/model/epc-rating';
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
+import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
 
 enum MeesResultsStatus {
     IrrelevantTenancyStartDate,
@@ -29,11 +30,21 @@ export class MeesResultsPageComponent implements OnInit {
     status: MeesResultsStatus;
     // Import the above enum into the component scope so it can be used in the component html:
     MeesResultsStatus = MeesResultsStatus;
+    isError: boolean = false;
+    errorMessage: string;
 
-    constructor(private responseData: ResponseData) {
+    constructor(private responseData: ResponseData,
+                private questionnaireService: QuestionnaireService) {
     }
 
     ngOnInit() {
+        if (!this.questionnaireService.isComplete('mees')) {
+            this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
+                "not completed the questionnaire, or something has gone wrong.";
+            this.isError = true;
+            return;
+        }
+
         if (this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.BeforeApril2018) {
             this.status = MeesResultsStatus.IrrelevantTenancyStartDate;
         } else if (this.responseData.tenancyType === TenancyType.Other

@@ -8,7 +8,7 @@ import {LocalAuthority} from '../../shared/local-authority-service/local-authori
 import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
 import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.component';
 import {RecommendationStepCardComponent} from './recommendation-step-card/recommendation-step-card.component';
-import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {LocalGrantCardComponent} from '../../shared/local-grant-card/local-grant-card.component';
 import {DownloadPlanComponent} from './download-plan/download-plan.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
@@ -21,6 +21,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -140,10 +141,11 @@ describe('YourPlanPageComponent', () => {
                 YourPlanPageComponent,
                 YourPlanSummaryComponent,
                 RecommendationStepCardComponent,
-                GrantCardComponent,
+                LocalGrantCardComponent,
                 DownloadPlanComponent,
                 DataCardComponent,
-                StickyRowWrapperComponent
+                StickyRowWrapperComponent,
+                SpinnerAndErrorContainerComponent,
             ],
             providers: [
                 {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
@@ -195,7 +197,7 @@ describe('YourPlanPageComponent', () => {
 
     it('should display all local authority grants returned', async(() => {
         fixture.whenStable().then(() => {
-            const grantsCards = fixture.debugElement.queryAll(By.directive(GrantCardComponent));
+            const grantsCards = fixture.debugElement.queryAll(By.directive(LocalGrantCardComponent));
             expect(grantsCards.length).toEqual(2);
         });
     }));

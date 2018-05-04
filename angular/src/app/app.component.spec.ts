@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {ErrorHandler} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './layout-components/header/header.component';
@@ -20,6 +21,8 @@ import {SearchBarComponent} from './layout-components/search-bar/search-bar.comp
 import {RecommendationsService} from './shared/recommendations-service/recommendations.service';
 import {WordpressSearchService} from './shared/wordpress-search-service/wordpress-search.service';
 import {SpinnerAndErrorContainerComponent} from "./shared/spinner-and-error-container/spinner-and-error-container.component";
+import {ErrorBannerComponent} from "./error-banner/error-banner.component";
+import {GlobalErrorHandler} from "./shared/global-error-handler";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -44,7 +47,8 @@ describe('AppComponent', () => {
                 NavBarSuboptionComponent,
                 NeedHelpComponent,
                 SearchBarComponent,
-                SpinnerAndErrorContainerComponent
+                SpinnerAndErrorContainerComponent,
+                ErrorBannerComponent,
             ],
             imports: [RouterTestingModule, FormsModule, InlineSVGModule, HttpClientTestingModule],
             providers: [
@@ -56,6 +60,7 @@ describe('AppComponent', () => {
                 {provide: CookieService, useValue: mockCookieService},
                 {provide: UserStateService, useValue: mockUserStateService},
                 {provide: RecommendationsService, useValue: {}},
+                {provide: ErrorHandler, useClass: GlobalErrorHandler},
             ]
         }).compileComponents();
     }));

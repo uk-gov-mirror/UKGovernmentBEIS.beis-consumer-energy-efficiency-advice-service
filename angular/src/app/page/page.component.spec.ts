@@ -106,7 +106,7 @@ describe('PageComponent', () => {
             });
     }));
 
-    it('should redirect to the home page if the page data is not found', async(() => {
+    it('should show 404 if the page data is not found', async(() => {
         // given
         const injectedPageService = injector.get(WordpressPagesService);
         injectedPageService.getPage = () => Observable.of(null);
@@ -117,7 +117,7 @@ describe('PageComponent', () => {
         // then
         fixture.whenStable()
             .then(() => {
-                expect(router.navigate).toHaveBeenCalledWith(['/']);
+                expect(router.navigate).toHaveBeenCalledWith(['/404'], { skipLocationChange: true });
             });
     }));
 });

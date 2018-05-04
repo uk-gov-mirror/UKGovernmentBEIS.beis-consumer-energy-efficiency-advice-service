@@ -47,9 +47,7 @@ export class PageComponent implements OnInit {
 
     displayPage(pageData: ExtendedWordpressPage): void {
         if (!pageData) {
-            // TODO:BEISDEAS-201 display a user-visible error here
-            // We should show the 404 component here somehow
-            this.router.navigate(['/']);
+            this.router.navigate(['/404'], {skipLocationChange: true});
         }
         this.pageData = pageData;
         this.isLoading = false;

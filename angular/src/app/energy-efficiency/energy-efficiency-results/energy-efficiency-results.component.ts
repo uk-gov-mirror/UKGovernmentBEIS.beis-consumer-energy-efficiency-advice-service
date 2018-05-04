@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
-import {ResponseData} from '../../shared/response-data/response-data';
+import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
 import {EnergyCalculations} from './energy-calculations';
 import {Observable} from 'rxjs/Observable';
@@ -50,6 +50,13 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (!isComplete(this.responseData)) {
+            this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
+                "not completed the questionnaire, or something has gone wrong.";
+            this.isError = true;
+            return;
+        }
+
         Observable.forkJoin(
             this.recommendationsService.getAllRecommendations(),
             this.energyCalculationService.fetchEnergyCalculation(new RdSapInput(this.responseData))

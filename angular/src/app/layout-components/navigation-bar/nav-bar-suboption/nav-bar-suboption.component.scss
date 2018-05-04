@@ -1,7 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/_font";
 
-a:hover, a:visited, a:link, a:active
+a:hover, a:visited, a:link, a:active, a:focus
 {
   text-decoration:none;
   color: white;

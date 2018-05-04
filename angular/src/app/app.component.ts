@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
             }
             return true;
         }).subscribe(() => {
+            // Set focus to the page to help keyboard accessibility
+            (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
             // Scroll to top when route changes
             window.scrollTo(0, 0);
             // Record route change for Google Analytics tracking if that's supported in this environment

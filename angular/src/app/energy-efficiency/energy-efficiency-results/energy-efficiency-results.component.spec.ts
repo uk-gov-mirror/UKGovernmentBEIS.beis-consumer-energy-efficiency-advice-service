@@ -8,13 +8,12 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
-import {ResponseData} from '../../shared/response-data/response-data';
+import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
-import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {LocalGrantCardComponent} from '../../shared/local-grant-card/local-grant-card.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results.component';
 import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
-import {EnergyEfficiencyRecommendationCardComponent} from
-    './energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
+import {EnergyEfficiencyRecommendationCardComponent} from './energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
@@ -28,6 +27,10 @@ import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.compo
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
+import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
+import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
+import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -117,6 +120,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
         recommendationsResponse = Observable.of(recommendations);
 
         responseData = new ResponseData();
+        responseData.homeType = HomeType.DetachedHouse;
+        responseData.homeAge = HomeAge.from1930to1949;
+        responseData.fuelType = FuelType.MainsGas;
+        responseData.floorArea = 100;
+        responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
+        expect(isComplete(responseData)).toBeTruthy();
 
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
         spyOn(recommendationsServiceStub, 'getAllRecommendations').and.callThrough();
@@ -127,7 +136,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 EnergyEfficiencyRecommendationCardComponent,
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
-                GrantCardComponent,
+                LocalGrantCardComponent,
                 RecommendationFilterControlComponent,
                 BreakEvenComponent,
                 YourPlanFooterComponent,

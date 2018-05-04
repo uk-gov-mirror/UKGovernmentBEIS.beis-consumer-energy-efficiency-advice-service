@@ -1,0 +1,23 @@
+<div class="grant-card {{theme}}-theme">
+    <div class="heading-container">
+        <div class="heading">{{grant.name}}</div>
+        <div class="description">{{grant.description}}</div>
+    </div>
+    <div class="extra-info-container" *ngIf="grant.eligibilityCriteria || grant.websiteUrl || grant.phoneNumber">
+        <div class="eligibility-criteria" *ngIf="grant.eligibilityCriteria">
+            <span class="eligibility-text">Eligibility: </span>{{grant.eligibilityCriteria}}
+        </div>
+        <div class="find-out-more-container" *ngIf="grant.websiteUrl || grant.phoneNumber">
+            <a class="find-out-more-link" *ngIf="grant.websiteUrl" [href]="grant.websiteUrl" target="_blank">
+                Find out more
+                <div class="new-window-icon" [inlineSVG]="'controls/new-window.svg'"></div>
+            </a>
+            <ng-container *ngIf="!grant.websiteUrl && grant.phoneNumber">
+                <div class="find-out-more-text">Find out more</div>
+                <a class="phone-number" href="tel:{{getPhoneNumberForLink()}}">
+                    {{grant.phoneNumber}}
+                </a>
+            </ng-container>
+        </div>
+    </div>
+</div>

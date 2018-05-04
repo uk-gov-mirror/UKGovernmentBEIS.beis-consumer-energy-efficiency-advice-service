@@ -37,6 +37,7 @@ $grant-card-margin: 24px;
         @include page-heading-small-font;
         display: flex;
         align-items: center;
+        box-sizing: border-box;
       }
 
       .header-data-cards {

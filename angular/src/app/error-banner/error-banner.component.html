@@ -1,0 +1,28 @@
+<div *ngIf="error">
+  <h1>Something has gone wrong</h1>
+  <p>
+    Sorry, an error has occurred on this website.
+    All or part of the page may have inaccurate data.
+  </p>
+  <p>
+    You might be able to try the failed action again, or you might try refreshing the page,
+    or you might like to try again later.
+  </p>
+  <!-- In future, we may want to ask users to report errors, i.e.
+       "If you need to report this error, please send an email to
+       help@beis.gov.uk, quoting code "abc123""
+
+       The above code would need to be the Cloudfoundry request id for
+       server-side errors, or the error logging service's request id
+       for client-side errors (if we were to start logging those).
+
+       Given that we don't have a helpdesk to receive such reports
+       and we don't have a service which records client-side errors,
+       we'll leave for now.
+     -->
+  <button class="dismiss-error"
+          title="Dismiss this error message"
+          [inlineSVG]="'icons/cross.svg'"
+          (click)="dismissError()">
+  </button>
+</div>
