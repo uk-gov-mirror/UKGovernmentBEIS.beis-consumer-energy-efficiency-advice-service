@@ -49,7 +49,7 @@ describe('InstallerSearchComponent', () => {
     it('should display the value of the measure code', () => {
         fixture.whenStable().then( () => {
             fixture.detectChanges();
-            const inputElement = fixture.debugElement.query(By.css('.measure-code-input')).nativeElement;
+            const inputElement = fixture.debugElement.query(By.css('.measure-name-input')).nativeElement;
             expect(inputElement.value).toEqual(component.measureName);
         });
     });

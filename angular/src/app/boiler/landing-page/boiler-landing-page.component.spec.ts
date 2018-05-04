@@ -5,8 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 
 import {BoilerLandingPageComponent} from './boiler-landing-page.component';
-import {CarouselComponent} from './carousel/carousel.component';
-import {CarouselItemComponent} from './carousel/carousel-item/carousel-item.component';
 import {TimesPipe} from '../../shared/times/times.pipe';
 import {BoilerMakeModelLookupComponent} from '../make-model-lookup/boiler-make-model-lookup.component';
 import {PostcodeLookupComponent} from '../../shared/postcode-lookup/postcode-lookup.component';
@@ -33,8 +31,6 @@ describe('BoilerLandingPageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 BoilerLandingPageComponent,
-                CarouselComponent,
-                CarouselItemComponent,
                 BoilerMakeModelLookupComponent,
                 PostcodeLookupComponent,
                 EpcLookupComponent,
@@ -50,7 +46,7 @@ describe('BoilerLandingPageComponent', () => {
             providers: [
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
-                ResponseData
+                {provide: ResponseData, useClass: MockResponseData}
             ]
         })
             .compileComponents();
@@ -65,4 +61,8 @@ describe('BoilerLandingPageComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+
+    class MockResponseData {
+        public postcode = "Test Postcode";
+    }
 });
