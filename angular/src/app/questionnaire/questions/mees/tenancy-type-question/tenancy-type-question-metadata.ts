@@ -16,7 +16,6 @@ export class TenancyTypeQuestionMetadata extends QuestionMetadata {
     isApplicable(responseData: ResponseData): boolean {
         return [
             LettingDomesticPropertyStage.AfterApril2018,
-            LettingDomesticPropertyStage.InPlanning,
             LettingDomesticPropertyStage.InProcess,
         ].includes(responseData.lettingDomesticPropertyStage);
     }

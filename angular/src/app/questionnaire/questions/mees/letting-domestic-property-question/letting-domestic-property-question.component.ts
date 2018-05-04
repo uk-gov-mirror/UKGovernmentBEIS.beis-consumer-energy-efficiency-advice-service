@@ -20,7 +20,6 @@ export class LettingDomesticPropertyQuestionComponent extends QuestionBaseCompon
         new LettingOption(LettingDomesticPropertyStage.BeforeApril2018, 'before-2018'),
         new LettingOption(LettingDomesticPropertyStage.AfterApril2018, 'after-2018'),
         new LettingOption(LettingDomesticPropertyStage.InProcess, 'in-process'),
-        new LettingOption(LettingDomesticPropertyStage.InPlanning, 'in-planning'),
     ];
 
     get responseForAnalytics(): string {
