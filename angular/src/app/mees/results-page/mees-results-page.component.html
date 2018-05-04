@@ -4,18 +4,10 @@
             <h1 class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
                 You need to get an EPC assessment
             </h1>
-            <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovementsAsap">
+            <ng-container
+                    *ngSwitchCase="(status === MeesResultsStatus.InstallRecommendedImprovementsAsap || status === MeesResultsStatus.InstallRecommendedImprovements) ? status : null">
                 <h1 class="heading-text">
-                    You are required to install the recommended improvements
-                </h1>
-                <div class="subheading-text">
-                    You will now need to take steps to improve the EPC score to:
-                    <div class="subheading-epc">E</div>
-                </div>
-            </ng-container>
-            <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
-                <h1 class="heading-text">
-                    You are required to install the recommended improvements
+                    You need to improve the property’s EPC rating
                 </h1>
                 <div class="subheading-text">
                     You will now need to take steps to improve the EPC score to:
@@ -73,8 +65,9 @@
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovementsAsap">
                     <div class="summary">
-                        Your property is covered by the minimum standard regulations, and you may already be letting it
-                        unlawfully (unless you have already registered a valid exemption) which could attract a fine.
+                        Based on the information you have provided, your property is covered by the minimum standard
+                        regulations, and you may already be letting it unlawfully (unless you have already registered a
+                        valid exemption) which could attract a fine.
                     </div>
                     <div class="columns">
                         <div class="column">
