@@ -8,6 +8,7 @@ import {
 import {EpcRating} from '../../shared/postcode-epc-service/model/epc-rating';
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
+import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
 
 enum MeesResultsStatus {
     IrrelevantTenancyStartDate,
@@ -34,7 +35,7 @@ export class MeesResultsPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.BeforeApril2018) {
+        if (this.responseData.tenancyStartDate === TenancyStartDate.BeforeApril2018) {
             this.status = MeesResultsStatus.IrrelevantTenancyStartDate;
         } else if (this.responseData.tenancyType === TenancyType.Other
             || (this.responseData.tenancyType === TenancyType.DomesticAgriculturalTenancy
@@ -50,7 +51,8 @@ export class MeesResultsPageComponent implements OnInit {
         } else if (this.responseData.isEpcRequired === false) {
             this.status = MeesResultsStatus.EpcNotRequired;
         } else if (this.isEpcBelowE()
-            && this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.AfterApril2018) {
+            && this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.Currently
+            && this.responseData.tenancyStartDate === TenancyStartDate.AfterApril2018) {
 
             this.status = MeesResultsStatus.InstallRecommendedImprovementsAsap;
         } else if (this.isEpcBelowE()) {
