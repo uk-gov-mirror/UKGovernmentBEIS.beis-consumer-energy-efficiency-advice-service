@@ -250,7 +250,7 @@
               cursor: pointer;
               align-items: center;
 
-              &:hover {
+              &:hover, &focus {
                 .remove-recommendation-button {
                   visibility: visible;
                 }

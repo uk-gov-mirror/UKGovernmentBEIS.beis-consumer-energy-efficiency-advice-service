@@ -73,6 +73,10 @@
         &:hover .link {
           text-decoration: underline;
         }
+
+        &:focus .link {
+          text-decoration: underline;
+        }
       }
     }
   }

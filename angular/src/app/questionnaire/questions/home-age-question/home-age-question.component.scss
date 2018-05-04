@@ -63,7 +63,7 @@
     text-align: center;
   }
 
-  &:hover {
+  &:hover, &:focus {
 
     &:nth-child(odd) {
       .home-age-timeline-section {

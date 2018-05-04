@@ -58,7 +58,7 @@
     }
   }
 
-  &:hover {
+  &:hover, &:focus {
     .text-container {
       .heading, .read-more {
         text-decoration: underline;
