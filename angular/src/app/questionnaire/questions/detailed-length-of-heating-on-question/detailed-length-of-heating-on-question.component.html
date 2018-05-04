@@ -1,32 +1,39 @@
 <div class="question-component detailed-length-of-heating-on-question">
     <form class="answer-grid questionnaire-form" (submit)="handleFormSubmit()">
-        <div class="early-hours-input hours-input">
-            <div class="name">Early hours (0:00-6:00)</div>
-            <app-number-question itemsName="early hours"
-                                 [(quantity)]="earlyHours"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="6"></app-number-question>
+        <div class="heating-pattern-question">
+            <select name="heating-pattern-dropdown" class="dropdown-input text-input heating-pattern-dropdown"
+                    aria-labelledby="heating-pattern-dropdown" [(ngModel)]="heatingPatternType">
+                <option *ngFor="let heatingPattern of heatingPatterns" [ngValue]="heatingPattern.value">{{heatingPattern.name}}</option>
+            </select>
         </div>
-        <div class="morning-input hours-input">
-            <div class="name">Morning (6:00-12:00)</div>
-            <app-number-question itemsName="morning"
-                                 [(quantity)]="morning"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="6"></app-number-question>
+        <div class="morning-evening-question" *ngIf="heatingPatternType === 3">
+
+            <select name="morning-heating-start-time" class="dropdown-input text-input morning-heating-start-time"
+                    aria-labelledby="morning-heating-start-time" [(ngModel)]="morningHeatingStartTime">
+                <option [selected]="morningTime.name === '7am'" *ngFor="let morningTime of morningTimes" [ngValue]="morningTime.value">{{morningTime.name}}</option>
+            </select>
+
+            <app-number-question itemsName="morningHeatingDuration"
+                                 [(quantity)]="morningHeatingDuration"
+                                 [minQuantity]="1"
+                                 [maxQuantity]="11"></app-number-question>
+
+            <select name="evening-heating-start-time" class="dropdown-input text-input evening-heating-start-time"
+                    aria-labelledby="evening-heating-start-time" [(ngModel)]="eveningHeatingStartTime">
+                <option [selected]="eveningTime.name === '4pm'" *ngFor="let eveningTime of eveningTimes" [ngValue]="eveningTime.value">{{eveningTime.name}}</option>
+            </select>
+
+            <app-number-question itemsName="eveningHeatingDuration"
+                                 [(quantity)]="eveningHeatingDuration"
+                                 [minQuantity]="1"
+                                 [maxQuantity]="11"></app-number-question>
+
         </div>
-        <div class="afternoon-input hours-input">
-            <div class="name">Afternoon (12:00-18:00)</div>
-            <app-number-question itemsName="afternoon"
-                                 [(quantity)]="afternoon"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="6"></app-number-question>
-        </div>
-        <div class="evening-input hours-input">
-            <div class="name">Evening (18:00-0:00)</div>
-            <app-number-question itemsName="evening"
-                                 [(quantity)]="evening"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="6"></app-number-question>
+        <div class="heating-hours-question" *ngIf="heatingPatternType === 4">
+            <app-number-question itemsName="heatingHoursPerDay"
+                                 [(quantity)]="heatingHoursPerDay"
+                                 [minQuantity]="1"
+                                 [maxQuantity]="24"></app-number-question>
         </div>
     </form>
 </div>

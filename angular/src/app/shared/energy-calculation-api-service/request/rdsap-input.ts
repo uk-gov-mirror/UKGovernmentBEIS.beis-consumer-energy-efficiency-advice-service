@@ -32,6 +32,7 @@ export class RdSapInput {
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
     readonly number_of_heating_off_hours_normal: number[];
+    readonly heating_pattern_type: number;
     readonly measures: boolean;
     readonly rented: boolean;
     readonly condensing_boiler: boolean;
@@ -67,6 +68,7 @@ export class RdSapInput {
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
         this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
+        this.heating_pattern_type = responseData.heatingPatternType;
         this.measures = true;
         this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
         this.condensing_boiler = responseData.condensingBoiler;
@@ -209,15 +211,14 @@ export class RdSapInput {
     }
 
     private static getNumberOfHeatingOffHoursNormal(responseData: ResponseData): number[] {
-        const numberOfHeatingHoursOn: number[] = [
-            responseData.detailedLengthOfHeatingOnEarlyHours,
-            responseData.detailedLengthOfHeatingOnMorning,
-            responseData.detailedLengthOfHeatingOnAfternoon,
-            responseData.detailedLengthOfHeatingOnEvening];
-
-        return numberOfHeatingHoursOn.map((heatingHoursOn: number) => {
-            return RdSapInput.NUMBER_OF_HOURS_PER_QUARTER_DAY - heatingHoursOn;
-        });
+        if (responseData.heatingHoursPerDay !== undefined) {
+            return [24 - responseData.heatingHoursPerDay];
+        } else {
+            const offPeriod1 = responseData.eveningHeatingStartTime -
+                (responseData.morningHeatingStartTime - responseData.morningHeatingDuration);
+            const offPeriod2 = 24 - responseData.morningHeatingDuration - responseData.eveningHeatingDuration - offPeriod1;
+            return [offPeriod1, offPeriod2];
+        }
     }
 
     private static getFloorArea(area: number, unit: FloorAreaUnit): number {

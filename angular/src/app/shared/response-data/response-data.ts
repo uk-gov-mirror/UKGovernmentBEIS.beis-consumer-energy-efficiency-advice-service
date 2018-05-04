@@ -71,13 +71,17 @@ export class ResponseData {
     // Set by ElectricityTariffQuestionComponent, sent to BRE energy-calculation
     public electricityTariff: ElectricityTariff;
     // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnEarlyHours: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnMorning: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnAfternoon: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnEvening: number;
+    public heatingPatternType: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation (as 'normal_days_off_hours')
+    public morningHeatingStartTime: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation (as 'normal_days_off_hours')
+    public morningHeatingDuration: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation (as 'normal_days_off_hours')
+    public eveningHeatingStartTime: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation (as 'normal_days_off_hours')
+    public eveningHeatingDuration: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation (as 'normal_days_off_hours')
+    public heatingHoursPerDay: number;
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedUnder64: number;
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
