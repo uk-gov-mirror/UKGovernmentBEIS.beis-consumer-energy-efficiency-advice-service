@@ -66,10 +66,9 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // TODO:BEIS-201 http://localhost:8080/energy-efficiency/questionnaire/qq still throws NPE
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
         if (!this.questionnaire) {
-            this.displayErrorAndLogMessage(`No questionnaire "${ this.questionnaireName }"`);
+            this.displayErrorAndLogMessage(`No questionnaire found for name "${ this.questionnaireName }"`);
             this.router.navigate(['/404'], {skipLocationChange: true});
             return;
         }
@@ -77,7 +76,6 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             log.warn(`Questionnaire "${ this.questionnaireName } is empty"`);
             this.onQuestionnaireComplete.emit();
         }
-        // TODO:BEIS-201 needs loading/error spinner
         this.questionContentSubscription = this.questionContentService.fetchQuestionsContent().subscribe(
             questionContent => this.onQuestionContentLoaded(questionContent),
             () => this.displayErrorAndLogMessage('Error when loading question content')

@@ -49,9 +49,8 @@ export class YourHomeComponent implements OnInit {
             this.parameterString = params.get('tag');
             this.yourHomeContent = this.sectionsByParameterString[this.parameterString];
             if (!this.yourHomeContent) {
-                // TODO:BEISDEAS-201 display a user-visible error here
-                this.displayErrorAndLogMessage('Cannot find page content');
-                this.router.navigate(['/']);
+                this.displayErrorAndLogMessage(`Cannot find page content for tag '${this.parameterString}'`);
+                this.router.navigate(['/404'], {skipLocationChange: true});
                 return;
             }
             this.measureService.fetchMeasureDetails().subscribe(
