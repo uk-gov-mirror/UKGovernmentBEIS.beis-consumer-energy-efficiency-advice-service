@@ -4,6 +4,8 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/skip';
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {SVGCacheService} from 'ng-inline-svg';
 
@@ -62,7 +64,11 @@ export class AppComponent implements OnInit {
     }
 
     private handleAdReferral(): void {
-        this.activatedRoute.queryParamMap.subscribe(queryParams => {
+         // Skip the first change event, which always gives an empty map during the initial app load:
+         // https://github.com/angular/angular/issues/12157. Check the next event, which will contain the actual query
+         // parameters if present. Ignore all subsequent events because we only care about the referrerid on the user's
+         // first page load.
+        this.activatedRoute.queryParamMap.skip(1).first().subscribe(queryParams => {
             const referrerId = queryParams.get('referrerid');
             if (referrerId) {
                 this.googleAnalyticsService.setSessionDimension(this.referrerDimensionName, this.referrerDimensionIndex, referrerId);
@@ -70,8 +76,6 @@ export class AppComponent implements OnInit {
                 const currentPath = this.location.path().split("?")[0];
                 this.router.navigate([currentPath]);
             }
-
-            return {unsubscribe() {}};
         });
     }
 }
