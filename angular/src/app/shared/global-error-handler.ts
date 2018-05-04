@@ -11,9 +11,6 @@ import * as log from 'loglevel';
  * situation where there has been a script error and the site just sits
  * there with no indication to the user that it has died.
  *
- * The default error handlers will log the error to the browser console,
- * so we don't do any extra logging here.
- *
  * In the future, we could perhaps send the error details to a monitoring
  * service like NewRelic, but no need at present.
  */
@@ -24,10 +21,14 @@ export class GlobalErrorHandler implements ErrorHandler {
     private errorStreamSubscribers: Subscriber<any>[] = [];
 
     constructor() {
-        // Send script errors from outside Angular to our subscribers:
+        // Send script errors from outside Angular to our subscribers.
+        //
+        // The default error handlers will log the error to the browser console,
+        // so we don't do any extra logging here.
         window.addEventListener("error",
             e => this.broadcastErrorToSubscribers(e));
 
+        // Set up an Observable that other components can use to watch for new errors
         this.errorStream = Observable.create(
             subscriber => {
 

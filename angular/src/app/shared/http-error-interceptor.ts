@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/operator/retry';
+import * as log from 'loglevel';
 
 /**
  * Add some extra logging to failed requests, particularly to log the
@@ -18,14 +19,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
                 if (err.error instanceof Error) {
                     // A client-side or network error occurred. Log it:
-                    console.error('Error in HttpRequest:', err.error.message);
+                    log.error('Error in HttpRequest:', err.error.message);
                 } else {
                     // The backend returned an unsuccessful response code.
                     // The response body may contain clues as to what went wrong,
                     const rid = err.headers.get("X-Vcap-Request-Id")
                         || err.headers.get("X-Request-Id");
 
-                    console.error(
+                    log.error(
                         `HTTP backend returned code ${err.status}, request id was: ${rid}`);
                 }
 

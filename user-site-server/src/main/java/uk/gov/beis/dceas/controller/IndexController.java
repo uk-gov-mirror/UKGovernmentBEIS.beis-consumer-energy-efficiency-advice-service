@@ -81,6 +81,10 @@ public class IndexController {
         }
     }
 
+    /**
+     * This left in for testing, as it can be hard
+     * to trigger a server-side error otherwise
+     */
     @GetMapping("/testError")
     public void testError() {
         throw new RuntimeException("Test error");
