@@ -22,8 +22,6 @@ $go-button-right-chevron-width: 20px;
   flex-direction: column;
 
   .subheading {
-    @include question-reason-font;
-    margin-bottom: 12px;
     text-align: center;
   }
 
@@ -181,6 +179,10 @@ $go-button-right-chevron-width: 20px;
 // Breakpoint specific styling
 .confirm-epc-question {
   @include mobile() {
+    .subheading {
+      padding-bottom: 40px;
+    }
+
     .epc-section {
       .energy-performance, .potential-savings {
         width: 100%;
@@ -272,13 +274,13 @@ $go-button-right-chevron-width: 20px;
         }
       }
     }
-
-    .no-details {
-      padding-bottom: 40px;
-    }
   }
 
   @include tablet() {
+    .subheading {
+      padding-bottom: 40px;
+    }
+
     .epc-section {
       display: flex;
       flex-wrap: wrap;
@@ -357,14 +359,13 @@ $go-button-right-chevron-width: 20px;
     .need-more-details-container {
       display: flex;
       flex-direction: column;
-
-      .no-details {
-        padding-bottom: 40px;
-      }
     }
   }
 
   @include desktop() {
+    .subheading {
+      padding-bottom: 48px;
+    }
 
     .epc-section {
       display: flex;
@@ -462,10 +463,6 @@ $go-button-right-chevron-width: 20px;
       display: flex;
       align-items: center;
       flex-direction: column;
-
-      .no-details {
-        padding-bottom: 48px;
-      }
     }
   }
 }
