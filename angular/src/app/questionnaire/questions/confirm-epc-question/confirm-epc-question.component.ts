@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as moment from 'moment';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {EpcRating} from '../../../shared/postcode-epc-service/model/epc-rating';
 import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
@@ -39,6 +40,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
     savingsPerYear: number;
+    epcFormattedDate: string;
 
     private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
 
@@ -117,6 +119,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.localAuthorityDescription = epc.localAuthorityLabel;
 
         this.savingsPerYear = ConfirmEpcQuestionComponent.getSavingsPerYearFromEpc(epc);
+        this.epcFormattedDate = ConfirmEpcQuestionComponent.getFormattedDateFromEpc(epc);
     }
 
     confirmEpcDetails() {
@@ -143,5 +146,10 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
             lightingSaving = parseInt(epc.lightingCostCurrent) - parseInt(epc.lightingCostPotential);
         }
         return heatingSaving + hotWaterSaving + lightingSaving;
+    }
+
+    private static getFormattedDateFromEpc(epc: Epc): string {
+        const epcDate = moment(epc.epcDate);
+        return epcDate.format('MMM YYYY');
     }
 }

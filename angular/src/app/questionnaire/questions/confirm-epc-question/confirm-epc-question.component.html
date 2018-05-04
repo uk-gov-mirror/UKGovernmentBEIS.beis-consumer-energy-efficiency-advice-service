@@ -1,6 +1,11 @@
 <div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
+    <div class="subheading">
+        An Energy Performance Certificate (EPC)
+        <a href="/pages/energy-performance-certificate" target="_blank">What's this?</a>
+        was produced for your home in {{epcFormattedDate}}.
+    </div>
     <div class="epc-section">
-        <app-data-card class="energy-performance" heading="Your energy performance certificate rating is"
+        <app-data-card class="energy-performance" heading="This EPC gave your home an energy rating of"
                        [value]="EpcRating[epcRating]"
                        [colorCircleClassName]="getEpcMetadata(epcRating).colorCircleClassName"></app-data-card>
         <div class="epc-diagram-card">
