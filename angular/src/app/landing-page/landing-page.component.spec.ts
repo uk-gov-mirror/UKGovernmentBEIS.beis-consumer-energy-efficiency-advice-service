@@ -15,6 +15,7 @@ import {NavigationBarComponent} from '../layout-components/navigation-bar/naviga
 import {ResponseData} from '../shared/response-data/response-data';
 import {UserJourneyType} from '../shared/response-data/user-journey-type';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {PopupComponent} from '../shared/popup/popup.component';
 import {DataCardComponent} from '../shared/data-card/data-card.component';
 import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-news-section.component';
 import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
@@ -24,6 +25,7 @@ import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.servi
 import {MeasureCardComponent} from './measure-card/measure-card.component';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {PostcodeLookupComponent} from '../shared/postcode-lookup/postcode-lookup.component';
 import {PostcodeApiService} from '../shared/postcode-epc-service/postcode-api-service/postcode-api.service';
 
 describe('LandingPageComponent', () => {
@@ -55,6 +57,7 @@ describe('LandingPageComponent', () => {
                 LatestNewsSectionComponent,
                 MockPostcodeLookupComponent,
                 MockEpcLookupComponent,
+                PopupComponent,
                 DataCardComponent,
                 NavBarSuboptionComponent,
                 DataCardComponent,
