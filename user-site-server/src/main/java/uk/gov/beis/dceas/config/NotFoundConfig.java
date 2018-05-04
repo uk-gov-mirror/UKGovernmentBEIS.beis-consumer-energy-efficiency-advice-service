@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 public class NotFoundConfig {
 
     @Bean
-    public EmbeddedServletContainerCustomizer notFoundCustomizer(){
+    public EmbeddedServletContainerCustomizer notFoundCustomizer() {
         return new NotFoundIndexTemplate();
     }
 

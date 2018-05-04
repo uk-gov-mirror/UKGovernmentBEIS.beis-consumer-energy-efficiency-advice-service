@@ -36,7 +36,7 @@ public class RequestIdLoggingValveConfig {
             if (container instanceof TomcatEmbeddedServletContainerFactory) {
                 TomcatEmbeddedServletContainerFactory tomcat = (TomcatEmbeddedServletContainerFactory) container;
 
-                tomcat.addContextCustomizers((context) ->
+                tomcat.addContextCustomizers(context ->
                         context.getPipeline().addValve(
                                 new RequestIdLoggingValve()));
             } else {
