@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {LocalGrantCardComponent} from './local-grant-card.component';
 import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
 import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
+import {InlineSVGModule} from 'ng-inline-svg';
 
 describe('LocalGrantCardComponent', () => {
     let component: LocalGrantCardComponent;
@@ -22,7 +23,8 @@ describe('LocalGrantCardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LocalGrantCardComponent]
+            declarations: [LocalGrantCardComponent],
+            imports: [InlineSVGModule]
         })
             .compileComponents();
     }));

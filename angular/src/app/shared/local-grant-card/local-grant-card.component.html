@@ -10,6 +10,7 @@
         <div class="find-out-more-container" *ngIf="grant.websiteUrl || grant.phoneNumber">
             <a class="find-out-more-link" *ngIf="grant.websiteUrl" [href]="grant.websiteUrl" target="_blank">
                 Find out more
+                <div class="new-window-icon" [inlineSVG]="'controls/new-window.svg'"></div>
             </a>
             <ng-container *ngIf="!grant.websiteUrl && grant.phoneNumber">
                 <div class="find-out-more-text">Find out more</div>

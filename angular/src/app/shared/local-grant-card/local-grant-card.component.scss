@@ -57,6 +57,18 @@
       padding: 15px;
       box-sizing: border-box;
       text-decoration: none;
+
+      .new-window-icon {
+        width: 14px;
+        padding-left: 12px;
+        fill: $focus-text-blue;
+      }
+
+      &:hover, &:active {
+        .new-window-icon {
+          fill: white;
+        }
+      }
     }
   }
 
