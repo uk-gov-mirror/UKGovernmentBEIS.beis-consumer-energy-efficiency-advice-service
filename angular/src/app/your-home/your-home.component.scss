@@ -70,11 +70,7 @@
           text-decoration: none;
         }
 
-        &:hover .link {
-          text-decoration: underline;
-        }
-
-        &:focus .link {
+        &:hover .link, &:focus .link  {
           text-decoration: underline;
         }
       }
