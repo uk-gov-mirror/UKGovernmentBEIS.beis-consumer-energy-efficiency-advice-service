@@ -8,6 +8,7 @@ import {MeesQuestionnaireComponent} from './mees-questionnaire/mees-questionnair
 import {MeesResultsPageComponent} from './results-page/mees-results-page.component';
 import {MeesResultsPageRouteGuard} from './results-page/mees-results-page.guard';
 import {MeesExemptionPageComponent} from './exemption-page/mees-exemption-page.component';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import {MeesExemptionPageComponent} from './exemption-page/mees-exemption-page.c
         FormsModule,
         RoutingModule,
         QuestionnaireModule,
+        InlineSVGModule,
     ],
     exports: [
         MeesQuestionnaireComponent,
