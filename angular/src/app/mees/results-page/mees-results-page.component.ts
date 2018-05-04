@@ -38,7 +38,7 @@ export class MeesResultsPageComponent implements OnInit {
             this.status = MeesResultsStatus.IrrelevantTenancyStartDate;
         } else if (this.responseData.tenancyType === TenancyType.Other
             || (this.responseData.tenancyType === TenancyType.DomesticAgriculturalTenancy
-                && this.responseData.agriculturalTenancyType !== AgriculturalTenancyType.AssuredTenancy)) {
+                && this.responseData.agriculturalTenancyType === AgriculturalTenancyType.Other)) {
             this.status = MeesResultsStatus.IrrelevantTenancyType;
         } else if (this.responseData.propertyEpc === UserEpcRating.AtLeastE) {
             this.status = MeesResultsStatus.EpcAtLeastE;
