@@ -75,6 +75,7 @@ export class SearchBarComponent {
 
     collapseSearchBox(): void {
         this.deregisterWindowClickListener();
+        this.deregisterWindowTabListener();
         this.searchText = null;
         this.shouldDisplaySearchDetailsDropdown = false;
 
@@ -101,7 +102,7 @@ export class SearchBarComponent {
             );
     }
 
-    goToRoute(event, route: string): void {
+    goToRouteOnEnterPress(event, route: string): void {
         if (event.keyCode === 13) {
             this.router.navigate([route]);
             this.collapseSearchBox();

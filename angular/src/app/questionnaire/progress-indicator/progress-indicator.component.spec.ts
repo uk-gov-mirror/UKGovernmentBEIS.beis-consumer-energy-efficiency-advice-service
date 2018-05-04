@@ -69,6 +69,7 @@ describe('ProgressIndicatorComponent', () => {
         fixture = TestBed.createComponent(ProgressIndicatorComponent);
         component = fixture.componentInstance;
         component.questionnaire = new TestQuestionnaire();
+        component.shouldShowIndicator = true;
         fixture.detectChanges();
     });
 

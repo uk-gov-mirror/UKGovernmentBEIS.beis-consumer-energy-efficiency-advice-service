@@ -19,7 +19,7 @@
 </div>
 <app-sticky-row-wrapper *ngIf="shouldShowIndicator">
     <div class="sticky-row-content">
-        <app-progress-indicator [questionnaire]="questionnaire"
+        <app-progress-indicator [shouldShowIndicator]="shouldShowIndicator" [questionnaire]="questionnaire"
                              [currentQuestionIndex]="currentQuestionIndex"></app-progress-indicator>
 
         <div class="question-heading-container">

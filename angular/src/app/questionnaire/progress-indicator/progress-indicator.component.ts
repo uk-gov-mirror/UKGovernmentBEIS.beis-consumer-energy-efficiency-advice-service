@@ -11,13 +11,14 @@ export class ProgressIndicatorComponent implements OnChanges {
 
     @Input() currentQuestionIndex: number;
     @Input() questionnaire: Questionnaire;
+    @Input() shouldShowIndicator: boolean;
     currentPercentage: number = 0;
 
     constructor() {
     }
 
     ngOnChanges () {
-        if (document.querySelector(".completion-bar-content")) {
+        if (this.shouldShowIndicator) {
             if (this.questionnaire.getQuestions().length !== 0) {
                 this.currentPercentage = Math.floor((this.currentQuestionIndex / this.questionnaire.getQuestions().length) * 100);
             }
