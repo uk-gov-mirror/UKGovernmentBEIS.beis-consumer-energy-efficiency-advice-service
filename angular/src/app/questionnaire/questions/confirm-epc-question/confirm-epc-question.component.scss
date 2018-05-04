@@ -21,6 +21,10 @@ $go-button-right-chevron-width: 20px;
   display: flex;
   flex-direction: column;
 
+  .subheading {
+    text-align: center;
+  }
+
   .epc-section {
     .energy-performance, .epc-diagram-card, .potential-savings {
       box-sizing: border-box;
@@ -175,6 +179,10 @@ $go-button-right-chevron-width: 20px;
 // Breakpoint specific styling
 .confirm-epc-question {
   @include mobile() {
+    .subheading {
+      padding-bottom: 40px;
+    }
+
     .epc-section {
       .energy-performance, .potential-savings {
         width: 100%;
@@ -266,13 +274,13 @@ $go-button-right-chevron-width: 20px;
         }
       }
     }
-
-    .no-details {
-      padding-bottom: 40px;
-    }
   }
 
   @include tablet() {
+    .subheading {
+      padding-bottom: 40px;
+    }
+
     .epc-section {
       display: flex;
       flex-wrap: wrap;
@@ -297,7 +305,7 @@ $go-button-right-chevron-width: 20px;
       }
 
       ::ng-deep .data-card {
-        justify-content: baseline;
+        justify-content: flex-start;
 
         .number-value {
           margin: auto;
@@ -351,14 +359,13 @@ $go-button-right-chevron-width: 20px;
     .need-more-details-container {
       display: flex;
       flex-direction: column;
-
-      .no-details {
-        padding-bottom: 40px;
-      }
     }
   }
 
   @include desktop() {
+    .subheading {
+      padding-bottom: 48px;
+    }
 
     .epc-section {
       display: flex;
@@ -368,7 +375,7 @@ $go-button-right-chevron-width: 20px;
         margin-bottom: 40px;
 
         ::ng-deep .data-card {
-          justify-content: baseline;
+          justify-content: flex-start;
 
           .number-value {
             margin: auto;
@@ -456,10 +463,6 @@ $go-button-right-chevron-width: 20px;
       display: flex;
       align-items: center;
       flex-direction: column;
-
-      .no-details {
-        padding-bottom: 48px;
-      }
     }
   }
 }

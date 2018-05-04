@@ -1,16 +1,29 @@
 <div class="question-component confirm-epc-question" *ngIf="isEpcAvailable">
+    <div class="subheading">
+        An Energy Performance Certificate (EPC)
+        <a href="/pages/energy-performance-certificate" target="_blank">What's this?</a>
+        was produced for your home in {{epcFormattedDate}}.
+    </div>
     <div class="epc-section">
-        <app-data-card class="energy-performance" heading="Your energy performance certificate rating is"
+        <app-data-card class="energy-performance" heading="This EPC gave your home an energy rating of"
                        [value]="EpcRating[epcRating]"
                        [colorCircleClassName]="getEpcMetadata(epcRating).colorCircleClassName"></app-data-card>
         <div class="epc-diagram-card">
-            <div class="heading">This means your home is low efficiency. Most homes appear around grade D.</div>
+            <div class="heading">{{epcRatingRelativeDescription}}. Most homes appear around grade D.</div>
             <div class="epc-diagram">
                 <img src="/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg">
             </div>
         </div>
-        <app-data-card class="potential-savings" heading="Potential savings per year"
+        <ng-container *ngIf="savingsPerYear >= 50; else efficientProperty">
+            <app-data-card class="potential-savings" heading="Your EPC suggests improvements that could cut your fuel bills by around"
                        [value]="'£' + savingsPerYear"></app-data-card>
+        </ng-container>
+        <ng-template #efficientProperty>
+            <app-data-card
+                class="potential-savings"
+                heading="Your EPC suggests that you already live in a very efficient property, but there may still be things you could do to cut your energy use.">
+            </app-data-card>
+        </ng-template>
     </div>
     <div class="confirm-epc-details-section">
         <div class="confirm-epc-details-background"></div>
@@ -52,7 +65,10 @@
 </div>
 <div class="question-component confirm-epc-question" *ngIf="!isEpcAvailable">
     <div class="need-more-details-container">
-        <div class="no-details">We couldn't find any details about energy efficiency at your property based on your postcode.</div>
+        <div class="subheading">
+            It looks like there isn’t an EPC registered for your property.
+            That’s OK, we just need to ask a few questions about your home so we can give you the best advice.
+        </div>
         <button class="need-more-details-button" (click)="confirmEpcDetails()">
             <div class="need-more-details-body">
                 <div class="button-main">Let's get a few more details</div>
