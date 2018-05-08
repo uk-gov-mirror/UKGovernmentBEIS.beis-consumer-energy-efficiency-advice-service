@@ -16,9 +16,9 @@ import {Subscription} from "rxjs/Subscription";
     styleUrls: ['./error-banner.component.scss']
 })
 export class ErrorBannerComponent implements OnInit, OnDestroy {
+    error: any = null;
     private changeDetectorRef: ChangeDetectorRef;
     private globalErrorHandler: GlobalErrorHandler;
-    private error: any = null;
     private errorStreamSubscription: Subscription;
 
     constructor(globalErrorHandler: ErrorHandler, changeDetectorRef: ChangeDetectorRef) {
