@@ -87,7 +87,7 @@ $icon-column-width: $add-to-plan-column-width;
           height: 8px;
           display: block;
           line-height: 0;
-          fill: $action-button-blue;
+          fill: $focus-blue;
         }
 
         &.expanded .more-detail-icon {
@@ -151,7 +151,7 @@ $icon-column-width: $add-to-plan-column-width;
           text-transform: uppercase;
           font-size: 12px;
           margin-bottom: 10px;
-          color: $focus-text-blue;
+          color: $focus-blue;
         }
       }
 
@@ -183,11 +183,12 @@ $icon-column-width: $add-to-plan-column-width;
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
-      color: $focus-text-blue;
+      color: $darkened-blue;
+      background-color: $primary-blue;
 
       &.selected {
-        background-color: $action-button-blue;
-        border-left-color: $action-button-blue;
+        background-color: $darkened-blue;
+        border-left-color: $darkened-blue;
 
         .add-to-plan-text {
           color: white;
@@ -201,7 +202,7 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .add-to-plan-text {
-        color: $focus-text-blue;
+        color: $darkened-blue;
         text-transform: uppercase;
         font-size: 11px;
         text-align: center;
@@ -226,7 +227,7 @@ $icon-column-width: $add-to-plan-column-width;
         height: 30px;
 
         &.add {
-          stroke: $action-button-blue;
+          stroke: $darkened-blue;
         }
 
         &.remove, &.added{
