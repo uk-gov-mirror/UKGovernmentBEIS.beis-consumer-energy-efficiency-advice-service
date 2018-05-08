@@ -4,6 +4,7 @@
             <h1 class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">
                 You need to get an EPC assessment
             </h1>
+            <!-- this ugliness is a switchCase that handles two choices, see https://stackoverflow.com/a/40177408 -->
             <ng-container
                     *ngSwitchCase="(status === MeesResultsStatus.InstallRecommendedImprovementsAsap || status === MeesResultsStatus.InstallRecommendedImprovements) ? status : null">
                 <h1 class="heading-text">
