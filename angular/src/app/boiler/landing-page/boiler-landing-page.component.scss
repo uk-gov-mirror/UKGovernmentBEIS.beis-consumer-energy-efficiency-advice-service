@@ -138,7 +138,7 @@
       font-size: 24px;
       line-height: 32px;
       font-weight: bold;
-      color: $action-button-blue;
+      color: $focus-blue;
       padding: 20px 0;
       margin-right: 48px;
     }
@@ -193,12 +193,12 @@
         font-size: 28px;
         line-height: 32px;
         font-weight: bold;
-        color: $action-button-blue;
+        color: $focus-blue;
         padding-right: 20px;
       }
 
       &.selected-expander {
-        background-color: $action-button-blue;
+        background-color: $focus-blue;
 
         .collapsible-heading {
           color: $lighter-grey;
@@ -247,7 +247,7 @@
       font-size: 24px;
       line-height: 32px;
       font-weight: bold;
-      color: $action-button-blue;
+      color: $focus-blue;
       padding: 20px 0;
       margin-right: 48px;
     }
@@ -436,7 +436,7 @@
       font-size: 20px;
       line-height: 24px;
       font-weight: bold;
-      color: $darkened-blue;
+      color: $focus-blue;
       background-color: white;
       font-family: $font-family;
       display: flex;
@@ -452,7 +452,7 @@
         font-size: 28px;
         line-height: 32px;
         font-weight: bold;
-        color: $action-button-blue;
+        color: $focus-blue;
         padding-right: 20px;
       }
     }

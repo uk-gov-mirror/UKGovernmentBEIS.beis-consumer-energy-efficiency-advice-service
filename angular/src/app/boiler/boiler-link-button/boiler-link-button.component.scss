@@ -14,7 +14,7 @@
   line-height: 15px;
   font-weight: 500;
 
-  color: white;
+  color: $focus-blue;
   text-align: left;
   text-decoration: none;
   text-transform: uppercase;
@@ -25,7 +25,7 @@
   .text-container {
     flex: 1 1 auto;
     padding: 17px 20px 14px 20px;
-    background-color: $darkened-blue;
+    background-color: $primary-blue;
 
     display: flex;
     align-items: center;
@@ -33,16 +33,22 @@
 
   .arrow-container {
     flex: 0 0 70px;
-    background: $primary-blue url('/assets/images/controls/chevron-right-white.svg') no-repeat center;
+    background-color: $focus-blue;
+    stroke: $primary-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &:focus, &:hover {
     .text-container {
-      background-color: $primary-blue;
+      background-color: $focus-blue;
+      color: $primary-blue;
     }
 
     .arrow-container {
-      background-color: $darkened-blue;
+      background-color: $primary-blue;
+      stroke: $focus-blue;
     }
   }
 }
