@@ -1,7 +1,6 @@
 <div class="main-content-wrapper">
     <div id="main-content" class="main-content">
         <div role="banner">
-            <app-need-help></app-need-help>
             <app-header (onMobileNavToggled)="toggleMobileNav()" (closeSearch)="closeSearchBar()" (closeNav)="hideMobileNav()" [shouldCloseSearchBar]="shouldCloseSearchBar"></app-header>
             <app-navigation-bar (onHideMobileNav)="hideMobileNav()" [shouldExpandNav]="shouldExpandNav"></app-navigation-bar>
             <app-error-banner></app-error-banner>
