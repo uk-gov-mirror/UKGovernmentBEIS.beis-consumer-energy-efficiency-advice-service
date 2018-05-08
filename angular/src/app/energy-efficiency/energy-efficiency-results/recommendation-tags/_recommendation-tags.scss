@@ -35,6 +35,10 @@
   .tag-top-recommendations {
     background-color: #E50046;
   }
+
+  .tag-funding-available {
+    background-color: #E50046;
+  }
 }
 
 // Breakpoint specific styling
@@ -53,7 +57,7 @@
     @include is-grid($margin-compensation: 20px);
 
     .tag {
-      @include is-grid-item($number-of-items: 4, $margin: 20px);
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
       height: 28px;
       border-radius: 28px;
     }
@@ -61,13 +65,11 @@
   }
 
   @include desktop() {
-    & > :not(:first-child) {
-      margin-left: 10px;
-    }
+    @include is-grid($margin-compensation: 20px);
 
     .tag {
-      width: 116px;
-      height: 20px;
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+      height: 28px;
       border-radius: 20px;
     }
   }

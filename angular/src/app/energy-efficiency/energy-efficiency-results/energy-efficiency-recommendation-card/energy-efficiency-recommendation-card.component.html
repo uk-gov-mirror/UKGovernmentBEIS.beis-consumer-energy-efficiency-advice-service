@@ -11,10 +11,10 @@
                 </div>
             </div>
             <div class="tags">
-                <div *ngIf="!!grantTag"
-                     [ngClass]="getTagClassName(grantTag)"
+                <div *ngFor="let tag of tags"
+                     [ngClass]="getTagClassName(tag)"
                      (click)="toggleExpandedView()"
-                     class="tag">{{getTagDescription(grantTag)}}
+                     class="tag">{{getTagDescription(tag)}}
                 </div>
             </div>
         </div>

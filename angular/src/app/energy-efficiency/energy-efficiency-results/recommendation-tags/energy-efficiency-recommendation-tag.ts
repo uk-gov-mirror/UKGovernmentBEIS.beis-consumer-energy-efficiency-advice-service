@@ -8,6 +8,7 @@ export enum EnergyEfficiencyRecommendationTag {
     SmallSpend = 1 << 2,
     LongerTerm = 1 << 3,
     Grant = 1 << 4,
+    FundingAvailable = 1 << 5,
 }
 
 export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEfficiencyRecommendationTag) {
@@ -17,6 +18,7 @@ export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEffic
         case EnergyEfficiencyRecommendationTag.LongerTerm:          { return 'Longer Term'; }
         case EnergyEfficiencyRecommendationTag.Grant:               { return 'Grants'; }
         case EnergyEfficiencyRecommendationTag.TopRecommendations:  { return 'Our Top 5'; }
+        case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'Energy Funding'; }
     }
 }
 
@@ -27,6 +29,7 @@ export function getTagClassName(energyEfficiencyRecommendationTag: EnergyEfficie
         case EnergyEfficiencyRecommendationTag.LongerTerm:          { return 'tag-longer-term'; }
         case EnergyEfficiencyRecommendationTag.Grant:               { return 'tag-grant'; }
         case EnergyEfficiencyRecommendationTag.TopRecommendations:  { return 'tag-top-recommendations'; }
+        case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'tag-funding-available'; }
     }
 }
 

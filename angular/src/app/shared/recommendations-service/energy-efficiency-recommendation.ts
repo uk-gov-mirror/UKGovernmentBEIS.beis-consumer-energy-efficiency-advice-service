@@ -9,7 +9,10 @@ import concat from 'lodash-es/concat';
 import head from 'lodash-es/head';
 import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
 import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
-import {isEnergySavingMeasureResponse} from '../energy-calculation-api-service/response/energy-saving-measure-response';
+import {
+    EnergySavingMeasureResponse,
+    isEnergySavingMeasureResponse
+} from '../energy-calculation-api-service/response/energy-saving-measure-response';
 
 export class EnergyEfficiencyRecommendation {
 
@@ -39,15 +42,25 @@ export class EnergyEfficiencyRecommendation {
                        measureContent: MeasureContent,
                        iconClassName: string,
                        grants: NationalGrantForMeasure[]): EnergyEfficiencyRecommendation {
+
         let tags: EnergyEfficiencyRecommendationTag = getTagsForMeasure(measureContent);
+
         const shouldIncludeGrantTag = grants && grants.length > 0;
         if (shouldIncludeGrantTag) {
             tags |= EnergyEfficiencyRecommendationTag.Grant;
         }
+
+        const energySavingMeasureResponse = measureResponse as EnergySavingMeasureResponse;
+        if ((energySavingMeasureResponse.FIT && energySavingMeasureResponse.FIT > 0)
+            || (energySavingMeasureResponse.RHI && energySavingMeasureResponse.RHI > 0)) {
+
+            tags |= EnergyEfficiencyRecommendationTag.FundingAvailable;
+        }
+
         const advantages = measureContent.acf.advantages &&
             measureContent.acf.advantages.map(x => x.advantage);
         const measureSteps = measureContent.acf.steps && measureContent.acf.steps
-                .map(stepResponse => new RecommendationStep(stepResponse));
+            .map(stepResponse => new RecommendationStep(stepResponse));
         const grant = head(grants);
         const grantSteps = (grant && grant.steps && grant.steps.length > 0) ? grant.steps : [];
         let costSavingPerYear: number = measureResponse.cost_saving;
