@@ -11,12 +11,10 @@
       outline: none;
       border: none;
 
-      &.deselected:not(:hover) {
+      &.deselected:not(:hover), &.deselected:not(:focus) {
         background-color: white;
         color: $light-medium-grey;
       }
-
-      // TODO:BEISDEAS-169 Add a focus style for keyboard accessibility
 
       &.clear-filters {
         background-color: $dark-medium-grey;

@@ -99,10 +99,6 @@ export const BOILER_QUESTIONS = [
     new RoofSpaceQuestionMetadata(),
     // Restricts which boilers are offered
     new FuelTypeQuestionMetadata(),
-    // Not currently used!
-    new OccupantsQuestionMetadata(),
-    // Not currently used!
-    new ShowersAndBathsQuestionMetadata(),
 ];
 
 // Questions for the "Minimum Energy Efficiency Standards" questionnaire ("MEES"), aimed at landlords.

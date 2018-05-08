@@ -1,4 +1,5 @@
-<div class="mees-page">
+<app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="mees-page" *ngIf="!isError">
     <div class="page-row page-heading">
         <div class="page-row-content" [ngSwitch]="status">
             <h1 class="heading-text" *ngSwitchCase="MeesResultsStatus.EpcRequired">

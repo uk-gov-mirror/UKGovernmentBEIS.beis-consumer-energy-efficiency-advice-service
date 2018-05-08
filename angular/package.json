@@ -38,6 +38,7 @@
     "loglevel": "^1.6.1",
     "mathsass": "^0.10.1",
     "mime": "^1.6.0",
+    "moment": "^2.22.1",
     "ng-inline-svg": "^3.4.0",
     "ng2-cookies": "^1.0.12",
     "ng2-nouislider": "1.7.4",

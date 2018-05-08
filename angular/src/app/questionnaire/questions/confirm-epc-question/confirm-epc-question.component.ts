@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as moment from 'moment';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {EpcRating} from '../../../shared/postcode-epc-service/model/epc-rating';
 import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
@@ -9,10 +10,12 @@ import {
     getElectricityTariffDescription,
     getElectricityTariffFromEpc
 } from '../electricity-tariff-question/electricity-tariff';
+import {Epc} from "../../../shared/postcode-epc-service/model/epc";
 
 interface EpcMetadata {
     averageEnergyCost: number;
     colorCircleClassName: string;
+    adjective: string;
 }
 
 @Component({
@@ -36,25 +39,23 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     fuelTypeDescription: string;
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
+    savingsPerYear: number;
+    epcFormattedDate: string;
 
     private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
 
     private static readonly EPC_METADATA: { [epcRating: number]: EpcMetadata } = {
-        [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
-        [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green'},
-        [EpcRating.C]: {averageEnergyCost: 1000, colorCircleClassName: 'green'},
-        [EpcRating.D]: {averageEnergyCost: 1400, colorCircleClassName: 'amber'},
-        [EpcRating.E]: {averageEnergyCost: 1650, colorCircleClassName: 'amber'},
-        [EpcRating.F]: {averageEnergyCost: 2200, colorCircleClassName: 'red'},
-        [EpcRating.G]: {averageEnergyCost: 2850, colorCircleClassName: 'red'}
+        [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green', adjective: 'very good'},
+        [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green', adjective: 'better than average'},
+        [EpcRating.C]: {averageEnergyCost: 1000, colorCircleClassName: 'green', adjective: 'better than average'},
+        [EpcRating.D]: {averageEnergyCost: 1400, colorCircleClassName: 'amber', adjective: 'around average'},
+        [EpcRating.E]: {averageEnergyCost: 1650, colorCircleClassName: 'amber', adjective: 'below average'},
+        [EpcRating.F]: {averageEnergyCost: 2200, colorCircleClassName: 'red', adjective: 'below average'},
+        [EpcRating.G]: {averageEnergyCost: 2850, colorCircleClassName: 'red', adjective: 'poor'}
     };
 
     static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
-        if (epcRating === ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING) {
-            return 'This means your home\'s efficiency is about average.';
-        }
-        const comparatorAdjective = epcRating < ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING ? 'high' : 'low';
-        return `This means your home is relatively ${ comparatorAdjective } efficiency.`;
+        return `This means the efficiency of your home is ${ConfirmEpcQuestionComponent.EPC_METADATA[epcRating].adjective}`;
     }
 
     get responseForAnalytics(): string {
@@ -116,6 +117,9 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
         this.numberHabitableRooms = epc.numberHabitableRooms;
         this.localAuthorityDescription = epc.localAuthorityLabel;
+
+        this.savingsPerYear = ConfirmEpcQuestionComponent.getSavingsPerYearFromEpc(epc);
+        this.epcFormattedDate = ConfirmEpcQuestionComponent.getFormattedDateFromEpc(epc);
     }
 
     confirmEpcDetails() {
@@ -126,5 +130,26 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
             electricityTariff: this.electricityTariff
         };
         this.complete.emit();
+    }
+
+    private static getSavingsPerYearFromEpc(epc: Epc): number {
+        let heatingSaving = 0;
+        let hotWaterSaving = 0;
+        let lightingSaving = 0;
+        if (parseInt(epc.heatingCostCurrent) && parseInt(epc.heatingCostPotential)) {
+            heatingSaving = parseInt(epc.heatingCostCurrent) - parseInt(epc.heatingCostPotential);
+        }
+        if (parseInt(epc.hotWaterCostCurrent) && parseInt(epc.hotWaterCostPotential)) {
+            hotWaterSaving = parseInt(epc.hotWaterCostCurrent) - parseInt(epc.hotWaterCostPotential);
+        }
+        if (parseInt(epc.lightingCostCurrent) && parseInt(epc.lightingCostPotential)) {
+            lightingSaving = parseInt(epc.lightingCostCurrent) - parseInt(epc.lightingCostPotential);
+        }
+        return heatingSaving + hotWaterSaving + lightingSaving;
+    }
+
+    private static getFormattedDateFromEpc(epc: Epc): string {
+        const epcDate = moment(epc.epcDate);
+        return epcDate.format('MMM YYYY');
     }
 }

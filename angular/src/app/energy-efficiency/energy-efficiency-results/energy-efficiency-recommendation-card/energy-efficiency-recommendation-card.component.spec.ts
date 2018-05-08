@@ -42,7 +42,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         advantages: advantages,
         steps: [],
         isAddedToPlan: false,
-        codeForAnalytics: ''
+        recommendationID: ''
     };
 
     beforeEach(async(() => {

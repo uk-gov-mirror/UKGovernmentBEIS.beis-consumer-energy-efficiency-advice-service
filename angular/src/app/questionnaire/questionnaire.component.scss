@@ -1,6 +1,7 @@
 @import 'styles/mixins/buttons';
 @import "styles/mixins/font";
 @import "styles/var/colors";
+@import "styles/page";
 
 // Component specific variables
 $greyed-out: #a9a9a9;
@@ -126,7 +127,6 @@ app-sticky-row-wrapper {
         align-items: center;
         justify-content: center;
 
-        outline: none;
         border: none;
 
         user-select: none;
@@ -194,7 +194,7 @@ app-sticky-row-wrapper {
     }
 
     .question {
-      width: 100%;
+      width: 100vw;
       margin-top: 30px;
     }
 
@@ -222,7 +222,7 @@ app-sticky-row-wrapper {
     }
 
     .question {
-      width: 100%;
+      width: 100vw;
       margin-top: 52px;
     }
 
@@ -232,6 +232,12 @@ app-sticky-row-wrapper {
   }
 
   @include desktop() {
+    .question-heading {
+      width: 100%;
+      padding: 0 $desktop-side-margin;
+      box-sizing: border-box;
+    }
+
     .question {
       width: 100vw;
       margin-top: 96px;

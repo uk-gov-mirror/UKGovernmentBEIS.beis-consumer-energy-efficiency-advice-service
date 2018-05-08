@@ -36,7 +36,7 @@
       }
     }
 
-    a:hover, a:visited, a:link, a:active {
+    a:hover, a:visited, a:link, a:active, a:focus {
       text-decoration: none;
     }
 
@@ -57,12 +57,15 @@
       @include navbar-item;
       border: none;
       background: none;
-      outline: none;
       color: white;
       text-decoration: none;
 
       &:not(:last-child) {
-        margin-right: 20px;
+        margin-right: 10px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 10px;
       }
     }
   }
@@ -171,7 +174,7 @@
       display: none;
     }
 
-    a:hover, a:visited, a:link, a:active {
+    a:hover, a:visited, a:link, a:active, a:focus {
       text-decoration: none;
     }
   }

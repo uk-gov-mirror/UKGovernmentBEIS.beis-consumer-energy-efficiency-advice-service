@@ -25,10 +25,10 @@
                 <div class="local-grants" *ngIf="localAuthority.grants.length > 0">
                     <div class="local-authority-name">You live in {{localAuthority.name}} and we've found the following:</div>
                     <div class="grant-cards">
-                        <app-grant-card class="grant-card"
+                        <app-local-grant-card class="grant-card"
                                         *ngFor="let grant of localAuthority.grants"
                                         [grant]="grant">
-                        </app-grant-card>
+                        </app-local-grant-card>
                     </div>
                 </div>
                 <div class="no-local-grants" *ngIf="localAuthority.grants.length === 0">

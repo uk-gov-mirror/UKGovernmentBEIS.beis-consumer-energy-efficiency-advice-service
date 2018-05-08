@@ -1,4 +1,5 @@
-<div class="your-plan-page">
+<app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="your-plan-page" *ngIf="!isError">
     <div class="your-plan-content">
         <div class="your-plan-header page-row">
             <div class="page-row-content">
@@ -26,7 +27,7 @@
                                 *ngFor="let step of recommendation.steps; let i = index"
                                 [step]="step"
                                 [stepIndex]="i"
-                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.codeForAnalytics)"
+                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
                         ></app-recommendation-step-card>
                     </div>
                 </div>
@@ -39,10 +40,11 @@
                     grants. You live in {{localAuthorityName}} so we've found the following:
                 </div>
                 <div class="grant-cards">
-                    <app-grant-card class="grant-card"
+                    <app-local-grant-card class="grant-card"
                                     *ngFor="let grant of localAuthorityGrants"
-                                    [grant]="grant">
-                    </app-grant-card>
+                                    [grant]="grant"
+                                    theme="blue">
+                    </app-local-grant-card>
                 </div>
             </div>
         </div>

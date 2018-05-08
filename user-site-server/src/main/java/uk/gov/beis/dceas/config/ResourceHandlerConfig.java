@@ -4,17 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
+import uk.gov.beis.dceas.spring.DevSimulatedConnectionDelayInterceptor;
 
 import java.time.Duration;
-import static java.time.temporal.ChronoUnit.DAYS;
 
-import uk.gov.beis.dceas.spring.DevSimulatedConnectionDelayInterceptor;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Configuration
 public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
@@ -45,6 +46,8 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
             log.warn("Dev mode: Serving static files from src/ dir, for live reloading");
             config.addResourceLocations(
                     "file:user-site-server/src/main/resources/public/");
+            // Disable browser caching in dev (it can interfere with Angular recompile)
+            config.setCacheControl(CacheControl.noCache());
 
         } else {
             config.addResourceLocations("classpath:/public/");

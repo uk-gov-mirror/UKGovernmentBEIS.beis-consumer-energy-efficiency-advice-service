@@ -21,6 +21,8 @@ export class YourPlanPageComponent implements OnInit {
 
     localAuthorityGrants: LocalAuthorityGrant[] = [];
     localAuthorityName: string;
+    isError: boolean = false;
+    errorMessage: string;
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
@@ -29,6 +31,14 @@ export class YourPlanPageComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (!this.recommendations.length) {
+            this.errorMessage = "Sorry, we can't show you your plan at the moment " +
+                "as it seems that you have not completed the questionnaire, " +
+                "or something has gone wrong.";
+            this.isError = true;
+            return;
+        }
+
         this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
             .subscribe(
                 response => this.handleLocalAuthorityServiceResponse(response),
