@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-05-08-change-heating-pattern-question-name.xml"
+               author="fuad.ashanike@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+SELECT * FROM wp_postmeta WHERE post_id IN (SELECT ID FROM wp_posts WHERE post_title = 'Detailed length of heating on' AND post_type = 'question');
+
+UPDATE wp_postmeta
+SET meta_value = 'Most days during winter I have my heating on:'
+WHERE meta_key = 'questionHeading'
+AND post_id IN (SELECT ID FROM wp_posts WHERE post_title = 'Detailed length of heating on' AND post_type = 'question');
+
+DELETE FROM wp_postmeta
+WHERE meta_key LIKE '%helpHtml'
+AND post_id IN (SELECT ID FROM wp_posts WHERE post_title = 'Detailed length of heating on' AND post_type = 'question');
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

@@ -90,7 +90,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
     }
 
     set eveningHeatingStartTime(val: number) {
-        this.responseData.eveningHeatingDuration = val;
+        this.responseData.eveningHeatingStartTime = val;
     }
 
     get eveningHeatingDuration(): number {
@@ -111,10 +111,10 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     ngOnInit() {
         this.heatingPatternType = this.responseData.heatingPatternType || 0;
-        this.morningHeatingStartTime = this.responseData.morningHeatingStartTime || 0;
-        this.morningHeatingDuration = this.responseData.morningHeatingDuration || 0;
-        this.eveningHeatingStartTime = this.responseData.eveningHeatingStartTime || 0;
-        this.eveningHeatingDuration = this.responseData.eveningHeatingDuration || 0;
+        this.morningHeatingStartTime = this.responseData.morningHeatingStartTime || 7;
+        this.morningHeatingDuration = this.responseData.morningHeatingDuration || 2;
+        this.eveningHeatingStartTime = this.responseData.eveningHeatingStartTime || 16;
+        this.eveningHeatingDuration = this.responseData.eveningHeatingDuration || 7;
         this.heatingHoursPerDay = this.responseData.heatingHoursPerDay || 0;
     }
 
