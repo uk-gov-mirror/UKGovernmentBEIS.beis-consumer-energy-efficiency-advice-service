@@ -26,7 +26,7 @@ export class ProgressIndicatorComponent implements OnChanges {
             }
             (<HTMLElement>document.querySelector(".completion-bar-content")).style.width = this.currentPercentage + "%";
             (<HTMLElement>document.querySelector(".completion-bar-content")).style.background =
-                "linear-gradient(to right, #00abce " + (100 - (this.currentPercentage / 2)) + "%, #1ee81e)";
+                "linear-gradient(to right, #1A485F " + (100 - (this.currentPercentage / 2)) + "%, #1ee81e)";
         }
     }
 }

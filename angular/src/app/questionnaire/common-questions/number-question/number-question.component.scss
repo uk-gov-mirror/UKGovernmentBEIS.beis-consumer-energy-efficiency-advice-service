@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
 
-      color: $primary-blue;
+      color: $focus-blue;
     }
 
     .text-box {
@@ -64,7 +64,7 @@
     padding: 0;
 
     ::ng-deep svg circle {
-      fill: $primary-blue;
+      fill: $focus-blue;
     }
 
     &[disabled], &.inactive {

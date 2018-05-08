@@ -20,7 +20,7 @@ $greyed-out: #a9a9a9;
   .question-heading {
     font-size: 36px;
     font-weight: bold;
-    color: $darkened-blue;
+    color: $focus-blue;
     line-height: 38px;
     text-align: center;
     margin-bottom: 20px;
@@ -32,7 +32,7 @@ $greyed-out: #a9a9a9;
   align-items: center;
   justify-content: flex-start;
   flex-grow: 1;
-  background-color: $lighter-grey;
+  background-color: $primary-blue;
   padding-bottom: 16px;
 
   .question-type-icon {
@@ -41,33 +41,33 @@ $greyed-out: #a9a9a9;
 
     .person ::ng-deep svg {
       path {
-        fill: $primary-blue;
+        fill: $focus-blue;
       }
     }
 
     .house ::ng-deep svg {
       polygon {
-        fill: $primary-blue;
+        fill: $focus-blue;
       }
 
       polyline {
-        stroke: $primary-blue;
+        stroke: $focus-blue;
       }
     }
 
     .thermostat ::ng-deep svg {
       path {
-        stroke: $primary-blue;
+        stroke: $focus-blue;
       }
 
       circle {
-        fill: $primary-blue;
+        fill: $focus-blue;
       }
     }
   }
 
   .question-type-icon-baseline {
-    background-color: $primary-blue;
+    background-color: $focus-blue;
     width: 140px;
     height: 1px;
     margin-bottom: 20px;
