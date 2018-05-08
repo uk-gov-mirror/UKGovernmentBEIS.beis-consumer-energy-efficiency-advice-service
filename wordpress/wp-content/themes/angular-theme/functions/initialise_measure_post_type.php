@@ -126,6 +126,21 @@ function setup_measure_acf_group() {
                         ),
                     ),
                 ),
+                array(
+                    'key' => 'field_501234caac12b',
+                    'label' => 'Statistic',
+                    'name' => 'statistic',
+                    'instructions' => 'A statistic to be displayed with this measure on the landing pages, should be written beginning with a number or percentage.
+                    For example: "10% of heat loss is through doors"',
+                    'type' => 'text',
+                    'required' => 0,
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'formatting' => 'html',
+                    'maxlength' => '127',
+                ),
                 array (
                     'key' => 'field_5a1c53f320255',
                     'label' => 'Tags',

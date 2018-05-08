@@ -76,6 +76,7 @@ describe('InstallerSearchComponent', () => {
                     headline: "Test Headline",
                     summary: null,
                     advantages: [{advantage: null}],
+                    statistic: "Test Statistic",
                     tags: null,
                     steps: null
                 }

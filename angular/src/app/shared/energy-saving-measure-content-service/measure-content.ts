@@ -7,6 +7,7 @@ export interface MeasureContent  {
         headline: string;
         summary: string;
         advantages: {advantage: string}[];
+        statistic: string;
         tags: string[],
         steps: RecommendationStepResponse[]
     };

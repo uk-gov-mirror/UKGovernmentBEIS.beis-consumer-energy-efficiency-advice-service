@@ -16,6 +16,7 @@ describe('MeasureCardComponent', () => {
             headline: 'Test Measure',
             summary: 'This is a test measure',
             advantages: [],
+            statistic: 'Test Measure Statistic',
             tags: [],
             steps: []
         }
