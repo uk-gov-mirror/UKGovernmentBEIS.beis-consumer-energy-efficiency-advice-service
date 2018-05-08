@@ -27,7 +27,7 @@
                                 *ngFor="let step of recommendation.steps; let i = index"
                                 [step]="step"
                                 [stepIndex]="i"
-                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.codeForAnalytics)"
+                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
                         ></app-recommendation-step-card>
                     </div>
                 </div>

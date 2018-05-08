@@ -22,6 +22,7 @@ import {EnergySavingMeasureResponse} from '../energy-calculation-api-service/res
 import {HabitMeasureResponse} from '../energy-calculation-api-service/response/habit-measure-response';
 import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
+import {UserJourneyType} from "../response-data/user-journey-type";
 
 @Injectable()
 export class RecommendationsService {
@@ -69,8 +70,8 @@ export class RecommendationsService {
                         throw new Error('Received empty energy calculation response');
                     }
                     this.cachedCurrentScore = parseInt(energyCalculation['Current-SAP-Rating']);
-                    const habitRecommendations = RecommendationsService
-                        .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
+                    const habitRecommendations = this
+                        .getFilteredHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants
                         .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
                     return this.getHomeImprovementRecommendationsContent(
@@ -119,6 +120,19 @@ export class RecommendationsService {
             return energyCalculation.measures_rented;
         }
         return energyCalculation.measures;
+    }
+
+    private getFilteredHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
+                                                   measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+        if (this.responseData.userJourneyType === UserJourneyType.PlanHomeImprovements) {
+            return [];
+        }
+        const habitRecommendations = RecommendationsService.getHabitRecommendationsContent(measures, measuresContent);
+        if (this.responseData.userJourneyType === UserJourneyType.MakeHomeWarmer) {
+            return habitRecommendations.filter(
+                recommendation => recommendation.recommendationID !== `meta_one_degree_reduction`);
+        }
+        return habitRecommendations;
     }
 
     private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,

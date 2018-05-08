@@ -54,7 +54,7 @@ describe('YourPlanPageComponent', () => {
             }
             ],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 999,
@@ -71,7 +71,7 @@ describe('YourPlanPageComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 20,
@@ -88,7 +88,7 @@ describe('YourPlanPageComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         }
     ];
 

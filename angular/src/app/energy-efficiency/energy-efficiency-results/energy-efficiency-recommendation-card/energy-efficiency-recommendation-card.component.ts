@@ -77,6 +77,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     sendEventToAnalytics(eventName: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.codeForAnalytics);
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
     }
 }

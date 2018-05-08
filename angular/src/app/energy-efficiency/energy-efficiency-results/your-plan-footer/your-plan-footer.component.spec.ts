@@ -31,7 +31,7 @@ describe('YourPlanFooterComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 999,
@@ -48,7 +48,7 @@ describe('YourPlanFooterComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 20,
@@ -65,7 +65,7 @@ describe('YourPlanFooterComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         }
     ];
 
