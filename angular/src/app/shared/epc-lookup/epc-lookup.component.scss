@@ -61,6 +61,7 @@
       @include postcode-dropdown-font();
       text-align: center;
       min-width: 0;
+      -webkit-appearance: menulist-button;
 
       .address-option {
         @include postcode-options-font();
