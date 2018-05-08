@@ -16,7 +16,7 @@ export class PostcodeLookupComponent implements OnInit {
     loading: boolean = false;
     error: boolean = false;
     errorMessage: string;
-    scottishPostcode: boolean = false;
+    unsupportedPostcode: boolean = false;
 
     /**
      * When the postcode has been entered by the user and validated as non-Scottish,
@@ -43,14 +43,15 @@ export class PostcodeLookupComponent implements OnInit {
         }
 
         this.loading = true;
-        this.scottishPostcode = false;
+        this.unsupportedPostcode = false;
         this.error = false;
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {
-                    this.scottishPostcode = postcodeDetails.result.country === 'Scotland';
+                    this.unsupportedPostcode = postcodeDetails.result.country === 'Scotland' ||
+                        postcodeDetails.result.country === 'Northern Ireland';
 
-                    if (this.scottishPostcode) {
+                    if (this.unsupportedPostcode) {
                         this.handleSearchError(null);
                         return;
                     }
