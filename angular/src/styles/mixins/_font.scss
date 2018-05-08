@@ -166,7 +166,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 @mixin read-more-font {
   @include has-font-sizes-at-breakpoints(11px, 13px, 11px, 13px, 11px, 13px);
   font-weight: 500;
-  color: $primary-blue;
+  color: $darkened-blue;
   text-transform: uppercase;
 }
 
