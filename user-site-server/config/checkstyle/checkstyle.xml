@@ -95,8 +95,7 @@
     <module name="UnnecessaryParentheses"/>
     <module name="OneStatementPerLine"/>
 
-    <!--There are sensible cases when we want to be able to use a starred import-->
-    <!--<module name="AvoidStarImport"/>-->
+    <module name="AvoidStarImport"/>
 
     <module name="IllegalImport">
       <property name="illegalPkgs" value="sun, org.apache.commons.logging, org.apache.log4j"/>
