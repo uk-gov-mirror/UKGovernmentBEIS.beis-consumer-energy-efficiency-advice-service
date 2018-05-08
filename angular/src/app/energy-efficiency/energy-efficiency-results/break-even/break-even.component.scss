@@ -6,12 +6,6 @@
 @import "~mathsass/dist/_constants";
 
 // Component specific variables
-$graph-height-pixels: 140;
-$graph-width-pixels: 2 * $data-card-width / 1px;
-$graph-line-width: 2px;
-
-$graph-angle-radians: atan($graph-height-pixels / $graph-width-pixels);
-$graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-height-pixels, 2));
 
 // Component specific mixins
 
@@ -25,8 +19,8 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
     margin-bottom: 20px;
 
     .lifespan, .break-even-point {
-      display: flex;
       flex: 1 0 1px;
+      display: flex;
 
       &:not(:last-child) {
         margin-right: 40px;
@@ -44,48 +38,10 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
       }
     }
   }
-
-  .graph {
-    height: $graph-height-pixels * 1px;
-    box-sizing: content-box;
-    border-left: 2px solid $light-medium-grey;
-    border-bottom: 2px solid $light-medium-grey;
-    position: relative;
-
-    .annual-savings-line {
-      border-top: $graph-line-width solid $light-medium-grey;
-      height: 0;
-      width: $graph-diagonal-length-pixels * 1px;
-      position: absolute;
-      top: 50%;
-      right: -3%;
-      transform: rotate(-$graph-angle-radians * 1rad);
-    }
-
-    .upfront-investment {
-      width: 100%;
-      background-color: $light-grey;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-
-    .break-even-point-line {
-      height: 100%;
-      width: 0;
-      position: absolute;
-      border-left: $graph-line-width dashed $light-medium-grey;
-      top: 0;
-    }
-  }
 }
 
 // Breakpoint specific styling
 @include mobile() {
-  :host {
-    flex: 0 0 100%;
-  }
-
   .break-even-component {
     .header-row {
       flex: 0 0 100%;
@@ -102,24 +58,13 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
         color: $focus-text-blue;
       }
     }
-
-    .graph {
-      display: none;
-    }
   }
 }
 
 @include tablet() {
-  :host {
-    flex: 0 0 100%;
-    margin-top: 20px;
-    border-top: 2px solid $light-grey;
-  }
-
   .break-even-component {
     .header-row {
       flex: 0 0 100%;
-      margin: 0;
 
       .lifespan, .break-even-point {
         justify-content: space-between;
@@ -132,17 +77,19 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
         padding-right: 20px;
       }
     }
-
-    .graph {
-      display: none;
-    }
   }
 }
 
 @include desktop() {
-  :host {
-    margin-left: 20px;
-    margin-right: $add-to-plan-column-width;
-    flex: 0 0 $graph-width-pixels * 1px;
+  .break-even-component {
+    .header-row {
+      .lifespan, .break-even-point {
+        flex-direction: column;
+
+        .data-name {
+          margin-bottom: 10px;
+        }
+      }
+    }
   }
 }

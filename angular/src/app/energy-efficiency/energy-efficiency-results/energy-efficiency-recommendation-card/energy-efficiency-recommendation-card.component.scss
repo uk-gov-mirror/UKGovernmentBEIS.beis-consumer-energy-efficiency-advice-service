@@ -98,6 +98,7 @@ $icon-column-width: $add-to-plan-column-width;
 
     .expanded-view-row {
       display: none;
+      flex-wrap: wrap;
       border-top: 2px solid $light-grey;
       border-bottom: 2px solid $light-grey;
 
@@ -156,17 +157,13 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .benefits {
-        flex: 1;
-
         .benefits-list {
           padding: 0 20px;
           font-family: $font-family-light;
         }
       }
 
-      .what-it-is, .right-for-me {
-        flex: 1;
-
+      .grants, .what-it-is, .right-for-me {
         .description {
           font-family: $font-family-light;
           margin-bottom: 16px;
@@ -274,8 +271,13 @@ $icon-column-width: $add-to-plan-column-width;
         flex-wrap: wrap;
         padding: 20px;
 
-        .grants, .benefits, .what-it-is, .right-for-me {
+        .grants, app-break-even, .benefits, .what-it-is, .right-for-me {
           flex: 0 0 100%;
+        }
+
+        .what-it-is, .right-for-me, .grants {
+          padding-top: 20px;
+          border-top: 2px solid $light-grey;
         }
 
         .grants {
@@ -337,10 +339,6 @@ $icon-column-width: $add-to-plan-column-width;
         .grants {
           padding-right: 20px;
         }
-
-        .grants, .benefits, .what-it-is, .right-for-me {
-          flex: 0 0 50%;
-        }
       }
 
       .investment-required-card {
@@ -401,15 +399,24 @@ $icon-column-width: $add-to-plan-column-width;
         padding: 20px 0;
 
         & > :first-child {
-          margin-left: $icon-column-width;
+          padding-left: $icon-column-width;
         }
 
         & > :not(:last-child) {
-          margin-right: 36px;
+          padding-right: 36px;
         }
 
-        .grants {
-          flex: 1;
+        .benefits {
+          flex: 0 0 50%;
+        }
+
+        app-break-even {
+          flex: 0 0 50%;
+        }
+
+        .grants, .what-it-is, .right-for-me {
+          flex: 0 0 100%;
+          padding-left: $icon-column-width;
         }
       }
 
