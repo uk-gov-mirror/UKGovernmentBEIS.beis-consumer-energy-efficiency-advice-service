@@ -67,7 +67,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 999,
@@ -84,7 +84,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 20,
@@ -108,7 +108,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         }
     ];
 

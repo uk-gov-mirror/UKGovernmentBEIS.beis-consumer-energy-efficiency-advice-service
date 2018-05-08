@@ -26,7 +26,7 @@ export class EnergyEfficiencyRecommendation {
                 public advantages: string[],
                 public steps: RecommendationStep[],
                 public isAddedToPlan: boolean,
-                public codeForAnalytics: string) {
+                public recommendationID: string) {
     }
 
     get costSavingPoundsPerMonth(): number {

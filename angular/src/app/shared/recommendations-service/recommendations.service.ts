@@ -130,7 +130,7 @@ export class RecommendationsService {
         const habitRecommendations = RecommendationsService.getHabitRecommendationsContent(measures, measuresContent);
         if (this.responseData.userJourneyType === UserJourneyType.MakeHomeWarmer) {
             return habitRecommendations.filter(
-                recommendation => recommendation.headline !== `Lower thermostat by one degree`);
+                recommendation => recommendation.recommendationID !== `meta_one_degree_reduction`);
         }
         return habitRecommendations;
     }
