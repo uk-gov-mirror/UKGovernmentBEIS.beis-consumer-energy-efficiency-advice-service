@@ -17,12 +17,6 @@
                      class="tag">{{getTagDescription(grantTag)}}
                 </div>
             </div>
-            <div class="more-detail-row" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
-                <button class="more-detail-button">
-                    {{isExpandedView ? 'Hide detail' : 'See more detail'}}
-                </button>
-                <div class="more-detail-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-            </div>
         </div>
         <div class="expanded-view-row" [class.expanded]="isExpandedView">
             <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length">
@@ -58,6 +52,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+            <div class="more-detail-icon" [inlineSVG]="'controls/more-detail.svg'"></div>
         </div>
         <app-data-card class="investment-required-card"
                        heading="Investment required"

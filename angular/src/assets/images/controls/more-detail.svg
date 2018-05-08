@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/more-detail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/more-detail" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" stroke="#4A4A4A" stroke-width="3" cx="24" cy="24" r="22.5"></circle>
+        <path d="M21.3822285,22.2905501 C25.6473907,22.1212976 27.3060649,21.0042313 27.3060649,19.1763047 C27.3060649,17.6191819 26.1551481,16.7390691 24.1918195,16.7390691 C22.2961918,16.7390691 20.6713681,17.5176305 19.1142454,19.0747532 L16,15.6558533 C17.9633286,13.4894217 20.6036671,12 24.2933709,12 C29.167842,12 32.4851904,14.5049365 32.4851904,19.0409027 C32.4851904,23.3737659 29.506347,25.1339915 25.8166432,25.8787024 L25.4442877,27.9435825 L21.9915374,27.9435825 L21.212976,22.4598025 L21.3822285,22.2905501 Z M26.3582511,36 L20.8744711,36 L20.8744711,30.583921 L26.3582511,30.583921 L26.3582511,36 Z" id="?" fill="#4A4A4A"></path>
+    </g>
+</svg>
