@@ -240,7 +240,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 @mixin browse-video-text-font {
   @include has-font-sizes-at-breakpoints(16px, 34px, 16px, 34px, 16px, 34px);
   font-weight: bold;
-  color: $primary-blue;
+  color: $darkened-blue;
 }
 
 @mixin article-title-font {

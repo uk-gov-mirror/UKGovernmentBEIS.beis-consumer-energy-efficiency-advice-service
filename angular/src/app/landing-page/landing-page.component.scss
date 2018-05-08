@@ -40,23 +40,23 @@ $mobile-browse-cards-margin: 20px;
     .page-row-content {
       .heading {
         @include page-heading-font;
-        color: white;
+        color: $darkened-blue;
       }
     }
   }
 
   .postcode {
     background-color: $lighter-grey;
-    color: $primary-blue;
+    color: $dark-grey;
 
     .page-row-content {
       .heading {
-        color: $primary-blue;
+        color: $dark-grey;
       }
 
       .postcode-reason-container {
         @include page-body-font;
-        color: $darkened-blue;
+        color: $dark-grey;
       }
     }
   }

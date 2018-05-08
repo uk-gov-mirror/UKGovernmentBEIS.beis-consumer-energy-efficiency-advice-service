@@ -62,7 +62,7 @@ $arrow-height: 48px;
       align-items: center;
       margin-top: auto;
       background: white;
-      color: $primary-blue;
+      color: $darkened-blue;
 
 
       &:after {
@@ -108,7 +108,7 @@ $arrow-height: 48px;
         align-items: center;
         margin-top: auto;
         background: white;
-        color: $primary-blue;
+        color: $darkened-blue;
 
 
         &:after {
@@ -123,9 +123,9 @@ $arrow-height: 48px;
 
         &:focus, &:hover {
           color: white;
-          background: $primary-blue;
+          background: $focus-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $focus-blue;
           }
         }
       }
@@ -164,7 +164,7 @@ $arrow-height: 48px;
         align-items: center;
         margin-top: auto;
         background: white;
-        color: $primary-blue;
+        color: $darkened-blue;
 
 
         &:after {
@@ -183,9 +183,9 @@ $arrow-height: 48px;
       .link {
         .arrow-button {
           color: white;
-          background: $primary-blue;
+          background: $focus-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $focus-blue;
           }
         }
       }
