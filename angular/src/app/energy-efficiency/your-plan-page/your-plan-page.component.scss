@@ -21,7 +21,7 @@ $desktop-heading-vertical-padding: 20px;
 
       .heading {
         @include page-heading-small-font;
-        color: $headline-dark-blue;
+        color: $focus-blue;
         padding-bottom: 10px;
       }
 
@@ -101,7 +101,7 @@ $desktop-heading-vertical-padding: 20px;
           flex: 0 0 100%;
           padding: 25px 20px 16px;
           background-color: $lighter-grey;
-          color: $darkened-blue;
+          color: $focus-blue;
         }
 
         .subheading {
@@ -162,7 +162,7 @@ $desktop-heading-vertical-padding: 20px;
           order: 1;
           padding: 34px;
           background-color: $lighter-grey;
-          color: $darkened-blue;
+          color: $focus-blue;
         }
 
         .subheading {
@@ -170,7 +170,7 @@ $desktop-heading-vertical-padding: 20px;
           order: 3;
           padding: 30px 34px;
           background-color: $primary-blue;
-          color: white;
+          color: $focus-blue;
         }
 
         app-your-plan-summary {
