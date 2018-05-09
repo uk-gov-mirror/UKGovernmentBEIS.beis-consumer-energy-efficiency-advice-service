@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import {TroubleshootingPageComponent} from './troubleshooting-page.component';
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
@@ -24,7 +25,8 @@ describe('TroubleshootingPageComponent', () => {
                 SpinnerAndErrorContainerComponent,
             ],
             imports: [
-                FormsModule
+                FormsModule,
+                RouterTestingModule,
             ],
             providers: [
                 {provide: ResponseData, useClass: MockResponseData},
