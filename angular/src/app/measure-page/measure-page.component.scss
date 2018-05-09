@@ -13,12 +13,12 @@
 
     .title {
       @include measures-page-heading-font;
-      color: white;
+      color: $focus-blue;
     }
 
     .summary {
       @include page-summary-font;
-      color: white;
+      color: $focus-blue;
     }
   }
 
@@ -44,13 +44,13 @@
 
     .contents-title {
       @include page-subheading-font;
-      color: $primary-blue;
+      color: $darkened-blue;
       margin-bottom: 8px;
 
       .contents-title-icon {
         width: 24px;
         height: 24px;
-        fill: $primary-blue;
+        fill: $icon-blue;
         display: inline-block;
         margin-right: 4px;
       }
@@ -75,7 +75,7 @@
 
   .steps-section {
     .step:not(:last-child) {
-      border-bottom: 1px solid $primary-blue;
+      border-bottom: 1px solid $darkened-blue;
     }
 
     .step-title {
@@ -85,7 +85,7 @@
 
     .step-description {
       @include measures-page-step-description-font;
-      color: $primary-blue;
+      color: $darkened-blue;
     }
 
     .step-read-more {
@@ -101,7 +101,8 @@
       min-height: 60px;
 
       .step-link-text {
-        background-color: $button-dark-blue;
+        background-color: $primary-blue;
+        color: $focus-blue;
         @include more-info-button-font;
         flex: 1;
         display: flex;
@@ -111,7 +112,7 @@
       }
 
       .step-link-icon-container {
-        background-color: $action-button-blue;
+        background-color: $focus-blue;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -120,10 +121,26 @@
         .step-link-icon {
           width: 15px;
           height: 23px;
-          stroke: white;
-          fill: white;
+          stroke: $primary-blue;
+          fill: $primary-blue;
           display: block;
           line-height: 0;
+        }
+      }
+
+      &:hover {
+        .step-link-text {
+          background-color: $focus-blue;
+          color: $primary-blue;
+        }
+
+        .step-link-icon-container {
+          background-color: $primary-blue;
+
+          .step-link-icon {
+            stroke: $focus-blue;
+            fill: $focus-blue;
+          }
         }
       }
     }
