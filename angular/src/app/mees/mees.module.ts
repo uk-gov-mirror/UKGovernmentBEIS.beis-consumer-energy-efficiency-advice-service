@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {MeesQuestionnaireComponent} from './mees-questionnaire/mees-questionnaire.component';
 import {MeesResultsPageComponent} from './results-page/mees-results-page.component';
 import {MeesExemptionPageComponent} from './exemption-page/mees-exemption-page.component';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {MeesExemptionPageComponent} from './exemption-page/mees-exemption-page.c
         FormsModule,
         RoutingModule,
         QuestionnaireModule,
+        InlineSVGModule,
     ],
     exports: [
         MeesQuestionnaireComponent,
