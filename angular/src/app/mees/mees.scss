@@ -9,6 +9,7 @@ $arrow-height: 48px;
 .mees-page {
   .page-heading {
     padding: 48px 0;
+    background-color: $primary-blue;
 
     .page-row-content {
       display: flex;
@@ -16,7 +17,7 @@ $arrow-height: 48px;
 
       .heading-text {
         @include page-heading-font;
-        color: $darkened-blue;
+        color: $focus-blue;
         flex: 2;
       }
 
@@ -93,7 +94,7 @@ $arrow-height: 48px;
 
       .heading {
         @include quick-link-heading-font;
-        color: $primary-blue;
+        color: $darkened-blue;
         display: flex;
         align-items: center;
       }
@@ -107,9 +108,9 @@ $arrow-height: 48px;
         &:focus, &:hover {
           .arrow-button {
             color: white;
-            background: $primary-blue;
+            background: $focus-blue;
             &:after {
-              border-left-color: $primary-blue;
+              border-left-color: $focus-blue;
             }
           }
         }
@@ -133,7 +134,7 @@ $arrow-height: 48px;
           padding-left: 18px;
 
           background: white;
-          color: $primary-blue;
+          color: $darkened-blue;
 
           &:after {
             position: absolute;
