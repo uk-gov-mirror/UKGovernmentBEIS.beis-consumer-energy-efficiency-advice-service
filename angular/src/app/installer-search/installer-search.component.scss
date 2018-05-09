@@ -12,11 +12,11 @@
     @include page-heading-font;
     display: flex;
     flex-direction: column;
-    background-color: $primary-blue;
-    color: $focus-blue;
+    background-color: $light-blue;
+    color: $dark-blue;
 
     p {
-      color: $focus-blue;
+      color: $dark-blue;
       font-size: 16px;
     }
   }
@@ -30,7 +30,7 @@
       flex-direction: column;
 
       .field-heading {
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         font-size: 20px;
         font-weight: bold;
       }
@@ -75,7 +75,7 @@
 
 p {
   @include page-subheading-font;
-  color: $darkened-blue;
+  color: $dark-medium-blue;
 }
 
 // Breakpoint specific styling

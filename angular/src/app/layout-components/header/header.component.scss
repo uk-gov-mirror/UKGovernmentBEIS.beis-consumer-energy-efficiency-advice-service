@@ -63,7 +63,7 @@ $desktop-header-height: 82px;
 
 @mixin is-search-icon($size) {
   @include is-clickable-icon($size);
-  stroke: $primary-blue;
+  stroke: $light-blue;
   margin-right: 16px;
 }
 

@@ -36,7 +36,7 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
         font-size: 12px;
         text-transform: uppercase;
         margin-right: 10px;
-        color: $focus-blue;
+        color: $dark-blue;
       }
 
       .data-value {
@@ -99,7 +99,7 @@ $graph-diagonal-length-pixels: sqrt(pow($graph-width-pixels, 2) + pow($graph-hei
         margin: 0;
         border-top: 2px solid $lighter-grey;
         padding: 20px 0;
-        color: $focus-blue;
+        color: $dark-blue;
       }
     }
 

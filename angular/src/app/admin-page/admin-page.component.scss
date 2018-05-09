@@ -8,8 +8,8 @@
   }
 
   .heading-section {
-    background-color: $primary-blue;
-    color: $focus-blue;
+    background-color: $light-blue;
+    color: $dark-blue;
 
     .heading {
       @include page-heading-large-font;

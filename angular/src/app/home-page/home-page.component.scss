@@ -140,8 +140,8 @@ $arrow-height: 48px;
         align-items: center;
 
         &:focus, &:hover {
-          background: $focus-blue;
-          color: $primary-blue;
+          background: $dark-blue;
+          color: $light-blue;
         }
 
         .link-text {
@@ -154,7 +154,7 @@ $arrow-height: 48px;
   .quick-links {
     .quick-link {
       position: relative;
-      background: $primary-blue;
+      background: $light-blue;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -163,22 +163,22 @@ $arrow-height: 48px;
       &:focus, &:hover {
         .arrow-button {
           color: white;
-          background: $focus-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $focus-blue;
+            border-left-color: $dark-blue;
           }
         }
       }
 
       .heading {
         @include quick-link-heading-font;
-        color: $focus-blue;
+        color: $dark-blue;
         box-sizing: border-box;
       }
 
       .description {
         @include quick-link-font;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         box-sizing: border-box;
       }
 
@@ -191,7 +191,7 @@ $arrow-height: 48px;
         @include quick-link-font;
 
         background: white;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
 
         &:after {
           position: absolute;

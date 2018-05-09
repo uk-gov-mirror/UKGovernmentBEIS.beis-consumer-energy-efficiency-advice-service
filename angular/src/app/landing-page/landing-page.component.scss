@@ -35,12 +35,12 @@ $mobile-browse-cards-margin: 20px;
   }
 
   .page-heading {
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     .page-row-content {
       .heading {
         @include page-heading-font;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
       }
     }
   }

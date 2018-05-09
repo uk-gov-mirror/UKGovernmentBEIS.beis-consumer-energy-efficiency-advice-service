@@ -9,16 +9,16 @@
 // General styling (shouldn't contain many widths/sizes etc.)
 .measure-page {
   .heading-section {
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     .title {
       @include measures-page-heading-font;
-      color: $focus-blue;
+      color: $dark-blue;
     }
 
     .summary {
       @include page-summary-font;
-      color: $focus-blue;
+      color: $dark-blue;
     }
   }
 
@@ -26,7 +26,7 @@
     background-color: $lighter-grey;
 
     .benefits-title {
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       font-weight: bold;
       padding-bottom: 20px;
     }
@@ -44,7 +44,7 @@
 
     .contents-title {
       @include page-subheading-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       margin-bottom: 8px;
 
       .contents-title-icon {
@@ -75,17 +75,17 @@
 
   .steps-section {
     .step:not(:last-child) {
-      border-bottom: 1px solid $darkened-blue;
+      border-bottom: 1px solid $dark-medium-blue;
     }
 
     .step-title {
       @include measures-page-subheading-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
     }
 
     .step-description {
       @include measures-page-step-description-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
     }
 
     .step-read-more {
@@ -101,8 +101,8 @@
       min-height: 60px;
 
       .step-link-text {
-        background-color: $primary-blue;
-        color: $focus-blue;
+        background-color: $light-blue;
+        color: $dark-blue;
         @include more-info-button-font;
         flex: 1;
         display: flex;
@@ -112,7 +112,7 @@
       }
 
       .step-link-icon-container {
-        background-color: $focus-blue;
+        background-color: $dark-blue;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -121,8 +121,8 @@
         .step-link-icon {
           width: 15px;
           height: 23px;
-          stroke: $primary-blue;
-          fill: $primary-blue;
+          stroke: $light-blue;
+          fill: $light-blue;
           display: block;
           line-height: 0;
         }
@@ -130,16 +130,16 @@
 
       &:hover {
         .step-link-text {
-          background-color: $focus-blue;
-          color: $primary-blue;
+          background-color: $dark-blue;
+          color: $light-blue;
         }
 
         .step-link-icon-container {
-          background-color: $primary-blue;
+          background-color: $light-blue;
 
           .step-link-icon {
-            stroke: $focus-blue;
-            fill: $focus-blue;
+            stroke: $dark-blue;
+            fill: $dark-blue;
           }
         }
       }

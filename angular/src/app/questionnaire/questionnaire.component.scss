@@ -20,7 +20,7 @@ $greyed-out: #a9a9a9;
   .question-heading {
     font-size: 36px;
     font-weight: bold;
-    color: $focus-blue;
+    color: $dark-blue;
     line-height: 38px;
     text-align: center;
     margin-bottom: 20px;
@@ -32,10 +32,10 @@ $greyed-out: #a9a9a9;
   align-items: center;
   justify-content: flex-start;
   flex-grow: 1;
-  background-color: $primary-blue;
+  background-color: $light-blue;
 
   .help-text {
-    color: $focus-blue;
+    color: $dark-blue;
   }
 
   .question {

@@ -40,7 +40,7 @@
     }
 
     .page-heading {
-      background-color: $primary-blue;
+      background-color: $light-blue;
       padding: 25px 0 20px;
     }
 
@@ -138,7 +138,7 @@
       font-size: 24px;
       line-height: 32px;
       font-weight: bold;
-      color: $focus-blue;
+      color: $dark-blue;
       padding: 20px 0;
       margin-right: 48px;
     }
@@ -149,7 +149,7 @@
       font-size: 20px;
       line-height: 24px;
       font-weight: bold;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       background-color: $lighter-grey;
       font-family: $font-family;
       display: flex;
@@ -176,7 +176,7 @@
 
       .expand-step-icon {
         margin-left: auto;
-        fill: $focus-blue;
+        fill: $dark-blue;
         display: block;
         width: 14px;
         height: 8px;
@@ -193,12 +193,12 @@
         font-size: 28px;
         line-height: 32px;
         font-weight: bold;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         padding-right: 20px;
       }
 
       &.selected-expander {
-        background-color: $darkened-blue;
+        background-color: $dark-medium-blue;
 
         .collapsible-heading {
           color: $lighter-grey;
@@ -247,7 +247,7 @@
       font-size: 24px;
       line-height: 32px;
       font-weight: bold;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       padding: 20px 0;
       margin-right: 48px;
     }
@@ -266,7 +266,7 @@
     }
 
     .page-heading {
-      background-color: $primary-blue;
+      background-color: $light-blue;
       padding: 25px 0 20px;
     }
 
@@ -436,7 +436,7 @@
       font-size: 20px;
       line-height: 24px;
       font-weight: bold;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       background-color: white;
       font-family: $font-family;
       display: flex;
@@ -452,7 +452,7 @@
         font-size: 28px;
         line-height: 32px;
         font-weight: bold;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         padding-right: 20px;
       }
     }

@@ -3,11 +3,11 @@
 
 .page-component {
   .header-row {
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     h1 {
       @include page-heading-font;
-      color: $focus-blue;
+      color: $dark-blue;
       margin: 0;
     }
   }
@@ -15,15 +15,15 @@
   .main-row {
     h2 {
       @include page-summary-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       margin: 24px 0;
     }
 
     h3 {
-      border-top: 1px solid $darkened-blue;
+      border-top: 1px solid $dark-medium-blue;
       padding-top: 24px;
       margin: 24px 0;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       @include page-section-heading-font;
     }
 
@@ -41,8 +41,8 @@
       margin: 16px 0;
 
       .beis-button-text {
-        background-color: $primary-blue;
-        color: $focus-blue;
+        background-color: $light-blue;
+        color: $dark-blue;
         @include more-info-button-font;
         flex: 1;
         display: flex;
@@ -52,7 +52,7 @@
       }
 
       .beis-button-icon-container {
-        background-color: $focus-blue;
+        background-color: $dark-blue;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -63,7 +63,7 @@
           line-height: 23px;
           font-size: 23px;
           font-weight: bold;
-          color: $primary-blue;
+          color: $light-blue;
           display: block;
         }
       }

@@ -91,7 +91,7 @@ $border-width: 1px;
   margin-top: auto;
   @include more-info-button-font;
   background-color: white;
-  color: $darkened-blue;
+  color: $dark-medium-blue;
   height: $height;
   margin-right: $arrow-width;
 
@@ -106,11 +106,11 @@ $border-width: 1px;
   }
 
   &:focus, &:hover {
-    color: $primary-blue;
-    background-color: $focus-blue;
+    color: $light-blue;
+    background-color: $dark-blue;
 
     &:after {
-      border-left-color: $focus-blue;
+      border-left-color: $dark-blue;
     }
   }
 }

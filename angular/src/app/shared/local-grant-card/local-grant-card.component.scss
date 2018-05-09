@@ -42,7 +42,7 @@
 
     .find-out-more-text {
       @include more-info-button-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       margin-bottom: 10px;
     }
 
@@ -61,12 +61,12 @@
       .new-window-icon {
         width: 14px;
         padding-left: 12px;
-        fill: $darkened-blue;
+        fill: $dark-medium-blue;
       }
 
       &:hover, &:active {
         .new-window-icon {
-          fill: $primary-blue;
+          fill: $light-blue;
         }
       }
     }
@@ -75,7 +75,7 @@
 
   &.grey-theme {
     .heading-container {
-      background-color: $primary-blue;
+      background-color: $light-blue;
     }
 
     .extra-info-container {
@@ -85,7 +85,7 @@
 
   &.default-theme {
     .heading-container {
-      background-color: $primary-blue;
+      background-color: $light-blue;
     }
 
     .extra-info-container {

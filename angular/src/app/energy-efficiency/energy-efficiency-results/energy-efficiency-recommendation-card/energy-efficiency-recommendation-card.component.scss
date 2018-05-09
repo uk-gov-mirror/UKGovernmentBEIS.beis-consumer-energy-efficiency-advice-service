@@ -87,7 +87,7 @@ $icon-column-width: $add-to-plan-column-width;
           height: 8px;
           display: block;
           line-height: 0;
-          fill: $focus-blue;
+          fill: $dark-blue;
         }
 
         &.expanded .more-detail-icon {
@@ -151,7 +151,7 @@ $icon-column-width: $add-to-plan-column-width;
           text-transform: uppercase;
           font-size: 12px;
           margin-bottom: 10px;
-          color: $focus-blue;
+          color: $dark-blue;
         }
       }
 
@@ -183,12 +183,12 @@ $icon-column-width: $add-to-plan-column-width;
       align-items: center;
       justify-content: flex-start;
       cursor: pointer;
-      color: $darkened-blue;
-      background-color: $primary-blue;
+      color: $dark-medium-blue;
+      background-color: $light-blue;
 
       &.selected {
-        background-color: $darkened-blue;
-        border-left-color: $darkened-blue;
+        background-color: $dark-medium-blue;
+        border-left-color: $dark-medium-blue;
 
         .add-to-plan-text {
           color: white;
@@ -202,7 +202,7 @@ $icon-column-width: $add-to-plan-column-width;
       }
 
       .add-to-plan-text {
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         text-transform: uppercase;
         font-size: 11px;
         text-align: center;
@@ -227,7 +227,7 @@ $icon-column-width: $add-to-plan-column-width;
         height: 30px;
 
         &.add {
-          stroke: $darkened-blue;
+          stroke: $dark-medium-blue;
         }
 
         &.remove, &.added{

@@ -20,7 +20,7 @@
     display: block;
     position: absolute;
     z-index: 2;
-    background-color: $focus-blue;
+    background-color: $dark-blue;
     margin: 0;
     padding: 0 20px 16px;
 
@@ -45,7 +45,7 @@
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .navigation-bar {
-  background-color: $focus-blue;
+  background-color: $dark-blue;
   height: 44px;
   overflow: visible;
 
@@ -74,7 +74,7 @@
     display: none;
     position: absolute;
     width: 100%;
-    background-color: $focus-blue;
+    background-color: $dark-blue;
     opacity: 0.2;
     z-index: 1;
     top: 70px;
@@ -84,13 +84,13 @@
   .down-icon {
     width: 12px;
     height: 12px;
-    fill: $primary-blue;
+    fill: $light-blue;
     margin-left: 6px;
     display: inline-block;
   }
 
   .your-plan {
-    background-color: $darkened-blue;
+    background-color: $dark-medium-blue;
     color: white;
     text-transform: uppercase;
     box-sizing: border-box;
@@ -99,7 +99,7 @@
     .more-icon {
       width: 12px;
       height: 12px;
-      fill: $primary-blue;
+      fill: $light-blue;
       transform: rotate(-90deg);
       margin: 2px 0 0 auto;
     }

@@ -2,8 +2,8 @@
 @import "styles/page";
 
 .page-heading {
-  background-color: $primary-blue;
-  color: $focus-blue;
+  background-color: $light-blue;
+  color: $dark-blue;
 
   .page-row-content {
     padding: 60px 0;
@@ -62,7 +62,7 @@
       }
 
       .link {
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         font-size: 12px;
         text-decoration: none;
       }

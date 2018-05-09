@@ -70,7 +70,7 @@ $go-button-right-chevron-width: 20px;
 
     .epc-details-header {
       font-weight: bold;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
     }
 
     .epc-details-container {
@@ -106,14 +106,14 @@ $go-button-right-chevron-width: 20px;
     .need-more-details-button {
       border: none;
       overflow: visible;
-      background-color: $primary-blue;
+      background-color: $light-blue;
       cursor: pointer;
       padding: 0;
       margin-bottom: 20px;
       max-width: 400px;
 
       .need-more-details-body {
-        color: $focus-blue;
+        color: $dark-blue;
         border: none;
         flex-grow: 1;
         height: $go-button-height;
@@ -146,40 +146,40 @@ $go-button-right-chevron-width: 20px;
           flex-grow: 1;
 
           &::after {
-            border-left: $go-button-right-chevron-width solid $primary-blue;
+            border-left: $go-button-right-chevron-width solid $light-blue;
           }
         }
 
         .button-go {
-          background-color: $focus-blue;
-          color: $primary-blue;
+          background-color: $dark-blue;
+          color: $light-blue;
           padding-left: $go-button-right-chevron-width + 16px;
           padding-right: 4px;
 
           &::after {
-            border-left: $go-button-right-chevron-width solid $focus-blue;
+            border-left: $go-button-right-chevron-width solid $dark-blue;
           }
         }
       }
 
       &:hover, &:focus {
-        background-color: $focus-blue;
+        background-color: $dark-blue;
 
         .need-more-details-body {
-          color: $primary-blue;
+          color: $light-blue;
         }
 
         .need-more-details-body {
           .button-main::after {
-            border-left-color: $focus-blue;
+            border-left-color: $dark-blue;
           }
 
           .button-go {
-            background-color: $primary-blue;
-            color: $focus-blue;
+            background-color: $light-blue;
+            color: $dark-blue;
 
             &::after {
-              border-left-color: $primary-blue;
+              border-left-color: $light-blue;
             }
           }
         }
@@ -246,7 +246,7 @@ $go-button-right-chevron-width: 20px;
       padding: 25px 0;
 
       .epc-details-header {
-        color: $darkened-blue;
+        color: $dark-medium-blue;
       }
 
       .epc-details-list {
@@ -316,7 +316,7 @@ $go-button-right-chevron-width: 20px;
       padding: 25px 0;
 
       .epc-details-header {
-        color: $darkened-blue;
+        color: $dark-medium-blue;
       }
 
       .epc-details-list {
@@ -404,7 +404,7 @@ $go-button-right-chevron-width: 20px;
       .epc-details-header {
         font-size: 20px;
         line-height: 24px;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         margin-bottom: 10px;
       }
 

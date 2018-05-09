@@ -9,7 +9,7 @@ $arrow-height: 48px;
 .mees-page {
   .page-heading {
     padding: 48px 0;
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     .page-row-content {
       display: flex;
@@ -17,7 +17,7 @@ $arrow-height: 48px;
 
       .heading-text {
         @include page-heading-font;
-        color: $focus-blue;
+        color: $dark-blue;
         flex: 2;
       }
 
@@ -81,7 +81,7 @@ $arrow-height: 48px;
 
       > div, > a {
         height: 120px;
-        border-left: 1px solid $primary-blue;
+        border-left: 1px solid $light-blue;
         padding: 0 40px;
         box-sizing: border-box;
       }
@@ -94,7 +94,7 @@ $arrow-height: 48px;
 
       .heading {
         @include quick-link-heading-font;
-        color: $darkened-blue;
+        color: $dark-medium-blue;
         display: flex;
         align-items: center;
       }
@@ -108,16 +108,16 @@ $arrow-height: 48px;
         &:focus, &:hover {
           .arrow-button {
             color: white;
-            background: $focus-blue;
+            background: $dark-blue;
             &:after {
-              border-left-color: $focus-blue;
+              border-left-color: $dark-blue;
             }
           }
         }
 
         .description {
           @include quick-link-font;
-          color: $darkened-blue;
+          color: $dark-medium-blue;
           box-sizing: border-box;
           width: 100%;
         }
@@ -134,7 +134,7 @@ $arrow-height: 48px;
           padding-left: 18px;
 
           background: white;
-          color: $darkened-blue;
+          color: $dark-medium-blue;
 
           &:after {
             position: absolute;

@@ -32,7 +32,7 @@ $mobile-step-number-margin: 12px;
 
     .step-number {
       @include step-title-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       text-transform: uppercase;
     }
 
@@ -49,7 +49,7 @@ $mobile-step-number-margin: 12px;
     .expand-step-icon {
       flex: 0 0 auto;
       margin-left: auto;
-      fill: $darkened-blue;
+      fill: $dark-medium-blue;
       display: block;
       width: 14px;
       height: 8px;
@@ -80,7 +80,7 @@ $mobile-step-number-margin: 12px;
 
         .read-more-button-icon {
           margin-left: 10px;
-          fill: $darkened-blue;
+          fill: $dark-medium-blue;
           display: block;
           width: 7px;
           height: 4px;
@@ -109,8 +109,8 @@ $mobile-step-number-margin: 12px;
         }
 
         .more-info-description {
-          background-color: $primary-blue;
-          color: $focus-blue;
+          background-color: $light-blue;
+          color: $dark-blue;
           text-transform: uppercase;
           font-size: 13px;
           line-height: 15px;
@@ -121,7 +121,7 @@ $mobile-step-number-margin: 12px;
         }
 
         .more-info-icon-container {
-          background-color: $focus-blue;
+          background-color: $dark-blue;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -129,8 +129,8 @@ $mobile-step-number-margin: 12px;
           .more-info-icon {
             width: 15px;
             height: 23px;
-            stroke: $primary-blue;
-            fill: $primary-blue;
+            stroke: $light-blue;
+            fill: $light-blue;
             display: block;
             line-height: 0;
           }

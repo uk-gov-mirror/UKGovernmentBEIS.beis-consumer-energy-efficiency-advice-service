@@ -14,7 +14,7 @@
   line-height: 15px;
   font-weight: 500;
 
-  color: $focus-blue;
+  color: $dark-blue;
   text-align: left;
   text-decoration: none;
   text-transform: uppercase;
@@ -25,7 +25,7 @@
   .text-container {
     flex: 1 1 auto;
     padding: 17px 20px 14px 20px;
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     display: flex;
     align-items: center;
@@ -33,8 +33,8 @@
 
   .arrow-container {
     flex: 0 0 70px;
-    background-color: $focus-blue;
-    stroke: $primary-blue;
+    background-color: $dark-blue;
+    stroke: $light-blue;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,13 +42,13 @@
 
   &:focus, &:hover {
     .text-container {
-      background-color: $focus-blue;
-      color: $primary-blue;
+      background-color: $dark-blue;
+      color: $light-blue;
     }
 
     .arrow-container {
-      background-color: $primary-blue;
-      stroke: $focus-blue;
+      background-color: $light-blue;
+      stroke: $dark-blue;
     }
   }
 }

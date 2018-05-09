@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
 
-      color: $focus-blue;
+      color: $dark-blue;
     }
 
     .text-box {
@@ -64,7 +64,7 @@
     padding: 0;
 
     ::ng-deep svg circle {
-      fill: $focus-blue;
+      fill: $dark-blue;
     }
 
     &[disabled], &.inactive {
@@ -75,7 +75,7 @@
     &:not([disabled]) {
       &:hover, &:focus {
         ::ng-deep svg circle {
-          fill: $darkened-blue;
+          fill: $dark-medium-blue;
         }
       }
     }
