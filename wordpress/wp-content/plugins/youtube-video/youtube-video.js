@@ -13,7 +13,7 @@
                         }],
                     onsubmit: function (e) {
                         editor.insertContent(
-                            `<iframe width="420" height="315"
+                            `<iframe
                             src="https://www.youtube.com/embed/${e.data.video_id}?rel=0">
                             </iframe>`
                         );
