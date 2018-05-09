@@ -28,7 +28,7 @@ $desktop-horizontal-grid-margin: 200px;
 .eco-suppliers-page {
   .heading-row {
     background-color: $primary-blue;
-    color: white;
+    color: $focus-blue;
 
     .title {
       @include page-heading-font;
@@ -41,7 +41,7 @@ $desktop-horizontal-grid-margin: 200px;
 
   .supplier-list-title {
     @include page-subheading-font;
-    color: $headline-dark-blue;
+    color: $darkened-blue;
   }
 
   .supplier-list-summary {
