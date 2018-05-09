@@ -3,7 +3,7 @@
 
 .page-heading {
   background-color: $primary-blue;
-  color: white;
+  color: $focus-blue;
 
   .page-row-content {
     padding: 60px 0;
@@ -62,7 +62,7 @@
       }
 
       .link {
-        color: $action-button-blue;
+        color: $darkened-blue;
         font-size: 12px;
         text-decoration: none;
       }
