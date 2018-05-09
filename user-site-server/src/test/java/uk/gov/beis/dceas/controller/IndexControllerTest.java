@@ -1,11 +1,13 @@
 package uk.gov.beis.dceas.controller;
 
+import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.regex.Pattern;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 public class IndexControllerTest {
 
@@ -105,5 +108,37 @@ public class IndexControllerTest {
                 .getAnnotation(RequestMapping.class);
 
         return asList(requestMapping.value());
+    }
+
+    /**
+     * SVGs shouldn't contain a title tag (as it confuses screen readers) or
+     * id attributes (as they cause invalid HTML if the image is used multiple times).
+     */
+    @Test
+    public void testNoTitleOrIdInSvgs() throws Exception {
+        Pattern titlePattern = Pattern.compile(".*(<title[^>]*>).*");
+        Pattern idPattern = Pattern.compile(".*( id=\"[^\"]\").*");
+
+        Files.walk(new File("../angular/src/assets/images").toPath())
+                .filter(p -> FilenameUtils.getExtension(p.toString()).equals("svg"))
+                .forEach(p -> {
+                    String contents;
+                    try {
+                        contents = String.join(" ", Files.readAllLines(p));
+                    } catch (IOException e) {
+                        fail("Error reading file: '" + p + "'");
+                        return;
+                    }
+
+                    Matcher titleMatcher = titlePattern.matcher(contents);
+                    assertThat(titleMatcher.matches())
+                            .withFailMessage("Unexpected '<title>' tag in: '" + p + "'")
+                            .isFalse();
+
+                    Matcher idMatcher = idPattern.matcher(contents);
+                    assertThat(idMatcher.matches())
+                            .withFailMessage("Unexpected 'id' attribute: '" + p + "'")
+                            .isFalse();
+                });
     }
 }
