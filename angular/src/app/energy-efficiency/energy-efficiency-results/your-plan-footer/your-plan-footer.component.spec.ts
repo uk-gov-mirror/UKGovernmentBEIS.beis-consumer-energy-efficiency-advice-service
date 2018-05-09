@@ -1,7 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
-import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-efficiency-recommendation-tag';
+import {RouterTestingModule} from '@angular/router/testing';
 import {DataCardComponent} from '../../../shared/data-card/data-card.component';
 import {YourPlanSummaryComponent} from '../../your-plan-summary/your-plan-summary.component';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
@@ -10,6 +8,8 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
+import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
+import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
 
 describe('YourPlanFooterComponent', () => {
     let component: YourPlanFooterComponent;
@@ -31,12 +31,15 @@ describe('YourPlanFooterComponent', () => {
                 YourPlanSummaryComponent
             ],
             providers: [
+                AbTestingService,
+                GoogleAnalyticsService,
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: ResponseData, useValue: responseDataStub},
             ],
             imports: [
                 InlineSVGModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                RouterTestingModule,
             ]
         })
             .compileComponents();

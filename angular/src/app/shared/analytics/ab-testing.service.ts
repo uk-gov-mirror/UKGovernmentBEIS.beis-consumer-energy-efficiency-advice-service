@@ -1,0 +1,47 @@
+import {Injectable} from '@angular/core';
+import {GoogleAnalyticsService} from './google-analytics.service';
+
+export enum AbTestingGroup {
+    A,
+    B,
+}
+
+@Injectable()
+export class AbTestingService {
+    private localStorageKey = 'ab_test_bucket';
+    private googleAnalyticsName = 'ab_test';
+
+    constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+    }
+
+    getGroup(): AbTestingGroup {
+        let group: string;
+        if (localStorageAvailable()) {
+            group = localStorage.getItem(this.localStorageKey);
+
+            if (!group) {
+                group = AbTestingGroup[Math.random() < 0.5 ? AbTestingGroup.A : AbTestingGroup.B];
+                localStorage.setItem(this.localStorageKey, group);
+            }
+        } else {
+            group = AbTestingGroup[AbTestingGroup.A];
+        }
+
+        this.googleAnalyticsService.setSessionDimension(this.googleAnalyticsName, 2, group);
+
+        return AbTestingGroup[group];
+    }
+}
+
+// Simplified version of
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Feature-detecting_localStorage
+function localStorageAvailable() {
+    try {
+        const x = '__storage_test__';
+        localStorage.setItem(x, x);
+        localStorage.removeItem(x);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}

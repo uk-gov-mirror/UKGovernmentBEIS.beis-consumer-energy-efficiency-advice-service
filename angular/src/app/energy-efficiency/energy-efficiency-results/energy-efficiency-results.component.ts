@@ -11,7 +11,8 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
 import {UserStateService} from '../../shared/user-state-service/user-state-service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {AbTestingGroup, AbTestingService} from '../../shared/analytics/ab-testing.service';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -25,6 +26,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isLoading: boolean = true;
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
+    showOldVersion: boolean;
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
@@ -32,7 +34,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private recommendationsService: RecommendationsService,
                 private energyCalculationService: EnergyCalculationApiService,
                 private userStateService: UserStateService,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private abTestingService: AbTestingService) {
     }
 
     ngOnInit() {
@@ -56,6 +59,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 },
             );
         this.userStateService.saveState();
+
+        this.showOldVersion = this.abTestingService.getGroup() === AbTestingGroup.A;
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {

@@ -22,6 +22,7 @@ import {PostcodeApiService} from './postcode-epc-service/postcode-api-service/po
 import {LocalAuthorityService} from './local-authority-service/local-authority.service';
 import {RecommendationCardComponent} from './recommendation-card/recommendation-card.component';
 import {EpcApiService} from './postcode-epc-service/epc-api-service/epc-api.service';
+import {AbTestingService} from './analytics/ab-testing.service';
 import {GoogleAnalyticsService} from './analytics/google-analytics.service';
 import {EnergySavingMeasureContentService} from './energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {QuestionReasonComponent} from './question-reason/question-reason.component';
@@ -116,6 +117,7 @@ export class SharedModule {
                 PostcodeApiService,
                 LocalAuthorityService,
                 EnergySavingMeasureContentService,
+                AbTestingService,
                 GoogleAnalyticsService,
                 AssetsService,
                 RecommendationsService,
