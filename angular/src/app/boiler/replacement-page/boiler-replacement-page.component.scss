@@ -8,11 +8,11 @@
 // General styling (shouldn't contain many widths/sizes etc.)
 .page-heading {
   background-color: $light-blue;
-  color: white;
+  color: $dark-blue;
 
   .heading-text {
     margin-bottom: 20px;
-    color: white;
+    color: $dark-blue;
   }
 }
 
