@@ -52,6 +52,7 @@ failIfMoreThanOneLine() {
     esac
 }
 
+# Take a backup of the FROM database (which we will use below to overwrite TO)
 mkdir -p database-backups
 cf target -s $FROM
 DBNAME=`cf env dceas-user-site | grep -E -o "rdsbroker_[a-z0-9_]+" | sort -u`
@@ -60,6 +61,7 @@ cf conduit dceas-database -- mysqldump $DBNAME > database-backups/$FROM_BACKUP
 echo "$FROM backed up to database-backups/$FROM_BACKUP.gz"
 gzip database-backups/$FROM_BACKUP
 
+# Take a backup of the TO database (in case things go wrong)
 cf target -s $TO
 DBNAME=`cf env dceas-user-site | grep -E -o "rdsbroker_[a-z0-9_]+" | sort -u`
 failIfMoreThanOneLine "$DBNAME"
@@ -67,6 +69,7 @@ cf conduit dceas-database -- mysqldump $DBNAME > database-backups/$TO_BACKUP
 gzip database-backups/$TO_BACKUP
 echo "$TO backed up to database-backups/$TO_BACKUP.gz"
 
+# Overwrite the TO database using the FROM backup
 zcat database-backups/$FROM_BACKUP | cf conduit dceas-database -- mysql
 
 case $TO in
