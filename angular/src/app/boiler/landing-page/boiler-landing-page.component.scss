@@ -26,12 +26,12 @@ $arrow-height: 48px;
 // General styling (shouldn't contain many widths/sizes etc.)
 
 .page-heading {
-  background-color: $primary-blue;
-  color: white;
+  background-color: $light-blue;
+  color: $dark-blue;
 
   .heading-text {
     margin-bottom: 20px;
-    color: white;
+    color: $dark-blue;
   }
 }
 
@@ -49,7 +49,7 @@ $arrow-height: 48px;
     text-decoration: none;
 
     .body-text {
-      color: $headline-dark-blue;
+      color: $dark-medium-blue;
       font-family: $font-family-light;
       min-height: 80px;
     }
@@ -65,7 +65,7 @@ $arrow-height: 48px;
       padding-left: 20px;
 
       background: white;
-      color: $primary-blue;
+      color: $dark-medium-blue;
 
       &:after {
         position: absolute;
@@ -297,9 +297,9 @@ $arrow-height: 48px;
       &:focus, &:hover {
         .arrow-button {
           color: white;
-          background: $primary-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $dark-blue;
           }
         }
       }
@@ -316,9 +316,9 @@ $arrow-height: 48px;
       &:focus, &:hover {
         .arrow-button {
           color: white;
-          background: $primary-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $dark-blue;
           }
         }
       }
