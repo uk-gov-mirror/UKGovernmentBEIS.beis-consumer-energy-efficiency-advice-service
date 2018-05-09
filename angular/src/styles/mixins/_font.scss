@@ -166,7 +166,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 @mixin read-more-font {
   @include has-font-sizes-at-breakpoints(11px, 13px, 11px, 13px, 11px, 13px);
   font-weight: 500;
-  color: $primary-blue;
+  color: $dark-medium-blue;
   text-transform: uppercase;
 }
 
@@ -240,7 +240,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 @mixin browse-video-text-font {
   @include has-font-sizes-at-breakpoints(16px, 34px, 16px, 34px, 16px, 34px);
   font-weight: bold;
-  color: $primary-blue;
+  color: $dark-medium-blue;
 }
 
 @mixin article-title-font {
@@ -258,7 +258,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   @include has-font-sizes-at-breakpoints(36px, 38px, 24px, 32px, 20px, 24px);
   font-size: 36px;
   font-weight: bold;
-  color: $darkened-blue;
+  color: $dark-medium-blue;
 }
 
 @mixin question-button-font {

@@ -42,7 +42,7 @@
         }
 
         .do-button {
-          background-color: $action-button-blue;
+          background-color: $light-blue;
           position: relative;
           box-sizing: border-box;
           width: $do-button-width * 0.44;
@@ -53,7 +53,7 @@
           align-items: center;
           font-weight: bold;
           font-size: 15px;
-          color: white;
+          color: $dark-blue;
           cursor: pointer;
           text-decoration: none;
           margin-left: 2px;
@@ -81,7 +81,7 @@
             height: 0;
             border-top: $do-button-height/2 solid transparent;
             border-bottom: $do-button-height/2 solid transparent;
-            border-left: $do-button-right-chevron-width solid $action-button-blue;
+            border-left: $do-button-right-chevron-width solid $light-blue;
           }
 
           &.disabled {
@@ -111,6 +111,7 @@
 
     .your-plan {
       background: white;
+      position: relative;
 
       .page-row-content {
         display: flex;
@@ -145,7 +146,7 @@
         }
 
         .do-button {
-          background-color: $action-button-blue;
+          background-color: $light-blue;
           position: absolute;
           right: 65px;
           bottom: 20px;
@@ -158,7 +159,7 @@
           align-items: center;
           font-weight: bold;
           font-size: 20px;
-          color: white;
+          color: $dark-blue;
           cursor: pointer;
           text-decoration: none;
 
@@ -183,7 +184,7 @@
             height: 0;
             border-top: $do-button-height/2 solid transparent;
             border-bottom: $do-button-height/2 solid transparent;
-            border-left: $do-button-right-chevron-width solid $action-button-blue;
+            border-left: $do-button-right-chevron-width solid $light-blue;
           }
 
           &.disabled {
@@ -257,7 +258,7 @@
               }
 
               .list-icon {
-                fill: $focus-text-blue;
+                fill: $dark-blue;
                 margin-right: 10px;
                 height: 12px;
                 width: 10px;
@@ -294,7 +295,7 @@
             font-family: $font-family-light;
 
             &.plan-empty {
-              color: $focus-text-blue;
+              color: $dark-blue;
             }
           }
         }
@@ -308,7 +309,7 @@
         }
 
         .do-button {
-          background-color: $action-button-blue;
+          background-color: $light-blue;
           position: relative;
           box-sizing: border-box;
           width: $do-button-width;
@@ -319,7 +320,7 @@
           align-items: center;
           font-weight: bold;
           font-size: 26px;
-          color: white;
+          color: $dark-blue;
           cursor: pointer;
           text-decoration: none;
 
@@ -344,7 +345,7 @@
             height: 0;
             border-top: $do-button-height/2 solid transparent;
             border-bottom: $do-button-height/2 solid transparent;
-            border-left: $do-button-right-chevron-width solid $action-button-blue;
+            border-left: $do-button-right-chevron-width solid $light-blue;
           }
 
           &.disabled {

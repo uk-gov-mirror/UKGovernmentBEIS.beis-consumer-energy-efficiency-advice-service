@@ -23,7 +23,7 @@ $animation-duration-vertical: 0.5s;
 
 @mixin is-search-icon($size) {
   @include is-clickable-icon($size);
-  stroke: $primary-blue;
+  stroke: $dark-medium-blue;
   margin-right: 16px;
 }
 
@@ -109,7 +109,7 @@ $animation-duration-vertical: 0.5s;
         display: inline-block;
         width: 15px;
         margin-left: -15px;
-        color: $action-button-blue;
+        color: $dark-medium-blue;
       }
 
       & > :not(:last-child) {

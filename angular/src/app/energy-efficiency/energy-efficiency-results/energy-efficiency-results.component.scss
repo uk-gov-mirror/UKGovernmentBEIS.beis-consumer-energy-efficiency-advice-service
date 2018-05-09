@@ -38,6 +38,7 @@ $grant-card-margin: 24px;
         display: flex;
         align-items: center;
         box-sizing: border-box;
+        color: $dark-blue;
       }
 
       .header-data-cards {
@@ -82,8 +83,8 @@ $grant-card-margin: 24px;
         .heading-text {
           flex: 1 0 100%;
           padding: 24px 20px 15px;
-          background-color: $lighter-grey;
-          color: $darkened-blue;
+          background-color: $light-blue;
+          color: $dark-medium-blue;
         }
 
         .header-data-cards {
@@ -126,8 +127,8 @@ $grant-card-margin: 24px;
         .heading-text {
           flex: 1 0 100%;
           padding: 34px;
-          background-color: $lighter-grey;
-          color: $darkened-blue;
+          background-color: $light-blue;
+          color: $dark-medium-blue;
         }
 
         .header-data-cards {

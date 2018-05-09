@@ -7,7 +7,7 @@
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .page-heading {
-  background-color: $primary-blue;
+  background-color: $light-blue;
   color: white;
 
   .heading-text {
@@ -53,8 +53,6 @@
   }
 
   @include tablet() {
-
-
     .checkEPC {
       .page-row-content {
         padding: 0 75px;
@@ -78,9 +76,7 @@
 }
 
 @include desktop() {
-
   .checkEPC {
-
     .page-row-content {
       box-sizing: border-box;
       padding: 0 225px;

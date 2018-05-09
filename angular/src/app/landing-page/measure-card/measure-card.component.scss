@@ -45,6 +45,7 @@ $arrow-height: 48px;
 
     .headline {
       font-size: 18px;
+      color: $dark-blue;
       font-weight: bold;
       padding: 10px 0px 20px 0px;
     }
@@ -89,7 +90,7 @@ $arrow-height: 48px;
       align-items: center;
       margin-top: auto;
       background: white;
-      color: $focus-text-blue;
+      color: $dark-medium-blue;
 
 
       &:after {
@@ -145,7 +146,7 @@ $arrow-height: 48px;
         align-items: center;
         margin-top: auto;
         background: white;
-        color: $focus-text-blue;
+        color: $dark-medium-blue;
 
 
         &:after {
@@ -160,9 +161,9 @@ $arrow-height: 48px;
 
         &:focus, &:hover {
           color: white;
-          background: $primary-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $dark-blue;
           }
         }
       }
@@ -206,7 +207,7 @@ $arrow-height: 48px;
         align-items: center;
         margin-top: auto;
         background: white;
-        color: $focus-text-blue;
+        color: $dark-medium-blue;
 
 
         &:after {
@@ -225,9 +226,9 @@ $arrow-height: 48px;
       .link {
         .arrow-button {
           color: white;
-          background: $primary-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $dark-blue;
           }
         }
       }
