@@ -29,7 +29,7 @@ $remaining-width: $content-max-width - $efficiency-box-width;
     &.efficiency {
       flex: 0 0 auto;
       width: $efficiency-box-width;
-      background-color: $dark-grey;
+      background-color: $darkened-blue;
       font-weight: bold;
       color: white;
 
@@ -80,6 +80,7 @@ $remaining-width: $content-max-width - $efficiency-box-width;
 
         .headline {
           @include card-heading-font;
+          color: $darkened-blue;
           margin-bottom: 16px;
           width: 80%;
         }
