@@ -16,3 +16,5 @@ require_once("functions/acf_image.php");
 require_once("functions/acf_wysiwyg.php");
 require_once("functions/filter_article_pages.php");
 require_once("functions/add_beis_editor_button.php");
+require_once("functions/add_youtube_video.php");
+

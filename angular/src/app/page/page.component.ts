@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-wordpress-page';
@@ -24,13 +25,15 @@ import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-
 export class PageComponent implements OnInit {
 
     pageData: ExtendedWordpressPage;
+    pageDataContent: SafeHtml;
     isLoading: boolean;
     isError: boolean;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private pageService: WordpressPagesService) {
+                private pageService: WordpressPagesService,
+                private sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {
@@ -50,6 +53,7 @@ export class PageComponent implements OnInit {
             this.router.navigate(['/404'], {skipLocationChange: true});
         }
         this.pageData = pageData;
+        this.pageDataContent = this.sanitizer.bypassSecurityTrustHtml(this.pageData.content);
         this.isLoading = false;
     }
 
