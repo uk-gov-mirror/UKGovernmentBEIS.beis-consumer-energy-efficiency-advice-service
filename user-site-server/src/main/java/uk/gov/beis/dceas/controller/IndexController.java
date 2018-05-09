@@ -30,8 +30,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * load the frontend JS bundle.
  */
 @Controller
-public class IndexController {
+public class IndexController
 
+{
+;;;
+    private Logger foo;
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Value("${dceas.apiRoot}")
