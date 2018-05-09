@@ -12,13 +12,14 @@ $grant-card-margin: 24px;
   }
 
   .page-heading {
+    background-color: $primary-blue;
 
     .page-row-content {
       padding: 60px 0;
 
       .heading-text {
         @include page-heading-font;
-        color: $headline-dark-blue;
+        color: $focus-blue;
       }
     }
   }
@@ -47,14 +48,14 @@ $grant-card-margin: 24px;
           padding: 30px 0px;
           width: 100%;
 
-          color: $focus-text-blue;
+          color: $darkened-blue;
           font-size: 28px;
           font-weight: bold;
           line-height: 32px;
         }
 
         .grant-info-title-efficiency {
-          color: $focus-text-blue;
+          color: $darkened-blue;
           font-size: 28px;
           font-weight: bold;
           line-height: 32px;
@@ -78,11 +79,11 @@ $grant-card-margin: 24px;
 
           .grant-heading {
             @include focus-text;
-            color: $focus-text-blue;
+            color: $darkened-blue;
           }
 
           .grant-description{
-            color: $headline-dark-blue;
+            color: $darkened-blue;
 
             font-size: 13px;
             font-weight: 500;
@@ -92,7 +93,7 @@ $grant-card-margin: 24px;
 
           .link-button {
             @include body-uppercase;
-            color: $focus-text-blue;
+            color: $darkened-blue;
             text-align: left;
             text-decoration: none;
             font-size: 12px;
@@ -103,7 +104,7 @@ $grant-card-margin: 24px;
             background-color: white;
             &:hover, &:focus {
               background-color: $primary-blue;
-              color: white;
+              color: $focus-blue;
             }
 
             padding: 24px 16px;
@@ -172,7 +173,7 @@ $grant-card-margin: 24px;
   }
 
   .local-grants {
-    background-color: $action-button-blue;
+    background-color: $lighter-grey;
 
     .page-row-content {
       display: flex;
@@ -190,7 +191,7 @@ $grant-card-margin: 24px;
           @include page-subheading-font;
           display: flex;
           flex-direction: column;
-          color: white;
+          color: $dark-grey;
 
           width: 700px;
 
@@ -216,7 +217,7 @@ $grant-card-margin: 24px;
           form {
 
             input {
-              background-color: $light-grey;
+              background-color: white;
               outline: none;
               border: none;
 

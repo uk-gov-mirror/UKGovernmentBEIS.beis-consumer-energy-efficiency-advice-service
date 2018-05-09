@@ -73,7 +73,7 @@
   }
 
 
-  &.blue-theme {
+  &.grey-theme {
     .heading-container {
       background-color: $primary-blue;
     }
@@ -85,11 +85,11 @@
 
   &.default-theme {
     .heading-container {
-      background-color: white;
+      background-color: $primary-blue;
     }
 
     .extra-info-container {
-      background-color: $lighter-grey;
+      background-color: white;
     }
   }
 }
