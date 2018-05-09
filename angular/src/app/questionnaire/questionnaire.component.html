@@ -1,11 +1,5 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
-    <span class="question-type-icon">
-        <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionTypeIconClassName !== 'icon-house'"></div>
-        <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionTypeIconClassName !== 'icon-thermostat'"></div>
-        <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionTypeIconClassName !== 'icon-person'"></div>
-    </span>
-    <span class="question-type-icon-baseline"></span>
     <h1 class="question-heading">
         {{currentQuestionContent.questionHeading}}
     </h1>
