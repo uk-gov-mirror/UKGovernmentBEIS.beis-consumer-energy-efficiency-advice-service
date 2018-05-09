@@ -18,17 +18,6 @@ export class DetailedLengthOfHeatingOnQuestionMetadata extends QuestionMetadata 
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return ([1, 2, 5, 6].includes(responseData.heatingPatternType)) ||
-            (
-                responseData.heatingPatternType === 3 &&
-                responseData.morningHeatingStartTime !== undefined &&
-                responseData.morningHeatingDuration !== undefined &&
-                responseData.eveningHeatingStartTime !== undefined &&
-                responseData.eveningHeatingDuration !== undefined
-            ) ||
-            (
-                responseData.heatingPatternType === 4 &&
-                responseData.heatingHoursPerDay !== undefined
-            );
+        return DetailedLengthOfHeatingOnQuestionComponent.isQuestionAnswered(responseData);
     }
 }

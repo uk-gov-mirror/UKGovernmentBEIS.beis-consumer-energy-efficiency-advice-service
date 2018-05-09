@@ -31,7 +31,7 @@ export class RdSapInput {
     readonly num_storeys: number;
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
-    readonly number_of_heating_off_hours_normal: number[];
+    readonly normal_days_off_hours: number[];
     readonly heating_pattern_type: number;
     readonly measures: boolean;
     readonly rented: boolean;
@@ -67,7 +67,7 @@ export class RdSapInput {
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
-        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
+        this.normal_days_off_hours = responseData.normalDaysOffHours;
         this.heating_pattern_type = responseData.heatingPatternType;
         this.measures = true;
         this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
@@ -208,17 +208,6 @@ export class RdSapInput {
             return fuelType.toString(10);
         }
         return undefined;
-    }
-
-    private static getNumberOfHeatingOffHoursNormal(responseData: ResponseData): number[] {
-        if (responseData.heatingHoursPerDay !== undefined) {
-            return [24 - responseData.heatingHoursPerDay];
-        } else {
-            const offPeriod1 = responseData.eveningHeatingStartTime -
-                (responseData.morningHeatingStartTime - responseData.morningHeatingDuration);
-            const offPeriod2 = 24 - responseData.morningHeatingDuration - responseData.eveningHeatingDuration - offPeriod1;
-            return [offPeriod1, offPeriod2];
-        }
     }
 
     private static getFloorArea(area: number, unit: FloorAreaUnit): number {

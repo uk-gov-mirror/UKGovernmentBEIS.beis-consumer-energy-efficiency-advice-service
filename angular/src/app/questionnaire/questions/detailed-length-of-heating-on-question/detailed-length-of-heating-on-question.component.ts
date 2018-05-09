@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import toString from 'lodash-es/toString';
+import {ResponseData} from "../../../shared/response-data/response-data";
 
 @Component({
     selector: 'app-length-of-heating-on-question',
@@ -11,6 +12,7 @@ import toString from 'lodash-es/toString';
 
 export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComponent implements OnInit {
 
+    // The indices here are BRE constants; do not change them unless BRE have changed
     readonly heatingPatterns = [
         {name: 'All day and all night', value: 1},
         {name: 'All day but off at night', value: 2},
@@ -50,6 +52,21 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
         {name: '11pm', value: 23},
     ];
 
+    static isQuestionAnswered(responseData: ResponseData) {
+        return ( ([1, 2, 5, 6].includes(responseData.heatingPatternType)) ||
+            (
+                responseData.heatingPatternType === 3 &&
+                responseData.morningHeatingStartTime !== undefined &&
+                responseData.morningHeatingDuration !== undefined &&
+                responseData.eveningHeatingStartTime !== undefined &&
+                responseData.eveningHeatingDuration !== undefined
+            ) ||
+            (
+                responseData.heatingPatternType === 4 &&
+                responseData.heatingHoursPerDay !== undefined
+            ));
+    }
+
     get responseForAnalytics(): string {
         return JSON.stringify({
             heatingPatternType: this.heatingPatternType,
@@ -67,6 +84,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     set heatingPatternType(val: number) {
         this.responseData.heatingPatternType = val;
+        this.responseData.normalDaysOffHours = this.setNormalDaysOffHours(this.responseData);
     }
 
     get morningHeatingStartTime(): number {
@@ -75,6 +93,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     set morningHeatingStartTime(val: number) {
         this.responseData.morningHeatingStartTime = val;
+        this.responseData.normalDaysOffHours = this.setNormalDaysOffHours(this.responseData);
     }
 
     get morningHeatingDuration(): number {
@@ -83,6 +102,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     set morningHeatingDuration(val: number) {
         this.responseData.morningHeatingDuration = val;
+        this.responseData.normalDaysOffHours = this.setNormalDaysOffHours(this.responseData);
     }
 
     get eveningHeatingStartTime(): number {
@@ -91,6 +111,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     set eveningHeatingStartTime(val: number) {
         this.responseData.eveningHeatingStartTime = val;
+        this.responseData.normalDaysOffHours = this.setNormalDaysOffHours(this.responseData);
     }
 
     get eveningHeatingDuration(): number {
@@ -99,6 +120,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     set eveningHeatingDuration(val: number) {
         this.responseData.eveningHeatingDuration = val;
+        this.responseData.normalDaysOffHours = this.setNormalDaysOffHours(this.responseData);
     }
 
     get heatingHoursPerDay(): number {
@@ -107,6 +129,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
 
     set heatingHoursPerDay(val: number) {
         this.responseData.heatingHoursPerDay = val;
+        this.responseData.normalDaysOffHours = this.setNormalDaysOffHours(this.responseData);
     }
 
     ngOnInit() {
@@ -119,19 +142,22 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
     }
 
     handleFormSubmit() {
-        if ( ([1, 2, 5, 6].includes(this.responseData.heatingPatternType)) ||
-        (
-            this.responseData.heatingPatternType === 3 &&
-            this.responseData.morningHeatingStartTime !== undefined &&
-            this.responseData.morningHeatingDuration !== undefined &&
-            this.responseData.eveningHeatingStartTime !== undefined &&
-            this.responseData.eveningHeatingDuration !== undefined
-        ) ||
-        (
-            this.responseData.heatingPatternType === 4 &&
-            this.responseData.heatingHoursPerDay !== undefined
-        )) {
+        if (DetailedLengthOfHeatingOnQuestionComponent.isQuestionAnswered(this.responseData)) {
             this.complete.emit();
         }
+    }
+
+    setNormalDaysOffHours(responseData: ResponseData) {
+        if ([1, 2, 5, 6].includes(responseData.heatingPatternType)) {
+            return null;
+        } else if (responseData.heatingPatternType === 4) {
+            return [24 - responseData.heatingHoursPerDay];
+        } else if (responseData.heatingPatternType === 3) {
+            const offPeriod1 = responseData.eveningHeatingStartTime -
+                (responseData.morningHeatingStartTime - responseData.morningHeatingDuration);
+            const offPeriod2 = 24 - responseData.morningHeatingDuration - responseData.eveningHeatingDuration - offPeriod1;
+            return [offPeriod1, offPeriod2];
+        }
+        return null;
     }
 }

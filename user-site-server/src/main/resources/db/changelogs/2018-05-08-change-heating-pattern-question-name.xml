@@ -10,8 +10,6 @@
                dbms="mysql">
         <sql><![CDATA[
 
-SELECT * FROM wp_postmeta WHERE post_id IN (SELECT ID FROM wp_posts WHERE post_title = 'Detailed length of heating on' AND post_type = 'question');
-
 UPDATE wp_postmeta
 SET meta_value = 'Most days during winter I have my heating on:'
 WHERE meta_key = 'questionHeading'

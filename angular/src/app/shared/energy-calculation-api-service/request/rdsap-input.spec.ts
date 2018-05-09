@@ -56,10 +56,13 @@ describe('RdsapInput', () => {
             hotWaterCylinder: false,
             condensingBoiler: false,
             electricityTariff: undefined,
-            detailedLengthOfHeatingOnEarlyHours: undefined,
-            detailedLengthOfHeatingOnMorning: undefined,
-            detailedLengthOfHeatingOnAfternoon: undefined,
-            detailedLengthOfHeatingOnEvening: undefined,
+            heatingPatternType: null,
+            morningHeatingStartTime: null,
+            morningHeatingDuration: null,
+            eveningHeatingStartTime: null,
+            eveningHeatingDuration: null,
+            heatingHoursPerDay: null,
+            normalDaysOffHours: null,
             numberOfAdultsAgedUnder64: numberOfAdultsUnder64,
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,
@@ -97,20 +100,6 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.occupants).toBe(expectedNumberOfOccupants);
-        });
-
-        it('should calculate number of heating off hours normal correctly', () => {
-            // given
-            responseData.detailedLengthOfHeatingOnEarlyHours = 3;
-            responseData.detailedLengthOfHeatingOnMorning = 6;
-            responseData.detailedLengthOfHeatingOnAfternoon = 0;
-            responseData.detailedLengthOfHeatingOnEvening = 0;
-
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.number_of_heating_off_hours_normal).toEqual([3, 0, 6, 6]);
         });
 
         it('should calculate flat level correctly', () => {

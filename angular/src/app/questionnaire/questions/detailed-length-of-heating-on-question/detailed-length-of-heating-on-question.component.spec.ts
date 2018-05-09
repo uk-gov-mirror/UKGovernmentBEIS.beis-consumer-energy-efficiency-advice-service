@@ -13,8 +13,6 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
     let fixture: ComponentFixture<DetailedLengthOfHeatingOnQuestionComponent>;
     let responseData: ResponseData;
 
-    const originalEarlyHours: number = 2;
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DetailedLengthOfHeatingOnQuestionComponent, NumberQuestionComponent],
@@ -28,7 +26,6 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
         responseData = TestBed.get(ResponseData);
         fixture = TestBed.createComponent(DetailedLengthOfHeatingOnQuestionComponent);
         component = fixture.componentInstance;
-        component.earlyHours = originalEarlyHours;
         fixture.detectChanges();
     });
 
@@ -36,23 +33,63 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should populate with original number of early hours in response data', async(() => {
+    it('should show the morning-evening questions if they pick the "Morning and evening"', () => {
+        // given
+        component.heatingPatternType = 3;
+        fixture.detectChanges();
+
+        // when
         fixture.whenStable().then(() => {
-            const earlyHoursInput = fixture.debugElement.query(By.css('.early-hours-input input'));
-            expect(earlyHoursInput.nativeElement.value).toBe(originalEarlyHours.toString());
+            const morningEveningQuestion = fixture.debugElement.query(By.css('.morning-evening-question'));
+            expect(morningEveningQuestion).not.toBeNull();
+        });
+    });
+
+    it('should show the heating hours questions if they pick the "Just once a day"', () => {
+        // given
+        component.heatingPatternType = 4;
+        fixture.detectChanges();
+
+        // when
+        const heatingHoursQuestion = fixture.debugElement.query(By.css('.heating-hours-question'));
+        expect(heatingHoursQuestion).not.toBeNull();
+    });
+
+    it('should update the value of heatingPatternType if the user picks an option', async (() => {
+        fixture.whenStable().then(() => {
+            const heatingPatternDropdown = fixture.debugElement.query(By.css('.heating-pattern-dropdown'));
+            heatingPatternDropdown.nativeElement.value = "3: 4";
+            heatingPatternDropdown.nativeElement.dispatchEvent(new Event('change'));
+            expect(component.heatingPatternType).toEqual(4);
         });
     }));
 
-    it('should set the response given a valid number of early hours', () => {
-        // given
-        const expectedEarlyHours = 5;
 
-        // when
-        const earlyHoursInput = fixture.debugElement.query(By.css('.early-hours-input input'));
-        earlyHoursInput.nativeElement.value = expectedEarlyHours;
-        earlyHoursInput.nativeElement.dispatchEvent(new Event('input'));
 
-        // then
-        expect(component.earlyHours).toBe(expectedEarlyHours);
-    });
+    it('normalDaysOffHours should be correct if heatingPatternType is 3', async (() => {
+        fixture.whenStable().then(() => {
+            const heatingPatternDropdown = fixture.debugElement.query(By.css('.heating-pattern-dropdown'));
+            heatingPatternDropdown.nativeElement.value = "2: 3";
+            heatingPatternDropdown.nativeElement.dispatchEvent(new Event('change'));
+            expect(component.setNormalDaysOffHours(responseData)).toEqual([11, 4]);
+        });
+    }));
+
+    it('normalDaysOffHours should be correct if heatingPatternType is 4', async (() => {
+        fixture.whenStable().then(() => {
+            const heatingPatternDropdown = fixture.debugElement.query(By.css('.heating-pattern-dropdown'));
+            heatingPatternDropdown.nativeElement.value = "3: 4";
+            heatingPatternDropdown.nativeElement.dispatchEvent(new Event('change'));
+            expect(component.setNormalDaysOffHours(responseData)).toEqual([24]);
+        });
+    }));
+
+    it('normalDaysOffHours should be null if heatingPatternType is not 3 or 4', async (() => {
+        fixture.whenStable().then(() => {
+            const heatingPatternDropdown = fixture.debugElement.query(By.css('.heating-pattern-dropdown'));
+            heatingPatternDropdown.nativeElement.value = "1: 2";
+            heatingPatternDropdown.nativeElement.dispatchEvent(new Event('change'));
+            expect(component.setNormalDaysOffHours(responseData)).toBeNull();
+        });
+    }));
 });
