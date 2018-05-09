@@ -29,27 +29,27 @@ fi
 
 THISDIR=$(dirname "$0")
 
-# Backup $FROM
-ENV=$FROM . $THISDIR/backup-database.sh
-
 # Backup $TO
 ENV=$TO . $THISDIR/backup-database.sh
+
+# Backup $FROM
+ENV=$FROM . $THISDIR/backup-database.sh
 
 # Determine env-specific settings
 case $TO in
   localhost )
-    MYSQL_CMD="mysql -uwordpress -pwordpressPassword123 wordpress"
+    MYSQL_CMD="mysql -uwordpress -pwordpressPassword123 --default-character-set=utf8mb4 wordpress"
     WPHOME=http://localhost:81
   ;;
   int | staging )
     cf target -s $TO
-    MYSQL_CMD="cf conduit dceas-database -- mysql"
+    MYSQL_CMD="cf conduit dceas-database -- mysql --default-character-set=utf8mb4"
     WPHOME=https://dceas-admin-site-$TO.cloudapps.digital
   ;;
   live )
     # TODO:BEISDEAS-296 update this when final hostname is ready
     cf target -s $TO
-    MYSQL_CMD="cf conduit dceas-database -- mysql"
+    MYSQL_CMD="cf conduit dceas-database -- mysql --default-character-set=utf8mb4"
     WPHOME=https://dceas-admin-site.cloudapps.digital
   ;;
   * )

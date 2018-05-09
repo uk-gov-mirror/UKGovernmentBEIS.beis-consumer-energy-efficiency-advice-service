@@ -27,11 +27,11 @@ if [[ -f $FILE ]]; then
 fi
 
 if [[ $ENV == "localhost" ]]; then
-    mysqldump -uwordpress -pwordpressPassword123 wordpress > $FILE
+    mysqldump -uwordpress -pwordpressPassword123 --default-character-set=utf8mb4 wordpress > $FILE
 else
     cf target -s $ENV
     DBNAME=`echo 'SELECT DATABASE();' | cf conduit dceas-database -- mysql --skip-column-names | tr -d '[:space:]'`
-    cf conduit dceas-database -- mysqldump $DBNAME > $FILE
+    cf conduit dceas-database -- mysqldump --default-character-set=utf8mb4 $DBNAME > $FILE
 fi
 gzip $FILE
 echo "$ENV backed up to $FILE.gz"
