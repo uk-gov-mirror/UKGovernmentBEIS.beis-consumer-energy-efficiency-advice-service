@@ -17,7 +17,6 @@ import {EnergyEfficiencyRecommendationCardComponent} from './energy-efficiency-r
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
-import {RecommendationFilterControlComponent} from './recommendation-filter-control/recommendation-filter-control.component';
 import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
 import {BreakEvenComponent} from './break-even/break-even.component';
 import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.component';
@@ -65,6 +64,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Loft insulation',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
@@ -82,6 +83,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Solar photovoltaic panels',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
@@ -99,6 +102,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Cylinder insulation',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
             grant: {
                 grantId: 'national-grant-1',
@@ -137,7 +142,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
                 LocalGrantCardComponent,
-                RecommendationFilterControlComponent,
                 BreakEvenComponent,
                 YourPlanFooterComponent,
                 YourPlanSummaryComponent,
@@ -209,36 +213,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
-    it('should initialise with the top-recommendations filter selected', () => {
+    it('should show recommendations', async(() => {
         // when
-        fixture.detectChanges();
-
-        // then
-        expect(component.activeTagFilters).toEqual(EnergyEfficiencyRecommendationTag.TopRecommendations);
-    });
-
-    it('should apply filters', () => {
-        // given
-        fixture.detectChanges();
-
-        // when
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.Grant;
-        fixture.detectChanges();
-
-        // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(
-            By.directive(EnergyEfficiencyRecommendationCardComponent)
-        );
-        const expectedNumberOfElements = recommendations.filter(rec => !!rec.grant).length;
-        expect(recommendationElements.length).toEqual(expectedNumberOfElements);
-    });
-
-    it('should show recommendations matching any of multiple selected filters', async(() => {
-        // given
-        fixture.detectChanges();
-
-        // when
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm;
         fixture.detectChanges();
 
         // then

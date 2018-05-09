@@ -1,8 +1,9 @@
 <div class="data-card" [ngClass]="{'vertical-mobile': isVerticalAtMobile, 'small-data-card': isSmallCard}">
     <div class="heading">{{heading}}</div>
-    <div class="number-value"
+    <div class="value-container"
          [class.color-circle]="colorCircleClassName"
+         [class.is-percent]="isPercent"
          [ngClass]="colorCircleClassName">
-        <div>{{value}}</div>
+        <div class="value">{{value}}</div>
     </div>
 </div>

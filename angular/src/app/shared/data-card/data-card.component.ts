@@ -12,4 +12,5 @@ export class DataCardComponent {
     @Input() isVerticalAtMobile: boolean = false;
     // Causes the height of a data card to be reduced at mobile and tablet sizes
     @Input() isSmallCard: boolean = false;
+    @Input() isPercent: boolean = false;
 }

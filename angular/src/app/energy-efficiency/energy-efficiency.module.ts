@@ -9,7 +9,6 @@ import {YourPlanPageComponent} from './your-plan-page/your-plan-page.component';
 import {YourPlanSummaryComponent} from './your-plan-summary/your-plan-summary.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results/energy-efficiency-results.component';
 import {EnergyEfficiencyRecommendationCardComponent} from './energy-efficiency-results/energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
-import {RecommendationFilterControlComponent} from './energy-efficiency-results/recommendation-filter-control/recommendation-filter-control.component';
 import {RoutingModule} from '../app-routing.module';
 import {RecommendationStepCardComponent} from './your-plan-page/recommendation-step-card/recommendation-step-card.component';
 import {DownloadPlanComponent} from './your-plan-page/download-plan/download-plan.component';
@@ -23,7 +22,6 @@ import {YourPlanFooterComponent} from './energy-efficiency-results/your-plan-foo
         YourPlanSummaryComponent,
         EnergyEfficiencyResultsComponent,
         EnergyEfficiencyRecommendationCardComponent,
-        RecommendationFilterControlComponent,
         YourPlanFooterComponent,
         RecommendationStepCardComponent,
         DownloadPlanComponent,

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
 import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
@@ -7,10 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import sumBy from 'lodash-es/sumBy';
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
-import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
-import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 import {UserStateService} from '../../shared/user-state-service/user-state-service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
@@ -27,18 +25,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isLoading: boolean = true;
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
-    _activeTagFilters: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
-
-    get activeTagFilters(): EnergyEfficiencyRecommendationTag {
-        return this._activeTagFilters;
-    }
-
-    set activeTagFilters(val: EnergyEfficiencyRecommendationTag) {
-        this._activeTagFilters = val;
-        this.onDisplayedRecommendationCardsChanged();
-    }
-
-    @ViewChild(StickyRowWrapperComponent) yourPlanFooterWrapperComponent: StickyRowWrapperComponent;
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
@@ -73,14 +59,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.allRecommendations
-            .filter(recommendation => {
-                const requiredTags = this.activeTagFilters;
-                if (requiredTags === EnergyEfficiencyRecommendationTag.None) {
-                    return true;
-                }
-                return requiredTags & recommendation.tags;
-            });
+        return this.allRecommendations;
     }
 
     get showMonthlySavings() {
@@ -95,14 +74,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page');
     }
 
-    private onDisplayedRecommendationCardsChanged() {
-        setTimeout(() => {
-            if (this.yourPlanFooterWrapperComponent) {
-                this.yourPlanFooterWrapperComponent.updateRowPosition();
-            }
-        });
-    }
-
     private displayErrorMessage(err: any): void {
         console.error(err);
         this.isLoading = false;
@@ -114,7 +85,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         energyCalculationResponse: EnergyCalculationResponse
     ) {
         this.allRecommendations = allRecommendations;
-        this.activeTagFilters = EnergyEfficiencyRecommendationTag.TopRecommendations;
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             energyCalculationResponse,
             this.allRecommendations
