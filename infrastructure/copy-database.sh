@@ -71,11 +71,11 @@ zcat database-backups/$FROM_BACKUP | cf conduit dceas-database -- mysql
 
 case $TO in
   int | staging )
-    HOST=dceas-user-site-$TO.cloudapps.digital
+    HOST=dceas-admin-site-$TO.cloudapps.digital
   ;;
   live )
     # TODO:BEISDEAS-296 update this when final hostname is ready
-    HOST=dceas-user-site.cloudapps.digital
+    HOST=dceas-admin-site.cloudapps.digital
   ;;
   * )
     echo "Bad space value"
