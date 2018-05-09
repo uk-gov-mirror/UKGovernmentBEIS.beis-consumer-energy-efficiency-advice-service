@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-05-09-add-FPNES-grant-post.xml"
+               author="richard.bradley@softwire.com"
+               dbms="mysql">
+
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 18:11:43','2018-05-09 17:11:43','','Fuel Poor Network Extension Scheme','','publish','closed','closed','','fuel-poor-network-extension-scheme','','','2018-05-09 18:16:52','2018-05-09 17:16:52','',0,'http://localhost:81/?post_type=national_grant&#038;p=10296',0,'national_grant','',0)
+SET @p_1 = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta`
+(post_id, meta_key, meta_value)
+VALUES
+(@p_1,'heading','Fuel Poor Network Extension Scheme'),
+(@p_1,'_heading','field_5a0d969b5dbb1'),
+(@p_1,'description','The Fuel Poor Network Extension Scheme offers qualifying householders free or discounted connections to the mains gas network.'),
+(@p_1,'_description','field_5a0d96a17c14c'),
+(@p_1,'link_to_measures','0'),
+(@p_1,'_link_to_measures','field_5a130423bd41e'),
+(@p_1,'display_without_measures','1'),
+(@p_1,'_display_without_measures','field_5a13037c70fa5'),
+(@p_1,'find_out_more_link',''),
+(@p_1,'_find_out_more_link','field_5ae88bd1f488f'),
+(@p_1,'advantages',''),
+(@p_1,'_advantages','field_5a16a911c5cea'),
+(@p_1,'steps','3'),
+(@p_1,'_steps','field_5a1d95ff516b4'),
+(@p_1,'steps_0_headline','What it is'),
+(@p_1,'_steps_0_headline','field_5a1d960b0ca19'),
+(@p_1,'steps_0_description','The Fuel Poor Network Extension Scheme offers qualifying householders free or discounted connections to the mains gas network.'),
+(@p_1,'_steps_0_description','field_5a1d961060dd4'),
+(@p_1,'steps_0_read_more','How much you will get depends on your circumstances. Any money you receive is tax-free and will not affect your other benefits.'),
+(@p_1,'_steps_0_read_more','field_5a9d5803dc7d1'),
+(@p_1,'steps_0_more_info_links',''),
+(@p_1,'_steps_0_more_info_links','field_5a1d961873764'),
+(@p_1,'steps_1_headline','Am I eligible?'),
+(@p_1,'_steps_1_headline','field_5a1d960b0ca19'),
+(@p_1,'steps_1_description','You may be eligible if you live in a deprived area or qualify as living in Fuel Poverty.'),
+(@p_1,'_steps_1_description','field_5a1d961060dd4'),
+(@p_1,'steps_1_read_more',''),
+(@p_1,'_steps_1_read_more','field_5a9d5803dc7d1'),
+(@p_1,'steps_1_more_info_links_0_button_text','Qualifying Criteria'),
+(@p_1,'_steps_1_more_info_links_0_button_text','field_5a1d961e90e5f'),
+(@p_1,'steps_1_more_info_links_0_link_url','https://www.affordablewarmthsolutions.org.uk/get-connected/qualifying-criteria'),
+(@p_1,'_steps_1_more_info_links_0_link_url','field_1234d9bfa97e7'),
+(@p_1,'steps_1_more_info_links','1'),
+(@p_1,'_steps_1_more_info_links','field_5a1d961873764'),
+(@p_1,'steps_2_headline','How do I apply?'),
+(@p_1,'_steps_2_headline','field_5a1d960b0ca19'),
+(@p_1,'steps_2_description','Apply to your local gas supplier.'),
+(@p_1,'_steps_2_description','field_5a1d961060dd4'),
+(@p_1,'steps_2_read_more',''),
+(@p_1,'_steps_2_read_more','field_5a9d5803dc7d1'),
+(@p_1,'steps_2_more_info_links_0_button_text','Cadent Gas application'),
+(@p_1,'_steps_2_more_info_links_0_button_text','field_5a1d961e90e5f'),
+(@p_1,'steps_2_more_info_links_0_link_url','https://www.affordablewarmthsolutions.org.uk/get-connected/assessment-form'),
+(@p_1,'_steps_2_more_info_links_0_link_url','field_1234d9bfa97e7'),
+(@p_1,'steps_2_more_info_links','1'),
+(@p_1,'_steps_2_more_info_links','field_5a1d961873764');
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

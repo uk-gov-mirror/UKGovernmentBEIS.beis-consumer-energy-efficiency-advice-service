@@ -113,7 +113,7 @@ public class SchedulerConfig {
         return createCronTrigger(jobDetail, cronExpression);
     }
 
-    private static JobDetailFactoryBean createJobDetail(Class jobClass) {
+    private static JobDetailFactoryBean createJobDetail(Class<?> jobClass) {
         JobDetailFactoryBean factoryBean = new JobDetailFactoryBean();
         factoryBean.setJobClass(jobClass);
         // job has to be durable to be stored in DB:
