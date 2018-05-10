@@ -54,6 +54,9 @@ You can update the branch with a git command like:
 
 Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/live...staging?expand=1)
 
+You may need to clear the WP cache if you have made changes to any WP posts. You can 
+  do this [here](https://dceas-admin-site-staging.cloudapps.digital/wp-admin/options-general.php?page=rest-cache&rest_cache_empty=1&rest_cache_nonce=793daf4737).
+
 ### Staging deployment
 
 The same as "live", except that the branch name is "`staging`" and it should
