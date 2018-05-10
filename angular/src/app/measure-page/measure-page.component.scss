@@ -41,36 +41,6 @@
 
   .contents-section {
     border-bottom: 4px solid $light-grey;
-
-    .contents-title {
-      @include page-subheading-font;
-      color: $dark-medium-blue;
-      margin-bottom: 8px;
-
-      .contents-title-icon {
-        width: 24px;
-        height: 24px;
-        fill: $icon-blue;
-        display: inline-block;
-        margin-right: 4px;
-      }
-    }
-
-    .contents-link {
-      cursor: pointer;
-      margin-bottom: 4px;
-      display: flex;
-    }
-
-    .contents-number {
-      display: inline-block;
-      flex: 0 0 26px;
-    }
-
-    .contents-item {
-      display: inline-block;
-      @include page-body-font;
-    }
   }
 
   .steps-section {

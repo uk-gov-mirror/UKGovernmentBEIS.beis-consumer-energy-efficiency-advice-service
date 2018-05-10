@@ -143,7 +143,7 @@ function setup_national_grant_acf_group() {
                     'name' => 'advantages',
                     'instructions' => 'A list of benefits/advantages to be displayed with this grant on the results page (enter one on each line, these will be displayed as a bulleted list)',
                     'type' => 'repeater',
-                    'required' => 1,
+                    'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
                         'width' => '',

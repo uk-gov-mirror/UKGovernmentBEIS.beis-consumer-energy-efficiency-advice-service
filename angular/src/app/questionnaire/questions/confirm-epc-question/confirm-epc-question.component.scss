@@ -217,7 +217,7 @@ $go-button-right-chevron-width: 20px;
             justify-content: center;
           }
 
-          .number-value {
+          .value-container {
             margin-right: 40px;
           }
         }
@@ -305,7 +305,7 @@ $go-button-right-chevron-width: 20px;
       ::ng-deep .data-card {
         justify-content: flex-start;
 
-        .number-value {
+        .value-container {
           margin: auto;
         }
       }
@@ -364,7 +364,7 @@ $go-button-right-chevron-width: 20px;
         ::ng-deep .data-card {
           justify-content: flex-start;
 
-          .number-value {
+          .value-container {
             margin: auto;
           }
         }

@@ -10,9 +10,9 @@ case $FROM in
     exit 1
   ;;
 esac
-read -p "To where? (int,staging,live): " TO
+read -p "To where? (localhost,int,staging,live): " TO
 case $TO in
-  int | staging | live )
+  localhost | int | staging | live )
   ;;
   * )
     echo "Bad space value"
@@ -27,55 +27,30 @@ if [[ $YES != "yes" ]]; then
     exit 1
 fi
 
-DATE=`date +%Y-%m-%d_%H.%M.%S`
-FROM_BACKUP="$DATE-$FROM-backup.sql"
-if [[ -f $FROM_BACKUP ]]; then
-    echo "ERROR: File already exists: $FROM_BACKUP"
-    exit 1
-fi
-TO_BACKUP="$DATE-$TO-backup.sql"
-if [[ -f $TO_BACKUP ]]; then
-    echo "ERROR: File already exists: $TO_BACKUP"
-    exit 1
-fi
+THISDIR=$(dirname "$0")
 
-set -x
+# Backup $TO
+ENV=$TO . $THISDIR/backup-database.sh
 
-# This could be simplified by using `SELECT DATABASE();` in `cf conduit`, rather than
-# looking through `cf env` as we currently do.
-failIfMoreThanOneLine() {
-    NL='
-'
-    case $1 in
-      *"$NL"*) exit 1 ;;
-            *) ;;
-    esac
-}
+# Backup $FROM
+ENV=$FROM . $THISDIR/backup-database.sh
 
-mkdir -p database-backups
-cf target -s $FROM
-DBNAME=`cf env dceas-user-site | grep -E -o "rdsbroker_[a-z0-9_]+" | sort -u`
-failIfMoreThanOneLine "$DBNAME"
-cf conduit dceas-database -- mysqldump $DBNAME > database-backups/$FROM_BACKUP
-echo "$FROM backed up to database-backups/$FROM_BACKUP.gz"
-gzip database-backups/$FROM_BACKUP
-
-cf target -s $TO
-DBNAME=`cf env dceas-user-site | grep -E -o "rdsbroker_[a-z0-9_]+" | sort -u`
-failIfMoreThanOneLine "$DBNAME"
-cf conduit dceas-database -- mysqldump $DBNAME > database-backups/$TO_BACKUP
-gzip database-backups/$TO_BACKUP
-echo "$TO backed up to database-backups/$TO_BACKUP.gz"
-
-zcat database-backups/$FROM_BACKUP | cf conduit dceas-database -- mysql
-
+# Determine env-specific settings
 case $TO in
+  localhost )
+    MYSQL_CMD="mysql -uwordpress -pwordpressPassword123 --default-character-set=utf8mb4 wordpress"
+    WPHOME=http://localhost:81
+  ;;
   int | staging )
-    HOST=dceas-admin-site-$TO.cloudapps.digital
+    cf target -s $TO
+    MYSQL_CMD="cf conduit dceas-database -- mysql --default-character-set=utf8mb4"
+    WPHOME=https://dceas-admin-site-$TO.cloudapps.digital
   ;;
   live )
     # TODO:BEISDEAS-296 update this when final hostname is ready
-    HOST=dceas-admin-site.cloudapps.digital
+    cf target -s $TO
+    MYSQL_CMD="cf conduit dceas-database -- mysql --default-character-set=utf8mb4"
+    WPHOME=https://dceas-admin-site.cloudapps.digital
   ;;
   * )
     echo "Bad space value"
@@ -83,7 +58,14 @@ case $TO in
   ;;
 esac
 
-SQL="update wp_options set option_value = 'https://$HOST' \
+echo "Restoring $DB_BACKUP_FILE onto $TO"
+if [[ ! -f $DB_BACKUP_FILE ]]; then
+    echo "Expected to find backup at $DB_BACKUP_FILE"
+    exit 1
+fi
+zcat $DB_BACKUP_FILE | eval $MYSQL_CMD
+
+SQL="update wp_options set option_value = '$WPHOME' \
       where option_name in ('siteurl', 'home');"
 
-echo "$SQL" | cf conduit dceas-database -- mysql
+echo "$SQL" | eval $MYSQL_CMD
