@@ -87,21 +87,6 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'grants/winter-fuel-payments',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'grants/warm-home-discount',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'grants/cold-weather-payments',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
         path: 'about-this-site',
         component: PageNotCreatedComponent,
         pathMatch: 'full'
@@ -155,16 +140,6 @@ const routes: Routes = [
         path: 'boiler/results',
         component: BoilerResultsPageComponent,
         canActivate: [BoilerResultsPageRouteGuard]
-    },
-    {
-        path: 'boiler-grants',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'boiler/heat-incentive',
-        component: PageNotCreatedComponent,
-        pathMatch: 'full'
     },
     {
         path: 'landlord-obligations',
