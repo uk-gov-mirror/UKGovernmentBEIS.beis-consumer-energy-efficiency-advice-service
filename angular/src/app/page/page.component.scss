@@ -92,6 +92,12 @@
     .main-row {
       padding: 28px 0 44px;
 
+      .page-row-content {
+        p, h2, h3 {
+          padding: 0px 10px;
+        }
+      }
+
       .youtube-video {
         height: 225px;
         width: 300px;

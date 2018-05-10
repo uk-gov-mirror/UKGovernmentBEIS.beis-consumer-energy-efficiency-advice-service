@@ -288,6 +288,26 @@ $grant-card-margin: 24px;
   }
 }
 
+@include mobile() {
+  *{
+  }
+  .grants-landing-page {
+    .local-grants {
+      height: auto;
+      .page-row-content {
+        .postcode-input {
+          height: 400px;
+          flex-direction: column;
+          .enter-postcode-text {
+            width: auto;
+          }
+        }
+      }
+    }
+
+  }
+}
+
 .validation-error, .network-error {
   margin-top: 20px;
   background-color: $red;
