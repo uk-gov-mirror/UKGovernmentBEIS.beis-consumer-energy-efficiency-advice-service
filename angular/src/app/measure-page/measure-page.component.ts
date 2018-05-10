@@ -50,14 +50,13 @@ export class MeasurePageComponent implements OnInit {
         this.isLoading = false;
     }
 
+    getHeadings(): string[] {
+        return this.measureData.steps.map(step => step.headline);
+    }
+
     displayErrorAndLogMessage(err: any): void {
         console.error(err);
         this.isLoading = false;
         this.isError = true;
-    }
-
-    getFormattedNumberFromIndex(index: number): string {
-        const stepNumber = index + 1;
-        return padStart(stepNumber.toString(), 2, '0');
     }
 }
