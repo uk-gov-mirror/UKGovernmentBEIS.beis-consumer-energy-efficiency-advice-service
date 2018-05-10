@@ -15,6 +15,7 @@ import {LatestNewsSectionComponent} from '../shared/latest-news-section/latest-n
 import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-card.component';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
+import {ContentsTableComponent} from "../shared/contents-table/contents-table.component";
 
 describe('MeasurePageComponent', () => {
     let component: MeasurePageComponent;
@@ -70,6 +71,7 @@ describe('MeasurePageComponent', () => {
                 SpinnerAndErrorContainerComponent,
                 LatestNewsSectionComponent,
                 LatestNewsCardComponent,
+                ContentsTableComponent,
                 MockSafePipe
             ],
             imports: [RouterTestingModule.withRoutes([]), InlineSVGModule],

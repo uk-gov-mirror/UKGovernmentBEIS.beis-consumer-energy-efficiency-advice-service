@@ -15,62 +15,8 @@ describe('YourPlanFooterComponent', () => {
     let component: YourPlanFooterComponent;
     let fixture: ComponentFixture<YourPlanFooterComponent>;
 
-    const recommendations: EnergyEfficiencyRecommendation[] = [
-        {
-            investmentPounds: 199,
-            lifetimeYears: 40,
-            costSavingPoundsPerYear: 99,
-            costSavingPoundsPerMonth: 99 / 12,
-            energySavingKwhPerYear: 100,
-            readMoreRoute: ('dummy-route'),
-            iconPath: 'icons/dummy.svg',
-            headline: 'Loft insulation',
-            summary: 'No description available',
-            tags: EnergyEfficiencyRecommendationTag.LongerTerm,
-            grant: null,
-            advantages: [],
-            steps: [],
-            isAddedToPlan: false,
-            recommendationID: ''
-        },
-        {
-            investmentPounds: 999,
-            lifetimeYears: 40,
-            costSavingPoundsPerYear: 200,
-            costSavingPoundsPerMonth: 200 / 12,
-            energySavingKwhPerYear: 250,
-            readMoreRoute: ('dummy-route'),
-            iconPath: 'icons/dummy.svg',
-            headline: 'Solar photovoltaic panels',
-            summary: 'No description available',
-            tags: EnergyEfficiencyRecommendationTag.LongerTerm,
-            grant: null,
-            advantages: [],
-            steps: [],
-            isAddedToPlan: false,
-            recommendationID: ''
-        },
-        {
-            investmentPounds: 20,
-            lifetimeYears: 40,
-            costSavingPoundsPerYear: 10,
-            costSavingPoundsPerMonth: 10 / 12,
-            energySavingKwhPerYear: 5,
-            readMoreRoute: ('dummy-route'),
-            iconPath: 'icons/dummy.svg',
-            headline: 'Cylinder insulation',
-            summary: 'No description available',
-            tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
-            grant: null,
-            advantages: [],
-            steps: [],
-            isAddedToPlan: false,
-            recommendationID: ''
-        }
-    ];
-
     const recommendationsServiceStub = {
-        getRecommendationsInPlan: () => recommendations
+        getRecommendationsInPlan: () => []
     };
 
     const responseDataStub = {
@@ -104,13 +50,5 @@ describe('YourPlanFooterComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('should display the correct recommendations', () => {
-        const recommendationHeadlines = fixture.debugElement.queryAll(By.css('.recommendation-name'))
-            .map(el => el.nativeElement.innerText);
-        expect(recommendationHeadlines.length).toEqual(recommendations.length);
-        recommendations.forEach(expectedRecommendation =>
-            expect(recommendationHeadlines).toContain(expectedRecommendation.headline));
     });
 });

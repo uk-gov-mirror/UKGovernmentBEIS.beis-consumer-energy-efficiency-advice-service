@@ -1,6 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 @import "styles/mixins/layout";
+@import "../energy-efficiency-page-sizes";
 
 // Component specific variables
 $grant-cards-per-row: 4;
@@ -21,7 +22,7 @@ $desktop-heading-vertical-padding: 20px;
 
       .heading {
         @include page-heading-small-font;
-        color: $headline-dark-blue;
+        color: $dark-blue;
         padding-bottom: 10px;
       }
 
@@ -42,15 +43,26 @@ $desktop-heading-vertical-padding: 20px;
         display: flex;
         flex-direction: column;
 
-        .headline {
-          font-weight: bold;
-          font-size: 24px;
-          margin-bottom: 10px;
-        }
+        .details {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          background-color: white;
 
-        .description {
-          @include page-subheadline-small-font;
-          margin-bottom: 20px;
+          .description {
+            display: flex;
+            flex-direction: column;
+
+            .headline {
+              font-weight: bold;
+              font-size: 24px;
+              margin-bottom: 10px;
+            }
+
+            .summary {
+              @include page-subheadline-small-font;
+            }
+          }
         }
       }
     }
@@ -59,7 +71,7 @@ $desktop-heading-vertical-padding: 20px;
     .headline {
       margin-left: 20px;
     }
-    .description {
+    .summary {
       margin-left: 20px;
     }
   }
@@ -100,8 +112,8 @@ $desktop-heading-vertical-padding: 20px;
         .heading {
           flex: 0 0 100%;
           padding: 25px 20px 16px;
-          background-color: $lighter-grey;
-          color: $darkened-blue;
+          background-color: $light-blue;
+          color: $dark-blue;
         }
 
         .subheading {
@@ -123,6 +135,28 @@ $desktop-heading-vertical-padding: 20px;
 
         .recommendation-steps-card {
           padding-bottom: 40px;
+
+          .details {
+            margin-bottom: 4px;
+
+            & > :first-child {
+              border-bottom: 5px solid $light-grey;
+            }
+
+            & > :not(:last-child):not(:first-child) {
+              border-bottom: 1px solid $light-grey;
+            }
+
+            .description {
+              flex: 0 0 100%;
+              padding: 12px 20px;
+            }
+
+            & > app-data-card {
+              flex: 0 0 100%;
+              padding: 20px;
+            }
+          }
         }
       }
     }
@@ -161,16 +195,16 @@ $desktop-heading-vertical-padding: 20px;
           flex: 0 0 100%;
           order: 1;
           padding: 34px;
-          background-color: $lighter-grey;
-          color: $darkened-blue;
+          background-color: $light-blue;
+          color: $dark-blue;
         }
 
         .subheading {
           flex: 0 0 100%;
           order: 3;
           padding: 30px 34px;
-          background-color: $primary-blue;
-          color: white;
+          background-color: $lighter-grey;
+          color: $dark-grey;
         }
 
         app-your-plan-summary {
@@ -191,6 +225,28 @@ $desktop-heading-vertical-padding: 20px;
           &:not(:last-child) {
             border-bottom: 1px solid $light-grey;
             margin-bottom: 40px;
+          }
+
+          .details {
+            margin-bottom: 4px;
+
+            & > :first-child {
+              border-bottom: 2px solid $light-grey;
+            }
+
+            & > :last-child {
+              border-left: 1px solid $light-grey;
+            }
+
+            .description {
+              flex: 0 0 100%;
+              padding: 20px 40px 20px 62px;
+            }
+
+            & > app-data-card {
+              flex: 1;
+              padding: 20px 0;
+            }
           }
         }
       }
@@ -218,6 +274,8 @@ $desktop-heading-vertical-padding: 20px;
   }
 
   @include desktop() {
+    $summary-padding: 20px;
+
     .your-plan-header {
       .heading-container {
         padding: $desktop-heading-vertical-padding 0;
@@ -232,7 +290,7 @@ $desktop-heading-vertical-padding: 20px;
 
         .heading, .subheading {
           flex: 1 0 auto;
-          width: 45%;
+          width: calc(100% - 3 * #{$data-card-width} - #{$summary-padding});
         }
 
         app-your-plan-summary {
@@ -242,7 +300,7 @@ $desktop-heading-vertical-padding: 20px;
           position: absolute;
           right: 0;
           top: $desktop-heading-vertical-padding;
-          width: 55%;
+          width: 3 * $data-card-width + $summary-padding;
         }
       }
     }
@@ -257,6 +315,28 @@ $desktop-heading-vertical-padding: 20px;
           &:not(:last-child) {
             border-bottom: 1px solid $light-grey;
             margin-bottom: 40px;
+          }
+
+          .details {
+            padding: 25px 20px;
+            margin-bottom: 4px;
+
+            & > :not(:first-child) {
+              border-left: 1px solid $light-grey;
+            }
+
+            .description {
+              flex: 1;
+              padding: 0 20px 0 42px;
+            }
+
+            & > app-data-card {
+              flex: 0 0 $data-card-width;
+
+              &:last-child {
+                padding-right: $summary-padding;
+              }
+            }
           }
         }
       }

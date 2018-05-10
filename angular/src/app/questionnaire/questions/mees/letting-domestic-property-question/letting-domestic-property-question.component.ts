@@ -17,10 +17,8 @@ class LettingOption {
 })
 export class LettingDomesticPropertyQuestionComponent extends QuestionBaseComponent {
     lettingOptions = [
-        new LettingOption(LettingDomesticPropertyStage.BeforeApril2018, 'before-2018'),
-        new LettingOption(LettingDomesticPropertyStage.AfterApril2018, 'after-2018'),
-        new LettingOption(LettingDomesticPropertyStage.InProcess, 'in-process'),
-        new LettingOption(LettingDomesticPropertyStage.InPlanning, 'in-planning'),
+        new LettingOption(LettingDomesticPropertyStage.Currently, 'currently'),
+        new LettingOption(LettingDomesticPropertyStage.Soon, 'soon'),
     ];
 
     get responseForAnalytics(): string {

@@ -2,6 +2,7 @@ export enum AgriculturalTenancyType {
     AssuredTenancy,
     ProtectedOccupancy,
     StatutoryTenancy,
+    Other,
 }
 
 export function getAgriculturalTenancyTypeDescription(type: AgriculturalTenancyType): string {
@@ -12,6 +13,8 @@ export function getAgriculturalTenancyTypeDescription(type: AgriculturalTenancyT
             return 'Protected occupancy for the purposes of section 3(6) of the Rent (Agriculture) Act 1976';
         case AgriculturalTenancyType.StatutoryTenancy:
             return 'A statutory tenancy for the purposes of section 4(6) of the Rent (Agriculture) Act 1976';
+        case AgriculturalTenancyType.Other:
+            return 'Other';
         default:
             return null;
     }

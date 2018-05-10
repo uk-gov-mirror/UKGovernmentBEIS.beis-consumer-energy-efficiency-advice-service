@@ -31,18 +31,18 @@ describe('LettingDomesticPropertyQuestionComponent', () => {
         // given
 
         // when
-        const yes = fixture.debugElement.query(By.css('.before-2018'));
+        const yes = fixture.debugElement.query(By.css('.currently'));
         yes.nativeElement.click();
 
         // then
-        expect(component.response).toBe(LettingDomesticPropertyStage.BeforeApril2018);
+        expect(component.response).toBe(LettingDomesticPropertyStage.Currently);
     });
 
     it('should notify of completion when clicking on one of the buttons', () => {
         // given
 
         // when
-        const no = fixture.debugElement.query(By.css('.after-2018'));
+        const no = fixture.debugElement.query(By.css('.soon'));
         no.nativeElement.click();
 
         // then

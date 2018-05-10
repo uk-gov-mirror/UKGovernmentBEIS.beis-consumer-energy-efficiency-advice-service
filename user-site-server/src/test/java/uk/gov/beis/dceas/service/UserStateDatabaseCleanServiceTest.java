@@ -49,7 +49,7 @@ public class UserStateDatabaseCleanServiceTest {
         underTest.cleanDatabase();
 
         // Assert
-        Result result = database
+        Result<?> result = database
             .selectFrom(USER_STATE)
             .where(USER_STATE.ID.eq("cleansOldData"))
             .fetch();
@@ -69,7 +69,7 @@ public class UserStateDatabaseCleanServiceTest {
         underTest.cleanDatabase();
 
         // Assert
-        Result result = database
+        Result<?> result = database
             .selectFrom(USER_STATE)
             .where(USER_STATE.ID.eq("keepsRecentData"))
             .fetch();

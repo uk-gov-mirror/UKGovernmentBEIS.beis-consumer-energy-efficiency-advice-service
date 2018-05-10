@@ -90,7 +90,7 @@ export class SearchBarComponent {
             // Empty searchbox
             return;
         }
-        this.sendEventToAnalytics('search_submitted', this.searchText);
+        this.sendEventToAnalytics('search_submitted', this.searchText.toLowerCase());
 
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();

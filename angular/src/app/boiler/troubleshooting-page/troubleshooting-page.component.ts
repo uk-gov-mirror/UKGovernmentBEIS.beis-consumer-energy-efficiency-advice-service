@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-troubleshooting-page',
@@ -7,6 +8,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TroubleshootingPageComponent implements OnInit {
     tips: {summary: string, details: string}[];
+
+    constructor(private router: Router) {
+    }
 
     ngOnInit() {
         this.tips = [
@@ -44,5 +48,6 @@ export class TroubleshootingPageComponent implements OnInit {
     }
 
     onPostcodeSelected() {
+        this.router.navigate(['/page-not-created']);
     }
 }

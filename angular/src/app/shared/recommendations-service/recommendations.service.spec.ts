@@ -204,7 +204,7 @@ describe('RecommendationsService', () => {
                 expect(recommendations[8].iconPath).toBe(EnergySavingMeasureContentService.measureIcons['U']);
                 expect(recommendations[8].advantages).toEqual(['Green', 'Cost effective']);
                 const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
-                    EnergyEfficiencyRecommendationTag.Grant;
+                    EnergyEfficiencyRecommendationTag.Grant | EnergyEfficiencyRecommendationTag.FundingAvailable;
                 expect(recommendations[8].tags).toEqual(expectedTags);
                 expect(recommendations[8].lifetimeYears).toEqual(30);
                 expect(recommendations[8].investmentPounds).toEqual(750);

@@ -43,6 +43,7 @@ import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-
 import {WordpressECOSuppliersService} from './wordpress-eco-suppliers-service/wordpress-eco-suppliers.service';
 import {WordpressSearchService} from './wordpress-search-service/wordpress-search.service';
 import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
+import {ContentsTableComponent} from "./contents-table/contents-table.component";
 
 @NgModule({
     declarations: [
@@ -66,6 +67,7 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
         PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
+        ContentsTableComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -88,6 +90,7 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
         PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
+        ContentsTableComponent,
     ],
     imports: [
         HttpClientModule,

@@ -42,7 +42,7 @@
 
     .find-out-more-text {
       @include more-info-button-font;
-      color: $focus-text-blue;
+      color: $dark-medium-blue;
       margin-bottom: 10px;
     }
 
@@ -61,22 +61,21 @@
       .new-window-icon {
         width: 14px;
         padding-left: 12px;
-        fill: $focus-text-blue;
+        fill: $dark-medium-blue;
       }
 
       &:hover, &:active {
         .new-window-icon {
-          fill: white;
+          fill: $light-blue;
         }
       }
     }
   }
 
 
-  &.blue-theme {
+  &.grey-theme {
     .heading-container {
-      background-color: $primary-blue;
-      color: white;
+      background-color: $light-blue;
     }
 
     .extra-info-container {
@@ -86,11 +85,11 @@
 
   &.default-theme {
     .heading-container {
-      background-color: white;
+      background-color: $light-blue;
     }
 
     .extra-info-container {
-      background-color: $lighter-grey;
+      background-color: white;
     }
   }
 }

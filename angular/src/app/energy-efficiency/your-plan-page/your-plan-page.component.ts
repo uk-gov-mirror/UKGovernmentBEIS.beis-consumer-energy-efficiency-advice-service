@@ -5,8 +5,10 @@ import {LocalAuthorityService} from '../../shared/local-authority-service/local-
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
-import * as logger from "loglevel";
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import * as logger from 'loglevel';
+import {RoundingService} from '../../shared/rounding-service/rounding.service';
+import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 
 @Component({
     selector: 'app-your-plan-page',
@@ -44,6 +46,20 @@ export class YourPlanPageComponent implements OnInit {
                 response => this.handleLocalAuthorityServiceResponse(response),
                 error => this.handleLocalAuthorityServiceError(error)
             );
+    }
+
+    get showMonthlySavings() {
+        return this.responseData.tenureType !== TenureType.OwnerOccupancy;
+    }
+
+    getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
+        return RoundingService.roundCostValue(recommendation.investmentPounds);
+    }
+
+    getRoundedSavings(recommendation: EnergyEfficiencyRecommendation) {
+        return this.showMonthlySavings
+            ? RoundingService.roundCostValue(recommendation.costSavingPoundsPerMonth)
+            : RoundingService.roundCostValue(recommendation.costSavingPoundsPerYear);
     }
 
     handleLocalAuthorityServiceResponse(response: LocalAuthority) {

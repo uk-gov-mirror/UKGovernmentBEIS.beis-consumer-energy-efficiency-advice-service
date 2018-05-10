@@ -40,6 +40,7 @@ import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy
 import {PropertyEpcQuestionComponent} from './mees/property-epc-question/property-epc-question.component';
 import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.component';
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
+import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-question/tenancy-start-date-question.component';
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tena
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
         LettingDomesticPropertyQuestionComponent,
+        TenancyStartDateQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         AgriculturalTenancyTypeQuestionComponent,
@@ -110,6 +112,7 @@ import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tena
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
         LettingDomesticPropertyQuestionComponent,
+        TenancyStartDateQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         AgriculturalTenancyTypeQuestionComponent,
@@ -154,6 +157,7 @@ import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tena
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
         LettingDomesticPropertyQuestionComponent,
+        TenancyStartDateQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         AgriculturalTenancyTypeQuestionComponent,

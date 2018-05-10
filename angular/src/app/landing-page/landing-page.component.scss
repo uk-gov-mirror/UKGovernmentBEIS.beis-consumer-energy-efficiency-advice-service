@@ -35,28 +35,28 @@ $mobile-browse-cards-margin: 20px;
   }
 
   .page-heading {
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     .page-row-content {
       .heading {
         @include page-heading-font;
-        color: white;
+        color: $dark-medium-blue;
       }
     }
   }
 
   .postcode {
     background-color: $lighter-grey;
-    color: $primary-blue;
+    color: $dark-grey;
 
     .page-row-content {
       .heading {
-        color: $primary-blue;
+        color: $dark-grey;
       }
 
       .postcode-reason-container {
         @include page-body-font;
-        color: $darkened-blue;
+        color: $dark-grey;
       }
     }
   }

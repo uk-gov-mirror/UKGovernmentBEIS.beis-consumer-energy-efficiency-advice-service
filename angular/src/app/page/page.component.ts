@@ -26,6 +26,7 @@ export class PageComponent implements OnInit {
 
     pageData: ExtendedWordpressPage;
     pageDataContent: SafeHtml;
+    headings: string[];
     isLoading: boolean;
     isError: boolean;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
@@ -51,6 +52,9 @@ export class PageComponent implements OnInit {
     displayPage(pageData: ExtendedWordpressPage): void {
         if (!pageData) {
             this.router.navigate(['/404'], {skipLocationChange: true});
+        } else {
+            this.setContentsTable(pageData);
+            this.pageData = pageData;
         }
         this.pageData = pageData;
         if (this.pageData) {
@@ -63,5 +67,24 @@ export class PageComponent implements OnInit {
         console.error(err);
         this.isLoading = false;
         this.isError = true;
+    }
+
+    scrollIndexIntoView(index: number) {
+        const element = document.getElementsByTagName('h3')[index];
+        if (element) {
+            element.scrollIntoView();
+        }
+    }
+
+    private setContentsTable(pageData: ExtendedWordpressPage) {
+        const parser = new DOMParser();
+        const parsedHtml = parser.parseFromString(pageData.content, "text/html");
+        // All the headings which we want in the contents are set to h3 in wordpress
+        const headingElements = parsedHtml.getElementsByTagName('h3');
+        const headings = [];
+        for (let i = 0; i < headingElements.length; i++) {
+            headings.push(headingElements[i].textContent);
+        }
+        this.headings = headings;
     }
 }

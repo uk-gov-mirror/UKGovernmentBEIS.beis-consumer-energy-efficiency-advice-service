@@ -53,7 +53,7 @@ describe('BoilerReplacementCardComponent', () => {
     });
 
     it('should display the correct installation costs', () => {
-        const installationCostElement = fixture.debugElement.query(By.css('.installation-card .number-value')).nativeElement;
+        const installationCostElement = fixture.debugElement.query(By.css('.installation-card .value')).nativeElement;
         expect(installationCostElement.innerText.trim()).toBe(`£${boilerType.averageInstallationCost}`);
     });
 
@@ -63,7 +63,7 @@ describe('BoilerReplacementCardComponent', () => {
     });
 
     it('should display the correct running cost', () => {
-        const runningCostElement = fixture.debugElement.query(By.css('.running-cost-card .number-value')).nativeElement;
+        const runningCostElement = fixture.debugElement.query(By.css('.running-cost-card .value')).nativeElement;
         expect(runningCostElement.innerText).toBe(`£${boilerType.runningCostPerYear}`);
     });
 });

@@ -3,13 +3,13 @@
 
 .page-heading {
   @include page-heading-font;
-  color: $headline-dark-blue;
-  background-color: $lighter-grey;
+  color: $dark-blue;
+  background-color: $light-blue;
 }
 
 p {
   @include page-subheading-font;
-  color: $focus-text-blue;
+  color: $dark-medium-blue;
 }
 
 // Breakpoint specific styling

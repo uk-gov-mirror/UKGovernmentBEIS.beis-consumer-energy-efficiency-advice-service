@@ -8,12 +8,12 @@
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .page-heading {
-  background-color: $primary-blue;
-  color: white;
+  background-color: $light-blue;
+  color: $dark-blue;
 
   .heading-text {
     margin-bottom: 20px;
-    color: white;
+    color: $dark-blue;
   }
 }
 
@@ -33,7 +33,7 @@
       }
 
       .summary {
-        color: $headline-dark-blue;
+        color: $dark-medium-blue;
         font-weight: bold;
         font-size: 24px;
         margin-bottom: 10px;
