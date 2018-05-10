@@ -11,15 +11,15 @@
 }
 
 .icon-doors::before {
-  content: url('assets/images/topics/doors.svg');
+  content: url('assets/images/icons/doors.svg');
 }
 
 .icon-flooring::before {
-  content: url('assets/images/topics/flooring.svg');
+  content: url('assets/images/icons/flooring.svg');
 }
 
 .icon-heating::before {
-  content: url('assets/images/topics/heating.svg');
+  content: url('assets/images/icons/heating.svg');
 }
 
 .icon-home::before {
@@ -31,7 +31,7 @@
 }
 
 .icon-roofing::before {
-  content: url('assets/images/topics/roofing.svg');
+  content: url('assets/images/icons/roofing.svg');
 }
 
 .icon-thermometer::before {
@@ -39,11 +39,11 @@
 }
 
 .icon-walls::before {
-  content: url('assets/images/topics/walls.svg');
+  content: url('assets/images/icons/walls.svg');
 }
 
 .icon-windows::before {
-  content: url('assets/images/topics/windows.svg');
+  content: url('assets/images/icons/windows.svg');
 }
 
 .icon-circle-tick::before {
@@ -112,18 +112,37 @@
   }
 }
 
-.icon-camera::before {
-  content: url('assets/images/icons/camera.svg');
+
+.icon-tick-white::before {
+  content: url('assets/images/icons/tick-white.svg');
 }
 
 .icon-tick-white::before {
   content: url('assets/images/icons/tick-white.svg');
 }
 
-.icon-lightbulb::before {
-  content: url('assets/images/icons/lightbulb.svg');
+
+
+.icon-home-improve::before {
+  content: url('assets/images/icons/home-improve.svg');
 }
 
-.icon-switch::before {
-  content: url('assets/images/icons/switch-blue.svg');
+.icon-rhi::before {
+  content: url('assets/images/icons/rhi.svg');
+}
+
+.icon-fit::before {
+  content: url('assets/images/icons/fit.svg');
+}
+
+.icon-winter-fuel::before {
+  content: url('assets/images/icons/winter-fuel.svg');
+}
+
+.icon-warm-home::before {
+  content: url('assets/images/icons/warm-home.svg');
+}
+
+.icon-cold-weather::before {
+  content: url('assets/images/icons/cold-weather.svg');
 }

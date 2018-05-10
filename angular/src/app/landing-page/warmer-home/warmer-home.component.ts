@@ -38,7 +38,7 @@ export class WarmerHomeComponent {
                             Smart heating controls – systems that make decision for you, talk to your phone etc.
                         </li>
                         <li>
-                            Controls for storage heaters
+                            Controls for storage heawarmerters
                         </li>
                     </ul>
                 </li>
@@ -51,13 +51,13 @@ export class WarmerHomeComponent {
             title: 'What are the benefits of installing loft insulation?',
             summary: 'Loft insulation is well worth considering because if there is little or no \
                 existing insulation considerable savings can be made.',
-            iconClassName: 'icon-lightbulb'
+            iconClassName: 'icon-roofing'
         },
         {
             title: 'What can I do if I don\'t have cavity walls or a loft?',
             summary: 'There is plenty you can do to improve the insulation in your home if you \
             don\'t have cavity walls or a loft space.',
-            iconClassName: 'icon-switch'
+            iconClassName: 'icon-walls'
         },
     ];
 }

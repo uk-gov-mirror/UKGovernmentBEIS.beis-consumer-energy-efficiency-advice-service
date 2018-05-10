@@ -12,7 +12,6 @@ export class EnergySavingMeasureContentService {
     public static measureIcons: { [rdsapMeasureCode: string]: string } = {
         // Energy efficiency measures
 
-        E2: 'icons/lightbulb.svg',
         H: 'icons/heating.svg',
         T: 'icons/hotwater.svg',
         T2: 'icons/hotwater.svg',
@@ -23,7 +22,6 @@ export class EnergySavingMeasureContentService {
         EP: 'icons/heating.svg',
         Y2: 'icons/hotwater.svg',
         O2: 'icons/windows.svg',
-
         V2: 'icons/green.svg',
 
         // Heating and Hotwater
@@ -67,7 +65,8 @@ export class EnergySavingMeasureContentService {
         'baths_to_showers': 'icons/simple-savings.svg',
         'one_degree_reduction': 'icons/simple-savings.svg',
         'tumble_drying': 'icons/simple-savings.svg',
-        'low_energy_lights': 'icons/simple-savings.svg'
+        'low_energy_lights': 'icons/simple-savings.svg',
+        E2: 'icons/simple-savings.svg',
     };
     private static readonly measuresEndpoint = 'acf/v3/measure?';
     private measures: Observable<MeasureContent[]>;
