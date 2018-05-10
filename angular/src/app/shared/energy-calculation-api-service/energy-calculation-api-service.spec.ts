@@ -38,7 +38,8 @@ describe('EnergyCalculationApiService', () => {
         wall_type: undefined,
         glazing_type: undefined,
         hot_water_cylinder: false,
-        isMinimalDataSet: () => true
+        isMinimalDataSet: () => true,
+        measures_package: [],
     };
 
     beforeEach(() => {
