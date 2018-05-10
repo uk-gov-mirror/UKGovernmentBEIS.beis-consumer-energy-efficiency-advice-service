@@ -13,8 +13,8 @@
                         }],
                     onsubmit: function (e) {
                         editor.insertContent(
-                            `<iframe class="youtube-video" type="text/html"
-                            src="https://www.youtube.com/embed/${e.data.video_id}?&cc_load_policy=1&cc_lang_pref=en">
+                            `<iframe class="youtube-video"
+                            src="https://www.youtube.com/embed/${e.data.video_id}?rel=0&cc_load_policy=1">
                             </iframe>`
                         );
                     }
