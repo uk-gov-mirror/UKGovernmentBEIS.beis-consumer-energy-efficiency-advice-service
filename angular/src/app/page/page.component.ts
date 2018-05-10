@@ -53,7 +53,9 @@ export class PageComponent implements OnInit {
             this.router.navigate(['/404'], {skipLocationChange: true});
         }
         this.pageData = pageData;
-        this.pageDataContent = this.sanitizer.bypassSecurityTrustHtml(this.pageData.content);
+        if (this.pageData) {
+            this.pageDataContent = this.sanitizer.bypassSecurityTrustHtml(this.pageData.content);
+        }
         this.isLoading = false;
     }
 
