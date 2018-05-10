@@ -22,14 +22,6 @@
   content: url('assets/images/icons/heating.svg');
 }
 
-.icon-home::before {
-  content: url('assets/images/topics/home.svg');
-}
-
-.icon-occupancy::before {
-  content: url('assets/images/topics/occupancy.svg');
-}
-
 .icon-roofing::before {
   content: url('assets/images/icons/roofing.svg');
 }
@@ -46,10 +38,6 @@
   content: url('assets/images/icons/windows.svg');
 }
 
-.icon-circle-tick::before {
-  content: url('assets/images/topics/circle-tick.svg');
-}
-
 .icon-search::before {
   content: url('assets/images/controls/search.svg');
 }
@@ -58,32 +46,12 @@
   content: url('assets/images/controls/search-white.svg');
 }
 
-.icon-house-layers::before {
-  content: url('assets/images/icons/house-layers.svg');
-}
-
 .icon-solar::before{
   content: url('assets/images/icons/solar.svg');
 }
 
-.icon-boiler {
-  width: 103px;
-  height: 239px;
-  &::before {
-    content: url('assets/images/icons/boiler.svg');
-  }
-}
-
 .icon-video-play::before {
   content: url('assets/images/page-type/video-play.svg');
-}
-
-.icon-infographic::before {
-  content: url('assets/images/page-type/infographic.svg');
-}
-
-.icon-checklist::before {
-  content: url('assets/images/page-type/checklist.svg');
 }
 
 .icon-grant::before {
@@ -112,7 +80,6 @@
   }
 }
 
-
 .icon-tick-white::before {
   content: url('assets/images/icons/tick-white.svg');
 }
@@ -120,8 +87,6 @@
 .icon-tick-white::before {
   content: url('assets/images/icons/tick-white.svg');
 }
-
-
 
 .icon-home-improve::before {
   content: url('assets/images/icons/home-improve.svg');
