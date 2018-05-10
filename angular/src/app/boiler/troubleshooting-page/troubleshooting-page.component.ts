@@ -15,34 +15,39 @@ export class TroubleshootingPageComponent implements OnInit {
     ngOnInit() {
         this.tips = [
             {
-                summary: 'Double check the basics',
-                details: 'First of all, if you have a prepayment meter, check that you\'ve got enough \
-                    credit. Next, test whether your \other gas appliances, like you cooker hob, are working \
-                    correctly, or whether the switches in your fuse box have tripped.',
+                summary: 'Supply OK?',
+                details: 'Check that your gas, electricity and water supplies are all turned on and working.\
+                    If you have a pre-payment meter, make sure it hasn’t run out. If you have a header tank, and\
+                    you can get to it safely, make sure the ball valve is still working.',
             },
             {
-                summary: 'Think back to if you\'ve had a power cut recently',
-                details: 'If you have, your boiler\'s timer might have reset - which means getting it working \
-                    again could be as simple as re-programming it with your times. Take a look at its instruction \
-                    manual for a reminder on how to do this.',
+                summary: 'Controls on?',
+                details: 'Check that all the heating controls are set to be on – this could include a\
+                    room thermostat, a programmer and timer, and individual radiator valves. Set all \
+                    timers to on and all thermostats up, and see if the heating fires up.',
             },
             {
-                summary: 'Check your boiler\'s pressure gauge',
-                details: 'If it\'s showing a reading of one bar or less, low pressure could be the reason why your \
-                    boiler\'s not working. Topping up the pressure yourself is usually straightforward - follow the \
-                    steps in your boiler\'s manual or watch our how-to video.',
+                summary: 'Reset',
+                details: 'If your boiler has a reset button, try pressing this – it might take a while \
+                    for the boiler to fully reset. If you don’t have a reset button, you may be able \
+                    to turn the boiler off and then back on again.',
             },
             {
-                summary: 'Double check the basics',
-                details: 'First of all, if you have a prepayment meter, check that you\'ve got enough credit. Next, test \
-                    whether your other gas appliances, like you cooker hob, are working correctly, or whether the switches in \
-                    your fuse box have tripped.',
+                summary: 'Pressure',
+                details: 'If your boiler has a pressure gauge, check that it’s somewhere in the green. \
+                    If it’s too low, and you know how to top the pressure up, try this.',
             },
             {
-                summary: 'Think back to if you\'ve had a power cut recently',
-                details: 'If you have, your boiler\'s timer might have reset - which means getting it working again could be \
-                    as simple as re-programming it with your times. Take a look at its instruction manual for a reminder on how \
-                    to do this.',
+                summary: 'Pilot light',
+                details: 'If your boiler has a pilot light (a permanent flame that you can usually see \
+                    burning even when the heating is off) check that this is still lit. If it’s gone \
+                    out, try lighting it again if you know how.',
+            },
+            {
+                summary: 'Frozen pipes',
+                details: 'If the weather has been really cold, and you have a condensate pipe running from the \
+                    bottom of your boiler into an outside drain, check that this pipe hasn’t frozen.\
+                    If you have a header tank in the loft, check that the pipework up here hasn’t frozen.',
             },
         ];
     }
