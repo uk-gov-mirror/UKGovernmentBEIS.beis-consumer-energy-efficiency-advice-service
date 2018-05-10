@@ -51,9 +51,12 @@ export class EnergySavingMeasureContentService {
         X: 'icons/door.svg',
         U: 'icons/solar.svg',
         V2: 'icons/green.svg',
-        // Habit measures
-        'baths_to_showers': 'icons/shower.svg',
-        'one_degree_reduction': 'icons/thermostat.svg'
+
+        // Simple Savings
+        'baths_to_showers': 'icons/simple-savings.svg',
+        'one_degree_reduction': 'icons/simple-savings.svg',
+        'tumble_drying': 'icons/simple-savings.svg',
+        'low_energy_lights': 'icons/simple-savings.svg'
     };
     private static readonly measuresEndpoint = 'acf/v3/measure?';
     private measures: Observable<MeasureContent[]>;
