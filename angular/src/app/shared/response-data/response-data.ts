@@ -70,7 +70,8 @@ export class ResponseData {
     public condensingBoiler: boolean;
     // Set by ElectricityTariffQuestionComponent, sent to BRE energy-calculation
     public electricityTariff: ElectricityTariff;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation.
+    // See DetailedLengthOfHeatingOnQuestionComponent::heatingPatterns for possible values
     public heatingPatternType: number;
     // Set by DetailedLengthOfHeatingOnQuestionComponent
     public morningHeatingStartTime: number;

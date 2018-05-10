@@ -71,7 +71,11 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
             const heatingPatternDropdown = fixture.debugElement.query(By.css('.heating-pattern-dropdown'));
             heatingPatternDropdown.nativeElement.value = "2: 3";
             heatingPatternDropdown.nativeElement.dispatchEvent(new Event('change'));
-            expect(component.setNormalDaysOffHours(responseData)).toEqual([11, 4]);
+            component.morningHeatingStartTime = 2;
+            component.morningHeatingDuration = 5;
+            component.eveningHeatingStartTime = 16;
+            component.eveningHeatingDuration = 4;
+            expect(component.setNormalDaysOffHours(responseData)).toEqual([19, -4]);
         });
     }));
 
@@ -80,7 +84,8 @@ describe('DetailedLengthOfHeatingOnQuestionComponent', () => {
             const heatingPatternDropdown = fixture.debugElement.query(By.css('.heating-pattern-dropdown'));
             heatingPatternDropdown.nativeElement.value = "3: 4";
             heatingPatternDropdown.nativeElement.dispatchEvent(new Event('change'));
-            expect(component.setNormalDaysOffHours(responseData)).toEqual([24]);
+            component.heatingHoursPerDay = 10;
+            expect(component.setNormalDaysOffHours(responseData)).toEqual([14]);
         });
     }));
 
