@@ -10,26 +10,34 @@ export enum AbTestingGroup {
 export class AbTestingService {
     private localStorageKey = 'ab_test_bucket';
     private googleAnalyticsName = 'ab_test';
+    private group: AbTestingGroup;
 
     constructor(private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
-    getGroup(): AbTestingGroup {
-        let group: string;
-        if (localStorageAvailable()) {
-            group = localStorage.getItem(this.localStorageKey);
+    isInGroupA() {
+        return this.getGroup() === AbTestingGroup.A;
+    }
 
-            if (!group) {
-                group = AbTestingGroup[Math.random() < 0.5 ? AbTestingGroup.A : AbTestingGroup.B];
-                localStorage.setItem(this.localStorageKey, group);
-            }
-        } else {
-            group = AbTestingGroup[AbTestingGroup.A];
+    getGroup(): AbTestingGroup {
+        if (this.group !== undefined) {
+            return this.group;
         }
 
-        this.googleAnalyticsService.setSessionDimension(this.googleAnalyticsName, 2, group);
+        if (localStorageAvailable()) {
+            this.group = AbTestingGroup[localStorage.getItem(this.localStorageKey)];
 
-        return AbTestingGroup[group];
+            if (this.group === undefined) {
+                this.group = Math.random() < 0.5 ? AbTestingGroup.A : AbTestingGroup.B;
+                localStorage.setItem(this.localStorageKey, AbTestingGroup[this.group]);
+            }
+        } else {
+            this.group = AbTestingGroup.A;
+        }
+
+        this.googleAnalyticsService.setSessionDimension(this.googleAnalyticsName, 2, AbTestingGroup[this.group]);
+
+        return this.group;
     }
 }
 

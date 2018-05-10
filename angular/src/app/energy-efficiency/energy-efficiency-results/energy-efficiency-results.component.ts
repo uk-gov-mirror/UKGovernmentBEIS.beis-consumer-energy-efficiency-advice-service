@@ -12,7 +12,7 @@ import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rd
 import {UserStateService} from '../../shared/user-state-service/user-state-service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
-import {AbTestingGroup, AbTestingService} from '../../shared/analytics/ab-testing.service';
+import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -60,7 +60,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
         this.userStateService.saveState();
 
-        this.showOldVersion = this.abTestingService.getGroup() === AbTestingGroup.A;
+        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {

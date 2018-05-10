@@ -8,7 +8,7 @@ import {
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
-import {AbTestingGroup, AbTestingService} from '../../../shared/analytics/ab-testing.service';
+import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -38,7 +38,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
             : RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerYear);
         this.tags = getActiveTags(this.recommendation.tags)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
-        this.showOldVersion = this.abTestingService.getGroup() === AbTestingGroup.A;
+        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {

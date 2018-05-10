@@ -2,26 +2,26 @@
     <div class="page-row-content">
         <div class="plan-details" [class.old]="showOldVersion">
             <div class="heading">{{showOldVersion ? 'Your Plan' : 'Your Potential Effect'}}</div>
-            <div *ngIf="showOldVersion"
-                 class="subheading"
-                 [class.plan-empty]="recommendations.length === 0">
-                {{recommendations.length > 0 ? 'You have added:' : 'Try adding some recommendations to your plan'}}
-            </div>
-            <div *ngIf="showOldVersion"
-                 class="subheading-tablet"
-                 [class.plan-empty]="recommendations.length === 0">
-                {{recommendations.length > 0 ? getYouHaveAddedRecommendations() : 'Try adding some recommendations to your plan'}}
-            </div>
-            <div *ngIf="showOldVersion"
-                 class="recommendations-list">
-                <div class="recommendations-list-item"
-                     *ngFor="let recommendation of recommendations"
-                     (click)="removeFromPlan(recommendation)">
-                    <div class="list-icon" [inlineSVG]="'controls/do-chevron.svg'"></div>
-                    <button class="recommendation-name">{{recommendation.headline}}</button>
-                    <div class="remove-recommendation-button" [inlineSVG]="'controls/remove.svg'"></div>
+            <ng-container *ngIf="showOldVersion">
+                <div class="subheading"
+                     [class.plan-empty]="recommendations.length === 0">
+                    {{recommendations.length > 0 ? 'You have added:' : 'Try adding some recommendations to your plan'}}
                 </div>
-            </div>
+                <div class="subheading-tablet"
+                     [class.plan-empty]="recommendations.length === 0">
+                    {{recommendations.length > 0 ? getYouHaveAddedRecommendations() : 'Try adding some recommendations
+                    to your plan'}}
+                </div>
+                <div class="recommendations-list">
+                    <div class="recommendations-list-item"
+                         *ngFor="let recommendation of recommendations"
+                         (click)="removeFromPlan(recommendation)">
+                        <div class="list-icon" [inlineSVG]="'controls/do-chevron.svg'"></div>
+                        <button class="recommendation-name">{{recommendation.headline}}</button>
+                        <div class="remove-recommendation-button" [inlineSVG]="'controls/remove.svg'"></div>
+                    </div>
+                </div>
+            </ng-container>
         </div>
 
         <div class="plan-summary">

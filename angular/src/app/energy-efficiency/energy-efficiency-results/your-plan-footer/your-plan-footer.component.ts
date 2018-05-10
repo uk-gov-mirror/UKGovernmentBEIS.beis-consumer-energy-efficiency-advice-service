@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
-import {AbTestingGroup, AbTestingService} from '../../../shared/analytics/ab-testing.service';
+import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 
 @Component({
     selector: 'app-your-plan-footer',
@@ -22,7 +22,7 @@ export class YourPlanFooterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.showOldVersion = this.abTestingService.getGroup() === AbTestingGroup.A;
+        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     removeFromPlan(recommendation: EnergyEfficiencyRecommendation): void {
