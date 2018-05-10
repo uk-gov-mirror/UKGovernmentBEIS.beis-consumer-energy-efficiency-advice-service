@@ -49,9 +49,10 @@ export class PageComponent implements OnInit {
     displayPage(pageData: ExtendedWordpressPage): void {
         if (!pageData) {
             this.router.navigate(['/404'], {skipLocationChange: true});
+        } else {
+            this.setContentsTable(pageData);
+            this.pageData = pageData;
         }
-        this.setContentsTable(pageData);
-        this.pageData = pageData;
         this.isLoading = false;
     }
 
