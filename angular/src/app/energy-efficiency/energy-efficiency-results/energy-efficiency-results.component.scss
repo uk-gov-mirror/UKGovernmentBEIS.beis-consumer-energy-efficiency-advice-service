@@ -37,6 +37,8 @@ $grant-card-margin: 24px;
         @include page-heading-small-font;
         display: flex;
         align-items: center;
+        box-sizing: border-box;
+        color: $dark-blue;
       }
 
       .header-data-cards {
@@ -81,8 +83,8 @@ $grant-card-margin: 24px;
         .heading-text {
           flex: 1 0 100%;
           padding: 24px 20px 15px;
-          background-color: $lighter-grey;
-          color: $darkened-blue;
+          background-color: $light-blue;
+          color: $dark-medium-blue;
         }
 
         .header-data-cards {
@@ -96,10 +98,6 @@ $grant-card-margin: 24px;
 
             &:first-of-type {
               border-right: 1px solid $light-grey;
-            }
-
-            &:last-of-type {
-              display: none;
             }
           }
         }
@@ -125,8 +123,8 @@ $grant-card-margin: 24px;
         .heading-text {
           flex: 1 0 100%;
           padding: 34px;
-          background-color: $lighter-grey;
-          color: $darkened-blue;
+          background-color: $light-blue;
+          color: $dark-medium-blue;
         }
 
         .header-data-cards {
@@ -134,7 +132,7 @@ $grant-card-margin: 24px;
           padding: 24px 34px;
 
           app-data-card {
-            @include is-grid-item($number-of-items: 3);
+            @include is-grid-item($number-of-items: 2);
             margin: 50px 0;
             padding: 0 50px;
 
@@ -167,7 +165,7 @@ $grant-card-margin: 24px;
         }
 
         .header-data-cards {
-          $desktop-header-cards-width: (3 * ($data-card-width + 1)) + $add-to-plan-column-width;
+          $desktop-header-cards-width: 2 * $data-card-width + $add-to-plan-column-width;
           flex: 0 0 $desktop-header-cards-width;
 
           & > :last-child {

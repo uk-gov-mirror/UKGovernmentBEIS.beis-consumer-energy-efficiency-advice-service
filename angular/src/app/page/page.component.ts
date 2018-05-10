@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-wordpress-page';
@@ -24,13 +25,16 @@ import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-
 export class PageComponent implements OnInit {
 
     pageData: ExtendedWordpressPage;
+    pageDataContent: SafeHtml;
+    headings: string[];
     isLoading: boolean;
     isError: boolean;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private pageService: WordpressPagesService) {
+                private pageService: WordpressPagesService,
+                private sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {
@@ -47,11 +51,15 @@ export class PageComponent implements OnInit {
 
     displayPage(pageData: ExtendedWordpressPage): void {
         if (!pageData) {
-            // TODO:BEISDEAS-201 display a user-visible error here
-            // We should show the 404 component here somehow
-            this.router.navigate(['/']);
+            this.router.navigate(['/404'], {skipLocationChange: true});
+        } else {
+            this.setContentsTable(pageData);
+            this.pageData = pageData;
         }
         this.pageData = pageData;
+        if (this.pageData) {
+            this.pageDataContent = this.sanitizer.bypassSecurityTrustHtml(this.pageData.content);
+        }
         this.isLoading = false;
     }
 
@@ -59,5 +67,24 @@ export class PageComponent implements OnInit {
         console.error(err);
         this.isLoading = false;
         this.isError = true;
+    }
+
+    scrollIndexIntoView(index: number) {
+        const element = document.getElementsByTagName('h3')[index];
+        if (element) {
+            element.scrollIntoView();
+        }
+    }
+
+    private setContentsTable(pageData: ExtendedWordpressPage) {
+        const parser = new DOMParser();
+        const parsedHtml = parser.parseFromString(pageData.content, "text/html");
+        // All the headings which we want in the contents are set to h3 in wordpress
+        const headingElements = parsedHtml.getElementsByTagName('h3');
+        const headings = [];
+        for (let i = 0; i < headingElements.length; i++) {
+            headings.push(headingElements[i].textContent);
+        }
+        this.headings = headings;
     }
 }

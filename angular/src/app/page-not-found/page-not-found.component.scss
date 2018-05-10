@@ -3,31 +3,31 @@
 
 .page-heading {
   @include page-heading-font;
-  color: $headline-dark-blue;
-  background-color: $lighter-grey;
+  color: $dark-blue;
+  background-color: $light-blue;
 }
 
 p {
   @include page-subheading-font;
-  color: $focus-text-blue;
+  color: $dark-medium-blue;
 }
 
 // Breakpoint specific styling
 @include mobile() {
-  h2, p {
+  h1, p {
     padding: 25px 0 20px;
     padding-bottom: 28px;
   }
 }
 
 @include tablet() {
-  h2, p {
+  h1, p {
     padding: 47px 0 36px;
   }
 }
 
 @include desktop() {
-  h2, p {
+  h1, p {
     padding: 45px 0 60px;
     padding-bottom: 40px;
   }

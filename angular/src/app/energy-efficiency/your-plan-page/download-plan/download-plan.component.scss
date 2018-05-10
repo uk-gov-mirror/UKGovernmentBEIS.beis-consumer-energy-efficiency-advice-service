@@ -33,7 +33,7 @@ $action-divider-circle-diameter: 40px;
       }
 
       .download-pdf {
-        background-color: $action-button-blue;
+        background-color: $light-blue;
         outline: none;
         border: none;
         position: relative;
@@ -55,12 +55,12 @@ $action-divider-circle-diameter: 40px;
           width: 0;
           border-right: $pdf-button-width/2 solid transparent;
           border-left: $pdf-button-width/2 solid transparent;
-          border-top: $pdf-button-arrow-height solid $action-button-blue;
+          border-top: $pdf-button-arrow-height solid $light-blue;
         }
 
         .download-pdf-text {
           font-size: 13px;
-          color: white;
+          color: $dark-blue;
           outline: none;
           background: none;
           border: none;
@@ -70,7 +70,7 @@ $action-divider-circle-diameter: 40px;
 
         .download-pdf-icon {
           transform: rotate(90deg);
-          stroke: white;
+          stroke: $dark-blue;
           width: 16px;
           height: 16px;
           display: block;
@@ -119,8 +119,8 @@ $action-divider-circle-diameter: 40px;
           padding: 0;
           position: relative;
           flex: 0 0 60px;
-          background: $action-button-blue;
-          color: white;
+          background: $light-blue;
+          color: $dark-blue;
           cursor: pointer;
 
           &::after {
@@ -130,7 +130,7 @@ $action-divider-circle-diameter: 40px;
             right: -$send-email-button-arrow-width;
             width: 0;
             height: 0;
-            border-left: $send-email-button-arrow-width solid $action-button-blue;
+            border-left: $send-email-button-arrow-width solid $light-blue;
             border-top: $send-email-button-height/2 solid transparent;
             border-bottom: $send-email-button-height/2 solid transparent;
           }

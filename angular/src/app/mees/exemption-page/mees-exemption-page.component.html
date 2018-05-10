@@ -10,38 +10,408 @@
         <div class="page-row-content">
             <div class="body-text">
                 <p>
-                    The following is the list of valid exemptions:
+                    The following is the list of valid exemptions. For more information about how improvements can be
+                    financed, <a routerLink="/pages/funding-opportunities-for-landlords">click here</a>
                 </p>
-                <ul>
-                    <li>If there are no recommended improvements for the property</li>
+
+                <ul class="exemptions">
                     <li>
-                        If the purchasing and installing of the recommended measures cannot be wholly financed at no
-                        cost to the landlord
-                        <ul>
-                            <li>
-                                For more information about how improvements can be financed,
-                                <a routerLink="/pages/funding-opportunities-for-landlords">click here</a>
-                            </li>
-                        </ul>
+                        <div class="exemption-type" (click)="measureNotRelevantOpen = !measureNotRelevantOpen">
+                            <div class="summary">
+                                Where a recommended measure is not a “relevant energy efficiency improvement” because
+                                the cost of purchasing and installing it cannot be wholly financed at no cost to the
+                                landlord (Regulation 25(1)(b))
+                            </div>
+                            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                        </div>
+
+                        <div class="more-info" [hidden]="!measureNotRelevantOpen">
+                            <p>
+                                The prohibition on letting domestic property below an EPC energy efficiency raging of E
+                                does not apply if a landlord has been unable to access relevant ‘no cost’ funding to
+                                fully cover the cost of installing the recommended improvement or improvements. See
+                                2.1.2 in chapter two of the domestic guidance for information on ‘no cost’ funding.
+                            </p>
+                            <p>
+                                Information Required: If registering an exemption of this type the landlord will need to
+                                provide to the register a written description of why they have been unable to obtain
+                                adequate ‘no cost’ funding. The landlord can either type this directly into the register
+                                in the free text box on the relevant page, or upload a prewritten document. Optionally,
+                                the landlord may also upload a copy of any supporting evidence they have obtained
+                                demonstrating that they have been unable to access relevant ‘no cost’ funding to fully
+                                cover the cost of installing the recommended improvement or improvements.
+                            </p>
+                            <p>
+                                Examples of supporting evidence include:
+                            </p>
+                            <ul>
+                                <li>
+                                    Written advice from a Green Deal Provider setting out that Green Deal funding is
+                                    unavailable to cover the cost of a measure, or that it is only available to
+                                    partially cover the cost;
+                                </li>
+                                <li>
+                                    Advice from an energy supplier or local ECO affiliated installer confirming that ECO
+                                    funding is unavailable to fully cover the cost of installing a recommended
+                                    improvement;
+                                </li>
+                                <li>
+                                    Advice from a Local Authority confirming that no landlord grants are available to
+                                    cover the cost of the recommended improvement(s).
+                                </li>
+                            </ul>
+
+                            <p>
+                                The exemption will last five years; after this time it will expire and the landlord must
+                                try again to improve the property’s EPC rating to meet the minimum level of energy
+                                efficiency. If this cannot be achieved then a further exemption may be registered.
+                            </p>
+
+                            <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                               target="_blank">
+                                <span class="text">Register exemption</span>
+                                <span class="icon-container"><span class="icon">&gt;</span></span>
+                            </a>
+                        </div>
                     </li>
-                    <li>If the recommended wall insulation system cannot, or should not, be installed</li>
-                    <li>If consent cannot be obtained from the tenants and / or relevant third parties</li>
-                    <li>If installing the improvements would results in a devaluation of the property</li>
-                    <li>If you recently became a landlord</li>
+                    <li>
+                        <div class="exemption-type"
+                             (click)="hasNoRecommendedMeasuresOpen = !hasNoRecommendedMeasuresOpen">
+                            <div class="summary">
+                                Where all the “relevant energy efficiency improvements” for the property have been made
+                                (or there are none that can be made) and the property remains sub-standard (Regulation
+                                25)
+                            </div>
+                            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                        </div>
+                        <div class="more-info" [hidden]="!hasNoRecommendedMeasuresOpen">
+                            <p>
+                                The requirement to meet the minimum level of energy efficiency (EPC E) does not apply
+                                where a landlord has made all the ‘relevant energy efficiency improvements’ that can be
+                                made (or there are none that can be made), and the property remains below EPC E (please
+                                see the published guidance documents for the definition of ‘relevant energy efficiency
+                                improvements’).
+                            </p>
+                            <p>
+                                If this is the case, the situation must be registered on the PRS Exemptions Register
+                                before the property can be let on a new tenancy (or to allow it to continue to be let
+                                after 1 April 2020 in the domestic sector, and after 1 April 2023 in the non-domestic
+                                sector).
+                            </p>
+                            <p>
+                                Information Required: for an exemption of this type, the landlord may be relying on
+                                information contained within the property’s EPC, which is one of the pieces of
+                                information which must already be uploaded to the Register for any exemption type.
+                                However, if a landlord is relying on information contained in a separate report, then
+                                they will need to upload a copy of this relevant report also to support the exemption.
+                            </p>
+                            <p>
+                                Once registered, the exemption will last five years; after this time it will expire and
+                                the landlord must try again to improve the property’s EPC rating to meet the minimum
+                                level of energy efficiency. If this cannot be achieved then a further exemption may be
+                                registered.
+                            </p>
+
+                            <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                               target="_blank">
+                                <span class="text">Register exemption</span>
+                                <span class="icon-container"><span class="icon">&gt;</span></span>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="exemption-type" (click)="wallInsulationOpen = !wallInsulationOpen">
+                            <div class="summary">
+                                Wall insulation exemption (Regulation 24(2))
+                            </div>
+                            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                        </div>
+
+                        <div class="more-info" [hidden]="!wallInsulationOpen">
+                            <p>
+                                The Regulations acknowledge that certain wall insulation systems may not be suitable in
+                                certain situations, even where they have been recommended for a property, and where they
+                                meet the funding requirements (funding requirements are different for domestic and
+                                non-domestic properties – please see the relevant guidance documents for more
+                                information). Therefore there is a special provision for circumstances in which cavity
+                                wall insulation, external wall insulation systems, and internal wall insulation systems
+                                should not be installed.
+                            </p>
+                            <p>
+                                The special provision is that a recommended energy efficiency measure is not considered
+                                to be a relevant measure where it is:
+                            </p>
+
+                            <ul>
+                                <li>
+                                    cavity wall insulation, external wall insulation or internal wall insulation (for
+                                    external walls), and
+                                </li>
+                                <li>
+                                    where the landlord has obtained written expert advice indicating that the measure is
+                                    not appropriate for the property due to its potential negative impact on the fabric
+                                    or structure of the property (or the building of which the property forms a part).
+                                </li>
+                            </ul>
+
+                            <p>
+                                The expert advice the landlord provides must be obtained from one of the following
+                                independent experts:
+                            </p>
+                            <ul>
+                                <li>
+                                    an architect registered on the Architect Accredited in Building Conservation
+                                    register;
+                                </li>
+                                <li>
+                                    a chartered engineer registered on the Institution of Civil Engineers’ and the
+                                    Institution of Structural Engineers’ Conservation Accreditation Register for
+                                    Engineers;
+                                </li>
+                                <li>
+                                    a chartered building surveyor registered on the Royal Institution of Chartered
+                                    Surveyors’ Building Conservation Accreditation register; or
+                                </li>
+                                <li>
+                                    a chartered architectural technologist registered on the Chartered Institute of
+                                    Architectural Technologists’ Directory of Accredited Conservationists.
+                                </li>
+                            </ul>
+                            <p>
+                                Alternatively, if the advice is not, or cannot be, obtained from one of the above
+                                experts, advice may be obtained from an independent installer of the wall insulation
+                                system in question who meets the installer standards for that measure, as set out in
+                                Schedule 3 to the Building Regulations 2010.
+                            </p>
+                            <p>
+                                Information Required: When registering an exemption of this type the landlord will need
+                                to upload to the register, a copy of the written opinion of the relevant expert stating
+                                that the property cannot be improved to an EPC E rating because a recommended wall
+                                insulation measure would have a negative impact on the property (or the building of
+                                which it is a part).
+                            </p>
+                            <p>
+                                Once registered, the exemption will last five years; after this time it will expire and
+                                the landlord must try again to improve the property’s EPC rating to meet the minimum
+                                level of energy efficiency. If this cannot be achieved then a further exemption may be
+                                registered.
+                            </p>
+
+                            <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                               target="_blank">
+                                <span class="text">Register exemption</span>
+                                <span class="icon-container"><span class="icon">&gt;</span></span>
+                            </a>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div class="exemption-type" (click)="consentOpen = !consentOpen">
+                            <div class="summary">
+                                Third party consent exemption (Regulation 31(1) and Regulation 36(2))
+                            </div>
+                            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                        </div>
+
+                        <div class="more-info" [hidden]="!consentOpen">
+                            <p>
+                                Depending on circumstances, certain energy efficiency improvements may legally require
+                                third party consent before they can be installed in a property. Such improvements may
+                                include (but are not limited to) external wall insulation or solar panels which can
+                                require local authority planning consent, consent from mortgage lenders, or other third
+                                parties. Consent from a superior landlord may be required where the landlord is
+                                them-self a tenant. Consent may also be required from the current tenant of the property
+                                or other tenants depending on the provisions of the tenancy or tenancies.
+                            </p>
+                            <p>
+                                It is not practical to provide an exhaustive list of all situations where third party
+                                consent requirements may apply. Information on when and where consent is required will
+                                be contained within relevant documentation, for example in the landlord’s lease or
+                                mortgage conditions.
+                            </p>
+                            <p>
+                                Information Required: when registering an exemption of this type the landlord will need
+                                to upload to the register, a copy of any correspondence and/or relevant documentation
+                                demonstrating that consent for a relevant energy efficiency measure was required and
+                                sought, and that this consent was refused, or was granted subject to a condition that
+                                the landlord was not reasonably able to comply with.
+                            </p>
+                            <p>
+                                Once registered, the exemption will generally last five years; after this time it will
+                                expire and the landlord must try again to improve the property’s EPC rating to meet the
+                                minimum level of energy efficiency. If this cannot be achieved then a further exemption
+                                may be registered. Please note however that, where improvements cannot be made because
+                                consent could not be obtained from the current tenant of the property, the exemption
+                                will only remain valid for as long as that tenant remains the tenant. The improvement
+                                would then need to be made before the property is let on a new tenancy.
+                            </p>
+
+                            <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                               target="_blank">
+                                <span class="text">Register exemption</span>
+                                <span class="icon-container"><span class="icon">&gt;</span></span>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="exemption-type" (click)="devaluationOpen = !devaluationOpen">
+                            <div class="summary">
+                                Property devaluation exemption (Regulation 32(1) and Regulation 36 (2))
+                            </div>
+                            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                        </div>
+
+                        <div class="more-info" [hidden]="!devaluationOpen">
+                            <p>
+                                An exemption from meeting the minimum standard will apply where the landlord has
+                                obtained a report from an independent surveyor who is on the Royal Institution of
+                                Chartered Surveyors (RICS) register of valuers advising that the installation of
+                                specific energy efficiency measures would reduce the market value of the property, or
+                                the building it forms part of, by more than five per cent.
+                            </p>
+                            <p>
+                                A surveyor’s report prepared to support this exemption must clearly state all the
+                                recommended energy efficiency measures for the property that would lead to it being
+                                devalued. Please note: a landlord will still be required to install any relevant
+                                improvements recommended for their property that are not covered by the surveyor’s
+                                report (unless another exemption applies).
+                            </p>
+                            <p>
+                                Information Required: when registering an exemption of this type the landlord will need
+                                to upload to the register, a copy of the report prepared by an independent RICS surveyor
+                                that provides evidence that the installation of relevant measures would devalue the
+                                property by more than 5%.
+                            </p>
+                            <p>
+                                Once registered, the exemption will generally last five years; after this time it will
+                                expire and the landlord must try again to improve the property’s EPC rating to meet the
+                                minimum level of energy efficiency. If this cannot be achieved then a further exemption
+                                may be registered.
+                            </p>
+
+                            <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                               target="_blank">
+                                <span class="text">Register exemption</span>
+                                <span class="icon-container"><span class="icon">&gt;</span></span>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="exemption-type" (click)="recentLandlordOpen = !recentLandlordOpen">
+                            <div class="summary">
+                                Temporary exemption due to recently becoming a landlord (Regulation 33(1) & Regulation
+                                36 (2))
+                            </div>
+                            <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                        </div>
+
+                        <div class="more-info" [hidden]="!recentLandlordOpen">
+                            <p>
+                                The Regulations acknowledge that there are some, limited circumstances where a person
+                                may have become a landlord suddenly and as such it would be inappropriate or
+                                unreasonable for them to be required to comply with the Regulations immediately. If a
+                                person becomes a landlord in any of the circumstances set out below, a temporary
+                                exemption from the prohibition on letting a sub-standard property, or on continuing to
+                                let a sub-standard property, will apply. The exemption will last for six months from the
+                                date they become the landlord.
+                            </p>
+                            <p>
+                                The circumstances are:
+                            </p>
+                            <ul>
+                                <li>
+                                    the grant of a lease due to a contractual obligation (this is intended to cover a
+                                    situation where a contract was entered into on a contingent basis, regardless of
+                                    whether it was entered into before or after the Regulations came into force);
+                                </li>
+                                <li>
+                                    where the tenant becomes insolvent and the landlord has been the tenant’s guarantor
+                                    (in this situation, the tenant’s guarantor becomes a landlord when taking over the
+                                    lease);
+                                </li>
+                                <li>
+                                    the landlord has been a guarantor, or a former tenant, who has exercised the right
+                                    to obtain an overriding lease of a property under section 19 of the Landlord and
+                                    Tenant (Covenants) Act 1995 (for the avoidance of doubt, a “guarantor” who exercises
+                                    this right under the 1995 Act is the guarantor of a former tenant);
+                                </li>
+                                <li>
+                                    a new lease has been deemed created by operation of law;
+                                </li>
+                                <li>
+                                    a new lease has been granted under Part 2 of the Landlord and Tenant Act 1954;
+                                </li>
+                                <li>
+                                    a new lease has been granted by a court order, other than under Part 2 of the
+                                    Landlord and Tenant Act 1954.
+                                </li>
+                            </ul>
+
+                            <p>
+                                Additionally, from 1 April 2020, when the minimum standard applies to all privately
+                                rented properties that are occupied by tenants, a temporary exemption of six months will
+                                apply from the date from which a person became a landlord in the following situation:
+                            </p>
+                            <ul>
+                                <li>
+                                    A person becomes the landlord on purchasing an interest in a property and, on the
+                                    date of the purchase, it was let on an existing tenancy.
+                                </li>
+                            </ul>
+                            <p>
+                                In all cases landlords are advised to obtain their own independent legal advice if they
+                                are unsure about whether any of these temporary ‘recent landlord’ exemptions apply in
+                                their case.
+                            </p>
+                            <p>
+                                Information Required: if registering this exemption, the landlord must provide the date
+                                on which they became the landlord for the property, and a narrative explanation of the
+                                circumstances under which they became the landlord (any of the circumstances listed
+                                above).
+                            </p>
+                            <p>
+                                The exemption will last for six months from the date from which the landlord became the
+                                landlord. After six months the exemption will expire and the landlord must either have
+                                improved the energy efficiency of the property to at least EPC band E, or have
+                                registered another valid exemption (should one apply), if they intend to continue
+                                letting.
+                            </p>
+
+                            <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                               target="_blank">
+                                <span class="text">Register exemption</span>
+                                <span class="icon-container"><span class="icon">&gt;</span></span>
+                            </a>
+                        </div>
+                    </li>
                 </ul>
+
                 <p>
-                    See Chapter 4 in the
-                    <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/698541/Domestic_Private_Rented_Landlord_Guidance_-_March_18.pdf"
-                       target="_blank">
-                        Domestic Private Rented Property Minimum Standard Guidance</a>
-                    for more details.
+                    The following information will need to be provided for all exemptions:
                 </p>
+
+                <ul>
+                    <li>
+                        The address of the relevant rental property;
+                    </li>
+                    <li>
+                        which exemption type the landlord is registering;
+                    </li>
+                    <li>
+                        a copy of a valid Energy Performance Certificate for the property.
+                    </li>
+                </ul>
+
                 <p>
                     If any of these exemptions apply, you need to file a report with the
                     <a href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
                        target="_blank">
                         exemption register</a>.
-                    You will need to include relevant supporting evidence.
+                    You will need to include the relevant supporting evidence.
                 </p>
             </div>
         </div>

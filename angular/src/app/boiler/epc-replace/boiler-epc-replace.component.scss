@@ -1,7 +1,12 @@
 @import "styles/mixins/font";
-@import "styles/mixins/buttons";
 @import "styles/var/colors";
 @import "styles/boiler";
+
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 
 :host {
   flex-grow: 1;
@@ -9,11 +14,15 @@
   flex-direction: column;
 }
 
-.boiler-epc-replace {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.page-heading {
+  background: $light-blue;
 
+  .heading-text {
+    color: $dark-blue;
+  }
+}
+
+.boiler-epc-replace {
   .found-epc {
     background-color: $lighter-grey;
 
@@ -26,21 +35,12 @@
     }
 
     .no-replace, .replace {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
       .summary {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
         .icon {
           flex: 0 0 76px;
           height: 76px;
+
           border-radius: 50%;
-          margin-right: 32px;
 
           &.icon-tick {
             background: white url('/assets/images/icons/tick-pink.svg') no-repeat center;
@@ -54,17 +54,10 @@
         }
 
         .replace-text {
-          flex: 1 1 auto;
-          margin-right: 96px;
-
           font-size: 24px;
           line-height: 28px;
           font-weight: bold;
         }
-      }
-
-      .link-button {
-        flex: 0 0 350px;
       }
     }
   }
@@ -92,3 +85,109 @@
     }
   }
 }
+
+// Breakpoint specific styling
+
+@include mobile() {
+  .boiler-epc-replace {
+    .found-epc {
+      .no-replace, .replace {
+        display: flex;
+        flex-direction: column;
+
+        .summary {
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+
+          .icon {
+            width: 76px;
+            margin-bottom: 20px;
+          }
+
+          .replace-text {
+            padding-bottom: 20px;
+          }
+        }
+      }
+    }
+    .sorry {
+      .heading {
+        width: 100%;
+      }
+
+      .make-and-model {
+        display: flex;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .boiler-epc-replace {
+    .found-epc {
+
+      .no-replace, .replace {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .summary {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .icon {
+            margin-right: 32px;
+          }
+
+          .replace-text {
+            margin-right: 96px;
+          }
+        }
+
+        .link-button {
+          flex: 0 0 350px;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+
+  .boiler-epc-replace {
+    .found-epc {
+
+      .no-replace, .replace {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .summary {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .replace-text {
+            flex: 1 1 auto;
+            margin-right: 96px;
+          }
+
+          .icon {
+            margin-right: 32px;
+          }
+        }
+
+        .link-button {
+          flex: 0 0 350px;
+        }
+      }
+    }
+  }
+}
+

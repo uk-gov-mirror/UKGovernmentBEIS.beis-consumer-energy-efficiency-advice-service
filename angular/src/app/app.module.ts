@@ -1,7 +1,7 @@
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {InlineSVGModule} from 'ng-inline-svg';
@@ -25,12 +25,16 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {PageNotCreatedComponent} from "./page-not-created/page-not-created.component";
 import {SimpleSavingsModule} from './simple-savings/simple-savings.module';
 import {InstallerSearchModule} from "./installer-search/installer-search.module";
+import {ErrorBannerComponent} from './error-banner/error-banner.component';
+import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
+import {GlobalErrorHandler} from "./shared/global-error-handler";
 
 @NgModule({
     declarations: [
         AppComponent,
         PageNotFoundComponent,
-        PageNotCreatedComponent
+        PageNotCreatedComponent,
+        ErrorBannerComponent,
     ],
     imports: [
         BrowserModule,
@@ -55,6 +59,17 @@ import {InstallerSearchModule} from "./installer-search/installer-search.module"
         InstallerSearchModule,
         MeesModule.forRoot(),
         SimpleSavingsModule,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        },
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler
+        },
     ],
     bootstrap: [AppComponent],
 })

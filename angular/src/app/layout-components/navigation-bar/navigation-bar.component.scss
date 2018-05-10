@@ -20,7 +20,7 @@
     display: block;
     position: absolute;
     z-index: 2;
-    background-color: $dark-grey;
+    background-color: $dark-blue;
     margin: 0;
     padding: 0 20px 16px;
 
@@ -36,7 +36,7 @@
       }
     }
 
-    a:hover, a:visited, a:link, a:active {
+    a:hover, a:visited, a:link, a:active, a:focus {
       text-decoration: none;
     }
 
@@ -45,7 +45,7 @@
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .navigation-bar {
-  background-color: $dark-grey;
+  background-color: $dark-blue;
   height: 44px;
   overflow: visible;
 
@@ -57,12 +57,15 @@
       @include navbar-item;
       border: none;
       background: none;
-      outline: none;
       color: white;
       text-decoration: none;
 
       &:not(:last-child) {
-        margin-right: 20px;
+        margin-right: 10px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 10px;
       }
     }
   }
@@ -71,7 +74,7 @@
     display: none;
     position: absolute;
     width: 100%;
-    background-color: $dark-grey;
+    background-color: $dark-blue;
     opacity: 0.2;
     z-index: 1;
     top: 70px;
@@ -81,13 +84,13 @@
   .down-icon {
     width: 12px;
     height: 12px;
-    fill: $action-button-blue;
+    fill: $light-blue;
     margin-left: 6px;
     display: inline-block;
   }
 
   .your-plan {
-    background-color: $button-dark-blue;
+    background-color: $dark-medium-blue;
     color: white;
     text-transform: uppercase;
     box-sizing: border-box;
@@ -96,7 +99,7 @@
     .more-icon {
       width: 12px;
       height: 12px;
-      fill: $action-button-blue;
+      fill: $light-blue;
       transform: rotate(-90deg);
       margin: 2px 0 0 auto;
     }
@@ -171,7 +174,7 @@
       display: none;
     }
 
-    a:hover, a:visited, a:link, a:active {
+    a:hover, a:visited, a:link, a:active, a:focus {
       text-decoration: none;
     }
   }

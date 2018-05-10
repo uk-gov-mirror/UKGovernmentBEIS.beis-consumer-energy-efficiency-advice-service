@@ -15,11 +15,19 @@ $go-button-right-chevron-width: 20px;
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
+:host {
+  background-color: $lighter-grey;
+  padding-top: 20px;
+}
 
 .confirm-epc-question {
   width: $component-width;
   display: flex;
   flex-direction: column;
+
+  .subheading {
+    text-align: center;
+  }
 
   .epc-section {
     .energy-performance, .epc-diagram-card, .potential-savings {
@@ -62,7 +70,7 @@ $go-button-right-chevron-width: 20px;
 
     .epc-details-header {
       font-weight: bold;
-      color: $focus-text-blue;
+      color: $dark-medium-blue;
     }
 
     .epc-details-container {
@@ -98,12 +106,14 @@ $go-button-right-chevron-width: 20px;
     .need-more-details-button {
       border: none;
       overflow: visible;
-      background-color: $button-dark-blue;
+      background-color: $light-blue;
       cursor: pointer;
       padding: 0;
+      margin-bottom: 20px;
+      max-width: 400px;
 
       .need-more-details-body {
-        color: white;
+        color: $dark-blue;
         border: none;
         flex-grow: 1;
         height: $go-button-height;
@@ -136,34 +146,40 @@ $go-button-right-chevron-width: 20px;
           flex-grow: 1;
 
           &::after {
-            border-left: $go-button-right-chevron-width solid $button-dark-blue;
+            border-left: $go-button-right-chevron-width solid $light-blue;
           }
         }
 
         .button-go {
-          background-color: $action-button-blue;
+          background-color: $dark-blue;
+          color: $light-blue;
           padding-left: $go-button-right-chevron-width + 16px;
           padding-right: 4px;
 
           &::after {
-            border-left: $go-button-right-chevron-width solid $action-button-blue;
+            border-left: $go-button-right-chevron-width solid $dark-blue;
           }
         }
       }
 
-      &:hover {
-        background-color: $action-button-blue;
+      &:hover, &:focus {
+        background-color: $dark-blue;
+
+        .need-more-details-body {
+          color: $light-blue;
+        }
 
         .need-more-details-body {
           .button-main::after {
-            border-left-color: $action-button-blue
+            border-left-color: $dark-blue;
           }
 
           .button-go {
-            background-color: $button-dark-blue;
+            background-color: $light-blue;
+            color: $dark-blue;
 
             &::after {
-              border-left-color: $button-dark-blue;
+              border-left-color: $light-blue;
             }
           }
         }
@@ -175,6 +191,10 @@ $go-button-right-chevron-width: 20px;
 // Breakpoint specific styling
 .confirm-epc-question {
   @include mobile() {
+    .subheading {
+      padding-bottom: 40px;
+    }
+
     .epc-section {
       .energy-performance, .potential-savings {
         width: 100%;
@@ -197,7 +217,7 @@ $go-button-right-chevron-width: 20px;
             justify-content: center;
           }
 
-          .number-value {
+          .value-container {
             margin-right: 40px;
           }
         }
@@ -223,10 +243,10 @@ $go-button-right-chevron-width: 20px;
 
     .confirm-epc-details-section {
       border-top: 2px $separator-grey solid;
-      padding-top: 25px;
+      padding: 25px 0;
 
       .epc-details-header {
-        color: $focus-text-blue;
+        color: $dark-medium-blue;
       }
 
       .epc-details-list {
@@ -243,36 +263,22 @@ $go-button-right-chevron-width: 20px;
       }
 
       .confirm-epc-details {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        height: 80px;
         background-color: $lighter-grey;
-        left: 0;
-        bottom: 0;
         border-top: 2px solid $light-grey;
-        z-index: 3;
         font-weight: bold;
 
-        .confirm-epc-details-row:first-child {
-          flex-grow: 0.8;
-        }
-
         .confirm-epc-details-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          padding: 80px 0;
+          padding: 20px 0;
         }
       }
-    }
-
-    .no-details {
-      padding-bottom: 40px;
     }
   }
 
   @include tablet() {
+    .subheading {
+      padding-bottom: 40px;
+    }
+
     .epc-section {
       display: flex;
       flex-wrap: wrap;
@@ -297,9 +303,9 @@ $go-button-right-chevron-width: 20px;
       }
 
       ::ng-deep .data-card {
-        justify-content: baseline;
+        justify-content: flex-start;
 
-        .number-value {
+        .value-container {
           margin: auto;
         }
       }
@@ -307,10 +313,10 @@ $go-button-right-chevron-width: 20px;
 
     .confirm-epc-details-section {
       border-top: 2px $separator-grey solid;
-      padding-top: 25px;
+      padding: 25px 0;
 
       .epc-details-header {
-        color: $focus-text-blue;
+        color: $dark-medium-blue;
       }
 
       .epc-details-list {
@@ -327,23 +333,12 @@ $go-button-right-chevron-width: 20px;
       }
 
       .confirm-epc-details {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        height: 80px;
         background-color: $lighter-grey;
-        left: 0;
-        bottom: 0;
         border-top: 4px solid $separator-grey;
-        z-index: 3;
         font-weight: bold;
 
         .confirm-epc-details-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          flex: 1 0 50%;
-          padding: 80px 0;
+          padding: 20px 0;
         }
       }
     }
@@ -351,14 +346,13 @@ $go-button-right-chevron-width: 20px;
     .need-more-details-container {
       display: flex;
       flex-direction: column;
-
-      .no-details {
-        padding-bottom: 40px;
-      }
     }
   }
 
   @include desktop() {
+    .subheading {
+      padding-bottom: 48px;
+    }
 
     .epc-section {
       display: flex;
@@ -368,9 +362,9 @@ $go-button-right-chevron-width: 20px;
         margin-bottom: 40px;
 
         ::ng-deep .data-card {
-          justify-content: baseline;
+          justify-content: flex-start;
 
-          .number-value {
+          .value-container {
             margin: auto;
           }
         }
@@ -410,7 +404,7 @@ $go-button-right-chevron-width: 20px;
       .epc-details-header {
         font-size: 20px;
         line-height: 24px;
-        color: $focus-text-blue;
+        color: $dark-medium-blue;
         margin-bottom: 10px;
       }
 
@@ -456,10 +450,6 @@ $go-button-right-chevron-width: 20px;
       display: flex;
       align-items: center;
       flex-direction: column;
-
-      .no-details {
-        padding-bottom: 48px;
-      }
     }
   }
 }

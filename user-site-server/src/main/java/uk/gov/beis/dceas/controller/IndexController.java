@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import uk.gov.beis.dceas.service.IpValidationService;
 
@@ -81,6 +82,15 @@ public class IndexController {
     }
 
     /**
+     * This left in for testing, as it can be hard
+     * to trigger a server-side error otherwise
+     */
+    @GetMapping("/testError")
+    public void testError() {
+        throw new RuntimeException("Test error");
+    }
+
+    /**
      * The homepage for the user SPA.
      *
      * See comments in `app-routing.module.ts`
@@ -109,7 +119,6 @@ public class IndexController {
         "/your-home/**",
         "/eco-suppliers/**",
         "/pages/**",
-        "/boiler-grants/**",
         "/landlord-obligations/**",
         "/certified-repairers/**",
         "/page-not-created/**",

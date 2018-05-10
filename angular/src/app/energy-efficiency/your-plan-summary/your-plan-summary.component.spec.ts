@@ -22,12 +22,14 @@ describe('YourPlanSummaryComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Loft insulation',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 999,
@@ -39,12 +41,14 @@ describe('YourPlanSummaryComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Solar photovoltaic panels',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 20,
@@ -56,12 +60,14 @@ describe('YourPlanSummaryComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Cylinder insulation',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
             grant: null,
             advantages: [],
             steps: [],
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         }
     ];
 

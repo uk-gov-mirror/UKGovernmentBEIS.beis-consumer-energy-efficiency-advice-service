@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResponseData} from '../../shared/response-data/response-data';
 
@@ -7,7 +7,7 @@ import {ResponseData} from '../../shared/response-data/response-data';
     templateUrl: './energy-efficiency-questionnaire.component.html',
     styleUrls: ['./energy-efficiency-questionnaire.component.scss']
 })
-export class EnergyEfficiencyQuestionnaireComponent {
+export class EnergyEfficiencyQuestionnaireComponent implements OnInit {
 
     questionnaireName: string;
 
@@ -17,6 +17,12 @@ export class EnergyEfficiencyQuestionnaireComponent {
         private route: ActivatedRoute
     ) {
         this.questionnaireName = route.snapshot.paramMap.get('name');
+    }
+
+    ngOnInit(): void {
+        if (!['home-basics', 'behaviour'].includes(this.questionnaireName)) {
+            this.router.navigate(['/404'], {skipLocationChange: true});
+        }
     }
 
     onQuestionnaireComplete(): void {

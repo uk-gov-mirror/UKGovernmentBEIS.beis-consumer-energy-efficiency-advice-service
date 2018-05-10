@@ -10,6 +10,7 @@ import {SearchBarComponent} from '../search-bar/search-bar.component';
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {NeedHelpComponent} from "../../shared/need-help/need-help.component";
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -24,6 +25,7 @@ describe('HeaderComponent', () => {
                 HeaderComponent,
                 SearchBarComponent,
                 SpinnerAndErrorContainerComponent,
+                NeedHelpComponent,
             ],
             imports: [FormsModule, RouterTestingModule, InlineSVGModule, HttpClientTestingModule],
             providers: [

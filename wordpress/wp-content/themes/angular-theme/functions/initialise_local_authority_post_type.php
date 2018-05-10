@@ -73,38 +73,6 @@ function setup_local_authority_acf_group() {
                     'type' => 'tab',
                 ),
                 array (
-                    'key' => 'field_5a0b228576432',
-                    'label' => 'Do you operate Flexible Eligibility for the Energy Company Obligation scheme (ECO Flex)?',
-                    'name' => 'is_eco_flex_active',
-                    'type' => 'true_false',
-                    'instructions' => '',
-                    'required' => 0
-                ),
-                array (
-                    'key' => 'field_5a0b2353b4282',
-                    'label' => 'Link to further information on ECO Flex',
-                    'name' => 'eco_flex_further_info_link',
-                    'type' => 'text',
-                    'instructions' => '',
-                    'conditional_logic' => array (
-                        'status' => 1,
-                        'rules' => array (
-                            array (
-                                'field' => 'field_5a0b228576432',
-                                'operator' => '==',
-                                'value' => '1',
-                            ),
-                        ),
-                        'allorany' => 'all',
-                    ),
-                    'default_value' => '',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'formatting' => 'html',
-                    'maxlength' => ''
-                ),
-                array (
                     'key' => 'field_59f0c4fe301b6',
                     'label' => 'Grants',
                     'name' => 'grants',

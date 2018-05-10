@@ -75,4 +75,8 @@
     <include file="changelogs/2018-04-23-remove-heating-cost-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-30-change-mees-domestic-property-questions.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-04-30-add-mees-agricultural-tenancy-question.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-05-04-add-tenancy-start-date-question.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-05-09-add-FPNES-grant-post.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-05-09-add-images-to-articles.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-05-10-remove-unused-grants.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

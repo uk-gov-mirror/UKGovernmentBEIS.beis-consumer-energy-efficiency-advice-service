@@ -34,6 +34,7 @@ import {MeesPostcodeEpcQuestionMetadata} from './mees/mees-postcode-epc-question
 import {EpcNotFoundMetadata} from './mees/epc-not-found-question/epc-not-found-metadata';
 import {HotWaterCylinderQuestionMetadata} from './hot-water-cylinder-question/hot-water-cylinder-question-metadata';
 import {AgriculturalTenancyTypeQuestionMetadata} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question-metadata';
+import {TenancyStartDateQuestionMetadata} from './mees/tenancy-start-date-question/tenancy-start-date-question-metadata';
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -99,15 +100,12 @@ export const BOILER_QUESTIONS = [
     new RoofSpaceQuestionMetadata(),
     // Restricts which boilers are offered
     new FuelTypeQuestionMetadata(),
-    // Not currently used!
-    new OccupantsQuestionMetadata(),
-    // Not currently used!
-    new ShowersAndBathsQuestionMetadata(),
 ];
 
 // Questions for the "Minimum Energy Efficiency Standards" questionnaire ("MEES"), aimed at landlords.
 export const MEES_QUESTIONS = [
     new LettingDomesticPropertyQuestionMetadata(),
+    new TenancyStartDateQuestionMetadata(),
     new TenancyTypeQuestionMetadata(),
     new AgriculturalTenancyTypeQuestionMetadata(),
     new PropertyEpcQuestionMetadata(),

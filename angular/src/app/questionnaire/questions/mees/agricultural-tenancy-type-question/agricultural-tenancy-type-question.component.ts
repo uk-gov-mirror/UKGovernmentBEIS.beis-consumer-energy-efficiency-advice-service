@@ -20,6 +20,7 @@ export class AgriculturalTenancyTypeQuestionComponent extends QuestionBaseCompon
         new AgriculturalTenancyTypeOption(AgriculturalTenancyType.AssuredTenancy, 'assured-tenancy'),
         new AgriculturalTenancyTypeOption(AgriculturalTenancyType.ProtectedOccupancy, 'protected-occupancy'),
         new AgriculturalTenancyTypeOption(AgriculturalTenancyType.StatutoryTenancy, 'statutory-tenancy'),
+        new AgriculturalTenancyTypeOption(AgriculturalTenancyType.Other, 'other'),
     ];
 
     get responseForAnalytics(): string {

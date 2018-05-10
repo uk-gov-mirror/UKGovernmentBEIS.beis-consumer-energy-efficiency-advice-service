@@ -26,11 +26,14 @@ export class DownloadPlanComponent {
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
         const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
 
+        const readMoreContent = document.getElementsByClassName("read-more-content-container");
+        const readMoreArray = Array.from(readMoreContent);
+
         const reccomendationPageRow = document.getElementsByClassName("recommendations")[0];
 
         let mutationCount = 0;
 
-        const callback = function(elemObserver) {
+        const callback = function (elemObserver) {
             mutationCount++;
 
             if (mutationCount === (stepCards.length + 1)) { // If all drop downs have been opened
@@ -42,10 +45,14 @@ export class DownloadPlanComponent {
                 html2pdf(pdfBody);
 
                 // Close all the drop downs
-                stepCardArray.map(elem => {
-                    elem.className = elem.className.slice(0, -11);
+                readMoreArray.map(elem => {
+                    elem.classList.remove("read-more-expanded");
                 });
-                reccomendationPageRow.className = reccomendationPageRow.className.slice(0, -11);
+
+                stepCardArray.map(elem => {
+                    elem.classList.remove("print-mode");
+                });
+                reccomendationPageRow.classList.remove("print-mode");
 
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
 
@@ -69,9 +76,13 @@ export class DownloadPlanComponent {
         });
 
         stepCardArray.map(elem => {
-            elem.className += " print-mode";
+            elem.classList.add("print-mode");
         });
-        reccomendationPageRow.className += " print-mode";
+        reccomendationPageRow.classList.add("print-mode");
+
+        readMoreArray.map(elem => {
+            elem.classList.add("read-more-expanded");
+        });
     }
 
     sendEventToAnalytics(eventName: string) {

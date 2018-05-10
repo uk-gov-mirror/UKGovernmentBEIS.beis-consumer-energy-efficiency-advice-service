@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-05-10-remove-unused-grants.xml"
+               author="anthony.pengelly@softwire.com">
+
+        <sql><![CDATA[
+
+DELETE FROM `wp_postmeta` WHERE post_id IN (SELECT ID FROM wp_posts WHERE post_name='eco-hhcro-flex' OR post_name='eco-cero');
+
+DELETE FROM `wp_posts` WHERE post_name='eco-hhcro-flex' OR post_name='eco-cero';
+
+DELETE FROM wp_postmeta WHERE meta_key='is_eco_flex_active' OR meta_key='_is_eco_flex_active' OR meta_key='eco_flex_further_info_link' OR meta_key='_eco_flex_further_info_link';
+
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

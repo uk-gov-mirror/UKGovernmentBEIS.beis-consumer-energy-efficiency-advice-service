@@ -2,7 +2,7 @@
 @import "styles/mixins/spinner";
 @import "styles/var/colors";
 
-$grant-cards-per-row: 4;
+$grant-cards-per-row: 2;
 $grant-card-margin: 24px;
 
 .grants-landing-page {
@@ -12,13 +12,14 @@ $grant-card-margin: 24px;
   }
 
   .page-heading {
+    background-color: $light-blue;
 
     .page-row-content {
       padding: 60px 0;
 
       .heading-text {
         @include page-heading-font;
-        color: $headline-dark-blue;
+        color: $dark-blue;
       }
     }
   }
@@ -47,14 +48,14 @@ $grant-card-margin: 24px;
           padding: 30px 0px;
           width: 100%;
 
-          color: $focus-text-blue;
+          color: $dark-medium-blue;
           font-size: 28px;
           font-weight: bold;
           line-height: 32px;
         }
 
         .grant-info-title-efficiency {
-          color: $focus-text-blue;
+          color: $dark-medium-blue;
           font-size: 28px;
           font-weight: bold;
           line-height: 32px;
@@ -78,11 +79,11 @@ $grant-card-margin: 24px;
 
           .grant-heading {
             @include focus-text;
-            color: $focus-text-blue;
+            color: $dark-medium-blue;
           }
 
           .grant-description{
-            color: $headline-dark-blue;
+            color: $dark-medium-blue;
 
             font-size: 13px;
             font-weight: 500;
@@ -92,7 +93,7 @@ $grant-card-margin: 24px;
 
           .link-button {
             @include body-uppercase;
-            color: $focus-text-blue;
+            color: $dark-medium-blue;
             text-align: left;
             text-decoration: none;
             font-size: 12px;
@@ -102,8 +103,8 @@ $grant-card-margin: 24px;
             border: none;
             background-color: white;
             &:hover, &:focus {
-              background-color: $primary-blue;
-              color: white;
+              background-color: $light-blue;
+              color: $dark-blue;
             }
 
             padding: 24px 16px;
@@ -130,11 +131,11 @@ $grant-card-margin: 24px;
           }
 
           .link-button-arrow:hover:after{
-            border-left: 20px solid $primary-blue;
+            border-left: 20px solid $light-blue;
           }
 
           .link-button-arrow:focus:after{
-            border-left: 20px solid $primary-blue;
+            border-left: 20px solid $light-blue;
           }
 
           .grant-info-column {
@@ -172,7 +173,7 @@ $grant-card-margin: 24px;
   }
 
   .local-grants {
-    background-color: $action-button-blue;
+    background-color: $lighter-grey;
 
     .page-row-content {
       display: flex;
@@ -190,7 +191,7 @@ $grant-card-margin: 24px;
           @include page-subheading-font;
           display: flex;
           flex-direction: column;
-          color: white;
+          color: $dark-grey;
 
           width: 700px;
 
@@ -216,7 +217,7 @@ $grant-card-margin: 24px;
           form {
 
             input {
-              background-color: $light-grey;
+              background-color: white;
               outline: none;
               border: none;
 

@@ -29,7 +29,7 @@ import {AssetsService} from './assets-service/assets.service';
 import {PostcodeLookupComponent} from './postcode-lookup/postcode-lookup.component';
 import {LargeVideoCardComponent} from './large-video-card/large-video-card.component';
 import {SafePipe} from './safe/safe.pipe';
-import {GrantCardComponent} from './grant-card/grant-card.component';
+import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.component';
 import {RecommendationsService} from './recommendations-service/recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
@@ -43,6 +43,7 @@ import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-
 import {WordpressECOSuppliersService} from './wordpress-eco-suppliers-service/wordpress-eco-suppliers.service';
 import {WordpressSearchService} from './wordpress-search-service/wordpress-search.service';
 import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
+import {ContentsTableComponent} from "./contents-table/contents-table.component";
 
 @NgModule({
     declarations: [
@@ -60,12 +61,13 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
         QuestionReasonComponent,
         LargeVideoCardComponent,
         SafePipe,
-        GrantCardComponent,
+        LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
+        ContentsTableComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -82,12 +84,13 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
         QuestionReasonComponent,
         LargeVideoCardComponent,
         SafePipe,
-        GrantCardComponent,
+        LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
         PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
+        ContentsTableComponent,
     ],
     imports: [
         HttpClientModule,

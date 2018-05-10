@@ -1,4 +1,5 @@
-<div class="your-plan-page">
+<app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="your-plan-page" *ngIf="!isError">
     <div class="your-plan-content">
         <div class="your-plan-header page-row">
             <div class="page-row-content">
@@ -9,8 +10,8 @@
                         consider to implement this measure.
                     </div>
                     <div class="subheading" *ngIf="recommendations.length > 1">
-                        You have added {{recommendations.length}} recommendations to your plan. You'll find all the steps
-                        and things you need to consider to implement those measures.
+                        You have added {{recommendations.length}} recommendations to your plan. You'll find all the
+                        steps and things you need to consider to implement those measures.
                     </div>
                     <app-your-plan-summary></app-your-plan-summary>
                 </div>
@@ -19,14 +20,28 @@
         <div class="recommendations page-row">
             <div class="page-row-content">
                 <div class="recommendation-steps-card" *ngFor="let recommendation of recommendations">
-                    <div class="headline">{{recommendation.headline}}</div>
-                    <div class="description">{{recommendation.summary}}</div>
+                    <div class="details">
+                        <div class="description">
+                            <div class="headline">{{recommendation.headline}}</div>
+                            <div class="summary">{{recommendation.summary}}</div>
+                        </div>
+                        <app-data-card class="investment-required-card"
+                                       heading="Investment required"
+                                       [value]="'£' + getRoundedInvestment(recommendation)"
+                                       [isSmallCard]="true"
+                        ></app-data-card>
+                        <app-data-card class="monthly-savings-card"
+                                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                                       [value]="'£' + getRoundedSavings(recommendation)"
+                                       [isSmallCard]="true"
+                        ></app-data-card>
+                    </div>
                     <div class="steps">
                         <app-recommendation-step-card
                                 *ngFor="let step of recommendation.steps; let i = index"
                                 [step]="step"
                                 [stepIndex]="i"
-                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.codeForAnalytics)"
+                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
                         ></app-recommendation-step-card>
                     </div>
                 </div>
@@ -39,10 +54,11 @@
                     grants. You live in {{localAuthorityName}} so we've found the following:
                 </div>
                 <div class="grant-cards">
-                    <app-grant-card class="grant-card"
+                    <app-local-grant-card class="grant-card"
                                     *ngFor="let grant of localAuthorityGrants"
-                                    [grant]="grant">
-                    </app-grant-card>
+                                    [grant]="grant"
+                                    theme="grey">
+                    </app-local-grant-card>
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@ describe('InstallerSearchComponent', () => {
     it('should display the value of the measure code', () => {
         fixture.whenStable().then( () => {
             fixture.detectChanges();
-            const inputElement = fixture.debugElement.query(By.css('.measure-code-input')).nativeElement;
+            const inputElement = fixture.debugElement.query(By.css('.measure-name-input')).nativeElement;
             expect(inputElement.value).toEqual(component.measureName);
         });
     });
@@ -75,7 +75,10 @@ describe('InstallerSearchComponent', () => {
                     measure_code: "Test Measure Code",
                     headline: "Test Headline",
                     summary: null,
+                    what_it_is: null,
+                    is_it_right_for_me: null,
                     advantages: [{advantage: null}],
+                    statistic: "Test Statistic",
                     tags: null,
                     steps: null
                 }

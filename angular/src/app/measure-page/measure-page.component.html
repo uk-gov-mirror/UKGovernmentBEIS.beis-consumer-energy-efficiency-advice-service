@@ -1,4 +1,7 @@
-<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<app-spinner-and-error-container
+        [loading]="isLoading"
+        [error]="isError"
+        [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="measure-page" *ngIf="!isLoading && !isError">
     <div class="page-row heading-section">
         <div class="page-row-content">
@@ -16,16 +19,10 @@
     </div>
     <div class="page-row contents-section" *ngIf="measureData.steps && measureData.steps.length > 1">
         <div class="page-row-content">
-            <div class="contents-title">
-                <div class="contents-title-icon" [inlineSVG]="'controls/menu.svg'"></div>
-                Contents
-            </div>
-            <div *ngFor="let step of measureData.steps; let i = index">
-                <div class="contents-link" (click)="scrollToStep(i)">
-                    <div class="contents-number">{{getFormattedNumberFromIndex(i)}}</div>
-                    <div class="contents-item">{{step.headline}}</div>
-                </div>
-            </div>
+            <app-contents-table
+                    [headings]="getHeadings()"
+                    (onHeadingClicked)="scrollToStep($event)">
+            </app-contents-table>
         </div>
     </div>
     <div class="page-row steps-section" *ngIf="measureData.steps && measureData.steps.length">

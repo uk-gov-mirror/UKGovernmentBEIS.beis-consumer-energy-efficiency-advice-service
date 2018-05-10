@@ -8,6 +8,8 @@ import {
 import {EpcRating} from '../../shared/postcode-epc-service/model/epc-rating';
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
+import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
+import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
 
 enum MeesResultsStatus {
     IrrelevantTenancyStartDate,
@@ -29,16 +31,26 @@ export class MeesResultsPageComponent implements OnInit {
     status: MeesResultsStatus;
     // Import the above enum into the component scope so it can be used in the component html:
     MeesResultsStatus = MeesResultsStatus;
+    isError: boolean = false;
+    errorMessage: string;
 
-    constructor(private responseData: ResponseData) {
+    constructor(private responseData: ResponseData,
+                private questionnaireService: QuestionnaireService) {
     }
 
     ngOnInit() {
-        if (this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.BeforeApril2018) {
+        if (!this.questionnaireService.isComplete('mees')) {
+            this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
+                "not completed the questionnaire, or something has gone wrong.";
+            this.isError = true;
+            return;
+        }
+
+        if (this.responseData.tenancyStartDate === TenancyStartDate.BeforeApril2018) {
             this.status = MeesResultsStatus.IrrelevantTenancyStartDate;
         } else if (this.responseData.tenancyType === TenancyType.Other
             || (this.responseData.tenancyType === TenancyType.DomesticAgriculturalTenancy
-                && this.responseData.agriculturalTenancyType !== AgriculturalTenancyType.AssuredTenancy)) {
+                && this.responseData.agriculturalTenancyType === AgriculturalTenancyType.Other)) {
             this.status = MeesResultsStatus.IrrelevantTenancyType;
         } else if (this.responseData.propertyEpc === UserEpcRating.AtLeastE) {
             this.status = MeesResultsStatus.EpcAtLeastE;
@@ -50,7 +62,8 @@ export class MeesResultsPageComponent implements OnInit {
         } else if (this.responseData.isEpcRequired === false) {
             this.status = MeesResultsStatus.EpcNotRequired;
         } else if (this.isEpcBelowE()
-            && this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.AfterApril2018) {
+            && this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.Currently
+            && this.responseData.tenancyStartDate === TenancyStartDate.AfterApril2018) {
 
             this.status = MeesResultsStatus.InstallRecommendedImprovementsAsap;
         } else if (this.isEpcBelowE()) {

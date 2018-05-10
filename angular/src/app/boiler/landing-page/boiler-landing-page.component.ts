@@ -13,14 +13,13 @@ export class BoilerLandingPageComponent {
     replacingMobileExpanded = false;
     grantsMobileExpanded = false;
     installerMobileExpanded = false;
-    postcode: string;
 
     constructor(private responseData: ResponseData,
         private router: Router) {
     }
 
     onPostcodeSelected() {
-        this.postcode = this.responseData.postcode;
+        this.router.navigate(['/installer-search/']);
     }
 
     onEpcSelected(lmkKey: string) {

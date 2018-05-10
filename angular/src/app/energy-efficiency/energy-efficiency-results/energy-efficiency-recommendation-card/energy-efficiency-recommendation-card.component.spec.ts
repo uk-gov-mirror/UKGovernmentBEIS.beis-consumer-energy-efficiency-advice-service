@@ -37,12 +37,14 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         iconPath: 'icons/dummy.svg',
         headline: 'Loft insulation',
         summary: 'No description available',
+        whatItIs: '',
+        isItRightForMe: '',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
         grant: grant,
         advantages: advantages,
         steps: [],
         isAddedToPlan: false,
-        codeForAnalytics: ''
+        recommendationID: ''
     };
 
     beforeEach(async(() => {
@@ -86,15 +88,14 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             expect(summaryElement.innerText).toBe(recommendation.summary);
         });
 
-        it('should display the correct tags', () => {
+        it('should display the grants tag', () => {
             // given
             const tagsElements = fixture.debugElement.queryAll(By.css('.tag'));
 
             // then
-            expect(tagsElements.length).toBe(2);
+            expect(tagsElements.length).toBe(1);
             const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
             expect(tagNames).toContain('grants');
-            expect(tagNames).toContain('longer term');
         });
     });
 

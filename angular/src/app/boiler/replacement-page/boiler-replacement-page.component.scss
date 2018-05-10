@@ -6,28 +6,44 @@
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
+.page-heading {
+  background-color: $light-blue;
+  color: $dark-blue;
+
+  .heading-text {
+    margin-bottom: 20px;
+    color: $dark-blue;
+  }
+}
+
+.checkEPC {
+  background-color: $lighter-grey;
+
+  .page-row-content {
+    box-sizing: border-box;
+    text-align: center;
+
+    .heading {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.boiler-types {
+  background-color: white;
+}
 
 // Breakpoint specific styling
 .boiler-replacement-page {
   @include mobile() {
-    .page-heading {
-      background-color: $lighter-grey;
-    }
 
-    .get-started {
-      padding: 20px 0;
-
-      .body-text {
-        padding: 20px 0;
-      }
-
-      .link-button {
-        display: flex;
+    .checkEPC {
+      .page-row-content {
+        padding: 0 25px;
       }
     }
 
     .boiler-types {
-      background-color: $lighter-grey;
       padding: 20px 0;
 
       .body-text {
@@ -37,38 +53,13 @@
   }
 
   @include tablet() {
-
-    .page-heading {
-      background-color: $lighter-grey;
-    }
-
-    .get-started {
-      background-color: white;
-
+    .checkEPC {
       .page-row-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .content {
-          flex: 1 1 auto;
-          margin-right: 60px;
-
-          .heading {
-            margin-bottom: 8px;
-          }
-        }
-
-        .link-button {
-          flex: 0 0 300px;
-          height: 70px;
-        }
+        padding: 0 75px;
       }
     }
 
     .boiler-types {
-      background-color: $lighter-grey;
-
       .heading {
         margin-bottom: 8px;
       }
@@ -85,37 +76,19 @@
 }
 
 @include desktop() {
-
-  .page-heading {
-    background-color: white;
-  }
-  .get-started {
-    background-color: $lighter-grey;
-
+  .checkEPC {
     .page-row-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 225px;
+      text-align: center;
 
-      .content {
-        flex: 1 1 auto;
-        margin-right: 60px;
-
-        .heading {
-          margin-bottom: 8px;
-        }
-      }
-
-      .link-button {
-        flex: 0 0 300px;
-        height: 70px;
+      .heading {
+        margin-bottom: 20px;
       }
     }
   }
 
   .boiler-types {
-    background-color: white;
-
     .heading {
       margin-bottom: 8px;
     }

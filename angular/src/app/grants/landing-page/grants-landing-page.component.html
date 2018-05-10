@@ -14,7 +14,7 @@
                             that you might be eligible for.</p>
                     </div>
                 <div class="enter-postcode-form">
-                    <app-postcode-lookup class="postcode-epc input-grey" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+                    <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
                 </div>
             </div>
             <div class="loading-grants" *ngIf="isLoading"></div>
@@ -25,10 +25,10 @@
                 <div class="local-grants" *ngIf="localAuthority.grants.length > 0">
                     <div class="local-authority-name">You live in {{localAuthority.name}} and we've found the following:</div>
                     <div class="grant-cards">
-                        <app-grant-card class="grant-card"
+                        <app-local-grant-card class="grant-card"
                                         *ngFor="let grant of localAuthority.grants"
                                         [grant]="grant">
-                        </app-grant-card>
+                        </app-local-grant-card>
                     </div>
                 </div>
                 <div class="no-local-grants" *ngIf="localAuthority.grants.length === 0">
@@ -110,7 +110,7 @@
                             If you were born on or before 5 August 1953 you could get between £100 and £300 to help you
                             pay your heating bills
                         </div>
-                        <a routerLink="/grants/winter-fuel-payments/" class="link-button link-button-arrow">
+                        <a routerLink="/pages/winter-fuel-payment" class="link-button link-button-arrow">
                             Find out more
                         </a>
                     </div>
@@ -125,7 +125,7 @@
                             If you're receiving certain benefits, you could get £140 off your electricity bill for
                             winter 2017 to 2018
                         </div>
-                        <a routerLink="/grants/warm-home-discount/" class="link-button link-button-arrow">
+                        <a routerLink="/pages/warm-home-discount" class="link-button link-button-arrow">
                             Find out more
                         </a>
                     </div>
@@ -139,7 +139,7 @@
                         <div class="grant-description">
                             If you're receiving certain benefits, you may get a payment when the weather is cold
                         </div>
-                        <a routerLink="/grants/cold-weather-payments" class="link-button link-button-arrow">
+                        <a routerLink="/pages/cold-weather-payment" class="link-button link-button-arrow">
                             Find out more
                         </a>
                     </div>
