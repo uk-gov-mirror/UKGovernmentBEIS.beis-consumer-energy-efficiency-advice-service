@@ -51,6 +51,8 @@
     color: white;
 
     &.is-percent {
+      position:relative;
+
       .value {
         @include data-card-circle-value-font();
         padding-bottom: 17px;
@@ -59,6 +61,9 @@
       &:after {
         content: "100";
         position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 23px;
         transform: translate(0, 100%);
         font-size: 14px;
         font-weight: normal;
