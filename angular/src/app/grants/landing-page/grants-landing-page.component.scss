@@ -72,6 +72,7 @@ $grant-card-margin: 24px;
           align-items: stretch;
           padding: 20px 60px 20px 20px;
           justify-content: space-between;
+          text-decoration:  none;
 
           &:not(:first-child) {
             margin-left: 20px;
@@ -91,6 +92,17 @@ $grant-card-margin: 24px;
             text-transform: uppercase;
           }
 
+          &:hover, &:focus {
+            .link-button {
+              background-color: $light-blue;
+              color: $dark-blue;
+            }
+
+            .link-button-arrow:after, .link-button-arrow:after{
+              border-left: 20px solid $light-blue;
+            }
+          }
+
           .link-button {
             @include body-uppercase;
             color: $dark-medium-blue;
@@ -102,10 +114,6 @@ $grant-card-margin: 24px;
             cursor: pointer;
             border: none;
             background-color: white;
-            &:hover, &:focus {
-              background-color: $light-blue;
-              color: $dark-blue;
-            }
 
             padding: 24px 16px;
             box-sizing: border-box;
@@ -128,14 +136,6 @@ $grant-card-margin: 24px;
             border-bottom: 30.5px solid transparent;
 
             border-left: 20px solid white;
-          }
-
-          .link-button-arrow:hover:after{
-            border-left: 20px solid $light-blue;
-          }
-
-          .link-button-arrow:focus:after{
-            border-left: 20px solid $light-blue;
           }
 
           .grant-info-column {
