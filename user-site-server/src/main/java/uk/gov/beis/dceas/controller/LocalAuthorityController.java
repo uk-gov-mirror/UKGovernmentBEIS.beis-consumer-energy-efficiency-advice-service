@@ -62,15 +62,11 @@ public class LocalAuthorityController {
         final WpPostmeta postMetaForCode = WP_POSTMETA.as("post_meta_for_code");
         final WpPostmeta postMetaForGrantsList = WP_POSTMETA.as("post_meta_for_grants_list");
         final WpPostmeta postMetaForDisplayName = WP_POSTMETA.as("post_meta_for_display_name");
-        final WpPostmeta postMetaForIsEcoFlexActive = WP_POSTMETA.as("post_meta_for_is_eco_flex_active");
-        final WpPostmeta postMetaForEcoFlexFurtherInfoLink = WP_POSTMETA.as("post_meta_for_eco_flex_further_info_link");
 
         Record localAuthPost = notFoundIfNull(dslContext
             .select(
                 postMetaForGrantsList.META_VALUE,
-                postMetaForDisplayName.META_VALUE,
-                postMetaForIsEcoFlexActive.META_VALUE,
-                postMetaForEcoFlexFurtherInfoLink.META_VALUE)
+                postMetaForDisplayName.META_VALUE)
             .from(WP_POSTS)
             .join(postMetaForCode).on(
                 postMetaForCode.POST_ID.eq(WP_POSTS.ID)
@@ -83,12 +79,6 @@ public class LocalAuthorityController {
             .leftJoin(postMetaForDisplayName).on(
                 postMetaForDisplayName.POST_ID.eq(WP_POSTS.ID)
                     .and(postMetaForDisplayName.META_KEY.eq(inline("display_name"))))
-            .leftJoin(postMetaForIsEcoFlexActive).on(
-                postMetaForIsEcoFlexActive.POST_ID.eq(WP_POSTS.ID)
-                    .and(postMetaForIsEcoFlexActive.META_KEY.eq(inline("is_eco_flex_active"))))
-            .leftJoin(postMetaForEcoFlexFurtherInfoLink).on(
-                postMetaForEcoFlexFurtherInfoLink.POST_ID.eq(WP_POSTS.ID)
-                    .and(postMetaForEcoFlexFurtherInfoLink.META_KEY.eq(inline("eco_flex_further_info_link"))))
 
             .where(WP_POSTS.POST_TYPE.eq(inline("local_authority")))
             .and(WP_POSTS.POST_STATUS.eq(inline("publish")))
@@ -101,23 +91,9 @@ public class LocalAuthorityController {
 
         List<LocalAuthority.Grant> grants = fetchGrantsByPostIds(grantPostIds);
 
-        boolean isEcoFlexActive = toBool(postMetaForIsEcoFlexActive.META_VALUE.get(localAuthPost));
-
-        // Although the ACF "eco_flex_further_info_link" list is conditional on "is_eco_flex_active",
-        // the former value is not cleared in the database when the latter is set to
-        // false. To prevent sending stale data, we must guard against that here
-        String ecoFlexFurtherInfoLink;
-        if (!isEcoFlexActive) {
-            ecoFlexFurtherInfoLink = null;
-        } else {
-            ecoFlexFurtherInfoLink = postMetaForEcoFlexFurtherInfoLink.META_VALUE.get(localAuthPost);
-        }
-
         return new LocalAuthority(
             onsCode,
             postMetaForDisplayName.META_VALUE.get(localAuthPost),
-            isEcoFlexActive,
-            ecoFlexFurtherInfoLink,
             grants);
     }
 
