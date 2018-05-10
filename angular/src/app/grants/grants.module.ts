@@ -12,8 +12,6 @@ import {NationalGrantsContentService} from './national-grants-content-service/na
 import {IncomeThresholdService} from
     './national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service';
 import {ColdWeatherPayments} from './national-grant-calculator/grants/cold-weather-payments/cold-weather-payments';
-import {EcoHhcroFlex} from './national-grant-calculator/grants/eco-hhcro-flex/eco-hccro-flex';
-import {EcoCero} from './national-grant-calculator/grants/eco-cero/eco-cero';
 import {EcoHhcroSocialEfg} from './national-grant-calculator/grants/eco-hhcro-social-efg/eco-hhcro-social-efg';
 import {WarmHomeDiscount} from './national-grant-calculator/grants/warm-home-discount/warm-home-discount';
 import {EcoHhcroHelpToHeat} from './national-grant-calculator/grants/eco-hhcro-help-to-heat/eco-hhcro-help-to-heat';
@@ -51,8 +49,6 @@ export class GrantsModule {
                 NationalGrantCalculatorProvider,
                 IncomeThresholdService,
                 {provide: NationalGrantCalculator, useClass: ColdWeatherPayments, multi: true},
-                {provide: NationalGrantCalculator, useClass: EcoCero, multi: true},
-                {provide: NationalGrantCalculator, useClass: EcoHhcroFlex, multi: true},
                 {provide: NationalGrantCalculator, useClass: EcoHhcroHelpToHeat, multi: true},
                 {provide: NationalGrantCalculator, useClass: EcoHhcroSocialEfg, multi: true},
                 {provide: NationalGrantCalculator, useClass: WarmHomeDiscount, multi: true},
