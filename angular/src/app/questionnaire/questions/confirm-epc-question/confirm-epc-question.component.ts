@@ -145,7 +145,8 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         if (parseInt(epc.lightingCostCurrent) && parseInt(epc.lightingCostPotential)) {
             lightingSaving = parseInt(epc.lightingCostCurrent) - parseInt(epc.lightingCostPotential);
         }
-        return heatingSaving + hotWaterSaving + lightingSaving;
+        const totalSavings = heatingSaving + hotWaterSaving + lightingSaving;
+        return Math.round(totalSavings / 10) * 10; // Round the result to the nearest 10
     }
 
     private static getFormattedDateFromEpc(epc: Epc): string {
