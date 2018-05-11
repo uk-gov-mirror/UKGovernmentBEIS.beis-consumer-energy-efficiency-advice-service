@@ -12,9 +12,9 @@ export class HomeImprovementsComponent {
     homeImprovementsJourneyType: UserJourneyType = UserJourneyType.PlanHomeImprovements;
 
     video: Video = {
-        title: 'Draught-proofing',
-        imagePath: '/dist/assets/images/home-page/background.jpg',
-        articlePath: '/pages/energy-company-obligation'
+        title: 'Insulating your loft',
+        imagePath: '/dist/assets/images/video-thumbnails/insulating-your-loft.jpg',
+        articlePath: '/pages/insulating-your-loft'
     };
 
     articles: Article[] = [

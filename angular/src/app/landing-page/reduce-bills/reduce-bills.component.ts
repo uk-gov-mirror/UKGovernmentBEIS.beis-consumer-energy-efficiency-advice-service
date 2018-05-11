@@ -12,9 +12,9 @@ export class ReduceBillsComponent {
     reduceBillsJourneyType: UserJourneyType = UserJourneyType.ReduceEnergyBills;
 
     video: Video = {
-        title: 'Help if you\'re having difficulty paying your energy bills',
-        imagePath: '/dist/assets/images/home-page/background.jpg',
-        articlePath: '/pages/energy-company-obligation'
+        title: 'Simple ways to save energy',
+        imagePath: '/dist/assets/images/video-thumbnails/simple-ways-to-save-energy.jpg',
+        articlePath: '/pages/simple-ways-to-save-energy'
     };
 
     articles: Article[] = [

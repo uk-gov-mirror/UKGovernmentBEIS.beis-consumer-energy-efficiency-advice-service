@@ -13,9 +13,9 @@ export class GreenerHomeComponent {
 
 
     video: Video = {
-        title: 'Save energy around the home',
-        imagePath: '/dist/assets/images/home-page/background.jpg',
-        articlePath: '/pages/energy-company-obligation'
+        title: 'Choosing low energy light bulbs',
+        imagePath: '/dist/assets/images/video-thumbnails/choosing-low-energy-lightbulbs.jpg',
+        articlePath: '/pages/choosing-low-energy-lightbulbs'
     };
 
     articles: Article[] = [

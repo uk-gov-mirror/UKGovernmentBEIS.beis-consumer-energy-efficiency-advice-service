@@ -12,9 +12,9 @@ export class WarmerHomeComponent {
     warmerHomeJourneyType: UserJourneyType = UserJourneyType.MakeHomeWarmer;
 
     video: Video = {
-        title: 'How to control your heating',
-        imagePath: '/dist/assets/images/home-page/background.jpg',
-        articlePath: '/pages/energy-company-obligation'
+        title: 'Draught proofing your home',
+        imagePath: '/dist/assets/images/video-thumbnails/draught-proofing-your-home.jpg',
+        articlePath: '/pages/draught-proofing-your-home'
     };
 
     articles: Article[] = [
