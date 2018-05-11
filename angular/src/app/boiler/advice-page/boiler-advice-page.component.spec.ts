@@ -4,14 +4,12 @@ import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 
 import {BoilerAdvicePageComponent} from './boiler-advice-page.component';
-import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
 import {BoilerRegulationCardComponent} from './boiler-regulation-card/boiler-regulation-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
-import {PopupComponent} from '../../shared/popup/popup.component';
 
 describe('BoilerAdvicePageComponent', () => {
     let component: BoilerAdvicePageComponent;
@@ -28,10 +26,8 @@ describe('BoilerAdvicePageComponent', () => {
             declarations: [
                 BoilerAdvicePageComponent,
                 SpinnerAndErrorContainerComponent,
-                LargeVideoCardComponent,
                 BoilerRegulationCardComponent,
                 BoilerLinkButtonComponent,
-                PopupComponent,
             ],
             imports: [
                 RouterTestingModule,

@@ -13,20 +13,9 @@ export class GreenerHomeComponent {
 
 
     video: Video = {
-        title: 'Save energy around the home',
-        synopsis: `
-            A list of top tips on how to save money just by doing very simple (and free) things around the home, including:
-            <ul>
-                <li>Turning down your thermostat</li>
-                <li>Switching off electronic equipment on standby</li>
-                <li>Saving energy in the kitchen (washing up bowl, kettle, washing machine)</li>
-                <li>Spending less time in the shower</li>
-                <li>Turn off lights</li>
-                <li>Choosing efficient light bulbs</li>
-                <li>Switching energy supplier</li>
-            </ul>
-            Video will include images, film or animations of all the things you can do to save money.
-        `
+        title: 'Choosing low energy light bulbs',
+        imagePath: '/dist/assets/images/video-thumbnails/choosing-low-energy-lightbulbs.jpg',
+        articlePath: '/pages/choosing-low-energy-lightbulbs'
     };
 
     articles: Article[] = [
