@@ -4,7 +4,6 @@ import {By} from '@angular/platform-browser';
 import {Observable} from 'rxjs/Observable';
 
 import {BoilerAdvicePageComponent} from './boiler-advice-page.component';
-import {LargeVideoCardComponent} from '../../shared/large-video-card/large-video-card.component';
 import {BoilerRegulationCardComponent} from './boiler-regulation-card/boiler-regulation-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
@@ -28,7 +27,6 @@ describe('BoilerAdvicePageComponent', () => {
             declarations: [
                 BoilerAdvicePageComponent,
                 SpinnerAndErrorContainerComponent,
-                LargeVideoCardComponent,
                 BoilerRegulationCardComponent,
                 BoilerLinkButtonComponent,
                 PopupComponent,
