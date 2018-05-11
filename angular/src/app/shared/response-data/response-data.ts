@@ -71,14 +71,21 @@ export class ResponseData {
     public condensingBoiler: boolean;
     // Set by ElectricityTariffQuestionComponent, sent to BRE energy-calculation
     public electricityTariff: ElectricityTariff;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation.
+    // See DetailedLengthOfHeatingOnQuestionComponent::heatingPatterns for possible values
+    public heatingPatternType: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public morningHeatingStartTime: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public morningHeatingDuration: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public eveningHeatingStartTime: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public eveningHeatingDuration: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public heatingHoursPerDay: number;
     // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnEarlyHours: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnMorning: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnAfternoon: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnEvening: number;
+    public normalDaysOffHours: number[];
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedUnder64: number;
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
