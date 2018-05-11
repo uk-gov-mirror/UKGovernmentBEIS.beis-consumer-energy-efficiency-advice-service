@@ -71,10 +71,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         return this.responseData.tenureType !== TenureType.OwnerOccupancy;
     }
 
-    getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.recommendationsService.getRecommendationsInPlan();
-    }
-
     sendEventToAnalytics(eventName: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page');
     }
