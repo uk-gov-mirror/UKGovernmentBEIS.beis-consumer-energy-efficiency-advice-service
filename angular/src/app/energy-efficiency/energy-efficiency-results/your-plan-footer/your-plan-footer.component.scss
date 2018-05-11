@@ -129,7 +129,9 @@
       }
 
       .plan-summary {
-        flex: 0 0 calc(100% - #{$add-to-plan-column-width});
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        max-width: calc(100% - #{$add-to-plan-column-width});
       }
 
       .do-button {
