@@ -13,24 +13,8 @@ export class ReduceBillsComponent {
 
     video: Video = {
         title: 'Help if you\'re having difficulty paying your energy bills',
-        synopsis: `
-            A step by step guide to what you can do if you’re having trouble paying your energy bills, including:
-            <ul>
-                <li>
-                    Things you should do straight away if you’re behind with your bills and can’t afford them
-                    (such as speaking to your energy supplier to arrange a new payment plan, getting debt advice, asking for emergency help)
-                </li>
-                <li>
-                    Support schemes that could help reduce your energy bills, or make them easier to pay (such as Warm Home Discount,
-                    Winter Fuel Payments, Cold Weather Payments, Fuel Direct)
-                </li>
-                <li>
-                    Links to other places to get help and advice
-                </li>
-                <li>
-                    Links to things you could do to save energy straight away, and stop your bills getting any bigger
-                </li>
-            </ul>`
+        imagePath: '/assets/images/home-page/background.jpg',
+        articlePath: '/pages/energy-company-obligation'
     };
 
     articles: Article[] = [
