@@ -119,7 +119,6 @@ public class IndexController {
         "/your-home/**",
         "/eco-suppliers/**",
         "/pages/**",
-        "/boiler-grants/**",
         "/landlord-obligations/**",
         "/certified-repairers/**",
         "/page-not-created/**",

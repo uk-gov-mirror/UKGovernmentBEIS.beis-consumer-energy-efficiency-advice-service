@@ -135,8 +135,6 @@ describe('YourPlanPageComponent', () => {
     beforeEach(async(() => {
         localAuthorityResponse = Observable.of({
             name: 'Westminster',
-            isEcoFlexActive: true,
-            ecoFlexMoreInfoLink: 'http://www.example.com',
             grants: localAuthorityGrants
         });
 

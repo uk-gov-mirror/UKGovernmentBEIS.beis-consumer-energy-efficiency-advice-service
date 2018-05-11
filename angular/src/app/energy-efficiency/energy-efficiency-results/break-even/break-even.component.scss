@@ -44,12 +44,13 @@
 @include mobile() {
   .break-even-component {
     .header-row {
-      flex: 0 0 100%;
+      flex: 0 0 auto;
       flex-wrap: wrap;
       margin: 0;
 
       .lifespan, .break-even-point {
         flex: 0 0 100%;
+        max-width: 100%;
         justify-content: space-between;
         align-items: center;
         margin: 0;
@@ -64,7 +65,7 @@
 @include tablet() {
   .break-even-component {
     .header-row {
-      flex: 0 0 100%;
+      flex: 0 0 auto;
 
       .lifespan, .break-even-point {
         justify-content: space-between;
