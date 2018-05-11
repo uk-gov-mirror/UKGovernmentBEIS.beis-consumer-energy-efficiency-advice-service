@@ -33,7 +33,6 @@ import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.compo
 import {RecommendationsService} from './recommendations-service/recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
-import {PopupComponent} from './popup/popup.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
 import {LatestNewsSectionComponent} from './latest-news-section/latest-news-section.component';
 import {UserStateApiService} from './user-state-api-service/user-state-api-service';
@@ -64,7 +63,6 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
         LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
-        PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
@@ -87,7 +85,6 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
         LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
-        PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
