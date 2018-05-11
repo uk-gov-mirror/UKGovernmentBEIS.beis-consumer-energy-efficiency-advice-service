@@ -44,6 +44,13 @@ import 'core-js/es7/array';
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 
+/**
+ * Custom browser polyfills
+ */
+// scrollBehaviour is not yet fully supported
+import * as smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
+
 
 /**
  * Required to support Web Animations `@angular/animation`.
