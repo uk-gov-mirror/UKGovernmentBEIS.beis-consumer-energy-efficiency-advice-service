@@ -1,5 +1,6 @@
-<a class="large-video-card">
-    <div class="video-icon-container">
+<a class="large-video-card" [routerLink]="video.articlePath">
+    <div class="video-container">
+        <img class="thumbnail" [src]="video.imagePath" [alt]="video.title" />
         <span class="icon-video-play"></span>
     </div>
     <div class="text-container">

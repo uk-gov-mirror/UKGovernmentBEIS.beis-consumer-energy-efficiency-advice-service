@@ -13,7 +13,7 @@ export class ReduceBillsComponent {
 
     video: Video = {
         title: 'Help if you\'re having difficulty paying your energy bills',
-        imagePath: '/assets/images/home-page/background.jpg',
+        imagePath: '/dist/assets/images/home-page/background.jpg',
         articlePath: '/pages/energy-company-obligation'
     };
 

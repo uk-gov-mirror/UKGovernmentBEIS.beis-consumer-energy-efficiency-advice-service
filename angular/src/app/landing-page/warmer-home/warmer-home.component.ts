@@ -13,7 +13,7 @@ export class WarmerHomeComponent {
 
     video: Video = {
         title: 'How to control your heating',
-        imagePath: '/assets/images/home-page/background.jpg',
+        imagePath: '/dist/assets/images/home-page/background.jpg',
         articlePath: '/pages/energy-company-obligation'
     };
 
