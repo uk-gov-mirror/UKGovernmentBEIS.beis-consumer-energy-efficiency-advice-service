@@ -35,9 +35,9 @@ export class BoilerPageMeasuresService {
             ),
         },
         {
-            code: undefined,
+            code: 'one_degree_reduction',
             measure: new EnergySavingRecommendation(
-                undefined,
+                0,
                 120,
                 undefined,
                 undefined,
