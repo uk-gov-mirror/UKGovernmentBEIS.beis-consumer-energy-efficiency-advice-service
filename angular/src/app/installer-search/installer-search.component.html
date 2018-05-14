@@ -16,10 +16,10 @@
         </div>
         <div class="field-container measure-name">
             <div class="field-heading">Measure Name</div>
-            <form>
-                <input [(ngModel)]="measureName" type="text" name="measure-name" class="text-container measure-name-input">
-                <button></button>
-            </form>
+                <select class='select-measure measure-name-input' [(ngModel)]='selectedMeasure' >
+                    <option class='measure' *ngFor='let measure of measures' [ngValue]="measure">{{measure.acf.headline}}</option>
+                </select>
+            <button (click)="submit()"></button>
         </div>
     </div>
     <div class="page-row page-content">
