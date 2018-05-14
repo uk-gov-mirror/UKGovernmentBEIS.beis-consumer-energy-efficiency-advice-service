@@ -1,19 +1,21 @@
-<p>TODO:BEIS-253 this page will show a list of installers applicable to the selected measure</p>
 <div class="installer-search">
     <div class="page-heading page-row">
-        <h1 class="page-row-content">Find an installer</h1>
-        <p class="page-row-content">Troubleshooting your boiler or finding the best replacement</p>
+        <div class="page-row-content">
+            <h1 class="heading-text">Find an installer</h1>
+            <div class="body-text">Troubleshooting your boiler or finding the best replacement</div>
+        </div>
     </div>
     <div class="selector-container page-row">
         <div class="field-container postcode">
-            <p class="field-heading">Postcode</p>
+            <div class="field-heading">Postcode</div>
             <form>
-                <input [(ngModel)]="postcode" type="text" name="postcode" class="text-container postcode-input">
-                <button></button>
+                <input [(ngModel)]="postcode"
+                       type="text" name="postcode" class="text-container postcode-input">
+                <!--<button></button>-->
             </form>
         </div>
         <div class="field-container measure-name">
-            <p class="field-heading">Measure Name</p>
+            <div class="field-heading">Measure Name</div>
             <form>
                 <input [(ngModel)]="measureName" type="text" name="measure-name" class="text-container measure-name-input">
                 <button></button>

@@ -8,23 +8,31 @@
 // General styling (shouldn't contain many widths/sizes etc.)
 
 .installer-search {
+
   .page-heading {
-    @include page-heading-font;
-    display: flex;
-    flex-direction: column;
     background-color: $light-blue;
     color: $dark-blue;
 
-    p {
-      color: $dark-blue;
-      font-size: 16px;
+    .page-row-content {
+      padding: 60px 0;
+    }
+
+    .heading-text {
+      font-size: 48px;
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+    .body-text {
+      padding: 30px 0 0;
+      font-family: $font-family-light;
     }
   }
+
   .selector-container {
     background-color: $light-grey;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 40px;
 
     .field-container {
       flex-direction: column;
@@ -32,7 +40,8 @@
       .field-heading {
         color: $dark-medium-blue;
         font-size: 20px;
-        font-weight: bold;
+        font-family: $font-family;
+        padding-bottom: 15px;
       }
 
       form {
@@ -40,9 +49,13 @@
         display: flex;
 
         .text-container {
-          padding: 0;
-          height: 36px;
-          font-size: 20px;
+          padding: 0 24px;
+          height: 72px;
+          font-size: 24px;
+          line-height: 29px;
+          font-weight: 700;
+          border: none;
+
         }
 
         .measure-name-input {
@@ -68,15 +81,9 @@
       }
     }
   }
-  .page-content {
-    padding: 20px;
-  }
+
 }
 
-p {
-  @include page-subheading-font;
-  color: $dark-medium-blue;
-}
 
 // Breakpoint specific styling
 @include mobile() {
@@ -86,15 +93,11 @@ p {
 }
 
 @include desktop() {
-  .installer-search {
-    .page-heading {
-      padding: 40px 0px 40px 0px;
-      h3 {
-        padding-bottom: 10px;
-      }
-    }
     .selector-container {
-      padding: 80px 0px 80px 0px;
+      //padding: 80px 0px 80px 0px;
+      display: flex;
+      min-height: 225px;
+      align-items: center;
     }
-  }
+
 }
