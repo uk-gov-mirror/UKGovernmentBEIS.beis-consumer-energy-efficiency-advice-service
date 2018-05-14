@@ -48,7 +48,9 @@ export class RdSapInput {
     readonly baths_per_week: number;
     readonly shower_type: string;
 
-    constructor(responseData: ResponseData) {
+    readonly measures_package: string[];
+
+    constructor(responseData: ResponseData, selectedMeasureCodes: string[] = []) {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
@@ -84,6 +86,8 @@ export class RdSapInput {
             responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
+
+        this.measures_package = selectedMeasureCodes;
     }
 
     public isMinimalDataSet() {

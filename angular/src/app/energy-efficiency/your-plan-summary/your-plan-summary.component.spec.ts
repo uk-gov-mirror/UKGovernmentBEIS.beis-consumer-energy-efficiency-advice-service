@@ -28,6 +28,7 @@ describe('YourPlanSummaryComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         },
@@ -47,6 +48,7 @@ describe('YourPlanSummaryComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         },
@@ -66,6 +68,7 @@ describe('YourPlanSummaryComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         }
