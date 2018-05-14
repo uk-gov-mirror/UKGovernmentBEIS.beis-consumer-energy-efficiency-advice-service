@@ -11,49 +11,61 @@ export class EnergySavingMeasureContentService {
 
     public static measureIcons: { [rdsapMeasureCode: string]: string } = {
         // Energy efficiency measures
-        A: 'icons/loft.svg',
-        A2: 'icons/loft.svg',
-        A3: 'icons/loft.svg',
-        B: 'icons/wall.svg',
-        Q2: 'icons/wall.svg',
-        B4: 'icons/wall.svg',
-        Q: 'icons/wall.svg',
-        Q1: 'icons/wall.svg',
-        W1: 'icons/wall.svg',
-        W2: 'icons/wall.svg',
-        D: 'icons/window.svg',
-        E2: 'icons/lightbulb.svg',
-        C: 'icons/heat.svg',
-        F: 'icons/thermostat.svg',
-        G: 'icons/heat.svg',
-        H: 'icons/heat.svg',
-        I: 'icons/water-blue.svg',
-        S: 'icons/water-blue.svg',
-        T: 'icons/water-blue.svg',
-        T2: 'icons/water-blue.svg',
-        R: 'icons/water-blue.svg',
-        J: 'icons/water-blue.svg',
-        K: 'icons/water-blue.svg',
-        L: 'icons/heat.svg',
-        L2: 'icons/heat.svg',
-        M: 'icons/heat.svg',
-        Z1: 'icons/heat.svg',
-        Z3: 'icons/heat.svg',
-        Z4: 'icons/heat.svg',
-        EP: 'icons/heat.svg',
-        N: 'icons/solar.svg',
-        Y: 'icons/water-blue.svg',
-        Y2: 'icons/water-blue.svg',
-        O: 'icons/window.svg',
-        O2: 'icons/window.svg',
-        O3: 'icons/window.svg',
-        P: 'icons/window.svg',
-        X: 'icons/door.svg',
-        U: 'icons/solar.svg',
+
+        H: 'icons/heating.svg',
+        T: 'icons/hotwater.svg',
+        T2: 'icons/hotwater.svg',
+        R: 'icons/hotwater.svg',
+        J: 'icons/hotwater.svg',
+        M: 'icons/heating.svg',
+        Z3: 'icons/heating.svg',
+        EP: 'icons/heating.svg',
+        Y2: 'icons/hotwater.svg',
+        O2: 'icons/windows.svg',
         V2: 'icons/green.svg',
-        // Habit measures
-        'baths_to_showers': 'icons/shower.svg',
-        'one_degree_reduction': 'icons/thermostat.svg'
+
+        // Heating and Hotwater
+        Y: 'icons/hotwater.svg',
+        N: 'icons/hotwater.svg',
+        Z4: 'icons/heating.svg',
+        Z1: 'icons/heating.svg',
+        L2: 'icons/heating.svg',
+        L: 'icons/heating.svg',
+        K: 'icons/heating.svg',
+        S: 'icons/heating.svg',
+        I: 'icons/heating.svg',
+        G: 'icons/heating.svg',
+        F: 'icons/heating.svg',
+        C: 'icons/heating.svg',
+
+        // Windows and Doors
+        X: 'icons/doors.svg',
+        P: 'icons/windows.svg',
+        O3: 'icons/windows.svg',
+        O: 'icons/windows.svg',
+        D: 'icons/windows.svg',
+
+        // Floors, Walls, Roofs
+        W2: 'icons/flooring.svg',
+        W1: 'icons/flooring.svg',
+        B4: 'icons/walls.svg',
+        Q: 'icons/walls.svg',
+        Q1: 'icons/walls.svg',
+        Q2: 'icons/walls.svg',
+        B: 'icons/walls.svg',
+        A3: 'icons/roofing.svg',
+        A2: 'icons/roofing.svg',
+        A: 'icons/roofing.svg',
+
+        // Solar Energy
+        U: 'icons/solar.svg',
+
+        // Simple Savings
+        'baths_to_showers': 'icons/simple-savings.svg',
+        'one_degree_reduction': 'icons/simple-savings.svg',
+        'tumble_drying': 'icons/simple-savings.svg',
+        'low_energy_lights': 'icons/simple-savings.svg',
+        E2: 'icons/simple-savings.svg',
     };
     private static readonly measuresEndpoint = 'acf/v3/measure?';
     private measures: Observable<MeasureContent[]>;
