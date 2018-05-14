@@ -94,8 +94,8 @@ export class EnergyEfficiencyRecommendation {
             '/measures/' + encodeURIComponent(measureContent.slug),
             measureContent.acf.headline,
             measureContent.acf.summary,
-            measureContent.acf.what_it_is,
-            measureContent.acf.is_it_right_for_me,
+            measureContent.acf.what_it_is, // TODO:BEIS-309 possibly unused, dup with steps?
+            measureContent.acf.is_it_right_for_me, // TODO:BEIS-309 possibly unused, dup with steps?
             iconClassName,
             tags,
             grant,

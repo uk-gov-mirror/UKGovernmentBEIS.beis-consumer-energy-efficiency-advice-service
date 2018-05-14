@@ -119,6 +119,8 @@ dependencies {
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVer}")
     compile("com.fasterxml.jackson.module:jackson-module-parameter-names:${jacksonVer}")
 
+    compile group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf', version: '9.1.12'
+
     // This is not used in production, but needed at build time for the jOOQ codegen
     // and on development machines for an in-memory database
     // It might be nicer to use https://github.com/michaelruocco/embedded-mysql-plugin instead,

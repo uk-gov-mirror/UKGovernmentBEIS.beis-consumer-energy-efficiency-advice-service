@@ -1,14 +1,8 @@
 import {Component} from '@angular/core';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
-import * as html2pdf from 'html2pdf.js';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
-import * as html2canvas from 'html2canvas';
-
-// Fix https://github.com/niklasvh/html2canvas/issues/834
-(window as any).html2canvas = {
-    svg: html2canvas.svg
-};
+import Config from '../../../config';
 
 @Component({
     selector: 'app-download-plan',
@@ -36,6 +30,24 @@ export class DownloadPlanComponent {
     onPdfClickedInner() {
         this.sendEventToAnalytics('download-plan_clicked');
 
+        // Submit a hidden form to POST to the PDF endpoint, and download it
+        const form = document.createElement("form");
+        form.style.display = "none";
+        form.setAttribute("action", Config().apiRoot + "/plan/download");
+        form.setAttribute("method", "post");
+        form.setAttribute("target", "_blank");
+
+        document.body.appendChild(form);
+
+        // var hiddenEle1 = document.createElement("input");
+        // hiddenEle1.setAttribute("type", "hidden");
+        // hiddenEle1.setAttribute("name", "some");
+        // hiddenEle1.setAttribute("value", value);
+        // form.append(hiddenEle1 );
+
+        form.submit();
+
+        /*
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
         const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
 
@@ -115,6 +127,7 @@ export class DownloadPlanComponent {
         readMoreArray.map(elem => {
             elem.classList.add("read-more-expanded");
         });
+        */
     }
 
     sendEventToAnalytics(eventName: string) {
