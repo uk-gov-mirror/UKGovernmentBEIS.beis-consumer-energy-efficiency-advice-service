@@ -8,7 +8,7 @@ import {
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
-import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
+import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -26,7 +26,8 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
 
-    constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+    constructor(private recommendationsService: RecommendationsService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
     ngOnInit() {
@@ -71,6 +72,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     toggleAddedToPlan(): void {
         this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
+        this.recommendationsService.refreshPotentialScore();
         if (this.recommendation.isAddedToPlan) {
             this.sendEventToAnalytics('add-to-plan_clicked');
         }

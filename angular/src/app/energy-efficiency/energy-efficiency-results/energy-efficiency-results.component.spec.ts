@@ -70,6 +70,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         },
@@ -89,6 +90,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         },
@@ -115,6 +117,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             },
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         }
