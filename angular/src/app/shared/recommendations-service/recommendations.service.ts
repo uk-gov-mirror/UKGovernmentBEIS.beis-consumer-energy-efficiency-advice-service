@@ -57,7 +57,9 @@ export class RecommendationsService {
     }
 
     refreshPotentialScore() {
-        const measureCodes = this.getRecommendationsInPlan().map(r => r.measureCode);
+        const measureCodes = this.getRecommendationsInPlan()
+            .map(r => r.measureCode)
+            .filter(m => m);
         if (measureCodes.length === 0) {
             this.potentialScore = this.cachedCurrentScore;
             return;
