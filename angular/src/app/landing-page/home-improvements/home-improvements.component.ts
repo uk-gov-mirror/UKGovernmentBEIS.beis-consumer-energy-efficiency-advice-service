@@ -12,27 +12,9 @@ export class HomeImprovementsComponent {
     homeImprovementsJourneyType: UserJourneyType = UserJourneyType.PlanHomeImprovements;
 
     video: Video = {
-        title: 'Draught-proofing',
-        synopsis: `
-            A guided tour round a typical home, showing where draughts are likely to be, including:
-            <ul>
-                <li>
-                    Around doors and windows
-                </li>
-                <li>
-                    Letterboxes and keyholes
-                </li>
-                <li>
-                    Around the floor edge
-                </li>
-                <li>
-                    Loft hatch
-                </li>
-                <li>
-                    Gaps around pipes etc.
-                </li>
-            </ul>
-        The video will also cover ventilation that should not be sealed.`
+        title: 'Insulating your loft',
+        imagePath: '/dist/assets/images/video-thumbnails/insulating-your-loft.jpg',
+        articlePath: '/pages/insulating-your-loft'
     };
 
     articles: Article[] = [

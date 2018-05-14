@@ -53,17 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="page-row featured-video">
-        <div class="page-row-content">
-            <app-large-video-card class="video-card"
-                [video]="{
-                    title: boilerType.name + 's: What you should know',
-                    synopsis: 'Lots of info about ' + boilerType.name
-                }">
-            </app-large-video-card>
-        </div>
-    </div>
-    <div class="page-row">
+    <div class="page-row regulations-row">
         <div class="regulations page-row-content" *ngIf="isGasBoiler()">
             <div class="heading">When fitting a new gas boiler you'll also need one of the following:</div>
             <div class="body-text">

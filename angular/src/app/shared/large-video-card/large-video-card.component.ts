@@ -7,15 +7,5 @@ import {Video} from './video';
     styleUrls: ['./large-video-card.component.scss']
 })
 export class LargeVideoCardComponent {
-    displaySynopsis: boolean = false;
-
     @Input() video: Video;
-
-    openSynopsis(): void {
-        this.displaySynopsis = true;
-    }
-
-    closeSynopsis(): void {
-        this.displaySynopsis = false;
-    }
 }

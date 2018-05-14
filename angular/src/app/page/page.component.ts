@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
@@ -34,7 +34,8 @@ export class PageComponent implements OnInit {
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 private pageService: WordpressPagesService,
-                private sanitizer: DomSanitizer) {
+                private sanitizer: DomSanitizer,
+                private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -53,14 +54,13 @@ export class PageComponent implements OnInit {
         if (!pageData) {
             this.router.navigate(['/404'], {skipLocationChange: true});
         } else {
-            this.setContentsTable(pageData);
             this.pageData = pageData;
-        }
-        this.pageData = pageData;
-        if (this.pageData) {
             this.pageDataContent = this.sanitizer.bypassSecurityTrustHtml(this.pageData.content);
         }
         this.isLoading = false;
+        // Force angular to update the DOM, so that we can parse it and create a contents table
+        this.changeDetectorRef.detectChanges();
+        this.setContentsTable();
     }
 
     displayErrorAndLogMessage(err: any): void {
@@ -70,21 +70,23 @@ export class PageComponent implements OnInit {
     }
 
     scrollIndexIntoView(index: number) {
-        const element = document.getElementsByTagName('h3')[index];
+        const pageContent = document.getElementById('wordpress-content');
+        const element = pageContent.getElementsByTagName('h3')[index];
         if (element) {
             element.scrollIntoView();
         }
     }
 
-    private setContentsTable(pageData: ExtendedWordpressPage) {
-        const parser = new DOMParser();
-        const parsedHtml = parser.parseFromString(pageData.content, "text/html");
-        // All the headings which we want in the contents are set to h3 in wordpress
-        const headingElements = parsedHtml.getElementsByTagName('h3');
-        const headings = [];
-        for (let i = 0; i < headingElements.length; i++) {
-            headings.push(headingElements[i].textContent);
+    private setContentsTable() {
+        const pageContent = document.getElementById('wordpress-content');
+        if (pageContent) {
+            // All the headings which we want in the contents are set to h3 in wordpress
+            const headingElements = pageContent.getElementsByTagName('h3');
+            const headings = [];
+            for (let i = 0; i < headingElements.length; i++) {
+                headings.push(headingElements[i].textContent);
+            }
+            this.headings = headings;
         }
-        this.headings = headings;
     }
 }

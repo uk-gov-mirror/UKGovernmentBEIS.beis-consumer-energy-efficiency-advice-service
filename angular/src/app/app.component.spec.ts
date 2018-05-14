@@ -11,7 +11,6 @@ import {WordpressPagesService} from './shared/wordpress-pages-service/wordpress-
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {InlineSVGModule, SVGCacheService} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {PopupComponent} from './shared/popup/popup.component';
 import {CookieService} from 'ng2-cookies';
 import {WordpressMeasuresService} from './shared/wordpress-measures-service/wordpress-measures.service';
 import {NavBarSuboptionComponent} from './layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
@@ -43,7 +42,6 @@ describe('AppComponent', () => {
                 HeaderComponent,
                 FooterComponent,
                 NavigationBarComponent,
-                PopupComponent,
                 NavBarSuboptionComponent,
                 NeedHelpComponent,
                 SearchBarComponent,
