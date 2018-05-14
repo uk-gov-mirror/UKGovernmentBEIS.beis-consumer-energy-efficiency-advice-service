@@ -1,4 +1,8 @@
+<div class="loading-spinner-container" [class.no-tablet]="isFooter" *ngIf="potentialScoreLoading">
+    <div class="loading-spinner-small"></div>
+</div>
 <app-data-card
+        *ngIf="!potentialScoreLoading"
         [class.no-tablet]="isFooter"
         heading="Your potential score is"
         [value]="potentialScore"

@@ -2,7 +2,9 @@
 @import "styles/page";
 
 // Component specific variables
-$boiler-image: "/assets/images/home-page/boiler-flame.svg";
+$boiler-new-image: "/assets/images/boiler-landing-page/boiler-new.svg";
+$boiler-trouble-image: "/assets/images/boiler-landing-page/boiler-trouble.svg";
+
 $arrow-width: 20px;
 $arrow-height: 48px;
 
@@ -19,8 +21,12 @@ $arrow-height: 48px;
   width: $width;
 }
 
-@mixin is-boiler-link-image($distance-from-right, $distance-from-top, $height, $width) {
-  @include is-quick-link-image($boiler-image, $distance-from-right, $distance-from-top, $height, $width);
+@mixin is-boiler-new-link-image($distance-from-right, $distance-from-top, $height, $width) {
+  @include is-quick-link-image($boiler-new-image, $distance-from-right, $distance-from-top, $height, $width);
+}
+
+@mixin is-boiler-trouble-link-image($distance-from-right, $distance-from-top, $height, $width) {
+  @include is-quick-link-image($boiler-trouble-image, $distance-from-right, $distance-from-top, $height, $width);
 }
 
 // General styling (shouldn't contain many widths/sizes etc.)
@@ -142,9 +148,9 @@ $arrow-height: 48px;
       margin: -80px -20px;
       padding: 20px 40px;
 
-      .boiler-image:after {
+      .boiler-trouble-image:after {
         margin-right: 16px;
-        @include is-boiler-link-image(8%, 0, 220px, 103px);
+        @include is-boiler-trouble-link-image(8%, 0, 220px, 103px);
       }
     }
 
@@ -156,8 +162,8 @@ $arrow-height: 48px;
         padding-top: 20px;
       }
 
-      .boiler-image:after {
-        @include is-boiler-link-image(8%, 0, 220px, 103px);
+      .boiler-new-image:after {
+        @include is-boiler-new-link-image(8%, 0, 220px, 103px);
       }
     }
   }
@@ -216,9 +222,9 @@ $arrow-height: 48px;
       padding: 80px;
       box-sizing: border-box;
 
-      .boiler-image:after {
+      .boiler-trouble-image:after {
         margin-right: 64px;
-        @include is-boiler-link-image(8%, 0, 266px, 103px);
+        @include is-boiler-trouble-link-image(8%, 0, 266px, 103px);
       }
     }
 
@@ -226,8 +232,8 @@ $arrow-height: 48px;
       margin-top: 80px;
       padding-top: 80px;
 
-      .boiler-image:after {
-        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      .boiler-new-image:after {
+        @include is-boiler-new-link-image(8%, 0, 266px, 103px);
       }
     }
   }
@@ -288,8 +294,8 @@ $arrow-height: 48px;
     }
 
     .troubleshooting {
-      .boiler-image:after {
-        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      .boiler-trouble-image:after {
+        @include is-boiler-trouble-link-image(8%, 0, 266px, 103px);
       }
 
       border-right: 2px white solid;
@@ -306,8 +312,8 @@ $arrow-height: 48px;
     }
 
     .replacing {
-      .boiler-image:after {
-        @include is-boiler-link-image(8%, 0, 266px, 103px);
+      .boiler-new-image:after {
+        @include is-boiler-new-link-image(8%, 0, 266px, 103px);
       }
 
       border-left: 2px white solid;
