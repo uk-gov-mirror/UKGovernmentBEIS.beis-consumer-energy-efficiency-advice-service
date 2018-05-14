@@ -32,7 +32,6 @@ export class EnergySavingMeasureContentService {
         L2: 'icons/heating.svg',
         L: 'icons/heating.svg',
         K: 'icons/heating.svg',
-        // flue gas recovery missing a measure_code here
         S: 'icons/heating.svg',
         I: 'icons/heating.svg',
         G: 'icons/heating.svg',
