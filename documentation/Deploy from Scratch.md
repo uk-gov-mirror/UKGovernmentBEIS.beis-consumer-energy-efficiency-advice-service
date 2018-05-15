@@ -14,6 +14,7 @@ These instructions are kept for future reference.
 - [Database](#database)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
+  * [User Site Hostname](#user-site-hostname)
 
 <!-- tocstop -->
 
@@ -81,3 +82,19 @@ Add necessary config:
 Build the site locally, and deploy:
 
     ./infrastructure/ci-user-site-deploy.sh
+
+### User Site Hostname
+
+Run
+
+    cf create-domain beis-domestic-energy-advice-service eachhomecountsadvice.org.uk
+    cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
+    cf map-route dceas-user-site eachhomecountsadvice.org.uk
+    cf map-route dceas-user-site www.eachhomecountsadvice.org.uk
+    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "eachhomecountsadvice.org.uk,www.eachhomecountsadvice.org.uk"}'
+
+Then run
+
+    cf service dceas-cdn-route
+
+and create the DNS "CNAME" and "TXT" records listed there.
