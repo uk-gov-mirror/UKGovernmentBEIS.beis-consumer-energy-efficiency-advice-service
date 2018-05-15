@@ -94,6 +94,6 @@ describe('Home basics questionnaire', () => {
         CommonPageHelpers.sleep(1000);
 
         // Length of heating on
-        expect(page.getHeading()).toContain('How many hours');
+        expect(page.getHeading()).toContain('Most days during winter I have my heating on:');
     });
 });

@@ -16,6 +16,15 @@ import {
 
 export class EnergyEfficiencyRecommendation {
 
+    public static grantIcons: { [grantId: string]: string } = {
+        "eco-hhcro-help-to-heat": 'icons/home-improve.svg',
+        "renewable-heat-incentive": 'icons/rhi.svg',
+        "feed-in-tariff": 'icons/fit.svg',
+        "winter-fuel-payments": 'icons/winter-fuel.svg',
+        "warm-home-discount": 'icons/warm-home.svg',
+        "cold-weather-payments": 'icons/cold-weather.svg',
+    };
+
     constructor(public investmentPounds: number,
                 public lifetimeYears: number,
                 public costSavingPoundsPerYear: number,
@@ -98,8 +107,7 @@ export class EnergyEfficiencyRecommendation {
         );
     }
 
-    static fromNationalGrant(grant: StandaloneNationalGrant,
-                             iconClassName: string): EnergyEfficiencyRecommendation {
+    static fromNationalGrant(grant: StandaloneNationalGrant): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant
             null, // No lifetime for a grant
@@ -110,7 +118,7 @@ export class EnergyEfficiencyRecommendation {
             grant.description,
             null,
             null,
-            iconClassName,
+            EnergyEfficiencyRecommendation.grantIcons[grant.grantId],
             EnergyEfficiencyRecommendationTag.Grant,
             null,
             grant.advantages,

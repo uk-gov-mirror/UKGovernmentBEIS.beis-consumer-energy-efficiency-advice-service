@@ -160,6 +160,10 @@ app-sticky-row-wrapper {
     .help-text {
       width: 100%;
     }
+
+    :last-child {
+      margin-bottom: 30px;
+    }
   }
 
   @include tablet() {
@@ -188,6 +192,10 @@ app-sticky-row-wrapper {
     .help-text {
       width: 100%;
     }
+
+    :last-child {
+      margin-bottom: 30px;
+    }
   }
 
   @include desktop() {
@@ -208,8 +216,8 @@ app-sticky-row-wrapper {
       text-align: center;
     }
 
-    app-question-reason {
-      margin-bottom: 24px;
+    :last-child {
+      margin-bottom: 30px;
     }
   }
 }

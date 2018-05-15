@@ -10,5 +10,8 @@
     .optional-property-question-option {
       @include is-grid-item($number-of-items: 2, $margin: 20px);
     }
+    #no-option {
+      margin-bottom: 20px;
+    }
   }
 }

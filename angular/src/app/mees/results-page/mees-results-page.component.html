@@ -27,36 +27,53 @@
                 <ng-container *ngSwitchCase="MeesResultsStatus.IrrelevantTenancyStartDate">
                     <div class="summary tick">
                         You are not affected by the Minimum Energy Efficiency Standards regulations at this time and may
-                        let the property.
+                        let the property. To read full guidance about the legislation, <a
+                            href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                            target="_blank">click here</a>.
                     </div>
                     <div class="columns">
                         However, if your property is legally required to have an EPC, the minimum standard will apply at
                         the point at which you enter into a new relevant tenancy (with either a new or existing tenant),
-                        or by 1 April 2020 (even if there has been no change in tenancy), whichever comes soonest.
+                        or by 1 April 2020 (even if there has been no change in tenancy), whichever comes soonest. To
+                        read full guidance about the legislation, <a
+                            href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                            target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.IrrelevantTenancyType">
                     <div class="summary tick">
                         As your tenancy type is not relevant to the legislation, you are not affected by the Minimum
-                        Energy Efficiency Standards regulations and may let the property.
+                        Energy Efficiency Standards regulations and may let the property. To read full guidance about
+                        the legislation, <a
+                            href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                            target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcAtLeastE">
                     <div class="summary tick">
                         As your property has an EPC rating of {{getUserEpc()}}, you are not affected by the Minimum
-                        Energy Efficiency Standards regulations and may let the property.
+                        Energy Efficiency Standards regulations and may let the property. To read full guidance about
+                        the legislation, <a
+                            href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                            target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.DetectedEpcAtLeastE">
                     <div class="summary tick">
                         We found that your property has a rating of {{getDetectedEpc()}}. As a result, you are not
-                        affected by the Minimum Energy Efficiency Standards regulations and may let the property.
+                        affected by the Minimum Energy Efficiency Standards regulations and may let the property. To
+                        read full guidance about the legislation, <a
+                            href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                            target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcNotRequired">
                     <div class="summary tick">
                         As your property is not required to have an EPC, you are not affected by the Minimum Energy
-                        Efficiency Standards regulations and may let the property.
+                        Efficiency Standards regulations and may let the property. To read full guidance about the
+                        legislation, <a
+                            href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                            target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcRequired">
@@ -81,7 +98,10 @@
                         <div class="column">
                             If an exemption applies you should register it as soon as possible. If you think your
                             property may be exempt,
-                            <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>.
+                            <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>. To read full
+                            guidance about the legislation, <a
+                                href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                                target="_blank">click here</a>.
                         </div>
                     </div>
                 </ng-container>
@@ -101,7 +121,10 @@
                         </div>
                         <div class="column">
                             If you think your property may be exempt,
-                            <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>.
+                            <a routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>. To read full
+                            guidance about the legislation, <a
+                                href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
+                                target="_blank">click here</a>.
                         </div>
                     </div>
                 </ng-container>

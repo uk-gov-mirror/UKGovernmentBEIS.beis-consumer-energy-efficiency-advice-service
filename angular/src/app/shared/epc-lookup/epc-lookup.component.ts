@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, Renderer2, OnInit, ChangeDetectorRef} from '@angular/core';
 import {deleteOldResponseData, ResponseData} from '../response-data/response-data';
 import {Epc} from '../postcode-epc-service/model/epc';
 import {EpcParserService} from '../postcode-epc-service/epc-api-service/epc-parser.service';
@@ -10,12 +10,13 @@ import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
     templateUrl: './epc-lookup.component.html',
     styleUrls: ['./epc-lookup.component.scss']
 })
-export class EpcLookupComponent implements OnChanges {
+export class EpcLookupComponent implements OnChanges, OnInit {
 
     loading: boolean = false;
     epcs: Epc[];
     selectedEpc: Epc;
     error: boolean = false;
+    keyboardUser: boolean;
 
     @Input() postcode: string;
 
@@ -24,10 +25,24 @@ export class EpcLookupComponent implements OnChanges {
     private postcodeDetails: PostcodeDetails;
 
     constructor(private responseData: ResponseData,
-                private postcodeEpcService: PostcodeEpcService) {
+                private postcodeEpcService: PostcodeEpcService,
+                private renderer: Renderer2,
+                private ref: ChangeDetectorRef) {
+    }
+
+    ngOnInit() {
+        this.renderer.listen('window', 'keydown', event => {
+            if (event.keyCode === 13 && document.activeElement.classList.contains('postcode-input-text')) {
+                this.keyboardUser = true;
+            }
+        });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.handleSubmit();
+    }
+
+    handleSubmit() {
         // A null postcode means that we have been unable to get postcode information from the users input
         // They have either entered an invalid postcode, or the lookup has failed. The postcode-lookup
         // component handles the error messages for this.
@@ -46,7 +61,14 @@ export class EpcLookupComponent implements OnChanges {
 
         this.postcodeEpcService.fetchPostcodeDetails(this.postcode)
             .subscribe(
-                postcodeDetails => this.handlePostcodeDetails(postcodeDetails),
+                postcodeDetails => {
+                    this.handlePostcodeDetails(postcodeDetails);
+                    this.ref.detectChanges();
+                    if (this.keyboardUser) {
+                        (<HTMLElement>document.querySelector('.address-dropdown')).focus();
+                        this.keyboardUser = false;
+                    }
+                },
                 error => this.handlePostcodeSearchError(error)
             );
     }
