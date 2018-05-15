@@ -88,7 +88,7 @@ export class RecommendationsService {
                     const habitRecommendations = this
                         .getFilteredHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants
-                        .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
+                        .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant));
                     return this.getHomeImprovementRecommendationsContent(
                         this.getMeasuresFromEnergyCalculation(energyCalculation),
                         measuresContent
