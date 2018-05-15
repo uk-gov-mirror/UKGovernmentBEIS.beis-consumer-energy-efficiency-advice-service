@@ -80,8 +80,8 @@ $aspect-ratio: 9/16;
     }
 
     .youtube-video {
-      height: calc(#{$aspect-ratio} * (80vw - 68px));
-      width: calc(80vw - 68px);
+      height: calc(#{$aspect-ratio} * 70vw);
+      width: 70vw;
     }
   }
 }
