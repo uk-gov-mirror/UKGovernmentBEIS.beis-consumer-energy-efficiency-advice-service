@@ -56,7 +56,20 @@ export class DownloadPlanComponent {
 
                 // Create the PDF
                 const pdfBody = document.getElementsByClassName("your-plan-page")[0];
-                html2pdf(pdfBody);
+                html2pdf(pdfBody, {
+                    html2canvas: {
+                        // `AllowTaint` helps with SVG rendering, see
+                        // https://github.com/niklasvh/html2canvas/issues/95
+                        // We don't need to worry about taint as we have no CORS
+                        allowTaint: true,
+                        // A higher 'dpi' makes the screenshot higher resolution, which
+                        // makes it less blurry but uses more memory:
+                        dpi: 192,
+                        // Not sure if this does anything, but it's in the html2pdf docs
+                        // and sounds good:
+                        letterRendering: true
+                    }
+                });
 
                 // Close all the drop downs
                 readMoreArray.map(elem => {
