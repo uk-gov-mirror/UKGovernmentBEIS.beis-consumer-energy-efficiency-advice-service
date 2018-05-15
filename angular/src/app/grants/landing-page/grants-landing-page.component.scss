@@ -42,9 +42,7 @@ $grant-card-margin: 24px;
       .grants-row {
         display: flex;
 
-
-
-        .grant-info-title-bills{
+        .grant-info-title-bills {
           display: block;
           height: 1px;
           border: 0;
@@ -75,14 +73,14 @@ $grant-card-margin: 24px;
           display: flex;
           align-items: stretch;
           justify-content: space-between;
-          text-decoration:  none;
+          text-decoration: none;
 
           .grant-heading {
             @include focus-text;
             color: $dark-medium-blue;
           }
 
-          .grant-description{
+          .grant-description {
             color: $dark-medium-blue;
             text-transform: uppercase;
             font-size: 13px;
@@ -96,7 +94,7 @@ $grant-card-margin: 24px;
               color: $dark-blue;
             }
 
-            .link-button-arrow:after, .link-button-arrow:after{
+            .link-button-arrow:after, .link-button-arrow:after {
               border-left: 20px solid $light-blue;
             }
           }
@@ -121,7 +119,7 @@ $grant-card-margin: 24px;
             position: relative;
           }
 
-          .link-button-arrow:after{
+          .link-button-arrow:after {
             content: '';
 
             position: absolute;
@@ -142,7 +140,7 @@ $grant-card-margin: 24px;
             flex-direction: column;
             justify-content: space-between;
 
-            .icon{
+            .icon {
               width: 36px;
               height: 36px;
             }
@@ -183,10 +181,10 @@ $grant-card-margin: 24px;
 
           width: 700px;
 
-          h3{
+          h3 {
             @include page-subheading-font;
           }
-          p{
+          p {
             font-family: Gotham, Arial, sans-serif;;
             font-size: 16px;
             font-weight: 300;
@@ -194,7 +192,7 @@ $grant-card-margin: 24px;
           }
         }
 
-        .enter-postcode-form{
+        .enter-postcode-form {
           display: flex;
           height: 250px;
 
@@ -217,7 +215,7 @@ $grant-card-margin: 24px;
               text-transform: uppercase;
             }
 
-            input::placeholder{
+            input::placeholder {
               color: #898989;
               text-transform: none;
             }
@@ -262,13 +260,6 @@ $grant-card-margin: 24px;
             align-items: stretch;
             justify-content: space-between;
 
-            .grant-card {
-              flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
-              margin-bottom: $grant-card-margin;
-              &:not(:nth-child(#{$grant-cards-per-row}n)) {
-                margin-right: $grant-card-margin;
-              }
-            }
           }
         }
       }
@@ -307,6 +298,14 @@ $grant-card-margin: 24px;
             height: auto;
           }
         }
+
+        .grants-container {
+          .grant-cards {
+            & > :not(:first-child) {
+              margin-top: 20px;
+            }
+          }
+        }
       }
     }
     .national-grants {
@@ -317,7 +316,7 @@ $grant-card-margin: 24px;
           flex: auto;
           margin-top: 10px;
 
-          .description-link-container{
+          .description-link-container {
             .grant-description {
               margin-top: 5px;
             }
@@ -337,13 +336,24 @@ $grant-card-margin: 24px;
       .page-row-content {
         .postcode-input {
           height: 175px;
+          margin: 0 34px;
 
           .enter-postcode-text {
-            padding: 10px;
-
+            padding-right: 60px;
           }
+
           .enter-postcode-form {
             align-items: center;
+          }
+        }
+
+        .grants-container {
+          margin: 20px 34px;
+
+          .grant-cards {
+            & > :not(:first-child) {
+              margin-top: 20px;
+            }
           }
         }
       }
@@ -362,12 +372,12 @@ $grant-card-margin: 24px;
               margin-top: 20px;
             }
 
-            .description-link-container{
+            .description-link-container {
               display: flex;
               flex-direction: row;
               align-items: center;
 
-              .grant-description{
+              .grant-description {
                 width: 60%;
                 padding-right: 40px;
                 border-right: 1px solid $separator-grey;
@@ -391,11 +401,27 @@ $grant-card-margin: 24px;
       .page-row-content {
         .postcode-input {
           justify-content: space-between;
+
           .enter-postcode-text {
-            padding: 10px;
+            margin-right: 60px;
           }
+
           .enter-postcode-form {
             align-items: center;
+          }
+        }
+
+        .grants-container {
+          .local-grants {
+            .grant-cards {
+              .grant-card {
+                flex-basis: calc((100% - #{$grant-cards-per-row - 1} * #{$grant-card-margin} - 1px) / #{$grant-cards-per-row});
+                margin-bottom: $grant-card-margin;
+                &:not(:nth-child(#{$grant-cards-per-row}n)) {
+                  margin-right: $grant-card-margin;
+                }
+              }
+            }
           }
         }
       }
@@ -420,7 +446,7 @@ $grant-card-margin: 24px;
               margin-top: 20px;
             }
 
-            .description-link-container{
+            .description-link-container {
               .link-button {
                 margin-top: 20px;
               }
