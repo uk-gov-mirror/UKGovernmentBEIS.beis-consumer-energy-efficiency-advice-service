@@ -82,7 +82,7 @@ describe('EpcLookupComponent', () => {
         const selectOptions = fixture.debugElement.queryAll(By.css('.address-option'));
         postcodeEpcServiceStub.fetchPostcodeDetails(component.postcode).toPromise().then(postcodeDetails =>
             postcodeDetails.allEpcsForPostcode.forEach(epc =>
-                expect(selectOptions.some(option => option.nativeElement.innerText === epc.address)).toBeTruthy())
+                expect(selectOptions.some(option => option.nativeElement.text === epc.address)).toBeTruthy())
         );
     });
 
