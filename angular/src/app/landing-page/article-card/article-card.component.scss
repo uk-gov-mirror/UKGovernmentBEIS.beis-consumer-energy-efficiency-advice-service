@@ -13,6 +13,7 @@
 .article-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   height: 100%;
   box-sizing: border-box;
@@ -28,8 +29,9 @@
   }
 
   .read-more-link {
-    color: black;
+    color: $dark-blue;
     padding-top: 10px;
+    text-decoration: none;
   }
 }
 
