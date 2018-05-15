@@ -47,6 +47,10 @@ export class YourPlanSummaryComponent {
         return this.recommendationsService.potentialScore;
     }
 
+    get potentialScoreLoading(): boolean {
+        return this.recommendationsService.potentialScoreLoading;
+    }
+
     get currentScoreColorCircleClassName(): string {
         return this.potentialScore > this.recommendationsService.cachedCurrentScore ? 'green' : 'amber';
     }

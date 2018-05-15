@@ -22,7 +22,6 @@ import static org.jooq.impl.DSL.inline;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTMETA;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
 import static uk.gov.beis.dceas.service.AcfDataTranslator.deserializePhpStringArrayOfInts;
-import static uk.gov.beis.dceas.service.AcfDataTranslator.toBool;
 import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
 
 /**

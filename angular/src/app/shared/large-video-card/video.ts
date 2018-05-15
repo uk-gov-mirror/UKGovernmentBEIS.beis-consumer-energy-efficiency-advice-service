@@ -1,4 +1,6 @@
 export interface Video {
     title: string;
-    synopsis: string;
+    imagePath: string;
+    // Path to the article which contains the video
+    articlePath: string;
 }

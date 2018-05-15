@@ -16,6 +16,15 @@ import {
 
 export class EnergyEfficiencyRecommendation {
 
+    public static grantIcons: { [grantId: string]: string } = {
+        "eco-hhcro-help-to-heat": 'icons/home-improve.svg',
+        "renewable-heat-incentive": 'icons/rhi.svg',
+        "feed-in-tariff": 'icons/fit.svg',
+        "winter-fuel-payments": 'icons/winter-fuel.svg',
+        "warm-home-discount": 'icons/warm-home.svg',
+        "cold-weather-payments": 'icons/cold-weather.svg',
+    };
+
     constructor(public investmentPounds: number,
                 public lifetimeYears: number,
                 public costSavingPoundsPerYear: number,
@@ -31,7 +40,8 @@ export class EnergyEfficiencyRecommendation {
                 public advantages: string[],
                 public steps: RecommendationStep[],
                 public isAddedToPlan: boolean,
-                public recommendationID: string) {
+                public recommendationID: string,
+                public measureCode: string) {
     }
 
     get costSavingPoundsPerMonth(): number {
@@ -39,6 +49,7 @@ export class EnergyEfficiencyRecommendation {
     }
 
     static fromMeasure(measureResponse: MeasureResponse,
+                       measureCode: string,
                        measureContent: MeasureContent,
                        iconClassName: string,
                        grants: NationalGrantForMeasure[]): EnergyEfficiencyRecommendation {
@@ -92,11 +103,11 @@ export class EnergyEfficiencyRecommendation {
             concat(measureSteps, grantSteps),
             false,
             measureContent.slug,
+            measureCode,
         );
     }
 
-    static fromNationalGrant(grant: StandaloneNationalGrant,
-                             iconClassName: string): EnergyEfficiencyRecommendation {
+    static fromNationalGrant(grant: StandaloneNationalGrant): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant
             null, // No lifetime for a grant
@@ -107,13 +118,14 @@ export class EnergyEfficiencyRecommendation {
             grant.description,
             null,
             null,
-            iconClassName,
+            EnergyEfficiencyRecommendation.grantIcons[grant.grantId],
             EnergyEfficiencyRecommendationTag.Grant,
             null,
             grant.advantages,
             grant.steps,
             false,
             grant.grantId,
+            null,
         );
     }
 }

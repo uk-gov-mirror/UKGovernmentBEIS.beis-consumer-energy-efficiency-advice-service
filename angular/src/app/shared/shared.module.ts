@@ -22,6 +22,7 @@ import {PostcodeApiService} from './postcode-epc-service/postcode-api-service/po
 import {LocalAuthorityService} from './local-authority-service/local-authority.service';
 import {RecommendationCardComponent} from './recommendation-card/recommendation-card.component';
 import {EpcApiService} from './postcode-epc-service/epc-api-service/epc-api.service';
+import {AbTestingService} from './analytics/ab-testing.service';
 import {GoogleAnalyticsService} from './analytics/google-analytics.service';
 import {EnergySavingMeasureContentService} from './energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {QuestionReasonComponent} from './question-reason/question-reason.component';
@@ -33,7 +34,6 @@ import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.compo
 import {RecommendationsService} from './recommendations-service/recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
-import {PopupComponent} from './popup/popup.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
 import {LatestNewsSectionComponent} from './latest-news-section/latest-news-section.component';
 import {UserStateApiService} from './user-state-api-service/user-state-api-service';
@@ -64,7 +64,6 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
         LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
-        PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
@@ -87,7 +86,6 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
         LocalGrantCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
-        PopupComponent,
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
@@ -119,6 +117,7 @@ export class SharedModule {
                 PostcodeApiService,
                 LocalAuthorityService,
                 EnergySavingMeasureContentService,
+                AbTestingService,
                 GoogleAnalyticsService,
                 AssetsService,
                 RecommendationsService,

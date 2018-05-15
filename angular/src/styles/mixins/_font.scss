@@ -122,10 +122,6 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-family: $font-family-light;
 }
 
-@mixin popup-text-font {
-  @include has-font-sizes-at-breakpoints(24px, 28px, 24px, 28px, 16px, 20px);
-}
-
 @mixin large-link-font {
   @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 19px, 16px, 19px);
   font-weight: bold;

@@ -24,12 +24,13 @@ import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-servi
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.component';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
-import {UserStateService} from "../../shared/user-state-service/user-state-service";
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
-import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
-import {HomeAge} from "../../questionnaire/questions/home-age-question/home-age";
-import {FloorAreaUnit} from "../../questionnaire/questions/floor-area-question/floor-area-unit";
-import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
+import {UserStateService} from '../../shared/user-state-service/user-state-service';
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {HomeType} from '../../questionnaire/questions/home-type-question/home-type';
+import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age';
+import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/floor-area-unit';
+import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
+import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -70,6 +71,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         },
@@ -89,6 +91,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         },
@@ -115,6 +118,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             },
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
             recommendationID: ''
         }
@@ -157,6 +161,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
+                AbTestingService,
                 GoogleAnalyticsService,
             ]
         })
