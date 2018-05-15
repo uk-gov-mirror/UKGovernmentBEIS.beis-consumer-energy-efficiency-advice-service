@@ -32,11 +32,7 @@ public class InstallerSearchController{
         this.restTemplate = restTemplateBuilder
                 .build();
     }
-
-    /**
-     * Sends user data to the BRE energy calculation API, returns their
-     * JSON unmodified to the js frontend.
-     */
+    
     @GetMapping("/{postcode}/{installerCode}")
     public String get(@PathVariable String postcode, @PathVariable int installerCode) throws IOException {
 
