@@ -26,6 +26,11 @@
   .summary {
     @include article-summary-font;
   }
+
+  .read-more-link {
+    color: black;
+    padding-top: 10px;
+  }
 }
 
 // Breakpoint specific styling

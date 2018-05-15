@@ -19,16 +19,20 @@ export class WarmerHomeComponent {
 
     articles: Article[] = [
         {
-            title: 'What are the benefits of installing loft insulation?',
-            summary: 'Loft insulation is well worth considering because if there is little or no \
-                existing insulation considerable savings can be made.',
-            iconClassName: 'icon-roofing'
+            title: 'Upgrade window glazing',
+            summary: 'If you have old or poor quality double\
+             glazing, you could make your house warmer by\
+             fitting new, higher performance windows.',
+            iconClassName: 'icon-roofing',
+            readMore: '/measures/meta_glazing_replacement'
         },
         {
-            title: 'What can I do if I don\'t have cavity walls or a loft?',
-            summary: 'There is plenty you can do to improve the insulation in your home if you \
-            don\'t have cavity walls or a loft space.',
-            iconClassName: 'icon-walls'
+            title: 'Install new heating controls',
+            summary: 'If you can\'t control when your heating comes\
+             on, or what temperature it heats your home to, you should \
+            consider upgrading your heating controls.',
+            iconClassName: 'icon-walls',
+            readMore: '/measures/meta_heating_controls_wet_system'
         },
     ];
 }
