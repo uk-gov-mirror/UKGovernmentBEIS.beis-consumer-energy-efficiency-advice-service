@@ -4,6 +4,8 @@ import {By} from '@angular/platform-browser';
 import {ArticleCardComponent} from './article-card.component';
 import {Article} from './article';
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ArticleCardComponent', () => {
     let component: ArticleCardComponent;
@@ -12,12 +14,14 @@ describe('ArticleCardComponent', () => {
     const article: Article = {
         title: 'Article title',
         summary: 'Article summary',
-        iconClassName: ''
+        iconClassName: '',
+        readMore: ''
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ArticleCardComponent, SpinnerAndErrorContainerComponent ]
+            declarations: [ ArticleCardComponent, SpinnerAndErrorContainerComponent ],
+            imports: [FormsModule, RouterTestingModule]
         })
             .compileComponents();
     }));
