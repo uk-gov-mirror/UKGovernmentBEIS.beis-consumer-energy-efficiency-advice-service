@@ -68,19 +68,15 @@ export class InstallerSearchService {
         // E2: 'icons/simple-savings.svg',
 
     };
-    private static readonly INSTALLER_API_ROOT = '/api/';
+    private static readonly INSTALLER_API_ROOT = '/api/installers';
     private installers: Observable<InstallerContent[]>;
-    private apiKey: string = 'kcibn1gz9v1f4l8bgc4h';
 
     constructor(private http: HttpClient, private location: Location) {
     }
 
     fetchInstallerDetails(postcode: string, measureCode: string): Observable<InstallerContent[]> {
-        console.log("hi2");
-        const params = new HttpParams()
-            .set('per_page', '1000');
-        this.installers = this.http.get<InstallerContent[]>('http://greendealorb.designamite.info/api/',
-            {params: params})
+        this.installers = this.http.get<InstallerContent[]>
+            (this.getFullApiEndpoint("/" + postcode + "/" + InstallerSearchService.installerCodes[measureCode]))
             .shareReplay(1);
         console.log(this.installers);
         return this.installers;
@@ -88,8 +84,7 @@ export class InstallerSearchService {
 
     private getFullApiEndpoint(path?: string): string {
         if (path) {
-            const encodedPath = encodeURIComponent(path);
-            return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT + encodedPath);
+            return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT + path);
         }
         console.log( this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT))
         return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT);

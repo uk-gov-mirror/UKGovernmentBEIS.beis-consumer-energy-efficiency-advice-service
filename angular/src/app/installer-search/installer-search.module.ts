@@ -19,15 +19,10 @@ import  {InstallerSearchService} from "./installer-search-service/installer-sear
         CommonModule,
         RoutingModule,
         FormsModule,
+    ],
+    providers: [
+        InstallerSearchService,
     ]
 })
 export class InstallerSearchModule {
-    static forRoot() {
-        return {
-            ngModule: InstallerSearchModule,
-            providers: [
-                InstallerSearchService,
-            ]
-        };
-    }
 }
