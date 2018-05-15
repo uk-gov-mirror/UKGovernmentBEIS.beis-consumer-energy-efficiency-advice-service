@@ -6,7 +6,6 @@
                 <option *ngFor="let heatingPattern of heatingPatterns" [ngValue]="heatingPattern.value">{{heatingPattern.name}}</option>
             </select>
         </div>
-        <div class="separator-border" *ngIf="heatingPatternType === 3 || heatingPatternType === 4"></div>
         <div class="morning-evening-question" *ngIf="heatingPatternType === 3">
 
             <div class="sub-question-text">
