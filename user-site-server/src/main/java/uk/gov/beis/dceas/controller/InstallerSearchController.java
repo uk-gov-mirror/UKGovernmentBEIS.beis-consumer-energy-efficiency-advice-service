@@ -47,9 +47,6 @@ public class InstallerSearchController{
                 .queryParam("parameters[services][]", installerCode)
                 .build().toString();
 
-        System.out.println(url);
-        System.out.println("http://greendealorb.designamite.info/api/?ep=search&key=kcibn1gz9v1f4l8bgc4h&parameters%5Bpostcode%5D=N167TJ&parameters%5Bservices%5D%5B%5D=100");
-
         return restTemplate.getForObject(url, String.class);
     }
 }

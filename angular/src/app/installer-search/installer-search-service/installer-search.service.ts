@@ -86,7 +86,6 @@ export class InstallerSearchService {
         if (path) {
             return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT + path);
         }
-        console.log( this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT))
         return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT);
     }
 }
