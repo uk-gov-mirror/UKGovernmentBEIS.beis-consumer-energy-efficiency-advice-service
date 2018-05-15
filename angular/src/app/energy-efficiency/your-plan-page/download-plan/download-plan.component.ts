@@ -3,6 +3,12 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import * as html2pdf from 'html2pdf.js';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import * as html2canvas from 'html2canvas';
+
+// Fix https://github.com/niklasvh/html2canvas/issues/834
+(window as any).html2canvas = {
+    svg: html2canvas.svg
+};
 
 @Component({
     selector: 'app-download-plan',
