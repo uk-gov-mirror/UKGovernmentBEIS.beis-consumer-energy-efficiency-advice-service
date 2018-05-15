@@ -32,6 +32,10 @@ $action-divider-circle-diameter: 40px;
         @include plan-footer-description-font;
       }
 
+      .loading-spinner-small {
+        margin: 10px;
+      }
+
       .download-pdf {
         background-color: $light-blue;
         outline: none;

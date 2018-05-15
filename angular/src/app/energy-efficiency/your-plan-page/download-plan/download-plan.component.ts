@@ -11,6 +11,8 @@ import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics
 })
 export class DownloadPlanComponent {
 
+    pdfIsLoading: boolean;
+
     constructor(private googleAnalyticsService: GoogleAnalyticsService,
                 private responseData: ResponseData) {
     }
@@ -21,6 +23,11 @@ export class DownloadPlanComponent {
     }
 
     public onPdfClicked() {
+        this.pdfIsLoading = true;
+        window.setTimeout(() => this.onPdfClickedInner(), 0);
+    }
+
+    onPdfClickedInner() {
         this.sendEventToAnalytics('download-plan_clicked');
 
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
@@ -33,6 +40,7 @@ export class DownloadPlanComponent {
 
         let mutationCount = 0;
 
+        const self = this;
         const callback = function (elemObserver) {
             mutationCount++;
 
@@ -55,6 +63,11 @@ export class DownloadPlanComponent {
                 reccomendationPageRow.classList.remove("print-mode");
 
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
+
+                // There is no way to detect when the PDF has finished rendering
+                // It can be several seconds
+                // https://github.com/MrRio/jsPDF/issues/1754
+                window.setTimeout(() => self.pdfIsLoading = false, 1000);
 
                 // Disconnect the observer so the user cant trigger this callback afterwards
                 elemObserver.disconnect();
