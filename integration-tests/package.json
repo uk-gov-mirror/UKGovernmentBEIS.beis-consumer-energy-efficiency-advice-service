@@ -4,7 +4,9 @@
   "description": "Integration tests for the BEIS DCEAS application",
   "main": "index.js",
   "scripts": {
-    "test": "webdriver-manager update && protractor protractor.conf.js"
+    // Gecko disabled to avoid reaching Github rate limit, which breaks the integration tests
+    // See https://github.com/angular/webdriver-manager/issues/307#issuecomment-377684918
+    "test": "webdriver-manager update --gecko=false && protractor protractor.conf.js"
   },
   "author": "Softwire",
   "license": "ISC",
