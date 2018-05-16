@@ -34,7 +34,7 @@ public class InstallerSearchController{
     }
     
     @GetMapping("/{postcode}/{installerCode}")
-    public String get(@PathVariable String postcode, @PathVariable int installerCode) throws IOException {
+    public String get(@PathVariable String postcode, @PathVariable String installerCode) throws IOException {
 
         String url = UriComponentsBuilder.fromHttpUrl(apiRoot)
                 .queryParam("ep", "search")
