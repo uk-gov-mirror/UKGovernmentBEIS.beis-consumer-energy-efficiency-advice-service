@@ -6,4 +6,4 @@ set -ex
 # The working directory should be the git root
 
 # Java tests:
-./gradlew check
+./gradlew check --stacktrace
