@@ -18,6 +18,9 @@ import {FloorLevel} from '../../questionnaire/questions/floor-level-question/flo
 import {FlatExposedWall} from '../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 import {TenancyType} from '../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
+import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
+import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
+import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -68,14 +71,21 @@ export class ResponseData {
     public condensingBoiler: boolean;
     // Set by ElectricityTariffQuestionComponent, sent to BRE energy-calculation
     public electricityTariff: ElectricityTariff;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation.
+    // See DetailedLengthOfHeatingOnQuestionComponent::heatingPatterns for possible values
+    public heatingPatternType: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public morningHeatingStartTime: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public morningHeatingDuration: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public eveningHeatingStartTime: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public eveningHeatingDuration: number;
+    // Set by DetailedLengthOfHeatingOnQuestionComponent
+    public heatingHoursPerDay: number;
     // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnEarlyHours: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnMorning: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnAfternoon: number;
-    // Set by DetailedLengthOfHeatingOnQuestionComponent, sent to BRE energy-calculation
-    public detailedLengthOfHeatingOnEvening: number;
+    public normalDaysOffHours: number[];
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedUnder64: number;
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
@@ -121,9 +131,9 @@ export class ResponseData {
     }
 
     // Used by MeesResultsPageComponent
-    public isDomesticPropertyAfter2018: boolean;
+    public lettingDomesticPropertyStage: LettingDomesticPropertyStage;
     // Used by MeesResultsPageComponent
-    public isPropertyAfter2020: boolean;
+    public tenancyStartDate: TenancyStartDate;
     // Used by MeesResultsPageComponent
     public propertyEpc: UserEpcRating;
     // Used by MeesResultsPageComponent
@@ -132,6 +142,8 @@ export class ResponseData {
     public isEpcRequired: boolean;
     // Used by MeesResultsPageComponent
     public tenancyType: TenancyType;
+    // Used by MeesResultsPageComponent
+    public agriculturalTenancyType: AgriculturalTenancyType;
 
     constructor() {
         if (!sessionStorageAvailable()) {

@@ -12,8 +12,6 @@ import java.util.List;
 public class LocalAuthority {
     String localAuthorityCode;
     String displayName;
-    Boolean isEcoFlexActive;
-    String ecoFlexFurtherInfoLink;
     List<Grant> grants;
 
     /**
@@ -25,6 +23,10 @@ public class LocalAuthority {
     public static class Grant {
         String displayName;
         String description;
+        String eligibilityCriteria;
+        String phoneNumber;
+        String websiteUrl;
+        String endDate;
         String slug;
     }
 }

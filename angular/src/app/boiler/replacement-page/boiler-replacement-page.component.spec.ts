@@ -11,15 +11,30 @@ import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
+import {EpcLookupComponent} from "../../shared/epc-lookup/epc-lookup.component";
+import {FormsModule} from '@angular/forms';
+import {ResponseData} from "../../shared/response-data/response-data";
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
+import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
 
 describe('BoilerReplacementPageComponent', () => {
     let component: BoilerReplacementPageComponent;
     let fixture: ComponentFixture<BoilerReplacementPageComponent>;
+    let responseData: ResponseData;
 
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
             .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
+    };
+
+    const postcodeEpcServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const postcodeApiServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
     };
 
     beforeEach(async(() => {
@@ -29,20 +44,27 @@ describe('BoilerReplacementPageComponent', () => {
                 BoilerReplacementCardComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerLinkButtonComponent,
-                DataCardComponent
+                DataCardComponent,
+                PostcodeLookupComponent,
+                EpcLookupComponent
             ],
             imports: [
                 RouterTestingModule,
-                InlineSVGModule
+                InlineSVGModule,
+                FormsModule,
             ],
             providers: [
-                {provide: BoilerTypesService, useValue: boilerTypesServiceStub}
+                {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
+                {provide: ResponseData, useClass: MockResponseData},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
             ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
+        responseData = new ResponseData();
         fixture = TestBed.createComponent(BoilerReplacementPageComponent);
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
         component = fixture.componentInstance;
@@ -78,4 +100,8 @@ describe('BoilerReplacementPageComponent', () => {
         expect(actualBoilers.length).toBe(expectedBoilers.length);
         expectedBoilers.forEach(measure => expect(actualBoilers).toContain(measure));
     });
+
+    class MockResponseData {
+        public postcode = "Test Postcode";
+    }
 });

@@ -6,4 +6,10 @@ import {Component} from '@angular/core';
     styleUrls: ['./mees-exemption-page.component.scss']
 })
 export class MeesExemptionPageComponent {
+    public measureNotRelevantOpen: boolean = false;
+    public hasNoRecommendedMeasuresOpen: boolean = false;
+    public wallInsulationOpen: boolean = false;
+    public consentOpen: boolean = false;
+    public devaluationOpen: boolean = false;
+    public recentLandlordOpen: boolean = false;
 }

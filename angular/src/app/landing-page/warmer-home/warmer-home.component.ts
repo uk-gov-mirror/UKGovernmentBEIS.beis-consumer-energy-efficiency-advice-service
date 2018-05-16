@@ -12,52 +12,27 @@ export class WarmerHomeComponent {
     warmerHomeJourneyType: UserJourneyType = UserJourneyType.MakeHomeWarmer;
 
     video: Video = {
-        title: 'How to control your heating',
-        synopsis: `
-            An introduction to setting heating controls effectively, including:
-            <ul>
-                <li>
-                    How heating controls can help you keep warm while also keeping your fuel bills down,
-                    including when you might want them to turn on and off, and how to decide what temperature to set them to
-                </li>
-                <li>
-                    The different elements in any heating control system, and how they can be used, including programmers,
-                    room thermostats, radiator thermostats and hot water controls
-                </li>
-                <li>
-                    A quick run through different heating control systems, including:
-                    <ul>
-                        <li>
-                            Programmable thermostats (where you set different temperatures for different times of day)
-                        </li>
-                        <li>
-                            Programmer with room thermostat (where you set the times with one box, and set the temperature
-                            with a dial somewhere else)
-                        </li>
-                        <li>
-                            Smart heating controls – systems that make decision for you, talk to your phone etc.
-                        </li>
-                        <li>
-                            Controls for storage heaters
-                        </li>
-                    </ul>
-                </li>
-            </ul
-        At the end of the video, there are links to more detailed information on each type of system.`
+        title: 'Draught proofing your home',
+        imagePath: '/dist/assets/images/video-thumbnails/draught-proofing-your-home.jpg',
+        articlePath: '/pages/draught-proofing-your-home'
     };
 
     articles: Article[] = [
         {
-            title: 'What are the benefits of installing loft insulation?',
-            summary: 'Loft insulation is well worth considering because if there is little or no \
-                existing insulation considerable savings can be made.',
-            iconClassName: 'icon-lightbulb'
+            title: 'Upgrade window glazing',
+            summary: 'If you have old or poor quality double\
+             glazing, you could make your house warmer by\
+             fitting new, higher performance windows.',
+            iconClassName: 'icon-roofing',
+            readMore: '/measures/meta_glazing_replacement'
         },
         {
-            title: 'What can I do if I don\'t have cavity walls or a loft?',
-            summary: 'There is plenty you can do to improve the insulation in your home if you \
-            don\'t have cavity walls or a loft space.',
-            iconClassName: 'icon-switch'
+            title: 'Install new heating controls',
+            summary: 'If you can\'t control when your heating comes\
+             on, or what temperature it heats your home to, you should \
+            consider upgrading your heating controls.',
+            iconClassName: 'icon-walls',
+            readMore: '/measures/meta_heating_controls_wet_system'
         },
     ];
 }

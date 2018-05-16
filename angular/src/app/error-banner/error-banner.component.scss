@@ -1,0 +1,18 @@
+@import "styles/var/colors";
+
+div {
+  background-color: $pink;
+  color: white;
+  padding: 16px;
+  position: relative;
+}
+
+p {
+  font-weight: bold;
+}
+
+button.dismiss-error {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}

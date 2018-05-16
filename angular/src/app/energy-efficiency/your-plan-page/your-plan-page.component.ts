@@ -5,8 +5,10 @@ import {LocalAuthorityService} from '../../shared/local-authority-service/local-
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
-import * as logger from "loglevel";
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import * as logger from 'loglevel';
+import {RoundingService} from '../../shared/rounding-service/rounding.service';
+import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 
 @Component({
     selector: 'app-your-plan-page',
@@ -21,6 +23,8 @@ export class YourPlanPageComponent implements OnInit {
 
     localAuthorityGrants: LocalAuthorityGrant[] = [];
     localAuthorityName: string;
+    isError: boolean = false;
+    errorMessage: string;
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
@@ -29,11 +33,33 @@ export class YourPlanPageComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (!this.recommendations.length) {
+            this.errorMessage = "Sorry, we can't show you your plan at the moment " +
+                "as it seems that you have not completed the questionnaire, " +
+                "or something has gone wrong.";
+            this.isError = true;
+            return;
+        }
+
         this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
             .subscribe(
                 response => this.handleLocalAuthorityServiceResponse(response),
                 error => this.handleLocalAuthorityServiceError(error)
             );
+    }
+
+    get showMonthlySavings() {
+        return this.responseData.tenureType !== TenureType.OwnerOccupancy;
+    }
+
+    getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
+        return RoundingService.roundCostValue(recommendation.investmentPounds);
+    }
+
+    getRoundedSavings(recommendation: EnergyEfficiencyRecommendation) {
+        return this.showMonthlySavings
+            ? RoundingService.roundCostValue(recommendation.costSavingPoundsPerMonth)
+            : RoundingService.roundCostValue(recommendation.costSavingPoundsPerYear);
     }
 
     handleLocalAuthorityServiceResponse(response: LocalAuthority) {

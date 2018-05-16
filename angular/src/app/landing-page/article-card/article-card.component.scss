@@ -13,6 +13,7 @@
 .article-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   height: 100%;
   box-sizing: border-box;
@@ -26,6 +27,12 @@
   .summary {
     @include article-summary-font;
   }
+
+  .read-more-link {
+    color: $dark-blue;
+    padding-top: 10px;
+    text-decoration: none;
+  }
 }
 
 // Breakpoint specific styling
@@ -35,8 +42,8 @@
 
     .icon {
       margin-bottom: 20px;
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 32px;
     }
 
     .title {
@@ -53,8 +60,8 @@
 
     .icon {
       margin-bottom: 28px;
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 32px;
     }
 
     .title {
@@ -71,8 +78,8 @@
 
     .icon {
       margin-bottom: 32px;
-      width: 50px;
-      height: 50px;
+      width: 44px;
+      height: 44px;
     }
 
     .title {

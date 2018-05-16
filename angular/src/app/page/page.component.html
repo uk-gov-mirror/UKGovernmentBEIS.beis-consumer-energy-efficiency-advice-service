@@ -5,7 +5,12 @@
             <h1>{{pageData.title}}</h1>
         </div>
     </div>
+    <div class="page-row contents-section" *ngIf="headings && headings.length > 1">
+        <div class="page-row-content">
+            <app-contents-table [headings]="headings" (onHeadingClicked)="scrollIndexIntoView($event)"></app-contents-table>
+        </div>
+    </div>
     <div class="page-row main-row">
-        <div class="page-row-content" [innerHTML]="pageData.content"></div>
+        <div id="wordpress-content" class="page-row-content" [innerHTML]="pageDataContent"></div>
     </div>
 </div>

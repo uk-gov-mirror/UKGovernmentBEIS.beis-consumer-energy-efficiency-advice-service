@@ -71,7 +71,7 @@ $desktop-multiple-choice-margin: 20px;
           }
 
           &.selected {
-            background-color: $primary-blue;
+            background-color: $dark-blue;
             color: white;
           }
         }
@@ -128,6 +128,7 @@ $desktop-multiple-choice-margin: 20px;
     .question {
       .question-component {
         width: 100%;
+        padding: 0 40px;
 
         .questionnaire-form {
           .dropdown-input {
@@ -161,6 +162,7 @@ $desktop-multiple-choice-margin: 20px;
     .question {
       .question-component {
         width: 100%;
+        padding: 0 94px;
 
         .questionnaire-form {
           .dropdown-input {

@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import {LargeVideoCardComponent} from './large-video-card.component';
-import { PopupComponent } from '../popup/popup.component';
 import {Video} from './video';
 
 describe('LargeVideoCardComponent', () => {
@@ -11,14 +11,17 @@ describe('LargeVideoCardComponent', () => {
 
     const video: Video = {
         title: 'Video title',
-        synopsis: 'Video synopsis',
+        imagePath: '',
+        articlePath: ''
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [
+                RouterTestingModule.withRoutes([]),
+            ],
             declarations: [
                 LargeVideoCardComponent,
-                PopupComponent,
             ]
         })
             .compileComponents();
@@ -38,25 +41,5 @@ describe('LargeVideoCardComponent', () => {
     it('should display the right title', () => {
         const titleElement = fixture.debugElement.query(By.css('.title')).nativeElement;
         expect(titleElement.innerText).toEqual(video.title);
-    });
-
-    it('should display the synopsis when needed', () => {
-        // When
-        component.displaySynopsis = true;
-        fixture.detectChanges();
-        const synopsisText = fixture.debugElement.query(By.css('.popup .popup-body')).nativeElement;
-
-        // Then
-        expect(synopsisText.innerText).toEqual(video.synopsis);
-    });
-
-    it('should hide the synopsis when not needed', () => {
-        // When
-        component.displaySynopsis = false;
-        fixture.detectChanges();
-        const synopsisElement = fixture.debugElement.query(By.css('.popup .popup-body'));
-
-        // Then
-        expect(synopsisElement).toBeFalsy();
     });
 });

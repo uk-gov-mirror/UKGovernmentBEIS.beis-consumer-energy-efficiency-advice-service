@@ -16,6 +16,7 @@ case $SPACE in
     HOSTNAME=dceas-admin-site-$SPACE
   ;;
   live )
+    # TODO:BEISDEAS-296 update this when final hostname is ready
     HOSTNAME=dceas-admin-site
   ;;
   * )

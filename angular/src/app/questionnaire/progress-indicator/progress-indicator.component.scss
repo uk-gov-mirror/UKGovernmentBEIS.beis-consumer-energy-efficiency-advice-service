@@ -18,17 +18,15 @@
   .completion-bar {
     position: relative;
     background-color: $dark-grey;
-    height: 10px;
+    height: 6px;
     display: flex;
     align-content: flex-start;
-    width: 100%;
 
     .completion-bar-content {
       position: absolute;
       height: 100%;
       top: 0;
       left: 0;
-      background-color: $focus-blue;
     }
   }
 }
@@ -39,8 +37,14 @@
   }
 
   @include tablet() {
+    .completion-bar {
+      width: 75vw;
+    }
   }
 
   @include desktop() {
+    .completion-bar {
+      width: 50vw;
+    }
   }
 }

@@ -1,19 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
-import {ResponseData} from '../../shared/response-data/response-data';
+import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
 import {EnergyCalculations} from './energy-calculations';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import sumBy from 'lodash-es/sumBy';
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
-import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
-import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
 import {UserStateService} from '../../shared/user-state-service/user-state-service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -27,18 +26,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isLoading: boolean = true;
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
-    _activeTagFilters: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
-
-    get activeTagFilters(): EnergyEfficiencyRecommendationTag {
-        return this._activeTagFilters;
-    }
-
-    set activeTagFilters(val: EnergyEfficiencyRecommendationTag) {
-        this._activeTagFilters = val;
-        this.onDisplayedRecommendationCardsChanged();
-    }
-
-    @ViewChild(StickyRowWrapperComponent) yourPlanFooterWrapperComponent: StickyRowWrapperComponent;
+    showOldVersion: boolean;
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
@@ -46,10 +34,18 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private recommendationsService: RecommendationsService,
                 private energyCalculationService: EnergyCalculationApiService,
                 private userStateService: UserStateService,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private abTestingService: AbTestingService) {
     }
 
     ngOnInit() {
+        if (!isComplete(this.responseData)) {
+            this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
+                "not completed the questionnaire, or something has gone wrong.";
+            this.isError = true;
+            return;
+        }
+
         Observable.forkJoin(
             this.recommendationsService.getAllRecommendations(),
             this.energyCalculationService.fetchEnergyCalculation(new RdSapInput(this.responseData))
@@ -63,37 +59,20 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 },
             );
         this.userStateService.saveState();
+
+        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.allRecommendations
-            .filter(recommendation => {
-                const requiredTags = this.activeTagFilters;
-                if (requiredTags === EnergyEfficiencyRecommendationTag.None) {
-                    return true;
-                }
-                return requiredTags & recommendation.tags;
-            });
+        return this.allRecommendations;
     }
 
     get showMonthlySavings() {
         return this.responseData.tenureType !== TenureType.OwnerOccupancy;
     }
 
-    getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.recommendationsService.getRecommendationsInPlan();
-    }
-
     sendEventToAnalytics(eventName: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page');
-    }
-
-    private onDisplayedRecommendationCardsChanged() {
-        setTimeout(() => {
-            if (this.yourPlanFooterWrapperComponent) {
-                this.yourPlanFooterWrapperComponent.updateRowPosition();
-            }
-        });
     }
 
     private displayErrorMessage(err: any): void {
@@ -107,7 +86,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         energyCalculationResponse: EnergyCalculationResponse
     ) {
         this.allRecommendations = allRecommendations;
-        this.activeTagFilters = EnergyEfficiencyRecommendationTag.TopRecommendations;
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             energyCalculationResponse,
             this.allRecommendations

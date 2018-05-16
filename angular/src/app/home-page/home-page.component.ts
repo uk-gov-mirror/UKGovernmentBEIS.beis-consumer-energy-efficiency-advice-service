@@ -18,7 +18,6 @@ export class HomePageComponent {
 
     onEnergyCalculatorButtonClick() {
         this.sendEventToAnalytics('calculator_clicked');
-        this.responseData.userJourneyType = UserJourneyType.Calculator;
         this.router.navigate(['/energy-efficiency/reduce-bills']);
     }
 

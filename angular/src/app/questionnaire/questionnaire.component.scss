@@ -1,6 +1,7 @@
 @import 'styles/mixins/buttons';
 @import "styles/mixins/font";
 @import "styles/var/colors";
+@import "styles/page";
 
 // Component specific variables
 $greyed-out: #a9a9a9;
@@ -19,7 +20,7 @@ $greyed-out: #a9a9a9;
   .question-heading {
     font-size: 36px;
     font-weight: bold;
-    color: $darkened-blue;
+    color: $dark-blue;
     line-height: 38px;
     text-align: center;
     margin-bottom: 20px;
@@ -31,57 +32,16 @@ $greyed-out: #a9a9a9;
   align-items: center;
   justify-content: flex-start;
   flex-grow: 1;
-  background-color: $lighter-grey;
-  padding-bottom: 16px;
-
-  .question-type-icon {
-    margin-top: 15vh;
-    margin-bottom: -4px;
-
-    .person ::ng-deep svg {
-      path {
-        fill: $primary-blue;
-      }
-    }
-
-    .house ::ng-deep svg {
-      polygon {
-        fill: $primary-blue;
-      }
-
-      polyline {
-        stroke: $primary-blue;
-      }
-    }
-
-    .thermostat ::ng-deep svg {
-      path {
-        stroke: $primary-blue;
-      }
-
-      circle {
-        fill: $primary-blue;
-      }
-    }
-  }
-
-  .question-type-icon-baseline {
-    background-color: $primary-blue;
-    width: 140px;
-    height: 1px;
-    margin-bottom: 20px;
-  }
-
+  background-color: $light-blue;
 
   .help-text {
-    color: $focus-blue;
+    color: $dark-blue;
   }
 
   .question {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    padding-bottom: 16px;
   }
 
   app-question-reason {
@@ -126,7 +86,6 @@ app-sticky-row-wrapper {
         align-items: center;
         justify-content: center;
 
-        outline: none;
         border: none;
 
         user-select: none;
@@ -176,7 +135,7 @@ app-sticky-row-wrapper {
 // Breakpoint specific styling
 .questions-container {
   @include mobile() {
-    padding: 40px;
+    padding: 40px 40px 0;
     box-sizing: border-box;
 
     .question-type-icon, .question-type-icon-baseline {
@@ -194,17 +153,21 @@ app-sticky-row-wrapper {
     }
 
     .question {
-      width: 100%;
+      width: 100vw;
       margin-top: 30px;
     }
 
     .help-text {
       width: 100%;
     }
+
+    :last-child {
+      margin-bottom: 30px;
+    }
   }
 
   @include tablet() {
-    padding: 68px 94px;
+    padding: 68px 94px 0;
     box-sizing: border-box;
 
     .question-type-icon, .question-type-icon-baseline {
@@ -222,19 +185,30 @@ app-sticky-row-wrapper {
     }
 
     .question {
-      width: 100%;
+      width: 100vw;
       margin-top: 52px;
     }
 
     .help-text {
       width: 100%;
     }
+
+    :last-child {
+      margin-bottom: 30px;
+    }
   }
 
   @include desktop() {
+    .question-heading {
+      width: 100%;
+      padding: $desktop-side-margin;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
     .question {
       width: 100vw;
-      margin-top: 96px;
+      margin-top: 30px;
     }
 
     .help-text {
@@ -242,8 +216,8 @@ app-sticky-row-wrapper {
       text-align: center;
     }
 
-    app-question-reason {
-      margin-bottom: 24px;
+    :last-child {
+      margin-bottom: 30px;
     }
   }
 }

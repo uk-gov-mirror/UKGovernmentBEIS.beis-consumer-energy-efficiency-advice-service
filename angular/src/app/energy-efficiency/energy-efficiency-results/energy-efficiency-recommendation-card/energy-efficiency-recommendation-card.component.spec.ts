@@ -11,7 +11,9 @@ import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-e
 import {GrantEligibility} from '../../../grants/grant-eligibility-service/grant-eligibility';
 import {BreakEvenComponent} from '../break-even/break-even.component';
 import {NationalGrantForMeasure} from '../../../grants/model/national-grant-for-measure';
-import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
+import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
+import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -37,12 +39,15 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         iconPath: 'icons/dummy.svg',
         headline: 'Loft insulation',
         summary: 'No description available',
+        whatItIs: '',
+        isItRightForMe: '',
         tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
         grant: grant,
         advantages: advantages,
         steps: [],
+        measureCode: '',
         isAddedToPlan: false,
-        codeForAnalytics: ''
+        recommendationID: ''
     };
 
     beforeEach(async(() => {
@@ -58,6 +63,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
+                {provide: RecommendationsService, use: {}},
+                AbTestingService,
                 GoogleAnalyticsService,
             ]
         })
@@ -86,15 +93,14 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             expect(summaryElement.innerText).toBe(recommendation.summary);
         });
 
-        it('should display the correct tags', () => {
+        it('should display the grants tag', () => {
             // given
             const tagsElements = fixture.debugElement.queryAll(By.css('.tag'));
 
             // then
-            expect(tagsElements.length).toBe(2);
+            expect(tagsElements.length).toBe(1);
             const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
             expect(tagNames).toContain('grants');
-            expect(tagNames).toContain('longer term');
         });
     });
 

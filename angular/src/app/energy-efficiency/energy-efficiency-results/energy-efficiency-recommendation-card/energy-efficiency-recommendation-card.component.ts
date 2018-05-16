@@ -7,7 +7,9 @@ import {
     getTagDescription
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
-import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
+import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
+import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -18,24 +20,27 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
+    roundedSaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
+    showOldVersion: boolean;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
 
-    constructor(private googleAnalyticsService: GoogleAnalyticsService) {
+    constructor(private recommendationsService: RecommendationsService,
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private abTestingService: AbTestingService) {
     }
 
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
-        this.tags = getActiveTags(this.recommendation.tags);
-    }
-
-    get roundedSaving() {
-        return this.showMonthlySavings
+        this.roundedSaving = this.showMonthlySavings
             ? RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerMonth)
             : RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerYear);
+        this.tags = getActiveTags(this.recommendation.tags)
+            .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
+        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
@@ -63,7 +68,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     getAddToPlanButtonText(): string {
         if (!this.recommendation.isAddedToPlan) {
-            return 'Add to plan';
+            return this.showOldVersion ? 'Add to plan' : 'Show me how';
         } else {
             return this.isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
         }
@@ -71,12 +76,13 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     toggleAddedToPlan(): void {
         this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
+        this.recommendationsService.refreshPotentialScore();
         if (this.recommendation.isAddedToPlan) {
             this.sendEventToAnalytics('add-to-plan_clicked');
         }
     }
 
     sendEventToAnalytics(eventName: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.codeForAnalytics);
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
     }
 }

@@ -20,7 +20,7 @@
     min-height: $heading-height;
   }
 
-  .number-value {
+  .value-container {
     height: $value-height;
     display: flex;
     align-items: center;
@@ -41,7 +41,7 @@
     @include data-card-heading-font();
   }
 
-  .number-value {
+  .value {
     @include data-card-value-font();
   }
 
@@ -49,6 +49,30 @@
     border-radius: 50%;
     width: 70px;
     color: white;
+
+    &.is-percent {
+      position:relative;
+
+      .value {
+        @include data-card-circle-value-font();
+        padding-bottom: 17px;
+      }
+
+      &:after {
+        content: "100";
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 23px;
+        transform: translate(0, 100%);
+        font-size: 14px;
+        font-weight: normal;
+        color: $dark-grey;
+        border-top: 1px solid $dark-grey;
+        line-height: initial;
+        padding: 2px 8px 0;
+      }
+    }
 
     &.green {
       background-color: $green;
@@ -63,7 +87,6 @@
     }
   }
 }
-
 
 // Breakpoint specific styling
 .data-card {
@@ -83,17 +106,25 @@
         flex: 0 0 40%;
       }
 
-      .number-value.color-circle {
+      .value-container.color-circle {
         width: 40px;
         height: 40px;
-        font-size: 20px;
-        line-height: 40px;
         text-align: center;
+
+        .value {
+          font-size: 20px;
+          line-height: 40px;
+          padding-bottom: 0;
+        }
+
+        &:after {
+          content: none;
+        }
       }
     }
 
     &.small-data-card {
-      .heading, .number-value {
+      .heading, .value-container {
         height: auto;
         min-height: auto;
       }
@@ -103,7 +134,7 @@
     @include is-vertical-app-card($padding: 0, $heading-height: 36px, $value-height: 70px);
 
     &.small-data-card {
-      .heading, .number-value {
+      .heading, .value-container {
         height: auto;
         min-height: auto;
       }

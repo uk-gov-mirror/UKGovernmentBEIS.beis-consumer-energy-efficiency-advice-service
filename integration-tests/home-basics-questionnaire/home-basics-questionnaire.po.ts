@@ -14,17 +14,8 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         browser.waitForAngular();
     }
 
-    private addressListIsPresent() {
-        return element(by.css('app-postcode-epc-question .list-select')).isPresent();
-    }
-
-    private selectFirstAddress() {
-        let e = element(by.css('app-postcode-epc-question .list-select .list-select-option:first-child'));
-        CommonPageHelpers.clickWhenClickable(e);
-    }
-
     selectFirstHomeAge() {
-        let e = element(by.css('app-home-age-question .home-age-option:first-child'));
+        const e = element(by.css('app-home-age-question .home-age-option:first-child'));
         CommonPageHelpers.clickWhenClickable(e);
     }
 
@@ -46,5 +37,14 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
                 CommonPageHelpers.sleep(1000);
             }
         });
+    }
+
+    private addressListIsPresent() {
+        return element(by.css('app-postcode-epc-question .list-select')).isPresent();
+    }
+
+    private selectFirstAddress() {
+        const e = element(by.css('app-postcode-epc-question .list-select .list-select-option:first-child'));
+        CommonPageHelpers.clickWhenClickable(e);
     }
 }

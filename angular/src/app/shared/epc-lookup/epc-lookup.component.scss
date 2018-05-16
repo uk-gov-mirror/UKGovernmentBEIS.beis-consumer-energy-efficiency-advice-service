@@ -42,7 +42,7 @@
 
     .no-properties {
       flex: 0 0 100%;
-      text-align: right;
+      text-align: left;
     }
   }
 
@@ -61,6 +61,7 @@
       @include postcode-dropdown-font();
       text-align: center;
       min-width: 0;
+      -webkit-appearance: menulist-button;
 
       .address-option {
         @include postcode-options-font();
@@ -71,6 +72,10 @@
   .go-button {
     @include postcode-button;
     flex: 0 0 50px;
+
+    &.grey-go {
+      background-color: $light-medium-grey;
+    }
   }
 
   .not-listed-button {

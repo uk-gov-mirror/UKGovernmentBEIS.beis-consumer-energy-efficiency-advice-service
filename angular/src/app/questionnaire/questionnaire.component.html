@@ -1,14 +1,8 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
-    <span class="question-type-icon">
-        <div class="house" [inlineSVG]="'question-types/house.svg'" [hidden]="questionTypeIconClassName !== 'icon-house'"></div>
-        <div class="thermostat" [inlineSVG]="'question-types/thermostat.svg'" [hidden]="questionTypeIconClassName !== 'icon-thermostat'"></div>
-        <div class="person" [inlineSVG]="'question-types/person.svg'" [hidden]="questionTypeIconClassName !== 'icon-person'"></div>
-    </span>
-    <span class="question-type-icon-baseline"></span>
-    <div class="question-heading">
+    <h1 class="question-heading">
         {{currentQuestionContent.questionHeading}}
-    </div>
+    </h1>
     <div class="help-text" *ngIf="currentQuestionContent?.helpHtml" [innerHtml]="currentQuestionContent?.helpHtml"></div>
     <div class="question">
         <ng-template app-question-host></ng-template>
@@ -17,9 +11,9 @@
                      [isExpanded]="currentQuestionContent.autoOpenQuestionReason"
                      [questionReason]="currentQuestionContent.questionReason"></app-question-reason>
 </div>
-<app-sticky-row-wrapper>
+<app-sticky-row-wrapper *ngIf="shouldShowIndicator && questionnaire">
     <div class="sticky-row-content">
-        <app-progress-indicator [questionnaire]="questionnaire"
+        <app-progress-indicator [shouldShowIndicator]="shouldShowIndicator" [questionnaire]="questionnaire"
                              [currentQuestionIndex]="currentQuestionIndex"></app-progress-indicator>
 
         <div class="question-heading-container">

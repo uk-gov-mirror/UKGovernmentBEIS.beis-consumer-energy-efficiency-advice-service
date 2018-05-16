@@ -22,14 +22,14 @@ $remaining-width: $content-max-width - $efficiency-box-width;
     &.description {
       flex: 1 1 auto;
       width: $remaining-width;
-      background-color: $lighter-grey;
+      background-color: white;
       border-left: 10px solid $lighter-medium-grey;
     }
 
     &.efficiency {
       flex: 0 0 auto;
       width: $efficiency-box-width;
-      background-color: $dark-grey;
+      background-color: $dark-medium-blue;
       font-weight: bold;
       color: white;
 
@@ -80,6 +80,7 @@ $remaining-width: $content-max-width - $efficiency-box-width;
 
         .headline {
           @include card-heading-font;
+          color: $dark-medium-blue;
           margin-bottom: 16px;
           width: 80%;
         }

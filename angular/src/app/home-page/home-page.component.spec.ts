@@ -79,8 +79,8 @@ describe('HomePageComponent', () => {
         checkLink('.landing-page-link.greener-home', '/energy-efficiency/greener-home');
     });
 
-    it('should set the user journey type and move to the questionnaire when the appropriate button is clicked', async () => {
-        checkLink('.calculator', '/energy-efficiency/reduce-bills', UserJourneyType.Calculator);
+    it('should redirect the "calculator" button to the "reduce-bills" landing page', async () => {
+        checkLink('.calculator', '/energy-efficiency/reduce-bills', undefined);
     });
 
     it('should set the user journey type and move to the grants page when the appropriate button is clicked', async () => {

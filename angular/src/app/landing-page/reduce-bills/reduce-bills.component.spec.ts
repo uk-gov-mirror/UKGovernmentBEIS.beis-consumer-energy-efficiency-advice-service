@@ -18,7 +18,6 @@ import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc
 import {WordpressPagesService} from '../../shared/wordpress-pages-service/wordpress-pages.service';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {PostcodeApiService} from '../../shared/postcode-epc-service/postcode-api-service/postcode-api.service';
-import {PopupComponent} from '../../shared/popup/popup.component';
 import {LatestNewsSectionComponent} from '../../shared/latest-news-section/latest-news-section.component';
 import {SearchBarComponent} from '../../layout-components/search-bar/search-bar.component';
 import {NavBarSuboptionComponent} from '../../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
@@ -54,7 +53,6 @@ describe('ReduceBillsComponent', () => {
                 PostcodeLookupComponent,
                 EpcLookupComponent,
                 DataCardComponent,
-                PopupComponent,
                 SearchBarComponent,
                 NavBarSuboptionComponent,
                 MeasureCardComponent,

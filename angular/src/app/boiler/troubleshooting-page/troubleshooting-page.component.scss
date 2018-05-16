@@ -1,0 +1,115 @@
+@import "styles/var/colors";
+@import "styles/page";
+@import "styles/boiler";
+
+// Component specific variables
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.page-heading {
+  background-color: $light-blue;
+  color: $dark-blue;
+
+  .heading-text {
+    margin-bottom: 20px;
+    color: $dark-blue;
+  }
+}
+
+.tips {
+  > :nth-child(2n-1) {
+    background-color: $lighter-grey;
+  }
+
+  .page-row-content {
+    display: flex;
+    justify-content: flex-start;
+
+    .tip {
+
+      .index {
+        margin-bottom: 20px;
+      }
+
+      .summary {
+        color: $dark-medium-blue;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .details {
+        font-family: $font-family-light;
+      }
+    }
+  }
+}
+
+.repairer {
+  .page-row-content {
+    box-sizing: border-box;
+    text-align: center;
+
+    .heading {
+      margin-bottom: 20px;
+    }
+  }
+}
+// Breakpoint specific styling
+
+@include mobile() {
+  .page-heading {
+    .heading-text {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  .repairer {
+     .page-row-content {
+       padding: 0 25px;
+     }
+   }
+
+  .tips {
+    .page-row-content {
+      .tip {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .tips {
+    .page-row-content {
+      .tip {
+        flex: 1 1 100%;
+      }
+    }
+  }
+
+  .repairer {
+    .page-row-content {
+      padding: 0 75px;
+    }
+  }
+}
+
+@include desktop() {
+  .tips {
+    .page-row-content {
+      .tip {
+        flex: 0 0 33%;
+      }
+    }
+  }
+
+  .repairer {
+    .page-row-content {
+      padding: 0 225px;
+    }
+  }
+}
+

@@ -1,8 +1,6 @@
-<app-popup *ngIf="displaySynopsis" (onOkPressed)="closeSynopsis()">
-    <span [innerHTML]="video.synopsis"></span>
-</app-popup>
-<a class="large-video-card">
-    <div class="video-icon-container" (click)="openSynopsis()">
+<a class="large-video-card" [routerLink]="video.articlePath">
+    <div class="video-container">
+        <img class="thumbnail" [src]="video.imagePath" [alt]="video.title" />
         <span class="icon-video-play"></span>
     </div>
     <div class="text-container">

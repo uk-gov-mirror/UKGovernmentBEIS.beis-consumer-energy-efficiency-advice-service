@@ -8,8 +8,8 @@
   }
 
   .heading-section {
-    background-color: $primary-blue;
-    color: white;
+    background-color: $light-blue;
+    color: $dark-blue;
 
     .heading {
       @include page-heading-large-font;
@@ -42,6 +42,6 @@
 
   button {
     @include default-button(60px, 32px);
-    background-color: $primary-blue;
+    background-color: $pink;
   }
 }

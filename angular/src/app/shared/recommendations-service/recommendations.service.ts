@@ -22,11 +22,14 @@ import {EnergySavingMeasureResponse} from '../energy-calculation-api-service/res
 import {HabitMeasureResponse} from '../energy-calculation-api-service/response/habit-measure-response';
 import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
+import {UserJourneyType} from "../response-data/user-journey-type";
 
 @Injectable()
 export class RecommendationsService {
 
     cachedCurrentScore: number;
+    potentialScore: number;
+    potentialScoreLoading: boolean;
 
     private static TOP_RECOMMENDATIONS: number = 5;
 
@@ -53,8 +56,20 @@ export class RecommendationsService {
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 
-    get potentialScore(): number {
-        return this.cachedCurrentScore + this.getRecommendationsInPlan().length;
+    refreshPotentialScore() {
+        const measureCodes = this.getRecommendationsInPlan()
+            .map(r => r.measureCode)
+            .filter(m => m);
+        if (measureCodes.length === 0) {
+            this.potentialScore = this.cachedCurrentScore;
+            return;
+        }
+
+        this.potentialScoreLoading = true;
+        this.energyCalculationApiService
+            .fetchEnergyCalculation(new RdSapInput(this.responseData, measureCodes))
+            .finally(() => this.potentialScoreLoading = false)
+            .subscribe(energyCalculation => this.potentialScore = parseInt(energyCalculation['Potential-SAP-Rating']));
     }
 
     private refreshAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
@@ -69,10 +84,11 @@ export class RecommendationsService {
                         throw new Error('Received empty energy calculation response');
                     }
                     this.cachedCurrentScore = parseInt(energyCalculation['Current-SAP-Rating']);
-                    const habitRecommendations = RecommendationsService
-                        .getHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
+                    this.potentialScore = this.cachedCurrentScore;
+                    const habitRecommendations = this
+                        .getFilteredHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants
-                        .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant, 'icon-grant'));
+                        .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant));
                     return this.getHomeImprovementRecommendationsContent(
                         this.getMeasuresFromEnergyCalculation(energyCalculation),
                         measuresContent
@@ -102,6 +118,7 @@ export class RecommendationsService {
                     .map(grantsForMeasure => {
                         return EnergyEfficiencyRecommendation.fromMeasure(
                             measures[measureCode],
+                            measureCode,
                             measureContent,
                             EnergySavingMeasureContentService.measureIcons[measureCode],
                             grantsForMeasure
@@ -121,6 +138,19 @@ export class RecommendationsService {
         return energyCalculation.measures;
     }
 
+    private getFilteredHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
+                                                   measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
+        if (this.responseData.userJourneyType === UserJourneyType.PlanHomeImprovements) {
+            return [];
+        }
+        const habitRecommendations = RecommendationsService.getHabitRecommendationsContent(measures, measuresContent);
+        if (this.responseData.userJourneyType === UserJourneyType.MakeHomeWarmer) {
+            return habitRecommendations.filter(
+                recommendation => recommendation.recommendationID !== `meta_one_degree_reduction`);
+        }
+        return habitRecommendations;
+    }
+
     private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
                                                   measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
         return keys(measures)
@@ -135,6 +165,7 @@ export class RecommendationsService {
                     EnergySavingMeasureContentService.FALLBACK_MEASURE_ICON;
                 return EnergyEfficiencyRecommendation.fromMeasure(
                     measures[measureCode],
+                    measureCode,
                     recommendationMetadata,
                     iconPath,
                     null

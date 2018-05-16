@@ -2,237 +2,214 @@
 @import "styles/mixins/font";
 @import "../../_energy-efficiency-page-sizes";
 
+@mixin has-chevron-button-sizing($width, $height, $left-chevron-width, $right-chevron-width) {
+  width: $width;
+  height: $height;
+  padding-left: $left-chevron-width;
+
+  &:before {
+    border-left: $left-chevron-width solid white;
+    border-top: $height/2 solid transparent;
+    border-bottom: $height/2 solid transparent;
+  }
+
+  &:after {
+    right: -$right-chevron-width;
+    border-top: $height/2 solid transparent;
+    border-bottom: $height/2 solid transparent;
+    border-left: $right-chevron-width solid $light-blue;
+  }
+}
+
 :host {
   background: white;
-  @include mobile() {
-    $do-button-height: 60px;
-    $do-button-width: $add-to-plan-column-width;
-    $do-button-left-chevron-width: 12px;
-    $do-button-right-chevron-width: 16px;
+}
 
-    .mobile-your-plan-title {
-      position: relative;
-      font-size: 16px;
-      font-weight: bold;
+.your-plan {
+  background: white;
+  position: relative;
+
+  .page-row-content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .do-button {
+      background-color: $light-blue;
+      box-sizing: border-box;
       display: flex;
-      flex-direction: column;
-      background: white;
-      padding-left: 12px;
-      padding-top: 10px;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: $dark-blue;
+      cursor: pointer;
+      text-decoration: none;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+      }
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0;
+        cursor: default;
+      }
+
+      .do-string {
+        margin-left: 8px;
+        z-index: 2;
+      }
     }
+  }
+}
 
-    .your-plan {
-      background: white;
-      position: relative;
-      height: 82px;
+@include mobile() {
+  $do-button-width: $add-to-plan-column-width * 0.44;
 
-      .page-row-content {
-        display: flex;
-        padding: 8px 0 4px;
+  .your-plan {
+    height: 100px;
 
-        .plan-details {
-          display: none;
+    .page-row-content {
+      padding: 8px 0 4px;
+
+      .plan-details {
+        flex: 0 0 100%;
+        margin: 0 -5px 10px;
+
+        .heading {
+          font-size: 16px;
+          font-weight: bold;
         }
-        .plan-summary {
-          display: inline-block;
-          position: relative;
-          .tablet-only-your-plan-title {
+
+        &.old {
+          .subheading {
+            display: none;
+          }
+
+          .subheading-tablet {
+            display: none;
+          }
+
+          .recommendations-list {
             display: none;
           }
         }
+      }
 
-        .do-button {
-          background-color: $action-button-blue;
-          position: relative;
-          box-sizing: border-box;
-          width: $do-button-width * 0.44;
-          height: $do-button-height;
-          padding-left: $do-button-left-chevron-width;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: bold;
-          font-size: 15px;
-          color: white;
-          cursor: pointer;
-          text-decoration: none;
-          margin-left: 2px;
-          margin-right: 7px;
-          top: -7px;
+      .plan-summary {
+        width: calc(100% - #{$do-button-width * 2});
+        display: inline-block;
+        position: relative;
+      }
 
-          &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: $do-button-left-chevron-width solid white;
-            border-top: $do-button-height/2 solid transparent;
-            border-bottom: $do-button-height/2 solid transparent;
-          }
-
-          &::after {
-            content: '';
-            position: absolute;
-            right: -$do-button-right-chevron-width;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-top: $do-button-height/2 solid transparent;
-            border-bottom: $do-button-height/2 solid transparent;
-            border-left: $do-button-right-chevron-width solid $action-button-blue;
-          }
-
-          &.disabled {
-            pointer-events: none;
-            opacity: 0;
-            cursor: default;
-          }
-          .do-string {
-            margin-left: 8px;
-            z-index: 2;
-          }
-        }
+      .do-button {
+        position: relative;
+        font-size: 15px;
+        margin-left: 2px;
+        margin-right: 7px;
+        top: -7px;
+        @include has-chevron-button-sizing($do-button-width, 60px, 12px, 16px);
       }
     }
   }
+}
 
-  @include tablet() {
+@include tablet() {
+  .your-plan {
+    .page-row-content {
+      padding: 20px 0;
 
-    $do-button-height: 88px;
-    $do-button-width: $add-to-plan-column-width;
-    $do-button-left-chevron-width: 18px;
-    $do-button-right-chevron-width: 27px;
+      .plan-details {
+        flex: 0 0 100%;
+        padding: 0 5px 10px;
 
-    .mobile-your-plan-title {
-      display: none;
-    }
-
-    .your-plan {
-      background: white;
-
-      .page-row-content {
-        display: flex;
-        padding: 20px 0;
-        margin-left: 60px;
-
-        .plan-details {
-          display: none;
-          flex-direction: column;
-          padding: 0 80px 0 0;
+        .heading {
+          padding: 0 5px 10px;
+          font-size: 21px;
+          font-weight: bold;
         }
 
-        .plan-summary {
-          .tablet-only-your-plan-title {
-            display: inline-block;
-            position: relative;
+        &.old {
+          display: flex;
+          align-items: center;
+
+          .subheading {
+            display: none;
+          }
+
+          .subheading-tablet {
             padding: 0 5px 10px;
-            .tablet-your-plan-heading {
-              font-size: 21px;
-              float: left;
-              bottom: 6px;
-              position: relative;
-              font-weight: bold;
-            }
-            .tablet-recommendations-sentence {
-              font-size: 14px;
-              float: right;
-              bottom: 0;
-              margin-left: 15px;
-            }
-          }
-        }
-
-        .do-button {
-          background-color: $action-button-blue;
-          position: absolute;
-          right: 65px;
-          bottom: 20px;
-          box-sizing: border-box;
-          width: $do-button-width * 0.7;
-          height: $do-button-height;
-          padding-left: $do-button-left-chevron-width;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: bold;
-          font-size: 20px;
-          color: white;
-          cursor: pointer;
-          text-decoration: none;
-
-          &::before {
-            content: '';
-            position: absolute;
-            left: -1px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: $do-button-left-chevron-width solid white;
-            border-top: $do-button-height/2 solid transparent;
-            border-bottom: $do-button-height/2 solid transparent;
           }
 
-          &::after {
-            content: '';
-            position: absolute;
-            right: -$do-button-right-chevron-width+1;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-top: $do-button-height/2 solid transparent;
-            border-bottom: $do-button-height/2 solid transparent;
-            border-left: $do-button-right-chevron-width solid $action-button-blue;
-          }
-
-          &.disabled {
-            pointer-events: none;
-            opacity: 0;
-            cursor: default;
+          .recommendations-list {
+            display: none;
           }
         }
       }
+
+      .plan-summary {
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        max-width: calc(100% - #{$add-to-plan-column-width});
+      }
+
+      .do-button {
+        position: absolute;
+        right: 65px;
+        bottom: 20px;
+        font-size: 20px;
+        @include has-chevron-button-sizing($add-to-plan-column-width * 0.7, 88px, 18px, 27px);
+      }
     }
   }
+}
 
-  @include desktop() {
-    $do-button-height: 110px;
-    $do-button-width: $add-to-plan-column-width;
-    $do-button-left-chevron-width: 19px;
-    $do-button-right-chevron-width: 29px;
+@include desktop() {
+  .your-plan {
+    .page-row-content {
+      padding: 20px 0;
 
-    .mobile-your-plan-title {
-      display: none;
-    }
+      & > :not(:last-child) {
+        border-left: 1px solid $light-grey;
+      }
 
-    .your-plan {
-      background: white;
-
-      .page-row-content {
+      .plan-details {
+        flex: 1 0 1px;
+        padding: 0 20px;
         display: flex;
-        padding: 20px 0;
+        flex-direction: row;
+        align-items: center;
 
-        & > :not(:last-child) {
-          border-left: 1px solid $light-grey;
+        .heading {
+          font-weight: bold;
+          text-transform: capitalize;
+          margin-bottom: 10px;
+          @include card-heading-font;
         }
 
-        .plan-details {
-          flex: 1 0 1px;
-          padding: 0 20px;
-          display: flex;
+        &.old {
           flex-direction: column;
-
-          .heading {
-            font-weight: bold;
-            text-transform: capitalize;
-            margin-bottom: 10px;
-            @include card-heading-font;
-          }
+          align-items: flex-start;
 
           .subheading {
             font-size: 16px;
             line-height: 20px;
+          }
+
+          .subheading-tablet {
+            display: none;
           }
 
           .recommendations-list {
@@ -250,20 +227,20 @@
               cursor: pointer;
               align-items: center;
 
-              &:hover {
+              &:hover, &:focus {
                 .remove-recommendation-button {
                   visibility: visible;
                 }
               }
 
               .list-icon {
-                fill: $focus-text-blue;
+                fill: $dark-blue;
                 margin-right: 10px;
                 height: 12px;
                 width: 10px;
                 line-height: 0;
+                flex: 0 0 10px;
               }
-
               .recommendation-name {
                 outline: none;
                 background: none;
@@ -274,6 +251,7 @@
                 font-family: $font-family-light;
                 font-size: 16px;
                 line-height: 20px;
+                text-align: left;
               }
 
               .remove-recommendation-button {
@@ -287,73 +265,26 @@
               }
             }
           }
-
-          .subheading {
-            font-family: $font-family-light;
-
-            &.plan-empty {
-              color: $focus-text-blue;
-            }
-          }
         }
+      }
 
-        .plan-summary {
-          flex: 1 1 auto;
+      .subheading {
+        font-family: $font-family-light;
 
-          .tablet-only-your-plan-title {
-            display: none;
-          }
+        &.plan-empty {
+          color: $dark-blue;
         }
+      }
 
-        .do-button {
-          background-color: $action-button-blue;
-          position: relative;
-          box-sizing: border-box;
-          width: $do-button-width;
-          height: $do-button-height;
-          padding-left: $do-button-left-chevron-width;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: bold;
-          font-size: 26px;
-          color: white;
-          cursor: pointer;
-          text-decoration: none;
+      .plan-summary {
+        flex: 0 0 2.75 * $data-card-width;
+      }
 
-          &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: $do-button-left-chevron-width solid white;
-            border-top: $do-button-height/2 solid transparent;
-            border-bottom: $do-button-height/2 solid transparent;
-          }
-
-          &::after {
-            content: '';
-            position: absolute;
-            right: -$do-button-right-chevron-width;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-top: $do-button-height/2 solid transparent;
-            border-bottom: $do-button-height/2 solid transparent;
-            border-left: $do-button-right-chevron-width solid $action-button-blue;
-          }
-
-          &.disabled {
-            pointer-events: none;
-            opacity: 0;
-            cursor: default;
-          }
-        }
+      .do-button {
+        position: relative;
+        font-size: 26px;
+        @include has-chevron-button-sizing($add-to-plan-column-width, 110px, 19px, 29px);
       }
     }
   }
 }
-
-

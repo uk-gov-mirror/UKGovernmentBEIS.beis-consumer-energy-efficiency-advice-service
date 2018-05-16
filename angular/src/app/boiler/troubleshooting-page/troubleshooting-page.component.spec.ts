@@ -1,0 +1,52 @@
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+
+import {TroubleshootingPageComponent} from './troubleshooting-page.component';
+import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
+import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
+import {Observable} from "rxjs/Observable";
+
+describe('TroubleshootingPageComponent', () => {
+    let component: TroubleshootingPageComponent;
+    let fixture: ComponentFixture<TroubleshootingPageComponent>;
+
+    const postcodeApiServiceStub = {
+        fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                TroubleshootingPageComponent,
+                PostcodeLookupComponent,
+                SpinnerAndErrorContainerComponent,
+            ],
+            imports: [
+                FormsModule,
+                RouterTestingModule,
+            ],
+            providers: [
+                {provide: ResponseData, useClass: MockResponseData},
+                {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+            ]
+        })
+            .compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TroubleshootingPageComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    class MockResponseData {
+        public postcode = "Test Postcode";
+    }
+});

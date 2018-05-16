@@ -1,0 +1,29 @@
+<div class="page-heading page-row">
+    <div class="page-row-content">
+        <div class="heading-text">Troubleshooting your boiler</div>
+        <div class="body-text">Try these 6 fixes before calling an engineer
+        </div>
+    </div>
+</div>
+<div class="tips">
+    <div class="page-row" *ngFor="let tip of tips; index as i">
+        <div class="page-row-content">
+            <div class="tip">
+                <div class="index heading">{{"0"+(i+1)}}</div>
+                <div class="summary">{{tip.summary}}</div>
+                <div class="details">{{tip.details}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="repairer page-row">
+    <div class=" page-row-content">
+        <div class="heading">Find a trustworthy repairer</div>
+        <div class="body-text">Telling us your postcode and address lets us find information about energy
+            efficiency at your property from previous surveys. It also means we can show you relevant information,
+            such as grants that might be available in your area.
+        </div>
+        <app-postcode-lookup class="postcode-epc input-grey"
+                             (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+    </div>
+</div>

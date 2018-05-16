@@ -2,47 +2,77 @@
 @import "styles/mixins/breakpoints";
 @import "styles/mixins/font";
 @import "styles/mixins/layout";
+@import "styles/var/colors";
 
 .detailed-length-of-heating-on-question {
-  .questionnaire-form .hours-input {
-    .name {
-      @include question-label-font;
-      margin-bottom: 17px;
+  display: flex;
+
+  .heating-pattern-question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+
+    .heating-pattern-dropdown {
+      border-radius: 6%/50%;
+    }
+  }
+
+  .morning-evening-question {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .sub-question-text, .sub-question-text-evening {
+      color: $dark-blue;
+      width: 60vw;
+      margin: 10px 0 0 0;
+      text-align: center;
+    }
+
+    .morning-heating-start-time {
+      margin: 20px 0px 10px 0px;
+      border-radius: 12%/50%;
+    }
+
+    .evening-heating-start-time {
+      border-radius: 12%/50%;
+    }
+
+    * {
+      margin: 0px 0px 10px 0px;
+    }
+  }
+
+  .heating-hours-question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sub-question-text {
+      color: $dark-blue;
+      width: 60vw;
+      text-align: center;
+      margin: 10px 0px 0px 0px;
+    }
+
+    app-number-question {
+      margin: 20px 0px 10px 0px;
     }
   }
 }
 
 @include mobile() {
   .detailed-length-of-heating-on-question {
-    .questionnaire-form .hours-input {
-      .name {
-        text-align: center;
-      }
-    }
   }
 }
+
 @include tablet() {
   .detailed-length-of-heating-on-question {
-    .questionnaire-form .hours-input {
-      .name {
-        text-align: center;
-      }
-    }
   }
 }
+
 @include desktop() {
   .detailed-length-of-heating-on-question {
-    .questionnaire-form .hours-input {
-      @include is-grid-item($number-of-items: 4, $margin: 20px);
-      margin: 0;
-      padding: 0 36px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  
-      &:not(:first-child) {
-        border-left: 1px solid $separator-grey;
-      }
-    }
   }
 }

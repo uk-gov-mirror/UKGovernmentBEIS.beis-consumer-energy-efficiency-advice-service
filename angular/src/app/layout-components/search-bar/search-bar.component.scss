@@ -23,7 +23,7 @@ $animation-duration-vertical: 0.5s;
 
 @mixin is-search-icon($size) {
   @include is-clickable-icon($size);
-  stroke: $primary-blue;
+  stroke: $dark-medium-blue;
   margin-right: 16px;
 }
 
@@ -109,7 +109,7 @@ $animation-duration-vertical: 0.5s;
         display: inline-block;
         width: 15px;
         margin-left: -15px;
-        color: $action-button-blue;
+        color: $dark-medium-blue;
       }
 
       & > :not(:last-child) {
@@ -198,7 +198,7 @@ $animation-duration-vertical: 0.5s;
     max-width: 180px;
     height: calc(100% - 20px);
     position: absolute;
-    right: 40px;
+    right: 80px;
     top: 0px;
 
     transition: max-width $animation-duration-horizontal;
@@ -209,8 +209,16 @@ $animation-duration-vertical: 0.5s;
       max-width: 450px;
     }
 
+
+
     .search-details-dropdown {
       margin-top: 84px;
     }
+  }
+}
+
+@include large-desktop() {
+  .search-container {
+    right: 80px;
   }
 }

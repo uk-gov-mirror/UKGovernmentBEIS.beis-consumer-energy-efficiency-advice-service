@@ -22,6 +22,9 @@ import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/
 import {FlatLevel} from './flat-level';
 import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
+import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
+import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
+import {TenancyStartDate} from '../../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
 
 describe('RdsapInput', () => {
 
@@ -33,7 +36,7 @@ describe('RdsapInput', () => {
         const numberOfChildren = 3;
 
         const responseData: ResponseData = {
-            userJourneyType: UserJourneyType.Calculator,
+            userJourneyType: UserJourneyType.ReduceEnergyBills,
             shouldIncludeGrantsQuestionnaire: false,
             shouldIncludeOptionalPropertyQuestions: false,
             postcode: 'sw1h0et',
@@ -54,10 +57,13 @@ describe('RdsapInput', () => {
             hotWaterCylinder: false,
             condensingBoiler: false,
             electricityTariff: undefined,
-            detailedLengthOfHeatingOnEarlyHours: undefined,
-            detailedLengthOfHeatingOnMorning: undefined,
-            detailedLengthOfHeatingOnAfternoon: undefined,
-            detailedLengthOfHeatingOnEvening: undefined,
+            heatingPatternType: null,
+            morningHeatingStartTime: null,
+            morningHeatingDuration: null,
+            eveningHeatingStartTime: null,
+            eveningHeatingDuration: null,
+            heatingHoursPerDay: null,
+            normalDaysOffHours: null,
             numberOfAdultsAgedUnder64: numberOfAdultsUnder64,
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,
@@ -76,12 +82,13 @@ describe('RdsapInput', () => {
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
 
-            isDomesticPropertyAfter2018: false,
-            isPropertyAfter2020: false,
+            lettingDomesticPropertyStage: LettingDomesticPropertyStage.Currently,
+            tenancyStartDate: TenancyStartDate.BeforeApril2018,
             propertyEpc: UserEpcRating.AtLeastE,
             isEpcRequired: false,
             confirmEpcNotFound: false,
             tenancyType: TenancyType.Other,
+            agriculturalTenancyType: AgriculturalTenancyType.AssuredTenancy,
             saveToSessionStorage: () => {},
         };
 
@@ -95,20 +102,6 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.occupants).toBe(expectedNumberOfOccupants);
-        });
-
-        it('should calculate number of heating off hours normal correctly', () => {
-            // given
-            responseData.detailedLengthOfHeatingOnEarlyHours = 3;
-            responseData.detailedLengthOfHeatingOnMorning = 6;
-            responseData.detailedLengthOfHeatingOnAfternoon = 0;
-            responseData.detailedLengthOfHeatingOnEvening = 0;
-
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.number_of_heating_off_hours_normal).toEqual([3, 0, 6, 6]);
         });
 
         it('should calculate flat level correctly', () => {

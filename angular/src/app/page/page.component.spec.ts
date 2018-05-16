@@ -2,6 +2,7 @@ import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testin
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 import {PageComponent} from './page.component';
 import 'rxjs/add/operator/toPromise';
@@ -10,6 +11,7 @@ import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-con
 import {RouterTestingModule} from '@angular/router/testing';
 import {Pipe, PipeTransform} from '@angular/core';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
+import {ContentsTableComponent} from "../shared/contents-table/contents-table.component";
 
 describe('PageComponent', () => {
     let component: PageComponent;
@@ -63,9 +65,13 @@ describe('PageComponent', () => {
             declarations: [
                 PageComponent,
                 SpinnerAndErrorContainerComponent,
+                ContentsTableComponent,
                 MockSafePipe
             ],
-            imports: [RouterTestingModule.withRoutes([])],
+            imports: [
+                RouterTestingModule.withRoutes([]),
+                InlineSVGModule,
+            ],
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: WordpressPagesService, useValue: pageServiceStub}
@@ -106,7 +112,7 @@ describe('PageComponent', () => {
             });
     }));
 
-    it('should redirect to the home page if the page data is not found', async(() => {
+    it('should show 404 if the page data is not found', async(() => {
         // given
         const injectedPageService = injector.get(WordpressPagesService);
         injectedPageService.getPage = () => Observable.of(null);
@@ -117,7 +123,7 @@ describe('PageComponent', () => {
         // then
         fixture.whenStable()
             .then(() => {
-                expect(router.navigate).toHaveBeenCalledWith(['/']);
+                expect(router.navigate).toHaveBeenCalledWith(['/404'], { skipLocationChange: true });
             });
     }));
 });

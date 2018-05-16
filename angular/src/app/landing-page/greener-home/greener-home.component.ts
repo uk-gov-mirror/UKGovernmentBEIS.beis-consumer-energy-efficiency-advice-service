@@ -13,34 +13,27 @@ export class GreenerHomeComponent {
 
 
     video: Video = {
-        title: 'Save energy around the home',
-        synopsis: `
-            A list of top tips on how to save money just by doing very simple (and free) things around the home, including:
-            <ul>
-                <li>Turning down your thermostat</li>
-                <li>Switching off electronic equipment on standby</li>
-                <li>Saving energy in the kitchen (washing up bowl, kettle, washing machine)</li>
-                <li>Spending less time in the shower</li>
-                <li>Turn off lights</li>
-                <li>Choosing efficient light bulbs</li>
-                <li>Switching energy supplier</li>
-            </ul>
-            Video will include images, film or animations of all the things you can do to save money.
-        `
+        title: 'Choosing low energy light bulbs',
+        imagePath: '/dist/assets/images/video-thumbnails/choosing-low-energy-lightbulbs.jpg',
+        articlePath: '/pages/choosing-low-energy-lightbulbs'
     };
 
     articles: Article[] = [
         {
             title: 'What are the benefits of installing loft insulation?',
-            summary: 'Loft insulation is well worth considering because if there is little or no \
-                existing insulation considerable savings can be made.',
-            iconClassName: 'icon-lightbulb'
+            summary: 'Fitting an extra layer of insulation in your loft is\
+             a quick and easy way to cut your heating bills and make your home warmer.',
+            iconClassName: 'icon-roofing',
+            readMore: ' /measures/meta_loft_insulation'
         },
         {
-            title: 'What can I do if I don\'t have cavity walls or a loft?',
-            summary: 'There is plenty you can do to improve the insulation in your home if you \
-            don\'t have cavity walls or a loft space.',
-            iconClassName: 'icon-switch'
+            title: 'Solar electric panels',
+            summary: 'Solar photovoltaic panels – or PV for short – produce \
+            electricity when the sun shines on them. You can use this \
+            electricity in the home to run appliances, and any that you \
+            don’t use can be sold back to the grid.',
+            iconClassName: 'icon-walls',
+            readMore: '/measures/meta_solar_photovoltaic_panels'
         },
     ];
 }

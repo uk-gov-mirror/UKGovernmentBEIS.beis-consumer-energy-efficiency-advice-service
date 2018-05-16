@@ -2,6 +2,7 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {QuestionMetadata} from '../../base-question/question-metadata';
 import {QuestionType} from '../question-type';
 import {DetailedLengthOfHeatingOnQuestionComponent} from './detailed-length-of-heating-on-question.component';
+import {FuelType} from "../fuel-type-question/fuel-type";
 
 export class DetailedLengthOfHeatingOnQuestionMetadata extends QuestionMetadata {
     constructor() {
@@ -12,10 +13,11 @@ export class DetailedLengthOfHeatingOnQuestionMetadata extends QuestionMetadata 
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return !(responseData.fuelType === FuelType.Electricity && responseData.epc.energyTariff === 'dual');
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.detailedLengthOfHeatingOnEarlyHours !== undefined &&
-            responseData.detailedLengthOfHeatingOnMorning !== undefined &&
-            responseData.detailedLengthOfHeatingOnAfternoon !== undefined &&
-            responseData.detailedLengthOfHeatingOnEvening !== undefined;
+        return DetailedLengthOfHeatingOnQuestionComponent.isQuestionAnswered(responseData);
     }
 }

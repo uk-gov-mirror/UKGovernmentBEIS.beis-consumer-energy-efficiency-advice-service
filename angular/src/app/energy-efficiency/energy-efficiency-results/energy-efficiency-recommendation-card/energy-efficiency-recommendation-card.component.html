@@ -4,36 +4,21 @@
             <div [inlineSVG]="recommendation.iconPath" class="icon"></div>
         </div>
         <div class="recommendation-basic-details">
-            <div class="tags">
-                <div *ngFor="let tag of tags"
-                     [ngClass]="getTagClassName(tag)"
-                        class="tag">{{getTagDescription(tag)}}</div>
-            </div>
             <div class="heading">{{recommendation.headline}}</div>
             <div class="summary-row">
                 <div class="summary">
                     {{recommendation.summary}}
                 </div>
             </div>
-            <div class="more-detail-row"  [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
-                <button class="more-detail-button">
-                    {{isExpandedView ? 'Hide detail' : 'See more detail'}}
-                </button>
-                <div class="more-detail-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+            <div class="tags">
+                <div *ngFor="let tag of tags"
+                     [ngClass]="getTagClassName(tag)"
+                     (click)="toggleExpandedView()"
+                     class="tag">{{getTagDescription(tag)}}
+                </div>
             </div>
         </div>
         <div class="expanded-view-row" [class.expanded]="isExpandedView">
-            <div class="grants" *ngIf="recommendation.grant">
-                <div class="heading">Grants</div>
-                <div class="grant-info-card">
-                    <div class="grant-name">{{recommendation.grant.name}}</div>
-                    <div class="grant-description">{{recommendation.grant.description}}</div>
-                    <div class="grant-more-info-link-row">
-                        <a class="grant-more-info-link">Find out more</a>
-                        <div class="chevron">></div>
-                    </div>
-                </div>
-            </div>
             <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length">
                 <div class="heading">Benefits</div>
                 <ul class="benefits-list">
@@ -47,22 +32,45 @@
                             [lifespanYears]="recommendation.lifetimeYears"
                             [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
             </app-break-even>
+            <div class="what-it-is" *ngIf="recommendation.whatItIs">
+                <div class="heading">What it is</div>
+                <div class="description">{{recommendation.whatItIs}}</div>
+            </div>
+            <div class="right-for-me" *ngIf="recommendation.isItRightForMe">
+                <div class="heading">Is it right for me?</div>
+                <div class="description"> {{recommendation.isItRightForMe}}</div>
+            </div>
+            <div class="grants" *ngIf="recommendation.grant">
+                <div class="heading">Grants</div>
+                <div class="grant-info-card">
+                    <div class="grant-name">{{recommendation.grant.name}}</div>
+                    <div class="grant-description">{{recommendation.grant.description}}</div>
+                    <div class="grant-more-info-link-row" *ngIf="recommendation.grant.findOutMoreLink">
+                        <a class="grant-more-info-link" [routerLink]="recommendation.grant.findOutMoreLink">
+                            Find out more</a>
+                        <div class="chevron">&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+            <div class="more-detail-icon" [inlineSVG]="'controls/more-detail.svg'"></div>
         </div>
         <app-data-card class="investment-required-card"
-                heading="Investment required"
-                [value]="'£' + roundedInvestmentRequired"
-                isSmallCard="true"
+                       heading="Investment required"
+                       [value]="'£' + roundedInvestmentRequired"
+                       [isSmallCard]="true"
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
-                heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                [value]="'£' + roundedSaving"
-                isSmallCard="true"
+                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                       [value]="'£' + roundedSaving"
+                       [isSmallCard]="true"
         ></app-data-card>
         <div class="add-to-plan-column"
-                [class.selected]="recommendation.isAddedToPlan"
-                (mouseenter)="mouseEnterAddToPlanButton()"
-                (mouseleave)="mouseLeaveAddToPlanButton()"
-                (click)="toggleAddedToPlan()">
+             [class.selected]="recommendation.isAddedToPlan"
+             (mouseenter)="mouseEnterAddToPlanButton()"
+             (mouseleave)="mouseLeaveAddToPlanButton()"
+             (click)="toggleAddedToPlan()">
             <button class="add-to-plan-text">
                 {{getAddToPlanButtonText()}}
             </button>

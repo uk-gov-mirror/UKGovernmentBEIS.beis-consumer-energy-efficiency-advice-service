@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
 
-      color: $primary-blue;
+      color: $dark-blue;
     }
 
     .text-box {
@@ -60,12 +60,11 @@
   .delta-button {
     background: none;
     border: none;
-    outline: none;
     cursor: pointer;
     padding: 0;
 
     ::ng-deep svg circle {
-      fill: $primary-blue;
+      fill: $dark-blue;
     }
 
     &[disabled], &.inactive {
@@ -76,7 +75,7 @@
     &:not([disabled]) {
       &:hover, &:focus {
         ::ng-deep svg circle {
-          fill: $darkened-blue;
+          fill: $dark-medium-blue;
         }
       }
     }

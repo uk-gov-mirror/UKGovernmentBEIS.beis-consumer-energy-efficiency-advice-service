@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-05-09-add-images-to-articles.xml"
+               author="raam.chauhan@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','EPC1.jpg','','inherit','open','closed','','EPC1-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',10260,'/wp-content/uploads/2018/05/EPC1.jpg',0,'attachment','image/jpg',0);
+SET @p_1 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','Energy-bill.jpg','','inherit','open','closed','','Energy-bill-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',9684,'/wp-content/uploads/2018/05/Energy-bill.jpg',0,'attachment','image/jpg',0);
+SET @p_2 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','erp1.jpg','','inherit','open','closed','','erp1-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',10263,'/wp-content/uploads/2018/05/erp1.jpg',0,'attachment','image/jpg',0);
+SET @p_3 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','pellet2.jpg','','inherit','open','closed','','pellet2-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',10265,'/wp-content/uploads/2018/05/pellet2.jpg',0,'attachment','image/jpg',0);
+SET @p_4 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','control.jpg','','inherit','open','closed','','control-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',9682,'/wp-content/uploads/2018/05/control.jpg',0,'attachment','image/jpg',0);
+SET @p_5 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','pv1.jpg','','inherit','open','closed','','pv1-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',10276,'/wp-content/uploads/2018/05/pv1.jpg',0,'attachment','image/jpg',0);
+SET @p_6 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','old-houses.jpg','','inherit','open','closed','','old-houses-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',10274,'/wp-content/uploads/2018/05/old-houses.jpg',0,'attachment','image/jpg',0);
+SET @p_7 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-09 10:00:00','2018-05-09 10:00:00','','cavity-house.jpg','','inherit','open','closed','','cavity-house-jpg','','','2018-05-09 10:00:00','2018-05-09 10:00:00','',10283,'/wp-content/uploads/2018/05/cavity-house.jpg',0,'attachment','image/jpg',0);
+SET @p_8 = LAST_INSERT_ID();
+
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_1
+WHERE post_id='10260' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_2
+WHERE post_id='9684' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_3
+WHERE post_id='10263' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_4
+WHERE post_id='10265' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_5
+WHERE post_id='9682' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_6
+WHERE post_id='10276' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_7
+WHERE post_id='10274' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_8
+WHERE post_id='10283' and meta_key='cover_image';
+
+INSERT INTO `wp_postmeta`
+(post_id, meta_key, meta_value)
+VALUES
+
+(@p_1,'_wp_attached_file','2018/05/EPC1.jpg'),
+(@p_1,'_wp_attachment_context','acf-upload'),
+(@p_1,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:16:\"2018/05/EPC1.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_2,'_wp_attached_file','2018/05/Energy-bill.jpg'),
+(@p_2,'_wp_attachment_context','acf-upload'),
+(@p_2,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:23:\"2018/05/Energy-bill.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_3,'_wp_attached_file','2018/05/erp1.jpg'),
+(@p_3,'_wp_attachment_context','acf-upload'),
+(@p_3,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:16:\"2018/05/erp1.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_4,'_wp_attached_file','2018/05/pellet2.jpg'),
+(@p_4,'_wp_attachment_context','acf-upload'),
+(@p_4,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:19:\"2018/05/pellet2.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_5,'_wp_attached_file','2018/05/control.jpg'),
+(@p_5,'_wp_attachment_context','acf-upload'),
+(@p_5,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:19:\"2018/05/control.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_6,'_wp_attached_file','2018/05/pv1.jpg'),
+(@p_6,'_wp_attachment_context','acf-upload'),
+(@p_6,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:15:\"2018/05/pv1.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_7,'_wp_attached_file','2018/05/old-houses.jpg'),
+(@p_7,'_wp_attachment_context','acf-upload'),
+(@p_7,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:22:\"2018/05/old-houses.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_8,'_wp_attached_file','2018/05/cavity-house.jpg'),
+(@p_8,'_wp_attachment_context','acf-upload'),
+(@p_8,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:24:\"2018/05/cavity-house.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}');
+
+
+UPDATE `wp_posts`
+SET post_content='<h2>In a typical household, most of the energy you buy is used to provide heating. So if you want to cut your carbon footprint significantly, you need to look at whether you can fit a low carbon heating system. Let’s have a look at some of the options available for most homes:</h2>
+<h3>Heat pumps</h3>
+These take heat at a low temperature, usually from the ground or the outside air, and upgrade it to higher temperature heat that can be used in your home. They can usually provide all your space heating and hot water, and can operate completely automatically once you’ve set the controls how you want them.
+
+Heat pumps are not zero carbon – they still use mains electricity to run. But they can be a low carbon heating system provided they run at high efficiency. To achieve this, they need to provide heat at a relatively low temperature. You’re more likely to be able to do this if you have at least one of the following:
+<ul>
+ 	<li>A well-insulated home</li>
+ 	<li>Underfloor heating</li>
+ 	<li>Radiators that are bigger than you would usually need</li>
+</ul>
+<h3>Air source or ground source?</h3>
+<img src="/wp-content/uploads/2018/05/ASHP2.jpg" alt="Air source heat pump" />
+
+Air source heat pumps takes heat from the outside air. They’re one of the easiest low carbon technologies to fit in terms of the space required – you just need somewhere to fit a small external unit about the size of a large suitcase. They can be one of the cheapest low carbon heating technologies to fit.
+
+<img src="/wp-content/uploads/2018/05/GSHP2.jpg" alt="Ground source heat pump" />
+
+Ground source heat pumps collect their heat using pipes underground – either laid horizontally (you’ll need several hundred square metres of available land) or drilled down vertically (you’ll need room for the drilling equipment to arrive and operate). This generally costs more than fitting an air source system, but the temperature below ground doesn’t get so cold in the winter, which can help keep efficiencies up.
+<h3>Wood heating</h3>
+<img src="/wp-content/uploads/2018/05/pellet2.jpg" alt="Wood pellet boiler" />
+
+There are quite a few ways to heat a house using wood. You can have a stove just to heat a room, or a boiler to heat radiators, or a stove with back boiler that does a bit of both. And you can use logs, which you have to load by hand, or pellets, which can be fed automatically.
+
+You’ll need space if you want to use wood heating. A log or pellet boiler is quite a bit bigger than an equivalent gas or oil boiler – maybe double the size of a washing machine. And you’ll need some space to store the fuel – a lot of space if you’re using logs. And every stove or boiler will need an appropriate flu. This needn’t be an existing chimney but it does need to comply with the regulations. It will be a much bigger deal than the flue on a gas boiler.
+
+Some wood heating systems can mostly run automatically. A pellet boiler with bulk fuel store will require minimal input from you in terms of fuel supply, but you will need to deal with the ash. At the other extreme, if you heat your whole house using log stoves you’ll be spending a lot of time dealing with logs.
+
+Whether this is for you, and which type of system might suit you, will depend as much on your expectations as on the layout of your home. But if you <strong>can</strong> use wood to heat your home then that will probably be your lowest carbon option of all.
+<h3>Micro-CHP</h3>
+Combined Heat and Power, or CHP for short, means generating electricity and heat from the same unit. Micro-CHP units are designed to heat a single home, and they run on mains gas or LPG.
+
+You can usually fit a micro-CHP unit in place of your existing gas boiler. It’s likely to be a little bit bigger, but can still be mounted on the wall. And you can plumb it into a standard central heating system and run just like any other gas system. So in many ways it’s the easiest low carbon systems to switch to, and to live with.
+
+But it does still use gas, and not necessarily less than the boiler you had before. You only save carbon because of the electricity you’re generating at the same time, and from the same fuel. Micro-CHP is a lower carbon option than a standard gas boiler, but it’s not as low carbon as a well-designed heat pump system, or any wood heating technology using sustainable fuel.
+<h3>Solar thermal</h3>
+<img src="/wp-content/uploads/2018/05/st1.jpg" alt="Solar thermal panels" />
+
+Solar thermal panels are usually used for solar water heating, and can typically provide around half your hot water use. They are very rarely used for space heating and, when they are, their contribution to the total space heating demand is pretty small.
+
+They are themselves very low carbon – just a bit of electricity used to drive an extra pump and controller – but they only displace some of the heating fuel you’re using. If you’re still using fossil fuels for your main heating system, then you’ve still got a sizeable heating carbon footprint.
+<h3>Hybrid systems</h3>
+There are quite a few systems that can be described as hybrid technologies – this just means they use more than one heating technology. If anyone offers you a hybrid system, the first thing you need to ask is “What do you mean?”
+
+Here are some of the hybrid systems currently on offer.
+<ul>
+ 	<li>PVT – Photovoltaic Thermal systems – combination of solar electric panels and solar thermal collectors in the same unit.</li>
+ 	<li>Solar pre-heated heat pumps – a solar thermal collector preheats a fluid, and then a heat pump raises the temperature further so it can be used for space heating in any weather.</li>
+ 	<li>Hybrid heat pump – usually this refers to a heat pump that can be switched to run on a conventional fuel like gas.</li>
+ 	<li>Solar water heating – this isn’t usually called a hybrid system, but it pretty much always is. If you use solar water heating with another low carbon technology like a heat pump or wood boiler, then you could have a very low carbon heating system indeed.</li>
+</ul>
+<h3>What about funding?</h3>
+Low carbon heating systems are generally more expensive than the mainstream options you’re probably comparing them with. But there are schemes that can help make them an attractive option in the longer term.
+
+You can potentially get some financial help for heat pumps, wood boilers and solar water heating through the Renewable Heat Incentive, and for micro-CHP through the Feed-in Tariff. These schemes pay you over time as you produce energy from renewable sources.
+
+<a class="beis-button" href="/pages/renewable-heat-incentive"> <span class="beis-button-text">More information on RHI</span> <span class="beis-button-icon-container"> <span class="beis-button-icon">&gt;</span> </span> </a>
+
+<a class="beis-button" href="/pages/feed-in-tariff"> <span class="beis-button-text">More information on FIT</span> <span class="beis-button-icon-container"> <span class="beis-button-icon">&gt;</span> </span> </a>
+
+Every system is different, as is every home and every household. You’ll need to do some research to decide what the real costs and benefits are likely to be for you. But if you really want to cut the carbon footprint of your home, and you’ve already covered the main insulation options, then one of these low carbon heating options is probably the biggest step you can take.'
+WHERE ID='10265';
+
+UPDATE `wp_posts`
+SET post_content='<h3>There are a few reasons why you might want to generate your own electricity. You might want to cut your carbon footprint by generating low carbon electricity. You might want to invest now to cut your future energy bills, and protect yourself from any increase in energy prices. Or you might just want to be a bit more self-sufficient.</h3>
+Whatever your reasons, there are a few technical options you can consider. Some of these are only possible in certain circumstances, so the first thing to think about is what would be technically possible for you.
+<h3>Photovoltaics, or Solar PV</h3>
+Solar electric panels have become a common sight on roof tops around Britain. If you have a roof that faces roughly in the right direction, and isn’t overshadowed by trees or other buildings, then you can probably fit solar PV. South is optimum, but anywhere between east and west is possible. You can fit panels on a flat roof, or on a frame on the ground, but a sloping roof is usually easiest.
+
+A typical domestic PV system might generate as much electricity as you use in a year, but you won’t be able to use it all yourself. If you’re at home and using electricity when the sun is shining, then you’ll use the electricity you generate to run your appliances. But if you’re out, or if you’re generating more than you need, the surplus will be fed back into the grid and will be used by someone else. You’ll then buy electricity back from the grid at night when you need it.
+
+How much of the generated electricity you use yourself, and how much you export, will depend on how much your home is occupied during the day. You can increase the amount of generated energy that you use yourself by fitting a battery storage system, or a system to divert surplus energy to heat your hot water.
+
+<a class="beis-button" href="/measures/meta_solar_photovoltaic_panels"> <span class="beis-button-text">More information on Solar PV</span> <span class="beis-button-icon-container"> <span class="beis-button-icon">&gt;</span> </span> </a>
+<h3>Micro-CHP</h3>
+You could fit a micro combined heat and power unit (micro-CHP for short) in place of a standard boiler. It will provide space heating in the same way as the boiler, but generates electricity at the same time. This isn’t zero carbon electricity, but the combined generation is more efficient than producing heat and electricity separately, so it is a low carbon electricity source compared to the mains.
+
+You can fit a micro-CHP unit in place of your boiler if you’re on mains gas. But you could also fit one that runs on propane if you’re not connected to the gas grid. Propane is available in bottles or bulk tanks – it’s also known as LPG.
+<h3>Wind Power</h3>
+<img src="/wp-content/uploads/2018/05/wind1.jpg" alt="Wind turbine" />
+
+If you live in an exposed rural site, you might be able to fit a wind turbine. Generating electricity from the wind can be very effective, but only if you have a good wind site. This means an exposed site, not surrounded by trees or buildings, and preferably on high ground or on the coast.
+
+If you live in an urban area, wind power is not for you. It may feel windy at times, but what you’re feeling is probably turbulence – wind turbines aren’t good at making use of turbulent air movement.
+
+If you can fit a wind turbine it could be almost any size, so it could generate much more or much less than the amount of electricity you use, or about the same. Like with solar PV, you’ll be exporting some to the grid when you’re not using it, and buying some back when it’s not windy.
+<h3>Hydro</h3>
+Very few homes can make use of hydroelectric power. Unless you like next to a river with a weir, or a steep mountain stream, then you won’t have the resource to generate electricity from flowing water.
+
+If you think you do have a site then you’ll need specialist advice on whether it’s worth developing, as every site is different.
+<h3>Is it worth it?</h3>
+If you’ve got a technically feasible option, then you probably want to know whether it’s going to pay for itself or not.
+
+All the technologies above can potentially qualify for support through the Feed-in Tariff (FIT) scheme. This pays you money for every unit of electricity you generate, plus extra for any that you are considered to have exported to the grid. And you should get a reduced electricity bill too, as some of the electricity you use will come straight from your own generation system.
+
+But you will have to pay for the installation, and they’re often not cheap. You’ll need to get quotes from installers before you get a clear idea of what it’s going to cost. Every installer should use an approved method for predicting how much electricity will be generated, so you should be able to use their figures to get a good idea of how much FIT income you could get. When you’ve gathered all the information you can then estimate the likely payback.
+
+<a class="beis-button" href="/pages/feed-in-tariff"> <span class="beis-button-text">More information on Feed-in Tariff</span> <span class="beis-button-icon-container"> <span class="beis-button-icon">&gt;</span> </span> </a>
+
+<a class="beis-button" href="http://www.microgenerationcertification.org/consumers/installer-search" target="_blank" rel="noopener"> <span class="beis-button-text">Click here to find certified installers</span> <span class="beis-button-icon-container"> <span class="beis-button-icon">&gt;</span> </span> </a>
+<h3>Can I go completely off-grid?</h3>
+Technically, the answer might be yes. In fact, if you live in a house that isn’t connected to the grid, then fitting one of these low carbon technologies could be an attractive option.
+
+But if you are connected, as most of us are, then there’s no point in disconnecting. You would need to spend much more money and resources on battery storage and back up generation. You would never get an electricity supply that is as reliable as the grid. And above all, your system would be less efficient. Battery storage is not 100% efficient, so if you rely on it you’ll end up with less electricity in the end. Using the grid as your store is a more efficient way to manage a home electricity system, so this is the lower carbon option too.'
+WHERE ID='10276';
+
+UPDATE `wp_posts`
+SET post_content='<h2>Fitting cavity wall insulation is one of the most cost effective home energy improvements you can make, but not every home is suitable. You may not have a cavity to fill, or you may have a cavity that isn’t suitable for insulating. Or maybe you have cavities that can be insulated provided you first carry out some extra work, or if you use a particular insulation material.</h2>
+So, first things first, have you got cavity walls?  You can watch our video on how to check if you have cavity walls or not:
+
+qqChecking for cavity walls video &gt;
+
+Or just read on if you prefer.
+
+Most houses built before 1920 have solid walls – that is, the walls are made of brick or stone with no gap or cavity in the middle.  During the 1920s it became increasingly common to build cavity walls. These have an outer leaf, usually of bricks, then a gap in the middle, and then an inner leaf made of bricks or concrete blocks.
+
+The age of your building gives an indication, but this isn’t necessarily a hard and fast rule. There are other things you can look out for to help you decide whether you have cavity walls or solid walls.
+<h3>Brick pattern</h3>
+If you can see the brickwork in any of your outside walls, then this can be a good indicator. As we said, solid walls are built without a gap in the middle. To make the wall stronger, some of the bricks are laid across the wall rather than along it, to bind the inner and outer parts of the wall together.
+
+<img src="/wp-content/uploads/2018/05/solid.jpg" alt="Solid wall" />
+
+When the wall is finished, and all you can see is the outside, then you will see the ends of these bricks appearing in the pattern. They look like half bricks, but they’re actually whole bricks seen from the end.
+
+<img src="/wp-content/uploads/2018/05/solid2.jpg" alt="Solid wall" />
+
+Cavity walls, on the other hand, are built with a separate inner and outer leaf, with no bricks laid across the wall. All the bricks you see in the outer leaf are laid lengthways, so they all look the same size. There are no ends of bricks showing, and looking like half bricks.
+
+<img src="/wp-content/uploads/2018/05/cavity.jpg" alt="Cavity wall" />
+<h3>Wall thickness</h3>
+If you can’t see the brick pattern in any of your outside walls, or if you’re not sure what the pattern is telling you, the next thing to look at it is how thick the wall is.
+
+Because cavity walls have a gap in the middle, they are usually thicker than solid walls. You’ll need to find a doorway or a window you can open, so you can measure the thickness between the inside and the outside of the wall.
+
+<img src="/wp-content/uploads/2018/05/thickness.jpg" alt="Thickness of walls" />
+
+A typical cavity wall will be around 250mm (10 inches) whereas a solid brick wall will be around 220mm (8½ inches). It’s not a big difference, so you need to measure carefully.
+
+If you have a stone wall then this rule doesn’t apply. Stone fronted walls are generally thicker, whether they have a cavity or not.
+<h3>Other things to look out for</h3>
+Don’t forget the age of the building. If your house was built before 1900 you can be pretty sure that it won’t have a cavity.
+
+If the house isn’t made of brick or concrete block, then it’s unlikely to have a cavity that you can insulate. It might have a timber frame, or a steel frame, or it may be made from concrete panels.
+<h3>So I’ve got a cavity – can I insulate it?</h3>
+Most cavity walls can be insulated with mineral wool or polystyrene beads. These are the most common materials, and the cheapest, but they’re only suitable for cavities that meet certain criteria.
+
+You may not be able to fit standard cavity wall insulation if:
+<ul>
+ 	<li>Your house is particularly exposed to driving rain</li>
+ 	<li>Your cavities are too narrow</li>
+ 	<li>Your cavities are uneven</li>
+ 	<li>Your cavities are blocked with rubble</li>
+ 	<li>You have defective wall ties</li>
+ 	<li>Your home is prone to flooding</li>
+</ul>
+A certified installer will check all of these before deciding whether they can insulate your walls. If they can’t, then you could ask a specialist polyurethane insulation company whether their product is suitable. Polyurethane has very different characteristics, and so it may be safe to use it in some situations where standard insulation could cause problems. It costs more than standard materials, but it’s also a more effective insulant.
+
+Sometimes an installer will say that they can only insulate your walls once you’ve had some repairs carried out. If you have an existing damp problem from leaking guttering, for example, then insulating the cavity could make the problem worse. You will need to fix any of these problems before a certified installer will agree to insulate your walls.
+<h3>What if I can’t have cavity wall insulation?</h3>
+If your walls are not suitable for cavity insulation, then you could consider internal or external wall insulation. This can sometimes be the most appropriate option even though there is a cavity.
+
+qqClick here to watch our video on Solid Wall Insulation &gt;
+
+And if in any doubt about any of this, speak to a certified installer:
+
+qqClick to find cavity wall insulation installers &gt; (links to GDORB search tool for cavity wall insulation installers)
+
+qqClick to find internal wall insulation installers &gt; (links to GDORB search tool for internal wall insulation installers)
+
+qqClick to find external wall insulation installers &gt; (links to GDORB search tool for external wall insulation installers)'
+WHERE ID='10283';
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

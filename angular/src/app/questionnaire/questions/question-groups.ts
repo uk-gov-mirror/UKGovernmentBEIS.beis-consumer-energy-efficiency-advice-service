@@ -26,14 +26,15 @@ import {FloorLevelQuestionMetadata} from './floor-level-question/floor-level-que
 import {FloorSpanQuestionMetadata} from './floor-span-question/floor-span-question-metadata';
 import {FlatExposedWallQuestionMetadata} from './flat-exposed-wall-question/flat-exposed-wall-question-metadata';
 import {HouseExposedWallQuestionMetadata} from './house-exposed-wall-question/house-exposed-wall-question-metadata';
-import {DomesticPropertyAfter2018QuestionMetadata} from './mees/domestic-property-after-2018-question/domestic-property-after-2018-question-metadata';
-import {PropertyAfter2020QuestionMetadata} from './mees/property-after-2020-question/property-after-2020-question-metadata';
+import {LettingDomesticPropertyQuestionMetadata} from './mees/letting-domestic-property-question/letting-domestic-property-question-metadata';
 import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
 import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
 import {PropertyEpcQuestionMetadata} from './mees/property-epc-question/property-epc-question-metadata';
 import {MeesPostcodeEpcQuestionMetadata} from './mees/mees-postcode-epc-question/mees-postcode-epc-question-metadata';
 import {EpcNotFoundMetadata} from './mees/epc-not-found-question/epc-not-found-metadata';
 import {HotWaterCylinderQuestionMetadata} from './hot-water-cylinder-question/hot-water-cylinder-question-metadata';
+import {AgriculturalTenancyTypeQuestionMetadata} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question-metadata';
+import {TenancyStartDateQuestionMetadata} from './mees/tenancy-start-date-question/tenancy-start-date-question-metadata';
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -99,17 +100,14 @@ export const BOILER_QUESTIONS = [
     new RoofSpaceQuestionMetadata(),
     // Restricts which boilers are offered
     new FuelTypeQuestionMetadata(),
-    // Not currently used!
-    new OccupantsQuestionMetadata(),
-    // Not currently used!
-    new ShowersAndBathsQuestionMetadata(),
 ];
 
 // Questions for the "Minimum Energy Efficiency Standards" questionnaire ("MEES"), aimed at landlords.
 export const MEES_QUESTIONS = [
-    new DomesticPropertyAfter2018QuestionMetadata(),
-    new PropertyAfter2020QuestionMetadata(),
+    new LettingDomesticPropertyQuestionMetadata(),
+    new TenancyStartDateQuestionMetadata(),
     new TenancyTypeQuestionMetadata(),
+    new AgriculturalTenancyTypeQuestionMetadata(),
     new PropertyEpcQuestionMetadata(),
     new MeesPostcodeEpcQuestionMetadata(),
     new EpcNotFoundMetadata(),

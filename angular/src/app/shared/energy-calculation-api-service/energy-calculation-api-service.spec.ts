@@ -23,7 +23,8 @@ describe('EnergyCalculationApiService', () => {
         num_storeys: 1,
         num_bedrooms: 1,
         heating_fuel: '26',
-        number_of_heating_off_hours_normal: [4, 4],
+        heating_pattern_type: null,
+        normal_days_off_hours: null,
         measures: true,
         rented: true,
         floor_area: undefined,
@@ -38,7 +39,8 @@ describe('EnergyCalculationApiService', () => {
         wall_type: undefined,
         glazing_type: undefined,
         hot_water_cylinder: false,
-        isMinimalDataSet: () => true
+        isMinimalDataSet: () => true,
+        measures_package: [],
     };
 
     beforeEach(() => {

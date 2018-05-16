@@ -1,5 +1,13 @@
+@import "styles/mixins/font";
 @import "styles/var/colors";
 @import "styles/boiler";
+
+// Component specific variables
+$boiler-input-submit-size: 72px;
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
 
 :host {
   display: block;
@@ -12,35 +20,12 @@
   align-items: flex-start;
 
   .body-text {
-    width: calc(50% - 108px);
     margin-bottom: 12px;
-  }
-
-  .selection {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    .search-select, .dont-know {
-      flex: 0 0 50%;
-      padding: 24px 0;
-    }
-
-    .search-select {
-      padding-right: 108px;
-      border-right: 1px solid $light-medium-grey;
-    }
-
-    .dont-know {
-      padding-left: 108px;
-    }
   }
 
   .boiler-input {
     width: 100%;
-    height: 72px;
+    height: $boiler-input-submit-size;
     display: flex;
 
     .boiler-input-text {
@@ -58,7 +43,7 @@
     .boiler-input-submit {
       background: $pink url('/assets/images/controls/chevron-right-white.svg') no-repeat center;
 
-      flex: 0 0 72px;
+      flex: 0 0 $boiler-input-submit-size;
       border: none;
       cursor: pointer;
 
@@ -119,11 +104,113 @@
       justify-content: center;
     }
   }
+}
 
-  .dont-know {
-    .link-button {
-      height: 70px;
+// Breakpoint specific styling
+
+@include mobile() {
+  .make-and-model {
+    .body-text {
+      width: 100%;
+    }
+
+    .selection {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+
+      .search-select, .dont-know {
+        box-sizing: border-box;
+        flex: 1 1 100%;
+        padding: 24px 0;
+      }
+
+      .search-select {
+        .boiler-input-text {
+          width: calc(100% - #{$boiler-input-submit-size});
+        }
+      }
+
+      .dont-know {
+        width: 100%;
+
+        .link-button {
+          height: $boiler-input-submit-size;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .make-and-model {
+    .body-text {
       width: 50%;
+    }
+
+    .selection {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .search-select, .dont-know {
+        box-sizing: border-box;
+        flex: 0 0 50%;
+        padding: 24px 0;
+      }
+
+      .search-select {
+        padding-right: 80px;
+        border-right: 1px solid $light-medium-grey;
+      }
+
+      .dont-know {
+        padding-left: 20px;
+
+        .link-button {
+          height: $boiler-input-submit-size;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .make-and-model {
+    .body-text {
+      width: calc(50% - 108px);
+    }
+
+    .selection {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .search-select, .dont-know {
+        box-sizing: border-box;
+        flex: 0 0 50%;
+        padding: 24px 0;
+      }
+
+      .search-select {
+        padding-right: 80px;
+        border-right: 1px solid $light-medium-grey;
+      }
+
+      .dont-know {
+        padding-left: 80px;
+
+        .link-button {
+          height: $boiler-input-submit-size;
+        }
+      }
     }
   }
 }

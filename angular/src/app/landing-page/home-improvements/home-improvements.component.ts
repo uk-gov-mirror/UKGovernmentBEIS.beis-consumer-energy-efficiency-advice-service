@@ -12,41 +12,26 @@ export class HomeImprovementsComponent {
     homeImprovementsJourneyType: UserJourneyType = UserJourneyType.PlanHomeImprovements;
 
     video: Video = {
-        title: 'Draught-proofing',
-        synopsis: `
-            A guided tour round a typical home, showing where draughts are likely to be, including:
-            <ul>
-                <li>
-                    Around doors and windows
-                </li>
-                <li>
-                    Letterboxes and keyholes
-                </li>
-                <li>
-                    Around the floor edge
-                </li>
-                <li>
-                    Loft hatch
-                </li>
-                <li>
-                    Gaps around pipes etc.
-                </li>
-            </ul>
-        The video will also cover ventilation that should not be sealed.`
+        title: 'Insulating your loft',
+        imagePath: '/dist/assets/images/video-thumbnails/insulating-your-loft.jpg',
+        articlePath: '/pages/insulating-your-loft'
     };
 
     articles: Article[] = [
         {
             title: 'What are the benefits of installing loft insulation?',
-            summary: 'Loft insulation is well worth considering because if there is little or no \
-                existing insulation considerable savings can be made.',
-            iconClassName: 'icon-lightbulb'
+            summary: 'Fitting an extra layer of insulation in your\
+             loft is a quick and easy way to cut your heating bills and\
+             make your home warmer.',
+            iconClassName: 'icon-roofing',
+            readMore: '/measures/meta_loft_insulation'
         },
         {
-            title: 'What can I do if I don\'t have cavity walls or a loft?',
-            summary: 'There is plenty you can do to improve the insulation in your home if you \
-            don\'t have cavity walls or a loft space.',
-            iconClassName: 'icon-switch'
+            title: 'Upgrade window glazing',
+            summary: 'If you have old or poor quality double glazing,\
+             you could make your house warmer by fitting new, higher performance windows.',
+            iconClassName: 'icon-walls',
+            readMore: '/measures/meta_glazing_replacement'
         },
     ];
 }

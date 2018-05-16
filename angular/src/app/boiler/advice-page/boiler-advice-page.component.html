@@ -2,7 +2,7 @@
 <div class="boiler-advice-page" *ngIf="!loading && !error && !!boilerType">
     <div class="page-row page-heading">
         <div class="page-row-content">
-            <div class="heading-text">{{boilerType.name}}</div>
+            <h1 class="heading-text">{{boilerType.name}}</h1>
         </div>
     </div>
     <div class="page-row summary">
@@ -23,7 +23,11 @@
                 </div>
             </div>
             <div class="installers">
-                <app-boiler-link-button class="link-button" text="Check out our list of certified installers"></app-boiler-link-button>
+                <app-boiler-link-button
+                        class="link-button"
+                        text="Check out our list of certified installers"
+                        path="/installer-search">
+                </app-boiler-link-button>
             </div>
         </div>
     </div>
@@ -49,17 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="page-row featured-video">
-        <div class="page-row-content">
-            <app-large-video-card class="video-card"
-                [video]="{
-                    title: boilerType.name + 's: What you should know',
-                    synopsis: 'Lots of info about ' + boilerType.name
-                }">
-            </app-large-video-card>
-        </div>
-    </div>
-    <div class="page-row">
+    <div class="page-row regulations-row">
         <div class="regulations page-row-content" *ngIf="isGasBoiler()">
             <div class="heading">When fitting a new gas boiler you'll also need one of the following:</div>
             <div class="body-text">

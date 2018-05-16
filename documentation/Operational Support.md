@@ -54,6 +54,9 @@ You can update the branch with a git command like:
 
 Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/live...staging?expand=1)
 
+You may need to clear the WP cache if you have made changes to any WP posts. You can 
+  do this [here](https://dceas-admin-site-staging.cloudapps.digital/wp-admin/options-general.php?page=rest-cache&rest_cache_empty=1&rest_cache_nonce=793daf4737).
+
 ### Staging deployment
 
 The same as "live", except that the branch name is "`staging`" and it should
@@ -232,7 +235,7 @@ To backup the database, run
 Zip the resulting file and store it somewhere oustide of the GOV.UK cloud.
 
 To restore the database from such a backup, you will need to edit the file and
-remove the database name (the "CREATE DATABSE" and "USE" lines, near the top),
+remove the database name (the "CREATE DATABASE" and "USE" lines, near the top),
 then run:
 
     cf conduit dceas-database -- mysql < FILENAME.sql

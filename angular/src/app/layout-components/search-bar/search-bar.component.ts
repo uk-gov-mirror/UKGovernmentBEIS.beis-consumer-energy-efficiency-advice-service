@@ -2,6 +2,7 @@ import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchable} from '../../shared/wordpress-search-service/wordpress-searchable';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-search-bar',
@@ -23,12 +24,14 @@ export class SearchBarComponent {
     @ViewChild('searchInput') searchInput;
 
     private deregisterWindowClickListener: () => void;
+    private deregisterWindowTabListener: () => void;
 
     constructor(
         private renderer: Renderer2,
         private changeDetector: ChangeDetectorRef,
         private googleAnalyticsService: GoogleAnalyticsService,
-        private wordpressSearchService: WordpressSearchService) {
+        private wordpressSearchService: WordpressSearchService,
+        private router: Router) {
     }
 
     toggleMobileNav(): void {
@@ -58,6 +61,7 @@ export class SearchBarComponent {
             this.deregisterWindowClickListener();
         }
         this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
+        this.deregisterWindowTabListener = this.renderer.listen('window', 'keyup', event => this.handleWindowClick(event));
     }
 
     handleWindowClick(event): void {
@@ -71,6 +75,7 @@ export class SearchBarComponent {
 
     collapseSearchBox(): void {
         this.deregisterWindowClickListener();
+        this.deregisterWindowTabListener();
         this.searchText = null;
         this.shouldDisplaySearchDetailsDropdown = false;
 
@@ -85,7 +90,7 @@ export class SearchBarComponent {
             // Empty searchbox
             return;
         }
-        this.sendEventToAnalytics('search_submitted', this.searchText);
+        this.sendEventToAnalytics('search_submitted', this.searchText.toLowerCase());
 
         this.searchState = SearchStates.Loading;
         this.resetSearchResults();
@@ -95,6 +100,14 @@ export class SearchBarComponent {
                 },
                 () => this.handleSearchError()
             );
+    }
+
+    goToRouteOnEnterPress(event, route: string): void {
+        if (event.keyCode === 13) {
+            this.router.navigate([route]);
+            this.collapseSearchBox();
+            this.sendEventToAnalytics('search-result_clicked', route);
+        }
     }
 
     resetSearchResults(): void {

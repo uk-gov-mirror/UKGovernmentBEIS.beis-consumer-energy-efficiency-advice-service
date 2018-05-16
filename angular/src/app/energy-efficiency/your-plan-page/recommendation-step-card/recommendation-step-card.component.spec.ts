@@ -157,8 +157,8 @@ describe('RecommendationStepCardComponent', () => {
         toggleDetailsDrawerExpanded();
 
         // then
-        const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content'));
-        expect(readMoreContentElement).toBeNull();
+        const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content-container')).nativeElement;
+        expect(readMoreContentElement.classList).not.toContain('read-more-expanded');
     });
 
     it('should show read more section when clicked', () => {

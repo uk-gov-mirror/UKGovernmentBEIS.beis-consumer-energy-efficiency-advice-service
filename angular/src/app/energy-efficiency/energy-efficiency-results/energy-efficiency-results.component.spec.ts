@@ -8,17 +8,15 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
-import {ResponseData} from '../../shared/response-data/response-data';
+import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-service/energy-calculation-api-service';
-import {GrantCardComponent} from '../../shared/grant-card/grant-card.component';
+import {LocalGrantCardComponent} from '../../shared/local-grant-card/local-grant-card.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results.component';
 import {GrantEligibility} from '../../grants/grant-eligibility-service/grant-eligibility';
-import {EnergyEfficiencyRecommendationCardComponent} from
-    './energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
+import {EnergyEfficiencyRecommendationCardComponent} from './energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {RdSapInput} from '../../shared/energy-calculation-api-service/request/rdsap-input';
-import {RecommendationFilterControlComponent} from './recommendation-filter-control/recommendation-filter-control.component';
 import {EnergyEfficiencyRecommendationTag} from './recommendation-tags/energy-efficiency-recommendation-tag';
 import {BreakEvenComponent} from './break-even/break-even.component';
 import {YourPlanSummaryComponent} from '../your-plan-summary/your-plan-summary.component';
@@ -26,8 +24,13 @@ import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-servi
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {YourPlanFooterComponent} from './your-plan-footer/your-plan-footer.component';
 import {StickyRowWrapperComponent} from '../../shared/sticky-row-wrapper/sticky-row-wrapper.component';
-import {UserStateService} from "../../shared/user-state-service/user-state-service";
-import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
+import {UserStateService} from '../../shared/user-state-service/user-state-service';
+import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
+import {HomeType} from '../../questionnaire/questions/home-type-question/home-type';
+import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age';
+import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/floor-area-unit';
+import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
+import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -62,12 +65,15 @@ describe('EnergyEfficiencyResultsComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Loft insulation',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 999,
@@ -79,12 +85,15 @@ describe('EnergyEfficiencyResultsComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Solar photovoltaic panels',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm,
             grant: null,
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         },
         {
             investmentPounds: 20,
@@ -96,6 +105,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             iconPath: 'icons/dummy.svg',
             headline: 'Cylinder insulation',
             summary: 'No description available',
+            whatItIs: '',
+            isItRightForMe: '',
             tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
             grant: {
                 grantId: 'national-grant-1',
@@ -107,8 +118,9 @@ describe('EnergyEfficiencyResultsComponent', () => {
             },
             advantages: [],
             steps: [],
+            measureCode: '',
             isAddedToPlan: false,
-            codeForAnalytics: ''
+            recommendationID: ''
         }
     ];
 
@@ -117,6 +129,12 @@ describe('EnergyEfficiencyResultsComponent', () => {
         recommendationsResponse = Observable.of(recommendations);
 
         responseData = new ResponseData();
+        responseData.homeType = HomeType.DetachedHouse;
+        responseData.homeAge = HomeAge.from1930to1949;
+        responseData.fuelType = FuelType.MainsGas;
+        responseData.floorArea = 100;
+        responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
+        expect(isComplete(responseData)).toBeTruthy();
 
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
         spyOn(recommendationsServiceStub, 'getAllRecommendations').and.callThrough();
@@ -127,8 +145,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 EnergyEfficiencyRecommendationCardComponent,
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
-                GrantCardComponent,
-                RecommendationFilterControlComponent,
+                LocalGrantCardComponent,
                 BreakEvenComponent,
                 YourPlanFooterComponent,
                 YourPlanSummaryComponent,
@@ -144,6 +161,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
+                AbTestingService,
                 GoogleAnalyticsService,
             ]
         })
@@ -200,36 +218,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
-    it('should initialise with the top-recommendations filter selected', () => {
+    it('should show recommendations', async(() => {
         // when
-        fixture.detectChanges();
-
-        // then
-        expect(component.activeTagFilters).toEqual(EnergyEfficiencyRecommendationTag.TopRecommendations);
-    });
-
-    it('should apply filters', () => {
-        // given
-        fixture.detectChanges();
-
-        // when
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.Grant;
-        fixture.detectChanges();
-
-        // then
-        const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(
-            By.directive(EnergyEfficiencyRecommendationCardComponent)
-        );
-        const expectedNumberOfElements = recommendations.filter(rec => !!rec.grant).length;
-        expect(recommendationElements.length).toEqual(expectedNumberOfElements);
-    });
-
-    it('should show recommendations matching any of multiple selected filters', async(() => {
-        // given
-        fixture.detectChanges();
-
-        // when
-        component.activeTagFilters = EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm;
         fixture.detectChanges();
 
         // then

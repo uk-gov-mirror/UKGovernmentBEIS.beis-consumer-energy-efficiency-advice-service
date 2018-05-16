@@ -122,10 +122,6 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-family: $font-family-light;
 }
 
-@mixin popup-text-font {
-  @include has-font-sizes-at-breakpoints(24px, 28px, 24px, 28px, 16px, 20px);
-}
-
 @mixin large-link-font {
   @include has-font-sizes-at-breakpoints(20px, 24px, 16px, 19px, 16px, 19px);
   font-weight: bold;
@@ -158,10 +154,15 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   color: $dark-grey;
 }
 
+@mixin card-body-font {
+  @include has-font-sizes-at-breakpoints(16px, 19px, 16px, 19px, 16px, 19px);
+  font-family: $font-family-light;
+}
+
 @mixin read-more-font {
   @include has-font-sizes-at-breakpoints(11px, 13px, 11px, 13px, 11px, 13px);
   font-weight: 500;
-  color: $primary-blue;
+  color: $dark-medium-blue;
   text-transform: uppercase;
 }
 
@@ -227,6 +228,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin data-card-circle-value-font {
+  @include has-font-sizes-at-breakpoints(30px, 30px, 30px, 30px, 30px, 30px);
+  font-weight: bold;
+}
+
 @mixin browse-video-title-font {
   @include has-font-sizes-at-breakpoints(28px, 32px, 28px, 32px, 24px, 26px);
   font-weight: bold;
@@ -235,7 +241,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 @mixin browse-video-text-font {
   @include has-font-sizes-at-breakpoints(16px, 34px, 16px, 34px, 16px, 34px);
   font-weight: bold;
-  color: $primary-blue;
+  color: $dark-medium-blue;
 }
 
 @mixin article-title-font {
@@ -253,7 +259,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   @include has-font-sizes-at-breakpoints(36px, 38px, 24px, 32px, 20px, 24px);
   font-size: 36px;
   font-weight: bold;
-  color: $darkened-blue;
+  color: $dark-medium-blue;
 }
 
 @mixin question-button-font {
@@ -319,6 +325,16 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   letter-spacing: 1px;
 }
 
+@mixin eligibility-font {
+  @include has-font-sizes-at-breakpoints(13px, 18px, 13px, 18px, 13px, 18px);
+  font-family: $font-family-light;
+}
+
+@mixin grant-phone-number-font {
+  @include has-font-sizes-at-breakpoints(20px, 24px, 18px, 22px, 14px, 16px);
+  font-weight: bold;
+}
+
 // TODO:BEIS-164 Convert the below rules to match the same format as the above rules
 @mixin focus-text {
   font-size: 32px;
@@ -337,25 +353,10 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   color: $dark-grey;
 }
 
-@mixin card-body {
-  font-size: 16px;
-  line-height: 19px;
-  color: $dark-grey;
-  font-family: $font-family-light;
-}
-
 @mixin card-expand-drawer {
   font-size: 11px;
   line-height: 13px;
   color: $dark-grey;
-  text-transform: uppercase;
-  font-family: $font-family-light;
-}
-
-@mixin card-more-info-link {
-  font-size: 13px;
-  line-height: 16px;
-  color: $focus-text-blue;
   text-transform: uppercase;
   font-family: $font-family-light;
 }

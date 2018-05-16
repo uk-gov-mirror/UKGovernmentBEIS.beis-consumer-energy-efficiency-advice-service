@@ -31,7 +31,8 @@ export class RdSapInput {
     readonly num_storeys: number;
     readonly num_bedrooms: number;
     readonly heating_fuel: string;
-    readonly number_of_heating_off_hours_normal: number[];
+    readonly normal_days_off_hours: number[];
+    readonly heating_pattern_type: number;
     readonly measures: boolean;
     readonly rented: boolean;
     readonly condensing_boiler: boolean;
@@ -47,7 +48,9 @@ export class RdSapInput {
     readonly baths_per_week: number;
     readonly shower_type: string;
 
-    constructor(responseData: ResponseData) {
+    readonly measures_package: string[];
+
+    constructor(responseData: ResponseData, selectedMeasureCodes: string[] = []) {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
@@ -66,7 +69,8 @@ export class RdSapInput {
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
         this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
-        this.number_of_heating_off_hours_normal = RdSapInput.getNumberOfHeatingOffHoursNormal(responseData);
+        this.normal_days_off_hours = responseData.normalDaysOffHours;
+        this.heating_pattern_type = responseData.heatingPatternType;
         this.measures = true;
         this.rented = responseData.tenureType !== TenureType.OwnerOccupancy;
         this.condensing_boiler = responseData.condensingBoiler;
@@ -82,6 +86,8 @@ export class RdSapInput {
             responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
+
+        this.measures_package = selectedMeasureCodes;
     }
 
     public isMinimalDataSet() {
@@ -206,18 +212,6 @@ export class RdSapInput {
             return fuelType.toString(10);
         }
         return undefined;
-    }
-
-    private static getNumberOfHeatingOffHoursNormal(responseData: ResponseData): number[] {
-        const numberOfHeatingHoursOn: number[] = [
-            responseData.detailedLengthOfHeatingOnEarlyHours,
-            responseData.detailedLengthOfHeatingOnMorning,
-            responseData.detailedLengthOfHeatingOnAfternoon,
-            responseData.detailedLengthOfHeatingOnEvening];
-
-        return numberOfHeatingHoursOn.map((heatingHoursOn: number) => {
-            return RdSapInput.NUMBER_OF_HOURS_PER_QUARTER_DAY - heatingHoursOn;
-        });
     }
 
     private static getFloorArea(area: number, unit: FloorAreaUnit): number {

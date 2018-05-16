@@ -9,16 +9,16 @@
 // General styling (shouldn't contain many widths/sizes etc.)
 .measure-page {
   .heading-section {
-    background-color: $primary-blue;
+    background-color: $light-blue;
 
     .title {
       @include measures-page-heading-font;
-      color: white;
+      color: $dark-blue;
     }
 
     .summary {
       @include page-summary-font;
-      color: white;
+      color: $dark-blue;
     }
   }
 
@@ -26,7 +26,7 @@
     background-color: $lighter-grey;
 
     .benefits-title {
-      color: $darkened-blue;
+      color: $dark-medium-blue;
       font-weight: bold;
       padding-bottom: 20px;
     }
@@ -41,51 +41,21 @@
 
   .contents-section {
     border-bottom: 4px solid $light-grey;
-
-    .contents-title {
-      @include page-subheading-font;
-      color: $primary-blue;
-      margin-bottom: 8px;
-
-      .contents-title-icon {
-        width: 24px;
-        height: 24px;
-        fill: $primary-blue;
-        display: inline-block;
-        margin-right: 4px;
-      }
-    }
-
-    .contents-link {
-      cursor: pointer;
-      margin-bottom: 4px;
-      display: flex;
-    }
-
-    .contents-number {
-      display: inline-block;
-      flex: 0 0 26px;
-    }
-
-    .contents-item {
-      display: inline-block;
-      @include page-body-font;
-    }
   }
 
   .steps-section {
     .step:not(:last-child) {
-      border-bottom: 1px solid $primary-blue;
+      border-bottom: 1px solid $dark-medium-blue;
     }
 
     .step-title {
       @include measures-page-subheading-font;
-      color: $darkened-blue;
+      color: $dark-medium-blue;
     }
 
     .step-description {
       @include measures-page-step-description-font;
-      color: $primary-blue;
+      color: $dark-medium-blue;
     }
 
     .step-read-more {
@@ -101,7 +71,8 @@
       min-height: 60px;
 
       .step-link-text {
-        background-color: $button-dark-blue;
+        background-color: $light-blue;
+        color: $dark-blue;
         @include more-info-button-font;
         flex: 1;
         display: flex;
@@ -111,7 +82,7 @@
       }
 
       .step-link-icon-container {
-        background-color: $action-button-blue;
+        background-color: $dark-blue;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -120,10 +91,26 @@
         .step-link-icon {
           width: 15px;
           height: 23px;
-          stroke: white;
-          fill: white;
+          stroke: $light-blue;
+          fill: $light-blue;
           display: block;
           line-height: 0;
+        }
+      }
+
+      &:hover {
+        .step-link-text {
+          background-color: $dark-blue;
+          color: $light-blue;
+        }
+
+        .step-link-icon-container {
+          background-color: $light-blue;
+
+          .step-link-icon {
+            stroke: $dark-blue;
+            fill: $dark-blue;
+          }
         }
       }
     }

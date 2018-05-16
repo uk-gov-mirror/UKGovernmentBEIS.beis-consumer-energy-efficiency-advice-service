@@ -9,11 +9,10 @@
             </a>
         </ng-container>
 
-        <a routerLink="/" class="menu-item" (click)="navLinkClicked('Home')">
-            <div class="menu-link-text">Home</div>
+        <a routerLink="/" class="menu-item" (click)="navLinkClicked('Home')">Home
         </a>
 
-        <a routerLink="/about-this-site/" class="menu-item" (click)="navLinkClicked('About this Site')">
+        <a routerLink="pages/about-this-site/" class="menu-item" (click)="navLinkClicked('About this Site')">
             <div class="menu-link-text">About</div>
         </a>
 
@@ -21,7 +20,7 @@
             <div class="menu-link-text">Simple Savings</div>
         </a>
 
-        <div #homeMenu class="home-menu menu-item" (click)="showHomeMenu = !showHomeMenu; registerSingleClickListener()">
+        <div tabindex="0" #homeMenu class="home-menu menu-item" (click)="showHomeMenu = !showHomeMenu;">
             Your Home
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showHomeMenu">
@@ -32,7 +31,7 @@
             </ng-container>
         </div>
 
-        <div #rentedMenu class="rented-menu menu-item" (click)="showRentedMenu = !showRentedMenu; registerSingleClickListener()">
+        <div tabindex="0" #rentedMenu class="rented-menu menu-item" (click)="showRentedMenu = !showRentedMenu;">
             Rented Properties
             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             <ng-container *ngIf="showRentedMenu">

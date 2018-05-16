@@ -44,21 +44,19 @@ export class MeasurePageComponent implements OnInit {
     displayMeasure(measureData: WordpressMeasure): void {
         if (!measureData) {
             this.isError = true;
-            // TODO:BEISDEAS-201 display a user-visible error here
-            this.router.navigate(['/']);
+            this.router.navigate(['/404'], {skipLocationChange: true});
         }
         this.measureData = measureData;
         this.isLoading = false;
+    }
+
+    getHeadings(): string[] {
+        return this.measureData.steps.map(step => step.headline);
     }
 
     displayErrorAndLogMessage(err: any): void {
         console.error(err);
         this.isLoading = false;
         this.isError = true;
-    }
-
-    getFormattedNumberFromIndex(index: number): string {
-        const stepNumber = index + 1;
-        return padStart(stepNumber.toString(), 2, '0');
     }
 }

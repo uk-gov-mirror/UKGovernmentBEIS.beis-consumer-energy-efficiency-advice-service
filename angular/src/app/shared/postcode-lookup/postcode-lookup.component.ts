@@ -16,7 +16,7 @@ export class PostcodeLookupComponent implements OnInit {
     loading: boolean = false;
     error: boolean = false;
     errorMessage: string;
-    scottishPostcode: boolean = false;
+    unsupportedPostcode: boolean = false;
 
     /**
      * When the postcode has been entered by the user and validated as non-Scottish,
@@ -43,15 +43,15 @@ export class PostcodeLookupComponent implements OnInit {
         }
 
         this.loading = true;
-        this.scottishPostcode = false;
+        this.unsupportedPostcode = false;
         this.error = false;
-        // TODO:BEIS-201 page will spin forever if API is offline or unreachable
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {
-                    this.scottishPostcode = postcodeDetails.result.country === 'Scotland';
+                    this.unsupportedPostcode = postcodeDetails.result.country === 'Scotland' ||
+                        postcodeDetails.result.country === 'Northern Ireland';
 
-                    if (this.scottishPostcode) {
+                    if (this.unsupportedPostcode) {
                         this.handleSearchError(null);
                         return;
                     }
@@ -79,6 +79,9 @@ export class PostcodeLookupComponent implements OnInit {
         this.error = true;
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             this.errorMessage = "Please enter a valid UK postcode";
+        } else if (this.unsupportedPostcode === true) {
+            this.errorMessage = "We do not think this service is suitable/accurate for " +
+                "you (as your home is in Scotland or Northern Ireland)";
         } else {
             this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
                 "may lead to less applicable suggestions. Alternatively, click '>' to try again";

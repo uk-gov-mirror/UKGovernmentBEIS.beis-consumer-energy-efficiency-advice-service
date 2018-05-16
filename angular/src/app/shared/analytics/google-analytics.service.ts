@@ -36,6 +36,18 @@ export class GoogleAnalyticsService {
 
         gtag('event', eventName, eventParams);
     }
+
+    setSessionDimension(name: string, index: number, value: any) {
+        if (!GoogleAnalyticsService.GOOGLE_ANALYTICS_SUPPORTED) {
+            return;
+        }
+        gtag('config', gaId, {
+            'custom_map': { [`dimension${index}`]: name }
+        });
+        // Send an event with an arbitrary name because there is no real event to report. We just want to associate a
+        // dimension with the user's whole session.
+        gtag('event', `set_dimension_${name}`, { [name]: value });
+    }
 }
 
 interface EventParams {

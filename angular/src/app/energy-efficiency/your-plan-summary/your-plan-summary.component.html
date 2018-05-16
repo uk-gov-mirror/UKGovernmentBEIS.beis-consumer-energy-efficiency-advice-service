@@ -1,16 +1,24 @@
-<app-data-card [class.no-tablet]="isFooter"
+<div class="loading-spinner-container" [class.no-tablet]="isFooter" *ngIf="potentialScoreLoading">
+    <div class="loading-spinner-small"></div>
+</div>
+<app-data-card
+        *ngIf="!potentialScoreLoading"
+        [class.no-tablet]="isFooter"
         heading="Your potential score is"
         [value]="potentialScore"
         [isVerticalAtMobile]="!isFooter"
-        [colorCircleClassName]="currentScoreColorCircleClassName">
+        [colorCircleClassName]="currentScoreColorCircleClassName"
+        [isPercent]="true">
 </app-data-card>
-<app-data-card class="no-mobile"
+<app-data-card
+        class="no-mobile"
         heading="Total investment required"
         [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'"
         [isVerticalAtMobile]="!isFooter"
         [isSmallCard]="isFooter">
 </app-data-card>
-<app-data-card class="savings"
+<app-data-card
+        class="savings"
         heading="Total savings per {{showMonthlySavings ? 'month' : 'year'}}"
         [value]="roundedTotalSavings > 0 ? '£' + roundedTotalSavings : '-'"
         [isVerticalAtMobile]="true"

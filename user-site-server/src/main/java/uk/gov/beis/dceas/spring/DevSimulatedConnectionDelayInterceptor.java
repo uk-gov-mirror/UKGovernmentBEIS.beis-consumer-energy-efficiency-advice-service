@@ -18,12 +18,14 @@ public class DevSimulatedConnectionDelayInterceptor extends HandlerInterceptorAd
         reqStartTime = System.currentTimeMillis();
         return true;
     }
+
     @Override
     public void postHandle(
         HttpServletRequest request,
         HttpServletResponse response,
         Object handler,
         ModelAndView modelAndView) throws Exception {
+
         long responseDelay = 500 - (System.currentTimeMillis() - reqStartTime);
         if (responseDelay > 0) {
             log.debug("Sleeping for {}ms to simulate connection delays in real usage", responseDelay);

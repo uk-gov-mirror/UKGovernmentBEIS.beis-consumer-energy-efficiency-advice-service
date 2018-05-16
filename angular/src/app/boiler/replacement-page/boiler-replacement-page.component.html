@@ -2,20 +2,22 @@
 <div class="boiler-replacement-page" *ngIf="!loading && !error">
     <div class="page-row page-heading">
         <div class="page-row-content">
-            <div class="heading-text">Replacing your boiler</div>
+            <h1 class="heading-text">Replacing your boiler</h1>
+            <div class="body-text">We can help find the right option for your home or you can review all
+                the different types below.</div>
         </div>
     </div>
-    <div class="page-row get-started">
-        <div class="page-row-content">
-            <div class="content">
-                <div class="heading">Let's find the right boiler for you</div>
-                <div class="body-text">
-                    Answering the following questions helps us to make the best recommendations for your home
-                </div>
+    <div class="checkEPC page-row">
+        <div class=" page-row-content">
+            <div class="heading">Check to see if my boiler needs replacing</div>
+            <div class="body-text">We can try your postcode to see if the Energy Performance Certificate (EPC) for
+                your home has any information on your boiler
             </div>
-            <app-boiler-link-button class="link-button"
-                                    text="Let's get started"
-                                    path="/boiler/questionnaire"></app-boiler-link-button>
+            <app-postcode-lookup class="postcode-epc input-white"
+                                 (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+            <app-epc-lookup class="postcode-epc input-white"
+                            [postcode]="postcode"
+                            (epcSelected)="onEpcSelected($event)"></app-epc-lookup>
         </div>
     </div>
     <div class="page-row boiler-types">

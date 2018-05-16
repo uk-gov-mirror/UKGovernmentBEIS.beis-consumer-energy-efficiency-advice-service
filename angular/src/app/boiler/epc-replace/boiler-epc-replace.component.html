@@ -2,7 +2,7 @@
 <div class="boiler-epc-replace" *ngIf="!loading">
     <div class="page-row page-heading">
         <div class="page-row-content">
-            <div class="heading-text">Replacing your boiler</div>
+            <h1 class="heading-text">Replacing your boiler</h1>
         </div>
     </div>
     <div class="page-row found-epc" *ngIf="recommendations !== undefined">
@@ -16,7 +16,10 @@
                         Your boiler is reasonably new, probably running efficiently and saving you money
                     </div>
                 </div>
-                <app-boiler-link-button class="link-button" text="See ways to keep your boiler running efficiently"></app-boiler-link-button>
+                <app-boiler-link-button class="link-button"
+                                        text="Read about setting your heating controls"
+                                        path="/pages/how-to-set-your-heating-controls">
+                </app-boiler-link-button>
             </div>
             <div class="replace" *ngIf="boilerNeedsReplacing()">
                 <div class="summary">

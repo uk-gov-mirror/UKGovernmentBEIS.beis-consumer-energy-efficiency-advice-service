@@ -14,18 +14,40 @@ $arrow-height: 48px;
   align-content: stretch;
   text-decoration: none;
   color: $dark-grey;
+  flex-direction: column;
+  padding: 15px;
+  height: 100%;
 
+  .header{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid $separator-grey;
+
+    .statisticValue {
+      color: $dark-medium-blue;
+      font-weight: bold;
+      font-size: 40px;
+      padding-bottom: 10px;
+    }
+
+    .statisticContext {
+      color: $dark-medium-blue;
+      font-weight: bold;
+      font-size: 18px;
+      padding-bottom: 30px;
+    }
+  }
 
   .details {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
+    height: 45%;
 
     .headline {
-      color: $focus-blue;
-      font-size: 30px;
+      font-size: 18px;
+      color: $dark-blue;
       font-weight: bold;
-      padding: 30px 0 20px;
+      padding: 10px 0px 20px 0px;
     }
 
     .summary {
@@ -42,9 +64,19 @@ $arrow-height: 48px;
     flex-direction: column;
   }
 
-  .icon {
-    width: 40px;
-    height: 40px;
+  .header {
+    height: 200px;
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+
+  }
+
+  .details {
+    justify-content: space-around;
   }
 
   .link {
@@ -62,7 +94,7 @@ $arrow-height: 48px;
       align-items: center;
       margin-top: auto;
       background: white;
-      color: $primary-blue;
+      color: $dark-medium-blue;
 
 
       &:after {
@@ -87,15 +119,25 @@ $arrow-height: 48px;
       flex: 1 1 60%;
     }
 
-    .icon {
-      padding: 30px;
-      width: 50px;
-      height: 50px;
+    .header {
+      height: 300px;
+
+      .icon {
+        padding-bottom: 10px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
     }
 
     .link {
       width: 250px;
-      padding: 30px;
+      padding-bottom: 30px;
       box-sizing: border-box;
 
       .arrow-button {
@@ -108,7 +150,7 @@ $arrow-height: 48px;
         align-items: center;
         margin-top: auto;
         background: white;
-        color: $primary-blue;
+        color: $dark-medium-blue;
 
 
         &:after {
@@ -123,9 +165,9 @@ $arrow-height: 48px;
 
         &:focus, &:hover {
           color: white;
-          background: $primary-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $dark-blue;
           }
         }
       }
@@ -137,21 +179,26 @@ $arrow-height: 48px;
   .measure-card {
     min-height: 200px;
 
+    .header {
+      height: 375px;
 
-
-    .icon {
-      padding: 30px;
-      width: 50px;
-      height: 50px;
+      .icon {
+        padding: 20px 0 30px 0px;
+        width: 50px;
+        height: 50px;
+      }
     }
 
     .details {
       flex: 1 1 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
     }
 
     .link {
       width: 250px;
-      padding: 30px;
+      padding-bottom: 30px;
       box-sizing: border-box;
 
       .arrow-button {
@@ -164,7 +211,7 @@ $arrow-height: 48px;
         align-items: center;
         margin-top: auto;
         background: white;
-        color: $primary-blue;
+        color: $dark-medium-blue;
 
 
         &:after {
@@ -183,9 +230,9 @@ $arrow-height: 48px;
       .link {
         .arrow-button {
           color: white;
-          background: $primary-blue;
+          background: $dark-blue;
           &:after {
-            border-left-color: $primary-blue;
+            border-left-color: $dark-blue;
           }
         }
       }

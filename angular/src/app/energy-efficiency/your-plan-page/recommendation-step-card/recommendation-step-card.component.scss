@@ -32,7 +32,7 @@ $mobile-step-number-margin: 12px;
 
     .step-number {
       @include step-title-font;
-      color: $focus-text-blue;
+      color: $dark-medium-blue;
       text-transform: uppercase;
     }
 
@@ -49,7 +49,7 @@ $mobile-step-number-margin: 12px;
     .expand-step-icon {
       flex: 0 0 auto;
       margin-left: auto;
-      fill: $action-button-blue;
+      fill: $dark-medium-blue;
       display: block;
       width: 14px;
       height: 8px;
@@ -71,6 +71,18 @@ $mobile-step-number-margin: 12px;
     .step-info {
       font-family: $font-family-light;
 
+      .read-more-content-container {
+        &.read-more-expanded {
+          .read-more-content {
+            display: flex;
+          }
+        }
+
+        .read-more-content {
+          display: none;
+        }
+      }
+
       .read-more-button {
         cursor: pointer;
         @include read-more-font;
@@ -80,7 +92,7 @@ $mobile-step-number-margin: 12px;
 
         .read-more-button-icon {
           margin-left: 10px;
-          fill: $primary-blue;
+          fill: $dark-medium-blue;
           display: block;
           width: 7px;
           height: 4px;
@@ -109,7 +121,8 @@ $mobile-step-number-margin: 12px;
         }
 
         .more-info-description {
-          background-color: $button-dark-blue;
+          background-color: $light-blue;
+          color: $dark-blue;
           text-transform: uppercase;
           font-size: 13px;
           line-height: 15px;
@@ -120,7 +133,7 @@ $mobile-step-number-margin: 12px;
         }
 
         .more-info-icon-container {
-          background-color: $action-button-blue;
+          background-color: $dark-blue;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -128,8 +141,8 @@ $mobile-step-number-margin: 12px;
           .more-info-icon {
             width: 15px;
             height: 23px;
-            stroke: white;
-            fill: white;
+            stroke: $light-blue;
+            fill: $light-blue;
             display: block;
             line-height: 0;
           }

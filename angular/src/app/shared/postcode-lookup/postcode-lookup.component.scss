@@ -54,6 +54,7 @@
       min-width: 0;
 
       @include postcode-input-font;
+      color: $dark-grey !important;
     }
 
     .postcode-input-submit {
@@ -95,7 +96,7 @@
     justify-content: center;
   }
 
-  .scottish-postcode {
+  .unsupported-postcode {
     color: white;
     padding: 10px;
     margin-top: 20px;
@@ -127,7 +128,6 @@
 
       .postcode-input-text {
         padding: 0 34px;
-        background: white;
       }
     }
   }

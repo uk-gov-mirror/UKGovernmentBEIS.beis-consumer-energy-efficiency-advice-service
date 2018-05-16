@@ -10,7 +10,7 @@
   line-height: 32px;
   font-weight: bold;
 
-  color: $primary-blue;
+  color: $dark-medium-blue;
 }
 
 .large-heading {
@@ -18,7 +18,7 @@
   line-height: 42px;
   font-weight: bold;
 
-  color: $darkened-blue;
+  color: $dark-medium-blue;
 }
 
 .small-heading {
@@ -26,7 +26,7 @@
   line-height: 32px;
   font-weight: bold;
 
-  color: $primary-blue;
+  color: $dark-medium-blue;
 }
 
 .body-text {
@@ -43,11 +43,13 @@
 
 .page-heading {
   padding: 48px 0;
+  background-color: $light-blue;
+
   .heading-text {
     font-size: 48px;
     line-height: 62px;
     font-weight: bold;
 
-    color: $darkened-blue;
+    color: $dark-medium-blue;
   }
 }

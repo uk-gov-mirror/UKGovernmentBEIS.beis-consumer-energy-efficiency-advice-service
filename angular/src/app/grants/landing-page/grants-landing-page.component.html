@@ -1,7 +1,7 @@
 <div class="grants-landing-page">
     <div class="page-heading page-row">
         <div class="page-row-content">
-            <div class="heading-text">Home energy grants</div>
+            <h1 class="heading-text">Home energy grants</h1>
         </div>
     </div>
     <div class="local-grants page-row">
@@ -14,7 +14,7 @@
                             that you might be eligible for.</p>
                     </div>
                 <div class="enter-postcode-form">
-                    <app-postcode-lookup class="postcode-epc input-grey" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+                    <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
                 </div>
             </div>
             <div class="loading-grants" *ngIf="isLoading"></div>
@@ -25,10 +25,10 @@
                 <div class="local-grants" *ngIf="localAuthority.grants.length > 0">
                     <div class="local-authority-name">You live in {{localAuthority.name}} and we've found the following:</div>
                     <div class="grant-cards">
-                        <app-grant-card class="grant-card"
+                        <app-local-grant-card class="grant-card"
                                         *ngFor="let grant of localAuthority.grants"
                                         [grant]="grant">
-                        </app-grant-card>
+                        </app-local-grant-card>
                     </div>
                 </div>
                 <div class="no-local-grants" *ngIf="localAuthority.grants.length === 0">
@@ -45,53 +45,59 @@
                 <span class="grant-info-title-efficiency">National home energy efficiency grants and schemes</span>
             </div>
             <div class="grants-row">
-                <div class="grant-card">
+                <a class="grant-card" (click)="setJourneyTypeToHomeImprovements()"
+                     routerLink="/pages/energy-company-obligation">
                     <div class="grant-info-column">
                         <div class="grant-info-column icon">
-                            <div class="icon-roofing"></div>
+                            <div class="icon-home-improve"></div>
                         </div>
                         <div class="grant-heading">Improve your home</div>
-                        <div class="grant-description">
-                            You may be eligible for grants to support energy efficiency home improvements under the
-                            Energy Company Obligation (ECO) scheme.
-                        </div>
+                        <div class="description-link-container">
+                            <div class="grant-description">
+                                You may be eligible for grants to support energy efficiency home improvements under the
+                                Energy Company Obligation (ECO) scheme.
+                            </div>
 
-                        <a class="link-button link-button-arrow" (click)="setJourneyTypeToHomeImprovements()"
-                           routerLink="/pages/energy-company-obligation">
-                            Find out more
-                        </a>
+                            <div class="link-button link-button-arrow">
+                                Find out more
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="grant-card">
+                </a>
+                <a class="grant-card" (click)="setJourneyTypeToBoiler()"
+                   routerLink="/pages/renewable-heat-incentive">
                     <div class="grant-info-column">
                         <div class="grant-info-column icon">
-                            <div class="icon-heating"></div>
+                            <div class="icon-rhi"></div>
                         </div>
                         <div class="grant-heading">Be rewarded for renewable heat</div>
-                        <div class="grant-description">
-                            If you use renewable energy to heat your home, you can benefit financially from the Renewable Heat Incentive (RHI) scheme.
+                        <div class="description-link-container">
+                            <div class="grant-description">
+                                If you use renewable energy to heat your home, you can benefit financially from the Renewable Heat Incentive (RHI) scheme.
+                            </div>
+                            <div class="link-button link-button-arrow">
+                                Find out more
+                            </div>
                         </div>
-                        <a class="link-button link-button-arrow" (click)="setJourneyTypeToBoiler()"
-                           routerLink="/pages/renewable-heat-incentive">
-                            Find out more
-                        </a>
                     </div>
-                </div>
-                <div class="grant-card">
+                </a>
+                <a class="grant-card"(click)="setJourneyTypeToHomeImprovements()"
+                   routerLink="/pages/feed-in-tariff">
                     <div class="grant-info-column">
                         <div class="grant-info-column icon">
-                            <div class="icon-solar"></div>
+                            <div class="icon-fit"></div>
                         </div>
                         <div class="grant-heading">Get paid for generating energy</div>
-                        <div class="grant-description">
-                            Guaranteed payments for producing electricity using renewable technologies under the Feed-In Tariff (FIT) scheme.
+                        <div class="description-link-container">
+                            <div class="grant-description">
+                                Guaranteed payments for producing electricity using renewable technologies under the Feed-In Tariff (FIT) scheme.
+                            </div>
+                            <div class="link-button link-button-arrow" >
+                                Find out more
+                            </div>
                         </div>
-                        <a class="link-button link-button-arrow" (click)="setJourneyTypeToHomeImprovements()"
-                           routerLink="/pages/feed-in-tariff">
-                            Find out more
-                        </a>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="grants-row">
                 <span class="grant-info-line"></span>
@@ -100,50 +106,56 @@
                 <span class="grant-info-title-bills">National grants to help you pay your energy bills</span>
             </div>
             <div class="grants-row">
-                <div class="grant-card">
+                <a class="grant-card" routerLink="/pages/winter-fuel-payment/">
                     <div class="grant-info-column">
                         <div class="grant-info-column icon">
-                            <div class="icon-grant"></div>
+                            <div class="icon-winter-fuel"></div>
                         </div>
                         <div class="grant-heading">Winter Fuel Payments</div>
-                        <div class="grant-description">
-                            If you were born on or before 5 August 1953 you could get between £100 and £300 to help you
-                            pay your heating bills
+                        <div class="description-link-container">
+                            <div class="grant-description">
+                                If you were born on or before 5 August 1953 you could get between £100 and £300 to help you
+                                pay your heating bills
+                            </div>
+                            <div class="link-button link-button-arrow">
+                                Find out more
+                            </div>
                         </div>
-                        <a routerLink="/grants/winter-fuel-payments/" class="link-button link-button-arrow">
-                            Find out more
-                        </a>
                     </div>
-                </div>
-                <div class="grant-card">
+                </a>
+                <a class="grant-card" routerLink="/pages/warm-home-discount/">
                     <div class="grant-info-column">
                         <div class="grant-info-column icon">
-                            <div class="icon-heating"></div>
+                            <div class="icon-warm-home"></div>
                         </div>
                         <div class="grant-heading">Warm Home Discount</div>
-                        <div class="grant-description">
-                            If you're receiving certain benefits, you could get £140 off your electricity bill for
-                            winter 2017 to 2018
+                        <div class="description-link-container">
+                            <div class="grant-description">
+                                If you're receiving certain benefits, you could get £140 off your electricity bill for
+                                winter 2017 to 2018
+                            </div>
+                            <div class="link-button link-button-arrow">
+                                Find out more
+                            </div>
                         </div>
-                        <a routerLink="/grants/warm-home-discount/" class="link-button link-button-arrow">
-                            Find out more
-                        </a>
                     </div>
-                </div>
-                <div class="grant-card">
+                </a>
+                <a class="grant-card" routerLink="/pages/cold-weather-payment/">
                     <div class="grant-info-column">
                         <div class="grant-info-column icon">
-                            <div class="icon-grant"></div>
+                            <div class="icon-cold-weather"></div>
                         </div>
                         <div class="grant-heading">Cold Weather Payments</div>
-                        <div class="grant-description">
-                            If you're receiving certain benefits, you may get a payment when the weather is cold
+                        <div class="description-link-container">
+                            <div class="grant-description">
+                                If you're receiving certain benefits, you may get a payment when the weather is cold
+                            </div>
+                            <div class="link-button link-button-arrow">
+                                Find out more
+                            </div>
                         </div>
-                        <a routerLink="/grants/cold-weather-payments" class="link-button link-button-arrow">
-                            Find out more
-                        </a>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
