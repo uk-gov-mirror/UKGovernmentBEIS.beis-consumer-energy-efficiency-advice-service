@@ -11,9 +11,10 @@ import {InstallerSearchService} from "./installer-search-service/installer-searc
 })
 export class InstallerSearchComponent implements OnInit {
 
+    postcode = null;
     measures = [];
     selectedMeasure = null;
-    postcode = null;
+    installers = [];
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -27,7 +28,7 @@ export class InstallerSearchComponent implements OnInit {
         this.route.params.subscribe(params => {
 
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
-                    this.measures = measures;
+                    this.measures = measures.filter(measure => measure.acf.installer_code !== undefined);
 
                     if (params["measure-code"]) {
                         const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
@@ -44,10 +45,9 @@ export class InstallerSearchComponent implements OnInit {
 
     submit() {
         if (this.selectedMeasure) {
-            console.log("hi");
-            this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.measure_code)
+            this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code)
                 .subscribe(installers => {
-                    console.log(installers);
+                    this.installers = installers;
                 });
         }
     }

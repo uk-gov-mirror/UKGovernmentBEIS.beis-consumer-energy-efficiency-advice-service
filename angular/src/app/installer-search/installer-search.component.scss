@@ -28,57 +28,117 @@
       font-family: $font-family-light;
     }
   }
-
-  .selector-container {
+  .selectors {
     background-color: $light-grey;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 
-    .field-container {
-      flex-direction: column;
+    .selector-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
 
-      .field-heading {
-        color: $dark-medium-blue;
-        font-size: 20px;
-        font-family: $font-family;
-        padding-bottom: 15px;
-      }
+      .field-container {
+        flex-direction: column;
 
-      form {
-        background-color: white;
-        display: flex;
+        .field-heading {
+          color: $dark-blue;
+          font-size: 20px;
+          font-family: $font-family;
+          padding-bottom: 15px;
+        }
 
-        .text-container {
-          padding: 0 24px;
-          height: 72px;
-          font-size: 24px;
-          line-height: 29px;
-          font-weight: 700;
-          border: none;
+        form {
+          background-color: white;
+          display: flex;
+
+          .text-container {
+            padding: 0 24px;
+            height: 72px;
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 700;
+            border: none;
+
+          }
+
+          .postcode-input {
+            width: 200px;
+          }
 
         }
 
         .measure-name-input {
           width: 500px;
+          height: 72px;
+          padding: 0 24px;
+          font-size: 16px;
+          line-height: 29px;
+
+          box-sizing: border-box;
+          font-weight: bold;
+          text-align: center;
+          background-color: white;
+          border: none;
+
+          .measure {
+            font-size: 16px;
+            width: 500px;
+          }
         }
 
-        .postcode-input {
-          width: 200px;
-        }
-
-        button {
-          width: 40px;
-          height: 40px;
-          background: crimson;
+        .search-button {
+          width:220px;
+          height: 72px;
+          background-color: $pink;
+          color: white;
           border: none;
           cursor: pointer;
-          font-size: 30px;
-          font-weight: bold;
+          font-size: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
+          margin: 12px 0 0 auto;
+          padding: 0 14px;
+
+          font-weight: bold;
+          text-align: center;
         }
       }
+    }
+  }
+
+  .results {
+    .header {
+      color: $dark-blue;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 50px 0 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 50px;
+
+
+      th {
+        background-color: $light-blue;
+        color: $dark-blue;
+        height: 45px;
+        border-bottom: 10px solid white;
+        text-align: left;
+        padding: 0 15px;
+
+      }
+
+      td {
+        padding: 15px;
+        background-color: $lighter-grey;
+        border: 3px solid white;
+      }
+
     }
   }
 
@@ -93,11 +153,16 @@
 }
 
 @include desktop() {
+  .selectors {
+    min-height: 225px;
+
+
     .selector-container {
       //padding: 80px 0px 80px 0px;
       display: flex;
-      min-height: 225px;
       align-items: center;
     }
+
+  }
 
 }
