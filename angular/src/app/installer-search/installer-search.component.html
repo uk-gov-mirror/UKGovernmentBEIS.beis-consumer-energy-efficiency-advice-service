@@ -1,28 +1,60 @@
-<p>TODO:BEIS-253 this page will show a list of installers applicable to the selected measure</p>
 <div class="installer-search">
     <div class="page-heading page-row">
-        <h1 class="page-row-content">Find an installer</h1>
-        <p class="page-row-content">Troubleshooting your boiler or finding the best replacement</p>
-    </div>
-    <div class="selector-container page-row">
-        <div class="field-container postcode">
-            <p class="field-heading">Postcode</p>
-            <form>
-                <input [(ngModel)]="postcode" type="text" name="postcode" class="text-container postcode-input">
-                <button></button>
-            </form>
-        </div>
-        <div class="field-container measure-name">
-            <p class="field-heading">Measure Name</p>
-            <form>
-                <input [(ngModel)]="measureName" type="text" name="measure-name" class="text-container measure-name-input">
-                <button></button>
-            </form>
+        <div class="page-row-content">
+            <h1 class="heading-text">Find an installer</h1>
+            <div class="body-text">Troubleshooting your boiler or finding the best replacement</div>
         </div>
     </div>
-    <div class="page-row page-content">
-        <p class="page-row-content">
-            This page will soon contain a list of suitable installers
-        </p>
+    <div class="selectors page-row">
+        <div class="selector-container page-row-content">
+            <div class="field-container postcode">
+                <div class="field-heading">Postcode</div>
+                <input #postcodeInput [(ngModel)]="postcode" (blur)="updatePostcode(postcodeInput.value)"
+                       type="text" name="postcode" class="postcode-input">
+            </div>
+            <div class="field-container measure-name">
+                <div class="field-heading">Measure Name</div>
+                <select class='select-measure measure-name-input' [(ngModel)]='selectedMeasure'>
+                    <option class='measure' *ngFor='let measure of measures' [ngValue]="measure">
+                        {{measure.acf.headline}}
+                    </option>
+                </select>
+            </div>
+            <div class="field-container">
+                <div class="search-button" (click)="submit()">Search</div>
+            </div>
+        </div>
+    </div>
+    <div class="results-section page-row">
+        <div class="page-row-content">
+            <app-spinner-and-error-container [loading]="loading" [error]="error"
+                                             [errorMessage]="errorMessage"></app-spinner-and-error-container>
+            <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
+                Please enter your details above to find installers in your area.
+            </div>
+
+            <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
+
+                <div class="header">Results</div>
+                <table>
+                    <tr>
+                        <th>Company</th>
+                        <th>Certification ID</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    <tr class="installer" *ngFor="let installer of installers">
+                        <td class="participant">{{installer.participant}}</td>
+                        <td class="certification-id">{{installer.certification_id}}</td>
+                        <td class="email-address">{{installer.email_address}}</td>
+                        <td class="phone-number">{{installer.phone_number}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div #noResults class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
+                Sorry, we couldn't find any installers in your area.
+            </div>
+        </div>
     </div>
 </div>
