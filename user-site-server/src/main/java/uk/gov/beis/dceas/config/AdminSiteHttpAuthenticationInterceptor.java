@@ -22,7 +22,7 @@ public class AdminSiteHttpAuthenticationInterceptor
     private final String apiAuthHeaderValue;
 
     public AdminSiteHttpAuthenticationInterceptor(
-            @Value("${vcap.services.dceas-admin-logins.config.credentials.user-site}")
+            @Value("${vcap.services.dceas-admin-logins.credentials.user-site}")
                     String password) {
 
         if (isNullOrEmpty(password)) {
