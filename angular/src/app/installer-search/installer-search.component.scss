@@ -8,20 +8,9 @@
 // General styling (shouldn't contain many widths/sizes etc.)
 
 .installer-search {
-
   .page-heading {
     background-color: $light-blue;
     color: $dark-blue;
-
-    .page-row-content {
-      padding: 60px 0;
-    }
-
-    .heading-text {
-      font-size: 48px;
-      line-height: 40px;
-      font-weight: bold;
-    }
 
     .body-text {
       padding: 30px 0 0;
@@ -37,8 +26,6 @@
 
     .selector-container {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
 
       .field-container {
         flex-direction: column;
@@ -49,64 +36,69 @@
           font-family: $font-family;
           padding-bottom: 15px;
         }
+      }
 
-        form {
+      .postcode {
+        flex: 1 1 15%;
+        //margin-right: 20px;
+        box-sizing: border-box;
+
+        .postcode-input {
           background-color: white;
-          display: flex;
-
-          .text-container {
-            padding: 0 24px;
-            height: 72px;
-            font-size: 24px;
-            line-height: 29px;
-            font-weight: 700;
-            border: none;
-
-          }
-
-          .postcode-input {
-            width: 200px;
-            text-transform: uppercase;
-          }
-
+          height: 72px;
+          padding: 0 24px;
+          font-size: 24px;
+          line-height: 29px;
+          font-weight: bold;
+          border: none;
+          text-transform: uppercase;
         }
+      }
+
+      .measure-name {
+        flex: 1 1 40%;
+        margin: 0 30px;
+        box-sizing: border-box;
 
         .measure-name-input {
-          width: 500px;
+          background-color: white;
           height: 72px;
+          width: 100%;
           padding: 0 24px;
           font-size: 16px;
           line-height: 29px;
+          font-weight: bold;
 
           box-sizing: border-box;
-          font-weight: bold;
           text-align: center;
-          background-color: white;
           border: none;
 
           .measure {
             font-size: 16px;
-            width: 500px;
+            width: 5100%;
           }
         }
+      }
 
-        .search-button {
-          width:220px;
-          height: 72px;
-          background-color: $pink;
-          color: white;
-          border: none;
-          cursor: pointer;
-          font-size: 18px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 12px 0 0 auto;
-          padding: 0 14px;
+      .search-button {
+        background-color: $pink;
+        height: 72px;
+        width: 180px;
+        flex-grow: 0;
+        flex-shrink: 0;
 
-          font-weight: bold;
-          text-align: center;
-        }
+        padding: 0 14px;
+        margin: 12px 0 0 auto;
+        font-size: 18px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        text-align: center;
+        box-sizing: border-box;
       }
     }
   }
@@ -130,7 +122,6 @@
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 50px;
-
 
         th {
           background-color: $light-blue;
@@ -157,22 +148,67 @@
   }
 }
 
-
 // Breakpoint specific styling
 @include mobile() {
+  .installer-search {
+    .page-heading {
+      .page-row-content {
+        padding: 25px 0;
+      }
+
+      .heading-text {
+        font-size: 36px;
+        line-height: 40px;
+        font-weight: bold;
+      }
+    }
+
+    .selectors {
+    }
+  }
 }
 
 @include tablet() {
-  .selectors {
-    min-height: 225px;
+  .installer-search {
+    .page-heading {
+      .page-row-content {
+        padding: 60px 0;
+      }
 
+      .heading-text {
+        font-size: 48px;
+        line-height: 40px;
+        font-weight: bold;
+      }
+    }
+
+    .selectors {
+
+    }
   }
 }
 
 @include desktop() {
-  .selectors {
-    min-height: 225px;
+  .installer-search {
+    .page-heading {
+      .page-row-content {
+        padding: 60px 0;
+      }
 
+      .heading-text {
+        font-size: 48px;
+        line-height: 40px;
+        font-weight: bold;
+      }
+    }
+
+    .selectors {
+      min-height: 225px;
+
+      .selector-container {
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
   }
-
 }

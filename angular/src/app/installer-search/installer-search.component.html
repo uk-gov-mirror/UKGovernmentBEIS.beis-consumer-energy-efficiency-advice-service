@@ -9,10 +9,8 @@
         <div class="selector-container page-row-content">
             <div class="field-container postcode">
                 <div class="field-heading">Postcode</div>
-                <form>
-                    <input #postcodeInput [(ngModel)]="postcode" (blur)="updatePostcode(postcodeInput.value)"
-                           type="text" name="postcode" class="text-container postcode-input">
-                </form>
+                <input #postcodeInput [(ngModel)]="postcode" (blur)="updatePostcode(postcodeInput.value)"
+                       type="text" name="postcode" class="postcode-input">
             </div>
             <div class="field-container measure-name">
                 <div class="field-heading">Measure Name</div>
@@ -32,7 +30,8 @@
             <app-spinner-and-error-container [loading]="loading" [error]="error"
                                              [errorMessage]="errorMessage"></app-spinner-and-error-container>
             <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
-                Please enter your details above to find installers in your area.</div>
+                Please enter your details above to find installers in your area.
+            </div>
 
             <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
 
@@ -54,7 +53,8 @@
             </div>
 
             <div #noResults class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
-                Sorry, we couldn't find any installers in your area.</div>
+                Sorry, we couldn't find any installers in your area.
+            </div>
         </div>
     </div>
 </div>
