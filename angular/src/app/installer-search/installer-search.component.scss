@@ -18,6 +18,78 @@
     }
   }
 
+  .selectors {
+    background-color: $light-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 225px;
+
+    .selector-container {
+      display: flex;
+
+      .field-container {
+        flex-direction: column;
+
+        .field-heading {
+          color: $dark-blue;
+          font-size: 20px;
+          font-family: $font-family;
+          padding-bottom: 15px;
+        }
+      }
+
+      .postcode {
+        .postcode-input {
+          background-color: white;
+          height: 72px;
+          padding: 0 24px;
+          font-size: 24px;
+          line-height: 29px;
+          font-weight: bold;
+          border: none;
+          text-transform: uppercase;
+        }
+      }
+
+      .measure-name {
+        .measure-name-input {
+          background-color: white;
+          height: 72px;
+          padding: 0 24px;
+          font-size: 16px;
+          line-height: 29px;
+          font-weight: bold;
+          text-align: center;
+          border: none;
+
+          .measure {
+            font-size: 16px;
+            width: 100%;
+          }
+        }
+      }
+
+      .search {
+        .search-button {
+          background-color: $pink;
+          height: 72px;
+          padding: 0 14px;
+          font-size: 18px;
+          color: white;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          text-align: center;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+
   .results-section {
 
     .before-submit {
@@ -93,27 +165,14 @@
     }
 
     .selectors {
-      background-color: $light-grey;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 225px;
-
       .selector-container {
-        display: flex;
-        //align-items: flex-end;
         margin: 0 20px;
         flex-direction: column;
         justify-content: flex-start;
 
         .field-container {
-          flex-direction: column;
-
           .field-heading {
-            color: $dark-blue;
-            font-size: 20px;
-            font-family: $font-family;
-            padding: 15px 0;
+            padding-top: 15px;
           }
         }
 
@@ -122,70 +181,25 @@
           display: flex;
 
           .postcode-input {
-            background-color: white;
-            height: 72px;
-            padding: 0 24px;
-            font-size: 24px;
-            line-height: 29px;
-            font-weight: bold;
-            border: none;
-            text-transform: uppercase;
-           flex-basis: 100%;
+            flex-basis: 100%;
           }
         }
 
         .measure-name {
           flex: 1 1 100%;
-
-
+          display: flex;
 
           .measure-name-input {
-            background-color: white;
-            height: 72px;
-            width: 100%;
-            padding: 0 24px;
-            font-size: 16px;
-            line-height: 29px;
-            font-weight: bold;
-
-            text-align: center;
-            border: none;
-
-            .measure {
-              background-color: white;
-              height: 72px;
-              padding: 0 24px;
-              font-size: 16px;
-              line-height: 29px;
-              font-weight: bold;
-
-              text-align: center;
-              border: none;
-            }
+            flex-basis: 100%;
           }
         }
 
         .search {
           .search-button {
-            background-color: $pink;
-            height: 72px;
             flex: 1 1 100%;
-
-            padding: 0 14px;
             margin: 30px 0;
-            font-size: 18px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            text-align: center;
-            box-sizing: border-box;
           }
         }
-
       }
     }
   }
@@ -206,40 +220,14 @@
     }
 
     .selectors {
-      background-color: $light-grey;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 225px;
-
       .selector-container {
-        display: flex;
         align-items: flex-end;
         margin: 0 34px;
-
-        .field-container {
-          flex-direction: column;
-
-          .field-heading {
-            color: $dark-blue;
-            font-size: 20px;
-            font-family: $font-family;
-            padding-bottom: 15px;
-          }
-        }
 
         .postcode {
           flex: 1 1 15%;
 
           .postcode-input {
-            background-color: white;
-            height: 72px;
-            padding: 0 24px;
-            font-size: 24px;
-            line-height: 29px;
-            font-weight: bold;
-            border: none;
-            text-transform: uppercase;
             width: 150px;
           }
         }
@@ -249,61 +237,25 @@
           margin: 0 30px;
 
           .measure-name-input {
-            background-color: white;
-            height: 72px;
             width: 100%;
-            padding: 0 24px;
-            font-size: 16px;
-            line-height: 29px;
-            font-weight: bold;
-
-            text-align: center;
-            border: none;
-
-            .measure {
-              background-color: white;
-              height: 72px;
-              padding: 0 24px;
-              font-size: 16px;
-              line-height: 29px;
-              font-weight: bold;
-
-              text-align: center;
-              border: none;
-            }
           }
         }
 
         .search {
           .search-button {
-            background-color: $pink;
-            height: 72px;
             width: 130px;
             flex-grow: 0;
             flex-shrink: 0;
-
-            padding: 0 14px;
             margin: 12px 0 0 auto;
-            font-size: 18px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            text-align: center;
-            box-sizing: border-box;
           }
         }
-
       }
     }
 
     .results {
       table {
         th {
-          vertical-align: top ;
+          vertical-align: top;
         }
       }
     }
@@ -325,41 +277,13 @@
     }
 
     .selectors {
-      min-height: 225px;
-      background-color: $light-grey;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
       .selector-container {
-
-        display: flex;
         margin: 0 34px;
-
-        .field-container {
-          flex-direction: column;
-
-          .field-heading {
-            color: $dark-blue;
-            font-size: 20px;
-            font-family: $font-family;
-            padding-bottom: 15px;
-          }
-        }
+        justify-content: space-between;
+        align-items: flex-end;
 
         .postcode {
           flex: 1 1 15%;
-
-          .postcode-input {
-            background-color: white;
-            height: 72px;
-            padding: 0 24px;
-            font-size: 24px;
-            line-height: 29px;
-            font-weight: bold;
-            border: none;
-            text-transform: uppercase;
-          }
         }
 
         .measure-name {
@@ -367,52 +291,17 @@
           margin: 0 30px;
 
           .measure-name-input {
-            background-color: white;
-            height: 72px;
-            padding: 0 24px;
-            font-size: 16px;
-            line-height: 29px;
-            font-weight: bold;
-
             box-sizing: border-box;
-            text-align: center;
-            border: none;
-
-            .measure {
-              font-size: 16px;
-              width: 100%;
-            }
+            width: 100%;
           }
         }
 
         .search {
           .search-button {
-            background-color: $pink;
-            height: 72px;
             width: 180px;
             flex-grow: 0;
             flex-shrink: 0;
-
-            padding: 0 14px;
             margin: 12px 0 0 auto;
-            font-size: 18px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            text-align: center;
-            box-sizing: border-box;
-          }
-        }
-        justify-content: space-between;
-        align-items: flex-end;
-
-        .measure-name {
-          .measure-name-input {
-            width: 100%;
           }
         }
       }
