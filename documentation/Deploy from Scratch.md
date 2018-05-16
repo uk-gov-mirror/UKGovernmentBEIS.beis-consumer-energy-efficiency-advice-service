@@ -61,6 +61,9 @@ Add necessary config:
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
     cf create-user-provided-service dceas-wordpress-secrets \
         -p AUTH_KEY,AUTH_SALT,LOGGED_IN_KEY,LOGGED_IN_SALT,NONCE_KEY,NONCE_SALT,SECURE_AUTH_KEY,SECURE_AUTH_SALT
+    # Admin password should be given to the admin users
+    # "user-site" password is shared secret with the user site
+    cf create-user-provided-service dceas-admin-logins -p admin,user-site
 
 Build the site locally, and deploy:
  

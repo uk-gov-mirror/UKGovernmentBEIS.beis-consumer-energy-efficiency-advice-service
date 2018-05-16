@@ -17,3 +17,4 @@ applications:
     - google.analytics
     - dceas-user-site.config
     - greenDealOrb.installersApi
+    - dceas-admin-logins
