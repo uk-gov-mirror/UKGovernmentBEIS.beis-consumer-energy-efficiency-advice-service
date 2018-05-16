@@ -15,6 +15,10 @@ export class InstallerSearchComponent implements OnInit {
     measures = [];
     selectedMeasure = null;
     installers = [];
+    searchButtonClicked = false;
+    loading = false;
+    error = false;
+    errorMessage = 'Something went wrong and we can\'t load this page right now. Please try again later.';
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
@@ -24,12 +28,10 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.postcode = this.responseData.postcode;
+        this.postcode = this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
-
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
                     this.measures = measures.filter(measure => measure.acf.installer_code !== undefined);
-
                     if (params["measure-code"]) {
                         const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
                         if (chosenMeasure) {
@@ -43,11 +45,18 @@ export class InstallerSearchComponent implements OnInit {
         );
     }
 
+    updatePostcode(value: string) {
+        this.postcode = value;
+    }
+
     submit() {
         if (this.selectedMeasure) {
+            this.loading = true;
             this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code)
                 .subscribe(installers => {
                     this.installers = installers;
+                    this.loading = false;
+                    this.searchButtonClicked = true;
                 });
         }
     }

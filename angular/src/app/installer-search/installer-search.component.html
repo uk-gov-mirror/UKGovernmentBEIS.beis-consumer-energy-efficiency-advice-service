@@ -10,9 +10,8 @@
             <div class="field-container postcode">
                 <div class="field-heading">Postcode</div>
                 <form>
-                    <input [(ngModel)]="postcode"
+                    <input #postcodeInput [(ngModel)]="postcode" (blur)="updatePostcode(postcodeInput.value)"
                            type="text" name="postcode" class="text-container postcode-input">
-                    <!--<button></button>-->
                 </form>
             </div>
             <div class="field-container measure-name">
@@ -28,25 +27,34 @@
             </div>
         </div>
     </div>
-    <div class="results page-row">
+    <div class="results-section page-row">
         <div class="page-row-content">
-            <div class="header">Results</div>
-            <!--<app-spinner-and-error-container [loading]="true" [error]="false"-->
-                                             <!--[errorMessage]=""></app-spinner-and-error-container>-->
-            <table>
-                <tr>
-                    <th>Company</th>
-                    <th>Certification ID</th>
-                    <th>Website</th>
-                    <th>Phone Number</th>
-                </tr>
-                <tr class="installer" *ngFor="let installer of installers">
-                    <td class="participant">{{installer.participant}}</td>
-                    <td class="certification-id">{{installer.certification_id}}</td>
-                    <td class="email-address">{{installer.email_address}}</td>
-                    <td class="phone-number">{{installer.phone_number}}</td>
-                </tr>
-            </table>
+            <app-spinner-and-error-container [loading]="loading" [error]="error"
+                                             [errorMessage]="errorMessage"></app-spinner-and-error-container>
+            <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
+                Please enter your details above to find installers in your area.</div>
+
+            <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
+
+                <div class="header">Results</div>
+                <table>
+                    <tr>
+                        <th>Company</th>
+                        <th>Certification ID</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    <tr class="installer" *ngFor="let installer of installers">
+                        <td class="participant">{{installer.participant}}</td>
+                        <td class="certification-id">{{installer.certification_id}}</td>
+                        <td class="email-address">{{installer.email_address}}</td>
+                        <td class="phone-number">{{installer.phone_number}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div #noResults class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
+                Sorry, we couldn't find any installers in your area.</div>
         </div>
     </div>
 </div>

@@ -28,6 +28,7 @@
       font-family: $font-family-light;
     }
   }
+
   .selectors {
     background-color: $light-grey;
     display: flex;
@@ -36,7 +37,7 @@
 
     .selector-container {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: flex-end;
 
       .field-container {
@@ -65,6 +66,7 @@
 
           .postcode-input {
             width: 200px;
+            text-transform: uppercase;
           }
 
         }
@@ -109,39 +111,50 @@
     }
   }
 
-  .results {
-    .header {
+  .results-section {
+
+    .before-submit {
       color: $dark-blue;
-      font-size: 28px;
-      font-weight: bold;
-      padding: 50px 0 30px;
+      margin-top: 50px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 50px;
-
-
-      th {
-        background-color: $light-blue;
+    .results {
+      .header {
         color: $dark-blue;
-        height: 45px;
-        border-bottom: 10px solid white;
-        text-align: left;
-        padding: 0 15px;
-
+        font-size: 28px;
+        font-weight: bold;
+        padding: 50px 0 30px;
       }
 
-      td {
-        padding: 15px;
-        background-color: $lighter-grey;
-        border: 3px solid white;
-      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 50px;
 
+
+        th {
+          background-color: $light-blue;
+          color: $dark-blue;
+          height: 45px;
+          border-bottom: 10px solid white;
+          text-align: left;
+          padding: 0 15px;
+
+        }
+
+        td {
+          padding: 15px;
+          background-color: $lighter-grey;
+          border: 3px solid white;
+        }
+      }
+    }
+
+    .no-results {
+      color: $dark-blue;
+      margin-top: 50px;
     }
   }
-
 }
 
 
@@ -150,18 +163,15 @@
 }
 
 @include tablet() {
+  .selectors {
+    min-height: 225px;
+
+  }
 }
 
 @include desktop() {
   .selectors {
     min-height: 225px;
-
-
-    .selector-container {
-      //padding: 80px 0px 80px 0px;
-      display: flex;
-      align-items: center;
-    }
 
   }
 

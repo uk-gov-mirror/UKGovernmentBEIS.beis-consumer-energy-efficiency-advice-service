@@ -14,9 +14,8 @@ export class InstallerSearchService {
 
     fetchInstallerDetails(postcode: string, installerCode: string): Observable<InstallerContent[]> {
         this.installers = this.http.get<InstallerContent[]>
-            (this.getFullApiEndpoint("/" + postcode + "/" + installerCode))
+            (this.getFullApiEndpoint("/" + postcode.toUpperCase() + "/" + installerCode))
             .shareReplay(1);
-        console.log(this.installers);
         return this.installers;
     }
 
