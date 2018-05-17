@@ -19,7 +19,7 @@ $desktop-width: 80px;
   border: none;
   background: none;
   padding: 0;
-  right: 0;
+  right: 50px;
   top: 0;
 }
 
@@ -46,12 +46,12 @@ $desktop-width: 80px;
 
   .contents {
     position: absolute;
-    right: 0;
     top: 110px;
     box-sizing: border-box;
     color: white;
     background-color: $pink;
     @include need-help-font;
+    right: 0px;
 
     display: flex;
     flex-direction: column;
@@ -69,6 +69,7 @@ $desktop-width: 80px;
   :host {
     width: $mobile-width;
     height: $mobile-nav-height;
+    right: 0px;
   }
 
   .need-help {
@@ -77,7 +78,7 @@ $desktop-width: 80px;
     }
 
     .contents {
-      width: 100vw;
+      width: 70vw;
       padding: 26px 20px;
     }
   }
@@ -95,7 +96,7 @@ $desktop-width: 80px;
     }
 
     .contents {
-      width: 375px;
+      width: 70vw;
       padding: 26px 20px;
     }
   }
@@ -116,12 +117,5 @@ $desktop-width: 80px;
       width: 375px;
       padding: 26px 24px;
     }
-  }
-}
-
-@include large-desktop() {
-  :host {
-    // Always sit on the far right of the content
-    right: calc(50vw - (#{$content-max-width} / 2));
   }
 }

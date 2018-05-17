@@ -9,12 +9,9 @@
             <div class="heading">Enter your postcode for personalised advice</div>
             <div class="postcode-input">
                 <div class="postcode-reason-container">
-                    By asking you some questions about your property, we can provide you
-                    with advice tailored to your situation. We'll start by checking whether
-                    your property has an Energy Performance Certificate (EPC) - if so, we may
-                    be able to find some of the information about your property from that report.
-                    <br/><br/>
-                    Enter your postcode and select your address (if available) to get started.
+                    Telling us your postcode and address lets us find information about energy
+                    efficiency at your property from previous surveys. It also means we can
+                    show you relevant information, such as grants that might be available in your area.
                 </div>
                 <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
                 <app-epc-lookup class="postcode-epc" [postcode]="postcode" (epcSelected)="onEpcSelected()"></app-epc-lookup>

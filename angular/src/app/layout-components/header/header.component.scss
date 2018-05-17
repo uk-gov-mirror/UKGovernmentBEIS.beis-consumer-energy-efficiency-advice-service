@@ -238,6 +238,11 @@ $desktop-header-height: 82px;
         .tablet-search-icon {
           display: none;
         }
+
+        app-need-help {
+          position: absolute;
+          right: 0px;
+        }
       }
     }
   }
