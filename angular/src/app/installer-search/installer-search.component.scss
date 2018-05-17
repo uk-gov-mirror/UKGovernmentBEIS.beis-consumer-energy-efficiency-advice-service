@@ -106,40 +106,25 @@
         padding: 50px 0 30px;
       }
 
-      table {
-        width: 100%;
+      .table {
+        display: flex;
+        flex-direction: column;
         border-collapse: collapse;
         margin-bottom: 50px;
+      }
 
-        th {
-          background-color: $light-blue;
-          color: $dark-blue;
-          height: 45px;
-          border-bottom: 10px solid white;
-          text-align: left;
-          padding: 15px;
+      .table-cell {
+        box-sizing: border-box;
+        flex-grow: 1;
+        width: 100%;
+        padding: 15px;
+        overflow: hidden;
+        background: $lighter-grey;
+      }
 
-        }
-
-        td {
-          padding: 15px;
-          background-color: $lighter-grey;
-          border-top: 3px solid white;
-          border-bottom: 3px solid white;
-        }
-
-        td:not(:first-of-type) {
-          border-left: 3px solid white;
-        }
-
-        td:not(:last-of-type) {
-          border-right: 3px solid white;
-        }
-
-        td:first-of-type {
-          color: $dark-blue;
-          font-weight: bold;
-        }
+      .table-cell:first-of-type {
+        color: $dark-blue;
+        font-weight: bold;
       }
     }
 
@@ -169,6 +154,7 @@
       .selector-container {
         margin: 0 20px;
         flex-direction: column;
+        width: 90%;
 
         .field-container {
           .field-heading {
@@ -199,6 +185,27 @@
             flex: 1 1 100%;
             margin: 30px 0;
           }
+        }
+      }
+    }
+
+    .results {
+      .table {
+        .table-heading {
+          display: none;
+        }
+
+        .table-heading {
+          font-size: 18px;
+        }
+
+        .table-cell {
+          font-size: 13px;
+          font-family: $font-family-light;
+        }
+
+        .table-cell:last-of-type {
+          margin-bottom: 15px;
         }
       }
     }
@@ -253,9 +260,13 @@
     }
 
     .results {
-      table {
-        th {
-          vertical-align: top;
+      .table {
+        .table-heading {
+          display: none;
+        }
+
+        .table-cell:last-of-type {
+          margin-bottom: 15px;
         }
       }
     }
@@ -304,6 +315,49 @@
             margin: 12px 0 0 auto;
           }
         }
+      }
+    }
+
+    .results {
+      .table-row {
+        display: flex;
+      }
+
+      .table-heading {
+        background-color: $light-blue;
+        color: $dark-blue;
+        border-bottom: 10px solid white;
+        text-align: left;
+        padding: 15px;
+        box-sizing: border-box;
+        flex-grow: 1;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .table-cell {
+        border-top: solid 3px white;
+        border-bottom: solid 3px white;
+      }
+
+      .table-cell:not(:first-of-type) {
+        border-left: 3px solid white;
+      }
+
+      .table-cell:not(:last-of-type) {
+        border-right: 3px solid white;
+      }
+
+      .table > .table-cell {
+        width: 25%;
+      }
+
+      .certification-id {
+        max-width: 160px;
+      }
+
+      .phone-number {
+        max-width: 220px;
       }
     }
   }

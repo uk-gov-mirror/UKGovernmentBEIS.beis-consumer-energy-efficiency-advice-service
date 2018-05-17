@@ -36,20 +36,20 @@
             <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
 
                 <div class="header">Results</div>
-                <table>
-                    <tr>
-                        <th>Company</th>
-                        <th>Certification ID</th>
-                        <th>Email Address</th>
-                        <th>Phone Number</th>
-                    </tr>
-                    <tr class="installer" *ngFor="let installer of installers">
-                        <td class="participant">{{installer.participant}}</td>
-                        <td class="certification-id">{{installer.certification_id}}</td>
-                        <td class="email-address">{{installer.email_address}}</td>
-                        <td class="phone-number">{{installer.phone_number}}</td>
-                    </tr>
-                </table>
+                <div class="table">
+                    <div class="table-row">
+                        <div class="participant table-heading">Company</div>
+                        <div class="certification-id table-heading">Certification ID</div>
+                        <div class="email-address table-heading">Email Address</div>
+                        <div class="phone-number table-heading">Phone Number</div>
+                    </div>
+                    <div class="installer table-row" *ngFor="let installer of installers">
+                        <div class="participant table-cell">{{installer.participant}}</div>
+                        <div class="certification-id table-cell">{{installer.certification_id}}</div>
+                        <div class="email-address table-cell">{{installer.email_address}}</div>
+                        <div class="phone-number table-cell">{{installer.phone_number}}</div>
+                    </div>
+                </div>
             </div>
 
             <div #noResults class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
