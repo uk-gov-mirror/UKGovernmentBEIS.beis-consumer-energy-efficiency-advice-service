@@ -17,7 +17,7 @@
                 </p>
 
                 <p>
-                    The following information will need to be provided for all exemptions:
+                    You will need to provide the following information for all exemptions:
                 </p>
 
                 <ul>
@@ -25,7 +25,7 @@
                         The address of the relevant rental property;
                     </li>
                     <li>
-                        which exemption type the landlord is registering;
+                        which exemption type you are registering;
                     </li>
                     <li>
                         a copy of a valid Energy Performance Certificate for the property.
@@ -37,14 +37,13 @@
                     <li>
                         <div class="exemption-type" (click)="measureNotRelevantOpen = !measureNotRelevantOpen">
                             <div class="summary">
-                                Where a recommended measure is not a “relevant energy efficiency improvement” because
-                                the cost of purchasing and installing it cannot be wholly financed at no cost to the
-                                landlord (Regulation 25(1)(b))
+                                The improvements cannot be made at no cost to the landlord
                             </div>
                             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                         </div>
 
                         <div class="more-info" [hidden]="!measureNotRelevantOpen">
+                            <p>Regulation 25(1)(b)</p>
                             <p>
                                 The prohibition on letting domestic property below an EPC energy efficiency raging of E
                                 does not apply if a landlord has been unable to access relevant ‘no cost’ funding to
@@ -97,13 +96,12 @@
                         <div class="exemption-type"
                              (click)="hasNoRecommendedMeasuresOpen = !hasNoRecommendedMeasuresOpen">
                             <div class="summary">
-                                Where all the “relevant energy efficiency improvements” for the property have been made
-                                (or there are none that can be made) and the property remains sub-standard (Regulation
-                                25)
+                                The property is still below EPC E after the improvements have been made
                             </div>
                             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                         </div>
                         <div class="more-info" [hidden]="!hasNoRecommendedMeasuresOpen">
+                            <p>Regulation 25</p>
                             <p>
                                 The requirement to meet the minimum level of energy efficiency (EPC E) does not apply
                                 where a landlord has made all the ‘relevant energy efficiency improvements’ that can be
@@ -142,12 +140,13 @@
                     <li>
                         <div class="exemption-type" (click)="wallInsulationOpen = !wallInsulationOpen">
                             <div class="summary">
-                                Wall insulation exemption (Regulation 24(2))
+                                Wall insulation exemption
                             </div>
                             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                         </div>
 
                         <div class="more-info" [hidden]="!wallInsulationOpen">
+                            <p>Regulation 24(2)</p>
                             <p>
                                 The Regulations acknowledge that certain wall insulation systems may not be suitable in
                                 certain situations, even where they have been recommended for a property, and where they
@@ -229,12 +228,13 @@
                     <li>
                         <div class="exemption-type" (click)="consentOpen = !consentOpen">
                             <div class="summary">
-                                Third party consent exemption (Regulation 31(1) and Regulation 36(2))
+                                Third party consent exemption
                             </div>
                             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                         </div>
 
                         <div class="more-info" [hidden]="!consentOpen">
+                            <p>Regulation 31(1) and Regulation 36(2)</p>
                             <p>
                                 Depending on circumstances, certain energy efficiency improvements may legally require
                                 third party consent before they can be installed in a property. Such improvements may
@@ -278,12 +278,13 @@
                     <li>
                         <div class="exemption-type" (click)="devaluationOpen = !devaluationOpen">
                             <div class="summary">
-                                Property devaluation exemption (Regulation 32(1) and Regulation 36 (2))
+                                Property devaluation exemption
                             </div>
                             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                         </div>
 
                         <div class="more-info" [hidden]="!devaluationOpen">
+                            <p>Regulation 32(1) and Regulation 36(2)</p>
                             <p>
                                 An exemption from meeting the minimum standard will apply where the landlord has
                                 obtained a report from an independent surveyor who is on the Royal Institution of
@@ -322,13 +323,13 @@
                     <li>
                         <div class="exemption-type" (click)="recentLandlordOpen = !recentLandlordOpen">
                             <div class="summary">
-                                Temporary exemption due to recently becoming a landlord (Regulation 33(1) & Regulation
-                                36 (2))
+                                Temporary exemption due to recently becoming a landlord
                             </div>
                             <div class="down-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                         </div>
 
                         <div class="more-info" [hidden]="!recentLandlordOpen">
+                            <p>Regulation 33(1) and Regulation 36(2)</p>
                             <p>
                                 The Regulations acknowledge that there are some, limited circumstances where a person
                                 may have become a landlord suddenly and as such it would be inappropriate or

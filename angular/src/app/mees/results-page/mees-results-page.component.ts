@@ -18,7 +18,6 @@ enum MeesResultsStatus {
     DetectedEpcAtLeastE,
     EpcNotRequired,
     EpcRequired,
-    InstallRecommendedImprovementsAsap,
     InstallRecommendedImprovements,
 }
 
@@ -61,11 +60,6 @@ export class MeesResultsPageComponent implements OnInit {
             this.status = MeesResultsStatus.DetectedEpcAtLeastE;
         } else if (this.responseData.isEpcRequired === false) {
             this.status = MeesResultsStatus.EpcNotRequired;
-        } else if (this.isEpcBelowE()
-            && this.responseData.lettingDomesticPropertyStage === LettingDomesticPropertyStage.Currently
-            && this.responseData.tenancyStartDate === TenancyStartDate.AfterApril2018) {
-
-            this.status = MeesResultsStatus.InstallRecommendedImprovementsAsap;
         } else if (this.isEpcBelowE()) {
             this.status = MeesResultsStatus.InstallRecommendedImprovements;
         } else {
