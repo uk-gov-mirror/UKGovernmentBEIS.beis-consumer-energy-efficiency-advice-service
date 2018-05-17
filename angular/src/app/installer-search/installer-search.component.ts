@@ -28,7 +28,7 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.postcode = this.responseData.postcode.toUpperCase();
+        this.postcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
                     this.measures = measures.filter(measure => measure.acf.installer_code !== undefined);

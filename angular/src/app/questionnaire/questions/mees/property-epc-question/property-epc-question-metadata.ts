@@ -18,7 +18,9 @@ export class PropertyEpcQuestionMetadata extends QuestionMetadata {
         return responseData.tenancyType === TenancyType.AssuredTenancy
             || responseData.tenancyType === TenancyType.RegulatedTenancy
             || (responseData.tenancyType === TenancyType.DomesticAgriculturalTenancy
-                && responseData.agriculturalTenancyType === AgriculturalTenancyType.AssuredTenancy);
+                && (responseData.agriculturalTenancyType === AgriculturalTenancyType.AssuredTenancy
+                    || responseData.agriculturalTenancyType === AgriculturalTenancyType.ProtectedOccupancy
+                    || responseData.agriculturalTenancyType === AgriculturalTenancyType.StatutoryTenancy));
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

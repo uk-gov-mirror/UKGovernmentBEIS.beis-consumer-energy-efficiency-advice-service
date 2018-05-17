@@ -130,6 +130,7 @@ export class ResponseData {
             this.numberOfAdultsAgedOver80;
     }
 
+    // When adding a MEES questionnaire answer, you should update clearMeesResponseData below as well
     // Used by MeesResultsPageComponent
     public lettingDomesticPropertyStage: LettingDomesticPropertyStage;
     // Used by MeesResultsPageComponent
@@ -200,4 +201,14 @@ export function deleteOldResponseData(responseData: ResponseData) {
             delete responseData[i];
         }
     }
+}
+
+export function clearMeesResponseData(responseData: ResponseData) {
+    delete responseData.lettingDomesticPropertyStage;
+    delete responseData.tenancyStartDate;
+    delete responseData.propertyEpc;
+    delete responseData.confirmEpcNotFound;
+    delete responseData.isEpcRequired;
+    delete responseData.tenancyType;
+    delete responseData.agriculturalTenancyType;
 }
