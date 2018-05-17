@@ -14,6 +14,7 @@ These instructions are kept for future reference.
 - [Database](#database)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
+  * [User Site Hostname](#user-site-hostname)
 
 <!-- tocstop -->
 
@@ -60,6 +61,9 @@ Add necessary config:
     # visit https://api.wordpress.org/secret-key/1.1/salt/ to generate some random keys
     cf create-user-provided-service dceas-wordpress-secrets \
         -p AUTH_KEY,AUTH_SALT,LOGGED_IN_KEY,LOGGED_IN_SALT,NONCE_KEY,NONCE_SALT,SECURE_AUTH_KEY,SECURE_AUTH_SALT
+    # Admin password should be given to the admin users
+    # "user-site" password is shared secret with the user site
+    cf create-user-provided-service dceas-admin-logins -p admin,user-site
 
 Build the site locally, and deploy:
  
@@ -72,6 +76,7 @@ Add necessary config:
     cf create-user-provided-service epc.opendatacommunities.org -p username,password
     cf create-user-provided-service bre.energyUse -p username,password,url
     cf create-user-provided-service google.analytics -p id
+    cf create-user-provided-service greenDealOrb -p apiKey
 
     # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges
     # `admin-site-url` is e.g. "https://dceas-admin-site-int.cloudapps.digital"
@@ -81,3 +86,19 @@ Add necessary config:
 Build the site locally, and deploy:
 
     ./infrastructure/ci-user-site-deploy.sh
+
+### User Site Hostname
+
+Run
+
+    cf create-domain beis-domestic-energy-advice-service eachhomecountsadvice.org.uk
+    cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
+    cf map-route dceas-user-site eachhomecountsadvice.org.uk
+    cf map-route dceas-user-site www.eachhomecountsadvice.org.uk
+    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "eachhomecountsadvice.org.uk,www.eachhomecountsadvice.org.uk"}'
+
+Then run
+
+    cf service dceas-cdn-route
+
+and create the DNS "CNAME" and "TXT" records listed there.

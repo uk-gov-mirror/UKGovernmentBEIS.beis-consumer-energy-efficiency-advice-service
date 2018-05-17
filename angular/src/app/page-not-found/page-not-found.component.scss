@@ -5,6 +5,12 @@
   @include page-heading-font;
   color: $dark-blue;
   background-color: $light-blue;
+
+  .page-row-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
 
 p {
@@ -28,7 +34,6 @@ p {
 
 @include desktop() {
   h1, p {
-    padding: 45px 0 60px;
-    padding-bottom: 40px;
+    height: 208px;
   }
 }

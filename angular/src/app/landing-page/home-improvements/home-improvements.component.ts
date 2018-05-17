@@ -30,7 +30,7 @@ export class HomeImprovementsComponent {
             title: 'Upgrade window glazing',
             summary: 'If you have old or poor quality double glazing,\
              you could make your house warmer by fitting new, higher performance windows.',
-            iconClassName: 'icon-walls',
+            iconClassName: 'icon-windows',
             readMore: '/measures/meta_glazing_replacement'
         },
     ];
