@@ -21,7 +21,7 @@ export class YourHomeComponent implements OnInit {
     sectionsByParameterString = {
         'heating-and-hot-water': {
             tag: 'tag_heating&hot-water',
-            title: 'Heating & Hotwater',
+            title: 'Heating & Hot Water',
         },
         'windows-and-doors': {
             tag: 'tag_windows&doors',

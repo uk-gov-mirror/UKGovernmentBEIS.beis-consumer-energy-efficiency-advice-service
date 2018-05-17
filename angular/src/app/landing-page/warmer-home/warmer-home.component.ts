@@ -23,7 +23,7 @@ export class WarmerHomeComponent {
             summary: 'If you have old or poor quality double\
              glazing, you could make your house warmer by\
              fitting new, higher performance windows.',
-            iconClassName: 'icon-roofing',
+            iconClassName: 'icon-windows',
             readMore: '/measures/meta_glazing_replacement'
         },
         {
@@ -31,7 +31,7 @@ export class WarmerHomeComponent {
             summary: 'If you can\'t control when your heating comes\
              on, or what temperature it heats your home to, you should \
             consider upgrading your heating controls.',
-            iconClassName: 'icon-walls',
+            iconClassName: 'icon-heating',
             readMore: '/measures/meta_heating_controls_wet_system'
         },
     ];

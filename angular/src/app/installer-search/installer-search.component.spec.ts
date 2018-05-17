@@ -7,6 +7,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
+import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
+import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -14,16 +16,23 @@ describe('InstallerSearchComponent', () => {
 
     let measureCode;
 
+    const expectedInstallers = [];
+
+    const installerServiceStub = {
+        getMeasure: () => Observable.of(expectedInstallers)
+    };
+
     beforeEach(async(() => {
         measureCode = null;
 
         TestBed.configureTestingModule({
-            declarations: [InstallerSearchComponent],
+            declarations: [InstallerSearchComponent, SpinnerAndErrorContainerComponent],
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
                 {provide: Router, useValue: {'navigate': function() {}}},
-                {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent}],
+                {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent},
+                {provide: InstallerSearchService, useValue: installerServiceStub}],
         })
             .compileComponents();
     }));
@@ -43,14 +52,6 @@ describe('InstallerSearchComponent', () => {
             fixture.detectChanges();
             const inputElement = fixture.debugElement.query(By.css('.postcode-input')).nativeElement;
             expect(inputElement.value).toEqual(component.postcode);
-        });
-    });
-
-    it('should display the value of the measure code', () => {
-        fixture.whenStable().then( () => {
-            fixture.detectChanges();
-            const inputElement = fixture.debugElement.query(By.css('.measure-name-input')).nativeElement;
-            expect(inputElement.value).toEqual(component.measureName);
         });
     });
 
@@ -80,7 +81,8 @@ describe('InstallerSearchComponent', () => {
                     advantages: [{advantage: null}],
                     statistic: "Test Statistic",
                     tags: null,
-                    steps: null
+                    steps: null,
+                    installer_code: '100',
                 }
             }]);
         }

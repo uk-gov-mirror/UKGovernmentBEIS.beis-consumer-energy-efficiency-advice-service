@@ -32,7 +32,7 @@ export class GreenerHomeComponent {
             electricity when the sun shines on them. You can use this \
             electricity in the home to run appliances, and any that you \
             don’t use can be sold back to the grid.',
-            iconClassName: 'icon-walls',
+            iconClassName: 'icon-solar',
             readMore: '/measures/meta_solar_photovoltaic_panels'
         },
     ];

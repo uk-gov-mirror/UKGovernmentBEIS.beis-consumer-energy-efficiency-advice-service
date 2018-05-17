@@ -26,11 +26,11 @@ export class ReduceBillsComponent {
             readMore: '/measures/meta_loft_insulation'
         },
         {
-            title: 'What can I do if I don\'t have cavity walls or a loft?',
+            title: 'Reduce tumble dryer usage',
             summary: 'Tumble dryers use a fair amount of electricity to heat \
              the air they use, as well as to run the fan and motor. If you can dry \
              clothes outside you can cut your electricity use over the year.',
-            iconClassName: 'icon-walls',
+            iconClassName: 'icon-simple-savings',
             readMore: '/measures/reduce-tumble-dryer-use'
         },
     ];

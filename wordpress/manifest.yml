@@ -13,3 +13,4 @@ applications:
   services:
     - dceas-database
     - dceas-wordpress-secrets
+    - dceas-admin-logins

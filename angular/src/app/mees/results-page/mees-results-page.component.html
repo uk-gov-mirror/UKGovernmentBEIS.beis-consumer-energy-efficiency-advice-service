@@ -43,26 +43,26 @@
                 <ng-container *ngSwitchCase="MeesResultsStatus.IrrelevantTenancyType">
                     <div class="summary tick">
                         As your tenancy type is not relevant to the legislation, you are not affected by the Minimum
-                        Energy Efficiency Standards regulations and may let the property. To read full guidance about
-                        the legislation, <a
+                        Energy Efficiency Standards regulations and may let the property. If this situation changes
+                        however, you will need to assess whether you need to take any action. To read full guidance
+                        about the legislation, <a
                             href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
                             target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcAtLeastE">
                     <div class="summary tick">
-                        As your property has an EPC rating of {{getUserEpc()}}, you are not affected by the Minimum
-                        Energy Efficiency Standards regulations and may let the property. To read full guidance about
-                        the legislation, <a
+                        As your property has an EPC rating of {{getUserEpc()}}, you meet the Minimum Energy Efficiency
+                        Standards regulations and may let the property. To read full guidance about the legislation, <a
                             href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
                             target="_blank">click here</a>.
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.DetectedEpcAtLeastE">
                     <div class="summary tick">
-                        We found that your property has a rating of {{getDetectedEpc()}}. As a result, you are not
-                        affected by the Minimum Energy Efficiency Standards regulations and may let the property. To
-                        read full guidance about the legislation, <a
+                        We found that your property has a rating of {{getDetectedEpc()}}. As a result, you meet the
+                        Minimum Energy Efficiency Standards regulations and may let the property. To read full guidance
+                        about the legislation, <a
                             href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
                             target="_blank">click here</a>.
                     </div>
@@ -70,7 +70,8 @@
                 <ng-container *ngSwitchCase="MeesResultsStatus.EpcNotRequired">
                     <div class="summary tick">
                         As your property is not required to have an EPC, you are not affected by the Minimum Energy
-                        Efficiency Standards regulations and may let the property. To read full guidance about the
+                        Efficiency Standards regulations and may let the property. If this situation changes however,
+                        you will need to assess whether you need to take any action. To read full guidance about the
                         legislation, <a
                             href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
                             target="_blank">click here</a>.
