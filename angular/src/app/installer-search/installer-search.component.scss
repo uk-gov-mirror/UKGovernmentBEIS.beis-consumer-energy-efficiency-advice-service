@@ -30,6 +30,7 @@
 
       .field-container {
         flex-direction: column;
+        display: flex;
 
         .field-heading {
           color: $dark-blue;
@@ -94,7 +95,7 @@
 
     .before-submit {
       color: $dark-blue;
-      margin-top: 50px;
+      margin: 50px 0;
     }
 
     .results {
@@ -144,7 +145,7 @@
 
     .no-results {
       color: $dark-blue;
-      margin-top: 50px;
+      margin: 50px 0;
     }
   }
 }
@@ -168,7 +169,6 @@
       .selector-container {
         margin: 0 20px;
         flex-direction: column;
-        justify-content: flex-start;
 
         .field-container {
           .field-heading {
