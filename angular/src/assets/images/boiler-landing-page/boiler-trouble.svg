@@ -5,7 +5,7 @@
     <defs></defs>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g>
-            <rect x="0" y="123" width="103" height="143"></rect>
+            <rect fill="#FFFFFF" x="0" y="123" width="103" height="143"></rect>
             <path d="M38,118.360215 L38,0.632830967" stroke="#FFFFFF" stroke-width="10"></path>
             <path d="M68,118.360215 L68,0.632830967" stroke="#FFFFFF" stroke-width="10"></path>
             <g transform="translate(30.000000, 198.000000)">
