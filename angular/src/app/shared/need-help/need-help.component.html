@@ -5,14 +5,8 @@
     </div>
     <div class="contents" *ngIf="expanded">
         <div>
-            If you would like some help using the site, call
+            If you would prefer to get advice on the phone you can call the Energy Saving Advice Service:
             <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number">{{phoneNumber}}</a>
-            for free to
-            talk to one of our trained advisors.
-            <ng-container *ngIf="reference">
-                Quote this reference to pick up where you left off:<br /><br />
-                <strong>{{reference.toUpperCase()}}</strong>
-            </ng-container>
         </div>
     </div>
 </div>
