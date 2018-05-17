@@ -28,10 +28,15 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.postcode = this.responseData.postcode.toUpperCase();
+        this.postcode = this.responseData.postcode;
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
-                    this.measures = measures.filter(measure => measure.acf.installer_code !== undefined);
+                    this.measures = measures.filter(measure => measure.acf.installer_code !== undefined)
+                        .sort(function (a, b) {
+                            const textA = a.acf.headline.toUpperCase();
+                            const textB = b.acf.headline.toUpperCase();
+                            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                        });
                     if (params["measure-code"]) {
                         const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
                         if (chosenMeasure) {
