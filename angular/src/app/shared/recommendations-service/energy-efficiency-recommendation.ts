@@ -48,6 +48,9 @@ export class EnergyEfficiencyRecommendation {
         return this.costSavingPoundsPerYear / 12;
     }
 
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `fromMeasure`
+     */
     static fromMeasure(measureResponse: MeasureResponse,
                        measureCode: string,
                        measureContent: MeasureContent,

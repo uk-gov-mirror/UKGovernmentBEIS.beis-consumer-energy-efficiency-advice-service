@@ -1,0 +1,10 @@
+body {
+    overflow-x: hidden;
+    font-family: Gotham, Arial, sans-serif;
+}
+
+h1.heading {
+    background-color: #BEE8F1;
+    color: #1A485F;
+    padding: 34px;
+}

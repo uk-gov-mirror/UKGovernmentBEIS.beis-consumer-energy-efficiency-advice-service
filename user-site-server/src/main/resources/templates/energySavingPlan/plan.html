@@ -1,9 +1,13 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
+    <!--/*
+    This is the Thymleaf template for the Plan PDF.
 
-    <!--
-    -->
+    It closely follows angular/src/app/energy-efficiency/your-plan-page/your-plan-page.component.html
 
+    In dev, you can open this file in a browser to make CSS tweaks
+    */-->
+    <link rel="stylesheet" type="text/css" media="all"  href="style.css" />
 </head>
 <body>
 
@@ -17,8 +21,8 @@
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.
                     </div>
-                    <div class="subheading" th:if="${recommendations.size() > 1}">
-                        You have added {{recommendations.length}} recommendations to your plan. You'll find all the
+                    <div class="subheading" th:if="${recommendations.size() > 1}" th:inline="text">
+                        You have added [[${recommendations.size()}]] recommendations to your plan. You'll find all the
                         steps and things you need to consider to implement those measures.
                     </div>
                     <app-data-card
@@ -39,7 +43,7 @@
                     </app-data-card>
                     <app-data-card
                             class="savings"
-                            heading="Total savings per {{showMonthlySavings ? 'month' : 'year'}}"
+                            heading="Total savings per [[${showMonthlySavings ? 'month' : 'year'}]]"
                             value="roundedTotalSavings > 0 ? '£' + roundedTotalSavings : '-'"
                             isVerticalAtMobile="true"
                             isSmallCard="isFooter">
@@ -53,8 +57,8 @@
                 <div class="recommendation-steps-card" th:each="recommendation : ${recommendations}">
                     <div class="details">
                         <div class="description">
-                            <div class="headline">{{recommendation.headline}}</div>
-                            <div class="summary">{{recommendation.summary}}</div>
+                            <div class="headline" th:text="${recommendation.headline}"></div>
+                            <div class="summary" th:text="${recommendation.summary}"></div>
                         </div>
                         <app-data-card class="investment-required-card"
                                        heading="Investment required"
@@ -62,7 +66,7 @@
                                        isSmallCard="true"
                         ></app-data-card>
                         <app-data-card class="monthly-savings-card"
-                                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                                       heading="Savings per [[${showMonthlySavings ? 'month' : 'year'}]] up to"
                                        value="'£' + getRoundedSavings(recommendation)"
                                        isSmallCard="true"
                         ></app-data-card>
@@ -77,11 +81,11 @@
                 </div>
             </div>
         </div>
-        <div class="local-authority-grants page-row" th:if="localAuthorityGrants &amp;&amp; localAuthorityGrants.length > 0">
+        <div class="local-authority-grants page-row" th:if="${localAuthorityGrants?.size() > 0}">
             <div class="page-row-content">
                 <div class="subheading">Local Authority grants</div>
-                <div class="local-authority">As part of your energy efficiency measures you might be eligible for local
-                    grants. You live in {{localAuthorityName}} so we've found the following:
+                <div class="local-authority" th:inline="text">As part of your energy efficiency measures you might be eligible for local
+                    grants. You live in [[${localAuthorityName}]] so we've found the following:
                 </div>
                 <div class="grant-cards">
                     <app-local-grant-card class="grant-card"

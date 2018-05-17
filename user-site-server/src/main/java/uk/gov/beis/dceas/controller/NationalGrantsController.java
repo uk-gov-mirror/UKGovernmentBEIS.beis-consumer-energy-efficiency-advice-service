@@ -25,7 +25,7 @@ import static uk.gov.beis.dceas.service.AcfDataTranslator.toBool;
 /**
  * Gets info on National Grants from the database.
  *
- * The eligability criteria are stored in javascript code, see e.g.
+ * The eligibility criteria are stored in javascript code, see e.g.
  * cold-weather-payments.ts
  *
  * The info is stored as "Posts" in WP, with custom fields in the meta table.

@@ -13,6 +13,9 @@ export class RecommendationStep {
         }
     }[];
 
+    /**
+     * Keep this in sync with RecommendationStep in EnergySavingPlanController.java
+     */
     constructor(measureStep: RecommendationStepResponse) {
         this.headline = measureStep.headline;
         this.description = measureStep.description;
