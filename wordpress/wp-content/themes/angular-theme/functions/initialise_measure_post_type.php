@@ -128,7 +128,7 @@ function setup_measure_acf_group() {
                     'name' => 'installer_code',
                     'type' => 'text',
                     'instructions' => 'Code used for the Installer Search API. If left empty, the measure will not appear in the dropdown menu on the installer search page.',
-                    'required' => 1,
+                    'required' => 0,
                     'default_value' => '',
                     'placeholder' => '',
                     'prepend' => '',
