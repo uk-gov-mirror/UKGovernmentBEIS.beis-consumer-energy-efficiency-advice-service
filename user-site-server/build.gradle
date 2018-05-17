@@ -121,7 +121,8 @@ dependencies {
 
     // This is not used in production, but needed at build time for the jOOQ codegen
     // and on development machines for an in-memory database
-    // TODO:BEIS-195 use https://github.com/michaelruocco/embedded-mysql-plugin instead?
+    // It might be nicer to use https://github.com/michaelruocco/embedded-mysql-plugin instead,
+    // if we were to do lots of dev (e.g. a "phase 2") it might be worth looking into.
     compile('com.h2database:h2:1.4.193')
 
     jooqRuntime('com.h2database:h2:1.4.193')

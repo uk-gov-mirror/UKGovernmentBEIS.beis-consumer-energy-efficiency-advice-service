@@ -252,7 +252,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                             break;
                         }
 
-                        if (this.questionnaire.hasBeenAnswered(this.currentQuestionIndex)) {
+                        if (this.questionnaire.isApplicable(this.currentQuestionIndex)
+                            && this.questionnaire.hasBeenAnswered(this.currentQuestionIndex)) {
                             lastAnsweredIndex = this.currentQuestionIndex;
                         }
 

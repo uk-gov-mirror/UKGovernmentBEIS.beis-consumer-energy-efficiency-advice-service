@@ -20,15 +20,18 @@ export class ReduceBillsComponent {
     articles: Article[] = [
         {
             title: 'What are the benefits of installing loft insulation?',
-            summary: 'Loft insulation is well worth considering because if there is little or no \
-                existing insulation considerable savings can be made.',
-            iconClassName: 'icon-roofing'
+            summary: 'Fitting an extra layer of insulation in your loft is a quick \
+             and easy way to cut your heating bills and make your home warmer.',
+            iconClassName: 'icon-roofing',
+            readMore: '/measures/meta_loft_insulation'
         },
         {
-            title: 'What can I do if I don\'t have cavity walls or a loft?',
-            summary: 'There is plenty you can do to improve the insulation in your home if you \
-            don\'t have cavity walls or a loft space.',
-            iconClassName: 'icon-walls'
+            title: 'Reduce tumble dryer usage',
+            summary: 'Tumble dryers use a fair amount of electricity to heat \
+             the air they use, as well as to run the fan and motor. If you can dry \
+             clothes outside you can cut your electricity use over the year.',
+            iconClassName: 'icon-simple-savings',
+            readMore: '/measures/reduce-tumble-dryer-use'
         },
     ];
 }

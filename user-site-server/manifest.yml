@@ -16,4 +16,5 @@ applications:
     - bre.energyUse
     - google.analytics
     - dceas-user-site.config
-    - greenDealOrb
+    - greenDealOrb.installersApi
+    - dceas-admin-logins

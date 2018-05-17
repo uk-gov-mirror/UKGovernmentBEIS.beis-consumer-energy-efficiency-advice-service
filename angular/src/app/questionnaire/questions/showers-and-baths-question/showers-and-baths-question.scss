@@ -5,6 +5,7 @@
 
 .showers-and-baths-question {
   .showers-baths-input {
+    margin-bottom: 20px;
     .name {
       @include question-label-font;
       text-align: center;

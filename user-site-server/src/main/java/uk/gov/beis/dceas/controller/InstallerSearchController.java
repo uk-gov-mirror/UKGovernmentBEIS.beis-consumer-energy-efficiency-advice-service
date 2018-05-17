@@ -10,19 +10,20 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/installers")
-public class InstallerSearchController{
+public class InstallerSearchController {
 
     private final String apiRoot;
     private final String apiKey;
     private final RestTemplate restTemplate;
 
 
-    public InstallerSearchController (
-            @Value("${vcap.services.greenDealOrb.credentials.url}")
+    public InstallerSearchController(
+            @Value("${vcap.services.greenDealOrb.installersApi.credentials.url}")
                     String apiRoot,
-            @Value("${vcap.services.greenDealOrb.credentials.apiKey}")
+            @Value("${vcap.services.greenDealOrb.installersApi.credentials.apiKey}")
                     String apiKey,
             RestTemplateBuilder restTemplateBuilder) {
 
@@ -32,7 +33,6 @@ public class InstallerSearchController{
         this.restTemplate = restTemplateBuilder
                 .build();
     }
-    
     @GetMapping("/{postcode}/{installerCode}")
     public String get(@PathVariable String postcode, @PathVariable String installerCode) throws IOException {
 

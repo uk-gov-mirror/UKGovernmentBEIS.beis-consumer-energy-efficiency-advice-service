@@ -3,6 +3,12 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import * as html2pdf from 'html2pdf.js';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import * as html2canvas from 'html2canvas';
+
+// Fix https://github.com/niklasvh/html2canvas/issues/834
+(window as any).html2canvas = {
+    svg: html2canvas.svg
+};
 
 @Component({
     selector: 'app-download-plan',
@@ -10,6 +16,8 @@ import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics
     styleUrls: ['./download-plan.component.scss']
 })
 export class DownloadPlanComponent {
+
+    pdfIsLoading: boolean;
 
     constructor(private googleAnalyticsService: GoogleAnalyticsService,
                 private responseData: ResponseData) {
@@ -21,6 +29,11 @@ export class DownloadPlanComponent {
     }
 
     public onPdfClicked() {
+        this.pdfIsLoading = true;
+        window.setTimeout(() => this.onPdfClickedInner(), 0);
+    }
+
+    onPdfClickedInner() {
         this.sendEventToAnalytics('download-plan_clicked');
 
         const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
@@ -33,6 +46,7 @@ export class DownloadPlanComponent {
 
         let mutationCount = 0;
 
+        const self = this;
         const callback = function (elemObserver) {
             mutationCount++;
 
@@ -42,7 +56,20 @@ export class DownloadPlanComponent {
 
                 // Create the PDF
                 const pdfBody = document.getElementsByClassName("your-plan-page")[0];
-                html2pdf(pdfBody);
+                html2pdf(pdfBody, {
+                    html2canvas: {
+                        // `AllowTaint` helps with SVG rendering, see
+                        // https://github.com/niklasvh/html2canvas/issues/95
+                        // We don't need to worry about taint as we have no CORS
+                        allowTaint: true,
+                        // A higher 'dpi' makes the screenshot higher resolution, which
+                        // makes it less blurry but uses more memory:
+                        dpi: 192,
+                        // Not sure if this does anything, but it's in the html2pdf docs
+                        // and sounds good:
+                        letterRendering: true
+                    }
+                });
 
                 // Close all the drop downs
                 readMoreArray.map(elem => {
@@ -55,6 +82,11 @@ export class DownloadPlanComponent {
                 reccomendationPageRow.classList.remove("print-mode");
 
                 (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
+
+                // There is no way to detect when the PDF has finished rendering
+                // It can be several seconds
+                // https://github.com/MrRio/jsPDF/issues/1754
+                window.setTimeout(() => self.pdfIsLoading = false, 1000);
 
                 // Disconnect the observer so the user cant trigger this callback afterwards
                 elemObserver.disconnect();

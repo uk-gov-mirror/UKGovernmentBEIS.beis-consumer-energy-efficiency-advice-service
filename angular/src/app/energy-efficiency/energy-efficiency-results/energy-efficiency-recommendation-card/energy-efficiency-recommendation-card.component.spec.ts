@@ -11,9 +11,9 @@ import {EnergyEfficiencyRecommendationTag} from '../recommendation-tags/energy-e
 import {GrantEligibility} from '../../../grants/grant-eligibility-service/grant-eligibility';
 import {BreakEvenComponent} from '../break-even/break-even.component';
 import {NationalGrantForMeasure} from '../../../grants/model/national-grant-for-measure';
-import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
+import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
-import {ResponseData} from '../../../shared/response-data/response-data';
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -64,6 +64,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             ],
             providers: [
                 {provide: RecommendationsService, use: {}},
+                AbTestingService,
                 GoogleAnalyticsService,
             ]
         })

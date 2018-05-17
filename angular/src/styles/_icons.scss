@@ -50,6 +50,10 @@
   content: url('assets/images/icons/solar.svg');
 }
 
+.icon-simple-savings::before {
+  content: url('assets/images/icons/simple-savings.svg');
+}
+
 .icon-video-play::before {
   content: url('assets/images/page-type/video-play.svg');
 }
@@ -61,7 +65,6 @@
 .icon-caret-down::before {
   content: url('assets/images/controls/caret-down.svg');
 }
-
 .icon-chevron-left {
   &::before {
     content: url('assets/images/controls/chevron-left.svg');

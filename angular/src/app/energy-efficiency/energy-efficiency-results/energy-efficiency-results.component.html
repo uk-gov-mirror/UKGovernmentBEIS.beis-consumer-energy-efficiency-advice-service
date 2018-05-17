@@ -21,6 +21,9 @@
     </div>
     <div class="page-row recommendations">
         <div class="page-row-content">
+            <div *ngIf="showOldVersion" class="recommendations-heading">
+                Choose from the following recommendations
+            </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getDisplayedRecommendations()"

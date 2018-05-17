@@ -27,6 +27,7 @@
 - [Regular tasks](#regular-tasks)
   * [Update Energy Company Obligation (ECO) Suppliers](#update-energy-company-obligation-eco-suppliers)
   * [Regular backups](#regular-backups)
+  * [Rotate Admin Site passwords](#rotate-admin-site-passwords)
 
 <!-- tocstop -->
 
@@ -279,3 +280,16 @@ logo folder with the name `{{supplier slug}}.jpeg`.
 ### Regular backups
 
 See "Backup and recovery", above
+
+### Rotate Admin Site passwords
+
+The Admin Site uses a password (shared secret) to authenticate both Admin Users and the
+User Site's access to the Wordpress API.
+
+You can change these passwords by re-defining the user-defined "service" with name "dceas-admin-logins".
+(See the "Deploy from Scratch.md" docs.)
+
+The user site will look for a user named "user-site" in that service; re-stage the user site if you
+change its password.
+
+For best security, you should change these passwords periodically.

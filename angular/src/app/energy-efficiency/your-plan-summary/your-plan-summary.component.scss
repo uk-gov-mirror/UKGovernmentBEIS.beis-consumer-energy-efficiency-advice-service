@@ -61,6 +61,10 @@
   @include desktop() {
     .loading-spinner-container, app-data-card {
       flex: 0 0 $data-card-width;
+
+      &:first-child {
+        flex: 0 0 0.75 * $data-card-width;
+      }
     }
   }
 }
