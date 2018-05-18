@@ -5,7 +5,10 @@
                 <div class="header">Download your plan</div>
                 <div class="description">Save your plan to your device so that you can return to it later</div>
             </div>
-            <div class="download-pdf" (click)="onPdfClicked()">
+            <div class="loading-spinner-container" *ngIf="pdfIsLoading">
+                <div class="loading-spinner-small"></div>
+            </div>
+            <div tabindex="0" class="download-pdf" (click)="onPdfClicked()" *ngIf="!pdfIsLoading">
                 <div class="download-pdf-text">PDF</div>
                 <div class="download-pdf-icon" [inlineSVG]="'controls/apply-arrow.svg'"></div>
             </div>

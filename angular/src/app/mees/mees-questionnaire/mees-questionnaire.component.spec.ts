@@ -4,6 +4,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {MeesQuestionnaireComponent} from './mees-questionnaire.component';
+import {ResponseData} from '../../shared/response-data/response-data';
 
 describe('MeesQuestionnaireComponent', () => {
     let component: MeesQuestionnaireComponent;
@@ -16,6 +17,9 @@ describe('MeesQuestionnaireComponent', () => {
             declarations: [
                 MeesQuestionnaireComponent,
                 MockQuestionnaireComponent
+            ],
+            providers: [
+                ResponseData,
             ],
             imports: [RouterTestingModule.withRoutes([])]
         })

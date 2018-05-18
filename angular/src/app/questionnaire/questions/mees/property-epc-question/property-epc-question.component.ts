@@ -13,7 +13,6 @@ class PropertyEpcOption {
 @Component({
     selector: 'app-property-epc-question',
     templateUrl: './property-epc-question.component.html',
-    styleUrls: ['./property-epc-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class PropertyEpcQuestionComponent extends QuestionBaseComponent {

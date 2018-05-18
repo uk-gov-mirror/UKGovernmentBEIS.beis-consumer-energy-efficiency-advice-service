@@ -20,7 +20,8 @@ describe('MeasureCardComponent', () => {
             advantages: [],
             statistic: 'Test Measure Statistic',
             tags: [],
-            steps: []
+            steps: [],
+            installer_code: '100',
         }
     };
 

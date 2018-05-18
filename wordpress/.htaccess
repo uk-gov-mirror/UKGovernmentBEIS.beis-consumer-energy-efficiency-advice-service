@@ -8,3 +8,12 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress
+
+# Require a password for all access to the admin site, as it is not public
+# and to reduce our attack surface
+AuthType Basic
+AuthName "Please provide your password for EHC DCEAS"
+AuthBasicProvider file
+# (.ht prefix prevents this from being downloaded)
+AuthUserFile /home/vcap/app/htdocs/.ht-site-passwd
+Require valid-user

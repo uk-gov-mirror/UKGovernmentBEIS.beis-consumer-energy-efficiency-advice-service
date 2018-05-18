@@ -11,6 +11,7 @@ export interface MeasureContent  {
         advantages: {advantage: string}[];
         statistic: string;
         tags: string[],
-        steps: RecommendationStepResponse[]
+        steps: RecommendationStepResponse[],
+        installer_code: string;
     };
 }
