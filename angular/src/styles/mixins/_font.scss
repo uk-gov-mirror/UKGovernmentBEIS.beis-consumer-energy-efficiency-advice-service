@@ -72,7 +72,7 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
 }
 
 @mixin measures-page-heading-font {
-  @include has-font-sizes-at-breakpoints(60px, 62px, 36px, 40px, 32px, 36px);
+  @include has-font-sizes-at-breakpoints(48px, 40px, 36px, 40px, 32px, 36px);
   font-weight: bold;
 }
 

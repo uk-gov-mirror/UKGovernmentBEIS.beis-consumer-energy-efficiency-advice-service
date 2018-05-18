@@ -17,8 +17,8 @@
     }
 
     .summary {
-      @include page-summary-font;
       color: $dark-blue;
+      font-family: $font-family-light;
     }
   }
 
@@ -170,7 +170,7 @@
   }
   @include tablet() {
     .heading-section {
-      padding: 40px 0;
+      padding: 41px 0;
 
       .title {
         padding-bottom: 25px;
@@ -214,7 +214,7 @@
   }
   @include desktop() {
     .heading-section {
-      padding: 70px 0;
+      padding: 55px 0;
 
       .title {
         padding-bottom: 20px;
