@@ -114,6 +114,15 @@ app-sticky-row-wrapper {
 
       .left-arrow {
         padding-right: 10px;
+
+        &:not([disabled]) {
+          background-color: $light-grey;
+          color: white;
+
+          .left-chevron-icon ::ng-deep svg {
+            fill: white;
+          }
+        }
       }
 
       .right-arrow {
