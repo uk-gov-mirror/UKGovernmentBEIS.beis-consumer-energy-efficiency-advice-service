@@ -4,7 +4,8 @@
  */
 class Config {
     apiRoot: string;
-    environment: string;
+    springProfiles: string;
+    spaceName: string;
     phoneNumber: string;
     buildTimestamp: string;
     buildGitCommit: string;

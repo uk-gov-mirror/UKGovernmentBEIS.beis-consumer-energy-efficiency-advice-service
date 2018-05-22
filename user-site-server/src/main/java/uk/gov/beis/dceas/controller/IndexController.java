@@ -41,6 +41,8 @@ public class IndexController {
     private String gaId;
     @Value("${vcap.services.dceas-user-site.config.credentials.phone-number}")
     private String phoneNumber;
+    @Value("${vcap.application.space_name}")
+    private String spaceName;
 
     private final Environment environment;
     private final String angularHeadContent;
@@ -128,8 +130,8 @@ public class IndexController {
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("gaId", gaId);
         model.addAttribute("phoneNumber", phoneNumber);
-        model.addAttribute("environment", environment.getActiveProfiles());
-        model.addAttribute("hasAdminIpAddress", ipValidationService.requestIsInIpWhitelist(request));
+        model.addAttribute("springProfiles", environment.getActiveProfiles());
+        model.addAttribute("spaceName", spaceName);
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
 
