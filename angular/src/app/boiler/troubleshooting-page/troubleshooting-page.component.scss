@@ -47,6 +47,8 @@
 }
 
 .repairer {
+  background-color: $lighter-grey;
+
   .page-row-content {
     box-sizing: border-box;
     text-align: center;
@@ -54,8 +56,63 @@
     .heading {
       margin-bottom: 20px;
     }
+
+    .step-link {
+      width: 100%;
+      color: white;
+      display: flex;
+      cursor: pointer;
+      text-decoration: none;
+      min-height: 60px;
+      margin-top: 30px;
+
+      .step-link-text {
+        background-color: $light-blue;
+        color: $dark-blue;
+        @include more-info-button-font;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+      }
+
+      .step-link-icon-container {
+        background-color: $dark-blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+
+        .step-link-icon {
+          width: 15px;
+          height: 23px;
+          stroke: $light-blue;
+          fill: $light-blue;
+          display: block;
+          line-height: 0;
+        }
+      }
+
+      &:hover {
+        .step-link-text {
+          background-color: $dark-blue;
+          color: $light-blue;
+        }
+
+        .step-link-icon-container {
+          background-color: $light-blue;
+
+          .step-link-icon {
+            stroke: $dark-blue;
+            fill: $dark-blue;
+          }
+        }
+      }
+    }
   }
 }
+
 // Breakpoint specific styling
 
 @include mobile() {
