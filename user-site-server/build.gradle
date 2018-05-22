@@ -140,6 +140,13 @@ checkstyle {
     configFile "$projectDir/config/checkstyle/checkstyle.xml" as File
 }
 
+test {
+    // http://mrhaki.blogspot.co.uk/2013/05/gradle-goodness-show-more-information.html
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
 // Details of the local H2 DB used to generate jOOQ classes.
 // This is different to the DB used to run the app locally and run tests.
 def jooqCodegenDbUrl = "jdbc:h2:$buildDir/db/schema-only.db;MODE=MYSQL"
