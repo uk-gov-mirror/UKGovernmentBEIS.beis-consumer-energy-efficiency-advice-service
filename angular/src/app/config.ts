@@ -5,7 +5,6 @@
 class Config {
     apiRoot: string;
     environment: string;
-    hasAdminIpAddress: boolean;
     phoneNumber: string;
     buildTimestamp: string;
     buildGitCommit: string;

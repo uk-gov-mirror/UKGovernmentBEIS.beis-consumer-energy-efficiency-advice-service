@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import uk.gov.beis.dceas.service.IpValidationService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -44,19 +43,16 @@ public class IndexController {
     private String phoneNumber;
 
     private final Environment environment;
-    private final IpValidationService ipValidationService;
     private final String angularHeadContent;
     private final String angularBodyContent;
     private final Attributes buildAttributes;
 
     @Autowired
     public IndexController(
-        Environment environment,
-        IpValidationService ipValidationService) throws IOException {
+            Environment environment) throws IOException {
 
         this.environment = environment;
         buildAttributes = getBuildAttributes(environment);
-        this.ipValidationService = ipValidationService;
 
         // We read the "dist" index.html from Angular, and inject it into our
         // index page, to use things like Angular's content hash stamping etc.
