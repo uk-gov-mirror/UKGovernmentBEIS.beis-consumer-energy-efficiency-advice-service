@@ -70,7 +70,6 @@ describe('BoilerResultsPageComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BoilerResultsPageComponent);
-        spyOn(TestBed.get(BoilerPageMeasuresService), 'fetchMeasuresForBoilerPages').and.callThrough();
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -78,10 +77,6 @@ describe('BoilerResultsPageComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('should call measures API service', () => {
-        expect(TestBed.get(BoilerPageMeasuresService).fetchMeasuresForBoilerPages).toHaveBeenCalledWith();
     });
 
     it('should call boiler types API service', () => {

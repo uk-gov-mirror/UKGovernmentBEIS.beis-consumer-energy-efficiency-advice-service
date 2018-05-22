@@ -3,7 +3,6 @@ import {Observable} from 'rxjs/Observable';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
-import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {isGasOrOil} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {WaterTankSpace} from '../../questionnaire/questions/water-tank-question/water-tank-space';
@@ -27,7 +26,6 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
     measures: EnergySavingRecommendation[];
 
     constructor(private boilerTypesService: BoilerTypesService,
-                private boilerPageMeasuresService: BoilerPageMeasuresService,
                 private userStateService: UserStateService,
                 private responseData: ResponseData) {
     }
@@ -35,15 +33,13 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
     ngOnInit() {
         Observable.forkJoin(
             this.boilerTypesService.fetchBoilerTypes(),
-            this.boilerPageMeasuresService.fetchMeasuresForBoilerPages(),
         )
             .subscribe(
-                ([boilerTypes, measures]) => {
+                ([boilerTypes]) => {
                     this.applicableBoilerTypes = sortBy(
                         boilerTypes.filter(boilerType => this.boilerIsApplicable(boilerType)),
                         boilerType => boilerType.averageInstallationCost,
                     );
-                    this.measures = measures;
                 },
                 () => this.handleError(),
                 () => this.isLoading = false,
