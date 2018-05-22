@@ -120,6 +120,10 @@
         padding: 15px;
         overflow: hidden;
         background: $lighter-grey;
+
+        a {
+          color: $dark-blue;
+        }
       }
 
       .table-cell:first-of-type {

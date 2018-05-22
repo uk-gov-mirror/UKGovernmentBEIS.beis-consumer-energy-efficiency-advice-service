@@ -46,7 +46,7 @@
                     <div class="installer table-row" *ngFor="let installer of installers">
                         <div class="participant table-cell">{{installer.participant}}</div>
                         <div class="certification-id table-cell">{{installer.certification_id}}</div>
-                        <div class="email-address table-cell">{{installer.email_address}}</div>
+                        <div class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></div>
                         <div class="phone-number table-cell">{{installer.phone_number}}</div>
                     </div>
                 </div>
