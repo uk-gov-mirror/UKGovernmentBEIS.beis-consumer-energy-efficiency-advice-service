@@ -3,12 +3,12 @@ package uk.gov.beis.dceas.controller;
 import org.jooq.DSLContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
@@ -17,6 +17,7 @@ import uk.gov.beis.dceas.service.IpValidationService;
 import uk.gov.beis.dceas.spring.ForbiddenException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
@@ -42,10 +43,13 @@ public class UserStateController {
         this.ipValidationService = ipValidationService;
     }
 
-
     @GetMapping("/{reference}")
-    public UserState getByReference(@PathVariable String reference, HttpServletRequest request) throws UnsupportedEncodingException {
-        if (!ipValidationService.requestIsInIpWhitelist(request)) {
+    public UserState getByReference(
+            @PathVariable String reference,
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws UnsupportedEncodingException {
+        if (!ipValidationService.requestIsInIpWhitelist(request, response)) {
             throw new ForbiddenException();
         }
         return notFoundIfNull(
