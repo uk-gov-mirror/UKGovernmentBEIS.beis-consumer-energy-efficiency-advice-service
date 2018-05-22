@@ -1,4 +1,3 @@
-
 export interface InstallerContent  {
     participant: string;
     certification_id: string;

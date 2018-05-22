@@ -2,14 +2,14 @@
     <div class="page-heading page-row">
         <div class="page-row-content">
             <h1 class="heading-text">Find an installer</h1>
-            <div class="body-text">Troubleshooting your boiler or finding the best replacement</div>
+            <div class="body-text">Find a trustworthy installer in your area</div>
         </div>
     </div>
     <div class="selectors page-row">
         <div class="selector-container page-row-content">
             <div class="field-container postcode">
                 <div class="field-heading">Postcode</div>
-                <input #postcodeInput [(ngModel)]="postcode" (blur)="updatePostcode(postcodeInput.value)"
+                <input [(ngModel)]="postcode" (blur)="postcode = $event.target.value"
                        type="text" name="postcode" class="postcode-input">
             </div>
             <div class="field-container measure-name">
@@ -20,7 +20,7 @@
                     </option>
                 </select>
             </div>
-            <div class="field-container">
+            <div class="field-container search">
                 <div class="search-button" (click)="submit()">Search</div>
             </div>
         </div>
@@ -36,20 +36,20 @@
             <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
 
                 <div class="header">Results</div>
-                <table>
-                    <tr>
-                        <th>Company</th>
-                        <th>Certification ID</th>
-                        <th>Email Address</th>
-                        <th>Phone Number</th>
-                    </tr>
-                    <tr class="installer" *ngFor="let installer of installers">
-                        <td class="participant">{{installer.participant}}</td>
-                        <td class="certification-id">{{installer.certification_id}}</td>
-                        <td class="email-address">{{installer.email_address}}</td>
-                        <td class="phone-number">{{installer.phone_number}}</td>
-                    </tr>
-                </table>
+                <div class="table">
+                    <div class="table-row">
+                        <div class="participant table-heading">Company</div>
+                        <div class="certification-id table-heading">Certification ID</div>
+                        <div class="email-address table-heading">Email Address</div>
+                        <div class="phone-number table-heading">Phone Number</div>
+                    </div>
+                    <div class="installer table-row" *ngFor="let installer of installers">
+                        <div class="participant table-cell">{{installer.participant}}</div>
+                        <div class="certification-id table-cell">{{installer.certification_id}}</div>
+                        <div class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></div>
+                        <div class="phone-number table-cell">{{installer.phone_number}}</div>
+                    </div>
+                </div>
             </div>
 
             <div #noResults class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">

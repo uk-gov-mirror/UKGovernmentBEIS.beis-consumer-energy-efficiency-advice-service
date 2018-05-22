@@ -31,6 +31,7 @@ $mobile-browse-cards-margin: 20px;
   .page-row-content {
     .heading {
       @include page-subheading-font;
+      padding-top: 60px;
     }
   }
 
@@ -55,7 +56,8 @@ $mobile-browse-cards-margin: 20px;
       }
 
       .postcode-reason-container {
-        @include page-body-font;
+        @include has-font-sizes-at-breakpoints(18px, 22px, 18px, 22px, 18px, 22px);
+        font-family: $font-family-light;
         color: $dark-grey;
       }
     }
@@ -63,11 +65,14 @@ $mobile-browse-cards-margin: 20px;
 
   .measures {
 
+    .body-text {
+      @include page-body-font();
+    }
+
     .measure-cards {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-around;
 
       app-measure-card {
         min-height: 500px;
@@ -198,23 +203,21 @@ $mobile-browse-cards-margin: 20px;
 
     .postcode {
       .page-row-content {
+        padding: 45px 0 80px;
         max-width: 800px;
         text-align: center;
       }
 
       .postcode-reason-container {
         padding-right: 40px;
-        margin-top: 48px;
-      }
-
-      .postcode-input {
+        margin-top: 24px;
       }
     }
 
     .measures {
       .measure-cards{
         app-measure-card {
-          width: 30vw;
+          width: 30%;
         }
       }
       .page-row-content {

@@ -114,6 +114,15 @@ app-sticky-row-wrapper {
 
       .left-arrow {
         padding-right: 10px;
+
+        &:not([disabled]) {
+          background-color: $light-grey;
+          color: white;
+
+          .left-chevron-icon ::ng-deep svg {
+            fill: white;
+          }
+        }
       }
 
       .right-arrow {
@@ -141,11 +150,12 @@ app-sticky-row-wrapper {
     .question-type-icon, .question-type-icon-baseline {
       display: none;
     }
+    .question-heading {
+      width: 100%;
+      padding: 40px 40px 10px 40px;
+    }
 
     .question-heading-container {
-      .question-heading {
-        width: 100%;
-      }
 
       .right-arrow, .left-arrow {
         display: none;
@@ -155,6 +165,8 @@ app-sticky-row-wrapper {
     .question {
       width: 100vw;
       margin-top: 30px;
+      align-items: center;
+      flex-grow: 1;
     }
 
     .help-text {
@@ -174,10 +186,12 @@ app-sticky-row-wrapper {
       display: none;
     }
 
+    .question-heading {
+      width: 100%;
+      padding: 80px 40px 10px 40px;
+    }
+
     .question-heading-container {
-      .question-heading {
-        width: 100%;
-      }
 
       .right-arrow, .left-arrow {
         display: none;
@@ -187,6 +201,8 @@ app-sticky-row-wrapper {
     .question {
       width: 100vw;
       margin-top: 52px;
+      align-items: center;
+      flex-grow: 1;
     }
 
     .help-text {
@@ -201,7 +217,7 @@ app-sticky-row-wrapper {
   @include desktop() {
     .question-heading {
       width: 100%;
-      padding: $desktop-side-margin;
+      padding: 120px 40px 10px 40px;
       box-sizing: border-box;
       margin: 0;
     }
@@ -209,6 +225,8 @@ app-sticky-row-wrapper {
     .question {
       width: 100vw;
       margin-top: 30px;
+      align-items: center;
+      flex-grow: 1;
     }
 
     .help-text {

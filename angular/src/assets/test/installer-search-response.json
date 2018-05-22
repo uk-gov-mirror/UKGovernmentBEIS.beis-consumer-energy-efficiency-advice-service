@@ -1,0 +1,56 @@
+[
+  {
+    "participant": "Thrift Energy Ltd",
+    "certification_id": "NICI01043",
+    "phone_number": "08006 893415",
+    "email_address": "info@thriftenergy.co.uk"
+  },
+  {
+    "participant": "DMS Installations Ltd",
+    "certification_id": "OCEI01013",
+    "phone_number": "0141 638 1058",
+    "email_address": "installations@dmsenergysolutions.co.uk"
+  },
+  {
+    "participant": "Infinity Property Management Ltd",
+    "certification_id": "STRI10131",
+    "phone_number": "020 36384030",
+    "email_address": "info@infinitypm.co.uk"
+  },
+  {
+    "participant": "Golden Globe Merchants Ltd",
+    "certification_id": "STRI10251",
+    "phone_number": "07837 614517",
+    "email_address": "goldenglobeltd@hotmail.co.uk"
+  },
+  {
+    "participant": "Borthwick Heating",
+    "certification_id": "STRI10330",
+    "phone_number": "0800 9078284",
+    "email_address": "scott@borthwickheating.co.uk"
+  },
+  {
+    "participant": "Ellipse Energy Limited",
+    "certification_id": "STRI10366",
+    "phone_number": "0116 402 7958",
+    "email_address": "info@ellipseenergy.co.uk"
+  },
+  {
+    "participant": "Enhanced Carbon Savings Ltd",
+    "certification_id": "STRI10424",
+    "phone_number": "01752 564968",
+    "email_address": "info@enhancedcs.co.uk"
+  },
+  {
+    "participant": "Warmseal Windows (Newcastle) Ltd",
+    "certification_id": "BSI 94972",
+    "phone_number": "0191 264 8383",
+    "email_address": "greendeal@warmseal.co.uk"
+  },
+  {
+    "participant": "Anglian Building Products",
+    "certification_id": "BBAI9082",
+    "phone_number": "01603 428451",
+    "email_address": "Simon.Hardy@Angliangroup.com"
+  }
+]
