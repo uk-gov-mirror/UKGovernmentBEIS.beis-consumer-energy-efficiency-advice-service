@@ -3,8 +3,7 @@ import {CommonModule} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 import {RoutingModule} from '../app-routing.module';
 import {AdminPageComponent} from "./admin-page.component";
-import {FormsModule}   from '@angular/forms';
-import {AdminPageGuard} from "./admin-page.guard";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -20,7 +19,6 @@ import {AdminPageGuard} from "./admin-page.guard";
         FormsModule
     ],
     providers: [
-        AdminPageGuard
     ]
 })
 export class AdminPageModule {

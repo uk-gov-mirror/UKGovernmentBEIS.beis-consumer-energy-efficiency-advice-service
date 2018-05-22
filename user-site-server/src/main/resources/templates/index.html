@@ -10,8 +10,8 @@
         // if you change these or add more properties, please make the same change to that file.
         window.CONFIG = {
             apiRoot: [[${apiRoot}]],
-            environment: [[${environment}]],
-            hasAdminIpAddress: [[${hasAdminIpAddress}]],
+            springProfiles: [[${springProfiles}]],
+            spaceName: [[${spaceName}]],
             phoneNumber: [[${phoneNumber}]],
             buildTimestamp: [[${buildTimestamp}]],
             buildGitCommit: [[${buildGitCommit}]],
@@ -43,7 +43,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Advice on energy saving from the UK government for homeowners, renters and landlords." />
     <meta property="og:site_name" content="Energy Saving Advice Service" />
-    <!-- Change the tag below to link to the image on the real website -->
+    <!-- TODO:BEISDEAS-338 Change the tag below to link to the image on the real website -->
     <meta property="og:image" th:attr="content=@{${host}+'/dist/assets/images/logos/ehc-small.png'}" />
     <meta property="og:image:secure_url" th:attr="content=@{${host}+'/dist/assets/images/logos/ehc-small.png'}" />
 </head>
