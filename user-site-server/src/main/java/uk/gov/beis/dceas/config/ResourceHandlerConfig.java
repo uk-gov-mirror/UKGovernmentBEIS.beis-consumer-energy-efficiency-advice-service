@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
+import uk.gov.beis.dceas.spring.CacheControlInterceptor;
 import uk.gov.beis.dceas.spring.DevSimulatedConnectionDelayInterceptor;
 
 import java.time.Duration;
@@ -52,6 +53,7 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
         } else {
             config.addResourceLocations("classpath:/public/");
             // Browser cache:
+            // (caching for dynamic endpoints is set in CacheControlInterceptor)
             config.setCachePeriod((int) Duration.of(365, DAYS).getSeconds());
         }
 
@@ -66,6 +68,8 @@ public class ResourceHandlerConfig extends WebMvcConfigurerAdapter {
         if (environment.acceptsProfiles("dev")) {
             // If in a dev environment, add an interceptor which adds a 500ms delay to all requests
             registry.addInterceptor(new DevSimulatedConnectionDelayInterceptor());
+        } else {
+            registry.addInterceptor(new CacheControlInterceptor());
         }
     }
 }

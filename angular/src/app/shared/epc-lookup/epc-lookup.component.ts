@@ -64,7 +64,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
                 postcodeDetails => {
                     this.handlePostcodeDetails(postcodeDetails);
                     this.ref.detectChanges();
-                    if (this.keyboardUser) {
+                    if (this.keyboardUser && postcodeDetails.allEpcsForPostcode.length > 0) {
                         (<HTMLElement>document.querySelector('.address-dropdown')).focus();
                         this.keyboardUser = false;
                     }

@@ -21,9 +21,9 @@ public class InstallerSearchController {
 
 
     public InstallerSearchController(
-            @Value("${vcap.services.greenDealOrb.credentials.url}")
+            @Value("${vcap.services.greenDealOrb.installersApi.credentials.url}")
                     String apiRoot,
-            @Value("${vcap.services.greenDealOrb.credentials.apiKey}")
+            @Value("${vcap.services.greenDealOrb.installersApi.credentials.apiKey}")
                     String apiKey,
             RestTemplateBuilder restTemplateBuilder) {
 

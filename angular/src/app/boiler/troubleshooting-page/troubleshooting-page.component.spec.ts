@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
-
+import {InlineSVGModule} from 'ng-inline-svg';
 import {TroubleshootingPageComponent} from './troubleshooting-page.component';
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
@@ -27,6 +27,7 @@ describe('TroubleshootingPageComponent', () => {
             imports: [
                 FormsModule,
                 RouterTestingModule,
+                InlineSVGModule,
             ],
             providers: [
                 {provide: ResponseData, useClass: MockResponseData},

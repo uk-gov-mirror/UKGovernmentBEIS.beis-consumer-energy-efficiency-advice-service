@@ -13,17 +13,23 @@
                 <div class="summary">{{tip.summary}}</div>
                 <div class="details">{{tip.details}}</div>
             </div>
+            <div class="image-container">
+                <div class="image" [inlineSVG]="tip.imagePath" alt="Boiler troubleshooting image"></div>
+            </div>
         </div>
     </div>
 </div>
 <div class="repairer page-row">
     <div class=" page-row-content">
-        <div class="heading">Find a trustworthy repairer</div>
-        <div class="body-text">Telling us your postcode and address lets us find information about energy
-            efficiency at your property from previous surveys. It also means we can show you relevant information,
-            such as grants that might be available in your area.
+        <div class="heading">Find someone to fix it</div>
+        <div class="body-text">If you need a professional to take a look and get your heating working again,
+            you should always use a certified installer.
         </div>
-        <app-postcode-lookup class="postcode-epc input-grey"
-                             (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+        <a class="step-link" target="_blank" href='https://www.gassaferegister.co.uk/find-an-engineer/#findbylocation'>
+            <div class="step-link-text">Gas safe register</div>
+            <div class="step-link-icon-container">
+                <div class="step-link-icon" [inlineSVG]="'controls/new-window.svg'"></div>
+            </div>
+        </a>
     </div>
 </div>

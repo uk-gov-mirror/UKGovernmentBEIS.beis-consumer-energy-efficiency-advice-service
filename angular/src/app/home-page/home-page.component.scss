@@ -205,6 +205,9 @@ $arrow-height: 48px;
       }
     }
   }
+  app-latest-news-section {
+    background-color: $lighter-grey;
+  }
 }
 
 // Breakpoint specific styling
@@ -303,6 +306,23 @@ $arrow-height: 48px;
         .boiler-image:after {
           @include is-boiler-link-image(108px, 0, 140px, 75px);
         }
+      }
+    }
+
+    @media (min-width: (600px)) and (max-width: 700px) {
+      @include has-homepage-heading-section(
+              $padding: 53px 0 20px 0,
+              $heading-width: 100%,
+              $heading-bottom-margin: 64px,
+              $heading-min-height: 212px,
+              $grid-margin: 20px,
+              $number-of-links-in-row: 2,
+                // Should be 20px all round, but at ~320px this does not fit
+              $link-padding: 20px,
+              $link-text-width: 100%
+      );
+      span {
+        text-align: center;
       }
     }
   }

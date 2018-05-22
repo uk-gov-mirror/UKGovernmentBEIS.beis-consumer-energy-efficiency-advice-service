@@ -129,14 +129,13 @@
 
     .address-section {
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
       flex-wrap: wrap;
 
       .address-dropdown-wrapper {
-        border-right: 1px solid $light-medium-grey;
-        padding-right: 20px;
-        margin-right: 20px;
-        flex: 1 1 auto;
+        border-bottom: 1px solid $light-medium-grey;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
       }
     }
   }

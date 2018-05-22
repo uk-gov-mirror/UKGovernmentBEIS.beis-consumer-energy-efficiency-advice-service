@@ -23,12 +23,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 225px;
 
     .selector-container {
       display: flex;
 
       .field-container {
         flex-direction: column;
+        display: flex;
 
         .field-heading {
           color: $dark-blue;
@@ -39,10 +41,6 @@
       }
 
       .postcode {
-        flex: 1 1 15%;
-        //margin-right: 20px;
-        box-sizing: border-box;
-
         .postcode-input {
           background-color: white;
           height: 72px;
@@ -56,49 +54,39 @@
       }
 
       .measure-name {
-        flex: 1 1 40%;
-        margin: 0 30px;
-        box-sizing: border-box;
-
         .measure-name-input {
           background-color: white;
           height: 72px;
-          width: 100%;
           padding: 0 24px;
           font-size: 16px;
           line-height: 29px;
           font-weight: bold;
-
-          box-sizing: border-box;
           text-align: center;
           border: none;
 
           .measure {
             font-size: 16px;
-            width: 5100%;
+            width: 100%;
           }
         }
       }
 
-      .search-button {
-        background-color: $pink;
-        height: 72px;
-        width: 180px;
-        flex-grow: 0;
-        flex-shrink: 0;
-
-        padding: 0 14px;
-        margin: 12px 0 0 auto;
-        font-size: 18px;
-        color: white;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        text-align: center;
-        box-sizing: border-box;
+      .search {
+        .search-button {
+          background-color: $pink;
+          height: 72px;
+          padding: 0 14px;
+          font-size: 18px;
+          color: white;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          text-align: center;
+          box-sizing: border-box;
+        }
       }
     }
   }
@@ -107,7 +95,7 @@
 
     .before-submit {
       color: $dark-blue;
-      margin-top: 50px;
+      margin: 50px 0;
     }
 
     .results {
@@ -118,32 +106,35 @@
         padding: 50px 0 30px;
       }
 
-      table {
-        width: 100%;
+      .table {
+        display: flex;
+        flex-direction: column;
         border-collapse: collapse;
         margin-bottom: 50px;
+      }
 
-        th {
-          background-color: $light-blue;
+      .table-cell {
+        box-sizing: border-box;
+        flex-grow: 1;
+        width: 100%;
+        padding: 15px;
+        overflow: hidden;
+        background: $lighter-grey;
+
+        a {
           color: $dark-blue;
-          height: 45px;
-          border-bottom: 10px solid white;
-          text-align: left;
-          padding: 0 15px;
-
         }
+      }
 
-        td {
-          padding: 15px;
-          background-color: $lighter-grey;
-          border: 3px solid white;
-        }
+      .table-cell:first-of-type {
+        color: $dark-blue;
+        font-weight: bold;
       }
     }
 
     .no-results {
       color: $dark-blue;
-      margin-top: 50px;
+      margin: 50px 0;
     }
   }
 }
@@ -164,6 +155,63 @@
     }
 
     .selectors {
+      .selector-container {
+        margin: 0 20px;
+        flex-direction: column;
+        width: 90%;
+
+        .field-container {
+          .field-heading {
+            padding-top: 15px;
+          }
+        }
+
+        .postcode {
+          flex: 1 1 100%;
+          display: flex;
+
+          .postcode-input {
+            flex-basis: 100%;
+          }
+        }
+
+        .measure-name {
+          flex: 1 1 100%;
+          display: flex;
+
+          .measure-name-input {
+            flex-basis: 100%;
+          }
+        }
+
+        .search {
+          .search-button {
+            flex: 1 1 100%;
+            margin: 30px 0;
+          }
+        }
+      }
+    }
+
+    .results {
+      .table {
+        .table-heading {
+          display: none;
+        }
+
+        .table-heading {
+          font-size: 18px;
+        }
+
+        .table-cell {
+          font-size: 13px;
+          font-family: $font-family-light;
+        }
+
+        .table-cell:last-of-type {
+          margin-bottom: 15px;
+        }
+      }
     }
   }
 }
@@ -183,7 +231,48 @@
     }
 
     .selectors {
+      .selector-container {
+        align-items: flex-end;
+        margin: 0 34px;
 
+        .postcode {
+          flex: 1 1 15%;
+
+          .postcode-input {
+            width: 150px;
+          }
+        }
+
+        .measure-name {
+          flex: 1 1 40%;
+          margin: 0 30px;
+
+          .measure-name-input {
+            width: 100%;
+          }
+        }
+
+        .search {
+          .search-button {
+            width: 130px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            margin: 12px 0 0 auto;
+          }
+        }
+      }
+    }
+
+    .results {
+      .table {
+        .table-heading {
+          display: none;
+        }
+
+        .table-cell:last-of-type {
+          margin-bottom: 15px;
+        }
+      }
     }
   }
 }
@@ -203,11 +292,76 @@
     }
 
     .selectors {
-      min-height: 225px;
-
       .selector-container {
+        margin: 0 34px;
         justify-content: space-between;
         align-items: flex-end;
+
+        .postcode {
+          flex: 1 1 15%;
+        }
+
+        .measure-name {
+          flex: 1 1 40%;
+          margin: 0 30px;
+
+          .measure-name-input {
+            box-sizing: border-box;
+            width: 100%;
+          }
+        }
+
+        .search {
+          .search-button {
+            width: 180px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            margin: 12px 0 0 auto;
+          }
+        }
+      }
+    }
+
+    .results {
+      .table-row {
+        display: flex;
+      }
+
+      .table-heading {
+        background-color: $light-blue;
+        color: $dark-blue;
+        border-bottom: 10px solid white;
+        text-align: left;
+        padding: 15px;
+        box-sizing: border-box;
+        flex-grow: 1;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .table-cell {
+        border-top: solid 3px white;
+        border-bottom: solid 3px white;
+      }
+
+      .table-cell:not(:first-of-type) {
+        border-left: 3px solid white;
+      }
+
+      .table-cell:not(:last-of-type) {
+        border-right: 3px solid white;
+      }
+
+      .table > .table-cell {
+        width: 25%;
+      }
+
+      .certification-id {
+        max-width: 160px;
+      }
+
+      .phone-number {
+        max-width: 220px;
       }
     }
   }

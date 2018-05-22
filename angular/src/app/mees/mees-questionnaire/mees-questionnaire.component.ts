@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {clearMeesResponseData, ResponseData} from '../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-mees-page',
@@ -9,9 +10,14 @@ import {Router} from "@angular/router";
 /**
  * The entry point for the "Minimum Energy Efficiency Standards" questionnaire ("MEES"), aimed at landlords.
  */
-export class MeesQuestionnaireComponent {
+export class MeesQuestionnaireComponent implements OnInit {
 
-    constructor(private router: Router) {
+    constructor(private responseData: ResponseData,
+        private router: Router) {
+    }
+
+    ngOnInit() {
+        clearMeesResponseData(this.responseData);
     }
 
     onQuestionnaireComplete() {

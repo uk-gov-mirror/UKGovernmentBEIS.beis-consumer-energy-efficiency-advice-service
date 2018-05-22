@@ -20,7 +20,7 @@ $grant-card-margin: 24px;
     background-color: $light-blue;
 
     .page-row-content {
-      padding: 60px 0;
+      padding: 73px 0;
 
       .heading-text {
         @include page-heading-font;
@@ -358,6 +358,32 @@ $grant-card-margin: 24px;
         }
       }
     }
+    @media (min-width: (600px)) and (max-width: 700px) {
+      .local-grants {
+        height: auto;
+        .page-row-content {
+          .postcode-input {
+            height: auto;
+            flex-direction: column;
+            .enter-postcode-text {
+              width: auto;
+            }
+            .enter-postcode-form {
+              height: auto;
+            }
+          }
+
+          .grants-container {
+            .grant-cards {
+              & > :not(:first-child) {
+                margin-top: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
     .national-grants {
       .grants-row {
         flex-direction: column;

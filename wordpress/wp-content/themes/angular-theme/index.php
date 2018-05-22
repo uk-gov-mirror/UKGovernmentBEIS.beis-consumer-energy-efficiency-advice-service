@@ -1,9 +1,5 @@
 <?php
 
-// TODO:BEIS-256 add required auth to visit this server, HTTP BASIC over HTTPS
-// should probably suffice. Enforce HTTPS access.
-// Share that secret with the user-site.
-
 get_header();
 
 // Previously, the user site was hosted directly by Wordpress, and we emitted

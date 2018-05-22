@@ -1,6 +1,6 @@
-<div class="question-component property-epc-question">
-    <div class="answer-grid multiple-choice-options property-epc-options">
-        <button class="multiple-choice-option property-epc-option"
+<div class="question-component">
+    <div class="answer-grid multiple-choice-options">
+        <button class="multiple-choice-option"
                 *ngFor="let option of propertyEpcOptions"
                 [class.selected]="response === option.value"
                 [ngClass]="option.className"

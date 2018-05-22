@@ -13,16 +13,19 @@ export class InstallerSearchService {
     }
 
     fetchInstallerDetails(postcode: string, installerCode: string): Observable<InstallerContent[]> {
-        this.installers = this.http.get<InstallerContent[]>
-            (this.getFullApiEndpoint("/" + postcode.toUpperCase() + "/" + installerCode))
-            .shareReplay(1);
-        return this.installers;
-    }
-
-    private getFullApiEndpoint(path?: string): string {
-        if (path) {
-            return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT + path);
+        if (postcode && postcode !== "") {
+            const url = this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT +
+                "/" + encodeURIComponent(postcode.toUpperCase()) + "/" + encodeURIComponent(installerCode));
+            this.installers = this.http.get<any>(url)
+                .map(body => {
+                    if (body && body.error) {
+                        throw new Error(body.error);
+                    } else {
+                        return body as InstallerContent[];
+                    }
+                })
+                .shareReplay(1);
+            return this.installers;
         }
-        return this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT);
     }
 }
