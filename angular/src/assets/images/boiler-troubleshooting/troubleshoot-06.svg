@@ -32,7 +32,7 @@
     <rect class="cls-4" x="554.19" y="58.14" width="45.55" height="15.24"
           transform="translate(1153.93 131.53) rotate(-180)"/>
     <rect class="cls-7" x="549.43" y="50.52" width="9.15" height="30.49" rx="4.57" ry="4.57"
-          transform="translate(1108.01 131.53) rotate(180)"/>
+          transform="translate(1108.01 131.53) rotate(-180)"/>
     <rect class="cls-7" x="528.09" y="57.63" width="3.05" height="10.16" rx="1.52" ry="1.52"
           transform="translate(1059.23 125.43) rotate(180)"/>
     <rect class="cls-7" x="528.09" y="63.73" width="3.05" height="10.16" rx="1.52" ry="1.52"
@@ -47,7 +47,7 @@
     <rect class="cls-4" x="518.53" y="168.52" width="45.55" height="15.24"
           transform="translate(1082.61 352.28) rotate(-180)"/>
     <rect class="cls-7" x="513.77" y="160.9" width="9.15" height="30.49" rx="4.57" ry="4.57"
-          transform="translate(1007.14 422.71) rotate(-172)"/>
+          transform="matrix(-0.99, -0.14, 0.14, -0.99, 1007.14, 422.71)"/>
     <rect class="cls-7" x="492.43" y="168.01" width="3.05" height="10.16" rx="1.52" ry="1.52"
           transform="translate(987.91 346.19) rotate(180)"/>
     <rect class="cls-7" x="492.43" y="174.11" width="3.05" height="10.16" rx="1.52" ry="1.52"
