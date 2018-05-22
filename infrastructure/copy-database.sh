@@ -47,7 +47,6 @@ case $TO in
     WPHOME=https://dceas-admin-site-$TO.cloudapps.digital
   ;;
   live )
-    # TODO:BEISDEAS-296 update this when final hostname is ready
     cf target -s $TO
     MYSQL_CMD="cf conduit dceas-database -- mysql --default-character-set=utf8mb4"
     WPHOME=https://dceas-admin-site.cloudapps.digital

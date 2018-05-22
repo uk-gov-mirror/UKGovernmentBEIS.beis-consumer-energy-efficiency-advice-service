@@ -16,7 +16,10 @@ case $SPACE in
     HOSTNAME=dceas-user-site-$SPACE
   ;;
   live )
-    # TODO:BEISDEAS-296 update this when final hostname is ready
+    # This is not the hostname on which users will reach the site, but it
+    # is the correct hostname for CF config.
+    # There is a CloudFront CDN layer in front of this site which adds the
+    # public facing hostname.
     HOSTNAME=dceas-user-site
   ;;
   * )
