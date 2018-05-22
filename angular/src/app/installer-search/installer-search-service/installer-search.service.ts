@@ -13,10 +13,12 @@ export class InstallerSearchService {
     }
 
     fetchInstallerDetails(postcode: string, installerCode: string): Observable<InstallerContent[]> {
-        this.installers = this.http.get<InstallerContent[]>
-            (this.getFullApiEndpoint("/" + postcode.toUpperCase() + "/" + installerCode))
-            .shareReplay(1);
-        return this.installers;
+        if (postcode && postcode !== "") {
+            this.installers = this.http.get<InstallerContent[]>
+            (this.getFullApiEndpoint("/" + encodeURIComponent(postcode.toUpperCase()) + "/" + encodeURIComponent(installerCode)))
+                .shareReplay(1);
+            return this.installers;
+        }
     }
 
     private getFullApiEndpoint(path?: string): string {
