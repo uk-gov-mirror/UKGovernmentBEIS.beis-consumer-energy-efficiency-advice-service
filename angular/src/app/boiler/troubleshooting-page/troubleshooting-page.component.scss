@@ -27,7 +27,6 @@
     justify-content: flex-start;
 
     .tip {
-
       .index {
         margin-bottom: 20px;
       }
@@ -124,46 +123,49 @@
   }
 
   .repairer {
-     .page-row-content {
-       padding: 0 25px;
-     }
-   }
+    .page-row-content {
+      padding: 0 25px;
+    }
+  }
 
   .tips {
     .page-row-content {
       flex-direction: column;
+
       .tip {
         flex: 1 1 50%;
       }
+
       .image-container {
-        display: flex;
-        justify-content: flex-start;
 
         .image {
-          padding-top: 20px;
-          width: 100vw;
-          height: 120px;
-
-          ::ng-deep svg {
-            width: 100vw;
-            height: 120px;
-          }
+          display: flex;
+          flex: 1 1 auto;
+          width: 100%;
         }
+      }
     }
   }
-}
 }
 
 @include tablet() {
   .tips {
     .page-row-content {
       flex-direction: column;
+
       .tip {
         flex: 1 1 50%;
       }
+
       .image-container {
+        padding: 20px 20px 0;
+        flex: 1 1 50%;
         display: flex;
-        justify-content: flex-start;
+
+        .image {
+          display: flex;
+          flex: 1 1 auto;
+        }
       }
     }
   }
@@ -177,7 +179,6 @@
 
 @include desktop() {
   .tips {
-
     .page-row-content {
       .tip {
         padding-right: 20px;
@@ -186,7 +187,18 @@
       }
 
       .image-container {
-        margin-left: 20px;
+        padding: 0 20px;
+        flex: 1 1 50%;
+        display: flex;
+
+        .image {
+          display: flex;
+          flex: 1 1 auto;
+
+          svg {
+            width: 100%;
+          }
+        }
       }
     }
   }
