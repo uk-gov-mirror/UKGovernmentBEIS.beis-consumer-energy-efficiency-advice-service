@@ -143,11 +143,7 @@ public class IndexController {
             buildAttributes.getValue("Build-Url"));
         model.addAttribute("buildNumber",
             buildAttributes.getValue("Build-Number"));
-
-        // TODO:BEISDEAS-338 request.getServerName() will not work, due to CDN and
-        // CloudFoundry router layers. What is this trying to do?
-        model.addAttribute("host", request.getServerName());
-
+        
         return "index";
     }
 

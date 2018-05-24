@@ -23,11 +23,6 @@ describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
     let fixture: ComponentFixture<BoilerResultsPageComponent>;
 
-    const boilerPageMeasures = require('assets/test/boiler-page-measures.json');
-    const boilerPageMeasuresServiceStub = {
-        fetchMeasuresForBoilerPages: () => Observable.of(boilerPageMeasures)
-    };
-
     const boilerTypesResponse = require('assets/test/boiler-types-response.json');
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
@@ -59,7 +54,6 @@ describe('BoilerResultsPageComponent', () => {
             ],
             providers: [
                 ResponseData,
-                {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
@@ -70,7 +64,6 @@ describe('BoilerResultsPageComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BoilerResultsPageComponent);
-        spyOn(TestBed.get(BoilerPageMeasuresService), 'fetchMeasuresForBoilerPages').and.callThrough();
         spyOn(TestBed.get(BoilerTypesService), 'fetchBoilerTypes').and.callThrough();
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -78,10 +71,6 @@ describe('BoilerResultsPageComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('should call measures API service', () => {
-        expect(TestBed.get(BoilerPageMeasuresService).fetchMeasuresForBoilerPages).toHaveBeenCalledWith();
     });
 
     it('should call boiler types API service', () => {
@@ -102,15 +91,6 @@ describe('BoilerResultsPageComponent', () => {
         boilerTypesServiceStub.fetchBoilerTypes().toPromise().then(expectedBoilers => {
             expect(actualBoilers.length).toBe(expectedBoilers.length);
             expectedBoilers.forEach(boiler => expect(actualBoilers).toContain(boiler));
-        });
-    });
-
-    it('should show energy saving measures', () => {
-        const measuresSection = fixture.debugElement.query(By.directive(BoilerMeasuresSectionComponent));
-        const actualMeasures = measuresSection.componentInstance.measures;
-
-        boilerPageMeasuresServiceStub.fetchMeasuresForBoilerPages().toPromise().then(expectedMeasures => {
-            expect(actualMeasures).toEqual(expectedMeasures);
         });
     });
 });

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-05-23-update-images-in-articles.xml"
+               author="raam.chauhan@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-23 10:00:00','2018-05-23 10:00:00','','energy-label1.png','','inherit','open','closed','','energy-label1-png','','','2018-05-23 10:00:00','2018-05-23 10:00:00','',10434,'/wp-content/uploads/2018/05/energy-label1.png',0,'attachment','image/png',0);
+SET @p_1 = LAST_INSERT_ID();
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_1
+WHERE post_id='10434' and meta_key='cover_image';
+
+INSERT INTO `wp_postmeta`
+(post_id, meta_key, meta_value)
+VALUES
+
+(@p_1,'_wp_attached_file','2018/05/energy-label1.png'),
+(@p_1,'_wp_attachment_context','acf-upload'),
+(@p_1,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:25:\"2018/05/energy-label1.png\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}');
+
+UPDATE `wp_posts`
+SET post_content='<h2>Many everyday products such as fridge freezers, washing machines and cookers have been designed to meet minimum energy efficiency standards. These appliances carry energy labels rating the product on a scale from A+++ (the most efficient) to G (the least efficient). The labels allow you to make an informed choice when buying a new product.</h2>
+Whenever you’re looking for a new appliance, you should generally look for the highest rating that you can find. Of course, there are always plenty of other factors you’ll want to consider, but there should be a reasonable selection of higher rated models to choose from. You should expect to find a decent choice of models with a rating of A+ or higher for most appliances. And if you see a D rated model, then bear in mind that’s probably the worst rating available in practice – nobody makes G rated appliances anymore.
+
+An energy label will contain the following information:
+<ul>
+ 	<li>The manufacturer and model of the appliance.</li>
+ 	<li>An energy rating between A+++ and G</li>
+ 	<li>The estimated energy usage in kilowatt hours per year (kWh/annum)</li>
+ 	<li>Some pictograms with extra information on the product’s characteristics, such as size, noise etc.</li>
+</ul>
+An energy label may also contain the ‘European Ecolabel.’
+
+<img src="/wp-content/uploads/2018/05/ecolabel.jpg" alt="Ecolabel" />
+
+This shows that the product has been independently assessed and found to meet strict environmental criteria.
+
+When comparing new appliances, you should look at the estimated energy use as well as the rating. This is because bigger appliances use more energy than smaller ones, even if they have the same rating. So a 200 litre A+ freezer will be about the same efficiency as a 120 litre A+ freezer, but it will use more electricity in a year because it’s freezing more air, and probably more food.
+
+If you’re looking for a specific size of product, then the energy rating gives you a very good indication of which will cost you more to run. But if you’re comparing products that aren’t all the same size, then look for the kWh per year – the more kWh the more it will cost to run.
+
+Not all appliances have energy labels, but many of the more common household appliances should have one. This includes fridges, freezers, washing machines, dryers, dishwashers, ovens, televisions, vacuum cleaners and lightbulbs. If you’re in a shop, or looking online, and you can’t find the energy label for one of these products, ask the retailer - they must provide this information by law.'
+WHERE ID='10434';
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>
