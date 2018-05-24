@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="650px" height="240px" viewBox="0 0 650 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>troubleshoot-02</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="troubleshoot-02" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(10.000000, 32.000000)" fill-rule="nonzero">
             <path d="M450.31,176.24 L221.48,176.24 C213.124374,176.243907 206.193167,169.775945 205.62,161.44 L203.62,133.04 C201.619987,103.877584 201.619987,74.6124158 203.62,45.45 L205.62,17.05 C206.193167,8.71405521 213.124374,2.24609346 221.48,2.25 L450.31,2.25 C458.661774,2.2513512 465.587097,8.71789829 466.16,17.05 L468.11,45.45 C470.110013,74.6124158 470.110013,103.877584 468.11,133.04 L466.16,161.44 C465.587097,169.772102 458.661774,176.238649 450.31,176.24 Z" id="Shape" fill="#F5F5F5"></path>
             <rect id="Rectangle-path" fill="#DDDDDD" x="250.99" y="20.93" width="169.81" height="129.06"></rect>

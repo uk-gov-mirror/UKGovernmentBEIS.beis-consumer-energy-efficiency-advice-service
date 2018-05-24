@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="650px" height="240px" viewBox="0 0 650 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>troubleshoot-01</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="troubleshoot-01" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(51.000000, 28.000000)" fill-rule="nonzero">
             <path d="M194.06,136.31 L15.49,136.31 C8.97188473,136.309562 3.56680628,131.262783 3.12,124.76 L1.6,102.6 C0.0399979607,79.8433705 0.0399979607,57.0066295 1.6,34.25 L3.12,12.08 C3.56680628,5.57721667 8.97188473,0.530437678 15.49,0.53 L194.06,0.53 C200.578115,0.530437678 205.983194,5.57721667 206.43,12.08 L208,34.25 C209.560002,57.0066295 209.560002,79.8433705 208,102.6 L206.48,124.76 C206.031922,131.282041 200.597364,136.335918 194.06,136.31 Z" id="Shape" fill="#DDDDDD"></path>
             <path d="M15.49,0.53 C8.97188473,0.530437678 3.56680628,5.57721667 3.12,12.08 L1.6,34.25 C0.0399979607,57.0066295 0.0399979607,79.8433705 1.6,102.6 L3.12,124.76 C3.56680628,131.262783 8.97188473,136.309562 15.49,136.31 L65.21,136.31 L65.21,0.53 L15.49,0.53 Z" id="Shape" fill="#FFFFFF"></path>
