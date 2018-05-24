@@ -334,7 +334,8 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
-// TODO:BEIS-164 Convert the below rules to match the same format as the above rules
+// The following rules ought to match the same format as the above rules; please
+// fix them if you are making changes in this area.
 @mixin focus-text {
   font-size: 32px;
   font-weight: bold;
