@@ -1,13 +1,19 @@
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--/*
-    This is the Thymleaf template for the Plan PDF.
+    This is the Thymeleaf template for the Plan PDF.
 
     It closely follows angular/src/app/energy-efficiency/your-plan-page/your-plan-page.component.html
 
-    In dev, you can open this file in a browser to make CSS tweaks
+    In dev, you can open this file in a browser to make CSS tweaks.
+
+    As this is a Thymeleaf template, I have put placeholder text in to enable preview
+    and edit as an XHTML doc.
+    See https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#using-texts
     */-->
-    <link rel="stylesheet" type="text/css" media="all"  href="style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="style.css"/>
 </head>
 <body>
 
@@ -25,30 +31,27 @@
                         You have added [[${recommendations.size()}]] recommendations to your plan. You'll find all the
                         steps and things you need to consider to implement those measures.
                     </div>
-                    <app-data-card
-                            th:if="!potentialScoreLoading"
-                            class.no-tablet="isFooter"
-                            heading="Your potential score is"
-                            value="potentialScore"
-                            isVerticalAtMobile="!isFooter"
-                            colorCircleClassName="currentScoreColorCircleClassName"
-                            isPercent="true">
-                    </app-data-card>
-                    <app-data-card
-                            class="no-mobile"
-                            heading="Total investment required"
-                            value="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'"
-                            isVerticalAtMobile="!isFooter"
-                            isSmallCard="isFooter">
-                    </app-data-card>
-                    <app-data-card
-                            class="savings"
-                            heading="Total savings per [[${showMonthlySavings ? 'month' : 'year'}]]"
-                            value="roundedTotalSavings > 0 ? '£' + roundedTotalSavings : '-'"
-                            isVerticalAtMobile="true"
-                            isSmallCard="isFooter">
-                    </app-data-card>
-
+                    <div class="data-card">
+                        <h3>Your potential score is</h3>
+                        <div class="value">
+                            <span th:text="${potentialScore}">71</span> / 100
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <h3>Total investment required</h3>
+                        <div class="value"
+                             th:text="${roundedTotalInvestmentRequired}">
+                            £210
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <h3>Total savings per
+                            <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
+                        </h3>
+                        <div class="value" th:text="${roundedTotalSavings}">
+                            £210
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,26 +60,80 @@
                 <div class="recommendation-steps-card" th:each="recommendation : ${recommendations}">
                     <div class="details">
                         <div class="description">
-                            <div class="headline" th:text="${recommendation.headline}"></div>
-                            <div class="summary" th:text="${recommendation.summary}"></div>
+                            <div class="headline" th:text="${recommendation.headline}">
+                                Solid wall insulation
+                            </div>
+                            <div class="summary" th:text="${recommendation.summary}">
+                                Insulation can be added to the inside or
+                                outside surface of your walls to help keep
+                                your home warm and cut your heating bills.
+                            </div>
                         </div>
-                        <app-data-card class="investment-required-card"
-                                       heading="Investment required"
-                                       value="'£' + getRoundedInvestment(recommendation)"
-                                       isSmallCard="true"
-                        ></app-data-card>
-                        <app-data-card class="monthly-savings-card"
-                                       heading="Savings per [[${showMonthlySavings ? 'month' : 'year'}]] up to"
-                                       value="'£' + getRoundedSavings(recommendation)"
-                                       isSmallCard="true"
-                        ></app-data-card>
+                        <div class="data-card">
+                            <h3>Investment required</h3>
+                            <div class="value" th:text="${recommendation.roundedInvestment}">
+                                £9000
+                            </div>
+                        </div>
+                        <div class="data-card">
+                            <h3>
+                                Savings per
+                                <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
+                                up to
+                            </h3>
+                            <div class="value" th:text="${recommendation.getRoundedSavings(showMonthlySavings)}">
+                                £120
+                            </div>
+                        </div>
                     </div>
                     <div class="steps">
-                        <app-recommendation-step-card
-                                th:each="step,iterStatat : ${recommendation.steps}"
-                                step="step"
-                                th:attr="stepIndex=#{iterStat.index}"
-                        ></app-recommendation-step-card>
+                        <div class="recommendation-step-card" th:each="step,iterStat : ${recommendation.steps}">
+                            <h3>
+                                <div class="bullet"></div>
+                                <span class="step-number">
+                                    Step
+                                    <span th:text='${T(String).format("%02d", iterStat.index)}'>1</span>
+                                </span>
+                                <span class="step-headline" th:text="${step.headline}">
+                                    What it is
+                                </span>
+                            </h3>
+                            <div class="step-details-drawer">
+                                <div class="step-info">
+                                    <div class="step-description" th:text="${step.description}">
+                                        Insulation can be added to the
+                                        inside or outside surface of
+                                        your walls to help keep your home
+                                        warm and cut your heating bills.
+                                    </div>
+                                    <!-- innerHTML is used here as wordpress supplies <br /> tags for us -->
+                                    <div class="read-more-content" th:utext="${step.readMore}">
+                                        If your walls are not suitable for standard cavity wall insulation, then it may
+                                        be possible to fit solid wall insulation instead.
+                                        <br/>
+                                        <br/>
+
+                                        A layer of insulation material is fixed either to the inside surface of your
+                                        walls (internal wall insulation) or to the outside (external wall insulation).
+                                        The insulation layer is then covered with another layer to protect the
+                                        insulation. This covering layer will also allow decorating if on the inside, or
+                                        will keep the rain out if on the outside.
+                                    </div>
+                                </div>
+                                <div class="more-info-link" th:each="moreInfoLink : ${step.moreInfoLinks}">
+                                    <a class="more-info-link" th:href="${moreInfoLink.linkProps.route}">
+                                        <div class="more-info-description" th:text="${moreInfoLink.buttonText}">
+                                            Search for Installers
+                                        </div>
+                                        <div class="more-info-icon-container">
+                                            <div class="more-info-icon">
+                                                <!--TODO: [inlineSVG]="'controls/main-arrow.svg'"-->
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,15 +141,47 @@
         <div class="local-authority-grants page-row" th:if="${localAuthorityGrants?.size() > 0}">
             <div class="page-row-content">
                 <div class="subheading">Local Authority grants</div>
-                <div class="local-authority" th:inline="text">As part of your energy efficiency measures you might be eligible for local
+                <div class="local-authority" th:inline="text">As part of your energy efficiency measures you might be
+                    eligible for local
                     grants. You live in [[${localAuthorityName}]] so we've found the following:
                 </div>
-                <div class="grant-cards">
-                    <app-local-grant-card class="grant-card"
-                                          th:each="grant : ${localAuthorityGrants}"
-                                          grant="grant"
-                                          theme="grey">
-                    </app-local-grant-card>
+                <div class="grant-cards" th:each="grant : ${localAuthorityGrants}">
+                    <div class="grant-card">
+                        <div class="heading-container">
+                            <div class="heading" th:text="${grant.name}">
+                                Green Camden Helpline
+                            </div>
+                            <div class="description" th:text="${grant.description}">
+                                This helpline provides advice on fuel bills, fuel debt, tariff switching as well as tips
+                                for
+                                the home. Green Camden Helpline can also check availability for any grants and services
+                                that
+                                may be available.
+                            </div>
+                        </div>
+                        <div class="extra-info-container"
+                             th:if="${grant.eligibilityCriteria || grant.websiteUrl || grant.phoneNumber}">
+                            <div class="eligibility-criteria" th:if="${grant.eligibilityCriteria}">
+                                <span class="eligibility-text">Eligibility: </span>
+                                <span th:text="${grant.eligibilityCriteria}">
+                                    The helpline is available to all residents living in the London Borough of Camden.
+                                </span>
+                            </div>
+                            <div class="find-out-more-container" th:if="${grant.websiteUrl || grant.phoneNumber}">
+                                <a class="find-out-more-link" th:if="${grant.websiteUrl}" th:href="${grant.websiteUrl}"
+                                   target="_blank">
+                                    Find out more
+                                </a>
+                                <ng-container th:if="${!grant.websiteUrl and grant.phoneNumber}">
+                                    <div class="find-out-more-text">Find out more</div>
+                                    <a class="phone-number" th:href="${'tel:' + getPhoneNumberForLink()}"
+                                       th:text="${grant.phoneNumber}">
+                                        0800 801 738
+                                    </a>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

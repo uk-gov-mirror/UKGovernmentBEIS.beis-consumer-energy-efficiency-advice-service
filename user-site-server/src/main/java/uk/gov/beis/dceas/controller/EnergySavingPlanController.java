@@ -107,12 +107,12 @@ public class EnergySavingPlanController {
 
          */
 
+        // https://stackoverflow.com/questions/17953829/with-flying-saucer-how-do-i-generate-a-pdf-with-a-page-number-and-page-total-on
+
 
         // TODO:BEIS-209 test hostname in cloud
         URI requestUri = new URI(httpRequest.getRequestURI());
         String userSiteBaseUrl = requestUri.getScheme() + "://" + requestUri.getAuthority();
-
-        List<EnergyEfficiencyRecommendation> recommendations = loadDisplayData(request, userSiteBaseUrl);
 
         SpringWebContext templateContext = new SpringWebContext(
                 httpRequest,
@@ -121,7 +121,12 @@ public class EnergySavingPlanController {
                 locale,
                 new HashMap<>(),
                 applicationContext);
-        templateContext.setVariable("recommendations", recommendations);
+
+        loadDisplayData(
+                templateContext,
+                request,
+                userSiteBaseUrl);
+
         String xml = templateEngine.process("energySavingPlan/plan", templateContext);
 
         String baseUrl = Resources.getResource("templates/energySavingPlan/plan.html")
@@ -147,13 +152,14 @@ public class EnergySavingPlanController {
     /**
      * Keep this in sync with recommendations.service.ts `refreshAllRecommendations`
      */
-    private List<EnergyEfficiencyRecommendation> loadDisplayData(
+    private void loadDisplayData(
+            SpringWebContext templateContext,
             DownloadPlanRequest request,
             String userSiteBaseUrl) throws Exception {
 
         Map<String, Map<String, Object>> measuresBySlug = measuresDataService.getMeasuresBySlug();
 
-        return request.recommendations.stream()
+        List<EnergyEfficiencyRecommendation> recommendations = request.recommendations.stream()
                 .map(recommendation -> {
                     if (!isNullOrEmpty(recommendation.measureSlug)) {
                         Map<String, Object> measure = measuresBySlug.get(recommendation.measureSlug);
@@ -172,11 +178,33 @@ public class EnergySavingPlanController {
                     }
                 })
                 .collect(toList());
+
+        templateContext.setVariable("recommendations", recommendations);
+
+        Double totalInvestment = recommendations.stream()
+                .mapToDouble(r -> r.investmentPounds).sum();
+
+        templateContext.setVariable("roundedTotalInvestmentRequired",
+                roundAndFormatCostValue(totalInvestment));
+
+        boolean showMonthlySavings = request.tenureType != 0;
+        templateContext.setVariable("showMonthlySavings", showMonthlySavings);
+
+        Double totalSavings = recommendations.stream()
+                .mapToDouble(r -> showMonthlySavings
+                        ? (r.costSavingPoundsPerYear / 12.0)
+                        : r.costSavingPoundsPerYear)
+                .sum();
+
+        templateContext.setVariable("roundedTotalSavings",
+                roundAndFormatCostValue(totalSavings));
     }
 
     @Value
+    @Builder
     public static class DownloadPlanRequest {
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
+        Integer tenureType;
     }
 
     /**
@@ -280,6 +308,16 @@ public class EnergySavingPlanController {
                     .measureCode((String) acfFields.get("measure_code"))
                     .build();
         }
+
+        public String getRoundedInvestment() {
+            return roundAndFormatCostValue(investmentPounds);
+        }
+
+        public String getRoundedSavings(boolean showMonthlySavings) {
+            return roundAndFormatCostValue(showMonthlySavings
+                    ? (costSavingPoundsPerYear / 12.0)
+                    : costSavingPoundsPerYear);
+        }
     }
 
     private static String urlEncode(String val) {
@@ -361,11 +399,13 @@ public class EnergySavingPlanController {
     /**
      * Keep this in sync with RoundingService.ts
      */
-    private String roundCostValue(double input) {
+    private static String roundAndFormatCostValue(double input) {
         if (input > 5.0) {
-            return String.format("%.0f", 5.0 * Math.round(input / 5.0));
+            return String.format("£%.0f", 5.0 * Math.round(input / 5.0));
+        } else if (input > 1) {
+            return String.format("£%.0f", input);
         } else {
-            return String.format("%.0f", input);
+            return "-";
         }
     }
 }

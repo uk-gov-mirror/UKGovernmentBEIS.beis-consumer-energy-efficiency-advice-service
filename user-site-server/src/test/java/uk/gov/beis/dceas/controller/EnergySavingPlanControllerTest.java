@@ -45,26 +45,29 @@ public class EnergySavingPlanControllerTest {
 
     @Test
     public void testDownloadPlan() throws Exception {
-        DownloadPlanRequest requestBody = new DownloadPlanRequest(
-                ImmutableList.of(
-                        new SelectedEnergyEfficiencyRecommendation(
-                                "meta_wall_insulation_brick_age_band_a_d",
-                                null,
-                                9000.0,
-                                36.0,
-                                130.01,
-                                3814.27,
-                                "icons/walls.svg",
-                                9),
-                        new SelectedEnergyEfficiencyRecommendation(
-                                "meta_one_degree_reduction",
-                                null,
-                                0.0,
-                                null,
-                                43.86,
-                                1093.89,
-                                "icons/simple-savings.svg",
-                                3)));
+        DownloadPlanRequest requestBody = DownloadPlanRequest.builder()
+                .recommendations(
+                        ImmutableList.of(
+                                new SelectedEnergyEfficiencyRecommendation(
+                                        "meta_wall_insulation_brick_age_band_a_d",
+                                        null,
+                                        9000.0,
+                                        36.0,
+                                        130.01,
+                                        3814.27,
+                                        "icons/walls.svg",
+                                        9),
+                                new SelectedEnergyEfficiencyRecommendation(
+                                        "meta_one_degree_reduction",
+                                        null,
+                                        0.0,
+                                        null,
+                                        43.86,
+                                        1093.89,
+                                        "icons/simple-savings.svg",
+                                        3)))
+                .tenureType(0)
+                .build();
 
         MvcResult mvcResult = mvc
                 .perform(
@@ -76,8 +79,8 @@ public class EnergySavingPlanControllerTest {
 
         File file = new File("out.pdf");
         Files.write(
-            mvcResult.getResponse().getContentAsByteArray(),
-            file);
+                mvcResult.getResponse().getContentAsByteArray(),
+                file);
 
         System.out.println("Open: " + file.getAbsolutePath());
     }
