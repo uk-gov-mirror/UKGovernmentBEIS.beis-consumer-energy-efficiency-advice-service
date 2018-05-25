@@ -46,42 +46,51 @@ public class EnergySavingPlanControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * To get a Measure with a child grant from the questionnaire, for comparison, the
+     * easiest is "eco-hhcro-help-to-heat".
+     * answer:
+     *   - n19 5jx, 2 tremlett
+     *   - own home
+     *   - 1930 - 1949
+     *   - tick all benefits
+     *   - £1000 / pa income
+     *
+     */
     @Test
     public void testDownloadPlan() throws Exception {
         DownloadPlanRequest requestBody = DownloadPlanRequest.builder()
                 .recommendations(
                         ImmutableList.of(
+                                // A measure
                                 new SelectedEnergyEfficiencyRecommendation(
                                         "meta_wall_insulation_brick_age_band_a_d",
                                         null,
                                         null,
                                         9000.0,
-                                        36.0,
-                                        130.01,
-                                        3814.27,
-                                        "icons/walls.svg", // qq del iconPath?
-                                        9),
+                                        130.01),
+                                // A measure
                                 new SelectedEnergyEfficiencyRecommendation(
                                         "meta_one_degree_reduction",
                                         null,
                                         null,
                                         0.0,
-                                        null,
-                                        43.86,
-                                        1093.89,
-                                        "icons/simple-savings.svg",
-                                        3),
+                                        43.86),
                                 // A measure with an attached grant:
                                 new SelectedEnergyEfficiencyRecommendation(
                                         "meta_loft_insulation",
                                         null,
                                         "eco-hhcro-help-to-heat",
                                         225.0,
-                                        42.0,
-                                        378.24,
-                                        14511.59,
-                                        "qq icon path",
-                                        25))
+                                        378.24),
+                                // A grant
+                                new SelectedEnergyEfficiencyRecommendation(
+                                        null,
+                                        "cold-weather-payments",
+                                        null,
+                                        0.0,
+                                        null))
+
                         // a grant: TODO
                 )
                 .tenureType(0)

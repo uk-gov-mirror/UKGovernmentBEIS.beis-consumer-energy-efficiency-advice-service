@@ -110,6 +110,9 @@ export class EnergyEfficiencyRecommendation {
         );
     }
 
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `fromNationalGrant`
+     */
     static fromNationalGrant(grant: StandaloneNationalGrant): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant

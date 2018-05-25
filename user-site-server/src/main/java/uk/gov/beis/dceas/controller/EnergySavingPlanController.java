@@ -35,6 +35,7 @@ import java.util.Map;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 
 /**
  * Allows downloading or emailing your energy saving plan
@@ -58,7 +59,7 @@ public class EnergySavingPlanController {
             MeasuresDataService measuresDataService,
             NationalGrantsService nationalGrantsService,
             @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
-            String publicRootUrl) {
+                    String publicRootUrl) {
         this.servletContext = servletContext;
         this.applicationContext = applicationContext;
         this.templateEngine = templateEngine;
@@ -68,7 +69,9 @@ public class EnergySavingPlanController {
     }
 
     /**
-     * @param request the list of Recommendations that are included in the plan.
+     * @param request info from the client app about the plan.
+     *
+     *                This includes the list of Recommendations that are included in the plan.
      *
      *                Recommendations can be Grants, like "cold-weather-payments"
      *
@@ -78,12 +81,6 @@ public class EnergySavingPlanController {
      *
      *                See EnergyEfficiencyRecommendation.fromMeasure
      *                and EnergyEfficiencyRecommendation.fromNationalGrant
-     *
-     *
-     *                qqqqqqq re-create client-side logic?
-     *                qqq or allow clients to email any toss as PDF?
-     *
-     *                qqq do some of each -- post the slug id, instaed...
      */
     @PostMapping("download")
     public void downloadPlan(
@@ -93,32 +90,8 @@ public class EnergySavingPlanController {
             final Locale locale)
             throws Exception {
 
-        /**
-         *
-         qq  angular => thymeleaf
-
-         *ngIf="x" => th:if="${x}"
-         "===" => ==
-         [x]=y => th:attr="x=#{y}"
-         *ngFor="let x of xs" => th:each="x : ${y}"
-
-         *ngFor="step of recommendation.steps; let i = index"
-         th:each="step,iterStat : ${recommendation.steps}"  , use iterStat.index
-
-         && => &amp;&amp;
-
-         x.length => x.size()
-
-         th:if="localAuthorityGrants &amp;&amp; localAuthorityGrants.length > 0"
-         th:if="${localAuthorityGrants?.size() > 0}"
-
-         {{recommendations.length}}
-         th:inline="text" ;; [[${recommendations.length}]]
-
-         */
-
+        // Could add page numbers and header/footer, if desired:
         // https://stackoverflow.com/questions/17953829/with-flying-saucer-how-do-i-generate-a-pdf-with-a-page-number-and-page-total-on
-
 
         SpringWebContext templateContext = new SpringWebContext(
                 httpRequest,
@@ -178,20 +151,6 @@ public class EnergySavingPlanController {
                     if (!isNullOrEmpty(recommendation.measureSlug)) {
                         Map<String, Object> measure = measuresBySlug.get(recommendation.measureSlug);
 
-                        // qq child grants, ECO HHCRO Social EFG ...
-                        //
-                        // Easiest test for this is "eco-hhcro-social-efg", which you
-                        // need to put yourself down as SocialTenancy and build since 50s,
-                        // then it shoudl appear under cavity wall insulation
-                        // qq doesn't match
-                        //
-                        // To get a grant on a measure, answer:
-                        //   - n19 5jx, 2 tremlett
-                        //   - own
-                        //   - 1930 - 1949
-                        //   - tick all benefits
-                        //   - £1000 / pa
-
                         return EnergyEfficiencyRecommendation.fromMeasure(
                                 recommendation,
                                 measure,
@@ -199,7 +158,9 @@ public class EnergySavingPlanController {
                                 nationalGrantsService);
 
                     } else if (!isNullOrEmpty(recommendation.grantSlug)) {
-                        throw new RuntimeException("qq");
+                        return EnergyEfficiencyRecommendation.fromNationalGrant(
+                                recommendation,
+                                nationalGrantsService.get(recommendation.grantSlug), publicRootUrl);
                     } else {
                         throw new IllegalArgumentException(
                                 "One of `measureSlug` or `grantSlug` must be set for each recommendation");
@@ -268,11 +229,11 @@ public class EnergySavingPlanController {
         String nationalGrantForMeasureId;
 
         public Double investmentPounds;
-        public Double lifetimeYears;
+        /**
+         * If a measure, this is `costSavingPoundsPerYear`
+         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds`
+         */
         public Double costSavingPoundsPerYear;
-        public Double energySavingKwhPerYear;
-        public String iconPath;
-        public Integer tags;
     }
 
     /**
@@ -284,7 +245,6 @@ public class EnergySavingPlanController {
     private static class EnergyEfficiencyRecommendation {
 
         Double investmentPounds;
-        Double lifetimeYears;
         Double costSavingPoundsPerYear;
         Double energySavingKwhPerYear;
         String readMoreRoute;
@@ -303,7 +263,7 @@ public class EnergySavingPlanController {
         /**
          * Keep this in sync with energy-efficiency-recommendation.ts `fromMeasure`
          */
-        public static EnergyEfficiencyRecommendation fromMeasure(
+        static EnergyEfficiencyRecommendation fromMeasure(
                 SelectedEnergyEfficiencyRecommendation recommendation,
                 Map<String, Object> measure,
                 String userSiteBaseUrl,
@@ -329,17 +289,13 @@ public class EnergySavingPlanController {
 
             return EnergyEfficiencyRecommendation.builder()
                     .investmentPounds(recommendation.investmentPounds)
-                    .lifetimeYears(recommendation.lifetimeYears)
                     .costSavingPoundsPerYear(recommendation.costSavingPoundsPerYear)
-                    .energySavingKwhPerYear(recommendation.energySavingKwhPerYear)
                     .readMoreRoute(
                             userSiteBaseUrl + "/measures/" + urlEncode(recommendation.measureSlug))
                     .headline((String) acfFields.get("headline"))
                     .summary((String) acfFields.get("summary"))
                     .whatItIs((String) acfFields.get("what_it_is"))
                     .isItRightForMe((String) acfFields.get("is_it_right_for_me"))
-                    .iconPath(recommendation.iconPath)
-                    .tags(recommendation.tags)
                     .advantages(getAcfList(acfFields.get("advantages"))
                             .stream()
                             .map(a -> (String) a.get("advantage"))
@@ -347,6 +303,32 @@ public class EnergySavingPlanController {
                     .steps(steps)
                     .recommendationID(recommendation.measureSlug)
                     .measureCode((String) acfFields.get("measure_code"))
+                    .build();
+        }
+
+        /**
+         * Keep this in sync with energy-efficiency-recommendation.ts `fromNationalGrant`
+         */
+        static EnergyEfficiencyRecommendation fromNationalGrant(
+                SelectedEnergyEfficiencyRecommendation recommendation,
+                NationalGrant grant,
+                String userSiteBaseUrl) {
+
+            return EnergyEfficiencyRecommendation.builder()
+                    .investmentPounds(0.0)
+                    .costSavingPoundsPerYear(
+                            defaultIfNull(recommendation.costSavingPoundsPerYear, 0.0))
+                    .readMoreRoute(
+                            makeUrlAbsolute(grant.getFindOutMoreLink(), userSiteBaseUrl))
+                    .headline(grant.getHeading())
+                    .summary(grant.getDescription())
+                    .whatItIs(null)
+                    .isItRightForMe(null)
+                    .advantages(emptyList())
+                    .steps(grant.getSteps().stream()
+                            .map(step -> RecommendationStep.fromGrant(step, userSiteBaseUrl))
+                            .collect(toList()))
+                    .recommendationID(grant.getSlug())
                     .build();
         }
 
@@ -431,16 +413,6 @@ public class EnergySavingPlanController {
                         .url(makeUrlAbsolute(link.getLinkUrl(), userSiteBaseUrl))
                         .build();
             }
-
-            private static String makeUrlAbsolute(String linkUrl, String userSiteBaseUrl) {
-                if (isNullOrEmpty(linkUrl)) {
-                    return null;
-                }
-                if (linkUrl.startsWith("/")) {
-                    return userSiteBaseUrl + linkUrl;
-                }
-                return linkUrl;
-            }
         }
     }
 
@@ -455,5 +427,15 @@ public class EnergySavingPlanController {
         } else {
             return "-";
         }
+    }
+
+    private static String makeUrlAbsolute(String linkUrl, String userSiteBaseUrl) {
+        if (isNullOrEmpty(linkUrl)) {
+            return null;
+        }
+        if (linkUrl.startsWith("/")) {
+            return userSiteBaseUrl + linkUrl;
+        }
+        return linkUrl;
     }
 }

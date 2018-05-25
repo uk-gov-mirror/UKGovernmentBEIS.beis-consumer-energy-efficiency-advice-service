@@ -6,7 +6,9 @@ import com.google.common.cache.LoadingCache;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 import uk.gov.beis.dceas.api.NationalGrant;
+import uk.gov.beis.dceas.spring.NotFoundException;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -51,9 +53,11 @@ public class NationalGrantsService {
         return grantsBySlugCache.get(KEY).values();
     }
 
+    @Nonnull
     public NationalGrant get(String slug) {
         try {
-            return grantsBySlugCache.get(KEY).get(slug);
+            return NotFoundException.notFoundIfNull(
+                    grantsBySlugCache.get(KEY).get(slug));
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         }
