@@ -1,5 +1,7 @@
 package uk.gov.beis.dceas.service;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 /**
  * Takes a list of masks from config and checks whether the user is coming from one of
@@ -35,21 +39,39 @@ public class IpValidationService {
 
         response.setHeader("Cache-Control", CacheControl.noCache().getHeaderValue());
 
-        log.info(
-                "TODO:BEIS-208 debug: getRemoteAddr='{}' X-FORWARDED-FOR='{}'",
+        log.debug(
+                "requestIsInIpWhitelist: getRemoteAddr='{}' X-FORWARDED-FOR='{}'",
                 request.getRemoteAddr(),
                 request.getHeader("X-Forwarded-For"));
 
-        // TODO BEISDEAS-208 The original client's address is being returned from "getRemoteAddr"
-        // There is a chance that further down the line, a load balancer or proxy will
-        // be added. At this point, we should check the X-FORWARDED-FOR header and use
-        // that to find out the user's IP address
-        String ipAddress = request.getRemoteAddr();
+        // On the live site, the app is behind AWS CloudFront CDN, which does caching for us
+        // and also hosts our public hostname and TLS cert ("www.eachhomecountsadvice.org.uk"
+        // rather than "dceas-user-site.cloudapps.digital").
+        //
+        // The CloudFront layer adds an address to the end of the X-FORWARDED-FOR header.
+        // Any spoof entries added by untrusted clients will appear in X-FORWARDED-FOR, but we
+        // can trust the last entry in that list as it was added by AWS.
+        //
+        // The value returned by request.getRemoteAddr() will be the IP of the AWS VM running
+        // the CloudFront node we are connected to, so is not useful here
+        String ipAddress;
+        String forwardedHeader = request.getHeader("X-Forwarded-For");
+        if (isNullOrEmpty(forwardedHeader)) {
+            log.warn("No `X-Forwarded-For` found, falling back to `getRemoteAddr`, which will be incorrect in LIVE");
+            ipAddress = request.getRemoteAddr();
+        } else {
+            List<String> ips = Splitter.on(',').trimResults().omitEmptyStrings()
+                    .splitToList(forwardedHeader);
+            ipAddress = Iterables.getLast(ips);
+        }
+
         for (String subnet : ipWhitelist) {
             if (matches(ipAddress, subnet)) {
+                log.debug("return true");
                 return true;
             }
         }
+        log.debug("return false");
         return false;
     }
 
