@@ -3,8 +3,51 @@ body {
     font-family: Gotham, Arial, sans-serif;
 }
 
-h1.heading {
+h1 {
     background-color: #BEE8F1;
     color: #1A485F;
     padding: 34px;
+}
+
+h1 img {
+    height: 2em;
+    vertical-align: middle;
+}
+
+.data-card {
+    margin: 1em 0;
+}
+
+.data-card .heading {
+    text-transform: uppercase;
+    font-size: small;
+    margin-right: 2em;
+}
+
+.data-card .value {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.data-card div {
+    display: inline;
+}
+
+.recommendation-steps-card, .local-authority-grants {
+    border-top: 5px solid #BEE8F1;
+    margin-top: 1em;
+}
+
+.step-number {
+    text-transform: uppercase;
+    color: #006280;
+    margin-right: 2em;
+}
+
+.more-info-link, .find-out-more-link {
+    margin: 1em 0;
+}
+
+.eligibility-text {
+    font-weight: bold;
 }

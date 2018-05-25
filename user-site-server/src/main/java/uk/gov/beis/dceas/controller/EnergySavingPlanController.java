@@ -117,7 +117,7 @@ public class EnergySavingPlanController {
         // https://stackoverflow.com/questions/17953829/with-flying-saucer-how-do-i-generate-a-pdf-with-a-page-number-and-page-total-on
 
 
-        // TODO:BEIS-209 test hostname in cloud
+        // TODO:BEIS-209 replace with config
         URI requestUri = new URI(httpRequest.getRequestURI());
         String userSiteBaseUrl = requestUri.getScheme() + "://" + requestUri.getAuthority();
 

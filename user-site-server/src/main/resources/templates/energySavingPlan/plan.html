@@ -23,7 +23,10 @@
         <div class="your-plan-header page-row">
             <div class="page-row-content">
                 <div class="heading-container">
-                    <h1 class="heading">Your plan</h1>
+                    <h1 class="heading">
+                        <img src="ehc-small.png" />
+                        Your plan
+                    </h1>
                     <div class="subheading" th:if="${recommendations.size() == 1}">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.
@@ -33,22 +36,22 @@
                         steps and things you need to consider to implement those measures.
                     </div>
                     <div class="data-card">
-                        <h3>Your potential score is</h3>
+                        <div class="heading">Your potential score is</div>
                         <div class="value">
                             <span th:text='${T(String).format("%.0f", potentialScore)}'>71</span> / 100
                         </div>
                     </div>
                     <div class="data-card">
-                        <h3>Total investment required</h3>
+                        <div class="heading">Total investment required</div>
                         <div class="value"
                              th:text="${roundedTotalInvestmentRequired}">
                             £210
                         </div>
                     </div>
                     <div class="data-card">
-                        <h3>Total savings per
+                        <div class="heading">Total savings per
                             <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
-                        </h3>
+                        </div>
                         <div class="value" th:text="${roundedTotalSavings}">
                             £210
                         </div>
@@ -61,9 +64,9 @@
                 <div class="recommendation-steps-card" th:each="recommendation : ${recommendations}">
                     <div class="details">
                         <div class="description">
-                            <div class="headline" th:text="${recommendation.headline}">
+                            <h2 class="headline" th:text="${recommendation.headline}">
                                 Solid wall insulation
-                            </div>
+                            </h2>
                             <div class="summary" th:text="${recommendation.summary}">
                                 Insulation can be added to the inside or
                                 outside surface of your walls to help keep
@@ -71,17 +74,17 @@
                             </div>
                         </div>
                         <div class="data-card">
-                            <h3>Investment required</h3>
+                            <div class="heading">Investment required</div>
                             <div class="value" th:text="${recommendation.roundedInvestment}">
                                 £9000
                             </div>
                         </div>
                         <div class="data-card">
-                            <h3>
+                            <div class="heading">
                                 Savings per
                                 <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
                                 up to
-                            </h3>
+                            </div>
                             <div class="value" th:text="${recommendation.getRoundedSavings(showMonthlySavings)}">
                                 £120
                             </div>
@@ -143,7 +146,7 @@
         </div>
         <div class="local-authority-grants page-row" th:if="${localAuthorityGrants?.size() > 0}">
             <div class="page-row-content">
-                <div class="subheading">Local Authority grants</div>
+                <h2 class="subheading">Local Authority grants</h2>
                 <div class="local-authority" th:inline="text">As part of your energy efficiency measures you might be
                     eligible for local
                     grants. You live in [[${localAuthorityName}]] so we've found the following:
@@ -151,9 +154,9 @@
                 <div class="grant-cards" th:each="grant : ${localAuthorityGrants}">
                     <div class="grant-card">
                         <div class="heading-container">
-                            <div class="heading" th:text="${grant.name}">
+                            <h3 class="heading" th:text="${grant.name}">
                                 Green Camden Helpline
-                            </div>
+                            </h3>
                             <div class="description" th:text="${grant.description}">
                                 This helpline provides advice on fuel bills, fuel debt, tariff switching as well as tips
                                 for
