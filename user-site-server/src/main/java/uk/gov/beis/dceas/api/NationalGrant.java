@@ -3,6 +3,7 @@ package uk.gov.beis.dceas.api;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class NationalGrant {
     Boolean displayWithoutMeasures;
     String findOutMoreLink;
     List<String> advantages;
+    @NonNull
     List<Step> steps;
     List<String> linkedMeasureCodes;
     String slug;
@@ -34,6 +36,7 @@ public class NationalGrant {
         String headline;
         String description;
         String readMore;
+        @NonNull
         List<Link> moreInfoLinks;
     }
 

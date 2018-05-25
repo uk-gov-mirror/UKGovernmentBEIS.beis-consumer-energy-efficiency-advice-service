@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
+import uk.gov.beis.dceas.api.NationalGrant;
 import uk.gov.beis.dceas.service.MeasuresDataService;
+import uk.gov.beis.dceas.service.NationalGrantsService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -45,39 +49,42 @@ public class EnergySavingPlanController {
     private final ApplicationContext applicationContext;
     private final SpringTemplateEngine templateEngine;
     private final MeasuresDataService measuresDataService;
+    private final NationalGrantsService nationalGrantsService;
 
     public EnergySavingPlanController(
             ServletContext servletContext,
             ApplicationContext applicationContext,
             SpringTemplateEngine templateEngine,
-            MeasuresDataService measuresDataService) {
+            MeasuresDataService measuresDataService,
+            NationalGrantsService nationalGrantsService) {
         this.servletContext = servletContext;
         this.applicationContext = applicationContext;
         this.templateEngine = templateEngine;
         this.measuresDataService = measuresDataService;
+        this.nationalGrantsService = nationalGrantsService;
     }
 
     /**
-     * @param recommendationIds the list of Recommendations that are included in the plan.
+     * @param request the list of Recommendations that are included in the plan.
      *
-     *                          Recommendations can be Grants, like "cold-weather-payments"
+     *                Recommendations can be Grants, like "cold-weather-payments"
      *
-     *                          or BRE meaures like "High performance external doors" with id "X"
+     *                or BRE meaures like "High performance external doors" with id "X"
      *
-     *                          or our measures like "One degree reduction" with id "one_degree_reduction"
+     *                or our measures like "One degree reduction" with id "one_degree_reduction"
      *
-     *                          See EnergyEfficiencyRecommendation.fromMeasure
-     *                          and EnergyEfficiencyRecommendation.fromNationalGrant
+     *                See EnergyEfficiencyRecommendation.fromMeasure
+     *                and EnergyEfficiencyRecommendation.fromNationalGrant
      *
      *
-     *                          qqqqqqq re-create client-side logic?
-     *                          qqq or allow clients to email any toss as PDF?
+     *                qqqqqqq re-create client-side logic?
+     *                qqq or allow clients to email any toss as PDF?
      *
-     *                          qqq do some of each -- post the slug id, instaed...
+     *                qqq do some of each -- post the slug id, instaed...
      */
     @PostMapping("download")
     public void downloadPlan(
-            @RequestBody DownloadPlanRequest request,
+            @Valid @RequestBody DownloadPlanRequest request,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
@@ -167,10 +174,24 @@ public class EnergySavingPlanController {
                         Map<String, Object> measure = measuresBySlug.get(recommendation.measureSlug);
 
                         // qq child grants, ECO HHCRO Social EFG ...
+                        //
+                        // Easiest test for this is "eco-hhcro-social-efg", which you
+                        // need to put yourself down as SocialTenancy and build since 50s,
+                        // then it shoudl appear under cavity wall insulation
+                        // qq doesn't match
+                        //
+                        // To get a grant on a measure, answer:
+                        //   - n19 5jx, 2 tremlett
+                        //   - own
+                        //   - 1930 - 1949
+                        //   - tick all benefits
+                        //   - £1000 / pa
+
                         return EnergyEfficiencyRecommendation.fromMeasure(
                                 recommendation,
                                 measure,
-                                userSiteBaseUrl);
+                                userSiteBaseUrl,
+                                nationalGrantsService);
 
                     } else if (!isNullOrEmpty(recommendation.grantSlug)) {
                         throw new RuntimeException("qq");
@@ -207,8 +228,11 @@ public class EnergySavingPlanController {
     @Value
     @Builder
     public static class DownloadPlanRequest {
+        @NotNull
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
+        @NotNull
         Double potentialScore;
+        @NotNull
         Integer tenureType;
     }
 
@@ -233,6 +257,10 @@ public class EnergySavingPlanController {
          * Null if this is a Measure
          */
         String grantSlug;
+        /**
+         * Null if not a measure or if the measure has no grant
+         */
+        String nationalGrantForMeasureId;
 
         public Double investmentPounds;
         public Double lifetimeYears;
@@ -273,18 +301,24 @@ public class EnergySavingPlanController {
         public static EnergyEfficiencyRecommendation fromMeasure(
                 SelectedEnergyEfficiencyRecommendation recommendation,
                 Map<String, Object> measure,
-                String userSiteBaseUrl) {
+                String userSiteBaseUrl,
+                NationalGrantsService nationalGrantsService) {
 
             Map<String, Object> acfFields = (Map<String, Object>) measure.get("acf");
 
-            Object grant = null; //qq
+            List<RecommendationStep> grantSteps;
+            if (isNullOrEmpty(recommendation.nationalGrantForMeasureId)) {
+                grantSteps = emptyList();
+            } else {
+                NationalGrant grant = nationalGrantsService.get(recommendation.nationalGrantForMeasureId);
+                grantSteps = grant.getSteps().stream()
+                        .map(step -> RecommendationStep.fromGrant(step, userSiteBaseUrl))
+                        .collect(toList());
+            }
 
             List<RecommendationStep> measureSteps = getAcfList(acfFields.get("steps")).stream()
                     .map(step -> RecommendationStep.fromWordpress(step, userSiteBaseUrl))
                     .collect(toList());
-            List<RecommendationStep> grantSteps = grant == null
-                    ? emptyList()
-                    : emptyList(); // qqqq
 
             List<RecommendationStep> steps = ListUtils.union(measureSteps, grantSteps);
 
@@ -301,7 +335,6 @@ public class EnergySavingPlanController {
                     .isItRightForMe((String) acfFields.get("is_it_right_for_me"))
                     .iconPath(recommendation.iconPath)
                     .tags(recommendation.tags)
-                    // TODO:BEIS-309 grant
                     .advantages(getAcfList(acfFields.get("advantages"))
                             .stream()
                             .map(a -> (String) a.get("advantage"))
@@ -363,39 +396,45 @@ public class EnergySavingPlanController {
                     .build();
         }
 
+        static RecommendationStep fromGrant(NationalGrant.Step step, String userSiteBaseUrl) {
+            return RecommendationStep.builder()
+                    .headline(step.getHeadline())
+                    .description(step.getDescription())
+                    .readMore(step.getReadMore())
+                    .moreInfoLinks(step.getMoreInfoLinks().stream()
+                            .map(link -> Link.fromGrant(link, userSiteBaseUrl))
+                            .collect(toList()))
+                    .build();
+        }
+
         @Value
         @Builder
         static class Link {
             String buttonText;
-            LinkProps linkProps;
+            String url;
 
-            public static Link fromWordpress(Map<String, Object> link, String userSiteBaseUrl) {
+            static Link fromWordpress(Map<String, Object> link, String userSiteBaseUrl) {
                 return Link.builder()
                         .buttonText((String) link.get("button_text"))
-                        .linkProps(LinkProps.getRouteForPageFromUrl(
-                                (String) link.get("link_url"),
-                                userSiteBaseUrl))
+                        .url(makeUrlAbsolute((String) link.get("link_url"), userSiteBaseUrl))
                         .build();
             }
 
-            @Value
-            static class LinkProps {
-                String route;
-                boolean isRelativeURL;
+            static Link fromGrant(NationalGrant.Link link, String userSiteBaseUrl) {
+                return Link.builder()
+                        .buttonText(link.getButtonText())
+                        .url(makeUrlAbsolute(link.getLinkUrl(), userSiteBaseUrl))
+                        .build();
+            }
 
-                public static LinkProps getRouteForPageFromUrl(String link_url, String userSiteBaseUrl) {
-                    if (null == link_url) {
-                        return new LinkProps(null, false);
-                    }
-                    if (link_url.startsWith("/")) {
-                        return new LinkProps(
-                                userSiteBaseUrl + link_url,
-                                true);
-                    }
-                    return new LinkProps(
-                            link_url,
-                            false);
+            private static String makeUrlAbsolute(String linkUrl, String userSiteBaseUrl) {
+                if (isNullOrEmpty(linkUrl)) {
+                    return null;
                 }
+                if (linkUrl.startsWith("/")) {
+                    return userSiteBaseUrl + linkUrl;
+                }
+                return linkUrl;
             }
         }
     }
