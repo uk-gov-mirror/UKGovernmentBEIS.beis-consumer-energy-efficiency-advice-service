@@ -166,7 +166,7 @@ public class EnergySavingPlanController {
                     if (!isNullOrEmpty(recommendation.measureSlug)) {
                         Map<String, Object> measure = measuresBySlug.get(recommendation.measureSlug);
 
-                        // qq grants, ECO HHCRO Social EFG
+                        // qq child grants, ECO HHCRO Social EFG ...
                         return EnergyEfficiencyRecommendation.fromMeasure(
                                 recommendation,
                                 measure,
