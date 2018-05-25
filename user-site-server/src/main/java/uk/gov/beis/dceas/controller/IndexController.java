@@ -33,6 +33,8 @@ public class IndexController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    @Value("${dceas.publicRootUrl}")
+    private String publicRootUrl;
     @Value("${dceas.apiRoot}")
     private String apiRoot;
     @Value("${dceas.staticRoot}")
@@ -126,6 +128,7 @@ public class IndexController {
     },
         method = GET)
     public String index(Model model, HttpServletRequest request) throws IOException {
+        model.addAttribute("publicRootUrl", publicRootUrl);
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
         model.addAttribute("gaId", gaId);

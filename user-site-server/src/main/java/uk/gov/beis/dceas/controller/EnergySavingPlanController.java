@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -50,18 +49,22 @@ public class EnergySavingPlanController {
     private final SpringTemplateEngine templateEngine;
     private final MeasuresDataService measuresDataService;
     private final NationalGrantsService nationalGrantsService;
+    private final String publicRootUrl;
 
     public EnergySavingPlanController(
             ServletContext servletContext,
             ApplicationContext applicationContext,
             SpringTemplateEngine templateEngine,
             MeasuresDataService measuresDataService,
-            NationalGrantsService nationalGrantsService) {
+            NationalGrantsService nationalGrantsService,
+            @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
+            String publicRootUrl) {
         this.servletContext = servletContext;
         this.applicationContext = applicationContext;
         this.templateEngine = templateEngine;
         this.measuresDataService = measuresDataService;
         this.nationalGrantsService = nationalGrantsService;
+        this.publicRootUrl = publicRootUrl;
     }
 
     /**
@@ -117,10 +120,6 @@ public class EnergySavingPlanController {
         // https://stackoverflow.com/questions/17953829/with-flying-saucer-how-do-i-generate-a-pdf-with-a-page-number-and-page-total-on
 
 
-        // TODO:BEIS-209 replace with config
-        URI requestUri = new URI(httpRequest.getRequestURI());
-        String userSiteBaseUrl = requestUri.getScheme() + "://" + requestUri.getAuthority();
-
         SpringWebContext templateContext = new SpringWebContext(
                 httpRequest,
                 response,
@@ -131,8 +130,7 @@ public class EnergySavingPlanController {
 
         loadDisplayData(
                 templateContext,
-                request,
-                userSiteBaseUrl);
+                request);
 
         // We render the entire template to a String in memory, then parse that String as XML.
         // In theory, we might be able to pipe the output from Thymeleaf directly into an
@@ -171,8 +169,7 @@ public class EnergySavingPlanController {
      */
     private void loadDisplayData(
             SpringWebContext templateContext,
-            DownloadPlanRequest request,
-            String userSiteBaseUrl) throws Exception {
+            DownloadPlanRequest request) throws Exception {
 
         Map<String, Map<String, Object>> measuresBySlug = measuresDataService.getMeasuresBySlug();
 
@@ -198,7 +195,7 @@ public class EnergySavingPlanController {
                         return EnergyEfficiencyRecommendation.fromMeasure(
                                 recommendation,
                                 measure,
-                                userSiteBaseUrl,
+                                publicRootUrl,
                                 nationalGrantsService);
 
                     } else if (!isNullOrEmpty(recommendation.grantSlug)) {
