@@ -31,7 +31,7 @@ $mobile-browse-cards-margin: 20px;
   .page-row-content {
     .heading {
       @include page-subheading-font;
-      padding-top: 60px;
+      padding: 30px 0;
     }
   }
 
@@ -78,8 +78,8 @@ $mobile-browse-cards-margin: 20px;
         min-height: 500px;
         max-height: 500px;
         display: block;
-        margin: 20px 0px 40px 10px;
-        width: 30vw;
+        flex: 1 1 45%;
+        margin: 20px 0 40px;
       }
     }
   }
@@ -119,11 +119,7 @@ $mobile-browse-cards-margin: 20px;
     }
 
     .measures {
-      .measure-cards{
-        app-measure-card {
-          width: 80vw;
-        }
-      }
+
       .page-row-content {
         padding-bottom: 44px;
 
@@ -165,9 +161,16 @@ $mobile-browse-cards-margin: 20px;
     .measures {
       .measure-cards{
         app-measure-card {
-          width: 40vw;
+          &:first-of-type {
+            margin-right: 12px;
+          }
+
+          &:last-of-type {
+            margin-left: 12px;
+          }
         }
       }
+
       .page-row-content {
         padding-bottom: 50px;
 
@@ -217,7 +220,13 @@ $mobile-browse-cards-margin: 20px;
     .measures {
       .measure-cards{
         app-measure-card {
-          width: 30%;
+          &:first-of-type {
+            margin-right: 12px;
+          }
+
+          &:last-of-type {
+            margin-left: 12px;
+          }
         }
       }
       .page-row-content {

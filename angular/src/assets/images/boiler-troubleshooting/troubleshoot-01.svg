@@ -1,37 +1,31 @@
-<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="650" height="240" viewBox="0 0 650 240">
-    <defs>
-        <style>
-            .cls-1{fill:#eee;}.cls-2{fill:#fff;}.cls-3{fill:#e50046;}.cls-4{fill:#01abce;}.cls-5{fill:#aae4ef;}.cls-6{fill:#006280;}.cls-7{fill:#ccc;}
-        </style>
-    </defs>
-    <path class="cls-1"
-          d="M245.06,164.31H66.49a12.4,12.4,0,0,1-12.37-11.55L52.6,130.6a499.7,499.7,0,0,1,0-68.35l1.52-22.17A12.4,12.4,0,0,1,66.49,28.53H245.06a12.4,12.4,0,0,1,12.37,11.55L259,62.25a499.7,499.7,0,0,1,0,68.35l-1.52,22.16A12.4,12.4,0,0,1,245.06,164.31Z"/>
-    <path class="cls-2"
-          d="M66.49,28.53A12.4,12.4,0,0,0,54.12,40.08L52.6,62.25a499.7,499.7,0,0,0,0,68.35l1.52,22.16a12.4,12.4,0,0,0,12.37,11.55h49.72V28.53Z"/>
-    <circle class="cls-3" cx="151.9" cy="111.55" r="12.41"/>
-    <circle class="cls-4" cx="186.81" cy="111.55" r="12.41"/>
-    <rect class="cls-5" x="139.48" y="58.01" width="96.98" height="26.38"/>
-    <rect class="cls-5" x="139.48" y="150.34" width="59.74" height="59.74"/>
-    <rect class="cls-6" x="139.48" y="150.34" width="59.74" height="3.1"/>
-    <rect class="cls-2" x="118.33" y="136.69" width="140.25" height="1.7"/>
-    <rect class="cls-1" x="52.74" y="136.69" width="61.4" height="1.7"/>
-    <rect class="cls-7" x="113.66" y="28.53" width="5.09" height="135.78"/>
-    <polygon class="cls-2"
-             points="492.01 28.53 490.18 28.53 396.48 28.53 424.04 211.47 490.18 211.47 492.01 211.47 558.15 211.47 585.71 28.53 492.01 28.53"/>
-    <rect class="cls-2" x="383.62" y="28.53" width="214.95" height="60.98"/>
-    <polygon class="cls-5"
-             points="407.73 103.23 424.04 211.47 490.18 211.47 492.01 211.47 558.15 211.47 574.46 103.23 407.73 103.23"/>
-    <rect class="cls-5" x="337.88" y="51.4" width="70.13" height="15.24"/>
-    <rect class="cls-7" x="379.05" y="43.78" width="9.15" height="30.49" rx="4.57" ry="4.57"/>
-    <rect class="cls-7" x="406.49" y="50.89" width="3.05" height="10.16" rx="1.52" ry="1.52"/>
-    <rect class="cls-7" x="406.49" y="56.99" width="3.05" height="10.16" rx="1.52" ry="1.52"/>
-    <rect class="cls-3" x="348.56" y="20.91" width="9.15" height="30.49" rx="4.57" ry="4.57"
-          transform="translate(316.98 389.28) rotate(-90)"/>
-    <rect class="cls-6" x="348.94" y="43.78" width="7.24" height="22.87"/>
-    <rect class="cls-6" x="344.17" y="49.87" width="16.77" height="18.29" rx="2.94" ry="2.94"/>
-    <path class="cls-6"
-          d="M496.62,105.59a2.18,2.18,0,0,1-.78-.14L407,73.12a2.28,2.28,0,0,1,1.57-4.29l88.82,32.32a2.29,2.29,0,0,1-.79,4.44Z"/>
-    <circle class="cls-2" cx="513.46" cy="109.43" r="19.82"/>
-    <path class="cls-7" d="M519.88,90.68a19.82,19.82,0,1,0-13.56,37.24Z"/>
-    <rect class="cls-3" x="493.64" y="107.9" width="39.64" height="3.05" transform="translate(235 554.48) rotate(-70)"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="650px" height="240px" viewBox="0 0 650 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(51.000000, 28.000000)" fill-rule="nonzero">
+            <path d="M194.06,136.31 L15.49,136.31 C8.97188473,136.309562 3.56680628,131.262783 3.12,124.76 L1.6,102.6 C0.0399979607,79.8433705 0.0399979607,57.0066295 1.6,34.25 L3.12,12.08 C3.56680628,5.57721667 8.97188473,0.530437678 15.49,0.53 L194.06,0.53 C200.578115,0.530437678 205.983194,5.57721667 206.43,12.08 L208,34.25 C209.560002,57.0066295 209.560002,79.8433705 208,102.6 L206.48,124.76 C206.031922,131.282041 200.597364,136.335918 194.06,136.31 Z" id="Shape" fill="#DDDDDD"></path>
+            <path d="M15.49,0.53 C8.97188473,0.530437678 3.56680628,5.57721667 3.12,12.08 L1.6,34.25 C0.0399979607,57.0066295 0.0399979607,79.8433705 1.6,102.6 L3.12,124.76 C3.56680628,131.262783 8.97188473,136.309562 15.49,136.31 L65.21,136.31 L65.21,0.53 L15.49,0.53 Z" id="Shape" fill="#FFFFFF"></path>
+            <circle id="Oval" fill="#E50046" cx="100.9" cy="83.55" r="12.41"></circle>
+            <circle id="Oval" fill="#01ABCE" cx="135.81" cy="83.55" r="12.41"></circle>
+            <rect id="Rectangle-path" fill="#AAE4EF" x="88.48" y="30.01" width="96.98" height="26.38"></rect>
+            <rect id="Rectangle-path" fill="#AAE4EF" x="88.48" y="122.34" width="59.74" height="59.74"></rect>
+            <rect id="Rectangle-path" fill="#006280" x="88.48" y="122.34" width="59.74" height="3.1"></rect>
+            <rect id="Rectangle-path" fill="#FFFFFF" x="67.33" y="108.69" width="140.25" height="1.7"></rect>
+            <rect id="Rectangle-path" fill="#DDDDDD" x="1.74" y="108.69" width="61.4" height="1.7"></rect>
+            <rect id="Rectangle-path" fill="#CCCCCC" x="62.66" y="0.53" width="5.09" height="135.78"></rect>
+            <polygon id="Shape" fill="#FFFFFF" points="441.01 0.53 439.18 0.53 345.48 0.53 373.04 183.47 439.18 183.47 441.01 183.47 507.15 183.47 534.71 0.53"></polygon>
+            <rect id="Rectangle-path" fill="#FFFFFF" x="332.62" y="0.53" width="214.95" height="60.98"></rect>
+            <polygon id="Shape" fill="#AAE4EF" points="356.73 75.23 373.04 183.47 439.18 183.47 441.01 183.47 507.15 183.47 523.46 75.23"></polygon>
+            <rect id="Rectangle-path" fill="#AAE4EF" x="286.88" y="23.4" width="70.13" height="15.24"></rect>
+            <rect id="Rectangle-path" fill="#CCCCCC" x="328.05" y="15.78" width="9.15" height="30.49" rx="4.57"></rect>
+            <rect id="Rectangle-path" fill="#CCCCCC" x="355.49" y="22.89" width="3.05" height="10.16" rx="1.52"></rect>
+            <rect id="Rectangle-path" fill="#CCCCCC" x="355.49" y="28.99" width="3.05" height="10.16" rx="1.52"></rect>
+            <rect id="Rectangle-path" fill="#E50046" transform="translate(302.135000, 8.145000) rotate(-90.000000) translate(-302.135000, -8.145000) " x="297.56" y="-7.1" width="9.15" height="30.49" rx="4.57"></rect>
+            <rect id="Rectangle-path" fill="#006280" x="297.94" y="15.78" width="7.24" height="22.87"></rect>
+            <rect id="Rectangle-path" fill="#006280" x="293.17" y="21.87" width="16.77" height="18.29" rx="2.94"></rect>
+            <path d="M445.62,77.59 C445.35363,77.5913792 445.089263,77.5439287 444.84,77.45 L356,45.12 C354.815349,44.6864564 354.206457,43.3746508 354.64,42.19 C355.073544,41.0053493 356.385349,40.3964565 357.57,40.83 L446.39,73.15 C447.432684,73.5323567 448.050723,74.6077488 447.856175,75.701155 C447.661628,76.7945613 446.710579,77.5907689 445.6,77.59 L445.62,77.59 Z" id="Shape" fill="#006280"></path>
+            <circle id="Oval" fill="#FFFFFF" cx="462.46" cy="81.43" r="19.82"></circle>
+            <path d="M468.88,62.68 C462.187728,60.0892411 454.617767,61.3183203 449.088948,65.8933284 C443.560129,70.4683366 440.936163,77.6745667 442.228801,84.7334352 C443.52144,91.7923037 448.528746,97.6010755 455.32,99.92 L468.88,62.68 Z" id="Shape" fill="#CCCCCC"></path>
+            <rect id="Rectangle-path" fill="#E50046" transform="translate(462.439528, 81.410981) rotate(-70.000000) translate(-462.439528, -81.410981) " x="442.619528" y="79.8859811" width="39.64" height="3.05"></rect>
+        </g>
+    </g>
 </svg>

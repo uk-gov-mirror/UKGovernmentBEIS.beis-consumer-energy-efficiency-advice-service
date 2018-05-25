@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-05-24-add-cover-images-to-videos.xml"
+               author="raam.chauhan@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-24 10:00:00','2018-05-24 10:00:00','','cavity-video.jpg','','inherit','open','closed','','cavity-video-jpg','','','2018-05-24 10:00:00','2018-05-24 10:00:00','',10319,'/wp-content/uploads/2018/05/cavity-video.jpg',0,'attachment','image/jpg',0);
+SET @p_1 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-24 10:00:00','2018-05-24 10:00:00','','controls-overview.jpg','','inherit','open','closed','','controls-overview-jpg','','','2018-05-24 10:00:00','2018-05-24 10:00:00','',10319,'/wp-content/uploads/2018/05/controls-overview.jpg',0,'attachment','image/jpg',0);
+SET @p_2 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-24 10:00:00','2018-05-24 10:00:00','','draught.jpg','','inherit','open','closed','','draught-jpg','','','2018-05-24 10:00:00','2018-05-24 10:00:00','',10319,'/wp-content/uploads/2018/05/draught.jpg',0,'attachment','image/jpg',0);
+SET @p_3 = LAST_INSERT_ID();
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2018-05-24 10:00:00','2018-05-24 10:00:00','','swi.jpg','','inherit','open','closed','','swi-jpg','','','2018-05-24 10:00:00','2018-05-24 10:00:00','',10319,'/wp-content/uploads/2018/05/swi.jpg',0,'attachment','image/jpg',0);
+SET @p_4 = LAST_INSERT_ID();
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_1
+WHERE post_id='10319' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_2
+WHERE post_id='10339' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_3
+WHERE post_id='10329' and meta_key='cover_image';
+
+UPDATE `wp_postmeta`
+SET meta_value=@p_4
+WHERE post_id='10321' and meta_key='cover_image';
+
+INSERT INTO `wp_postmeta`
+(post_id, meta_key, meta_value)
+VALUES
+
+(@p_1,'_wp_attached_file','2018/05/cavity-video.jpg'),
+(@p_1,'_wp_attachment_context','acf-upload'),
+(@p_1,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:24:\"2018/05/cavity-video.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_2,'_wp_attached_file','2018/05/controls-overview.jpg'),
+(@p_2,'_wp_attachment_context','acf-upload'),
+(@p_2,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:29:\"2018/05/controls-overview.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_3,'_wp_attached_file','2018/05/draught.jpg'),
+(@p_3,'_wp_attachment_context','acf-upload'),
+(@p_3,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:19:\"2018/05/draught.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+
+(@p_4,'_wp_attached_file','2018/05/swi.jpg'),
+(@p_4,'_wp_attachment_context','acf-upload'),
+(@p_4,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:150;s:6:\"height\";i:44;s:4:\"file\";s:15:\"2018/05/swi.jpg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}');
+
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

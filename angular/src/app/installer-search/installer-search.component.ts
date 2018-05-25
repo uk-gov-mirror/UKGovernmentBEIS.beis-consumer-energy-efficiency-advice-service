@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {ResponseData} from "../shared/response-data/response-data";
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
@@ -20,8 +20,7 @@ export class InstallerSearchComponent implements OnInit {
     loading = false;
     error = false;
 
-    constructor(private router: Router,
-                private route: ActivatedRoute,
+    constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
                 private measureContentService: EnergySavingMeasureContentService,
                 private installerSearchService: InstallerSearchService) {
@@ -31,7 +30,7 @@ export class InstallerSearchComponent implements OnInit {
         this.postcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
-                    this.measures = measures.filter(measure => measure.acf.installer_code !== undefined);
+                    this.measures = measures.filter(measure => measure.acf.installer_code);
                     this.measures = sortBy(this.measures, [m => m.acf.headline.toUpperCase()]);
                     if (params["measure-code"]) {
                         const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];

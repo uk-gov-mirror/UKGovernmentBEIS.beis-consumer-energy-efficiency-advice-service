@@ -2,6 +2,10 @@
 @import "styles/var/colors";
 @import "styles/boiler";
 
+$calculator-image: "/assets/images/home-page/home-calc.svg";
+$arrow-width: 20px;
+$arrow-height: 48px;
+
 .boiler-results-page {
 
   .found-options {
@@ -12,6 +16,157 @@
 
       .boiler-option:not(:last-child) {
         margin-bottom: 20px;
+      }
+    }
+  }
+
+  .calculator {
+    background: $light-grey;
+    padding: 40px 0;
+
+    .banner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > div, > a {
+        height: 120px;
+        padding: 0 40px;
+        box-sizing: border-box;
+      }
+
+      .image {
+        background: url($calculator-image) no-repeat center center;
+        background-size: 100% 100%;
+        content: "";
+      }
+
+      .heading {
+        @include quick-link-heading-font;
+        color: $dark-medium-blue;
+        display: flex;
+        align-items: center;
+      }
+
+      .link {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 40px;
+
+        &:focus, &:hover {
+          .arrow-button {
+            color: white;
+            background: $dark-blue;
+            &:after {
+              border-left-color: $dark-blue;
+            }
+          }
+        }
+
+        .description {
+          @include quick-link-font;
+          color: $dark-medium-blue;
+          box-sizing: border-box;
+          width: 100%;
+        }
+
+        .arrow-button {
+          position: relative;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          margin-top: auto;
+          @include quick-link-font;
+          height: $arrow-height;
+          width: 80%;
+          padding-left: 18px;
+
+          background: white;
+          color: $dark-medium-blue;
+
+          &:after {
+            position: absolute;
+            right: -$arrow-width;
+            top: 0;
+            content: " ";
+            border: ($arrow-height / 2) solid transparent;
+            border-right-width: 0;
+            border-left: $arrow-width solid white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .boiler-results-page {
+    .page-heading {
+      .heading-text {
+        font-size: 30px;
+        line-height: 35px;
+        padding: 0 20px;
+      }
+    }
+
+    .calculator {
+      .banner {
+        .image {
+          flex: 0 0 100%;
+        }
+
+        .heading {
+          flex: 0 0 100%;
+        }
+
+        .link {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .boiler-results-page {
+    .calculator {
+      .banner {
+        .image {
+          flex: 0 0 40%;
+        }
+
+        .heading {
+          flex: 0 0 60%;
+          border-left: none;
+        }
+
+        .link {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .boiler-results-page {
+    .calculator {
+      .banner {
+        .image {
+          flex: 0 0 20%;
+        }
+
+        .heading {
+          flex: 0 0 50%;
+        }
+
+        .link {
+          flex: 0 0 30%;
+        }
       }
     }
   }
