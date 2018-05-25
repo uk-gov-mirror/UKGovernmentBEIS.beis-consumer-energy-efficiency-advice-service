@@ -127,6 +127,9 @@ public class EnergySavingPlanController {
                 request,
                 userSiteBaseUrl);
 
+        // We render the entire template to a String in memory, then parse that String as XML.
+        // In theory, we might be able to pipe the output from Thymeleaf directly into an
+        // XML tree, but that would be fiddly and might risk deadlock, so we haven't done so.
         String xml = templateEngine.process("energySavingPlan/plan", templateContext);
 
         String baseUrl = Resources.getResource("templates/energySavingPlan/plan.html")
@@ -134,7 +137,6 @@ public class EnergySavingPlanController {
                 .replaceFirst("plan.html$", "");
 
         ITextRenderer renderer = new ITextRenderer();
-        // qq could use stream-to-stream
         renderer.setDocumentFromString(xml, baseUrl);
         renderer.layout();
 
@@ -198,12 +200,15 @@ public class EnergySavingPlanController {
 
         templateContext.setVariable("roundedTotalSavings",
                 roundAndFormatCostValue(totalSavings));
+
+        templateContext.setVariable("potentialScore", request.potentialScore);
     }
 
     @Value
     @Builder
     public static class DownloadPlanRequest {
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
+        Double potentialScore;
         Integer tenureType;
     }
 
@@ -297,9 +302,7 @@ public class EnergySavingPlanController {
                     .iconPath(recommendation.iconPath)
                     .tags(recommendation.tags)
                     // TODO:BEIS-309 grant
-                    .advantages(acfFields.get("advantages") == null
-                            ? null
-                            : ((List<Map<String, Object>>) acfFields.get("advantages"))
+                    .advantages(getAcfList(acfFields.get("advantages"))
                             .stream()
                             .map(a -> (String) a.get("advantage"))
                             .collect(toList()))
@@ -328,6 +331,7 @@ public class EnergySavingPlanController {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static List<Map<String, Object>> getAcfList(Object val) {
         if (val != null && val instanceof List<?>) {
             return (List<Map<String, Object>>) val;

@@ -67,6 +67,7 @@ public class EnergySavingPlanControllerTest {
                                         "icons/simple-savings.svg",
                                         3)))
                 .tenureType(0)
+                .potentialScore(72.0)
                 .build();
 
         MvcResult mvcResult = mvc

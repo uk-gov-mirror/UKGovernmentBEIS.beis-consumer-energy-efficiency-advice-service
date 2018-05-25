@@ -6,6 +6,7 @@
     This is the Thymeleaf template for the Plan PDF.
 
     It closely follows angular/src/app/energy-efficiency/your-plan-page/your-plan-page.component.html
+    If you change anything here, please consider whether anything needs changing there.
 
     In dev, you can open this file in a browser to make CSS tweaks.
 
@@ -34,7 +35,7 @@
                     <div class="data-card">
                         <h3>Your potential score is</h3>
                         <div class="value">
-                            <span th:text="${potentialScore}">71</span> / 100
+                            <span th:text='${T(String).format("%.0f", potentialScore)}'>71</span> / 100
                         </div>
                     </div>
                     <div class="data-card">

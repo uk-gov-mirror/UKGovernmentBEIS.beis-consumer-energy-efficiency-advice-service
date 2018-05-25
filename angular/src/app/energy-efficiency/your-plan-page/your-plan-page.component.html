@@ -1,3 +1,12 @@
+<!--
+This is the Angular template for the Plan page.
+
+There is a server-side version of this page, at energySavingPlan/plan.html
+which is used to render a plan to PDF.
+
+If you change anything here, please consider whether anything needs changing there.
+
+-->
 <app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="your-plan-page" *ngIf="!isError">
     <div class="your-plan-content">
@@ -5,20 +14,6 @@
             <div class="page-row-content">
                 <div class="heading-container">
                     <h1 class="heading">Your plan</h1>
-
-                    <!--<app-your-plan-summary>-->
-
-                    <!--// TODO:BEIS-309 write simplified plan (skip coloured circle etc.)-->
-
-                    <div class="data-card">
-                        <div class="heading">Your potential score is</div>
-                        <div class="value-container"
-                             [class.color-circle]="colorCircleClassName"
-                             [class.is-percent]="isPercent"
-                             [ngClass]="colorCircleClassName">
-                            <div class="value">{{value}}</div>
-                        </div>
-                    </div>
 
                     <div class="subheading" *ngIf="recommendations.length === 1">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
