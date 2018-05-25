@@ -144,6 +144,14 @@ public class EnergySavingPlanController {
                 .replaceFirst("plan.html$", "");
 
         ITextRenderer renderer = new ITextRenderer();
+
+        renderer.getFontResolver().addFont(
+                Resources.getResource("templates/energySavingPlan/GothamBook.ttf").toString(),
+                true);
+        renderer.getFontResolver().addFont(
+                Resources.getResource("templates/energySavingPlan/GothamLight.ttf").toString(),
+                true);
+
         renderer.setDocumentFromString(xml, baseUrl);
         renderer.layout();
 
