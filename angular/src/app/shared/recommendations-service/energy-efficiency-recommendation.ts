@@ -48,6 +48,10 @@ export class EnergyEfficiencyRecommendation {
         return this.costSavingPoundsPerYear / 12;
     }
 
+    get isMeasure(): boolean {
+        return this.measureCode !== null;
+    }
+
     /**
      * Keep this in sync with EnergySavingPlanController.java `fromMeasure`
      */

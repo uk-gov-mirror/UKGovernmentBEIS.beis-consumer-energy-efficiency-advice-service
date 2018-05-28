@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
@@ -84,7 +84,7 @@ public class EnergySavingPlanController {
      */
     @PostMapping("download")
     public void downloadPlan(
-            @Valid @RequestBody DownloadPlanRequest request,
+            @Valid @RequestParam("planInfo") DownloadPlanRequest request,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
@@ -228,12 +228,12 @@ public class EnergySavingPlanController {
          */
         String nationalGrantForMeasureId;
 
-        public Double investmentPounds;
+        Double investmentPounds;
         /**
          * If a measure, this is `costSavingPoundsPerYear`
          * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds`
          */
-        public Double costSavingPoundsPerYear;
+        Double costSavingPoundsPerYear;
     }
 
     /**

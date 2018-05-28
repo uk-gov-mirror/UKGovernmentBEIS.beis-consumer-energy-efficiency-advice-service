@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import uk.gov.beis.dceas.controller.EnergySavingPlanController.DownloadPlanReque
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.SelectedEnergyEfficiencyRecommendation;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
+import uk.gov.beis.dceas.spring.DownloadPlanRequestParameterConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,12 +54,11 @@ public class EnergySavingPlanControllerTest {
      * To get a Measure with a child grant from the questionnaire, for comparison, the
      * easiest is "eco-hhcro-help-to-heat".
      * answer:
-     *   - n19 5jx, 2 tremlett
-     *   - own home
-     *   - 1930 - 1949
-     *   - tick all benefits
-     *   - £1000 / pa income
-     *
+     * - n19 5jx, 2 tremlett
+     * - own home
+     * - 1930 - 1949
+     * - tick all benefits
+     * - £1000 / pa income
      */
     @Test
     public void testDownloadPlan() throws Exception {
@@ -97,11 +100,15 @@ public class EnergySavingPlanControllerTest {
                 .potentialScore(72.0)
                 .build();
 
+        String formBody = EntityUtils.toString(new UrlEncodedFormEntity(Collections.singletonList(
+                new BasicNameValuePair(
+                        "planInfo",
+                        objectMapper.writeValueAsString(requestBody)))));
         MvcResult mvcResult = mvc
                 .perform(
                         post("/api/plan/download")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(requestBody)))
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .content(formBody))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -168,6 +175,11 @@ public class EnergySavingPlanControllerTest {
                                             .build()))
                             .build());
             return mock;
+        }
+
+        @Bean
+        public DownloadPlanRequestParameterConverter paramConverter(ObjectMapper om) {
+            return new DownloadPlanRequestParameterConverter(om);
         }
     }
 }

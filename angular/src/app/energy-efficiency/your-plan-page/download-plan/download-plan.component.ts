@@ -3,6 +3,7 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import Config from '../../../config';
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 @Component({
     selector: 'app-download-plan',
@@ -14,7 +15,8 @@ export class DownloadPlanComponent {
     pdfIsLoading: boolean;
 
     constructor(private googleAnalyticsService: GoogleAnalyticsService,
-                private responseData: ResponseData) {
+                private responseData: ResponseData,
+                private recommendationsService: RecommendationsService) {
     }
 
     isTenant(): boolean {
@@ -30,6 +32,30 @@ export class DownloadPlanComponent {
     onPdfClickedInner() {
         this.sendEventToAnalytics('download-plan_clicked');
 
+        // See uk.gov.beis.dceas.api.DownloadPlanRequest
+        const recommendations = this.recommendationsService.getRecommendationsInPlan()
+            .map(r => {
+                if (r.isMeasure) {
+                    return {
+                        measureSlug: r.recommendationID,
+                        nationalGrantForMeasureId: (r.grant && r.grant.grantId),
+                        investmentPounds: r.investmentPounds,
+                        costSavingPoundsPerYear: r.costSavingPoundsPerYear
+                    };
+                } else {
+                    return {
+                        grantSlug: r.recommendationID,
+                        investmentPounds: r.investmentPounds,
+                        costSavingPoundsPerYear: r.costSavingPoundsPerYear
+                    };
+                }
+            });
+        const planInfo = {
+            recommendations: recommendations,
+            potentialScore: this.recommendationsService.potentialScore,
+            tenureType: this.responseData.tenureType
+        };
+
         // Submit a hidden form to POST to the PDF endpoint, and download it
         const form = document.createElement("form");
         form.style.display = "none";
@@ -37,97 +63,15 @@ export class DownloadPlanComponent {
         form.setAttribute("method", "post");
         form.setAttribute("target", "_blank");
 
+        const hiddenEle1 = document.createElement("input");
+        hiddenEle1.setAttribute("type", "hidden");
+        hiddenEle1.setAttribute("name", "planInfo");
+        hiddenEle1.setAttribute("value", JSON.stringify(planInfo));
+        form.append(hiddenEle1);
+
         document.body.appendChild(form);
 
-        // var hiddenEle1 = document.createElement("input");
-        // hiddenEle1.setAttribute("type", "hidden");
-        // hiddenEle1.setAttribute("name", "some");
-        // hiddenEle1.setAttribute("value", value);
-        // form.append(hiddenEle1 );
-
         form.submit();
-
-        /*
-        const stepCards = document.getElementsByClassName("recommendation-step-card"); // Find all step cards
-        const stepCardArray = Array.from(stepCards); // Convert to array because they are less limited than iterables
-
-        const readMoreContent = document.getElementsByClassName("read-more-content-container");
-        const readMoreArray = Array.from(readMoreContent);
-
-        const reccomendationPageRow = document.getElementsByClassName("recommendations")[0];
-
-        let mutationCount = 0;
-
-        const self = this;
-        const callback = function (elemObserver) {
-            mutationCount++;
-
-            if (mutationCount === (stepCards.length + 1)) { // If all drop downs have been opened
-
-                (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "hidden";
-
-                // Create the PDF
-                const pdfBody = document.getElementsByClassName("your-plan-page")[0];
-                html2pdf(pdfBody, {
-                    html2canvas: {
-                        // `AllowTaint` helps with SVG rendering, see
-                        // https://github.com/niklasvh/html2canvas/issues/95
-                        // We don't need to worry about taint as we have no CORS
-                        allowTaint: true,
-                        // A higher 'dpi' makes the screenshot higher resolution, which
-                        // makes it less blurry but uses more memory:
-                        dpi: 192,
-                        // Not sure if this does anything, but it's in the html2pdf docs
-                        // and sounds good:
-                        letterRendering: true
-                    }
-                });
-
-                // Close all the drop downs
-                readMoreArray.map(elem => {
-                    elem.classList.remove("read-more-expanded");
-                });
-
-                stepCardArray.map(elem => {
-                    elem.classList.remove("print-mode");
-                });
-                reccomendationPageRow.classList.remove("print-mode");
-
-                (<HTMLElement>document.querySelector(".sticky-row")).style.visibility = "visible";
-
-                // There is no way to detect when the PDF has finished rendering
-                // It can be several seconds
-                // https://github.com/MrRio/jsPDF/issues/1754
-                window.setTimeout(() => self.pdfIsLoading = false, 1000);
-
-                // Disconnect the observer so the user cant trigger this callback afterwards
-                elemObserver.disconnect();
-            }
-        };
-
-        const observer = this.instantiateObserver(callback);
-
-        for (const elem of stepCardArray) {
-            observer.observe(elem, { // Attributes which should be observed
-                attributes: true,
-                subtree: true
-            });
-        }
-
-        observer.observe(reccomendationPageRow, { // Attributes which should be observed
-            attributes: true,
-            subtree: true
-        });
-
-        stepCardArray.map(elem => {
-            elem.classList.add("print-mode");
-        });
-        reccomendationPageRow.classList.add("print-mode");
-
-        readMoreArray.map(elem => {
-            elem.classList.add("read-more-expanded");
-        });
-        */
     }
 
     sendEventToAnalytics(eventName: string) {
