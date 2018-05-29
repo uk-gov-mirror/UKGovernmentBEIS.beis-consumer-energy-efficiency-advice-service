@@ -120,8 +120,8 @@ public class NationalGrantsService {
                         if (!linkToMeasures) {
                             linkedMeasureCodes = emptyList();
                         } else {
-                            // This is 1+N database round-trips, but it is no worse than WP
-                            // We should consider caching if necessary
+                            // This is 1+N database round-trips, but it is no worse than WP.
+                            // The output is cached above
                             linkedMeasureCodes = getMeasureCodesFromIds(
                                     deserializePhpStringArrayOfInts(metaFields.get("measures")));
                         }

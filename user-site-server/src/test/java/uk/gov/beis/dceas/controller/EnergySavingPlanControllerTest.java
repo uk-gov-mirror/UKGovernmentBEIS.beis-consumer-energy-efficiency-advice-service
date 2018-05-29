@@ -9,6 +9,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -43,6 +45,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(EnergySavingPlanController.class)
 public class EnergySavingPlanControllerTest {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private MockMvc mvc;
@@ -92,10 +96,7 @@ public class EnergySavingPlanControllerTest {
                                         "cold-weather-payments",
                                         null,
                                         0.0,
-                                        null))
-
-                        // a grant: TODO
-                )
+                                        null)))
                 .tenureType(0)
                 .potentialScore(72.0)
                 .build();
@@ -112,12 +113,17 @@ public class EnergySavingPlanControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        File file = new File("out.pdf");
+        String dirName = "build/test-results/";
+        new File(dirName).mkdirs();
+        File file = new File(dirName + getClass().getName() + ".pdf");
         Files.write(
                 mvcResult.getResponse().getContentAsByteArray(),
                 file);
 
-        System.out.println("Open: " + file.getAbsolutePath());
+        log.info("Example Plan PDF at: " + file.getAbsolutePath());
+
+        // No assertions here; just that the above rendered without exceptions
+        // is all we can really test here.
     }
 
     @TestConfiguration
@@ -155,7 +161,10 @@ public class EnergySavingPlanControllerTest {
                             .steps(ImmutableList.of(
                                     NationalGrant.Step.builder()
                                             .headline("ECO - What it is")
-                                            .description("ECO is the main scheme for supporting energy efficiency improvements in British homes. All the larger energy supply companies are required to support a certain number of energy improvements in houses and flats, including insulation and some heating improvements.")
+                                            .description("ECO is the main scheme for supporting energy efficiency " +
+                                                    "improvements in British homes. All the larger energy supply companies " +
+                                                    "are required to support a certain number of energy improvements in " +
+                                                    "houses and flats, including insulation and some heating improvements.")
                                             .readMore(null)
                                             .moreInfoLinks(Collections.emptyList())
                                             .build(),
@@ -178,8 +187,8 @@ public class EnergySavingPlanControllerTest {
         }
 
         @Bean
-        public DownloadPlanRequestParameterConverter paramConverter(ObjectMapper om) {
-            return new DownloadPlanRequestParameterConverter(om);
+        public DownloadPlanRequestParameterConverter paramConverter(ObjectMapper objectMapper) {
+            return new DownloadPlanRequestParameterConverter(objectMapper);
         }
     }
 }

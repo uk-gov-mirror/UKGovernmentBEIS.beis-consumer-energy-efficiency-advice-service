@@ -254,7 +254,6 @@ public class EnergySavingPlanController {
         String isItRightForMe;
         String iconPath;
         Integer tags;
-        //        NationalGrantForMeasure grant;
         List<String> advantages;
         List<RecommendationStep> steps;
         String recommendationID;
