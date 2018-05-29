@@ -14,6 +14,7 @@ import {RecommendationStepCardComponent} from './your-plan-page/recommendation-s
 import {DownloadPlanComponent} from './your-plan-page/download-plan/download-plan.component';
 import {BreakEvenComponent} from './energy-efficiency-results/break-even/break-even.component';
 import {YourPlanFooterComponent} from './energy-efficiency-results/your-plan-footer/your-plan-footer.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import {YourPlanFooterComponent} from './energy-efficiency-results/your-plan-foo
         EnergyEfficiencyResultsComponent
     ],
     imports: [
+        FormsModule,
         SharedModule,
         CommonModule,
         QuestionnaireModule,

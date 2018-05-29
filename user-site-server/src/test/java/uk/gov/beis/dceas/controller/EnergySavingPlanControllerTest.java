@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.api.NationalGrant;
-import uk.gov.beis.dceas.controller.EnergySavingPlanController.DownloadPlanRequest;
+import uk.gov.beis.dceas.controller.EnergySavingPlanController.PlanInfo;
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.SelectedEnergyEfficiencyRecommendation;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
@@ -69,7 +69,7 @@ public class EnergySavingPlanControllerTest {
             value = "RV_RETURN_VALUE_IGNORED_BAD_PRACTICE",
             justification = "Both `true` and `false` might indicate success from mkdirs()")
     public void testDownloadPlan() throws Exception {
-        DownloadPlanRequest requestBody = DownloadPlanRequest.builder()
+        PlanInfo requestBody = PlanInfo.builder()
                 .recommendations(
                         ImmutableList.of(
                                 // A measure

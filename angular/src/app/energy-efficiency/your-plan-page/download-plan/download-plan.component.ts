@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {ResponseData} from '../../../shared/response-data/response-data';
-import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import Config from '../../../config';
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'app-download-plan',
@@ -12,26 +12,63 @@ import {RecommendationsService} from "../../../shared/recommendations-service/re
 })
 export class DownloadPlanComponent {
 
-    pdfIsLoading: boolean;
+    emailIsLoading = false;
+    emailIsError = false;
+    emailAddress: string = "";
+
+    private readonly downloadEndpoint = Config().apiRoot + '/plan/download';
+    private readonly emailEndpoint = Config().apiRoot + '/plan/email';
 
     constructor(private googleAnalyticsService: GoogleAnalyticsService,
                 private responseData: ResponseData,
+                private http: HttpClient,
                 private recommendationsService: RecommendationsService) {
     }
 
-    isTenant(): boolean {
-        return this.responseData.tenureType !== TenureType.OwnerOccupancy &&
-            !!this.responseData.tenureType;
-    }
-
-    public onPdfClicked() {
-        this.pdfIsLoading = true;
-        window.setTimeout(() => this.onPdfClickedInner(), 0);
-    }
-
-    onPdfClickedInner() {
+    public onDownloadPdfClicked() {
         this.sendEventToAnalytics('download-plan_clicked');
 
+        const planInfo = this.getPlanInfo();
+
+        // Submit a hidden form to POST to the PDF endpoint, and download it
+        const form = document.createElement("form");
+        form.style.display = "none";
+        form.setAttribute("action", this.downloadEndpoint);
+        form.setAttribute("method", "post");
+        form.setAttribute("target", "_blank");
+
+        const hiddenEle1 = document.createElement("input");
+        hiddenEle1.setAttribute("type", "hidden");
+        hiddenEle1.setAttribute("name", "planInfo");
+        hiddenEle1.setAttribute("value", JSON.stringify(planInfo));
+        form.append(hiddenEle1);
+
+        document.body.appendChild(form);
+
+        form.submit();
+
+        form.remove();
+    }
+
+    public onEmailPdfClicked() {
+        this.sendEventToAnalytics('email-plan_clicked');
+        this.emailIsLoading = true;
+
+        const planInfo = this.getPlanInfo();
+
+        this.http.post(this.emailEndpoint, {
+            planInfo: planInfo,
+            emailAddress: this.emailAddress})
+            .subscribe(
+                () => this.emailIsLoading = false,
+                () => this.emailIsError = true);
+    }
+
+    sendEventToAnalytics(eventName: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'plan-page');
+    }
+
+    private getPlanInfo() {
         // See uk.gov.beis.dceas.api.DownloadPlanRequest
         const recommendations = this.recommendationsService.getRecommendationsInPlan()
             .map(r => {
@@ -50,32 +87,11 @@ export class DownloadPlanComponent {
                     };
                 }
             });
-        const planInfo = {
+        return {
             recommendations: recommendations,
             potentialScore: this.recommendationsService.potentialScore,
             tenureType: this.responseData.tenureType
         };
-
-        // Submit a hidden form to POST to the PDF endpoint, and download it
-        const form = document.createElement("form");
-        form.style.display = "none";
-        form.setAttribute("action", Config().apiRoot + "/plan/download");
-        form.setAttribute("method", "post");
-        form.setAttribute("target", "_blank");
-
-        const hiddenEle1 = document.createElement("input");
-        hiddenEle1.setAttribute("type", "hidden");
-        hiddenEle1.setAttribute("name", "planInfo");
-        hiddenEle1.setAttribute("value", JSON.stringify(planInfo));
-        form.append(hiddenEle1);
-
-        document.body.appendChild(form);
-
-        form.submit();
-    }
-
-    sendEventToAnalytics(eventName: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'plan-page');
     }
 
     private instantiateObserver(callback) {

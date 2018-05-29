@@ -5,32 +5,31 @@
                 <div class="header">Download your plan</div>
                 <div class="description">Save your plan to your device so that you can return to it later</div>
             </div>
-            <div class="loading-spinner-container" *ngIf="pdfIsLoading">
-                <div class="loading-spinner-small"></div>
-            </div>
-            <div tabindex="0" class="download-pdf" (click)="onPdfClicked()" *ngIf="!pdfIsLoading">
+            <div tabindex="0" class="download-pdf" (click)="onDownloadPdfClicked()">
                 <div class="download-pdf-text">PDF</div>
                 <div class="download-pdf-icon" [inlineSVG]="'controls/apply-arrow.svg'"></div>
             </div>
         </div>
-        <div class="download-landlord-report" *ngIf="isTenant()">
-            <div class="action-details">
-                <div class="header">Download your landlord's report</div>
-                <div class="description">Encourage your landlord to make improvements so you can save money</div>
-            </div>
-            <button class="download-pdf">
-                <button class="download-pdf-text">PDF</button>
-                <div class="download-pdf-icon" [inlineSVG]="'controls/apply-arrow.svg'"></div>
-            </button>
-        </div>
-        <div class="action-divider" *ngIf="!isTenant()">OR</div>
+        <div class="action-divider">OR</div>
         <div class="email-your-plan">
             <div class="header">Email your plan</div>
-            <form class="email-form">
-                <input class="email-input" title="Enter your email address" type="text"/>
-                <!-- TODO:BEIS-188 email plan from here -->
+            <form class="email-form" (submit)="onEmailPdfClicked()" *ngIf="!emailIsLoading && !emailIsError">
+                <input [(ngModel)]="emailAddress"
+                       name="emailAddress"
+                       class="email-input"
+                       title="Enter your email address"
+                       type="email"
+                       email
+                       required >
                 <button type="submit" class="send-email">GO</button>
             </form>
+            <app-spinner-and-error-container [loading]="emailIsLoading"
+                                             [error]="emailIsError">
+            </app-spinner-and-error-container>
+            <button *ngIf="emailIsError"
+                    (click)="emailAddress = null; emailIsLoading = false; emailIsError = false">
+                Reset
+            </button>
         </div>
     </div>
 </div>

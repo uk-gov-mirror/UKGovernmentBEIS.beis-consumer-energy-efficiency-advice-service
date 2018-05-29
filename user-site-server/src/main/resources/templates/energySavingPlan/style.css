@@ -16,26 +16,41 @@ h1 img {
 
 .data-card {
     margin: 1em 0;
+    position: relative;
+    width: 100%;
 }
 
 .data-card .heading {
     text-transform: uppercase;
     font-size: small;
-    margin-right: 2em;
+    line-height: 200%;
 }
 
 .data-card .value {
     font-weight: bold;
     font-size: x-large;
+    position: absolute;
+    left: 11em;
+    width: 100%;
 }
 
 .data-card div {
     display: inline;
 }
 
-.recommendation-steps-card, .local-authority-grants {
+.recommendation-steps-card .details, .local-authority-grants .details {
     border-top: 5px solid #BEE8F1;
-    margin-top: 1em;
+    padding-top: 1em;
+    page-break-before: always;
+}
+
+.recommendation-steps-card:first-child .details {
+    margin-top: 5em;
+    page-break-before: avoid;
+}
+
+.recommendation-step-card {
+    margin-top: 4em;
 }
 
 .step-number {
@@ -50,4 +65,12 @@ h1 img {
 
 .eligibility-text {
     font-weight: bold;
+}
+
+/* https://stackoverflow.com/questions/17953829 */
+@page {
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: Gotham, Arial, sans-serif;
+    }
 }

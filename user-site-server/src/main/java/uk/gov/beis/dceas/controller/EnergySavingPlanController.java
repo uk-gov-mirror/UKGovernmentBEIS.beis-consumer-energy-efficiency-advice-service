@@ -5,10 +5,16 @@ import com.google.common.io.Resources;
 import lombok.Builder;
 import lombok.Value;
 import org.apache.commons.collections4.ListUtils;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,12 +25,15 @@ import uk.gov.beis.dceas.api.NationalGrant;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -51,6 +60,7 @@ public class EnergySavingPlanController {
     private final MeasuresDataService measuresDataService;
     private final NationalGrantsService nationalGrantsService;
     private final String publicRootUrl;
+    private final JavaMailSender emailSender;
 
     public EnergySavingPlanController(
             ServletContext servletContext,
@@ -59,13 +69,54 @@ public class EnergySavingPlanController {
             MeasuresDataService measuresDataService,
             NationalGrantsService nationalGrantsService,
             @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
-                    String publicRootUrl) {
+                    String publicRootUrl,
+            JavaMailSender emailSender) {
         this.servletContext = servletContext;
         this.applicationContext = applicationContext;
         this.templateEngine = templateEngine;
         this.measuresDataService = measuresDataService;
         this.nationalGrantsService = nationalGrantsService;
         this.publicRootUrl = publicRootUrl;
+        this.emailSender = emailSender;
+    }
+
+    /**
+     * Renders the client's Plan to a PDF and emails it to the requested address.
+     *
+     * See comments on {@link #downloadPlan}
+     */
+    @PostMapping("email")
+    public void emailPlan(
+            @Valid @RequestBody EmailRequest request,
+            HttpServletRequest httpRequest,
+            HttpServletResponse response,
+            final Locale locale)
+            throws Exception {
+
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(request.emailAddress);
+        helper.setFrom("no-reply@eachhomecountsadvice.org.uk");
+        helper.setSubject("Each Home Counts - Energy Saving Plan");
+
+        helper.setText("Please find attached your Energy Saving Plan.\n" +
+                "\n" +
+                "This email was requested by a user at https://www.eachhomecountsadvice.org.uk/\n" +
+                "\n" +
+                "Thanks for using the website. Yours,\n" +
+                "\n" +
+                "The Each Home Counts team");
+
+        ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
+        writePlanToOutputStream(request.planInfo, pdfBuffer, httpRequest, response, locale);
+
+        helper.addAttachment(
+                "Each Home Counts - Energy Saving Plan.pdf",
+                new ByteArrayResource(pdfBuffer.toByteArray()),
+                "application/pdf");
+
+        emailSender.send(message);
     }
 
     /**
@@ -84,14 +135,28 @@ public class EnergySavingPlanController {
      */
     @PostMapping("download")
     public void downloadPlan(
-            @Valid @RequestParam("planInfo") DownloadPlanRequest request,
+            @Valid @RequestParam("planInfo") PlanInfo request,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
             throws Exception {
 
-        // Could add page numbers and header/footer, if desired:
-        // https://stackoverflow.com/questions/17953829/with-flying-saucer-how-do-i-generate-a-pdf-with-a-page-number-and-page-total-on
+        response.setContentType("application/pdf");
+        response.setHeader(
+                "Content-Disposition",
+                "attachment; filename=\"Each Home Counts - Energy Saving Plan.pdf\"");
+        try (ServletOutputStream out = response.getOutputStream()) {
+            writePlanToOutputStream(request, out, httpRequest, response, locale);
+        }
+    }
+
+    private void writePlanToOutputStream(
+            PlanInfo request,
+            OutputStream out,
+            HttpServletRequest httpRequest,
+            HttpServletResponse response,
+            Locale locale)
+            throws Exception {
 
         SpringWebContext templateContext = new SpringWebContext(
                 httpRequest,
@@ -126,15 +191,7 @@ public class EnergySavingPlanController {
         renderer.setDocumentFromString(xml, baseUrl);
         renderer.layout();
 
-        // After this point, it's too late to send a pretty error response.
-        // Exceptions above (like invalid XML) will still generate the standard error page.
-        response.setContentType("application/pdf");
-        response.setHeader(
-                "Content-Disposition",
-                "attachment; filename=\"Each Home Counts - Energy Saving Plan.pdf\"");
-        try (ServletOutputStream out = response.getOutputStream()) {
-            renderer.createPDF(out);
-        }
+        renderer.createPDF(out);
     }
 
     /**
@@ -142,7 +199,7 @@ public class EnergySavingPlanController {
      */
     private void loadDisplayData(
             SpringWebContext templateContext,
-            DownloadPlanRequest request) throws Exception {
+            PlanInfo request) throws Exception {
 
         Map<String, Map<String, Object>> measuresBySlug = measuresDataService.getMeasuresBySlug();
 
@@ -193,7 +250,23 @@ public class EnergySavingPlanController {
 
     @Value
     @Builder
-    public static class DownloadPlanRequest {
+    public static class EmailRequest {
+        @NotNull
+        @Valid
+        PlanInfo planInfo;
+        @NotNull
+        @NotBlank
+        @Email
+        String emailAddress;
+    }
+
+    /**
+     * The info posted by the client to allow us to reconstruct their plan
+     * server-side.
+     */
+    @Value
+    @Builder
+    public static class PlanInfo {
         @NotNull
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
         @NotNull

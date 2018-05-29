@@ -54,6 +54,12 @@ You will need to update the `wp_options` table to change the hostname & port:
     update wp_options set option_value = 'https://dceas-admin-site-int.cloudapps.digital'
       where option_name in ('siteurl', 'home');
 
+## Emails
+
+Create an AWS account and set up a non-sandboxed SES service.
+See https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
+Note the SMTP hostname, username and password for later.
+
 ## Admin Site (Wordpress)
 
 Add necessary config:
@@ -77,6 +83,7 @@ Add necessary config:
     cf create-user-provided-service bre.energyUse -p username,password,url
     cf create-user-provided-service google.analytics -p id
     cf create-user-provided-service greenDealOrb.installersApi -p apiKey,url
+    cf create-user-provided-service smtp -p host,username,password
 
     # `admin-ip-whitelist` is a comma separated list of IPv4 and IPv6 address ranges
     # `admin-site-url` is e.g. "https://dceas-admin-site-int.cloudapps.digital"
