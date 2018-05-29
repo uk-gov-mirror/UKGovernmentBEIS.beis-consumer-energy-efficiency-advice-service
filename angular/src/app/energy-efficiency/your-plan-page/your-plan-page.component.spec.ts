@@ -22,6 +22,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {FormsModule} from "@angular/forms";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -166,7 +167,8 @@ describe('YourPlanPageComponent', () => {
             imports: [
                 RouterTestingModule,
                 InlineSVGModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                FormsModule,
             ]
         })
             .compileComponents();

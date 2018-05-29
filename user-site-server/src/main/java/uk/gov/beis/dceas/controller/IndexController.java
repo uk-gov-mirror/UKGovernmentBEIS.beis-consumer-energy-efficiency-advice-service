@@ -146,7 +146,7 @@ public class IndexController {
             buildAttributes.getValue("Build-Url"));
         model.addAttribute("buildNumber",
             buildAttributes.getValue("Build-Number"));
-        
+
         return "index";
     }
 

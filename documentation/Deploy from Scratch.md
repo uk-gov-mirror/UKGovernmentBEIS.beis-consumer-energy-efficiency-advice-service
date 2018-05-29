@@ -12,6 +12,7 @@ These instructions are kept for future reference.
 
 - [Common tasks](#common-tasks)
 - [Database](#database)
+- [Emails](#emails)
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
   * [User Site Hostname](#user-site-hostname)

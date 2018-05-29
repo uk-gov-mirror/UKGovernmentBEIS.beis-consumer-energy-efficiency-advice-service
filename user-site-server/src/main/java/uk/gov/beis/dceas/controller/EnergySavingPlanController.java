@@ -248,8 +248,48 @@ public class EnergySavingPlanController {
         templateContext.setVariable("potentialScore", request.potentialScore);
     }
 
+    private static String urlEncode(String val) {
+        try {
+            return URLEncoder.encode(val, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static List<Map<String, Object>> getAcfList(Object val) {
+        if (val != null && val instanceof List<?>) {
+            return (List<Map<String, Object>>) val;
+        }
+        return emptyList();
+    }
+
+    /**
+     * Keep this in sync with RoundingService.ts
+     */
+    private static String roundAndFormatCostValue(double input) {
+        if (input > 5.0) {
+            return String.format("£%.0f", 5.0 * Math.round(input / 5.0));
+        } else if (input > 1) {
+            return String.format("£%.0f", input);
+        } else {
+            return "-";
+        }
+    }
+
+    private static String makeUrlAbsolute(String linkUrl, String userSiteBaseUrl) {
+        if (isNullOrEmpty(linkUrl)) {
+            return null;
+        }
+        if (linkUrl.startsWith("/")) {
+            return userSiteBaseUrl + linkUrl;
+        }
+        return linkUrl;
+    }
+
     @Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     public static class EmailRequest {
         @NotNull
         @Valid
@@ -266,6 +306,7 @@ public class EnergySavingPlanController {
      */
     @Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     public static class PlanInfo {
         @NotNull
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
@@ -287,6 +328,7 @@ public class EnergySavingPlanController {
      * bit of client-side logic that we don't want to reproduce
      */
     @Value
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     public static class SelectedEnergyEfficiencyRecommendation {
         /**
          * Null if this is a Grant
@@ -315,6 +357,7 @@ public class EnergySavingPlanController {
      */
     @Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     private static class EnergyEfficiencyRecommendation {
 
         Double investmentPounds;
@@ -415,27 +458,12 @@ public class EnergySavingPlanController {
         }
     }
 
-    private static String urlEncode(String val) {
-        try {
-            return URLEncoder.encode(val, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private static List<Map<String, Object>> getAcfList(Object val) {
-        if (val != null && val instanceof List<?>) {
-            return (List<Map<String, Object>>) val;
-        }
-        return emptyList();
-    }
-
     /**
      * Keep this in sync with recommendation-step.ts
      */
     @Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     private static class RecommendationStep {
         String headline;
         String description;
@@ -468,6 +496,7 @@ public class EnergySavingPlanController {
 
         @Value
         @Builder
+        @SuppressWarnings("checkstyle:visibilitymodifier")
         static class Link {
             String buttonText;
             String url;
@@ -486,28 +515,5 @@ public class EnergySavingPlanController {
                         .build();
             }
         }
-    }
-
-    /**
-     * Keep this in sync with RoundingService.ts
-     */
-    private static String roundAndFormatCostValue(double input) {
-        if (input > 5.0) {
-            return String.format("£%.0f", 5.0 * Math.round(input / 5.0));
-        } else if (input > 1) {
-            return String.format("£%.0f", input);
-        } else {
-            return "-";
-        }
-    }
-
-    private static String makeUrlAbsolute(String linkUrl, String userSiteBaseUrl) {
-        if (isNullOrEmpty(linkUrl)) {
-            return null;
-        }
-        if (linkUrl.startsWith("/")) {
-            return userSiteBaseUrl + linkUrl;
-        }
-        return linkUrl;
     }
 }

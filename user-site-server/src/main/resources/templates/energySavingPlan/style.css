@@ -1,6 +1,17 @@
+/* https://stackoverflow.com/questions/17953829 */
+@page {
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: Gotham, Arial, sans-serif;
+    }
+
+    margin: ;
+}
+
 body {
     overflow-x: hidden;
     font-family: Gotham, Arial, sans-serif;
+    line-height: 150%;
 }
 
 h1 {
@@ -65,12 +76,4 @@ h1 img {
 
 .eligibility-text {
     font-weight: bold;
-}
-
-/* https://stackoverflow.com/questions/17953829 */
-@page {
-    @bottom-right {
-        content: "Page " counter(page) " of " counter(pages);
-        font-family: Gotham, Arial, sans-serif;
-    }
 }

@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -192,6 +193,11 @@ public class EnergySavingPlanControllerTest {
         @Bean
         public DownloadPlanRequestParameterConverter paramConverter(ObjectMapper objectMapper) {
             return new DownloadPlanRequestParameterConverter(objectMapper);
+        }
+
+        @Bean
+        public JavaMailSender javaMailSender() {
+            return mock(JavaMailSender.class);
         }
     }
 }
