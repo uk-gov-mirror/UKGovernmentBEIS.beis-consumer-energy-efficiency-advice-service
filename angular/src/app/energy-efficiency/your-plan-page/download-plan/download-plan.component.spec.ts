@@ -7,6 +7,7 @@ import {TenureType} from '../../../questionnaire/questions/tenure-type-question/
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 
 describe('DownloadPlanComponent', () => {
     let component: DownloadPlanComponent;
@@ -24,6 +25,7 @@ describe('DownloadPlanComponent', () => {
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 GoogleAnalyticsService,
+                {provide: RecommendationsService, useValue: {getRecommendationsInPlan: () => []}}
             ],
             imports: [
                 InlineSVGModule,
