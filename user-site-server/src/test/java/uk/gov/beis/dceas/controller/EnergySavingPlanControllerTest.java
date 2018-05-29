@@ -65,6 +65,9 @@ public class EnergySavingPlanControllerTest {
      * - £1000 / pa income
      */
     @Test
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings(
+            value = "RV_RETURN_VALUE_IGNORED_BAD_PRACTICE",
+            justification = "Both `true` and `false` might indicate success from mkdirs()")
     public void testDownloadPlan() throws Exception {
         DownloadPlanRequest requestBody = DownloadPlanRequest.builder()
                 .recommendations(
