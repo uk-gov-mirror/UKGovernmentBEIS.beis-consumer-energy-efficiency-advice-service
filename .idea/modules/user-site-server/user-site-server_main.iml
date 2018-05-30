@@ -18,6 +18,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-jooq:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-thymeleaf:1.5.10.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-mail:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-devtools:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-actuator:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.github.mkopylec:charon-spring-boot-starter:2.4.0" level="project" />
@@ -36,6 +37,7 @@
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.2" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.2" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.xhtmlrenderer:flying-saucer-pdf:9.1.12" level="project" />
     <orderEntry type="library" name="Gradle: com.h2database:h2:1.4.193" level="project" />
     <orderEntry type="library" name="Gradle: org.liquibase:liquibase-core:3.5.5" level="project" />
     <orderEntry type="library" name="Gradle: com.mattbertolini:liquibase-slf4j:2.0.0" level="project" />
@@ -54,6 +56,7 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-webmvc:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-web:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.3.14.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.mail:javax.mail:1.5.6" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.3.14.RELEASE" level="project" />
@@ -68,6 +71,11 @@
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.5.5" level="project" />
     <orderEntry type="library" name="Gradle: io.dropwizard.metrics:metrics-graphite:3.1.5" level="project" />
+    <orderEntry type="library" name="Gradle: com.lowagie:itext:2.1.7" level="project" />
+    <orderEntry type="library" name="Gradle: org.bouncycastle:bctsp-jdk14:1.38" level="project" />
+    <orderEntry type="library" name="Gradle: org.bouncycastle:bcmail-jdk14:1.38" level="project" />
+    <orderEntry type="library" name="Gradle: org.bouncycastle:bcprov-jdk14:1.38" level="project" />
+    <orderEntry type="library" name="Gradle: org.xhtmlrenderer:flying-saucer-core:9.1.12" level="project" />
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.17" level="project" />
     <orderEntry type="library" name="Gradle: com.mchange:c3p0:0.9.5.2" level="project" />
     <orderEntry type="library" name="Gradle: com.mchange:mchange-commons-java:0.2.11" level="project" />
@@ -86,6 +94,7 @@
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-validator:5.3.6.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy:2.4.13" level="project" />
+    <orderEntry type="library" name="Gradle: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.9" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat:tomcat-juli:8.5.27" level="project" />

@@ -1,0 +1,79 @@
+/* https://stackoverflow.com/questions/17953829 */
+@page {
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: Gotham, Arial, sans-serif;
+    }
+
+    margin: ;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: Gotham, Arial, sans-serif;
+    line-height: 150%;
+}
+
+h1 {
+    background-color: #BEE8F1;
+    color: #1A485F;
+    padding: 34px;
+}
+
+h1 img {
+    height: 2em;
+    vertical-align: middle;
+}
+
+.data-card {
+    margin: 1em 0;
+    position: relative;
+    width: 100%;
+}
+
+.data-card .heading {
+    text-transform: uppercase;
+    font-size: small;
+    line-height: 200%;
+}
+
+.data-card .value {
+    font-weight: bold;
+    font-size: x-large;
+    position: absolute;
+    left: 11em;
+    width: 100%;
+}
+
+.data-card div {
+    display: inline;
+}
+
+.recommendation-steps-card .details, .local-authority-grants .details {
+    border-top: 5px solid #BEE8F1;
+    padding-top: 1em;
+    page-break-before: always;
+}
+
+.recommendation-steps-card:first-child .details {
+    margin-top: 5em;
+    page-break-before: avoid;
+}
+
+.recommendation-step-card {
+    margin-top: 4em;
+}
+
+.step-number {
+    text-transform: uppercase;
+    color: #006280;
+    margin-right: 2em;
+}
+
+.more-info-link, .find-out-more-link {
+    margin: 1em 0;
+}
+
+.eligibility-text {
+    font-weight: bold;
+}

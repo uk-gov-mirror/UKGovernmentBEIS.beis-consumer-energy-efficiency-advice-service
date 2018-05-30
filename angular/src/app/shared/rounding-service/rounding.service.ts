@@ -1,3 +1,6 @@
+/**
+ * Keep this in sync with EnergySavingPlanController.java
+ */
 export abstract class RoundingService {
 
     private static readonly POUNDS_ROUNDING = 5;

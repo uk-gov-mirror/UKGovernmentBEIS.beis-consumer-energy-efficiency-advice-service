@@ -39,6 +39,7 @@ export class YourPlanSummaryComponent {
         return RoundingService.roundCostValue(totalInvestment);
     }
 
+    // Update the PDF renderer if you change this
     get showMonthlySavings() {
         return this.responseData.tenureType !== TenureType.OwnerOccupancy;
     }

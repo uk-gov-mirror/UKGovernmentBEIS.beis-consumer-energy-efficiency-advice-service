@@ -73,7 +73,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             steps: [],
             measureCode: '',
             isAddedToPlan: false,
-            recommendationID: ''
+            recommendationID: '',
+            isMeasure: true,
         },
         {
             investmentPounds: 999,
@@ -93,7 +94,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             steps: [],
             measureCode: '',
             isAddedToPlan: false,
-            recommendationID: ''
+            recommendationID: '',
+            isMeasure: true,
         },
         {
             investmentPounds: 20,
@@ -120,7 +122,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             steps: [],
             measureCode: '',
             isAddedToPlan: false,
-            recommendationID: ''
+            recommendationID: '',
+            isMeasure: true,
         }
     ];
 

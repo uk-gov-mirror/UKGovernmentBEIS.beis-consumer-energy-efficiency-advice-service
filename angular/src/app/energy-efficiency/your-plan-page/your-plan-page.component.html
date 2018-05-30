@@ -1,3 +1,12 @@
+<!--
+This is the Angular template for the Plan page.
+
+There is a server-side version of this page, at energySavingPlan/plan.html
+which is used to render a plan to PDF.
+
+If you change anything here, please consider whether anything needs changing there.
+
+-->
 <app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="your-plan-page" *ngIf="!isError">
     <div class="your-plan-content">
@@ -5,6 +14,7 @@
             <div class="page-row-content">
                 <div class="heading-container">
                     <h1 class="heading">Your plan</h1>
+
                     <div class="subheading" *ngIf="recommendations.length === 1">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.

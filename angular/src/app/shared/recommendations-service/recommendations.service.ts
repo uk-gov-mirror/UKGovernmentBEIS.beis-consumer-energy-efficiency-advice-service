@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
-import concat from 'lodash-es/concat';
-import orderBy from 'lodash-es/orderBy';
 import keys from 'lodash-es/keys';
 import 'rxjs/add/operator/do';
 import {ResponseData} from '../response-data/response-data';
@@ -14,10 +12,7 @@ import {EnergyEfficiencyRecommendation} from './energy-efficiency-recommendation
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 import {MeasuresResponse} from '../energy-calculation-api-service/response/measures-response';
 import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
-import {
-    EnergyEfficiencyRecommendationTag
-} from
-    '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {EnergyEfficiencyRecommendationTag} from '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {EnergySavingMeasureResponse} from '../energy-calculation-api-service/response/energy-saving-measure-response';
 import {HabitMeasureResponse} from '../energy-calculation-api-service/response/habit-measure-response';
 import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
@@ -72,6 +67,9 @@ export class RecommendationsService {
             .subscribe(energyCalculation => this.potentialScore = parseInt(energyCalculation['Potential-SAP-Rating']));
     }
 
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
+     */
     private refreshAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
         return Observable.forkJoin(
             this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
