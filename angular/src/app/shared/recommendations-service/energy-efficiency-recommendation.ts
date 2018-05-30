@@ -48,6 +48,13 @@ export class EnergyEfficiencyRecommendation {
         return this.costSavingPoundsPerYear / 12;
     }
 
+    get isMeasure(): boolean {
+        return this.measureCode !== null;
+    }
+
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `fromMeasure`
+     */
     static fromMeasure(measureResponse: MeasureResponse,
                        measureCode: string,
                        measureContent: MeasureContent,
@@ -107,6 +114,9 @@ export class EnergyEfficiencyRecommendation {
         );
     }
 
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `fromNationalGrant`
+     */
     static fromNationalGrant(grant: StandaloneNationalGrant): EnergyEfficiencyRecommendation {
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant

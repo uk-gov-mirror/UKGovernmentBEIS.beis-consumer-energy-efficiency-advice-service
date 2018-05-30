@@ -43,8 +43,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Advice on energy saving from the UK government for homeowners, renters and landlords." />
     <meta property="og:site_name" content="Energy Saving Advice Service" />
-    <meta property="og:image" content="https://www.eachhomecountsadvice.org.uk/dist/assets/images/logos/ehc-small.png" />
-    <meta property="og:image:secure_url" content="https://www.eachhomecountsadvice.org.uk/dist/assets/images/logos/ehc-small.png" />
+    <meta property="og:image" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-small.png"}' />
+    <meta property="og:image:secure_url" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-small.png"}' />
 </head>
 <body th:utext="${angularBodyContent}">
 </body>

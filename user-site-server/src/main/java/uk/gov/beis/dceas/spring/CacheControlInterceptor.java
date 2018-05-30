@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CacheControlInterceptor extends HandlerInterceptorAdapter {
 
-    private static final String cacheHeaderValue = CacheControl
+    private static final String CACHE_HEADER_VALUE = CacheControl
             .maxAge(1, TimeUnit.HOURS)
             .staleWhileRevalidate(5, TimeUnit.MINUTES)
             .cachePublic()
@@ -36,7 +36,7 @@ public class CacheControlInterceptor extends HandlerInterceptorAdapter {
                 // requests like the list of Measures.
                 // Static resources (like the JS bundles) have their cache headers set
                 // in the ResourceHandlerConfig class
-                response.setHeader("Cache-Control", cacheHeaderValue);
+                response.setHeader("Cache-Control", CACHE_HEADER_VALUE);
             }
         }
     }

@@ -77,7 +77,8 @@ function setup_measure_acf_group() {
                     'label' => 'What it is',
                     'name' => 'what_it_is',
                     'type' => 'textarea',
-                    'instructions' => '',
+                    'instructions' => 'This will be shown in the expanded view of the measure on the ' .
+                        'results page.',
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -95,7 +96,8 @@ function setup_measure_acf_group() {
                     'label' => 'Is it right for me?',
                     'name' => 'is_it_right_for_me',
                     'type' => 'textarea',
-                    'instructions' => '',
+                    'instructions' => 'This will be shown in the expanded view of the measure on the ' .
+                        'results page.',
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -233,7 +235,8 @@ function setup_measure_acf_group() {
                     'label' => 'Steps',
                     'name' => 'steps',
                     'type' => 'repeater',
-                    'instructions' => 'Steps to display for this measure in \'Your Plan\' section',
+                    'instructions' => 'Steps to display for this measure in \'Your Plan\' section<br/>' .
+                        'Please use "What it is" for step 1 and "Is it right for me?" for step 2',
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(

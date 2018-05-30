@@ -18,3 +18,4 @@ applications:
     - dceas-user-site.config
     - greenDealOrb.installersApi
     - dceas-admin-logins
+    - smtp

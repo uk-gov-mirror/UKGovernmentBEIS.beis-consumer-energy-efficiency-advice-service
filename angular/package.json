@@ -31,7 +31,6 @@
     "@types/lodash": "^4.14.106",
     "commander": "^2.15.1",
     "core-js": "^2.5.5",
-    "html2pdf.js": "^0.8.2",
     "js-base64": "^2.4.3",
     "js-yaml": "^3.11.0",
     "lodash-es": "^4.17.8",
