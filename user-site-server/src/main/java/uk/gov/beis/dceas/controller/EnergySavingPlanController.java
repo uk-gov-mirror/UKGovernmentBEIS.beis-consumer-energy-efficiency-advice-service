@@ -104,7 +104,9 @@ public class EnergySavingPlanController {
                 "\n" +
                 "This email was requested by a user at https://www.eachhomecountsadvice.org.uk/\n" +
                 "\n" +
-                "Thanks for using the website. Yours,\n" +
+                "Thanks for using the website.\n" +
+                "\n" +
+                "Yours,\n" +
                 "\n" +
                 "The Each Home Counts team");
 
