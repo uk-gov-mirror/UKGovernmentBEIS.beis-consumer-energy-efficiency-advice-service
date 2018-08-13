@@ -99,11 +99,9 @@ Build the site locally, and deploy:
 
 Run
 
-    cf create-domain beis-domestic-energy-advice-service eachhomecountsadvice.org.uk
     cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
-    cf map-route dceas-user-site eachhomecountsadvice.org.uk
     cf map-route dceas-user-site www.eachhomecountsadvice.org.uk
-    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "eachhomecountsadvice.org.uk,www.eachhomecountsadvice.org.uk"}'
+    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.eachhomecountsadvice.org.uk"}'
 
 Then run
 
