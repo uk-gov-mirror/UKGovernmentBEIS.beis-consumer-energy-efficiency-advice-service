@@ -99,14 +99,17 @@ Build the site locally, and deploy:
 
 Run
 
-    cf create-domain beis-domestic-energy-advice-service eachhomecountsadvice.org.uk
     cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
-    cf map-route dceas-user-site eachhomecountsadvice.org.uk
     cf map-route dceas-user-site www.eachhomecountsadvice.org.uk
-    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "eachhomecountsadvice.org.uk,www.eachhomecountsadvice.org.uk"}'
+    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.eachhomecountsadvice.org.uk"}'
 
 Then run
 
     cf service dceas-cdn-route
 
 and create the DNS "CNAME" and "TXT" records listed there.
+
+### Forwarding the non "www" hostname to the main hostname
+
+Using the LCN control panel, set things up to redirect eachhomecountsadvice.org.uk to www.eachhomecountsadvice.org.uk
+See https://www.lcn.com/support/articles/how-to-set-up-web-forwarding

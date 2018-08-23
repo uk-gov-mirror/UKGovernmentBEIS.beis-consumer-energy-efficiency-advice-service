@@ -100,7 +100,7 @@ Do the same to roll back staging, if necessary.
 
 ## Configuration
 
-The configuration for the site is stored in Cloud Foundry in two places:
+The configuration for the site is stored in Cloud Foundry(CF) in two places:
 
  1. Environment settings in the manifest.yml for settings like `dceas.httpClient.connectTimeoutMs`
  2. User-provided services for passwords and settings which need to vary
@@ -112,6 +112,10 @@ re-release. See https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
 To change (2), update the service settings.
 See https://docs.cloudfoundry.org/devguide/services/user-provided.html#update
 and [Deploying the site from scratch](Deploy%20from%20Scratch.md).
+
+Most services are setup as "User Provided Services". They are stored as JSON blobs in CF. 
+Although you can see them listed by running "`cf services`" you can't read the blob directly. 
+However the blob can be read by running "`cf env dceas-user-site`".
 
 The effect of each setting is documented in the codebase, in `application.properties` for the User
 app, and in `wp-config.php` for the Admin site.
