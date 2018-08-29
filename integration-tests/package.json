@@ -9,11 +9,11 @@
   "author": "Softwire",
   "license": "ISC",
   "dependencies": {
-    "@types/jasmine": "^2.6.0",
+    "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.3",
     "jasmine-spec-reporter": "^4.2.1",
-    "protractor": "^5.1.2",
+    "protractor": "^5.4.0",
     "ts-node": "^3.3.0",
-    "typescript": "^2.5.3"
+    "typescript": "^2.9.2"
   }
 }
