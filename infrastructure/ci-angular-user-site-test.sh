@@ -15,4 +15,4 @@ npm install --no-optional
 
 npm run lint
 
-npm run test -- --single-run
+npm run test -- --single-run --sourcemaps false
