@@ -15,4 +15,5 @@ npm install --no-optional
 
 npm run lint
 
+# We use -sourcemaps false here as a temporary fix for the following issue: https://github.com/angular/angular-cli/issues/7296
 npm run test -- --single-run --sourcemaps false
