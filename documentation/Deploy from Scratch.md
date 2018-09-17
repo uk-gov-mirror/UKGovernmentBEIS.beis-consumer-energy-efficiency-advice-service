@@ -16,6 +16,7 @@ These instructions are kept for future reference.
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
   * [User Site Hostname](#user-site-hostname)
+  * [Forwarding the non "www" hostname to the main hostname](#forwarding-the-non-www-hostname-to-the-main-hostname)
 
 <!-- tocstop -->
 

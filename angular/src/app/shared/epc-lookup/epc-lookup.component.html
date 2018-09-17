@@ -5,7 +5,7 @@
             We couldn't find any properties with an EPC at that postcode.
         </div>
         <div class="address-dropdown-wrapper" *ngIf="epcs.length > 0">
-            <div class="address-help-text">We've found EPCs for the following properties:</div>
+            <div class="address-help-text">We found Energy Performance Certificates (EPCs) for the following properties:</div>
             <div class="address-select">
                 <select class="address-dropdown" [(ngModel)]="selectedEpc" aria-label="Please select your address">
                     <option class="address-option" [ngValue]="undefined"
