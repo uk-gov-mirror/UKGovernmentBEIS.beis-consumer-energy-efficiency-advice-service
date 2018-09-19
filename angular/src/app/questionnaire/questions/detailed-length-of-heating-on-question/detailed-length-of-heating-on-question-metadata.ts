@@ -14,7 +14,8 @@ export class DetailedLengthOfHeatingOnQuestionMetadata extends QuestionMetadata 
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return !(responseData.fuelType === FuelType.Electricity && responseData.epc.energyTariff === 'dual');
+        return !(responseData.fuelType === FuelType.Electricity
+            && (responseData.epc && responseData.epc.energyTariff === 'dual'));
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

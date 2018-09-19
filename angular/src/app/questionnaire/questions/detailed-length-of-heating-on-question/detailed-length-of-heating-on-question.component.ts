@@ -124,7 +124,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
     }
 
     get heatingHoursPerDay(): number {
-        return this.responseData.heatingPatternType;
+        return this.responseData.heatingHoursPerDay;
     }
 
     set heatingHoursPerDay(val: number) {
@@ -138,7 +138,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
         this.morningHeatingDuration = this.responseData.morningHeatingDuration || 2;
         this.eveningHeatingStartTime = this.responseData.eveningHeatingStartTime || 16;
         this.eveningHeatingDuration = this.responseData.eveningHeatingDuration || 7;
-        this.heatingHoursPerDay = this.responseData.heatingHoursPerDay || 0;
+        this.heatingHoursPerDay = this.responseData.heatingHoursPerDay || 4;
     }
 
     handleFormSubmit() {
