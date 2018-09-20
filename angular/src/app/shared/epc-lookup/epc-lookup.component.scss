@@ -149,6 +149,7 @@
     .address-section {
       display: flex;
       align-items: flex-end;
+      flex-wrap: wrap;
 
       .address-dropdown-wrapper {
         border-right: 1px solid $light-medium-grey;
@@ -160,7 +161,7 @@
     }
 
     .not-listed-button {
-      margin: auto;
+      margin: auto 0 auto auto;
     }
   }
 }
