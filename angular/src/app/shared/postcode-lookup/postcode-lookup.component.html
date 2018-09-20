@@ -5,6 +5,10 @@
         <button class="postcode-input-submit" type="submit"
             title="Submit" aria-label="Submit"></button>
     </form>
-    <app-spinner-and-error-container [loading]="loading" [error]="error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+    <app-spinner-and-error-container class="spinner-and-error"
+        [loading]="loading" [error]="error"
+        [errorMessage]="errorMessage" [showLink]="showLink"
+        [linkMessage]="linkMessage" [linkAddress]="linkAddress"
+    ></app-spinner-and-error-container>
     <div class="loading-spinner" *ngIf="loading"></div>
 </div>
