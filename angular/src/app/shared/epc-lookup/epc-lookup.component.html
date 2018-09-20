@@ -18,6 +18,7 @@
                 </select>
                 <button class="go-button" (click)="onAddressSelected()" [class.grey-go]="!this.selectedEpc">Go</button>
             </div>
+            <div class="epc-disclaimer">You should only access EPCs for properties you own or occupy or are thinking about owning or occupying</div>
         </div>
         <button class="not-listed-button" (click)="onAddressNotListed()">
             {{epcs.length > 0 ? 'My address is not listed' : 'Continue'}}

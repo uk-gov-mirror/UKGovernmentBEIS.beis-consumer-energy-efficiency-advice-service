@@ -49,7 +49,7 @@
   .address-select {
     width: 100%;
     height: 50px;
-    margin-top: 24px;
+    margin: 24px 0px;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -81,7 +81,7 @@
 
   .not-listed-button {
     @include postcode-button;
-    margin: 12px 0 0 auto;
+    margin: auto;
     padding: 0 14px;
     height: 50px;
     flex: 0 0 auto;
