@@ -16,9 +16,6 @@ export class PostcodeLookupComponent implements OnInit {
     loading: boolean = false;
     error: boolean = false;
     errorMessage: string;
-    showLink: boolean = false;
-    linkMessage: string;
-    linkAddress: string;
     northernIrelandPostcode: boolean = false;
     scottishPostcode: boolean = false;
 
@@ -49,7 +46,6 @@ export class PostcodeLookupComponent implements OnInit {
         this.loading = true;
         this.northernIrelandPostcode = false;
         this.scottishPostcode = false;
-        this.showLink = false;
         this.error = false;
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
@@ -85,14 +81,11 @@ export class PostcodeLookupComponent implements OnInit {
         this.error = true;
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             this.errorMessage = "Please enter a valid UK postcode";
-        } else if (this.northernIrelandPostcode === true) {
+        } else if (this.northernIrelandPostcode) {
             this.errorMessage = "We do not think this service is suitable/accurate for " +
                 "you (as your home is in Northern Ireland)";
-        } else if (this.scottishPostcode === true) {
-            this.errorMessage = "Residents of Scotland can get help from ";
-            this.showLink = true;
-            this.linkAddress = "http://www.energysavingtrust.org.uk/scotland/home-energy-scotland";
-            this.linkMessage = "Home Energy Scotland";
+        } else if (this.scottishPostcode) {
+            this.errorMessage = "";
         } else {
             this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
                 "may lead to less applicable suggestions. Alternatively, click '>' to try again";

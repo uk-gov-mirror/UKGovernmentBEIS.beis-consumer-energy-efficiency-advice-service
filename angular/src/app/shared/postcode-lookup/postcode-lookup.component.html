@@ -5,10 +5,11 @@
         <button class="postcode-input-submit" type="submit"
             title="Submit" aria-label="Submit"></button>
     </form>
-    <app-spinner-and-error-container class="spinner-and-error"
-        [loading]="loading" [error]="error"
-        [errorMessage]="errorMessage" [showLink]="showLink"
-        [linkMessage]="linkMessage" [linkAddress]="linkAddress"
-    ></app-spinner-and-error-container>
+    <app-spinner-and-error-container *ngIf="scottishPostcode" class="spinner-and-error" [loading]="loading" [error]="error" [errorMessage]="errorMessage">
+        Residents of Scotland can get help from
+        <a href="http://www.energysavingtrust.org.uk/scotland/home-energy-scotland">Home Energy Scotland</a>
+    </app-spinner-and-error-container>
+    <app-spinner-and-error-container *ngIf="!scottishPostcode" class="spinner-and-error" [loading]="loading" [error]="error" [errorMessage]="errorMessage">
+    </app-spinner-and-error-container>
     <div class="loading-spinner" *ngIf="loading"></div>
 </div>

@@ -5,7 +5,7 @@
     <div class="error">
         <div>
             {{errorMessage}}
-            <a *ngIf="showLink" href="{{linkAddress}}">{{linkMessage}}</a>
+            <ng-content></ng-content>
         </div>
     </div>
 </div>
