@@ -16,7 +16,8 @@ export class PostcodeLookupComponent implements OnInit {
     loading: boolean = false;
     error: boolean = false;
     errorMessage: string;
-    unsupportedPostcode: boolean = false;
+    northernIrelandPostcode: boolean = false;
+    scottishPostcode: boolean = false;
 
     /**
      * When the postcode has been entered by the user and validated as non-Scottish,
@@ -43,15 +44,16 @@ export class PostcodeLookupComponent implements OnInit {
         }
 
         this.loading = true;
-        this.unsupportedPostcode = false;
+        this.northernIrelandPostcode = false;
+        this.scottishPostcode = false;
         this.error = false;
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {
-                    this.unsupportedPostcode = postcodeDetails.result.country === 'Scotland' ||
-                        postcodeDetails.result.country === 'Northern Ireland';
+                    this.northernIrelandPostcode = postcodeDetails.result.country === 'Northern Ireland';
+                    this.scottishPostcode = postcodeDetails.result.country === 'Scotland';
 
-                    if (this.unsupportedPostcode) {
+                    if (this.northernIrelandPostcode || this.scottishPostcode) {
                         this.handleSearchError(null);
                         return;
                     }
@@ -79,9 +81,11 @@ export class PostcodeLookupComponent implements OnInit {
         this.error = true;
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             this.errorMessage = "Please enter a valid UK postcode";
-        } else if (this.unsupportedPostcode === true) {
+        } else if (this.northernIrelandPostcode) {
             this.errorMessage = "We do not think this service is suitable/accurate for " +
-                "you (as your home is in Scotland or Northern Ireland)";
+                "you (as your home is in Northern Ireland)";
+        } else if (this.scottishPostcode) {
+            this.errorMessage = "";
         } else {
             this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
                 "may lead to less applicable suggestions. Alternatively, click '>' to try again";

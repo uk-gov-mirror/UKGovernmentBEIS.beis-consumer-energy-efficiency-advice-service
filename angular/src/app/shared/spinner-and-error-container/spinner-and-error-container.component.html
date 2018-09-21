@@ -3,6 +3,9 @@
 </div>
 <div class="page-error-container" *ngIf="error">
     <div class="error">
-        <div>{{errorMessage}}</div>
+        <div>
+            {{errorMessage}}
+            <ng-content></ng-content>
+        </div>
     </div>
 </div>
