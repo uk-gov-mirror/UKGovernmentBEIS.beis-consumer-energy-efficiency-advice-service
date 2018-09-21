@@ -43,13 +43,14 @@
     .no-properties {
       flex: 0 0 100%;
       text-align: left;
+      margin-bottom: 12px;
     }
   }
 
   .address-select {
     width: 100%;
     height: 50px;
-    margin-top: 24px;
+    margin: 24px 0;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -149,6 +150,7 @@
     .address-section {
       display: flex;
       align-items: flex-end;
+      flex-wrap: wrap;
 
       .address-dropdown-wrapper {
         border-right: 1px solid $light-medium-grey;
@@ -157,6 +159,10 @@
         flex: 1 1 auto;
         width: 300px;
       }
+    }
+
+    .not-listed-button {
+      margin: auto 0 auto auto;
     }
   }
 }
