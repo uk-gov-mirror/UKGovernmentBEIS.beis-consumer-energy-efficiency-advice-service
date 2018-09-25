@@ -90,9 +90,15 @@ export class PostcodeLookupComponent implements OnInit {
             this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
                 "may lead to less applicable suggestions. Alternatively, click '>' to try again";
         }
-        this.responseData.postcode = null;
-        this.responseData.localAuthorityCode = null;
 
+        if (this.northernIrelandPostcode || this.scottishPostcode) {
+            // Prevent user from continuing
+            this.responseData.postcode = undefined;
+        } else {
+            // Allow user to continue
+            this.responseData.postcode = null;
+        }
+        this.responseData.localAuthorityCode = null;
         this.loading = false;
         this.postcodeSelected.emit();
     }
