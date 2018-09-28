@@ -23,12 +23,28 @@ export class YourPlanSummaryComponent {
         return this.recommendationsService.getRecommendationsInPlan();
     }
 
-    get roundedTotalSavings(): number {
-        const savings = sumBy(
+    get totalSavingsDisplay(): string {
+        const minimumSavings = sumBy(
             this.recommendations,
-            recommendation => this.showMonthlySavings ? recommendation.costSavingPoundsPerMonth : recommendation.costSavingPoundsPerYear
+            recommendation => this.showMonthlySavings
+                ? recommendation.minimumCostSavingPoundsPerMonth
+                : recommendation.minimumCostSavingPoundsPerYear
         );
-        return RoundingService.roundCostValue(savings);
+        const maximumSavings = sumBy(
+            this.recommendations,
+            recommendation => this.showMonthlySavings
+                ? recommendation.maximumCostSavingPoundsPerMonth
+                : recommendation.maximumCostSavingPoundsPerYear
+        );
+        const roundedMinimumSavings = RoundingService.roundCostValue(minimumSavings);
+        const roundedMaximumSavings = RoundingService.roundCostValue(maximumSavings);
+
+        if (roundedMinimumSavings === roundedMaximumSavings) {
+            return roundedMaximumSavings > 0
+                ? '£' + roundedMaximumSavings
+                : '-';
+        }
+        return '£' + roundedMinimumSavings + ' - £' + roundedMaximumSavings;
     }
 
     getRoundedTotalInvestmentRequired(): number {

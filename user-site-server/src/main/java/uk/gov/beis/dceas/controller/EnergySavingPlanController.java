@@ -53,6 +53,9 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 @RequestMapping("/api/plan")
 public class EnergySavingPlanController {
 
+    private static final double POUND_ROUNDING = 5.0;
+    private static final int SMALL_COST_THRESHOLD = 1;
+
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final ServletContext servletContext;
     private final ApplicationContext applicationContext;
@@ -238,14 +241,21 @@ public class EnergySavingPlanController {
         boolean showMonthlySavings = request.tenureType != 0;
         templateContext.setVariable("showMonthlySavings", showMonthlySavings);
 
-        Double totalSavings = recommendations.stream()
+        double minimumSavings = recommendations.stream()
                 .mapToDouble(r -> showMonthlySavings
-                        ? (r.costSavingPoundsPerYear / 12.0)
-                        : r.costSavingPoundsPerYear)
+                        ? (r.minimumCostSavingPoundsPerYear / 12.0)
+                        : r.minimumCostSavingPoundsPerYear)
                 .sum();
 
-        templateContext.setVariable("roundedTotalSavings",
-                roundAndFormatCostValue(totalSavings));
+        double maximumSavings = recommendations.stream()
+                .mapToDouble(r -> showMonthlySavings
+                        ? (r.maximumCostSavingPoundsPerYear / 12.0)
+                        : r.maximumCostSavingPoundsPerYear)
+                .sum();
+
+        String totalSavingsDisplay = roundAndFormatCostValueRange(minimumSavings, maximumSavings);
+
+        templateContext.setVariable("totalSavingsDisplay", totalSavingsDisplay);
 
         templateContext.setVariable("potentialScore", request.potentialScore);
     }
@@ -266,17 +276,38 @@ public class EnergySavingPlanController {
         return emptyList();
     }
 
+    private static String roundAndFormatCostValue(double input) {
+        double roundedValue = roundCostValue(input);
+        return formatCostValueAndNotDisplaySmallValue(roundedValue);
+    }
+
+    private static String roundAndFormatCostValueRange(double minimumInput, double maximumInput) {
+        double roundedMinimumInput = roundCostValue(minimumInput);
+        double roundedMaximumInput = roundCostValue(maximumInput);
+
+        return roundedMinimumInput == roundedMaximumInput
+                ? formatCostValueAndNotDisplaySmallValue(roundedMaximumInput)
+                : formatCostValue(roundedMinimumInput) + " - " + formatCostValue(roundedMaximumInput);
+    }
+
     /**
      * Keep this in sync with RoundingService.ts
      */
-    private static String roundAndFormatCostValue(double input) {
-        if (input > 5.0) {
-            return String.format("£%.0f", 5.0 * Math.round(input / 5.0));
-        } else if (input > 1) {
-            return String.format("£%.0f", input);
-        } else {
-            return "-";
-        }
+    private static double roundCostValue(double input) {
+        double roundingValue = input > POUND_ROUNDING
+                ? POUND_ROUNDING
+                : 1;
+        return Math.round(input / roundingValue) * roundingValue;
+    }
+
+    private static String formatCostValueAndNotDisplaySmallValue(double input) {
+        return input > SMALL_COST_THRESHOLD
+                ? formatCostValue(input)
+                : "-";
+    }
+
+    private static String formatCostValue(double input) {
+        return String.format("£%.0f", input);
     }
 
     private static String makeUrlAbsolute(String linkUrl, String userSiteBaseUrl) {
@@ -347,10 +378,11 @@ public class EnergySavingPlanController {
 
         Double investmentPounds;
         /**
-         * If a measure, this is `costSavingPoundsPerYear`
-         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds`
+         * If a measure, this is `costSavingPoundsPerYear`, adjusted by 'uncertainty'
+         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds` adjusted by 'uncertainty
          */
-        Double costSavingPoundsPerYear;
+        Double minimumCostSavingPoundsPerYear;
+        Double maximumCostSavingPoundsPerYear;
     }
 
     /**
@@ -363,7 +395,8 @@ public class EnergySavingPlanController {
     private static class EnergyEfficiencyRecommendation {
 
         Double investmentPounds;
-        Double costSavingPoundsPerYear;
+        Double minimumCostSavingPoundsPerYear;
+        Double maximumCostSavingPoundsPerYear;
         Double energySavingKwhPerYear;
         String readMoreRoute;
         String headline;
@@ -406,7 +439,8 @@ public class EnergySavingPlanController {
 
             return EnergyEfficiencyRecommendation.builder()
                     .investmentPounds(recommendation.investmentPounds)
-                    .costSavingPoundsPerYear(recommendation.costSavingPoundsPerYear)
+                    .minimumCostSavingPoundsPerYear(recommendation.minimumCostSavingPoundsPerYear)
+                    .maximumCostSavingPoundsPerYear(recommendation.maximumCostSavingPoundsPerYear)
                     .readMoreRoute(
                             userSiteBaseUrl + "/measures/" + urlEncode(recommendation.measureSlug))
                     .headline((String) acfFields.get("headline"))
@@ -433,8 +467,10 @@ public class EnergySavingPlanController {
 
             return EnergyEfficiencyRecommendation.builder()
                     .investmentPounds(0.0)
-                    .costSavingPoundsPerYear(
-                            defaultIfNull(recommendation.costSavingPoundsPerYear, 0.0))
+                    .minimumCostSavingPoundsPerYear(
+                            defaultIfNull(recommendation.minimumCostSavingPoundsPerYear, 0.0))
+                    .maximumCostSavingPoundsPerYear(
+                            defaultIfNull(recommendation.maximumCostSavingPoundsPerYear, 0.0))
                     .readMoreRoute(
                             makeUrlAbsolute(grant.getFindOutMoreLink(), userSiteBaseUrl))
                     .headline(grant.getHeading())
@@ -454,9 +490,14 @@ public class EnergySavingPlanController {
         }
 
         public String getRoundedSavings(boolean showMonthlySavings) {
-            return roundAndFormatCostValue(showMonthlySavings
-                    ? (costSavingPoundsPerYear / 12.0)
-                    : costSavingPoundsPerYear);
+            double minimumCostSaving = showMonthlySavings
+                    ? (minimumCostSavingPoundsPerYear / 12.0)
+                    : minimumCostSavingPoundsPerYear;
+
+            double maximumCostSaving = showMonthlySavings
+                    ? (maximumCostSavingPoundsPerYear / 12.0)
+                    : maximumCostSavingPoundsPerYear;
+            return roundAndFormatCostValueRange(minimumCostSaving, maximumCostSaving);
         }
     }
 

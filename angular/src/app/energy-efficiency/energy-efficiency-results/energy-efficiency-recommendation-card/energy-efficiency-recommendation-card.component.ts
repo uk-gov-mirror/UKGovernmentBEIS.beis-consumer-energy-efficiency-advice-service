@@ -21,9 +21,12 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
     roundedSaving: number;
+    roundedMaximumSaving: number;
+    roundedMinimumSaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     showOldVersion: boolean;
+    savingDisplay: string;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
@@ -38,9 +41,18 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.roundedSaving = this.showMonthlySavings
             ? RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerMonth)
             : RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerYear);
+        this.roundedMinimumSaving = this.showMonthlySavings
+            ? RoundingService.roundCostValue(this.recommendation.minimumCostSavingPoundsPerMonth)
+            : RoundingService.roundCostValue(this.recommendation.minimumCostSavingPoundsPerYear);
+        this.roundedMaximumSaving = this.showMonthlySavings
+            ? RoundingService.roundCostValue(this.recommendation.maximumCostSavingPoundsPerMonth)
+            : RoundingService.roundCostValue(this.recommendation.maximumCostSavingPoundsPerYear);
         this.tags = getActiveTags(this.recommendation.tags)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.showOldVersion = this.abTestingService.isInGroupA();
+        this.savingDisplay = this.roundedMaximumSaving === this.roundedMinimumSaving
+            ? '£' + this.roundedMaximumSaving
+            : '£' + this.roundedMinimumSaving + ' - £' + this.roundedMaximumSaving;
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {

@@ -28,6 +28,8 @@ export class EnergyEfficiencyRecommendation {
     constructor(public investmentPounds: number,
                 public lifetimeYears: number,
                 public costSavingPoundsPerYear: number,
+                public minimumCostSavingPoundsPerYear: number,
+                public maximumCostSavingPoundsPerYear: number,
                 public energySavingKwhPerYear: number,
                 public readMoreRoute: string,
                 public headline: string,
@@ -46,6 +48,14 @@ export class EnergyEfficiencyRecommendation {
 
     get costSavingPoundsPerMonth(): number {
         return this.costSavingPoundsPerYear / 12;
+    }
+
+    get minimumCostSavingPoundsPerMonth(): number {
+        return this.minimumCostSavingPoundsPerYear / 12;
+    }
+
+    get maximumCostSavingPoundsPerMonth(): number {
+        return this.maximumCostSavingPoundsPerYear / 12;
     }
 
     get isMeasure(): boolean {
@@ -81,9 +91,15 @@ export class EnergyEfficiencyRecommendation {
             .map(stepResponse => new RecommendationStep(stepResponse));
         const grant = head(grants);
         const grantSteps = (grant && grant.steps && grant.steps.length > 0) ? grant.steps : [];
+        const costSavingUncertaintyPercentage = measureResponse.uncertainty;
+        const costSavingUncertainty: number = costSavingUncertaintyPercentage / 100;
         let costSavingPerYear: number = measureResponse.cost_saving;
+        let minimumCostSavingPerYear: number = costSavingPerYear * (1 - costSavingUncertainty);
+        let maximumCostSavingPerYear: number = costSavingPerYear * (1 + costSavingUncertainty);
         if (grant && grant.annualPaymentPoundsForMeasure) {
             costSavingPerYear += grant.annualPaymentPoundsForMeasure;
+            minimumCostSavingPerYear += grant.annualPaymentPoundsForMeasure;
+            maximumCostSavingPerYear += grant.annualPaymentPoundsForMeasure;
         }
         let lifetime: number = null;
         let estimatedInvestmentPounds: number = 0;
@@ -97,6 +113,8 @@ export class EnergyEfficiencyRecommendation {
             estimatedInvestmentPounds,
             lifetime,
             costSavingPerYear,
+            minimumCostSavingPerYear,
+            maximumCostSavingPerYear,
             measureResponse.energy_saving,
             '/measures/' + encodeURIComponent(measureContent.slug),
             measureContent.acf.headline,
@@ -118,10 +136,13 @@ export class EnergyEfficiencyRecommendation {
      * Keep this in sync with EnergySavingPlanController.java `fromNationalGrant`
      */
     static fromNationalGrant(grant: StandaloneNationalGrant): EnergyEfficiencyRecommendation {
+        const costSavingPerYear = grant.annualPaymentPoundsStandalone || 0;
         return new EnergyEfficiencyRecommendation(
             0, // No investment cost for a grant
             null, // No lifetime for a grant
-            grant.annualPaymentPoundsStandalone || 0,
+            costSavingPerYear,
+            costSavingPerYear,
+            costSavingPerYear,
             0, // No energy saving from a grant
             grant.findOutMoreLink,
             grant.name,
