@@ -52,7 +52,8 @@ export class EpcLookupComponent implements OnChanges, OnInit {
             return;
         }
 
-        // An undefined postcode means that the user is yet to enter a postcode.
+        // An undefined postcode means that the user is yet to enter a postcode
+        // or the postcode is for Scotland / Northern Ireland.
         // Don't show any EPC info in this case
         if (!this.postcode) {
             this.epcs = undefined;
