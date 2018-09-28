@@ -9,6 +9,7 @@ import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.se
 import * as logger from 'loglevel';
 import {RoundingService} from '../../shared/rounding-service/rounding.service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
+import {EnergyEfficiencyRecommendationService} from "../../shared/recommendations-service/energy-efficiency-recommendation.service";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -56,10 +57,8 @@ export class YourPlanPageComponent implements OnInit {
         return RoundingService.roundCostValue(recommendation.investmentPounds);
     }
 
-    getRoundedSavings(recommendation: EnergyEfficiencyRecommendation) {
-        return this.showMonthlySavings
-            ? RoundingService.roundCostValue(recommendation.costSavingPoundsPerMonth)
-            : RoundingService.roundCostValue(recommendation.costSavingPoundsPerYear);
+    getSavingDisplay(recommendation: EnergyEfficiencyRecommendation) {
+        return EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, this.showMonthlySavings);
     }
 
     handleLocalAuthorityServiceResponse(response: LocalAuthority) {

@@ -42,7 +42,7 @@ If you change anything here, please consider whether anything needs changing the
                         ></app-data-card>
                         <app-data-card class="monthly-savings-card"
                                        heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                                       [value]="'£' + getRoundedSavings(recommendation)"
+                                       [value]="getSavingDisplay(recommendation)"
                                        [isSmallCard]="true"
                         ></app-data-card>
                     </div>

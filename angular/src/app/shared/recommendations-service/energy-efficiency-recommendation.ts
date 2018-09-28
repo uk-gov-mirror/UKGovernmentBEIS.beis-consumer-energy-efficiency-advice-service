@@ -46,18 +46,6 @@ export class EnergyEfficiencyRecommendation {
                 public measureCode: string) {
     }
 
-    get costSavingPoundsPerMonth(): number {
-        return this.costSavingPoundsPerYear / 12;
-    }
-
-    get minimumCostSavingPoundsPerMonth(): number {
-        return this.minimumCostSavingPoundsPerYear / 12;
-    }
-
-    get maximumCostSavingPoundsPerMonth(): number {
-        return this.maximumCostSavingPoundsPerYear / 12;
-    }
-
     get isMeasure(): boolean {
         return this.measureCode !== null;
     }

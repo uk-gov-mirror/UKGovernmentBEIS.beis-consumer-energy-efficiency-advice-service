@@ -5,6 +5,7 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {RoundingService} from '../../shared/rounding-service/rounding.service';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
+import {EnergyEfficiencyRecommendationService} from "../../shared/recommendations-service/energy-efficiency-recommendation.service";
 
 @Component({
     selector: 'app-your-plan-summary',
@@ -24,27 +25,7 @@ export class YourPlanSummaryComponent {
     }
 
     get totalSavingsDisplay(): string {
-        const minimumSavings = sumBy(
-            this.recommendations,
-            recommendation => this.showMonthlySavings
-                ? recommendation.minimumCostSavingPoundsPerMonth
-                : recommendation.minimumCostSavingPoundsPerYear
-        );
-        const maximumSavings = sumBy(
-            this.recommendations,
-            recommendation => this.showMonthlySavings
-                ? recommendation.maximumCostSavingPoundsPerMonth
-                : recommendation.maximumCostSavingPoundsPerYear
-        );
-        const roundedMinimumSavings = RoundingService.roundCostValue(minimumSavings);
-        const roundedMaximumSavings = RoundingService.roundCostValue(maximumSavings);
-
-        if (roundedMinimumSavings === roundedMaximumSavings) {
-            return roundedMaximumSavings > 0
-                ? '£' + roundedMaximumSavings
-                : '-';
-        }
-        return '£' + roundedMinimumSavings + ' - £' + roundedMaximumSavings;
+        return EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, this.showMonthlySavings);
     }
 
     getRoundedTotalInvestmentRequired(): number {

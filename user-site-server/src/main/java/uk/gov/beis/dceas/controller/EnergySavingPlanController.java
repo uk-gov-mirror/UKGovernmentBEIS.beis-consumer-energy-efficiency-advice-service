@@ -54,7 +54,6 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 public class EnergySavingPlanController {
 
     private static final double POUND_ROUNDING = 5.0;
-    private static final int SMALL_COST_THRESHOLD = 1;
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final ServletContext servletContext;
@@ -276,22 +275,28 @@ public class EnergySavingPlanController {
         return emptyList();
     }
 
+    /**
+     * Keep this in sync with EnergyEfficiencyRecommendationService.ts
+     */
     private static String roundAndFormatCostValue(double input) {
         double roundedValue = roundCostValue(input);
-        return formatCostValueAndNotDisplaySmallValue(roundedValue);
+        return formatCostValueAndNotDisplayZeroValue(roundedValue);
     }
 
+    /**
+     * Keep this in sync with EnergyEfficiencyRecommendationService.ts
+     */
     private static String roundAndFormatCostValueRange(double minimumInput, double maximumInput) {
         double roundedMinimumInput = roundCostValue(minimumInput);
         double roundedMaximumInput = roundCostValue(maximumInput);
 
         return roundedMinimumInput == roundedMaximumInput
-                ? formatCostValueAndNotDisplaySmallValue(roundedMaximumInput)
+                ? formatCostValueAndNotDisplayZeroValue(roundedMaximumInput)
                 : formatCostValue(roundedMinimumInput) + " - " + formatCostValue(roundedMaximumInput);
     }
 
     /**
-     * Keep this in sync with RoundingService.ts
+     * Keep this in sync with EnergyEfficiencyRecommendationService.ts
      */
     private static double roundCostValue(double input) {
         double roundingValue = input > POUND_ROUNDING
@@ -300,8 +305,11 @@ public class EnergySavingPlanController {
         return Math.round(input / roundingValue) * roundingValue;
     }
 
-    private static String formatCostValueAndNotDisplaySmallValue(double input) {
-        return input > SMALL_COST_THRESHOLD
+    /**
+     * Keep this in sync with EnergyEfficiencyRecommendationService.ts
+     */
+    private static String formatCostValueAndNotDisplayZeroValue(double input) {
+        return input > 0
                 ? formatCostValue(input)
                 : "-";
     }
