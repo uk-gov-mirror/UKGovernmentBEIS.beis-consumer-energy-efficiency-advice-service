@@ -21,9 +21,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
-    roundedSaving: number;
-    roundedMaximumSaving: number;
-    roundedMinimumSaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     showOldVersion: boolean;
