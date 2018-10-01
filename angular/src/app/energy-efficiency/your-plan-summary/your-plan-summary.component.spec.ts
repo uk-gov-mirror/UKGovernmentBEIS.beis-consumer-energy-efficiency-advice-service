@@ -16,7 +16,8 @@ describe('YourPlanSummaryComponent', () => {
             investmentPounds: 199,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
-            costSavingPoundsPerMonth: 99 / 12,
+            minimumCostSavingPoundsPerYear: 89,
+            maximumCostSavingPoundsPerYear: 109,
             energySavingKwhPerYear: 100,
             readMoreRoute: ('dummy-route'),
             iconPath: 'icons/dummy.svg',
@@ -37,7 +38,8 @@ describe('YourPlanSummaryComponent', () => {
             investmentPounds: 999,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
-            costSavingPoundsPerMonth: 200 / 12,
+            minimumCostSavingPoundsPerYear: 180,
+            maximumCostSavingPoundsPerYear: 220,
             energySavingKwhPerYear: 250,
             readMoreRoute: ('dummy-route'),
             iconPath: 'icons/dummy.svg',
@@ -58,7 +60,8 @@ describe('YourPlanSummaryComponent', () => {
             investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
-            costSavingPoundsPerMonth: 10 / 12,
+            minimumCostSavingPoundsPerYear: 9,
+            maximumCostSavingPoundsPerYear: 11,
             energySavingKwhPerYear: 5,
             readMoreRoute: ('dummy-route'),
             iconPath: 'icons/dummy.svg',
@@ -115,6 +118,6 @@ describe('YourPlanSummaryComponent', () => {
     });
 
     it('should calculate the total monthly saving and round it correctly', () => {
-        expect(component.roundedTotalSavings).toBe(25);
+        expect(component.totalSavingsDisplay).toBe('£25 - £30');
     });
 });

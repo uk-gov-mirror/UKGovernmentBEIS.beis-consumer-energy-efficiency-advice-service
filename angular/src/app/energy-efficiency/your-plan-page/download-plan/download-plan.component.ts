@@ -69,7 +69,7 @@ export class DownloadPlanComponent {
     }
 
     private getPlanInfo() {
-        // See uk.gov.beis.dceas.api.DownloadPlanRequest
+        // See uk.gov.beis.dceas.controller.EnergySavingPlanController.PlanInfo
         const recommendations = this.recommendationsService.getRecommendationsInPlan()
             .map(r => {
                 if (r.isMeasure) {
@@ -77,13 +77,15 @@ export class DownloadPlanComponent {
                         measureSlug: r.recommendationID,
                         nationalGrantForMeasureId: (r.grant && r.grant.grantId),
                         investmentPounds: r.investmentPounds,
-                        costSavingPoundsPerYear: r.costSavingPoundsPerYear
+                        minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
+                        maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                     };
                 } else {
                     return {
                         grantSlug: r.recommendationID,
                         investmentPounds: r.investmentPounds,
-                        costSavingPoundsPerYear: r.costSavingPoundsPerYear
+                        minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
+                        maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                     };
                 }
             });

@@ -10,6 +10,7 @@ import {RoundingService} from '../../../shared/rounding-service/rounding.service
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
+import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -20,10 +21,10 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
-    roundedSaving: number;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     showOldVersion: boolean;
+    savingDisplay: string;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
@@ -35,12 +36,10 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
-        this.roundedSaving = this.showMonthlySavings
-            ? RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerMonth)
-            : RoundingService.roundCostValue(this.recommendation.costSavingPoundsPerYear);
         this.tags = getActiveTags(this.recommendation.tags)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.showOldVersion = this.abTestingService.isInGroupA();
+        this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {

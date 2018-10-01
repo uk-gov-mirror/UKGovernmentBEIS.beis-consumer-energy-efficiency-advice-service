@@ -63,7 +63,7 @@
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
                        heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                       [value]="'£' + roundedSaving"
+                       [value]="savingDisplay"
                        [isSmallCard]="true"
         ></app-data-card>
         <div class="add-to-plan-column"

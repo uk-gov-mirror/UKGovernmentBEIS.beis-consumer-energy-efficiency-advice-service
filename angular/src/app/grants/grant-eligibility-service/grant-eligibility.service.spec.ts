@@ -210,6 +210,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 100,
                 'RHI': 0,
@@ -234,6 +235,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 0,
                 'RHI': 0,
@@ -258,6 +260,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 0,
                 'RHI': 100,
@@ -281,6 +284,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 0,
                 'RHI': 0,
@@ -304,6 +308,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 0,
                 'RHI': 0,
@@ -328,6 +333,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 0,
                 'RHI': 0,
@@ -352,6 +358,7 @@ describe('GrantEligibilityService', () => {
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
                 'energy_saving': 0,
+                'uncertainty': 0,
                 'number': '34',
                 'FIT': 0,
                 'RHI': 0,

@@ -19,7 +19,7 @@
 <app-data-card
         class="savings"
         heading="Total savings per {{showMonthlySavings ? 'month' : 'year'}}"
-        [value]="roundedTotalSavings > 0 ? '£' + roundedTotalSavings : '-'"
+        [value]="totalSavingsDisplay"
         [isVerticalAtMobile]="true"
         [isSmallCard]="isFooter">
 </app-data-card>
