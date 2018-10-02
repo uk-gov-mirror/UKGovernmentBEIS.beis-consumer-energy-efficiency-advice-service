@@ -82,4 +82,5 @@
     <include file="changelogs/2018-05-10-remove-unused-grants.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-05-23-update-images-in-articles.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-05-24-add-cover-images-to-videos.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-10-01-update-eco-suppliers.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
