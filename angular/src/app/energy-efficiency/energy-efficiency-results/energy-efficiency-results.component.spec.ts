@@ -242,7 +242,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json
         expect(component.energyCalculations.currentEpcRating).toBe('F');
-        expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(1226);
+        expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(1618);
         // match annual savings from recommendations above
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(309);
     });
