@@ -12,10 +12,7 @@ export class EnergyCalculations {
 
     constructor(energyCalculationResponse: EnergyCalculationResponse,
                 potentialEnergyBillSavingPoundsPerYear: number) {
-        this.currentEnergyBillPoundsPerYear = Math.round(
-            energyCalculationResponse['Total-Lighting-Cost'] +
-            energyCalculationResponse['Total-Heating-Cost'] +
-            energyCalculationResponse['Total-Hot-Water-Cost']);
+        this.currentEnergyBillPoundsPerYear = Math.round(energyCalculationResponse['Total-Energy-Cost']);
         const currentMonthlyBillPoundsUnrounded = this.currentEnergyBillPoundsPerYear / 12;
         this.currentMonthlyBillPoundsRounded = Math.round(currentMonthlyBillPoundsUnrounded * 100) / 100;
         this.potentialEnergyBillSavingPoundsPerYear = Math.round(potentialEnergyBillSavingPoundsPerYear);
