@@ -85,7 +85,7 @@ describe('RdsapInputHelper', () => {
             responseData = {} as ResponseData;
         });
 
-        it('should return semi-detached for house sharing 1 side', () => {
+        it('should return semi-detached for semi-detached house sharing 1 side', () => {
             // given
             responseData.homeType = HomeType.SemiDetachedOrTerracedHouse;
             responseData.numberOfExposedWallsInHouse = HouseExposedWall.ThreeSidesExposed;
@@ -97,7 +97,7 @@ describe('RdsapInputHelper', () => {
             expect(builtForm).toEqual(BuiltForm.SemiDetached);
         });
 
-        it('should return mid-terrace for house sharing 2 sides', () => {
+        it('should return mid-terrace for semi-detached house sharing 2 sides', () => {
             // given
             responseData.homeType = HomeType.SemiDetachedOrTerracedHouse;
             responseData.numberOfExposedWallsInHouse = HouseExposedWall.TwoSidesExposed;
@@ -109,7 +109,7 @@ describe('RdsapInputHelper', () => {
             expect(builtForm).toEqual(BuiltForm.MidTerrace);
         });
 
-        it('should return enclosed mid-terrace for house sharing 3 sides', () => {
+        it('should return enclosed mid-terrace for semi-detached house sharing 3 sides', () => {
             // given
             responseData.homeType = HomeType.SemiDetachedOrTerracedHouse;
             responseData.numberOfExposedWallsInHouse = HouseExposedWall.OneSideExposed;
