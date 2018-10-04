@@ -7,7 +7,6 @@ import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-w
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
-import toString from 'lodash-es/toString';
 import {
     GlazingType,
     RoofType,
@@ -19,7 +18,6 @@ import {RoofSpace} from '../../../questionnaire/questions/roof-space-question/ro
 import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
 import {FlatExposedWall} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
-import {FlatLevel} from './flat-level';
 import {TenancyType} from '../../../questionnaire/questions/mees/tenancy-type-question/tenancy-type';
 import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
@@ -102,59 +100,6 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.occupants).toBe(expectedNumberOfOccupants);
-        });
-
-        it('should calculate flat level correctly', () => {
-            // given
-            responseData.floorLevels = [FloorLevel.Basement, FloorLevel.Ground];
-
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.flat_level).toEqual(toString(FlatLevel.Basement));
-        });
-
-        it('should calculate flat top storey correctly', () => {
-            // given
-            responseData.floorLevels = [FloorLevel.MidFloor, FloorLevel.TopFloor];
-
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.flat_top_storey).toEqual('Y');
-        });
-
-        it('should calculate number of exposed walls correctly', () => {
-            // given
-            responseData.homeType = HomeType.ParkHomeOrMobileHome;
-
-            // when
-            let rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.number_of_exposed_walls).toEqual(4);
-
-            // given
-            responseData.homeType = HomeType.FlatDuplexOrMaisonette;
-            responseData.numberOfExposedWallsInFlat = FlatExposedWall.ThreeSidesExposedWholeSide;
-
-            // when
-            rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.number_of_exposed_walls).toEqual(3);
-
-            // given
-            responseData.homeType = HomeType.SemiDetachedBungalow;
-            responseData.numberOfExposedWallsInHouse = HouseExposedWall.TwoSidesExposed;
-
-            // when
-            rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.number_of_exposed_walls).toEqual(2);
         });
 
         it('should set rented to true for private tenancy', () => {

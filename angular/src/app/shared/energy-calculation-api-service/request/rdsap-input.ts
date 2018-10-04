@@ -1,24 +1,12 @@
 import {PropertyType} from './property-type';
-import {BuiltForm} from './built-form';
-import {FlatLevel} from './flat-level';
 import {ResponseData} from '../../response-data/response-data';
-import {HomeType, isDetached} from '../../../questionnaire/questions/home-type-question/home-type';
-import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
-import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import toString from 'lodash-es/toString';
 import {Epc} from '../../postcode-epc-service/model/epc';
-import {FloorAreaUnit} from '../../../questionnaire/questions/floor-area-question/floor-area-unit';
-import {FloorLevel} from '../../../questionnaire/questions/floor-level-question/floor-level';
-import {getNumberOfExposedWallsInFlat} from '../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
-import includes from 'lodash-es/includes';
+import {RdsapInputHelper} from "./rdsap-input-helper";
 
 
 export class RdSapInput {
-    public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
-    public static readonly NUMBER_OF_HOURS_PER_QUARTER_DAY = 6;
-    public static readonly NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY = 4;
-
     readonly postcode: string;
     readonly epc: Epc;
     readonly property_type: string;
@@ -54,21 +42,16 @@ export class RdSapInput {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
-        // TODO:BEISDEAS-230 This is not currently a full correct mapping
-        // to RdSAP. For a full mapping, the homeType question needs to be
-        // changed. This is a 'best possible' mapping based on the current
-        // questions, to enable a PoC connection to the BRE API. See
-        // BEISDEAS-28 for updating the questions to allow a correct mapping.
-        this.property_type = toString(RdSapInput.getPropertyType(responseData.homeType));
-        this.built_form = toString(RdSapInput.getBuiltForm(responseData.homeType));
-        this.flat_level = toString(RdSapInput.getFlatLevel(responseData.floorLevels));
-        this.flat_top_storey = RdSapInput.getFlatTopStorey(responseData.floorLevels);
-        this.number_of_exposed_walls = RdSapInput.getNumberOfExposedWalls(responseData);
-        this.construction_date = RdSapInput.getConstructionDateEncoding(responseData.homeAge);
-        this.floor_area = RdSapInput.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
+        this.property_type = toString(RdsapInputHelper.getPropertyType(responseData.homeType));
+        this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData));
+        this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels));
+        this.flat_top_storey = RdsapInputHelper.getFlatTopStorey(responseData.floorLevels);
+        this.number_of_exposed_walls = RdsapInputHelper.getNumberOfExposedWalls(responseData);
+        this.construction_date = RdsapInputHelper.getConstructionDateEncoding(responseData.homeAge);
+        this.floor_area = RdsapInputHelper.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
         this.num_storeys = responseData.numberOfStoreys;
         this.num_bedrooms = responseData.numberOfBedrooms;
-        this.heating_fuel = RdSapInput.getFuelTypeEncoding(responseData.fuelType);
+        this.heating_fuel = RdsapInputHelper.getFuelTypeEncoding(responseData.fuelType);
         this.normal_days_off_hours = responseData.normalDaysOffHours;
         this.heating_pattern_type = responseData.heatingPatternType;
         this.measures = true;
@@ -107,118 +90,5 @@ export class RdSapInput {
         return requiredProperties.every(value => {
             return value && value.length > 0;
         });
-    }
-
-    private static getPropertyType(homeType: HomeType): PropertyType {
-        switch (homeType) {
-            case HomeType.DetachedHouse: {
-                return PropertyType.House;
-            }
-            case HomeType.SemiDetachedOrTerracedHouse: {
-                return PropertyType.House;
-            }
-            case HomeType.DetachedBungalow: {
-                return PropertyType.Bungalow;
-            }
-            case HomeType.SemiDetachedBungalow: {
-                return PropertyType.Bungalow;
-            }
-            case HomeType.FlatDuplexOrMaisonette: {
-                return PropertyType.Flat;
-            }
-            case HomeType.ParkHomeOrMobileHome: {
-                return PropertyType.ParkHome;
-            }
-            default: {
-                return null;
-            }
-        }
-    }
-
-    private static getBuiltForm(homeType: HomeType): BuiltForm {
-        switch (homeType) {
-            case HomeType.DetachedHouse: {
-                return BuiltForm.Detached;
-            }
-            case HomeType.SemiDetachedOrTerracedHouse: {
-                return BuiltForm.SemiDetached;
-            }
-            case HomeType.DetachedBungalow: {
-                return BuiltForm.Detached;
-            }
-            case HomeType.SemiDetachedBungalow: {
-                return BuiltForm.SemiDetached;
-            }
-            case HomeType.FlatDuplexOrMaisonette: {
-                return BuiltForm.MidTerrace;
-            }
-            case HomeType.ParkHomeOrMobileHome: {
-                return BuiltForm.Detached;
-            }
-            default: {
-                return null;
-            }
-        }
-    }
-
-    private static getFlatLevel(floorLevels: FloorLevel[]): FlatLevel {
-        // For now, we use the lowest floor level as the flat level
-        if (!floorLevels) {
-            return null;
-        }
-
-        const lowestFloorLevel: FloorLevel = floorLevels.sort()[0];
-        switch (lowestFloorLevel) {
-            case FloorLevel.Basement: {
-                return FlatLevel.Basement;
-            }
-            case FloorLevel.Ground: {
-                return FlatLevel.GroundFloor;
-            }
-            case FloorLevel.MidFloor: {
-                return FlatLevel.MidFloor;
-            }
-            case FloorLevel.TopFloor: {
-                return FlatLevel.TopFloor;
-            }
-        }
-    }
-
-    private static getFlatTopStorey(floorLevels: FloorLevel[]): string {
-        if (!floorLevels) {
-            return null;
-        }
-
-        return includes(floorLevels, FloorLevel.TopFloor) ? 'Y' : 'N';
-    }
-
-    private static getNumberOfExposedWalls(responseData: ResponseData) {
-        if (responseData.homeType === HomeType.FlatDuplexOrMaisonette) {
-            return getNumberOfExposedWallsInFlat(responseData.numberOfExposedWallsInFlat);
-        } else if (isDetached(responseData.homeType)) {
-            return RdSapInput.NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY;
-        } else {
-            return responseData.numberOfExposedWallsInHouse;
-        }
-    }
-
-    private static getConstructionDateEncoding(homeAge: HomeAge): string {
-        const encodingCharacters = 'ABCDEFGHIJKL';
-        return encodingCharacters.charAt(homeAge);
-    }
-
-    private static getFuelTypeEncoding(fuelType: FuelType): string {
-        if (fuelType !== undefined) {
-            return fuelType.toString(10);
-        }
-        return undefined;
-    }
-
-    private static getFloorArea(area: number, unit: FloorAreaUnit): number {
-        if (unit === FloorAreaUnit.SquareMetre) {
-            return area;
-        } else {
-            return area / RdSapInput.SQUARE_FOOT_PER_SQUARE_METRE;
-        }
     }
 }
