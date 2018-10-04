@@ -11,6 +11,8 @@ import {Router} from '@angular/router';
 })
 export class SearchBarComponent {
 
+    public static readonly ENTER_KEY_CODE: number = 13;
+
     shouldDisplaySearchDetailsDropdown: boolean = false;
     searchText: string;
     searchResults: WordpressSearchable[] = [];
@@ -103,7 +105,7 @@ export class SearchBarComponent {
     }
 
     goToRouteOnEnterPress(event, route: string): void {
-        if (event.keyCode === 13) {
+        if (event.keyCode === SearchBarComponent.ENTER_KEY_CODE) {
             this.router.navigate([route]);
             this.collapseSearchBox();
             this.sendEventToAnalytics('search-result_clicked', route);

@@ -96,11 +96,11 @@ describe('PostcodeEpcService', () => {
         it('should throw a specific error if the postcode is not found', async(() => {
             // given
             epcsResponse = ErrorObservable.create({
-                status: PostcodeApiService.postcodeNotFoundStatus
+                status: PostcodeApiService.POSTCODE_NOT_FOUND_STATUS
             });
 
             postcodeBasicDetailsResponse = ErrorObservable.create({
-                status: PostcodeApiService.postcodeNotFoundStatus
+                status: PostcodeApiService.POSTCODE_NOT_FOUND_STATUS
             });
 
             // when

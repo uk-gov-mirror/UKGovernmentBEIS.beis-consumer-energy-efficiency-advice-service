@@ -25,7 +25,7 @@ describe('PostcodeLookupComponent', () => {
     const postcodeApiServiceStub = {
         fetchBasicPostcodeDetails: (postcode) => {
             if (postcode === INVALID_POSTCODE) {
-                return Observable.throw(PostcodeApiService.postcodeNotFoundStatus);
+                return Observable.throw(PostcodeApiService.POSTCODE_NOT_FOUND_STATUS);
             }
 
             return Observable.of(dummyBasicPostcodeDetails);

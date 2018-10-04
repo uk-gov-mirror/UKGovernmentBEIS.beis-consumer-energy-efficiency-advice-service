@@ -12,6 +12,8 @@ import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 })
 export class EpcLookupComponent implements OnChanges, OnInit {
 
+    public static readonly ENTER_KEY_CODE: number = 13;
+
     loading: boolean = false;
     epcs: Epc[];
     selectedEpc: Epc;
@@ -32,7 +34,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
 
     ngOnInit() {
         this.renderer.listen('window', 'keydown', event => {
-            if (event.keyCode === 13 && document.activeElement.classList.contains('postcode-input-text')) {
+            if (event.keyCode === EpcLookupComponent.ENTER_KEY_CODE && document.activeElement.classList.contains('postcode-input-text')) {
                 this.keyboardUser = true;
             }
         });

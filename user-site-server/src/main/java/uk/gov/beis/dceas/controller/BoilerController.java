@@ -12,7 +12,7 @@ import uk.gov.beis.dceas.api.BoilerSearchResult;
 
 import static com.google.common.primitives.Chars.asList;
 import static uk.gov.beis.dceas.db.gen.Tables.BOILERS;
-import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
+import static uk.gov.beis.dceas.spring.exception.NotFoundException.notFoundIfNull;
 
 @RestController
 @RequestMapping("/api/boilers")

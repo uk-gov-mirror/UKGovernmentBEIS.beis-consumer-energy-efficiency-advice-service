@@ -6,7 +6,7 @@ import com.google.common.cache.LoadingCache;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 import uk.gov.beis.dceas.api.NationalGrant;
-import uk.gov.beis.dceas.spring.NotFoundException;
+import uk.gov.beis.dceas.spring.exception.NotFoundException;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
