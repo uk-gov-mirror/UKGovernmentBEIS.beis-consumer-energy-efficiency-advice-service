@@ -89,7 +89,7 @@ describe('PostcodeEpcService', () => {
                 expect(postcodeApiServiceStub.fetchBasicPostcodeDetails).toHaveBeenCalledWith(postcode);
                 expect(postcodeDetails.postcode).toEqual(postcode);
                 expect(postcodeDetails.localAuthorityCode).toEqual(localAuthorityCode);
-                expect(postcodeDetails.allEpcsForPostcode.length).toBe(0);
+                expect(postcodeDetails.allEpcsForPostcode).toBe(null);
             });
         }));
 

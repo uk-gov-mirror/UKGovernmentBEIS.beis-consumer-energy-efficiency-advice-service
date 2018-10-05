@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.beis.dceas.spring.exception.InternalServerErrorException;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -23,6 +25,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @RestController
 @RequestMapping("/api")
 public class EpcLookupController implements ClientHttpRequestInterceptor {
+
+    private static final int TEN_SECONDS_IN_MILLIS = 10 * 1000;
 
     private final String apiAuthHeaderValue;
     private final String apiRoot;
@@ -48,6 +52,8 @@ public class EpcLookupController implements ClientHttpRequestInterceptor {
 
         this.restTemplate = restTemplateBuilder
             .interceptors(this)
+            .setConnectTimeout(TEN_SECONDS_IN_MILLIS)
+            .setReadTimeout(TEN_SECONDS_IN_MILLIS)
             .build();
     }
 
@@ -69,7 +75,11 @@ public class EpcLookupController implements ClientHttpRequestInterceptor {
             .queryParam("size", size)
             .build().encode().toUriString();
 
-        return restTemplate.getForObject(url, String.class);
+        try {
+            return restTemplate.getForObject(url, String.class);
+        } catch (RestClientException e) {
+            throw new InternalServerErrorException();
+        }
     }
 
     /**
@@ -87,7 +97,11 @@ public class EpcLookupController implements ClientHttpRequestInterceptor {
             .path(lmkKey)
             .build().encode().toUriString();
 
-        return restTemplate.getForObject(url, String.class);
+        try {
+            return restTemplate.getForObject(url, String.class);
+        } catch (RestClientException e) {
+            throw new InternalServerErrorException();
+        }
     }
 
     @Override
