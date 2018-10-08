@@ -39,8 +39,7 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
     }
 
     ngOnInit() {
-        this.responseData.floorArea = this.responseData.floorArea || 0;
-        this.responseData.floorAreaUnit = this.responseData.floorAreaUnit || FloorAreaUnit.SquareMetre;
+        this.populateFloorArea();
         this.floorAreaDisplay = this.responseData.floorArea;
     }
 
@@ -61,6 +60,15 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
     handleFormSubmit() {
         if (this.responseData.floorArea !== undefined) {
             this.complete.emit();
+        }
+    }
+
+    private populateFloorArea(): void {
+        if (this.responseData.floorArea === undefined) {
+            this.responseData.floorArea = this.responseData.epc
+                ? parseInt(this.responseData.epc.totalFloorArea)
+                : 0;
+            this.responseData.floorAreaUnit = FloorAreaUnit.SquareMetre;
         }
     }
 }
