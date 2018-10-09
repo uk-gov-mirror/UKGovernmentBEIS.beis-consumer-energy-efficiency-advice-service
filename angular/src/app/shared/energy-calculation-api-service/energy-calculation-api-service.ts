@@ -12,7 +12,10 @@ export class EnergyCalculationApiService {
     private readonly breEndpoint = Config().apiRoot + '/energy-calculation';
 
     private cachedInput: RdSapInput;
-    private cachedResults: Observable<EnergyCalculationResponse>;
+    private cachedResults: EnergyCalculationResponse;
+
+    private defaultResponse: EnergyCalculationResponse =
+        require('assets/default-recommendation-responses/non-electric-heating-house-response.json');
 
     constructor(private http: HttpClient) {
     }
@@ -22,10 +25,15 @@ export class EnergyCalculationApiService {
             this.cachedInput = clone(rdSapInput);
             if (!rdSapInput.isMinimalDataSet()) {
                 console.warn('Cannot fetch energy calculation because missing some required responses');
-                this.cachedResults = Observable.of(null);
+                this.cachedResults = null;
             }
-            this.cachedResults = this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput).shareReplay(1);
+            return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput).shareReplay(1)
+                .do(s => this.cachedResults = s)
+                .catch(() => {
+                    this.cachedResults = null;
+                    return Observable.of(this.defaultResponse);
+                });
         }
-        return this.cachedResults;
+        return Observable.of(this.cachedResults);
     }
 }
