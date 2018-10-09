@@ -27,6 +27,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     showOldVersion: boolean;
+    showAddToPlan: boolean = true;
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
@@ -91,6 +92,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             this.allRecommendations
         );
         this.isLoading = false;
+        this.showAddToPlan = !energyCalculationResponse.isDefaultResponse;
     }
 
     private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,

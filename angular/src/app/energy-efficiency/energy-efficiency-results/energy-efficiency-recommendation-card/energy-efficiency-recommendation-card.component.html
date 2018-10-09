@@ -67,6 +67,7 @@
                        [isSmallCard]="true"
         ></app-data-card>
         <div class="add-to-plan-column"
+             *ngIf="showAddToPlanColumn"
              [class.selected]="recommendation.isAddedToPlan"
              (mouseenter)="mouseEnterAddToPlanButton()"
              (mouseleave)="mouseLeaveAddToPlanButton()"
