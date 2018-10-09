@@ -6,16 +6,26 @@ import {EnergyCalculationResponse} from './response/energy-calculation-response'
 import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import Config from '../../config';
+import {PropertyType} from "./request/property-type";
+import toString from 'lodash-es/toString';
+import {RdsapInputHelper} from "./request/rdsap-input-helper";
+import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 
 @Injectable()
 export class EnergyCalculationApiService {
+    private static readonly NON_ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE: EnergyCalculationResponse =
+        require('assets/default-recommendation-responses/non-electric-heating-house-response.json');
+    private static readonly ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE: EnergyCalculationResponse =
+        require('assets/default-recommendation-responses/electric-heating-house-response.json');
+    private static readonly NON_ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE: EnergyCalculationResponse =
+        require('assets/default-recommendation-responses/non-electric-heating-flat-response.json');
+    private static readonly ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE: EnergyCalculationResponse =
+        require('assets/default-recommendation-responses/electric-heating-flat-response.json');
+
     private readonly breEndpoint = Config().apiRoot + '/energy-calculation';
 
     private cachedInput: RdSapInput;
     private cachedResults: EnergyCalculationResponse;
-
-    private defaultResponse: EnergyCalculationResponse =
-        require('assets/default-recommendation-responses/non-electric-heating-house-response.json');
 
     constructor(private http: HttpClient) {
     }
@@ -31,9 +41,20 @@ export class EnergyCalculationApiService {
                 .do(s => this.cachedResults = s)
                 .catch(() => {
                     this.cachedResults = null;
-                    return Observable.of(this.defaultResponse);
+                    return Observable.of(EnergyCalculationApiService.getDefaultResponse(this.cachedInput));
                 });
         }
         return Observable.of(this.cachedResults);
+    }
+
+    private static getDefaultResponse(input: RdSapInput): EnergyCalculationResponse {
+        if (input.property_type === toString(PropertyType.Flat)) {
+            return input.heating_fuel === RdsapInputHelper.getFuelTypeEncoding(FuelType.Electricity)
+                ? EnergyCalculationApiService.ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE
+                : EnergyCalculationApiService.NON_ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE;
+        }
+        return input.heating_fuel === RdsapInputHelper.getFuelTypeEncoding(FuelType.Electricity)
+            ? EnergyCalculationApiService.ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE
+            : EnergyCalculationApiService.NON_ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE;
     }
 }

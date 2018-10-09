@@ -1,0 +1,38 @@
+{
+  "Total-CO2-Emissions":4908.26,
+  "Cost-Saving-From-Renewables":0,
+  "Total-Energy-Consumption":9457.14,
+  "Total-Energy-Cost":1166.01,
+  "Total-Lighting-Cost":83.39,
+  "Total-Appliances-Cost":324.06,
+  "Total-Cooking-Cost":70.39,
+  "Total-Heating-Cost":400.16,
+  "Total-Hot-Water-Cost":208.02,
+  "Current-SAP-Band":"D",
+  "Current-SAP-Rating":59,
+  "habit_measures":{
+    "one_degree_reduction":{
+      "cost_saving":53.71,
+      "energy_saving":611.23,
+      "uncertainty":20
+    }
+  },
+  "Potential-SAP-Band":"D",
+  "Potential-SAP-Rating":63,
+  "measures":{
+    "L2":{
+      "cost_saving":71.13,
+      "energy_saving":634.69,
+      "uncertainty":20,
+      "number":"640",
+      "lifetime":20,
+      "max_installation_cost":1800,
+      "min_installation_cost":1200,
+      "finance":2
+    }
+  },
+  "notes":[
+
+  ],
+  "isDefaultResponse": true
+}
