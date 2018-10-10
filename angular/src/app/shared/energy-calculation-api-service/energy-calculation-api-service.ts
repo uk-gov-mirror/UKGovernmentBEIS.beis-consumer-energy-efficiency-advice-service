@@ -38,7 +38,7 @@ export class EnergyCalculationApiService {
                 this.cachedResults = null;
             }
             return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput).shareReplay(1)
-                .do(s => this.cachedResults = s)
+                .do(response => this.cachedResults = response)
                 .catch(() => {
                     this.cachedResults = null;
                     return Observable.of(EnergyCalculationApiService.getDefaultResponse(this.cachedInput));
