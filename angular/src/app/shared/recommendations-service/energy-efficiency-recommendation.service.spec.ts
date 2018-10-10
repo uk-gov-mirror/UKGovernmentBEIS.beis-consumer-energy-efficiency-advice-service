@@ -15,7 +15,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('£3 - £10');
+            expect(savingDisplay).toBe('£3 – £10');
         });
 
         it('should display a range if rounded maximum value is different from rounded minimum value', () => {
@@ -25,7 +25,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('£5 - £10');
+            expect(savingDisplay).toBe('£5 – £10');
         });
 
         it('should display a value if rounded maximum value is the same as rounded minimum value', () => {
@@ -55,7 +55,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('£0 - £10');
+            expect(savingDisplay).toBe('£0 – £10');
         });
     });
 

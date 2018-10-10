@@ -32,7 +32,7 @@ export abstract class EnergyEfficiencyRecommendationService {
         if (roundedMinimumInput === roundedMaximumInput) {
             return this.formatCostValueAndNotDisplayZeroValue(roundedMaximumInput);
         }
-        return '£' + roundedMinimumInput + ' - £' + roundedMaximumInput;
+        return '£' + roundedMinimumInput + ' – £' + roundedMaximumInput;
     }
 
     private static formatCostValueAndNotDisplayZeroValue(input: number): string {
