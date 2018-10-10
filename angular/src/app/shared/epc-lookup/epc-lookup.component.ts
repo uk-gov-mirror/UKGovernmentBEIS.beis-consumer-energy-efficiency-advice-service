@@ -12,8 +12,10 @@ import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 })
 export class EpcLookupComponent implements OnChanges, OnInit {
 
+    public static readonly ENTER_KEY_CODE: number = 13;
+
     loading: boolean = false;
-    epcs: Epc[];
+    epcs: Epc[] | void;
     selectedEpc: Epc;
     error: boolean = false;
     keyboardUser: boolean;
@@ -32,7 +34,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
 
     ngOnInit() {
         this.renderer.listen('window', 'keydown', event => {
-            if (event.keyCode === 13 && document.activeElement.classList.contains('postcode-input-text')) {
+            if (event.keyCode === EpcLookupComponent.ENTER_KEY_CODE && document.activeElement.classList.contains('postcode-input-text')) {
                 this.keyboardUser = true;
             }
         });
@@ -65,7 +67,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
                 postcodeDetails => {
                     this.handlePostcodeDetails(postcodeDetails);
                     this.ref.detectChanges();
-                    if (this.keyboardUser && postcodeDetails.allEpcsForPostcode.length > 0) {
+                    if (this.keyboardUser && postcodeDetails.allEpcsForPostcode && postcodeDetails.allEpcsForPostcode.length > 0) {
                         (<HTMLElement>document.querySelector('.address-dropdown')).focus();
                         this.keyboardUser = false;
                     }
@@ -100,7 +102,8 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
         this.postcodeDetails = postcodeDetails;
         this.epcs = postcodeDetails.allEpcsForPostcode
-            .sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically);
+            ? postcodeDetails.allEpcsForPostcode.sort(EpcParserService.sortEpcsByHouseNumberOrAlphabetically)
+            : null;
         this.loading = false;
     }
 

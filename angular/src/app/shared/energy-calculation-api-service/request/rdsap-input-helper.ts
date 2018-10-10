@@ -17,7 +17,7 @@ import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-a
 
 export class RdsapInputHelper {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
-    public static readonly NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY = 4;
+    public static readonly NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY: number = 4;
 
     public static getPropertyType(homeType: HomeType): PropertyType {
         switch (homeType) {
