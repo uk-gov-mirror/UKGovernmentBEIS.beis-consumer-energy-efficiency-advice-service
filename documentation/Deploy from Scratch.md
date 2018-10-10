@@ -102,11 +102,11 @@ Run
 
     cf create-domain beis-domestic-energy-advice-service www.simpleenergyadvice.org.uk
     cf map-route dceas-user-site www.simpleenergyadvice.org.uk
-    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.simpleenergyadvice.org.uk"}'
+    cf create-service cdn-route cdn-route dceas-cdn-route2 -c '{"domain": "www.simpleenergyadvice.org.uk"}'
 
 Then run
 
-    cf service dceas-cdn-route
+    cf service dceas-cdn-route2
 
 and create the DNS "CNAME" and "TXT" records listed there.
 
@@ -122,7 +122,13 @@ Run the following commands:
 
     cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
     cf map-route simpleenergyadvice-redirect-helper-app www.eachhomecountsadvice.org.uk
-    # Add a CNAME in DNS from www.eachhomecountsadvice.org.uk to simpleenergyadvice-redirect-helper-app.cloudapps.digital
+    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.eachhomecountsadvice.org.uk"}'
+
+Then run
+
+    cf service dceas-cdn-route
+
+and create the DNS "CNAME" and "TXT" records listed there.
 
 ### Forwarding the non "www" hostname to the main hostname
 
