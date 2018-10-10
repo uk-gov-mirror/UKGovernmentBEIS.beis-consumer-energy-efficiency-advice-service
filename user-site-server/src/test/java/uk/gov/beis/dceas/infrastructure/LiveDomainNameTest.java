@@ -8,6 +8,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.codehaus.groovy.ast.expr.ArgumentListExpression;
 import org.hamcrest.Matchers;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -23,6 +24,12 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+/**
+ * This test should be run manually, so it is marked "Ignore".
+ * We don't want the build to fail if there is a problem on the live site,
+ * as that might stop us from fixing it!
+ */
+@Ignore
 @RunWith(Parameterized.class)
 public class LiveDomainNameTest {
 
