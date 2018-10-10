@@ -122,7 +122,7 @@ Run the following commands:
 
     cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
     cf map-route simpleenergyadvice-redirect-helper-app www.eachhomecountsadvice.org.uk
-    # Add a CNAME in DNS from www.eachhomecountsadvice.org.uk to eachhomecountsadviceorguk.cloudapps.digital
+    # Add a CNAME in DNS from www.eachhomecountsadvice.org.uk to simpleenergyadvice-redirect-helper-app.cloudapps.digital
 
 ### Forwarding the non "www" hostname to the main hostname
 
