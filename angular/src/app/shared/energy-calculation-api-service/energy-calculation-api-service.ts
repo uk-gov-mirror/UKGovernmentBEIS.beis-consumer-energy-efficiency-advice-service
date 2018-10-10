@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {RdSapInput} from './request/rdsap-input';
 import {Observable} from 'rxjs/Observable';
 import {EnergyCalculationResponse} from './response/energy-calculation-response';
@@ -13,15 +13,6 @@ import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-ty
 
 @Injectable()
 export class EnergyCalculationApiService {
-    private static readonly NON_ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE: EnergyCalculationResponse =
-        require('assets/default-recommendation-responses/non-electric-heating-house-response.json');
-    private static readonly ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE: EnergyCalculationResponse =
-        require('assets/default-recommendation-responses/electric-heating-house-response.json');
-    private static readonly NON_ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE: EnergyCalculationResponse =
-        require('assets/default-recommendation-responses/non-electric-heating-flat-response.json');
-    private static readonly ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE: EnergyCalculationResponse =
-        require('assets/default-recommendation-responses/electric-heating-flat-response.json');
-
     private readonly breEndpoint = Config().apiRoot + '/energy-calculation';
 
     private cachedInput: RdSapInput;
@@ -37,24 +28,21 @@ export class EnergyCalculationApiService {
                 console.warn('Cannot fetch energy calculation because missing some required responses');
                 this.cachedResults = null;
             }
-            return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput).shareReplay(1)
-                .do(response => this.cachedResults = response)
-                .catch(() => {
-                    this.cachedResults = null;
-                    return Observable.of(EnergyCalculationApiService.getDefaultResponse(this.cachedInput));
+            const params = EnergyCalculationApiService.getHttpRequestParams(rdSapInput);
+
+            return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput, {params: params}).shareReplay(1)
+                .do(response => {
+                    if (!response.isDefaultResponse) {
+                        this.cachedResults = response;
+                    }
                 });
         }
         return Observable.of(this.cachedResults);
     }
 
-    private static getDefaultResponse(input: RdSapInput): EnergyCalculationResponse {
-        if (input.property_type === toString(PropertyType.Flat)) {
-            return input.heating_fuel === RdsapInputHelper.getFuelTypeEncoding(FuelType.Electricity)
-                ? EnergyCalculationApiService.ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE
-                : EnergyCalculationApiService.NON_ELECTRIC_HEATING_FLAT_DEFAULT_RESPONSE;
-        }
-        return input.heating_fuel === RdsapInputHelper.getFuelTypeEncoding(FuelType.Electricity)
-            ? EnergyCalculationApiService.ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE
-            : EnergyCalculationApiService.NON_ELECTRIC_HEATING_HOUSE_DEFAULT_RESPONSE;
+    private static getHttpRequestParams(rdSapInput: RdSapInput): HttpParams {
+        return new HttpParams()
+            .set('property-type', toString(rdSapInput.property_type))
+            .set('heating-fuel', toString(rdSapInput.heating_fuel));
     }
 }
