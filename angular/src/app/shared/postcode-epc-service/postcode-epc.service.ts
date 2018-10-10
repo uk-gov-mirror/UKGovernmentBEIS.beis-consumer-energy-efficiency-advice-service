@@ -32,22 +32,6 @@ export class PostcodeEpcService {
         return this.fetchEpcsForPostcode(postcode);
     }
 
-    private fetchLocalAuthorityCode(postcode: string): Observable<string> {
-        return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
-            .map(postcodeResponse =>  postcodeResponse.result.codes.admin_district)
-            .catch((postcodeApiError) =>
-                PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));
-    }
-
-    private getLocalAuthorityCodeFromEpcsOrPostcode(epcs: Epc[], postcode: string): Observable<string> {
-        const firstEpc = head(epcs);
-        if (firstEpc) {
-            return Observable.of(firstEpc.localAuthorityCode);
-        } else {
-            return this.fetchLocalAuthorityCode(postcode);
-        }
-    }
-
     private fetchEpcsForPostcode(postcode: string): Observable<PostcodeDetails> {
         return this.epcApiService.getEpcsForPostcode(postcode)
             .flatMap(epcs =>
@@ -58,6 +42,23 @@ export class PostcodeEpcService {
                 this.fetchLocalAuthorityCode(postcode)
                     .map(localAuthorityCode => new PostcodeDetails(postcode, null, localAuthorityCode))
             );
+    }
+
+    private getLocalAuthorityCodeFromEpcsOrPostcode(epcs: Epc[], postcode: string): Observable<string> {
+        // Local authority code is the same for all EPCs for one postcode
+        const firstEpc = head(epcs);
+        if (firstEpc) {
+            return Observable.of(firstEpc.localAuthorityCode);
+        } else {
+            return this.fetchLocalAuthorityCode(postcode);
+        }
+    }
+
+    private fetchLocalAuthorityCode(postcode: string): Observable<string> {
+        return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
+            .map(postcodeResponse =>  postcodeResponse.result.codes.admin_district)
+            .catch((postcodeApiError) =>
+                PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));
     }
 
     private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<string> {
