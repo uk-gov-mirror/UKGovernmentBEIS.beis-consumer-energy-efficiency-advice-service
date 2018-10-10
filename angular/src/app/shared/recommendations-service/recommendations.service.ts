@@ -107,6 +107,9 @@ export class RecommendationsService {
 
     private getHomeImprovementRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
                                                      measuresContent: MeasureContent[]): Observable<EnergyEfficiencyRecommendation[]> {
+        if (!keys(measures).length) {
+            return Observable.of([]);
+        }
         return Observable.forkJoin(keys(measures)
             .map(measureCode => {
                 const measureContent: MeasureContent = measuresContent
@@ -133,9 +136,8 @@ export class RecommendationsService {
     private getMeasuresFromEnergyCalculation(energyCalculation: EnergyCalculationResponse): MeasuresResponse<EnergySavingMeasureResponse> {
         if (this.responseData.tenureType !== TenureType.OwnerOccupancy
             && !!this.responseData.tenureType
-            && energyCalculation.measures_rented
         ) {
-            return energyCalculation.measures_rented;
+            return energyCalculation.measures_rented || {};
         }
         return energyCalculation.measures;
     }
