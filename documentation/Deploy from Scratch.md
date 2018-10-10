@@ -101,12 +101,15 @@ Build the site locally, and deploy:
 Run
 
     cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
-    cf map-route dceas-user-site www.eachhomecountsadvice.org.uk
+    cf create-domain beis-domestic-energy-advice-service www.simpleenergyadvice.org.uk
+    cf map-route dceas-user-site www.simpleenergyadvice.org.uk
     cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.eachhomecountsadvice.org.uk"}'
+    cf create-service cdn-route cdn-route dceas-cdn-route2 -c '{"domain": "www.simpleenergyadvice.org.uk"}'
 
 Then run
 
     cf service dceas-cdn-route
+    cf service dceas-cdn-route2
 
 and create the DNS "CNAME" and "TXT" records listed there.
 

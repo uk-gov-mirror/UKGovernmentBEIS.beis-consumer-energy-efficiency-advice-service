@@ -99,24 +99,24 @@ public class EnergySavingPlanController {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setTo(request.emailAddress);
-        helper.setFrom("no-reply@eachhomecountsadvice.org.uk");
-        helper.setSubject("Each Home Counts - Energy Saving Plan");
+        helper.setFrom("no-reply@simpleenergyadvice.org.uk");
+        helper.setSubject("Simple Energy Advice - Energy Saving Plan");
 
         helper.setText("Please find attached your Energy Saving Plan.\n" +
                 "\n" +
-                "This email was requested by a user at https://www.eachhomecountsadvice.org.uk/\n" +
+                "This email was requested by a user at https://www.simpleenergyadvice.org.uk/\n" +
                 "\n" +
                 "Thanks for using the website.\n" +
                 "\n" +
                 "Yours,\n" +
                 "\n" +
-                "The Each Home Counts team");
+                "The Simple Energy Advice team");
 
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
         writePlanToOutputStream(request.planInfo, pdfBuffer, httpRequest, response, locale);
 
         helper.addAttachment(
-                "Each Home Counts - Energy Saving Plan.pdf",
+                "Simple Energy Advice - Energy Saving Plan.pdf",
                 new ByteArrayResource(pdfBuffer.toByteArray()),
                 "application/pdf");
 
@@ -148,7 +148,7 @@ public class EnergySavingPlanController {
         response.setContentType("application/pdf");
         response.setHeader(
                 "Content-Disposition",
-                "attachment; filename=\"Each Home Counts - Energy Saving Plan.pdf\"");
+                "attachment; filename=\"Simple Energy Advice - Energy Saving Plan.pdf\"");
         try (ServletOutputStream out = response.getOutputStream()) {
             writePlanToOutputStream(request, out, httpRequest, response, locale);
         }
