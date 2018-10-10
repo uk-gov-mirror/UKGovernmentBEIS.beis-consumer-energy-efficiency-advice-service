@@ -14,28 +14,28 @@ $desktop-help-button-width: 80px;
 $desktop-header-height: 82px;
 
 // Component specific mixins
-@mixin has-small-ehc-logo() {
-  .ehc-logo {
+@mixin has-small-site-logo() {
+  .site-logo {
     display: none;
   }
 
-  .ehc-logo--small {
+  .site-logo--small {
     display: block;
   }
 }
 
-@mixin has-large-ehc-logo() {
-  .ehc-logo {
+@mixin has-large-site-logo() {
+  .site-logo {
     display: block;
   }
 
-  .ehc-logo--small {
+  .site-logo--small {
     display: none;
   }
 }
 
 @mixin is-full-size-header() {
-  @include has-large-ehc-logo;
+  @include has-large-site-logo;
 
   .mobile-icons {
     display: none;
@@ -43,7 +43,7 @@ $desktop-header-height: 82px;
 }
 
 @mixin is-compressed-header() {
-  @include has-small-ehc-logo;
+  @include has-small-site-logo;
 
   .mobile-icons {
     display: block;
@@ -113,7 +113,7 @@ $desktop-header-height: 82px;
       padding: 10px 0;
 
       .logos {
-        .ehc-logo, .ehc-logo--small {
+        .site-logo, .site-logo--small {
           height: 50px;
         }
       }
@@ -145,7 +145,7 @@ $desktop-header-height: 82px;
       .logos {
         margin-right: 20px;
 
-        .ehc-logo, .ehc-logo--small {
+        .site-logo, .site-logo--small {
           height: 50px;
         }
       }
@@ -199,12 +199,12 @@ $desktop-header-height: 82px;
       .logos {
         margin-right: 20px;
 
-        .ehc-logo, .ehc-logo--small {
+        .site-logo, .site-logo--small {
           height: 62px;
         }
 
         .phase-tag {
-          // At desktop, the ehc image has some text which is not quite aligned centrally
+          // At desktop, the logo image has some text which is not quite aligned centrally
           // The phase-tag is moved down slightly to match this
           margin-top: 4px;
         }

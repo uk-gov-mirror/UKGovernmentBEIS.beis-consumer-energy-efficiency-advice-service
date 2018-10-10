@@ -100,9 +100,9 @@ Build the site locally, and deploy:
 
 Run
 
-    cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
-    cf map-route dceas-user-site www.eachhomecountsadvice.org.uk
-    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.eachhomecountsadvice.org.uk"}'
+    cf create-domain beis-domestic-energy-advice-service www.simpleenergyadvice.org.uk
+    cf map-route dceas-user-site www.simpleenergyadvice.org.uk
+    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.simpleenergyadvice.org.uk"}'
 
 Then run
 
@@ -110,7 +110,34 @@ Then run
 
 and create the DNS "CNAME" and "TXT" records listed there.
 
+### Forwarding the User Site old hostname to the canonical hostname
+
+We use a small CF app to do this forwarding, so that it works over HTTPS
+(LCN's web forwarding is HTTP only).
+
+Run the following commands:
+
+    pushd infrastructure/cf-redirect
+    cf push simpleenergyadvice-redirect-helper-app
+
+    cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
+    cf map-route simpleenergyadvice-redirect-helper-app www.eachhomecountsadvice.org.uk
+    # Add a CNAME in DNS from www.eachhomecountsadvice.org.uk to eachhomecountsadviceorguk.cloudapps.digital
+
 ### Forwarding the non "www" hostname to the main hostname
 
-Using the LCN control panel, set things up to redirect eachhomecountsadvice.org.uk to www.eachhomecountsadvice.org.uk
+Using the LCN control panel, set things up to redirect the following to https://www.simpleenergyadvice.org.uk/
+ * eachhomecountsadvice.org.uk
+ * simpleenergyadvice.org.uk
+
 See https://www.lcn.com/support/articles/how-to-set-up-web-forwarding
+Use a 301 redirect type.
+
+This will only work over HTTP.
+HTTPS requests to this domains will hang, because LCN's web forwarding does not
+support it, likely because they don't want to or can't generate the necessary TLS certs.
+
+This is the best we can do, because there appears to be no way to set up
+the necessary CNAMES to forward these domains to Cloudfoundry
+See e.g. https://stackoverflow.com/questions/656009/how-to-overcome-root-domain-cname-restrictions
+I have discussed this with LCN support and they say they cannot do it.

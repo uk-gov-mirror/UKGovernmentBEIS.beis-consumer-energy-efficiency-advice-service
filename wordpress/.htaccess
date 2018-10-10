@@ -12,7 +12,7 @@ RewriteRule . /index.php [L]
 # Require a password for all access to the admin site, as it is not public
 # and to reduce our attack surface
 AuthType Basic
-AuthName "Please provide your password for EHC DCEAS"
+AuthName "Please provide your password for Simple Energy Advice DCEAS"
 AuthBasicProvider file
 # (.ht prefix prevents this from being downloaded)
 AuthUserFile /home/vcap/app/htdocs/.ht-site-passwd
