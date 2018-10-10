@@ -28,6 +28,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
+    @Input() showAddToPlanColumn: boolean = true;
 
     constructor(private recommendationsService: RecommendationsService,
                 private googleAnalyticsService: GoogleAnalyticsService,

@@ -27,6 +27,7 @@ export class RecommendationsService {
     potentialScoreLoading: boolean;
 
     private static TOP_RECOMMENDATIONS: number = 5;
+    private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendation[] = [];
 
     private cachedResponseData: ResponseData;
     private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
@@ -41,7 +42,10 @@ export class RecommendationsService {
         if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
             this.cachedResponseData = clone(this.responseData);
             return this.refreshAllRecommendations()
-                .do(recommendations => this.cachedRecommendations = recommendations);
+                .do(recommendations => this.cachedRecommendations = recommendations)
+                .catch(() => {
+                    return Observable.of(RecommendationsService.DEFAULT_RECOMMENDATIONS);
+                });
         }
         return Observable.of(this.cachedRecommendations);
     }
