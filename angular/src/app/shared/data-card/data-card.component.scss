@@ -43,6 +43,10 @@
 
   .value {
     @include data-card-value-font();
+
+    &.with-small-font-size {
+      @include small-data-card-value-font();
+    }
   }
 
   .color-circle {

@@ -118,6 +118,6 @@ describe('YourPlanSummaryComponent', () => {
     });
 
     it('should calculate the total monthly saving and round it correctly', () => {
-        expect(component.totalSavingsDisplay).toBe('£25 - £30');
+        expect(component.totalSavingsDisplay).toBe('£25 – £30');
     });
 });

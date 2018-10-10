@@ -60,11 +60,13 @@
                        heading="Investment required"
                        [value]="'£' + roundedInvestmentRequired"
                        [isSmallCard]="true"
+                       [withSmallFontSize]="true"
         ></app-data-card>
         <app-data-card class="monthly-savings-card"
                        heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
                        [value]="savingDisplay"
                        [isSmallCard]="true"
+                       [withSmallFontSize]="true"
         ></app-data-card>
         <div class="add-to-plan-column"
              *ngIf="showAddToPlanColumn"

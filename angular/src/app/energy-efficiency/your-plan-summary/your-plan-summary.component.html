@@ -14,12 +14,14 @@
         heading="Total investment required"
         [value]="getRoundedTotalInvestmentRequired() > 0 ? '£' + getRoundedTotalInvestmentRequired() : '-'"
         [isVerticalAtMobile]="!isFooter"
-        [isSmallCard]="isFooter">
+        [isSmallCard]="isFooter"
+        [withSmallFontSize]="true">
 </app-data-card>
 <app-data-card
         class="savings"
         heading="Total savings per {{showMonthlySavings ? 'month' : 'year'}}"
         [value]="totalSavingsDisplay"
         [isVerticalAtMobile]="true"
-        [isSmallCard]="isFooter">
+        [isSmallCard]="isFooter"
+        [withSmallFontSize]="true">
 </app-data-card>
