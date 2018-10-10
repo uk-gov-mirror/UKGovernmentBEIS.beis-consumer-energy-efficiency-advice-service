@@ -1,6 +1,8 @@
 package uk.gov.beis.dceas.controller;
 
+import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpRequest;
@@ -11,6 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -26,6 +29,10 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 @RestController
 @RequestMapping("/api")
 public class EnergyCalculationController implements ClientHttpRequestInterceptor {
+
+    private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
+    private static final int FUEL_TYPE_ELECTRICITY = 29;
+    private static final int PROPERTY_TYPE_FLAT = 2;
 
     private final String apiUrl;
     private final String apiUsername;
@@ -53,11 +60,15 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
 
     /**
      * Sends user data to the BRE energy calculation API, returns their
-     * JSON unmodified to the js frontend.
+     * JSON unmodified to the js frontend. If the request fails, sends default
+     * response.
      */
     @PostMapping("/energy-calculation")
     public String post(
-        @RequestBody String requestJson) throws IOException {
+            @RequestBody String requestJson,
+            @RequestParam("property-type") Integer propertyType,
+            @RequestParam("heating-fuel") Integer fuelType
+    ) throws IOException {
 
         String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
             .build().encode().toUriString();
@@ -65,7 +76,27 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         LinkedMultiValueMap<String, Object> formValues = new LinkedMultiValueMap<>();
         formValues.add("requestData", requestJson);
 
-        return restTemplate.postForObject(url, formValues, String.class);
+        try {
+            return restTemplate.postForObject(url, formValues, String.class);
+        } catch (Exception e){
+            return getDefaultResponse(propertyType, fuelType);
+        }
+    }
+
+    private String getDefaultResponse(Integer propertyType, Integer fuelType) throws IOException {
+        if (propertyType == PROPERTY_TYPE_FLAT) {
+            return fuelType == FUEL_TYPE_ELECTRICITY
+                    ? getDefaultRecommendationResponse("electric-heating-flat-response.json")
+                    : getDefaultRecommendationResponse("non-electric-heating-flat-response.json");
+        }
+        return fuelType == FUEL_TYPE_ELECTRICITY
+                ? getDefaultRecommendationResponse("electric-heating-house-response.json")
+                : getDefaultRecommendationResponse("non-electric-heating-house-response.json");
+    }
+
+    private String getDefaultRecommendationResponse(String filename) throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        return IOUtils.toString(classLoader.getResourceAsStream(DEFAULT_RECOMMENDATION_RESPONSES_PATH + filename), Charsets.UTF_8);
     }
 
     @Override
