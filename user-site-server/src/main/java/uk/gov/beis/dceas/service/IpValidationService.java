@@ -45,7 +45,7 @@ public class IpValidationService {
                 request.getHeader("X-Forwarded-For"));
 
         // On the live site, the app is behind AWS CloudFront CDN, which does caching for us
-        // and also hosts our public hostname and TLS cert ("www.eachhomecountsadvice.org.uk"
+        // and also hosts our public hostname and TLS cert ("www.simpleenergyadvice.org.uk"
         // rather than "dceas-user-site.cloudapps.digital").
         //
         // The CloudFront layer adds an address to the end of the X-FORWARDED-FOR header.

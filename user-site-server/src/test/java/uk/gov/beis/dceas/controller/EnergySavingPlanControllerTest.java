@@ -79,6 +79,7 @@ public class EnergySavingPlanControllerTest {
                                         null,
                                         null,
                                         9000.0,
+                                        130.01,
                                         130.01),
                                 // A measure
                                 new SelectedEnergyEfficiencyRecommendation(
@@ -86,6 +87,7 @@ public class EnergySavingPlanControllerTest {
                                         null,
                                         null,
                                         0.0,
+                                        43.86,
                                         43.86),
                                 // A measure with an attached grant:
                                 new SelectedEnergyEfficiencyRecommendation(
@@ -93,6 +95,7 @@ public class EnergySavingPlanControllerTest {
                                         null,
                                         "eco-hhcro-help-to-heat",
                                         225.0,
+                                        378.24,
                                         378.24),
                                 // A grant
                                 new SelectedEnergyEfficiencyRecommendation(
@@ -100,6 +103,7 @@ public class EnergySavingPlanControllerTest {
                                         "cold-weather-payments",
                                         null,
                                         0.0,
+                                        null,
                                         null)))
                 .tenureType(0)
                 .potentialScore(72.0)

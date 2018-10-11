@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.beis.dceas.api.UserState;
 import uk.gov.beis.dceas.data.RandomWordList;
 import uk.gov.beis.dceas.service.IpValidationService;
-import uk.gov.beis.dceas.spring.ForbiddenException;
+import uk.gov.beis.dceas.spring.exception.ForbiddenException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 import static uk.gov.beis.dceas.db.gen.Tables.USER_STATE;
-import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
+import static uk.gov.beis.dceas.spring.exception.NotFoundException.notFoundIfNull;
 
 @RestController
 @RequestMapping("/api/userState")

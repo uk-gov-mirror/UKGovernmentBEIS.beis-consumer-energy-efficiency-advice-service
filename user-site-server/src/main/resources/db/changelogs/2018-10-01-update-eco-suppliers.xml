@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-10-01-update-eco-suppliers.xml"
+               author="Bob.Chen@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+-- E.ON Energy
+UPDATE wp_postmeta SET meta_value = 'https://www.eonenergy.com/eachhomecounts' WHERE post_id = 9536 AND meta_key = 'supplier_info_link';
+
+-- EDF Energy
+UPDATE wp_postmeta SET meta_value = 'https://www.edfenergy.com/energy-efficiency/energy-company-obligation-scheme' WHERE post_id = 9538 AND meta_key = 'supplier_info_link';
+
+-- Scottish and Southern Energy
+UPDATE wp_postmeta SET meta_value = 'https://sse.co.uk/help/energy/energy-efficiency/discounted-energy-efficient-installations#item1' WHERE post_id = 9539 AND meta_key = 'supplier_info_link';
+
+
+
+-- Coop Energy
+UPDATE wp_posts SET post_title = 'Coop Energy', post_name = 'coop-energy' WHERE ID = 9542;
+
+UPDATE wp_postmeta SET meta_value = 'Coop Energy' WHERE post_id = 9542 AND meta_key = 'name';
+UPDATE wp_postmeta SET meta_value = 'https://www.cooperativeenergy.coop/reduce-your-bills/eco/' WHERE post_id = 9542 AND meta_key = 'supplier_info_link';
+
+-- Coop Energy logo update
+
+UPDATE wp_posts SET post_title = 'coop-energy.jpeg', post_name='coop-energy-jpeg', guid = '/wp-content/uploads/2018/04/coop-energy.jpeg' WHERE post_parent = 9542 AND guid = '/wp-content/uploads/2018/04/the-co-operative-energy.jpeg';
+
+UPDATE wp_postmeta SET meta_value = '2018/04/coop-energy.jpeg' WHERE meta_value = '2018/04/the-co-operative-energy.jpeg';
+UPDATE wp_postmeta SET meta_value = 'a:4:{s:5:\"width\";i:442;s:6:\"height\";i:212;s:4:\"file\";s:36:\"2018/04/coop-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'
+WHERE meta_value = 'a:4:{s:5:\"width\";i:151;s:6:\"height\";i:61;s:4:\"file\";s:36:\"2018/04/the-co-operative-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}';
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

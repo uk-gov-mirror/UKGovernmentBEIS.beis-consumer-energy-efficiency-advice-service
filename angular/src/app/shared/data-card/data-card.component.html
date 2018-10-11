@@ -4,6 +4,8 @@
          [class.color-circle]="colorCircleClassName"
          [class.is-percent]="isPercent"
          [ngClass]="colorCircleClassName">
-        <div class="value">{{value}}</div>
+        <div class="value" [class.with-small-font-size]="withSmallFontSize">
+            {{value}}
+        </div>
     </div>
 </div>

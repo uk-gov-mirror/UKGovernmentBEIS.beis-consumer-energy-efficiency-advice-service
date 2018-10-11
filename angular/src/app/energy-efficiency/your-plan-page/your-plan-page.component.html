@@ -39,11 +39,13 @@ If you change anything here, please consider whether anything needs changing the
                                        heading="Investment required"
                                        [value]="'£' + getRoundedInvestment(recommendation)"
                                        [isSmallCard]="true"
+                                       [withSmallFontSize]="true"
                         ></app-data-card>
                         <app-data-card class="monthly-savings-card"
                                        heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                                       [value]="'£' + getRoundedSavings(recommendation)"
+                                       [value]="getSavingDisplay(recommendation)"
                                        [isSmallCard]="true"
+                                       [withSmallFontSize]="true"
                         ></app-data-card>
                     </div>
                     <div class="steps">

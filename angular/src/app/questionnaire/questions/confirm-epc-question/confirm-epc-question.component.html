@@ -15,7 +15,7 @@
             </div>
         </div>
         <ng-container *ngIf="savingsPerYear >= 50; else efficientProperty">
-            <app-data-card class="potential-savings" heading="Your EPC suggests improvements that could cut your fuel bills by around"
+            <app-data-card class="potential-savings" heading="Your EPC suggests improvements that could cut your annual fuel bills by around"
                        [value]="'£' + savingsPerYear"></app-data-card>
         </ng-container>
         <ng-template #efficientProperty>

@@ -22,7 +22,7 @@ import static org.jooq.impl.DSL.inline;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTMETA;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
 import static uk.gov.beis.dceas.service.AcfDataTranslator.deserializePhpStringArrayOfInts;
-import static uk.gov.beis.dceas.spring.NotFoundException.notFoundIfNull;
+import static uk.gov.beis.dceas.spring.exception.NotFoundException.notFoundIfNull;
 
 /**
  * Gets Local Authority info from the database.

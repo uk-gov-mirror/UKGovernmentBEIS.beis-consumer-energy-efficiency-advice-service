@@ -1,0 +1,5 @@
+---
+memory: 64MB
+name: cf-redirect
+env:
+  TARGET_DOMAIN: www.simpleenergyadvice.org.uk

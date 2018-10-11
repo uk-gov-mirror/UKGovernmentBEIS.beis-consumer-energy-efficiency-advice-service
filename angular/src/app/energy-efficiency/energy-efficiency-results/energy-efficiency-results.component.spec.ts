@@ -59,7 +59,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             investmentPounds: 199,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
-            costSavingPoundsPerMonth: 99 / 12,
+            minimumCostSavingPoundsPerYear: 89,
+            maximumCostSavingPoundsPerYear: 109,
             energySavingKwhPerYear: 100,
             readMoreRoute: ('dummy-route'),
             iconPath: 'icons/dummy.svg',
@@ -80,7 +81,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             investmentPounds: 999,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
-            costSavingPoundsPerMonth: 200 / 12,
+            minimumCostSavingPoundsPerYear: 180,
+            maximumCostSavingPoundsPerYear: 220,
             energySavingKwhPerYear: 250,
             readMoreRoute: ('dummy-route'),
             iconPath: 'icons/dummy.svg',
@@ -101,7 +103,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
-            costSavingPoundsPerMonth: 10 / 12,
+            minimumCostSavingPoundsPerYear: 9,
+            maximumCostSavingPoundsPerYear: 11,
             energySavingKwhPerYear: 5,
             readMoreRoute: ('dummy-route'),
             iconPath: 'icons/dummy.svg',
@@ -239,7 +242,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         // match data in assets/test/energy-calculation-response.json
         expect(component.energyCalculations.currentEpcRating).toBe('F');
-        expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(1226);
+        expect(component.energyCalculations.currentEnergyBillPoundsPerYear).toBe(1618);
         // match annual savings from recommendations above
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(309);
     });

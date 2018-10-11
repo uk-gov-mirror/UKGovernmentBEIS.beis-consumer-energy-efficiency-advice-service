@@ -1,4 +1,4 @@
-package uk.gov.beis.dceas.spring;
+package uk.gov.beis.dceas.spring.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

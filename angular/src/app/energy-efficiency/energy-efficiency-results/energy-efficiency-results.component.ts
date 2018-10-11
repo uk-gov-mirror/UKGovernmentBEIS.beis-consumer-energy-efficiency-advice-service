@@ -13,6 +13,8 @@ import {UserStateService} from '../../shared/user-state-service/user-state-servi
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
+import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
+import {getHomeTypeDescription} from "../../questionnaire/questions/home-type-question/home-type";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -27,6 +29,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     showOldVersion: boolean;
+    showDefaultRecommendation: boolean = false;
+    defaultRecommendationDisclaimer: string;
 
     private allRecommendations: EnergyEfficiencyRecommendation[] = [];
 
@@ -91,6 +95,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             this.allRecommendations
         );
         this.isLoading = false;
+        this.showDefaultRecommendation = energyCalculationResponse.isDefaultResponse;
+        this.defaultRecommendationDisclaimer = EnergyEfficiencyResultsComponent.getDefaultRecommendationDisclaimer(this.responseData);
     }
 
     private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,
@@ -100,5 +106,13 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             recommendation => recommendation.costSavingPoundsPerYear
         );
         return new EnergyCalculations(energyCalculationResponse, potentialEnergyBillSavingPoundsPerYear);
+    }
+
+    private static getDefaultRecommendationDisclaimer(responseData: ResponseData): string {
+        const fuelType = getFuelTypeDescription(responseData.fuelType);
+        const homeType = getHomeTypeDescription(responseData.homeType);
+
+        return `Sorry, we had trouble generating results for your house. Please try again later.
+         We have put general recommendations for a ${fuelType} heated ${homeType} below.`;
     }
 }

@@ -89,18 +89,18 @@ describe('PostcodeEpcService', () => {
                 expect(postcodeApiServiceStub.fetchBasicPostcodeDetails).toHaveBeenCalledWith(postcode);
                 expect(postcodeDetails.postcode).toEqual(postcode);
                 expect(postcodeDetails.localAuthorityCode).toEqual(localAuthorityCode);
-                expect(postcodeDetails.allEpcsForPostcode.length).toBe(0);
+                expect(postcodeDetails.allEpcsForPostcode).toBe(null);
             });
         }));
 
         it('should throw a specific error if the postcode is not found', async(() => {
             // given
             epcsResponse = ErrorObservable.create({
-                status: PostcodeApiService.postcodeNotFoundStatus
+                status: PostcodeApiService.POSTCODE_NOT_FOUND_STATUS
             });
 
             postcodeBasicDetailsResponse = ErrorObservable.create({
-                status: PostcodeApiService.postcodeNotFoundStatus
+                status: PostcodeApiService.POSTCODE_NOT_FOUND_STATUS
             });
 
             // when

@@ -21,13 +21,17 @@
     <div class="page-row recommendations">
         <div class="page-row-content">
             <div *ngIf="showOldVersion" class="recommendations-heading">
-                Choose from the following recommendations
+                <span *ngIf="showDefaultRecommendation">{{defaultRecommendationDisclaimer}}</span>
+                <span *ngIf="!showDefaultRecommendation">
+                    Choose from the following recommendations
+                </span>
             </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getDisplayedRecommendations()"
                         [recommendation]="recommendation"
                         [showMonthlySavings]="showMonthlySavings"
+                        [showAddToPlanColumn]="!showDefaultRecommendation"
                 ></app-energy-efficiency-recommendation-card>
             </div>
         </div>

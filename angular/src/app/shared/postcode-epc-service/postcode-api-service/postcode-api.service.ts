@@ -5,7 +5,7 @@ import {PostcodeBasicDetailsResponse} from '../model/response/postcode-basic-det
 
 @Injectable()
 export class PostcodeApiService {
-    public static readonly postcodeNotFoundStatus: number = 404;
+    public static readonly POSTCODE_NOT_FOUND_STATUS: number = 404;
     private static readonly postcodeEndpoint = 'https://postcodes.io/postcodes/';
 
     private postcodeResponses: {[postcode: string]: Observable<PostcodeBasicDetailsResponse>} = {};

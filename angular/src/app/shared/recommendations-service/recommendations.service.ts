@@ -27,6 +27,7 @@ export class RecommendationsService {
     potentialScoreLoading: boolean;
 
     private static TOP_RECOMMENDATIONS: number = 5;
+    private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendation[] = [];
 
     private cachedResponseData: ResponseData;
     private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
@@ -41,7 +42,10 @@ export class RecommendationsService {
         if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
             this.cachedResponseData = clone(this.responseData);
             return this.refreshAllRecommendations()
-                .do(recommendations => this.cachedRecommendations = recommendations);
+                .do(recommendations => this.cachedRecommendations = recommendations)
+                .catch(() => {
+                    return Observable.of(RecommendationsService.DEFAULT_RECOMMENDATIONS);
+                });
         }
         return Observable.of(this.cachedRecommendations);
     }
@@ -103,6 +107,9 @@ export class RecommendationsService {
 
     private getHomeImprovementRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
                                                      measuresContent: MeasureContent[]): Observable<EnergyEfficiencyRecommendation[]> {
+        if (!keys(measures).length) {
+            return Observable.of([]);
+        }
         return Observable.forkJoin(keys(measures)
             .map(measureCode => {
                 const measureContent: MeasureContent = measuresContent
@@ -129,9 +136,8 @@ export class RecommendationsService {
     private getMeasuresFromEnergyCalculation(energyCalculation: EnergyCalculationResponse): MeasuresResponse<EnergySavingMeasureResponse> {
         if (this.responseData.tenureType !== TenureType.OwnerOccupancy
             && !!this.responseData.tenureType
-            && energyCalculation.measures_rented
         ) {
-            return energyCalculation.measures_rented;
+            return energyCalculation.measures_rented || {};
         }
         return energyCalculation.measures;
     }
