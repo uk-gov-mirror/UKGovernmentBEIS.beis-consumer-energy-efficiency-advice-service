@@ -62,6 +62,9 @@ Create an AWS account and set up a non-sandboxed SES service.
 See https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
 Note the SMTP hostname, username and password for later.
 
+Make sure to "verify" the live site hostname to allow sending emails.
+You will need to create a TXT record and three CNAME records.
+
 ## Admin Site (Wordpress)
 
 Add necessary config:
