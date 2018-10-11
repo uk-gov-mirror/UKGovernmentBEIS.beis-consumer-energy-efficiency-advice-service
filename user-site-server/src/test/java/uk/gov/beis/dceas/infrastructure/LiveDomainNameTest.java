@@ -37,6 +37,7 @@ public class LiveDomainNameTest {
 
     public static final String CANONICAL_ADDRESS = "https://www.simpleenergyadvice.org.uk/";
     public static final String CANONICAL_ADDRESS_NO_PATH = "https://www.simpleenergyadvice.org.uk";
+    public static final String CANONICAL_ADDRESS_EXPLICIT_PORT = "https://www.simpleenergyadvice.org.uk:443/";
     private final String expected;
 
     @Parameterized.Parameters(name = "{0} => {1}")
@@ -85,7 +86,8 @@ public class LiveDomainNameTest {
         assertThat(response.getStatusLine().getStatusCode(), equalTo(301));
         assertThat(response.getFirstHeader("Location").getValue(),
                 either(equalTo(CANONICAL_ADDRESS))
-                        .or(equalTo(CANONICAL_ADDRESS_NO_PATH)));
+                        .or(equalTo(CANONICAL_ADDRESS_NO_PATH))
+                        .or(equalTo(CANONICAL_ADDRESS_EXPLICIT_PORT)));
     }
 
     private void assertIsLiveSiteHomepage(HttpResponse response) throws Exception {
