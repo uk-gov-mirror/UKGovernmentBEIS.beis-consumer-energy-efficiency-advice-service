@@ -44,6 +44,9 @@ import 'core-js/es7/array';
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 
+/** IE polyfills taken from the MDN */
+import 'polyfills/ie-polyfills.js';
+
 /**
  * Custom browser polyfills
  */
