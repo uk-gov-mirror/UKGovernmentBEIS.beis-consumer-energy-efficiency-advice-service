@@ -147,7 +147,6 @@ public class RandomWordList {
         "coast",
         "cocoa",
         "colon",
-        "color",
         "comic",
         "comma",
         "conga",
