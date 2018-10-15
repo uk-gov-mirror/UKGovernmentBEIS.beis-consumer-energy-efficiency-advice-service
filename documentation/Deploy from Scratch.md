@@ -16,6 +16,7 @@ These instructions are kept for future reference.
 - [Admin Site (Wordpress)](#admin-site-wordpress)
 - [User Site (Java)](#user-site-java)
   * [User Site Hostname](#user-site-hostname)
+  * [Forwarding the User Site old hostname to the canonical hostname](#forwarding-the-user-site-old-hostname-to-the-canonical-hostname)
   * [Forwarding the non "www" hostname to the main hostname](#forwarding-the-non-www-hostname-to-the-main-hostname)
 
 <!-- tocstop -->
@@ -61,6 +62,9 @@ You will need to update the `wp_options` table to change the hostname & port:
 Create an AWS account and set up a non-sandboxed SES service.
 See https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
 Note the SMTP hostname, username and password for later.
+
+Make sure to "verify" the live site hostname to allow sending emails.
+You will need to create a TXT record and three CNAME records.
 
 ## Admin Site (Wordpress)
 
@@ -112,23 +116,23 @@ and create the DNS "CNAME" and "TXT" records listed there.
 
 ### Forwarding the User Site old hostname to the canonical hostname
 
-We use a small CF app to do this forwarding, so that it works over HTTPS
-(LCN's web forwarding is HTTP only).
+I initially planned to use a CF app based on https://github.com/adborden/cf-redirect
+to achieve this, but we had a lot of trouble setting up the SSL cert
+on GOV.UK CF for that, because the CDN took too long to provision and
+there was a caching bug at LCN's authoritative nameservers.
 
-Run the following commands:
+Instead, we are using a ALB (Application Load Balancer) at AWS.
 
-    pushd infrastructure/cf-redirect
-    cf push simpleenergyadvice-redirect-helper-app
-
-    cf create-domain beis-domestic-energy-advice-service www.eachhomecountsadvice.org.uk
-    cf map-route simpleenergyadvice-redirect-helper-app www.eachhomecountsadvice.org.uk
-    cf create-service cdn-route cdn-route dceas-cdn-route -c '{"domain": "www.eachhomecountsadvice.org.uk"}'
-
-Then run
-
-    cf service dceas-cdn-route
-
-and create the DNS "CNAME" and "TXT" records listed there.
+Do the following:
+ * Log into AWS, select eu-west-1 (Ireland)
+ * Open AWS Certificate Manager and create a cert for "www.eachhomecountsadvice.org.uk"
+    * You will need to create some DNS "CNAME" entries for auth
+ * Open EC2, select "load balancers"
+    * Create a new ALB, and set the following:
+        * Create a new Security Group, allowing all and any inbound and outbound traffic
+        * Give it a hostname of "www.eachhomecountsadvice.org.uk" and assign the cert from above
+        * Create listeners on both HTTP and HTTPS
+        * Instruct both listeners to redirect the traffic to "https://www.simpleenergyadvice.org.uk"
 
 ### Forwarding the non "www" hostname to the main hostname
 
@@ -147,3 +151,6 @@ This is the best we can do, because there appears to be no way to set up
 the necessary CNAMES to forward these domains to Cloudfoundry
 See e.g. https://stackoverflow.com/questions/656009/how-to-overcome-root-domain-cname-restrictions
 I have discussed this with LCN support and they say they cannot do it.
+
+We could fix this if we transferred the hostname to AWS and used an ALIAS record,
+see e.g. https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html
