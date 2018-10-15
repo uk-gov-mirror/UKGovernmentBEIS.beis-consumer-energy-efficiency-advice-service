@@ -1,6 +1,9 @@
 <div id="page-footer" class="footer page-row">
     <div class="page-row-content">
-        <!-- TODO:ESASSUP-7 This leaves getPhoneNumberForLink() unused -->
-        <div class="header">A support hotline will be in place shortly</div>
+            <div class="header">Contact us if you require further assistance using the site on the freephone helpline:</div>
+            <div class="contact-us-details">
+                <div class="icon" [inlineSVG]="'controls/phone.svg'"></div>
+                <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number">{{phoneNumber}}</a>
+            </div>
     </div>
 </div>
