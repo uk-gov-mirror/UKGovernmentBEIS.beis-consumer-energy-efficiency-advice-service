@@ -68,6 +68,6 @@ describe('LocalGrantCardComponent', () => {
         fixture.detectChanges();
 
         const phoneNumberElement = fixture.debugElement.query(By.css('.phone-number')).nativeElement;
-        expect(phoneNumberElement.innerText).toBe(grant.phoneNumber);
+        expect(phoneNumberElement.innerText.trim()).toBe(grant.phoneNumber);
     });
 });
