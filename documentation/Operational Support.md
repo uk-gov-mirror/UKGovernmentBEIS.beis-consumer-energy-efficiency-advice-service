@@ -112,6 +112,7 @@ re-release. See https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
 To change (2), update the service settings.
 See https://docs.cloudfoundry.org/devguide/services/user-provided.html#update
 and [Deploying the site from scratch](Deploy%20from%20Scratch.md).
+*When updating the service config please ignore the cloud foundary message to run "cf restage" as this will introduce some downtime. Please trigger a redeploy on the  [travis CI site](https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service) instead (you'll need to login).*
 
 Most services are setup as "User Provided Services". They are stored as JSON blobs in CF. 
 Although you can see them listed by running "`cf services`" you can't read the blob directly. 
