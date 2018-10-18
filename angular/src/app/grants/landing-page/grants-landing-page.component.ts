@@ -3,6 +3,7 @@ import {ResponseData} from '../../shared/response-data/response-data';
 import {UserJourneyType} from '../../shared/response-data/user-journey-type';
 import {LocalAuthorityService} from '../../shared/local-authority-service/local-authority.service';
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
+import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 
 @Component({
     selector: 'app-grants-landing-page',
@@ -27,15 +28,15 @@ export class GrantsLandingPageComponent {
         this.responseData.userJourneyType = UserJourneyType.PlanHomeImprovements;
     }
 
-    onPostcodeSelected() {
-        if (!this.responseData.localAuthorityCode) {
+    onPostcodeSelected(postcodeDetails: PostcodeDetails) {
+        if (!postcodeDetails.localAuthorityCode) {
             this.localAuthority = null;
             return;
         }
 
         this.isLoading = true;
         this.isError = false;
-        this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
+        this.localAuthorityService.fetchLocalAuthorityDetails(postcodeDetails.localAuthorityCode)
             .subscribe(localAuthority => {
                     this.isLoading = false;
                     this.localAuthority = localAuthority;

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/postcode-api.service';
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
+import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
 
 @Component({
     selector: 'app-postcode-lookup',
@@ -28,7 +29,7 @@ export class PostcodeLookupComponent implements OnInit {
      * will be set to null. (This is distinct to `undefined`, which
      * means that the user hasn't answered that question yet)
      */
-    @Output() postcodeSelected: EventEmitter<void> = new EventEmitter<void>();
+    @Output() postcodeSelected: EventEmitter<PostcodeDetails> = new EventEmitter<PostcodeDetails>();
 
     constructor(private responseData: ResponseData,
                 private postcodeApiService: PostcodeApiService) {
@@ -58,9 +59,10 @@ export class PostcodeLookupComponent implements OnInit {
                         return;
                     }
 
-                    this.responseData.postcode = postcodeDetails.result.postcode.replace(/\s/g, '');
-                    this.responseData.localAuthorityCode = postcodeDetails.result.codes.admin_district;
-                    this.postcodeSelected.emit();
+                    const postcode = postcodeDetails.result.postcode.replace(/\s/g, '');
+                    const localAuthorityCode = postcodeDetails.result.codes.admin_district;
+                    const postcodeData = new PostcodeDetails(postcode, null, localAuthorityCode);
+                    this.postcodeSelected.emit(postcodeData);
                     this.loading = false;
                 },
                 error => this.handleSearchError(error)
@@ -91,15 +93,15 @@ export class PostcodeLookupComponent implements OnInit {
                 "may lead to less applicable suggestions. Alternatively, click '>' to try again";
         }
 
+        let postcode: string;
         if (this.northernIrelandPostcode || this.scottishPostcode) {
             // Prevent user from continuing
-            this.responseData.postcode = undefined;
+            postcode = undefined;
         } else {
             // Allow user to continue
-            this.responseData.postcode = null;
+            postcode = null;
         }
-        this.responseData.localAuthorityCode = null;
         this.loading = false;
-        this.postcodeSelected.emit();
+        this.postcodeSelected.emit(new PostcodeDetails(postcode, null, null));
     }
 }

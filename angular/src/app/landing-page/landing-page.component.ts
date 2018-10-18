@@ -7,6 +7,7 @@ import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure
 import {Article} from './article-card/article';
 import {Video} from '../shared/large-video-card/video';
 import * as log from 'loglevel';
+import {PostcodeDetails} from "../shared/postcode-epc-service/model/postcode-details";
 
 @Component({
     selector: 'app-landing-page',
@@ -46,8 +47,8 @@ export class LandingPageComponent implements OnInit {
         );
     }
 
-    onPostcodeSelected() {
-        this.postcode = this.responseData.postcode;
+    onPostcodeSelected(postcodeDetails: PostcodeDetails) {
+        this.postcode = postcodeDetails.postcode;
     }
 
     onEpcSelected() {

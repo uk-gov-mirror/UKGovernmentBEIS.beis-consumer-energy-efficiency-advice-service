@@ -83,10 +83,10 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     }
 
     onAddressNotListed() {
-        this.setResponseData();
+        this.setResponseDataPostcodeOnly(this.postcode);
     }
 
-    private setResponseData(selectedEpc?: Epc) {
+    private setResponseData(selectedEpc: Epc) {
         if (JSON.stringify(selectedEpc) !== JSON.stringify(this.responseData.epc)) {
             // The EPC has changed so we should clear the existing responses
             deleteOldResponseData(this.responseData);
@@ -97,6 +97,18 @@ export class EpcLookupComponent implements OnChanges, OnInit {
         }
 
         this.epcSelected.emit(selectedEpc && selectedEpc.lmkKey);
+    }
+
+    private setResponseDataPostcodeOnly(selectedPostcode: string) {
+        if (this.responseData.epc || selectedPostcode !== this.responseData.postcode) {
+            // The postcode has changed so we should clear the existing responses
+            deleteOldResponseData(this.responseData);
+
+            this.responseData.postcode = this.postcodeDetails.postcode;
+            this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
+        }
+
+        this.epcSelected.emit();
     }
 
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
