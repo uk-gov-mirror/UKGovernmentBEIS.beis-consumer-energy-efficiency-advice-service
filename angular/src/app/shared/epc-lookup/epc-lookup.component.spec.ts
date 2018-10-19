@@ -106,7 +106,7 @@ describe('EpcLookupComponent', () => {
         expect(component.epcSelected.emit).toHaveBeenCalled();
     });
 
-    it('should update the response data postcode when an epc is selected', () => {
+    it('should update the response data postcode when a new epc is selected', () => {
         // given
         component.postcode = VALID_POSTCODE;
         responseData.postcode = ALTERNATIVE_POSTCODE;
@@ -139,7 +139,7 @@ describe('EpcLookupComponent', () => {
         expect(component.epcSelected.emit).toHaveBeenCalled();
     });
 
-    it('should clear the epc record when "my address is not listed" is selected', () => {
+    it('should update the response data postcode when "my address is not listed" is selected', () => {
         // given
         component.postcode = VALID_POSTCODE;
         responseData.postcode = ALTERNATIVE_POSTCODE;
