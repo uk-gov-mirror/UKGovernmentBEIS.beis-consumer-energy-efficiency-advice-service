@@ -3,7 +3,7 @@ import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import sortBy from 'lodash-es/sortBy';
 import {Router} from '@angular/router';
-import {ResponseData} from '../../shared/response-data/response-data';
+import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
 
 @Component({
     selector: 'app-boiler-replacement-page',
@@ -18,12 +18,11 @@ export class BoilerReplacementPageComponent implements OnInit {
     boilers: BoilerType[];
     postcode: string;
 
-    constructor(private boilerTypesService: BoilerTypesService,
-                private router: Router, private responseData: ResponseData) {
+    constructor(private boilerTypesService: BoilerTypesService, private router: Router) {
     }
 
-    onPostcodeSelected() {
-        this.postcode = this.responseData.postcode;
+    onPostcodeSelected(postcodeDetails: PostcodeDetails) {
+        this.postcode = postcodeDetails.postcode;
     }
 
     onEpcSelected(lmkKey: string) {

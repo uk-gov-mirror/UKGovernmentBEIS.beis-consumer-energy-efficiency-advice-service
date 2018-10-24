@@ -13,7 +13,7 @@
                     efficiency at your property from previous surveys. It also means we can
                     show you relevant information, such as grants that might be available in your area.
                 </div>
-                <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected()"></app-postcode-lookup>
+                <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected($event)"></app-postcode-lookup>
                 <app-epc-lookup class="postcode-epc" [postcode]="postcode" (epcSelected)="onEpcSelected()"></app-epc-lookup>
             </div>
         </div>
