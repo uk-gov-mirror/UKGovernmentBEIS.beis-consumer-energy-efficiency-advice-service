@@ -6,54 +6,61 @@
 
   .question-content {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    .form-element {
-      align-items: stretch;
+    .floor-area-quantity-box {
+      display: flex;
+      margin-bottom: 20px;
+      flex: 1 0 auto;
+      justify-content: center;
 
-      .name {
-        margin-right: 10px;
+      .form-element {
+        align-items: stretch;
+
+        .floor-area-input {
+          margin-right: 0;
+          width: 200px;
+          border-radius: 12%/50%;
+
+          @include mobile() {
+            width: 100px;
+          }
+        }
+      }
+
+      .floor-area-unit-input {
+        @include question-button-font;
+        margin: 0 10px;
+        padding: 0 20px;
 
         display: flex;
         align-items: center;
 
         color: $light-blue;
-        font-size: 24px;
         font-weight: bold;
-      }
 
-      .floor-area-input {
-        margin-right: 20px;
-        width: 200px;
-        border-radius: 12%/50%;
-      }
-    }
+        .unit-option {
+          &:nth-child(odd) {
+            margin-right: 20px;
+          }
 
-    .floor-area-unit-input {
-      margin-right: 30px;
-      padding-right: 30px;
-      border-right: 1px solid $separator-grey;
-
-      display: flex;
-      align-items: center;
-
-      color: $light-blue;
-      font-size: 24px;
-      font-weight: bold;
-
-      .unit-option {
-        &:nth-child(odd) {
-          margin-right: 20px;
+          @include mobile() {
+            padding: 10px 20px;
+          }
         }
       }
     }
 
     .do-not-know-button {
       @include capsule-button();
-      font-size: 20px;
+      @include question-button-font;
       background-color: white;
       border: none;
       outline: none;
       padding: 12px 36px;
+      margin:  0 20px 20px 20px;
+      flex: 0 0 auto;
       color: $dark-grey;
 
       &:hover, &:focus {
