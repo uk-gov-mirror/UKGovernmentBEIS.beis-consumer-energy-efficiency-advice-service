@@ -1,20 +1,21 @@
 <div class="question-component floor-area-question">
     <div class="question-content">
-        <form class="questionnaire-form" (submit)="handleFormSubmit()">
-            <div class="form-element">
-                <div class="name">Area</div>
-                <input class="floor-area-input text-input" id="floor-area-input" name="floor-area-input" type="number"
-                       aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateFloorArea($event)">
+        <div class="floor-area-quantity-container">
+            <form class="questionnaire-form" (submit)="handleFormSubmit()">
+                <div class="form-element">
+                    <input class="floor-area-input text-input" id="floor-area-input" name="floor-area-input" type="number"
+                           aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateFloorArea($event)">
+                </div>
+            </form>
+            <div class="floor-area-unit-input multiple-choice-options unit-options">
+                <button class="multiple-choice-option unit-option"
+                        [ngClass]="floorAreaUnit.className"
+                        *ngFor="let floorAreaUnit of floorAreaUnits"
+                        [class.selected]="isFloorAreaUnitSelected(floorAreaUnit.value)"
+                        (click)="selectedFloorAreaUnit = floorAreaUnit.value">
+                    {{floorAreaUnit.basicUnitDisplay}}&#xb2;
+                </button>
             </div>
-        </form>
-        <div class="floor-area-unit-input multiple-choice-options unit-options">
-            <button class="multiple-choice-option unit-option"
-                    [ngClass]="floorAreaUnit.className"
-                    *ngFor="let floorAreaUnit of floorAreaUnits"
-                    [class.selected]="isFloorAreaUnitSelected(floorAreaUnit.value)"
-                    (click)="selectedFloorAreaUnit = floorAreaUnit.value">
-                {{floorAreaUnit.basicUnitDisplay}}&#xb2;
-            </button>
         </div>
         <button class="do-not-know-button" id="do-not-know-button" (click)="updateFloorArea(0); complete.emit();">I don't know</button>
     </div>
