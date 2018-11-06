@@ -13,6 +13,6 @@ export class HomeTypeQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.homeType !== undefined && responseData.homeType !== null;
+        return responseData.homeType !== undefined;
     }
 }
