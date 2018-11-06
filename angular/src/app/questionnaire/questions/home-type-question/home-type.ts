@@ -40,6 +40,6 @@ export function getHomeTypeFromEpc(epc: Epc): HomeType {
             return HomeType.SemiDetachedOrTerracedHouse;
         }
     } else {
-        return null;
+        return undefined;
     }
 }
