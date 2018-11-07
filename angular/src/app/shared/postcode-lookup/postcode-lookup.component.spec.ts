@@ -10,6 +10,7 @@ import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/postcode-api.service';
 import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
 import {SpinnerAndErrorContainerComponent} from '../spinner-and-error-container/spinner-and-error-container.component';
+import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
 
 describe('PostcodeLookupComponent', () => {
     let component: PostcodeLookupComponent;
@@ -17,6 +18,7 @@ describe('PostcodeLookupComponent', () => {
     let responseData: ResponseData;
 
     const VALID_POSTCODE = 'SW1H0ET';
+    const VALID_LOCAL_AUTHORITY_CODE = "E09000033";
     const INVALID_POSTCODE = 'invalid';
     const mockPostcodeValidator = (postcode: string) => postcode === VALID_POSTCODE;
 
@@ -69,18 +71,6 @@ describe('PostcodeLookupComponent', () => {
         expect(TestBed.get(PostcodeApiService).fetchBasicPostcodeDetails).toHaveBeenCalledWith(component.postcodeInput);
     });
 
-    it('should set the postcode response upon entering a valid postcode', () => {
-        // given
-        component.postcodeInput = VALID_POSTCODE;
-
-        // when
-        fixture.debugElement.query(By.css('.postcode-input-submit')).nativeElement.click();
-        fixture.detectChanges();
-
-        // then
-        expect(responseData.postcode).toEqual(VALID_POSTCODE);
-    });
-
     it('should display an error message upon entering an invalid postcode', () => {
         // given
         component.postcodeInput = INVALID_POSTCODE;
@@ -94,7 +84,7 @@ describe('PostcodeLookupComponent', () => {
         expect(errorMessage).not.toBeNull();
     });
 
-    it('should emit an event when upon entering a valid postcode', () => {
+    it('should emit an event with the correct postcode information upon entering a valid postcode', () => {
         // given
         component.postcodeInput = VALID_POSTCODE;
 
@@ -103,6 +93,7 @@ describe('PostcodeLookupComponent', () => {
         fixture.detectChanges();
 
         // then
-        expect(component.postcodeSelected.emit).toHaveBeenCalled();
+        expect(component.postcodeSelected.emit)
+            .toHaveBeenCalledWith(new PostcodeDetails(VALID_POSTCODE, null, VALID_LOCAL_AUTHORITY_CODE));
     });
 });
