@@ -23,62 +23,6 @@ describe('RdsapInputHelper', () => {
         });
     });
 
-    describe('#getFlatTopStorey', () => {
-        it('should calculate flat top storey correctly', () => {
-            // given
-            const floorLevels = [FloorLevel.MidFloor, FloorLevel.TopFloor];
-
-            // when
-            const flatTopStorey = RdsapInputHelper.getFlatTopStorey(floorLevels);
-
-            // then
-            expect(flatTopStorey).toEqual('Y');
-        });
-    });
-
-    describe('#getNumberOfExposedWalls', () => {
-        let responseData: ResponseData;
-
-        beforeEach(() => {
-            responseData = {} as ResponseData;
-        });
-
-        it('should return 4 exposed walls for park home or mobile home', () => {
-            // given
-            responseData.homeType = HomeType.ParkHomeOrMobileHome;
-
-            // when
-            const numberOfExposedWalls = RdsapInputHelper.getNumberOfExposedWalls(responseData);
-
-            // then
-            expect(numberOfExposedWalls).toEqual(4);
-        });
-
-        it('should return 3 exposed walls for 3 sides exposed flat', () => {
-            // given
-            responseData.homeType = HomeType.FlatDuplexOrMaisonette;
-            responseData.numberOfExposedWallsInFlat = FlatExposedWall.ThreeSidesExposedWholeSide;
-
-            // when
-            const numberOfExposedWalls = RdsapInputHelper.getNumberOfExposedWalls(responseData);
-
-            // then
-            expect(numberOfExposedWalls).toEqual(3);
-        });
-
-        it('should return 2 exposed walls for 2 sides exposed Bungalow', () => {
-            // given
-            responseData.homeType = HomeType.SemiDetachedBungalow;
-            responseData.numberOfExposedWallsInHouse = HouseExposedWall.TwoSidesExposed;
-
-            // when
-            const numberOfExposedWalls = RdsapInputHelper.getNumberOfExposedWalls(responseData);
-
-            // then
-            expect(numberOfExposedWalls).toEqual(2);
-        });
-    });
-
     describe('#getBuiltForm', () => {
         let responseData: ResponseData;
 
