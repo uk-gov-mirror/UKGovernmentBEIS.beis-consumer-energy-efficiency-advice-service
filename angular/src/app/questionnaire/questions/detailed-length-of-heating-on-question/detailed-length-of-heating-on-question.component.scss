@@ -7,6 +7,10 @@
 .detailed-length-of-heating-on-question {
   display: flex;
 
+  .questionnaire-form {
+    flex-direction: column;
+  }
+
   .heating-pattern-question {
     display: flex;
     flex-direction: column;
@@ -14,7 +18,7 @@
     padding-bottom: 30px;
 
     .heating-pattern-dropdown {
-      border-radius: 6%/50%;
+      border-radius: 12%/50%;
     }
   }
 
