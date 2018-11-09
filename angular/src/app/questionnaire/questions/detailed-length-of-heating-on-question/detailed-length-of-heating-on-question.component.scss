@@ -44,7 +44,7 @@
     }
 
     * {
-      margin: 0px 0px 10px 0px;
+      margin: 0 0 10px 0;
     }
   }
 
@@ -57,11 +57,11 @@
       color: $dark-blue;
       width: 60vw;
       text-align: center;
-      margin: 10px 0px 0px 0px;
+      margin: 10px 0 0 0;
     }
 
     app-number-question {
-      margin: 20px 0px 10px 0px;
+      margin: 20px 0 10px 0;
     }
   }
 }
