@@ -95,24 +95,6 @@ export class RdsapInputHelper {
         }
     }
 
-    public static getFlatTopStorey(floorLevels: FloorLevel[]): string {
-        if (!floorLevels) {
-            return null;
-        }
-
-        return includes(floorLevels, FloorLevel.TopFloor) ? 'Y' : 'N';
-    }
-
-    public static getNumberOfExposedWalls(responseData: ResponseData): number {
-        if (responseData.homeType === HomeType.FlatDuplexOrMaisonette) {
-            return getNumberOfExposedWallsInFlat(responseData.numberOfExposedWallsInFlat);
-        } else if (isDetached(responseData.homeType)) {
-            return RdsapInputHelper.NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY;
-        } else {
-            return responseData.numberOfExposedWallsInHouse;
-        }
-    }
-
     public static getConstructionDateEncoding(homeAge: HomeAge): string {
         const encodingCharacters = 'ABCDEFGHIJKL';
         return encodingCharacters.charAt(homeAge);
