@@ -31,21 +31,32 @@ export function getHomeTypeDescription(homeType: HomeType): string {
 export function getHomeTypeFromEpc(epc: Epc): HomeType {
     // TODO:BEISDEAS-230 As with the TODO in rdsap-input.ts, there is not a complete mapping from propertyType / builtForm <=> HomeType.
     // We may need to update our questions to improve this.
-    if (epc.propertyType === 'flat' || epc.propertyType === 'maisonette') {
-        return HomeType.FlatDuplexOrMaisonette;
-    } else if (epc.propertyType === 'house') {
-        if (epc.builtForm === 'detached') {
-            return HomeType.DetachedHouse;
-        } else if (epc.builtForm === 'semi-detached' || includes(epc.builtForm, 'terrace')) {
-            return HomeType.SemiDetachedOrTerracedHouse;
+    switch (epc.propertyType) {
+        case 'flat':
+        case 'maisonette': {
+            return HomeType.FlatDuplexOrMaisonette;
         }
-    } else if (epc.propertyType === 'bungalow') {
-        if (epc.builtForm === 'detached') {
-            return HomeType.DetachedBungalow;
-        } else if (epc.builtForm === 'semi-detached') {
-            return HomeType.SemiDetachedBungalow;
+        case 'house': {
+            if (epc.builtForm === 'detached') {
+                return HomeType.DetachedHouse;
+            } else if (epc.builtForm === 'semi-detached' || includes(epc.builtForm, 'terrace')) {
+                return HomeType.SemiDetachedOrTerracedHouse;
+            }
+            return undefined;
         }
-    } else {
-        return undefined;
+        case 'bungalow': {
+            if (epc.builtForm === 'detached') {
+                return HomeType.DetachedBungalow;
+            } else if (epc.builtForm === 'semi-detached') {
+                return HomeType.SemiDetachedBungalow;
+            }
+            return undefined;
+        }
+        case 'park-home': {
+            return HomeType.ParkHomeOrMobileHome;
+        }
+        default: {
+            return undefined;
+        }
     }
 }
