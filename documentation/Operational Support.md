@@ -182,6 +182,16 @@ You must instead:
  * Commit the changes to `git`
  * Deploy a new version of the site (see "Deployment" above)
 
+## Updating the Deployed PHP Version
+
+The deployed PHP version is set in the .bp-config/options.json file, e.g.
+
+```
+"PHP_VERSION": "{PHP_72_LATEST}"
+```
+
+Available versions can be deduced by looking at the php buildpack page [here](https://buildpacks.cloudfoundry.org/#/buildpacks/php/v4.3.63) or by looking at the buildpack repository [here](https://github.com/cloudfoundry/php-buildpack).
+
 ## Database
 
 You can connect to the database on Cloud Foundry using the `conduit` plugin:
