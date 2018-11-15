@@ -133,7 +133,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
     }
 
     ngOnInit() {
-        this.heatingPatternType = this.responseData.heatingPatternType || 0;
+        this.heatingPatternType = this.responseData.heatingPatternType || 1;
         this.morningHeatingStartTime = this.responseData.morningHeatingStartTime || 7;
         this.morningHeatingDuration = this.responseData.morningHeatingDuration || 2;
         this.eveningHeatingStartTime = this.responseData.eveningHeatingStartTime || 16;
