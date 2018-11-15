@@ -16,6 +16,7 @@
   * [Postcodes.io](#postcodesio)
   * [Google Analytics](#google-analytics)
 - [Updating Wordpress](#updating-wordpress)
+- [Updating the Deployed PHP Version](#updating-the-deployed-php-version)
 - [Database](#database)
   * [Copying database from one env to another](#copying-database-from-one-env-to-another)
 - [Monitoring](#monitoring)
