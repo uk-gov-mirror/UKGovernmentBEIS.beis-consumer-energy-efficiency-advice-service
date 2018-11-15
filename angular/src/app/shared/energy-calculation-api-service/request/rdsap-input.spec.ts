@@ -31,7 +31,8 @@ describe('RdsapInput', () => {
         const numberOfAdultsUnder64 = 1;
         const numberOfAdults64To80 = 2;
         const numberOfAdultsOver80 = 3;
-        const numberOfChildren = 3;
+        const numberOfChildrenAged5AndAbove = 4;
+        const numberOfChildrenUnder5 = 5;
 
         const responseData: ResponseData = {
             userJourneyType: UserJourneyType.ReduceEnergyBills,
@@ -65,7 +66,8 @@ describe('RdsapInput', () => {
             numberOfAdultsAgedUnder64: numberOfAdultsUnder64,
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,
-            numberOfChildren: numberOfChildren,
+            numberOfChildrenAged5AndAbove: numberOfChildrenAged5AndAbove,
+            numberOfChildrenAgedUnder5: numberOfChildrenUnder5,
             numberOfShowersPerWeek: 0,
             numberOfBathsPerWeek: 45,
             livingRoomTemperature: 20,
@@ -79,6 +81,7 @@ describe('RdsapInput', () => {
             gardenSizeSquareMetres: 100,
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
+            numberOfChildren: numberOfChildrenUnder5 + numberOfChildrenAged5AndAbove,
 
             lettingDomesticPropertyStage: LettingDomesticPropertyStage.Currently,
             tenancyStartDate: TenancyStartDate.BeforeApril2018,
@@ -89,18 +92,6 @@ describe('RdsapInput', () => {
             agriculturalTenancyType: AgriculturalTenancyType.AssuredTenancy,
             saveToSessionStorage: () => {},
         };
-
-        it('should calculate the number of occupants correctly', () => {
-            // given
-            const expectedNumberOfOccupants = numberOfChildren + numberOfAdultsUnder64 +
-                numberOfAdults64To80 + numberOfAdultsOver80;
-
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.occupants).toBe(expectedNumberOfOccupants);
-        });
 
         it('should set rented to true for private tenancy', () => {
             // given

@@ -244,4 +244,86 @@ describe('RdsapInputHelper', () => {
             expect(propertyType).toEqual(PropertyType.ParkHome);
         });
     });
+
+    describe('#getOccupants', () => {
+        let responseData: ResponseData;
+
+        beforeEach(() => {
+            responseData = {} as ResponseData;
+        });
+
+        it('should calculate the number of occupants correctly', () => {
+            // given
+            responseData.numberOfChildrenAgedUnder5 = 1;
+            responseData.numberOfChildrenAged5AndAbove = 2;
+            responseData.numberOfAdultsAgedUnder64 = 3;
+            responseData.numberOfAdultsAged64To80 = 4;
+            responseData.numberOfAdultsAgedOver80 = 5;
+
+            const expectedTotalNumberOfOccupants = 15;
+
+            // when
+            const occupants = RdsapInputHelper.getOccupants(responseData);
+
+            // then
+            expect(occupants).toEqual(expectedTotalNumberOfOccupants);
+        });
+    });
+
+    describe('#getWithVulnerableOccupants', () => {
+        let responseData: ResponseData;
+
+        beforeEach(() => {
+            responseData = {} as ResponseData;
+            responseData.numberOfChildrenAgedUnder5 = 0;
+            responseData.numberOfChildrenAged5AndAbove = 0;
+            responseData.numberOfAdultsAgedUnder64 = 0;
+            responseData.numberOfAdultsAged64To80 = 0;
+            responseData.numberOfAdultsAgedOver80 = 0;
+        });
+
+        it('should return true if there are children under 5', () => {
+            // given
+            responseData.numberOfChildrenAgedUnder5 = 1;
+
+            // when
+            const withVulnerableOccupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
+
+            // then
+            expect(withVulnerableOccupants).toBe(true);
+        });
+
+        it('should return true if there are adults aged 64 to 80', () => {
+            // given
+            responseData.numberOfAdultsAged64To80 = 1;
+
+            // when
+            const withVulnerableOccupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
+
+            // then
+            expect(withVulnerableOccupants).toBe(true);
+        });
+
+        it('should return true if there are adults over 80', () => {
+            // given
+            responseData.numberOfAdultsAgedOver80 = 1;
+
+            // when
+            const withVulnerableOccupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
+
+            // then
+            expect(withVulnerableOccupants).toBe(true);
+        });
+
+        it('should return false if there are only adults under 64', () => {
+            // given
+            responseData.numberOfAdultsAgedUnder64 = 1;
+
+            // when
+            const withVulnerableOccupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
+
+            // then
+            expect(withVulnerableOccupants).toBe(false);
+        });
+    });
 });

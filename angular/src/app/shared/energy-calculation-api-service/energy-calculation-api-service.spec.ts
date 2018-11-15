@@ -29,6 +29,7 @@ describe('EnergyCalculationApiService', () => {
         rented: true,
         floor_area: undefined,
         occupants: 1,
+        with_vulnerable_occupants: false,
         living_room_temperature: 25,
         baths_per_week: 0,
         showers_per_week: 123,

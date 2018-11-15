@@ -135,7 +135,8 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.numberOfAdultsAgedUnder64 = 1;
         responseData.numberOfAdultsAged64To80 = 0;
         responseData.numberOfAdultsAgedOver80 = 0;
-        responseData.numberOfChildren = 2;
+        responseData.numberOfChildrenAged5AndAbove = 2;
+        responseData.numberOfChildrenAgedUnder5 = 0;
         responseData.income = 21000;
 
         // when
@@ -153,7 +154,8 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.numberOfAdultsAgedUnder64 = 1;
         responseData.numberOfAdultsAged64To80 = 0;
         responseData.numberOfAdultsAgedOver80 = 0;
-        responseData.numberOfChildren = 2;
+        responseData.numberOfChildrenAged5AndAbove = 2;
+        responseData.numberOfChildrenAgedUnder5 = 0;
         responseData.income = 22000;
 
         // when
@@ -171,7 +173,8 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.numberOfAdultsAgedUnder64 = 1;
         responseData.numberOfAdultsAged64To80 = 1;
         responseData.numberOfAdultsAgedOver80 = 0;
-        responseData.numberOfChildren = 3;
+        responseData.numberOfChildrenAged5AndAbove = 3;
+        responseData.numberOfChildrenAgedUnder5 = 0;
         responseData.income = 32000;
 
         // when
@@ -189,7 +192,8 @@ describe('EcoHhcroHelpToHeat', () => {
         responseData.numberOfAdultsAgedUnder64 = 1;
         responseData.numberOfAdultsAged64To80 = 1;
         responseData.numberOfAdultsAgedOver80 = 0;
-        responseData.numberOfChildren = 3;
+        responseData.numberOfChildrenAged5AndAbove = 3;
+        responseData.numberOfChildrenAgedUnder5 = 0;
         responseData.income = 33000;
 
         // when

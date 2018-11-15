@@ -93,7 +93,9 @@ export class ResponseData {
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedOver80: number;
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`), used by grants
-    public numberOfChildren: number;
+    public numberOfChildrenAged5AndAbove: number;
+    // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`), used by grants
+    public numberOfChildrenAgedUnder5: number;
     // Set by ShowersAndBathsQuestionComponent, sent to BRE energy-calculation
     public numberOfShowersPerWeek: number;
     // Set by ShowersAndBathsQuestionComponent, sent to BRE energy-calculation
@@ -128,6 +130,11 @@ export class ResponseData {
         return this.numberOfAdultsAgedUnder64 +
             this.numberOfAdultsAged64To80 +
             this.numberOfAdultsAgedOver80;
+    }
+
+    get numberOfChildren(): number {
+        return this.numberOfChildrenAgedUnder5 +
+            this.numberOfChildrenAged5AndAbove;
     }
 
     // When adding a MEES questionnaire answer, you should update clearMeesResponseData below as well

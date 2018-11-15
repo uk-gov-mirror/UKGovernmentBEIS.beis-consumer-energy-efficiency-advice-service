@@ -21,10 +21,17 @@
                                  [minQuantity]="0"
                                  [maxQuantity]="20"></app-number-question>
         </div>
-        <div class="children-input occupants-input">
-            <div class="name">Children</div>
-            <app-number-question itemsName="children"
-                                 [(quantity)]="children"
+        <div class="children-aged-5-and-above-input occupants-input">
+            <div class="name">Children aged 5 and above</div>
+            <app-number-question itemsName="children aged 5 and above"
+                                 [(quantity)]="childrenAged5AndAbove"
+                                 [minQuantity]="0"
+                                 [maxQuantity]="20"></app-number-question>
+        </div>
+        <div class="children-under-5-input occupants-input">
+            <div class="name">Children aged under 5</div>
+            <app-number-question itemsName="children under 5"
+                                 [(quantity)]="childrenAgedUnder5"
                                  [minQuantity]="0"
                                  [maxQuantity]="20"></app-number-question>
         </div>
