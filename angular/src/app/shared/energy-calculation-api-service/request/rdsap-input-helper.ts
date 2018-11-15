@@ -108,6 +108,10 @@ export class RdsapInputHelper {
     }
 
     public static getFloorArea(area: number, unit: FloorAreaUnit): number {
+        if (area === undefined || unit === undefined) {
+            return undefined;
+        }
+
         if (unit === FloorAreaUnit.SquareMetre) {
             return area;
         } else {

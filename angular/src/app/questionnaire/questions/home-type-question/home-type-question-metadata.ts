@@ -12,6 +12,10 @@ export class HomeTypeQuestionMetadata extends QuestionMetadata {
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.epc === undefined;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.homeType !== undefined;
     }

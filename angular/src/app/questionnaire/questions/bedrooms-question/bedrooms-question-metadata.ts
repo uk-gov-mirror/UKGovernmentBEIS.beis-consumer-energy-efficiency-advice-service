@@ -12,6 +12,10 @@ export class BedroomsQuestionMetadata extends QuestionMetadata {
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.epc === undefined;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.numberOfBedrooms !== undefined;
     }

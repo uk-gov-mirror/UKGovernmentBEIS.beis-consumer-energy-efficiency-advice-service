@@ -14,8 +14,9 @@ export class HouseExposedWallQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.homeType == null ||
-            (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette);
+        return responseData.epc === undefined && (
+            responseData.homeType == null ||
+            (!isDetached(responseData.homeType) && responseData.homeType !== HomeType.FlatDuplexOrMaisonette));
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
