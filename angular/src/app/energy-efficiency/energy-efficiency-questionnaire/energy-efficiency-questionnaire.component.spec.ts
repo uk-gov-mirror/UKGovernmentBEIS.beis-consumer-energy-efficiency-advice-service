@@ -70,29 +70,13 @@ describe('EnergyEfficiencyQuestionnaireComponent', () => {
         expect(mockQuestionnaireComponent.questionnaireName).toBe(questionnaireName);
     });
 
-    it('should navigate to results page when questionnaire is completed if grants journey not selected', async(() => {
-        // given
-        responseData.shouldIncludeGrantsQuestionnaire = false;
-
+    it('should navigate to results page when questionnaire is completed', async(() => {
         // when
         mockQuestionnaireComponent.onQuestionnaireComplete.emit();
 
         // then
         fixture.whenStable().then(() => {
             expect(router.navigate).toHaveBeenCalledWith(['/energy-efficiency/results']);
-        });
-    }));
-
-    it('should navigate to grants questionnaire when questionnaire is completed if grants journey not selected', async(() => {
-        // given
-        responseData.shouldIncludeGrantsQuestionnaire = true;
-
-        // when
-        mockQuestionnaireComponent.onQuestionnaireComplete.emit();
-
-        // then
-        fixture.whenStable().then(() => {
-            expect(router.navigate).toHaveBeenCalledWith(['/grants/questionnaire']);
         });
     }));
 });

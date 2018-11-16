@@ -89,6 +89,11 @@ export const GRANTS_QUESTIONS = [
     new IncomeQuestionMetadata()
 ];
 
+export const GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES = [
+    new BenefitsQuestionMetadata(),
+    new IncomeQuestionMetadata()
+];
+
 export const BOILER_QUESTIONS = [
     // Used to decide if the property is "well insulated", restricts which boilers are offered
     new ConstructionQuestionMetadata(),
