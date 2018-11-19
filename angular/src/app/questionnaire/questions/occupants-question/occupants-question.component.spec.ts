@@ -124,7 +124,7 @@ describe('OccupantsQuestionComponent', () => {
         });
     }));
 
-    it('should set the response given a valid number of children aged 5 and above', () => {
+    it('should set the response given a valid number of children under 5', () => {
         // when
         const childrenInput = fixture.debugElement.query(By.css('.children-under-5-input input'));
         childrenInput.nativeElement.value = newNumberOfChildrenUnder5;
