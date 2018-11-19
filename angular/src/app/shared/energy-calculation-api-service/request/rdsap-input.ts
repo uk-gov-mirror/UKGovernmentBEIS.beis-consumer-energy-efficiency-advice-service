@@ -12,8 +12,6 @@ export class RdSapInput {
     readonly property_type: string;
     readonly built_form: string;
     readonly flat_level: string;
-    readonly flat_top_storey: string;
-    readonly number_of_exposed_walls: number;
     readonly construction_date: string;
     readonly floor_area: number;
     readonly num_storeys: number;
