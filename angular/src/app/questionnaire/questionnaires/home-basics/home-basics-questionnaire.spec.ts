@@ -24,6 +24,8 @@ import {FlatStoreysQuestionMetadata} from '../../questions/flat-storeys-question
 import {FloorLevelQuestionMetadata} from '../../questions/floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/floor-span-question-metadata';
 import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
+import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
+import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -59,7 +61,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
-            new GrantsQuestionnaireQuestionMetadata()
+            new GrantsQuestionnaireQuestionMetadata(),
+            new BenefitsQuestionMetadata(),
+            new IncomeQuestionMetadata(),
         ];
 
         // when
@@ -95,7 +99,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
-            new GrantsQuestionnaireQuestionMetadata()
+            new GrantsQuestionnaireQuestionMetadata(),
+            new BenefitsQuestionMetadata(),
+            new IncomeQuestionMetadata(),
         ];
 
         // when
@@ -128,7 +134,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
-            new GrantsQuestionnaireQuestionMetadata()
+            new GrantsQuestionnaireQuestionMetadata(),
+            new BenefitsQuestionMetadata(),
+            new IncomeQuestionMetadata(),
         ];
 
         // when
@@ -161,7 +169,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
-            new GrantsQuestionnaireQuestionMetadata()
+            new GrantsQuestionnaireQuestionMetadata(),
+            new BenefitsQuestionMetadata(),
+            new IncomeQuestionMetadata(),
         ];
 
         // when

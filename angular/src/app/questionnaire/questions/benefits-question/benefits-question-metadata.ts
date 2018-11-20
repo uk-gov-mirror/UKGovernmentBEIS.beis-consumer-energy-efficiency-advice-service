@@ -12,6 +12,10 @@ export class BenefitsQuestionMetadata extends QuestionMetadata {
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.shouldIncludeGrantsQuestionnaire !== false;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.benefits !== undefined;
     }

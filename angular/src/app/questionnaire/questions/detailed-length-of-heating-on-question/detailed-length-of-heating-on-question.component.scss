@@ -7,14 +7,17 @@
 .detailed-length-of-heating-on-question {
   display: flex;
 
+  .questionnaire-form {
+    flex-direction: column;
+  }
+
   .heating-pattern-question {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 30px;
 
     .heating-pattern-dropdown {
-      border-radius: 6%/50%;
+      border-radius: 12%/50%;
     }
   }
 
@@ -30,17 +33,13 @@
       text-align: center;
     }
 
-    .morning-heating-start-time {
-      margin: 20px 0px 10px 0px;
-      border-radius: 12%/50%;
-    }
-
-    .evening-heating-start-time {
+    .morning-heating-start-time, .evening-heating-start-time {
+      margin: 20px 0 10px 0;
       border-radius: 12%/50%;
     }
 
     * {
-      margin: 0px 0px 10px 0px;
+      margin: 0 0 10px 0;
     }
   }
 
@@ -53,11 +52,11 @@
       color: $dark-blue;
       width: 60vw;
       text-align: center;
-      margin: 10px 0px 0px 0px;
+      margin: 10px 0 0 0;
     }
 
     app-number-question {
-      margin: 20px 0px 10px 0px;
+      margin: 20px 0 10px 0;
     }
   }
 }
