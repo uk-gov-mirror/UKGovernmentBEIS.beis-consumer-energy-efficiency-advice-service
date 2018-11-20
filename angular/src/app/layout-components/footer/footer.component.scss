@@ -12,6 +12,7 @@
       .icon {
         width: $icon-size;
         height: $icon-size;
+        flex-shrink: 0;
       }
     }
   }
