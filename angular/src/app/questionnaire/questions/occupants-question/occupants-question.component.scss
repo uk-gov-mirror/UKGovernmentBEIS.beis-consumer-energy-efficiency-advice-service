@@ -10,7 +10,6 @@
 
     .question-category-adults, .question-category-children {
       width: 100%;
-      margin-top: 20px;
 
       .category-title {
         display: flex;
@@ -19,10 +18,10 @@
         font-size: 20px;
         font-weight: bold;
       }
+    }
 
-      .answer-grid {
-        margin: 0;
-      }
+    .question-category-adults {
+      margin-bottom: 50px;
     }
   }
   .questionnaire-form .occupants-input {
@@ -50,6 +49,7 @@
 
     .question-category-adults, .question-category-children {
       .answer-grid {
+        margin: 0;
         justify-content: center;
 
         .occupants-input {
