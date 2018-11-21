@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Epc} from '../postcode-epc-service/model/epc';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {ElectricityTariff} from '../../questionnaire/questions/electricity-tariff-question/electricity-tariff';
-import {HouseExposedWall} from '../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age';
 import {HomeType} from '../../questionnaire/questions/home-type-question/home-type';
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
@@ -21,6 +20,7 @@ import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-que
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
+import {HouseBuiltForm} from "../../questionnaire/questions/house-built-form-question/house-built-form";
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -55,8 +55,8 @@ export class ResponseData {
     public homeAge: HomeAge;
     // Set by FlatExposedWallQuestionComponent, sent to BRE energy-calculation
     public numberOfExposedWallsInFlat: FlatExposedWall;
-    // Set by HouseExposedWallQuestionComponent, sent to BRE energy-calculation
-    public numberOfExposedWallsInHouse: HouseExposedWall;
+    // Set by HouseBuiltFormQuestionComponent, sent to BRE energy-calculation
+    public houseBuiltForm: HouseBuiltForm;
     // Set by FlatStoreysQuestionComponent / HouseStoreysQuestionComponent, sent to BRE energy-calculation
     public numberOfStoreys: number;
     // Set by BedroomsQuestionComponent, sent to BRE energy-calculation

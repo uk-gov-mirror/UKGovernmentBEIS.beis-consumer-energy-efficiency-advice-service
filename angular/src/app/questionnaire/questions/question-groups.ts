@@ -25,7 +25,6 @@ import {FlatStoreysQuestionMetadata} from './flat-storeys-question/flat-storeys-
 import {FloorLevelQuestionMetadata} from './floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from './floor-span-question/floor-span-question-metadata';
 import {FlatExposedWallQuestionMetadata} from './flat-exposed-wall-question/flat-exposed-wall-question-metadata';
-import {HouseExposedWallQuestionMetadata} from './house-exposed-wall-question/house-exposed-wall-question-metadata';
 import {LettingDomesticPropertyQuestionMetadata} from './mees/letting-domestic-property-question/letting-domestic-property-question-metadata';
 import {EpcRequiredQuestionMetadata} from './mees/epc-required-question/epc-required-question-metadata';
 import {TenancyTypeQuestionMetadata} from './mees/tenancy-type-question/tenancy-type-question-metadata';
@@ -35,6 +34,7 @@ import {EpcNotFoundMetadata} from './mees/epc-not-found-question/epc-not-found-m
 import {HotWaterCylinderQuestionMetadata} from './hot-water-cylinder-question/hot-water-cylinder-question-metadata';
 import {AgriculturalTenancyTypeQuestionMetadata} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question-metadata';
 import {TenancyStartDateQuestionMetadata} from './mees/tenancy-start-date-question/tenancy-start-date-question-metadata';
+import {HouseBuiltFormQuestionMetadata} from "./house-built-form-question/house-built-form-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -47,11 +47,11 @@ export const EPC_AND_OWNERSHIP_STATUS = [
 
 export const CORE_BRE_QUESTIONS = [
     new HomeTypeQuestionMetadata(),
+    new HouseBuiltFormQuestionMetadata(),
     new HouseStoreysQuestionMetadata(),
     new FlatStoreysQuestionMetadata(),
     new FloorLevelQuestionMetadata(),
     new FloorSpanQuestionMetadata(),
-    new HouseExposedWallQuestionMetadata(),
     new FlatExposedWallQuestionMetadata(),
     new HomeAgeQuestionMetadata(),
     new BedroomsQuestionMetadata(),

@@ -1,0 +1,15 @@
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
+
+@include mobile() {
+}
+@include tablet() {
+}
+@include desktop() {
+  .house-built-form-options {
+    .house-built-form-option {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+      text-transform: capitalize;
+    }
+  }
+}

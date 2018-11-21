@@ -1,0 +1,11 @@
+<div class="question-component">
+    <div class="answer-grid multiple-choice-options house-built-form-options">
+        <button class="multiple-choice-option house-built-form-option"
+                *ngFor="let option of houseBuiltFormOptions"
+                [class.selected]="response === option.value"
+                [ngClass]="option.className"
+                (click)="response = option.value; complete.emit()">
+            {{option.name}}
+        </button>
+    </div>
+</div>

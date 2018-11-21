@@ -14,8 +14,7 @@ export class HouseStoreysQuestionComponent extends QuestionBaseComponent impleme
     }
 
     ngOnInit() {
-        if (this.responseData.homeType === HomeType.DetachedBungalow ||
-            this.responseData.homeType === HomeType.SemiDetachedBungalow ||
+        if (this.responseData.homeType === HomeType.Bungalow ||
             this.responseData.homeType === HomeType.ParkHomeOrMobileHome) {
             this.response = this.response || 1;
         } else {

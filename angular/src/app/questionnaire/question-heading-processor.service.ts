@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ResponseData} from '../shared/response-data/response-data';
 import {getFuelTypeDescription} from './questions/fuel-type-question/fuel-type';
-import {getHomeTypeDescription} from './questions/home-type-question/home-type';
+import {getHomePropertyDescription} from "../shared/home-property-description-helper/home-property-description-helper";
 
 export interface ReplacementProcedures {
     placeholder: RegExp;
@@ -24,7 +24,7 @@ export class QuestionHeadingProcessor {
             {
                 placeholder: new RegExp(QuestionHeadingProcessor.PROPERTY_PLACEHOLDER, 'g'),
                 replacementFinder: (responseData: ResponseData): string => {
-                    return getHomeTypeDescription(responseData.homeType);
+                    return getHomePropertyDescription(responseData.homeType, responseData.houseBuiltForm);
                 }
             }
         ];
