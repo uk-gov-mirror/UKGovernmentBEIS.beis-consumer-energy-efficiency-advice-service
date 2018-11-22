@@ -25,7 +25,7 @@ import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/flo
 import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
 import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
-import {HouseBuiltFormQuestionMetadata} from "../../questions/house-built-form-question/house-built-form-question-metadata";
+import {BuiltFormQuestionMetadata} from "../../questions/built-form-question/built-form-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -42,7 +42,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new HouseBuiltFormQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
@@ -80,7 +80,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new HouseBuiltFormQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
@@ -118,7 +118,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new HouseBuiltFormQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
@@ -153,7 +153,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
-            new HouseBuiltFormQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),

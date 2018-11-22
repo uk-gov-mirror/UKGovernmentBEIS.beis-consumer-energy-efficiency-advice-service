@@ -40,13 +40,14 @@ import {PropertyEpcQuestionComponent} from './mees/property-epc-question/propert
 import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.component';
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
 import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-question/tenancy-start-date-question.component';
-import {HouseBuiltFormQuestionComponent} from "./house-built-form-question/house-built-form-question.component";
+import {BuiltFormQuestionComponent} from "./built-form-question/built-form-question.component";
 
 @NgModule({
     declarations: [
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
+        BuiltFormQuestionComponent,
         ConfirmEpcQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -59,7 +60,6 @@ import {HouseBuiltFormQuestionComponent} from "./house-built-form-question/house
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
-        HouseBuiltFormQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -85,6 +85,7 @@ import {HouseBuiltFormQuestionComponent} from "./house-built-form-question/house
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
+        BuiltFormQuestionComponent,
         ConfirmEpcQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -97,7 +98,6 @@ import {HouseBuiltFormQuestionComponent} from "./house-built-form-question/house
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
-        HouseBuiltFormQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -130,6 +130,7 @@ import {HouseBuiltFormQuestionComponent} from "./house-built-form-question/house
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
+        BuiltFormQuestionComponent,
         ConfirmEpcQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -142,7 +143,6 @@ import {HouseBuiltFormQuestionComponent} from "./house-built-form-question/house
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
-        HouseBuiltFormQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,

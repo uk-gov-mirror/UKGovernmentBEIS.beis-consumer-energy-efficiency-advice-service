@@ -5,7 +5,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="2018-11-22-add-house-built-form-question"
+    <changeSet id="2018-11-22-add-built-form-question"
                author="Bob.Chen@softwire.com"
                dbms="mysql">
         <sql><![CDATA[
@@ -15,7 +15,7 @@
 INSERT INTO `wp_posts`
     (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
 VALUES
-    (1, '2018-11-22 10:00:00', '2018-11-22 10:00:00', '', 'House Built Form', '', 'publish', 'closed', 'closed', '', 'house_built_form', '', '', '2018-11-22 10:00:00', '2018-11-22 10:00:00', '', 0, '', 0, 'question', '', 0);
+    (1, '2018-11-22 10:00:00', '2018-11-22 10:00:00', '', 'Built Form', '', 'publish', 'closed', 'closed', '', 'built_form', '', '', '2018-11-22 10:00:00', '2018-11-22 10:00:00', '', 0, '', 0, 'question', '', 0);
 SET @post_id = LAST_INSERT_ID();
 
 INSERT INTO `wp_postmeta`

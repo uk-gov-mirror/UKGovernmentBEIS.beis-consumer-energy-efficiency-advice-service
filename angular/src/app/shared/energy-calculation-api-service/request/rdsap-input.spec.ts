@@ -22,7 +22,7 @@ import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-
 import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {TenancyStartDate} from '../../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
-import {HouseBuiltForm} from "../../../questionnaire/questions/house-built-form-question/house-built-form";
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 
 describe('RdsapInput', () => {
 
@@ -44,7 +44,7 @@ describe('RdsapInput', () => {
             confirmEpc: true,
             tenureType: TenureType.OwnerOccupancy,
             homeType: HomeType.FlatDuplexOrMaisonette,
-            houseBuiltForm: HouseBuiltForm.Detached,
+            builtForm: BuiltFormAnswer.Detached,
             homeAge: HomeAge.pre1900,
             numberOfExposedWallsInFlat: FlatExposedWall.ThreeSidesExposedWholeSide,
             numberOfStoreys: 1,

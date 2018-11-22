@@ -6,8 +6,8 @@
 @include tablet() {
 }
 @include desktop() {
-  .house-built-form-options {
-    .house-built-form-option {
+  .built-form-options {
+    .built-form-option {
       @include is-grid-item($number-of-items: 2, $margin: 20px);
       text-transform: capitalize;
     }

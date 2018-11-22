@@ -34,7 +34,7 @@ import {EpcNotFoundMetadata} from './mees/epc-not-found-question/epc-not-found-m
 import {HotWaterCylinderQuestionMetadata} from './hot-water-cylinder-question/hot-water-cylinder-question-metadata';
 import {AgriculturalTenancyTypeQuestionMetadata} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question-metadata';
 import {TenancyStartDateQuestionMetadata} from './mees/tenancy-start-date-question/tenancy-start-date-question-metadata';
-import {HouseBuiltFormQuestionMetadata} from "./house-built-form-question/house-built-form-question-metadata";
+import {BuiltFormQuestionMetadata} from "./built-form-question/built-form-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -47,7 +47,7 @@ export const EPC_AND_OWNERSHIP_STATUS = [
 
 export const CORE_BRE_QUESTIONS = [
     new HomeTypeQuestionMetadata(),
-    new HouseBuiltFormQuestionMetadata(),
+    new BuiltFormQuestionMetadata(),
     new HouseStoreysQuestionMetadata(),
     new FlatStoreysQuestionMetadata(),
     new FloorLevelQuestionMetadata(),

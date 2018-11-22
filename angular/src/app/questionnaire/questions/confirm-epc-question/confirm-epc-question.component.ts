@@ -11,7 +11,7 @@ import {
     getElectricityTariffFromEpc
 } from '../electricity-tariff-question/electricity-tariff';
 import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import {getHouseBuiltFormFromEpc, HouseBuiltForm} from "../house-built-form-question/house-built-form";
+import {BuiltFormAnswer, getBuiltFormFromEpc} from "../built-form-question/built-form-answer";
 import {getHomePropertyDescription} from "../../../shared/home-property-description-helper/home-property-description-helper";
 
 interface EpcMetadata {
@@ -34,7 +34,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     epcRating: EpcRating;
     epcRatingRelativeDescription: string;
     homeType: HomeType;
-    houseBuiltForm: HouseBuiltForm;
+    builtForm: BuiltFormAnswer;
     homeTypeDescription: string;
     numberHabitableRooms: number;
     localAuthorityDescription: string;
@@ -98,8 +98,8 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.epcRatingRelativeDescription = ConfirmEpcQuestionComponent.getEpcRatingRelativeDescription(this.epcRating);
 
         this.homeType = getHomeTypeFromEpc(epc);
-        this.houseBuiltForm = getHouseBuiltFormFromEpc(epc);
-        this.homeTypeDescription = getHomePropertyDescription(this.homeType, this.houseBuiltForm);
+        this.builtForm = getBuiltFormFromEpc(epc);
+        this.homeTypeDescription = getHomePropertyDescription(this.homeType, this.builtForm);
 
         this.fuelType = (this.response && this.response.fuelType) || getFuelTypeFromEpc(epc);
         this.fuelTypeDescription = getFuelTypeDescription(this.fuelType);

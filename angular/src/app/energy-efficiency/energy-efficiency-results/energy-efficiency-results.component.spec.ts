@@ -31,7 +31,7 @@ import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age'
 import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/floor-area-unit';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
-import {HouseBuiltForm} from "../../questionnaire/questions/house-built-form-question/house-built-form";
+import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -137,7 +137,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
         responseData = new ResponseData();
         responseData.homeType = HomeType.House;
-        responseData.houseBuiltForm = HouseBuiltForm.Detached;
+        responseData.builtForm = BuiltFormAnswer.Detached;
         responseData.homeAge = HomeAge.from1930to1949;
         responseData.fuelType = FuelType.MainsGas;
         responseData.floorArea = 100;

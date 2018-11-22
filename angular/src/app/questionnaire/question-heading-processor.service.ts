@@ -24,7 +24,7 @@ export class QuestionHeadingProcessor {
             {
                 placeholder: new RegExp(QuestionHeadingProcessor.PROPERTY_PLACEHOLDER, 'g'),
                 replacementFinder: (responseData: ResponseData): string => {
-                    return getHomePropertyDescription(responseData.homeType, responseData.houseBuiltForm);
+                    return getHomePropertyDescription(responseData.homeType, responseData.builtForm);
                 }
             }
         ];

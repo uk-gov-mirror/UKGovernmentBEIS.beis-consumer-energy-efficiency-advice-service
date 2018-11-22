@@ -4,14 +4,14 @@ import {
     isHouseOrBungalow
 } from "../../questionnaire/questions/home-type-question/home-type";
 import {
-    getHouseBuiltFormDescription,
-    HouseBuiltForm
-} from "../../questionnaire/questions/house-built-form-question/house-built-form";
+    BuiltFormAnswer,
+    getBuiltFormDescription
+} from "../../questionnaire/questions/built-form-question/built-form-answer";
 
-export function getHomePropertyDescription(homeType: HomeType, houseBuiltForm: HouseBuiltForm): string {
+export function getHomePropertyDescription(homeType: HomeType, builtForm: BuiltFormAnswer): string {
     let description = getHomeTypeDescription(homeType);
     if (description !== null && isHouseOrBungalow(homeType)) {
-        const builtFormDescription = getHouseBuiltFormDescription(houseBuiltForm);
+        const builtFormDescription = getBuiltFormDescription(builtForm);
         description = builtFormDescription
             ? builtFormDescription + ' ' + description
             : description;

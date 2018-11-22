@@ -10,7 +10,7 @@ import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-questio
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {RdSapInput} from "./rdsap-input";
-import {HouseBuiltForm} from "../../../questionnaire/questions/house-built-form-question/house-built-form";
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 
 export class RdsapInputHelper {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
@@ -40,7 +40,7 @@ export class RdsapInputHelper {
         switch (homeType) {
             case HomeType.House:
             case HomeType.Bungalow: {
-                return RdsapInputHelper.getBuiltFormForHouseOrBungalow(responseData.houseBuiltForm);
+                return RdsapInputHelper.getBuiltFormForHouseOrBungalow(responseData.builtForm);
             }
             case HomeType.FlatDuplexOrMaisonette: {
                 return RdsapInputHelper.getBuiltFormForFlatDuplexOrMaisonette(responseData.numberOfExposedWallsInFlat);
@@ -130,24 +130,24 @@ export class RdsapInputHelper {
         return totalNumberOfVulnerableOccupants > 0;
     }
 
-    private static getBuiltFormForHouseOrBungalow(houseBuiltForm: HouseBuiltForm): BuiltForm {
-        switch (houseBuiltForm) {
-            case HouseBuiltForm.Detached: {
+    private static getBuiltFormForHouseOrBungalow(builtForm: BuiltFormAnswer): BuiltForm {
+        switch (builtForm) {
+            case BuiltFormAnswer.Detached: {
                 return BuiltForm.Detached;
             }
-            case HouseBuiltForm.SemiDetached: {
+            case BuiltFormAnswer.SemiDetached: {
                 return BuiltForm.SemiDetached;
             }
-            case HouseBuiltForm.MidTerrace: {
+            case BuiltFormAnswer.MidTerrace: {
                 return BuiltForm.MidTerrace;
             }
-            case HouseBuiltForm.EndTerrace: {
+            case BuiltFormAnswer.EndTerrace: {
                 return BuiltForm.EndTerrace;
             }
-            case HouseBuiltForm.EnclosedMidTerrace: {
+            case BuiltFormAnswer.EnclosedMidTerrace: {
                 return BuiltForm.EnclosedMidTerrace;
             }
-            case HouseBuiltForm.EnclosedEndTerrace: {
+            case BuiltFormAnswer.EnclosedEndTerrace: {
                 return BuiltForm.EnclosedEndTerrace;
             }
             default: {

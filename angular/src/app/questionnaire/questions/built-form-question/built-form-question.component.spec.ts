@@ -2,23 +2,23 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {ResponseData} from '../../../shared/response-data/response-data';
-import {HouseBuiltFormQuestionComponent} from './house-built-form-question.component';
-import {HouseBuiltForm} from "./house-built-form";
+import {BuiltFormQuestionComponent} from './built-form-question.component';
+import {BuiltFormAnswer} from "./built-form-answer";
 
-describe('HouseBuiltFormQuestionComponent', () => {
-    let fixture: ComponentFixture<HouseBuiltFormQuestionComponent>;
-    let component: HouseBuiltFormQuestionComponent;
+describe('BuiltFormQuestionComponent', () => {
+    let fixture: ComponentFixture<BuiltFormQuestionComponent>;
+    let component: BuiltFormQuestionComponent;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [HouseBuiltFormQuestionComponent],
+            declarations: [BuiltFormQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(HouseBuiltFormQuestionComponent);
+        fixture = TestBed.createComponent(BuiltFormQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
         fixture.detectChanges();
@@ -28,7 +28,7 @@ describe('HouseBuiltFormQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set the response when clicking on a house built form option', () => {
+    it('should set the response when clicking on a built form option', () => {
         // given
         const detachedButton = fixture.debugElement.query(By.css('.detached'));
 
@@ -36,10 +36,10 @@ describe('HouseBuiltFormQuestionComponent', () => {
         detachedButton.nativeElement.click();
 
         // then
-        expect(component.response).toBe(HouseBuiltForm.Detached);
+        expect(component.response).toBe(BuiltFormAnswer.Detached);
     });
 
-    it('should notify of completion when clicking on a house built form option', () => {
+    it('should notify of completion when clicking on a built form option', () => {
         // given
         const detachedButton = fixture.debugElement.query(By.css('.detached'));
 

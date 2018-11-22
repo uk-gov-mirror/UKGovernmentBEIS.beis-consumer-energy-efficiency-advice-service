@@ -1,9 +1,9 @@
 import {Epc} from "../../../shared/postcode-epc-service/model/epc";
-import {getHouseBuiltFormFromEpc, HouseBuiltForm} from "./house-built-form";
+import {BuiltFormAnswer, getBuiltFormFromEpc} from "./built-form-answer";
 
-describe('HouseBuiltForm', () => {
+describe('BuiltFormAnswer', () => {
 
-    describe('#getHouseBuiltFormFromEpc', () => {
+    describe('#getBuiltFormFromEpc', () => {
         let epc: Epc;
 
         beforeEach(() => {
@@ -16,10 +16,10 @@ describe('HouseBuiltForm', () => {
             epc.builtForm = 'detached';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(HouseBuiltForm.Detached);
+            expect(builtForm).toEqual(BuiltFormAnswer.Detached);
         });
 
         it('should return semi-detached when EPC property type is house and built form is semi-detached', () => {
@@ -28,10 +28,10 @@ describe('HouseBuiltForm', () => {
             epc.builtForm = 'semi-detached';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(HouseBuiltForm.SemiDetached);
+            expect(builtForm).toEqual(BuiltFormAnswer.SemiDetached);
         });
 
         it('should return detached when EPC property type is bungalow and built form is detached', () => {
@@ -40,10 +40,10 @@ describe('HouseBuiltForm', () => {
             epc.builtForm = 'detached';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(HouseBuiltForm.Detached);
+            expect(builtForm).toEqual(BuiltFormAnswer.Detached);
         });
 
         it('should return semi-detached when EPC property type is bungalow and built form is semi-detached', () => {
@@ -52,10 +52,10 @@ describe('HouseBuiltForm', () => {
             epc.builtForm = 'semi-detached';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(HouseBuiltForm.SemiDetached);
+            expect(builtForm).toEqual(BuiltFormAnswer.SemiDetached);
         });
 
         it('should return undefined when EPC property type is not house or bungalow', () => {
@@ -63,10 +63,10 @@ describe('HouseBuiltForm', () => {
             epc.propertyType = 'flat';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(undefined);
+            expect(builtForm).toEqual(undefined);
         });
 
         it('should return undefined when EPC property type is house and built form is not detached or semi-detached', () => {
@@ -75,10 +75,10 @@ describe('HouseBuiltForm', () => {
             epc.builtForm = 'mid-terrace';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(undefined);
+            expect(builtForm).toEqual(undefined);
         });
 
         it('should return undefined when EPC property type is bungalow and built form is not detached or semi-detached', () => {
@@ -87,10 +87,10 @@ describe('HouseBuiltForm', () => {
             epc.builtForm = 'mid-terrace';
 
             // when
-            const houseBuiltForm = getHouseBuiltFormFromEpc(epc);
+            const builtForm = getBuiltFormFromEpc(epc);
 
             // then
-            expect(houseBuiltForm).toEqual(undefined);
+            expect(builtForm).toEqual(undefined);
         });
     });
 });

@@ -6,7 +6,7 @@ import {ResponseData} from "../../response-data/response-data";
 import {FlatExposedWall} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {BuiltForm} from "./built-form";
 import {PropertyType} from "./property-type";
-import {HouseBuiltForm} from "../../../questionnaire/questions/house-built-form-question/house-built-form";
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 
 describe('RdsapInputHelper', () => {
 
@@ -30,10 +30,10 @@ describe('RdsapInputHelper', () => {
             responseData = {} as ResponseData;
         });
 
-        it('should return built form specified by houseBuiltForm for house', () => {
+        it('should return built form specified by builtForm for house', () => {
            // given
             responseData.homeType = HomeType.House;
-            responseData.houseBuiltForm = HouseBuiltForm.Detached;
+            responseData.builtForm = BuiltFormAnswer.Detached;
 
             // when
             const builtForm = RdsapInputHelper.getBuiltForm(responseData);
@@ -42,10 +42,10 @@ describe('RdsapInputHelper', () => {
             expect(builtForm).toEqual(BuiltForm.Detached);
         });
 
-        it('should return built form specified by houseBuiltForm for bungalow', () => {
+        it('should return built form specified by builtForm for bungalow', () => {
             // given
             responseData.homeType = HomeType.Bungalow;
-            responseData.houseBuiltForm = HouseBuiltForm.Detached;
+            responseData.builtForm = BuiltFormAnswer.Detached;
 
             // when
             const builtForm = RdsapInputHelper.getBuiltForm(responseData);

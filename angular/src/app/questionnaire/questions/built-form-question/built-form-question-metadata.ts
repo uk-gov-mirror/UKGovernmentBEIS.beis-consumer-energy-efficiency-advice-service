@@ -2,13 +2,13 @@ import {QuestionMetadata} from '../../base-question/question-metadata';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {QuestionType} from '../question-type';
 import {isHouseOrBungalow} from '../home-type-question/home-type';
-import {HouseBuiltFormQuestionComponent} from "./house-built-form-question.component";
+import {BuiltFormQuestionComponent} from "./built-form-question.component";
 
-export class HouseBuiltFormQuestionMetadata extends QuestionMetadata {
+export class BuiltFormQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            HouseBuiltFormQuestionComponent,
-            'house_built_form',
+            BuiltFormQuestionComponent,
+            'built_form',
             QuestionType.House
         );
     }
@@ -18,6 +18,6 @@ export class HouseBuiltFormQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.houseBuiltForm != null;
+        return responseData.builtForm != null;
     }
 }
