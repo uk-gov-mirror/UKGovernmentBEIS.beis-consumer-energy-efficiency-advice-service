@@ -14,6 +14,7 @@ import includes from 'lodash-es/includes';
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
+import {RdSapInput} from "./rdsap-input";
 
 export class RdsapInputHelper {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
@@ -117,6 +118,19 @@ export class RdsapInputHelper {
         } else {
             return area / RdsapInputHelper.SQUARE_FOOT_PER_SQUARE_METRE;
         }
+    }
+
+    public static getAdditionalRequirementsForMissingEpc(rdsapInput: RdSapInput) {
+        const output = [];
+
+        output.push(rdsapInput.property_type);
+        output.push(rdsapInput.built_form);
+
+        if (!rdsapInput.floor_area) {
+            output.push(rdsapInput.num_bedrooms.toString());
+        }
+
+        return output;
     }
 
     public static getOccupants(responseData: ResponseData): number {

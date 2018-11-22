@@ -84,22 +84,11 @@ export class RdSapInput {
         }
 
         if (this.epc === undefined) {
-            requiredProperties = this.addAdditionalRequirementsForMissingEpc(requiredProperties);
+            requiredProperties.concat(RdsapInputHelper.getAdditionalRequirementsForMissingEpc(this));
         }
 
         return requiredProperties.every(value => {
             return value && value.length > 0;
         });
-    }
-
-    private addAdditionalRequirementsForMissingEpc(requiredProperties: any[]) {
-        requiredProperties.push(this.property_type);
-        requiredProperties.push(this.built_form);
-
-        if (!this.floor_area) {
-            requiredProperties.push(toString(this.num_bedrooms));
-        }
-
-        return requiredProperties;
     }
 }
