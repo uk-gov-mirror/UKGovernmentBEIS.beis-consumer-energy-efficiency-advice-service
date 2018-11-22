@@ -264,7 +264,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // given
         setUpComponentWithDefaultResponse();
         const expectedDefaultRecommendationDisclaimer =
-            'Sorry, we had trouble generating results for your house. Please try again later.' +
+            'Sorry, we had trouble generating results for your house. Please try again later. ' +
             'We have put general recommendations for a mains gas heated detached house below.';
 
         // when
