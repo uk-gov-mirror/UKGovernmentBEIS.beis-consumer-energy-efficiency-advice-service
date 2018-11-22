@@ -124,6 +124,10 @@ Log in as root and run the following to create a WP user and database
 Get a dump of the database from somewhere (another developer,
 the live site etc.) and restore it to that database.
 
+Migrations are in the Java app and are done by liquibase.
+They are in user-site-server/src/main/resources/db folder.
+See existing migration examples when adding a question.
+
 ## Development Notes
 
 ### Adding files from .idea/ to git
@@ -220,6 +224,6 @@ These, as it stands, are the steps that should be taken when creating a new ques
   * Define your component's logic, template and styling in the usual way, making use of the response and complete members of the base class.
   * Update QuestionnaireService to be aware of your new question, and possibly change the logic within QuestionnaireComponent (adding helper methods to QuestionnaireService as needed) if your question requires more complicated decisions to be made than is currently allowed for.
 * Wordpress:
-  * Add a new post of type 'Question' and define the question heading and (if desired) help text. Export your data so it can be imported in other environments/by other developers (see Creating new wordpress content)
+  * By database migration (see [Development Setup - MySQL Database](##development-setup---mysql-database), add a new post of type 'Question' and define the question heading and (if desired) help text.
   * Ensure the slug corresponds to the questionId in MyQuestionMetadata
   
