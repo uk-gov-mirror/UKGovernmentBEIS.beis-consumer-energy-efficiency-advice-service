@@ -66,5 +66,9 @@
         flex: 0 0 0.75 * $data-card-width;
       }
     }
+
+    .no-desktop {
+      display: none;
+    }
   }
 }

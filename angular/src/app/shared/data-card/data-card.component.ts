@@ -14,4 +14,5 @@ export class DataCardComponent {
     @Input() isSmallCard: boolean = false;
     @Input() isPercent: boolean = false;
     @Input() withSmallFontSize: boolean = false;
+    @Input() withVerySmallFontSize: boolean = false;
 }

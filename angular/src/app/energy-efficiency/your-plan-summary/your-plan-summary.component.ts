@@ -28,6 +28,10 @@ export class YourPlanSummaryComponent {
         return EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, this.showMonthlySavings);
     }
 
+    get approxSavingsDisplay(): string {
+        return EnergyEfficiencyRecommendationService.getApproxSavingsDisplay(this.recommendations, this.showMonthlySavings);
+    }
+
     getRoundedTotalInvestmentRequired(): number {
         const totalInvestment = sumBy(
             this.recommendations,

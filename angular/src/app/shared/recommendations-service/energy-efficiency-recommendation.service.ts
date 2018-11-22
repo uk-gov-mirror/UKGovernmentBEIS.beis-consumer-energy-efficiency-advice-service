@@ -4,6 +4,7 @@
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
 import {RoundingService} from "../rounding-service/rounding.service";
 import sumBy from 'lodash-es/sumBy';
+import mean from 'lodash-es/mean';
 
 export abstract class EnergyEfficiencyRecommendationService {
 
@@ -23,6 +24,19 @@ export abstract class EnergyEfficiencyRecommendationService {
             recommendation => this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings)
         );
         return this.roundAndFormatValueRange(minimumSavings, maximumSavings);
+    }
+
+    static getApproxSavingsDisplay(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): string {
+        const minimumSavings = sumBy(
+            recommendations,
+            recommendation => this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings)
+        );
+        const maximumSavings = sumBy(
+            recommendations,
+            recommendation => this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings)
+        );
+        const approxSavings = RoundingService.roundCostValue(mean([minimumSavings, maximumSavings]));
+        return this.formatCostValueAndNotDisplayZeroValue(approxSavings);
     }
 
     private static roundAndFormatValueRange(minimumInput: number, maximumInput: number): string {

@@ -232,6 +232,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin very-small-data-card-value-font {
+  @include has-font-sizes-at-breakpoints(22px, 22px, 22px, 22px, 22px, 22px);
+  font-weight: bold;
+}
+
 @mixin data-card-circle-value-font {
   @include has-font-sizes-at-breakpoints(30px, 30px, 30px, 30px, 30px, 30px);
   font-weight: bold;

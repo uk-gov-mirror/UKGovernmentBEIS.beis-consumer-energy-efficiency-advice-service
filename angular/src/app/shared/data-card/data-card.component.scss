@@ -47,6 +47,10 @@
     &.with-small-font-size {
       @include small-data-card-value-font();
     }
+
+    &.with-very-small-font-size {
+      @include very-small-data-card-value-font();
+    }
   }
 
   .color-circle {

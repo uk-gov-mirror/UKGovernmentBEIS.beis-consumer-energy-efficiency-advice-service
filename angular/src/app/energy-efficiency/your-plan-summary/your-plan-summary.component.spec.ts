@@ -120,4 +120,8 @@ describe('YourPlanSummaryComponent', () => {
     it('should calculate the total monthly saving and round it correctly', () => {
         expect(component.totalSavingsDisplay).toBe('£25 – £30');
     });
+
+    it('should calculate the approximate monthly saving and round it correctly', () => {
+        expect(component.approxSavingsDisplay).toBe('£25');
+    });
 });
