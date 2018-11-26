@@ -2,6 +2,7 @@
  * Keep this in sync with EnergySavingPlanController.java
  */
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import {SavingsRange} from "./savings-range";
 import {RoundingService} from "../rounding-service/rounding.service";
 import sumBy from 'lodash-es/sumBy';
 import mean from 'lodash-es/mean';
@@ -15,27 +16,13 @@ export abstract class EnergyEfficiencyRecommendationService {
     }
 
     static getTotalSavingsDisplay(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): string {
-        const minimumSavings = sumBy(
-            recommendations,
-            recommendation => this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings)
-        );
-        const maximumSavings = sumBy(
-            recommendations,
-            recommendation => this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings)
-        );
-        return this.roundAndFormatValueRange(minimumSavings, maximumSavings);
+        const savingsRange = this.getSavingsRange(recommendations, showMonthlySavings);
+        return this.roundAndFormatValueRange(savingsRange.minimumSavings, savingsRange.maximumSavings);
     }
 
     static getApproxSavingsDisplay(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): string {
-        const minimumSavings = sumBy(
-            recommendations,
-            recommendation => this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings)
-        );
-        const maximumSavings = sumBy(
-            recommendations,
-            recommendation => this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings)
-        );
-        const approxSavings = RoundingService.roundCostValue(mean([minimumSavings, maximumSavings]));
+        const savingsRange = this.getSavingsRange(recommendations, showMonthlySavings);
+        const approxSavings = RoundingService.roundCostValue(mean([savingsRange.minimumSavings, savingsRange.maximumSavings]));
         return this.formatCostValueAndNotDisplayZeroValue(approxSavings);
     }
 
@@ -67,5 +54,17 @@ export abstract class EnergyEfficiencyRecommendationService {
 
     private static getSavingPerMonth(savingPerYear: number): number {
         return savingPerYear / 12;
+    }
+
+    private static getSavingsRange(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean) {
+        const minimumSavings = sumBy(
+            recommendations,
+            recommendation => this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings)
+        );
+        const maximumSavings = sumBy(
+            recommendations,
+            recommendation => this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings)
+        );
+        return new SavingsRange(minimumSavings, maximumSavings);
     }
 }
