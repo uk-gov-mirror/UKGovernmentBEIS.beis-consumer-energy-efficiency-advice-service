@@ -56,7 +56,7 @@ export abstract class EnergyEfficiencyRecommendationService {
         return savingPerYear / 12;
     }
 
-    private static getSavingsRange(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean) {
+    private static getSavingsRange(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): SavingsRange {
         const minimumSavings = sumBy(
             recommendations,
             recommendation => this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings)
