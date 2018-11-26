@@ -14,7 +14,8 @@ export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.homeType == null || responseData.homeType === HomeType.FlatDuplexOrMaisonette;
+        return responseData.epc === undefined &&
+            (responseData.homeType == null || responseData.homeType === HomeType.FlatDuplexOrMaisonette);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

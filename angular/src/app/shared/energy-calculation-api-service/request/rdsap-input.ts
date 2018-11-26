@@ -41,9 +41,9 @@ export class RdSapInput {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
-        this.property_type = toString(RdsapInputHelper.getPropertyType(responseData.homeType));
-        this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData));
-        this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels));
+        this.property_type = toString(RdsapInputHelper.getPropertyType(responseData.homeType)) || undefined;
+        this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData)) || undefined;
+        this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels)) || undefined;
         this.construction_date = RdsapInputHelper.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = RdsapInputHelper.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
         this.num_storeys = responseData.numberOfStoreys;
@@ -70,20 +70,23 @@ export class RdSapInput {
         this.measures_package = selectedMeasureCodes;
     }
 
-    public isMinimalDataSet() {
-        const requiredProperties = [
-            this.property_type,
-            this.built_form,
+    public isMinimalDataSet(): boolean {
+        let requiredProperties: string[] = [
             this.construction_date,
             this.heating_fuel
         ];
+
         if (this.property_type === toString(PropertyType.Flat)) {
             requiredProperties.push(this.flat_level);
         }
         if (!this.floor_area) {
             requiredProperties.push(toString(this.num_storeys));
-            requiredProperties.push(toString(this.num_bedrooms));
         }
+
+        if (this.epc === undefined) {
+            requiredProperties = requiredProperties.concat(RdsapInputHelper.getAdditionalRequirementsForMissingEpc(this));
+        }
+
         return requiredProperties.every(value => {
             return value && value.length > 0;
         });

@@ -9,11 +9,13 @@ import {
 } from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
 import {FlatLevel} from "./flat-level";
+import toString from 'lodash-es/toString';
 
 import includes from 'lodash-es/includes';
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
+import {RdSapInput} from "./rdsap-input";
 
 export class RdsapInputHelper {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
@@ -108,11 +110,28 @@ export class RdsapInputHelper {
     }
 
     public static getFloorArea(area: number, unit: FloorAreaUnit): number {
+        if (area === undefined || unit === undefined) {
+            return undefined;
+        }
+
         if (unit === FloorAreaUnit.SquareMetre) {
             return area;
         } else {
             return area / RdsapInputHelper.SQUARE_FOOT_PER_SQUARE_METRE;
         }
+    }
+
+    public static getAdditionalRequirementsForMissingEpc(rdsapInput: RdSapInput): string[] {
+        const output: string[] = [];
+
+        output.push(rdsapInput.property_type);
+        output.push(rdsapInput.built_form);
+
+        if (!rdsapInput.floor_area) {
+            output.push(toString(rdsapInput.num_bedrooms));
+        }
+
+        return output;
     }
 
     public static getOccupants(responseData: ResponseData): number {

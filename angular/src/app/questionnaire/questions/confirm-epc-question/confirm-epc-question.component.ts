@@ -42,8 +42,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     savingsPerYear: number;
     epcFormattedDate: string;
 
-    private static readonly AVERAGE_EPC_RATING: EpcRating = EpcRating.D;
-
     private static readonly EPC_METADATA: { [epcRating: number]: EpcMetadata } = {
         [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green', adjective: 'very good'},
         [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green', adjective: 'better than average'},
@@ -66,14 +64,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.getDetailsFromResponseData();
     }
 
-    get averageEpcRating(): EpcRating {
-        return ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
-    }
-
-    get epcRatingWorseThanAverage(): boolean {
-        return this.epcRating > ConfirmEpcQuestionComponent.AVERAGE_EPC_RATING;
-    }
-
     getEpcMetadata(epcRating: EpcRating): EpcMetadata {
         return ConfirmEpcQuestionComponent.EPC_METADATA[epcRating];
     }
@@ -81,7 +71,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     get response(): EpcConfirmation {
         const epcConfirmation = {
             confirmed: this.responseData.confirmEpc,
-            homeType: this.responseData.homeType,
             fuelType: this.responseData.fuelType,
             electricityTariff: this.responseData.electricityTariff
         };
@@ -90,7 +79,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     set response(val: EpcConfirmation) {
         this.responseData.confirmEpc = val.confirmed;
-        this.responseData.homeType = val.homeType;
         this.responseData.fuelType = val.fuelType;
         this.responseData.electricityTariff = val.electricityTariff;
     }
@@ -106,7 +94,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.epcRating = epc.currentEnergyRating;
         this.epcRatingRelativeDescription = ConfirmEpcQuestionComponent.getEpcRatingRelativeDescription(this.epcRating);
 
-        this.homeType = (this.response && this.response.homeType) || getHomeTypeFromEpc(epc);
+        this.homeType = getHomeTypeFromEpc(epc);
         this.homeTypeDescription = getHomeTypeDescription(this.homeType);
 
         this.fuelType = (this.response && this.response.fuelType) || getFuelTypeFromEpc(epc);
@@ -125,7 +113,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     confirmEpcDetails() {
         this.response = {
             confirmed: true,
-            homeType: this.homeType,
             fuelType: this.fuelType,
             electricityTariff: this.electricityTariff
         };
