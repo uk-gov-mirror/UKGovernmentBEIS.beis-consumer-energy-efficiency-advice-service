@@ -12,8 +12,6 @@ export class RdSapInput {
     readonly property_type: string;
     readonly built_form: string;
     readonly flat_level: string;
-    readonly flat_top_storey: string;
-    readonly number_of_exposed_walls: number;
     readonly construction_date: string;
     readonly floor_area: number;
     readonly num_storeys: number;
@@ -32,6 +30,7 @@ export class RdSapInput {
 
     readonly living_room_temperature: number;
     readonly occupants: number;
+    readonly with_vulnerable_occupants: boolean;
     readonly showers_per_week: number;
     readonly baths_per_week: number;
     readonly shower_type: string;
@@ -63,8 +62,8 @@ export class RdSapInput {
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;
-        this.occupants = responseData.numberOfChildren + responseData.numberOfAdultsAgedUnder64 +
-            responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
+        this.occupants = RdsapInputHelper.getOccupants(responseData);
+        this.with_vulnerable_occupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
 

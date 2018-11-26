@@ -16,7 +16,14 @@ describe('OccupantsQuestionComponent', () => {
     const originalNumberOfAdultsUnder64: number = 1;
     const originalNumberOfAdults64To80: number = 2;
     const originalNumberOfAdultsOver80: number = 3;
-    const originalNumberOfChildren: number = 4;
+    const originalNumberOfChildrenAged5AndAbove: number = 4;
+    const originalNumberOfChildrenUnder5: number = 5;
+
+    const newNumberOfAdultsUnder64: number = 11;
+    const newNumberOfAdults64To80: number = 12;
+    const newNumberOfAdultsOver80: number = 13;
+    const newNumberOfChildrenAged5AndAbove: number = 14;
+    const newNumberOfChildrenUnder5: number = 15;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -33,7 +40,8 @@ describe('OccupantsQuestionComponent', () => {
         component.adultsAgedUnder64 = originalNumberOfAdultsUnder64;
         component.adultsAged64To80 = originalNumberOfAdults64To80;
         component.adultsAgedOver80 = originalNumberOfAdultsOver80;
-        component.children = originalNumberOfChildren;
+        component.childrenAged5AndAbove = originalNumberOfChildrenAged5AndAbove;
+        component.childrenAgedUnder5 = originalNumberOfChildrenUnder5;
         fixture.detectChanges();
     });
 
@@ -49,16 +57,13 @@ describe('OccupantsQuestionComponent', () => {
     }));
 
     it('should set the response given a valid number of adults aged under 64', () => {
-        // given
-        const expectedAdultsUnder64 = 2;
-
         // when
         const adultsInput = fixture.debugElement.query(By.css('.adults-under-64-input input'));
-        adultsInput.nativeElement.value = expectedAdultsUnder64;
+        adultsInput.nativeElement.value = newNumberOfAdultsUnder64;
         adultsInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(component.adultsAgedUnder64).toBe(expectedAdultsUnder64);
+        expect(component.adultsAgedUnder64).toBe(newNumberOfAdultsUnder64);
     });
 
     it('should populate with original number of adults aged 64 to 80 in response data', async(() => {
@@ -69,16 +74,13 @@ describe('OccupantsQuestionComponent', () => {
     }));
 
     it('should set the response given a valid number of adults aged 64 to 80', () => {
-        // given
-        const expectedAdults64To80 = 2;
-
         // when
         const adultsInput = fixture.debugElement.query(By.css('.adults-64-to-80-input input'));
-        adultsInput.nativeElement.value = expectedAdults64To80;
+        adultsInput.nativeElement.value = newNumberOfAdults64To80;
         adultsInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(component.adultsAged64To80).toBe(expectedAdults64To80);
+        expect(component.adultsAged64To80).toBe(newNumberOfAdults64To80);
     });
 
     it('should populate with original number of adults over 80 in response data', async(() => {
@@ -89,35 +91,46 @@ describe('OccupantsQuestionComponent', () => {
     }));
 
     it('should set the response given a valid number of adults aged 64 to 80', () => {
-        // given
-        const expectedAdultsOver80 = 2;
-
         // when
         const adultsInput = fixture.debugElement.query(By.css('.adults-over-80-input input'));
-        adultsInput.nativeElement.value = expectedAdultsOver80;
+        adultsInput.nativeElement.value = newNumberOfAdultsOver80;
         adultsInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(component.adultsAgedOver80).toBe(expectedAdultsOver80);
+        expect(component.adultsAgedOver80).toBe(newNumberOfAdultsOver80);
     });
 
-    it('should populate with original number of children in response data', async(() => {
+    it('should populate with original number of children aged 5 and above in response data', async(() => {
         fixture.whenStable().then(() => {
-            const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
-            expect(childrenInput.nativeElement.value).toBe(originalNumberOfChildren.toString());
+            const childrenInput = fixture.debugElement.query(By.css('.children-aged-5-and-above-input input'));
+            expect(childrenInput.nativeElement.value).toBe(originalNumberOfChildrenAged5AndAbove.toString());
         });
     }));
 
-    it('should set the response given a valid number of children', () => {
-        // given
-        const expectedChildren = 4;
-
+    it('should set the response given a valid number of children aged 5 and above', () => {
         // when
-        const childrenInput = fixture.debugElement.query(By.css('.children-input input'));
-        childrenInput.nativeElement.value = expectedChildren;
+        const childrenInput = fixture.debugElement.query(By.css('.children-aged-5-and-above-input input'));
+        childrenInput.nativeElement.value = newNumberOfChildrenAged5AndAbove;
         childrenInput.nativeElement.dispatchEvent(new Event('input'));
 
         // then
-        expect(component.children).toBe(expectedChildren);
+        expect(component.childrenAged5AndAbove).toBe(newNumberOfChildrenAged5AndAbove);
+    });
+
+    it('should populate with original number of children under 5 in response data', async(() => {
+        fixture.whenStable().then(() => {
+            const childrenInput = fixture.debugElement.query(By.css('.children-under-5-input input'));
+            expect(childrenInput.nativeElement.value).toBe(originalNumberOfChildrenUnder5.toString());
+        });
+    }));
+
+    it('should set the response given a valid number of children under 5', () => {
+        // when
+        const childrenInput = fixture.debugElement.query(By.css('.children-under-5-input input'));
+        childrenInput.nativeElement.value = newNumberOfChildrenUnder5;
+        childrenInput.nativeElement.dispatchEvent(new Event('input'));
+
+        // then
+        expect(component.childrenAgedUnder5).toBe(newNumberOfChildrenUnder5);
     });
 });

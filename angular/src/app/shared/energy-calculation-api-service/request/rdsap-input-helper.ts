@@ -115,6 +115,22 @@ export class RdsapInputHelper {
         }
     }
 
+    public static getOccupants(responseData: ResponseData): number {
+        return responseData.numberOfChildrenAgedUnder5 +
+            responseData.numberOfChildrenAged5AndAbove +
+            responseData.numberOfAdultsAgedUnder64 +
+            responseData.numberOfAdultsAged64To80 +
+            responseData.numberOfAdultsAgedOver80;
+    }
+
+    public static getWithVulnerableOccupants(responseData: ResponseData): boolean {
+        const totalNumberOfVulnerableOccupants =
+            responseData.numberOfChildrenAgedUnder5 +
+            responseData.numberOfAdultsAged64To80 +
+            responseData.numberOfAdultsAgedOver80;
+        return totalNumberOfVulnerableOccupants > 0;
+    }
+
     private static getBuiltFormForSemiDetachedOrTerracedHouse(numberOfExposedWallsInHouse: HouseExposedWall): BuiltForm {
         switch (numberOfExposedWallsInHouse) {
             case HouseExposedWall.OneSideExposed: {
