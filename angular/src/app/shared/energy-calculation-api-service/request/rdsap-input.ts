@@ -70,8 +70,8 @@ export class RdSapInput {
         this.measures_package = selectedMeasureCodes;
     }
 
-    public isMinimalDataSet() {
-        let requiredProperties = [
+    public isMinimalDataSet(): boolean {
+        let requiredProperties: string[] = [
             this.construction_date,
             this.heating_fuel
         ];
@@ -84,7 +84,7 @@ export class RdSapInput {
         }
 
         if (this.epc === undefined) {
-            requiredProperties.concat(RdsapInputHelper.getAdditionalRequirementsForMissingEpc(this));
+            requiredProperties = requiredProperties.concat(RdsapInputHelper.getAdditionalRequirementsForMissingEpc(this));
         }
 
         return requiredProperties.every(value => {

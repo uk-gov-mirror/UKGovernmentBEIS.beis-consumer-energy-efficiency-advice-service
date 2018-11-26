@@ -9,6 +9,7 @@ import {
 } from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
 import {FlatLevel} from "./flat-level";
+import toString from 'lodash-es/toString';
 
 import includes from 'lodash-es/includes';
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
@@ -120,14 +121,14 @@ export class RdsapInputHelper {
         }
     }
 
-    public static getAdditionalRequirementsForMissingEpc(rdsapInput: RdSapInput) {
-        const output = [];
+    public static getAdditionalRequirementsForMissingEpc(rdsapInput: RdSapInput): string[] {
+        const output: string[] = [];
 
         output.push(rdsapInput.property_type);
         output.push(rdsapInput.built_form);
 
         if (!rdsapInput.floor_area) {
-            output.push(rdsapInput.num_bedrooms.toString());
+            output.push(toString(rdsapInput.num_bedrooms));
         }
 
         return output;
