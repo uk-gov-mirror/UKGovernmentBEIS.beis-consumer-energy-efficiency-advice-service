@@ -1,6 +1,6 @@
 import {HomeBasicsQuestionnairePage} from "./home-basics-questionnaire.po";
 import {CommonPageHelpers} from "../common-page-helpers";
-import {by, element} from "protractor";
+import {browser, by, element} from "protractor";
 
 describe('Home basics questionnaire', () => {
     let page: HomeBasicsQuestionnairePage;
@@ -10,26 +10,33 @@ describe('Home basics questionnaire', () => {
         page.navigateTo();
     });
 
+    afterEach(function() {
+        // clear saved progress between tests
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+    });
+
     it('should display with no errors', () => {
         expect(page.hasError()).toBeFalsy();
         expect(page.getHeading()).toContain('postcode');
     });
 
-    it('should include core questions', () => {
+    it('should include all core questions when EPC is unavailable', () => {
         // Sleep 1s between each question to allow for animation
-        // Postcode and mini-EPC, if exists
+        // Postcode and mini-EPC
         page.enterPostcode('nw19pq');
-        page.selectAddressIfApplicable();
+        expect(page.addressListIsPresent()).toBe(true);
+        page.selectMyAddressIsNotListed();
         CommonPageHelpers.sleep(1000);
 
         // Mini-EPC
-        page.confirmEpcIfApplicable();
+        page.confirmEpcNotAvailable();
 
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
-        expect(element(by.css('owner-occupancy-option'))).toBeTruthy();
-        expect(element(by.css('private-tenancy-option'))).toBeTruthy();
-        expect(element(by.css('social-tenancy-option'))).toBeTruthy();
+        expect(element(by.css('#owner-occupancy-option')).isPresent()).toBe(true);
+        expect(element(by.css('#private-tenancy-option')).isPresent()).toBe(true);
+        expect(element(by.css('#social-tenancy-option')).isPresent()).toBe(true);
         page.clickOption('I own my own home');
         CommonPageHelpers.sleep(1000);
 
@@ -75,6 +82,58 @@ describe('Home basics questionnaire', () => {
 
         // Construction insulation
         expect(page.getHeading()).toContain('What best describes the construction');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Fuel type
+        expect(page.getHeading()).toContain('type of fuel');
+        page.clickOption('electricity');
+        CommonPageHelpers.sleep(1000);
+
+        // Hot water cylinder
+        expect(page.getHeading()).toContain('hot water cylinder');
+        page.clickOption('Yes');
+        CommonPageHelpers.sleep(1000);
+
+        // Tariff
+        expect(page.getHeading()).toContain('electricity tariff');
+        page.clickOption('Standard');
+        CommonPageHelpers.sleep(1000);
+
+        // Length of heating on
+        expect(page.getHeading()).toContain('Most days during winter I have my heating on:');
+    });
+
+    it('should include core questions but skip questions with answers obtainable from EPC', () => {
+        // Sleep 1s between each question to allow for animation
+        // Postcode and mini-EPC, if exists
+        page.enterPostcode('nw19pq');
+        page.selectAddressIfApplicable();
+        CommonPageHelpers.sleep(1000);
+
+        // Mini-EPC
+        page.confirmEpcIfApplicable();
+
+        // Tenure type
+        // Not testing the page heading because this is likely to be changed completely in wordpress
+        expect(element(by.css('#owner-occupancy-option')).isPresent()).toBe(true);
+        expect(element(by.css('#private-tenancy-option')).isPresent()).toBe(true);
+        expect(element(by.css('#social-tenancy-option')).isPresent()).toBe(true);
+        page.clickOption('I own my own home');
+        CommonPageHelpers.sleep(1000);
+
+        // Storey count
+        expect(page.getHeading()).toContain('How many floors');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Building storey count
+        expect(page.getHeading()).toContain('How many floors');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Home age
+        expect(page.getHeading()).toContain('When was your home built');
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 

@@ -28,6 +28,11 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         });
     }
 
+    selectMyAddressIsNotListed() {
+        const e = element(by.css('app-postcode-epc-question .list-select .list-select-option.address-not-listed'));
+        CommonPageHelpers.clickWhenClickable(e);
+    }
+
     confirmEpcIfApplicable() {
         // This must be checked in the control flow, as this.miniEpcEnabled is set asynchronously in #selectAddressIfApplicable.
         return browser.controlFlow().execute(() => {
@@ -39,7 +44,15 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         });
     }
 
-    private addressListIsPresent() {
+    confirmEpcNotAvailable() {
+        return browser.controlFlow().execute(() => {
+            expect(this.getHeading()).toContain('Here\'s what we know so far...');
+            CommonPageHelpers.clickButton('get a few more details');
+            CommonPageHelpers.sleep(1000);
+        });
+    }
+
+    addressListIsPresent() {
         return element(by.css('app-postcode-epc-question .list-select')).isPresent();
     }
 

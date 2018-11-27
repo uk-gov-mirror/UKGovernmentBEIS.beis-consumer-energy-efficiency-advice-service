@@ -92,9 +92,9 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     }
 
     continueWithoutEpc(): void {
-        this.selectedEpc = null;
+        this.selectedEpc = undefined;
         this.isNoEpcSelected = true;
-        this.epc = null;
+        this.epc = undefined;
         this.complete.emit();
     }
 
