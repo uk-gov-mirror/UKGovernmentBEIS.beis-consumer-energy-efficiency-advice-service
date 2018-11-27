@@ -221,7 +221,7 @@ describe('PostcodeEpcQuestionComponent', () => {
 
                 // then
                 expect(component.postcode).toEqual(VALID_POSTCODE);
-                expect(component.epc).toBeNull();
+                expect(component.epc).toBeUndefined();
                 expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
             });
         }));
