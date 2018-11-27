@@ -14,7 +14,8 @@ export class BuiltFormQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.homeType == null || isHouseOrBungalow(responseData.homeType);
+        return responseData.epc === undefined &&
+            (responseData.homeType == null || isHouseOrBungalow(responseData.homeType));
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
