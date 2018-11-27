@@ -3,10 +3,10 @@ import {RdsapInputHelper} from "./rdsap-input-helper";
 import {FlatLevel} from "./flat-level";
 import {HomeType} from "../../../questionnaire/questions/home-type-question/home-type";
 import {ResponseData} from "../../response-data/response-data";
-import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
 import {FlatExposedWall} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {BuiltForm} from "./built-form";
 import {PropertyType} from "./property-type";
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 
 describe('RdsapInputHelper', () => {
 
@@ -30,9 +30,10 @@ describe('RdsapInputHelper', () => {
             responseData = {} as ResponseData;
         });
 
-        it('should return detached for detached house', () => {
+        it('should return built form specified by builtForm for house', () => {
            // given
-            responseData.homeType = HomeType.DetachedHouse;
+            responseData.homeType = HomeType.House;
+            responseData.builtForm = BuiltFormAnswer.Detached;
 
             // when
             const builtForm = RdsapInputHelper.getBuiltForm(responseData);
@@ -41,62 +42,16 @@ describe('RdsapInputHelper', () => {
             expect(builtForm).toEqual(BuiltForm.Detached);
         });
 
-        it('should return semi-detached for semi-detached house sharing 1 side', () => {
+        it('should return built form specified by builtForm for bungalow', () => {
             // given
-            responseData.homeType = HomeType.SemiDetachedOrTerracedHouse;
-            responseData.numberOfExposedWallsInHouse = HouseExposedWall.ThreeSidesExposed;
-
-            // when
-            const builtForm = RdsapInputHelper.getBuiltForm(responseData);
-
-            // then
-            expect(builtForm).toEqual(BuiltForm.SemiDetached);
-        });
-
-        it('should return mid-terrace for semi-detached house sharing 2 sides', () => {
-            // given
-            responseData.homeType = HomeType.SemiDetachedOrTerracedHouse;
-            responseData.numberOfExposedWallsInHouse = HouseExposedWall.TwoSidesExposed;
-
-            // when
-            const builtForm = RdsapInputHelper.getBuiltForm(responseData);
-
-            // then
-            expect(builtForm).toEqual(BuiltForm.MidTerrace);
-        });
-
-        it('should return enclosed mid-terrace for semi-detached house sharing 3 sides', () => {
-            // given
-            responseData.homeType = HomeType.SemiDetachedOrTerracedHouse;
-            responseData.numberOfExposedWallsInHouse = HouseExposedWall.OneSideExposed;
-
-            // when
-            const builtForm = RdsapInputHelper.getBuiltForm(responseData);
-
-            // then
-            expect(builtForm).toEqual(BuiltForm.EnclosedMidTerrace);
-        });
-
-        it('should return detached for detached bungalow', () => {
-            // given
-            responseData.homeType = HomeType.DetachedBungalow;
+            responseData.homeType = HomeType.Bungalow;
+            responseData.builtForm = BuiltFormAnswer.Detached;
 
             // when
             const builtForm = RdsapInputHelper.getBuiltForm(responseData);
 
             // then
             expect(builtForm).toEqual(BuiltForm.Detached);
-        });
-
-        it('should return semi-detached for semi-detached bungalow', () => {
-            // given
-            responseData.homeType = HomeType.SemiDetachedBungalow;
-
-            // when
-            const builtForm = RdsapInputHelper.getBuiltForm(responseData);
-
-            // then
-            expect(builtForm).toEqual(BuiltForm.SemiDetached);
         });
 
         it('should return detached for flat sharing 0 sides', () => {
@@ -178,9 +133,9 @@ describe('RdsapInputHelper', () => {
             responseData = {} as ResponseData;
         });
 
-        it('should return house for detached house', () => {
+        it('should return house for house', () => {
             // given
-            const homeType = HomeType.DetachedHouse;
+            const homeType = HomeType.House;
 
             // when
             const propertyType = RdsapInputHelper.getPropertyType(homeType);
@@ -189,31 +144,9 @@ describe('RdsapInputHelper', () => {
             expect(propertyType).toEqual(PropertyType.House);
         });
 
-        it('should return house for semi-detached or terraced house', () => {
+        it('should return bungalow for bungalow', () => {
             // given
-            const homeType = HomeType.SemiDetachedOrTerracedHouse;
-
-            // when
-            const propertyType = RdsapInputHelper.getPropertyType(homeType);
-
-            // then
-            expect(propertyType).toEqual(PropertyType.House);
-        });
-
-        it('should return bungalow for detached bungalow', () => {
-            // given
-            const homeType = HomeType.DetachedBungalow;
-
-            // when
-            const propertyType = RdsapInputHelper.getPropertyType(homeType);
-
-            // then
-            expect(propertyType).toEqual(PropertyType.Bungalow);
-        });
-
-        it('should return bungalow for semi-detached bungalow', () => {
-            // given
-            const homeType = HomeType.SemiDetachedBungalow;
+            const homeType = HomeType.Bungalow;
 
             // when
             const propertyType = RdsapInputHelper.getPropertyType(homeType);

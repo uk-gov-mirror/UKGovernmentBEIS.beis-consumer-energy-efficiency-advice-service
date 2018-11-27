@@ -31,6 +31,7 @@ import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age'
 import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/floor-area-unit';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
+import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -135,7 +136,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
         recommendationsResponse = Observable.of(recommendations);
 
         responseData = new ResponseData();
-        responseData.homeType = HomeType.DetachedHouse;
+        responseData.homeType = HomeType.House;
+        responseData.builtForm = BuiltFormAnswer.Detached;
         responseData.homeAge = HomeAge.from1930to1949;
         responseData.fuelType = FuelType.MainsGas;
         responseData.floorArea = 100;
@@ -246,4 +248,36 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // match annual savings from recommendations above
         expect(component.energyCalculations.potentialEnergyBillSavingPoundsPerYear).toBe(309);
     });
+
+    it('should show default recommendation when the energy calculation response is a default response', () => {
+        // given
+        setUpComponentWithDefaultResponse();
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        expect(component.showDefaultRecommendation).toBe(true);
+    });
+
+    it('should render default recommendation disclaimer correctly', () => {
+        // given
+        setUpComponentWithDefaultResponse();
+        const expectedDefaultRecommendationDisclaimer =
+            'Sorry, we had trouble generating results for your house. Please try again later. ' +
+            'We have put general recommendations for a mains gas heated detached house below.';
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        expect(component.defaultRecommendationDisclaimer).toEqual(expectedDefaultRecommendationDisclaimer);
+    });
+
+    function setUpComponentWithDefaultResponse(): void {
+        dummyEnergyCalculations['isDefaultResponse'] = true;
+        energyCalculationResponse = Observable.of(dummyEnergyCalculations);
+        fixture = TestBed.createComponent(EnergyEfficiencyResultsComponent);
+        component = fixture.componentInstance;
+    }
 });

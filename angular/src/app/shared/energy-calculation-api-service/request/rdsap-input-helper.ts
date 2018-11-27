@@ -1,38 +1,26 @@
-import {HomeType, isDetached} from "../../../questionnaire/questions/home-type-question/home-type";
+import {HomeType} from "../../../questionnaire/questions/home-type-question/home-type";
 import {PropertyType} from "./property-type";
 import {ResponseData} from "../../response-data/response-data";
 import {BuiltForm} from "./built-form";
-import {HouseExposedWall} from "../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall";
-import {
-    FlatExposedWall,
-    getNumberOfExposedWallsInFlat
-} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
+import {FlatExposedWall} from "../../../questionnaire/questions/flat-exposed-wall-question/flat-exposed-wall";
 import {FloorLevel} from "../../../questionnaire/questions/floor-level-question/floor-level";
 import {FlatLevel} from "./flat-level";
 import toString from 'lodash-es/toString';
-
-import includes from 'lodash-es/includes';
 import {FloorAreaUnit} from "../../../questionnaire/questions/floor-area-question/floor-area-unit";
 import {FuelType} from "../../../questionnaire/questions/fuel-type-question/fuel-type";
 import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 import {RdSapInput} from "./rdsap-input";
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 
 export class RdsapInputHelper {
     public static readonly SQUARE_FOOT_PER_SQUARE_METRE: number = 10.7639;
-    public static readonly NUMBER_OF_EXPOSED_WALLS_IN_DETACHED_PROPERTY: number = 4;
 
     public static getPropertyType(homeType: HomeType): PropertyType {
         switch (homeType) {
-            case HomeType.DetachedHouse: {
+            case HomeType.House: {
                 return PropertyType.House;
             }
-            case HomeType.SemiDetachedOrTerracedHouse: {
-                return PropertyType.House;
-            }
-            case HomeType.DetachedBungalow: {
-                return PropertyType.Bungalow;
-            }
-            case HomeType.SemiDetachedBungalow: {
+            case HomeType.Bungalow: {
                 return PropertyType.Bungalow;
             }
             case HomeType.FlatDuplexOrMaisonette: {
@@ -50,17 +38,9 @@ export class RdsapInputHelper {
     public static getBuiltForm(responseData: ResponseData): BuiltForm {
         const homeType = responseData.homeType;
         switch (homeType) {
-            case HomeType.DetachedHouse: {
-                return BuiltForm.Detached;
-            }
-            case HomeType.SemiDetachedOrTerracedHouse: {
-                return RdsapInputHelper.getBuiltFormForSemiDetachedOrTerracedHouse(responseData.numberOfExposedWallsInHouse);
-            }
-            case HomeType.DetachedBungalow: {
-                return BuiltForm.Detached;
-            }
-            case HomeType.SemiDetachedBungalow: {
-                return BuiltForm.SemiDetached;
+            case HomeType.House:
+            case HomeType.Bungalow: {
+                return RdsapInputHelper.getBuiltFormForHouseOrBungalow(responseData.builtForm);
             }
             case HomeType.FlatDuplexOrMaisonette: {
                 return RdsapInputHelper.getBuiltFormForFlatDuplexOrMaisonette(responseData.numberOfExposedWallsInFlat);
@@ -150,16 +130,28 @@ export class RdsapInputHelper {
         return totalNumberOfVulnerableOccupants > 0;
     }
 
-    private static getBuiltFormForSemiDetachedOrTerracedHouse(numberOfExposedWallsInHouse: HouseExposedWall): BuiltForm {
-        switch (numberOfExposedWallsInHouse) {
-            case HouseExposedWall.OneSideExposed: {
-                return BuiltForm.EnclosedMidTerrace;
+    private static getBuiltFormForHouseOrBungalow(builtForm: BuiltFormAnswer): BuiltForm {
+        switch (builtForm) {
+            case BuiltFormAnswer.Detached: {
+                return BuiltForm.Detached;
             }
-            case HouseExposedWall.TwoSidesExposed: {
+            case BuiltFormAnswer.SemiDetached: {
+                return BuiltForm.SemiDetached;
+            }
+            case BuiltFormAnswer.MidTerrace: {
                 return BuiltForm.MidTerrace;
             }
-            case HouseExposedWall.ThreeSidesExposed: {
-                return BuiltForm.SemiDetached;
+            case BuiltFormAnswer.EndTerrace: {
+                return BuiltForm.EndTerrace;
+            }
+            case BuiltFormAnswer.EnclosedMidTerrace: {
+                return BuiltForm.EnclosedMidTerrace;
+            }
+            case BuiltFormAnswer.EnclosedEndTerrace: {
+                return BuiltForm.EnclosedEndTerrace;
+            }
+            default: {
+                return null;
             }
         }
     }

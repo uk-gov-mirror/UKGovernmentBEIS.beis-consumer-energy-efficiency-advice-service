@@ -27,10 +27,8 @@ export class HomeTypeQuestionComponent extends QuestionBaseComponent {
     constructor(responseData: ResponseData) {
         super(responseData);
         this.homeTypeOptions = [
-            new HomeTypeOption(HomeType.DetachedHouse, 'detached-house'),
-            new HomeTypeOption(HomeType.SemiDetachedOrTerracedHouse, 'semi-detached-or-terraced-house'),
-            new HomeTypeOption(HomeType.DetachedBungalow, 'detached-bungalow'),
-            new HomeTypeOption(HomeType.SemiDetachedBungalow, 'semi-detached-bungalow'),
+            new HomeTypeOption(HomeType.House, 'house'),
+            new HomeTypeOption(HomeType.Bungalow, 'bungalow'),
             new HomeTypeOption(HomeType.FlatDuplexOrMaisonette, 'flat-duplex-or-maisonette'),
             new HomeTypeOption(HomeType.ParkHomeOrMobileHome, 'park-home-or-mobile-home')
         ];

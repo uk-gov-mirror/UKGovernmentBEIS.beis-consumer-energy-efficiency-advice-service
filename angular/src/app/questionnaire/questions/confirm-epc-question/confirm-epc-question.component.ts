@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {EpcRating} from '../../../shared/postcode-epc-service/model/epc-rating';
-import {getHomeTypeDescription, getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
+import {getHomeTypeFromEpc, HomeType} from '../home-type-question/home-type';
 import {EpcConfirmation} from './epc-confirmation';
 import {FuelType, getFuelTypeDescription, getFuelTypeFromEpc} from '../fuel-type-question/fuel-type';
 import {
@@ -11,6 +11,8 @@ import {
     getElectricityTariffFromEpc
 } from '../electricity-tariff-question/electricity-tariff';
 import {Epc} from "../../../shared/postcode-epc-service/model/epc";
+import {BuiltFormAnswer, getBuiltFormFromEpc} from "../built-form-question/built-form-answer";
+import {getHomePropertyDescription} from "../../../shared/home-property-description-helper/home-property-description-helper";
 
 interface EpcMetadata {
     averageEnergyCost: number;
@@ -32,6 +34,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     epcRating: EpcRating;
     epcRatingRelativeDescription: string;
     homeType: HomeType;
+    builtForm: BuiltFormAnswer;
     homeTypeDescription: string;
     numberHabitableRooms: number;
     localAuthorityDescription: string;
@@ -95,7 +98,8 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.epcRatingRelativeDescription = ConfirmEpcQuestionComponent.getEpcRatingRelativeDescription(this.epcRating);
 
         this.homeType = getHomeTypeFromEpc(epc);
-        this.homeTypeDescription = getHomeTypeDescription(this.homeType);
+        this.builtForm = getBuiltFormFromEpc(epc);
+        this.homeTypeDescription = getHomePropertyDescription(this.homeType, this.builtForm);
 
         this.fuelType = (this.response && this.response.fuelType) || getFuelTypeFromEpc(epc);
         this.fuelTypeDescription = getFuelTypeDescription(this.fuelType);

@@ -3,7 +3,6 @@ import {ResponseData} from '../../response-data/response-data';
 import {UserJourneyType} from '../../response-data/user-journey-type';
 import {HomeType} from '../../../questionnaire/questions/home-type-question/home-type';
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
-import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
@@ -23,6 +22,7 @@ import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-
 import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {TenancyStartDate} from '../../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 
 describe('RdsapInput', () => {
 
@@ -44,9 +44,9 @@ describe('RdsapInput', () => {
             confirmEpc: true,
             tenureType: TenureType.OwnerOccupancy,
             homeType: HomeType.FlatDuplexOrMaisonette,
+            builtForm: BuiltFormAnswer.Detached,
             homeAge: HomeAge.pre1900,
             numberOfExposedWallsInFlat: FlatExposedWall.ThreeSidesExposedWholeSide,
-            numberOfExposedWallsInHouse: HouseExposedWall.ThreeSidesExposed,
             numberOfStoreys: 1,
             numberOfBedrooms: 1,
             floorArea: undefined,

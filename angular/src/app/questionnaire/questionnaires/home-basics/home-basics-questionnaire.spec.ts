@@ -19,13 +19,13 @@ import {FloorAreaQuestionMetadata} from '../../questions/floor-area-question/flo
 import {ConstructionQuestionMetadata} from '../../questions/construction-question/construction-question-metadata';
 import {DetailedLengthOfHeatingOnQuestionMetadata} from '../../questions/detailed-length-of-heating-on-question/detailed-length-of-heating-on-question-metadata';
 import {FlatExposedWallQuestionMetadata} from '../../questions/flat-exposed-wall-question/flat-exposed-wall-question-metadata';
-import {HouseExposedWallQuestionMetadata} from '../../questions/house-exposed-wall-question/house-exposed-wall-question-metadata';
 import {FlatStoreysQuestionMetadata} from '../../questions/flat-storeys-question/flat-storeys-question-metadata';
 import {FloorLevelQuestionMetadata} from '../../questions/floor-level-question/floor-level-question-metadata';
 import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/floor-span-question-metadata';
 import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
 import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
+import {BuiltFormQuestionMetadata} from "../../questions/built-form-question/built-form-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -42,11 +42,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
             new FloorSpanQuestionMetadata(),
-            new HouseExposedWallQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
             new BedroomsQuestionMetadata(),
@@ -80,11 +80,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
             new FloorSpanQuestionMetadata(),
-            new HouseExposedWallQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
             new BedroomsQuestionMetadata(),
@@ -118,11 +118,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
             new FloorSpanQuestionMetadata(),
-            new HouseExposedWallQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
             new BedroomsQuestionMetadata(),
@@ -153,11 +153,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new ConfirmEpcQuestionMetadata(),
             new TenureTypeQuestionMetadata(),
             new HomeTypeQuestionMetadata(),
+            new BuiltFormQuestionMetadata(),
             new HouseStoreysQuestionMetadata(),
             new FlatStoreysQuestionMetadata(),
             new FloorLevelQuestionMetadata(),
             new FloorSpanQuestionMetadata(),
-            new HouseExposedWallQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
             new BedroomsQuestionMetadata(),

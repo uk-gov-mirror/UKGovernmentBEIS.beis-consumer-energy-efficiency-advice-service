@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2018-11-22-add-built-form-question"
+               author="Bob.Chen@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+INSERT INTO `wp_posts`
+    (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+    (1, '2018-11-22 10:00:00', '2018-11-22 10:00:00', '', 'Built Form', '', 'publish', 'closed', 'closed', '', 'built_form', '', '', '2018-11-22 10:00:00', '2018-11-22 10:00:00', '', 0, '', 0, 'question', '', 0);
+SET @post_id = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta`
+    (post_id, meta_key, meta_value)
+VALUES
+    (@post_id, '_autoOpenQuestionReason', 'field_5a0c5ddf40b11'),
+    (@post_id, 'autoOpenQuestionReason', '0'),
+    (@post_id, '_questionReason', 'field_5a0179b00e182'),
+    (@post_id, 'questionReason', 'This will impact the amount of heat loss through your walls'),
+    (@post_id, '_helpHtml', 'field_59e8cfc09ab2a'),
+    (@post_id, 'helpHtml', 'Please select the option below that corresponds to your type of home'),
+    (@post_id, '_questionHeading', 'field_59e8be23eda3e'),
+    (@post_id, 'questionHeading', 'What type of home do you have?');
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>
