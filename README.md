@@ -15,6 +15,7 @@ It is public-facing.
     + [Development Setup - User Site](#development-setup---user-site)
     + [Development Setup - Admin Site](#development-setup---admin-site)
     + [Development Setup - MySQL Database](#development-setup---mysql-database)
+    + [Development Setup - Email](#development-setup---email)
   * [Development Notes](#development-notes)
     + [Adding files from .idea/ to git](#adding-files-from-idea-to-git)
 - [Glossary](#glossary)
@@ -125,8 +126,14 @@ Get a dump of the database from somewhere (another developer,
 the live site etc.) and restore it to that database.
 
 Migrations are in the Java app and are done by liquibase.
-They are in user-site-server/src/main/resources/db folder.
+They are in [user-site-server/src/main/resources/db](user-site-server/src/main/resources/db) folder.
 See existing migration examples when adding a question.
+
+### Development Setup - Email
+To visualise the email sent locally, download [smtp4dev](https://github.com/rnwood/smtp4dev).
+Run smtp4dev, set port to 25 (should be default and should match spring.mail.port
+in application properties). Email sent should be intercepted and should
+appear in smtp4dev.
 
 ## Development Notes
 

@@ -1,0 +1,8 @@
+Hi,
+
+There is a new feedback submitted by test name.
+
+Name: test name
+Email: test@test.com
+Subject: example subject
+Message: example message

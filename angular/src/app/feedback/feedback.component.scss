@@ -1,0 +1,184 @@
+@import "styles/var/colors";
+@import "styles/page";
+@import "styles/mixins/font";
+
+// Component specific variables
+
+// Component specific mixins
+@mixin reset-native-component-default-style {
+  input, textarea, button {
+    outline: none;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    font-family: $font-family-light;
+    font-size: 14px;
+  }
+
+  textarea {
+    overflow: auto; // for IE
+  }
+}
+
+@mixin reset-default-width {
+  width: 0; // Browser gives input element a width and it needs to be set to 0 for flex-basis to take precedence
+  min-width: 0; // Firefox needs min-width instead of width
+}
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.page-heading {
+  background-color: $light-blue;
+  color: $dark-blue;
+
+  .page-row-content {
+    padding: 60px 0;
+  }
+
+  .heading-text {
+    font-size: 48px;
+    line-height: 40px;
+    font-weight: bold;
+  }
+
+  .body-text {
+    padding: 30px 0 0;
+    font-family: $font-family-light;
+  }
+}
+
+.feedback {
+  margin-bottom: 20px;
+
+  .feedback-container {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.feedback-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 50px 20px;
+  background-color: $light-grey;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+ @include reset-native-component-default-style();
+
+  .feedback-form-row {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+  }
+
+  .text-box-container {
+    flex: 1 1 100%;
+    display: flex;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid $govuk-blue;
+    border-radius: 8px;
+    background-color: white;
+  }
+
+  .name-and-email-row {
+    .name-input-container, .email-input-container {
+      display: flex;
+
+      .name-input, .email-input {
+        flex: 1 1 100%;
+        @include reset-default-width();
+      }
+    }
+  }
+
+  .subject-row .subject-input-container {
+    flex: 1 1 100%;
+
+    .subject-input {
+      flex: 1 1 100%;
+      @include reset-default-width();
+    }
+  }
+
+  .message-row .message-input-container {
+    margin-top: 20px;
+    flex: 1 1 100%;
+
+    .message-input {
+      flex: 1 1 100%;
+      @include reset-default-width();
+      resize: vertical;
+    }
+  }
+
+  .submit-button-row {
+    margin-top: 20px;
+
+    .submit-button {
+      margin-left: auto;
+      margin-right: 0;
+      flex: 0 1 40%;
+      height: 40px;
+      background-color: $dark-blue;
+      color: white;
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+
+      &:disabled {
+        background-color: $lighter-medium-grey;
+      }
+    }
+  }
+}
+
+.info-text {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+// Breakpoint specific styling
+@mixin mobile-tablet-specific-styling {
+  .feedback .feedback-container {
+    width: 90%;
+  }
+
+  .name-and-email-row {
+    flex-direction: column;
+
+    .name-input-container, .email-input-container {
+      flex: 1 1 auto; // IE requires auto instead of 100% to work
+    }
+
+    .name-input-container {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@include mobile() {
+  @include mobile-tablet-specific-styling();
+}
+
+@include tablet() {
+  @include mobile-tablet-specific-styling();
+}
+
+@include desktop() {
+  .feedback .feedback-container {
+    width: 60%;
+  }
+
+  .name-and-email-row {
+    justify-content: space-between;
+
+    .name-input-container, .email-input-container {
+      flex: 0 1 45%;
+    }
+  }
+}

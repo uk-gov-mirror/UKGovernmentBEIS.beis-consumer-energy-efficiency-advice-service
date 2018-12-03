@@ -1,8 +1,6 @@
 package uk.gov.beis.dceas.controller;
 
-import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpRequest;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.beis.dceas.service.ResourceService;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -38,16 +37,17 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private final String apiUsername;
     private final String apiPassword;
     private final RestTemplate restTemplate;
-
+    private final ResourceService resourceService;
 
     public EnergyCalculationController(
-        @Value("${vcap.services.bre.energyUse.credentials.url}")
-            String apiUrl,
-        @Value("${vcap.services.bre.energyUse.credentials.username}")
-            String apiUsername,
-        @Value("${vcap.services.bre.energyUse.credentials.password}")
-            String apiPassword,
-        RestTemplateBuilder restTemplateBuilder) {
+            @Value("${vcap.services.bre.energyUse.credentials.url}")
+                    String apiUrl,
+            @Value("${vcap.services.bre.energyUse.credentials.username}")
+                    String apiUsername,
+            @Value("${vcap.services.bre.energyUse.credentials.password}")
+                    String apiPassword,
+            RestTemplateBuilder restTemplateBuilder,
+            ResourceService resourceService) {
 
         this.apiUrl = apiUrl;
         this.apiUsername = apiUsername;
@@ -56,6 +56,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         this.restTemplate = restTemplateBuilder
             .interceptors(this)
             .build();
+        this.resourceService = resourceService;
     }
 
     /**
@@ -78,7 +79,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
 
         try {
             return restTemplate.postForObject(url, formValues, String.class);
-        } catch (Exception e){
+        } catch (Exception e) {
             return getDefaultResponse(propertyType, fuelType);
         }
     }
@@ -95,8 +96,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     }
 
     private String getDefaultRecommendationResponse(String filename) throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        return IOUtils.toString(classLoader.getResourceAsStream(DEFAULT_RECOMMENDATION_RESPONSES_PATH + filename), Charsets.UTF_8);
+        return resourceService.getFileAsString(DEFAULT_RECOMMENDATION_RESPONSES_PATH + filename);
     }
 
     @Override

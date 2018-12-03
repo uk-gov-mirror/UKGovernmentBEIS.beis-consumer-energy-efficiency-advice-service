@@ -85,4 +85,5 @@
     <include file="changelogs/2018-10-01-update-eco-suppliers.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-11-22-add-built-form-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-11-22-remove-house-exposed-wall-question.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2018-11-28-add-feedback-table.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

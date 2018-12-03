@@ -24,6 +24,14 @@ spring.datasource.password=wordpressPassword123
 jooq.sql.dialect=MySQL
 spring.jooq.sql-dialect=MySQL
 
+# SMTP config
+spring.mail.port: 25
+spring.mail.username: admin@example.com
+spring.mail.password: password
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.starttls.enable=false
+spring.mail.properties.mail.smtp.starttls.required=false
+
 #Spring boot has a feature where it automatically restarts the Java app if it has detected any changes to resources or class files.
 #This does not work very well with the node auto compile feature. Therefore we need to disable it.
 spring.devtools.restart.enabled = false

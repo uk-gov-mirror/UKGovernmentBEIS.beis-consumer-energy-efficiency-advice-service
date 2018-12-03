@@ -11,12 +11,14 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Catalog;
+import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
 import uk.gov.beis.dceas.db.gen.tables.Boilers;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangelog;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock;
+import uk.gov.beis.dceas.db.gen.tables.Feedback;
 import uk.gov.beis.dceas.db.gen.tables.QrtzBlobTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCalendars;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCronTriggers;
@@ -47,7 +49,7 @@ import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSchema extends SchemaImpl {
 
-    private static final long serialVersionUID = -1996387649;
+    private static final long serialVersionUID = -1005915716;
 
     /**
      * The reference instance of <code></code>
@@ -68,6 +70,11 @@ public class DefaultSchema extends SchemaImpl {
      * The table <code>databasechangeloglock</code>.
      */
     public final Databasechangeloglock DATABASECHANGELOGLOCK = uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock.DATABASECHANGELOGLOCK;
+
+    /**
+     * The table <code>feedback</code>.
+     */
+    public final Feedback FEEDBACK = uk.gov.beis.dceas.db.gen.tables.Feedback.FEEDBACK;
 
     /**
      * The table <code>qrtz_blob_triggers</code>.
@@ -161,6 +168,18 @@ public class DefaultSchema extends SchemaImpl {
     }
 
     @Override
+    public final List<Sequence<?>> getSequences() {
+        List result = new ArrayList();
+        result.addAll(getSequences0());
+        return result;
+    }
+
+    private final List<Sequence<?>> getSequences0() {
+        return Arrays.<Sequence<?>>asList(
+            Sequences.SYSTEM_SEQUENCE_C22B1886_A5C1_4931_A029_38FCC8B8ADF6);
+    }
+
+    @Override
     public final List<Table<?>> getTables() {
         List result = new ArrayList();
         result.addAll(getTables0());
@@ -172,6 +191,7 @@ public class DefaultSchema extends SchemaImpl {
             Boilers.BOILERS,
             Databasechangelog.DATABASECHANGELOG,
             Databasechangeloglock.DATABASECHANGELOGLOCK,
+            Feedback.FEEDBACK,
             QrtzBlobTriggers.QRTZ_BLOB_TRIGGERS,
             QrtzCalendars.QRTZ_CALENDARS,
             QrtzCronTriggers.QRTZ_CRON_TRIGGERS,

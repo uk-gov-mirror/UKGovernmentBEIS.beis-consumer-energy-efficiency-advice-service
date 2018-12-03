@@ -28,6 +28,7 @@ import {InstallerSearchModule} from "./installer-search/installer-search.module"
 import {ErrorBannerComponent} from './error-banner/error-banner.component';
 import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
 import {GlobalErrorHandler} from "./shared/global-error-handler";
+import {FeedbackModule} from "./feedback/feedback.module";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import {GlobalErrorHandler} from "./shared/global-error-handler";
         InstallerSearchModule,
         MeesModule.forRoot(),
         SimpleSavingsModule,
+        FeedbackModule
     ],
     providers: [
         {

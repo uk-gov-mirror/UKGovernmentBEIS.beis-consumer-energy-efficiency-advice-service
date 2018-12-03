@@ -1,0 +1,8 @@
+Hi,
+
+There is a new feedback submitted by {0}.
+
+Name: {0}
+Email: {1}
+Subject: {2}
+Message: {3}

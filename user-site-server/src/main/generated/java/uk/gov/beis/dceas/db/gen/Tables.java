@@ -9,6 +9,7 @@ import javax.annotation.Generated;
 import uk.gov.beis.dceas.db.gen.tables.Boilers;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangelog;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock;
+import uk.gov.beis.dceas.db.gen.tables.Feedback;
 import uk.gov.beis.dceas.db.gen.tables.QrtzBlobTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCalendars;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCronTriggers;
@@ -53,6 +54,11 @@ public class Tables {
      * The table <code>databasechangeloglock</code>.
      */
     public static final Databasechangeloglock DATABASECHANGELOGLOCK = uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock.DATABASECHANGELOGLOCK;
+
+    /**
+     * The table <code>feedback</code>.
+     */
+    public static final Feedback FEEDBACK = uk.gov.beis.dceas.db.gen.tables.Feedback.FEEDBACK;
 
     /**
      * The table <code>qrtz_blob_triggers</code>.

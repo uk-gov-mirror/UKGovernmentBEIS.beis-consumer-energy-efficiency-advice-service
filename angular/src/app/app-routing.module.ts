@@ -32,6 +32,7 @@ import {PageNotCreatedComponent} from './page-not-created/page-not-created.compo
 import {SimpleSavingsComponent} from './simple-savings/simple-savings.component';
 import {TroubleshootingPageComponent} from "./boiler/troubleshooting-page/troubleshooting-page.component";
 import {InstallerSearchComponent} from "./installer-search/installer-search.component";
+import {FeedbackComponent} from "./feedback/feedback.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -206,6 +207,11 @@ const routes: Routes = [
     {
         path: 'pages/:slug',
         component: PageComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'feedback',
+        component: FeedbackComponent,
         pathMatch: 'full'
     },
     {

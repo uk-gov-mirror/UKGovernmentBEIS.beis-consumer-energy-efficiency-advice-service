@@ -1,0 +1,57 @@
+<div class="page-heading page-row">
+    <div class="page-row-content">
+        <h1 class="heading-text">Feedback</h1>
+        <div class="body-text">Please do not hesitate to contact us should you have any queries.
+        </div>
+    </div>
+</div>
+<div class="feedback page-row">
+    <div class="page-row-content">
+        <div class="feedback-container">
+            <form ngNativeValidate class="feedback-form" (submit)="submit()">
+                <div class="feedback-form-row name-and-email-row">
+                    <div class="text-box-container name-input-container">
+                        <input [(ngModel)]="name"
+                               name="name"
+                               class="name-input"
+                               placeholder="Name..."
+                               required>
+                    </div>
+                    <div class="text-box-container email-input-container">
+                        <input [(ngModel)]="email"
+                               name="email"
+                               class="email-input"
+                               placeholder="E-mail..."
+                               type="email"
+                               required>
+                    </div>
+                </div>
+                <div class="feedback-form-row subject-row">
+                    <div class="text-box-container subject-input-container">
+                        <input [(ngModel)]="subject"
+                               name="subject"
+                               class="subject-input"
+                               placeholder="Subject..."
+                               required>
+                    </div>
+                </div>
+                <div class="feedback-form-row message-row">
+                    <div class="text-box-container message-input-container">
+                        <textarea [(ngModel)]="message"
+                                  name="message"
+                                  class="message-input"
+                                  rows="8"
+                                  placeholder="Your message..."
+                                  required></textarea>
+                    </div>
+                </div>
+                <div class="feedback-form-row submit-button-row">
+                    <button type="submit"
+                            class="submit-button"
+                            [disabled]="isSubmitting">Submit</button>
+                </div>
+            </form>
+            <div class="info-text" *ngIf="infoText">{{ infoText }}</div>
+        </div>
+    </div>
+</div>

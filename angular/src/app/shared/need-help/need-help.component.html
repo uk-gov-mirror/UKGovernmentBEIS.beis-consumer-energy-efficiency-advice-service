@@ -4,7 +4,7 @@
         <div class="help-icon" [inlineSVG]="'icons/help.svg'"></div>
     </div>
     <div class="contents" *ngIf="expanded">
-        <div>
+        <div class="contact-section">
             If you would like some help using the site, call freephone
             <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number">{{phoneNumber}}</a>
             to talk to one of our trained advisors.
@@ -12,6 +12,10 @@
                 Quote this reference to pick up where you left off:<br /><br />
                 <strong>{{reference.toUpperCase()}}</strong>
             </ng-container>
+        </div>
+        <div class="feedback-section">
+            You can also submit your feedback
+            <a routerLink="/feedback">here</a>
         </div>
     </div>
 </div>

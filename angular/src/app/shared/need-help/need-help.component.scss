@@ -56,10 +56,18 @@ $desktop-width: 80px;
     display: flex;
     flex-direction: column;
 
-    .phone-number {
+    .contact-section .phone-number {
       text-decoration: none;
       font-weight: bold;
       color: white;
+    }
+
+    .feedback-section {
+      margin-top: 20px;
+
+      a:hover, a:visited, a:link, a:active, a:focus {
+        color: inherit;
+      }
     }
   }
 }
