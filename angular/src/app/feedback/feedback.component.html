@@ -15,7 +15,8 @@
                                name="name"
                                class="name-input"
                                placeholder="Name..."
-                               required>
+                               required
+                               maxlength="255">
                     </div>
                     <div class="text-box-container email-input-container">
                         <input [(ngModel)]="email"
@@ -23,7 +24,8 @@
                                class="email-input"
                                placeholder="E-mail..."
                                type="email"
-                               required>
+                               required
+                               maxlength="255">
                     </div>
                 </div>
                 <div class="feedback-form-row subject-row">
@@ -32,7 +34,8 @@
                                name="subject"
                                class="subject-input"
                                placeholder="Subject..."
-                               required>
+                               required
+                               maxlength="255">
                     </div>
                 </div>
                 <div class="feedback-form-row message-row">
@@ -42,7 +45,8 @@
                                   class="message-input"
                                   rows="8"
                                   placeholder="Your message..."
-                                  required></textarea>
+                                  required
+                                  maxlength="5000"></textarea>
                     </div>
                 </div>
                 <div class="feedback-form-row submit-button-row">
