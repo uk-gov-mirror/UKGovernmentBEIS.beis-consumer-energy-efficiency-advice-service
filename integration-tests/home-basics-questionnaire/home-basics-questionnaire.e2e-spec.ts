@@ -122,12 +122,7 @@ describe('Home basics questionnaire', () => {
         page.clickOption('I own my own home');
         CommonPageHelpers.sleep(1000);
 
-        // Storey count
-        expect(page.getHeading()).toContain('How many floors');
-        page.goForwards();
-        CommonPageHelpers.sleep(1000);
-
-        // Building storey count
+        // House Storey count
         expect(page.getHeading()).toContain('How many floors');
         page.goForwards();
         CommonPageHelpers.sleep(1000);

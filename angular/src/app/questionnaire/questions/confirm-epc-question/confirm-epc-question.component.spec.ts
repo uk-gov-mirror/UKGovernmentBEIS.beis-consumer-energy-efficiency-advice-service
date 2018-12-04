@@ -147,8 +147,9 @@ describe('ConfirmEpcQuestionComponent', () => {
 
         beforeEach(() => fixture.detectChanges());
 
-        it('should autopopulate future questions', async(() => {
+        it('should save details from EPC for future questions', async(() => {
             // given
+            component.homeType = HomeType.Bungalow;
             component.fuelType = FuelType.LPGGas;
             component.electricityTariff = ElectricityTariff.OffPeak;
 
@@ -157,6 +158,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
             // then
             fixture.whenStable().then(() => {
+                expect(component.response.homeType).toBe(HomeType.Bungalow);
                 expect(component.response.fuelType).toBe(FuelType.LPGGas);
                 expect(component.response.electricityTariff).toBe(ElectricityTariff.OffPeak);
             });

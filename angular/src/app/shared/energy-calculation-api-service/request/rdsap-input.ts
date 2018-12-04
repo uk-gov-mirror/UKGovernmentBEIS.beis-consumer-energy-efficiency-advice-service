@@ -76,9 +76,6 @@ export class RdSapInput {
             this.heating_fuel
         ];
 
-        if (this.property_type === toString(PropertyType.Flat)) {
-            requiredProperties.push(this.flat_level);
-        }
         if (!this.floor_area) {
             requiredProperties.push(toString(this.num_storeys));
         }

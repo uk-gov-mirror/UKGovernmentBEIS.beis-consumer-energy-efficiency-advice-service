@@ -74,6 +74,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     get response(): EpcConfirmation {
         const epcConfirmation = {
             confirmed: this.responseData.confirmEpc,
+            homeType: this.responseData.homeType,
             fuelType: this.responseData.fuelType,
             electricityTariff: this.responseData.electricityTariff
         };
@@ -82,6 +83,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     set response(val: EpcConfirmation) {
         this.responseData.confirmEpc = val.confirmed;
+        this.responseData.homeType = val.homeType;
         this.responseData.fuelType = val.fuelType;
         this.responseData.electricityTariff = val.electricityTariff;
     }
@@ -97,7 +99,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         this.epcRating = epc.currentEnergyRating;
         this.epcRatingRelativeDescription = ConfirmEpcQuestionComponent.getEpcRatingRelativeDescription(this.epcRating);
 
-        this.homeType = getHomeTypeFromEpc(epc);
+        this.homeType = (this.response && this.response.homeType) || getHomeTypeFromEpc(epc);
         this.builtForm = getBuiltFormFromEpc(epc);
         this.homeTypeDescription = getHomePropertyDescription(this.homeType, this.builtForm);
 
@@ -117,6 +119,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     confirmEpcDetails() {
         this.response = {
             confirmed: true,
+            homeType: this.homeType,
             fuelType: this.fuelType,
             electricityTariff: this.electricityTariff
         };

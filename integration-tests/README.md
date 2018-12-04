@@ -7,3 +7,7 @@ Run them with:
 
     npm install
     npm run test -- --baseUrl=https://dceas-user-site-int.cloudapps.digital/
+
+To run them against local version
+
+    npm run test -- --baseUrl=http://localhost:8080/
