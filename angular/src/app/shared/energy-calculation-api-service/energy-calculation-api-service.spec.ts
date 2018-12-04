@@ -40,6 +40,38 @@ describe('EnergyCalculationApiService', () => {
         hot_water_cylinder: false,
         isMinimalDataSet: () => true,
         measures_package: [],
+        property_type_for_default_response: '2'
+    };
+
+    const sanitisedRdSapInput: RdSapInput = {
+        postcode: undefined,
+        epc: undefined,
+        property_type: '2',
+        built_form: '4',
+        flat_level: '1',
+        construction_date: 'A',
+        num_storeys: 1,
+        num_bedrooms: 1,
+        heating_fuel: '26',
+        heating_pattern_type: null,
+        normal_days_off_hours: null,
+        measures: true,
+        rented: true,
+        floor_area: undefined,
+        occupants: 1,
+        with_vulnerable_occupants: false,
+        living_room_temperature: 25,
+        baths_per_week: 0,
+        showers_per_week: 123,
+        shower_type: '4',
+        condensing_boiler: false,
+        electricity_tariff: undefined,
+        roof_type: undefined,
+        wall_type: undefined,
+        glazing_type: undefined,
+        hot_water_cylinder: false,
+        isMinimalDataSet: () => true,
+        measures_package: [],
     };
 
     beforeEach(() => {
@@ -104,12 +136,11 @@ describe('EnergyCalculationApiService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const expectedHttpParams = new HttpParams()
-                .set('property-type', '2')
-                .set('heating-fuel', '26');
+                .set('property-type', '2');
 
             const matchesExpectedMethod = request.method === 'POST';
             const matchesExpectedUrl = request.url === '/api/energy-calculation';
-            const matchesExpectedBody = request.body === rdSapInput;
+            const matchesExpectedBody = JSON.stringify(request.body) === JSON.stringify(sanitisedRdSapInput);
             const matchesExpectedHttpParams = request.params.toString() === expectedHttpParams.toString();
             return matchesExpectedMethod && matchesExpectedUrl && matchesExpectedBody && matchesExpectedHttpParams;
         }

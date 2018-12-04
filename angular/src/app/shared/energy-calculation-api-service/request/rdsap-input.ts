@@ -1,4 +1,3 @@
-import {PropertyType} from './property-type';
 import {ResponseData} from '../../response-data/response-data';
 import toString from 'lodash-es/toString';
 import {Epc} from '../../postcode-epc-service/model/epc';
@@ -37,11 +36,19 @@ export class RdSapInput {
 
     readonly measures_package: string[];
 
+    // For determining the default response. This parameter should not be sent to BRE
+    property_type_for_default_response?: string;
+
     constructor(responseData: ResponseData, selectedMeasureCodes: string[] = []) {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
-        this.property_type = toString(RdsapInputHelper.getPropertyType(responseData.homeType)) || undefined;
+        // We do not send property type if epc is available, because otherwise we need to send flat level as well if
+        // property type is flat or maisonette, and we do not have that information if epc is available, as that
+        // question is only asked if epc is unavailable.
+        this.property_type = responseData.epc
+            ? undefined
+            : toString(RdsapInputHelper.getPropertyType(responseData.homeType)) || undefined;
         this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData)) || undefined;
         this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels)) || undefined;
         this.construction_date = RdsapInputHelper.getConstructionDateEncoding(responseData.homeAge);
@@ -68,6 +75,9 @@ export class RdSapInput {
         this.baths_per_week = responseData.numberOfBathsPerWeek;
 
         this.measures_package = selectedMeasureCodes;
+
+        // For default response
+        this.property_type_for_default_response = toString(RdsapInputHelper.getPropertyType(responseData.homeType));
     }
 
     public isMinimalDataSet(): boolean {
