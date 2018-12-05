@@ -5,7 +5,6 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.beis.dceas.api.Feedback;
-import uk.gov.beis.dceas.db.gen.tables.records.FeedbackRecord;
 
 import javax.annotation.Nullable;
 import java.sql.Timestamp;
@@ -30,16 +29,13 @@ public class FeedbackDatabaseService {
     }
 
     @Nullable
-    Integer insert(Feedback feedback) {
-        FeedbackRecord record = database.insertInto(FEEDBACK)
+    void insert(Feedback feedback) {
+        database.insertInto(FEEDBACK)
                 .set(FEEDBACK.NAME, feedback.getName())
                 .set(FEEDBACK.EMAIL, feedback.getEmail())
                 .set(FEEDBACK.SUBJECT, feedback.getSubject())
                 .set(FEEDBACK.MESSAGE, feedback.getMessage())
-                .returning(FEEDBACK.ID)
-                .fetchOne();
-
-        return record.getId();
+                .execute();
     }
 
     boolean hasSubmittedFeedbackRightBefore(Feedback feedback) {

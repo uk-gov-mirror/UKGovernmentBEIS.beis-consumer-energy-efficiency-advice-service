@@ -33,10 +33,12 @@ public class FeedbackService {
             throw new TooManyRequestsException();
         }
 
-        Integer recordId = feedbackDatabaseService.insert(feedback);
-        if (recordId == null) {
+        try {
+            feedbackDatabaseService.insert(feedback);
+        } catch (Exception e) {
             throw new UnprocessableEntityException();
         }
+
         feedbackEmailService.sendEmail(feedback);
     }
 }
