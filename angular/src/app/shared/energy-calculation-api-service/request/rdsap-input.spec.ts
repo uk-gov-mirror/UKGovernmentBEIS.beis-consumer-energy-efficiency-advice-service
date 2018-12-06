@@ -148,13 +148,5 @@ describe('RdsapInput', () => {
             // then
             expect(rdSapInput.property_type).toEqual('2');
         });
-
-        it('should set property_type_for_default_response to home type', () => {
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.property_type_for_default_response).toEqual('2');
-        });
     });
 });

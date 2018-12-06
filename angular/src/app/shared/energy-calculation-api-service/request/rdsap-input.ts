@@ -75,9 +75,6 @@ export class RdSapInput {
         this.baths_per_week = responseData.numberOfBathsPerWeek;
 
         this.measures_package = selectedMeasureCodes;
-
-        // For default response
-        this.property_type_for_default_response = toString(RdsapInputHelper.getPropertyType(responseData.homeType));
     }
 
     public isMinimalDataSet(): boolean {

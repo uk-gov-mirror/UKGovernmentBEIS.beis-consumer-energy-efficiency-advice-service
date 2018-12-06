@@ -7,6 +7,8 @@ import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import Config from '../../config';
 import toString from 'lodash-es/toString';
+import {ResponseData} from "../response-data/response-data";
+import {RdsapInputHelper} from "./request/rdsap-input-helper";
 
 @Injectable()
 export class EnergyCalculationApiService {
@@ -15,7 +17,7 @@ export class EnergyCalculationApiService {
     private cachedInput: RdSapInput;
     private cachedResults: EnergyCalculationResponse;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private responseData: ResponseData) {
     }
 
     fetchEnergyCalculation(rdSapInput: RdSapInput): Observable<EnergyCalculationResponse> {
@@ -25,10 +27,10 @@ export class EnergyCalculationApiService {
                 console.warn('Cannot fetch energy calculation because missing some required responses');
                 this.cachedResults = null;
             }
-            const params = EnergyCalculationApiService.getHttpRequestParams(rdSapInput);
-            const sanitisedRdSapInput = EnergyCalculationApiService.getSanitisedRdSapInput(rdSapInput);
+            const propertyType = toString(RdsapInputHelper.getPropertyType(this.responseData.homeType));
+            const params = EnergyCalculationApiService.getHttpRequestParams(propertyType);
 
-            return this.http.post<EnergyCalculationResponse>(this.breEndpoint, sanitisedRdSapInput, {params: params}).shareReplay(1)
+            return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput, {params: params}).shareReplay(1)
                 .do(response => {
                     if (!response.isDefaultResponse) {
                         this.cachedResults = response;
@@ -38,14 +40,7 @@ export class EnergyCalculationApiService {
         return Observable.of(this.cachedResults);
     }
 
-    private static getSanitisedRdSapInput(rdSapInput: RdSapInput): RdSapInput {
-        const sanitisedRdSapInput = clone(rdSapInput);
-        delete sanitisedRdSapInput.property_type_for_default_response;
-        return sanitisedRdSapInput;
-    }
-
-    private static getHttpRequestParams(rdSapInput: RdSapInput): HttpParams {
-        return new HttpParams()
-            .set('property-type', toString(rdSapInput.property_type_for_default_response));
+    private static getHttpRequestParams(propertyType: String): HttpParams {
+        return new HttpParams().set('property-type', toString(propertyType));
     }
 }
