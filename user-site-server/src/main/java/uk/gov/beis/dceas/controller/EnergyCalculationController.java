@@ -1,5 +1,7 @@
 package uk.gov.beis.dceas.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import org.apache.commons.io.IOUtils;
@@ -21,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -38,17 +41,18 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private final String apiUsername;
     private final String apiPassword;
     private final RestTemplate restTemplate;
-
-
+    private final ObjectMapper objectMapper;
+    
     public EnergyCalculationController(
-        @Value("${vcap.services.bre.energyUse.credentials.url}")
-            String apiUrl,
-        @Value("${vcap.services.bre.energyUse.credentials.username}")
-            String apiUsername,
-        @Value("${vcap.services.bre.energyUse.credentials.password}")
-            String apiPassword,
-        RestTemplateBuilder restTemplateBuilder) {
-
+            @Value("${vcap.services.bre.energyUse.credentials.url}")
+                    String apiUrl,
+            @Value("${vcap.services.bre.energyUse.credentials.username}")
+                    String apiUsername,
+            @Value("${vcap.services.bre.energyUse.credentials.password}")
+                    String apiPassword,
+            RestTemplateBuilder restTemplateBuilder,
+            ObjectMapper objectMapper
+    ) {
         this.apiUrl = apiUrl;
         this.apiUsername = apiUsername;
         this.apiPassword = apiPassword;
@@ -56,6 +60,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         this.restTemplate = restTemplateBuilder
             .interceptors(this)
             .build();
+        this.objectMapper = objectMapper;
     }
 
     /**
@@ -66,10 +71,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     @PostMapping("/energy-calculation")
     public String post(
             @RequestBody String requestJson,
-            @RequestParam("property-type") Integer propertyType,
-            @RequestParam("heating-fuel") Integer fuelType
+            @RequestParam("property-type") Integer propertyType
     ) throws IOException {
-
         String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
             .build().encode().toUriString();
 
@@ -79,8 +82,14 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         try {
             return restTemplate.postForObject(url, formValues, String.class);
         } catch (Exception e){
+            Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
+    }
+
+    private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
+        Map<String, Object> request = objectMapper.readValue(requestJson, new TypeReference<Map<String, Object>>(){});
+        return Integer.parseInt((String) request.get("heating_fuel"));
     }
 
     private String getDefaultResponse(Integer propertyType, Integer fuelType) throws IOException {

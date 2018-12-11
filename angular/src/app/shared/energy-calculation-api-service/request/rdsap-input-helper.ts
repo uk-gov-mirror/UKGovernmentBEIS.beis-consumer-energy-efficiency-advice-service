@@ -111,6 +111,10 @@ export class RdsapInputHelper {
             output.push(toString(rdsapInput.num_bedrooms));
         }
 
+        if (rdsapInput.property_type === toString(PropertyType.Flat)) {
+            output.push(rdsapInput.flat_level);
+        }
+
         return output;
     }
 

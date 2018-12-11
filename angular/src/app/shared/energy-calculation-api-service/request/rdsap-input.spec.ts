@@ -23,6 +23,7 @@ import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mee
 import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {TenancyStartDate} from '../../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
 import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
+import {Epc} from "../../postcode-epc-service/model/epc";
 
 describe('RdsapInput', () => {
 
@@ -124,6 +125,28 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.rented).toEqual(false);
+        });
+
+        it('should set property_type to undefined if there is epc', () => {
+            // given
+            responseData.epc = {} as Epc;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.property_type).toEqual(undefined);
+        });
+
+        it('should set property_type to home type if there is no epc', () => {
+            // given
+            responseData.epc = null;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.property_type).toEqual('2');
         });
     });
 });

@@ -4,6 +4,7 @@ import {ElectricityTariff} from '../electricity-tariff-question/electricity-tari
 
 export interface EpcConfirmation {
     confirmed: boolean;
+    homeType: HomeType;
     fuelType: FuelType;
     electricityTariff: ElectricityTariff;
 }
