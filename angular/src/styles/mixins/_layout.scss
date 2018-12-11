@@ -13,7 +13,7 @@
 @mixin is-grid-item($number-of-items, $margin: 0) {
   flex: 0 0 auto;
   box-sizing: border-box;
-  width: calc((100% / #{$number-of-items}) - #{$margin});
+  width: calc((100% / #{$number-of-items}) - #{$margin} - 1px); // 1px offset accounts for browser rounding
   margin: $margin / 2;
   @if $margin == 0 {
     width: calc((100% / #{$number-of-items}));

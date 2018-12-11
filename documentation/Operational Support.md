@@ -16,6 +16,7 @@
   * [Postcodes.io](#postcodesio)
   * [Google Analytics](#google-analytics)
 - [Updating Wordpress](#updating-wordpress)
+- [Updating the Deployed PHP Version](#updating-the-deployed-php-version)
 - [Database](#database)
   * [Copying database from one env to another](#copying-database-from-one-env-to-another)
 - [Monitoring](#monitoring)
@@ -181,6 +182,16 @@ You must instead:
  * Update it there
  * Commit the changes to `git`
  * Deploy a new version of the site (see "Deployment" above)
+
+## Updating the Deployed PHP Version
+
+The deployed PHP version is set in the .bp-config/options.json file, e.g.
+
+```
+"PHP_VERSION": "{PHP_72_LATEST}"
+```
+
+Available versions can be deduced by looking at the php buildpack page [here](https://buildpacks.cloudfoundry.org/#/buildpacks/php/v4.3.63) or by looking at the buildpack repository [here](https://github.com/cloudfoundry/php-buildpack).
 
 ## Database
 

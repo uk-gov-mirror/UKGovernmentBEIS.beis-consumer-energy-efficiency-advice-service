@@ -6,7 +6,8 @@ import {
     BASIC_BEHAVIOURAL_QUESTIONS,
     CORE_BRE_QUESTIONS,
     EPC_AND_OWNERSHIP_STATUS,
-    GRANTS_QUESTIONNAIRE_QUESTION
+    GRANTS_QUESTIONNAIRE_QUESTION,
+    GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES
 } from '../../questions/question-groups';
 import concat from 'lodash-es/concat';
 import {ResponseData} from '../../../shared/response-data/response-data';
@@ -36,21 +37,24 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
                     BASIC_BEHAVIOURAL_QUESTIONS,
-                    GRANTS_QUESTIONNAIRE_QUESTION
+                    GRANTS_QUESTIONNAIRE_QUESTION,
+                    GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
                 );
             case UserJourneyType.MakeHomeWarmer:
             case UserJourneyType.PlanHomeImprovements:
                 return concat(
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
-                    GRANTS_QUESTIONNAIRE_QUESTION
+                    GRANTS_QUESTIONNAIRE_QUESTION,
+                    GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
                 );
             default:
                 return concat(
                     ADDRESS,
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
-                    GRANTS_QUESTIONNAIRE_QUESTION
+                    GRANTS_QUESTIONNAIRE_QUESTION,
+                    GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
                 );
         }
     }

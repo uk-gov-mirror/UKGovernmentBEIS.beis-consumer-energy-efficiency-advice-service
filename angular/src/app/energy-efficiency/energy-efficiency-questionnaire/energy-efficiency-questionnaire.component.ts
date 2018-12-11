@@ -26,10 +26,6 @@ export class EnergyEfficiencyQuestionnaireComponent implements OnInit {
     }
 
     onQuestionnaireComplete(): void {
-        if (this.responseData.shouldIncludeGrantsQuestionnaire) {
-            this.router.navigate(['/grants/questionnaire']);
-        } else {
-            this.router.navigate(['/energy-efficiency/results']);
-        }
+        this.router.navigate(['/energy-efficiency/results']);
     }
 }

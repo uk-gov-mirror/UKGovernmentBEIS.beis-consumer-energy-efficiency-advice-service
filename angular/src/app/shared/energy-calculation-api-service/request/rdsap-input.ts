@@ -45,8 +45,6 @@ export class RdSapInput {
         this.property_type = toString(RdsapInputHelper.getPropertyType(responseData.homeType));
         this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData));
         this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels));
-        this.flat_top_storey = RdsapInputHelper.getFlatTopStorey(responseData.floorLevels);
-        this.number_of_exposed_walls = RdsapInputHelper.getNumberOfExposedWalls(responseData);
         this.construction_date = RdsapInputHelper.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = RdsapInputHelper.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
         this.num_storeys = responseData.numberOfStoreys;

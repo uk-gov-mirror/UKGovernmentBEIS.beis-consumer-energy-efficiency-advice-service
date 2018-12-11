@@ -2,6 +2,7 @@
 @import './font';
 
 $border-width: 1px;
+$rounded-corner-border-radius: 1000000px;
 
 @mixin default-button($width, $height) {
   cursor: pointer;
@@ -37,7 +38,7 @@ $border-width: 1px;
 
 @mixin capsule-button() {
   cursor: pointer;
-  border-radius: 1000000px;
+  border-radius: $rounded-corner-border-radius;
   font-weight: bold;
 
   display: inline-flex;

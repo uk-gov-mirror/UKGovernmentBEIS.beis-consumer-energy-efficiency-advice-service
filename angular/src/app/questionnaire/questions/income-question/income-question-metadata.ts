@@ -14,7 +14,8 @@ export class IncomeQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.benefits === undefined || (responseData.benefits & (Benefits.TaxCredits | Benefits.UniversalCredit)) > 0;
+        return  responseData.shouldIncludeGrantsQuestionnaire !== false
+            && (responseData.benefits === undefined || (responseData.benefits & (Benefits.TaxCredits | Benefits.UniversalCredit)) > 0);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

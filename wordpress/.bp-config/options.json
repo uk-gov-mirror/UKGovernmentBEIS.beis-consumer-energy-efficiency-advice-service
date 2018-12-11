@@ -1,6 +1,5 @@
 {
-	"PHP_VERSION": "{PHP_70_LATEST}",
-	"PHP_EXTENSIONS": ["mbstring", "mysqli", "openssl", "mcrypt", "gd", "zip", "zlib"],
+	"PHP_VERSION": "{PHP_72_LATEST}",
 	"ADDITIONAL_PREPROCESS_CMDS": [
 		"/home/vcap/app/.bp-config/setup-ht-site-passwd.sh"
 	]
