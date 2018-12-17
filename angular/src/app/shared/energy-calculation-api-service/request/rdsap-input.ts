@@ -36,9 +36,6 @@ export class RdSapInput {
 
     readonly measures_package: string[];
 
-    // For determining the default response. This parameter should not be sent to BRE
-    property_type_for_default_response?: string;
-
     constructor(responseData: ResponseData, selectedMeasureCodes: string[] = []) {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;

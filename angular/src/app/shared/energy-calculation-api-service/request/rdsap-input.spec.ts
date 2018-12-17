@@ -11,6 +11,7 @@ import {
     RoofType,
     WallType
 } from '../../../questionnaire/questions/construction-question/construction-types';
+import toString from 'lodash-es/toString';
 import {WaterTankSpace} from '../../../questionnaire/questions/water-tank-question/water-tank-space';
 import {GardenAccessibility} from '../../../questionnaire/questions/garden-question/garden-accessibility';
 import {RoofSpace} from '../../../questionnaire/questions/roof-space-question/roof-space';
@@ -146,7 +147,7 @@ describe('RdsapInput', () => {
             const rdSapInput = new RdSapInput(responseData);
 
             // then
-            expect(rdSapInput.property_type).toEqual('2');
+            expect(rdSapInput.property_type).toEqual(toString(HomeType.FlatDuplexOrMaisonette));
         });
     });
 });
