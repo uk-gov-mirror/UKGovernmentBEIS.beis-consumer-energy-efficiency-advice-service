@@ -35,8 +35,8 @@ public class FeedbackEmailServiceTest {
             .build();
 
     private static final String EXPECTED_EMAIL_SUBJECT = "New feedback from " + TEST_FEEDBACK.getName();
-    private static final String EXPECTED_EMAIL_TO = "feedback@test.com";
-    private static final String EXPECTED_EMAIL_FROM = "feedback@test.com";
+    private static final String EXPECTED_EMAIL_TO = "feedback@example.com";
+    private static final String EXPECTED_EMAIL_FROM = "feedback@example.com";
 
     @Rule
     public SmtpServerRule smtpServerRule = new SmtpServerRule(2525);
