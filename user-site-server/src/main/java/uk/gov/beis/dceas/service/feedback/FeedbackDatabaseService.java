@@ -37,14 +37,4 @@ public class FeedbackDatabaseService {
                 .set(FEEDBACK.MESSAGE, feedback.getMessage())
                 .execute();
     }
-
-    boolean hasSubmittedFeedbackRightBefore(Feedback feedback) {
-        Condition condition = FEEDBACK.NAME.eq(feedback.getName())
-                .and(FEEDBACK.EMAIL.eq(feedback.getEmail()))
-                .and(FEEDBACK.CREATED.greaterThan(
-                        Timestamp.from(Instant.now(clock).minus(Duration.ofSeconds(RATE_LIMITING_SUBMISSION_THRESHOLD_IN_SECONDS)))
-                ));
-
-        return database.fetchExists(FEEDBACK, condition);
-    }
 }

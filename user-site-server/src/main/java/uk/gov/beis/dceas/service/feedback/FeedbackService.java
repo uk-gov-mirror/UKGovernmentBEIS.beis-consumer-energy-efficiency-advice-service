@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.beis.dceas.api.Feedback;
-import uk.gov.beis.dceas.spring.exception.TooManyRequestsException;
 import uk.gov.beis.dceas.spring.exception.UnprocessableEntityException;
 
 import javax.mail.MessagingException;
@@ -31,11 +30,6 @@ public class FeedbackService {
     }
 
     public void processFeedback(Feedback feedback) throws MessagingException, IOException {
-
-        if (feedbackDatabaseService.hasSubmittedFeedbackRightBefore(feedback)) {
-            throw new TooManyRequestsException();
-        }
-
         try {
             feedbackDatabaseService.insert(feedback);
         } catch (Exception e) {

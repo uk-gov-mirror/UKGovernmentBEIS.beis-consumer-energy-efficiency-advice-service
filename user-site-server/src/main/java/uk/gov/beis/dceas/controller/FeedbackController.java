@@ -1,5 +1,6 @@
 package uk.gov.beis.dceas.controller;
 
+import com.weddini.throttling.Throttling;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import uk.gov.beis.dceas.service.feedback.FeedbackService;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api")
@@ -22,6 +24,7 @@ public class FeedbackController {
     }
 
     @PostMapping("/feedback")
+    @Throttling(timeUnit = TimeUnit.DAYS, limit = 10)
     public void submitFeedback(
             @Valid @RequestBody Feedback feedback
     ) throws MessagingException, IOException {
