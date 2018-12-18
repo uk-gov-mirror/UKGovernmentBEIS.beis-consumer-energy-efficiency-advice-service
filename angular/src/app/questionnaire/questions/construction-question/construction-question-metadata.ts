@@ -13,7 +13,8 @@ export class ConstructionQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.shouldIncludeOptionalPropertyQuestions === undefined || responseData.shouldIncludeOptionalPropertyQuestions;
+        return responseData.epc === undefined &&
+            (responseData.shouldIncludeOptionalPropertyQuestions === undefined || responseData.shouldIncludeOptionalPropertyQuestions);
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

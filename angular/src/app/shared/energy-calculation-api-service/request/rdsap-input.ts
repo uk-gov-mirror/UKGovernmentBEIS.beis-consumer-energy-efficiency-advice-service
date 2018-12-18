@@ -1,4 +1,3 @@
-import {PropertyType} from './property-type';
 import {ResponseData} from '../../response-data/response-data';
 import toString from 'lodash-es/toString';
 import {Epc} from '../../postcode-epc-service/model/epc';
@@ -12,8 +11,6 @@ export class RdSapInput {
     readonly property_type: string;
     readonly built_form: string;
     readonly flat_level: string;
-    readonly flat_top_storey: string;
-    readonly number_of_exposed_walls: number;
     readonly construction_date: string;
     readonly floor_area: number;
     readonly num_storeys: number;
@@ -32,6 +29,7 @@ export class RdSapInput {
 
     readonly living_room_temperature: number;
     readonly occupants: number;
+    readonly with_vulnerable_occupants: boolean;
     readonly showers_per_week: number;
     readonly baths_per_week: number;
     readonly shower_type: string;
@@ -42,9 +40,14 @@ export class RdSapInput {
         this.postcode = responseData.postcode;
         this.epc = responseData.epc;
 
-        this.property_type = toString(RdsapInputHelper.getPropertyType(responseData.homeType));
-        this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData));
-        this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels));
+        // We do not send property type if epc is available, because otherwise we need to send flat level as well if
+        // property type is flat or maisonette, and we do not have that information if epc is available, as that
+        // question is only asked if epc is unavailable.
+        this.property_type = responseData.epc
+            ? undefined
+            : toString(RdsapInputHelper.getPropertyType(responseData.homeType)) || undefined;
+        this.built_form = toString(RdsapInputHelper.getBuiltForm(responseData)) || undefined;
+        this.flat_level = toString(RdsapInputHelper.getFlatLevel(responseData.floorLevels)) || undefined;
         this.construction_date = RdsapInputHelper.getConstructionDateEncoding(responseData.homeAge);
         this.floor_area = RdsapInputHelper.getFloorArea(responseData.floorArea, responseData.floorAreaUnit);
         this.num_storeys = responseData.numberOfStoreys;
@@ -63,28 +66,28 @@ export class RdSapInput {
 
         // Habit data+
         this.living_room_temperature = responseData.livingRoomTemperature;
-        this.occupants = responseData.numberOfChildren + responseData.numberOfAdultsAgedUnder64 +
-            responseData.numberOfAdultsAged64To80 + responseData.numberOfAdultsAgedOver80;
+        this.occupants = RdsapInputHelper.getOccupants(responseData);
+        this.with_vulnerable_occupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
 
         this.measures_package = selectedMeasureCodes;
     }
 
-    public isMinimalDataSet() {
-        const requiredProperties = [
-            this.property_type,
-            this.built_form,
+    public isMinimalDataSet(): boolean {
+        let requiredProperties: string[] = [
             this.construction_date,
             this.heating_fuel
         ];
-        if (this.property_type === toString(PropertyType.Flat)) {
-            requiredProperties.push(this.flat_level);
-        }
+
         if (!this.floor_area) {
             requiredProperties.push(toString(this.num_storeys));
-            requiredProperties.push(toString(this.num_bedrooms));
         }
+
+        if (this.epc === undefined) {
+            requiredProperties = requiredProperties.concat(RdsapInputHelper.getAdditionalRequirementsForMissingEpc(this));
+        }
+
         return requiredProperties.every(value => {
             return value && value.length > 0;
         });

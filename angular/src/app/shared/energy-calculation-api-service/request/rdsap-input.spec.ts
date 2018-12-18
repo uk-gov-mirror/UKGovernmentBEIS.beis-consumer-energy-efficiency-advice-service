@@ -3,7 +3,6 @@ import {ResponseData} from '../../response-data/response-data';
 import {UserJourneyType} from '../../response-data/user-journey-type';
 import {HomeType} from '../../../questionnaire/questions/home-type-question/home-type';
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
-import {HouseExposedWall} from '../../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
@@ -12,6 +11,7 @@ import {
     RoofType,
     WallType
 } from '../../../questionnaire/questions/construction-question/construction-types';
+import toString from 'lodash-es/toString';
 import {WaterTankSpace} from '../../../questionnaire/questions/water-tank-question/water-tank-space';
 import {GardenAccessibility} from '../../../questionnaire/questions/garden-question/garden-accessibility';
 import {RoofSpace} from '../../../questionnaire/questions/roof-space-question/roof-space';
@@ -23,6 +23,8 @@ import {UserEpcRating} from '../../../questionnaire/questions/mees/property-epc-
 import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {TenancyStartDate} from '../../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
+import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
+import {Epc} from "../../postcode-epc-service/model/epc";
 
 describe('RdsapInput', () => {
 
@@ -31,7 +33,8 @@ describe('RdsapInput', () => {
         const numberOfAdultsUnder64 = 1;
         const numberOfAdults64To80 = 2;
         const numberOfAdultsOver80 = 3;
-        const numberOfChildren = 3;
+        const numberOfChildrenAged5AndAbove = 4;
+        const numberOfChildrenUnder5 = 5;
 
         const responseData: ResponseData = {
             userJourneyType: UserJourneyType.ReduceEnergyBills,
@@ -43,9 +46,9 @@ describe('RdsapInput', () => {
             confirmEpc: true,
             tenureType: TenureType.OwnerOccupancy,
             homeType: HomeType.FlatDuplexOrMaisonette,
+            builtForm: BuiltFormAnswer.Detached,
             homeAge: HomeAge.pre1900,
             numberOfExposedWallsInFlat: FlatExposedWall.ThreeSidesExposedWholeSide,
-            numberOfExposedWallsInHouse: HouseExposedWall.ThreeSidesExposed,
             numberOfStoreys: 1,
             numberOfBedrooms: 1,
             floorArea: undefined,
@@ -65,7 +68,8 @@ describe('RdsapInput', () => {
             numberOfAdultsAgedUnder64: numberOfAdultsUnder64,
             numberOfAdultsAged64To80: numberOfAdults64To80,
             numberOfAdultsAgedOver80: numberOfAdultsOver80,
-            numberOfChildren: numberOfChildren,
+            numberOfChildrenAged5AndAbove: numberOfChildrenAged5AndAbove,
+            numberOfChildrenAgedUnder5: numberOfChildrenUnder5,
             numberOfShowersPerWeek: 0,
             numberOfBathsPerWeek: 45,
             livingRoomTemperature: 20,
@@ -79,6 +83,7 @@ describe('RdsapInput', () => {
             gardenSizeSquareMetres: 100,
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
+            numberOfChildren: numberOfChildrenUnder5 + numberOfChildrenAged5AndAbove,
 
             lettingDomesticPropertyStage: LettingDomesticPropertyStage.Currently,
             tenancyStartDate: TenancyStartDate.BeforeApril2018,
@@ -89,18 +94,6 @@ describe('RdsapInput', () => {
             agriculturalTenancyType: AgriculturalTenancyType.AssuredTenancy,
             saveToSessionStorage: () => {},
         };
-
-        it('should calculate the number of occupants correctly', () => {
-            // given
-            const expectedNumberOfOccupants = numberOfChildren + numberOfAdultsUnder64 +
-                numberOfAdults64To80 + numberOfAdultsOver80;
-
-            // when
-            const rdSapInput = new RdSapInput(responseData);
-
-            // then
-            expect(rdSapInput.occupants).toBe(expectedNumberOfOccupants);
-        });
 
         it('should set rented to true for private tenancy', () => {
             // given
@@ -133,6 +126,28 @@ describe('RdsapInput', () => {
 
             // then
             expect(rdSapInput.rented).toEqual(false);
+        });
+
+        it('should set property_type to undefined if there is epc', () => {
+            // given
+            responseData.epc = {} as Epc;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.property_type).toEqual(undefined);
+        });
+
+        it('should set property_type to home type if there is no epc', () => {
+            // given
+            responseData.epc = null;
+
+            // when
+            const rdSapInput = new RdSapInput(responseData);
+
+            // then
+            expect(rdSapInput.property_type).toEqual(toString(HomeType.FlatDuplexOrMaisonette));
         });
     });
 });

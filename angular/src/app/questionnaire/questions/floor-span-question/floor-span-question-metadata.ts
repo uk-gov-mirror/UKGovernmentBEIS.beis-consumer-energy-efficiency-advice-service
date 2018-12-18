@@ -13,13 +13,14 @@ export class FloorSpanQuestionMetadata extends QuestionMetadata {
         );
     }
 
-    hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.floorLevels !== undefined;
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.epc === undefined &&
+            ((responseData.homeType === HomeType.FlatDuplexOrMaisonette && responseData.numberOfStoreys !== 1) ||
+            responseData.homeType === undefined ||
+            responseData.numberOfStoreys === undefined);
     }
 
-    isApplicable(responseData: ResponseData): boolean {
-        return (responseData.homeType === HomeType.FlatDuplexOrMaisonette && responseData.numberOfStoreys !== 1) ||
-            responseData.homeType === undefined ||
-            responseData.numberOfStoreys === undefined;
+    hasBeenAnswered(responseData: ResponseData): boolean {
+        return responseData.floorLevels !== undefined;
     }
 }

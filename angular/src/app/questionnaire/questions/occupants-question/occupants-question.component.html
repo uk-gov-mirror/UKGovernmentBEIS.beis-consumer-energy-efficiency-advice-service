@@ -1,32 +1,53 @@
 <div class="occupants-question question-component">
-    <form class="answer-grid questionnaire-form" (submit)="handleFormSubmit()">
-        <div class="adults-under-64-input occupants-input">
-            <div class="name">Adults aged under 64</div>
-            <app-number-question itemsName="adults under 64"
-                                 [(quantity)]="adultsAgedUnder64"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="20"></app-number-question>
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="question-category-adults">
+            <div class="category-title">
+                Adults
+            </div>
+            <div class="answer-grid">
+                <div class="adults-under-64-input occupants-input">
+                    <div class="name">Aged under 64</div>
+                    <app-number-question itemsName="adults under 64"
+                                         [(quantity)]="adultsAgedUnder64"
+                                         [minQuantity]="0"
+                                         [maxQuantity]="20"></app-number-question>
+                </div>
+                <div class="adults-64-to-80-input occupants-input">
+                    <div class="name">Aged 64 to 80</div>
+                    <app-number-question itemsName="adults aged 64 to 80"
+                                         [(quantity)]="adultsAged64To80"
+                                         [minQuantity]="0"
+                                         [maxQuantity]="20"></app-number-question>
+                </div>
+                <div class="adults-over-80-input occupants-input">
+                    <div class="name">Aged 80 or over</div>
+                    <app-number-question itemsName="adults aged over 80"
+                                         [(quantity)]="adultsAgedOver80"
+                                         [minQuantity]="0"
+                                         [maxQuantity]="20"></app-number-question>
+                </div>
+            </div>
         </div>
-        <div class="adults-64-to-80-input occupants-input">
-            <div class="name">Adults aged 64 to 80</div>
-            <app-number-question itemsName="adults aged 64 to 80"
-                                 [(quantity)]="adultsAged64To80"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="20"></app-number-question>
-        </div>
-        <div class="adults-over-80-input occupants-input">
-            <div class="name">Adults aged 80 or over</div>
-            <app-number-question itemsName="adults aged over 80"
-                                 [(quantity)]="adultsAgedOver80"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="20"></app-number-question>
-        </div>
-        <div class="children-input occupants-input">
-            <div class="name">Children</div>
-            <app-number-question itemsName="children"
-                                 [(quantity)]="children"
-                                 [minQuantity]="0"
-                                 [maxQuantity]="20"></app-number-question>
+        <div class="question-category-children">
+            <div class="category-title">
+                Children
+            </div>
+            <div class="answer-grid ">
+                <div class="children-aged-5-and-above-input occupants-input">
+                    <div class="name">Aged 5 and above</div>
+                    <app-number-question itemsName="children aged 5 and above"
+                                         [(quantity)]="childrenAged5AndAbove"
+                                         [minQuantity]="0"
+                                         [maxQuantity]="20"></app-number-question>
+                </div>
+                <div class="children-under-5-input occupants-input">
+                    <div class="name">Aged under 5</div>
+                    <app-number-question itemsName="children under 5"
+                                         [(quantity)]="childrenAgedUnder5"
+                                         [minQuantity]="0"
+                                         [maxQuantity]="20"></app-number-question>
+                </div>
+            </div>
         </div>
     </form>
 </div>

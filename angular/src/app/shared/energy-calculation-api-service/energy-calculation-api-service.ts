@@ -6,10 +6,9 @@ import {EnergyCalculationResponse} from './response/energy-calculation-response'
 import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import Config from '../../config';
-import {PropertyType} from "./request/property-type";
 import toString from 'lodash-es/toString';
+import {ResponseData} from "../response-data/response-data";
 import {RdsapInputHelper} from "./request/rdsap-input-helper";
-import {FuelType} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 
 @Injectable()
 export class EnergyCalculationApiService {
@@ -18,7 +17,7 @@ export class EnergyCalculationApiService {
     private cachedInput: RdSapInput;
     private cachedResults: EnergyCalculationResponse;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private responseData: ResponseData) {
     }
 
     fetchEnergyCalculation(rdSapInput: RdSapInput): Observable<EnergyCalculationResponse> {
@@ -28,7 +27,8 @@ export class EnergyCalculationApiService {
                 console.warn('Cannot fetch energy calculation because missing some required responses');
                 this.cachedResults = null;
             }
-            const params = EnergyCalculationApiService.getHttpRequestParams(rdSapInput);
+            const propertyType = toString(RdsapInputHelper.getPropertyType(this.responseData.homeType));
+            const params = EnergyCalculationApiService.getHttpRequestParams(propertyType);
 
             return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput, {params: params}).shareReplay(1)
                 .do(response => {
@@ -40,9 +40,7 @@ export class EnergyCalculationApiService {
         return Observable.of(this.cachedResults);
     }
 
-    private static getHttpRequestParams(rdSapInput: RdSapInput): HttpParams {
-        return new HttpParams()
-            .set('property-type', toString(rdSapInput.property_type))
-            .set('heating-fuel', toString(rdSapInput.heating_fuel));
+    private static getHttpRequestParams(propertyType: String): HttpParams {
+        return new HttpParams().set('property-type', toString(propertyType));
     }
 }
