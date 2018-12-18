@@ -5,6 +5,11 @@ import {HttpRequest} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 
 describe('FeedbackComponent', () => {
+    const TEST_NAME = "test name";
+    const TEST_EMAIL = "test@test.com";
+    const TEST_SUBJECT = "example subject";
+    const TEST_MESSAGE = "example message";
+
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let component: FeedbackComponent;
@@ -71,6 +76,44 @@ describe('FeedbackComponent', () => {
         // then
         expect(component.isSubmitting).toBe(true);
         expect(component.infoText).toEqual('');
+    });
+
+    it('should reset form when request is successful', () => {
+        // given
+        component.name = TEST_NAME;
+        component.email = TEST_EMAIL;
+        component.subject = TEST_SUBJECT;
+        component.message = TEST_MESSAGE;
+        component.submit();
+
+        // when
+        const request = httpMock.expectOne(matchesExpectedRequest);
+        request.flush({});
+
+        // then
+        expect(component.name).toBe('');
+        expect(component.email).toBe('');
+        expect(component.subject).toBe('');
+        expect(component.message).toBe('');
+    });
+
+    it('should not reset form when request has failed', () => {
+        // given
+        component.name = TEST_NAME;
+        component.email = TEST_EMAIL;
+        component.subject = TEST_SUBJECT;
+        component.message = TEST_MESSAGE;
+        component.submit();
+
+        // when
+        const request = httpMock.expectOne(matchesExpectedRequest);
+        request.error(new ErrorEvent('network error'));
+
+        // then
+        expect(component.name).toBe(TEST_NAME);
+        expect(component.email).toBe(TEST_EMAIL);
+        expect(component.subject).toBe(TEST_SUBJECT);
+        expect(component.message).toBe(TEST_MESSAGE);
     });
 
     function matchesExpectedRequest(request: HttpRequest<any>): boolean {

@@ -30,6 +30,7 @@ export class FeedbackComponent {
                 () => {
                     this.infoText = 'Thanks for your feedback!';
                     this.isSubmitting = false;
+                    this.resetForm();
                 },
                 () => {
                     this.infoText = 'Sorry, there was an error when submitting the feedback.';
@@ -44,5 +45,12 @@ export class FeedbackComponent {
             subject: this.subject,
             message: this.message
         };
+    }
+
+    private resetForm() {
+        this.name = '';
+        this.email = '';
+        this.subject = '';
+        this.message = '';
     }
 }
