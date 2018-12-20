@@ -14,7 +14,7 @@ import {TenureType} from '../../questionnaire/questions/tenure-type-question/ten
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
-import {getHomeTypeDescription} from "../../questionnaire/questions/home-type-question/home-type";
+import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -110,9 +110,9 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     private static getDefaultRecommendationDisclaimer(responseData: ResponseData): string {
         const fuelType = getFuelTypeDescription(responseData.fuelType);
-        const homeType = getHomeTypeDescription(responseData.homeType);
+        const homePropertyDescription = getHomePropertyDescription(responseData.homeType, responseData.builtForm);
 
-        return `Sorry, we had trouble generating results for your house. Please try again later.
-         We have put general recommendations for a ${fuelType} heated ${homeType} below.`;
+        return `Sorry, we had trouble generating results for your house. Please try again later. ` +
+            `We have put general recommendations for a ${fuelType} heated ${homePropertyDescription} below.`;
     }
 }

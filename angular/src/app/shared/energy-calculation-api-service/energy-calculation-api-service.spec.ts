@@ -4,11 +4,14 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpRequest, HttpParams} from '@angular/common/http';
 import {EnergyCalculationApiService} from './energy-calculation-api-service';
 import {RdSapInput} from './request/rdsap-input';
+import {ResponseData} from "../response-data/response-data";
+import {HomeType} from "../../questionnaire/questions/home-type-question/home-type";
 
 describe('EnergyCalculationApiService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: EnergyCalculationApiService;
+
     (window as any).CONFIG = {apiRoot: "/api"};
 
     const rdSapInput: RdSapInput = {
@@ -17,8 +20,6 @@ describe('EnergyCalculationApiService', () => {
         property_type: '2',
         built_form: '4',
         flat_level: '1',
-        flat_top_storey: 'Y',
-        number_of_exposed_walls: 3,
         construction_date: 'A',
         num_storeys: 1,
         num_bedrooms: 1,
@@ -29,6 +30,7 @@ describe('EnergyCalculationApiService', () => {
         rented: true,
         floor_area: undefined,
         occupants: 1,
+        with_vulnerable_occupants: false,
         living_room_temperature: 25,
         baths_per_week: 0,
         showers_per_week: 123,
@@ -40,12 +42,21 @@ describe('EnergyCalculationApiService', () => {
         glazing_type: undefined,
         hot_water_cylinder: false,
         isMinimalDataSet: () => true,
-        measures_package: [],
+        measures_package: []
     };
+
+    const responseDataStub = {
+        homeType: HomeType.FlatDuplexOrMaisonette
+    };
+
+    const expectedPropertyTypeIdForFlatDuplexOrMaisonette = '2';
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [EnergyCalculationApiService],
+            providers: [
+                EnergyCalculationApiService,
+                {provide: ResponseData, useValue: responseDataStub}
+            ],
             imports: [HttpClientTestingModule]
         });
         injector = getTestBed();
@@ -105,8 +116,7 @@ describe('EnergyCalculationApiService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const expectedHttpParams = new HttpParams()
-                .set('property-type', '2')
-                .set('heating-fuel', '26');
+                .set('property-type', expectedPropertyTypeIdForFlatDuplexOrMaisonette);
 
             const matchesExpectedMethod = request.method === 'POST';
             const matchesExpectedUrl = request.url === '/api/energy-calculation';

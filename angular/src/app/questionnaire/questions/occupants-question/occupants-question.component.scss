@@ -4,6 +4,24 @@
 @import "styles/mixins/font";
 
 .occupants-question {
+
+  .questionnaire-form {
+    flex-direction: column;
+
+    .question-category-adults, .question-category-children {
+      .category-title {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+
+    .question-category-adults {
+      margin-bottom: 50px;
+    }
+  }
   .questionnaire-form .occupants-input {
     .name {
       @include question-label-font;
@@ -16,16 +34,33 @@
 @include mobile() {
 }
 @include tablet() {
+  .question-category-adults, .question-category-children {
+    width: 100%;
+  }
 }
 @include desktop() {
   .occupants-question {
-    .questionnaire-form .occupants-input {
-      @include is-grid-item($number-of-items: 4, $margin: 20px);
-      margin: 0;
-      padding: 0 36px;
+    .question-category-adults .occupants-input {
+      @include is-grid-item($number-of-items: 3, $margin: 20px);
+    }
 
-      &:not(:first-child) {
-        border-left: 1px solid $separator-grey;
+    .question-category-children .occupants-input {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+    }
+
+    .question-category-adults, .question-category-children {
+      .answer-grid {
+        margin: 0;
+        justify-content: center;
+
+        .occupants-input {
+          margin: 0;
+          padding: 0 36px;
+
+          &:not(:first-child) {
+            border-left: 1px solid $separator-grey;
+          }
+        }
       }
     }
   }

@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Epc} from '../postcode-epc-service/model/epc';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {ElectricityTariff} from '../../questionnaire/questions/electricity-tariff-question/electricity-tariff';
-import {HouseExposedWall} from '../../questionnaire/questions/house-exposed-wall-question/house-exposed-wall';
 import {HomeAge} from '../../questionnaire/questions/home-age-question/home-age';
 import {HomeType} from '../../questionnaire/questions/home-type-question/home-type';
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
@@ -21,6 +20,7 @@ import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-que
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
+import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -55,8 +55,8 @@ export class ResponseData {
     public homeAge: HomeAge;
     // Set by FlatExposedWallQuestionComponent, sent to BRE energy-calculation
     public numberOfExposedWallsInFlat: FlatExposedWall;
-    // Set by HouseExposedWallQuestionComponent, sent to BRE energy-calculation
-    public numberOfExposedWallsInHouse: HouseExposedWall;
+    // Set by BuiltFormQuestionComponent, sent to BRE energy-calculation
+    public builtForm: BuiltFormAnswer;
     // Set by FlatStoreysQuestionComponent / HouseStoreysQuestionComponent, sent to BRE energy-calculation
     public numberOfStoreys: number;
     // Set by BedroomsQuestionComponent, sent to BRE energy-calculation
@@ -93,7 +93,9 @@ export class ResponseData {
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`)
     public numberOfAdultsAgedOver80: number;
     // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`), used by grants
-    public numberOfChildren: number;
+    public numberOfChildrenAged5AndAbove: number;
+    // Set by OccupantsQuestionComponent, sent to BRE energy-calculation (as `occupants`), used by grants
+    public numberOfChildrenAgedUnder5: number;
     // Set by ShowersAndBathsQuestionComponent, sent to BRE energy-calculation
     public numberOfShowersPerWeek: number;
     // Set by ShowersAndBathsQuestionComponent, sent to BRE energy-calculation
@@ -128,6 +130,11 @@ export class ResponseData {
         return this.numberOfAdultsAgedUnder64 +
             this.numberOfAdultsAged64To80 +
             this.numberOfAdultsAgedOver80;
+    }
+
+    get numberOfChildren(): number {
+        return this.numberOfChildrenAgedUnder5 +
+            this.numberOfChildrenAged5AndAbove;
     }
 
     // When adding a MEES questionnaire answer, you should update clearMeesResponseData below as well

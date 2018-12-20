@@ -33,7 +33,6 @@ import {FlatStoreysQuestionComponent} from './flat-storeys-question/flat-storeys
 import {FloorLevelQuestionComponent} from './floor-level-question/floor-level-question.component';
 import {FloorSpanQuestionComponent} from './floor-span-question/floor-span-question.component';
 import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question/flat-exposed-wall-question.component';
-import {HouseExposedWallQuestionComponent} from './house-exposed-wall-question/house-exposed-wall-question.component';
 import {LettingDomesticPropertyQuestionComponent} from './mees/letting-domestic-property-question/letting-domestic-property-question.component';
 import {EpcRequiredQuestionComponent} from './mees/epc-required-question/epc-required-question.component';
 import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy-type-question.component';
@@ -41,12 +40,14 @@ import {PropertyEpcQuestionComponent} from './mees/property-epc-question/propert
 import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.component';
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
 import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-question/tenancy-start-date-question.component';
+import {BuiltFormQuestionComponent} from "./built-form-question/built-form-question.component";
 
 @NgModule({
     declarations: [
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
+        BuiltFormQuestionComponent,
         ConfirmEpcQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -59,7 +60,6 @@ import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-quest
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
-        HouseExposedWallQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -85,6 +85,7 @@ import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-quest
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
+        BuiltFormQuestionComponent,
         ConfirmEpcQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -97,7 +98,6 @@ import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-quest
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
-        HouseExposedWallQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -130,6 +130,7 @@ import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-quest
         BedroomsQuestionComponent,
         BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
+        BuiltFormQuestionComponent,
         ConfirmEpcQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -142,7 +143,6 @@ import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-quest
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
-        HouseExposedWallQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
         LivingRoomTemperatureQuestionComponent,

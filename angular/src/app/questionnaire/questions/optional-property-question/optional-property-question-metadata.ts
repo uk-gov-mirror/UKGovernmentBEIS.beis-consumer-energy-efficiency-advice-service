@@ -12,6 +12,10 @@ export class OptionalPropertyQuestionMetadata extends QuestionMetadata {
         );
     }
 
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.epc === undefined;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.shouldIncludeOptionalPropertyQuestions !== undefined;
     }
