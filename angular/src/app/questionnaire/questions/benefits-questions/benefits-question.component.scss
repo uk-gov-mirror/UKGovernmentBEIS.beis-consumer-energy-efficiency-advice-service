@@ -10,6 +10,7 @@ $benefit-font-size-desktop-tablet: 18px;
 
   .benefits {
     margin-bottom: 40px;
+    width: 100%; // For IE
 
     .benefit {
       margin: 10px 0;
