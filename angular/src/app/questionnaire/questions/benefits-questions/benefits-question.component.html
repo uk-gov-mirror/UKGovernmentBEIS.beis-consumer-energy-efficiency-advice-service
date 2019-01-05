@@ -1,5 +1,5 @@
 <div class="benefits-question question-component">
-    <ul class="benefits">
+    <ul class="benefits" *ngIf="benefits">
         <li class="benefit" *ngFor="let benefit of benefits">{{benefit}}</li>
     </ul>
     <div class="answer-grid multiple-choice-options benefits-options">
