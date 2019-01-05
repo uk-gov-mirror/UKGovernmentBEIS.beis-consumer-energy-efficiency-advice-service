@@ -20,7 +20,6 @@ import {HouseStoreysQuestionComponent} from './house-storeys-question/house-stor
 import {CommonQuestionsModule} from '../common-questions/common-questions.module';
 import {TenureTypeQuestionComponent} from './tenure-type-question/tenure-type-question.component';
 import {GrantsQuestionnaireQuestionComponent} from './grants-questionnaire-question/grants-questionnaire-question.component';
-import {BenefitsQuestionComponent} from './benefits-question/benefits-question.component';
 import {IncomeQuestionComponent} from './income-question/income-question.component';
 import {ConstructionQuestionComponent} from './construction-question/construction-question.component';
 import {WaterTankQuestionComponent} from './water-tank-question/water-tank-question.component';
@@ -41,14 +40,20 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
 import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-question/tenancy-start-date-question.component';
 import {BuiltFormQuestionComponent} from "./built-form-question/built-form-question.component";
+import {IncomeRelatedBenefitsQuestionComponent} from "./benefits-questions/income-related-benefits-question.component";
+import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pension-guarantee-credit-question.component";
+import {ChildBenefitsQuestionComponent} from "./benefits-questions/child-benefits-question.component";
+import {DefenseRelatedBenefitsQuestionComponent} from "./benefits-questions/defense-related-benefits-question.component";
+import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-benefits-question.component";
 
 @NgModule({
     declarations: [
         BedroomsQuestionComponent,
-        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
+        ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatExposedWallQuestionComponent,
@@ -62,12 +67,15 @@ import {BuiltFormQuestionComponent} from "./built-form-question/built-form-quest
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
+        IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
+        PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowersAndBathsQuestionComponent,
+        SocietalBenefitsQuestionComponent,
         GrantsQuestionnaireQuestionComponent,
         ConstructionQuestionComponent,
         WaterTankQuestionComponent,
@@ -83,10 +91,11 @@ import {BuiltFormQuestionComponent} from "./built-form-question/built-form-quest
     ],
     exports: [
         BedroomsQuestionComponent,
-        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
+        ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatExposedWallQuestionComponent,
@@ -100,12 +109,15 @@ import {BuiltFormQuestionComponent} from "./built-form-question/built-form-quest
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
+        IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
+        PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowersAndBathsQuestionComponent,
+        SocietalBenefitsQuestionComponent,
         GrantsQuestionnaireQuestionComponent,
         ConstructionQuestionComponent,
         WaterTankQuestionComponent,
@@ -128,10 +140,11 @@ import {BuiltFormQuestionComponent} from "./built-form-question/built-form-quest
     ],
     entryComponents: [
         BedroomsQuestionComponent,
-        BenefitsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
+        ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatExposedWallQuestionComponent,
@@ -145,12 +158,15 @@ import {BuiltFormQuestionComponent} from "./built-form-question/built-form-quest
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
         IncomeQuestionComponent,
+        IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
+        PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
         ShowersAndBathsQuestionComponent,
+        SocietalBenefitsQuestionComponent,
         GrantsQuestionnaireQuestionComponent,
         ConstructionQuestionComponent,
         WaterTankQuestionComponent,

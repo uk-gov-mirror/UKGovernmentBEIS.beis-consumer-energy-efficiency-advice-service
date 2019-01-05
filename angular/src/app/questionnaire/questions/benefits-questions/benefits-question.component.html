@@ -1,0 +1,19 @@
+<div class="benefits-question question-component">
+    <ul class="benefits">
+        <li class="benefit" *ngFor="let benefit of benefits">{{benefit}}</li>
+    </ul>
+    <div class="answer-grid multiple-choice-options benefits-options">
+        <button id="yes-option"
+                class="multiple-choice-option benefits-option"
+                [class.selected]="response === true"
+                (click)="response = true; complete.emit()">
+            Yes
+        </button>
+        <button id="no-option"
+                class="multiple-choice-option benefits-option"
+                [class.selected]="response === false"
+                (click)="response = false; complete.emit()">
+            No
+        </button>
+    </div>
+</div>

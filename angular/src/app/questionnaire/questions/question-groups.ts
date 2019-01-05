@@ -12,7 +12,6 @@ import {OccupantsQuestionMetadata} from './occupants-question/occupants-question
 import {ShowersAndBathsQuestionMetadata} from './showers-and-baths-question/showers-and-baths-question-metadata';
 import {TenureTypeQuestionMetadata} from './tenure-type-question/tenure-type-question-metadata';
 import {GrantsQuestionnaireQuestionMetadata} from './grants-questionnaire-question/grants-questionnaire-question-metadata';
-import {BenefitsQuestionMetadata} from './benefits-question/benefits-question-metadata';
 import {IncomeQuestionMetadata} from './income-question/income-question-metadata';
 import {ConstructionQuestionMetadata} from './construction-question/construction-question-metadata';
 import {WaterTankQuestionMetadata} from './water-tank-question/water-tank-question-metadata';
@@ -35,6 +34,11 @@ import {HotWaterCylinderQuestionMetadata} from './hot-water-cylinder-question/ho
 import {AgriculturalTenancyTypeQuestionMetadata} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question-metadata';
 import {TenancyStartDateQuestionMetadata} from './mees/tenancy-start-date-question/tenancy-start-date-question-metadata';
 import {BuiltFormQuestionMetadata} from "./built-form-question/built-form-question-metadata";
+import {IncomeRelatedBenefitsQuestionMetadata} from "./benefits-questions/income-related-benefits-question-metadata";
+import {PensionGuaranteeCreditQuestionMetadata} from "./benefits-questions/pension-guarantee-credit-question-metadata";
+import {SocietalBenefitsQuestionMetadata} from "./benefits-questions/societal-benefits-question-metadata";
+import {DefenseRelatedBenefitsQuestionMetadata} from "./benefits-questions/defense-related-benefits-question-metadata";
+import {ChildBenefitsQuestionMetadata} from "./benefits-questions/child-benefits-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -81,8 +85,16 @@ export const GRANTS_QUESTIONS = [
     // Used to show savings per-month or per-year,
     // and for some grant applicability e.g. EcoHhcroSocialEfg
     new TenureTypeQuestionMetadata(),
-    // Used  for some grant applicability e.g. ColdWeatherPayments
-    new BenefitsQuestionMetadata(),
+    // Used  for some grant applicability e.g. WarmHomeDiscount, ColdWeatherPayments, EcoHhcroHelpToHeat
+    new PensionGuaranteeCreditQuestionMetadata(),
+    // Used  for some grant applicability e.g. ColdWeatherPayments, EcoHhcroHelpToHeat
+    new IncomeRelatedBenefitsQuestionMetadata(),
+    // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
+    new SocietalBenefitsQuestionMetadata(),
+    // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
+    new DefenseRelatedBenefitsQuestionMetadata(),
+    // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
+    new ChildBenefitsQuestionMetadata(),
     // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
     new OccupantsQuestionMetadata(),
     // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
@@ -90,7 +102,11 @@ export const GRANTS_QUESTIONS = [
 ];
 
 export const GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES = [
-    new BenefitsQuestionMetadata(),
+    new PensionGuaranteeCreditQuestionMetadata(),
+    new IncomeRelatedBenefitsQuestionMetadata(),
+    new SocietalBenefitsQuestionMetadata(),
+    new DefenseRelatedBenefitsQuestionMetadata(),
+    new ChildBenefitsQuestionMetadata(),
     new IncomeQuestionMetadata()
 ];
 
