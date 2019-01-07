@@ -15,7 +15,7 @@ export class SocietalBenefitsQuestionComponent extends QuestionBaseComponent {
         'Disability Living Allowance',
         'Personal Independence Payment (PIP)',
         'Attendance Allowance',
-        'Carer’s Allowance',
+        'Carer\'s Allowance',
         'Severe Disablement Allowance',
         'Industrial Injuries Disablement Benefits'
     ];
