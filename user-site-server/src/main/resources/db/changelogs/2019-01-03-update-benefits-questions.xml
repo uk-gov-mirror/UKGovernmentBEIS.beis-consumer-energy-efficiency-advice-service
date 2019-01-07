@@ -79,6 +79,13 @@ VALUES
     (@post_id, '_questionHeading', 'field_59e8be23eda3e'),
     (@post_id, 'questionHeading', 'Do you receive Child Benefits?');
 
+-- Remove unused income thresholds
+
+DELETE post, postmeta
+FROM wp_posts post
+JOIN wp_postmeta postmeta on postmeta.post_id = post.id
+WHERE post.post_type = 'income_threshold';
+
 ]]></sql>
     </changeSet>
 </databaseChangeLog>
