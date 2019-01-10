@@ -16,11 +16,15 @@
         height: 30px;
       }
 
-      & :nth-child(3) {
-        border-left: 1px solid $light-grey;
+      & :nth-child(2) {
+        border-left: none;
         padding: 0 0 0 10px;
         margin-left: 10px;
       }
+    }
+
+    & :nth-child(2) {
+      border-left: none;
     }
 
     app-data-card {
@@ -33,10 +37,8 @@
   }
 
   @include tablet() {
-    &.is-footer {
-      &:nth-child(2) {
-        border-left: none;
-      }
+    &:nth-child(2) {
+      border-left: none;
     }
 
     app-data-card {
@@ -51,10 +53,6 @@
   @include desktop() {
     app-data-card {
       flex: 0 0 $data-card-width;
-
-      &:first-child {
-        flex: 0 0 0.75 * $data-card-width;
-      }
     }
   }
 }
