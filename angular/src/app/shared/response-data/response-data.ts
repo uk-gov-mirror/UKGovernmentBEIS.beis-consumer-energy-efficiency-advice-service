@@ -7,7 +7,6 @@ import {HomeType} from '../../questionnaire/questions/home-type-question/home-ty
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 import {UserJourneyType} from './user-journey-type';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
-import {Benefits} from '../../questionnaire/questions/benefits-question/benefits';
 import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
 import {WaterTankSpace} from '../../questionnaire/questions/water-tank-question/water-tank-space';
 import {GardenAccessibility} from '../../questionnaire/questions/garden-question/garden-accessibility';
@@ -121,8 +120,16 @@ export class ResponseData {
     // Set by HotWaterCylinderQuestionComponent, sent to BRE energy-calculation
     public hotWaterCylinder: boolean;
 
-    // Set by BenefitsQuestionComponent, used by grants
-    public benefits: Benefits;
+    // Set by PensionGuaranteeCreditQuestionComponent, used by grants
+    public receivePensionGuaranteeCredit: boolean;
+    // Set by IncomeRelatedBenefitsQuestionComponent, used by grants
+    public receiveIncomeRelatedBenefits: boolean;
+    // Set by SocietalBenefitsQuestionComponent, used by grants
+    public receiveSocietalBenefits: boolean;
+    // Set by DefenseRelatedBenefitsQuestionComponent, used by grants
+    public receiveDefenseRelatedBenefits: boolean;
+    // Set by ChildBenefitsQuestionComponent, used by grants
+    public receiveChildBenefits: boolean;
     // Set by IncomeQuestionComponent, used by grants
     public income: number;
 

@@ -24,8 +24,12 @@ import {FloorLevelQuestionMetadata} from '../../questions/floor-level-question/f
 import {FloorSpanQuestionMetadata} from '../../questions/floor-span-question/floor-span-question-metadata';
 import {HotWaterCylinderQuestionMetadata} from "../../questions/hot-water-cylinder-question/hot-water-cylinder-question-metadata";
 import {IncomeQuestionMetadata} from "../../questions/income-question/income-question-metadata";
-import {BenefitsQuestionMetadata} from "../../questions/benefits-question/benefits-question-metadata";
 import {BuiltFormQuestionMetadata} from "../../questions/built-form-question/built-form-question-metadata";
+import {PensionGuaranteeCreditQuestionMetadata} from "../../questions/benefits-questions/pension-guarantee-credit-question-metadata";
+import {IncomeRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/income-related-benefits-question-metadata";
+import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questions/societal-benefits-question-metadata";
+import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
+import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -62,7 +66,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata(),
-            new BenefitsQuestionMetadata(),
+            new PensionGuaranteeCreditQuestionMetadata(),
+            new IncomeRelatedBenefitsQuestionMetadata(),
+            new SocietalBenefitsQuestionMetadata(),
+            new DefenseRelatedBenefitsQuestionMetadata(),
+            new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata(),
         ];
 
@@ -100,7 +108,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata(),
-            new BenefitsQuestionMetadata(),
+            new PensionGuaranteeCreditQuestionMetadata(),
+            new IncomeRelatedBenefitsQuestionMetadata(),
+            new SocietalBenefitsQuestionMetadata(),
+            new DefenseRelatedBenefitsQuestionMetadata(),
+            new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata(),
         ];
 
@@ -135,7 +147,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata(),
-            new BenefitsQuestionMetadata(),
+            new PensionGuaranteeCreditQuestionMetadata(),
+            new IncomeRelatedBenefitsQuestionMetadata(),
+            new SocietalBenefitsQuestionMetadata(),
+            new DefenseRelatedBenefitsQuestionMetadata(),
+            new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata(),
         ];
 
@@ -170,7 +186,11 @@ describe('HomeBasicsQuestionnaire', () => {
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata(),
-            new BenefitsQuestionMetadata(),
+            new PensionGuaranteeCreditQuestionMetadata(),
+            new IncomeRelatedBenefitsQuestionMetadata(),
+            new SocietalBenefitsQuestionMetadata(),
+            new DefenseRelatedBenefitsQuestionMetadata(),
+            new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata(),
         ];
 

@@ -1,10 +1,9 @@
-import {TestBed, async} from '@angular/core/testing';
+import {async, TestBed} from '@angular/core/testing';
 import {Observable} from 'rxjs/Observable';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {IncomeThresholds} from './income-threshold-service/income-thresholds';
 import {EcoHhcroHelpToHeat} from './eco-hhcro-help-to-heat';
 import {IncomeThresholdService} from './income-threshold-service/income-threshold.service';
-import {Benefits} from '../../../../questionnaire/questions/benefits-question/benefits';
 import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
 
 describe('EcoHhcroHelpToHeat', () => {
@@ -12,36 +11,20 @@ describe('EcoHhcroHelpToHeat', () => {
     let grantCalculator: EcoHhcroHelpToHeat;
 
     const incomeThresholds: IncomeThresholds = {
-        'tax-credits': {
+        'child-benefits': {
             'singleClaim': {
-                'zeroChildren': 13200,
-                'oneChild': 17400,
-                'twoChildren': 21600,
-                'threeChildren': 25800,
-                'fourPlusChildren': 30000
+                'zeroChildren': 0,
+                'oneChild': 18500,
+                'twoChildren': 23000,
+                'threeChildren': 27500,
+                'fourPlusChildren': 32000
             },
             'jointClaim': {
-                'zeroChildren': 19800,
-                'oneChild': 24000,
-                'twoChildren': 28200,
-                'threeChildren': 32400,
-                'fourPlusChildren': 36600
-            }
-        },
-        'universal-credit': {
-            'singleClaim': {
-                'zeroChildren': 1100,
-                'oneChild': 1450,
-                'twoChildren': 1800,
-                'threeChildren': 2150,
-                'fourPlusChildren': 2500
-            },
-            'jointClaim': {
-                'zeroChildren': 1650,
-                'oneChild': 2000,
-                'twoChildren': 2350,
-                'threeChildren': 2700,
-                'fourPlusChildren': 3050
+                'zeroChildren': 0,
+                'oneChild': 25500,
+                'twoChildren': 30000,
+                'threeChildren': 34500,
+                'fourPlusChildren': 39000
             }
         }
     };
@@ -64,22 +47,9 @@ describe('EcoHhcroHelpToHeat', () => {
         grantCalculator = TestBed.get(EcoHhcroHelpToHeat);
     });
 
-    it('should calculate as ineligible if receiving no benefits', () => {
+    it('should calculate as likely eligible if receiving pension guarantee credit', () => {
         // given
-        responseData.benefits = Benefits.None;
-
-        // when
-        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
-
-        // then
-        calculatedEligibility.then((eligibility) => {
-            expect(eligibility).toBe(GrantEligibility.Ineligible);
-        });
-    });
-
-    it('should calculate as eligible if receiving ESA', () => {
-        // given
-        responseData.benefits = Benefits.ESA;
+        responseData.receivePensionGuaranteeCredit = true;
 
         // when
         const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
@@ -90,9 +60,9 @@ describe('EcoHhcroHelpToHeat', () => {
         });
     });
 
-    it('should calculate as eligible if receiving JSA', () => {
+    it('should calculate as likely eligible if receiving income related benefits', () => {
         // given
-        responseData.benefits = Benefits.JobseekersAllowance;
+        responseData.receiveIncomeRelatedBenefits = true;
 
         // when
         const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
@@ -103,9 +73,9 @@ describe('EcoHhcroHelpToHeat', () => {
         });
     });
 
-    it('should calculate as eligible if receiving income support', () => {
+    it('should calculate as likely eligible if receiving societal benefits', () => {
         // given
-        responseData.benefits = Benefits.IncomeSupport;
+        responseData.receiveSocietalBenefits = true;
 
         // when
         const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
@@ -116,9 +86,9 @@ describe('EcoHhcroHelpToHeat', () => {
         });
     });
 
-    it('should calculate as eligible if receiving pension guarantee credit', () => {
+    it('should calculate as likely eligible if receiving defense related benefits', () => {
         // given
-        responseData.benefits = Benefits.PensionGuaranteeCredit;
+        responseData.receiveDefenseRelatedBenefits = true;
 
         // when
         const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
@@ -129,9 +99,9 @@ describe('EcoHhcroHelpToHeat', () => {
         });
     });
 
-    it('should calculate as eligible if receiving tax credits and income below threshold', () => {
+    it('should calculate as likely eligible if receiving child benefits and income below threshold', () => {
         // given
-        responseData.benefits = Benefits.TaxCredits;
+        responseData.receiveChildBenefits = true;
         responseData.numberOfAdultsAgedUnder64 = 1;
         responseData.numberOfAdultsAged64To80 = 0;
         responseData.numberOfAdultsAgedOver80 = 0;
@@ -148,15 +118,15 @@ describe('EcoHhcroHelpToHeat', () => {
         });
     });
 
-    it('should calculate as ineligible if receiving tax credits and income above threshold', () => {
+    it('should calculate as ineligible if receiving child benefits and income above threshold', () => {
         // given
-        responseData.benefits = Benefits.TaxCredits;
+        responseData.receiveChildBenefits = true;
         responseData.numberOfAdultsAgedUnder64 = 1;
         responseData.numberOfAdultsAged64To80 = 0;
         responseData.numberOfAdultsAgedOver80 = 0;
         responseData.numberOfChildrenAged5AndAbove = 2;
         responseData.numberOfChildrenAgedUnder5 = 0;
-        responseData.income = 22000;
+        responseData.income = 31000;
 
         // when
         const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
@@ -167,34 +137,8 @@ describe('EcoHhcroHelpToHeat', () => {
         });
     });
 
-    it('should calculate as eligible if receiving universal credit and income below threshold', () => {
+    it('should calculate as ineligible if not receiving any benefits', () => {
         // given
-        responseData.benefits = Benefits.UniversalCredit;
-        responseData.numberOfAdultsAgedUnder64 = 1;
-        responseData.numberOfAdultsAged64To80 = 1;
-        responseData.numberOfAdultsAgedOver80 = 0;
-        responseData.numberOfChildrenAged5AndAbove = 3;
-        responseData.numberOfChildrenAgedUnder5 = 0;
-        responseData.income = 32000;
-
-        // when
-        const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
-
-        // then
-        calculatedEligibility.then((eligibility) => {
-            expect(eligibility).toBe(GrantEligibility.LikelyEligible);
-        });
-    });
-
-    it('should calculate as ineligible if receiving universal credit and income above threshold', () => {
-        // given
-        responseData.benefits = Benefits.UniversalCredit;
-        responseData.numberOfAdultsAgedUnder64 = 1;
-        responseData.numberOfAdultsAged64To80 = 1;
-        responseData.numberOfAdultsAgedOver80 = 0;
-        responseData.numberOfChildrenAged5AndAbove = 3;
-        responseData.numberOfChildrenAgedUnder5 = 0;
-        responseData.income = 33000;
 
         // when
         const calculatedEligibility = grantCalculator.getEligibility(responseData).toPromise();
