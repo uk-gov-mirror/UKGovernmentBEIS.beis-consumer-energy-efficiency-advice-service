@@ -91,7 +91,6 @@ export class DownloadPlanComponent {
             });
         return {
             recommendations: recommendations,
-            potentialScore: this.recommendationsService.potentialScore,
             tenureType: this.responseData.tenureType
         };
     }

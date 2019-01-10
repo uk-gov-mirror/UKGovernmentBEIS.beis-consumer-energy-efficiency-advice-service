@@ -10,16 +10,6 @@
     border-left: 1px solid $light-grey;
   }
 
-  .loading-spinner-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .loading-spinner-small {
-      margin: 0;
-    }
-  }
-
   @include mobile() {
     &.is-footer {
       .savings {
@@ -33,7 +23,7 @@
       }
     }
 
-    .loading-spinner-container, app-data-card {
+    app-data-card {
       flex: 1;
     }
 
@@ -49,7 +39,7 @@
       }
     }
 
-    .loading-spinner-container, app-data-card {
+    app-data-card {
       flex: 1;
     }
 
@@ -59,7 +49,7 @@
   }
 
   @include desktop() {
-    .loading-spinner-container, app-data-card {
+    app-data-card {
       flex: 0 0 $data-card-width;
 
       &:first-child {

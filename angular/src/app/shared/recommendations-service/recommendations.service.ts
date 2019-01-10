@@ -22,10 +22,6 @@ import {UserJourneyType} from "../response-data/user-journey-type";
 @Injectable()
 export class RecommendationsService {
 
-    cachedCurrentScore: number;
-    potentialScore: number;
-    potentialScoreLoading: boolean;
-
     private static TOP_RECOMMENDATIONS: number = 5;
     private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendation[] = [];
 
@@ -55,22 +51,6 @@ export class RecommendationsService {
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 
-    refreshPotentialScore() {
-        const measureCodes = this.getRecommendationsInPlan()
-            .map(r => r.measureCode)
-            .filter(m => m);
-        if (measureCodes.length === 0) {
-            this.potentialScore = this.cachedCurrentScore;
-            return;
-        }
-
-        this.potentialScoreLoading = true;
-        this.energyCalculationApiService
-            .fetchEnergyCalculation(new RdSapInput(this.responseData, measureCodes))
-            .finally(() => this.potentialScoreLoading = false)
-            .subscribe(energyCalculation => this.potentialScore = parseInt(energyCalculation['Potential-SAP-Rating']));
-    }
-
     /**
      * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
      */
@@ -85,8 +65,6 @@ export class RecommendationsService {
                     if (!energyCalculation) {
                         throw new Error('Received empty energy calculation response');
                     }
-                    this.cachedCurrentScore = parseInt(energyCalculation['Current-SAP-Rating']);
-                    this.potentialScore = this.cachedCurrentScore;
                     const habitRecommendations = this
                         .getFilteredHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants
