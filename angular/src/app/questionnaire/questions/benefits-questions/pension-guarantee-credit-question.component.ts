@@ -10,6 +10,8 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 })
 export class PensionGuaranteeCreditQuestionComponent extends QuestionBaseComponent {
 
+    benefits = [];
+
     get responseForAnalytics(): string {
         return this.responseData.receivePensionGuaranteeCredit
             ? 'Receive pension guarantee credit'

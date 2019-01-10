@@ -10,6 +10,8 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 })
 export class ChildBenefitsQuestionComponent extends QuestionBaseComponent {
 
+    benefits = [];
+
     get responseForAnalytics(): string {
         return this.responseData.receiveChildBenefits
             ? 'Receive child benefits'
