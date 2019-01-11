@@ -14,7 +14,8 @@ export class SocietalBenefitsQuestionMetadata extends QuestionMetadata {
 
     // If you change question order, the other isApplicable functions in benefits-questions should be revised
     isApplicable(responseData: ResponseData): boolean {
-        return !responseData.receivePensionGuaranteeCredit
+        return responseData.shouldIncludeGrantsQuestionnaire
+            && !responseData.receivePensionGuaranteeCredit
             && !responseData.receiveIncomeRelatedBenefits;
     }
 
