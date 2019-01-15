@@ -12,6 +12,11 @@ export class PensionGuaranteeCreditQuestionMetadata extends QuestionMetadata {
         );
     }
 
+    // If you change question order, the other isApplicable functions in benefits-questions should be revised
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.shouldIncludeGrantsQuestionnaire;
+    }
+
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.receivePensionGuaranteeCredit !== undefined;
     }
