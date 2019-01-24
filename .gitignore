@@ -28,6 +28,7 @@ angular/out-tsc
 .idea/codeStyles/
 .idea/dictionaries/
 .idea/uiDesigner.xml
+.idea/encodings.xml
 .project
 .classpath
 .c9/

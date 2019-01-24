@@ -38,10 +38,10 @@ export class RecommendationsService {
                 private grantsEligibilityService: GrantEligibilityService) {
     }
 
-    getAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
+    getAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendation[]> {
         if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
             this.cachedResponseData = clone(this.responseData);
-            return this.refreshAllRecommendations()
+            return this.refreshAllRecommendations(energyCalculation)
                 .do(recommendations => this.cachedRecommendations = recommendations)
                 .catch(() => {
                     return Observable.of(RecommendationsService.DEFAULT_RECOMMENDATIONS);
@@ -74,14 +74,13 @@ export class RecommendationsService {
     /**
      * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
      */
-    private refreshAllRecommendations(): Observable<EnergyEfficiencyRecommendation[]> {
+    private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendation[]> {
         return Observable.forkJoin(
-            this.energyCalculationApiService.fetchEnergyCalculation(new RdSapInput(this.responseData)),
             this.measureService.fetchMeasureDetails(),
             this.grantsEligibilityService.getEligibleStandaloneGrants()
         )
             .mergeMap(
-                ([energyCalculation, measuresContent, eligibleStandaloneGrants]) => {
+                ([measuresContent, eligibleStandaloneGrants]) => {
                     if (!energyCalculation) {
                         throw new Error('Received empty energy calculation response');
                     }
