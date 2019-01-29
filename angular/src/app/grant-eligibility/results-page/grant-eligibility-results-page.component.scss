@@ -1,0 +1,97 @@
+// TODO: ESASSUP-89 This file was copy pasted from mees.scss. Need to double check if all components/styles are
+// necessary and delete the unused ones and .more-information placeholder
+@import "styles/mixins/layout";
+@import "styles/mixins/buttons";
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
+$calculator-image: "/assets/images/home-page/home-calc.svg";
+$arrow-width: 20px;
+$arrow-height: 48px;
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.grant-eligibility-result-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .page-heading {
+    padding: 48px 0;
+    background-color: $light-blue;
+
+    .page-row-content {
+      display: flex;
+      flex-wrap: wrap;
+
+      .heading-text {
+        @include page-heading-font;
+        color: $dark-blue;
+        flex: 2;
+      }
+    }
+  }
+
+  .more-information {
+    flex-grow: 1;
+    background-color: $lighter-grey;
+    padding: 40px 0;
+
+    .body-text {
+      @include page-body-font;
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .grant-eligibility-result-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          flex: 0 0 100%;
+          padding-bottom: 20px;
+        }
+      }
+    }
+
+    .more-information {
+    }
+  }
+}
+
+@include tablet() {
+  .grant-eligibility-result-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          flex: 0 0 100%;
+          padding-bottom: 20px;
+        }
+      }
+    }
+
+    .more-information {
+    }
+  }
+}
+
+@include desktop() {
+  .grant-eligibility-result-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          flex: 2;
+          padding-right: 40px;
+        }
+      }
+    }
+
+    .more-information {
+    }
+  }
+}

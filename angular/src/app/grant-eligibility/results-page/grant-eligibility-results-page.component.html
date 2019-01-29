@@ -1,0 +1,32 @@
+<app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="grant-eligibility-result-page" *ngIf="!isError">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <h1 class="heading-text">
+                Thanks for completing the questionnaire.
+            </h1>
+        </div>
+    </div>
+    <div class="page-row more-information">
+        <div class="page-row-content">
+            <div class="body-text" [ngSwitch]="status">
+                <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
+                    <div class="questionnaire-result">
+                        You should be eligible for ECO grant.
+                    </div>
+                    <a routerLink="/eco-suppliers" class="next-step-link">
+                        Find out which suppliers can help install energy efficiency measures in your home.
+                    </a>
+                </ng-container>
+                <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
+                    <div class="questionnaire-result">
+                        Unfortunately you are not eligible for ECO grant.
+                    </div>
+                    <a routerLink="/grants" class="next-step-link">
+                        Although you are not eligible for ECO, you may be eligible for other grants and schemes operating in your area.
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
