@@ -117,6 +117,7 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new SocietalBenefitsQuestionMetadata(),
     new DefenseRelatedBenefitsQuestionMetadata(),
     new ChildBenefitsQuestionMetadata(),
+    new OccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()
 ];
 
