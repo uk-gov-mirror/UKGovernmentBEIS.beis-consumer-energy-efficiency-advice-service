@@ -1,31 +1,38 @@
-<app-spinner-and-error-container [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
-<div class="grant-eligibility-result-page" *ngIf="!isError">
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="grant-eligibility-result-page" *ngIf="!isLoading && !isError">
     <div class="page-row page-heading">
-        <div class="page-row-content">
-            <h1 class="heading-text">
-                Thanks for completing the questionnaire.
+        <div class="page-row-content" [ngSwitch]="status">
+            <h1 class="heading-text" *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
+                You may be eligible for ECO.
+            </h1>
+            <h1 class="heading-text" *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
+                It looks like from what you've told us you aren't eligible for ECO.
             </h1>
         </div>
     </div>
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
+                <p>Thanks for completing the questionnaire.</p>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
-                    <div class="questionnaire-result">
-                        You should be eligible for ECO grant.
-                    </div>
-                    <a routerLink="/eco-suppliers" class="next-step-link">
-                        Find out which suppliers can help install energy efficiency measures in your home.
-                    </a>
+                    <p>You may be eligible for ECO.</p>
+                    <p>To get support you will need to find an energy company or a scheme that is looking to carry out improvements in a home like yours.</p>
+                    <p>Find out which suppliers can help install energy efficiency measures in your home using the link below:</p>
                 </ng-container>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
-                    <div class="questionnaire-result">
-                        Unfortunately you are not eligible for ECO grant.
-                    </div>
-                    <a routerLink="/grants" class="next-step-link">
-                        Although you are not eligible for ECO, you may be eligible for other grants and schemes operating in your area.
-                    </a>
+                    <p>It looks like from what you've told us you aren't eligible for ECO.</p>
+                    <p>Although you are not eligible for ECO, you may be eligible for other grants and schemes operating in your area.</p>
+                    <p>Use the following link and enter your postcode to check.</p>
                 </ng-container>
+                <a class="beis-button" [href]="status == GrantEligibilityResultsStatus.Eligible ? '/eco-suppliers' : '/grants'">
+                    <span class="beis-button-text">{{status == GrantEligibilityResultsStatus.Eligible ? "ECO Suppliers" : "Local Schemes"}}</span>
+                    <span class="beis-button-icon-container">
+                            <span class="beis-button-icon">></span>
+                        </span>
+                </a>
+                <a routerLink="/pages/energy-company-obligation" class="eco-info-link">
+                    Find out more on the ECO page
+                </a>
             </div>
         </div>
     </div>

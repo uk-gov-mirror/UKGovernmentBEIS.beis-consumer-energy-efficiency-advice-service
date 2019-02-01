@@ -5,10 +5,6 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
 
-$calculator-image: "/assets/images/home-page/home-calc.svg";
-$arrow-width: 20px;
-$arrow-height: 48px;
-
 :host {
   flex-grow: 1;
   display: flex;
@@ -44,7 +40,16 @@ $arrow-height: 48px;
     .body-text {
       @include page-body-font;
     }
+
+    .beis-button {
+      @include beis-button();
+    }
+
+    .eco-info-link {
+      @include quick-link-font;
+    }
   }
+
 }
 
 // Breakpoint specific styling
@@ -53,13 +58,9 @@ $arrow-height: 48px;
     .page-heading {
       .page-row-content {
         .heading-text {
-          flex: 0 0 100%;
           padding-bottom: 20px;
         }
       }
-    }
-
-    .more-information {
     }
   }
 }
@@ -69,13 +70,9 @@ $arrow-height: 48px;
     .page-heading {
       .page-row-content {
         .heading-text {
-          flex: 0 0 100%;
           padding-bottom: 20px;
         }
       }
-    }
-
-    .more-information {
     }
   }
 }
@@ -85,13 +82,9 @@ $arrow-height: 48px;
     .page-heading {
       .page-row-content {
         .heading-text {
-          flex: 2;
           padding-right: 40px;
         }
       }
-    }
-
-    .more-information {
     }
   }
 }

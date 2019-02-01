@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {GrantEligibilityQuestionnaireComponent} from "./grant-eligibility-questionnaire.component";
 
-fdescribe('GrantEligibilityQuestionnaireComponent', () => {
+describe('GrantEligibilityQuestionnaireComponent', () => {
     let component: GrantEligibilityQuestionnaireComponent;
     let fixture: ComponentFixture<GrantEligibilityQuestionnaireComponent>;
     let router: Router;
