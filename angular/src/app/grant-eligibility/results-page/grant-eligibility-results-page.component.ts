@@ -30,7 +30,7 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
             this.isError = true;
         }
 
-        this.grantsEligibilityService.eligibilityByGrant()
+        this.grantsEligibilityService.getEligibilityByGrant()
             .subscribe(
                 eligibilityByGrant => this.onLoadingComplete(eligibilityByGrant),
                 (err) => {

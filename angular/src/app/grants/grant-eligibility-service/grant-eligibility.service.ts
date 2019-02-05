@@ -29,7 +29,7 @@ export class GrantEligibilityService {
                 private nationalGrantCalculatorProvider: NationalGrantCalculatorProvider) {
     }
 
-    public eligibilityByGrant(): Observable<EligibilityByGrant> {
+    public getEligibilityByGrant(): Observable<EligibilityByGrant> {
         if (!isEqual(this.responseData, this.cachedResponseData) || !this._eligibilityByGrant) {
             this.cachedResponseData = clone(this.responseData);
             this._eligibilityByGrant = this.fetchEligibilityByGrant().shareReplay(1);
@@ -39,7 +39,7 @@ export class GrantEligibilityService {
 
     getEligibleGrantsForMeasure(measureCode: string, measure: EnergySavingMeasureResponse): Observable<NationalGrantForMeasure[]> {
         return Observable.forkJoin(
-            this.eligibilityByGrant(),
+            this.getEligibilityByGrant(),
             this.nationalGrantsContentService.fetchNationalGrantsContent()
         )
             .map(([eligibilityForGrants, grantsContent]) => {
@@ -53,7 +53,7 @@ export class GrantEligibilityService {
 
     getEligibleStandaloneGrants(): Observable<StandaloneNationalGrant[]> {
         return Observable.forkJoin(
-            this.eligibilityByGrant(),
+            this.getEligibilityByGrant(),
             this.nationalGrantsContentService.fetchNationalGrantsContent()
         )
             .map(([eligibilityByGrant, grantsContent]) => keys(eligibilityByGrant)

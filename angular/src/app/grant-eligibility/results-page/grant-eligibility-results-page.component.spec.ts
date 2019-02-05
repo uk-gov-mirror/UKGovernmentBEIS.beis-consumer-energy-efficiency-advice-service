@@ -35,7 +35,7 @@ describe('GrantEligibilityResultsPageComponent', () => {
 
     beforeEach(async(() => {
         eligibilityResponse = Observable.of(dummyEligibilityResponse);
-        spyOn(grantsEligibilityServiceStub, 'eligibilityByGrant').and.callThrough();
+        spyOn(grantsEligibilityServiceStub, 'getEligibilityByGrant').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
