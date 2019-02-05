@@ -255,8 +255,6 @@ public class EnergySavingPlanController {
         String totalSavingsDisplay = roundAndFormatCostValueRange(minimumSavings, maximumSavings);
 
         templateContext.setVariable("totalSavingsDisplay", totalSavingsDisplay);
-
-        templateContext.setVariable("potentialScore", request.potentialScore);
     }
 
     private static String urlEncode(String val) {
@@ -351,8 +349,6 @@ public class EnergySavingPlanController {
     public static class PlanInfo {
         @NotNull
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
-        @NotNull
-        Double potentialScore;
         @NotNull
         Integer tenureType;
     }

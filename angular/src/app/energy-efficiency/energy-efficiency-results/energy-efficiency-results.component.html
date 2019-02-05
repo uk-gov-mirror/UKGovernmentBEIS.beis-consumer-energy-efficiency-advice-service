@@ -5,12 +5,6 @@
             <h1 class="heading-text">Now build your plan</h1>
             <div class="header-data-cards">
                 <app-data-card
-                        heading="Your current score is"
-                        [value]="energyCalculations.currentScore"
-                        colorCircleClassName="amber"
-                        [isVerticalAtMobile]="true"
-                ></app-data-card>
-                <app-data-card
                         heading="Your estimated monthly bills are"
                         [value]="'£' + energyCalculations.currentMonthlyBillPoundsRounded"
                         [isVerticalAtMobile]="true"

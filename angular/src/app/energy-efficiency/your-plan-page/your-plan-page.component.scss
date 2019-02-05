@@ -300,7 +300,7 @@ $desktop-heading-vertical-padding: 20px;
 
         .heading, .subheading {
           flex: 1 0 auto;
-          width: calc(100% - 3 * #{$data-card-width} - #{$summary-padding});
+          width: calc(100% - 2 * #{$data-card-width} - #{$summary-padding});
         }
 
         app-your-plan-summary {
@@ -310,7 +310,7 @@ $desktop-heading-vertical-padding: 20px;
           position: absolute;
           right: 0;
           top: $desktop-heading-vertical-padding;
-          width: 3 * $data-card-width + $summary-padding;
+          width: 2 * $data-card-width + $summary-padding;
         }
       }
     }
