@@ -19,7 +19,7 @@ describe('GrantEligibilityResultsPageComponent', () => {
 
     let eligibilityResponse: Observable<EligibilityByGrant>;
     const grantsEligibilityServiceStub = {
-        eligibilityByGrant: () => eligibilityResponse,
+        getEligibilityByGrant: () => eligibilityResponse,
     };
 
     const questionnaireServiceStub = {
@@ -66,7 +66,7 @@ describe('GrantEligibilityResultsPageComponent', () => {
         fixture.detectChanges();
 
         // then
-        expect(grantsEligibilityServiceStub.eligibilityByGrant).toHaveBeenCalled();
+        expect(grantsEligibilityServiceStub.getEligibilityByGrant).toHaveBeenCalled();
     });
 
     it('should display an error message if grants eligibility service responds with an error', () => {
