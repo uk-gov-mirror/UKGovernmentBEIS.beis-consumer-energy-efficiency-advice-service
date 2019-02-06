@@ -24,7 +24,12 @@ export class GrantEligibilityService {
     private cachedResponseData: ResponseData;
     private _eligibilityByGrant: Observable<EligibilityByGrant>;
 
-    private get eligibilityByGrant(): Observable<EligibilityByGrant> {
+    constructor(private responseData: ResponseData,
+                private nationalGrantsContentService: NationalGrantsContentService,
+                private nationalGrantCalculatorProvider: NationalGrantCalculatorProvider) {
+    }
+
+    public getEligibilityByGrant(): Observable<EligibilityByGrant> {
         if (!isEqual(this.responseData, this.cachedResponseData) || !this._eligibilityByGrant) {
             this.cachedResponseData = clone(this.responseData);
             this._eligibilityByGrant = this.fetchEligibilityByGrant().shareReplay(1);
@@ -32,14 +37,9 @@ export class GrantEligibilityService {
         return this._eligibilityByGrant;
     }
 
-    constructor(private responseData: ResponseData,
-                private nationalGrantsContentService: NationalGrantsContentService,
-                private nationalGrantCalculatorProvider: NationalGrantCalculatorProvider) {
-    }
-
     getEligibleGrantsForMeasure(measureCode: string, measure: EnergySavingMeasureResponse): Observable<NationalGrantForMeasure[]> {
         return Observable.forkJoin(
-            this.eligibilityByGrant,
+            this.getEligibilityByGrant(),
             this.nationalGrantsContentService.fetchNationalGrantsContent()
         )
             .map(([eligibilityForGrants, grantsContent]) => {
@@ -53,7 +53,7 @@ export class GrantEligibilityService {
 
     getEligibleStandaloneGrants(): Observable<StandaloneNationalGrant[]> {
         return Observable.forkJoin(
-            this.eligibilityByGrant,
+            this.getEligibilityByGrant(),
             this.nationalGrantsContentService.fetchNationalGrantsContent()
         )
             .map(([eligibilityByGrant, grantsContent]) => keys(eligibilityByGrant)

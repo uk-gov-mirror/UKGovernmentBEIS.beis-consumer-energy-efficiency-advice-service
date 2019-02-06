@@ -5,6 +5,7 @@ import {HomeBasicsQuestionnaire} from './questionnaires/home-basics/home-basics-
 import {GrantsQuestionnaire} from './questionnaires/grants/grants-questionnaire';
 import {BoilerQuestionnaire} from './questionnaires/boiler/boiler-questionnaire';
 import {MeesQuestionnaire} from './questionnaires/mees/mees-questionnaire';
+import {GrantEligibilityQuestionnaire} from "./questionnaires/grant-eligibility/grant-eligibility-questionnaire";
 
 type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 
@@ -15,6 +16,7 @@ export class QuestionnaireService {
         'grants': GrantsQuestionnaire.getInstance,
         'boiler': BoilerQuestionnaire.getInstance,
         'mees': MeesQuestionnaire.getInstance,
+        'grant-eligibility': GrantEligibilityQuestionnaire.getInstance
     };
 
     constructor(private responseData: ResponseData) {

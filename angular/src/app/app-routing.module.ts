@@ -32,6 +32,9 @@ import {PageNotCreatedComponent} from './page-not-created/page-not-created.compo
 import {SimpleSavingsComponent} from './simple-savings/simple-savings.component';
 import {TroubleshootingPageComponent} from "./boiler/troubleshooting-page/troubleshooting-page.component";
 import {InstallerSearchComponent} from "./installer-search/installer-search.component";
+import {GrantEligibilityQuestionnaireComponent} from "./grant-eligibility/grant-eligibility-questionnaire/grant-eligibility-questionnaire.component";
+import {GrantEligibilityResultsPageComponent} from "./grant-eligibility/results-page/grant-eligibility-results-page.component";
+import {GrantEligibilityResultsPageGuard} from "./grant-eligibility/results-page/grant-eligibility-results-page.guard";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -84,6 +87,16 @@ const routes: Routes = [
         path: 'grants/questionnaire',
         component: GrantsQuestionnaireComponent,
         pathMatch: 'full'
+    },
+    {
+        path: 'grant-eligibility/questionnaire',
+        component: GrantEligibilityQuestionnaireComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'grant-eligibility/results',
+        component: GrantEligibilityResultsPageComponent,
+        canActivate: [GrantEligibilityResultsPageGuard]
     },
     {
         path: 'about-this-site',

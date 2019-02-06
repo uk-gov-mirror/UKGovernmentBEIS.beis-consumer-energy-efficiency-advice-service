@@ -110,6 +110,17 @@ export const GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES = [
     new IncomeQuestionMetadata()
 ];
 
+// Questions for the "Grant eligibility" questionnaire
+export const GRANT_ELIGIBILITY_QUESTIONS = [
+    new PensionGuaranteeCreditQuestionMetadata(),
+    new IncomeRelatedBenefitsQuestionMetadata(),
+    new SocietalBenefitsQuestionMetadata(),
+    new DefenseRelatedBenefitsQuestionMetadata(),
+    new ChildBenefitsQuestionMetadata(),
+    new OccupantsQuestionMetadata(),
+    new IncomeQuestionMetadata()
+];
+
 export const BOILER_QUESTIONS = [
     // Used to decide if the property is "well insulated", restricts which boilers are offered
     new ConstructionQuestionMetadata(),

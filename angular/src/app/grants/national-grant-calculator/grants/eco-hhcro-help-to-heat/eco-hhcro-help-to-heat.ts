@@ -9,8 +9,10 @@ import {IncomeThreshold, IncomeThresholdByChildren} from './income-threshold-ser
 @Injectable()
 export class EcoHhcroHelpToHeat extends NationalGrantCalculator {
 
+    public static readonly GRANT_ID: string = 'eco-hhcro-help-to-heat';
+
     constructor(private incomeThresholdService: IncomeThresholdService) {
-        super('eco-hhcro-help-to-heat');
+        super(EcoHhcroHelpToHeat.GRANT_ID);
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
