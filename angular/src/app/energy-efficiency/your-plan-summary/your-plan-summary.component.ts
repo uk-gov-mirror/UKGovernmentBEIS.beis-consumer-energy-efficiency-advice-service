@@ -40,16 +40,4 @@ export class YourPlanSummaryComponent {
     get showMonthlySavings() {
         return this.responseData.tenureType !== TenureType.OwnerOccupancy;
     }
-
-    get potentialScore(): number {
-        return this.recommendationsService.potentialScore;
-    }
-
-    get potentialScoreLoading(): boolean {
-        return this.recommendationsService.potentialScoreLoading;
-    }
-
-    get currentScoreColorCircleClassName(): string {
-        return this.potentialScore > this.recommendationsService.cachedCurrentScore ? 'green' : 'amber';
-    }
 }

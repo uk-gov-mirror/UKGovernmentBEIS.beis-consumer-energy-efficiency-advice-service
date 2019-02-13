@@ -5,7 +5,6 @@ import {HomeType} from '../../../questionnaire/questions/home-type-question/home
 import {HomeAge} from '../../../questionnaire/questions/home-age-question/home-age';
 import {FuelType} from '../../../questionnaire/questions/fuel-type-question/fuel-type';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
-import {Benefits} from '../../../questionnaire/questions/benefits-question/benefits';
 import {
     GlazingType,
     RoofType,
@@ -73,8 +72,6 @@ describe('RdsapInput', () => {
             numberOfShowersPerWeek: 0,
             numberOfBathsPerWeek: 45,
             livingRoomTemperature: 20,
-            benefits: Benefits.None,
-            income: 123,
             roofType: RoofType.DoNotKnow,
             wallType: WallType.DoNotKnow,
             glazingType: GlazingType.Double,
@@ -84,6 +81,13 @@ describe('RdsapInput', () => {
             roofSpace: RoofSpace.NoSpace,
             numberOfAdults: numberOfAdultsUnder64 + numberOfAdults64To80 + numberOfAdultsOver80,
             numberOfChildren: numberOfChildrenUnder5 + numberOfChildrenAged5AndAbove,
+
+            receivePensionGuaranteeCredit: false,
+            receiveIncomeRelatedBenefits: false,
+            receiveSocietalBenefits: false,
+            receiveDefenseRelatedBenefits: false,
+            receiveChildBenefits: false,
+            income: 123,
 
             lettingDomesticPropertyStage: LettingDomesticPropertyStage.Currently,
             tenancyStartDate: TenancyStartDate.BeforeApril2018,

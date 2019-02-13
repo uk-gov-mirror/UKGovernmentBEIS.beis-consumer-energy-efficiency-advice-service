@@ -106,7 +106,6 @@ public class EnergySavingPlanControllerTest {
                                         null,
                                         null)))
                 .tenureType(0)
-                .potentialScore(72.0)
                 .build();
 
         String formBody = EntityUtils.toString(new UrlEncodedFormEntity(Collections.singletonList(

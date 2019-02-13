@@ -5,8 +5,12 @@ import {PostcodeEpcQuestionMetadata} from '../../questions/postcode-epc-question
 import {OccupantsQuestionMetadata} from '../../questions/occupants-question/occupants-question-metadata';
 import {TenureTypeQuestionMetadata} from '../../questions/tenure-type-question/tenure-type-question-metadata';
 import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
-import {BenefitsQuestionMetadata} from '../../questions/benefits-question/benefits-question-metadata';
 import {IncomeQuestionMetadata} from '../../questions/income-question/income-question-metadata';
+import {PensionGuaranteeCreditQuestionMetadata} from "../../questions/benefits-questions/pension-guarantee-credit-question-metadata";
+import {IncomeRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/income-related-benefits-question-metadata";
+import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
+import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questions/societal-benefits-question-metadata";
+import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
 
 describe('GrantsQuestionnaire', () => {
 
@@ -27,7 +31,11 @@ describe('GrantsQuestionnaire', () => {
         responseData.numberOfChildrenAged5AndAbove = undefined;
         const expectedQuestions = [
             new PostcodeEpcQuestionMetadata(),
-            new BenefitsQuestionMetadata(),
+            new PensionGuaranteeCreditQuestionMetadata(),
+            new IncomeRelatedBenefitsQuestionMetadata(),
+            new SocietalBenefitsQuestionMetadata(),
+            new DefenseRelatedBenefitsQuestionMetadata(),
+            new ChildBenefitsQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new IncomeQuestionMetadata()
         ];
@@ -70,7 +78,11 @@ describe('GrantsQuestionnaire', () => {
         GrantsQuestionnaire.getInstance(responseData);
         const expectedQuestions = [
             new TenureTypeQuestionMetadata(),
-            new BenefitsQuestionMetadata(),
+            new PensionGuaranteeCreditQuestionMetadata(),
+            new IncomeRelatedBenefitsQuestionMetadata(),
+            new SocietalBenefitsQuestionMetadata(),
+            new DefenseRelatedBenefitsQuestionMetadata(),
+            new ChildBenefitsQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new IncomeQuestionMetadata()
         ];

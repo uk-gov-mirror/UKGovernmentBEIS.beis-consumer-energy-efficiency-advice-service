@@ -76,7 +76,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     toggleAddedToPlan(): void {
         this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
-        this.recommendationsService.refreshPotentialScore();
         if (this.recommendation.isAddedToPlan) {
             this.sendEventToAnalytics('add-to-plan_clicked');
         }

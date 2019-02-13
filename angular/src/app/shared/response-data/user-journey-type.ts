@@ -15,7 +15,8 @@ export enum UserJourneyType {
     MakeHomeGreener,
     // other journeys:
     Boiler,
-    Grants
+    Grants,
+    GrantEligibility
 }
 
 /**
