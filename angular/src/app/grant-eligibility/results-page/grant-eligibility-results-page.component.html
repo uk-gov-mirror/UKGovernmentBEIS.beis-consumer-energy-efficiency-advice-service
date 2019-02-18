@@ -6,7 +6,7 @@
                 You may be eligible for ECO.
             </h1>
             <h1 class="heading-text" *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
-                It looks like from what you've told us you aren't eligible for ECO.
+                It looks like you aren't eligible for ECO.
             </h1>
         </div>
     </div>
@@ -15,10 +15,9 @@
             <div class="body-text" [ngSwitch]="status">
                 <p>Thanks for completing the questionnaire.</p>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
-                    <p>You may be eligible for ECO.</p>
-                    <p>You could get ECO support whether you own your home or rent it, but if you do rent there may be some restrictions.</p>
-                    <p>To get this support you will need to find an energy company or a scheme that is looking to carry out improvements in a home like yours.</p>
-                    <p>Find out which suppliers can help install energy efficiency measures in your home using the link below:</p>
+                    <p>From what you’ve told us, you may be able to get help from ECO.</p>
+                    <p>ECO can help you whether you own your home or rent, but if you do rent there may be some restrictions.</p>
+                    <p>Find energy companies who may be able to help you on the link below:</p>
                 </ng-container>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
                     <p>It looks like from what you've told us you aren't eligible for ECO.</p>
