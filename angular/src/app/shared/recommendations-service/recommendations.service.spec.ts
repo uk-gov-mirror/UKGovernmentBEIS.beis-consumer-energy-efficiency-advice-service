@@ -105,18 +105,9 @@ describe('RecommendationsService', () => {
     });
 
     describe('#getAllRecommendations', () => {
-        it('should call energy calculation API service with response data', () => {
-            // when
-            service.getAllRecommendations();
-
-            // then
-            expect(energyCalculationApiServiceStub.fetchEnergyCalculation)
-                .toHaveBeenCalledWith(new RdSapInput(responseData));
-        });
-
         it('should call measures content service', () => {
             // when
-            service.getAllRecommendations();
+            service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             expect(measuresServiceStub.fetchMeasureDetails).toHaveBeenCalled();
@@ -124,7 +115,7 @@ describe('RecommendationsService', () => {
 
         it('should call grant eligibility service', () => {
             // when
-            service.getAllRecommendations();
+            service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             expect(grantsEligibilityServiceStub.getEligibleStandaloneGrants).toHaveBeenCalled();
@@ -142,7 +133,7 @@ describe('RecommendationsService', () => {
                 });
 
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then(recommendations => {
@@ -158,7 +149,7 @@ describe('RecommendationsService', () => {
                 .map(measure => [measure.cost_saving, measure.energy_saving]);
 
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then(recommendations => {
@@ -181,7 +172,7 @@ describe('RecommendationsService', () => {
                 });
 
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then(recommendations => {
@@ -193,7 +184,7 @@ describe('RecommendationsService', () => {
 
         it('should return recommendation details correctly', async(() => {
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then((recommendations) => {
@@ -213,7 +204,7 @@ describe('RecommendationsService', () => {
 
         it('should sort recommendations by interleaving the behavioural and grant measures within the BRE "main" measures', async(() => {
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then((recommendations) => {
@@ -228,7 +219,7 @@ describe('RecommendationsService', () => {
 
         it('should tag the top 5 recommendations as top-recommendations', async(() => {
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then((recommendations) => {
@@ -241,7 +232,7 @@ describe('RecommendationsService', () => {
 
         it('should link recommendation to available grant', async(() => {
             // when
-            const recommendationsObservable = service.getAllRecommendations();
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
 
             // then
             recommendationsObservable.toPromise().then((recommendations) => {

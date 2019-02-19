@@ -1,6 +1,6 @@
 import {IncomeThresholdResponse} from './income-threshold-response';
 
-export type IncomeThresholdName = 'tax-credits' | 'universal-credit';
+export type IncomeThresholdName = 'child-benefits';
 export type IncomeThresholds = {[K in IncomeThresholdName]?: IncomeThreshold};
 
 export class IncomeThreshold {

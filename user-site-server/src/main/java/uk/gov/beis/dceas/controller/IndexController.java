@@ -110,6 +110,7 @@ public class IndexController {
     @RequestMapping(value = {
         "/",
         "/energy-efficiency/**",
+        "/grant-eligibility/**",
         "/grants/**",
         "/boiler/**",
         "/minimum-energy-efficiency-standards/**",

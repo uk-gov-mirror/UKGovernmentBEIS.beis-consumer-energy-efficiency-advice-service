@@ -1,0 +1,39 @@
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="grant-eligibility-result-page" *ngIf="!isLoading && !isError">
+    <div class="page-row page-heading">
+        <div class="page-row-content" [ngSwitch]="status">
+            <h1 class="heading-text" *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
+                You may be eligible for ECO.
+            </h1>
+            <h1 class="heading-text" *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
+                It looks like you aren't eligible for ECO.
+            </h1>
+        </div>
+    </div>
+    <div class="page-row more-information">
+        <div class="page-row-content">
+            <div class="body-text" [ngSwitch]="status">
+                <p>Thanks for completing the questionnaire.</p>
+                <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
+                    <p>From what you’ve told us, you may be able to get help from ECO.</p>
+                    <p>ECO can help you whether you own your home or rent, but if you do rent there may be some restrictions.</p>
+                    <p>Find energy companies who may be able to help you on the link below:</p>
+                </ng-container>
+                <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
+                    <p>It looks like from what you've told us you aren't eligible for ECO.</p>
+                    <p>Although you are not eligible for ECO, you may be eligible for other grants and schemes operating in your area.</p>
+                    <p>Use the following link and enter your postcode to check.</p>
+                </ng-container>
+                <a class="beis-button" [href]="status == GrantEligibilityResultsStatus.Eligible ? '/eco-suppliers' : '/grants'">
+                    <span class="beis-button-text">{{status == GrantEligibilityResultsStatus.Eligible ? "ECO Suppliers" : "Local Schemes"}}</span>
+                    <span class="beis-button-icon-container">
+                            <span class="beis-button-icon">></span>
+                        </span>
+                </a>
+                <a routerLink="/pages/energy-company-obligation" class="eco-info-link">
+                    Find out more on the ECO page
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

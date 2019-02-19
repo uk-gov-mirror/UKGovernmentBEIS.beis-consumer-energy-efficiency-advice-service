@@ -10,30 +10,24 @@
     border-left: 1px solid $light-grey;
   }
 
-  .loading-spinner-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .loading-spinner-small {
-      margin: 0;
-    }
-  }
-
   @include mobile() {
     &.is-footer {
       .savings {
         height: 30px;
       }
 
-      & :nth-child(3) {
-        border-left: 1px solid $light-grey;
+      & :nth-child(2) {
+        border-left: none;
         padding: 0 0 0 10px;
         margin-left: 10px;
       }
     }
 
-    .loading-spinner-container, app-data-card {
+    & :nth-child(2) {
+      border-left: none;
+    }
+
+    app-data-card {
       flex: 1;
     }
 
@@ -43,13 +37,11 @@
   }
 
   @include tablet() {
-    &.is-footer {
-      &:nth-child(2) {
-        border-left: none;
-      }
+    &:nth-child(2) {
+      border-left: none;
     }
 
-    .loading-spinner-container, app-data-card {
+    app-data-card {
       flex: 1;
     }
 
@@ -59,12 +51,8 @@
   }
 
   @include desktop() {
-    .loading-spinner-container, app-data-card {
+    app-data-card {
       flex: 0 0 $data-card-width;
-
-      &:first-child {
-        flex: 0 0 0.75 * $data-card-width;
-      }
     }
   }
 }

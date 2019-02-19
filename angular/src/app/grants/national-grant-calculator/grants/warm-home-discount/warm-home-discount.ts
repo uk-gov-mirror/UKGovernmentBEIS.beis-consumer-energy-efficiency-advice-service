@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {NationalGrantCalculator} from '../../national-grant-calculator';
-import {Benefits} from '../../../../questionnaire/questions/benefits-question/benefits';
 import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {Observable} from 'rxjs/Observable';
@@ -8,7 +7,6 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class WarmHomeDiscount extends NationalGrantCalculator {
 
-    private static readonly QUALIFYING_BENEFIT = Benefits.PensionGuaranteeCredit;
     private static readonly ANNUAL_PAYMENT_POUNDS = 140;
 
     constructor() {
@@ -17,7 +15,7 @@ export class WarmHomeDiscount extends NationalGrantCalculator {
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
         let eligibility: GrantEligibility;
-        if (responseData.benefits & WarmHomeDiscount.QUALIFYING_BENEFIT) {
+        if (responseData.receivePensionGuaranteeCredit) {
             // This is a bit rough-and-ready.
             // It might be possible to improve rather than just saying 'may be eligible'.
             //

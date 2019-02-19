@@ -80,16 +80,14 @@ $grant-card-margin: 24px;
         .header-data-cards {
           @include is-grid(36px);
           padding: 24px 20px;
+          justify-content: center;
 
           app-data-card {
-            @include is-grid-item($number-of-items: 2, $margin: 0px);
-            max-width: 50%;
+            max-width: 100%;
             margin: 18px 0;
             padding: 0 18px;
-
-            &:first-of-type {
-              border-right: 1px solid $light-grey;
-            }
+            border-right: 1px solid $light-grey;
+            border-left: 1px solid $light-grey;
           }
         }
       }
@@ -121,16 +119,14 @@ $grant-card-margin: 24px;
         .header-data-cards {
           @include is-grid(100px);
           padding: 24px 34px;
+          justify-content: center;
 
           app-data-card {
-            @include is-grid-item($number-of-items: 2, $margin: 0px);
-            max-width: 50%;
+            max-width: 100%;
             margin: 50px 0;
             padding: 0 50px;
-
-            &:not(:last-of-type) {
-              border-right: 1px solid $light-grey;
-            }
+            border-right: 1px solid $light-grey;
+            border-left: 1px solid $light-grey;
           }
         }
       }
@@ -157,7 +153,7 @@ $grant-card-margin: 24px;
         }
 
         .header-data-cards {
-          $desktop-header-cards-width: 2 * $data-card-width + $add-to-plan-column-width;
+          $desktop-header-cards-width: $data-card-width + $add-to-plan-column-width;
           flex: 0 0 $desktop-header-cards-width;
 
           & > :last-child {

@@ -16,6 +16,7 @@ import {PageModule} from './page/page.module';
 import {MeasurePageModule} from './measure-page/measure-page.module';
 import {BoilerModule} from './boiler/boiler.module';
 import {GrantsModule} from './grants/grants.module';
+import {GrantEligibilityModule} from "./grant-eligibility/grant-eligibility.module";
 import {EnergyEfficiencyModule} from './energy-efficiency/energy-efficiency.module';
 import {AdminPageModule} from './admin-page/admin-page.module';
 import {YourHomeModule} from './your-home/your-home.module';
@@ -47,6 +48,7 @@ import {GlobalErrorHandler} from "./shared/global-error-handler";
         EnergyEfficiencyModule.forRoot(),
         HomePageModule,
         GrantsModule.forRoot(),
+        GrantEligibilityModule.forRoot(),
         PageModule,
         MeasurePageModule,
         ECOSuppliersPageModule,

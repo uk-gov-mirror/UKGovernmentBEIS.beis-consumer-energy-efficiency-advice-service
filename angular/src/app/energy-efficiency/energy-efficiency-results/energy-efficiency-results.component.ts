@@ -50,18 +50,17 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             return;
         }
 
-        Observable.forkJoin(
-            this.recommendationsService.getAllRecommendations(),
-            this.energyCalculationService.fetchEnergyCalculation(new RdSapInput(this.responseData))
-        )
-            .subscribe(
-                ([allRecommendations, energyCalculationResponse]) =>
-                    this.onLoadingComplete(allRecommendations, energyCalculationResponse),
-                (err) => {
-                    this.errorMessage = "Sorry, we couldn't find any recommendations for you";
-                    this.displayErrorMessage(err);
+        this.energyCalculationService.fetchEnergyCalculation(new RdSapInput(this.responseData))
+            .subscribe(energyCalculationResponse => {
+                this.recommendationsService.getAllRecommendations(energyCalculationResponse)
+                    .subscribe(allRecommendations =>
+                        this.onLoadingComplete(allRecommendations, energyCalculationResponse),
+                        err => this.handleRecommendationError(err)
+                    );
                 },
+                err => this.handleRecommendationError(err)
             );
+
         this.userStateService.saveState();
 
         this.showOldVersion = this.abTestingService.isInGroupA();
@@ -97,6 +96,11 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.isLoading = false;
         this.showDefaultRecommendation = energyCalculationResponse.isDefaultResponse;
         this.defaultRecommendationDisclaimer = EnergyEfficiencyResultsComponent.getDefaultRecommendationDisclaimer(this.responseData);
+    }
+
+    private handleRecommendationError(err) {
+        this.errorMessage = "Sorry, we couldn't find any recommendations for you";
+        this.displayErrorMessage(err);
     }
 
     private static getEnergyCalculations(energyCalculationResponse: EnergyCalculationResponse,

@@ -2,6 +2,7 @@ import {QuestionMetadata} from '../../base-question/question-metadata';
 import {OccupantsQuestionComponent} from './occupants-question.component';
 import {QuestionType} from '../question-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
+import {UserJourneyType} from "../../../shared/response-data/user-journey-type";
 
 export class OccupantsQuestionMetadata extends QuestionMetadata {
     constructor() {
@@ -10,6 +11,11 @@ export class OccupantsQuestionMetadata extends QuestionMetadata {
             'occupants',
             QuestionType.Behaviour
         );
+    }
+
+    isApplicable(responseData: ResponseData): boolean {
+        return responseData.userJourneyType !== UserJourneyType.GrantEligibility ||
+            responseData.receiveChildBenefits;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
