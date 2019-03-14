@@ -44,6 +44,7 @@ import {WordpressECOSuppliersService} from './wordpress-eco-suppliers-service/wo
 import {WordpressSearchService} from './wordpress-search-service/wordpress-search.service';
 import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
 import {ContentsTableComponent} from "./contents-table/contents-table.component";
+import {LinkButtonComponent} from "./link-button/link-button.component";
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
+        LinkButtonComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -89,6 +91,7 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
+        LinkButtonComponent,
     ],
     imports: [
         HttpClientModule,
