@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 export class LinkButtonComponent {
     @Input() buttonText: string;
     @Input() linkUrl: string;
+    @Input() centred?: boolean;
 }

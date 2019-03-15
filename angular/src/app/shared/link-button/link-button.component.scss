@@ -2,4 +2,9 @@
 
 .link-button {
   @include beis-button();
+
+  &.centred {
+    // Override left alignment in beis-button
+    margin: 16px auto;
+  }
 }
