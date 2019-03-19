@@ -1,0 +1,14 @@
+{
+  "tumble_drying":{
+    "cost_saving":60,
+    "uncertainty":0
+  },
+  "baths_to_showers":{
+    "cost_saving":60,
+    "uncertainty":0
+  },
+  "one_degree_reduction":{
+    "cost_saving":60,
+    "uncertainty":0
+  }
+}

@@ -15,5 +15,6 @@ export interface EnergyCalculationResponse {
     measures: MeasuresResponse<EnergySavingMeasureResponse>;
     measures_rented: MeasuresResponse<EnergySavingMeasureResponse>;
     habit_measures: MeasuresResponse<HabitMeasureResponse>;
+    default_rental_measures: MeasuresResponse<EnergySavingMeasureResponse>;
     isDefaultResponse: boolean;
 }

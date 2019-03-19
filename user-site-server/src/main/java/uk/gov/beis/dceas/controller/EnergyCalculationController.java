@@ -36,6 +36,12 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
+    private static final String REQUEST_RENTED_PROPERTY = "rented";
+    private static final String RESPONSE_RENTAL_MEASURES = "measures_rented";
+    private static final String RESPONSE_DEFAULT_RENTAL_MEASURES = "default_rental_measures";
+    private static final String REQUEST_HEATING_FUEL = "heating_fuel";
+    private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
+            new TypeReference<Map<String, Object>>() {};
 
     private final String apiUrl;
     private final String apiUsername;
@@ -80,16 +86,38 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         formValues.add("requestData", requestJson);
 
         try {
-            return restTemplate.postForObject(url, formValues, String.class);
+            String response = restTemplate.postForObject(url, formValues, String.class);
+            if (userIsRenting(requestJson) && !responseHasRentalMeasures(response)) {
+                response = getResponseWithDefaultRentalMeasures(response);
+            }
+            return response;
         } catch (Exception e){
             Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
     }
 
+    private boolean userIsRenting(@RequestBody String requestJson) throws IOException {
+        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        return Boolean.parseBoolean(request.get(REQUEST_RENTED_PROPERTY).toString());
+    }
+
+    private boolean responseHasRentalMeasures(String responseJson) throws IOException {
+        Map<String, Object> request = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        return request.get(RESPONSE_RENTAL_MEASURES) != null;
+    }
+
+    private String getResponseWithDefaultRentalMeasures(String responseJson) throws IOException {
+        Map<String, Object> response = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        String defaultRentalMeasuresJson = getDefaultRentalMeasures();
+        Map<String, Object> defaultRentalMeasures = objectMapper.readValue(defaultRentalMeasuresJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        response.put(RESPONSE_DEFAULT_RENTAL_MEASURES, defaultRentalMeasures);
+        return objectMapper.writeValueAsString(response);
+    }
+
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(requestJson, new TypeReference<Map<String, Object>>(){});
-        return Integer.parseInt((String) request.get("heating_fuel"));
+        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        return Integer.parseInt((String) request.get(REQUEST_HEATING_FUEL));
     }
 
     private String getDefaultResponse(Integer propertyType, Integer fuelType) throws IOException {
@@ -106,6 +134,11 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private String getDefaultRecommendationResponse(String filename) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         return IOUtils.toString(classLoader.getResourceAsStream(DEFAULT_RECOMMENDATION_RESPONSES_PATH + filename), Charsets.UTF_8);
+    }
+
+    private String getDefaultRentalMeasures() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        return IOUtils.toString(classLoader.getResourceAsStream("default-rental-measures.json"), Charsets.UTF_8);
     }
 
     @Override
