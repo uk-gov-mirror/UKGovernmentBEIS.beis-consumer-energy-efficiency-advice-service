@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.beis.dceas.service.DefaultRentalMeasuresService;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -36,9 +37,6 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
-    private static final String REQUEST_RENTED_PROPERTY = "rented";
-    private static final String RESPONSE_RENTAL_MEASURES = "measures_rented";
-    private static final String RESPONSE_DEFAULT_RENTAL_MEASURES = "default_rental_measures";
     private static final String REQUEST_HEATING_FUEL = "heating_fuel";
     private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
             new TypeReference<Map<String, Object>>() {};
@@ -48,6 +46,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private final String apiPassword;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final DefaultRentalMeasuresService defaultRentalMeasuresService;
     
     public EnergyCalculationController(
             @Value("${vcap.services.bre.energyUse.credentials.url}")
@@ -57,7 +56,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
             @Value("${vcap.services.bre.energyUse.credentials.password}")
                     String apiPassword,
             RestTemplateBuilder restTemplateBuilder,
-            ObjectMapper objectMapper
+            ObjectMapper objectMapper,
+            DefaultRentalMeasuresService defaultRentalMeasuresService
     ) {
         this.apiUrl = apiUrl;
         this.apiUsername = apiUsername;
@@ -67,6 +67,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
             .interceptors(this)
             .build();
         this.objectMapper = objectMapper;
+        this.defaultRentalMeasuresService = defaultRentalMeasuresService;
     }
 
     /**
@@ -87,32 +88,12 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
 
         try {
             String response = restTemplate.postForObject(url, formValues, String.class);
-            if (userIsRenting(requestJson) && !responseHasRentalMeasures(response)) {
-                response = getResponseWithDefaultRentalMeasures(response);
-            }
+            response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
             return response;
         } catch (Exception e){
             Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
-    }
-
-    private boolean userIsRenting(@RequestBody String requestJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        return Boolean.parseBoolean(request.get(REQUEST_RENTED_PROPERTY).toString());
-    }
-
-    private boolean responseHasRentalMeasures(String responseJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        return request.get(RESPONSE_RENTAL_MEASURES) != null;
-    }
-
-    private String getResponseWithDefaultRentalMeasures(String responseJson) throws IOException {
-        Map<String, Object> response = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        String defaultRentalMeasuresJson = getDefaultRentalMeasures();
-        Map<String, Object> defaultRentalMeasures = objectMapper.readValue(defaultRentalMeasuresJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        response.put(RESPONSE_DEFAULT_RENTAL_MEASURES, defaultRentalMeasures);
-        return objectMapper.writeValueAsString(response);
     }
 
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
@@ -134,11 +115,6 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private String getDefaultRecommendationResponse(String filename) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         return IOUtils.toString(classLoader.getResourceAsStream(DEFAULT_RECOMMENDATION_RESPONSES_PATH + filename), Charsets.UTF_8);
-    }
-
-    private String getDefaultRentalMeasures() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        return IOUtils.toString(classLoader.getResourceAsStream("default-rental-measures.json"), Charsets.UTF_8);
     }
 
     @Override
