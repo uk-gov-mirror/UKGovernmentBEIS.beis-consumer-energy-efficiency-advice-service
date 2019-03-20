@@ -38,12 +38,14 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
     private static final String REQUEST_HEATING_FUEL = "heating_fuel";
+    private static final String SPACE_NAME_STAGING = "staging";
     private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
             new TypeReference<Map<String, Object>>() {};
 
     private final String apiUrl;
     private final String apiUsername;
     private final String apiPassword;
+    private final String spaceName;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final DefaultRentalMeasuresService defaultRentalMeasuresService;
@@ -55,6 +57,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
                     String apiUsername,
             @Value("${vcap.services.bre.energyUse.credentials.password}")
                     String apiPassword,
+            @Value("${vcap.application.space_name}")
+                    String spaceName,
             RestTemplateBuilder restTemplateBuilder,
             ObjectMapper objectMapper,
             DefaultRentalMeasuresService defaultRentalMeasuresService
@@ -62,6 +66,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         this.apiUrl = apiUrl;
         this.apiUsername = apiUsername;
         this.apiPassword = apiPassword;
+        this.spaceName = spaceName;
 
         this.restTemplate = restTemplateBuilder
             .interceptors(this)
@@ -88,7 +93,9 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
 
         try {
             String response = restTemplate.postForObject(url, formValues, String.class);
-            response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+            if (spaceName.equals(SPACE_NAME_STAGING)) {
+                response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+            }
             return response;
         } catch (Exception e){
             Integer fuelType = getFuelTypeFromRequest(requestJson);
