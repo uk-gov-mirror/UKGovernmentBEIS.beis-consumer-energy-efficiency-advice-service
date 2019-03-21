@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
 import java.util.Map;
@@ -26,28 +25,29 @@ public class DefaultRentalMeasuresService {
     }
 
     public String addDefaultRentalMeasuresIfNeeded(String responseJson, String requestJson) throws IOException {
-        if (!userIsRenting(requestJson) || responseHasRentalMeasures(responseJson)) {
+        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        Map<String, Object> response = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
+
+        if (!userIsRenting(request) || responseHasRentalMeasures(response)) {
             return responseJson;
         }
 
-        return getResponseWithDefaultRentalMeasures(responseJson);
+        Map<String, Object> responseWithDefaultRentalMeasures = getResponseWithDefaultRentalMeasures(response);
+        return objectMapper.writeValueAsString(responseWithDefaultRentalMeasures);
     }
 
-    private boolean userIsRenting(@RequestBody String requestJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
+    private boolean userIsRenting(Map<String, Object> request) throws IOException {
         return Boolean.parseBoolean(request.get(REQUEST_RENTED_PROPERTY).toString());
     }
 
-    private boolean responseHasRentalMeasures(String responseJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        return request.get(RESPONSE_RENTAL_MEASURES) != null;
+    private boolean responseHasRentalMeasures(Map<String, Object> response) throws IOException {
+        return response.get(RESPONSE_RENTAL_MEASURES) != null;
     }
 
-    private String getResponseWithDefaultRentalMeasures(String responseJson) throws IOException {
-        Map<String, Object> response = objectMapper.readValue(responseJson, OBJECT_MAPPER_TYPE_REFERENCE);
+    private Map<String, Object> getResponseWithDefaultRentalMeasures(Map<String, Object> response) throws IOException {
         Map<String, Object> defaultRentalMeasures = getDefaultRentalMeasures();
         response.put(RESPONSE_DEFAULT_RENTAL_MEASURES, defaultRentalMeasures);
-        return objectMapper.writeValueAsString(response);
+        return response;
     }
 
     private Map<String, Object> getDefaultRentalMeasures() throws IOException {
