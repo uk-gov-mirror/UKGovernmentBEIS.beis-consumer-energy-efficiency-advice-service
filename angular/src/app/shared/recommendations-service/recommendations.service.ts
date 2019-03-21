@@ -112,7 +112,7 @@ export class RecommendationsService {
 
     private getMeasuresFromEnergyCalculation(energyCalculation: EnergyCalculationResponse): MeasuresResponse<EnergySavingMeasureResponse> {
         if (this.responseData.tenureType !== TenureType.OwnerOccupancy && !!this.responseData.tenureType) {
-            return energyCalculation.measures_rented || energyCalculation.default_rental_measures;
+            return energyCalculation.measures_rented || energyCalculation.default_rental_measures || {};
         }
         return energyCalculation.measures;
     }
