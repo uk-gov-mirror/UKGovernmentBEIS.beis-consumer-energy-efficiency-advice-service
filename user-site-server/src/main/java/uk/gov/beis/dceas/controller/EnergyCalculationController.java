@@ -37,9 +37,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
-    private static final String REQUEST_HEATING_FUEL = "heating_fuel";
     private static final String SPACE_NAME_STAGING = "staging";
-    private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
+    private static final TypeReference<Map<String, Object>> STRING_OBJECT_MAP_TYPE =
             new TypeReference<Map<String, Object>>() { };
 
     private final String apiUrl;
@@ -106,8 +105,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     }
 
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        return Integer.parseInt((String) request.get(REQUEST_HEATING_FUEL));
+        Map<String, Object> request = objectMapper.readValue(requestJson, STRING_OBJECT_MAP_TYPE);
+        return Integer.parseInt((String) request.get("heating_fuel"));
     }
 
     private String getDefaultResponse(Integer propertyType, Integer fuelType) throws IOException {
