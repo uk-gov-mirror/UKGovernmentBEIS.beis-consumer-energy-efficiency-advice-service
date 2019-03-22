@@ -1,0 +1,81 @@
+{
+	"Total-CO2-Emissions": 5926.53,
+	"Cost-Saving-From-Renewables": 0,
+	"Total-Energy-Consumption": 23803.52,
+	"Total-Energy-Cost": 1434.92,
+	"Total-Lighting-Cost": 86.9,
+	"Total-Appliances-Cost": 291.75,
+	"Total-Cooking-Cost": 45.96,
+	"Total-Heating-Cost": 765.53,
+	"Total-Hot-Water-Cost": 80.77,
+	"Current-SAP-Band": "E",
+	"Current-SAP-Rating": 39,
+	"habit_measures": {
+		"one_degree_reduction": {
+			"cost_saving": 86.02,
+			"energy_saving": 2194.48,
+			"uncertainty": 10
+		},
+		"low_energy_lights": {
+			"cost_saving": 31.57,
+			"energy_saving": 47.65,
+			"uncertainty": 10
+		}
+	},
+	"Potential-SAP-Band": "C",
+	"Potential-SAP-Rating": 72,
+	"measures": {
+		"Q1": {
+			"cost_saving": 355.51,
+			"energy_saving": 12092.23,
+			"uncertainty": 25,
+			"number": "570",
+			"lifetime": 36,
+			"max_installation_cost": 14000,
+			"min_installation_cost": 4000,
+			"finance": 2
+		},
+		"D": {
+			"cost_saving": 11.57,
+			"energy_saving": 347.38,
+			"uncertainty": 15.000000000000002,
+			"number": "10",
+			"lifetime": 10,
+			"max_installation_cost": 120,
+			"min_installation_cost": 80,
+			"finance": 2
+		},
+		"G": {
+			"cost_saving": 10.45,
+			"energy_saving": 533.12,
+			"uncertainty": 50,
+			"number": "11",
+			"lifetime": 12,
+			"max_installation_cost": 450,
+			"min_installation_cost": 350,
+			"finance": 2
+		},
+		"I": {
+			"cost_saving": 41.56,
+			"energy_saving": 1413.56,
+			"uncertainty": 25,
+			"number": "20",
+			"lifetime": 12,
+			"max_installation_cost": 3000,
+			"min_installation_cost": 2200,
+			"finance": 2
+		},
+		"O": {
+			"cost_saving": 22.58,
+			"energy_saving": 704.87,
+			"uncertainty": 15.000000000000002,
+			"number": "8",
+			"lifetime": 20,
+			"max_installation_cost": 6500,
+			"min_installation_cost": 3300,
+			"finance": 2
+		}
+	},
+	"measures_rented": {},
+	"notes": []
+}
