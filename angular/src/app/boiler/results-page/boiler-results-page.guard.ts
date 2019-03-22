@@ -5,8 +5,8 @@ import {ResultsPageGuard} from "../../shared/results-page-guard/results-page.gua
 
 @Injectable()
 export class BoilerResultsPageRouteGuard extends ResultsPageGuard {
-    constructor(protected questionnaireService: QuestionnaireService,
-                protected router: Router) {
+    constructor(questionnaireService: QuestionnaireService,
+                router: Router) {
         super(
             'boiler',
             '/boiler/questionnaire',

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.beis.dceas.service.DefaultRentalMeasuresService;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -36,13 +37,19 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
+    private static final String REQUEST_HEATING_FUEL = "heating_fuel";
+    private static final String SPACE_NAME_STAGING = "staging";
+    private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
+            new TypeReference<Map<String, Object>>() { };
 
     private final String apiUrl;
     private final String apiUsername;
     private final String apiPassword;
+    private final String spaceName;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
-    
+    private final DefaultRentalMeasuresService defaultRentalMeasuresService;
+
     public EnergyCalculationController(
             @Value("${vcap.services.bre.energyUse.credentials.url}")
                     String apiUrl,
@@ -50,17 +57,22 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
                     String apiUsername,
             @Value("${vcap.services.bre.energyUse.credentials.password}")
                     String apiPassword,
+            @Value("${vcap.application.space_name}")
+                    String spaceName,
             RestTemplateBuilder restTemplateBuilder,
-            ObjectMapper objectMapper
+            ObjectMapper objectMapper,
+            DefaultRentalMeasuresService defaultRentalMeasuresService
     ) {
         this.apiUrl = apiUrl;
         this.apiUsername = apiUsername;
         this.apiPassword = apiPassword;
+        this.spaceName = spaceName;
 
         this.restTemplate = restTemplateBuilder
             .interceptors(this)
             .build();
         this.objectMapper = objectMapper;
+        this.defaultRentalMeasuresService = defaultRentalMeasuresService;
     }
 
     /**
@@ -79,17 +91,23 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         LinkedMultiValueMap<String, Object> formValues = new LinkedMultiValueMap<>();
         formValues.add("requestData", requestJson);
 
+        String response;
         try {
-            return restTemplate.postForObject(url, formValues, String.class);
-        } catch (Exception e){
+            response = restTemplate.postForObject(url, formValues, String.class);
+        } catch (Exception e) {
             Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
+
+        if (spaceName.equals(SPACE_NAME_STAGING)) {
+            response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+        }
+        return response;
     }
 
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(requestJson, new TypeReference<Map<String, Object>>(){});
-        return Integer.parseInt((String) request.get("heating_fuel"));
+        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
+        return Integer.parseInt((String) request.get(REQUEST_HEATING_FUEL));
     }
 
     private String getDefaultResponse(Integer propertyType, Integer fuelType) throws IOException {

@@ -28,6 +28,7 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
             this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
                 "not completed the questionnaire, or something has gone wrong.";
             this.isError = true;
+            return;
         }
 
         this.grantsEligibilityService.getEligibilityByGrant()
