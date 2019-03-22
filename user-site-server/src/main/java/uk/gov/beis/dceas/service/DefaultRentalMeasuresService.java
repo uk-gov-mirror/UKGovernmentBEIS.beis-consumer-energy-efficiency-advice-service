@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -37,8 +38,9 @@ public class DefaultRentalMeasuresService {
         return Boolean.parseBoolean(request.get("rented").toString());
     }
 
+    @SuppressWarnings("unchecked")
     private boolean responseHasRentalMeasures(Map<String, Object> response) throws IOException {
-        return response.get("measures_rented") != null;
+        return !CollectionUtils.isEmpty((Map<String, Object>) response.get("measures_rented"));
     }
 
     private Map<String, Object> getResponseWithDefaultRentalMeasures(Map<String, Object> response) throws IOException {

@@ -45,6 +45,22 @@ public class DefaultRentalMeasuresServiceTest {
         assertThat(defaultRentalMeasures).containsOnlyKeys("tumble_drying", "baths_to_showers", "one_degree_reduction");
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void shouldAddDefaultRentalMeasuresWhenUserIsRentalUserAndEmptyRentalMeasuresReturned() throws IOException {
+        // Given
+        String requestJson = loadResourceAsString("request-with-rental-user.json");
+        String responseJson = loadResourceAsString("response-with-empty-rental-measures.json");
+
+        // When
+        String newResponseJson = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(responseJson, requestJson);
+
+        // Then
+        Map<String, Object> response = getMapFromJsonString(newResponseJson);
+        Map<String, Object> defaultRentalMeasures = (Map<String, Object>) response.get("default_rental_measures");
+        assertThat(defaultRentalMeasures).containsOnlyKeys("tumble_drying", "baths_to_showers", "one_degree_reduction");
+    }
+
     @Test
     public void shouldReturnTheSameResponseWhenUserIsNotRentalUser() throws IOException {
         // Given
