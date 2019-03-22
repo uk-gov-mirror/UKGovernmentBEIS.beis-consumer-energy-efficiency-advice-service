@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpRequest;
@@ -49,6 +51,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private final ObjectMapper objectMapper;
     private final DefaultRentalMeasuresService defaultRentalMeasuresService;
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     public EnergyCalculationController(
             @Value("${vcap.services.bre.energyUse.credentials.url}")
                     String apiUrl,
@@ -90,18 +94,17 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         LinkedMultiValueMap<String, Object> formValues = new LinkedMultiValueMap<>();
         formValues.add("requestData", requestJson);
 
-        String response;
         try {
-            response = restTemplate.postForObject(url, formValues, String.class);
+            String response = restTemplate.postForObject(url, formValues, String.class);
+            if (spaceName.equals(SPACE_NAME_STAGING)) {
+                response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+            }
+            return response;
         } catch (Exception e) {
+            log.error("Error occurred when getting energy calculation response", e);
             Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
-
-        if (spaceName.equals(SPACE_NAME_STAGING)) {
-            response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
-        }
-        return response;
     }
 
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
