@@ -16,7 +16,7 @@ public class DefaultRentalMeasuresService {
     private static final String RESPONSE_RENTAL_MEASURES = "measures_rented";
     private static final String RESPONSE_DEFAULT_RENTAL_MEASURES = "default_rental_measures";
     private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
-            new TypeReference<Map<String, Object>>() {};
+            new TypeReference<Map<String, Object>>() { };
 
     private final ObjectMapper objectMapper;
 

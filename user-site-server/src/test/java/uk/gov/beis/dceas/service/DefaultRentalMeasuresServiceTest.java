@@ -21,7 +21,7 @@ public class DefaultRentalMeasuresServiceTest {
 
     private static final String RESOURCE_FOLDER_PATH = "uk/gov/beis/dceas/service/DefaultRentalMeasuresService/";
     private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
-            new TypeReference<Map<String, Object>>() {};
+            new TypeReference<Map<String, Object>>() { };
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -70,7 +70,7 @@ public class DefaultRentalMeasuresServiceTest {
     }
 
     public String loadResourceAsString(String filename) throws IOException {
-        return Resources.toString( Resources.getResource(RESOURCE_FOLDER_PATH + filename), Charsets.UTF_8);
+        return Resources.toString(Resources.getResource(RESOURCE_FOLDER_PATH + filename), Charsets.UTF_8);
     }
 
     public Map<String, Object> getMapFromJsonString(String jsonString) throws IOException {

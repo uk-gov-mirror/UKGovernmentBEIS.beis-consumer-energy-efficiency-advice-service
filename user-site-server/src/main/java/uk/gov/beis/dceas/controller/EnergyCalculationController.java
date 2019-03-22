@@ -40,7 +40,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final String REQUEST_HEATING_FUEL = "heating_fuel";
     private static final String SPACE_NAME_STAGING = "staging";
     private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
-            new TypeReference<Map<String, Object>>() {};
+            new TypeReference<Map<String, Object>>() { };
 
     private final String apiUrl;
     private final String apiUsername;
@@ -49,7 +49,7 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final DefaultRentalMeasuresService defaultRentalMeasuresService;
-    
+
     public EnergyCalculationController(
             @Value("${vcap.services.bre.energyUse.credentials.url}")
                     String apiUrl,
@@ -91,16 +91,18 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         LinkedMultiValueMap<String, Object> formValues = new LinkedMultiValueMap<>();
         formValues.add("requestData", requestJson);
 
+        String response;
         try {
-            String response = restTemplate.postForObject(url, formValues, String.class);
-            if (spaceName.equals(SPACE_NAME_STAGING)) {
-                response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
-            }
-            return response;
-        } catch (Exception e){
+            response = restTemplate.postForObject(url, formValues, String.class);
+        } catch (Exception e) {
             Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
+
+        if (spaceName.equals(SPACE_NAME_STAGING)) {
+            response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+        }
+        return response;
     }
 
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {

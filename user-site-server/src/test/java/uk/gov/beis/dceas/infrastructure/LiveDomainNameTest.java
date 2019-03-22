@@ -6,15 +6,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.codehaus.groovy.ast.expr.ArgumentListExpression;
-import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
@@ -33,12 +30,17 @@ import static org.junit.Assert.fail;
 @RunWith(Parameterized.class)
 public class LiveDomainNameTest {
 
-    private final String url;
+    private static final String CANONICAL_ADDRESS = "https://www.simpleenergyadvice.org.uk/";
+    private static final String CANONICAL_ADDRESS_NO_PATH = "https://www.simpleenergyadvice.org.uk";
+    private static final String CANONICAL_ADDRESS_EXPLICIT_PORT = "https://www.simpleenergyadvice.org.uk:443/";
 
-    public static final String CANONICAL_ADDRESS = "https://www.simpleenergyadvice.org.uk/";
-    public static final String CANONICAL_ADDRESS_NO_PATH = "https://www.simpleenergyadvice.org.uk";
-    public static final String CANONICAL_ADDRESS_EXPLICIT_PORT = "https://www.simpleenergyadvice.org.uk:443/";
+    private final String url;
     private final String expected;
+
+    public LiveDomainNameTest(String url, String expected) {
+        this.url = url;
+        this.expected = expected;
+    }
 
     @Parameterized.Parameters(name = "{0} => {1}")
     public static List<Object[]> data() {
@@ -50,13 +52,8 @@ public class LiveDomainNameTest {
                 {"https://www.eachhomecountsadvice.org.uk/", "301"},
                 {"http://www.eachhomecountsadvice.org.uk/", "301"},
                 {"https://eachhomecountsadvice.org.uk/", "hang"},
-                {"http://eachhomecountsadvice.org.uk/", "301"}
+                {"http://eachhomecountsadvice.org.uk/", "301"},
         });
-    }
-
-    public LiveDomainNameTest(String url, String expected) {
-        this.url = url;
-        this.expected = expected;
     }
 
     @Test
