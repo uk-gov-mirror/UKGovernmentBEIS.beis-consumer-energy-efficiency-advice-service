@@ -50,6 +50,16 @@ export class RecommendationsService {
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 
+    getUserRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
+        return this.cachedRecommendations.userRecommendations
+            .filter(recommendation => recommendation.isAddedToPlan);
+    }
+
+    getLandlordRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
+        return this.cachedRecommendations.landlordRecommendations
+            .filter(recommendation => recommendation.isAddedToPlan);
+    }
+
     private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
         return Observable.forkJoin(
             this.measureService.fetchMeasureDetails(),

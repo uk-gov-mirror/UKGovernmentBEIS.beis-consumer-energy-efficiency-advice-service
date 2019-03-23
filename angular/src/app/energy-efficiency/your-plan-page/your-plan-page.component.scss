@@ -39,6 +39,16 @@ $desktop-heading-vertical-padding: 20px;
       display: flex;
       flex-direction: column;
 
+      .recommendations-header {
+        margin-bottom: 35px;
+        display: flex;
+        justify-content: space-between;
+
+        .recommendations-title {
+          @include page-subheading-font;
+        }
+      }
+
       .recommendation-steps-card {
         display: flex;
         flex-direction: column;

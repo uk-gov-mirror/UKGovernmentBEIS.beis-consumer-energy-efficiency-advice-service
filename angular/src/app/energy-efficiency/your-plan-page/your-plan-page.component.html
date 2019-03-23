@@ -29,7 +29,7 @@ If you change anything here, please consider whether anything needs changing the
         </div>
         <div class="recommendations page-row">
             <div class="page-row-content">
-                <div class="recommendation-steps-card" *ngFor="let recommendation of recommendations">
+                <div class="recommendation-steps-card" *ngFor="let recommendation of userRecommendations">
                     <div class="details">
                         <div class="description">
                             <div class="headline">{{recommendation.headline}}</div>
@@ -71,6 +71,46 @@ If you change anything here, please consider whether anything needs changing the
                                     [grant]="grant"
                                     theme="grey">
                     </app-local-grant-card>
+                </div>
+            </div>
+        </div>
+        <div class="recommendations page-row">
+            <div class="page-row-content">
+                <div class="recommendations-header">
+                    <div class="recommendations-title">
+                        Recommendations for your landlord
+                    </div>
+                    <div class="download-button">
+                        Placeholder
+                    </div>
+                </div>
+                <div class="recommendation-steps-card" *ngFor="let recommendation of landlordRecommendations">
+                    <div class="details">
+                        <div class="description">
+                            <div class="headline">{{recommendation.headline}}</div>
+                            <div class="summary">{{recommendation.summary}}</div>
+                        </div>
+                        <app-data-card class="investment-required-card"
+                                       heading="Investment required"
+                                       [value]="'£' + getRoundedInvestment(recommendation)"
+                                       [isSmallCard]="true"
+                                       [withSmallFontSize]="true"
+                        ></app-data-card>
+                        <app-data-card class="monthly-savings-card"
+                                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                                       [value]="getSavingDisplay(recommendation)"
+                                       [isSmallCard]="true"
+                                       [withSmallFontSize]="true"
+                        ></app-data-card>
+                    </div>
+                    <div class="steps">
+                        <app-recommendation-step-card
+                                *ngFor="let step of recommendation.steps; let i = index"
+                                [step]="step"
+                                [stepIndex]="i"
+                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
+                        ></app-recommendation-step-card>
+                    </div>
                 </div>
             </div>
         </div>

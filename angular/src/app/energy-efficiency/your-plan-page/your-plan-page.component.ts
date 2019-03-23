@@ -22,6 +22,14 @@ export class YourPlanPageComponent implements OnInit {
         return this.recommendationsService.getRecommendationsInPlan();
     }
 
+    get userRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getUserRecommendationsInPlan();
+    }
+
+    get landlordRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getLandlordRecommendationsInPlan();
+    }
+
     localAuthorityGrants: LocalAuthorityGrant[] = [];
     localAuthorityName: string;
     isError: boolean = false;
