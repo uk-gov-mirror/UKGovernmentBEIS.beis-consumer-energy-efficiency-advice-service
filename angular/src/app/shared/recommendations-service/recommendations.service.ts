@@ -85,9 +85,9 @@ export class RecommendationsService {
     }
 
     private getAllRecommendationsContent(fullMeasures: FullMeasuresResponse<EnergySavingMeasureResponse>,
-                                                        measuresContent: MeasureContent[],
-                                                        habitRecommendations: EnergyEfficiencyRecommendation[],
-                                                        grantRecommendations: EnergyEfficiencyRecommendation[]
+                                         measuresContent: MeasureContent[],
+                                         habitRecommendations: EnergyEfficiencyRecommendation[],
+                                         grantRecommendations: EnergyEfficiencyRecommendation[]
     ): Observable<EnergyEfficiencyRecommendations> {
         return Observable.forkJoin(
             this.getUserRecommendationsContent(fullMeasures.userMeasures, measuresContent, habitRecommendations, grantRecommendations),

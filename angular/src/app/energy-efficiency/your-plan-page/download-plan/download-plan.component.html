@@ -5,9 +5,9 @@
                 <div class="header">Download your plan</div>
                 <div class="description">Save your plan to your device so that you can return to it later</div>
             </div>
-            <div tabindex="0" class="download-pdf" (click)="onDownloadPdfClicked()">
-                <div class="download-pdf-text">PDF</div>
-                <div class="download-pdf-icon" [inlineSVG]="'controls/apply-arrow.svg'"></div>
+            <div class="download-button-container">
+                <app-download-pdf-button [downloadEndpoint]="downloadEndpoint"
+                                     [analyticsEventName]="'download-plan_clicked'"></app-download-pdf-button>
             </div>
         </div>
         <div class="action-divider">OR</div>
