@@ -25,13 +25,15 @@
                 <div class="heading-container">
                     <h1 class="heading">
                         <img src="ehc-small.png"/>
-                        Your plan
+                        <span class="title" th:text="${title}">
+                            Your plan
+                        </span>
                     </h1>
-                    <div class="subheading" th:if="${recommendations.size() == 1}">
+                    <div class="subheading" th:if="${recommendations.size() == 1}" th:text="${subheadingSingular}">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.
                     </div>
-                    <div class="subheading" th:if="${recommendations.size() > 1}" th:inline="text">
+                    <div class="subheading" th:if="${recommendations.size() > 1}" th:inline="text" th:text="${subheadingPlural}">
                         You have added [[${recommendations.size()}]] recommendations to your plan. You'll find all the
                         steps and things you need to consider to implement those measures.
                     </div>

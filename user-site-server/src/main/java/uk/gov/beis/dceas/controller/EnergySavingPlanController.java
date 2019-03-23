@@ -113,7 +113,12 @@ public class EnergySavingPlanController {
                 "The Simple Energy Advice team");
 
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
-        writePlanToOutputStream(request.planInfo, pdfBuffer, httpRequest, response, locale);
+
+        String title = "Your plan";
+        String subheadingSingular = "You have added 1 recommendation to your plan. You'll find all the steps and things you need to consider to implement this measure.";
+        String subheadingPlural = "You have added " + request.planInfo.recommendations.size() + " recommendations to your plan. You'll find all the steps and things you need to consider to implement those measures.";
+
+        writePlanToOutputStream(request.planInfo, title, subheadingSingular, subheadingPlural, pdfBuffer, httpRequest, response, locale);
 
         helper.addAttachment(
                 "Simple Energy Advice - Energy Saving Plan.pdf",
@@ -145,17 +150,46 @@ public class EnergySavingPlanController {
             final Locale locale)
             throws Exception {
 
+        String title = "Your plan";
+        String subheadingSingular = "You have added 1 recommendation to your plan. You'll find all the steps and things you need to consider to implement this measure.";
+        String subheadingPlural = "You have added " + request.recommendations.size() + " recommendations to your plan. You'll find all the steps and things you need to consider to implement those measures.";
+
         response.setContentType("application/pdf");
         response.setHeader(
                 "Content-Disposition",
                 "attachment; filename=\"Simple Energy Advice - Energy Saving Plan.pdf\"");
         try (ServletOutputStream out = response.getOutputStream()) {
-            writePlanToOutputStream(request, out, httpRequest, response, locale);
+            writePlanToOutputStream(request, title, subheadingSingular, subheadingPlural, out, httpRequest, response, locale);
         }
     }
 
+    @PostMapping("download-landlord-plan")
+    public void downloadLandlordPlan(
+            @Valid @RequestParam("planInfo") PlanInfo request,
+            HttpServletRequest httpRequest,
+            HttpServletResponse response,
+            final Locale locale)
+            throws Exception {
+
+        String title = "Landlord recommendations";
+        String subheadingSingular = "You have added 1 recommendation to your plan. You'll find all the steps and things your landlord needs to implement this measure.";
+        String subheadingPlural = "You have added " + request.recommendations.size() + " recommendations to your plan. You'll find all the steps and things your landlord needs to implement those measures.";
+
+        response.setContentType("application/pdf");
+        response.setHeader(
+                "Content-Disposition",
+                "attachment; filename=\"Simple Energy Advice - Landlord Recommendations.pdf\"");
+        try (ServletOutputStream out = response.getOutputStream()) {
+            writePlanToOutputStream(request, title, subheadingSingular, subheadingPlural, out, httpRequest, response, locale);
+        }
+    }
+
+    // TODO-BOC create a new object to hold planInfo, title, and subheading
     private void writePlanToOutputStream(
             PlanInfo request,
+            String title,
+            String subheadingSingular,
+            String subheadingPlural,
             OutputStream out,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
@@ -172,7 +206,11 @@ public class EnergySavingPlanController {
 
         loadDisplayData(
                 templateContext,
-                request);
+                request,
+                title,
+                subheadingSingular,
+                subheadingPlural
+        );
 
         // We render the entire template to a String in memory, then parse that String as XML.
         // In theory, we might be able to pipe the output from Thymeleaf directly into an
@@ -199,11 +237,15 @@ public class EnergySavingPlanController {
     }
 
     /**
-     * Keep this in sync with recommendations.service.ts `refreshAllRecommendations`
+     * Keep this in sync with recommendations.service.ts `getRecommendationsContent`
      */
     private void loadDisplayData(
             SpringWebContext templateContext,
-            PlanInfo request) throws Exception {
+            PlanInfo request,
+            String title,
+            String subheadingSingular,
+            String subheadingPlural
+    ) throws Exception {
 
         Map<String, Map<String, Object>> measuresBySlug = measuresDataService.getMeasuresBySlug();
 
@@ -228,6 +270,10 @@ public class EnergySavingPlanController {
                     }
                 })
                 .collect(toList());
+
+        templateContext.setVariable("title", title);
+        templateContext.setVariable("subheadingSingular", subheadingSingular);
+        templateContext.setVariable("subheadingPlural", subheadingPlural);
 
         templateContext.setVariable("recommendations", recommendations);
 

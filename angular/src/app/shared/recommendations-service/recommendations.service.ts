@@ -100,9 +100,6 @@ export class RecommendationsService {
             );
     }
 
-    /**
-     * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
-     */
     private getUserRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
                                       measuresContent: MeasureContent[],
                                       habitRecommendations: EnergyEfficiencyRecommendation[],
@@ -127,6 +124,9 @@ export class RecommendationsService {
             });
     }
 
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
+     */
     private getRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
                                       measuresContent: MeasureContent[]
     ): Observable<EnergyEfficiencyRecommendation[]> {

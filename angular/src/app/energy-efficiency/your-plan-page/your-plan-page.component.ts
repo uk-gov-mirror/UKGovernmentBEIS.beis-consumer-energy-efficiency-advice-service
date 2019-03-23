@@ -36,7 +36,7 @@ export class YourPlanPageComponent implements OnInit {
     isError: boolean = false;
     errorMessage: string;
 
-    private readonly downloadLandlordPlanEndpoint = Config().apiRoot + '/plan/download';
+    private readonly downloadLandlordPlanEndpoint = Config().apiRoot + '/plan/download-landlord-plan';
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
