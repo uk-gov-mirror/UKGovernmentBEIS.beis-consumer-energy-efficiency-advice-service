@@ -80,8 +80,9 @@ If you change anything here, please consider whether anything needs changing the
                     <div class="recommendations-title">
                         Recommendations for your landlord
                     </div>
-                    <div class="download-button">
-                        Placeholder
+                    <div class="download-button-container">
+                        <app-download-pdf-button [downloadEndpoint]="downloadLandlordPlanEndpoint"
+                                                 [analyticsEventName]="'download-landlord-plan_clicked'"></app-download-pdf-button>
                     </div>
                 </div>
                 <div class="recommendation-steps-card" *ngFor="let recommendation of landlordRecommendations">

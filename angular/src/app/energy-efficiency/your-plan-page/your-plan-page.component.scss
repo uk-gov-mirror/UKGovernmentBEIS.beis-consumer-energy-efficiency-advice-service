@@ -2,6 +2,7 @@
 @import "styles/mixins/font";
 @import "styles/mixins/layout";
 @import "../energy-efficiency-page-sizes";
+@import "download-pdf-button/download-pdf-button.component";
 
 // Component specific variables
 $grant-cards-per-row: 4;
@@ -46,6 +47,10 @@ $desktop-heading-vertical-padding: 20px;
 
         .recommendations-title {
           @include page-subheading-font;
+        }
+
+        .download-button-container {
+          flex: 0 0 $download-pdf-button-width;
         }
       }
 

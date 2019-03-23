@@ -10,6 +10,7 @@ import * as logger from 'loglevel';
 import {RoundingService} from '../../shared/rounding-service/rounding.service';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
 import {EnergyEfficiencyRecommendationService} from "../../shared/recommendations-service/energy-efficiency-recommendation.service";
+import Config from '../../config';
 
 @Component({
     selector: 'app-your-plan-page',
@@ -34,6 +35,8 @@ export class YourPlanPageComponent implements OnInit {
     localAuthorityName: string;
     isError: boolean = false;
     errorMessage: string;
+
+    private readonly downloadLandlordPlanEndpoint = Config().apiRoot + '/plan/download';
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
