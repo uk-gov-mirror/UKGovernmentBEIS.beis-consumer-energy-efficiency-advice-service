@@ -22,6 +22,9 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 import uk.gov.beis.dceas.api.NationalGrant;
+import uk.gov.beis.dceas.api.PdfLandlordRecommendationParams;
+import uk.gov.beis.dceas.api.PdfRecommendationParams;
+import uk.gov.beis.dceas.api.PdfUserRecommendationParams;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
 
@@ -85,7 +88,7 @@ public class EnergySavingPlanController {
     /**
      * Renders the client's Plan to a PDF and emails it to the requested address.
      *
-     * See comments on {@link #downloadPlan}
+     * See comments on {@link #downloadUserPlan}
      */
     @PostMapping("email")
     public void emailPlan(
@@ -114,11 +117,11 @@ public class EnergySavingPlanController {
 
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
 
-        String title = "Your plan";
-        String subheadingSingular = "You have added 1 recommendation to your plan. You'll find all the steps and things you need to consider to implement this measure.";
-        String subheadingPlural = "You have added " + request.planInfo.recommendations.size() + " recommendations to your plan. You'll find all the steps and things you need to consider to implement those measures.";
+        PlanInfo planInfo = request.getPlanInfo();
+        PdfUserRecommendationParams pdfUserRecommendationParams =
+                new PdfUserRecommendationParams(planInfo.getRecommendations(), planInfo.getTenureType());
 
-        writePlanToOutputStream(request.planInfo, title, subheadingSingular, subheadingPlural, pdfBuffer, httpRequest, response, locale);
+        writePlanToOutputStream(pdfUserRecommendationParams, pdfBuffer, httpRequest, response, locale);
 
         helper.addAttachment(
                 "Simple Energy Advice - Energy Saving Plan.pdf",
@@ -142,27 +145,26 @@ public class EnergySavingPlanController {
      *                See EnergyEfficiencyRecommendation.fromMeasure
      *                and EnergyEfficiencyRecommendation.fromNationalGrant
      */
-    @PostMapping("download")
-    public void downloadPlan(
+    @PostMapping("download-user-plan")
+    public void downloadUserPlan(
             @Valid @RequestParam("planInfo") PlanInfo request,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
             throws Exception {
 
-        String title = "Your plan";
-        String subheadingSingular = "You have added 1 recommendation to your plan. You'll find all the steps and things you need to consider to implement this measure.";
-        String subheadingPlural = "You have added " + request.recommendations.size() + " recommendations to your plan. You'll find all the steps and things you need to consider to implement those measures.";
+        PdfUserRecommendationParams pdfUserRecommendationParams =
+                new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType);
 
-        response.setContentType("application/pdf");
-        response.setHeader(
-                "Content-Disposition",
-                "attachment; filename=\"Simple Energy Advice - Energy Saving Plan.pdf\"");
-        try (ServletOutputStream out = response.getOutputStream()) {
-            writePlanToOutputStream(request, title, subheadingSingular, subheadingPlural, out, httpRequest, response, locale);
-        }
+        downloadPlan(pdfUserRecommendationParams, httpRequest, response, locale);
     }
 
+    /**
+     * Renders the client's Plan to a PDF.
+     *
+     * See comments on {@link #downloadUserPlan}, except some measures like 'One degree reduction' should have not
+     * been sent by the client because only landlord measures should have been passed through
+     */
     @PostMapping("download-landlord-plan")
     public void downloadLandlordPlan(
             @Valid @RequestParam("planInfo") PlanInfo request,
@@ -171,25 +173,29 @@ public class EnergySavingPlanController {
             final Locale locale)
             throws Exception {
 
-        String title = "Landlord recommendations";
-        String subheadingSingular = "You have added 1 recommendation to your plan. You'll find all the steps and things your landlord needs to implement this measure.";
-        String subheadingPlural = "You have added " + request.recommendations.size() + " recommendations to your plan. You'll find all the steps and things your landlord needs to implement those measures.";
+        PdfLandlordRecommendationParams pdfLandlordRecommendationParams =
+                new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType);
 
+        downloadPlan(pdfLandlordRecommendationParams, httpRequest, response, locale);
+    }
+
+    private void downloadPlan(
+            PdfRecommendationParams pdfRecommendationParams,
+            HttpServletRequest httpRequest,
+            HttpServletResponse response,
+            Locale locale
+    ) throws Exception {
         response.setContentType("application/pdf");
         response.setHeader(
                 "Content-Disposition",
-                "attachment; filename=\"Simple Energy Advice - Landlord Recommendations.pdf\"");
+                "attachment; filename=\"Simple Energy Advice - " + pdfRecommendationParams.getFileDescription() + ".pdf\"");
         try (ServletOutputStream out = response.getOutputStream()) {
-            writePlanToOutputStream(request, title, subheadingSingular, subheadingPlural, out, httpRequest, response, locale);
+            writePlanToOutputStream(pdfRecommendationParams, out, httpRequest, response, locale);
         }
     }
 
-    // TODO-BOC create a new object to hold planInfo, title, and subheading
     private void writePlanToOutputStream(
-            PlanInfo request,
-            String title,
-            String subheadingSingular,
-            String subheadingPlural,
+            PdfRecommendationParams pdfRecommendationParams,
             OutputStream out,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
@@ -206,10 +212,7 @@ public class EnergySavingPlanController {
 
         loadDisplayData(
                 templateContext,
-                request,
-                title,
-                subheadingSingular,
-                subheadingPlural
+                pdfRecommendationParams
         );
 
         // We render the entire template to a String in memory, then parse that String as XML.
@@ -241,15 +244,12 @@ public class EnergySavingPlanController {
      */
     private void loadDisplayData(
             SpringWebContext templateContext,
-            PlanInfo request,
-            String title,
-            String subheadingSingular,
-            String subheadingPlural
+            PdfRecommendationParams pdfRecommendationParams
     ) throws Exception {
 
         Map<String, Map<String, Object>> measuresBySlug = measuresDataService.getMeasuresBySlug();
 
-        List<EnergyEfficiencyRecommendation> recommendations = request.recommendations.stream()
+        List<EnergyEfficiencyRecommendation> recommendations = pdfRecommendationParams.getRecommendations().stream()
                 .map(recommendation -> {
                     if (!isNullOrEmpty(recommendation.measureSlug)) {
                         Map<String, Object> measure = measuresBySlug.get(recommendation.measureSlug);
@@ -271,9 +271,8 @@ public class EnergySavingPlanController {
                 })
                 .collect(toList());
 
-        templateContext.setVariable("title", title);
-        templateContext.setVariable("subheadingSingular", subheadingSingular);
-        templateContext.setVariable("subheadingPlural", subheadingPlural);
+        templateContext.setVariable("title", pdfRecommendationParams.getTitle());
+        templateContext.setVariable("subheading", pdfRecommendationParams.getSubheading());
 
         templateContext.setVariable("recommendations", recommendations);
 
@@ -283,7 +282,7 @@ public class EnergySavingPlanController {
         templateContext.setVariable("roundedTotalInvestmentRequired",
                 roundAndFormatCostValue(totalInvestment));
 
-        boolean showMonthlySavings = request.tenureType != 0;
+        boolean showMonthlySavings = pdfRecommendationParams.getShowMonthlySavings();
         templateContext.setVariable("showMonthlySavings", showMonthlySavings);
 
         double minimumSavings = recommendations.stream()
@@ -429,7 +428,7 @@ public class EnergySavingPlanController {
         Double investmentPounds;
         /**
          * If a measure, this is `costSavingPoundsPerYear`, adjusted by 'uncertainty'
-         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds` adjusted by 'uncertainty
+         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds` adjusted by 'uncertainty'
          */
         Double minimumCostSavingPoundsPerYear;
         Double maximumCostSavingPoundsPerYear;

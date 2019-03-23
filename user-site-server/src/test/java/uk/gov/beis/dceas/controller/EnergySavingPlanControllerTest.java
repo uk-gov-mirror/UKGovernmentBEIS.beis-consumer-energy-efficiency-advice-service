@@ -114,7 +114,7 @@ public class EnergySavingPlanControllerTest {
                         objectMapper.writeValueAsString(requestBody)))));
         MvcResult mvcResult = mvc
                 .perform(
-                        post("/api/plan/download")
+                        post("/api/plan/download-user-plan")
                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                                 .content(formBody))
                 .andExpect(status().isOk())
