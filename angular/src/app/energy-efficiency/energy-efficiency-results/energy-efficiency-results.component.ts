@@ -15,6 +15,7 @@ import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.se
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
+import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -33,7 +34,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     showDefaultRentalMeasures: boolean = false;
     defaultRecommendationDisclaimer: string;
 
-    private allRecommendations: EnergyEfficiencyRecommendation[] = [];
+    private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
     constructor(private responseData: ResponseData,
                 private recommendationsService: RecommendationsService,
@@ -68,7 +69,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.allRecommendations;
+        return this.allRecommendations.userRecommendations;
     }
 
     get showMonthlySavings() {
@@ -86,13 +87,13 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private onLoadingComplete(
-        allRecommendations: EnergyEfficiencyRecommendation[],
+        allRecommendations: EnergyEfficiencyRecommendations,
         energyCalculationResponse: EnergyCalculationResponse
     ) {
         this.allRecommendations = allRecommendations;
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             energyCalculationResponse,
-            this.allRecommendations
+            this.allRecommendations.userRecommendations
         );
         this.isLoading = false;
         this.showDefaultRecommendation = energyCalculationResponse.isDefaultResponse;
