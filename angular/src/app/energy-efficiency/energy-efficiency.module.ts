@@ -17,6 +17,7 @@ import {BreakEvenComponent} from './energy-efficiency-results/break-even/break-e
 import {YourPlanFooterComponent} from './energy-efficiency-results/your-plan-footer/your-plan-footer.component';
 import {FormsModule} from "@angular/forms";
 import {DownloadPdfButtonComponent} from "./your-plan-page/download-pdf-button/download-pdf-button.component";
+import {RecommendationWithStepsCardComponent} from "./your-plan-page/recommendation-with-steps-card/recommendation-with-steps-card.component";
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import {DownloadPdfButtonComponent} from "./your-plan-page/download-pdf-button/d
         EnergyEfficiencyCombinedRecommendationCardComponent,
         YourPlanFooterComponent,
         RecommendationStepCardComponent,
+        RecommendationWithStepsCardComponent,
         DownloadPlanComponent,
         DownloadPdfButtonComponent,
         BreakEvenComponent

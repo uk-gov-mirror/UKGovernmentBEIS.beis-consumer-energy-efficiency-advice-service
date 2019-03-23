@@ -40,7 +40,6 @@ export class YourPlanPageComponent implements OnInit {
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
-                private googleAnalyticsService: GoogleAnalyticsService,
                 private responseData: ResponseData) {
     }
 
@@ -60,18 +59,6 @@ export class YourPlanPageComponent implements OnInit {
             );
     }
 
-    get showMonthlySavings() {
-        return this.responseData.tenureType !== TenureType.OwnerOccupancy;
-    }
-
-    getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
-        return RoundingService.roundCostValue(recommendation.investmentPounds);
-    }
-
-    getSavingDisplay(recommendation: EnergyEfficiencyRecommendation) {
-        return EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, this.showMonthlySavings);
-    }
-
     handleLocalAuthorityServiceResponse(response: LocalAuthority) {
         this.localAuthorityGrants = response.grants;
         this.localAuthorityName = response.name;
@@ -79,9 +66,5 @@ export class YourPlanPageComponent implements OnInit {
 
     handleLocalAuthorityServiceError(err: Error) {
         logger.error(err.message);
-    }
-
-    sendEventToAnalytics(eventName: string, eventLabel?: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'plan-page', eventLabel);
     }
 }

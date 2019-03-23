@@ -29,33 +29,8 @@ If you change anything here, please consider whether anything needs changing the
         </div>
         <div class="recommendations page-row">
             <div class="page-row-content">
-                <div class="recommendation-steps-card" *ngFor="let recommendation of userRecommendations">
-                    <div class="details">
-                        <div class="description">
-                            <div class="headline">{{recommendation.headline}}</div>
-                            <div class="summary">{{recommendation.summary}}</div>
-                        </div>
-                        <app-data-card class="investment-required-card"
-                                       heading="Investment required"
-                                       [value]="'£' + getRoundedInvestment(recommendation)"
-                                       [isSmallCard]="true"
-                                       [withSmallFontSize]="true"
-                        ></app-data-card>
-                        <app-data-card class="monthly-savings-card"
-                                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                                       [value]="getSavingDisplay(recommendation)"
-                                       [isSmallCard]="true"
-                                       [withSmallFontSize]="true"
-                        ></app-data-card>
-                    </div>
-                    <div class="steps">
-                        <app-recommendation-step-card
-                                *ngFor="let step of recommendation.steps; let i = index"
-                                [step]="step"
-                                [stepIndex]="i"
-                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
-                        ></app-recommendation-step-card>
-                    </div>
+                <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
+                    <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
                 </div>
             </div>
         </div>
@@ -85,33 +60,8 @@ If you change anything here, please consider whether anything needs changing the
                                                  [analyticsEventName]="'download-landlord-plan_clicked'"></app-download-pdf-button>
                     </div>
                 </div>
-                <div class="recommendation-steps-card" *ngFor="let recommendation of landlordRecommendations">
-                    <div class="details">
-                        <div class="description">
-                            <div class="headline">{{recommendation.headline}}</div>
-                            <div class="summary">{{recommendation.summary}}</div>
-                        </div>
-                        <app-data-card class="investment-required-card"
-                                       heading="Investment required"
-                                       [value]="'£' + getRoundedInvestment(recommendation)"
-                                       [isSmallCard]="true"
-                                       [withSmallFontSize]="true"
-                        ></app-data-card>
-                        <app-data-card class="monthly-savings-card"
-                                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                                       [value]="getSavingDisplay(recommendation)"
-                                       [isSmallCard]="true"
-                                       [withSmallFontSize]="true"
-                        ></app-data-card>
-                    </div>
-                    <div class="steps">
-                        <app-recommendation-step-card
-                                *ngFor="let step of recommendation.steps; let i = index"
-                                [step]="step"
-                                [stepIndex]="i"
-                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
-                        ></app-recommendation-step-card>
-                    </div>
+                <div class="recommendation-steps-card-container" *ngFor="let recommendation of landlordRecommendations">
+                    <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
                 </div>
             </div>
         </div>
