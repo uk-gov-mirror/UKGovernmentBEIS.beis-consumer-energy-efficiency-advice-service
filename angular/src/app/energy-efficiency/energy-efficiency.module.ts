@@ -9,6 +9,7 @@ import {YourPlanPageComponent} from './your-plan-page/your-plan-page.component';
 import {YourPlanSummaryComponent} from './your-plan-summary/your-plan-summary.component';
 import {EnergyEfficiencyResultsComponent} from './energy-efficiency-results/energy-efficiency-results.component';
 import {EnergyEfficiencyRecommendationCardComponent} from './energy-efficiency-results/energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component';
+import {EnergyEfficiencyCombinedRecommendationCardComponent} from './energy-efficiency-results/energy-efficiency-combined-recommendation-card/energy-efficiency-combined-recommendation-card.component';
 import {RoutingModule} from '../app-routing.module';
 import {RecommendationStepCardComponent} from './your-plan-page/recommendation-step-card/recommendation-step-card.component';
 import {DownloadPlanComponent} from './your-plan-page/download-plan/download-plan.component';
@@ -23,6 +24,7 @@ import {FormsModule} from "@angular/forms";
         YourPlanSummaryComponent,
         EnergyEfficiencyResultsComponent,
         EnergyEfficiencyRecommendationCardComponent,
+        EnergyEfficiencyCombinedRecommendationCardComponent,
         YourPlanFooterComponent,
         RecommendationStepCardComponent,
         DownloadPlanComponent,
@@ -31,7 +33,8 @@ import {FormsModule} from "@angular/forms";
     exports: [
         EnergyEfficiencyQuestionnaireComponent,
         YourPlanPageComponent,
-        EnergyEfficiencyResultsComponent
+        EnergyEfficiencyResultsComponent,
+        EnergyEfficiencyCombinedRecommendationCardComponent
     ],
     imports: [
         FormsModule,

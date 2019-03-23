@@ -1,0 +1,14 @@
+@import "../energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
+
+//TODO-BOC Extract the common styles out rather than using extend
+.energy-efficiency-combined-recommendation-card {
+  @extend .energy-efficiency-recommendation-card;
+
+  .details {
+    @extend .benefits;
+
+    .details-list {
+      @extend .benefits-list;
+    }
+  }
+}

@@ -45,9 +45,8 @@ export class RecommendationsService {
         return Observable.of(this.cachedRecommendations);
     }
 
-    // TODO-BOC
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.cachedRecommendations.userRecommendations
+        return this.cachedRecommendations.getAll()
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 

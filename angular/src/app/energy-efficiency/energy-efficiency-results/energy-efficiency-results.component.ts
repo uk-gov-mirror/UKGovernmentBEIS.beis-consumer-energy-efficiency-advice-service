@@ -68,8 +68,12 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
-    getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
+    getUserRecommendations(): EnergyEfficiencyRecommendation[] {
         return this.allRecommendations.userRecommendations;
+    }
+
+    getLandlordRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.allRecommendations.landlordRecommendations;
     }
 
     get showMonthlySavings() {

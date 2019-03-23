@@ -1,4 +1,5 @@
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import concat from 'lodash-es/concat';
 
 export class EnergyEfficiencyRecommendations {
 
@@ -6,7 +7,11 @@ export class EnergyEfficiencyRecommendations {
                 public landlordRecommendations: EnergyEfficiencyRecommendation[] = []) {
     }
 
-    public hasRecommendations() {
+    public hasRecommendations(): boolean {
         return this.userRecommendations.length !== 0 || this.landlordRecommendations.length !== 0;
+    }
+
+    public getAll(): EnergyEfficiencyRecommendation[] {
+        return concat(this.userRecommendations, this.landlordRecommendations);
     }
 }
