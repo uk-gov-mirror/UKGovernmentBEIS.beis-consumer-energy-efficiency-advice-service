@@ -67,7 +67,7 @@ If you change anything here, please consider whether anything needs changing the
     </div>
     <div class="sticky-row-container">
         <app-sticky-row-wrapper>
-            <app-download-plan></app-download-plan>
+            <app-download-plan *ngIf="userRecommendations.length"></app-download-plan>
         </app-sticky-row-wrapper>
     </div>
 </div>
