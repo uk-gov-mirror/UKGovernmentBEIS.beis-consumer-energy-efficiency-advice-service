@@ -5,12 +5,9 @@ import {LocalAuthorityService} from '../../shared/local-authority-service/local-
 import {LocalAuthority} from '../../shared/local-authority-service/local-authority';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
-import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import * as logger from 'loglevel';
-import {RoundingService} from '../../shared/rounding-service/rounding.service';
-import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
-import {EnergyEfficiencyRecommendationService} from "../../shared/recommendations-service/energy-efficiency-recommendation.service";
 import Config from '../../config';
+import min from 'lodash-es/min';
 
 @Component({
     selector: 'app-your-plan-page',
@@ -19,16 +16,22 @@ import Config from '../../config';
 })
 export class YourPlanPageComponent implements OnInit {
 
-    get recommendations(): EnergyEfficiencyRecommendation[] {
-        return this.recommendationsService.getRecommendationsInPlan();
-    }
-
     get userRecommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getUserRecommendationsInPlan();
     }
 
     get landlordRecommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getLandlordRecommendationsInPlan();
+    }
+
+    get numberOfRecommendations(): number {
+        // Treat landlord recommendations as one recommendation because the user has added a combine recommendation
+        // in the previous page
+        return this.userRecommendations.length + min([this.landlordRecommendations.length, 1]);
+    }
+
+    private get recommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getRecommendationsInPlan();
     }
 
     localAuthorityGrants: LocalAuthorityGrant[] = [];

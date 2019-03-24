@@ -15,12 +15,12 @@ If you change anything here, please consider whether anything needs changing the
                 <div class="heading-container">
                     <h1 class="heading">Your plan</h1>
 
-                    <div class="subheading" *ngIf="recommendations.length === 1">
+                    <div class="subheading" *ngIf="numberOfRecommendations === 1">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.
                     </div>
-                    <div class="subheading" *ngIf="recommendations.length > 1">
-                        You have added {{recommendations.length}} recommendations to your plan. You'll find all the
+                    <div class="subheading" *ngIf="numberOfRecommendations > 1">
+                        You have added {{numberOfRecommendations}} recommendations to your plan. You'll find all the
                         steps and things you need to consider to implement those measures.
                     </div>
                     <app-your-plan-summary></app-your-plan-summary>
