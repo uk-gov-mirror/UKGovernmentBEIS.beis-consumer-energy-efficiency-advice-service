@@ -13,9 +13,13 @@
                     to your plan'}}
                 </div>
                 <div class="recommendations-list">
-                    <app-your-plan-footer-item *ngFor="let recommendation of recommendations"
+                    <app-your-plan-footer-item *ngFor="let recommendation of userRecommendations"
                                                [recommendation]="recommendation">
                     </app-your-plan-footer-item>
+                    <app-your-plan-footer-combined-item *ngIf="landlordRecommendations.length"
+                                                        [recommendations]="landlordRecommendations"
+                                                        [combinedHeadline]="'Recommendations for your landlord'">
+                    </app-your-plan-footer-combined-item>
                 </div>
             </ng-container>
         </div>
