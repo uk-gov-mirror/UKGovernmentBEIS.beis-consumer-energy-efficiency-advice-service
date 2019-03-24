@@ -108,10 +108,16 @@ public class EnergySavingPlanControllerTest {
                 .tenureType(0)
                 .build();
 
-        String formBody = EntityUtils.toString(new UrlEncodedFormEntity(Collections.singletonList(
+        String formBody = EntityUtils.toString(new UrlEncodedFormEntity(ImmutableList.of(
                 new BasicNameValuePair(
                         "planInfo",
-                        objectMapper.writeValueAsString(requestBody)))));
+                        objectMapper.writeValueAsString(requestBody)
+                ),
+                new BasicNameValuePair(
+                        "forLandlord",
+                        objectMapper.writeValueAsString(false)
+                )
+        )));
         MvcResult mvcResult = mvc
                 .perform(
                         post("/api/plan/download")

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpRequest;
@@ -37,9 +39,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
-    private static final String REQUEST_HEATING_FUEL = "heating_fuel";
     private static final String SPACE_NAME_STAGING = "staging";
-    private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
+    private static final TypeReference<Map<String, Object>> STRING_OBJECT_MAP_TYPE =
             new TypeReference<Map<String, Object>>() { };
 
     private final String apiUrl;
@@ -49,6 +50,8 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final DefaultRentalMeasuresService defaultRentalMeasuresService;
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public EnergyCalculationController(
             @Value("${vcap.services.bre.energyUse.credentials.url}")
@@ -91,23 +94,22 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         LinkedMultiValueMap<String, Object> formValues = new LinkedMultiValueMap<>();
         formValues.add("requestData", requestJson);
 
-        String response;
         try {
-            response = restTemplate.postForObject(url, formValues, String.class);
+            String response = restTemplate.postForObject(url, formValues, String.class);
+            if (spaceName.equals(SPACE_NAME_STAGING)) {
+                response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+            }
+            return response;
         } catch (Exception e) {
+            log.error("Error occurred when getting energy calculation response", e);
             Integer fuelType = getFuelTypeFromRequest(requestJson);
             return getDefaultResponse(propertyType, fuelType);
         }
-
-        if (spaceName.equals(SPACE_NAME_STAGING)) {
-            response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
-        }
-        return response;
     }
 
     private Integer getFuelTypeFromRequest(@RequestBody String requestJson) throws IOException {
-        Map<String, Object> request = objectMapper.readValue(requestJson, OBJECT_MAPPER_TYPE_REFERENCE);
-        return Integer.parseInt((String) request.get(REQUEST_HEATING_FUEL));
+        Map<String, Object> request = objectMapper.readValue(requestJson, STRING_OBJECT_MAP_TYPE);
+        return Integer.parseInt((String) request.get("heating_fuel"));
     }
 
     private String getDefaultResponse(Integer propertyType, Integer fuelType) throws IOException {

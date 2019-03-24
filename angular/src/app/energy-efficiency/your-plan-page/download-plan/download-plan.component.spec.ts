@@ -8,6 +8,8 @@ import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 import {FormsModule} from "@angular/forms";
 import {SpinnerAndErrorContainerComponent} from "../../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {DownloadPdfButtonComponent} from "../download-pdf-button/download-pdf-button.component";
+import {PlanInfoService} from "../../../shared/plan-info-service/plan-info.service";
 
 describe('DownloadPlanComponent', () => {
     let component: DownloadPlanComponent;
@@ -22,11 +24,13 @@ describe('DownloadPlanComponent', () => {
             declarations: [
                 DownloadPlanComponent,
                 SpinnerAndErrorContainerComponent,
+                DownloadPdfButtonComponent,
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 GoogleAnalyticsService,
-                {provide: RecommendationsService, useValue: {getRecommendationsInPlan: () => []}}
+                {provide: RecommendationsService, useValue: {getRecommendationsInPlan: () => []}},
+                PlanInfoService,
             ],
             imports: [
                 InlineSVGModule,

@@ -10,13 +10,18 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
+import {YourPlanFooterItemComponent} from "./your-plan-footer-item/your-plan-footer-item.component";
+import {YourPlanFooterCombinedItemComponent} from "./your-plan-footer-combined-item/your-plan-footer-combined-item.component";
+import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 describe('YourPlanFooterComponent', () => {
     let component: YourPlanFooterComponent;
     let fixture: ComponentFixture<YourPlanFooterComponent>;
 
     const recommendationsServiceStub = {
-        getRecommendationsInPlan: () => []
+        getRecommendationsInPlan: () => [],
+        getUserRecommendationsInPlan: () => [],
+        getLandlordRecommendationsInPlan: () => []
     };
 
     const responseDataStub = {
@@ -28,13 +33,16 @@ describe('YourPlanFooterComponent', () => {
             declarations: [
                 YourPlanFooterComponent,
                 DataCardComponent,
-                YourPlanSummaryComponent
+                YourPlanSummaryComponent,
+                YourPlanFooterItemComponent,
+                YourPlanFooterCombinedItemComponent,
             ],
             providers: [
                 AbTestingService,
                 GoogleAnalyticsService,
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: ResponseData, useValue: responseDataStub},
+                EnergyEfficiencyDisplayService,
             ],
             imports: [
                 InlineSVGModule,

@@ -8,9 +8,8 @@ import {
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
-import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
-import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
+import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
     selector: 'app-energy-efficiency-recommendation-card',
@@ -23,23 +22,20 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     roundedInvestmentRequired: number;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
-    showOldVersion: boolean;
     savingDisplay: string;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
 
-    constructor(private recommendationsService: RecommendationsService,
-                private googleAnalyticsService: GoogleAnalyticsService,
-                private abTestingService: AbTestingService) {
+    constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
         this.tags = getActiveTags(this.recommendation.tags)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
-        this.showOldVersion = this.abTestingService.isInGroupA();
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
     }
 
@@ -67,11 +63,9 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     getAddToPlanButtonText(): string {
-        if (!this.recommendation.isAddedToPlan) {
-            return this.showOldVersion ? 'Add to plan' : 'Show me how';
-        } else {
-            return this.isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
-        }
+        return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
+            this.recommendation.isAddedToPlan, this.isMouseOverAddToPlanButton
+        );
     }
 
     toggleAddedToPlan(): void {

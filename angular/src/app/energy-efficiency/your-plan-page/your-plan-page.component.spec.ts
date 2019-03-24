@@ -23,6 +23,11 @@ import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import {GoogleAnalyticsService} from "../../shared/analytics/google-analytics.service";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {FormsModule} from "@angular/forms";
+import {RecommendationWithStepsCardComponent} from "./recommendation-with-steps-card/recommendation-with-steps-card.component";
+import {DownloadPdfButtonComponent} from "./download-pdf-button/download-pdf-button.component";
+import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import {AbTestingService} from "../../shared/analytics/ab-testing.service";
+import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -139,7 +144,9 @@ describe('YourPlanPageComponent', () => {
     };
 
     const recommendationsServiceStub = {
-        getRecommendationsInPlan: () => recommendations
+        getRecommendationsInPlan: () => recommendations,
+        getUserRecommendationsInPlan: () => recommendations,
+        getLandlordRecommendationsInPlan: () => recommendations
     };
 
     beforeEach(async(() => {
@@ -160,12 +167,17 @@ describe('YourPlanPageComponent', () => {
                 DataCardComponent,
                 StickyRowWrapperComponent,
                 SpinnerAndErrorContainerComponent,
+                RecommendationWithStepsCardComponent,
+                DownloadPdfButtonComponent,
             ],
             providers: [
                 {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 GoogleAnalyticsService,
+                EnergyEfficiencyDisplayService,
+                AbTestingService,
+                PlanInfoService,
             ],
             imports: [
                 RouterTestingModule,
@@ -191,9 +203,11 @@ describe('YourPlanPageComponent', () => {
         expect(localAuthorityServiceStub.fetchLocalAuthorityDetails).toHaveBeenCalledWith(localAuthorityCode);
     });
 
-    it('should display all recommendations correctly', () => {
+    it('should display all user recommendations correctly', () => {
         // given
-        const displayedRecommendationHeadlines = fixture.debugElement.queryAll(By.css('.recommendation-steps-card .headline'))
+        const displayedRecommendationHeadlines = fixture.debugElement.queryAll(By.css(
+            '.user-recommendations .recommendation-steps-card-container .headline'
+        ))
             .map(el => el.nativeElement.innerText);
         const expectedRecommendationHeadlines = recommendations.map(rec => rec.headline);
 
