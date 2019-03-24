@@ -29,7 +29,7 @@
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                 ></app-energy-efficiency-recommendation-card>
                 <app-energy-efficiency-combined-recommendation-card
-                        *ngIf="getLandlordRecommendations().length"
+                        *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations().length"
                         [combinedHeadline]="combinedLandlordRecommendationHeadline"
                         [combinedSummary]="'Since you are renting, some of our recommendations will need to be carried out by your landlord.'"
                         [combinedIconPath]="'icons/home-improve.svg'"

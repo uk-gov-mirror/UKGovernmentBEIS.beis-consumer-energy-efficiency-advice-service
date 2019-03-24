@@ -16,6 +16,7 @@ import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-qu
 import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import Config from '../../config';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -87,6 +88,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     get combinedLandlordRecommendationHeadline(): string {
         return this.energyEfficiencyDisplayService.getCombinedLandlordRecommendationHeadline();
+    }
+
+    shouldShowLandlordRecommendation(): boolean {
+        return Config().spaceName !== 'live';
     }
 
     private displayErrorMessage(err: any): void {
