@@ -16,8 +16,6 @@ public class DefaultRentalMeasuresService {
     private static final TypeReference<Map<String, Object>> STRING_OBJECT_MAP_TYPE =
             new TypeReference<Map<String, Object>>() { };
 
-    private static final boolean LANDLORD_RECOMMENDATION_FEATURE_FLAG = true;
-
     private final ObjectMapper objectMapper;
 
     public DefaultRentalMeasuresService(ObjectMapper objectMapper) {
@@ -32,8 +30,16 @@ public class DefaultRentalMeasuresService {
             return responseJson;
         }
 
-        if (LANDLORD_RECOMMENDATION_FEATURE_FLAG && responseHasMeasures(response)) {
-            return requestJson;
+        Map<String, Object> responseWithDefaultRentalMeasures = getResponseWithDefaultRentalMeasures(response);
+        return objectMapper.writeValueAsString(responseWithDefaultRentalMeasures);
+    }
+
+    public String addDefaultRentalMeasuresIfNeededWhenLandlordRecommendationIsOn(String responseJson, String requestJson) throws IOException {
+        Map<String, Object> request = objectMapper.readValue(requestJson, STRING_OBJECT_MAP_TYPE);
+        Map<String, Object> response = objectMapper.readValue(responseJson, STRING_OBJECT_MAP_TYPE);
+
+        if (!userIsRenting(request) || responseHasRentalMeasures(response) || responseHasMeasures(response)) {
+            return responseJson;
         }
 
         Map<String, Object> responseWithDefaultRentalMeasures = getResponseWithDefaultRentalMeasures(response);
