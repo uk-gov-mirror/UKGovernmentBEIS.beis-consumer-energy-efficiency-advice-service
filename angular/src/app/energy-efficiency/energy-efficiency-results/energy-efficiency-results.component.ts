@@ -91,7 +91,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     shouldShowLandlordRecommendation(): boolean {
-        return Config().spaceName !== 'live';
+        return Config().spaceName === 'staging';
     }
 
     private displayErrorMessage(err: any): void {
