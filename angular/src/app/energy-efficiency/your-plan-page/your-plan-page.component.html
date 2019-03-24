@@ -56,9 +56,7 @@ If you change anything here, please consider whether anything needs changing the
                         Recommendations for your landlord
                     </div>
                     <div class="download-button-container">
-                        <app-download-pdf-button [forLandlord]="true"
-                                                 [downloadEndpoint]="downloadLandlordPlanEndpoint"
-                                                 [analyticsEventName]="'download-landlord-plan_clicked'"></app-download-pdf-button>
+                        <app-download-pdf-button [forLandlord]="true"></app-download-pdf-button>
                     </div>
                 </div>
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of landlordRecommendations">

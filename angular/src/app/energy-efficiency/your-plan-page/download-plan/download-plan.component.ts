@@ -15,7 +15,6 @@ export class DownloadPlanComponent {
     emailIsError = false;
     emailAddress: string = "";
 
-    private readonly downloadEndpoint = Config().apiRoot + '/plan/download-user-plan';
     private readonly emailEndpoint = Config().apiRoot + '/plan/email';
 
     constructor(private planInfoService: PlanInfoService,

@@ -145,38 +145,20 @@ public class EnergySavingPlanController {
      *                See EnergyEfficiencyRecommendation.fromMeasure
      *                and EnergyEfficiencyRecommendation.fromNationalGrant
      */
-    @PostMapping("download-user-plan")
+    @PostMapping("download")
     public void downloadUserPlan(
             @Valid @RequestParam("planInfo") PlanInfo request,
+            @Valid @RequestParam("forLandlord") boolean forLandlord,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
             throws Exception {
 
-        PdfUserRecommendationParams pdfUserRecommendationParams =
-                new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType);
+        PdfRecommendationParams pdfRecommendationParams = forLandlord
+                ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType)
+                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType);
 
-        downloadPlan(pdfUserRecommendationParams, httpRequest, response, locale);
-    }
-
-    /**
-     * Renders the client's Plan to a PDF.
-     *
-     * See comments on {@link #downloadUserPlan}, except some measures like 'One degree reduction' should have not
-     * been sent by the client because only landlord measures should have been passed through
-     */
-    @PostMapping("download-landlord-plan")
-    public void downloadLandlordPlan(
-            @Valid @RequestParam("planInfo") PlanInfo request,
-            HttpServletRequest httpRequest,
-            HttpServletResponse response,
-            final Locale locale)
-            throws Exception {
-
-        PdfLandlordRecommendationParams pdfLandlordRecommendationParams =
-                new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType);
-
-        downloadPlan(pdfLandlordRecommendationParams, httpRequest, response, locale);
+        downloadPlan(pdfRecommendationParams, httpRequest, response, locale);
     }
 
     private void downloadPlan(

@@ -6,7 +6,6 @@ import {LocalAuthority} from '../../shared/local-authority-service/local-authori
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import * as logger from 'loglevel';
-import Config from '../../config';
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
@@ -32,8 +31,6 @@ export class YourPlanPageComponent implements OnInit {
     localAuthorityName: string;
     isError: boolean = false;
     errorMessage: string;
-
-    private readonly downloadLandlordPlanEndpoint = Config().apiRoot + '/plan/download-landlord-plan';
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
