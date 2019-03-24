@@ -12,10 +12,10 @@
             </div>
         </div>
         <div class="expanded-view-row" [class.expanded]="isExpandedView">
-            <div class="details" *ngIf="details && details.length">
+            <div class="summarised-headlines" *ngIf="summarisedHeadlines && summarisedHeadlines.length">
                 <div class="heading">What it is</div>
-                <ul class="details-list">
-                    <li class="details-list-item" *ngFor="let detail of details">
+                <ul class="summarised-headline-list">
+                    <li class="summarised-headline-list-item" *ngFor="let summarisedHeadline summarisedHeadlines">
                         {{detail}}
                     </li>
                 </ul>

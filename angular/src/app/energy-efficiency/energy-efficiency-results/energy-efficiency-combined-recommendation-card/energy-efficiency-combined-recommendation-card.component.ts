@@ -6,6 +6,7 @@ import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendat
 import sum from 'lodash-es/sum';
 import isEmpty from 'lodash-es/isEmpty';
 import join from 'lodash-es/join';
+import every from 'lodash-es/every';
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 
@@ -20,8 +21,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     roundedInvestmentRequired: number;
     isMouseOverAddToPlanButton: boolean = false;
     savingDisplay: string;
-    // TODO-BOC call it summarised headlines?
-    details: string[];
+    summarisedHeadlines: string[];
 
     @Input() recommendations: EnergyEfficiencyRecommendation[];
     @Input() combinedHeadline: string;
@@ -37,7 +37,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     ngOnInit() {
         this.roundedInvestmentRequired = this.getRoundedInvestmentRequired();
         this.savingDisplay = EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, this.showMonthlySavings);
-        this.details = this.getDetails();
+        this.summarisedHeadlines = this.getSummarisedHeadlines();
     }
 
     toggleExpandedView(): void {
@@ -56,8 +56,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     }
 
     isAddedToPlan(): boolean {
-        // TODO-BOC need to rethink about this
-        return !isEmpty(this.recommendations) && this.recommendations[0].isAddedToPlan;
+        return !isEmpty(this.recommendations) && every(this.recommendations, recommendation => recommendation.isAddedToPlan);
     }
 
     getAddToPlanButtonText(): string {
@@ -90,7 +89,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
         return RoundingService.roundCostValue(totalCost);
     }
 
-    private getDetails(): string[] {
+    private getSummarisedHeadlines(): string[] {
         return this.recommendations
             .map(recommendation => {
                 return recommendation.headline;

@@ -4,10 +4,10 @@
 .energy-efficiency-combined-recommendation-card {
   @extend .energy-efficiency-recommendation-card;
 
-  .details {
+  .summarised-headlines {
     @extend .benefits;
 
-    .details-list {
+    .summarised-headline-list {
       @extend .benefits-list;
     }
   }
