@@ -1,6 +1,7 @@
 import {ResponseData} from "../response-data/response-data";
 import {RecommendationsService} from "../recommendations-service/recommendations.service";
 import {Injectable} from '@angular/core';
+import {EnergyEfficiencyRecommendation} from "../recommendations-service/energy-efficiency-recommendation";
 
 @Injectable()
 export class PlanInfoService {
@@ -9,9 +10,17 @@ export class PlanInfoService {
                 private recommendationsService: RecommendationsService) {
     }
 
-    public getPlanInfo() {
+    public getUserPlanInfo() {
+        return this.getPlanInfo(this.recommendationsService.getUserRecommendationsInPlan());
+    }
+
+    public getLandlordPlanInfo() {
+        return this.getPlanInfo(this.recommendationsService.getLandlordRecommendationsInPlan());
+    }
+
+    private getPlanInfo(recommendationsInPlan: EnergyEfficiencyRecommendation[]) {
         // See uk.gov.beis.dceas.controller.EnergySavingPlanController.PlanInfo
-        const recommendations = this.recommendationsService.getRecommendationsInPlan()
+        const recommendations = recommendationsInPlan
             .map(r => {
                 if (r.isMeasure) {
                     return {

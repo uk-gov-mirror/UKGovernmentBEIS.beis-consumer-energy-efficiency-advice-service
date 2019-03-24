@@ -27,7 +27,7 @@ export class DownloadPlanComponent {
         this.sendEventToAnalytics('email-plan_clicked');
         this.emailIsLoading = true;
 
-        const planInfo = this.planInfoService.getPlanInfo();
+        const planInfo = this.planInfoService.getUserPlanInfo();
 
         this.http.post(this.emailEndpoint, {
             planInfo: planInfo,

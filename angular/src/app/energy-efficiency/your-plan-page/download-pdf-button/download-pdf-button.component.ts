@@ -11,6 +11,7 @@ export class DownloadPdfButtonComponent {
 
     @Input() downloadEndpoint: string;
     @Input() analyticsEventName: string;
+    @Input() forLandlord: boolean;
 
     constructor(private planInfoService: PlanInfoService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
@@ -19,7 +20,9 @@ export class DownloadPdfButtonComponent {
     public onDownloadPdfClicked() {
         this.sendEventToAnalytics(this.analyticsEventName);
 
-        const planInfo = this.planInfoService.getPlanInfo();
+        const planInfo = this.forLandlord
+            ? this.planInfoService.getLandlordPlanInfo()
+            : this.planInfoService.getUserPlanInfo();
 
         // Submit a hidden form to POST to the PDF endpoint, and download it
         const form = document.createElement("form");
