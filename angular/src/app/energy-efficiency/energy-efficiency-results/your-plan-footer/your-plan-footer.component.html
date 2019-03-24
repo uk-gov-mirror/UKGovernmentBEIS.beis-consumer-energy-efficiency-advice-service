@@ -13,13 +13,9 @@
                     to your plan'}}
                 </div>
                 <div class="recommendations-list">
-                    <div class="recommendations-list-item"
-                         *ngFor="let recommendation of recommendations"
-                         (click)="removeFromPlan(recommendation)">
-                        <div class="list-icon" [inlineSVG]="'controls/do-chevron.svg'"></div>
-                        <button class="recommendation-name">{{recommendation.headline}}</button>
-                        <div class="remove-recommendation-button" [inlineSVG]="'controls/remove.svg'"></div>
-                    </div>
+                    <app-your-plan-footer-item *ngFor="let recommendation of recommendations"
+                                               [recommendation]="recommendation">
+                    </app-your-plan-footer-item>
                 </div>
             </ng-container>
         </div>

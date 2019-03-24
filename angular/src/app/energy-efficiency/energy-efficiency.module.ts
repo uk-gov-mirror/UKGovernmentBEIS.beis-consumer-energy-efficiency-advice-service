@@ -18,6 +18,7 @@ import {YourPlanFooterComponent} from './energy-efficiency-results/your-plan-foo
 import {FormsModule} from "@angular/forms";
 import {DownloadPdfButtonComponent} from "./your-plan-page/download-pdf-button/download-pdf-button.component";
 import {RecommendationWithStepsCardComponent} from "./your-plan-page/recommendation-with-steps-card/recommendation-with-steps-card.component";
+import {YourPlanFooterItemComponent} from "./energy-efficiency-results/your-plan-footer/your-plan-footer-item/your-plan-footer-item.component";
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import {RecommendationWithStepsCardComponent} from "./your-plan-page/recommendat
         EnergyEfficiencyRecommendationCardComponent,
         EnergyEfficiencyCombinedRecommendationCardComponent,
         YourPlanFooterComponent,
+        YourPlanFooterItemComponent,
         RecommendationStepCardComponent,
         RecommendationWithStepsCardComponent,
         DownloadPlanComponent,

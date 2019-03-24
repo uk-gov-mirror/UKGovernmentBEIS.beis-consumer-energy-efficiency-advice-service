@@ -17,16 +17,20 @@ export class YourPlanFooterComponent implements OnInit {
         return this.recommendationsService.getRecommendationsInPlan();
     }
 
+    get userRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getUserRecommendationsInPlan();
+    }
+
+    get landlordRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getLandlordRecommendationsInPlan();
+    }
+
     constructor(private recommendationsService: RecommendationsService,
                 private abTestingService: AbTestingService) {
     }
 
     ngOnInit() {
         this.showOldVersion = this.abTestingService.isInGroupA();
-    }
-
-    removeFromPlan(recommendation: EnergyEfficiencyRecommendation): void {
-        recommendation.isAddedToPlan = false;
     }
 
     getYouHaveAddedRecommendations() {
