@@ -1,4 +1,3 @@
-
 import {ResponseData} from "../response-data/response-data";
 import {RecommendationsService} from "../recommendations-service/recommendations.service";
 import {Injectable} from '@angular/core';

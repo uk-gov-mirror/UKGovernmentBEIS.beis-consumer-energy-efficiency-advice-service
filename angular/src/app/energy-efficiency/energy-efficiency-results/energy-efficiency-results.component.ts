@@ -3,7 +3,6 @@ import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-s
 import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
 import {EnergyCalculations} from './energy-calculations';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import sumBy from 'lodash-es/sumBy';
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
@@ -16,6 +15,7 @@ import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
+import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -41,7 +41,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private energyCalculationService: EnergyCalculationApiService,
                 private userStateService: UserStateService,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private abTestingService: AbTestingService) {
+                private abTestingService: AbTestingService,
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
     }
 
     ngOnInit() {
@@ -82,6 +83,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     sendEventToAnalytics(eventName: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page');
+    }
+
+    get combinedLandlordRecommendationHeadline(): string {
+        return this.energyEfficiencyDisplayService.getCombinedLandlordRecommendationHeadline();
     }
 
     private displayErrorMessage(err: any): void {

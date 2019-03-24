@@ -45,6 +45,7 @@ import {WordpressSearchService} from './wordpress-search-service/wordpress-searc
 import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
 import {ContentsTableComponent} from "./contents-table/contents-table.component";
 import {PlanInfoService} from "./plan-info-service/plan-info.service";
+import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-service/energy-efficiency-display.service";
 
 @NgModule({
     declarations: [
@@ -124,6 +125,7 @@ export class SharedModule {
                 RecommendationsService,
                 CookieService,
                 PlanInfoService,
+                EnergyEfficiencyDisplayService,
             ]
         };
     }

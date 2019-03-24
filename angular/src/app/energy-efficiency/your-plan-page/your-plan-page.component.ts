@@ -7,7 +7,7 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import * as logger from 'loglevel';
 import Config from '../../config';
-import min from 'lodash-es/min';
+import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -25,13 +25,7 @@ export class YourPlanPageComponent implements OnInit {
     }
 
     get numberOfRecommendations(): number {
-        // Treat landlord recommendations as one recommendation because the user has added a combine recommendation
-        // in the previous page
-        return this.userRecommendations.length + min([this.landlordRecommendations.length, 1]);
-    }
-
-    private get recommendations(): EnergyEfficiencyRecommendation[] {
-        return this.recommendationsService.getRecommendationsInPlan();
+        return this.energyEfficiencyDisplayService.getApparentNumberOfRecommendations();
     }
 
     localAuthorityGrants: LocalAuthorityGrant[] = [];
@@ -43,11 +37,12 @@ export class YourPlanPageComponent implements OnInit {
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
-                private responseData: ResponseData) {
+                private responseData: ResponseData,
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
     }
 
     ngOnInit() {
-        if (!this.recommendations.length) {
+        if (!this.energyEfficiencyDisplayService.getActualNumberOfRecommendations()) {
             this.errorMessage = "Sorry, we can't show you your plan at the moment " +
                 "as it seems that you have not completed the questionnaire, " +
                 "or something has gone wrong.";

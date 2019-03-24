@@ -2,12 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
-import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
-import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
 import sum from 'lodash-es/sum';
 import isEmpty from 'lodash-es/isEmpty';
 import join from 'lodash-es/join';
+import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 
 @Component({
@@ -20,7 +19,6 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
     isMouseOverAddToPlanButton: boolean = false;
-    showOldVersion: boolean;
     savingDisplay: string;
     // TODO-BOC call it summarised headlines?
     details: string[];
@@ -32,14 +30,12 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
 
-    constructor(private recommendationsService: RecommendationsService,
-                private googleAnalyticsService: GoogleAnalyticsService,
-                private abTestingService: AbTestingService) {
+    constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
+                private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
     ngOnInit() {
         this.roundedInvestmentRequired = this.getRoundedInvestmentRequired();
-        this.showOldVersion = this.abTestingService.isInGroupA();
         this.savingDisplay = EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, this.showMonthlySavings);
         this.details = this.getDetails();
     }
@@ -60,16 +56,14 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     }
 
     isAddedToPlan(): boolean {
+        // TODO-BOC need to rethink about this
         return !isEmpty(this.recommendations) && this.recommendations[0].isAddedToPlan;
     }
 
     getAddToPlanButtonText(): string {
-        if (!this.isAddedToPlan()) {
-            // TODO-BOC commonise strings
-            return this.showOldVersion ? 'Add to plan' : 'Show me how';
-        } else {
-            return this.isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
-        }
+        return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
+            this.isAddedToPlan(), this.isMouseOverAddToPlanButton
+        );
     }
 
     toggleAddedToPlan(): void {
