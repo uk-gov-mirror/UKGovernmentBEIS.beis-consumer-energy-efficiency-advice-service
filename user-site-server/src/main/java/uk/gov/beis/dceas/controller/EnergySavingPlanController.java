@@ -148,7 +148,7 @@ public class EnergySavingPlanController {
     @PostMapping("download")
     public void downloadUserPlan(
             @Valid @RequestParam("planInfo") PlanInfo request,
-            @Valid @RequestParam("forLandlord") boolean forLandlord,
+            @Valid @RequestParam(value = "forLandlord", defaultValue = "false") boolean forLandlord,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
