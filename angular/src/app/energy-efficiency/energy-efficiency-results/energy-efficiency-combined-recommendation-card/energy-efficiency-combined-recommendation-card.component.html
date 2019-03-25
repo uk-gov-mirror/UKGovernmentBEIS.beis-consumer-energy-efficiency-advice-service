@@ -15,8 +15,8 @@
             <div class="summarised-headlines" *ngIf="summarisedHeadlines && summarisedHeadlines.length">
                 <div class="heading">What it is</div>
                 <ul class="summarised-headline-list">
-                    <li class="summarised-headline-list-item" *ngFor="let summarisedHeadline summarisedHeadlines">
-                        {{detail}}
+                    <li class="summarised-headline-list-item" *ngFor="let summarisedHeadline of summarisedHeadlines">
+                        {{summarisedHeadline}}
                     </li>
                 </ul>
             </div>
