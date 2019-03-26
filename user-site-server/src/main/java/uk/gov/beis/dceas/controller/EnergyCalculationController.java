@@ -36,6 +36,8 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 @RequestMapping("/api")
 public class EnergyCalculationController implements ClientHttpRequestInterceptor {
 
+    private static final boolean LANDLORD_RECOMMENDATION_FEATURE_FLAG = true;
+
     private static final String DEFAULT_RECOMMENDATION_RESPONSES_PATH = "default-recommendation-responses/";
     private static final int FUEL_TYPE_ELECTRICITY = 29;
     private static final int PROPERTY_TYPE_FLAT = 2;
@@ -97,7 +99,9 @@ public class EnergyCalculationController implements ClientHttpRequestInterceptor
         try {
             String response = restTemplate.postForObject(url, formValues, String.class);
             if (spaceName.equals(SPACE_NAME_STAGING)) {
-                response = defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
+                response = LANDLORD_RECOMMENDATION_FEATURE_FLAG
+                        ? defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeededWhenLandlordRecommendationIsOn(response, requestJson)
+                        : defaultRentalMeasuresService.addDefaultRentalMeasuresIfNeeded(response, requestJson);
             }
             return response;
         } catch (Exception e) {

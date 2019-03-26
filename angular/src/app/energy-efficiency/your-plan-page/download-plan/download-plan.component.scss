@@ -1,9 +1,8 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
+@import "../download-pdf-button/download-pdf-button.component";
 
 // Component specific variables
-$pdf-button-width: 53px;
-$pdf-button-arrow-height: 12px;
 $send-email-button-height: 40px;
 $send-email-button-arrow-width: 10px;
 $action-divider-circle-diameter: 40px;
@@ -19,7 +18,7 @@ $action-divider-circle-diameter: 40px;
     display: flex;
     position: relative;
 
-    .download-your-plan, .download-landlord-report, .email-your-plan {
+    .download-your-plan, .email-your-plan {
       display: flex;
       flex: 1 0 1px;
       justify-content: space-around;
@@ -36,50 +35,9 @@ $action-divider-circle-diameter: 40px;
         margin: 10px;
       }
 
-      .download-pdf {
-        background-color: $light-blue;
-        outline: none;
-        border: none;
-        position: relative;
-        flex: 0 0 $pdf-button-width;
-        height: 64px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
+      .download-button-container {
+        flex: 0 0 $download-pdf-button-width;
         margin-left: 12px;
-
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -$pdf-button-arrow-height;
-          left: 0;
-          height: 0;
-          width: 0;
-          border-right: $pdf-button-width/2 solid transparent;
-          border-left: $pdf-button-width/2 solid transparent;
-          border-top: $pdf-button-arrow-height solid $light-blue;
-        }
-
-        .download-pdf-text {
-          font-size: 13px;
-          color: $dark-blue;
-          outline: none;
-          background: none;
-          border: none;
-          padding: 0;
-          margin: 0 0 20px;
-        }
-
-        .download-pdf-icon {
-          transform: rotate(90deg);
-          stroke: $dark-blue;
-          width: 16px;
-          height: 16px;
-          display: block;
-          line-height: 0;
-        }
       }
     }
 
@@ -148,10 +106,6 @@ $action-divider-circle-diameter: 40px;
 .download-plan.page-row {
   @include mobile() {
     .page-row-content {
-      .download-landlord-report {
-        display: none;
-      }
-
       .download-your-plan {
         padding-right: 24px;
         border-right: 1px solid $light-grey;
@@ -186,10 +140,6 @@ $action-divider-circle-diameter: 40px;
 
   @include tablet() {
     .page-row-content {
-      .download-landlord-report {
-        display: none;
-      }
-
       .download-your-plan {
         padding-right: 38px;
         border-right: 1px solid $light-grey;
@@ -218,7 +168,7 @@ $action-divider-circle-diameter: 40px;
         border-right: 1px solid $light-grey;
       }
 
-      .download-your-plan, .download-landlord-report, .email-your-plan {
+      .download-your-plan, .email-your-plan {
         padding: 0 40px;
 
         .header {

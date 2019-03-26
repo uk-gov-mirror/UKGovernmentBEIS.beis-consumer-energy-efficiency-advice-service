@@ -32,6 +32,11 @@ import {FloorAreaUnit} from '../../questionnaire/questions/floor-area-question/f
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
+import {EnergyEfficiencyCombinedRecommendationCardComponent} from "./energy-efficiency-combined-recommendation-card/energy-efficiency-combined-recommendation-card.component";
+import {YourPlanFooterCombinedItemComponent} from "./your-plan-footer/your-plan-footer-combined-item/your-plan-footer-combined-item.component";
+import {YourPlanFooterItemComponent} from "./your-plan-footer/your-plan-footer-item/your-plan-footer-item.component";
+import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -42,11 +47,13 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fetchEnergyCalculation: () => energyCalculationResponse
     };
 
-    let recommendationsResponse: Observable<EnergyEfficiencyRecommendation[]>;
+    let recommendationsResponse: Observable<EnergyEfficiencyRecommendations>;
     const recommendationsServiceStub = {
         getAllRecommendations: () => recommendationsResponse,
         isAddedToPlan: () => false,
-        getRecommendationsInPlan: () => []
+        getRecommendationsInPlan: () => [],
+        getUserRecommendationsInPlan: () => recommendations,
+        getLandlordRecommendationsInPlan: () => [],
     };
 
     const userStateServiceStub = {
@@ -133,7 +140,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     beforeEach(async(() => {
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
-        recommendationsResponse = Observable.of(recommendations);
+        recommendationsResponse = Observable.of(new EnergyEfficiencyRecommendations(recommendations));
 
         responseData = new ResponseData();
         responseData.homeType = HomeType.House;
@@ -151,11 +158,14 @@ describe('EnergyEfficiencyResultsComponent', () => {
             declarations: [
                 EnergyEfficiencyResultsComponent,
                 EnergyEfficiencyRecommendationCardComponent,
+                EnergyEfficiencyCombinedRecommendationCardComponent,
                 DataCardComponent,
                 SpinnerAndErrorContainerComponent,
                 LocalGrantCardComponent,
                 BreakEvenComponent,
                 YourPlanFooterComponent,
+                YourPlanFooterItemComponent,
+                YourPlanFooterCombinedItemComponent,
                 YourPlanSummaryComponent,
                 StickyRowWrapperComponent
             ],
@@ -171,6 +181,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: UserStateService, useValue: userStateServiceStub},
                 AbTestingService,
                 GoogleAnalyticsService,
+                EnergyEfficiencyDisplayService,
             ]
         })
             .compileComponents();

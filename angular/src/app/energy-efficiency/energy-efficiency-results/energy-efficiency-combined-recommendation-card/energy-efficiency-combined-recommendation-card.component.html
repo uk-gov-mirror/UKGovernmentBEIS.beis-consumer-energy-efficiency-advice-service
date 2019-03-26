@@ -1,0 +1,60 @@
+<div class="energy-efficiency-combined-recommendation-card">
+    <div class="main-row">
+        <div class="recommendation-icon">
+            <div [inlineSVG]="combinedIconPath" class="icon"></div>
+        </div>
+        <div class="recommendation-basic-details">
+            <div class="heading">{{combinedHeadline}}</div>
+            <div class="summary-row">
+                <div class="summary">
+                    {{combinedSummary}}
+                </div>
+            </div>
+        </div>
+        <div class="expanded-view-row" [class.expanded]="isExpandedView">
+            <div class="summarised-headlines" *ngIf="summarisedHeadlines && summarisedHeadlines.length">
+                <div class="heading">What it is</div>
+                <ul class="summarised-headline-list">
+                    <li class="summarised-headline-list-item" *ngFor="let summarisedHeadline of summarisedHeadlines">
+                        {{summarisedHeadline}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+            <div class="more-detail-icon" [inlineSVG]="'controls/more-detail.svg'"></div>
+        </div>
+        <app-data-card class="investment-required-card"
+                       heading="Investment required"
+                       [value]="'£' + roundedInvestmentRequired"
+                       [isSmallCard]="true"
+                       [withSmallFontSize]="true"
+        ></app-data-card>
+        <app-data-card class="monthly-savings-card"
+                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                       [value]="savingDisplay"
+                       [isSmallCard]="true"
+                       [withSmallFontSize]="true"
+        ></app-data-card>
+        <div class="add-to-plan-column"
+             *ngIf="showAddToPlanColumn"
+             [class.selected]="isAddedToPlan()"
+             (mouseenter)="mouseEnterAddToPlanButton()"
+             (mouseleave)="mouseLeaveAddToPlanButton()"
+             (click)="toggleAddedToPlan()">
+            <button class="add-to-plan-text">
+                {{getAddToPlanButtonText()}}
+            </button>
+            <div class="add-to-plan-icon add"
+                 *ngIf="!isAddedToPlan()"
+                 [inlineSVG]="'controls/add.svg'"></div>
+            <div class="add-to-plan-icon added"
+                 *ngIf="isAddedToPlan() && !isMouseOverAddToPlanButton"
+                 [inlineSVG]="'controls/tick.svg'"
+            ></div>
+            <div class="add-to-plan-icon remove"
+                 *ngIf="isAddedToPlan() && isMouseOverAddToPlanButton"
+                 [inlineSVG]="'controls/remove.svg'"></div>
+        </div>
+    </div>
+</div>

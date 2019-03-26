@@ -23,6 +23,8 @@ public class DefaultRentalMeasuresServiceTest {
     private static final TypeReference<Map<String, Object>> OBJECT_MAPPER_TYPE_REFERENCE =
             new TypeReference<Map<String, Object>>() { };
 
+    private static final boolean DEFAULT_LANDLORD_RECOMMENDATION_FEATURE_FLAG = false;
+
     @Autowired
     private ObjectMapper objectMapper;
 

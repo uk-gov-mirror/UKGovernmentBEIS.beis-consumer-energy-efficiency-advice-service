@@ -1,7 +1,8 @@
-import {Component, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
+import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
     selector: 'app-your-plan-footer',
@@ -13,28 +14,33 @@ export class YourPlanFooterComponent implements OnInit {
 
     @Output() onDoPlan: EventEmitter<null> = new EventEmitter<null>();
 
-    get recommendations(): EnergyEfficiencyRecommendation[] {
-        return this.recommendationsService.getRecommendationsInPlan();
+    get userRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getUserRecommendationsInPlan();
+    }
+
+    get landlordRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getLandlordRecommendationsInPlan();
+    }
+
+    get numberOfRecommendations(): number {
+        return this.energyEfficiencyDisplayService.getApparentNumberOfRecommendations();
+    }
+
+    get combinedLandlordRecommendationHeadline(): string {
+        return this.energyEfficiencyDisplayService.getCombinedLandlordRecommendationHeadline();
     }
 
     constructor(private recommendationsService: RecommendationsService,
-                private abTestingService: AbTestingService) {
+                private abTestingService: AbTestingService,
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
     }
 
     ngOnInit() {
         this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
-    removeFromPlan(recommendation: EnergyEfficiencyRecommendation): void {
-        recommendation.isAddedToPlan = false;
-    }
-
     getYouHaveAddedRecommendations() {
-        if (this.recommendations.length === 1) {
-            return 'You have added 1 recommendation';
-        } else {
-            return `You have added ${this.recommendations.length} recommendations`;
-        }
+        return this.energyEfficiencyDisplayService.getYouHaveAddedRecommendationsInfo();
     }
 
     DoPlanClicked() {

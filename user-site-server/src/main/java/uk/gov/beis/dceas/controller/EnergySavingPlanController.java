@@ -22,6 +22,9 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 import uk.gov.beis.dceas.api.NationalGrant;
+import uk.gov.beis.dceas.api.PdfLandlordRecommendationParams;
+import uk.gov.beis.dceas.api.PdfRecommendationParams;
+import uk.gov.beis.dceas.api.PdfUserRecommendationParams;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
 
@@ -85,7 +88,7 @@ public class EnergySavingPlanController {
     /**
      * Renders the client's Plan to a PDF and emails it to the requested address.
      *
-     * See comments on {@link #downloadPlan}
+     * See comments on {@link #downloadUserPlan}
      */
     @PostMapping("email")
     public void emailPlan(
@@ -113,7 +116,12 @@ public class EnergySavingPlanController {
                 "The Simple Energy Advice team");
 
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
-        writePlanToOutputStream(request.planInfo, pdfBuffer, httpRequest, response, locale);
+
+        PlanInfo planInfo = request.getPlanInfo();
+        PdfUserRecommendationParams pdfUserRecommendationParams =
+                new PdfUserRecommendationParams(planInfo.getRecommendations(), planInfo.getTenureType());
+
+        writePlanToOutputStream(pdfUserRecommendationParams, pdfBuffer, httpRequest, response, locale);
 
         helper.addAttachment(
                 "Simple Energy Advice - Energy Saving Plan.pdf",
@@ -138,24 +146,38 @@ public class EnergySavingPlanController {
      *                and EnergyEfficiencyRecommendation.fromNationalGrant
      */
     @PostMapping("download")
-    public void downloadPlan(
+    public void downloadUserPlan(
             @Valid @RequestParam("planInfo") PlanInfo request,
+            @Valid @RequestParam(value = "forLandlord", defaultValue = "false") boolean forLandlord,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
             final Locale locale)
             throws Exception {
 
+        PdfRecommendationParams pdfRecommendationParams = forLandlord
+                ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType)
+                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType);
+
+        downloadPlan(pdfRecommendationParams, httpRequest, response, locale);
+    }
+
+    private void downloadPlan(
+            PdfRecommendationParams pdfRecommendationParams,
+            HttpServletRequest httpRequest,
+            HttpServletResponse response,
+            Locale locale
+    ) throws Exception {
         response.setContentType("application/pdf");
         response.setHeader(
                 "Content-Disposition",
-                "attachment; filename=\"Simple Energy Advice - Energy Saving Plan.pdf\"");
+                "attachment; filename=\"Simple Energy Advice - " + pdfRecommendationParams.getFileDescription() + ".pdf\"");
         try (ServletOutputStream out = response.getOutputStream()) {
-            writePlanToOutputStream(request, out, httpRequest, response, locale);
+            writePlanToOutputStream(pdfRecommendationParams, out, httpRequest, response, locale);
         }
     }
 
     private void writePlanToOutputStream(
-            PlanInfo request,
+            PdfRecommendationParams pdfRecommendationParams,
             OutputStream out,
             HttpServletRequest httpRequest,
             HttpServletResponse response,
@@ -172,7 +194,8 @@ public class EnergySavingPlanController {
 
         loadDisplayData(
                 templateContext,
-                request);
+                pdfRecommendationParams
+        );
 
         // We render the entire template to a String in memory, then parse that String as XML.
         // In theory, we might be able to pipe the output from Thymeleaf directly into an
@@ -199,15 +222,16 @@ public class EnergySavingPlanController {
     }
 
     /**
-     * Keep this in sync with recommendations.service.ts `refreshAllRecommendations`
+     * Keep this in sync with recommendations.service.ts `getRecommendationsContent`
      */
     private void loadDisplayData(
             SpringWebContext templateContext,
-            PlanInfo request) throws Exception {
+            PdfRecommendationParams pdfRecommendationParams
+    ) throws Exception {
 
         Map<String, Map<String, Object>> measuresBySlug = measuresDataService.getMeasuresBySlug();
 
-        List<EnergyEfficiencyRecommendation> recommendations = request.recommendations.stream()
+        List<EnergyEfficiencyRecommendation> recommendations = pdfRecommendationParams.getRecommendations().stream()
                 .map(recommendation -> {
                     if (!isNullOrEmpty(recommendation.measureSlug)) {
                         Map<String, Object> measure = measuresBySlug.get(recommendation.measureSlug);
@@ -229,6 +253,9 @@ public class EnergySavingPlanController {
                 })
                 .collect(toList());
 
+        templateContext.setVariable("title", pdfRecommendationParams.getTitle());
+        templateContext.setVariable("subheading", pdfRecommendationParams.getSubheading());
+
         templateContext.setVariable("recommendations", recommendations);
 
         Double totalInvestment = recommendations.stream()
@@ -237,7 +264,7 @@ public class EnergySavingPlanController {
         templateContext.setVariable("roundedTotalInvestmentRequired",
                 roundAndFormatCostValue(totalInvestment));
 
-        boolean showMonthlySavings = request.tenureType != 0;
+        boolean showMonthlySavings = pdfRecommendationParams.getShowMonthlySavings();
         templateContext.setVariable("showMonthlySavings", showMonthlySavings);
 
         double minimumSavings = recommendations.stream()
@@ -383,7 +410,7 @@ public class EnergySavingPlanController {
         Double investmentPounds;
         /**
          * If a measure, this is `costSavingPoundsPerYear`, adjusted by 'uncertainty'
-         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds` adjusted by 'uncertainty
+         * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds` adjusted by 'uncertainty'
          */
         Double minimumCostSavingPoundsPerYear;
         Double maximumCostSavingPoundsPerYear;

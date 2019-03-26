@@ -34,6 +34,18 @@ public class DefaultRentalMeasuresService {
         return objectMapper.writeValueAsString(responseWithDefaultRentalMeasures);
     }
 
+    public String addDefaultRentalMeasuresIfNeededWhenLandlordRecommendationIsOn(String responseJson, String requestJson) throws IOException {
+        Map<String, Object> request = objectMapper.readValue(requestJson, STRING_OBJECT_MAP_TYPE);
+        Map<String, Object> response = objectMapper.readValue(responseJson, STRING_OBJECT_MAP_TYPE);
+
+        if (!userIsRenting(request) || responseHasRentalMeasures(response) || responseHasMeasures(response)) {
+            return responseJson;
+        }
+
+        Map<String, Object> responseWithDefaultRentalMeasures = getResponseWithDefaultRentalMeasures(response);
+        return objectMapper.writeValueAsString(responseWithDefaultRentalMeasures);
+    }
+
     private boolean userIsRenting(Map<String, Object> request) throws IOException {
         return Boolean.parseBoolean(request.get("rented").toString());
     }
@@ -41,6 +53,11 @@ public class DefaultRentalMeasuresService {
     @SuppressWarnings("unchecked")
     private boolean responseHasRentalMeasures(Map<String, Object> response) throws IOException {
         return !CollectionUtils.isEmpty((Map<String, Object>) response.get("measures_rented"));
+    }
+
+    @SuppressWarnings("unchecked")
+    private boolean responseHasMeasures(Map<String, Object> response) throws IOException {
+        return !CollectionUtils.isEmpty((Map<String, Object>) response.get("measures"));
     }
 
     private Map<String, Object> getResponseWithDefaultRentalMeasures(Map<String, Object> response) throws IOException {

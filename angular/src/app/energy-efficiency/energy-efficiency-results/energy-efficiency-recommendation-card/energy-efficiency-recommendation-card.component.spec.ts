@@ -14,6 +14,7 @@ import {NationalGrantForMeasure} from '../../../grants/model/national-grant-for-
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
+import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -68,6 +69,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
                 {provide: RecommendationsService, use: {}},
                 AbTestingService,
                 GoogleAnalyticsService,
+                EnergyEfficiencyDisplayService,
             ]
         })
             .compileComponents();
