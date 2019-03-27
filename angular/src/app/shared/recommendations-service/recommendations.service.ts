@@ -5,11 +5,9 @@ import clone from 'lodash-es/clone';
 import keys from 'lodash-es/keys';
 import 'rxjs/add/operator/do';
 import {ResponseData} from '../response-data/response-data';
-import {EnergyCalculationApiService} from '../energy-calculation-api-service/energy-calculation-api-service';
 import {EnergySavingMeasureContentService} from '../energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {GrantEligibilityService} from '../../grants/grant-eligibility-service/grant-eligibility.service';
 import {EnergyEfficiencyRecommendation} from './energy-efficiency-recommendation';
-import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 import {MeasuresResponse} from '../energy-calculation-api-service/response/measures-response';
 import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
 import {EnergyEfficiencyRecommendationTag} from '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
@@ -18,24 +16,25 @@ import {HabitMeasureResponse} from '../energy-calculation-api-service/response/h
 import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
 import {UserJourneyType} from "../response-data/user-journey-type";
+import {FullMeasuresResponse} from "../energy-calculation-api-service/response/full-measures-response";
+import {EnergyEfficiencyRecommendations} from "./energy-efficiency-recommendations";
 
 @Injectable()
 export class RecommendationsService {
 
     private static TOP_RECOMMENDATIONS: number = 5;
-    private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendation[] = [];
+    private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
     private cachedResponseData: ResponseData;
-    private cachedRecommendations: EnergyEfficiencyRecommendation[] = [];
+    private cachedRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
     constructor(private responseData: ResponseData,
-                private energyCalculationApiService: EnergyCalculationApiService,
                 private measureService: EnergySavingMeasureContentService,
                 private grantsEligibilityService: GrantEligibilityService) {
     }
 
-    getAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendation[]> {
-        if (!isEqual(this.responseData, this.cachedResponseData) || this.cachedRecommendations.length === 0) {
+    getAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
+        if (!isEqual(this.responseData, this.cachedResponseData) || !this.cachedRecommendations.hasRecommendations()) {
             this.cachedResponseData = clone(this.responseData);
             return this.refreshAllRecommendations(energyCalculation)
                 .do(recommendations => this.cachedRecommendations = recommendations)
@@ -47,14 +46,21 @@ export class RecommendationsService {
     }
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.cachedRecommendations
+        return this.cachedRecommendations.getAll()
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 
-    /**
-     * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
-     */
-    private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendation[]> {
+    getUserRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
+        return this.cachedRecommendations.userRecommendations
+            .filter(recommendation => recommendation.isAddedToPlan);
+    }
+
+    getLandlordRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
+        return this.cachedRecommendations.landlordRecommendations
+            .filter(recommendation => recommendation.isAddedToPlan);
+    }
+
+    private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
         return Observable.forkJoin(
             this.measureService.fetchMeasureDetails(),
             this.grantsEligibilityService.getEligibleStandaloneGrants()
@@ -68,22 +74,62 @@ export class RecommendationsService {
                         .getFilteredHabitRecommendationsContent(energyCalculation.habit_measures, measuresContent);
                     const grantRecommendations = eligibleStandaloneGrants
                         .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant));
-                    return this.getHomeImprovementRecommendationsContent(
-                        this.getMeasuresFromEnergyCalculation(energyCalculation),
-                        measuresContent
-                    )
-                        .map(homeImprovementRecommendations => {
-                            const allRecommendations = [homeImprovementRecommendations, habitRecommendations, grantRecommendations];
-                            const orderedRecommendations = RecommendationsService.orderRecommendations(allRecommendations);
-                            RecommendationsService.tagTopRecommendations(orderedRecommendations);
-                            return orderedRecommendations;
-                        });
+                    return this.getAllRecommendationsContent(
+                        this.getFullMeasuresFromEnergyCalculation(energyCalculation),
+                        measuresContent,
+                        habitRecommendations,
+                        grantRecommendations
+                    );
                 }
             );
     }
 
-    private getHomeImprovementRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
-                                                     measuresContent: MeasureContent[]): Observable<EnergyEfficiencyRecommendation[]> {
+    private getAllRecommendationsContent(fullMeasures: FullMeasuresResponse<EnergySavingMeasureResponse>,
+                                         measuresContent: MeasureContent[],
+                                         habitRecommendations: EnergyEfficiencyRecommendation[],
+                                         grantRecommendations: EnergyEfficiencyRecommendation[]
+    ): Observable<EnergyEfficiencyRecommendations> {
+        return Observable.forkJoin(
+            this.getUserRecommendationsContent(fullMeasures.userMeasures, measuresContent, habitRecommendations, grantRecommendations),
+            this.getLandlordRecommendationsContent(fullMeasures.landlordMeasures, measuresContent)
+        )
+            .mergeMap(
+                ([userRecommendations, landlordRecommendations]) => {
+                    return Observable.of(new EnergyEfficiencyRecommendations(userRecommendations, landlordRecommendations));
+                }
+            );
+    }
+
+    private getUserRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
+                                      measuresContent: MeasureContent[],
+                                      habitRecommendations: EnergyEfficiencyRecommendation[],
+                                      grantRecommendations: EnergyEfficiencyRecommendation[]
+    ): Observable<EnergyEfficiencyRecommendation[]> {
+        return this.getRecommendationsContent(measures, measuresContent)
+            .map(homeImprovementRecommendations => {
+                const allRecommendations = [homeImprovementRecommendations, habitRecommendations, grantRecommendations];
+                const orderedRecommendations = RecommendationsService.orderRecommendations(allRecommendations);
+                RecommendationsService.tagTopRecommendations(orderedRecommendations);
+                return orderedRecommendations;
+            });
+    }
+
+    private getLandlordRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
+                                      measuresContent: MeasureContent[]
+    ): Observable<EnergyEfficiencyRecommendation[]> {
+        return this.getRecommendationsContent(measures, measuresContent)
+            .map(homeImprovementRecommendations => {
+                const allRecommendations = [homeImprovementRecommendations];
+                return RecommendationsService.orderRecommendations(allRecommendations);
+            });
+    }
+
+    /**
+     * Keep this in sync with EnergySavingPlanController.java `loadDisplayData`
+     */
+    private getRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
+                                      measuresContent: MeasureContent[]
+    ): Observable<EnergyEfficiencyRecommendation[]> {
         if (!keys(measures).length) {
             return Observable.of([]);
         }
@@ -107,14 +153,38 @@ export class RecommendationsService {
                         );
                     });
             })
-            .filter(measure => measure));
+            .filter(measure => measure)
+        );
+    }
+
+    private getFullMeasuresFromEnergyCalculation(
+        energyCalculation: EnergyCalculationResponse
+    ): FullMeasuresResponse<EnergySavingMeasureResponse> {
+        const userMeasures = this.getMeasuresFromEnergyCalculation(energyCalculation);
+        const landlordMeasures = this.getLandlordMeasuresFromEnergyCalculation(energyCalculation);
+        return {
+            userMeasures: userMeasures,
+            landlordMeasures: landlordMeasures
+        };
     }
 
     private getMeasuresFromEnergyCalculation(energyCalculation: EnergyCalculationResponse): MeasuresResponse<EnergySavingMeasureResponse> {
-        if (this.responseData.tenureType !== TenureType.OwnerOccupancy && !!this.responseData.tenureType) {
-            return energyCalculation.measures_rented || {};
+        if (this.isRentalUser()) {
+            return energyCalculation.measures_rented || energyCalculation.default_rental_measures || {};
         }
         return energyCalculation.measures;
+    }
+
+    private getLandlordMeasuresFromEnergyCalculation(
+        energyCalculation: EnergyCalculationResponse
+    ): MeasuresResponse<EnergySavingMeasureResponse> {
+        return this.isRentalUser()
+            ? energyCalculation.measures || {}
+            : {};
+    }
+
+    private isRentalUser() {
+        return this.responseData.tenureType !== TenureType.OwnerOccupancy && !!this.responseData.tenureType;
     }
 
     private getFilteredHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,

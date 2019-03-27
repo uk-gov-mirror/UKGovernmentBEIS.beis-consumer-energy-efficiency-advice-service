@@ -15,47 +15,22 @@ If you change anything here, please consider whether anything needs changing the
                 <div class="heading-container">
                     <h1 class="heading">Your plan</h1>
 
-                    <div class="subheading" *ngIf="recommendations.length === 1">
+                    <div class="subheading" *ngIf="numberOfRecommendations === 1">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.
                     </div>
-                    <div class="subheading" *ngIf="recommendations.length > 1">
-                        You have added {{recommendations.length}} recommendations to your plan. You'll find all the
+                    <div class="subheading" *ngIf="numberOfRecommendations > 1">
+                        You have added {{numberOfRecommendations}} recommendations to your plan. You'll find all the
                         steps and things you need to consider to implement those measures.
                     </div>
                     <app-your-plan-summary></app-your-plan-summary>
                 </div>
             </div>
         </div>
-        <div class="recommendations page-row">
+        <div class="recommendations user-recommendations page-row">
             <div class="page-row-content">
-                <div class="recommendation-steps-card" *ngFor="let recommendation of recommendations">
-                    <div class="details">
-                        <div class="description">
-                            <div class="headline">{{recommendation.headline}}</div>
-                            <div class="summary">{{recommendation.summary}}</div>
-                        </div>
-                        <app-data-card class="investment-required-card"
-                                       heading="Investment required"
-                                       [value]="'£' + getRoundedInvestment(recommendation)"
-                                       [isSmallCard]="true"
-                                       [withSmallFontSize]="true"
-                        ></app-data-card>
-                        <app-data-card class="monthly-savings-card"
-                                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                                       [value]="getSavingDisplay(recommendation)"
-                                       [isSmallCard]="true"
-                                       [withSmallFontSize]="true"
-                        ></app-data-card>
-                    </div>
-                    <div class="steps">
-                        <app-recommendation-step-card
-                                *ngFor="let step of recommendation.steps; let i = index"
-                                [step]="step"
-                                [stepIndex]="i"
-                                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
-                        ></app-recommendation-step-card>
-                    </div>
+                <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
+                    <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
                 </div>
             </div>
         </div>
@@ -74,10 +49,25 @@ If you change anything here, please consider whether anything needs changing the
                 </div>
             </div>
         </div>
+        <div class="recommendations page-row" *ngIf="landlordRecommendations.length">
+            <div class="page-row-content">
+                <div class="recommendations-header">
+                    <div class="recommendations-title">
+                        Recommendations for your landlord
+                    </div>
+                    <div class="download-button-container">
+                        <app-download-pdf-button [forLandlord]="true"></app-download-pdf-button>
+                    </div>
+                </div>
+                <div class="recommendation-steps-card-container" *ngFor="let recommendation of landlordRecommendations">
+                    <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="sticky-row-container">
         <app-sticky-row-wrapper>
-            <app-download-plan></app-download-plan>
+            <app-download-plan *ngIf="userRecommendations.length"></app-download-plan>
         </app-sticky-row-wrapper>
     </div>
 </div>

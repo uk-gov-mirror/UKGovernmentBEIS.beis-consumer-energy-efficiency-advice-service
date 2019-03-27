@@ -3,7 +3,6 @@ import {EnergyCalculationApiService} from '../../shared/energy-calculation-api-s
 import {isComplete, ResponseData} from '../../shared/response-data/response-data';
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
 import {EnergyCalculations} from './energy-calculations';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import sumBy from 'lodash-es/sumBy';
 import {EnergyEfficiencyRecommendation} from '../../shared/recommendations-service/energy-efficiency-recommendation';
@@ -15,6 +14,9 @@ import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.se
 import {AbTestingService} from '../../shared/analytics/ab-testing.service';
 import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-question/fuel-type";
 import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
+import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
+import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import Config from '../../config';
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -30,16 +32,18 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     showOldVersion: boolean;
     showDefaultRecommendation: boolean = false;
+    showDefaultRentalMeasures: boolean = false;
     defaultRecommendationDisclaimer: string;
 
-    private allRecommendations: EnergyEfficiencyRecommendation[] = [];
+    private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
     constructor(private responseData: ResponseData,
                 private recommendationsService: RecommendationsService,
                 private energyCalculationService: EnergyCalculationApiService,
                 private userStateService: UserStateService,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private abTestingService: AbTestingService) {
+                private abTestingService: AbTestingService,
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
     }
 
     ngOnInit() {
@@ -66,8 +70,12 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
-    getDisplayedRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.allRecommendations;
+    getUserRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.allRecommendations.userRecommendations;
+    }
+
+    getLandlordRecommendations(): EnergyEfficiencyRecommendation[] {
+        return this.allRecommendations.landlordRecommendations;
     }
 
     get showMonthlySavings() {
@@ -78,6 +86,14 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page');
     }
 
+    get combinedLandlordRecommendationHeadline(): string {
+        return this.energyEfficiencyDisplayService.getCombinedLandlordRecommendationHeadline();
+    }
+
+    shouldShowLandlordRecommendation(): boolean {
+        return Config().spaceName === 'staging';
+    }
+
     private displayErrorMessage(err: any): void {
         console.error(err);
         this.isLoading = false;
@@ -85,16 +101,17 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     private onLoadingComplete(
-        allRecommendations: EnergyEfficiencyRecommendation[],
+        allRecommendations: EnergyEfficiencyRecommendations,
         energyCalculationResponse: EnergyCalculationResponse
     ) {
         this.allRecommendations = allRecommendations;
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             energyCalculationResponse,
-            this.allRecommendations
+            this.allRecommendations.userRecommendations
         );
         this.isLoading = false;
         this.showDefaultRecommendation = energyCalculationResponse.isDefaultResponse;
+        this.showDefaultRentalMeasures = energyCalculationResponse.default_rental_measures != null;
         this.defaultRecommendationDisclaimer = EnergyEfficiencyResultsComponent.getDefaultRecommendationDisclaimer(this.responseData);
     }
 

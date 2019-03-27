@@ -1,0 +1,16 @@
+@import "../energy-efficiency-recommendation-card/energy-efficiency-recommendation-card.component";
+
+// It's not ideal to just use extend here. The correct way is probably to refactor energy-efficiency-recommendation-card
+// to just have .section, .list-section, .detailed-section rather than .grants, .benefits, .what-it-is, .right-for-me.
+// After that this component can just use that scss file instead.
+.energy-efficiency-combined-recommendation-card {
+  @extend .energy-efficiency-recommendation-card;
+
+  .summarised-headlines {
+    @extend .benefits;
+
+    .summarised-headline-list {
+      @extend .benefits-list;
+    }
+  }
+}
