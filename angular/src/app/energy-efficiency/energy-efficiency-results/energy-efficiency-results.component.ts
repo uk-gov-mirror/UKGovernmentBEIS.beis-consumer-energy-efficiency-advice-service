@@ -37,8 +37,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
     private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
-    private readonly LANDLORD_RECOMMENDATION_FEATURE_FLAG: boolean = true;
-
     constructor(private responseData: ResponseData,
                 private recommendationsService: RecommendationsService,
                 private energyCalculationService: EnergyCalculationApiService,
@@ -93,7 +91,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     shouldShowLandlordRecommendation(): boolean {
-        return this.LANDLORD_RECOMMENDATION_FEATURE_FLAG;
+        return Config().spaceName === 'staging';
     }
 
     private displayErrorMessage(err: any): void {
