@@ -24,12 +24,8 @@
                     <p>Although you are not eligible for ECO, you may be eligible for other grants and schemes operating in your area.</p>
                     <p>Use the following link and enter your postcode to check.</p>
                 </ng-container>
-                <a class="beis-button" [href]="status == GrantEligibilityResultsStatus.Eligible ? '/eco-suppliers' : '/grants'">
-                    <span class="beis-button-text">{{status == GrantEligibilityResultsStatus.Eligible ? "ECO Suppliers" : "Local Schemes"}}</span>
-                    <span class="beis-button-icon-container">
-                            <span class="beis-button-icon">></span>
-                        </span>
-                </a>
+                <app-link-button [linkUrl]="status == GrantEligibilityResultsStatus.Eligible ? '/eco-suppliers' : '/grants'"
+                                 [buttonText]="status == GrantEligibilityResultsStatus.Eligible ? 'ECO Suppliers' : 'Local Schemes'"></app-link-button>
                 <a routerLink="/pages/energy-company-obligation" class="eco-info-link">
                     Find out more on the ECO page
                 </a>

@@ -46,6 +46,7 @@ import {EpcLookupComponent} from './epc-lookup/epc-lookup.component';
 import {ContentsTableComponent} from "./contents-table/contents-table.component";
 import {PlanInfoService} from "./plan-info-service/plan-info.service";
 import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-service/energy-efficiency-display.service";
+import {LinkButtonComponent} from "./link-button/link-button.component";
 
 @NgModule({
     declarations: [
@@ -69,6 +70,7 @@ import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-servic
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
+        LinkButtonComponent,
     ],
     exports: [
         PostcodeLookupComponent,
@@ -91,6 +93,7 @@ import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-servic
         LatestNewsSectionComponent,
         ForbiddenPageComponent,
         ContentsTableComponent,
+        LinkButtonComponent,
     ],
     imports: [
         HttpClientModule,
