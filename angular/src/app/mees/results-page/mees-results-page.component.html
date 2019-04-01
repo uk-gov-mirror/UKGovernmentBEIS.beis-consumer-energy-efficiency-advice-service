@@ -94,29 +94,53 @@
                     <div class="columns">
                         <div class="column">
                             <p>
-                                If you are already renting it out, and you entered into a new tenancy on or after the
+                                If you are already renting the property out, and you entered into a new tenancy on or after the
                                 1st of April 2018, then you may be letting it unlawfully unless you have registered a
                                 valid exemption. This could attract a fine. You should take steps immediately to improve
-                                the property’s energy efficiency rating to E.
+                                the property to an EPC E rating.
                             </p>
                             <p>
                                 Otherwise you need to do what you can to improve the property before you enter into a
                                 new tenancy agreement, or by 1 April 2020, whichever comes soonest.
                             </p>
+                            <p>
+                                You will never be required to spend more than £3,500 (including VAT) on improving your
+                                property to an EPC E rating. If you can get your property to EPC E by spending less
+                                money, you will have met your obligation.
+                            </p>
                         </div>
                         <div class="column">
                             <p>
-                                You only need to make improvements which can be funded using Green Deal, ECO and other
-                                financial support. For information on funding options, <a
-                                    routerLink="/pages/funding-opportunities-for-landlords">click here</a>.
+                                If it would cost more than £3,500 to improve your property to EPC E then you should
+                                install all measures which can be installed for that amount and then register an
+                                exemption. This will allow you to continue letting the property with an F or G rating.
                             </p>
                             <p>
-                                If you think your property may be exempt, <a
-                                    routerLink="/minimum-energy-efficiency-standards/exemption">click here</a>. To read
-                                full guidance about the legislation, <a
-                                    href="https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents"
-                                    target="_blank">click here</a>.
+                                You can include any energy efficiency improvements made since 1st October 2017 in this
+                                £3,500 cap. You can also include any third party funding, such as Green Deal finance or
+                                local authority grant funding.
                             </p>
+
+                        </div>
+                    </div>
+                    <div class="link-buttons">
+                        <div class="link-button-container">
+                            <app-link-button [linkUrl]="'/minimum-energy-efficiency-standards/exemption'"
+                                             [buttonText]="'Exemptions'"
+                                             [centred]="true">
+                            </app-link-button>
+                        </div>
+                        <div class="link-button-container">
+                            <app-link-button [linkUrl]="'/pages/funding-opportunities-for-landlords'"
+                                             [buttonText]="'Funding options'"
+                                             [centred]="true">
+                            </app-link-button>
+                        </div>
+                        <div class="link-button-container">
+                            <app-link-button [linkUrl]="'https://www.gov.uk/government/publications/the-private-rented-property-minimum-standard-landlord-guidance-documents'"
+                                             [buttonText]="'Full guidance'"
+                                             [centred]="true">
+                            </app-link-button>
                         </div>
                     </div>
                 </ng-container>

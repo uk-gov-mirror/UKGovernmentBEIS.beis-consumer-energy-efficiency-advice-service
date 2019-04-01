@@ -39,15 +39,10 @@
       @include page-body-font;
     }
 
-    .beis-button {
-      @include beis-button();
-    }
-
     .eco-info-link {
       @include quick-link-font;
     }
   }
-
 }
 
 // Breakpoint specific styling

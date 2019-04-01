@@ -12,6 +12,7 @@ import {EcoHhcroHelpToHeat} from "../../grants/national-grant-calculator/grants/
 import {NationalGrantCalculator} from "../../grants/national-grant-calculator/national-grant-calculator";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
+import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
 
 describe('GrantEligibilityResultsPageComponent', () => {
     let component: GrantEligibilityResultsPageComponent;
@@ -43,6 +44,7 @@ describe('GrantEligibilityResultsPageComponent', () => {
                 GrantEligibilityQuestionnaireComponent,
                 SpinnerAndErrorContainerComponent,
                 MockQuestionnaireComponent,
+                LinkButtonComponent,
             ],
             providers: [
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
