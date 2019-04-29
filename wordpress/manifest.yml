@@ -9,6 +9,7 @@
 applications:
 - name: dceas-admin-site
   buildpack: php_buildpack
+  stack: cflinuxfs3
   path: .
   services:
     - dceas-database

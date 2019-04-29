@@ -9,6 +9,7 @@
 applications:
 - name: dceas-user-site
   buildpack: java_buildpack
+  stack: cflinuxfs3
   path: build/libs/user-site-server-0.0.1-SNAPSHOT.jar
   services:
     - dceas-database
