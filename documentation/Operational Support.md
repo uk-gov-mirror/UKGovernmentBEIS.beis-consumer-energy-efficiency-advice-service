@@ -22,6 +22,8 @@
 - [Monitoring](#monitoring)
   * [Application logs](#application-logs)
 - [Troubleshooting](#troubleshooting)
+  * [Initial investigations if the live site is down](#initial-investigations-if-the-live-site-is-down)
+  * [Known issue: "waiting for changelog lock"](#known-issue-waiting-for-changelog-lock)
 - [Backup and recovery](#backup-and-recovery)
   * [Database data](#database-data)
   * [Application code and images](#application-code-and-images)
@@ -201,6 +203,11 @@ You can connect to the database on Cloud Foundry using the `conduit` plugin:
     cf target -s int
     cf conduit dceas-database -- mysql
 
+You must have a mysql client installed on your machine and on your PATH, version 5.7.21
+
+Note that this command does not work in a Cygwin terminal and will just hang. You must use
+a regular CMD terminal on a Windows machine.
+
 ### Copying database from one env to another
 
 To copy the database from `staging` to `int`, do:
@@ -233,6 +240,25 @@ For the user site, run
 ## Troubleshooting
 
 TODO:BEIS-203 document Troubleshooting
+
+### Initial investigations if the live site is down
+
+If the site is down, try `cf app dceas-user-site` and
+the logs commands above for initial investigation.
+
+### Known issue: "waiting for changelog lock"
+
+If a server fails to boot with a log message like "waiting for changelog lock", it is
+possible that a Liquibase database changelog lock row has been orphaned.
+
+Background: when the app starts, it runs all changelogs. First it locks the database
+by writing a row to the "databasechangeloglock" table. If the server is killed
+before it finishes doing this, or if the changelog fails in certain ways, this lock
+can get orphaned. There will be a row in there which is recorded as being owned
+by a server which no longer exists.
+
+Log into the database (see instructions above) and delete the row, then
+run `cf restart dceas-user-site`
 
 ## Backup and recovery
 
