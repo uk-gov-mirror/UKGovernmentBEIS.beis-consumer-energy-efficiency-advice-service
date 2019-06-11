@@ -13,8 +13,6 @@ import {HomeType} from '../home-type-question/home-type';
 export class FlatStoreysQuestionComponent extends QuestionBaseComponent implements OnInit {
     public static readonly MAXIMUM_NUMBER_OF_STOREYS_IN_FLAT: number = 10;
 
-    numberOfStoreysInBuilding: number;
-
     get responseForAnalytics(): string {
         return toString(this.numberOfStoreysInFlat);
     }
@@ -30,6 +28,14 @@ export class FlatStoreysQuestionComponent extends QuestionBaseComponent implemen
 
     set numberOfStoreysInFlat(val: number) {
         this.responseData.numberOfStoreys = val;
+    }
+
+    get numberOfStoreysInBuilding(): number {
+        return this.responseData.numberOfStoreysInBuilding;
+    }
+
+    set numberOfStoreysInBuilding(val: number) {
+        this.responseData.numberOfStoreysInBuilding = val;
     }
 
     get maximumNumberOfStoreysInFlat(): number {

@@ -49,6 +49,7 @@ describe('RdsapInput', () => {
             homeAge: HomeAge.pre1900,
             numberOfExposedWallsInFlat: FlatExposedWall.ThreeSidesExposedWholeSide,
             numberOfStoreys: 1,
+            numberOfStoreysInBuilding: 5,
             numberOfBedrooms: 1,
             floorArea: undefined,
             floorAreaUnit: FloorAreaUnit.SquareMetre,

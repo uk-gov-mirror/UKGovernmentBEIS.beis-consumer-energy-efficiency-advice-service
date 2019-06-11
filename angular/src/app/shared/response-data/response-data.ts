@@ -58,6 +58,8 @@ export class ResponseData {
     public builtForm: BuiltFormAnswer;
     // Set by FlatStoreysQuestionComponent / HouseStoreysQuestionComponent, sent to BRE energy-calculation
     public numberOfStoreys: number;
+    // Set by FlatStoreysQuestionComponent, not sent to BRE energy-calculation
+    public numberOfStoreysInBuilding: number;
     // Set by BedroomsQuestionComponent, sent to BRE energy-calculation
     public numberOfBedrooms: number;
     // Set by FloorAreaQuestionComponent, sent to BRE energy-calculation
