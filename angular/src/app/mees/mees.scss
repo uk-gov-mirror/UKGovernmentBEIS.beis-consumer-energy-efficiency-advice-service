@@ -67,6 +67,18 @@ $arrow-height: 48px;
         padding: 10px 0;
       }
 
+      .link-buttons {
+        display: flex;
+
+        .link-button-container {
+          flex: 1 1 100%;
+
+          .link-button {
+            margin: 16px 0;
+          }
+        }
+      }
+
       .exemptions {
         list-style-type: none;
         padding: 0;
@@ -247,6 +259,14 @@ $arrow-height: 48px;
           @include is-grid-item($number-of-items: 1, $margin: 0);
         }
       }
+
+      .link-buttons {
+        flex-direction: column;
+
+        .link-button-container {
+          margin-top: 10px;
+        }
+      }
     }
 
     .calculator {
@@ -286,6 +306,14 @@ $arrow-height: 48px;
       .columns {
         .column {
           @include is-grid-item($number-of-items: 1, $margin: 0);
+        }
+      }
+
+      .link-buttons {
+        flex-direction: column;
+
+        .link-button-container {
+          margin-top: 10px;
         }
       }
     }
@@ -339,6 +367,10 @@ $arrow-height: 48px;
             right: 40px;
           }
         }
+      }
+
+      .link-buttons {
+        justify-content: space-around;
       }
     }
 
