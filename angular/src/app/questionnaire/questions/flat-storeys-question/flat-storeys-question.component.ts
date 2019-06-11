@@ -32,7 +32,7 @@ export class FlatStoreysQuestionComponent extends QuestionBaseComponent implemen
         this.responseData.numberOfStoreys = val;
     }
 
-    get maximumNUmberOfStoreysInFlat(): number {
+    get maximumNumberOfStoreysInFlat(): number {
         return min([FlatStoreysQuestionComponent.MAXIMUM_NUMBER_OF_STOREYS_IN_FLAT, this.numberOfStoreysInBuilding]);
     }
 
