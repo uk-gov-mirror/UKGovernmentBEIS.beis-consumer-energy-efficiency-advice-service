@@ -11,6 +11,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 describe('FlatStoreysQuestionComponent', () => {
     let component: FlatStoreysQuestionComponent;
     let fixture: ComponentFixture<FlatStoreysQuestionComponent>;
+    let responseData: ResponseData;
 
     const DEFAULT_NUMBER_OF_STOREYS: number = 1;
 
@@ -24,6 +25,7 @@ describe('FlatStoreysQuestionComponent', () => {
     }));
 
     beforeEach(() => {
+        responseData = TestBed.get(ResponseData);
         fixture = TestBed.createComponent(FlatStoreysQuestionComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -49,16 +51,20 @@ describe('FlatStoreysQuestionComponent', () => {
 
     it('should populate with original number of storeys in response data', async(() => {
         // given
-        const originalNumberOfStoreys: number = 10;
+        const originalNumberOfStoreysInFlat: number = 5;
+        const originalNumberOfStoreysInBuilding: number = 10;
+        responseData.numberOfStoreys = 5;
+        responseData.numberOfStoreysInBuilding = 10;
 
         // when
-        component.numberOfStoreysInFlat = originalNumberOfStoreys;
         fixture.detectChanges();
 
         // then
         fixture.whenStable().then(() => {
-            const storeysInput = fixture.debugElement.query(By.css('.flat-storeys input'));
-            expect(storeysInput.nativeElement.value).toBe(originalNumberOfStoreys.toString());
+            const flatStoreysInput = fixture.debugElement.query(By.css('.flat-storeys input'));
+            const buildingStoreysInput = fixture.debugElement.query(By.css('.building-storeys input'));
+            expect(flatStoreysInput.nativeElement.value).toBe(originalNumberOfStoreysInFlat.toString());
+            expect(buildingStoreysInput.nativeElement.value).toBe(originalNumberOfStoreysInBuilding.toString());
         });
     }));
 
@@ -76,6 +82,7 @@ describe('FlatStoreysQuestionComponent', () => {
         flatStoreysInput.nativeElement.dispatchEvent(new Event('input'));
 
         expect(component.numberOfStoreysInFlat).toBe(expectedFlatStoreys);
+        expect(responseData.numberOfStoreys).toBe(expectedFlatStoreys);
     });
 
     it('should not set the response if the number of storeys of the flat if it is more than 10', () => {
@@ -93,6 +100,7 @@ describe('FlatStoreysQuestionComponent', () => {
         flatStoreysInput.nativeElement.dispatchEvent(new Event('input'));
 
         expect(component.numberOfStoreysInFlat).toBe(undefined);
+        expect(responseData.numberOfStoreys).toBe(undefined);
     });
 
     it('should not set the response if the number of storeys of the flat if it is more than the number of storeys of the building', () => {
@@ -110,5 +118,6 @@ describe('FlatStoreysQuestionComponent', () => {
         flatStoreysInput.nativeElement.dispatchEvent(new Event('input'));
 
         expect(component.numberOfStoreysInFlat).toBe(undefined);
+        expect(responseData.numberOfStoreys).toBe(undefined);
     });
 });
