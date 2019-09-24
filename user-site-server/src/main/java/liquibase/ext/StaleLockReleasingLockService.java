@@ -5,13 +5,14 @@ import liquibase.exception.LockException;
 import liquibase.lockservice.DatabaseChangeLogLock;
 import liquibase.lockservice.StandardLockService;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
-import java.util.Date;
 
 public class StaleLockReleasingLockService extends StandardLockService {
 
     // Locks go stale after 10 minutes.
-    private static final long MAX_LOCK_AGE_MS = 10 * 60 * 1000;
+    private static final Duration MAX_LOCK_AGE = Duration.ofMinutes(10);
 
     @Override
     public int getPriority() {
@@ -40,8 +41,7 @@ public class StaleLockReleasingLockService extends StandardLockService {
     }
 
     private boolean isStale(DatabaseChangeLogLock lock) {
-        Date now = new Date();
-        long lockAgeMs = now.getTime() - lock.getLockGranted().getTime();
-        return lockAgeMs > MAX_LOCK_AGE_MS;
+        Duration lockAge = Duration.between(lock.getLockGranted().toInstant(), Instant.now());
+        return lockAge.compareTo(MAX_LOCK_AGE) > 0;
     }
 }
