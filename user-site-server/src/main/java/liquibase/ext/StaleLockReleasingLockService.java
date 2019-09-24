@@ -9,6 +9,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 
+// Releases stale changelog locks, to mitigate an issue where the server fails to boot because of orphaned locks.
+// See 'Known issue: "waiting for changelog lock"' in the 'Operational Support' documentation for more details.
+// This solution is adapted from here: https://stackoverflow.com/a/55525305/1213714
+@SuppressWarnings("unused")
 public class StaleLockReleasingLockService extends StandardLockService {
 
     // Locks go stale after 10 minutes.

@@ -260,6 +260,9 @@ by a server which no longer exists.
 Log into the database (see instructions above) and delete the row, then
 run `cf restart dceas-user-site`
 
+This should be somewhat mitigated by `StateReleasingLockService.java` in the `liquibase.ext`
+package, which forces all stale locks (granted more than 10 minutes ago) to be released.
+
 ## Backup and recovery
 
 ### Database data
