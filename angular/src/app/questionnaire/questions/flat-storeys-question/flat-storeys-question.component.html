@@ -1,13 +1,13 @@
 <div class="flat-storeys-question question-component">
     <form class="answer-grid questionnaire-form" (submit)="handleFormSubmit()">
-        <div class="storeys-input">
+        <div class="storeys-input flat-storeys">
             <div class="name">Your flat</div>
             <app-number-question itemsName="storeys of your flat"
                                  [(quantity)]="numberOfStoreysInFlat"
                                  [minQuantity]="1"
-                                 [maxQuantity]="10"></app-number-question>
+                                 [maxQuantity]="maximumNumberOfStoreysInFlat"></app-number-question>
         </div>
-        <div class="storeys-input">
+        <div class="storeys-input building-storeys">
             <div class="name">The whole building</div>
             <app-number-question itemsName="storeys of the whole building"
                                  [(quantity)]="numberOfStoreysInBuilding"

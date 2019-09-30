@@ -4,6 +4,9 @@ branches:
   - master
   - staging
   - live
+language: java
+jdk:
+  - openjdk8
 jobs:
   include:
     - stage: test
@@ -29,11 +32,7 @@ jobs:
         chrome: stable
 notifications:
   email:
-    - anthony.pengelly@softwire.com
-    - richard.bradley@softwire.com
-    - fuad.ashanike@softwire.com
-    - raam.chauhan@softwire.com
-    - david.broder-rogers@softwire.com
+    - Team-BEISESASSupport@softwire.com
 env:
   global:
   - secure: 5LQBlg/NMVYTH5bYoqRP1ATKzekwHBwLm9isOFK43tLFVvIzhYLlbQDDfscafNsNpvxf63FchpPvt5/RoG9lBezFZANezkBoZ3PczhsWC4x8tuPVJ9C06fhE32rqU/uAqxvkyhf5JiR7OiJbFQl0CeUuGX3Yly7OSpSxiRrqcv+VN06TMJarSzWcFnQK6vHXlKIFAx+sCXIiJphnfXSluxk6tyulrNRH5vVmvRnJyK8RcX2Gdi7P3Cb+xVcj4l9cdjVufAhSaiuJV+NeqmBdjMjTRjeKTzahPygeyMsSLtt/0klVjjlH7P4fd0Mdd4nMEJo10RMDBeWKZdXcdZtiVSIaWRNwdwR4T1BfEtren7FvfYktjEO2DlPszEWS485ETotwQ/YHWhcWwo0bjeCEMHh65X+Y/MM4JVFITbcuuoYt/3NiZManahTnNLvp6OYDCIguArXcsnjRVnicbEinpIk4tdIgCxu+QjmJ4QSNtPSv2ZR8/Txd22CCMJiOkEf+1WeN7JDuzH1XmbuvJKspoM26WWqJaxbd0d+sCRolg1R+U3c4571/Wa1pqvVKeUcV2Tmo73XtZd58/pmja9ZbRt1RjU6xKG+bul0zEd/+0VXgw9q9o2V8u1WD4H0FHaOOgn+v5EMO520fZ3uidMocaYjTDQR6gMJOL9rua7pXJm0=

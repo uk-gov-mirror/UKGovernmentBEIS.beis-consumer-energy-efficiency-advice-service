@@ -4,6 +4,8 @@
   "description": "Integration tests for the BEIS DCEAS application",
   "main": "index.js",
   "scripts": {
+    "//": "See: https://github.com/angular/webdriver-manager/issues/404#issuecomment-518975918",
+    "pretest": "cd node_modules/protractor && npm i webdriver-manager@latest",
     "test": "webdriver-manager update --gecko=false && protractor protractor.conf.js"
   },
   "author": "Softwire",

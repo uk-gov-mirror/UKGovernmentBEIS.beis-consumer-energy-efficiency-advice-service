@@ -215,6 +215,10 @@ app-sticky-row-wrapper {
   }
 
   @include desktop() {
+    // Apply a minimum height on the content block so the footer does not jump up and down between questions for questions
+    // with similar length
+    min-height: 450px;
+
     .question-heading {
       width: 100%;
       padding: 120px 40px 10px 40px;
