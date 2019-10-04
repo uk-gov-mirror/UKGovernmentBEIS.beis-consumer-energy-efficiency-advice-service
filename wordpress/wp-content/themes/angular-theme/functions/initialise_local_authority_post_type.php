@@ -33,6 +33,35 @@ function setup_local_authority_acf_group() {
             'title' => 'Local Authority',
             'fields' => array (
                 array (
+                    'key' => 'field_5a0b225fd70a1',
+                    'label' => 'Grants',
+                    'name' => 'grants_tab',
+                    'type' => 'tab',
+                ),
+                array (
+                    'key' => 'field_59f0c4fe301b6',
+                    'label' => 'Grants',
+                    'name' => 'grants',
+                    'type' => 'relationship',
+                    'instructions' => 'The grants which are available in the local authority',
+                    'required' => 0,
+                    'return_format' => 'id',
+                    'post_type' => array (
+                        0 => 'local_grant',
+                    ),
+                    'taxonomy' => array (
+                        0 => 'all',
+                    ),
+                    'filters' => array (
+                        0 => 'search',
+                    ),
+                    'result_elements' => array (
+                        0 => 'post_type',
+                        1 => 'post_title',
+                    ),
+                    'max' => '',
+                ),
+                array (
                     'key' => 'field_59f05fb38853b',
                     'label' => 'Basic Details',
                     'name' => 'basic_details_tab',
@@ -79,35 +108,6 @@ function setup_local_authority_acf_group() {
                     'append' => '',
                     'formatting' => 'html',
                     'maxlength' => '',
-                ),
-                array (
-                    'key' => 'field_5a0b225fd70a1',
-                    'label' => 'Grants',
-                    'name' => 'grants_tab',
-                    'type' => 'tab',
-                ),
-                array (
-                    'key' => 'field_59f0c4fe301b6',
-                    'label' => 'Grants',
-                    'name' => 'grants',
-                    'type' => 'relationship',
-                    'instructions' => 'The grants which are available in the local authority',
-                    'required' => 0,
-                    'return_format' => 'id',
-                    'post_type' => array (
-                        0 => 'local_grant',
-                    ),
-                    'taxonomy' => array (
-                        0 => 'all',
-                    ),
-                    'filters' => array (
-                        0 => 'search',
-                    ),
-                    'result_elements' => array (
-                        0 => 'post_type',
-                        1 => 'post_title',
-                    ),
-                    'max' => '',
                 )
             ),
             'location' => array (
