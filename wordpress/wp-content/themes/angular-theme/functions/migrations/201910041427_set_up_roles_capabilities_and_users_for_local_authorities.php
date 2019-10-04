@@ -1,6 +1,7 @@
 <?php
 
 add_action( 'init', 'set_up_roles_capabilities_and_users_for_local_authorities' );
+add_action( 'transition_post_status', 'create_user_for_new_local_authority_posts', 10, 3 );
 
 function set_up_roles_capabilities_and_users_for_local_authorities() {
 
@@ -85,6 +86,13 @@ function set_up_roles_capabilities_and_users_for_local_authorities() {
 
     // Mark done.
     update_option('migration/201910041427_set_up_roles_capabilities_and_users_for_local_authorities', 'done');
+}
+
+function create_user_for_new_local_authority_posts($new_status, $old_status, $post) {
+
+    if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'local_authority') {
+        create_user_for_local_authority($post);
+    }
 }
 
 function create_user_for_local_authority($post) {
