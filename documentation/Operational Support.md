@@ -185,6 +185,11 @@ You must instead:
  * Commit the changes to `git`
  * Deploy a new version of the site (see "Deployment" above)
 
+**Note:** There is an edit made directly in `wp-admin/includes/menu.php` as a workaround to a
+WordPress bug. This edit will need to be made again in any update (unless the update fixes
+the bug). See:
+https://stackoverflow.com/questions/58218457/wordpress-user-with-custom-role-cannot-view-list-page-for-custom-post-types-with/58234091
+
 ## Updating the Deployed PHP Version
 
 The deployed PHP version is set in the .bp-config/options.json file, e.g.

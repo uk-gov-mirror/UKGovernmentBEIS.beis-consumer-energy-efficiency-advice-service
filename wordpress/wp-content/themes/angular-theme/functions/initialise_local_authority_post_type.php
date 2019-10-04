@@ -11,6 +11,11 @@ function create_local_authority_post_type() {
                 'name' => __( 'Local Authorities' ),
                 'singular_name' => __( 'Local Authority' )
             ),
+            'capability_type'       => array('local_authority', 'local_authorities'),
+            'capabilities'          => array(
+                'create_posts' => 'create_local_authorities'
+            ),
+            'map_meta_cap'          => true,
             'description'           => 'Local Authority codes and grants',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,

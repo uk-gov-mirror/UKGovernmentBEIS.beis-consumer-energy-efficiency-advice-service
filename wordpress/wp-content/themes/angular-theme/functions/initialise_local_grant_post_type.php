@@ -11,6 +11,8 @@ function create_local_authority_grant_post_type() {
                 'name' => __( 'Local Authority Grants' ),
                 'singular_name' => __( 'Local Authority Grant' )
             ),
+            'capability_type'       => array('local_grant', 'local_grants'),
+            'map_meta_cap'          => true,
             'description'           => 'Energy grants run by a Local Authority',
             'exclude_from_search'   => true,
             'publicly_queryable'    => false,
