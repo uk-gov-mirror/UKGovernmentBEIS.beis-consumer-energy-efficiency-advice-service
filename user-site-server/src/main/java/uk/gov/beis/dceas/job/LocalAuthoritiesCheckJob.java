@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestClientException;
 import uk.gov.beis.dceas.service.LocalAuthoritiesCheckService;
 
+import javax.mail.MessagingException;
+
 /**
  * A scheduled job which checks Local Authorities by example postcodes against http://postcodes.io/
  * This alerts us when a local authority code change is made, e.g.
@@ -25,7 +27,7 @@ public class LocalAuthoritiesCheckJob implements Job {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         try {
             service.checkLocalAuthorities();
-        } catch (RestClientException e) {
+        } catch (RestClientException | MessagingException e) {
             throw new JobExecutionException(e);
         }
     }
