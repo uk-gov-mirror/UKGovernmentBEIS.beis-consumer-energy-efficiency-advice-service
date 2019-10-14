@@ -18,6 +18,7 @@ import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import uk.gov.beis.dceas.job.BoilerPcdfDatabaseUpdateJob;
+import uk.gov.beis.dceas.job.LocalAuthoritiesCheckJob;
 import uk.gov.beis.dceas.job.UserStateDatabaseCleanJob;
 import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
 
@@ -51,6 +52,7 @@ public class SchedulerConfig {
         DataSource dataSource,
         JobFactory jobFactory,
         @Qualifier("boilerPcdfDatabaseUpdateTrigger") Trigger boilerPcdfDatabaseUpdateTrigger,
+        @Qualifier("localAuthoritiesCheckTrigger") Trigger localAuthoritiesCheckTrigger,
         @Qualifier("userStateDatabaseCleanTrigger") Trigger userStateDatabaseCleanTrigger) throws Exception {
 
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
@@ -64,10 +66,17 @@ public class SchedulerConfig {
 
         Scheduler scheduler = factory.getScheduler();
         scheduler.setJobFactory(jobFactory);
+
         scheduler.scheduleJob(
             (JobDetail) boilerPcdfDatabaseUpdateTrigger
                 .getJobDataMap().get("jobDetail"),
             singleton(boilerPcdfDatabaseUpdateTrigger),
+            true);
+
+        scheduler.scheduleJob(
+            (JobDetail) localAuthoritiesCheckTrigger
+                    .getJobDataMap().get("jobDetail"),
+            singleton(localAuthoritiesCheckTrigger),
             true);
 
         scheduler.scheduleJob(
@@ -100,6 +109,20 @@ public class SchedulerConfig {
 
         return createCronTrigger(jobDetail, cronExpression);
     }
+
+    @Bean
+    public JobDetailFactoryBean localAuthoritiesCheckJobDetail() {
+        return createJobDetail(LocalAuthoritiesCheckJob.class);
+    }
+
+    @Bean(name = "localAuthoritiesCheckTrigger")
+    public CronTriggerFactoryBean localAuthoritiesCheckTrigger(
+        @Qualifier("localAuthoritiesCheckJobDetail") JobDetail jobDetail,
+        @Value("${dceas.local-authorities-check-cron}") String cronExpression) {
+
+        return createCronTrigger(jobDetail, cronExpression);
+    }
+
     @Bean
     public JobDetailFactoryBean userStateDatabaseCleanJobDetail() {
         return createJobDetail(UserStateDatabaseCleanJob.class);
