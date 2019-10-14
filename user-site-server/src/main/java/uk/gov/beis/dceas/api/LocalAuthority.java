@@ -12,6 +12,7 @@ import java.util.List;
 public class LocalAuthority {
     String localAuthorityCode;
     String displayName;
+    String examplePostcode;
     List<Grant> grants;
 
     /**
