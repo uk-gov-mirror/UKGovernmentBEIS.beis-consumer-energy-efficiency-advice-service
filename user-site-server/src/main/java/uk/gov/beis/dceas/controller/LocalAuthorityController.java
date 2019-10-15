@@ -61,11 +61,13 @@ public class LocalAuthorityController {
         final WpPostmeta postMetaForCode = WP_POSTMETA.as("post_meta_for_code");
         final WpPostmeta postMetaForGrantsList = WP_POSTMETA.as("post_meta_for_grants_list");
         final WpPostmeta postMetaForDisplayName = WP_POSTMETA.as("post_meta_for_display_name");
+        final WpPostmeta postMetaForExamplePostcode = WP_POSTMETA.as("post_meta_for_example_postcode");
 
         Record localAuthPost = notFoundIfNull(dslContext
             .select(
                 postMetaForGrantsList.META_VALUE,
-                postMetaForDisplayName.META_VALUE)
+                postMetaForDisplayName.META_VALUE,
+                postMetaForExamplePostcode.META_VALUE)
             .from(WP_POSTS)
             .join(postMetaForCode).on(
                 postMetaForCode.POST_ID.eq(WP_POSTS.ID)
@@ -78,6 +80,9 @@ public class LocalAuthorityController {
             .leftJoin(postMetaForDisplayName).on(
                 postMetaForDisplayName.POST_ID.eq(WP_POSTS.ID)
                     .and(postMetaForDisplayName.META_KEY.eq(inline("display_name"))))
+            .leftJoin(postMetaForExamplePostcode).on(
+                postMetaForExamplePostcode.POST_ID.eq(WP_POSTS.ID)
+                    .and(postMetaForExamplePostcode.META_KEY.eq(inline("example_postcode"))))
 
             .where(WP_POSTS.POST_TYPE.eq(inline("local_authority")))
             .and(WP_POSTS.POST_STATUS.eq(inline("publish")))
@@ -93,6 +98,7 @@ public class LocalAuthorityController {
         return new LocalAuthority(
             onsCode,
             postMetaForDisplayName.META_VALUE.get(localAuthPost),
+            postMetaForExamplePostcode.META_VALUE.get(localAuthPost),
             grants);
     }
 
