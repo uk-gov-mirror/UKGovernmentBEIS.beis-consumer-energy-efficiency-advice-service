@@ -165,7 +165,7 @@ public class LocalAuthoritiesCheckService {
         String queryPostcode,
         LocalAuthority localAuthority,
         PostcodesResponse.QueryResult.Postcode postcodeResult) {
-        return format("EXPECTED: %s\nACTUAL: %s\nThe example postcode given for %s was %s.",
+        return format("EXPECTED: %s%nACTUAL: %s%nThe example postcode given for %s was %s.",
             formatLocalAuthority(localAuthority.getDisplayName(), localAuthority.getLocalAuthorityCode()),
             postcodeResult == null ? "null" : formatLocalAuthority(postcodeResult.getAdminDistrict(), postcodeResult.getCodes().getAdminDistrict()),
             localAuthority.getDisplayName(),
