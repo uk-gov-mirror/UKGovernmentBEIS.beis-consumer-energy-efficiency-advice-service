@@ -1,7 +1,7 @@
 package uk.gov.beis.dceas.service;
 
 import org.jooq.DSLContext;
-import org.jooq.Record;
+import org.jooq.Record3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -17,17 +17,16 @@ import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.String.format;
 import static java.lang.String.join;
 import static org.jooq.impl.DSL.inline;
-import static org.jooq.impl.DSL.query;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTMETA;
 import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
 
@@ -62,18 +61,18 @@ public class LocalAuthoritiesCheckService {
     }
 
     public void checkLocalAuthorities() throws RestClientException, MessagingException {
-        Map<String, LocalAuthority> localAuthorityByPostcode = getLocalAuthorityByPostcode();
-        if (localAuthorityByPostcode.isEmpty()) {
+        Map<String, LocalAuthority> localAuthoritiesByPostcode = getLocalAuthoritiesByPostcode();
+        if (localAuthoritiesByPostcode.isEmpty()) {
             // No example postcodes provided.
             return;
         }
 
-        PostcodesResponse response = getPostcodesResponse(localAuthorityByPostcode.keySet());
+        PostcodesResponse response = getPostcodesResponse(localAuthoritiesByPostcode.keySet());
         if (response == null || response.getStatus() != 200) {
             String messageBody = format("%s was received from %s when searching for the following postcodes:\n\n%s",
-                    response == null ? "No response" : format("A %d response", response.getStatus()),
-                    postcodesUrl,
-                    join(", ", localAuthorityByPostcode.keySet()));
+                response == null ? "No response" : format("A %d response", response.getStatus()),
+                postcodesUrl,
+                join(", ", localAuthoritiesByPostcode.keySet()));
             sendFailureEmail(messageBody);
             return;
         }
@@ -81,7 +80,7 @@ public class LocalAuthoritiesCheckService {
         List<String> mismatches = new ArrayList<>();
         for (PostcodesResponse.QueryResult queryResult : response.getResult()) {
             String queryPostcode = queryResult.getQuery();
-            LocalAuthority localAuthority = localAuthorityByPostcode.get(queryPostcode);
+            LocalAuthority localAuthority = localAuthoritiesByPostcode.get(queryPostcode);
             PostcodesResponse.QueryResult.Postcode postcodeResult = queryResult.getResult();
             if (!isMatch(localAuthority, postcodeResult)) {
                 mismatches.add(buildMismatchString(queryPostcode, localAuthority, postcodeResult));
@@ -100,18 +99,18 @@ public class LocalAuthoritiesCheckService {
         }
     }
 
-    private Map<String, LocalAuthority> getLocalAuthorityByPostcode() {
+    private Map<String, LocalAuthority> getLocalAuthoritiesByPostcode() {
         final WpPostmeta postMetaForExamplePostcode = WP_POSTMETA.as("post_meta_for_example_postcode");
         final WpPostmeta postMetaForCode = WP_POSTMETA.as("post_meta_for_code");
         final WpPostmeta postMetaForDisplayName = WP_POSTMETA.as("post_meta_for_display_name");
 
-        Record[] localAuthorityPosts = database
+        Stream<Record3<String, String, String>> localAuthorityPosts = database
             .select(
                 postMetaForExamplePostcode.META_VALUE,
                 postMetaForCode.META_VALUE,
                 postMetaForDisplayName.META_VALUE)
             .from(WP_POSTS)
-            .join(postMetaForExamplePostcode).on(
+            .innerJoin(postMetaForExamplePostcode).on(
                 postMetaForExamplePostcode.POST_ID.eq(WP_POSTS.ID)
                     .and(postMetaForExamplePostcode.META_KEY.eq(inline("example_postcode"))))
             .leftJoin(postMetaForCode).on(
@@ -122,17 +121,16 @@ public class LocalAuthoritiesCheckService {
                     .and(postMetaForDisplayName.META_KEY.eq(inline("display_name"))))
             .where(WP_POSTS.POST_TYPE.eq(inline("local_authority")))
             .and(WP_POSTS.POST_STATUS.eq(inline("publish")))
-            .fetchArray();
+            .fetchStream();
 
-        return Arrays.stream(localAuthorityPosts)
-            .collect(Collectors.toMap(
-                postMetaForExamplePostcode.META_VALUE::get,
-                post -> new LocalAuthority(
-                    postMetaForCode.META_VALUE.get(post),
-                    postMetaForDisplayName.META_VALUE.get(post),
-                    postMetaForExamplePostcode.META_VALUE.get(post),
-                    null
-                )));
+        return localAuthorityPosts.collect(Collectors.toMap(
+            postMetaForExamplePostcode.META_VALUE::get,
+            post -> new LocalAuthority(
+                postMetaForCode.META_VALUE.get(post),
+                postMetaForDisplayName.META_VALUE.get(post),
+                postMetaForExamplePostcode.META_VALUE.get(post),
+                null
+            )));
     }
 
     private PostcodesResponse getPostcodesResponse(Set<String> postcodes) {
@@ -152,8 +150,8 @@ public class LocalAuthoritiesCheckService {
     private void sendFailureEmail(String messageBody) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, false);
-        helper.setTo(supportEmail);
         helper.setFrom("no-reply@simpleenergyadvice.org.uk");
+        helper.setTo(supportEmail);
         helper.setSubject(format("[Simple Energy Advice - %s] Local authority check failed", environment));
         String text =
             "The local authority codes check failed for the Simple Energy Advice " + environment + " environment.\n" +
