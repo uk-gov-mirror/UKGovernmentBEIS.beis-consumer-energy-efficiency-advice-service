@@ -1,13 +1,16 @@
 package uk.gov.beis.dceas.service;
 
+import com.google.common.collect.Iterables;
 import org.jooq.DSLContext;
 import org.jooq.Record3;
+import org.quartz.utils.FindbugsSuppressWarnings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.api.LocalAuthority;
@@ -38,6 +41,7 @@ public class LocalAuthoritiesCheckService {
 
     private final RestTemplate httpClient;
     private final String postcodesUrl;
+    private final Integer postcodesRequestLimit;
     private final DSLContext database;
     private final JavaMailSender emailSender;
     private final String supportEmail;
@@ -47,6 +51,7 @@ public class LocalAuthoritiesCheckService {
     public LocalAuthoritiesCheckService(
         RestTemplateBuilder httpClientBuilder,
         @Value("${dceas.postcodes-url}") String postcodesUrl,
+        @Value("${dceas.postcodes-request-limit}") Integer postcodesRequestLimit,
         DSLContext database,
         JavaMailSender emailSender,
         @Value("${dceas.local-authorities-support-email}") String supportEmail,
@@ -54,6 +59,7 @@ public class LocalAuthoritiesCheckService {
 
         this.httpClient = httpClientBuilder.build();
         this.postcodesUrl = postcodesUrl;
+        this.postcodesRequestLimit = postcodesRequestLimit;
         this.database = database;
         this.emailSender = emailSender;
         this.supportEmail = supportEmail;
@@ -61,12 +67,21 @@ public class LocalAuthoritiesCheckService {
     }
 
     public void checkLocalAuthorities() throws RestClientException, MessagingException {
-        Map<String, LocalAuthority> localAuthoritiesByPostcode = getLocalAuthoritiesByPostcode();
-        if (localAuthoritiesByPostcode.isEmpty()) {
-            // No example postcodes provided.
+        List<LocalAuthority> localAuthorities = getLocalAuthoritiesWithExamplePostcodes();
+        if (localAuthorities.isEmpty()) {
+            // No local authorities have provided example postcodes.
             return;
         }
 
+        Iterable<List<LocalAuthority>> partitions = Iterables.partition(localAuthorities, postcodesRequestLimit);
+        for (List<LocalAuthority> partition : partitions) {
+            Map<String, List<LocalAuthority>> localAuthoritiesByPostcode = partition.stream().collect(
+                Collectors.groupingBy(LocalAuthority::getExamplePostcode));
+            verifyLocalAuthoritiesAgainstPostcodesApi(localAuthoritiesByPostcode);
+        }
+    }
+
+    private void verifyLocalAuthoritiesAgainstPostcodesApi(Map<String, List<LocalAuthority>> localAuthoritiesByPostcode) throws MessagingException {
         PostcodesResponse response = getPostcodesResponse(localAuthoritiesByPostcode.keySet());
         if (response == null || response.getStatus() != 200) {
             String messageBody = format("%s was received from %s when searching for the following postcodes:\n\n%s",
@@ -80,10 +95,13 @@ public class LocalAuthoritiesCheckService {
         List<String> mismatches = new ArrayList<>();
         for (PostcodesResponse.QueryResult queryResult : response.getResult()) {
             String queryPostcode = queryResult.getQuery();
-            LocalAuthority localAuthority = localAuthoritiesByPostcode.get(queryPostcode);
-            PostcodesResponse.QueryResult.Postcode postcodeResult = queryResult.getResult();
-            if (!isMatch(localAuthority, postcodeResult)) {
-                mismatches.add(buildMismatchString(queryPostcode, localAuthority, postcodeResult));
+            // The iterable below is expected to only have one local authority per postcode, but we protect against
+            // misconfiguration duplicating the same postcode in multiple local authorities.
+            for (LocalAuthority localAuthority : localAuthoritiesByPostcode.get(queryPostcode)) {
+                PostcodesResponse.QueryResult.Postcode postcodeResult = queryResult.getResult();
+                if (!isMatch(localAuthority, postcodeResult)) {
+                    mismatches.add(buildMismatchString(queryPostcode, localAuthority, postcodeResult));
+                }
             }
         }
 
@@ -99,7 +117,7 @@ public class LocalAuthoritiesCheckService {
         }
     }
 
-    private Map<String, LocalAuthority> getLocalAuthoritiesByPostcode() {
+    private List<LocalAuthority> getLocalAuthoritiesWithExamplePostcodes() {
         final WpPostmeta postMetaForExamplePostcode = WP_POSTMETA.as("post_meta_for_example_postcode");
         final WpPostmeta postMetaForCode = WP_POSTMETA.as("post_meta_for_code");
         final WpPostmeta postMetaForDisplayName = WP_POSTMETA.as("post_meta_for_display_name");
@@ -123,20 +141,22 @@ public class LocalAuthoritiesCheckService {
             .and(WP_POSTS.POST_STATUS.eq(inline("publish")))
             .fetchStream();
 
-        return localAuthorityPosts.collect(Collectors.toMap(
-            postMetaForExamplePostcode.META_VALUE::get,
-            post -> new LocalAuthority(
-                postMetaForCode.META_VALUE.get(post),
-                postMetaForDisplayName.META_VALUE.get(post),
-                postMetaForExamplePostcode.META_VALUE.get(post),
-                null
-            )));
+        return localAuthorityPosts.map(post -> new LocalAuthority(
+            postMetaForCode.META_VALUE.get(post),
+            postMetaForDisplayName.META_VALUE.get(post),
+            postMetaForExamplePostcode.META_VALUE.get(post),
+            null
+        )).collect(Collectors.toList());
     }
 
     private PostcodesResponse getPostcodesResponse(Set<String> postcodes) {
         Map<String, Object> postBody = new HashMap<>();
         postBody.put("postcodes", postcodes);
-        return httpClient.postForObject(postcodesUrl, postBody, PostcodesResponse.class);
+        try {
+            return httpClient.postForObject(postcodesUrl, postBody, PostcodesResponse.class);
+        } catch (HttpStatusCodeException e) {
+            return new PostcodesResponse(e.getRawStatusCode(), null);
+        }
     }
 
     private Boolean isMatch(LocalAuthority localAuthority, PostcodesResponse.QueryResult.Postcode postcodeResult) {
@@ -161,11 +181,14 @@ public class LocalAuthoritiesCheckService {
         emailSender.send(message);
     }
 
+    @FindbugsSuppressWarnings
+    // Suppress complaints about \n instead of %n since we use it in the rest of the message
+    // and because test emails that used %n here did not correctly break lines in Outlook.
     private String buildMismatchString(
         String queryPostcode,
         LocalAuthority localAuthority,
         PostcodesResponse.QueryResult.Postcode postcodeResult) {
-        return format("EXPECTED: %s%nACTUAL: %s%nThe example postcode given for %s was %s.",
+        return format("EXPECTED: %s\nACTUAL: %s\nThe example postcode given for %s was %s.",
             formatLocalAuthority(localAuthority.getDisplayName(), localAuthority.getLocalAuthorityCode()),
             postcodeResult == null ? "null" : formatLocalAuthority(postcodeResult.getAdminDistrict(), postcodeResult.getCodes().getAdminDistrict()),
             localAuthority.getDisplayName(),
