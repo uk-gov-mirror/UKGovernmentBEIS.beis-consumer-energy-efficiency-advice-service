@@ -17,6 +17,7 @@ require_once("functions/acf_wysiwyg.php");
 require_once("functions/filter_article_pages.php");
 require_once("functions/add_beis_editor_button.php");
 require_once("functions/add_youtube_video.php");
+require_once("functions/create_new_local_authority_users_when_creating_new_local_authority_posts.php");
 
 require_once("functions/migrations/201910041427_set_up_roles_capabilities_and_users_for_local_authorities.php");
 require_once("functions/migrations/201910161319_add_example_postcodes_to_local_authorities.php");
