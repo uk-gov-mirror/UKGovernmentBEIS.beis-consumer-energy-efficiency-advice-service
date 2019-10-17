@@ -409,8 +409,12 @@ function add_example_postcodes_to_local_authorities() {
         if (empty($posts)) {
             continue;
         }
-        $local_authority_post = $posts[0];
-        update_field('example_postcode', $example_postcode, $local_authority_post->ID);
+        $post_ID = $posts[0]->ID;
+        $post_meta = get_post_meta($post_ID);
+        if (isset($post_meta['example_postcode'])) {
+            continue;
+        }
+        update_field('example_postcode', $example_postcode, $post_ID);
     }
 
     // Mark done.
