@@ -4,7 +4,7 @@ add_action( 'init', 'add_example_postcodes_to_local_authorities' );
 
 function add_example_postcodes_to_local_authorities() {
 
-    if (get_option('migration/2019101613139_add_example_postcodes_to_local_authorities') == 'done') {
+    if (get_option('migration/201910161319_add_example_postcodes_to_local_authorities') == 'done') {
         return;
     };
 
@@ -418,5 +418,5 @@ function add_example_postcodes_to_local_authorities() {
     }
 
     // Mark done.
-    update_option('migration/2019101613139_add_example_postcodes_to_local_authorities', 'done');
+    update_option('migration/201910161319_add_example_postcodes_to_local_authorities', 'done');
 }
