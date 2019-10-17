@@ -4,7 +4,7 @@ add_action( 'init', 'add_example_postcodes_to_local_authorities' );
 
 function add_example_postcodes_to_local_authorities() {
 
-    if (get_option('migration/2019101613139_add_example_postcodes_to_local_authorities') == 'done') {
+    if (get_option('migration/201910161319_add_example_postcodes_to_local_authorities') == 'done') {
         return;
     };
 
@@ -409,10 +409,14 @@ function add_example_postcodes_to_local_authorities() {
         if (empty($posts)) {
             continue;
         }
-        $local_authority_post = $posts[0];
-        update_field('example_postcode', $example_postcode, $local_authority_post->ID);
+        $post_ID = $posts[0]->ID;
+        $post_meta = get_post_meta($post_ID);
+        if (isset($post_meta['example_postcode'])) {
+            continue;
+        }
+        update_field('example_postcode', $example_postcode, $post_ID);
     }
 
     // Mark done.
-    update_option('migration/2019101613139_add_example_postcodes_to_local_authorities', 'done');
+    update_option('migration/201910161319_add_example_postcodes_to_local_authorities', 'done');
 }
