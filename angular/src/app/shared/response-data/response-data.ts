@@ -135,6 +135,22 @@ export class ResponseData {
     // Set by IncomeQuestionComponent, used by grants
     public income: number;
 
+    // Set by ContactDetailsQuestionComponent, used by ECO self-referral
+    public name: string;
+    public emailAddress: string;
+    public phoneNumber: string;
+
+    // Set by HasLoftQuestionComponent, used be ECO self-referral
+    public hasLoft: boolean;
+    // Set by LoftInsulationQuestionComponent, used by ECO self-referral
+    public hasLoftInsulation: boolean;
+    // Set by LoftClutterQuestionComponent, used by ECO self-referral
+    public isLoftAccessibleAndClearOfClutter: boolean;
+    // Set by LoftInfestationQuestionComponent, used by ECO self-referral
+    public hasLoftHistoryOfInfestation: boolean;
+    // Set by LoftWaterDamageQuestionComponent, used by ECO self-referral
+    public hasLoftHistoryOfWaterDamage: boolean;
+
     get numberOfAdults(): number {
         return this.numberOfAdultsAgedUnder64 +
             this.numberOfAdultsAged64To80 +

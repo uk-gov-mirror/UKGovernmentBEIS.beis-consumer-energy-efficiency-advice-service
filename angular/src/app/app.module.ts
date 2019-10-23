@@ -30,6 +30,7 @@ import {ErrorBannerComponent} from './error-banner/error-banner.component';
 import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
 import {GlobalErrorHandler} from "./shared/global-error-handler";
 import {SearchPageModule} from "./search-page/search-page.module";
+import {ECOSelfReferralModule} from "./eco-self-referral/eco-self-referral.module";
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import {SearchPageModule} from "./search-page/search-page.module";
         HomePageModule,
         GrantsModule.forRoot(),
         GrantEligibilityModule.forRoot(),
+        ECOSelfReferralModule.forRoot(),
         PageModule,
         MeasurePageModule,
         ECOSuppliersPageModule,

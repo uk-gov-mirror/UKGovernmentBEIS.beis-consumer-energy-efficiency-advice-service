@@ -36,6 +36,8 @@ import {GrantEligibilityQuestionnaireComponent} from "./grant-eligibility/grant-
 import {GrantEligibilityResultsPageComponent} from "./grant-eligibility/results-page/grant-eligibility-results-page.component";
 import {GrantEligibilityResultsPageGuard} from "./grant-eligibility/results-page/grant-eligibility-results-page.guard";
 import {SearchPageComponent} from "./search-page/search-page.component";
+import {ECOSelfReferralQuestionnaireComponent} from "./eco-self-referral/eco-self-referral-questionnaire/eco-self-referral-questionnaire.component";
+import {ECOSelfReferralDonePageComponent} from "./eco-self-referral/done-page/eco-self-referral-done-page.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -98,6 +100,16 @@ const routes: Routes = [
         path: 'grant-eligibility/results',
         component: GrantEligibilityResultsPageComponent,
         canActivate: [GrantEligibilityResultsPageGuard]
+    },
+    {
+        path: 'eco-self-referral/questionnaire',
+        component: ECOSelfReferralQuestionnaireComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'eco-self-referral/done',
+        component: ECOSelfReferralDonePageComponent,
+        pathMatch: 'full'
     },
     {
         path: 'about-this-site',

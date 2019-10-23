@@ -6,26 +6,44 @@
                 You may be eligible for ECO.
             </h1>
             <h1 class="heading-text" *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
-                It looks like you aren't eligible for ECO.
+                You are not eligible for ECO.
             </h1>
         </div>
     </div>
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
-                <p>Thanks for completing the questionnaire.</p>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
                     <p>From what you’ve told us, you may be able to get help from ECO.</p>
-                    <p>ECO can help you whether you own your home or rent, but if you do rent there may be some restrictions.</p>
-                    <p>Find energy companies who may be able to help you on the link below:</p>
+                    <h2>
+                        Next steps
+                    </h2>
+                    <p>
+                        You can provide your contact details and additional information about your property to help
+                        energy companies identify and assess your case.
+                    </p>
+                    <div>
+                        <input id="eco-self-referral-storage-consent" type="checkbox">
+                        <label for="eco-self-referral-storage-consent">
+                            I am happy for my contact details and information about my property to be stored.
+                        </label>
+                    </div>
+                    <div>
+                        <input id="eco-self-referral-sharing-consent" type="checkbox">
+                        <label for="eco-self-referral-sharing-consent">
+                            I am happy for these details to be shared with energy companies that may be able to help
+                            me under the ECO scheme.
+                        </label>
+                    </div>
+                    <app-link-button linkUrl="/eco-self-referral/questionnaire"
+                                     buttonText="Proceed"></app-link-button>
                 </ng-container>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
-                    <p>It looks like from what you've told us you aren't eligible for ECO.</p>
-                    <p>Although you are not eligible for ECO, you may be eligible for other grants and schemes operating in your area.</p>
-                    <p>Use the following link and enter your postcode to check.</p>
+                    <p>Unfortunately you do not meet the eligibility criteria for the ECO scheme.</p>
+                    <p>Although you are not eligible, you may be eligible for other grants and schemes operating in your area.</p>
+                    <app-link-button linkUrl="/grants"
+                                     buttonText="Local Schemes"></app-link-button>
                 </ng-container>
-                <app-link-button [linkUrl]="status == GrantEligibilityResultsStatus.Eligible ? '/eco-suppliers' : '/grants'"
-                                 [buttonText]="status == GrantEligibilityResultsStatus.Eligible ? 'ECO Suppliers' : 'Local Schemes'"></app-link-button>
                 <a routerLink="/pages/energy-company-obligation" class="eco-info-link">
                     Find out more on the ECO page
                 </a>

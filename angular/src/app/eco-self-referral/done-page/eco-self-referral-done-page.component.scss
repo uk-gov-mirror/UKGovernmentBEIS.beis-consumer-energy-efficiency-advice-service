@@ -1,0 +1,83 @@
+@import "styles/mixins/layout";
+@import "styles/mixins/buttons";
+@import "styles/mixins/font";
+@import "styles/var/colors";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.eco-self-referral-done-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .page-heading {
+    padding: 48px 0;
+    background-color: $light-blue;
+
+    .page-row-content {
+      display: flex;
+      flex-wrap: wrap;
+
+      .heading-text {
+        @include page-heading-font;
+        color: $dark-blue;
+        flex: 2;
+      }
+    }
+  }
+
+  .more-information {
+    flex-grow: 1;
+    background-color: $lighter-grey;
+    padding: 40px 0;
+
+    .body-text {
+      @include page-body-font;
+    }
+
+    .eco-info-link {
+      @include quick-link-font;
+    }
+  }
+}
+
+// Breakpoint specific styling
+@include mobile() {
+  .grant-eligibility-result-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .grant-eligibility-result-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .grant-eligibility-result-page {
+    .page-heading {
+      .page-row-content {
+        .heading-text {
+          padding-right: 40px;
+        }
+      }
+    }
+  }
+}

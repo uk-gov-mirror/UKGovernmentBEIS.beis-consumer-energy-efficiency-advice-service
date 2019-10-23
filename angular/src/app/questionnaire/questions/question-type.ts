@@ -1,7 +1,8 @@
 export enum QuestionType {
     House,
     Heating,
-    Behaviour
+    Behaviour,
+    Personal
 }
 
 export abstract class QuestionTypeUtil {
@@ -10,6 +11,7 @@ export abstract class QuestionTypeUtil {
             case QuestionType.House:     { return 'icon-house'; }
             case QuestionType.Heating:   { return 'icon-thermostat'; }
             case QuestionType.Behaviour: { return 'icon-person'; }
+            case QuestionType.Personal:  { return 'icon-person'; }
         }
     }
 }
