@@ -18,7 +18,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 
 /**
  * Takes a list of masks from config and checks whether the user is coming from one of
- * these whitelisted IP addresses. THis will work for both IPv4 and IPv6
+ * these whitelisted IP addresses. This will work for both IPv4 and IPv6
  */
 @Service
 public class IpValidationService {
