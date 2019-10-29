@@ -27,6 +27,10 @@ export class NavigationBarComponent {
         {
             name: "Solar Energy",
             url: "/your-home/solar-energy"
+        },
+        {
+            name: "Smart Meters",
+            url: "/pages/smart-meters"
         }
     ];
     rentedSuboptions: NavigationSuboption[] = [
