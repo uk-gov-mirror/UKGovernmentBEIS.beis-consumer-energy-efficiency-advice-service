@@ -31,6 +31,10 @@ export class NavigationBarComponent {
         {
             name: "Smart Meters",
             url: "/pages/smart-meters"
+        },
+        {
+            name: "Understanding Your EPC",
+            url: "/pages/what-can-i-learn-from-my-epc"
         }
     ];
     rentedSuboptions: NavigationSuboption[] = [
