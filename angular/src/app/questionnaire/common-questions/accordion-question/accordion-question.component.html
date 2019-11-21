@@ -1,0 +1,10 @@
+<div class="wrap-collabsible">
+    <input id="collapsible" class="toggle" type="checkbox" style="opacity:0;">
+    <label for="collapsible" class="lbl-toggle">Confused?</label>
+    <div class="collapsible-content">
+        <div class="content-inner" *ngFor="let u of images">
+            <app-show-image class="img" [src]="u.img"></app-show-image>
+            <p class="texttest" *ngIf="u.name">Shown above: {{u.name}}</p>
+        </div>
+    </div>
+</div>

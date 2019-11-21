@@ -1,0 +1,71 @@
+@import "styles/mixins/breakpoints";
+@import "styles/mixins/layout";
+
+@include mobile() {
+}
+
+@include tablet() {
+}
+
+@include desktop() {
+  .boolean-question .boolean-options {
+    .boolean-option {
+      @include is-grid-item($number-of-items: 2, $margin: 20px);
+    }
+  }
+
+  .lbl-toggle {
+    display: block;
+
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+
+    color: rgba(90, 89, 89, 1);
+
+    padding: 1rem;
+
+    cursor: pointer;
+
+    border-radius: 7px;
+    transition: all 0.25s ease-out;
+  }
+
+  .lbl-toggle:hover {
+    color: rgba(0, 98, 128, 1);
+  }
+  .toggle:checked + .lbl-toggle + .collapsible-content {
+    max-height: 350px;
+  }
+  .collapsible-content {
+    max-height: 0px;
+    overflow: hidden;
+
+    transition: max-height .25s ease-in-out;
+  }
+  .collapsible-content .content-inner {
+    background: rgba(255,255,255, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: .5rem 1rem;
+  }
+  .collapsible-content .content-inner .texttest {
+    display: block;
+
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+
+    color: rgba(90, 89, 89, 1);
+  }
+  .toggle:checked + .lbl-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+  }
+
+  .toggle:checked + .lbl-toggle {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
