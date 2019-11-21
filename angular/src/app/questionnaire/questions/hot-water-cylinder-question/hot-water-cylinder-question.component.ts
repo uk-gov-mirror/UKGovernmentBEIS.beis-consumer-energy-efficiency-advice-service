@@ -9,7 +9,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 })
 export class HotWaterCylinderQuestionComponent extends QuestionBaseComponent {
     images = [
-        {id: 1, label: "hotwatercyclinder", img: "hotwaterboiler.jpg", name: "Hot Water Cylinder"}
+        {id: 1, label: "hotwatercyclinder", img: "hotwatercylinder.jpg", name: "Hot Water Cylinder"}
     ];
     get responseForAnalytics(): string {
         return this.response ? 'Hot Water Cylinder' : 'No Hot Water Cylinder';

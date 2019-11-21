@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
 `
 })
 export class ShowImageComponent {
-    @Input() src = "hotwaterboiler.jpg";
+    @Input() src = "hotwatercylinder.jpg";
 }

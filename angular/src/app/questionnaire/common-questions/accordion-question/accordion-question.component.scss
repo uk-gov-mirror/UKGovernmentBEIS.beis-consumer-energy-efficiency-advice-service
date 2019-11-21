@@ -35,7 +35,7 @@
     color: rgba(0, 98, 128, 1);
   }
   .toggle:checked + .lbl-toggle + .collapsible-content {
-    max-height: 350px;
+    max-height: 450px;
   }
   .collapsible-content {
     max-height: 0px;
@@ -60,6 +60,7 @@
 
     color: rgba(90, 89, 89, 1);
   }
+
   .toggle:checked + .lbl-toggle::before {
     transform: rotate(90deg) translateX(-3px);
   }
