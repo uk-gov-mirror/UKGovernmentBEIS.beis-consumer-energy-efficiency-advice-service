@@ -6,5 +6,5 @@ import {Component, Input} from '@angular/core';
     styleUrls: ['./accordion.component.scss']
 })
 export class AccordionComponent {
-    @Input() imageString;
+    @Input() imageFilename;
 }

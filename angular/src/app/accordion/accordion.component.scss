@@ -1,13 +1,11 @@
 @import "../../styles/mixins/breakpoints";
 @import "../../styles/mixins/layout";
 
-.boolean-question .boolean-options {
-  .boolean-option {
-    @include is-grid-item($number-of-items: 2, $margin: 20px);
-  }
+.toggle {
+  opacity: 0;
 }
 
-.lbl-toggle {
+.toggle-label {
   display: block;
 
   font-weight: bold;
@@ -24,10 +22,10 @@
   transition: all 0.25s ease-out;
 }
 
-.lbl-toggle:hover {
+.toggle-label:hover {
   color: rgba(0, 98, 128, 1);
 }
-.toggle:checked + .lbl-toggle + .collapsible-content {
+.toggle:checked + .toggle-label + .collapsible-content {
   max-height: 450px;
 }
 .collapsible-content {
@@ -54,11 +52,11 @@
   color: rgba(90, 89, 89, 1);
 }
 
-.toggle:checked + .lbl-toggle::before {
+.toggle:checked + .toggle-label::before {
   transform: rotate(90deg) translateX(-3px);
 }
 
-.toggle:checked + .lbl-toggle {
+.toggle:checked + .toggle-label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }

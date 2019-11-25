@@ -51,7 +51,6 @@ import {AccordionComponent} from "../accordion/accordion.component";
 
 @NgModule({
     declarations: [
-        AccordionComponent,
         PostcodeLookupComponent,
         EpcLookupComponent,
         TimesPipe,
@@ -73,6 +72,7 @@ import {AccordionComponent} from "../accordion/accordion.component";
         ForbiddenPageComponent,
         ContentsTableComponent,
         LinkButtonComponent,
+        AccordionComponent,
     ],
     exports: [
         PostcodeLookupComponent,

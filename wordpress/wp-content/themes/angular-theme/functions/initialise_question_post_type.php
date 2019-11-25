@@ -63,7 +63,7 @@ function setup_question_acf_group() {
                 ),
                 array(
                     'key' => 'field_5ddbaa09e8622',
-                    'label' => 'Image',
+                    'label' => 'image',
                     'name' => 'questionImage',
                     'type' => 'text',
                     'instructions' => 'Image path is relative to /dist/assets/images/question-images',
@@ -71,7 +71,7 @@ function setup_question_acf_group() {
                     'placeholder' => '',
                     'prepend' => '',
                     'append' => '',
-                    'formatting' => 'string',
+                    'formatting' => 'html',
                     'maxlength' => '',
                 ),
                 array (
