@@ -17,6 +17,12 @@ $grant-card-margin: 24px;
   flex-direction: column;
 }
 
+.row {
+  grid-gap: 20px;
+  justify-items: center;
+  display: flex;
+}
+
 .results-page {
   display: flex;
   flex-direction: column;
