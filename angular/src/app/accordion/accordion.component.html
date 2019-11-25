@@ -3,8 +3,8 @@
     <label for="collapsible" class="lbl-toggle">Confused?</label>
     <div class="collapsible-content">
         <div class="content-inner" *ngFor="let u of images">
-            <p class="texttest" *ngIf="u.name">{{u.name}}</p>
-            <app-show-image class="img" [src]="u.img"></app-show-image>
+            <p class="text-name" *ngIf="u.name">{{u.name}}</p>
+            <img src="/dist/assets/images/question-images/{{u.img}}" />
         </div>
     </div>
 </div>

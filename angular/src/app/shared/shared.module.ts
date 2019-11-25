@@ -47,9 +47,11 @@ import {ContentsTableComponent} from "./contents-table/contents-table.component"
 import {PlanInfoService} from "./plan-info-service/plan-info.service";
 import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-service/energy-efficiency-display.service";
 import {LinkButtonComponent} from "./link-button/link-button.component";
+import {AccordionComponent} from "../accordion/accordion.component";
 
 @NgModule({
     declarations: [
+        AccordionComponent,
         PostcodeLookupComponent,
         EpcLookupComponent,
         TimesPipe,
@@ -94,6 +96,7 @@ import {LinkButtonComponent} from "./link-button/link-button.component";
         ForbiddenPageComponent,
         ContentsTableComponent,
         LinkButtonComponent,
+        AccordionComponent,
     ],
     imports: [
         HttpClientModule,

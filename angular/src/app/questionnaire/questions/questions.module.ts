@@ -45,11 +45,9 @@ import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pens
 import {ChildBenefitsQuestionComponent} from "./benefits-questions/child-benefits-question.component";
 import {DefenseRelatedBenefitsQuestionComponent} from "./benefits-questions/defense-related-benefits-question.component";
 import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-benefits-question.component";
-import {ShowImageComponent} from "../../show-images/show-image.component";
 
 @NgModule({
     declarations: [
-        ShowImageComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
@@ -90,7 +88,6 @@ import {ShowImageComponent} from "../../show-images/show-image.component";
         AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
-        ShowImageComponent,
     ],
     exports: [
         BedroomsQuestionComponent,

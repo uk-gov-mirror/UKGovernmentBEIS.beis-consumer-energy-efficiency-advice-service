@@ -3,14 +3,22 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 
 @Component({
     selector: 'app-hot-water-cylinder-question',
-    templateUrl: '../../common-questions/accordion-question/accordion-question.component.html',
-    styleUrls: ['../../common-questions/accordion-question/accordion-question.component.scss'],
+    templateUrl: '../../common-questions/boolean-question/boolean-question.component.html',
+    styleUrls: ['../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation],
 })
 export class HotWaterCylinderQuestionComponent extends QuestionBaseComponent {
-    images = [
+    get images(): { img: string; name: string; id: number; label: string }[] {
+        return this._images;
+    }
+
+    set images(value: { img: string; name: string; id: number; label: string }[]) {
+        this._images = value;
+    }
+    private _images = [
         {id: 1, label: "hotwatercyclinder", img: "hotwatercylinder.jpg", name: "Hot Water Cylinder"}
     ];
+
     get responseForAnalytics(): string {
         return this.response ? 'Hot Water Cylinder' : 'No Hot Water Cylinder';
     }

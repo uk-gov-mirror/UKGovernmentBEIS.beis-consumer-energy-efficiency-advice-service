@@ -7,6 +7,8 @@
     <div class="question">
         <ng-template app-question-host></ng-template>
     </div>
+    <app-accordion *ngIf="currentQuestionContent.accordion"></app-accordion>
+
     <app-question-reason *ngIf="currentQuestionContent.questionReason"
                      [isExpanded]="currentQuestionContent.autoOpenQuestionReason"
                      [questionReason]="currentQuestionContent.questionReason"></app-question-reason>
