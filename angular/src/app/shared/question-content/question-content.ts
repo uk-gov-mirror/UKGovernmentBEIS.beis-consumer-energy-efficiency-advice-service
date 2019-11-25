@@ -6,5 +6,5 @@ export interface QuestionContent {
     helpHtml: string;
     questionReason: string;
     autoOpenQuestionReason?: boolean;
-    accordionImage?: string;
+    questionImage?: string;
 }

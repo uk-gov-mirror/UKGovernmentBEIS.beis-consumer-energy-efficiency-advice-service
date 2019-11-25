@@ -64,7 +64,7 @@ function setup_question_acf_group() {
                 array(
                     'key' => 'field_5ddbaa09e8622',
                     'label' => 'Image',
-                    'name' => 'accordionImage',
+                    'name' => 'questionImage',
                     'type' => 'text',
                     'instructions' => 'Image path is relative to /dist/assets/images/question-images',
                     'default_value' => '',
