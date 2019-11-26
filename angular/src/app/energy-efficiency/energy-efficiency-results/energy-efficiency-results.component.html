@@ -22,15 +22,13 @@
                 </span>
             </div>
             <div class="row">
-                <div class="col">
-                    <button *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures">Quick Wins</button>
-                </div>
-                <div class="col">
-                    <button *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures">Financial Assistance</button>
-                </div>
-                <div class="col">
-                    <button *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures">Larger Improvements</button>
-                </div>
+                <form>
+                    <div class="tab-field">
+                        <input type="radio" class="tab" name="tabs" id="quick-wins-radio" *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures" checked> <label for="quick-wins-radio">Quick Wins</label>
+                        <input type="radio" class="tab" name="tabs" id="financial-assistance-radio" *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures"><label for="financial-assistance-radio">Financial Assistance</label>
+                        <input type="radio" class="tab" name="tabs" id="larger-improvements-radio" *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures"><label for="larger-improvements-radio">Larger Improvements</label>
+                    </div>
+                </form>
             </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card

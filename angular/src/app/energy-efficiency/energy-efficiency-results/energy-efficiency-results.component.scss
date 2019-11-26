@@ -17,10 +17,48 @@ $grant-card-margin: 24px;
   flex-direction: column;
 }
 
-.row {
-  grid-gap: 20px;
-  justify-items: center;
+.tab-field {
   display: flex;
+  margin-bottom: 36px;
+  overflow: hidden;
+}
+
+.tab-field input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.tab-field label {
+  background-color: white;
+  color: $dark-medium-blue;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  padding: 15px 20px;
+  transition: all 0.1s ease-in-out;
+  text-transform: uppercase;
+}
+
+.tab-field label:hover {
+  cursor: pointer;
+}
+
+.tab-field input:checked + label {
+  background-color: $dark-medium-blue;
+  box-shadow: none;
+  color: white;
+}
+
+.tab-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.tab-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
 }
 
 .results-page {
