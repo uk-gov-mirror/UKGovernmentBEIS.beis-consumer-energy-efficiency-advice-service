@@ -20,6 +20,7 @@ import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-con
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {QuestionReasonComponent} from '../shared/question-reason/question-reason.component';
+import {AccordionComponent} from "../accordion/accordion.component";
 
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
@@ -124,6 +125,7 @@ describe('QuestionnaireComponent', () => {
                 ProgressIndicatorComponent,
                 SpinnerAndErrorContainerComponent,
                 QuestionReasonComponent,
+                AccordionComponent,
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
