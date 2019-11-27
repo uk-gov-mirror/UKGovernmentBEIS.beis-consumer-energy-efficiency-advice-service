@@ -268,6 +268,49 @@ describe('QuestionnaireComponent', () => {
             expect(component.onQuestionnaireComplete.emit).toHaveBeenCalled();
         });
     });
+
+    it('should display accordion when given a questionImage', async(() => {
+        // given
+        allQuestionsContent = {
+            [questionId]: {
+                questionHeading: 'test question heading',
+                helpHtml: '',
+                questionImage: "someimage.jpg",
+                questionReason: 'this question helps us show you useful results',
+            }
+        };
+        component.currentQuestionIndex = 0;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        fixture.whenStable().then(() => {
+            const element = fixture.debugElement.query(By.css('.collapsible-content'));
+            expect(element).toBeTruthy();
+        });
+    }));
+
+    it('should not display accordion when no questionImage is given', async(() => {
+        // given
+        allQuestionsContent = {
+            [questionId]: {
+                questionHeading: 'test question heading',
+                helpHtml: '',
+                questionReason: 'this question helps us show you useful results',
+            }
+        };
+        component.currentQuestionIndex = 0;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        fixture.whenStable().then(() => {
+            const element = fixture.debugElement.query(By.css('.collapsible-content'));
+            expect(element).toBeFalsy();
+        });
+    }));
 });
 
 @Component({template: ''})
