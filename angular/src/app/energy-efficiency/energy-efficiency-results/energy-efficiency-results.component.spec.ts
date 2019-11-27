@@ -285,6 +285,19 @@ describe('EnergyEfficiencyResultsComponent', () => {
         expect(component.defaultRecommendationDisclaimer).toEqual(expectedDefaultRecommendationDisclaimer);
     });
 
+    it('should show tabs', () => {
+        fixture.detectChanges();
+        const tabField = fixture.debugElement.query(By.css('.tab-field'));
+        expect(tabField.nativeElement).toBeTruthy();
+        expect(tabField.nativeElement.children.length).toBe(3);
+    });
+
+    it('should start with quick-wins checked', () => {
+    });
+
+    it('should only have one tabs checked at any given time', async() => {
+    });
+
     function setUpComponentWithDefaultResponse(): void {
         dummyEnergyCalculations['isDefaultResponse'] = true;
         energyCalculationResponse = Observable.of(dummyEnergyCalculations);
