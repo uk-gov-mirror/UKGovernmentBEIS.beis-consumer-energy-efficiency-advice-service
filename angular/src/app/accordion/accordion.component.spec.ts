@@ -30,10 +30,10 @@ describe('AccordionComponent', () => {
     it('should not be displayed on start up', async(() => {
         fixture.whenStable().then(() => {
             const element = fixture.debugElement.query(By.css('.collapsible-content'));
-            expect(window.getComputedStyle(element.nativeElement).maxHeight).toBe("0px");
+            const maxHeight = parseInt(window.getComputedStyle(element.nativeElement).maxHeight);
+            expect(maxHeight).toBe(0);
         });
     }));
-
 
    describe('when clicking on the button', () => {
        it('should display the accordion', async(() => {
@@ -43,7 +43,7 @@ describe('AccordionComponent', () => {
                fixture.detectChanges();
                expect(button.checked).toBeTruthy();
                const element = fixture.debugElement.query(By.css('.collapsible-content'));
-               expect(window.getComputedStyle(element.nativeElement).maxHeight).toBe("450px");
+               expect(parseInt(window.getComputedStyle(element.nativeElement).maxHeight)).toBeGreaterThan(0);
            });
        }));
         it('should close the accordion', async(() => {
@@ -56,7 +56,8 @@ describe('AccordionComponent', () => {
                 fixture.detectChanges();
                 expect(button.checked).toBeFalsy();
                 const element = fixture.debugElement.query(By.css('.collapsible-content'));
-                expect(window.getComputedStyle(element.nativeElement).maxHeight).toBe("0px");
+                const maxHeight = parseInt(window.getComputedStyle(element.nativeElement).maxHeight);
+                expect(maxHeight).toBe(0);
             });
         }));
     });
