@@ -287,15 +287,32 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     it('should show tabs', () => {
         fixture.detectChanges();
-        const tabField = fixture.debugElement.query(By.css('.tab-field'));
-        expect(tabField.nativeElement).toBeTruthy();
-        expect(tabField.nativeElement.children.length).toBe(3);
+        const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const financialAssistance = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const largerImprovements = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        expect(quickWins).toBeTruthy();
+        expect(financialAssistance).toBeTruthy();
+        expect(largerImprovements).toBeTruthy();
     });
 
     it('should start with quick-wins checked', () => {
+        fixture.detectChanges();
+        const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        expect(quickWins.checked).toBeTruthy();
     });
 
     it('should only have one tabs checked at any given time', async() => {
+        const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const financialAssistance = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const largerImprovements = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        financialAssistance.click();
+        fixture.detectChanges();
+        expect(quickWins.checked).toBeFalsy();
+        expect(financialAssistance.checked).toBeTruthy();
+        largerImprovements.click();
+        fixture.detectChanges();
+        expect(financialAssistance.checked).toBeFalsy();
+        expect(largerImprovements.checked).toBeTruthy();
     });
 
     function setUpComponentWithDefaultResponse(): void {
