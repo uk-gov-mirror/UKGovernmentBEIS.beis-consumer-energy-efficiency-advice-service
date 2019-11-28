@@ -20,6 +20,7 @@ import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-con
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {QuestionReasonComponent} from '../shared/question-reason/question-reason.component';
+import {AccordionComponent} from "../accordion/accordion.component";
 
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
@@ -124,6 +125,7 @@ describe('QuestionnaireComponent', () => {
                 ProgressIndicatorComponent,
                 SpinnerAndErrorContainerComponent,
                 QuestionReasonComponent,
+                AccordionComponent,
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
@@ -266,6 +268,49 @@ describe('QuestionnaireComponent', () => {
             expect(component.onQuestionnaireComplete.emit).toHaveBeenCalled();
         });
     });
+
+    it('should display accordion when given a questionImage', async(() => {
+        // given
+        allQuestionsContent = {
+            [questionId]: {
+                questionHeading: 'test question heading',
+                helpHtml: '',
+                questionImage: "someimage.jpg",
+                questionReason: 'this question helps us show you useful results',
+            }
+        };
+        component.currentQuestionIndex = 0;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        fixture.whenStable().then(() => {
+            const element = fixture.debugElement.query(By.css('.collapsible-content'));
+            expect(element).toBeTruthy();
+        });
+    }));
+
+    it('should not display accordion when no questionImage is given', async(() => {
+        // given
+        allQuestionsContent = {
+            [questionId]: {
+                questionHeading: 'test question heading',
+                helpHtml: '',
+                questionReason: 'this question helps us show you useful results',
+            }
+        };
+        component.currentQuestionIndex = 0;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        fixture.whenStable().then(() => {
+            const element = fixture.debugElement.query(By.css('.collapsible-content'));
+            expect(element).toBeFalsy();
+        });
+    }));
 });
 
 @Component({template: ''})
