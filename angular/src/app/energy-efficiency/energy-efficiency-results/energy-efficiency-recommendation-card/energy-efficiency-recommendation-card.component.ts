@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {
     EnergyEfficiencyRecommendationTag,
-    getActiveTags,
+    getTags,
     getTagClassName,
     getTagDescription
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
@@ -34,7 +34,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
-        this.tags = getActiveTags(this.recommendation.tags)
+        this.tags = getTags(this.recommendation)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
     }

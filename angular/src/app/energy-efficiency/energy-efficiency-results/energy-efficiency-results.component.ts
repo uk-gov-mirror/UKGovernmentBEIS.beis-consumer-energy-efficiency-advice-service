@@ -17,6 +17,7 @@ import {getHomePropertyDescription} from "../../shared/home-property-description
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import Config from '../../config';
+import {EnergyEfficiencyRecommendationTag, getTags} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -73,11 +74,25 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.allRecommendations.userRecommendations;
+        return this.getRecommendations(this.allRecommendations.userRecommendations);
     }
 
     getLandlordRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.allRecommendations.landlordRecommendations;
+        return this.getRecommendations(this.allRecommendations.landlordRecommendations);
+    }
+
+    getRecommendations(recommendations: EnergyEfficiencyRecommendation[]): EnergyEfficiencyRecommendation[] {
+        const quickWins = document.getElementById('quick-wins-radio') as HTMLInputElement;
+        const financialAssistance = document.getElementById('financial-assistance-radio') as HTMLInputElement;
+        const largerImprovements = document.getElementById('larger-improvements-radio') as HTMLInputElement;
+        if (quickWins.checked) {
+            recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.QuickWin));
+        } else if (financialAssistance.checked) {
+            recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.Grant));
+        } else if (largerImprovements.checked) {
+            recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.LongerTerm));
+        }
+        return recommendations;
     }
 
     get showMonthlySavings() {
