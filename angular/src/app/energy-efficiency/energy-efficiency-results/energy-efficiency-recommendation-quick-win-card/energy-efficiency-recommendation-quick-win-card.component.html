@@ -1,0 +1,55 @@
+<div class="energy-efficiency-recommendation-card">
+    <div class="main-row">
+        <div class="recommendation-icon">
+            <div [inlineSVG]="recommendation.iconPath" class="icon"></div>
+        </div>
+        <div class="recommendation-basic-details">
+            <div class="heading">{{recommendation.headline}}</div>
+            <div class="summary-row">
+                <div class="summary">
+                    {{recommendation.summary}}
+                </div>
+            </div>
+            <div class="tags">
+                <div *ngFor="let tag of tags"
+                     [ngClass]="getTagClassName(tag)"
+                     (click)="toggleExpandedView()"
+                     class="tag">{{getTagDescription(tag)}}
+                </div>
+            </div>
+            <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+                More information >
+            </div>
+        </div>
+        <app-data-card class="monthly-savings-card"
+                       heading="Potential {{showMonthlySavings ? 'monthly' : 'yearly'}} savings"
+                       [value]="savingDisplay"
+                       [isSmallCard]="true"
+                       [withSmallFontSize]="true"
+        ></app-data-card>
+        <div class="expanded-view-row" [class.expanded]="isExpandedView">
+            <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length">
+                <div class="heading">Benefits</div>
+                <ul class="benefits-list">
+                    <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
+                        {{advantage}}
+                    </li>
+                </ul>
+            </div>
+            <app-break-even *ngIf="recommendation.investmentPounds > 0"
+                            [investmentPounds]="recommendation.investmentPounds"
+                            [lifespanYears]="recommendation.lifetimeYears"
+                            [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
+            </app-break-even>
+            <div class="what-it-is" *ngIf="recommendation.whatItIs">
+                <div class="heading">What it is</div>
+                <div class="description">{{recommendation.whatItIs}}</div>
+            </div>
+            <div class="right-for-me" *ngIf="recommendation.isItRightForMe">
+                <div class="heading">Is it right for me?</div>
+                <div class="description"> {{recommendation.isItRightForMe}}</div>
+            </div>
+        </div>
+        <!-- todo: add dismiss plan button here -->
+    </div>
+</div>

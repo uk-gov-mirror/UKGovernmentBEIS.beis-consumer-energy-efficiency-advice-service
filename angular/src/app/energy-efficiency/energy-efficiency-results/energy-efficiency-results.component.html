@@ -31,8 +31,14 @@
                 </form>
             </div>
             <div class="recommendation-cards">
+                <app-energy-efficiency-recommendation-quick-win-card
+                        *ngFor="let recommendation of getUserRecommendations('quick-wins')"
+                        [recommendation]="recommendation"
+                        [showMonthlySavings]="showMonthlySavings"
+                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                ></app-energy-efficiency-recommendation-quick-win-card>
                 <app-energy-efficiency-recommendation-card
-                        *ngFor="let recommendation of getUserRecommendations()"
+                        *ngFor="let recommendation of getUserRecommendations('financial-assistance')"
                         [recommendation]="recommendation"
                         [showMonthlySavings]="showMonthlySavings"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"

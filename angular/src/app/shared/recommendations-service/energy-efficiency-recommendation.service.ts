@@ -10,7 +10,9 @@ export abstract class EnergyEfficiencyRecommendationService {
     static getSavingDisplay(recommendation: EnergyEfficiencyRecommendation, showMonthlySavings: boolean): string {
         const minimumSaving = this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings);
         const maximumSaving = this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings);
-        return this.roundAndFormatValueRange(minimumSaving, maximumSaving);
+        const roundedMinimumInput = RoundingService.roundCostValue(minimumSaving);
+        const roundedMaximumInput = RoundingService.roundCostValue(maximumSaving);
+        return "£" + (roundedMinimumInput + Math.round(((roundedMaximumInput - roundedMinimumInput) / 2)));
     }
 
     static getTotalSavingsDisplay(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): string {

@@ -73,23 +73,20 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
-    getUserRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.getRecommendations(this.allRecommendations.userRecommendations);
+    getUserRecommendations(tag: string): EnergyEfficiencyRecommendation[] {
+        return this.getRecommendations(this.allRecommendations.userRecommendations, tag);
     }
 
-    getLandlordRecommendations(): EnergyEfficiencyRecommendation[] {
-        return this.getRecommendations(this.allRecommendations.landlordRecommendations);
+    getLandlordRecommendations(tag: string): EnergyEfficiencyRecommendation[] {
+        return this.getRecommendations(this.allRecommendations.landlordRecommendations, tag);
     }
 
-    getRecommendations(recommendations: EnergyEfficiencyRecommendation[]): EnergyEfficiencyRecommendation[] {
-        const quickWins = document.getElementById('quick-wins-radio') as HTMLInputElement;
-        const financialAssistance = document.getElementById('financial-assistance-radio') as HTMLInputElement;
-        const largerImprovements = document.getElementById('larger-improvements-radio') as HTMLInputElement;
-        if (quickWins.checked) {
+    getRecommendations(recommendations: EnergyEfficiencyRecommendation[], tag: string): EnergyEfficiencyRecommendation[] {
+        if (tag === 'quick-wins') {
             recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.QuickWin));
-        } else if (financialAssistance.checked) {
+        } else if (tag === 'financial-assistance') {
             recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.Grant));
-        } else if (largerImprovements.checked) {
+        } else if (tag === 'larger-improvements') {
             recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.LongerTerm));
         }
         return recommendations;

@@ -20,6 +20,7 @@ import {DownloadPdfButtonComponent} from "./your-plan-page/download-pdf-button/d
 import {RecommendationWithStepsCardComponent} from "./your-plan-page/recommendation-with-steps-card/recommendation-with-steps-card.component";
 import {YourPlanFooterItemComponent} from "./energy-efficiency-results/your-plan-footer/your-plan-footer-item/your-plan-footer-item.component";
 import {YourPlanFooterCombinedItemComponent} from "./energy-efficiency-results/your-plan-footer/your-plan-footer-combined-item/your-plan-footer-combined-item.component";
+import {EnergyEfficiencyRecommendationQuickWinCardComponent} from "./energy-efficiency-results/energy-efficiency-recommendation-quick-win-card/energy-efficiency-recommendation-quick-win-card.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import {YourPlanFooterCombinedItemComponent} from "./energy-efficiency-results/y
         RecommendationWithStepsCardComponent,
         DownloadPlanComponent,
         DownloadPdfButtonComponent,
-        BreakEvenComponent
+        BreakEvenComponent,
+        EnergyEfficiencyRecommendationQuickWinCardComponent
     ],
     exports: [
         EnergyEfficiencyQuestionnaireComponent,
