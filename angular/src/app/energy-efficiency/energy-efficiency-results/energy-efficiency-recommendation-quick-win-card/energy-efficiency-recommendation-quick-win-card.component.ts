@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {
     EnergyEfficiencyRecommendationTag,
@@ -23,10 +23,13 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     savingDisplay: string;
+    isExpanded: number;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
+    @Input() stepIndex: number;
+    @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
@@ -37,6 +40,10 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
         this.tags = getTags(this.recommendation)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
+    }
+
+    toggleIsExpanded(tag: number): void {
+        this.isExpanded = tag;
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
@@ -77,5 +84,9 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
 
     sendEventToAnalytics(eventName: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
+    }
+
+    sendStepEventToAnalytics(eventName: string, eventLabel?: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', eventLabel);
     }
 }

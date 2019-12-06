@@ -77,6 +77,8 @@ $grant-card-margin: 24px;
     .page-row-content {
       display: flex;
       flex-wrap: wrap;
+      padding-top: 15px;
+      padding-bottom: 15px;
 
       .heading-text {
         @include page-heading-small-font;

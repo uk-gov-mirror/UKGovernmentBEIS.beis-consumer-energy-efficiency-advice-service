@@ -11,33 +11,17 @@ export class RecommendationStepCardComponent implements OnInit {
 
     @Input() step: RecommendationStep;
     @Input() stepIndex: number;
+    @Input() stepChecked: number;
     @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
-    isExpanded: boolean;
     isReadMoreExpanded: boolean;
 
     private static readonly INITIAL_STEP_NUMBER: number = 1;
 
     ngOnInit() {
-        this.isExpanded = this.stepIndex === 0;
     }
 
-    get formattedStepNumber(): string {
-        const stepNumber = this.stepIndex + RecommendationStepCardComponent.INITIAL_STEP_NUMBER;
-        return padStart(stepNumber.toString(), 2, '0');
-    }
-
-    toggleIsExpanded(): void {
-        this.isExpanded = !this.isExpanded;
-        if (this.isExpanded) {
-            this.onAnalyticsEvent.emit('expand-step_clicked');
-        }
-    }
-
-    toggleIsReadMoreExpanded(): void {
-        this.isReadMoreExpanded = !this.isReadMoreExpanded;
-        if (this.isReadMoreExpanded) {
-            this.onAnalyticsEvent.emit('read-more_clicked');
-        }
+    isExpanded(): boolean {
+        return this.stepChecked === this.stepIndex;
     }
 }

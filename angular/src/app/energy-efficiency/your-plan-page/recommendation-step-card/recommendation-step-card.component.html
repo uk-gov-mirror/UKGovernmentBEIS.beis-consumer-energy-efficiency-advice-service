@@ -1,27 +1,10 @@
 <div class="recommendation-step-card" *ngIf="step">
-    <div class="step-main-row" (click)="toggleIsExpanded()">
-        <div class="bullet"></div>
-        <div class="step-number">Step {{formattedStepNumber}}</div>
-        <button class="step-headline" [title]="isExpanded ? 'Hide details' : 'See more detail'">{{step.headline}}</button>
-        <div class="expand-step-icon" [class.expanded]="isExpanded"
-                title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-    </div>
-    <div class="step-details-drawer" [class.expanded]="isExpanded">
+    <div class="step-details-drawer" [class.expanded]="isExpanded()">
         <div class="step-info">
             <div class="step-description">
                 {{step.description}}
+                <div class="read-more-content" innerHTML="<br />{{step.readMore}}"></div>
             </div>
-            <ng-container *ngIf="step.readMore">
-                <!-- innerHTML is used here as wordpress supplies <br /> tags for us -->
-                <div class="read-more-content-container" [class.read-more-expanded]="isReadMoreExpanded">
-                    <div class="read-more-content" innerHTML="<br />{{step.readMore}}"></div>
-                </div>
-                <div class="read-more-button" (click)="toggleIsReadMoreExpanded()">
-                    <div class="read-more-button-text">{{isReadMoreExpanded ? "Read Less" : "Read More"}}</div>
-                    <div class="read-more-button-icon" [class.expanded]="isReadMoreExpanded"
-                        title="Read more" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                </div>
-            </ng-container>
         </div>
         <div class="more-info-links" *ngIf="step.moreInfoLinks">
             <ng-container *ngFor="let moreInfoLink of step.moreInfoLinks">

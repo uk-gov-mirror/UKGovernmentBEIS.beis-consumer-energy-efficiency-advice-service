@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
-                More information >
+                More information <i class="arrow"></i>
             </div>
         </div>
         <app-data-card class="monthly-savings-card"
@@ -27,29 +27,31 @@
                        [isSmallCard]="true"
                        [withSmallFontSize]="true"
         ></app-data-card>
+        <div class="dismiss-plan-icon">
+            <div [inlineSVG]="'controls/remove.svg'" class="icon"></div>
+        </div>
+
         <div class="expanded-view-row" [class.expanded]="isExpandedView">
-            <div class="benefits" *ngIf="recommendation.advantages && recommendation.advantages.length">
-                <div class="heading">Benefits</div>
-                <ul class="benefits-list">
-                    <li class="benefits-list-item" *ngFor="let advantage of recommendation.advantages">
-                        {{advantage}}
-                    </li>
-                </ul>
-            </div>
-            <app-break-even *ngIf="recommendation.investmentPounds > 0"
-                            [investmentPounds]="recommendation.investmentPounds"
-                            [lifespanYears]="recommendation.lifetimeYears"
-                            [costSavingPoundsPerYear]="recommendation.costSavingPoundsPerYear">
-            </app-break-even>
-            <div class="what-it-is" *ngIf="recommendation.whatItIs">
-                <div class="heading">What it is</div>
-                <div class="description">{{recommendation.whatItIs}}</div>
-            </div>
-            <div class="right-for-me" *ngIf="recommendation.isItRightForMe">
-                <div class="heading">Is it right for me?</div>
-                <div class="description"> {{recommendation.isItRightForMe}}</div>
+            <div class="steps" >
+                <div class="recommendation-step-card-left">
+                    <div class="step-headline-div" *ngFor="let step of recommendation.steps; let i = index">
+                    <input type="radio" name="cards" class="step-headline" [id]="'step-headline-'+stepIndex+'-'+i" (click)="toggleIsExpanded(i)" [class.expanded]="isExpanded===i">
+                    <div class="expand-step-icon" [class.expanded]="isExpanded===i"
+                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                    <label [for]="'step-headline-'+stepIndex+'-'+i" class="step-label" [class.expanded]="isExpanded===i">
+                        {{step.headline}}
+                    </label>
+                    </div>
+                </div>
+                <div class="recommendation-step-card-right">
+                    <app-recommendation-step-card *ngFor="let step of recommendation.steps; let i = index"
+                            [stepChecked]="isExpanded"
+                            [step]="step"
+                            [stepIndex]="i"
+                            (onAnalyticsEvent)="sendStepEventToAnalytics($event, recommendation.recommendationID)"
+                    ></app-recommendation-step-card>
+                </div>
             </div>
         </div>
-        <!-- todo: add dismiss plan button here -->
     </div>
 </div>

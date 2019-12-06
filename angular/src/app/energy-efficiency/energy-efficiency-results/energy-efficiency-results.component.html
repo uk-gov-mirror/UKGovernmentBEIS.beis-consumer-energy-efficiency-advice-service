@@ -2,14 +2,7 @@
 <div class="results-page" *ngIf="!isLoading && !isError">
     <div class="page-row results-header-row">
         <div class="page-row-content">
-            <h1 class="heading-text">Now build your plan</h1>
-            <div class="header-data-cards">
-                <app-data-card
-                        heading="Your estimated monthly bills are"
-                        [value]="'£' + energyCalculations.currentMonthlyBillPoundsRounded"
-                        [isVerticalAtMobile]="true"
-                ></app-data-card>
-            </div>
+            <h1 class="heading-text">Here's some recommendations...</h1>
         </div>
     </div>
     <div class="page-row recommendations">
@@ -24,27 +17,40 @@
             <div class="row">
                 <form>
                     <div class="tab-field">
-                        <input type="radio" name="tab" class="tab" id="quick-wins-radio" checked> <label for="quick-wins-radio">Quick Wins</label>
-                        <input type="radio" name="tab" class="tab" id="financial-assistance-radio"><label for="financial-assistance-radio">Financial Assistance</label>
-                        <input type="radio" name="tab" class="tab" id="larger-improvements-radio"><label for="larger-improvements-radio">Larger Improvements</label>
+                        <input type="radio" name="tab" class="tab" id="quick-wins-radio" (click)="setTabBool('quick-wins')" checked> <label for="quick-wins-radio">Quick Wins</label>
+                        <input type="radio" name="tab" class="tab" id="financial-assistance-radio" (click)="setTabBool('financial-assistance')"><label for="financial-assistance-radio">Financial Assistance</label>
+                        <input type="radio" name="tab" class="tab" id="larger-improvements-radio" (click)="setTabBool('larger-improvements')"><label for="larger-improvements-radio">Larger Improvements</label>
                     </div>
                 </form>
             </div>
             <div class="recommendation-cards">
+                <div *ngIf="quickWinsBool">
                 <app-energy-efficiency-recommendation-quick-win-card
-                        *ngFor="let recommendation of getUserRecommendations('quick-wins')"
+                        *ngFor="let recommendation of getUserRecommendations('quick-wins'); let i = index"
+                        [stepIndex]="i"
                         [recommendation]="recommendation"
                         [showMonthlySavings]="showMonthlySavings"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                 ></app-energy-efficiency-recommendation-quick-win-card>
+                </div>
+                <div *ngIf="financialAssistanceBool">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getUserRecommendations('financial-assistance')"
                         [recommendation]="recommendation"
                         [showMonthlySavings]="showMonthlySavings"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                 ></app-energy-efficiency-recommendation-card>
+                </div>
+                <div *ngIf="largerImprovementsBool">
+                <app-energy-efficiency-recommendation-card
+                        *ngFor="let recommendation of getUserRecommendations('larger-improvements')"
+                        [recommendation]="recommendation"
+                        [showMonthlySavings]="showMonthlySavings"
+                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                ></app-energy-efficiency-recommendation-card>
+                </div>
                 <app-energy-efficiency-combined-recommendation-card
-                        *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations().length"
+                        *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations('').length"
                         [combinedHeadline]="combinedLandlordRecommendationHeadline"
                         [combinedSummary]="'Since you are renting, some of our recommendations will need to be carried out by your landlord.'"
                         [combinedIconPath]="'icons/home-improve.svg'"

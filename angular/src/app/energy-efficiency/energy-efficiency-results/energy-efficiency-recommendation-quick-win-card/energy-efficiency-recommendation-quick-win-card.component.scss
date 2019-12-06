@@ -10,35 +10,102 @@ $icon-column-width: $add-to-plan-column-width;
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
+.arrow {
+  border: solid #006280;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3.5px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
 .expanded-view-row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: white;
+    flex: 1 0 100%;
+}
+
+.expanded-view-row {
+  border-top: 1px solid $light-grey;
   display: none;
   flex-wrap: wrap;
 
   &.expanded {
     display: flex;
   }
+}
 
-  .benefits, .what-it-is, .right-for-me {
-    .heading {
-      text-transform: uppercase;
-      font-size: 12px;
-      color: $dark-blue;
-    }
-  }
+.steps {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
 
-  .benefits {
-    .benefits-list {
-      font-family: $font-family-light;
-    }
-  }
+.step-headline-div {
+  display: flex;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
 
-  .what-it-is, .right-for-me {
-    .description {
-      font-family: $font-family-light;
-      padding-bottom: 10px;
-    }
+.step-headline-div input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.step-headline-div label {
+  text-align:left;
+  color: $dark-medium-blue;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: inherit;
+  padding-left: 10px;
+
+  &.expanded {
+    color: #82CAFF;
   }
 }
+
+.step-label:hover {
+  color: #82CAFF;
+}
+
+
+.expand-step-icon {
+  flex: 0 0 auto;
+  fill: $dark-medium-blue;
+  display: block;
+  width: 14px;
+  height: 8px;
+  line-height: 0;
+  transform: rotate(-90deg);
+  margin-top: 4px;
+
+  &.expanded {
+    fill: #82CAFF;
+  }
+}
+
+.steps {
+  display: flex;
+  width: 100%;
+
+  .recommendation-step-card-left {
+    width: 30%;
+    border-right: 1px solid $light-grey;
+  }
+
+  .recommendation-step-card-right {
+    width: 60%;
+    float: right;
+  }
+}
+
 .energy-efficiency-recommendation-card {
   display: flex;
 
@@ -52,6 +119,19 @@ $icon-column-width: $add-to-plan-column-width;
 
     & > * {
       background-color: white;
+    }
+
+    .dismiss-plan-icon {
+      order: 6;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+        line-height: 0;
+        padding-top: 10px;
+        padding-right: 10px;
+        stroke: $light-medium-grey;
+      }
     }
 
     .recommendation-icon {
@@ -97,10 +177,13 @@ $icon-column-width: $add-to-plan-column-width;
     }
 
     .more-detail-button {
+      color: $dark-blue;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      padding: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
   }
@@ -134,23 +217,14 @@ $icon-column-width: $add-to-plan-column-width;
         order: 4;
         border: none;
         flex-wrap: wrap;
-        padding: 20px;
-
-        .app-break-even, .benefits, .what-it-is, .right-for-me {
-          flex: 0 0 100%;
-        }
-
-        .what-it-is, .right-for-me {
-          padding-top: 20px;
-          border-top: 2px solid $light-grey;
-        }
+        padding: 5px;
       }
 
       .monthly-savings-card {
         flex: 0 0 100%;
         max-width: 100%;
-        order: 6;
-        padding: 20px;
+        order: 5;
+        padding: 20px 20px 20px 55px;
       }
 
       .more-detail-button {
@@ -185,7 +259,7 @@ $icon-column-width: $add-to-plan-column-width;
         max-width: 100%;
         order: 7;
         flex-wrap: wrap;
-        padding: 20px;
+        padding: 5px;
 
         app-break-even, .benefits, .what-it-is, .right-for-me {
           flex: 0 0 100%;
@@ -196,8 +270,8 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0;
         flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
         max-width: calc((100% - #{$add-to-plan-column-width}) / 2);
-        order: 7;
-        padding: 20px 0;
+        order: 5;
+        padding: 20px 20px 20px 55px;
       }
 
       .more-detail-button {
@@ -224,7 +298,6 @@ $icon-column-width: $add-to-plan-column-width;
       flex-basis: 100%;
       max-width: 100%;
       order: 7;
-      //padding: 10px 0;
 
       & > :first-child {
         padding-left: $icon-column-width;
@@ -232,17 +305,6 @@ $icon-column-width: $add-to-plan-column-width;
 
       & > :not(:last-child) {
         padding-right: 36px;
-      }
-
-      .benefits, app-break-even {
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
-
-      .what-it-is, .right-for-me {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding-left: $icon-column-width;
       }
     }
     .main-row {
@@ -261,6 +323,7 @@ $icon-column-width: $add-to-plan-column-width;
         flex: 0 0 $data-card-width;
         order: 5;
         border-left: 2px solid $lighter-grey;
+        padding-left: 35px;
       }
     }
   }

@@ -38,7 +38,7 @@ import {EnergyEfficiencyRecommendationQuickWinCardComponent} from "./energy-effi
         DownloadPlanComponent,
         DownloadPdfButtonComponent,
         BreakEvenComponent,
-        EnergyEfficiencyRecommendationQuickWinCardComponent
+        EnergyEfficiencyRecommendationQuickWinCardComponent,
     ],
     exports: [
         EnergyEfficiencyQuestionnaireComponent,
