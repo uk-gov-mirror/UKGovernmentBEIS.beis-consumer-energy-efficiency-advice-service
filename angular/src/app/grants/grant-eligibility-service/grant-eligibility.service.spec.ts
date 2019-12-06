@@ -81,16 +81,6 @@ describe('GrantEligibilityService', () => {
             steps: []
         },
         {
-            heading: 'Feed in tariff',
-            description: '',
-            linked_measure_codes: [],
-            display_without_measures: false,
-            link_to_measures: true,
-            slug: 'feed-in-tariff',
-            advantages: [],
-            steps: []
-        },
-        {
             heading: 'Renewable heat incentive',
             description: '',
             linked_measure_codes: [],
@@ -133,7 +123,6 @@ describe('GrantEligibilityService', () => {
             new EligibleNationalGrant('linked-eligible-grant-2'),
             new EligibleNationalGrant('standalone-eligible-grant-1'),
             new EligibleNationalGrant('standalone-eligible-grant-2'),
-            new EligibleNationalGrant('feed-in-tariff'),
             new EligibleNationalGrant('renewable-heat-incentive'),
             new IneligibleNationalGrant('linked-ineligible-grant'),
             new IneligibleNationalGrant('standalone-ineligible-grant')
@@ -205,7 +194,8 @@ describe('GrantEligibilityService', () => {
     });
 
     describe('#getEligibleGrantsForMeasure', () => {
-        it('should return FIT if included in measure', async(() => {
+        // Applications for FIT are now closed.
+        it('should never return FIT even if included in measure', async(() => {
             // given
             const measure: EnergySavingMeasureResponse = {
                 'cost_saving': 230.64,
@@ -226,7 +216,7 @@ describe('GrantEligibilityService', () => {
             // then
             grants.toPromise().then((applicableGrants) => {
                     const allGrantNames = applicableGrants.map(grant => grant.name);
-                    expect(allGrantNames).toContain('Feed in tariff');
+                    expect(allGrantNames).not.toContain('Feed in tariff');
                 });
         }));
 

@@ -19,7 +19,6 @@ export class EnergyEfficiencyRecommendation {
     public static grantIcons: { [grantId: string]: string } = {
         "eco-hhcro-help-to-heat": 'icons/home-improve.svg',
         "renewable-heat-incentive": 'icons/rhi.svg',
-        "feed-in-tariff": 'icons/fit.svg',
         "winter-fuel-payments": 'icons/winter-fuel.svg',
         "warm-home-discount": 'icons/warm-home.svg',
         "cold-weather-payments": 'icons/cold-weather.svg',
@@ -67,9 +66,7 @@ export class EnergyEfficiencyRecommendation {
         }
 
         const energySavingMeasureResponse = measureResponse as EnergySavingMeasureResponse;
-        if ((energySavingMeasureResponse.FIT && energySavingMeasureResponse.FIT > 0)
-            || (energySavingMeasureResponse.RHI && energySavingMeasureResponse.RHI > 0)) {
-
+        if (energySavingMeasureResponse.RHI && energySavingMeasureResponse.RHI > 0) {
             tags |= EnergyEfficiencyRecommendationTag.FundingAvailable;
         }
 

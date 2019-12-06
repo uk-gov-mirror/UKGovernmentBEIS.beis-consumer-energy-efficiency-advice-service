@@ -19,7 +19,6 @@ import {WinterFuelPayments} from './national-grant-calculator/grants/winter-fuel
 import {NationalGrantCalculator} from './national-grant-calculator/national-grant-calculator';
 import {NationalGrantCalculatorProvider} from './national-grant-calculator/provider/national-grant-calculator.provider';
 import {RenewableHeatIncentive} from './national-grant-calculator/grants/renewable-heat-incentive/renewable-heat-incentive';
-import {FeedInTariff} from './national-grant-calculator/grants/feed-in-tariff/feed-in-tariff';
 import {FuelPoorNetworkExtensionScheme} from "./national-grant-calculator/grants/fuel-poor-network-extension-scheme/fuel-poor-network-extension-scheme";
 
 @NgModule({
@@ -54,7 +53,6 @@ export class GrantsModule {
                 {provide: NationalGrantCalculator, useClass: WarmHomeDiscount, multi: true},
                 {provide: NationalGrantCalculator, useClass: WinterFuelPayments, multi: true},
                 {provide: NationalGrantCalculator, useClass: RenewableHeatIncentive, multi: true},
-                {provide: NationalGrantCalculator, useClass: FeedInTariff, multi: true},
                 {provide: NationalGrantCalculator, useClass: FuelPoorNetworkExtensionScheme, multi: true},
             ]
         };

@@ -15,7 +15,6 @@ import {NationalGrantForMeasure} from '../model/national-grant-for-measure';
 import {EligibilityByGrant} from './eligibility-by-grant';
 import {EnergySavingMeasureResponse} from '../../shared/energy-calculation-api-service/response/energy-saving-measure-response';
 import {NationalGrantContent} from '../national-grants-content-service/national-grants-content';
-import {FeedInTariff} from '../national-grant-calculator/grants/feed-in-tariff/feed-in-tariff';
 import {RenewableHeatIncentive} from '../national-grant-calculator/grants/renewable-heat-incentive/renewable-heat-incentive';
 
 @Injectable()
@@ -94,14 +93,6 @@ export class GrantEligibilityService {
                                                        eligibilityByGrant: EligibilityByGrant,
                                                        grantsContent: NationalGrantContent[]): NationalGrantForMeasure[] {
         const recurringPaymentGrantsForMeasure: NationalGrantForMeasure[] = [];
-        const fitGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, FeedInTariff.GRANT_ID);
-        if (measure.FIT && measure.FIT > 0 && fitGrantContent) {
-            recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
-                fitGrantContent,
-                eligibilityByGrant[FeedInTariff.GRANT_ID].eligibility,
-                measure.FIT
-            ));
-        }
         const rhiGrantContent = NationalGrantsContentService.getContentForGrant(grantsContent, RenewableHeatIncentive.GRANT_ID);
         if (measure.RHI && measure.RHI > 0 && rhiGrantContent) {
             recurringPaymentGrantsForMeasure.push(new NationalGrantForMeasure(
