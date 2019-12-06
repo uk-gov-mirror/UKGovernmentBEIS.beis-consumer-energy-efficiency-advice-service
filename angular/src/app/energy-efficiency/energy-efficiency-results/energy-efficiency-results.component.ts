@@ -35,9 +35,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     showDefaultRecommendation: boolean = false;
     showDefaultRentalMeasures: boolean = false;
     defaultRecommendationDisclaimer: string;
-    quickWinsBool: boolean = true;
-    financialAssistanceBool: boolean = false;
-    largerImprovementsBool: boolean = false;
+    tabOpened: string = 'quick-wins';
 
     private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
@@ -76,20 +74,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
-    setTabBool(tag: string) {
-        if (tag === 'quick-wins') {
-            this.quickWinsBool = true;
-            this.financialAssistanceBool = false;
-            this.largerImprovementsBool = false;
-        } else if (tag === 'financial-assistance') {
-            this.quickWinsBool = false;
-            this.financialAssistanceBool = true;
-            this.largerImprovementsBool = false;
-        } else if (tag === 'larger-improvements') {
-            this.quickWinsBool = false;
-            this.financialAssistanceBool = false;
-            this.largerImprovementsBool = true;
-        }
+    setTabOpened(tag: string) {
+        this.tabOpened = tag;
     }
 
     getUserRecommendations(tag: string): EnergyEfficiencyRecommendation[] {
