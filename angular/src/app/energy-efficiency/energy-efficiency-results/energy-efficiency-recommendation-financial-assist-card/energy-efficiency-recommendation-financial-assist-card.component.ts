@@ -12,11 +12,11 @@ import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendat
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
-    selector: 'app-energy-efficiency-recommendation-quick-win-card',
-    templateUrl: './energy-efficiency-recommendation-quick-win-card.component.html',
-    styleUrls: ['./energy-efficiency-recommendation-quick-win-card.component.scss']
+    selector: 'app-energy-efficiency-recommendation-financial-assistance-card',
+    templateUrl: './energy-efficiency-recommendation-financial-assist-card.component.html',
+    styleUrls: ['./energy-efficiency-recommendation-financial-assist-card.component.scss']
 })
-export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnInit {
+export class EnergyEfficiencyRecommendationFinancialAssistanceCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
@@ -62,7 +62,7 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
     }
 
     sendEventToAnalytics(eventName: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.grant.grantId);
     }
 
     sendStepEventToAnalytics(eventName: string, eventLabel?: string) {

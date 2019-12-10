@@ -25,29 +25,44 @@
             </div>
             <div class="recommendation-cards">
                 <div *ngIf="tabOpened === 'quick-wins'">
-                <app-energy-efficiency-recommendation-quick-win-card
-                        *ngFor="let recommendation of getUserRecommendations('quick-wins'); let i = index"
-                        [stepIndex]="i"
-                        [recommendation]="recommendation"
-                        [showMonthlySavings]="showMonthlySavings"
-                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
-                ></app-energy-efficiency-recommendation-quick-win-card>
+                    <app-energy-efficiency-recommendation-quick-win-card
+                            *ngFor="let recommendation of getUserRecommendations('quick-wins'); let i = index"
+                            [stepIndex]="i"
+                            [recommendation]="recommendation"
+                            [showMonthlySavings]="showMonthlySavings"
+                            [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                    ></app-energy-efficiency-recommendation-quick-win-card>
                 </div>
                 <div *ngIf="tabOpened === 'financial-assistance'">
-                <app-energy-efficiency-recommendation-card
-                        *ngFor="let recommendation of getUserRecommendations('financial-assistance')"
-                        [recommendation]="recommendation"
-                        [showMonthlySavings]="showMonthlySavings"
-                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
-                ></app-energy-efficiency-recommendation-card>
+                    <div class="national-grants">
+                        <div *ngFor="let recommendation of getUserRecommendations('financial-assistance'); let i = index">
+                            <div *ngIf="recommendation.grant">
+                                <app-energy-efficiency-recommendation-financial-assistance-card
+                                        [stepIndex]="i"
+                                        [recommendation]="recommendation"
+                                        [showMonthlySavings]="showMonthlySavings"
+                                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                                ></app-energy-efficiency-recommendation-financial-assistance-card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="local-authority-grants page-row" *ngIf="localAuthorityGrants && localAuthorityGrants.length > 0">
+                        <div class="grant-cards">
+                            <app-local-grant-card class="grant-card"
+                                                  *ngFor="let grant of localAuthorityGrants"
+                                                  [grant]="grant"
+                                                  theme="grey">
+                            </app-local-grant-card>
+                        </div>
+                    </div>
                 </div>
                 <div *ngIf="tabOpened === 'larger-improvements'">
-                <app-energy-efficiency-recommendation-card
-                        *ngFor="let recommendation of getUserRecommendations('larger-improvements')"
-                        [recommendation]="recommendation"
-                        [showMonthlySavings]="showMonthlySavings"
-                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
-                ></app-energy-efficiency-recommendation-card>
+                    <app-energy-efficiency-recommendation-larger-improvement-card
+                            *ngFor="let recommendation of getUserRecommendations('larger-improvements')"
+                            [recommendation]="recommendation"
+                            [showMonthlySavings]="showMonthlySavings"
+                            [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                    ></app-energy-efficiency-recommendation-larger-improvement-card>
                 </div>
                 <app-energy-efficiency-combined-recommendation-card
                         *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations('').length"

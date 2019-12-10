@@ -12,11 +12,11 @@ import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendat
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
-    selector: 'app-energy-efficiency-recommendation-quick-win-card',
-    templateUrl: './energy-efficiency-recommendation-quick-win-card.component.html',
-    styleUrls: ['./energy-efficiency-recommendation-quick-win-card.component.scss']
+    selector: 'app-energy-efficiency-recommendation-larger-improvement-card',
+    templateUrl: './energy-efficiency-recommendation-larger-improvement-card.component.html',
+    styleUrls: ['./energy-efficiency-recommendation-larger-improvement-card.component.scss']
 })
-export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnInit {
+export class EnergyEfficiencyRecommendationLargerImprovementCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
@@ -58,6 +58,27 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
         this.isExpandedView = !this.isExpandedView;
         if (this.isExpandedView) {
             this.sendEventToAnalytics('see-more_clicked');
+        }
+    }
+
+    mouseEnterAddToPlanButton(): void {
+        this.isMouseOverAddToPlanButton = true;
+    }
+
+    mouseLeaveAddToPlanButton(): void {
+        this.isMouseOverAddToPlanButton = false;
+    }
+
+    getAddToPlanButtonText(): string {
+        return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
+            this.recommendation.isAddedToPlan, this.isMouseOverAddToPlanButton
+        );
+    }
+
+    toggleAddedToPlan(): void {
+        this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
+        if (this.recommendation.isAddedToPlan) {
+            this.sendEventToAnalytics('add-to-plan_clicked');
         }
     }
 
