@@ -68,4 +68,11 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
     sendStepEventToAnalytics(eventName: string, eventLabel?: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page', eventLabel);
     }
+
+    toggleCardDismissStatus() {
+        if (this.recommendation.dismissed === null) {
+            this.recommendation.dismissed = true;
+        }
+        this.recommendation.dismissed = !this.recommendation.dismissed;
+    }
 }

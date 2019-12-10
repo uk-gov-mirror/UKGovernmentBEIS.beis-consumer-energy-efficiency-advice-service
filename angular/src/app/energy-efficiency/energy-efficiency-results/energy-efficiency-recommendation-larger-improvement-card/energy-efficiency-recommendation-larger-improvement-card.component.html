@@ -34,7 +34,7 @@
                        [withSmallFontSize]="true"
         ></app-data-card>
         <div class="dismiss-plan-icon">
-            <div [inlineSVG]="'controls/remove.svg'" class="icon"></div>
+            <div [inlineSVG]="'controls/remove.svg'" class="icon" (click)="toggleCardDismissStatus()"></div>
         </div>
 
         <div class="expanded-view-row" [class.expanded]="isExpandedView">

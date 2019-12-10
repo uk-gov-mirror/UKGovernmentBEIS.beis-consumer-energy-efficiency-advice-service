@@ -14,15 +14,16 @@
                     Choose from the following recommendations
                 </span>
             </div>
-            <div class="row">
-                <form>
-                    <div class="tab-field">
-                        <input type="radio" name="tab" class="tab" id="quick-wins-radio" (click)="setTabOpened('quick-wins')" checked> <label for="quick-wins-radio">Quick Wins</label>
-                        <input type="radio" name="tab" class="tab" id="financial-assistance-radio" (click)="setTabOpened('financial-assistance')"><label for="financial-assistance-radio">Financial Assistance</label>
-                        <input type="radio" name="tab" class="tab" id="larger-improvements-radio" (click)="setTabOpened('larger-improvements')"><label for="larger-improvements-radio">Larger Improvements</label>
-                    </div>
-                </form>
-            </div>
+            <form class="row">
+                <div class="tab-field">
+                    <input type="radio" name="tab" class="tab" id="quick-wins-radio" (click)="setTabOpened('quick-wins')" checked> <label for="quick-wins-radio">Quick Wins</label>
+                    <input type="radio" name="tab" class="tab" id="financial-assistance-radio" (click)="setTabOpened('financial-assistance')"><label for="financial-assistance-radio">Financial Assistance</label>
+                    <input type="radio" name="tab" class="tab" id="larger-improvements-radio" (click)="setTabOpened('larger-improvements')"><label for="larger-improvements-radio">Larger Improvements</label>
+                </div>
+                <div class="dismiss" *ngIf="getDismissed().length > 0">
+                    <input type="radio" name="tab" class="dismiss-input" id="dismiss" (click)="setTabOpened('dismiss')"><label class="dismiss-label" for="dismiss">Dismiss ({{getDismissed().length}})</label>
+                </div>
+            </form>
             <div class="recommendation-cards">
                 <div *ngIf="tabOpened === 'quick-wins'">
                     <app-energy-efficiency-recommendation-quick-win-card
@@ -59,6 +60,21 @@
                 <div *ngIf="tabOpened === 'larger-improvements'">
                     <app-energy-efficiency-recommendation-larger-improvement-card
                             *ngFor="let recommendation of getUserRecommendations('larger-improvements')"
+                            [recommendation]="recommendation"
+                            [showMonthlySavings]="showMonthlySavings"
+                            [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                    ></app-energy-efficiency-recommendation-larger-improvement-card>
+                </div>
+                <div *ngIf="tabOpened === 'dismiss'">
+                    <app-energy-efficiency-recommendation-quick-win-card
+                            *ngFor="let recommendation of getUserRecommendations('quick-wins-dismiss'); let i = index"
+                            [stepIndex]="i"
+                            [recommendation]="recommendation"
+                            [showMonthlySavings]="showMonthlySavings"
+                            [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                    ></app-energy-efficiency-recommendation-quick-win-card>
+                    <app-energy-efficiency-recommendation-larger-improvement-card
+                            *ngFor="let recommendation of getUserRecommendations('larger-improvements-dismiss')"
                             [recommendation]="recommendation"
                             [showMonthlySavings]="showMonthlySavings"
                             [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"

@@ -17,13 +17,24 @@ $grant-card-margin: 24px;
   flex-direction: column;
 }
 
-.tab-field {
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.tab-field, .dismiss {
   display: flex;
   margin-bottom: 36px;
   overflow: hidden;
 }
 
-.tab-field input {
+.dismiss {
+  float: right;
+  order: 2;
+}
+
+.tab-field input, .dismiss-input {
   position: absolute !important;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -32,7 +43,7 @@ $grant-card-margin: 24px;
   overflow: hidden;
 }
 
-.tab-field label {
+.tab-field label, .dismiss-label {
   background-color: white;
   color: $dark-medium-blue;
   font-size: 14px;
@@ -48,6 +59,16 @@ $grant-card-margin: 24px;
 }
 
 .tab-field input:checked + label {
+  background-color: $dark-medium-blue;
+  box-shadow: none;
+  color: white;
+}
+
+.dismiss-label:hover {
+  cursor: pointer;
+}
+
+.dismiss-input:checked + label {
   background-color: $dark-medium-blue;
   box-shadow: none;
   color: white;

@@ -61,32 +61,18 @@ export class EnergyEfficiencyRecommendationLargerImprovementCardComponent implem
         }
     }
 
-    mouseEnterAddToPlanButton(): void {
-        this.isMouseOverAddToPlanButton = true;
-    }
-
-    mouseLeaveAddToPlanButton(): void {
-        this.isMouseOverAddToPlanButton = false;
-    }
-
-    getAddToPlanButtonText(): string {
-        return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
-            this.recommendation.isAddedToPlan, this.isMouseOverAddToPlanButton
-        );
-    }
-
-    toggleAddedToPlan(): void {
-        this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
-        if (this.recommendation.isAddedToPlan) {
-            this.sendEventToAnalytics('add-to-plan_clicked');
-        }
-    }
-
     sendEventToAnalytics(eventName: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
     }
 
     sendStepEventToAnalytics(eventName: string, eventLabel?: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page', eventLabel);
+    }
+
+    toggleCardDismissStatus() {
+        if (this.recommendation.dismissed === null) {
+            this.recommendation.dismissed = true;
+        }
+        this.recommendation.dismissed = !this.recommendation.dismissed;
     }
 }

@@ -106,15 +106,22 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     getRecommendations(recommendations: EnergyEfficiencyRecommendation[], tag: string): EnergyEfficiencyRecommendation[] {
-        if (tag === 'quick-wins') {
+        if (tag.includes('quick-wins')) {
             recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.QuickWin));
-        } else if (tag === 'financial-assistance') {
-            // recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.Grant));
-            return recommendations;
-        } else if (tag === 'larger-improvements') {
+        }
+        if (tag.includes('larger-improvements')) {
             recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.LongerTerm));
         }
+        if (tag.includes('dismiss')) {
+            recommendations = recommendations.filter(t => t.dismissed === true);
+        } else {
+            recommendations = recommendations.filter(t => t.dismissed !== true);
+        }
         return recommendations;
+    }
+
+    getDismissed(): EnergyEfficiencyRecommendation[] {
+        return this.getRecommendations(this.allRecommendations.getAll(), 'dismiss');
     }
 
     get showMonthlySavings() {

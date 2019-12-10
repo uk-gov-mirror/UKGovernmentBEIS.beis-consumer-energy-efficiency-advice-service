@@ -43,7 +43,8 @@ export class EnergyEfficiencyRecommendation {
                 public steps: RecommendationStep[],
                 public isAddedToPlan: boolean,
                 public recommendationID: string,
-                public measureCode: string) {
+                public measureCode: string,
+                public dismissed: boolean) {
     }
 
     get isMeasure(): boolean {
