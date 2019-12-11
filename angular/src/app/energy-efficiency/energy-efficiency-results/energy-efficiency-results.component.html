@@ -59,7 +59,8 @@
                 </div>
                 <div *ngIf="tabOpened === 'larger-improvements'">
                     <app-energy-efficiency-recommendation-larger-improvement-card
-                            *ngFor="let recommendation of getUserRecommendations('larger-improvements')"
+                            *ngFor="let recommendation of getUserRecommendations('larger-improvements'); let i = index"
+                            [stepIndex]="i"
                             [recommendation]="recommendation"
                             [showMonthlySavings]="showMonthlySavings"
                             [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
@@ -74,7 +75,8 @@
                             [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                     ></app-energy-efficiency-recommendation-quick-win-card>
                     <app-energy-efficiency-recommendation-larger-improvement-card
-                            *ngFor="let recommendation of getUserRecommendations('larger-improvements-dismiss')"
+                            *ngFor="let recommendation of getUserRecommendations('larger-improvements-dismiss'); let i = index"
+                            [stepIndex]="i"
                             [recommendation]="recommendation"
                             [showMonthlySavings]="showMonthlySavings"
                             [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"

@@ -21,7 +21,6 @@ export class EnergyEfficiencyRecommendationQuickWinCardComponent implements OnIn
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
     tags: EnergyEfficiencyRecommendationTag[];
-    isMouseOverAddToPlanButton: boolean = false;
     savingDisplay: string;
     isExpanded: number;
 
