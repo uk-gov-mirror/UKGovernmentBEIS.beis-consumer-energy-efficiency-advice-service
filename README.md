@@ -226,4 +226,3 @@ These, as it stands, are the steps that should be taken when creating a new ques
 * Wordpress:
   * By database migration (see [Development Setup - MySQL Database](##development-setup---mysql-database), add a new post of type 'Question' and define the question heading and (if desired) help text.
   * Ensure the slug corresponds to the questionId in MyQuestionMetadata
-  
