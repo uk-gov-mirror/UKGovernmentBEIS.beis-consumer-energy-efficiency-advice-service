@@ -84,6 +84,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismissed: false,
         },
         {
             investmentPounds: 999,
@@ -106,6 +107,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismissed: false,
         },
         {
             investmentPounds: 20,
@@ -135,6 +137,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismissed: false,
         }
     ];
 
