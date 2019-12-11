@@ -21,7 +21,7 @@
                     <input type="radio" name="tab" class="tab" id="larger-improvements-radio" (click)="setTabOpened('larger-improvements')"><label for="larger-improvements-radio">Larger Improvements</label>
                 </div>
                 <div class="dismiss" *ngIf="getDismissed().length > 0">
-                    <input type="radio" name="tab" class="dismiss-input" id="dismiss" (click)="setTabOpened('dismiss')"><label class="dismiss-label" for="dismiss">Dismiss ({{getDismissed().length}})</label>
+                    <input type="radio" name="tab" class="dismiss-input" id="dismiss" (click)="setTabOpened('dismiss')"><label class="dismiss-label" for="dismiss">Dismissed ({{getDismissed().length}})</label>
                 </div>
             </form>
             <div class="recommendation-cards">

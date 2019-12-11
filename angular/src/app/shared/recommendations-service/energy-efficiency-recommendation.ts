@@ -118,6 +118,7 @@ export class EnergyEfficiencyRecommendation {
             false,
             measureContent.slug,
             measureCode,
+            false,
         );
     }
 
@@ -146,6 +147,7 @@ export class EnergyEfficiencyRecommendation {
             false,
             grant.grantId,
             null,
+            false,
         );
     }
 }
