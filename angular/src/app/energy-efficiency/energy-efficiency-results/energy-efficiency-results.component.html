@@ -1,20 +1,23 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="results-page" *ngIf="!isLoading && !isError">
     <div class="page-row results-header-row">
-        <div class="page-row-content">
+        <div class="page-row-content" *ngIf="!showOldVersion">
             <h1 class="heading-text">Here's some recommendations...</h1>
+        </div>
+        <div class="page-row-content" *ngIf="showOldVersion">
+            <h1 class="heading-text">Now build your plan</h1>
+            <div class="header-data-cards">
+                <app-data-card
+                        heading="Your estimated monthly bills are"
+                        [value]="'£' + energyCalculations.currentMonthlyBillPoundsRounded"
+                        [isVerticalAtMobile]="true"
+                ></app-data-card>
+            </div>
         </div>
     </div>
     <div class="page-row recommendations">
         <div class="page-row-content">
-            <div *ngIf="showOldVersion" class="recommendations-heading">
-                <span *ngIf="showDefaultRecommendation">{{defaultRecommendationDisclaimer}}</span>
-                <span *ngIf="showDefaultRentalMeasures">We have no specific recommendations for you, but here's some general lifestyle advice...</span>
-                <span *ngIf="!showDefaultRecommendation && !showDefaultRentalMeasures">
-                    Choose from the following recommendations
-                </span>
-            </div>
-            <form class="row">
+            <form class="row" *ngIf="!showOldVersion">
                 <div class="tab-field">
                     <input type="radio" name="tab" class="tab" id="quick-wins-radio" (click)="setTabOpened('quick-wins')" checked> <label for="quick-wins-radio">Quick Wins</label>
                     <input type="radio" name="tab" class="tab" id="financial-assistance-radio" (click)="setTabOpened('financial-assistance')"><label for="financial-assistance-radio">Financial Assistance</label>
@@ -24,7 +27,7 @@
                     <input type="radio" name="tab" class="dismiss-input" id="dismiss" (click)="setTabOpened('dismiss')"><label class="dismiss-label" for="dismiss">Dismissed ({{getDismissed().length}})</label>
                 </div>
             </form>
-            <div class="recommendation-cards">
+            <div class="recommendation-cards" *ngIf="!showOldVersion">
                 <div *ngIf="tabOpened === 'quick-wins'">
                     <app-energy-efficiency-recommendation-quick-win-card
                             *ngFor="let recommendation of getUserRecommendations('quick-wins'); let i = index"
@@ -87,7 +90,24 @@
                         [combinedHeadline]="combinedLandlordRecommendationHeadline"
                         [combinedSummary]="'Since you are renting, some of our recommendations will need to be carried out by your landlord.'"
                         [combinedIconPath]="'icons/home-improve.svg'"
-                        [recommendations]="getLandlordRecommendations()"
+                        [recommendations]="getLandlordRecommendations('')"
+                        [showMonthlySavings]="showMonthlySavings"
+                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                ></app-energy-efficiency-combined-recommendation-card>
+            </div>
+            <div class="recommendation-cards" *ngIf="showOldVersion">
+                <app-energy-efficiency-recommendation-card
+                        *ngFor="let recommendation of getUserRecommendations('')"
+                        [recommendation]="recommendation"
+                        [showMonthlySavings]="showMonthlySavings"
+                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                ></app-energy-efficiency-recommendation-card>
+                <app-energy-efficiency-combined-recommendation-card
+                        *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations('').length"
+                        [combinedHeadline]="combinedLandlordRecommendationHeadline"
+                        [combinedSummary]="'Since you are renting, some of our recommendations will need to be carried out by your landlord.'"
+                        [combinedIconPath]="'icons/home-improve.svg'"
+                        [recommendations]="getLandlordRecommendations('')"
                         [showMonthlySavings]="showMonthlySavings"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                 ></app-energy-efficiency-combined-recommendation-card>
