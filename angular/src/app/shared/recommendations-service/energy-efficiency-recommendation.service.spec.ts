@@ -83,6 +83,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismissed: false,
         };
     }
 });
