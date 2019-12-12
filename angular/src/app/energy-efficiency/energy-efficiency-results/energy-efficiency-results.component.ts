@@ -77,7 +77,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
         this.userStateService.saveState();
 
-        this.showOldVersion = this.abTestingService.isInGroupA();
+        this.showOldVersion = !this.abTestingService.isInGroupA();
         this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
             .subscribe(
                 response => this.handleLocalAuthorityServiceResponse(response),

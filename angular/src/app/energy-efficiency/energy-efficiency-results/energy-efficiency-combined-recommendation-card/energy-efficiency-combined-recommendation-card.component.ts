@@ -21,6 +21,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     roundedInvestmentRequired: number;
     isMouseOverAddToPlanButton: boolean = false;
     savingDisplay: string;
+    savingDisplayRange: string;
     summarisedHeadlines: string[];
 
     @Input() recommendations: EnergyEfficiencyRecommendation[];
@@ -37,6 +38,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     ngOnInit() {
         this.roundedInvestmentRequired = this.getRoundedInvestmentRequired();
         this.savingDisplay = EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, this.showMonthlySavings);
+        this.savingDisplayRange = EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, this.showMonthlySavings);
         this.summarisedHeadlines = this.getSummarisedHeadlines();
     }
 

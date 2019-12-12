@@ -7,6 +7,12 @@ import sumBy from 'lodash-es/sumBy';
 
 export abstract class EnergyEfficiencyRecommendationService {
 
+    static getSavingDisplayRange(recommendation: EnergyEfficiencyRecommendation, showMonthlySavings: boolean): string {
+        const minimumSaving = this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings);
+        const maximumSaving = this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings);
+        return this.roundAndFormatValueRange(minimumSaving, maximumSaving);
+    }
+
     static getSavingDisplay(recommendation: EnergyEfficiencyRecommendation, showMonthlySavings: boolean): string {
         const minimumSaving = this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings);
         const maximumSaving = this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings);

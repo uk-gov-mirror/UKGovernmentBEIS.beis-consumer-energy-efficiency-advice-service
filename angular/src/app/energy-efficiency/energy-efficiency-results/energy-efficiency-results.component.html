@@ -114,9 +114,14 @@
             </div>
         </div>
     </div>
-    <div class="sticky-row-container">
+    <div class="sticky-row-container" *ngIf="!showOldVersion">
         <app-sticky-row-wrapper>
             <app-download-plan></app-download-plan>
         </app-sticky-row-wrapper>
     </div>
+    <app-sticky-row-wrapper *ngIf="showOldVersion">
+        <app-your-plan-footer
+                (onDoPlan)="sendEventToAnalytics('do_clicked')"
+        ></app-your-plan-footer>
+    </app-sticky-row-wrapper>
 </div>

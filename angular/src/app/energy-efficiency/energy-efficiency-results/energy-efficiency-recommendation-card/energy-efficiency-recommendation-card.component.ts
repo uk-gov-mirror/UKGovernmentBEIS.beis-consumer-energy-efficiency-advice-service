@@ -23,6 +23,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     savingDisplay: string;
+    savingDisplayRange: string;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
@@ -37,6 +38,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.tags = getTags(this.recommendation)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
+        this.savingDisplayRange = EnergyEfficiencyRecommendationService.getSavingDisplayRange(this.recommendation, this.showMonthlySavings);
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {

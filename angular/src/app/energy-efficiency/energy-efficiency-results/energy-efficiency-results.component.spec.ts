@@ -266,8 +266,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         const recommendationElements: DebugElement[] = fixture.debugElement.queryAll(
             By.directive(EnergyEfficiencyRecommendationCardComponent)
         );
-        //todo: deal with this (was 3)
-        expect(recommendationElements.length).toEqual(0);
+        expect(recommendationElements.length).toEqual(3);
     }));
 
     it('should display energy calculations correctly', () => {
