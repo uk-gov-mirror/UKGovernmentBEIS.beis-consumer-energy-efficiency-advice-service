@@ -50,8 +50,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         measureCode: '',
         isAddedToPlan: false,
         recommendationID: '',
-        isMeasure: true,
-        dismissed: false,
+        isMeasure: true
     };
 
     beforeEach(async(() => {

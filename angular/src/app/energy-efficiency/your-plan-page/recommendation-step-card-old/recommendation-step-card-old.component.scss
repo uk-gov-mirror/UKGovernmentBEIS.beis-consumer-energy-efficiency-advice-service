@@ -1,0 +1,268 @@
+@import "styles/var/colors";
+@import "styles/mixins/font";
+@import "styles/mixins/layout";
+
+// Component specific variables
+$more-info-link-buttons-per-row: 2;
+$step-number-bullet-diameter: 22px;
+$step-number-bullet-margin: 20px;
+
+$mobile-step-number-width: 44px;
+$mobile-step-number-margin: 12px;
+
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.recommendation-step-card {
+  background-color: white;
+
+  .step-main-row {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .bullet {
+      width: $step-number-bullet-diameter;
+      height: $step-number-bullet-diameter;
+      border: 1px solid $light-medium-grey;
+      border-radius: 50%;
+      margin-right: $step-number-bullet-margin;
+    }
+
+    .step-number {
+      @include step-title-font;
+      color: $dark-medium-blue;
+      text-transform: uppercase;
+    }
+
+    .step-headline {
+      text-align:left;
+      @include step-title-font;
+      color: $dark-grey;
+      background: none;
+      outline: none;
+      border: none;
+      cursor: inherit;
+    }
+
+    .expand-step-icon {
+      flex: 0 0 auto;
+      margin-left: auto;
+      fill: $dark-medium-blue;
+      display: block;
+      width: 14px;
+      height: 8px;
+      line-height: 0;
+
+      &.expanded {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .step-details-drawer {
+    display: none;
+
+    &.expanded {
+      display: flex;
+    }
+
+    .step-info {
+      font-family: $font-family-light;
+
+      .read-more-content-container {
+        &.read-more-expanded {
+          .read-more-content {
+            display: flex;
+          }
+        }
+
+        .read-more-content {
+          display: none;
+        }
+      }
+
+      .read-more-button {
+        cursor: pointer;
+        @include read-more-font;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+
+        .read-more-button-icon {
+          margin-left: 10px;
+          fill: $dark-medium-blue;
+          display: block;
+          width: 7px;
+          height: 4px;
+          line-height: 0;
+
+          &.expanded {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    .more-info-links {
+      display: flex;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+
+      .more-info-link {
+        color: white;
+        display: flex;
+        cursor: pointer;
+        text-decoration: none;
+
+        .more-info-description, .more-info-icon-container {
+          padding: 20px;
+        }
+
+        .more-info-description {
+          background-color: $light-blue;
+          color: $dark-blue;
+          text-transform: uppercase;
+          font-size: 13px;
+          line-height: 15px;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .more-info-icon-container {
+          background-color: $dark-blue;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .more-info-icon {
+            width: 15px;
+            height: 23px;
+            stroke: $light-blue;
+            fill: $light-blue;
+            display: block;
+            line-height: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.print-mode {
+  .step-details-drawer{
+    display: flex;
+  }
+}
+
+// Breakpoint specific styling
+.recommendation-step-card {
+  @include mobile() {
+    margin-bottom: 10px;
+
+    .step-main-row, .step-details-drawer {
+      padding: 12px 20px;
+    }
+
+    .bullet {
+      display: none;
+    }
+
+    .step-number {
+      margin-right: $mobile-step-number-margin;
+      width: $mobile-step-number-width;
+    }
+
+    .step-details-drawer {
+      flex-direction: column;
+
+      .step-info {
+        box-sizing: border-box;
+        padding-left: $mobile-step-number-width + $mobile-step-number-margin;
+        width: 100%;
+        padding-bottom: 22px;
+      }
+
+      .more-info-links {
+        padding-left: $mobile-step-number-width + $mobile-step-number-margin;
+
+        .more-info-link {
+          box-sizing: border-box;
+          width: 100%;
+          margin-bottom: 12px;
+          height: 60px;
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    margin-bottom: 4px;
+
+    .step-main-row, .step-details-drawer {
+      padding: 25px 20px;
+    }
+
+    .step-number {
+      margin-right: 12px;
+    }
+
+    .step-details-drawer {
+      flex-direction: column;
+
+      .step-info {
+        box-sizing: border-box;
+        padding-left: $step-number-bullet-diameter + $step-number-bullet-margin;
+        padding-right: 40px;
+        width: 100%;
+        padding-bottom: 22px;
+      }
+
+      .more-info-links {
+        padding-left: $step-number-bullet-diameter + $step-number-bullet-margin;
+        padding-right: 40px;
+        @include is-grid($margin-compensation: 20px);
+
+        .more-info-link {
+          @include is-grid-item($number-of-items: 2, $margin: 20px);
+          height: 70px;
+        }
+      }
+    }
+  }
+
+  @include desktop() {
+    margin-bottom: 4px;
+
+    .step-main-row, .step-details-drawer {
+      padding: 25px 20px;
+    }
+
+    .step-number {
+      margin-right: 20px;
+    }
+
+    .step-details-drawer {
+      .step-info {
+        border-right: 1px solid $lighter-medium-grey;
+        padding-right: 40px;
+        margin-left: $step-number-bullet-diameter + $step-number-bullet-margin;
+        margin-right: 40px;
+        width: 420px;
+      }
+
+      .more-info-links {
+        @include is-grid($margin-compensation: 10px);
+        width: 50%;
+
+        .more-info-link {
+          @include is-grid-item($number-of-items: 2, $margin: 10px);
+          height: 80px;
+        }
+      }
+    }
+  }
+}

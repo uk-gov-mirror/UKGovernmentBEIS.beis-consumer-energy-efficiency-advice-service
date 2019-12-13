@@ -1,31 +1,37 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
 import padStart from 'lodash-es/padStart';
-import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
-import {AbTestingService} from "../../../shared/analytics/ab-testing.service";
 
 @Component({
-    selector: 'app-recommendation-step-card',
-    templateUrl: './recommendation-step-card.component.html',
-    styleUrls: ['./recommendation-step-card.component.scss']
+    selector: 'app-recommendation-step-card-old',
+    templateUrl: './recommendation-step-card-old.component.html',
+    styleUrls: ['./recommendation-step-card-old.component.scss']
 })
-export class RecommendationStepCardComponent implements OnInit {
+export class RecommendationStepCardOldComponent implements OnInit {
 
     @Input() step: RecommendationStep;
     @Input() stepIndex: number;
-    @Input() stepChecked: number;
     @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
+    isExpanded: boolean;
     isReadMoreExpanded: boolean;
 
     private static readonly INITIAL_STEP_NUMBER: number = 1;
 
     ngOnInit() {
+        this.isExpanded = this.stepIndex === 0;
     }
 
     get formattedStepNumber(): string {
-        const stepNumber = this.stepIndex + RecommendationStepCardComponent.INITIAL_STEP_NUMBER;
+        const stepNumber = this.stepIndex + RecommendationStepCardOldComponent.INITIAL_STEP_NUMBER;
         return padStart(stepNumber.toString(), 2, '0');
+    }
+
+    toggleIsExpanded(): void {
+        this.isExpanded = !this.isExpanded;
+        if (this.isExpanded) {
+            this.onAnalyticsEvent.emit('expand-step_clicked');
+        }
     }
 
     toggleIsReadMoreExpanded(): void {
@@ -33,9 +39,5 @@ export class RecommendationStepCardComponent implements OnInit {
         if (this.isReadMoreExpanded) {
             this.onAnalyticsEvent.emit('read-more_clicked');
         }
-    }
-
-    isExpanded(): boolean {
-        return this.stepChecked === this.stepIndex;
     }
 }

@@ -17,7 +17,14 @@
                        [withSmallFontSize]="true"
         ></app-data-card>
     </div>
-    <div class="steps">
+    <div class="steps" *ngIf="showOldVersion">
+        <app-recommendation-step-card-old
+                *ngFor="let step of recommendation.steps; let i = index"
+                [step]="step"
+                [stepIndex]="i"
+                (onAnalyticsEvent)="sendEventToAnalytics($event, recommendation.recommendationID)"
+        ></app-recommendation-step-card-old>
+    </div> <div class="steps" *ngIf="!showOldVersion">
         <app-recommendation-step-card
                 *ngFor="let step of recommendation.steps; let i = index"
                 [step]="step"

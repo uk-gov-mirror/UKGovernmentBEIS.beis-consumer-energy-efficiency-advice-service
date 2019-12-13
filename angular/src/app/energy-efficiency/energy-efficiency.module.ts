@@ -23,6 +23,7 @@ import {YourPlanFooterCombinedItemComponent} from "./energy-efficiency-results/y
 import {EnergyEfficiencyRecommendationQuickWinCardComponent} from "./energy-efficiency-results/energy-efficiency-recommendation-quick-win-card/energy-efficiency-recommendation-quick-win-card.component";
 import {EnergyEfficiencyRecommendationLargerImprovementCardComponent} from "./energy-efficiency-results/energy-efficiency-recommendation-larger-improvement-card/energy-efficiency-recommendation-larger-improvement-card.component";
 import {EnergyEfficiencyRecommendationFinancialAssistanceCardComponent} from "./energy-efficiency-results/energy-efficiency-recommendation-financial-assist-card/energy-efficiency-recommendation-financial-assist-card.component";
+import {RecommendationStepCardOldComponent} from "./your-plan-page/recommendation-step-card-old/recommendation-step-card-old.component";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {EnergyEfficiencyRecommendationFinancialAssistanceCardComponent} from "./
         EnergyEfficiencyRecommendationQuickWinCardComponent,
         EnergyEfficiencyRecommendationLargerImprovementCardComponent,
         EnergyEfficiencyRecommendationFinancialAssistanceCardComponent,
+        RecommendationStepCardOldComponent,
     ],
     exports: [
         EnergyEfficiencyQuestionnaireComponent,

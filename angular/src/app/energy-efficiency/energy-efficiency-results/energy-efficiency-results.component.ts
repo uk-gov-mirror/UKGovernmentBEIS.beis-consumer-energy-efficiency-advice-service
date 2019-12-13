@@ -77,7 +77,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
         this.userStateService.saveState();
 
-        this.showOldVersion = !this.abTestingService.isInGroupA();
+        this.showOldVersion = this.abTestingService.isInGroupA();
         this.localAuthorityService.fetchLocalAuthorityDetails(this.responseData.localAuthorityCode)
             .subscribe(
                 response => this.handleLocalAuthorityServiceResponse(response),
@@ -113,9 +113,9 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.LongerTerm));
         }
         if (tag.includes('dismiss')) {
-            recommendations = recommendations.filter(t => t.dismissed === true);
-        } else {
-            recommendations = recommendations.filter(t => t.dismissed !== true);
+            recommendations = recommendations.filter(t => t.dismiss === true);
+        } else if (!this.showOldVersion) {
+            recommendations = recommendations.filter(t => t.dismiss !== true);
         }
         return recommendations;
     }

@@ -47,17 +47,17 @@ export class RecommendationsService {
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.cachedRecommendations.getAll()
-            .filter(recommendation => recommendation.dismissed !== true);
+            .filter(recommendation => recommendation.isAddedToPlan);
     }
 
     getUserRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.cachedRecommendations.userRecommendations
-            .filter(recommendation => recommendation.dismissed !== true);
+            .filter(recommendation => recommendation.isAddedToPlan);
     }
 
     getLandlordRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.cachedRecommendations.landlordRecommendations
-            .filter(recommendation => recommendation.dismissed !== true);
+            .filter(recommendation => recommendation.isAddedToPlan);
     }
 
     private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {

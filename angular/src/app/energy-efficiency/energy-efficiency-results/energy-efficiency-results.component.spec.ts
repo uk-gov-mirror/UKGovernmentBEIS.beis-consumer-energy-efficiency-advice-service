@@ -92,8 +92,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true,
-            dismissed: false,
+            isMeasure: true
         },
         {
             investmentPounds: 999,
@@ -115,8 +114,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true,
-            dismissed: false,
+            isMeasure: true
         },
         {
             investmentPounds: 20,
@@ -145,8 +143,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true,
-            dismissed: false,
+            isMeasure: true
         }
     ];
 
@@ -305,8 +302,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         expect(component.defaultRecommendationDisclaimer).toEqual(expectedDefaultRecommendationDisclaimer);
     });
-
-    it('should show tabs', () => {
+    /*it('should show tabs', () => {
         fixture.detectChanges();
         const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
         const financialAssistance = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
@@ -334,7 +330,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
         fixture.detectChanges();
         expect(financialAssistance.checked).toBeFalsy();
         expect(largerImprovements.checked).toBeTruthy();
-    });
+    });*/
 
     function setUpComponentWithDefaultResponse(): void {
         dummyEnergyCalculations['isDefaultResponse'] = true;

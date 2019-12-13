@@ -40,6 +40,7 @@ export class EnergyEfficiencyRecommendationFinancialAssistanceCardComponent impl
         this.tags = getTags(this.recommendation)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
+        this.recommendation.isAddedToPlan = true;
     }
 
     toggleIsExpanded(tag: number): void {

@@ -40,6 +40,7 @@ export class EnergyEfficiencyRecommendationLargerImprovementCardComponent implem
         this.tags = getTags(this.recommendation)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
+        this.recommendation.isAddedToPlan = !this.recommendation.dismiss;
     }
 
     toggleIsExpanded(tag: number): void {
@@ -70,9 +71,7 @@ export class EnergyEfficiencyRecommendationLargerImprovementCardComponent implem
     }
 
     toggleCardDismissStatus() {
-        if (this.recommendation.dismissed === null) {
-            this.recommendation.dismissed = true;
-        }
-        this.recommendation.dismissed = !this.recommendation.dismissed;
+        this.recommendation.dismiss = !this.recommendation.dismiss;
+        this.recommendation.isAddedToPlan = !this.recommendation.dismiss;
     }
 }

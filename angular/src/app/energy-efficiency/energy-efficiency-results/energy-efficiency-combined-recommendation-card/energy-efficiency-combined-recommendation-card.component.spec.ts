@@ -108,8 +108,7 @@ describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true,
-            dismissed: false,
+            isMeasure: true
         };
     }
 

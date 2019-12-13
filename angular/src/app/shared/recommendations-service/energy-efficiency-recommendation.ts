@@ -44,7 +44,7 @@ export class EnergyEfficiencyRecommendation {
                 public isAddedToPlan: boolean,
                 public recommendationID: string,
                 public measureCode: string,
-                public dismissed: boolean) {
+                public dismiss: boolean) {
     }
 
     get isMeasure(): boolean {
@@ -118,7 +118,7 @@ export class EnergyEfficiencyRecommendation {
             false,
             measureContent.slug,
             measureCode,
-            false,
+            false
         );
     }
 
@@ -147,7 +147,7 @@ export class EnergyEfficiencyRecommendation {
             false,
             grant.grantId,
             null,
-            false,
+            false
         );
     }
 }
