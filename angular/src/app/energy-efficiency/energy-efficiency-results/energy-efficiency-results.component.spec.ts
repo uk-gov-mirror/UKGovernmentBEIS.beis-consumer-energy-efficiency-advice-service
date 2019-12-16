@@ -46,6 +46,7 @@ import {RecommendationStepCardComponent} from "../your-plan-page/recommendation-
 import {DownloadPdfButtonComponent} from "../your-plan-page/download-pdf-button/download-pdf-button.component";
 import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
 import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
+import {RecommendationStepCardNewComponent} from "../your-plan-page/recommendation-step-card-new/recommendation-step-card-new.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -92,7 +93,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true
+            isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 999,
@@ -114,7 +116,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true
+            isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 20,
@@ -143,7 +146,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true
+            isMeasure: true,
+            dismiss: false
         }
     ];
 
@@ -183,6 +187,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 DownloadPlanComponent,
                 RecommendationStepCardComponent,
                 DownloadPdfButtonComponent,
+                RecommendationStepCardNewComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),

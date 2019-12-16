@@ -3,7 +3,7 @@ import {By} from '@angular/platform-browser';
 import {DataCardComponent} from '../../../shared/data-card/data-card.component';
 import {YourPlanSummaryComponent} from '../../your-plan-summary/your-plan-summary.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
-import {RecommendationStepCardComponent} from './recommendation-step-card.component';
+import {RecommendationStepCardComponent} from '../recommendation-step-card/recommendation-step-card.component';
 import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
 import {RouterTestingModule} from '@angular/router/testing';
 import {InlineSVGModule} from 'ng-inline-svg';
@@ -200,7 +200,7 @@ describe('RecommendationStepCardComponent', () => {
         const mainRowElement = fixture.debugElement.query(By.css('.step-main-row')).nativeElement;
         mainRowElement.click();
         fixture.detectChanges();
-    } //todo(lounas): need to redo these as label is no longer in step card
+    }
 
     function toggleReadMoreExpanded() {
         const readMoreButton = fixture.debugElement.query(By.css('.read-more-button')).nativeElement;

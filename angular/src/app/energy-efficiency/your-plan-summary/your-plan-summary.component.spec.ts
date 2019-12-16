@@ -32,7 +32,8 @@ describe('YourPlanSummaryComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true
+            isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 999,
@@ -54,7 +55,8 @@ describe('YourPlanSummaryComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true
+            isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 20,
@@ -76,7 +78,8 @@ describe('YourPlanSummaryComponent', () => {
             measureCode: '',
             isAddedToPlan: false,
             recommendationID: '',
-            isMeasure: true
+            isMeasure: true,
+            dismiss: false
         }
     ];
 

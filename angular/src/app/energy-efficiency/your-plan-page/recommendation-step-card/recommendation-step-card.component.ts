@@ -1,8 +1,6 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {RecommendationStep} from '../../../shared/recommendations-service/recommendation-step';
 import padStart from 'lodash-es/padStart';
-import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
-import {AbTestingService} from "../../../shared/analytics/ab-testing.service";
 
 @Component({
     selector: 'app-recommendation-step-card',
@@ -13,14 +11,15 @@ export class RecommendationStepCardComponent implements OnInit {
 
     @Input() step: RecommendationStep;
     @Input() stepIndex: number;
-    @Input() stepChecked: number;
     @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
+    isExpanded: boolean;
     isReadMoreExpanded: boolean;
 
     private static readonly INITIAL_STEP_NUMBER: number = 1;
 
     ngOnInit() {
+        this.isExpanded = this.stepIndex === 0;
     }
 
     get formattedStepNumber(): string {
@@ -28,14 +27,17 @@ export class RecommendationStepCardComponent implements OnInit {
         return padStart(stepNumber.toString(), 2, '0');
     }
 
+    toggleIsExpanded(): void {
+        this.isExpanded = !this.isExpanded;
+        if (this.isExpanded) {
+            this.onAnalyticsEvent.emit('expand-step_clicked');
+        }
+    }
+
     toggleIsReadMoreExpanded(): void {
         this.isReadMoreExpanded = !this.isReadMoreExpanded;
         if (this.isReadMoreExpanded) {
             this.onAnalyticsEvent.emit('read-more_clicked');
         }
-    }
-
-    isExpanded(): boolean {
-        return this.stepChecked === this.stepIndex;
     }
 }

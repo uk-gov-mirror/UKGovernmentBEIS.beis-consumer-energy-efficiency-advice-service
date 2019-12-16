@@ -50,12 +50,12 @@
                     </div>
                 </div>
                 <div class="recommendation-step-card-right">
-                    <app-recommendation-step-card *ngFor="let step of recommendation.steps; let i = index"
+                    <app-recommendation-step-card-new *ngFor="let step of recommendation.steps; let i = index"
                             [stepChecked]="isExpanded"
                             [step]="step"
                             [stepIndex]="i"
                             (onAnalyticsEvent)="sendStepEventToAnalytics($event, recommendation.recommendationID)"
-                    ></app-recommendation-step-card>
+                    ></app-recommendation-step-card-new>
                 </div>
             </div>
         </div>
