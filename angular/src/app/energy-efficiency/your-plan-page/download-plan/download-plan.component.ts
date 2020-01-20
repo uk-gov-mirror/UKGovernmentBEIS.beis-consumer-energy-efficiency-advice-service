@@ -31,7 +31,7 @@ export class DownloadPlanComponent {
     }
 
     get shareLink(): String {
-        const refSavingsParameter =  EnergyEfficiencyRecommendationService.getSavingsRefParameter(this.recommendations);
+        const refSavingsParameter =  EnergyEfficiencyRecommendationService.getRoundedMaximumSavings(this.recommendations);
         return Config().publicRootUrl + "?share=" + refSavingsParameter;
     }
 
@@ -57,8 +57,8 @@ export class DownloadPlanComponent {
 
     public shareToTwitter() {
         this.sendEventToAnalytics('share-plan-to-twitter_clicked');
-        const savings = EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, false);
-        const text = `My home energy plan from Simple Energy Advice could save me ${savings} per year.`;
+        const savings = EnergyEfficiencyRecommendationService.getRoundedMaximumSavings(this.recommendations);
+        const text = `My energy saving plan from Simple Energy Advice could save me £${savings} per year and benefit the environment!`;
         window.open(`https://twitter.com/intent/tweet?url=${this.shareLink}&text=${text}`,
             '_blank', 'width=600, height=400, scrollbars=no');
     }

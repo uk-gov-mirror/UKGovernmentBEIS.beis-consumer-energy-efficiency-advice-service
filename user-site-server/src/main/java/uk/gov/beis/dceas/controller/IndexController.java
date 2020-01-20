@@ -161,23 +161,13 @@ public class IndexController {
         if (shareParameter == null) {
             return null;
         }
-        Pattern savingsPattern = Pattern.compile("^(\\d+)-(\\d+)$");
-        Matcher matcher = savingsPattern.matcher(shareParameter);
-        if (!matcher.find()) {
-            return null;
-        }
-        Integer minimumSavings;
-        Integer maximumSavings;
+        int savings;
         try {
-            minimumSavings = Integer.parseInt(matcher.group(1));
-            maximumSavings = Integer.parseInt(matcher.group(2));
+            savings = Integer.parseInt(shareParameter);
         } catch (NumberFormatException e) {
             return null;
         }
-        if (minimumSavings <= 0 || maximumSavings <= minimumSavings || maximumSavings > 10000) {
-            return null;
-        }
-        return String.format("£%s – £%s", minimumSavings, maximumSavings);
+        return savings > 0 && savings < 10000 ? "£" + savings : null;
     }
 
     private Attributes getBuildAttributes(Environment environment) throws IOException {

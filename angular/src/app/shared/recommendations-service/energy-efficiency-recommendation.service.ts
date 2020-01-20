@@ -19,10 +19,9 @@ export abstract class EnergyEfficiencyRecommendationService {
         return this.roundAndFormatValueRange(minimumSavings, maximumSavings);
     }
 
-    static getSavingsRefParameter(recommendations: EnergyEfficiencyRecommendation[]): string {
-        const minimumSavings = this.getMinimumSavings(recommendations, false);
+    static getRoundedMaximumSavings(recommendations: EnergyEfficiencyRecommendation[]): string {
         const maximumSavings = this.getMaximumSavings(recommendations, false);
-        return `${RoundingService.roundCostValue(minimumSavings)}-${RoundingService.roundCostValue(maximumSavings)}`;
+        return RoundingService.roundCostValue(maximumSavings).toString();
     }
 
     static getMinimumSavings(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): number {

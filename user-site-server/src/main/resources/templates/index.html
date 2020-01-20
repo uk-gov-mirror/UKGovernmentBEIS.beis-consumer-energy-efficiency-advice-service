@@ -42,10 +42,12 @@
     <meta property="og:title" content="Simple Energy Advice" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" th:content='${savings != null ? "My home energy plan from Simple Energy Advice could save me " + savings + " per year." : "Government endorsed advice about energy for homeowners, renters and landlords."}' />
+    <meta property="og:description" th:content='${savings != null ? "My energy saving plan could save me " + savings + " per year and benefit the environment!" : "Government endorsed advice about energy for homeowners, renters and landlords."}' />
     <meta property="og:site_name" content="Simple Energy Advice" />
-    <meta property="og:image" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-og.png"}' />
-    <meta property="og:image:secure_url" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-og.png"}' />
+    <meta property="og:image" th:content='${publicRootUrl + "/dist/assets/images/open-graph/banner.jpg"}' />
+    <meta property="og:image:secure_url" th:content='${publicRootUrl + "/dist/assets/images/open-graph/banner.jpg"}' />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 </head>
 <body th:utext="${angularBodyContent}">
 </body>
