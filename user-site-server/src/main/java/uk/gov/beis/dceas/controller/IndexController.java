@@ -166,8 +166,17 @@ public class IndexController {
         if (!matcher.find()) {
             return null;
         }
-        String minimumSavings = matcher.group(1);
-        String maximumSavings = matcher.group(2);
+        Integer minimumSavings;
+        Integer maximumSavings;
+        try {
+            minimumSavings = Integer.parseInt(matcher.group(1));
+            maximumSavings = Integer.parseInt(matcher.group(2));
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        if (minimumSavings <= 0 || maximumSavings <= minimumSavings || maximumSavings > 10000) {
+            return null;
+        }
         return String.format("£%s – £%s", minimumSavings, maximumSavings);
     }
 
