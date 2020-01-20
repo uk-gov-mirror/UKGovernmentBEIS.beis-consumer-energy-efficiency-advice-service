@@ -3,6 +3,9 @@ import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics
 import Config from '../../../config';
 import {HttpClient} from "@angular/common/http";
 import {PlanInfoService} from "../../../shared/plan-info-service/plan-info.service";
+import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
+import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
+import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 
 @Component({
     selector: 'app-download-plan',
@@ -19,7 +22,17 @@ export class DownloadPlanComponent {
 
     constructor(private planInfoService: PlanInfoService,
                 private googleAnalyticsService: GoogleAnalyticsService,
+                private recommendationsService: RecommendationsService,
                 private http: HttpClient) {
+    }
+
+    get recommendations(): EnergyEfficiencyRecommendation[] {
+        return this.recommendationsService.getRecommendationsInPlan();
+    }
+
+    get shareLink(): String {
+        const refSavingsParameter =  EnergyEfficiencyRecommendationService.getSavingsRefParameter(this.recommendations);
+        return Config().publicRootUrl + "?share=" + refSavingsParameter;
     }
 
     public onEmailPdfClicked() {
@@ -34,6 +47,20 @@ export class DownloadPlanComponent {
             .subscribe(
                 () => this.emailIsLoading = false,
                 () => this.emailIsError = true);
+    }
+
+    public shareToFacebook() {
+        this.sendEventToAnalytics('share-plan-to-facebook_clicked');
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${this.shareLink}`,
+            '_blank', 'width=600, height=400, scrollbars=no');
+    }
+
+    public shareToTwitter() {
+        this.sendEventToAnalytics('share-plan-to-twitter_clicked');
+        const savings = EnergyEfficiencyRecommendationService.getTotalSavingsDisplay(this.recommendations, false);
+        const text = `My home energy plan from Simple Energy Advice could save me ${savings} per year.`;
+        window.open(`https://twitter.com/intent/tweet?url=${this.shareLink}&text=${text}`,
+            '_blank', 'width=600, height=400, scrollbars=no');
     }
 
     sendEventToAnalytics(eventName: string) {

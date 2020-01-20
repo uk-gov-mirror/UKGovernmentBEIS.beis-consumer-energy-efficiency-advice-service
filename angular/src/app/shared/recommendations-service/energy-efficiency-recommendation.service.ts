@@ -14,15 +14,29 @@ export abstract class EnergyEfficiencyRecommendationService {
     }
 
     static getTotalSavingsDisplay(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): string {
-        const minimumSavings = sumBy(
+        const minimumSavings = this.getMinimumSavings(recommendations, showMonthlySavings);
+        const maximumSavings = this.getMaximumSavings(recommendations, showMonthlySavings);
+        return this.roundAndFormatValueRange(minimumSavings, maximumSavings);
+    }
+
+    static getSavingsRefParameter(recommendations: EnergyEfficiencyRecommendation[]): string {
+        const minimumSavings = this.getMinimumSavings(recommendations, false);
+        const maximumSavings = this.getMaximumSavings(recommendations, false);
+        return `${RoundingService.roundCostValue(minimumSavings)}-${RoundingService.roundCostValue(maximumSavings)}`;
+    }
+
+    static getMinimumSavings(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): number {
+        return sumBy(
             recommendations,
             recommendation => this.getSaving(recommendation.minimumCostSavingPoundsPerYear, showMonthlySavings)
         );
-        const maximumSavings = sumBy(
+    }
+
+    static getMaximumSavings(recommendations: EnergyEfficiencyRecommendation[], showMonthlySavings: boolean): number {
+        return sumBy(
             recommendations,
             recommendation => this.getSaving(recommendation.maximumCostSavingPoundsPerYear, showMonthlySavings)
         );
-        return this.roundAndFormatValueRange(minimumSavings, maximumSavings);
     }
 
     private static roundAndFormatValueRange(minimumInput: number, maximumInput: number): string {

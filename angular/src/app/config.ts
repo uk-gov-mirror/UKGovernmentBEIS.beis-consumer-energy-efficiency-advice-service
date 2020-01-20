@@ -11,6 +11,7 @@ class Config {
     buildGitCommit: string;
     buildUrl: string;
     buildNumber: string;
+    publicRootUrl: string;
 }
 
 export default () => (window as any).CONFIG as Config;

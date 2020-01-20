@@ -16,7 +16,8 @@
             buildTimestamp: [[${buildTimestamp}]],
             buildGitCommit: [[${buildGitCommit}]],
             buildUrl: [[${buildUrl}]],
-            buildNumber: [[${buildNumber}]]
+            buildNumber: [[${buildNumber}]],
+            publicRootUrl: [[${publicRootUrl}]]
         };
         /*]]>*/
     </script>
@@ -38,13 +39,13 @@
         gtag('config', gaId, { 'send_page_view': false });
     </script>
     <!-- Social Meta Tags -->
-    <meta property="og:title" content="Energy Saving Advice Service BEIS" />
+    <meta property="og:title" content="Simple Energy Advice" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Advice on energy saving from the UK government for homeowners, renters and landlords." />
-    <meta property="og:site_name" content="Energy Saving Advice Service" />
-    <meta property="og:image" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-small.png"}' />
-    <meta property="og:image:secure_url" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-small.png"}' />
+    <meta property="og:description" th:content='${savings != null ? "My home energy plan from Simple Energy Advice could save me " + savings + " per year." : "Government endorsed advice about energy for homeowners, renters and landlords."}' />
+    <meta property="og:site_name" content="Simple Energy Advice" />
+    <meta property="og:image" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-og.png"}' />
+    <meta property="og:image:secure_url" th:content='${publicRootUrl + "/dist/assets/images/logos/ehc-og.png"}' />
 </head>
 <body th:utext="${angularBodyContent}">
 </body>
