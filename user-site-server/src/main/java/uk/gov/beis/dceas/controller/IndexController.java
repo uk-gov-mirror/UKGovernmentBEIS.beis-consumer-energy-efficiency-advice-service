@@ -21,6 +21,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -139,6 +141,9 @@ public class IndexController {
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
 
+        String savings = getSavingsFromShareLink(request);
+        model.addAttribute("savings", savings);
+
         model.addAttribute("buildTimestamp",
             buildAttributes.getValue("Build-Timestamp"));
         model.addAttribute("buildGitCommit",
@@ -149,6 +154,20 @@ public class IndexController {
             buildAttributes.getValue("Build-Number"));
 
         return "index";
+    }
+
+    private String getSavingsFromShareLink(HttpServletRequest request) {
+        String shareParameter = request.getParameter("share");
+        if (shareParameter == null) {
+            return null;
+        }
+        int savings;
+        try {
+            savings = Integer.parseInt(shareParameter);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        return savings > 0 && savings < 10000 ? "£" + savings : null;
     }
 
     private Attributes getBuildAttributes(Environment environment) throws IOException {

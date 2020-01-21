@@ -1,6 +1,6 @@
 <div class="download-plan page-row">
     <div class="page-row-content">
-        <div class="download-your-plan">
+        <div class="download-your-plan your-plan-action">
             <div class="action-details">
                 <div class="header">Download your plan</div>
                 <div class="description">Save your plan to your device so that you can return to it later</div>
@@ -9,8 +9,10 @@
                 <app-download-pdf-button [forLandlord]="false"></app-download-pdf-button>
             </div>
         </div>
-        <div class="action-divider">OR</div>
-        <div class="email-your-plan">
+        <div class="action-divider">
+            <div>OR</div>
+        </div>
+        <div class="email-your-plan your-plan-action">
             <div class="header">Email your plan</div>
             <form class="email-form" (submit)="onEmailPdfClicked()" *ngIf="!emailIsLoading && !emailIsError">
                 <input [(ngModel)]="emailAddress"
@@ -29,6 +31,17 @@
                     (click)="emailAddress = null; emailIsLoading = false; emailIsError = false">
                 Reset
             </button>
+        </div>
+        <div class="share-your-plan your-plan-action">
+            <div class="header">Share your plan</div>
+            <div class="share-buttons">
+                <button (click)="shareToFacebook()">
+                    <img src="/dist/assets/images/icons/facebook.png" alt="Share to Facebook">
+                </button>
+                <button (click)="shareToTwitter()">
+                    <img src="/dist/assets/images/icons/twitter.png" alt="Share to Twitter">
+                </button>
+            </div>
         </div>
     </div>
 </div>

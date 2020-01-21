@@ -18,13 +18,14 @@ $action-divider-circle-diameter: 40px;
     display: flex;
     position: relative;
 
-    .download-your-plan, .email-your-plan {
+    .your-plan-action {
       display: flex;
       flex: 1 0 1px;
       justify-content: space-around;
 
       .header {
         @include plan-footer-header-font;
+        width: 100%;
       }
 
       .description {
@@ -42,17 +43,22 @@ $action-divider-circle-diameter: 40px;
     }
 
     .action-divider {
-      width: $action-divider-circle-diameter;
-      height: $action-divider-circle-diameter;
-      border: 1px solid $light-grey;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      left: calc(50% - #{$action-divider-circle-diameter}/2);
-      top: calc(50% - #{$action-divider-circle-diameter}/2);
-      background-color: white;
+      position: relative;
+      width: 0;
+      border: none;
+      > div {
+        width: $action-divider-circle-diameter;
+        height: $action-divider-circle-diameter;
+        border: 1px solid $light-grey;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: calc(50% - #{$action-divider-circle-diameter}/2);
+        top: calc(50% - #{$action-divider-circle-diameter}/2);
+        background-color: white;
+      }
     }
 
     .email-your-plan {
@@ -99,13 +105,33 @@ $action-divider-circle-diameter: 40px;
         }
       }
     }
+
+    .share-your-plan {
+      flex-direction: column;
+      .share-buttons {
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          > img {
+            height: 40px;
+          }
+        }
+        button + button {
+          margin-left: 20px;
+        }
+      }
+    }
   }
 }
 
 // Breakpoint specific styling
 .download-plan.page-row {
   @include mobile() {
+    padding: 17px 0 14px 0;
     .page-row-content {
+      flex-wrap: wrap;
+
       .download-your-plan {
         padding-right: 24px;
         border-right: 1px solid $light-grey;
@@ -115,7 +141,19 @@ $action-divider-circle-diameter: 40px;
         padding-left: 24px;
       }
 
-      .download-your-plan, .email-your-plan {
+      .share-your-plan {
+        flex: 0 0 100%;
+        margin-top: 20px;
+        .header {
+          text-align: center;
+        }
+        .share-buttons {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .your-plan-action {
         .header {
           font-weight: bold;
           margin-bottom: 12px;
@@ -140,16 +178,16 @@ $action-divider-circle-diameter: 40px;
 
   @include tablet() {
     .page-row-content {
-      .download-your-plan {
+      .your-plan-action:not(:last-of-type) {
         padding-right: 38px;
         border-right: 1px solid $light-grey;
       }
 
-      .email-your-plan {
+      .your-plan-action:not(:first-of-type) {
         padding-left: 38px;
       }
 
-      .download-your-plan, .email-your-plan {
+      .your-plan-action {
         .header {
           margin-bottom: 10px;
           font-family: $font-family-light;
@@ -168,7 +206,7 @@ $action-divider-circle-diameter: 40px;
         border-right: 1px solid $light-grey;
       }
 
-      .download-your-plan, .email-your-plan {
+      .your-plan-action {
         padding: 0 40px;
 
         .header {
