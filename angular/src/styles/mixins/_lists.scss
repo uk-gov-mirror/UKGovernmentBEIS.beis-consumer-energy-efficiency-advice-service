@@ -4,7 +4,7 @@
   li {
     margin: 10px 0;
     &::before {
-      content: '▶';
+      content: '\25B6\FE0E'; /* ▶ forced to render as text, not emoji. */
       position: absolute;
       left: 0;
     }
