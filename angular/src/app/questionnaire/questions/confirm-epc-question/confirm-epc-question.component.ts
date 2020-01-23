@@ -56,7 +56,9 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     };
 
     static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
-        return `This means the efficiency of your home is ${ConfirmEpcQuestionComponent.EPC_METADATA[epcRating].adjective}`;
+        const letter = EpcRating[epcRating];
+        const description = ConfirmEpcQuestionComponent.EPC_METADATA[epcRating].adjective
+        return `Your home was given an energy rating of ${letter}, which is ${description}`;
     }
 
     get responseForAnalytics(): string {
@@ -145,6 +147,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     private static getFormattedDateFromEpc(epc: Epc): string {
         const epcDate = moment(epc.epcDate);
-        return epcDate.format('MMM YYYY');
+        return epcDate.format('MMMM YYYY');
     }
 }
