@@ -1,0 +1,12 @@
+@mixin arrow-bullet-list {
+  position: relative;
+  list-style: none;
+  li {
+    margin: 10px 0;
+    &::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+    }
+  }
+}

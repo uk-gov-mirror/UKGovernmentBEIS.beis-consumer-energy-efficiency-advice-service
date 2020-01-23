@@ -1,5 +1,7 @@
 @import "styles/var/colors";
+@import "styles/mixins/buttons";
 @import "styles/mixins/font";
+@import "styles/mixins/lists";
 
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
@@ -23,50 +25,14 @@
       font-size: 1.2rem;
     }
     ul.epc-property-details {
+      @include arrow-bullet-list();
       color: $dark-blue;
-      position: relative;
-      list-style: none;
-      li {
-        margin: 10px 0;
-        font-weight: lighter;
-        &:before {
-          content: '▶';
-          position: absolute;
-          left: 0;
-        }
-      }
     }
   }
 
   .proceed-button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border: none;
-    cursor: pointer;
+    @include proceed-button();
     margin-bottom: 20px;
-    font-size: 20px;
-    background-color: $light-blue;
-    color: $dark-blue;
-
-    padding: 0 0 0 20px;
-    .chevron {
-      font-size: 36px;
-      padding: 20px;
-      margin-left: 20px;
-      background-color: $dark-blue;
-      color: $light-blue;
-    }
-
-    &:focus, &:active, &:hover {
-      background-color: $dark-blue;
-      color: $light-blue;
-      .chevron {
-        background-color: $light-blue;
-        color: $dark-blue;
-      }
-    }
   }
 }
 
