@@ -14,6 +14,12 @@ $min-large-desktop-breakpoint: 1260px;
   }
 }
 
+@mixin mobile-and-tablet {
+  @media (max-width: $max-tablet-breakpoint) {
+    @content;
+  }
+}
+
 @mixin desktop() {
   @media (min-width: ($max-tablet-breakpoint + 1px)) {
     @content;

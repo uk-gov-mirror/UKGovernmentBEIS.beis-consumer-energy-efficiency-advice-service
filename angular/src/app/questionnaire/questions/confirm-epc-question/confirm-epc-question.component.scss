@@ -1,18 +1,7 @@
 @import "styles/var/colors";
-@import "styles/mixins/epc-rating";
 @import "styles/mixins/buttons";
 @import "styles/mixins/font";
-
-// Component specific variables
-
-$section-break-margin: 40px;
-$epc-rating-width: 40px;
-$component-width: 60vw;
-
-$go-button-height: 80px;
-$go-button-right-chevron-width: 20px;
-
-// Component specific mixins
+@import "styles/mixins/lists";
 
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
@@ -21,436 +10,59 @@ $go-button-right-chevron-width: 20px;
 }
 
 .confirm-epc-question {
-  width: $component-width;
-  display: flex;
-  flex-direction: column;
-
-  .subheading {
-    text-align: center;
+  width: 60vw;
+  p {
+    font-family: $font-family;
   }
 
-  .epc-section {
-    .energy-performance, .epc-diagram-card, .potential-savings {
-      box-sizing: border-box;
+  .epc-summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .epc-date {
+      margin-top: 0;
+      color: $dark-blue;
+      font-size: 1.2rem;
     }
-
-    .epc-diagram-card {
-      .heading {
-        text-align: center;
-        align-self: stretch;
-        margin-bottom: 20px;
-        @include data-card-heading-font;
-      }
-
-      .epc-diagram {
-        width: 100%;
-        box-sizing: border-box;
-
-        img {
-          display: block;
-          margin: auto;
-          width: 100%;
-          max-width: 270px;
-        }
-      }
+    ul.epc-property-details {
+      @include arrow-bullet-list();
+      color: $dark-blue;
     }
   }
 
-  .confirm-epc-details-section {
-    padding: $section-break-margin 0;
-    position: relative;
-
-    .confirm-epc-details-background {
-      position: absolute;
-      background: white;
-    }
-    .epc-details-header, .confirm-epc-details-body {
-      z-index: 1;
-    }
-
-    .epc-details-header {
-      font-weight: bold;
-      color: $dark-medium-blue;
-    }
-
-    .epc-details-container {
-
-      .epc-detail {
-        color: #39393A;
-      }
-    }
-
-    .confirm-epc-details {
-      font-weight: bold;
-
-      .confirm-epc-details-row {
-        .confirm-epc-details-button {
-          @include capsule-button;
-          font-weight: bold;
-          box-sizing: border-box;
-          outline: none;
-
-          font-size: 16px;
-          line-height: 30px;
-          padding: 2px 36px;
-
-          &:hover, &:focus {
-            background-color: $lighter-medium-grey;
-          }
-        }
-      }
-    }
-  }
-
-  .need-more-details-container, .confirm-epc-details-section {
-    .need-more-details-button {
-      border: none;
-      overflow: visible;
-      background-color: $light-blue;
-      cursor: pointer;
-      padding: 0;
-      margin-bottom: 20px;
-      max-width: 400px;
-
-      .need-more-details-body {
-        color: $dark-blue;
-        border: none;
-        flex-grow: 1;
-        height: $go-button-height;
-        font-size: 20px;
-        line-height: 24px;
-        display: flex;
-        padding: 0;
-
-        .button-main, .button-go {
-          height: 100%;
-          position: relative;
-          display: flex;
-          align-items: center;
-
-          &::after {
-            content: '';
-            position: absolute;
-            right: -$go-button-right-chevron-width;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-top: $go-button-height/2 solid transparent;
-            border-bottom: $go-button-height/2 solid transparent;
-          }
-        }
-
-        .button-main {
-          z-index: 1;
-          padding-left: 20px;
-          flex-grow: 1;
-
-          &::after {
-            border-left: $go-button-right-chevron-width solid $light-blue;
-          }
-        }
-
-        .button-go {
-          background-color: $dark-blue;
-          color: $light-blue;
-          padding-left: $go-button-right-chevron-width + 16px;
-          padding-right: 4px;
-
-          &::after {
-            border-left: $go-button-right-chevron-width solid $dark-blue;
-          }
-        }
-      }
-
-      &:hover, &:focus {
-        background-color: $dark-blue;
-
-        .need-more-details-body {
-          color: $light-blue;
-        }
-
-        .need-more-details-body {
-          .button-main::after {
-            border-left-color: $dark-blue;
-          }
-
-          .button-go {
-            background-color: $light-blue;
-            color: $dark-blue;
-
-            &::after {
-              border-left-color: $light-blue;
-            }
-          }
-        }
-      }
-    }
+  .proceed-button {
+    @include proceed-button();
+    margin-bottom: 20px;
   }
 }
 
 // Breakpoint specific styling
 .confirm-epc-question {
-  @include mobile() {
-    .subheading {
-      padding-bottom: 40px;
-    }
-
-    .epc-section {
-      .energy-performance, .potential-savings {
-        width: 100%;
-        border-top: 2px $separator-grey solid;
-
-        ::ng-deep .data-card {
-          height: 120px;
-          padding: 20px 0px 20px 0px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .color-circle {
-            flex: 0 0 auto;
-            height: 80px;
-            width: 80px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-
-          .value-container {
-            margin-right: 40px;
-          }
-        }
-      }
-
-      .epc-diagram-card {
-        border-top: 2px $separator-grey solid;
-
-        .heading {
-          padding: 20px 0;
-          text-align: left;
-        }
-
-        .epc-diagram {
-          padding: 10px 0;
-
-          img {
-            margin: 0;
-          }
-        }
-      }
-    }
-
-    .confirm-epc-details-section {
-      border-top: 2px $separator-grey solid;
-      padding: 25px 0;
-
-      .epc-details-header {
-        color: $dark-medium-blue;
-      }
-
-      .epc-details-list {
-        position: relative;
-        left: 0;
-
-        font-family: $font-family-light;
-        margin: 0px 0px 0px 15px;
-        padding: 15px 0px 5px 0px;
-
-        ::ng-deep .epc-detail {
-          margin-bottom: 15px;
-        }
-      }
-
-      .confirm-epc-details {
-        background-color: $lighter-grey;
-        border-top: 2px solid $light-grey;
-        font-weight: bold;
-
-        .confirm-epc-details-row {
-          padding: 20px 0;
-        }
-      }
-    }
-  }
-
-  @include tablet() {
-    .subheading {
-      padding-bottom: 40px;
-    }
-
-    .epc-section {
-      display: flex;
-      flex-wrap: wrap;
-
-      .energy-performance {
-        // Minus border
-        flex: 0 0 calc(50% - 2px);
-        border-right: 2px solid $separator-grey;
-        padding-right: 16px;
-      }
-
-      .epc-diagram-card {
-        padding-left: 16px;
-        flex: 0 0 50%;
-      }
-
-      .potential-savings {
-        border-top: 2px solid $separator-grey;;
-        padding-top: 16px;
-        margin-top: 16px;
-        flex: 0 0 100%;
-      }
-
-      ::ng-deep .data-card {
-        justify-content: flex-start;
-
-        .value-container {
-          margin: auto;
-        }
-      }
-    }
-
-    .confirm-epc-details-section {
-      border-top: 2px $separator-grey solid;
-      padding: 25px 0;
-
-      .epc-details-header {
-        color: $dark-medium-blue;
-      }
-
-      .epc-details-list {
-        position: relative;
-        left: 0;
-
-        font-family: $font-family-light;
-        margin: 0px 0px 0px 15px;
-        padding: 15px 0px 5px 0px;
-
-        ::ng-deep .epc-detail {
-          margin-bottom: 15px;
-        }
-      }
-
-      .confirm-epc-details {
-        background-color: $lighter-grey;
-        border-top: 4px solid $separator-grey;
-        font-weight: bold;
-
-        .confirm-epc-details-row {
-          padding: 20px 0;
-        }
-      }
-    }
-
-    .need-more-details-container {
-      display: flex;
+  @include mobile-and-tablet() {
+    .epc-summary {
       flex-direction: column;
+    }
+    .epc-info {
+      // Needed for IE11.
+      width: 100%;
+    }
+    .epc-diagram {
+      margin: 20px 0;
+      width: 100%;
+      max-width: 450px;
     }
   }
 
   @include desktop() {
-    .subheading {
-      padding-bottom: 48px;
-    }
-
-    .epc-section {
-      display: flex;
-
-      > * {
-        flex: 0 0 33%;
-        margin-bottom: 40px;
-        border-right: 2px solid $separator-grey;
-
-        ::ng-deep .data-card {
-          justify-content: flex-start;
-
-          .value-container {
-            margin: auto;
-          }
-        }
+    .epc-summary {
+      flex-direction: row;
+      .epc-diagram  {
+        flex: none;
+        margin-left: 20px;
+        width: 40%;
+        max-width: 450px;
+        min-width: 300px;
       }
-
-      .energy-performance {
-        border-left: 2px solid $separator-grey;
-      }
-
-      .epc-diagram-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        justify-content: space-around;
-      }
-    }
-
-    .confirm-epc-details-section {
-      padding: $section-break-margin 0;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-
-      .confirm-epc-details-background {
-        height: 100%;
-        width: 100vw;
-        position: absolute;
-        background: white;
-        left: -1 * (100vw - $component-width) / 2;
-        top: 0;
-      }
-      .epc-details-header, .confirm-epc-details-body {
-        z-index: 1;
-      }
-
-      .epc-details-header {
-        font-size: 20px;
-        line-height: 24px;
-        color: $dark-medium-blue;
-        margin-bottom: 10px;
-      }
-
-      .confirm-epc-details-body {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-      }
-
-      .epc-details-container {
-        display: flex;
-        flex-direction: column;
-        flex-basis: 60%;
-
-        .epc-details-list {
-          margin: 0;
-          padding-left: 16px;
-
-          .epc-detail {
-            padding: 8px 0;
-            color: #39393A;
-            font-size: 16px;
-            line-height: 20px;
-          }
-        }
-      }
-
-      .confirm-epc-details {
-        display: flex;
-        flex-direction: column;
-        flex-basis: 40%;
-        justify-content: flex-end;
-        padding-bottom: 12px;
-
-        .confirm-epc-details-row {
-          display: flex;
-          align-items: center;
-        }
-      }
-    }
-
-    .need-more-details-container {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
     }
   }
 }

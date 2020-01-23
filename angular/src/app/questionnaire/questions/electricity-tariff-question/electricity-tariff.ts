@@ -10,10 +10,10 @@ export enum ElectricityTariff {
 export function getElectricityTariffDescription(electricityTariff: ElectricityTariff) {
     switch (electricityTariff) {
         case ElectricityTariff.Standard: {
-            return 'standard';
+            return 'a standard';
         }
         case ElectricityTariff.OffPeak: {
-            return 'off peak';
+            return 'an off peak';
         }
         default: {
             return null;

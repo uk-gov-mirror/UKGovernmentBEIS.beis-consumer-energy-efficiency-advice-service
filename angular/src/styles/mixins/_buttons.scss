@@ -154,6 +154,37 @@ $rounded-corner-border-radius: 1000000px;
   }
 }
 
+@mixin proceed-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: $light-blue;
+  color: $dark-blue;
+
+  padding: 0 0 0 20px;
+  &::after {
+    content: '›';
+    font-size: 36px;
+    padding: 20px;
+    margin-left: 20px;
+    background-color: $dark-blue;
+    color: $light-blue;
+  }
+
+  &:focus, &:active, &:hover {
+    background-color: $dark-blue;
+    color: $light-blue;
+    &::after {
+      background-color: $light-blue;
+      color: $dark-blue;
+    }
+  }
+}
+
 // Hide the up and down spin buttons in <input> with type 'number'
 @mixin with-no-spin-buttons {
   input[type=number]::-webkit-inner-spin-button,
