@@ -1,7 +1,7 @@
 <div class="question-component confirm-epc-question">
-    <div *ngIf="isEpcAvailable">
-        <div>
-            <p>
+    <div *ngIf="isEpcAvailable" class="epc-summary">
+        <div class="epc-info">
+            <p class="epc-date">
                 An Energy Performance Certificate (EPC) was produced for your home in {{epcFormattedDate}}.
                 (<a href="/pages/energy-performance-certificate" target="_blank">What's this?</a>)
             </p>
@@ -11,7 +11,7 @@
             <p>
                 Your EPC also tells us:
             </p>
-            <ul>
+            <ul class="epc-property-details">
                 <li *ngIf="homeTypeDescription">
                     Your property is a {{homeTypeDescription}}
                 </li>
@@ -29,9 +29,7 @@
                 </li>
             </ul>
         </div>
-        <div>
-            <img src="/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg" alt="">
-        </div>
+        <img class="epc-diagram" src="/dist/assets/images/epc-ratings/mini-epc-{{EpcRating[epcRating].toLowerCase()}}.svg" alt="">
     </div>
     <p *ngIf="!isEpcAvailable">
         It looks like there isn’t an EPC registered for your property.

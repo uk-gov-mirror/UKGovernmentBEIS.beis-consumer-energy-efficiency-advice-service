@@ -1,11 +1,5 @@
 @import "styles/var/colors";
-@import "styles/mixins/epc-rating";
-@import "styles/mixins/buttons";
 @import "styles/mixins/font";
-
-// Component specific variables
-
-// Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
@@ -15,16 +9,94 @@
 
 .confirm-epc-question {
   width: 60vw;
+  p {
+    font-family: $font-family;
+  }
+
+  .epc-summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .epc-date {
+      margin-top: 0;
+      color: $dark-blue;
+      font-size: 1.2rem;
+    }
+    ul.epc-property-details {
+      color: $dark-blue;
+      position: relative;
+      list-style: none;
+      li {
+        margin: 10px 0;
+        font-weight: lighter;
+        &:before {
+          content: '▶';
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .proceed-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 20px;
+    background-color: $light-blue;
+    color: $dark-blue;
+
+    padding: 0 0 0 20px;
+    .chevron {
+      font-size: 36px;
+      padding: 20px;
+      margin-left: 20px;
+      background-color: $dark-blue;
+      color: $light-blue;
+    }
+
+    &:focus, &:active, &:hover {
+      background-color: $dark-blue;
+      color: $light-blue;
+      .chevron {
+        background-color: $light-blue;
+        color: $dark-blue;
+      }
+    }
+  }
 }
 
 // Breakpoint specific styling
 .confirm-epc-question {
-  @include mobile() {
-  }
-
-  @include tablet() {
+  @include mobile-and-tablet() {
+    .epc-summary {
+      flex-direction: column;
+    }
+    .epc-info {
+      // Needed for IE11.
+      width: 100%;
+    }
+    .epc-diagram {
+      margin: 20px 0;
+      width: 100%;
+      max-width: 450px;
+    }
   }
 
   @include desktop() {
+    .epc-summary {
+      flex-direction: row;
+      .epc-diagram  {
+        flex: none;
+        margin-left: 20px;
+        width: 40%;
+        max-width: 450px;
+        min-width: 300px;
+      }
+    }
   }
 }
