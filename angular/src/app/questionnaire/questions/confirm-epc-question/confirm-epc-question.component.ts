@@ -14,12 +14,6 @@ import {Epc} from "../../../shared/postcode-epc-service/model/epc";
 import {BuiltFormAnswer, getBuiltFormFromEpc} from "../built-form-question/built-form-answer";
 import {getHomePropertyDescription} from "../../../shared/home-property-description-helper/home-property-description-helper";
 
-interface EpcMetadata {
-    averageEnergyCost: number;
-    colorCircleClassName: string;
-    adjective: string;
-}
-
 @Component({
     selector: 'app-confirm-epc',
     templateUrl: './confirm-epc-question.component.html',
@@ -45,20 +39,20 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     savingsPerYear: number;
     epcFormattedDate: string;
 
-    private static readonly EPC_METADATA: { [epcRating: number]: EpcMetadata } = {
-        [EpcRating.A]: {averageEnergyCost: 700, colorCircleClassName: 'green', adjective: 'very good'},
-        [EpcRating.B]: {averageEnergyCost: 700, colorCircleClassName: 'green', adjective: 'better than average'},
-        [EpcRating.C]: {averageEnergyCost: 1000, colorCircleClassName: 'green', adjective: 'better than average'},
-        [EpcRating.D]: {averageEnergyCost: 1400, colorCircleClassName: 'amber', adjective: 'around average'},
-        [EpcRating.E]: {averageEnergyCost: 1650, colorCircleClassName: 'amber', adjective: 'below average'},
-        [EpcRating.F]: {averageEnergyCost: 2200, colorCircleClassName: 'red', adjective: 'below average'},
-        [EpcRating.G]: {averageEnergyCost: 2850, colorCircleClassName: 'red', adjective: 'poor'}
+    private static readonly EPC_DESCRIPTIONS: { [epcRating: number]: string } = {
+        [EpcRating.A]: 'very good',
+        [EpcRating.B]: 'better than average',
+        [EpcRating.C]: 'better than average',
+        [EpcRating.D]: 'around average',
+        [EpcRating.E]: 'below average',
+        [EpcRating.F]: 'below average',
+        [EpcRating.G]: 'poor'
     };
 
     static getEpcRatingRelativeDescription(epcRating: EpcRating): string {
         const letter = EpcRating[epcRating];
-        const description = ConfirmEpcQuestionComponent.EPC_METADATA[epcRating].adjective
-        return `Your home was given an energy rating of ${letter}, which is ${description}`;
+        const description = ConfirmEpcQuestionComponent.EPC_DESCRIPTIONS[epcRating];
+        return `Your home was given an energy rating of ${letter}, which is ${description}.`;
     }
 
     get responseForAnalytics(): string {
@@ -67,10 +61,6 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
 
     ngOnInit() {
         this.getDetailsFromResponseData();
-    }
-
-    getEpcMetadata(epcRating: EpcRating): EpcMetadata {
-        return ConfirmEpcQuestionComponent.EPC_METADATA[epcRating];
     }
 
     get response(): EpcConfirmation {
