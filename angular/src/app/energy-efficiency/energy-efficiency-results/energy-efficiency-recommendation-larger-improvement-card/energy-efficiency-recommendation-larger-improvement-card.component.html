@@ -1,0 +1,63 @@
+<div class="energy-efficiency-recommendation-card">
+    <div class="main-row">
+        <div class="recommendation-icon">
+            <div [inlineSVG]="recommendation.iconPath" class="icon"></div>
+        </div>
+        <div class="recommendation-basic-details">
+            <div class="heading">{{recommendation.headline}}</div>
+            <div class="summary-row">
+                <div class="summary">
+                    {{recommendation.summary}}
+                </div>
+            </div>
+            <div class="tags">
+                <div *ngFor="let tag of tags"
+                     [ngClass]="getTagClassName(tag)"
+                     (click)="toggleExpandedView()"
+                     class="tag">{{getTagDescription(tag)}}
+                </div>
+            </div>
+            <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+                More information <i class="arrow"></i>
+            </div>
+        </div>
+        <app-data-card class="investment-required-card"
+                       heading="Investment required"
+                       [value]="'£' + roundedInvestmentRequired"
+                       [isSmallCard]="true"
+                       [withSmallFontSize]="true"
+        ></app-data-card>
+        <app-data-card class="monthly-savings-card"
+                       heading="Potential {{showMonthlySavings ? 'monthly' : 'yearly'}} savings"
+                       [value]="savingDisplay"
+                       [isSmallCard]="true"
+                       [withSmallFontSize]="true"
+        ></app-data-card>
+        <div class="dismiss-plan-icon">
+            <div [inlineSVG]="'controls/remove.svg'" class="icon" (click)="toggleCardDismissStatus()"></div>
+        </div>
+
+        <div class="expanded-view-row" [class.expanded]="isExpandedView">
+            <div class="steps" >
+                <div class="recommendation-step-card-left">
+                    <div class="step-headline-div" *ngFor="let step of recommendation.steps; let i = index">
+                    <input type="radio" name="cards" class="step-headline" [id]="'step-headline-'+stepIndex+'-'+i" (click)="toggleIsExpanded(i)" [class.expanded]="isExpanded===i">
+                    <div class="expand-step-icon" [class.expanded]="isExpanded===i"
+                         title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                    <label [for]="'step-headline-'+stepIndex+'-'+i" class="step-label" [class.expanded]="isExpanded===i">
+                        {{step.headline}}
+                    </label>
+                    </div>
+                </div>
+                <div class="recommendation-step-card-right">
+                    <app-recommendation-step-card-new *ngFor="let step of recommendation.steps; let i = index"
+                            [stepChecked]="isExpanded"
+                            [step]="step"
+                            [stepIndex]="i"
+                            (onAnalyticsEvent)="sendStepEventToAnalytics($event, recommendation.recommendationID)"
+                    ></app-recommendation-step-card-new>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

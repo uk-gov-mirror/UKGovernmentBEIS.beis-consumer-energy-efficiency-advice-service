@@ -4,7 +4,7 @@
         <div class="step-number">Step {{formattedStepNumber}}</div>
         <button class="step-headline" [title]="isExpanded ? 'Hide details' : 'See more detail'">{{step.headline}}</button>
         <div class="expand-step-icon" [class.expanded]="isExpanded"
-                title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+             title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
     </div>
     <div class="step-details-drawer" [class.expanded]="isExpanded">
         <div class="step-info">
@@ -19,7 +19,7 @@
                 <div class="read-more-button" (click)="toggleIsReadMoreExpanded()">
                     <div class="read-more-button-text">{{isReadMoreExpanded ? "Read Less" : "Read More"}}</div>
                     <div class="read-more-button-icon" [class.expanded]="isReadMoreExpanded"
-                        title="Read more" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+                         title="Read more" [inlineSVG]="'controls/expand-arrow.svg'"></div>
                 </div>
             </ng-container>
         </div>

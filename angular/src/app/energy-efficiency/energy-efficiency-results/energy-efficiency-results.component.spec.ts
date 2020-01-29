@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 import {EnergyCalculationResponse} from '../../shared/energy-calculation-api-service/response/energy-calculation-response';
 import {isComplete, ResponseData} from '../../shared/response-data/response-data';
@@ -37,6 +38,15 @@ import {YourPlanFooterCombinedItemComponent} from "./your-plan-footer/your-plan-
 import {YourPlanFooterItemComponent} from "./your-plan-footer/your-plan-footer-item/your-plan-footer-item.component";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
+import {EnergyEfficiencyRecommendationQuickWinCardComponent} from "./energy-efficiency-recommendation-quick-win-card/energy-efficiency-recommendation-quick-win-card.component";
+import {EnergyEfficiencyRecommendationFinancialAssistanceCardComponent} from "./energy-efficiency-recommendation-financial-assist-card/energy-efficiency-recommendation-financial-assist-card.component";
+import {EnergyEfficiencyRecommendationLargerImprovementCardComponent} from "./energy-efficiency-recommendation-larger-improvement-card/energy-efficiency-recommendation-larger-improvement-card.component";
+import {DownloadPlanComponent} from "../your-plan-page/download-plan/download-plan.component";
+import {RecommendationStepCardComponent} from "../your-plan-page/recommendation-step-card/recommendation-step-card.component";
+import {DownloadPdfButtonComponent} from "../your-plan-page/download-pdf-button/download-pdf-button.component";
+import {LocalAuthorityService} from "../../shared/local-authority-service/local-authority.service";
+import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
+import {RecommendationStepCardNewComponent} from "../your-plan-page/recommendation-step-card-new/recommendation-step-card-new.component";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -84,6 +94,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 999,
@@ -106,6 +117,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 20,
@@ -135,6 +147,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         }
     ];
 
@@ -167,12 +180,20 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 YourPlanFooterItemComponent,
                 YourPlanFooterCombinedItemComponent,
                 YourPlanSummaryComponent,
-                StickyRowWrapperComponent
+                StickyRowWrapperComponent,
+                EnergyEfficiencyRecommendationQuickWinCardComponent,
+                EnergyEfficiencyRecommendationFinancialAssistanceCardComponent,
+                EnergyEfficiencyRecommendationLargerImprovementCardComponent,
+                DownloadPlanComponent,
+                RecommendationStepCardComponent,
+                DownloadPdfButtonComponent,
+                RecommendationStepCardNewComponent
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),
                 InlineSVGModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                FormsModule,
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
@@ -182,6 +203,8 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 AbTestingService,
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,
+                LocalAuthorityService,
+                PlanInfoService,
             ]
         })
             .compileComponents();
@@ -284,6 +307,35 @@ describe('EnergyEfficiencyResultsComponent', () => {
         // then
         expect(component.defaultRecommendationDisclaimer).toEqual(expectedDefaultRecommendationDisclaimer);
     });
+    /*it('should show tabs', () => {
+        fixture.detectChanges();
+        const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const financialAssistance = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const largerImprovements = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        expect(quickWins).toBeTruthy();
+        expect(financialAssistance).toBeTruthy();
+        expect(largerImprovements).toBeTruthy();
+    });
+
+    it('should start with quick-wins checked', () => {
+        fixture.detectChanges();
+        const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        expect(quickWins.checked).toBeTruthy();
+    });
+
+    it('should only have one tabs checked at any given time', async() => {
+        const quickWins = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const financialAssistance = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        const largerImprovements = fixture.debugElement.query(By.css('#quick-wins-radio')).nativeElement;
+        financialAssistance.click();
+        fixture.detectChanges();
+        expect(quickWins.checked).toBeFalsy();
+        expect(financialAssistance.checked).toBeTruthy();
+        largerImprovements.click();
+        fixture.detectChanges();
+        expect(financialAssistance.checked).toBeFalsy();
+        expect(largerImprovements.checked).toBeTruthy();
+    });*/
 
     function setUpComponentWithDefaultResponse(): void {
         dummyEnergyCalculations['isDefaultResponse'] = true;

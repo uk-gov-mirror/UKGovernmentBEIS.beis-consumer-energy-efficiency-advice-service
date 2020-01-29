@@ -1,0 +1,330 @@
+@import "../../_energy-efficiency-page-sizes";
+@import "../recommendation-tags/_recommendation-tags.scss";
+@import "styles/mixins/_font";
+@import "styles/mixins/_buttons";
+@import "styles/var/colors";
+
+// Component specific variables
+$icon-column-width: $add-to-plan-column-width;
+
+// Component specific mixins
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.arrow {
+  border: solid #006280;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3.5px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.expanded-view-row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: white;
+    flex: 1 0 100%;
+}
+
+.expanded-view-row {
+  border-top: 1px solid $light-grey;
+  display: none;
+  flex-wrap: wrap;
+
+  &.expanded {
+    display: flex;
+  }
+}
+
+.steps {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.step-headline-div {
+  display: flex;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.step-headline-div input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.step-headline-div label {
+  text-align:left;
+  color: $dark-medium-blue;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: inherit;
+  padding-left: 10px;
+
+  &.expanded {
+    color: #82CAFF;
+  }
+}
+
+.step-label:hover {
+  color: #82CAFF;
+}
+
+
+.expand-step-icon {
+  flex: 0 0 auto;
+  fill: $dark-medium-blue;
+  display: block;
+  width: 14px;
+  height: 8px;
+  line-height: 0;
+  transform: rotate(-90deg);
+  margin-top: 4px;
+
+  &.expanded {
+    fill: #82CAFF;
+  }
+}
+
+.steps {
+  display: flex;
+  width: 100%;
+
+  .recommendation-step-card-left {
+    width: 30%;
+    border-right: 1px solid $light-grey;
+  }
+
+  .recommendation-step-card-right {
+    width: 60%;
+    float: right;
+  }
+}
+
+.energy-efficiency-recommendation-card {
+  display: flex;
+
+  margin: 16px 0;
+
+  .main-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+    max-width: 100%;
+
+    & > * {
+      background-color: white;
+    }
+
+    .dismiss-plan-icon {
+      order: 6;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+        line-height: 0;
+        padding-top: 10px;
+        padding-right: 10px;
+        stroke: $light-medium-grey;
+      }
+    }
+
+    .recommendation-icon {
+      display: flex;
+      justify-content: center;
+
+      .icon {
+        width: 36px;
+        height: 36px;
+        line-height: 0;
+        padding-top: 40px;
+      }
+    }
+
+    .recommendation-basic-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      & > :not(:first-child) {
+        margin-top: 14px;
+      }
+
+      .heading {
+        @include card-heading-font;
+      }
+
+      .summary-row {
+        display: flex;
+        width: 100%;
+
+        .summary {
+          @include page-subheadline-small-font;
+          margin-right: 20px;
+          flex: 1;
+        }
+      }
+
+      .tag {
+        cursor: pointer;
+      }
+
+    }
+
+    .more-detail-button {
+      color: $dark-blue;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+// Breakpoint specific styling
+.energy-efficiency-recommendation-card {
+  @include mobile() {
+    flex-wrap: wrap;
+
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $icon-column-width;
+        max-width: $icon-column-width;
+        order: 2;
+      }
+
+      .recommendation-basic-details {
+        flex: 1 1;
+        order: 1;
+        padding: 20px 0 20px 20px;
+      }
+
+      .expanded-view-row {
+        flex: 0 0 100%;
+        max-width: 100%;
+        order: 4;
+        border: none;
+        flex-wrap: wrap;
+        padding: 5px;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+        order: 5;
+        padding: 20px 20px 20px 55px;
+      }
+
+      .more-detail-button {
+        flex: 0 0 100%;
+        max-width: 100%;
+        border-top: 2px solid #f5f5f5;
+        order: 3;
+
+        &.expanded {
+          border-bottom: 5px solid $light-grey;
+        }
+      }
+    }
+  }
+
+  @include tablet() {
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $icon-column-width;
+        order: 1;
+      }
+
+      .recommendation-basic-details {
+        flex: 1 1;
+        order: 2;
+        padding: 20px 80px 20px 4px;
+      }
+
+      .expanded-view-row {
+        flex: 0 0;
+        flex-basis: 100%;
+        max-width: 100%;
+        order: 7;
+        flex-wrap: wrap;
+        padding: 5px;
+
+        app-break-even, .benefits, .what-it-is, .right-for-me {
+          flex: 0 0 100%;
+        }
+      }
+
+      .monthly-savings-card {
+        flex: 0 0;
+        flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
+        max-width: calc((100% - #{$add-to-plan-column-width}) / 2);
+        order: 5;
+        padding: 20px 20px 20px 55px;
+      }
+
+      .more-detail-button {
+        flex: 0 0;
+        flex-basis: calc(100% - #{$add-to-plan-column-width});
+        max-width: calc(100% - #{$add-to-plan-column-width});
+        border-top: 2px solid #f5f5f5;
+        order: 4;
+
+        &:not(.expanded) {
+          border-bottom: 2px solid #f5f5f5;
+        }
+      }
+
+      .tag {
+        @include is-grid-item($number-of-items: 3, $margin: 20px);
+      }
+    }
+  }
+
+  @include desktop() {
+    .expanded-view-row {
+      flex: 0 0;
+      flex-basis: 100%;
+      max-width: 100%;
+      order: 7;
+
+      & > :first-child {
+        padding-left: $icon-column-width;
+      }
+
+      & > :not(:last-child) {
+        padding-right: 36px;
+      }
+    }
+    .main-row {
+      .recommendation-icon {
+        flex: 0 0 $icon-column-width;
+        order: 1;
+      }
+
+      .recommendation-basic-details {
+        flex: 1;
+        order: 2;
+        padding: 40px 60px 40px 4px;
+      }
+
+      .monthly-savings-card {
+        flex: 0 0 $data-card-width;
+        order: 5;
+        border-left: 2px solid $lighter-grey;
+        padding-left: 35px;
+      }
+    }
+  }
+}

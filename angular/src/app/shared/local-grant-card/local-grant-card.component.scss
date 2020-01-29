@@ -15,10 +15,11 @@
   height: 100%;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  background-color: white;
+  order: 1;
 
   .heading-container {
-    flex: 0;
 
     .heading {
       @include page-section-heading-font;
@@ -31,6 +32,11 @@
 
   .extra-info-container {
     flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    order: 2;
+    width: 40%;
+    border-left: 1px solid $light-grey;
 
     .eligibility-criteria {
       @include eligibility-font;
@@ -71,27 +77,6 @@
       }
     }
   }
-
-
-  &.grey-theme {
-    .heading-container {
-      background-color: $light-blue;
-    }
-
-    .extra-info-container {
-      background-color: $lighter-grey;
-    }
-  }
-
-  &.default-theme {
-    .heading-container {
-      background-color: $light-blue;
-    }
-
-    .extra-info-container {
-      background-color: white;
-    }
-  }
 }
 
 // Breakpoint specific styling
@@ -109,7 +94,7 @@
       padding: 20px 24px 0;
 
       .eligibility-criteria, .find-out-more-container {
-        padding-bottom: 20px;
+        padding: 10px;
       }
     }
   }
@@ -128,7 +113,7 @@
       padding: 28px 34px 0;
 
       .eligibility-criteria, .find-out-more-container {
-        padding-bottom: 28px;
+        padding: 18px;
       }
     }
   }
@@ -153,10 +138,10 @@
       }
 
       .find-out-more-container {
-        padding-left: 40px;
         flex: 0 0 45%;
         box-sizing: border-box;
         margin-left: auto;
+        padding-top: 24px;
       }
     }
   }

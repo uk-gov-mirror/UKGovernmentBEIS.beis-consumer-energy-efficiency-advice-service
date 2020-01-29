@@ -15,7 +15,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('£3 – £10');
+            expect(savingDisplay).toBe('£7');
         });
 
         it('should display a range if rounded maximum value is different from rounded minimum value', () => {
@@ -25,7 +25,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('£5 – £10');
+            expect(savingDisplay).toBe('£8');
         });
 
         it('should display a value if rounded maximum value is the same as rounded minimum value', () => {
@@ -45,7 +45,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('-');
+            expect(savingDisplay).toBe('£0');
         });
 
         it('should not display rounded minimum as a dash when a range is displayed', () => {
@@ -55,7 +55,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             const savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false);
 
             // then
-            expect(savingDisplay).toBe('£0 – £10');
+            expect(savingDisplay).toBe('£5');
         });
     });
 
@@ -83,6 +83,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         };
     }
 });

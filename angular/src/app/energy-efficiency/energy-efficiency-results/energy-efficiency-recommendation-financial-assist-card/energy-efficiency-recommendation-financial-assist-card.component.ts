@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {
     EnergyEfficiencyRecommendationTag,
@@ -12,22 +12,24 @@ import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendat
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 
 @Component({
-    selector: 'app-energy-efficiency-recommendation-card',
-    templateUrl: './energy-efficiency-recommendation-card.component.html',
-    styleUrls: ['./energy-efficiency-recommendation-card.component.scss']
+    selector: 'app-energy-efficiency-recommendation-financial-assistance-card',
+    templateUrl: './energy-efficiency-recommendation-financial-assist-card.component.html',
+    styleUrls: ['./energy-efficiency-recommendation-financial-assist-card.component.scss']
 })
-export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
+export class EnergyEfficiencyRecommendationFinancialAssistanceCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     savingDisplay: string;
-    savingDisplayRange: string;
+    isExpanded: number;
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
+    @Input() stepIndex: number;
+    @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
@@ -38,7 +40,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.tags = getTags(this.recommendation)
             .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
-        this.savingDisplayRange = EnergyEfficiencyRecommendationService.getSavingDisplayRange(this.recommendation, this.showMonthlySavings);
+        this.recommendation.isAddedToPlan = true;
+    }
+
+    toggleIsExpanded(tag: number): void {
+        this.isExpanded = tag;
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
@@ -56,28 +62,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         }
     }
 
-    mouseEnterAddToPlanButton(): void {
-        this.isMouseOverAddToPlanButton = true;
-    }
-
-    mouseLeaveAddToPlanButton(): void {
-        this.isMouseOverAddToPlanButton = false;
-    }
-
-    getAddToPlanButtonText(): string {
-        return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
-            this.recommendation.isAddedToPlan, this.isMouseOverAddToPlanButton
-        );
-    }
-
-    toggleAddedToPlan(): void {
-        this.recommendation.isAddedToPlan = !this.recommendation.isAddedToPlan;
-        if (this.recommendation.isAddedToPlan) {
-            this.sendEventToAnalytics('add-to-plan_clicked');
-        }
-    }
-
     sendEventToAnalytics(eventName: string) {
-        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.grant.grantId);
+    }
+
+    sendStepEventToAnalytics(eventName: string, eventLabel?: string) {
+        this.googleAnalyticsService.sendEvent(eventName, 'results-page', eventLabel);
     }
 }

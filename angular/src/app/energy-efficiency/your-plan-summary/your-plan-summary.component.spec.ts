@@ -33,6 +33,7 @@ describe('YourPlanSummaryComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 999,
@@ -55,6 +56,7 @@ describe('YourPlanSummaryComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         },
         {
             investmentPounds: 20,
@@ -77,6 +79,7 @@ describe('YourPlanSummaryComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            dismiss: false
         }
     ];
 
