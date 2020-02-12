@@ -22,8 +22,8 @@
             </div>
         </div>
         <app-data-card class="monthly-savings-card"
-                       heading="Potential {{showMonthlySavings ? 'monthly' : 'yearly'}} savings"
-                       [value]="savingDisplay"
+                       [heading]="recommendation.maximumCostSavingPoundsPerYear > 0 ? ('Potential ' + (showMonthlySavings ? 'monthly' : 'yearly') + ' savings') : ''"
+                       [value]="recommendation.maximumCostSavingPoundsPerYear > 0 ? savingDisplay : ''"
                        [isSmallCard]="true"
                        [withSmallFontSize]="true"
         ></app-data-card>

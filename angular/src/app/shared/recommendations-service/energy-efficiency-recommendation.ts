@@ -50,6 +50,10 @@ export class EnergyEfficiencyRecommendation {
         return this.measureCode !== null;
     }
 
+    hasTag(tag: EnergyEfficiencyRecommendationTag): boolean {
+        return (this.tags & tag) !== 0;
+    }
+
     /**
      * Keep this in sync with EnergySavingPlanController.java `fromMeasure`
      */

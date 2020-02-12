@@ -2,7 +2,7 @@
 <div class="results-page" *ngIf="!isLoading && !isError">
     <div class="page-row results-header-row">
         <div class="page-row-content" *ngIf="!showOldVersion">
-            <h1 class="heading-text">Here's some recommendations...</h1>
+            <h1 class="heading-text">Here's some recommendations…</h1>
         </div>
         <div class="page-row-content" *ngIf="showOldVersion">
             <h1 class="heading-text">Now build your plan</h1>
@@ -19,38 +19,50 @@
         <div class="page-row-content">
             <form class="row" *ngIf="!showOldVersion">
                 <div class="tab-field">
-                    <input type="radio" name="tab" class="tab" id="quick-wins-radio" (click)="setTabOpened('quick-wins')" checked> <label for="quick-wins-radio">Quick Wins</label>
-                    <input type="radio" name="tab" class="tab" id="financial-assistance-radio" (click)="setTabOpened('financial-assistance')"><label for="financial-assistance-radio">Financial Assistance</label>
-                    <input type="radio" name="tab" class="tab" id="larger-improvements-radio" (click)="setTabOpened('larger-improvements')"><label for="larger-improvements-radio">Larger Improvements</label>
+                    <input type="radio" name="tab" class="tab" id="all-radio"
+                           (click)="setTabOpened('all')" checked> <label for="all-radio">
+                        All ({{allUserRecommendations.length}})
+                    </label>
+                    <input type="radio" name="tab" class="tab" id="quick-wins-radio"
+                           (click)="setTabOpened('quick-wins')"> <label for="quick-wins-radio">
+                        Quick Wins ({{userQuickWins.length}})
+                    </label>
+                    <input type="radio" name="tab" class="tab" id="financial-assistance-radio"
+                           (click)="setTabOpened('financial-assistance')"><label for="financial-assistance-radio">
+                        Financial Assistance ({{userGrants.length}})
+                    </label>
+                    <input type="radio" name="tab" class="tab" id="larger-improvements-radio"
+                           (click)="setTabOpened('larger-improvements')"><label for="larger-improvements-radio">
+                        Larger Improvements ({{userLargerImprovements.length}})
+                    </label>
                 </div>
                 <div class="dismiss" *ngIf="getDismissed().length > 0">
                     <input type="radio" name="tab" class="dismiss-input" id="dismiss" (click)="setTabOpened('dismiss')"><label class="dismiss-label" for="dismiss">Dismissed ({{getDismissed().length}})</label>
                 </div>
             </form>
             <div class="recommendation-cards" *ngIf="!showOldVersion">
-                <div *ngIf="tabOpened === 'quick-wins'">
+                <div *ngIf="tabOpened === 'quick-wins' || tabOpened === 'all'">
                     <app-energy-efficiency-recommendation-quick-win-card
-                            *ngFor="let recommendation of getUserRecommendations('quick-wins'); let i = index"
+                            *ngFor="let recommendation of userQuickWins; let i = index"
                             [stepIndex]="i"
                             [recommendation]="recommendation"
                             [showMonthlySavings]="showMonthlySavings"
                             [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                     ></app-energy-efficiency-recommendation-quick-win-card>
                 </div>
-                <div *ngIf="tabOpened === 'financial-assistance'">
+                <div *ngIf="tabOpened === 'financial-assistance' || tabOpened === 'all'">
                     <div class="national-grants">
-                        <div *ngFor="let recommendation of getUserRecommendations('financial-assistance'); let i = index">
-                            <div *ngIf="recommendation.grant">
-                                <app-energy-efficiency-recommendation-financial-assistance-card
-                                        [stepIndex]="i"
-                                        [recommendation]="recommendation"
-                                        [showMonthlySavings]="showMonthlySavings"
-                                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
-                                ></app-energy-efficiency-recommendation-financial-assistance-card>
-                            </div>
+                        <div *ngFor="let recommendation of userGrants; let i = index">
+                            <app-energy-efficiency-recommendation-quick-win-card
+                                    [stepIndex]="i"
+                                    [recommendation]="recommendation"
+                                    [showMonthlySavings]="showMonthlySavings"
+                                    [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                            ></app-energy-efficiency-recommendation-quick-win-card>
                         </div>
                     </div>
-                    <div class="local-authority-grants page-row" *ngIf="localAuthorityGrants && localAuthorityGrants.length > 0">
+                    <div class="local-authority-grants page-row"
+                         *ngIf="localAuthorityGrants && localAuthorityGrants.length > 0">
                         <div class="grant-cards">
                             <app-local-grant-card class="grant-card"
                                                   *ngFor="let grant of localAuthorityGrants"
@@ -60,9 +72,9 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="tabOpened === 'larger-improvements'">
+                <div *ngIf="tabOpened === 'larger-improvements' || tabOpened === 'all'">
                     <app-energy-efficiency-recommendation-larger-improvement-card
-                            *ngFor="let recommendation of getUserRecommendations('larger-improvements'); let i = index"
+                            *ngFor="let recommendation of userLargerImprovements; let i = index"
                             [stepIndex]="i"
                             [recommendation]="recommendation"
                             [showMonthlySavings]="showMonthlySavings"
@@ -85,15 +97,6 @@
                             [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                     ></app-energy-efficiency-recommendation-larger-improvement-card>
                 </div>
-                <app-energy-efficiency-combined-recommendation-card
-                        *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations('').length"
-                        [combinedHeadline]="combinedLandlordRecommendationHeadline"
-                        [combinedSummary]="'Since you are renting, some of our recommendations will need to be carried out by your landlord.'"
-                        [combinedIconPath]="'icons/home-improve.svg'"
-                        [recommendations]="getLandlordRecommendations('')"
-                        [showMonthlySavings]="showMonthlySavings"
-                        [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
-                ></app-energy-efficiency-combined-recommendation-card>
             </div>
             <div class="recommendation-cards" *ngIf="showOldVersion">
                 <app-energy-efficiency-recommendation-card

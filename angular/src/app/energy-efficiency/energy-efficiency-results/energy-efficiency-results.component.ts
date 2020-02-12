@@ -16,7 +16,6 @@ import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-qu
 import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
-import Config from '../../config';
 import {EnergyEfficiencyRecommendationTag, getTags} from "./recommendation-tags/energy-efficiency-recommendation-tag";
 import {LocalAuthority} from "../../shared/local-authority-service/local-authority";
 import {LocalAuthorityGrant} from "../../grants/model/local-authority-grant";
@@ -40,7 +39,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     showDefaultRecommendation: boolean = false;
     showDefaultRentalMeasures: boolean = false;
     defaultRecommendationDisclaimer: string;
-    tabOpened: string = 'quick-wins';
+    tabOpened: string = 'all';
 
     private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
@@ -97,6 +96,24 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.tabOpened = tag;
     }
 
+    get allUserRecommendations() {
+        return this.allRecommendations.userRecommendations;
+    }
+
+    get userQuickWins() {
+        return this.allUserRecommendations.filter(r => r.hasTag(EnergyEfficiencyRecommendationTag.QuickWin));
+    }
+
+    get userLargerImprovements() {
+        return this.allUserRecommendations.filter(r => r.hasTag(EnergyEfficiencyRecommendationTag.LongerTerm));
+    }
+
+    get userGrants() {
+        return this.allUserRecommendations
+            .filter(r => r.hasTag(EnergyEfficiencyRecommendationTag.Grant))
+            .filter(r => !r.hasTag(EnergyEfficiencyRecommendationTag.QuickWin | EnergyEfficiencyRecommendationTag.LongerTerm));
+    }
+
     getUserRecommendations(tag: string): EnergyEfficiencyRecommendation[] {
         return this.getRecommendations(this.allRecommendations.userRecommendations, tag);
     }
@@ -106,15 +123,22 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     }
 
     getRecommendations(recommendations: EnergyEfficiencyRecommendation[], tag: string): EnergyEfficiencyRecommendation[] {
-        if (tag.includes('quick-wins')) {
-            recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.QuickWin));
-        }
-        if (tag.includes('larger-improvements')) {
-            recommendations = recommendations.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.LongerTerm));
-        }
+        const notDismissed = recommendations.filter(t => !t.dismiss)
         if (tag.includes('dismiss')) {
             recommendations = recommendations.filter(t => t.dismiss === true);
-        } else if (!this.showOldVersion) {
+        }
+        if (tag.includes('quick-wins')) {
+            return notDismissed.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.QuickWin));
+        }
+        if (tag.includes('larger-improvements')) {
+            return notDismissed.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.LongerTerm));
+    }
+        if (tag.includes('financial-assistance')) {
+            const r = notDismissed.filter(t => getTags(t).includes(EnergyEfficiencyRecommendationTag.Grant));
+            console.log(r);
+            return r;
+        }
+        if (!this.showOldVersion) {
             recommendations = recommendations.filter(t => t.dismiss !== true);
         }
         return recommendations;
@@ -155,6 +179,9 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         energyCalculationResponse: EnergyCalculationResponse
     ) {
         this.allRecommendations = allRecommendations;
+        if (allRecommendations.landlordRecommendations.length > 0) {
+            this.showOldVersion = true;
+        }
         this.energyCalculations = EnergyEfficiencyResultsComponent.getEnergyCalculations(
             energyCalculationResponse,
             this.allRecommendations.userRecommendations
