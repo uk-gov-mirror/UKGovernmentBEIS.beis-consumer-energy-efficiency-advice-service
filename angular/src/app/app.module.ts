@@ -29,6 +29,7 @@ import {InstallerSearchModule} from "./installer-search/installer-search.module"
 import {ErrorBannerComponent} from './error-banner/error-banner.component';
 import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
 import {GlobalErrorHandler} from "./shared/global-error-handler";
+import {SearchPageModule} from "./search-page/search-page.module";
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import {GlobalErrorHandler} from "./shared/global-error-handler";
         PageModule,
         MeasurePageModule,
         ECOSuppliersPageModule,
+        SearchPageModule,
         AdminPageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
