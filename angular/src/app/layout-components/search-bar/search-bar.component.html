@@ -1,5 +1,5 @@
 <div #searchContainer class="search-container" [ngClass]="{focussed: shouldDisplaySearchDetailsDropdown}">
-    <form class="search-form" (submit)="search()">
+    <form class="search-form" (submit)="goToSearchPage()">
         <input #searchInput class="search-input" aria-label="Search text" name="search-text" type="text"
                [(ngModel)]="searchText" (focus)="handleSearchBoxFocussed()"
                (input)="handleInputChange()" />

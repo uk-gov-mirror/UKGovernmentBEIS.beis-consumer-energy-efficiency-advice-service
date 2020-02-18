@@ -1,3 +1,32 @@
-<div class="search-page">
-    Hello world!
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError"></app-spinner-and-error-container>
+<div class="search-page" *ngIf="!isLoading && !isError">
+    <div class="page-row header-row">
+        <div class="page-row-content">
+            <h1>
+                Search results
+            </h1>
+        </div>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content" *ngIf="searchText">
+            <p class="search-results-summary">
+                We found <strong>{{results.length}}</strong> {{results.length === 1 ? 'result' : 'results'}}
+                for your search “<strong>{{searchText}}</strong>”:
+            </p>
+            <ol class="search-results">
+                <li *ngFor="let result of results">
+                    <a [href]="result.route" (click)="router.navigate([result.route])">{{result.title}}</a>
+                    <div [innerHTML]="result.descriptionHtml"></div>
+                </li>
+            </ol>
+            <p *ngIf="results.length === 0">
+                We can’t find any matching pages. Please try a different search.
+            </p>
+        </div>
+        <div class="page-row-content" *ngIf="!searchText">
+            <p>
+                Use the search bar at the top of the page to search.
+            </p>
+        </div>
+    </div>
 </div>

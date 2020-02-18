@@ -114,6 +114,13 @@ export class SearchBarComponent {
             );
     }
 
+    goToSearchPage(): void {
+        if (!this.searchText) {
+            return;
+        }
+        this.router.navigate(['/search'], { queryParams: { q: this.searchText } });
+    }
+
     goToRouteOnEnterPress(event, route: string): void {
         if (event.keyCode === SearchBarComponent.ENTER_KEY_CODE) {
             this.router.navigate([route]);
