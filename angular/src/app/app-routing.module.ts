@@ -35,6 +35,7 @@ import {InstallerSearchComponent} from "./installer-search/installer-search.comp
 import {GrantEligibilityQuestionnaireComponent} from "./grant-eligibility/grant-eligibility-questionnaire/grant-eligibility-questionnaire.component";
 import {GrantEligibilityResultsPageComponent} from "./grant-eligibility/results-page/grant-eligibility-results-page.component";
 import {GrantEligibilityResultsPageGuard} from "./grant-eligibility/results-page/grant-eligibility-results-page.guard";
+import {SearchPageComponent} from "./search-page/search-page.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -219,6 +220,11 @@ const routes: Routes = [
     {
         path: 'pages/:slug',
         component: PageComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'search',
+        component: SearchPageComponent,
         pathMatch: 'full'
     },
     {

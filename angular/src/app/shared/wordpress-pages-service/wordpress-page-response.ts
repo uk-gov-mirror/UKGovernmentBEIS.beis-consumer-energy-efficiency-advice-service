@@ -4,6 +4,7 @@ export interface WordpressPageResponse {
     slug: string;
     title: PageContent;
     content: PageContent;
+    excerpt: PageContent;
     acf: {
         cover_image?: AcfImage,
         video_embed: string

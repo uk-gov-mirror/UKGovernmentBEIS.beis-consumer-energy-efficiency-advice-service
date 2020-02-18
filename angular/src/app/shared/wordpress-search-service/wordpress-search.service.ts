@@ -14,6 +14,9 @@ export class WordpressSearchService {
     }
 
     search(searchText: string): Observable<WordpressSearchable[]> {
+        if (!searchText) {
+            return Observable.of([]);
+        }
         // We need to encode spaces as '+' due to the REST API search plugin not allowing spaces in the route
         const searchTerm = searchText.replace(/[^0-9a-z ]/gi, '').replace(/ /g, '+');
         const endpoint = this.wordpressApiService.getFullApiEndpoint(`${WordpressSearchService.searchEndpoint}/${searchTerm}`);

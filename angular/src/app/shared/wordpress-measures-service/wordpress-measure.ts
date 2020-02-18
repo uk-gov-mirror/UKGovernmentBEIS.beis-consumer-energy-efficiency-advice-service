@@ -9,6 +9,10 @@ export class WordpressMeasure implements WordpressSearchable {
     advantages: string[];
     steps: RecommendationStep[];
 
+    get descriptionHtml() {
+        return `<p>${this.summary}</p>`;
+    }
+
     constructor(wordpressMeasureResponse: MeasureContent) {
         this.route = '/measures/' + encodeURIComponent(wordpressMeasureResponse.slug);
         this.title = wordpressMeasureResponse.acf.headline;
