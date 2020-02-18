@@ -1,13 +1,14 @@
 <div #searchContainer class="search-container" [ngClass]="{focussed: shouldDisplaySearchDetailsDropdown}">
     <form class="search-form" (submit)="search()">
         <input #searchInput class="search-input" aria-label="Search text" name="search-text" type="text"
-               [(ngModel)]="searchText" (focus)="handleSearchBoxFocussed()"/>
+               [(ngModel)]="searchText" (focus)="handleSearchBoxFocussed()"
+               (input)="handleInputChange()" />
         <button class="icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" title="Search" type="submit"></button>
     </form>
     <div class="search-details-dropdown" [ngClass]="{expanded: shouldDisplaySearchDetailsDropdown}">
         <div class="search-results-container">
             <div class="search-empty" *ngIf="searchState === searchStates.Initial">
-                <div class="hint">To search, type in the box above and press enter</div>
+                <div class="hint">To search, type in the box above</div>
             </div>
             <app-spinner-and-error-container [loading]="searchState === searchStates.Loading" [error]="searchState === searchStates.Error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
             <ul class="search-results" *ngIf="searchState === searchStates.Results">

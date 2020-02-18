@@ -1,4 +1,5 @@
 import {Component, Renderer2, ViewChild, Output, ChangeDetectorRef, EventEmitter} from '@angular/core';
+import {throttle} from 'lodash';
 import {GoogleAnalyticsService} from '../../shared/analytics/google-analytics.service';
 import {WordpressSearchable} from '../../shared/wordpress-search-service/wordpress-searchable';
 import {WordpressSearchService} from '../../shared/wordpress-search-service/wordpress-search.service';
@@ -19,12 +20,14 @@ export class SearchBarComponent {
     searchState: SearchStates = SearchStates.Initial;
     searchStates = SearchStates;
     errorMessage: string = "Sorry, there was an error fetching search results. Please try again later.";
+    throttledSearch: () => void = throttle(this.search, 500);
 
     @Output() onMobileNavToggled: EventEmitter<null> = new EventEmitter<null>();
 
     @ViewChild('searchContainer') searchContainer;
     @ViewChild('searchInput') searchInput;
 
+    private lastSearchText: string;
     private deregisterWindowClickListener: () => void;
     private deregisterWindowTabListener: () => void;
 
@@ -64,6 +67,13 @@ export class SearchBarComponent {
         }
         this.deregisterWindowClickListener = this.renderer.listen('window', 'click', event => this.handleWindowClick(event));
         this.deregisterWindowTabListener = this.renderer.listen('window', 'keyup', event => this.handleWindowClick(event));
+    }
+
+    handleInputChange(): void {
+        if (this.searchText === this.lastSearchText) {
+            return;
+        }
+        this.throttledSearch();
     }
 
     handleWindowClick(event): void {
