@@ -9,10 +9,11 @@ import {WordpressSearchable} from "../shared/wordpress-search-service/wordpress-
     styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
+    isError: boolean;
+    isLoading: boolean;
+    results: WordpressSearchable[];
+
     private searchText: string;
-    private results: WordpressSearchable[];
-    private isError: boolean;
-    private isLoading: boolean;
 
     constructor(
         private route: ActivatedRoute,
