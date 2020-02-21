@@ -11,6 +11,7 @@ describe('LatestNewsCardComponent', () => {
     const page: WordpressPage = {
         title: 'heading',
         route: 'fake-route',
+        descriptionHtml: 'description',
         coverImage: null,
         videoEmbed: null
     };

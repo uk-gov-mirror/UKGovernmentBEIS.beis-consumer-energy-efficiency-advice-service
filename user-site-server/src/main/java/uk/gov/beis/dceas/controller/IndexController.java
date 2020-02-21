@@ -128,6 +128,7 @@ public class IndexController {
         "/about-this-site/**",
         "/simple-savings/**",
         "/installer-search/**",
+        "/search/**",
     },
         method = GET)
     public String index(Model model, HttpServletRequest request) throws IOException {
