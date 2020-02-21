@@ -2,10 +2,6 @@
   "name": "beis-dceas",
   "version": "0.0.0",
   "license": "MIT",
-  "engines": {
-    "node": "^12.13.1",
-    "npm": "^6.4.1"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,9 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer ../user-site-server/src/main/resources/public/dist/stats.json",
-    "enforce-engine-strict": "node src/dev/enforce-engine-strict.js",
     "toc": "cd .. && node angular/src/dev/readme-tocs.js",
-    "postinstall": "npm run-script enforce-engine-strict && npm run-script toc"
+    "postinstall": "npm run-script toc"
   },
   "private": true,
   "dependencies": {
