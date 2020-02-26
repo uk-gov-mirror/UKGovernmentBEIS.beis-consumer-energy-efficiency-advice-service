@@ -21,6 +21,7 @@
 @mixin has-horizontal-content($horizontal-spacing, $text-width) {
   .page-row-content {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
 
@@ -28,12 +29,15 @@
       margin-right: $horizontal-spacing;
       flex: 0 0 $text-width;
     }
+    .contact-us-details {
+      margin-right: $horizontal-spacing;
+    }
   }
 }
 
 @mixin has-vertical-content($vertical-spacing) {
   .page-row-content {
-    .header {
+    .header, .contact-us-details {
       margin-bottom: $vertical-spacing;
     }
   }
@@ -68,6 +72,11 @@
           text-decoration: underline;
         }
       }
+    }
+
+    .opening-times {
+      color: white;
+      flex: none;
     }
   }
 }
