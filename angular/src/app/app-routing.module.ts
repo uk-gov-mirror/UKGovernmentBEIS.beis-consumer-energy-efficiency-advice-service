@@ -37,7 +37,7 @@ import {GrantEligibilityResultsPageComponent} from "./grant-eligibility/results-
 import {GrantEligibilityResultsPageGuard} from "./grant-eligibility/results-page/grant-eligibility-results-page.guard";
 import {SearchPageComponent} from "./search-page/search-page.component";
 import {ECOSelfReferralQuestionnaireComponent} from "./eco-self-referral/eco-self-referral-questionnaire/eco-self-referral-questionnaire.component";
-import {ECOSelfReferralDonePageComponent} from "./eco-self-referral/done-page/eco-self-referral-done-page.component";
+import {ECOSelfReferralDonePageComponent} from "./eco-self-referral/eco-self-referral-done-page/eco-self-referral-done-page.component";
 
 /**
  * This const defines the URL routes for the Angular application.

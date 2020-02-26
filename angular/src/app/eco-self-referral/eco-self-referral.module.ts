@@ -6,7 +6,7 @@ import {SharedModule} from '../shared/shared.module';
 import {QuestionnaireModule} from '../questionnaire/questionnaire.module';
 import {RoutingModule} from '../app-routing.module';
 import {ECOSelfReferralQuestionnaireComponent} from './eco-self-referral-questionnaire/eco-self-referral-questionnaire.component';
-import {ECOSelfReferralDonePageComponent} from './done-page/eco-self-referral-done-page.component';
+import {ECOSelfReferralDonePageComponent} from './eco-self-referral-done-page/eco-self-referral-done-page.component';
 
 @NgModule({
     declarations: [
