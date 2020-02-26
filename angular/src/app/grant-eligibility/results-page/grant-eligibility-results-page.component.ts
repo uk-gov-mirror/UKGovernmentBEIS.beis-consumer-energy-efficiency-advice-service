@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {EcoHhcroHelpToHeat} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/eco-hhcro-help-to-heat";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {EligibilityByGrant} from "../../grants/grant-eligibility-service/eligibility-by-grant";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
+import {ResponseData} from "../../shared/response-data/response-data";
 
 @Component({
     selector: 'app-grant-eligibility-results-page',
@@ -19,8 +21,13 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
     isError: boolean = false;
     errorMessage: string;
 
+    hasGivenStorageConsent: boolean = false;
+    hasGivenSharingConsent: boolean = false;
+
     constructor(private questionnaireService: QuestionnaireService,
-                private grantsEligibilityService: GrantEligibilityService) {
+                private grantsEligibilityService: GrantEligibilityService,
+                private router: Router,
+                @Inject(ResponseData) protected responseData: ResponseData) {
     }
 
     ngOnInit() {
@@ -40,6 +47,12 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
                     this.displayErrorMessage(err);
                 }
             );
+    }
+
+    proceedToEcoSelfReferral() {
+        this.responseData.hasGivenStorageConsent = this.hasGivenStorageConsent;
+        this.responseData.hasGivenSharingConsent = this.hasGivenSharingConsent;
+        this.router.navigate(['/eco-self-referral/questionnaire']);
     }
 
     private onLoadingComplete(eligibilityByGrant: EligibilityByGrant) {

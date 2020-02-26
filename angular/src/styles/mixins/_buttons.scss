@@ -162,8 +162,8 @@ $rounded-corner-border-radius: 1000000px;
   border: none;
   cursor: pointer;
   font-size: 20px;
-  background-color: $light-blue;
-  color: $dark-blue;
+
+  min-width: 250px;
 
   padding: 0 0 0 20px;
   &::after {
@@ -171,16 +171,32 @@ $rounded-corner-border-radius: 1000000px;
     font-size: 36px;
     padding: 20px;
     margin-left: 20px;
-    background-color: $dark-blue;
-    color: $light-blue;
   }
 
-  &:focus, &:active, &:hover {
-    background-color: $dark-blue;
-    color: $light-blue;
+  &:not(:disabled) {
+    background-color: $light-blue;
+    color: $dark-blue;
     &::after {
-      background-color: $light-blue;
-      color: $dark-blue;
+      background-color: $dark-blue;
+      color: $light-blue;
+    }
+    &:focus, &:active, &:hover {
+      background-color: $dark-blue;
+      color: $light-blue;
+      &::after {
+        background-color: $light-blue;
+        color: $dark-blue;
+      }
+    }
+  }
+
+  &:disabled {
+    background-color: $light-medium-grey;
+    color: $dark-medium-grey;
+    cursor: not-allowed;
+    &::after {
+      background-color: $dark-medium-grey;
+      color: $light-medium-grey;
     }
   }
 }

@@ -135,6 +135,10 @@ export class ResponseData {
     // Set by IncomeQuestionComponent, used by grants
     public income: number;
 
+    // Set by GrantEligibilityResultsPageComponent, used by ECO self-referral
+    public hasGivenStorageConsent: boolean;
+    public hasGivenSharingConsent: boolean;
+
     // Set by ContactDetailsQuestionComponent, used by ECO self-referral
     public name: string;
     public emailAddress: string;
