@@ -48,6 +48,7 @@ import {PlanInfoService} from "./plan-info-service/plan-info.service";
 import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-service/energy-efficiency-display.service";
 import {LinkButtonComponent} from "./link-button/link-button.component";
 import {AccordionComponent} from "../accordion/accordion.component";
+import {ECOSelfReferralConsentData} from '../eco-self-referral/eco-self-referral-consent-data';
 
 @NgModule({
     declarations: [
@@ -117,6 +118,7 @@ export class SharedModule {
                 WordpressMeasuresService,
                 WordpressECOSuppliersService,
                 ResponseData,
+                ECOSelfReferralConsentData,
                 EnergyCalculationApiService,
                 UserStateApiService,
                 UserStateService,

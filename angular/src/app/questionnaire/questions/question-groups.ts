@@ -130,9 +130,8 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [
     // Personal details
-    new ContactDetailsQuestionMetadata(),
+    // new ContactDetailsQuestionMetadata(),
     // Property details
-    new PostcodeEpcQuestionMetadata(),
     new TenureTypeQuestionMetadata(),
     new HomeTypeQuestionMetadata(),
     new HouseStoreysQuestionMetadata(),
@@ -142,11 +141,11 @@ export const ECO_SELF_REFERRAL_QUESTIONS = [
     new HomeAgeQuestionMetadata(),
     new BedroomsQuestionMetadata(),
     // Loft insulation
-    new HasLoftQuestionMetadata(),
-    new LoftInsulationQuestionMetadata(),
-    new LoftClutterQuestionMetadata(),
-    new LoftInfestationQuestionMetadata(),
-    new LoftWaterDamageQuestionMetadata(),
+    // new HasLoftQuestionMetadata(),
+    // new LoftInsulationQuestionMetadata(),
+    // new LoftClutterQuestionMetadata(),
+    // new LoftInfestationQuestionMetadata(),
+    // new LoftWaterDamageQuestionMetadata(),
     // Wall insulation
     new ConstructionQuestionMetadata(),
     // Boilers

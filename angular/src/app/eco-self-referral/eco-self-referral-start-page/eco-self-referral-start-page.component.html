@@ -1,0 +1,22 @@
+<div class="eco-self-referral-start-page">
+    <div class="page-row page-heading">
+        <div class="page-row-content">
+            <h1 class="heading-text">
+                Register your interest in the ECO scheme
+            </h1>
+        </div>
+    </div>
+    <div class="postcode page-row">
+        <div class="page-row-content">
+            <div class="heading">Enter your postcode to find your property</div>
+            <div class="postcode-input">
+                <div class="postcode-reason-container">
+                    Telling us your postcode and address lets us find information about energy
+                    efficiency at your property from previous surveys.
+                </div>
+                <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected($event)"></app-postcode-lookup>
+                <app-epc-lookup class="postcode-epc" [postcode]="postcode" (epcSelected)="onEpcSelected()"></app-epc-lookup>
+            </div>
+        </div>
+    </div>
+</div>

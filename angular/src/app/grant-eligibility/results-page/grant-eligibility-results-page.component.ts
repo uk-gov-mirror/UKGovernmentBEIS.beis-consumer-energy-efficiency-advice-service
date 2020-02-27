@@ -7,6 +7,7 @@ import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eli
 import {EligibilityByGrant} from "../../grants/grant-eligibility-service/eligibility-by-grant";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
 import {ResponseData} from "../../shared/response-data/response-data";
+import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 
 @Component({
     selector: 'app-grant-eligibility-results-page',
@@ -21,16 +22,16 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
     isError: boolean = false;
     errorMessage: string;
 
-    hasGivenStorageConsent: boolean = false;
-    hasGivenSharingConsent: boolean = false;
-
     constructor(private questionnaireService: QuestionnaireService,
                 private grantsEligibilityService: GrantEligibilityService,
                 private router: Router,
+                public ecoSelfReferralConsentData: ECOSelfReferralConsentData,
                 @Inject(ResponseData) protected responseData: ResponseData) {
     }
 
     ngOnInit() {
+        this.ecoSelfReferralConsentData.reset();
+
         if (!this.questionnaireService.isComplete('grant-eligibility')) {
             this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
                 "not completed the questionnaire, or something has gone wrong.";
@@ -50,9 +51,7 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
     }
 
     proceedToEcoSelfReferral() {
-        this.responseData.hasGivenStorageConsent = this.hasGivenStorageConsent;
-        this.responseData.hasGivenSharingConsent = this.hasGivenSharingConsent;
-        this.router.navigate(['/eco-self-referral/questionnaire']);
+        this.router.navigate(['/eco-self-referral/start']);
     }
 
     private onLoadingComplete(eligibilityByGrant: EligibilityByGrant) {
