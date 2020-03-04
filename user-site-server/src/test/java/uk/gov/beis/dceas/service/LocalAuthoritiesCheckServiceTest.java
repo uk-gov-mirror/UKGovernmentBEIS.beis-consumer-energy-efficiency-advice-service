@@ -44,12 +44,12 @@ import static uk.gov.beis.dceas.db.gen.Tables.WP_POSTS;
 @SpringBootTest("integrationTest=true")
 public class LocalAuthoritiesCheckServiceTest {
 
+    private static final String POSTCODES_URL = "https://api.example.com/postcodes";
+    private static final Integer POSTCODES_REQUEST_LIMIT = 10;
+    private static final String SUPPORT_EMAIL = "localauthoritysupport@example.com";
+
     @Autowired
     private DSLContext database;
-
-    private static final String postcodesUrl = "https://api.example.com/postcodes";
-    private static final Integer postcodesRequestLimit = 10;
-    private static final String supportEmail = "localauthoritysupport@example.com";
 
     private RestTemplate httpClient;
     private JavaMailSender emailSender;
@@ -67,16 +67,16 @@ public class LocalAuthoritiesCheckServiceTest {
         when(httpClientBuilder.build()).thenReturn(httpClient);
 
         emailSender = mock(JavaMailSender.class);
-        message = new MimeMessage((Session)null);
+        message = new MimeMessage((Session) null);
         when(emailSender.createMimeMessage()).thenReturn(message);
 
         service = new LocalAuthoritiesCheckService(
             httpClientBuilder,
-            postcodesUrl,
-            postcodesRequestLimit,
+                POSTCODES_URL,
+                POSTCODES_REQUEST_LIMIT,
             database,
             emailSender,
-            supportEmail,
+                SUPPORT_EMAIL,
             "test");
     }
 
@@ -100,7 +100,7 @@ public class LocalAuthoritiesCheckServiceTest {
         service.checkLocalAuthorities();
 
         // Assert
-        verify(httpClient, never()).postForObject(eq(postcodesUrl), any(), eq(PostcodesResponse.class));
+        verify(httpClient, never()).postForObject(eq(POSTCODES_URL), any(), eq(PostcodesResponse.class));
         verify(emailSender, never()).send(any(MimeMessage.class));
     }
 
@@ -122,7 +122,7 @@ public class LocalAuthoritiesCheckServiceTest {
     public void sendFailureEmailIfNon200StatusCodeResponseFromPostcodesApi() throws Exception {
         // Arrange
         insertLocalAuthority("Doncaster", "E08000017", "EN1 1AF");
-        when(httpClient.postForObject(eq(postcodesUrl), any(), eq(PostcodesResponse.class)))
+        when(httpClient.postForObject(eq(POSTCODES_URL), any(), eq(PostcodesResponse.class)))
             .thenThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST));
 
         // Act
@@ -252,11 +252,11 @@ public class LocalAuthoritiesCheckServiceTest {
     public void postcodesApiRequestLimitIsNotExceeded() throws Exception {
         // Arrange
         // Set up the database so that we should expect at least 4 API calls to keep below the request limit.
-        Integer numberOfLocalAuthorities = (postcodesRequestLimit * 3) + (postcodesRequestLimit / 2);
+        Integer numberOfLocalAuthorities = (POSTCODES_REQUEST_LIMIT * 3) + (POSTCODES_REQUEST_LIMIT / 2);
         for (Integer i = 0; i < numberOfLocalAuthorities; i++) {
             String displayName = String.format("Local Authority %d", i);
             String localAuthorityCode = String.format("E%08d", i);
-            String examplePostcode = String.format("A%d %dBC", i, i/10 + 1);
+            String examplePostcode = String.format("A%d %dBC", i, i / 10 + 1);
             insertLocalAuthority(displayName, localAuthorityCode, examplePostcode);
         }
 
@@ -264,8 +264,8 @@ public class LocalAuthoritiesCheckServiceTest {
         service.checkLocalAuthorities();
 
         // Assert
-        verify(httpClient, atLeast(4)).postForObject(eq(postcodesUrl), any(), any());
-        verify(httpClient, never()).postForObject(eq(postcodesUrl), exceedsPostcodesRequestLimit(), any());
+        verify(httpClient, atLeast(4)).postForObject(eq(POSTCODES_URL), any(), any());
+        verify(httpClient, never()).postForObject(eq(POSTCODES_URL), exceedsPostcodesRequestLimit(), any());
     }
 
     private void insertLocalAuthorityWithoutPostcode(String displayName, String localAuthorityCode) {
@@ -308,7 +308,7 @@ public class LocalAuthoritiesCheckServiceTest {
         PostcodesResponse response = new PostcodesResponse(200, results);
         Set<String> postcodes = Arrays.stream(results).map(PostcodesResponse.QueryResult::getQuery).collect(Collectors.toSet());
         when(httpClient.postForObject(
-            eq(postcodesUrl),
+            eq(POSTCODES_URL),
             matchesPostcodes(postcodes),
             eq(PostcodesResponse.class))).thenReturn(response);
     }
@@ -318,12 +318,12 @@ public class LocalAuthoritiesCheckServiceTest {
         String[] recipients = getEmails(message.getAllRecipients());
         String subject = message.getSubject();
         assertThat(senders).containsOnly("no-reply@simpleenergyadvice.org.uk");
-        assertThat(recipients).containsOnly(supportEmail);
+        assertThat(recipients).containsOnly(SUPPORT_EMAIL);
         assertThat(subject).isEqualTo("[Simple Energy Advice - TEST] Local authority check failed");
         verify(emailSender).send(message);
     }
 
-    private void assertThatMessageContains (String... values) throws Exception {
+    private void assertThatMessageContains(String... values) throws Exception {
         assertThat(message.getContent().toString()).contains(values);
     }
 
@@ -380,10 +380,10 @@ public class LocalAuthoritiesCheckServiceTest {
     }
 
     private Object exceedsPostcodesRequestLimit() {
-        return argThat(new ExceedsPostcodesRequestLimit(postcodesRequestLimit));
+        return argThat(new ExceedsPostcodesRequestLimit(POSTCODES_REQUEST_LIMIT));
     }
 
-    private static class MatchesPostcodes extends ArgumentMatcher<Object> {
+    private static final class MatchesPostcodes extends ArgumentMatcher<Object> {
         private Set expectedPostcodes;
 
         private MatchesPostcodes(Set expectedPostcodes) {
@@ -395,17 +395,17 @@ public class LocalAuthoritiesCheckServiceTest {
             if (!(argument instanceof HashMap)) {
                 return false;
             }
-            Object postcodesObject = ((HashMap)argument).get("postcodes");
+            Object postcodesObject = ((HashMap) argument).get("postcodes");
             if (!(postcodesObject instanceof Set)) {
                 return false;
             }
             @SuppressWarnings("unchecked")
-            Set<String> postcodesSet = (Set)postcodesObject;
+            Set<String> postcodesSet = (Set) postcodesObject;
             return (postcodesSet.size() == expectedPostcodes.size()) && postcodesSet.containsAll(expectedPostcodes);
         }
     }
 
-    private static class ExceedsPostcodesRequestLimit extends ArgumentMatcher<Object> {
+    private static final class ExceedsPostcodesRequestLimit extends ArgumentMatcher<Object> {
         private final Integer postcodesRequestLimit;
 
         private ExceedsPostcodesRequestLimit(Integer postcodesRequestLimit) {
@@ -417,11 +417,11 @@ public class LocalAuthoritiesCheckServiceTest {
             if (!(argument instanceof HashMap)) {
                 return false;
             }
-            Object postcodesObject = ((HashMap)argument).get("postcodes");
+            Object postcodesObject = ((HashMap) argument).get("postcodes");
             if (!(postcodesObject instanceof Set)) {
                 return false;
             }
-            Set postcodesSet = (Set)postcodesObject;
+            Set postcodesSet = (Set) postcodesObject;
             return postcodesSet.size() > postcodesRequestLimit;
         }
     }

@@ -17,10 +17,11 @@ public class PdfUserRecommendationParams extends PdfRecommendationParams {
 
     @Override
     public String getSubheading() {
-        int numberOfRecommendations = recommendations.size();
+        int numberOfRecommendations = getRecommendations().size();
         return numberOfRecommendations == 1
                 ? "You have added 1 recommendation to your plan. You'll find all the steps and things you need to consider to implement this measure."
-                : "You have added " + numberOfRecommendations + " recommendations to your plan. You'll find all the steps and things you need to consider to implement those measures.";
+                : "You have added " + numberOfRecommendations +
+                    " recommendations to your plan. You'll find all the steps and things you need to consider to implement those measures.";
     }
 
     @Override

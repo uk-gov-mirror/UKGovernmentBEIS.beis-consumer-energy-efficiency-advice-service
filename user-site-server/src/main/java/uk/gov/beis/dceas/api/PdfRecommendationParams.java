@@ -9,8 +9,8 @@ public abstract class PdfRecommendationParams {
     // Keep in sync with tenure-type.ts
     private static final int OWNER_TENURE_TYPE = 0;
 
-    protected List<SelectedEnergyEfficiencyRecommendation> recommendations;
-    protected Integer tenureType;
+    private List<SelectedEnergyEfficiencyRecommendation> recommendations;
+    private Integer tenureType;
 
     public PdfRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType) {
         this.recommendations = recommendations;
@@ -20,6 +20,7 @@ public abstract class PdfRecommendationParams {
     public abstract String getTitle();
     public abstract String getSubheading();
     public abstract String getFileDescription();
+
 
     public List<SelectedEnergyEfficiencyRecommendation> getRecommendations() {
         return recommendations;
