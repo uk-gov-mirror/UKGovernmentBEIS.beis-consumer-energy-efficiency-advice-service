@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-03-03-add-eco-self-referral-table.xml"
+               author="jamie.humphries@softwire.com">
+        <createTable tableName="eco_self_referral"
+                     remarks="This table holds data for users that have self-referred to the ECO scheme.">
+            <!-- Metadata -->
+            <column name="id" type="BIGINT" autoIncrement="true"><constraints nullable="false" primaryKey="true" /></column>
+            <column name="created" type="TIMESTAMP"><constraints nullable="false" /></column>
+            <!-- EPC -->
+            <column name="lmk_key" type="VARCHAR(200)" />
+            <!-- Contact details -->
+            <column name="name" type="VARCHAR(200)" />
+            <column name="email" type="VARCHAR(200)" />
+            <column name="phone_number" type="VARCHAR(20)" />
+            <!-- Eligibility information -->
+            <column name="receive_pension_guarantee_credit" type="BOOLEAN" />
+            <column name="receive_income_related_benefits" type="BOOLEAN" />
+            <column name="receive_societal_benefits" type="BOOLEAN" />
+            <column name="receive_defense_related_benefits" type="BOOLEAN" />
+            <column name="receive_child_benefits" type="BOOLEAN" />
+            <column name="income" type="INT" />
+            <!-- Address -->
+            <column name="address1" type="VARCHAR(200)" />
+            <column name="address2" type="VARCHAR(200)" />
+            <column name="address3" type="VARCHAR(200)" />
+            <column name="postcode" type="VARCHAR(20)" />
+            <!-- General property information -->
+            <column name="tenure_type" type="INT" />
+            <column name="home_type" type="INT" />
+            <column name="number_of_storeys" type="INT" />
+            <column name="number_of_storeys_in_building" type="INT" />
+            <column name="built_form" type="INT" />
+            <column name="flat_exposed_wall_type" type="INT" />
+            <column name="home_age_band" type="INT" />
+            <column name="number_of_bedrooms" type="INT" />
+            <column name="has_loft" type="BOOLEAN" />
+            <column name="has_loft_insulation" type="BOOLEAN" />
+            <column name="is_loft_accessible_and_clear_of_clutter" type="BOOLEAN" />
+            <column name="has_loft_history_of_infestation" type="BOOLEAN" />
+            <column name="has_loft_history_of_water_damage" type="BOOLEAN" />
+            <column name="wall_type" type="INT" />
+            <column name="fuel_type" type="INT" />
+            <column name="has_hot_water_cylinder" type="BOOLEAN" />
+            <column name="has_condensing_boiler" type="BOOLEAN" />
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

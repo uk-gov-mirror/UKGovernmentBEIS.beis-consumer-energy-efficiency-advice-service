@@ -46,6 +46,7 @@ import {LoftInsulationQuestionMetadata} from "./loft-insulation-question/loft-in
 import {LoftClutterQuestionMetadata} from "./loft-clutter-question/loft-clutter-question-metadata";
 import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-infestation-question-metadata";
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
+import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -129,26 +130,28 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
 ];
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [
+    new ConfirmEpcQuestionMetadata(),
     // Personal details
-    // new ContactDetailsQuestionMetadata(),
+    new ContactDetailsQuestionMetadata(),
     // Property details
     new TenureTypeQuestionMetadata(),
-    new HomeTypeQuestionMetadata(),
+    new HomeTypeQuestionMetadata(true),
     new HouseStoreysQuestionMetadata(),
     new FlatStoreysQuestionMetadata(),
-    new BuiltFormQuestionMetadata(),
-    new FlatExposedWallQuestionMetadata(),
+    new BuiltFormQuestionMetadata(true),
+    new FlatExposedWallQuestionMetadata(true),
     new HomeAgeQuestionMetadata(),
-    new BedroomsQuestionMetadata(),
+    new BedroomsQuestionMetadata(true),
     // Loft insulation
-    // new HasLoftQuestionMetadata(),
-    // new LoftInsulationQuestionMetadata(),
-    // new LoftClutterQuestionMetadata(),
-    // new LoftInfestationQuestionMetadata(),
-    // new LoftWaterDamageQuestionMetadata(),
+    new HasLoftQuestionMetadata(),
+    new LoftInsulationQuestionMetadata(),
+    new LoftClutterQuestionMetadata(),
+    new LoftInfestationQuestionMetadata(),
+    new LoftWaterDamageQuestionMetadata(),
     // Wall insulation
-    new ConstructionQuestionMetadata(),
+    new WallTypeQuestionMetadata(),
     // Boilers
+    new FuelTypeQuestionMetadata(),
     new HotWaterCylinderQuestionMetadata(),
     new BoilerTypeQuestionMetadata()
 ];

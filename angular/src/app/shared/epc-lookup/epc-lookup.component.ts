@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, Renderer2, OnInit, ChangeDetectorRef} from '@angular/core';
-import {deleteOldResponseData, ResponseData} from '../response-data/response-data';
+import {resetResponseDataForNewEpc, ResponseData} from '../response-data/response-data';
 import {Epc} from '../postcode-epc-service/model/epc';
 import {EpcParserService} from '../postcode-epc-service/epc-api-service/epc-parser.service';
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
@@ -89,7 +89,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     private setResponseData(selectedEpc: Epc) {
         if (JSON.stringify(selectedEpc) !== JSON.stringify(this.responseData.epc)) {
             // The EPC has changed so we should clear the existing responses
-            deleteOldResponseData(this.responseData);
+            resetResponseDataForNewEpc(this.responseData);
 
             this.responseData.postcode = this.postcodeDetails.postcode;
             this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
@@ -102,7 +102,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     private setResponseDataPostcodeOnly(selectedPostcode: string) {
         if (this.responseData.epc || selectedPostcode !== this.responseData.postcode) {
             // The postcode has changed so we should clear the existing responses
-            deleteOldResponseData(this.responseData);
+            resetResponseDataForNewEpc(this.responseData);
 
             this.responseData.postcode = this.postcodeDetails.postcode;
             this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;

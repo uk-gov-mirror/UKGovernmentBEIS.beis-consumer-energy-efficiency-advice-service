@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {ResponseData} from '../../shared/response-data/response-data';
+import {ECOSelfReferralApiService} from '../eco-self-referral-api.service';
 
 @Component({
     selector: 'app-eco-self-referral-questionnaire',
@@ -7,10 +9,20 @@ import {Router} from '@angular/router';
 })
 export class ECOSelfReferralQuestionnaireComponent {
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+        private responseData: ResponseData,
+        private apiService: ECOSelfReferralApiService) {
     }
 
     onQuestionnaireComplete() {
-        this.router.navigate(['/eco-self-referral/done']);
+        this.apiService.submitECOSelfReferral(this.responseData)
+            .subscribe(
+                () => {
+                    this.router.navigate(['/eco-self-referral/done']);
+                },
+                error => {
+                    // TODO: Handle error.
+                }
+            );
     }
 }

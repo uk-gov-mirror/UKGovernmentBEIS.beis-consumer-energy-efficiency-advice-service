@@ -51,6 +51,7 @@ import {LoftInsulationQuestionComponent} from "./loft-insulation-question/loft-i
 import {LoftClutterQuestionComponent} from "./loft-clutter-question/loft-clutter-question.component";
 import {LoftInfestationQuestionComponent} from "./loft-infestation-question/loft-infestation-question.component";
 import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/loft-water-damage-question.component";
+import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
 
 @NgModule({
     declarations: [
@@ -99,7 +100,8 @@ import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/lof
         LoftInsulationQuestionComponent,
         LoftClutterQuestionComponent,
         LoftInfestationQuestionComponent,
-        LoftWaterDamageQuestionComponent
+        LoftWaterDamageQuestionComponent,
+        WallTypeQuestionComponent
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -147,7 +149,8 @@ import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/lof
         LoftInsulationQuestionComponent,
         LoftClutterQuestionComponent,
         LoftInfestationQuestionComponent,
-        LoftWaterDamageQuestionComponent
+        LoftWaterDamageQuestionComponent,
+        WallTypeQuestionComponent
     ],
     imports: [
         CommonModule,
@@ -202,7 +205,8 @@ import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/lof
         LoftInsulationQuestionComponent,
         LoftClutterQuestionComponent,
         LoftInfestationQuestionComponent,
-        LoftWaterDamageQuestionComponent
+        LoftWaterDamageQuestionComponent,
+        WallTypeQuestionComponent
     ]
 })
 export class QuestionsModule {

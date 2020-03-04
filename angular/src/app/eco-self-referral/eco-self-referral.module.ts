@@ -8,8 +8,9 @@ import {RoutingModule} from '../app-routing.module';
 import {ECOSelfReferralStartPageComponent} from './eco-self-referral-start-page/eco-self-referral-start-page.component';
 import {ECOSelfReferralQuestionnaireComponent} from './eco-self-referral-questionnaire/eco-self-referral-questionnaire.component';
 import {ECOSelfReferralDonePageComponent} from './eco-self-referral-done-page/eco-self-referral-done-page.component';
-import {ECOSelfReferralDonePageGuard} from "./eco-self-referral-done-page/eco-self-referral-done-page.guard";
-import {ECOSelfReferralConsentGuard} from "./eco-self-referral-consent.guard";
+import {ECOSelfReferralDonePageGuard} from './eco-self-referral-done-page/eco-self-referral-done-page.guard';
+import {ECOSelfReferralConsentGuard} from './eco-self-referral-consent.guard';
+import {ECOSelfReferralApiService} from './eco-self-referral-api.service';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ export class ECOSelfReferralModule {
             ngModule: ECOSelfReferralModule,
             providers: [
                 ECOSelfReferralDonePageGuard,
-                ECOSelfReferralConsentGuard
+                ECOSelfReferralConsentGuard,
+                ECOSelfReferralApiService
             ]
         };
     }

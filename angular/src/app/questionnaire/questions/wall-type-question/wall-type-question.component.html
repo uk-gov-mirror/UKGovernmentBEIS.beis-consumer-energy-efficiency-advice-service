@@ -1,0 +1,9 @@
+<div class="construction-question question-component">
+    <form class="answer-grid questionnaire-form" (submit)="complete.emit()">
+        <div class="insulation-type-input">
+            <select name="wall-type" class="dropdown-input text-input wall-type" aria-labelledby="wall-type-label" [(ngModel)]="wallType">
+                <option *ngFor="let wallType of wallTypes" [ngValue]="wallType.value">{{wallType.name}}</option>
+            </select>
+        </div>
+    </form>
+</div>

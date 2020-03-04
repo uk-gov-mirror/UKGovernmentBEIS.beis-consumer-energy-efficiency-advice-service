@@ -5,7 +5,7 @@ import {HomeType} from '../home-type-question/home-type';
 import {QuestionType} from '../question-type';
 
 export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
-    constructor() {
+    constructor(private ignoreEpc = false) {
         super(
             FlatExposedWallQuestionComponent,
             'flat_exposed_wall',
@@ -14,7 +14,7 @@ export class FlatExposedWallQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.epc === undefined &&
+        return ((responseData.epc === undefined) || this.ignoreEpc) &&
             (responseData.homeType == null || responseData.homeType === HomeType.FlatDuplexOrMaisonette);
     }
 

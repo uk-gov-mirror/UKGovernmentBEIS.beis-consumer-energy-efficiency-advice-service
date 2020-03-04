@@ -6,18 +6,41 @@ function add_eco_self_referral_questions() {
 
     if (get_option('migration/201910231103_add_eco_self_referral_questions') == 'done') {
         return;
-    };
+    }
+
+    $loft_question_reason = 'Some companies may be able to provide loft insulation under the ECO scheme, depending on the state of the loft and any existing insulation.';
 
     $questions = array(
-        'Contact Details'   => 'What are your contact details?',
-        'Has Loft'          => 'Do you have a loft?',
-        'Loft Insulation'   => 'Does your loft already have insulation?',
-        'Loft Clutter'      => 'Is your loft easily accessible and clear of clutter?',
-        'Loft Infestation'  => 'Does your loft have a history of infestation?',
-        'Loft Water Damage' => 'Does your loft have a history of water damage?'
-    );
+        'Contact Details'   => array(
+            'question_heading'  => 'What are your contact details?',
+            'question_reason'   => 'We may pass your contact details along to companies that can provide measures under the ECO scheme.'
+        ),
+        'Has Loft'          => array(
+            'question_heading'  => 'Do you have a loft?',
+            'question_reason'   => $loft_question_reason
+        ),
+        'Loft Insulation'   => array(
+            'question_heading'  => 'Does your loft already have insulation?',
+            'question_reason'   => $loft_question_reason
+        ),
+        'Loft Clutter'      => array(
+            'question_heading'  => 'Is your loft easily accessible and clear of clutter?',
+            'question_reason'   => $loft_question_reason
+        ),
+        'Loft Infestation'  => array(
+            'question_heading'  => 'Does your loft have a history of infestation?',
+            'question_reason'   => $loft_question_reason
+        ),
+        'Loft Water Damage' => array(
+            'question_heading'  => 'Does your loft have a history of water damage?',
+            'question_reason'   => $loft_question_reason
+        ),
+        'Wall Type'         => array(
+            'question_heading'  => 'What type of walls does your property have?',
+            'question_reason'   => 'Some companies may be able to provide wall insulation under the ECO scheme.')
+        );
 
-    foreach ($questions as $post_title => $question_heading) {
+    foreach ($questions as $post_title => $metadata) {
         $post_name = sanitize_title_with_dashes($post_title);
         $existing_questions = get_posts(array(
             'name'          => $post_name,
@@ -34,10 +57,10 @@ function add_eco_self_referral_questions() {
             'post_type'     => 'question',
             'post_status'   => 'publish',
             'meta_input'    => array(
-                'questionHeading'           => $question_heading,
+                'questionHeading'           => $metadata['question_heading'],
                 'helpHtml'                  => '',
-                'questionReason'            => '',
-                'autoOpenQuestionReason'    => 0
+                'questionReason'            => $metadata['question_reason'],
+                'autoOpenQuestionReason'    => '0'
             )
         ));
     }

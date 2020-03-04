@@ -5,7 +5,7 @@ import {isHouseOrBungalow} from '../home-type-question/home-type';
 import {BuiltFormQuestionComponent} from "./built-form-question.component";
 
 export class BuiltFormQuestionMetadata extends QuestionMetadata {
-    constructor() {
+    constructor(private ignoreEpc = false) {
         super(
             BuiltFormQuestionComponent,
             'built_form',
@@ -14,7 +14,7 @@ export class BuiltFormQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.epc === undefined &&
+        return ((responseData.epc === undefined) || this.ignoreEpc) &&
             (responseData.homeType == null || isHouseOrBungalow(responseData.homeType));
     }
 
