@@ -25,8 +25,7 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
     constructor(private questionnaireService: QuestionnaireService,
                 private grantsEligibilityService: GrantEligibilityService,
                 private router: Router,
-                public ecoSelfReferralConsentData: ECOSelfReferralConsentData,
-                @Inject(ResponseData) protected responseData: ResponseData) {
+                public ecoSelfReferralConsentData: ECOSelfReferralConsentData) {
     }
 
     ngOnInit() {
