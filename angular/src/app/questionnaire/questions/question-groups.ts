@@ -39,6 +39,14 @@ import {PensionGuaranteeCreditQuestionMetadata} from "./benefits-questions/pensi
 import {SocietalBenefitsQuestionMetadata} from "./benefits-questions/societal-benefits-question-metadata";
 import {DefenseRelatedBenefitsQuestionMetadata} from "./benefits-questions/defense-related-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "./benefits-questions/child-benefits-question-metadata";
+import {ContactDetailsQuestionMetadata} from "./contact-details-question/contact-details-question-metadata";
+import {WallType} from "./construction-question/construction-types";
+import {HasLoftQuestionMetadata} from "./has-loft-question/has-loft-question-metadata";
+import {LoftInsulationQuestionMetadata} from "./loft-insulation-question/loft-insulation-question-metadata";
+import {LoftClutterQuestionMetadata} from "./loft-clutter-question/loft-clutter-question-metadata";
+import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-infestation-question-metadata";
+import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
+import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -119,6 +127,33 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new ChildBenefitsQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()
+];
+
+export const ECO_SELF_REFERRAL_QUESTIONS = [
+    new ConfirmEpcQuestionMetadata(),
+    // Personal details
+    new ContactDetailsQuestionMetadata(),
+    // Property details
+    new TenureTypeQuestionMetadata(),
+    new HomeTypeQuestionMetadata(true),
+    new HouseStoreysQuestionMetadata(),
+    new FlatStoreysQuestionMetadata(),
+    new BuiltFormQuestionMetadata(true),
+    new FlatExposedWallQuestionMetadata(true),
+    new HomeAgeQuestionMetadata(),
+    new BedroomsQuestionMetadata(true),
+    // Loft insulation
+    new HasLoftQuestionMetadata(),
+    new LoftInsulationQuestionMetadata(),
+    new LoftClutterQuestionMetadata(),
+    new LoftInfestationQuestionMetadata(),
+    new LoftWaterDamageQuestionMetadata(),
+    // Wall insulation
+    new WallTypeQuestionMetadata(),
+    // Boilers
+    new FuelTypeQuestionMetadata(),
+    new HotWaterCylinderQuestionMetadata(),
+    new BoilerTypeQuestionMetadata()
 ];
 
 export const BOILER_QUESTIONS = [

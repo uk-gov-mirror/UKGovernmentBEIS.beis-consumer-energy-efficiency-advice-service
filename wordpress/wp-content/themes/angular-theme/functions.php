@@ -21,3 +21,4 @@ require_once("functions/create_new_local_authority_users_when_creating_new_local
 
 require_once("functions/migrations/201910041427_set_up_roles_capabilities_and_users_for_local_authorities.php");
 require_once("functions/migrations/201910161319_add_example_postcodes_to_local_authorities.php");
+require_once("functions/migrations/201910231103_add_eco_self_referral_questions.php");

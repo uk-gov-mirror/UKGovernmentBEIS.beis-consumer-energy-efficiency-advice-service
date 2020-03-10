@@ -45,6 +45,13 @@ import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pens
 import {ChildBenefitsQuestionComponent} from "./benefits-questions/child-benefits-question.component";
 import {DefenseRelatedBenefitsQuestionComponent} from "./benefits-questions/defense-related-benefits-question.component";
 import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-benefits-question.component";
+import {ContactDetailsQuestionComponent} from "./contact-details-question/contact-details-question.component";
+import {HasLoftQuestionComponent} from "./has-loft-question/has-loft-question.component";
+import {LoftInsulationQuestionComponent} from "./loft-insulation-question/loft-insulation-question.component";
+import {LoftClutterQuestionComponent} from "./loft-clutter-question/loft-clutter-question.component";
+import {LoftInfestationQuestionComponent} from "./loft-infestation-question/loft-infestation-question.component";
+import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/loft-water-damage-question.component";
+import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
 
 @NgModule({
     declarations: [
@@ -88,6 +95,13 @@ import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-b
         AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
+        ContactDetailsQuestionComponent,
+        HasLoftQuestionComponent,
+        LoftInsulationQuestionComponent,
+        LoftClutterQuestionComponent,
+        LoftInfestationQuestionComponent,
+        LoftWaterDamageQuestionComponent,
+        WallTypeQuestionComponent
     ],
     exports: [
         BedroomsQuestionComponent,
@@ -130,6 +144,13 @@ import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-b
         AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
+        ContactDetailsQuestionComponent,
+        HasLoftQuestionComponent,
+        LoftInsulationQuestionComponent,
+        LoftClutterQuestionComponent,
+        LoftInfestationQuestionComponent,
+        LoftWaterDamageQuestionComponent,
+        WallTypeQuestionComponent
     ],
     imports: [
         CommonModule,
@@ -179,6 +200,13 @@ import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-b
         AgriculturalTenancyTypeQuestionComponent,
         PropertyEpcQuestionComponent,
         EpcNotFoundComponent,
+        ContactDetailsQuestionComponent,
+        HasLoftQuestionComponent,
+        LoftInsulationQuestionComponent,
+        LoftClutterQuestionComponent,
+        LoftInfestationQuestionComponent,
+        LoftWaterDamageQuestionComponent,
+        WallTypeQuestionComponent
     ]
 })
 export class QuestionsModule {

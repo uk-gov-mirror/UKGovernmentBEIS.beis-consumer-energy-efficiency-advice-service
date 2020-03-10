@@ -1,0 +1,21 @@
+<div class="question-component contact-details-question">
+    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+        <div class="form-group">
+            <label for="eco-self-referral-name">Name</label>
+            <input id="eco-self-referral-name" class="text-input" type="text" maxlength="100"
+                   [value]="name" (input)="name = $event.target.value">
+        </div>
+        <div class="form-group">
+            <label for="eco-self-referral-email-address">Email address</label>
+            <input id="eco-self-referral-email-address" class="text-input" type="email" maxlength="100"
+                   [value]="emailAddress" (input)="emailAddress = $event.target.value">
+        </div>
+        <div class="form-group">
+            <label for="eco-self-referral-phone-number">Phone number</label>
+            <input id="eco-self-referral-phone-number" class="text-input" type="text" maxlength="20"
+                   [value]="phoneNumber" (input)="phoneNumber = $event.target.value">
+        </div>
+        <!-- Hidden submit button allows form to be submitted with Enter key. -->
+        <button type="submit" style="display: none"></button>
+    </form>
+</div>

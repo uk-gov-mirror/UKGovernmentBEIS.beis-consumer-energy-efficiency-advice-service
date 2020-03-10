@@ -7,11 +7,13 @@ package uk.gov.beis.dceas.db.gen;
 import javax.annotation.Generated;
 
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
 import uk.gov.beis.dceas.db.gen.tables.Boilers;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock;
+import uk.gov.beis.dceas.db.gen.tables.EcoSelfReferral;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCalendars;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCronTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzFiredTriggers;
@@ -28,6 +30,7 @@ import uk.gov.beis.dceas.db.gen.tables.WpPostmeta;
 import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 import uk.gov.beis.dceas.db.gen.tables.records.BoilersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.DatabasechangeloglockRecord;
+import uk.gov.beis.dceas.db.gen.tables.records.EcoSelfReferralRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzCalendarsRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzCronTriggersRecord;
 import uk.gov.beis.dceas.db.gen.tables.records.QrtzFiredTriggersRecord;
@@ -62,6 +65,7 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<EcoSelfReferralRecord, Long> IDENTITY_ECO_SELF_REFERRAL = Identities0.IDENTITY_ECO_SELF_REFERRAL;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -69,6 +73,7 @@ public class Keys {
 
     public static final UniqueKey<BoilersRecord> PK_BOILERS = UniqueKeys0.PK_BOILERS;
     public static final UniqueKey<DatabasechangeloglockRecord> PK_DATABASECHANGELOGLOCK = UniqueKeys0.PK_DATABASECHANGELOGLOCK;
+    public static final UniqueKey<EcoSelfReferralRecord> PK_ECO_SELF_REFERRAL = UniqueKeys0.PK_ECO_SELF_REFERRAL;
     public static final UniqueKey<QrtzCalendarsRecord> PK_QRTZ_CALENDARS = UniqueKeys0.PK_QRTZ_CALENDARS;
     public static final UniqueKey<QrtzCronTriggersRecord> PK_QRTZ_CRON_TRIGGERS = UniqueKeys0.PK_QRTZ_CRON_TRIGGERS;
     public static final UniqueKey<QrtzFiredTriggersRecord> PK_QRTZ_FIRED_TRIGGERS = UniqueKeys0.PK_QRTZ_FIRED_TRIGGERS;
@@ -99,9 +104,14 @@ public class Keys {
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
+    private static class Identities0 extends AbstractKeys {
+        public static Identity<EcoSelfReferralRecord, Long> IDENTITY_ECO_SELF_REFERRAL = createIdentity(EcoSelfReferral.ECO_SELF_REFERRAL, EcoSelfReferral.ECO_SELF_REFERRAL.ID);
+    }
+
     private static class UniqueKeys0 extends AbstractKeys {
         public static final UniqueKey<BoilersRecord> PK_BOILERS = createUniqueKey(Boilers.BOILERS, "pk_boilers", Boilers.BOILERS.PRODUCT_INDEX_NUMBER);
         public static final UniqueKey<DatabasechangeloglockRecord> PK_DATABASECHANGELOGLOCK = createUniqueKey(Databasechangeloglock.DATABASECHANGELOGLOCK, "pk_databasechangeloglock", Databasechangeloglock.DATABASECHANGELOGLOCK.ID);
+        public static final UniqueKey<EcoSelfReferralRecord> PK_ECO_SELF_REFERRAL = createUniqueKey(EcoSelfReferral.ECO_SELF_REFERRAL, "pk_eco_self_referral", EcoSelfReferral.ECO_SELF_REFERRAL.ID);
         public static final UniqueKey<QrtzCalendarsRecord> PK_QRTZ_CALENDARS = createUniqueKey(QrtzCalendars.QRTZ_CALENDARS, "pk_qrtz_calendars", QrtzCalendars.QRTZ_CALENDARS.SCHED_NAME, QrtzCalendars.QRTZ_CALENDARS.CALENDAR_NAME);
         public static final UniqueKey<QrtzCronTriggersRecord> PK_QRTZ_CRON_TRIGGERS = createUniqueKey(QrtzCronTriggers.QRTZ_CRON_TRIGGERS, "pk_qrtz_cron_triggers", QrtzCronTriggers.QRTZ_CRON_TRIGGERS.SCHED_NAME, QrtzCronTriggers.QRTZ_CRON_TRIGGERS.TRIGGER_NAME, QrtzCronTriggers.QRTZ_CRON_TRIGGERS.TRIGGER_GROUP);
         public static final UniqueKey<QrtzFiredTriggersRecord> PK_QRTZ_FIRED_TRIGGERS = createUniqueKey(QrtzFiredTriggers.QRTZ_FIRED_TRIGGERS, "pk_qrtz_fired_triggers", QrtzFiredTriggers.QRTZ_FIRED_TRIGGERS.SCHED_NAME, QrtzFiredTriggers.QRTZ_FIRED_TRIGGERS.ENTRY_ID);

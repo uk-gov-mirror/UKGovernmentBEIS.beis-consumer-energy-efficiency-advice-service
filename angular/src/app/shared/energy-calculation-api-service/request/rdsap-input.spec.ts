@@ -90,6 +90,16 @@ describe('RdsapInput', () => {
             receiveChildBenefits: false,
             income: 123,
 
+            name: 'Steve Rogers',
+            emailAddress: 'steve.rogers@example.com',
+            phoneNumber: '555 1234',
+
+            hasLoft: true,
+            hasLoftInsulation: true,
+            isLoftAccessibleAndClearOfClutter: true,
+            hasLoftHistoryOfInfestation: false,
+            hasLoftHistoryOfWaterDamage: false,
+
             lettingDomesticPropertyStage: LettingDomesticPropertyStage.Currently,
             tenancyStartDate: TenancyStartDate.BeforeApril2018,
             propertyEpc: UserEpcRating.AtLeastE,

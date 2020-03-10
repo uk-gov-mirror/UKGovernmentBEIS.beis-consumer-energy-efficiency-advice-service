@@ -111,6 +111,7 @@ public class IndexController {
         "/",
         "/energy-efficiency/**",
         "/grant-eligibility/**",
+        "/eco-self-referral/**",
         "/grants/**",
         "/boiler/**",
         "/minimum-energy-efficiency-standards/**",

@@ -4,7 +4,7 @@ import {QuestionType} from '../question-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
 
 export class BedroomsQuestionMetadata extends QuestionMetadata {
-    constructor() {
+    constructor(private ignoreEpc: boolean = false) {
         super(
             BedroomsQuestionComponent,
             'bedrooms',
@@ -13,7 +13,7 @@ export class BedroomsQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.epc === undefined;
+        return (responseData.epc === undefined) || this.ignoreEpc;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

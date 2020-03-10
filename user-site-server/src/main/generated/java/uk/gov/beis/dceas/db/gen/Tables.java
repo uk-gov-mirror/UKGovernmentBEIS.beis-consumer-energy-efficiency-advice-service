@@ -9,6 +9,7 @@ import javax.annotation.Generated;
 import uk.gov.beis.dceas.db.gen.tables.Boilers;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangelog;
 import uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock;
+import uk.gov.beis.dceas.db.gen.tables.EcoSelfReferral;
 import uk.gov.beis.dceas.db.gen.tables.QrtzBlobTriggers;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCalendars;
 import uk.gov.beis.dceas.db.gen.tables.QrtzCronTriggers;
@@ -53,6 +54,11 @@ public class Tables {
      * The table <code>databasechangeloglock</code>.
      */
     public static final Databasechangeloglock DATABASECHANGELOGLOCK = uk.gov.beis.dceas.db.gen.tables.Databasechangeloglock.DATABASECHANGELOGLOCK;
+
+    /**
+     * The table <code>eco_self_referral</code>.
+     */
+    public static final EcoSelfReferral ECO_SELF_REFERRAL = uk.gov.beis.dceas.db.gen.tables.EcoSelfReferral.ECO_SELF_REFERRAL;
 
     /**
      * The table <code>qrtz_blob_triggers</code>.

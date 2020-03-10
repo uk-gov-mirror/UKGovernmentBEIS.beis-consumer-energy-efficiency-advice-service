@@ -6,5 +6,5 @@ export interface QuestionContent {
     helpHtml: string;
     questionImage?: string;
     questionReason: string;
-    autoOpenQuestionReason?: boolean;
+    autoOpenQuestionReason?: any;
 }

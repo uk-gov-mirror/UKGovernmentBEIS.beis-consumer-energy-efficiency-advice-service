@@ -1,0 +1,114 @@
+@import "styles/mixins/font";
+@import "styles/var/colors";
+@import "styles/mixins/layout";
+
+// General styling (shouldn't contain many widths/sizes etc.)
+.eco-self-referral-start-page {
+  .page-row-content {
+    .heading {
+      @include page-subheading-font;
+      padding: 30px 0;
+    }
+  }
+
+  .page-heading {
+    background-color: $light-blue;
+
+    .page-row-content {
+      .heading {
+        @include page-heading-font;
+        color: $dark-medium-blue;
+      }
+    }
+  }
+
+  .postcode {
+    background-color: $lighter-grey;
+    color: $dark-grey;
+
+    .page-row-content {
+      .heading {
+        color: $dark-grey;
+      }
+
+      .postcode-reason-container {
+        @include has-font-sizes-at-breakpoints(18px, 22px, 18px, 22px, 18px, 22px);
+        font-family: $font-family-light;
+        color: $dark-grey;
+      }
+    }
+  }
+}
+
+// Breakpoint specific styling
+.eco-self-referral-start-page {
+  @include mobile() {
+    .page-row-content {
+      padding: 25px 0 20px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 28px;
+      }
+    }
+
+    .postcode {
+      .page-row-content {
+        // Force section to be within the limits
+        width: calc(100% - 40px);
+      }
+
+      .heading {
+        padding-bottom: 24px;
+      }
+
+      .loading-spinner {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  @include tablet() {
+    .page-row-content {
+      padding: 47px 0 36px;
+    }
+
+    .postcode {
+      .heading {
+        padding-bottom: 22px;
+      }
+
+      .loading-spinner {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  @include desktop() {
+    .page-row-content {
+      padding: 45px 0 60px;
+    }
+
+    .page-heading {
+      .page-row-content {
+        padding-bottom: 40px;
+      }
+    }
+
+    .postcode {
+      .page-row-content {
+        padding: 45px 0 80px;
+        max-width: 800px;
+        text-align: center;
+      }
+
+      .postcode-reason-container {
+        padding-right: 40px;
+        margin-top: 24px;
+      }
+    }
+  }
+}

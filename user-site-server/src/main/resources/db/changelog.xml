@@ -86,4 +86,5 @@
     <include file="changelogs/2018-11-22-add-built-form-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2018-11-22-remove-house-exposed-wall-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2019-01-03-update-benefits-questions.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-03-03-add-eco-self-referral-table.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

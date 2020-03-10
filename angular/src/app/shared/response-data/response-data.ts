@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import {Injectable} from '@angular/core';
 import {Epc} from '../postcode-epc-service/model/epc';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
@@ -135,6 +136,22 @@ export class ResponseData {
     // Set by IncomeQuestionComponent, used by grants
     public income: number;
 
+    // Set by ContactDetailsQuestionComponent, used by ECO self-referral
+    public name: string;
+    public emailAddress: string;
+    public phoneNumber: string;
+
+    // Set by HasLoftQuestionComponent, used be ECO self-referral
+    public hasLoft: boolean;
+    // Set by LoftInsulationQuestionComponent, used by ECO self-referral
+    public hasLoftInsulation: boolean;
+    // Set by LoftClutterQuestionComponent, used by ECO self-referral
+    public isLoftAccessibleAndClearOfClutter: boolean;
+    // Set by LoftInfestationQuestionComponent, used by ECO self-referral
+    public hasLoftHistoryOfInfestation: boolean;
+    // Set by LoftWaterDamageQuestionComponent, used by ECO self-referral
+    public hasLoftHistoryOfWaterDamage: boolean;
+
     get numberOfAdults(): number {
         return this.numberOfAdultsAgedUnder64 +
             this.numberOfAdultsAged64To80 +
@@ -199,7 +216,7 @@ export function isComplete(responseData: ResponseData) {
 }
 
 export function replaceOldResponseData(oldResponseData: ResponseData, newResponseData: ResponseData) {
-    deleteOldResponseData(oldResponseData);
+    deleteAllOldResponseData(oldResponseData);
     addNewResponseData(oldResponseData, newResponseData);
 }
 
@@ -211,10 +228,32 @@ function addNewResponseData(oldResponseData: ResponseData, newResponseData: Resp
     }
 }
 
-export function deleteOldResponseData(responseData: ResponseData) {
-    for (const i in responseData) {
-        if (responseData.hasOwnProperty(i)) {
-            delete responseData[i];
+// Preserving certain fields is necessary when moving from the eligibility questionnaire into the ECO self-referral questionnaire.
+// It would be nice to refactor this to use property decorators:
+// https://www.typescriptlang.org/docs/handbook/decorators.html#property-decorators
+const fieldsToPreserveOnEpcChange = [
+    'receivePensionGuaranteeCredit',
+    'receiveIncomeRelatedBenefits',
+    'receiveSocietalBenefits',
+    'receiveDefenseRelatedBenefits',
+    'receiveChildBenefits',
+    'income'
+];
+
+export function resetResponseDataForNewEpc(responseData: ResponseData) {
+    deleteMatchingFieldsFromResponseData(responseData, key => {
+        return !fieldsToPreserveOnEpcChange.includes(key);
+    });
+}
+
+export function deleteAllOldResponseData(responseData: ResponseData) {
+    deleteMatchingFieldsFromResponseData(responseData, () => true);
+}
+
+function deleteMatchingFieldsFromResponseData(responseData: ResponseData, matcher: (key: string) => boolean) {
+    for (const key in responseData) {
+        if (responseData.hasOwnProperty(key) && matcher(key)) {
+            delete responseData[key];
         }
     }
 }
