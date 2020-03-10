@@ -2,23 +2,18 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
 
-.search-page {
+.privacy-page {
   .header-row {
     background-color: $light-blue;
     .page-row-content {
       padding: 73px 0;
       h1 {
-        @include page-heading-font();
+        @include page-heading-font;
         color: $dark-blue;
       }
     }
   }
-  .search-results-summary {
-    font-size: 1.2rem;
-  }
-  .search-results {
-    li {
-      margin-top: 20px;
-    }
+  li {
+    font-family: $font-family-light;
   }
 }
