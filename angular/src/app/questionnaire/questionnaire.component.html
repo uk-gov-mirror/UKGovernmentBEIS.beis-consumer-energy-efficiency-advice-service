@@ -9,7 +9,7 @@
     </div>
     <app-accordion *ngIf="currentQuestionContent.questionImage" [imageFilename]="currentQuestionContent.questionImage"></app-accordion>
     <app-question-reason *ngIf="currentQuestionContent.questionReason"
-                     [isExpanded]="currentQuestionContent.autoOpenQuestionReason"
+                     [isExpanded]="shouldDisplayQuestionReason"
                      [questionReason]="currentQuestionContent.questionReason"></app-question-reason>
 </div>
 <app-sticky-row-wrapper *ngIf="shouldShowIndicator && questionnaire">

@@ -218,7 +218,10 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
             this.questionComponent = componentRef.instance;
             this.questionComponent.slideInOut = slideInFrom;
 
-            this.shouldDisplayQuestionReason = this.currentQuestionContent.autoOpenQuestionReason;
+            // The WordPress API is (sadly) inconsistent about whether it returns this value as true / false or as '1' / '0'.
+            const { autoOpenQuestionReason } = this.currentQuestionContent;
+            this.shouldDisplayQuestionReason = (autoOpenQuestionReason === true) || (parseInt(autoOpenQuestionReason) === 1);
+
             this.googleAnalyticsService.recordPageView(question.questionId);
 
             // Subscribe to the question's completion event, and unsubscribe from the previous one.
