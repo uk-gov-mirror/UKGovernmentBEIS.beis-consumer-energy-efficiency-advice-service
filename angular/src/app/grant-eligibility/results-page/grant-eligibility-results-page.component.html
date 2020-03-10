@@ -24,14 +24,18 @@
                     </p>
                     <div>
                         <input id="eco-self-referral-storage-consent" name="eco-self-referral-storage-consent"
-                               type="checkbox" [(ngModel)]="ecoSelfReferralConsentData.hasGivenStorageConsent">
+                               type="checkbox"
+                               [checked]="ecoSelfReferralConsentData.hasGivenStorageConsent"
+                               (change)="ecoSelfReferralConsentData.hasGivenStorageConsent = !ecoSelfReferralConsentData.hasGivenStorageConsent">
                         <label for="eco-self-referral-storage-consent">
                             I am happy for my contact details and information about my property to be stored.
                         </label>
                     </div>
                     <div>
                         <input id="eco-self-referral-sharing-consent" name="eco-self-referral-sharing-consent"
-                               type="checkbox" [(ngModel)]="ecoSelfReferralConsentData.hasGivenSharingConsent">
+                               type="checkbox"
+                               [checked]="ecoSelfReferralConsentData.hasGivenSharingConsent"
+                               (change)="ecoSelfReferralConsentData.hasGivenSharingConsent = !ecoSelfReferralConsentData.hasGivenSharingConsent">
                         <label for="eco-self-referral-sharing-consent">
                             I am happy for these details to be shared with energy companies that may be able to help
                             me under the ECO scheme.
@@ -40,8 +44,7 @@
                     <p class="small-print">
                         You must check the boxes above to indicate that you are happy for us to store and share your
                         details if you wish to proceed. For more information, see our
-                        <!-- TODO: Update privacy policy link. -->
-                        <a href="#">privacy policy</a>.
+                        <a routerLink="/privacy">privacy notice</a>.
                     </p>
                     <button class="proceed-button"
                             (click)="proceedToEcoSelfReferral()"

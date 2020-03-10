@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {GrantEligibilityResultsPageComponent} from "./grant-eligibility-results-page.component";
@@ -13,6 +14,7 @@ import {NationalGrantCalculator} from "../../grants/national-grant-calculator/na
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
+import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 
 describe('GrantEligibilityResultsPageComponent', () => {
     let component: GrantEligibilityResultsPageComponent;
@@ -46,9 +48,13 @@ describe('GrantEligibilityResultsPageComponent', () => {
                 MockQuestionnaireComponent,
                 LinkButtonComponent,
             ],
+            imports: [
+              RouterTestingModule.withRoutes([])
+            ],
             providers: [
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
+                {provide: ECOSelfReferralConsentData, useValue: new ECOSelfReferralConsentData()}
             ],
         })
             .compileComponents();
