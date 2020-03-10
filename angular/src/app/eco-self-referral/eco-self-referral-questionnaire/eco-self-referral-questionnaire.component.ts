@@ -21,7 +21,9 @@ export class ECOSelfReferralQuestionnaireComponent {
                     this.router.navigate(['/eco-self-referral/done']);
                 },
                 error => {
-                    // TODO: Handle error.
+                    console.error(error);
+                    alert('We were not able to process your referral due to an unexpected error. Please try again later.');
+                    this.router.navigate(['/']);
                 }
             );
     }
