@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static uk.gov.beis.dceas.db.gen.Tables.ECO_SELF_REFERRAL;
 
@@ -27,6 +30,7 @@ public class ECOSelfReferralController {
     @PostMapping
     public ResponseEntity<?> createECOSelfReferral(@RequestBody ECOSelfReferral body) {
         int recordsCreated = dslContext.insertInto(ECO_SELF_REFERRAL)
+                .set(ECO_SELF_REFERRAL.CREATED, Timestamp.from(Instant.now()))
                 .set(ECO_SELF_REFERRAL.LMK_KEY, body.getLmkKey())
                 .set(ECO_SELF_REFERRAL.NAME, body.getName())
                 .set(ECO_SELF_REFERRAL.EMAIL, body.getEmail())
