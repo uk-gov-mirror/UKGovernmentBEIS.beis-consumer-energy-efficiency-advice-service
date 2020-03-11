@@ -92,7 +92,8 @@ describe('RdsapInput', () => {
 
             name: 'Steve Rogers',
             emailAddress: 'steve.rogers@example.com',
-            phoneNumber: '555 1234',
+            phoneNumber: '07555 555555',
+            hasValidContactDetails: true,
 
             hasLoft: true,
             hasLoftInsulation: true,
