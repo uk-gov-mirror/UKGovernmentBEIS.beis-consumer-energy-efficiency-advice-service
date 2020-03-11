@@ -1,19 +1,38 @@
 <div class="question-component contact-details-question">
-    <form class="questionnaire-form" (submit)="handleFormSubmit()">
+    <form name="questionnaire-form" class="questionnaire-form" (submit)="handleFormSubmit()" novalidate>
         <div class="form-group">
             <label for="eco-self-referral-name">Name</label>
-            <input id="eco-self-referral-name" class="text-input" type="text" maxlength="100"
-                   [value]="name" (input)="name = $event.target.value">
+            <input #nameInput id="eco-self-referral-name" class="text-input"
+                   type="text" maxlength="200" required
+                   [value]="name" (input)="name = $event.target.value"
+                   (blur)="hasBlurredNameInput = true"
+                   spellcheck="false" autocomplete="name" autofocus>
+            <p class="validation-error" *ngIf="hasBlurredNameInput && !nameInput.validity.valid">
+                Please enter your name.
+            </p>
         </div>
         <div class="form-group">
             <label for="eco-self-referral-email-address">Email address</label>
-            <input id="eco-self-referral-email-address" class="text-input" type="email" maxlength="100"
-                   [value]="emailAddress" (input)="emailAddress = $event.target.value">
+            <input #emailAddressInput id="eco-self-referral-email-address" class="text-input"
+                   type="email" maxlength="200" required
+                   [value]="emailAddress" (input)="emailAddress = $event.target.value"
+                   (blur)="hasBlurredEmailAddressInput = true"
+                   spellcheck="false" autocomplete="email">
+            <p class="validation-error" *ngIf="hasBlurredEmailAddressInput && !emailAddressInput.validity.valid">
+                Please enter a valid email address.
+            </p>
         </div>
         <div class="form-group">
             <label for="eco-self-referral-phone-number">Phone number</label>
-            <input id="eco-self-referral-phone-number" class="text-input" type="text" maxlength="20"
-                   [value]="phoneNumber" (input)="phoneNumber = $event.target.value">
+            <input #phoneNumberInput id="eco-self-referral-phone-number" class="text-input"
+                   type="text" maxlength="20" required
+                   pattern="^(?:0|\+?44|0044)(?:\s*?\d\s*){9,10}$"
+                   [value]="phoneNumber" (input)="phoneNumber = $event.target.value"
+                   (blur)="hasBlurredPhoneNumberInput = true"
+                   autocomplete="tel">
+            <p class="validation-error" *ngIf="hasBlurredPhoneNumberInput && !phoneNumberInput.validity.valid">
+                Please enter a valid UK phone number.
+            </p>
         </div>
         <!-- Hidden submit button allows form to be submitted with Enter key. -->
         <button type="submit" style="display: none"></button>

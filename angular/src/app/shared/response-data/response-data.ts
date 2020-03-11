@@ -140,6 +140,7 @@ export class ResponseData {
     public name: string;
     public emailAddress: string;
     public phoneNumber: string;
+    public hasValidContactDetails: boolean;
 
     // Set by HasLoftQuestionComponent, used be ECO self-referral
     public hasLoft: boolean;
