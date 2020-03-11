@@ -13,6 +13,6 @@ export class ContactDetailsQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return !!responseData.name && !!responseData.emailAddress && !!responseData.phoneNumber;
+        return responseData.hasValidContactDetails;
     }
 }
