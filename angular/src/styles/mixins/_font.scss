@@ -176,6 +176,11 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   text-transform: uppercase;
 }
 
+@mixin small-print-font {
+  @include has-font-sizes-at-breakpoints(12px, 14px, 12px, 14px, 12px, 14px);
+  font-family: $font-family;
+}
+
 @mixin footer-phone-number-font {
   @include has-font-sizes-at-breakpoints(28px, 34px, 28px, 34px, 28px, 34px);
   font-weight: bold;

@@ -262,6 +262,11 @@ $grant-card-margin: 24px;
 
           }
         }
+
+        .local-authority-update-message {
+          margin-top: 20px;
+          @include small-print-font();
+        }
       }
     }
   }
