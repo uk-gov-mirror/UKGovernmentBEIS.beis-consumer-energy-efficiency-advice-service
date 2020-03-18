@@ -12,10 +12,6 @@ export class LettingDomesticPropertyQuestionMetadata extends QuestionMetadata {
         );
     }
 
-    isApplicable(responseData: ResponseData): boolean {
-        return true;
-    }
-
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.lettingDomesticPropertyStage !== undefined;
     }

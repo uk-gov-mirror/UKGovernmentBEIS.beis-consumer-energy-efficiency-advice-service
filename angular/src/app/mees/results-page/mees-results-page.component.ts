@@ -9,8 +9,6 @@ import {EpcRating} from '../../shared/postcode-epc-service/model/epc-rating';
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
-import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
-import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 enum MeesResultsStatus {
@@ -50,9 +48,7 @@ export class MeesResultsPageComponent implements OnInit {
             return;
         }
 
-        if (this.responseData.tenancyStartDate === TenancyStartDate.BeforeApril2018) {
-            this.status = MeesResultsStatus.IrrelevantTenancyStartDate;
-        } else if (this.responseData.tenancyType === TenancyType.Other
+        if (this.responseData.tenancyType === TenancyType.Other
             || (this.responseData.tenancyType === TenancyType.DomesticAgriculturalTenancy
                 && this.responseData.agriculturalTenancyType === AgriculturalTenancyType.Other)) {
             this.status = MeesResultsStatus.IrrelevantTenancyType;
