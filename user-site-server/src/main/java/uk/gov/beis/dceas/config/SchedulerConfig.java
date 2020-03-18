@@ -18,6 +18,7 @@ import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import uk.gov.beis.dceas.job.BoilerPcdfDatabaseUpdateJob;
+import uk.gov.beis.dceas.job.ECOSelfReferralDatabaseCleanJob;
 import uk.gov.beis.dceas.job.LocalAuthoritiesCheckJob;
 import uk.gov.beis.dceas.job.UserStateDatabaseCleanJob;
 import uk.gov.beis.dceas.spring.AutowiringSpringBeanJobFactory;
@@ -53,7 +54,8 @@ public class SchedulerConfig {
         JobFactory jobFactory,
         @Qualifier("boilerPcdfDatabaseUpdateTrigger") Trigger boilerPcdfDatabaseUpdateTrigger,
         @Qualifier("localAuthoritiesCheckTrigger") Trigger localAuthoritiesCheckTrigger,
-        @Qualifier("userStateDatabaseCleanTrigger") Trigger userStateDatabaseCleanTrigger) throws Exception {
+        @Qualifier("userStateDatabaseCleanTrigger") Trigger userStateDatabaseCleanTrigger,
+        @Qualifier("ecoSelfReferralDatabaseCleanTrigger") Trigger ecoSelfReferralDatabaseCleanTrigger) throws Exception {
 
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         // this allows to update triggers in DB when updating settings in config file:
@@ -84,6 +86,13 @@ public class SchedulerConfig {
                     .getJobDataMap().get("jobDetail"),
             singleton(userStateDatabaseCleanTrigger),
             true);
+
+        scheduler.scheduleJob(
+                (JobDetail) ecoSelfReferralDatabaseCleanTrigger
+                    .getJobDataMap().get("jobDetail"),
+                singleton(ecoSelfReferralDatabaseCleanTrigger),
+                true
+        );
 
         scheduler.start();
         return scheduler;
@@ -132,6 +141,19 @@ public class SchedulerConfig {
     public CronTriggerFactoryBean userStateDatabaseCleanTrigger(
         @Qualifier("userStateDatabaseCleanJobDetail") JobDetail jobDetail,
         @Value("${dceas.user-state-database-clean-cron}") String cronExpression) {
+
+        return createCronTrigger(jobDetail, cronExpression);
+    }
+
+    @Bean
+    public JobDetailFactoryBean ecoSelfReferralDatabaseCleanJobDetail() {
+        return createJobDetail(ECOSelfReferralDatabaseCleanJob.class);
+    }
+
+    @Bean(name = "ecoSelfReferralDatabaseCleanTrigger")
+    public CronTriggerFactoryBean ecoSelfReferralDatabaseCleanTrigger(
+            @Qualifier("ecoSelfReferralDatabaseCleanJobDetail") JobDetail jobDetail,
+            @Value("${dceas.eco-self-referral-database-clean-cron}") String cronExpression) {
 
         return createCronTrigger(jobDetail, cronExpression);
     }
