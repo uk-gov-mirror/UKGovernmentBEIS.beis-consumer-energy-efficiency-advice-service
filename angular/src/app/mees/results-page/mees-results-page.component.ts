@@ -28,8 +28,10 @@ enum MeesResultsStatus {
 })
 export class MeesResultsPageComponent implements OnInit {
     status: MeesResultsStatus;
-    // Import the above enum into the component scope so it can be used in the component html:
+    stage: LettingDomesticPropertyStage;
+    // Import the enums into the component scope so it can be used in the component html:
     MeesResultsStatus = MeesResultsStatus;
+    LettingDomesticPropertyStage = LettingDomesticPropertyStage;
     isError: boolean = false;
     errorMessage: string;
 
@@ -66,6 +68,8 @@ export class MeesResultsPageComponent implements OnInit {
         } else {
             this.status = MeesResultsStatus.EpcRequired;
         }
+
+        this.stage = this.responseData.lettingDomesticPropertyStage;
     }
 
     getUserEpc() {
