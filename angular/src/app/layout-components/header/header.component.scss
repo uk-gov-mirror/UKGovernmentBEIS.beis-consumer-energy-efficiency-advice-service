@@ -1,17 +1,13 @@
 @import "styles/page";
 @import "styles/var/colors";
 @import "styles/mixins/font";
+@import "styles/mixins/layout";
 
 // Component specific variables
 $search-container-height: 24px;
 $search-container-vertical-padding: 10px;
 $animation-duration-horizontal: 0.5s;
 $animation-duration-vertical: 0.5s;
-
-$mobile-help-button-width: 60px;
-$tablet-help-button-width: 70px;
-$desktop-help-button-width: 80px;
-$desktop-header-height: 82px;
 
 // Component specific mixins
 @mixin has-small-site-logo() {
