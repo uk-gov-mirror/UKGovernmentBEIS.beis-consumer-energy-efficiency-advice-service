@@ -1,3 +1,7 @@
+@import "styles/var/colors";
+@import "styles/mixins/font";
+@import "styles/mixins/layout";
+
 .main-content-wrapper {
   // IE requires the flex containers parent to also have display: flex;
   display: flex;
@@ -22,5 +26,31 @@
 
   & > :last-child {
     margin-top: auto;
+  }
+
+  .global-alert-banner {
+    background-color: $global-alert-banner;
+    color: white;
+    text-align: center;
+    p {
+      font-family: $font-family;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    a {
+      color: white;
+    }
+  }
+}
+
+@include mobile() {
+  .global-alert-banner {
+    padding-right: $mobile-help-button-width;
+  }
+}
+
+@include tablet() {
+  .global-alert-banner {
+    padding-right: $tablet-help-button-width;
   }
 }

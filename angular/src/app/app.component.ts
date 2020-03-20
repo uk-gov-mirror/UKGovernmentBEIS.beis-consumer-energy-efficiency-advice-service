@@ -40,9 +40,12 @@ export class AppComponent implements OnInit {
             return true;
         }).subscribe(() => {
             // Set focus to the page to help keyboard accessibility
-            (<HTMLElement>document.getElementsByClassName("page-component")[0]).focus();
-            // Scroll to top when route changes
-            window.scrollTo(0, 0);
+            const pageComponent: any = document.getElementsByClassName("page-component")[0];
+            pageComponent.focus({ preventScroll: true });
+            // Scroll to top when route changes.
+            // Using the setTimeout avoids clashing with focus scrolling on the page component, since preventScroll
+            // is unreliable.
+            setTimeout(() => window.scrollTo(0, 0));
             // Record route change for Google Analytics tracking if that's supported in this environment
             this.googleAnalyticsService.recordPageView();
         });
