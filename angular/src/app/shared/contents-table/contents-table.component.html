@@ -3,8 +3,8 @@
   Contents
 </h2>
 <div *ngFor="let heading of headings; let i = index">
-  <div class="contents-link" (click)="headingClicked(i)">
+  <a class="contents-link" (click)="headingClicked(i, $event)" [href]="'heading-' + i">
     <div class="contents-number">{{getFormattedNumberFromIndex(i)}}</div>
     <div class="contents-item">{{heading}}</div>
-  </div>
+  </a>
 </div>
