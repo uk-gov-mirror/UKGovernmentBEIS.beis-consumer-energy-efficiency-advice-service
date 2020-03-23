@@ -116,7 +116,7 @@ app-sticky-row-wrapper {
         padding-right: 10px;
 
         &:not([disabled]) {
-          background-color: $light-grey;
+          background-color: $dark-medium-grey;
           color: white;
 
           .left-chevron-icon ::ng-deep svg {
@@ -129,7 +129,7 @@ app-sticky-row-wrapper {
         padding-left: 10px;
 
         &:not([disabled]) {
-          background-color: $green;
+          background-color: darken($green, 15%);
           color: white;
 
           .right-chevron-icon ::ng-deep svg {
