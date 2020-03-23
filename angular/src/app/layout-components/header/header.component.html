@@ -6,8 +6,8 @@
             <div class="phase-tag">BETA</div>
         </a>
         <div class="ui-elems">
-            <div class="mobile-menu-icon" [inlineSVG]="'controls/menu.svg'" aria-label="Menu" (click)="toggleMobileNav()"></div>
-            <div #mobileSearchButton class="tablet-search-icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" (click)="toggleSearchTabletBox()"></div>
+            <button class="mobile-menu-icon" [inlineSVG]="'controls/menu.svg'" aria-label="Menu" (click)="toggleMobileNav()"></button>
+            <button #mobileSearchButton class="tablet-search-icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" (click)="toggleSearchTabletBox()"></button>
             <div #searchBarContainer class="searchBarContainer">
                 <app-search-bar></app-search-bar>
             </div>
