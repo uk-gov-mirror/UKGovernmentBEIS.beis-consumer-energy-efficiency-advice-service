@@ -6,8 +6,7 @@ import {AbTestingService} from "../analytics/ab-testing.service";
 @Injectable()
 export class EnergyEfficiencyDisplayService {
 
-    constructor(private recommendationService: RecommendationsService,
-                private abTestingService: AbTestingService) {
+    constructor(private recommendationService: RecommendationsService) {
     }
 
     // Treat landlord recommendations as one recommendation
@@ -36,14 +35,10 @@ export class EnergyEfficiencyDisplayService {
 
     public getRecommendationCardAddToPlanText(isAddedToPlan: boolean, isMouseOverAddToPlanButton: boolean): string {
         if (!isAddedToPlan) {
-            return this.shouldShowOldVersion() ? 'Add to plan' : 'Show me how';
+            return 'Show me how';
         } else {
             return isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
         }
-    }
-
-    private shouldShowOldVersion(): boolean {
-        return this.abTestingService.isInGroupA();
     }
 
     private getUserRecommendationsInPlan() {

@@ -20,6 +20,15 @@
 
   background-color: white;
 
+  color: $dark-grey;
+  text-decoration: none;
+
+  &:hover, &:active, &:focus {
+    .read-more-link {
+      text-decoration: underline;
+    }
+  }
+
   .title {
     @include article-title-font;
   }
@@ -31,7 +40,8 @@
   .read-more-link {
     color: $dark-blue;
     padding-top: 10px;
-    text-decoration: none;
+    font-size: 12px;
+    font-family: $font-family;
   }
 }
 

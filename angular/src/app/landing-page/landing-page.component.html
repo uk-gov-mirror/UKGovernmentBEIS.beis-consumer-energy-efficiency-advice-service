@@ -6,13 +6,13 @@
     </div>
     <div class="postcode page-row">
         <div class="page-row-content">
-            <div class="heading">Enter your postcode for personalised advice</div>
+            <h2 class="heading">Enter your postcode for personalised advice</h2>
             <div class="postcode-input">
-                <div class="postcode-reason-container">
+                <p class="postcode-reason-container">
                     Telling us your postcode and address lets us find information about energy
                     efficiency at your property from previous surveys. It also means we can
                     show you relevant information, such as grants that might be available in your area.
-                </div>
+                </p>
                 <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected($event)"></app-postcode-lookup>
                 <app-epc-lookup class="postcode-epc" [postcode]="postcode" (epcSelected)="onEpcSelected()"></app-epc-lookup>
             </div>
@@ -20,11 +20,11 @@
     </div>
     <div class="measures page-row">
         <div class="page-row-content">
-            <div class="heading">Measures you can take right now</div>
-            <div class="body-text">
+            <h2 class="heading">Measures you can take right now</h2>
+            <p class="body-text">
                 Here are a few things you can do immediately to help save money.<br/>
                 If you answer some more questions we can recommend other measures you can take.
-            </div>
+            </p>
             <div class="measure-cards">
                 <app-measure-card *ngFor="let measure of measures" [measure]="measure"></app-measure-card>
             </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="browse page-row">
         <div class="page-row-content">
-            <div class="heading">Advice and tips to reduce your energy bills</div>
+            <h2 class="heading">Advice and tips to reduce your energy bills</h2>
             <div class="browse-cards">
                 <div class="full-width-card">
                     <app-large-video-card [video]="video">

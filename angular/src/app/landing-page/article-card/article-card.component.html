@@ -1,6 +1,6 @@
-<a class="article-card">
+<a class="article-card" routerLink="{{article.readMore}}">
     <div [ngClass]="article.iconClassName" class="icon"></div>
     <div class="title">{{article.title}}</div>
     <div class="summary">{{article.summary}}</div>
-    <a class="read-more-link" routerLink="{{article.readMore}}">Read More</a>
+    <p class="read-more-link">READ MORE</p>
 </a>

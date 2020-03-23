@@ -1,5 +1,5 @@
 <div class="latest-news-section page-row-content">
-    <div class="heading">Other things you might be interested in</div>
+    <h2 class="heading">Other things you might be interested in</h2>
     <div class="latest-news-cards" *ngIf="latestNews; else latestNewsSpinner">
         <app-latest-news-card *ngFor="let page of latestNews; let idx = index"
                               [page]="page"

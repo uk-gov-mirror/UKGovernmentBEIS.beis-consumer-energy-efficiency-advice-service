@@ -9,9 +9,7 @@ import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-
     templateUrl: './your-plan-footer.component.html',
     styleUrls: ['./your-plan-footer.component.scss']
 })
-export class YourPlanFooterComponent implements OnInit {
-    showOldVersion: boolean;
-
+export class YourPlanFooterComponent {
     @Output() onDoPlan: EventEmitter<null> = new EventEmitter<null>();
 
     get userRecommendations(): EnergyEfficiencyRecommendation[] {
@@ -33,10 +31,6 @@ export class YourPlanFooterComponent implements OnInit {
     constructor(private recommendationsService: RecommendationsService,
                 private abTestingService: AbTestingService,
                 private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
-    }
-
-    ngOnInit() {
-        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getYouHaveAddedRecommendations() {

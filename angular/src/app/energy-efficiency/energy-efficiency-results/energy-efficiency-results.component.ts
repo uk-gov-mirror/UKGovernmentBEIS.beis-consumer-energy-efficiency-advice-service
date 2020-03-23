@@ -30,7 +30,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isLoading: boolean = true;
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
-    showOldVersion: boolean;
     showDefaultRecommendation: boolean = false;
     showDefaultRentalMeasures: boolean = false;
     defaultRecommendationDisclaimer: string;
@@ -68,8 +67,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
 
         this.userStateService.saveState();
-
-        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {
