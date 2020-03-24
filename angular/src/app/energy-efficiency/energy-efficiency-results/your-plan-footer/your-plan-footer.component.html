@@ -6,11 +6,11 @@
         <div class="plan-summary">
             <app-your-plan-summary [isFooter]="true" class="is-footer"></app-your-plan-summary>
         </div>
-        <a class="do-button"
+        <a class="confirm-button"
            [class.disabled]="numberOfRecommendations === 0"
            routerLink="/energy-efficiency/your-plan"
            (click)="DoPlanClicked()">
-            <span class="do-string">DO</span>
+            <span class="confirm">MAKE PLAN</span>
         </a>
     </div>
 </div>
