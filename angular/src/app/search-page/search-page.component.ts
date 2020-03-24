@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WordpressSearchService} from '../shared/wordpress-search-service/wordpress-search.service';
 import {WordpressSearchable} from "../shared/wordpress-search-service/wordpress-searchable";
+import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-search-page',
@@ -18,10 +20,12 @@ export class SearchPageComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private wordpressSearchService: WordpressSearchService) {
+        private wordpressSearchService: WordpressSearchService,
+        private pageTitle: PageTitleService) {
     }
 
     ngOnInit(): void {
+        this.pageTitle.set('Search results');
         this.isLoading = true;
         this.results = [];
         this.route.queryParamMap

@@ -10,6 +10,7 @@ import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-me
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerAdvicePageComponent', () => {
     let component: BoilerAdvicePageComponent;
@@ -19,6 +20,10 @@ describe('BoilerAdvicePageComponent', () => {
     const boilerTypesServiceStub = {
         fetchBoilerTypes: () => Observable.of(boilerTypesResponse)
             .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -34,6 +39,7 @@ describe('BoilerAdvicePageComponent', () => {
             ],
             providers: [
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
             .compileComponents();

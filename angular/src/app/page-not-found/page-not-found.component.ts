@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,8 +9,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pageTitle: PageTitleService) { }
 
   ngOnInit() {
+    this.pageTitle.set('Page not found');
   }
 }

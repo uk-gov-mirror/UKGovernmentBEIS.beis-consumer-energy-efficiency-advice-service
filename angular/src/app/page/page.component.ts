@@ -4,6 +4,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {ExtendedWordpressPage} from '../shared/wordpress-pages-service/extended-wordpress-page';
+import {PageTitleService} from '../shared/page-title-service/page-title.service';
 
 /**
  * This component shows Wordpress Posts of type "page", using their "slug" as
@@ -35,7 +36,8 @@ export class PageComponent implements OnInit {
                 private route: ActivatedRoute,
                 private pageService: WordpressPagesService,
                 private sanitizer: DomSanitizer,
-                private changeDetectorRef: ChangeDetectorRef) {
+                private changeDetectorRef: ChangeDetectorRef,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
@@ -56,6 +58,7 @@ export class PageComponent implements OnInit {
         } else {
             this.pageData = pageData;
             this.pageDataContent = this.sanitizer.bypassSecurityTrustHtml(this.pageData.content);
+            this.pageTitle.set(pageData.title);
         }
         this.isLoading = false;
         // Force angular to update the DOM, so that we can parse it and create a contents table

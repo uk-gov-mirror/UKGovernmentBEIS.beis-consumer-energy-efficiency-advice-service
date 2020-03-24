@@ -3,6 +3,7 @@ import {error} from "loglevel";
 import {WordpressECOSupplier} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-supplier";
 import {WordpressECOSuppliersService} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
 import {isComplete, ResponseData} from "../shared/response-data/response-data";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 /**
  * Page listing energy suppliers which have an Energy Company Obligation
@@ -21,9 +22,12 @@ export class ECOSuppliersPageComponent implements OnInit {
     suppliers: WordpressECOSupplier[];
 
     constructor(private wordpressECOSuppliersService: WordpressECOSuppliersService,
-                private responseData: ResponseData) {}
+                private responseData: ResponseData,
+                private pageTitle: PageTitleService) {
+    }
 
     ngOnInit() {
+        this.pageTitle.set('ECO Suppliers');
         this.wordpressECOSuppliersService.fetchAllECOSuppliers()
             .map(suppliers => suppliers.sort((a, b) => a.name.localeCompare(b.name)))
             .subscribe(

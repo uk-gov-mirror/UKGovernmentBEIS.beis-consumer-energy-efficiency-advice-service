@@ -4,6 +4,7 @@ import {BoilerType} from '../boiler-types-service/boiler-type';
 import sortBy from 'lodash-es/sortBy';
 import {Router} from '@angular/router';
 import {PostcodeDetails} from "../../shared/postcode-epc-service/model/postcode-details";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-boiler-replacement-page',
@@ -18,7 +19,9 @@ export class BoilerReplacementPageComponent implements OnInit {
     boilers: BoilerType[];
     postcode: string;
 
-    constructor(private boilerTypesService: BoilerTypesService, private router: Router) {
+    constructor(private boilerTypesService: BoilerTypesService,
+                private router: Router,
+                private pageTitle: PageTitleService) {
     }
 
     onPostcodeSelected(postcodeDetails: PostcodeDetails) {
@@ -34,6 +37,7 @@ export class BoilerReplacementPageComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.pageTitle.set('Replacing your boiler');
         this.boilerTypesService.fetchBoilerTypes().subscribe(
             boilerTypes => this.boilers = sortBy(boilerTypes, type => +(type.averageInstallationCost)),
             err => this.handleError(err),

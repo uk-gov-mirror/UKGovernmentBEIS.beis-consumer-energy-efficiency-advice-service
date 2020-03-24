@@ -25,6 +25,7 @@ import {MeasureCardComponent} from './measure-card/measure-card.component';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {PostcodeApiService} from '../shared/postcode-epc-service/postcode-api-service/postcode-api.service';
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('LandingPageComponent', () => {
     let component: LandingPageComponent;
@@ -42,6 +43,9 @@ describe('LandingPageComponent', () => {
 
     const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -76,6 +80,7 @@ describe('LandingPageComponent', () => {
                 {provide: EnergySavingMeasureContentService, useValue: {
                     'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
                 }},
+                {provide: PageTitleService, useValue: pageTitleStub},
                 GoogleAnalyticsService,
             ]
         })

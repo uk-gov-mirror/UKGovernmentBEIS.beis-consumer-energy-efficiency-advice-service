@@ -16,6 +16,7 @@ import {LatestNewsCardComponent} from '../shared/latest-news-card/latest-news-ca
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {GoogleAnalyticsService} from "../shared/analytics/google-analytics.service";
 import {ContentsTableComponent} from "../shared/contents-table/contents-table.component";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('MeasurePageComponent', () => {
     let component: MeasurePageComponent;
@@ -31,6 +32,9 @@ describe('MeasurePageComponent', () => {
     };
     const measuresServiceStub = {
         getMeasure: () => Observable.of(expectedMeasure)
+    };
+    const pageTitleStub = {
+        set: () => {}
     };
 
     const testSlug = 'test-measure';
@@ -79,6 +83,7 @@ describe('MeasurePageComponent', () => {
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: WordpressMeasuresService, useValue: measuresServiceStub},
                 {provide: WordpressPagesService, useValue: {getLatestPages: () => Observable.of([])}},
+                {provide: PageTitleService, useValue: pageTitleStub},
                 GoogleAnalyticsService,
             ]
         })

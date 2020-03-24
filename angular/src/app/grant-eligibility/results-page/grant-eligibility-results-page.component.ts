@@ -5,6 +5,7 @@ import {EcoHhcroHelpToHeat} from "../../grants/national-grant-calculator/grants/
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {EligibilityByGrant} from "../../grants/grant-eligibility-service/eligibility-by-grant";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-grant-eligibility-results-page',
@@ -20,10 +21,12 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
     errorMessage: string;
 
     constructor(private questionnaireService: QuestionnaireService,
-                private grantsEligibilityService: GrantEligibilityService) {
+                private grantsEligibilityService: GrantEligibilityService,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
+        this.pageTitle.set('ECO Eligibility');
         if (!this.questionnaireService.isComplete('grant-eligibility')) {
             this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
                 "not completed the questionnaire, or something has gone wrong.";

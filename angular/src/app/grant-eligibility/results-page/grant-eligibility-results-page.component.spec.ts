@@ -13,6 +13,7 @@ import {NationalGrantCalculator} from "../../grants/national-grant-calculator/na
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('GrantEligibilityResultsPageComponent', () => {
     let component: GrantEligibilityResultsPageComponent;
@@ -25,6 +26,10 @@ describe('GrantEligibilityResultsPageComponent', () => {
 
     const questionnaireServiceStub = {
         isComplete: () => true,
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     const dummyEligibilityResponse: EligibilityByGrant = {
@@ -49,6 +54,7 @@ describe('GrantEligibilityResultsPageComponent', () => {
             providers: [
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ],
         })
             .compileComponents();

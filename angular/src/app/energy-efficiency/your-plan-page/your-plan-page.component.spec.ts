@@ -28,6 +28,7 @@ import {DownloadPdfButtonComponent} from "./download-pdf-button/download-pdf-but
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {AbTestingService} from "../../shared/analytics/ab-testing.service";
 import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -142,6 +143,9 @@ describe('YourPlanPageComponent', () => {
     const localAuthorityServiceStub = {
         fetchLocalAuthorityDetails: () => localAuthorityResponse
     };
+    const pageTitleStub = {
+        set: () => {}
+    };
 
     const recommendationsServiceStub = {
         getRecommendationsInPlan: () => recommendations,
@@ -174,6 +178,7 @@ describe('YourPlanPageComponent', () => {
                 {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub},
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,
                 AbTestingService,

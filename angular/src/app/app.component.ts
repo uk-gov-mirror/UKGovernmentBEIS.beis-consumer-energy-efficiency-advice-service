@@ -8,6 +8,7 @@ import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/skip';
 import {GoogleAnalyticsService} from './shared/analytics/google-analytics.service';
 import {SVGCacheService} from 'ng-inline-svg';
+import {PageTitleService} from "./shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-root',
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
         private router: Router,
         private meta: Meta,
         private googleAnalyticsService: GoogleAnalyticsService,
-        private svgService: SVGCacheService
+        private svgService: SVGCacheService,
+        private pageTitle: PageTitleService
     ) {
         this.meta.addTag({ name: 'viewport', content: 'width=device-width,initial-scale=1.0' });
     }
@@ -48,6 +50,7 @@ export class AppComponent implements OnInit {
             setTimeout(() => window.scrollTo(0, 0));
             // Record route change for Google Analytics tracking if that's supported in this environment
             this.googleAnalyticsService.recordPageView();
+            this.pageTitle.set('');
         });
 
         this.handleAdReferral();

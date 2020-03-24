@@ -8,6 +8,7 @@ import {Article} from './article-card/article';
 import {Video} from '../shared/large-video-card/video';
 import * as log from 'loglevel';
 import {PostcodeDetails} from "../shared/postcode-epc-service/model/postcode-details";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-landing-page',
@@ -29,13 +30,15 @@ export class LandingPageComponent implements OnInit {
 
     constructor(private router: Router,
                 private responseData: ResponseData,
-                private measureService: EnergySavingMeasureContentService) {
+                private measureService: EnergySavingMeasureContentService,
+                private pageTitle: PageTitleService) {
         this.isLoading = true;
         this.isError = false;
     }
 
     ngOnInit() {
         this.heading = getJourneyDescription(this.userJourneyType);
+        this.pageTitle.set(this.heading);
         this.tag = this.getTagFromUserJourneyType();
 
         this.measureService.fetchMeasureDetailsForLandingPage(this.tag, 2).subscribe(

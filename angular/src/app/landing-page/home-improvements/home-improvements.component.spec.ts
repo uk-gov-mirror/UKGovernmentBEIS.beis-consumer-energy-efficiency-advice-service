@@ -29,6 +29,7 @@ import {MeasureCardComponent} from '../measure-card/measure-card.component';
 import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -50,6 +51,11 @@ describe('HomeImprovementsComponent', () => {
     const postcodeApiServiceStub = {
         fetchBasicPostcodeDetails: (postcode) => Observable.of(dummyBasicPostcodeDetails)
     };
+
+    const pageTitleStub = {
+        set: () => {}
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -83,6 +89,7 @@ describe('HomeImprovementsComponent', () => {
                 {provide: EnergySavingMeasureContentService, useValue: {
                     'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
                 }},
+                {provide: PageTitleService, useValue: pageTitleStub},
                 GoogleAnalyticsService,
             ]
         })
