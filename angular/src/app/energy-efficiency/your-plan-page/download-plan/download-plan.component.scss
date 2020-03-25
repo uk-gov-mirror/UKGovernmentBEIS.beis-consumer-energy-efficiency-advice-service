@@ -102,6 +102,14 @@ $action-divider-circle-diameter: 40px;
             border-top: $send-email-button-height/2 solid transparent;
             border-bottom: $send-email-button-height/2 solid transparent;
           }
+
+          &:hover, &:focus, &:active {
+            background-color: $dark-blue;
+            color: $light-blue;
+            &:after {
+              border-left: $send-email-button-arrow-width solid $dark-blue;
+            }
+          }
         }
       }
     }

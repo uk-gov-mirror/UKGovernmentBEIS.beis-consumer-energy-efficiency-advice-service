@@ -35,11 +35,6 @@
         margin-left: 10px;
       }
     }
-
-    a:hover, a:visited, a:link, a:active, a:focus {
-      text-decoration: none;
-    }
-
   }
 }
 
@@ -59,6 +54,9 @@
       background: none;
       color: white;
       text-decoration: none;
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+      }
 
       &:not(:last-child) {
         margin-right: 10px;

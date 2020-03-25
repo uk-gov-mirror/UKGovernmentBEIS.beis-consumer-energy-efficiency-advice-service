@@ -4,20 +4,6 @@
 // Component specific variables
 
 // Component specific mixins
-@mixin postcode-button() {
-  background-color: $pink;
-  color: white;
-
-  border: none;
-  cursor: pointer;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 :host {
@@ -59,6 +45,9 @@
 
     .postcode-input-submit {
       background: $pink url('/assets/images/controls/chevron-right-white.svg') no-repeat center;
+      &:hover, &:focus, &:active {
+        background-color: $dark-medium-blue;
+      }
 
       flex: 0 0 72px;
       border: none;

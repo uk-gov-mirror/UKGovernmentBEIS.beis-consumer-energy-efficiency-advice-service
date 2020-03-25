@@ -125,6 +125,19 @@ $rounded-corner-border-radius: 1000000px;
   max-width: 300px;
   margin: 16px 0;
 
+  &:hover, &:focus, &:active {
+    .beis-button-text {
+      background-color: $dark-blue;
+      color: $light-blue;
+    }
+    .beis-button-icon-container {
+      background-color: $light-blue;
+      .beis-button-icon {
+        color: $dark-blue;
+      }
+    }
+  }
+
   .beis-button-text {
     background-color: $light-blue;
     color: $dark-blue;

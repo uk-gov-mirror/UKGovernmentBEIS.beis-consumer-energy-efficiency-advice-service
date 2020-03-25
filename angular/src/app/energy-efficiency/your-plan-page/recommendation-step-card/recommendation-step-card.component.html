@@ -1,11 +1,11 @@
 <div class="recommendation-step-card" *ngIf="step">
-    <div class="step-main-row" (click)="toggleIsExpanded()">
-        <div class="bullet"></div>
-        <div class="step-number">Step {{formattedStepNumber}}</div>
-        <button class="step-headline" [title]="isExpanded ? 'Hide details' : 'See more detail'">{{step.headline}}</button>
-        <div class="expand-step-icon" [class.expanded]="isExpanded"
-                title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-    </div>
+    <button class="step-main-row" (click)="toggleIsExpanded()">
+        <span class="bullet"></span>
+        <span class="step-number">Step {{formattedStepNumber}}</span>
+        <span class="step-headline" [title]="isExpanded ? 'Hide details' : 'See more detail'">{{step.headline}}</span>
+        <span class="expand-step-icon" [class.expanded]="isExpanded"
+                title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></span>
+    </button>
     <div class="step-details-drawer" [class.expanded]="isExpanded">
         <div class="step-info">
             <p class="step-description">
@@ -16,11 +16,11 @@
                 <div class="read-more-content-container" [class.read-more-expanded]="isReadMoreExpanded">
                     <div class="read-more-content" innerHTML="<br />{{step.readMore}}"></div>
                 </div>
-                <div class="read-more-button" (click)="toggleIsReadMoreExpanded()">
-                    <div class="read-more-button-text">{{isReadMoreExpanded ? "Read Less" : "Read More"}}</div>
-                    <div class="read-more-button-icon" [class.expanded]="isReadMoreExpanded"
-                        title="Read more" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                </div>
+                <button class="read-more-button" (click)="toggleIsReadMoreExpanded()">
+                    <span class="read-more-button-text">{{isReadMoreExpanded ? "Read Less" : "Read More"}}</span>
+                    <span class="read-more-button-icon" [class.expanded]="isReadMoreExpanded"
+                        title="Read more" [inlineSVG]="'controls/expand-arrow.svg'"></span>
+                </button>
             </ng-container>
         </div>
         <div class="more-info-links" *ngIf="step.moreInfoLinks">

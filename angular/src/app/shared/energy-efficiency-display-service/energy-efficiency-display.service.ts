@@ -33,11 +33,11 @@ export class EnergyEfficiencyDisplayService {
         return 'Recommendations for your landlord';
     }
 
-    public getRecommendationCardAddToPlanText(isAddedToPlan: boolean, isMouseOverAddToPlanButton: boolean): string {
+    public getRecommendationCardAddToPlanText(isAddedToPlan: boolean, showRemove: boolean): string {
         if (!isAddedToPlan) {
             return 'Show me how';
         } else {
-            return isMouseOverAddToPlanButton ? 'Remove from plan' : 'Added to plan';
+            return showRemove ? 'Remove from plan' : 'Added to plan';
         }
     }
 

@@ -3,7 +3,9 @@
         <input #searchInput class="search-input" aria-label="Search text" name="search-text" type="text"
                [(ngModel)]="searchText" (focus)="handleSearchBoxFocussed()"
                (input)="handleInputChange()" />
-        <button class="icon" [inlineSVG]="'controls/search.svg'" aria-label="Search" title="Search" type="submit"></button>
+        <button class="search-button" aria-label="Search" title="Search" type="submit">
+            <span class="icon" [inlineSVG]="'controls/search.svg'"></span>
+        </button>
     </form>
     <div class="search-details-dropdown" [ngClass]="{expanded: shouldDisplaySearchDetailsDropdown}">
         <div class="search-results-container">

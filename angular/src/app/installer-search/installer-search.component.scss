@@ -74,6 +74,9 @@
       .search {
         .search-button {
           background-color: $pink;
+          &:hover, &:focus, &:active {
+            background-color: $dark-medium-blue;
+          }
           height: 72px;
           padding: 0 14px;
           font-size: 18px;

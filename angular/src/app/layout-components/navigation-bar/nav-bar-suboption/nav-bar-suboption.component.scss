@@ -1,9 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/_font";
 
-a:hover, a:visited, a:link, a:active, a:focus
-{
-  text-decoration:none;
+a:hover, a:visited, a:link, a:active, a:focus {
   color: white;
 }
 
@@ -11,8 +9,12 @@ a:hover, a:visited, a:link, a:active, a:focus
   background-color: $dark-blue;
 
   .nav-bar-suboption {
-    list-style: none;
-    padding-bottom: 8px;
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+    &:hover, &:focus, &:active {
+      text-decoration: underline;
+    }
   }
 }
 
