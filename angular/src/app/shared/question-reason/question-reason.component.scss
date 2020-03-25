@@ -45,6 +45,9 @@
     }
 
     .question-reason-icon {
+      &::before {
+        content: 'i';
+      }
       display: flex;
       align-items: center;
       justify-content: center;
