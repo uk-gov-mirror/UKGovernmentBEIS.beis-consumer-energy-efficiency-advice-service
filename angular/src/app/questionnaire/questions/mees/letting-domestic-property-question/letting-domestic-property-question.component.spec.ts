@@ -37,15 +37,4 @@ describe('LettingDomesticPropertyQuestionComponent', () => {
         // then
         expect(component.response).toBe(LettingDomesticPropertyStage.Currently);
     });
-
-    it('should notify of completion when clicking on one of the buttons', () => {
-        // given
-
-        // when
-        const no = fixture.debugElement.query(By.css('.soon'));
-        no.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

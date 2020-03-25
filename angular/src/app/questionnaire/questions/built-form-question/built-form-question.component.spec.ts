@@ -38,15 +38,4 @@ describe('BuiltFormQuestionComponent', () => {
         // then
         expect(component.response).toBe(BuiltFormAnswer.Detached);
     });
-
-    it('should notify of completion when clicking on a built form option', () => {
-        // given
-        const detachedButton = fixture.debugElement.query(By.css('.detached'));
-
-        // when
-        detachedButton.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

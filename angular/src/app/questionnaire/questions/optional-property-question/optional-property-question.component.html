@@ -3,13 +3,13 @@
         <button id="yes-option"
                 class="multiple-choice-option optional-property-question-option"
                 [class.selected]="response === true"
-                (click)="response = true; complete.emit()">
+                (click)="response = true">
             Yes, continue
         </button>
         <button id="no-option"
                 class="multiple-choice-option optional-property-question-option"
                 [class.selected]="response === false"
-                (click)="response = false; complete.emit()">
+                (click)="response = false">
             No, skip to heating
         </button>
     </div>

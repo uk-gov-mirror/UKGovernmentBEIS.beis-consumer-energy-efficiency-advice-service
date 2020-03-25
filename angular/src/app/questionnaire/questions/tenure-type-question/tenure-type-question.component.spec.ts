@@ -37,14 +37,4 @@ describe('TenureTypeQuestionComponent', () => {
         // then
         expect(component.response).toBe(TenureType.PrivateTenancy);
     });
-
-    it('should notify of completion when selecting an option', () => {
-        // given
-
-        // when
-        fixture.debugElement.query(By.css('#owner-occupancy-option')).nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

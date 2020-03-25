@@ -49,7 +49,7 @@ describe('FloorAreaQuestionComponent', () => {
         });
     }));
 
-    it('should set floor area to 0 and notify of completion when clicking "I don\'t know".', () => {
+    it('should set floor area to 0 when clicking "I don\'t know".', () => {
         // given
 
         // when
@@ -57,7 +57,6 @@ describe('FloorAreaQuestionComponent', () => {
         button.nativeElement.click();
 
         // then
-        expect(component.complete.emit).toHaveBeenCalled();
         expect(responseData.floorArea).toBe(0);
     });
 

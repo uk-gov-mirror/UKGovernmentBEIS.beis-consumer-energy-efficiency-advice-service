@@ -38,15 +38,4 @@ describe('HomeTypeQuestionComponent', () => {
         // then
         expect(component.response).toBe(HomeType.House);
     });
-
-    it('should notify of completion when clicking on a home type', () => {
-        // given
-
-        // when
-        const detachedHouse = fixture.debugElement.query(By.css('.house'));
-        detachedHouse.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

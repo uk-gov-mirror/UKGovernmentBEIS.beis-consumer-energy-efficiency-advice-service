@@ -38,15 +38,4 @@ describe('FloorLevelQuestionComponent', () => {
         // then
         expect(component.response).toBe(FloorLevel.Basement);
     });
-
-    it('should notify of completion when clicking on a floor level', () => {
-        // given
-
-        // when
-        const detachedHouse = fixture.debugElement.query(By.css('.basement'));
-        detachedHouse.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

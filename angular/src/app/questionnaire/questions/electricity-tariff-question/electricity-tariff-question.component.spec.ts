@@ -38,15 +38,4 @@ describe('ElectricityTariffQuestionComponent', () => {
         // then
         expect(component.response).toBe(ElectricityTariff.Standard);
     });
-
-    it('should notify of completion when clicking on a tariff type', () => {
-        // given
-
-        // when
-        const offPeak = fixture.debugElement.query(By.css('#off-peak-button'));
-        offPeak.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

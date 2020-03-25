@@ -3,13 +3,13 @@
         <button id="standard-button"
                 class="multiple-choice-option electricity-tariff-option"
                 [class.selected]="response === ElectricityTariff.Standard"
-                (click)="response = ElectricityTariff.Standard; complete.emit()">
+                (click)="response = ElectricityTariff.Standard">
             Standard
         </button>
         <button id="off-peak-button"
                 class="multiple-choice-option electricity-tariff-option"
                 [class.selected]="response === ElectricityTariff.OffPeak"
-                (click)="response = ElectricityTariff.OffPeak; complete.emit()">
+                (click)="response = ElectricityTariff.OffPeak">
             Off Peak
         </button>
     </div>

@@ -17,7 +17,7 @@
                 </button>
             </div>
         </div>
-        <button class="do-not-know-button" id="do-not-know-button" (click)="updateFloorArea(0); complete.emit();">I don't know</button>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="updateFloorArea(0);">I don't know</button>
     </div>
     <div class="error" *ngIf="isInvalid">
         <div class="error-message">Please enter a valid value.</div>

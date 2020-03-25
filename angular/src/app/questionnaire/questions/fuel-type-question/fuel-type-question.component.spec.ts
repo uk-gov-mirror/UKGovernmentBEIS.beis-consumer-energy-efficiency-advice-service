@@ -38,15 +38,4 @@ describe('FuelTypeQuestionComponent', () => {
         // then
         expect(component.response).toBe(FuelType.SolidFuel);
     });
-
-    it('should notify of completion when clicking on a fuel type', () => {
-        // given
-        const solidFuel = fixture.debugElement.query(By.css('.solid-fuel'));
-
-        // when
-        solidFuel.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

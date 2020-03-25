@@ -38,15 +38,4 @@ describe('WaterTankQuestionComponent', () => {
         // then
         expect(component.response).toBe(WaterTankSpace.None);
     });
-
-    it('should notify of completion when clicking on an option', () => {
-        // given
-        const noSpace = fixture.debugElement.queryAll(By.css('.water-tank-button')).find(el => el.nativeElement.innerText === 'No space');
-
-        // when
-        noSpace.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

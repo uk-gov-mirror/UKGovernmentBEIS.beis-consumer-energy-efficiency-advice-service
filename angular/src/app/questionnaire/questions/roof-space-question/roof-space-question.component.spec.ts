@@ -38,15 +38,4 @@ describe('RoofSpaceQuestionComponent', () => {
         // then
         expect(component.response).toBe(RoofSpace.NoSpace);
     });
-
-    it('should notify of completion when clicking on an option', () => {
-        // given
-        const noSpace = fixture.debugElement.queryAll(By.css('.roof-space-button')).find(el => el.nativeElement.innerText === 'No space');
-
-        // when
-        noSpace.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

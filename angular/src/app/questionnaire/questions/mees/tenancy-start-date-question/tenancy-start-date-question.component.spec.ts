@@ -37,15 +37,4 @@ describe('TenancyStartDateQuestionComponent', () => {
         // then
         expect(component.response).toBe(TenancyStartDate.BeforeApril2018);
     });
-
-    it('should notify of completion when clicking on one of the buttons', () => {
-        // given
-
-        // when
-        const no = fixture.debugElement.query(By.css('.after-2018'));
-        no.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

@@ -4,7 +4,7 @@
                 *ngFor="let option of homeTypeOptions"
                 [class.selected]="response === option.value"
                 [ngClass]="option.className"
-                (click)="response = option.value; complete.emit()">
+                (click)="response = option.value">
             {{option.name}}
         </button>
     </div>

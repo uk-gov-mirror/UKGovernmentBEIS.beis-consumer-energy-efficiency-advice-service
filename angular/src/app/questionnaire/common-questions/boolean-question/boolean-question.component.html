@@ -2,12 +2,12 @@
     <div class="answer-grid multiple-choice-options boolean-options">
         <button class="multiple-choice-option boolean-option yes-button"
                 [class.selected]="response === true"
-                (click)="response = true; complete.emit()">
+                (click)="response = true">
             Yes
         </button>
         <button class="multiple-choice-option boolean-option no-button"
                 [class.selected]="response === false"
-                (click)="response = false; complete.emit()">
+                (click)="response = false">
             No
         </button>
     </div>

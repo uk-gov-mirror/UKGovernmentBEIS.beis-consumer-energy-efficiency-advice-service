@@ -4,7 +4,7 @@
                 [id]="tenureTypeOption.id + '-option'"
                 class="multiple-choice-option tenure-type-option"
                 [class.selected]="response === tenureTypeOption.value"
-                (click)="response = tenureTypeOption.value; complete.emit()">
+                (click)="response = tenureTypeOption.value">
             {{tenureTypeOption.description}}
         </button>
     </div>

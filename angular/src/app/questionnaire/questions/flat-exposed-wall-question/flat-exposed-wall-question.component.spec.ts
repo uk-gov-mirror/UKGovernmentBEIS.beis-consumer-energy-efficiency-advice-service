@@ -38,15 +38,4 @@ describe('FlatExposedWallQuestionComponent', () => {
         // then
         expect(component.response).toBe(FlatExposedWall.ThreeSidesExposedWholeSide);
     });
-
-    it('should notify of completion when clicking on a wall exposing position', () => {
-        // given
-
-        // when
-        const threeSidesExposed = fixture.debugElement.query(By.css('.three-sides-exposed'));
-        threeSidesExposed.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

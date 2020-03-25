@@ -6,13 +6,13 @@
         <button id="yes-option"
                 class="multiple-choice-option benefits-option"
                 [class.selected]="response === true"
-                (click)="response = true; complete.emit()">
+                (click)="response = true">
             Yes
         </button>
         <button id="no-option"
                 class="multiple-choice-option benefits-option"
                 [class.selected]="response === false"
-                (click)="response = false; complete.emit()">
+                (click)="response = false">
             No
         </button>
     </div>
