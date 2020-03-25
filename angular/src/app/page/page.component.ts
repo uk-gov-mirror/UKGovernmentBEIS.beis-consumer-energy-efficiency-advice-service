@@ -74,7 +74,7 @@ export class PageComponent implements OnInit {
 
     scrollIndexIntoView(index: number) {
         const pageContent = document.getElementById('wordpress-content');
-        const element = pageContent.getElementsByTagName('h3')[index];
+        const element = pageContent.getElementsByTagName('h2')[index];
         if (element) {
             element.scrollIntoView();
         }
@@ -83,8 +83,8 @@ export class PageComponent implements OnInit {
     private setContentsTable() {
         const pageContent = document.getElementById('wordpress-content');
         if (pageContent) {
-            // All the headings which we want in the contents are set to h3 in wordpress
-            const headingElements = pageContent.getElementsByTagName('h3');
+            // All the headings which we want in the contents are set to h2 in wordpress
+            const headingElements = pageContent.getElementsByTagName('h2');
             const headings = [];
             for (let i = 0; i < headingElements.length; i++) {
                 headings.push(headingElements[i].textContent);
