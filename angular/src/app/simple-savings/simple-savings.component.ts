@@ -3,6 +3,7 @@ import 'rxjs/add/operator/switchMap';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 import * as log from 'loglevel';
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-simple-savings',
@@ -15,12 +16,14 @@ export class SimpleSavingsComponent implements OnInit {
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     measures: MeasureContent[];
 
-    constructor(private measureService: EnergySavingMeasureContentService) {
+    constructor(private measureService: EnergySavingMeasureContentService,
+                private pageTitle: PageTitleService) {
         this.isLoading = true;
         this.isError = false;
     }
 
     ngOnInit() {
+        this.pageTitle.set('Simple savings');
         this.measureService.fetchMeasureDetails().subscribe(
             measures => {
                 this.measures = this.filterMeasures(measures);

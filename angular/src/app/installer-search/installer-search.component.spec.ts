@@ -9,6 +9,7 @@ import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -22,6 +23,10 @@ describe('InstallerSearchComponent', () => {
         getMeasure: () => Observable.of(expectedInstallers)
     };
 
+    const pageTitleStub = {
+        set: () => {}
+    };
+
     beforeEach(async(() => {
         measureCode = null;
 
@@ -32,7 +37,8 @@ describe('InstallerSearchComponent', () => {
                 {provide: ResponseData, useClass: MockResponseData},
                 {provide: Router, useValue: {'navigate': function() {}}},
                 {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent},
-                {provide: InstallerSearchService, useValue: installerServiceStub}],
+                {provide: InstallerSearchService, useValue: installerServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}],
         })
             .compileComponents();
     }));

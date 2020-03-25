@@ -22,6 +22,7 @@ import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boiler
 import values from 'lodash-es/values';
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerEpcReplaceComponent', () => {
     let component: BoilerEpcReplaceComponent;
@@ -62,6 +63,10 @@ describe('BoilerEpcReplaceComponent', () => {
             .map((response: BoilerTypeMetadataResponse[]) => response.map(boiler => BoilerType.fromMetadata(boiler)))
     };
 
+    const pageTitleStub = {
+      set: () => {}
+    };
+
     const gasAndOilBoilersServiceStub = {};
 
     const questionnaireServiceStub = {
@@ -91,6 +96,7 @@ describe('BoilerEpcReplaceComponent', () => {
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
                 {provide: GasAndOilBoilersService, useValue: gasAndOilBoilersServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ],
         })
             .compileComponents();

@@ -4,6 +4,7 @@ import 'rxjs/add/operator/switchMap';
 import {EnergySavingMeasureContentService} from '../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 import * as log from 'loglevel';
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-your-home',
@@ -39,7 +40,8 @@ export class YourHomeComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private measureService: EnergySavingMeasureContentService) {
+                private measureService: EnergySavingMeasureContentService,
+                private pageTitle: PageTitleService) {
         this.isLoading = true;
         this.isError = false;
     }
@@ -53,6 +55,7 @@ export class YourHomeComponent implements OnInit {
                 this.router.navigate(['/404'], {skipLocationChange: true});
                 return;
             }
+            this.pageTitle.set(this.yourHomeContent.title);
             this.measureService.fetchMeasureDetails().subscribe(
                 measures => {
                     this.measures = this.filterMeasures(measures);

@@ -4,6 +4,7 @@ import {ResponseData} from "../shared/response-data/response-data";
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 import sortBy from 'lodash-es/sortBy';
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-installer-search',
@@ -23,10 +24,12 @@ export class InstallerSearchComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
                 private measureContentService: EnergySavingMeasureContentService,
-                private installerSearchService: InstallerSearchService) {
+                private installerSearchService: InstallerSearchService,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
+        this.pageTitle.set('Find an installer');
         this.postcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {

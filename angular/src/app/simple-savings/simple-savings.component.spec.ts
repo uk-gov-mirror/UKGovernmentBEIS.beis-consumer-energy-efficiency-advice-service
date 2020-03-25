@@ -6,10 +6,15 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {SimpleSavingsComponent} from './simple-savings.component';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('SimpleSavingsComponent', () => {
     let component: SimpleSavingsComponent;
     let fixture: ComponentFixture<SimpleSavingsComponent>;
+
+    const pageTitleStub = {
+        set: () => {}
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -22,6 +27,7 @@ describe('SimpleSavingsComponent', () => {
                 {provide: EnergySavingMeasureContentService, useValue: {
                     'fetchMeasureDetails': (() => Observable.of([]))
                 }},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
             .compileComponents();
