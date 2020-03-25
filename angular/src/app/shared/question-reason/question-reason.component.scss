@@ -24,7 +24,6 @@
     border-radius: 10px;
     padding: 10px;
     overflow: hidden;
-    margin-top: 20px;
 
     &.visible {
       opacity: 1;
@@ -39,6 +38,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin-top: 20px;
 
     &:focus, &:hover {
       text-decoration: underline;
