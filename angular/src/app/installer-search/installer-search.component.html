@@ -33,11 +33,17 @@
             <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
                 Please enter your details above to find installers in your area.
             </div>
-
+            <div aria-live="polite">
+                <div class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
+                    Sorry, we couldn't find any installers in your area.
+                </div>
+                <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
+                    <h2 class="header">Results</h2>
+                    <p>We found {{installers.length}} installers matching your search.</p>
+                </div>
+            </div>
             <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
-
-                <h2 class="header">Results</h2>
-                <table>
+                <table class="results-table">
                     <thead>
                         <tr>
                             <th class="participant table-heading">Company</th>
@@ -55,10 +61,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div #noResults class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
-                Sorry, we couldn't find any installers in your area.
             </div>
         </div>
     </div>
