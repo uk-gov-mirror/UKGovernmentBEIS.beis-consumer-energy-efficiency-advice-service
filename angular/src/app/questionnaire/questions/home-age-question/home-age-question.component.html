@@ -1,7 +1,7 @@
 <div class="home-age-question question-component">
     <form class="answer-grid questionnaire-form" (submit)="complete.emit()">
         <div class="home-age-input">
-            <select name="home-age" class="dropdown-input text-input home-age" aria-labelledby="home-age-label" [(ngModel)]="homeAge">
+            <select name="home-age" class="dropdown-input text-input home-age" aria-labelledby="question-heading" [(ngModel)]="homeAge">
                 <option *ngFor="let homeAge of homeAges" [ngValue]="homeAge.value">{{homeAge.name}}</option>
             </select>
         </div>

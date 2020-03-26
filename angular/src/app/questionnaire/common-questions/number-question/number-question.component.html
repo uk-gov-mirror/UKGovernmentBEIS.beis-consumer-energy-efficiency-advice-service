@@ -1,6 +1,6 @@
 <div class="form-element number-question-component">
     <button type="button" (click)="increaseQuantity(-step)" [disabled]="quantity == undefined || !isValidForMinimum(quantity)"
-            class="delta-button decrease">
+            class="delta-button decrease" aria-hidden="true" tabindex="-1">
         <div [inlineSVG]="'controls/minus-btn.svg'"></div>
     </button>
     <div class="text-input text-box-container" [ngClass]="{'text-box-focused': textBoxFocused}">
@@ -10,15 +10,15 @@
                type="number"
                [(ngModel)]="quantity"
                (ngModelChange)="updateQuantity()"
-               aria-labelledby="question-heading"
+               [attr.aria-labelledby]="labelledBy || 'question-heading'"
                [min]="minQuantity"
                [max]="maxQuantity"
                (focus)="$event.target.select(); textBoxFocused = true;"
                (blur)="textBoxFocused = false">
     </div>
     <button type="button" (click)="increaseQuantity(step)" [disabled]="quantity == undefined || !isValidForMaximum(quantity)"
-            class="delta-button increase">
-        <div [inlineSVG]="'controls/plus-btn.svg'"></div>
+            class="delta-button increase" aria-hidden="true" tabindex="-1">
+        <span [inlineSVG]="'controls/plus-btn.svg'"></span>
     </button>
 </div>
 <div *ngIf="isInvalid" class="error">

@@ -17,18 +17,10 @@
   }
 
   .question-reason {
-    opacity: 0;
-    max-height: 0;
-    transition: opacity 0.5s linear, max-height 0.5s linear;
     background-color: white;
     border-radius: 10px;
     padding: 10px;
-    overflow: hidden;
-
-    &.visible {
-      opacity: 1;
-      max-height: 200px;
-    }
+    max-height: 200px;
   }
 
   .question-reason-button {

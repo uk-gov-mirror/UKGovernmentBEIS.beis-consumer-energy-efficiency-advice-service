@@ -1,6 +1,6 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
-    <h1 class="question-heading">
+    <h1 id="question-heading" class="question-heading">
         {{currentQuestionContent.questionHeading}}
     </h1>
     <div class="help-text" *ngIf="currentQuestionContent?.helpHtml" [innerHtml]="currentQuestionContent?.helpHtml"></div>
