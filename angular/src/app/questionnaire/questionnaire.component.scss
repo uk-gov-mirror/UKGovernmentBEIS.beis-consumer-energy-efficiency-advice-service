@@ -36,6 +36,7 @@ $greyed-out: #a9a9a9;
 
   .help-text {
     color: $dark-blue;
+    text-align: center;
   }
 
   .question {
@@ -163,7 +164,6 @@ app-sticky-row-wrapper {
     }
     .question-heading {
       width: 100%;
-      padding: 40px 40px 10px 40px;
     }
 
     .question-heading-container {
@@ -246,7 +246,6 @@ app-sticky-row-wrapper {
 
     .help-text {
       width: 60vw;
-      text-align: center;
     }
 
     :last-child {
