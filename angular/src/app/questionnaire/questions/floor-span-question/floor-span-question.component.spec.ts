@@ -3,7 +3,7 @@ import {By} from '@angular/platform-browser';
 
 import {FloorSpanQuestionComponent} from './floor-span-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
-import {FloorLevel} from '../floor-level-question/floor-level';
+import {FloorLevel, getFloorLevelDescription} from '../floor-level-question/floor-level';
 import {FormsModule} from '@angular/forms';
 import keys from 'lodash-es/keys';
 import includes from 'lodash-es/includes';
@@ -48,8 +48,10 @@ describe('FloorSpanQuestionComponent', () => {
         // then
         fixture.whenStable().then(() =>
             allFloorLevels.forEach(floorLevel => {
-                const checkbox = fixture.debugElement.query(By.css(`#floor-span-checkbox-${FloorLevel[floorLevel]}`)).nativeElement;
-                expect(checkbox.classList.contains('selected')).toBe(includes(originalFloorLevels, floorLevel));
+                const className = getFloorLevelDescription(floorLevel);
+                const option = fixture.debugElement.query(By.css(`.${className}`)).nativeElement;
+                const shouldBeSelected = includes(originalFloorLevels, floorLevel);
+                expect(option.classList.contains('selected')).toBe(shouldBeSelected);
             })
         );
     }));
@@ -59,7 +61,7 @@ describe('FloorSpanQuestionComponent', () => {
             // given
 
             // when
-            const basement = fixture.debugElement.query(By.css('#floor-span-checkbox-Basement'));
+            const basement = fixture.debugElement.query(By.css('.basement'));
             basement.nativeElement.click();
 
             // then
@@ -72,9 +74,9 @@ describe('FloorSpanQuestionComponent', () => {
             // given
 
             // when
-            const basement = fixture.debugElement.query(By.css('#floor-span-checkbox-Basement'));
+            const basement = fixture.debugElement.query(By.css('.basement'));
             basement.nativeElement.click();
-            const ground = fixture.debugElement.query(By.css('#floor-span-checkbox-Ground'));
+            const ground = fixture.debugElement.query(By.css('.ground'));
             ground.nativeElement.click();
 
             // then

@@ -8,12 +8,12 @@
         </div>
         <div class="morning-evening-question" *ngIf="heatingPatternType === 3">
 
-            <div class="sub-question-text">
-                Can you pick the time of day you turn your heating on, and the number of hours you leave it on for
-            </div>
-
-            <select name="morning-heating-start-time" class="dropdown-input text-input morning-heating-start-time"
-                    aria-labelledby="morning-heating-start-time" [(ngModel)]="morningHeatingStartTime" ng-init="morningHeatingStartTime = morningTimes[7].value">
+            <label for="morning-heating-start-time" class="sub-question-text">
+                What time of the morning do you turn your heating on, and how many hours do you leave it on for?
+            </label>
+            <select id="morning-heating-start-time" name="morning-heating-start-time"
+                    class="dropdown-input text-input morning-heating-start-time"
+                    [(ngModel)]="morningHeatingStartTime" ng-init="morningHeatingStartTime = morningTimes[7].value">
                 <option *ngFor="let morningTime of morningTimes" [ngValue]="morningTime.value">{{morningTime.name}}</option>
             </select>
 
@@ -22,12 +22,12 @@
                                  [minQuantity]="1"
                                  [maxQuantity]="11"></app-number-question>
 
-            <div class="sub-question-text-evening">
-                    And the same for the afternoon or evening
-            </div>
-
-            <select name="evening-heating-start-time" class="dropdown-input text-input evening-heating-start-time"
-                    aria-labelledby="evening-heating-start-time" [(ngModel)]="eveningHeatingStartTime">
+            <label for="evening-heating-start-time" class="sub-question-text-evening">
+                What time of the afternoon or evening do you turn your heating on, and how many hours do you leave it on for?
+            </label>
+            <select id="evening-heating-start-time" name="evening-heating-start-time"
+                    class="dropdown-input text-input evening-heating-start-time"
+                    [(ngModel)]="eveningHeatingStartTime">
                 <option *ngFor="let eveningTime of eveningTimes" [ngValue]="eveningTime.value">{{eveningTime.name}}</option>
             </select>
 
@@ -39,14 +39,15 @@
 
         <div class="heating-hours-question" *ngIf="heatingPatternType === 4">
 
-            <div class="sub-question-text">
+            <div id="heating-hours" class="sub-question-text">
                 How many hours do you leave your heating on per day?
             </div>
 
             <app-number-question itemsName="hours of heating per day"
                                  [(quantity)]="heatingHoursPerDay"
                                  [minQuantity]="1"
-                                 [maxQuantity]="24"></app-number-question>
+                                 [maxQuantity]="24"
+                                 labelledBy="heating-hours"></app-number-question>
         </div>
     </form>
 </div>

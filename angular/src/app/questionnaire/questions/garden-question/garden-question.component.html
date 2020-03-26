@@ -1,11 +1,14 @@
 <div class="garden-question question-component">
     <div class="answer-grid multiple-choice-options garden-options">
-        <button class="multiple-choice-option garden-option"
-                *ngFor="let accessibilityOption of accessibilityOptions"
-                [class.selected]="accessibility === accessibilityOption.value"
-                (click)="handleOptionClicked(accessibilityOption.value)">
-                {{accessibilityOption.name}}
-        </button>
+        <div *ngFor="let option of accessibilityOptions; let i = index" class="garden-option multiple-choice-option-container">
+            <input [id]="'option-' + i" type="radio" name="garden"
+                   [checked]="accessibility === option.value"
+                   (click)="handleOptionClicked(option.value)">
+            <label [for]="'option-' + i" class="multiple-choice-option garden-option"
+                   [class.selected]="accessibility === option.value">
+                {{option.name}}
+            </label>
+        </div>
     </div>
     <div class="slider" *ngIf="accessibility === ACCESSIBLE">
         <nouislider [config]="SLIDER_CONFIG" [(ngModel)]="size"></nouislider>

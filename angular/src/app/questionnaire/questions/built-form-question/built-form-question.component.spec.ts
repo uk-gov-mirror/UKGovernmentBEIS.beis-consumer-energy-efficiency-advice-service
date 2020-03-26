@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {BuiltFormQuestionComponent} from './built-form-question.component';
 import {BuiltFormAnswer} from "./built-form-answer";
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('BuiltFormQuestionComponent', () => {
     let fixture: ComponentFixture<BuiltFormQuestionComponent>;
@@ -11,7 +12,7 @@ describe('BuiltFormQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [BuiltFormQuestionComponent],
+            declarations: [BuiltFormQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

@@ -1,11 +1,8 @@
 <div class="question-component">
-    <div class="answer-grid multiple-choice-options flat-exposed-wall-options">
-        <button class="multiple-choice-option flat-exposed-wall-option"
-                *ngFor="let option of flatExposedWallOptions"
-                [class.selected]="response === option.value"
-                [ngClass]="option.className"
-                (click)="response = option.value">
-            {{option.name}}
-        </button>
-    </div>
+    <app-multiple-choice-question name="flat-exposed-wall"
+                                  [options]="flatExposedWallOptions"
+                                  [(response)]="response"
+                                  [twoColumnsOnDesktop]="true"
+                                  [capitalizeOptions]="true">
+    </app-multiple-choice-question>
 </div>

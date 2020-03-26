@@ -1,12 +1,7 @@
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {Component} from '@angular/core';
 import {WaterTankSpace} from './water-tank-space';
-
-interface SpaceOption {
-    name: string;
-    helpText?: string;
-    value: WaterTankSpace;
-}
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
 @Component({
     selector: 'app-water-tank-question',
@@ -16,9 +11,9 @@ interface SpaceOption {
 })
 export class WaterTankQuestionComponent extends QuestionBaseComponent {
 
-    readonly spaceOptions: SpaceOption[] = [
+    readonly spaceOptions: MultipleChoiceOption[] = [
         {name: 'No space', value: WaterTankSpace.None},
-        {name: 'About 4.5m³', helpText: 'You could fit a large fridge-freezer in it', value: WaterTankSpace.Sufficient},
+        {name: 'About 4.5 cubic metres', description: 'You could fit a large fridge-freezer in it', value: WaterTankSpace.Sufficient},
         {name: 'Bigger', value: WaterTankSpace.Bigger},
     ];
 

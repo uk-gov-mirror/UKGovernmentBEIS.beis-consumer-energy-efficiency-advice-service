@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {FuelType, getFuelTypeDescription} from './fuel-type';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {ResponseData} from '../../../shared/response-data/response-data';
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class FuelTypeOption {
+class FuelTypeOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: FuelType, public readonly className: string) {
@@ -14,7 +15,6 @@ class FuelTypeOption {
 @Component({
     selector: 'app-fuel-type-question',
     templateUrl: './fuel-type-question.component.html',
-    styleUrls: ['./fuel-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class FuelTypeQuestionComponent extends QuestionBaseComponent {

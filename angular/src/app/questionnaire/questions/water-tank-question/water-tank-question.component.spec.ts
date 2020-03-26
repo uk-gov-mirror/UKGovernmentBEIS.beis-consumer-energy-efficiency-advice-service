@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {WaterTankQuestionComponent} from './water-tank-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {WaterTankSpace} from './water-tank-space';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('WaterTankQuestionComponent', () => {
     let component: WaterTankQuestionComponent;
@@ -11,7 +12,7 @@ describe('WaterTankQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [WaterTankQuestionComponent],
+            declarations: [WaterTankQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -30,7 +31,7 @@ describe('WaterTankQuestionComponent', () => {
 
     it('should set the response when clicking on an option', () => {
         // given
-        const noSpace = fixture.debugElement.queryAll(By.css('.water-tank-button')).find(el => el.nativeElement.innerText === 'No space');
+        const noSpace = fixture.debugElement.queryAll(By.css('.space-option')).find(el => el.nativeElement.innerText === 'No space');
 
         // when
         noSpace.nativeElement.click();

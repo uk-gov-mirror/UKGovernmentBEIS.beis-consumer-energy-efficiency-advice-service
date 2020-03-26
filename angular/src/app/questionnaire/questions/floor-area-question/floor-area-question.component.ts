@@ -38,6 +38,10 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
         this.responseData.floorAreaUnit = val;
     }
 
+    get doesNotKnow(): boolean {
+        return this.responseData.doesNotKnowFloorArea || false;
+    }
+
     ngOnInit() {
         this.populateFloorArea();
         this.floorAreaDisplay = this.responseData.floorArea;
@@ -48,13 +52,15 @@ export class FloorAreaQuestionComponent extends QuestionBaseComponent implements
             this.isInvalid = true;
             this.responseData.floorArea = undefined;
         } else {
+            this.responseData.doesNotKnowFloorArea = false;
             this.isInvalid = false;
             this.responseData.floorArea = value;
         }
     }
 
-    isFloorAreaUnitSelected(val: FloorAreaUnit) {
-        return this.selectedFloorAreaUnit === val;
+    handleDontKnow() {
+        this.responseData.floorArea = 0;
+        this.responseData.doesNotKnowFloorArea = true;
     }
 
     handleFormSubmit() {

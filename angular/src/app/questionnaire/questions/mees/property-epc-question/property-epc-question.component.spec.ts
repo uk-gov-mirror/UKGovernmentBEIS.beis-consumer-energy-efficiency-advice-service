@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {PropertyEpcQuestionComponent} from './property-epc-question.component';
 import {UserEpcRating} from './user-epc-rating';
+import {MultipleChoiceQuestionComponent} from "../../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('PropertyEpcQuestionComponent', () => {
     let component: PropertyEpcQuestionComponent;
@@ -10,7 +11,7 @@ describe('PropertyEpcQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PropertyEpcQuestionComponent],
+            declarations: [PropertyEpcQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

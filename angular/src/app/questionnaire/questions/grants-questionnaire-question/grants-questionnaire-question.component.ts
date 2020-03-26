@@ -4,8 +4,7 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 
 @Component({
     selector: 'app-grants-questionnaire-question',
-    templateUrl: './grants-questionnaire-question.component.html',
-    styleUrls: ['./grants-questionnaire-question.component.scss'],
+    templateUrl: '../../common-questions/boolean-question/boolean-question.component.html',
     animations: [slideInOutAnimation]
 })
 export class GrantsQuestionnaireQuestionComponent extends QuestionBaseComponent {

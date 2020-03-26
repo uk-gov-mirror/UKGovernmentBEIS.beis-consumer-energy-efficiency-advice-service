@@ -1,12 +1,6 @@
 <div class="roof-space-question question-component">
-  <div class="answer-grid multiple-choice-options roof-space-options">
-    <div class="roof-space-option" *ngFor="let spaceOption of spaceOptions">
-      <button class="multiple-choice-option roof-space-button"
-              [class.selected]="response === spaceOption.value"
-              (click)="response = spaceOption.value">
-        {{spaceOption.name}}
-      </button>
-      <div *ngIf="spaceOption.helpText" class="help-text">{{spaceOption.helpText}}</div>
-    </div>
-  </div>
+  <app-multiple-choice-question name="space"
+                                [options]="spaceOptions"
+                                [(response)]="response">
+  </app-multiple-choice-question>
 </div>

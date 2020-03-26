@@ -5,6 +5,10 @@
 
 .construction-question.question-component {
   .questionnaire-form .insulation-type-input {
+    .dropdown-input {
+      width: 100%;
+    }
+
     .question {
       @include question-label-font;
       margin-bottom: 17px;

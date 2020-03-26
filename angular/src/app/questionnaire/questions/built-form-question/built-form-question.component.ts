@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {BuiltFormAnswer, getBuiltFormDescription} from "./built-form-answer";
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class BuiltFormOption {
+class BuiltFormOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: BuiltFormAnswer, public readonly className: string) {
@@ -14,7 +15,6 @@ class BuiltFormOption {
 @Component({
     selector: 'app-built-form-question',
     templateUrl: './built-form-question.component.html',
-    styleUrls: ['./built-form-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class BuiltFormQuestionComponent extends QuestionBaseComponent {

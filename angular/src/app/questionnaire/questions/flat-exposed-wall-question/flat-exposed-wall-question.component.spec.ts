@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {FlatExposedWall} from './flat-exposed-wall';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('FlatExposedWallQuestionComponent', () => {
     let fixture: ComponentFixture<FlatExposedWallQuestionComponent>;
@@ -11,7 +12,7 @@ describe('FlatExposedWallQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FlatExposedWallQuestionComponent],
+            declarations: [FlatExposedWallQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

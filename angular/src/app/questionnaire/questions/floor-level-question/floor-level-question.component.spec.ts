@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {FloorLevelQuestionComponent} from './floor-level-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {FloorLevel} from './floor-level';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('FloorLevelQuestionComponent', () => {
     let fixture: ComponentFixture<FloorLevelQuestionComponent>;
@@ -11,7 +12,7 @@ describe('FloorLevelQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FloorLevelQuestionComponent],
+            declarations: [FloorLevelQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

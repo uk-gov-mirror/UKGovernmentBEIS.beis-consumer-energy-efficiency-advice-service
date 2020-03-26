@@ -5,7 +5,8 @@
     </button>
     <div class="text-input text-box-container" [ngClass]="{'text-box-focused': textBoxFocused}">
         <div class="prefix">{{prefix}}</div>
-        <input [attr.aria-label]="itemsName"
+        <input [attr.aria-label]="labelledBy ? null : itemsName"
+               [attr.aria-labelledby]="labelledBy ? labelledBy : null"
                class="text-box"
                type="number"
                [(ngModel)]="quantity"

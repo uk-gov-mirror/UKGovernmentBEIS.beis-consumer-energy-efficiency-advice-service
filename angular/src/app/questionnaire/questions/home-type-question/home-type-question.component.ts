@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {getHomeTypeDescription, HomeType} from './home-type';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {ResponseData} from '../../../shared/response-data/response-data';
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class HomeTypeOption {
+class HomeTypeOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: HomeType, public readonly className: string) {
@@ -14,7 +15,6 @@ class HomeTypeOption {
 @Component({
     selector: 'app-home-type-question',
     templateUrl: './home-type-question.component.html',
-    styleUrls: ['./home-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class HomeTypeQuestionComponent extends QuestionBaseComponent {

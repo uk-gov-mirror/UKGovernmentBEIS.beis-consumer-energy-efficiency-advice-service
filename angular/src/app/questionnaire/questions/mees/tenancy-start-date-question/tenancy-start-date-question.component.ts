@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question/question-base-component';
 import {getDomesticTenancyStartDateDescription, TenancyStartDate} from './tenancy-start-date';
+import {MultipleChoiceOption} from "../../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class StartDateOption {
+class StartDateOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: TenancyStartDate, public readonly className: string) {

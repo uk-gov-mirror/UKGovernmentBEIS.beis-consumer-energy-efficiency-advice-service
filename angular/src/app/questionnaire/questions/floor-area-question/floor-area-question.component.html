@@ -6,18 +6,20 @@
                     <input class="floor-area-input text-input" id="floor-area-input" name="floor-area-input" type="number"
                            aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateFloorArea($event)">
                 </div>
+                <div class="floor-area-unit-input multiple-choice-options unit-options">
+                    <select name="home-age" class="dropdown-input text-input home-age"
+                            aria-label="unit (square metres or square feet)" [(ngModel)]="selectedFloorAreaUnit">
+                        <option *ngFor="let floorAreaUnit of floorAreaUnits" [ngValue]="floorAreaUnit.value">
+                            {{floorAreaUnit.basicUnitDisplay}}
+                        </option>
+                    </select>
+                </div>
             </form>
-            <div class="floor-area-unit-input multiple-choice-options unit-options">
-                <button class="multiple-choice-option unit-option"
-                        [ngClass]="floorAreaUnit.className"
-                        *ngFor="let floorAreaUnit of floorAreaUnits"
-                        [class.selected]="isFloorAreaUnitSelected(floorAreaUnit.value)"
-                        (click)="selectedFloorAreaUnit = floorAreaUnit.value">
-                    {{floorAreaUnit.basicUnitDisplay}}&#xb2;
-                </button>
-            </div>
         </div>
-        <button class="do-not-know-button" id="do-not-know-button" (click)="updateFloorArea(0);">I don't know</button>
+        <button class="do-not-know-button" id="do-not-know-button" (click)="handleDontKnow()"
+                [class.selected]="doesNotKnow">
+            I don't know
+        </button>
     </div>
     <div class="error" *ngIf="isInvalid">
         <div class="error-message">Please enter a valid value.</div>

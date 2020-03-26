@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureTypeQuestionComponent} from './tenure-type-question.component';
 import {TenureType} from './tenure-type';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('TenureTypeQuestionComponent', () => {
     let component: TenureTypeQuestionComponent;
@@ -11,7 +12,7 @@ describe('TenureTypeQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TenureTypeQuestionComponent],
+            declarations: [TenureTypeQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -32,7 +33,7 @@ describe('TenureTypeQuestionComponent', () => {
         // given
 
         // when
-        fixture.debugElement.query(By.css('#private-tenancy-option')).nativeElement.click();
+        fixture.debugElement.query(By.css('.private-tenancy')).nativeElement.click();
 
         // then
         expect(component.response).toBe(TenureType.PrivateTenancy);

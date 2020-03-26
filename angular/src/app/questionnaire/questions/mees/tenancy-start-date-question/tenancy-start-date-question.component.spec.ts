@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {TenancyStartDateQuestionComponent} from './tenancy-start-date-question.component';
 import {TenancyStartDate} from './tenancy-start-date';
+import {MultipleChoiceQuestionComponent} from "../../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('TenancyStartDateQuestionComponent', () => {
     let component: TenancyStartDateQuestionComponent;
@@ -10,7 +11,7 @@ describe('TenancyStartDateQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TenancyStartDateQuestionComponent],
+            declarations: [TenancyStartDateQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();

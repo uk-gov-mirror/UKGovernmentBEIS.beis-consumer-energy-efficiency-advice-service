@@ -1,16 +1,8 @@
 <div class="electricity-tariff-question question-component">
-    <div class="answer-grid multiple-choice-options electricity-tariff-options">
-        <button id="standard-button"
-                class="multiple-choice-option electricity-tariff-option"
-                [class.selected]="response === ElectricityTariff.Standard"
-                (click)="response = ElectricityTariff.Standard">
-            Standard
-        </button>
-        <button id="off-peak-button"
-                class="multiple-choice-option electricity-tariff-option"
-                [class.selected]="response === ElectricityTariff.OffPeak"
-                (click)="response = ElectricityTariff.OffPeak">
-            Off Peak
-        </button>
-    </div>
+    <app-multiple-choice-question name="electricity-tariff"
+                                  [options]="electricityTariffOptions"
+                                  [(response)]="response"
+                                  [twoColumnsOnDesktop]="true"
+                                  [capitalizeOptions]="true">
+    </app-multiple-choice-question>
 </div>

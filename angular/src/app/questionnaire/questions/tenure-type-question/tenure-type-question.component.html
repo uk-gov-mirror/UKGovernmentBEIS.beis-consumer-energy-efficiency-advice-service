@@ -1,11 +1,6 @@
 <div class="tenure-type-question question-component">
-    <div class="answer-grid multiple-choice-options tenure-type-options">
-        <button *ngFor="let tenureTypeOption of tenureTypeOptions"
-                [id]="tenureTypeOption.id + '-option'"
-                class="multiple-choice-option tenure-type-option"
-                [class.selected]="response === tenureTypeOption.value"
-                (click)="response = tenureTypeOption.value">
-            {{tenureTypeOption.description}}
-        </button>
-    </div>
+    <app-multiple-choice-question name="tenure-type"
+                                  [options]="tenureTypeOptions"
+                                  [(response)]="response">
+    </app-multiple-choice-question>
 </div>

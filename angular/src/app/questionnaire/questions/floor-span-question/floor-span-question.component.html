@@ -1,12 +1,14 @@
 <div class="question-component floor-span-question">
-    <div class="answer-grid multiple-choice-options floor-level-options">
-        <button *ngFor="let option of floorLevelOptions"
-                class="multiple-choice-option floor-level-option"
-                id="floor-span-checkbox-{{FloorLevel[option.value]}}"
-                [name]="option.name"
-                [class.selected]="isFloorLevelOptionSelected(option)"
-                (click)="toggleFloorLevelOption(option)">
-            {{option.displayName}}
-        </button>
+    <div class="answer-grid multiple-choice-options two-columns-on-desktop">
+        <div *ngFor="let option of floorLevelOptions; let i = index" class="multiple-choice-option-container">
+            <input [id]="'option-' + i" type="checkbox"
+                   [checked]="isFloorLevelOptionSelected(option)"
+                   (click)="toggleFloorLevelOption(option)">
+            <label [for]="'option-' + i"
+                   [ngClass]="[option.name, 'multiple-choice-option']"
+                   [class.selected]="isFloorLevelOptionSelected(option)">
+                {{option.displayName}}
+            </label>
+        </div>
     </div>
 </div>

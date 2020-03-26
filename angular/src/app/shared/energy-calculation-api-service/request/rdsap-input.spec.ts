@@ -52,6 +52,7 @@ describe('RdsapInput', () => {
             numberOfStoreysInBuilding: 5,
             numberOfBedrooms: 1,
             floorArea: undefined,
+            doesNotKnowFloorArea: false,
             floorAreaUnit: FloorAreaUnit.SquareMetre,
             floorLevels: [FloorLevel.TopFloor],
             fuelType: FuelType.MainsGas,

@@ -36,11 +36,5 @@ $benefit-font-size-desktop-tablet: 18px;
     .benefits .benefit {
       font-size: $benefit-font-size-desktop-tablet;
     }
-
-    .benefits-options {
-      .benefits-option {
-        @include is-grid-item($number-of-items: 2, $margin: 20px);
-      }
-    }
   }
 }

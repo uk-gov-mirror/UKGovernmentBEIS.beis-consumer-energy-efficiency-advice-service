@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question/question-base-component';
 import {getUserEpcRatingDescription, UserEpcRating} from './user-epc-rating';
+import {MultipleChoiceOption} from "../../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class PropertyEpcOption {
+class PropertyEpcOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: UserEpcRating, public readonly className: string) {

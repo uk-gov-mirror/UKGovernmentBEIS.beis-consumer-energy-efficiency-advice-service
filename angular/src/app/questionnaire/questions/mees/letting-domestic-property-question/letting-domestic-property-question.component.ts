@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question/question-base-component';
 import {getLettingDomesticPropertyStageDescription, LettingDomesticPropertyStage} from './letting-domestic-property-stage';
+import {MultipleChoiceOption} from "../../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class LettingOption {
+class LettingOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: LettingDomesticPropertyStage, public readonly className: string) {

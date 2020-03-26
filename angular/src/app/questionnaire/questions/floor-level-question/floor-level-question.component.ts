@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FloorLevel, getFloorLevelDescription} from './floor-level';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {ResponseData} from '../../../shared/response-data/response-data';
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class FloorLevelOption {
+class FloorLevelOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: FloorLevel, public readonly className: string) {
@@ -14,7 +15,6 @@ class FloorLevelOption {
 @Component({
     selector: 'app-floor-level-question',
     templateUrl: './floor-level-question.component.html',
-    styleUrls: ['./floor-level-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class FloorLevelQuestionComponent extends QuestionBaseComponent implements OnInit {

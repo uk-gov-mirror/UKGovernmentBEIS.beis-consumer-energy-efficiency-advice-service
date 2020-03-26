@@ -1,0 +1,15 @@
+<div [ngClass]="[name + '-options', 'answer-grid', 'multiple-choice-options']"
+     [class.two-columns-on-desktop]="twoColumnsOnDesktop" [class.capitalize-options]="capitalizeOptions">
+    <div *ngFor="let option of options; let i = index" class="multiple-choice-option-container">
+        <input [id]="'option-' + i" type="radio" [name]="name"
+               [ngClass]="[option.className || '', name + '-option']"
+               [checked]="response === option.value"
+               (click)="responseChange.emit(option.value)">
+        <label [for]="'option-' + i"
+               [ngClass]="[name + '-option', 'multiple-choice-option']"
+               [class.selected]="response === option.value">
+            {{option.name}}
+            <span *ngIf="option.description" class="multiple-choice-option-description">{{option.description}}</span>
+        </label>
+    </div>
+</div>
