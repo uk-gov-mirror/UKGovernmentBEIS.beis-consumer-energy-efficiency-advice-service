@@ -17,7 +17,7 @@
                 <option *ngFor="let morningTime of morningTimes" [ngValue]="morningTime.value">{{morningTime.name}}</option>
             </select>
 
-            <app-number-question itemsName="morningHeatingDuration"
+            <app-number-question itemsName="hours of heating in the morning"
                                  [(quantity)]="morningHeatingDuration"
                                  [minQuantity]="1"
                                  [maxQuantity]="11"></app-number-question>
@@ -31,7 +31,7 @@
                 <option *ngFor="let eveningTime of eveningTimes" [ngValue]="eveningTime.value">{{eveningTime.name}}</option>
             </select>
 
-            <app-number-question itemsName="eveningHeatingDuration"
+            <app-number-question itemsName="hours of heating in the evening"
                                  [(quantity)]="eveningHeatingDuration"
                                  [minQuantity]="1"
                                  [maxQuantity]="11"></app-number-question>
@@ -43,7 +43,7 @@
                 How many hours do you leave your heating on per day?
             </div>
 
-            <app-number-question itemsName="heatingHoursPerDay"
+            <app-number-question itemsName="hours of heating per day"
                                  [(quantity)]="heatingHoursPerDay"
                                  [minQuantity]="1"
                                  [maxQuantity]="24"></app-number-question>

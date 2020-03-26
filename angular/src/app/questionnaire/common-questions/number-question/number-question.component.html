@@ -5,12 +5,11 @@
     </button>
     <div class="text-input text-box-container" [ngClass]="{'text-box-focused': textBoxFocused}">
         <div class="prefix">{{prefix}}</div>
-        <input [id]="itemsName"
+        <input [attr.aria-label]="itemsName"
                class="text-box"
                type="number"
                [(ngModel)]="quantity"
                (ngModelChange)="updateQuantity()"
-               [attr.aria-labelledby]="labelledBy || 'question-heading'"
                [min]="minQuantity"
                [max]="maxQuantity"
                (focus)="$event.target.select(); textBoxFocused = true;"

@@ -2,14 +2,14 @@
     <form class="answer-grid questionnaire-form" (submit)="handleFormSubmit()">
         <div class="showers-baths-input">
             <div class="name">Showers</div>
-            <app-number-question itemsName="showers"
+            <app-number-question itemsName="showers per week"
                                  [(quantity)]="showers"
                                  [minQuantity]="0"
                                  [maxQuantity]="50"></app-number-question>
         </div>
         <div class="showers-baths-input">
             <div class="name">Baths</div>
-            <app-number-question itemsName="baths"
+            <app-number-question itemsName="baths per week"
                                  [(quantity)]="baths"
                                  [minQuantity]="0"
                                  [maxQuantity]="50"></app-number-question>

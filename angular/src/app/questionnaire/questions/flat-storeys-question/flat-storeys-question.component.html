@@ -1,20 +1,18 @@
 <div class="flat-storeys-question question-component">
     <form class="answer-grid questionnaire-form" (submit)="handleFormSubmit()">
         <div class="storeys-input building-storeys">
-            <div id="whole-building" class="name">How many floors in the whole building?</div>
-            <app-number-question itemsName="storeys of the whole building"
+            <div id="whole-building" class="name">Whole building</div>
+            <app-number-question itemsName="floors in the whole building"
                                  [(quantity)]="numberOfStoreysInBuilding"
                                  [minQuantity]="1"
-                                 [maxQuantity]="100"
-                                 labelledBy="whole-building"></app-number-question>
+                                 [maxQuantity]="100"></app-number-question>
         </div>
         <div class="storeys-input flat-storeys">
-            <div id="your-flat" class="name">How many floors in your flat?</div>
-            <app-number-question itemsName="storeys of your flat"
+            <div id="your-flat" class="name">Your flat</div>
+            <app-number-question itemsName="floors in your flat"
                                  [(quantity)]="numberOfStoreysInFlat"
                                  [minQuantity]="1"
-                                 [maxQuantity]="maximumNumberOfStoreysInFlat"
-                                 labelledBy="your-flat"></app-number-question>
+                                 [maxQuantity]="maximumNumberOfStoreysInFlat"></app-number-question>
         </div>
     </form>
 </div>
