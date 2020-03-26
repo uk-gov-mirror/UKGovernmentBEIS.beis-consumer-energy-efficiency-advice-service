@@ -43,9 +43,13 @@
                 </div>
             </div>
             <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
-                <table class="results-table">
+                <!--
+                    Angular's fake `.table` tables render as cards on smaller screens, which is nice but is not as
+                    accessible on desktop so we have two versions of the table.
+                -->
+                <table class="results-table results-table-desktop">
                     <thead>
-                        <tr>
+                        <tr class="table-row">
                             <th class="participant table-heading">Company</th>
                             <th class="certification-id table-heading">Certification ID</th>
                             <th class="email-address table-heading">Email Address</th>
@@ -61,6 +65,20 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="results-table results-table-mobile-and-tablet table">
+                    <div class="table-row">
+                        <div class="participant table-heading">Company</div>
+                        <div class="certification-id table-heading">Certification ID</div>
+                        <div class="email-address table-heading">Email Address</div>
+                        <div class="phone-number table-heading">Phone Number</div>
+                    </div>
+                    <div class="installer table-row" *ngFor="let installer of installers">
+                        <div class="participant table-cell">{{installer.participant}}</div>
+                        <div class="certification-id table-cell">{{installer.certification_id}}</div>
+                        <div class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></div>
+                        <div class="phone-number table-cell">{{installer.phone_number}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

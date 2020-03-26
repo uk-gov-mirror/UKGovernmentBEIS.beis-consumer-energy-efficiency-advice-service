@@ -110,6 +110,7 @@
 
       .results-table {
         margin-bottom: 50px;
+        border-collapse: collapse;
       }
 
       .table-cell {
@@ -193,7 +194,11 @@
     }
 
     .results {
+      .results-table-desktop {
+        display: none;
+      }
       .table {
+
         .table-heading {
           display: none;
         }
@@ -263,11 +268,13 @@
     }
 
     .results {
+      .results-table-desktop {
+        display: none;
+      }
       .table {
         .table-heading {
           display: none;
         }
-
         .table-cell:last-of-type {
           margin-bottom: 15px;
         }
@@ -322,6 +329,10 @@
     }
 
     .results {
+      .results-table-mobile-and-tablet {
+        display: none;
+      }
+
       .table-heading {
         background-color: $light-blue;
         color: $dark-blue;
