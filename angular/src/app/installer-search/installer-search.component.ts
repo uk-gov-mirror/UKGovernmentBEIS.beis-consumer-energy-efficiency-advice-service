@@ -19,13 +19,17 @@ export class InstallerSearchComponent implements OnInit {
     installers = [];
     searchButtonClicked = false;
     loading = false;
-    error = false;
+    errorMessage = null;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
                 private measureContentService: EnergySavingMeasureContentService,
                 private installerSearchService: InstallerSearchService,
                 private pageTitle: PageTitleService) {
+    }
+
+    get error() {
+        return !!this.errorMessage;
     }
 
     ngOnInit() {
@@ -48,13 +52,26 @@ export class InstallerSearchComponent implements OnInit {
 
     submit() {
         if (this.selectedMeasure && this.postcode) {
+            this.errorMessage = null;
             this.loading = true;
             this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code)
                 .subscribe(installers => {
                     this.installers = installers;
                     this.loading = false;
                     this.searchButtonClicked = true;
+                }, error => {
+                    this.errorMessage = error.toString().replace('Error: ', '') + '.';
                 });
+        } else {
+            const messageParts = [];
+            if (!this.postcode) {
+                // Matches the message from the API if postcode is invalid.
+                messageParts.push('No valid postcode supplied.');
+            }
+            if (!this.selectedMeasure) {
+                messageParts.push('No measure selected.');
+            }
+            this.errorMessage = messageParts.join(' ');
         }
     }
 }

@@ -110,6 +110,14 @@ $action-divider-circle-diameter: 40px;
               border-left: $send-email-button-arrow-width solid $dark-blue;
             }
           }
+
+          &:disabled {
+            background-color: $dark-medium-grey;
+            color: $light-grey;
+            &:after {
+              border-left: $send-email-button-arrow-width solid $dark-medium-grey;
+            }
+          }
         }
       }
     }

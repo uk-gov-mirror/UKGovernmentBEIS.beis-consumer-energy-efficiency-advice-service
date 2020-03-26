@@ -45,8 +45,13 @@ export class DownloadPlanComponent {
             planInfo: planInfo,
             emailAddress: this.emailAddress})
             .subscribe(
-                () => this.emailIsLoading = false,
-                () => this.emailIsError = true);
+                () =>  {
+                    this.emailIsLoading = false;
+                },
+                () => {
+                    this.emailIsError = true;
+                    this.emailIsLoading = false;
+                });
     }
 
     public shareToFacebook() {

@@ -116,11 +116,18 @@ app-sticky-row-wrapper {
         padding-right: 10px;
 
         &:not([disabled]) {
-          background-color: $dark-medium-grey;
+          background-color: $light-grey;
           color: white;
 
+          &:hover, &:focus, &:active {
+            background-color: $dark-grey;
+            .left-chevron-icon ::ng-deep svg {
+              fill: $light-grey;
+            }
+          }
+
           .left-chevron-icon ::ng-deep svg {
-            fill: white;
+            fill: $dark-medium-grey;
           }
         }
       }
@@ -129,8 +136,12 @@ app-sticky-row-wrapper {
         padding-left: 10px;
 
         &:not([disabled]) {
-          background-color: darken($green, 15%);
+          background-color: $pink;
           color: white;
+
+          &:hover, &:focus, &:active {
+            background-color: $dark-medium-blue;
+          }
 
           .right-chevron-icon ::ng-deep svg {
             fill: white;

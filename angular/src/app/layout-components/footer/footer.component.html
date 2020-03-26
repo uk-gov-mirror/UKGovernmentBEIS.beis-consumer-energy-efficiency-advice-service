@@ -1,9 +1,11 @@
 <div id="page-footer" class="footer page-row">
     <div class="page-row-content">
-        <p class="header">Contact us if you require further assistance on the freephone helpline:</p>
+        <p id="contact-us" class="header">Contact us if you require further assistance on the freephone helpline:</p>
         <div class="contact-us-details">
             <div class="icon" [inlineSVG]="'controls/phone.svg'"></div>
-            <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number">{{phoneNumber}}</a>
+            <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number" title="Helpline phone number">
+                {{phoneNumber}}
+            </a>
         </div>
         <p class="opening-times">
             Monday to Friday: 8am to 8pm

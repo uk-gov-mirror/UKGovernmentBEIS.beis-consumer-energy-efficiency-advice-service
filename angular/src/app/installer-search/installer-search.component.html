@@ -29,7 +29,7 @@
     </div>
     <div class="results-section page-row">
         <div class="page-row-content">
-            <app-spinner-and-error-container [loading]="loading" [error]="error"></app-spinner-and-error-container>
+            <app-spinner-and-error-container [loading]="loading" [error]="error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
             <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
                 Please enter your details above to find installers in your area.
             </div>
