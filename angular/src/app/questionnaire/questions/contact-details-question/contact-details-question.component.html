@@ -7,9 +7,10 @@
                    [value]="name" (input)="name = $event.target.value"
                    (blur)="hasBlurredNameInput = true"
                    spellcheck="false" autocomplete="name" autofocus>
-            <p class="validation-error" *ngIf="hasBlurredNameInput && !nameInput.validity.valid">
-                Please enter your name.
-            </p>
+            <app-spinner-and-error-container [loading]="false"
+                                             [error]="hasBlurredNameInput && !nameInput.validity.valid"
+                                             errorMessage="Please enter your name.">
+            </app-spinner-and-error-container>
         </div>
         <div class="form-group">
             <label for="eco-self-referral-email-address">Email address</label>
@@ -18,9 +19,10 @@
                    [value]="emailAddress" (input)="emailAddress = $event.target.value"
                    (blur)="hasBlurredEmailAddressInput = true"
                    spellcheck="false" autocomplete="email">
-            <p class="validation-error" *ngIf="hasBlurredEmailAddressInput && !emailAddressInput.validity.valid">
-                Please enter a valid email address.
-            </p>
+            <app-spinner-and-error-container [loading]="false"
+                                             [error]="hasBlurredEmailAddressInput && !emailAddressInput.validity.valid"
+                                             errorMessage="Please enter a valid email address.">
+            </app-spinner-and-error-container>
         </div>
         <div class="form-group">
             <label for="eco-self-referral-phone-number">Phone number</label>
@@ -30,9 +32,10 @@
                    [value]="phoneNumber" (input)="phoneNumber = $event.target.value"
                    (blur)="hasBlurredPhoneNumberInput = true"
                    autocomplete="tel">
-            <p class="validation-error" *ngIf="hasBlurredPhoneNumberInput && !phoneNumberInput.validity.valid">
-                Please enter a valid UK phone number.
-            </p>
+            <app-spinner-and-error-container [loading]="false"
+                                             [error]="hasBlurredPhoneNumberInput && !phoneNumberInput.validity.valid"
+                                             errorMessage="Please enter a valid UK phone number.">
+            </app-spinner-and-error-container>
         </div>
         <!-- Hidden submit button allows form to be submitted with Enter key. -->
         <button type="submit" style="display: none"></button>

@@ -22,11 +22,9 @@
         text-transform: none;
         font-size: 1rem;
       }
-      .validation-error {
-        color: $red;
-        font-family: $font-family;
-        text-align: center;
-      }
+    }
+    ::ng-deep .page-error-container {
+      padding: 0;
     }
   }
 }

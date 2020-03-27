@@ -9,12 +9,19 @@ import {ECOSelfReferralApiService} from '../eco-self-referral-api.service';
 })
 export class ECOSelfReferralQuestionnaireComponent {
 
+    errorMessage: string = null;
+
     constructor(private router: Router,
         private responseData: ResponseData,
         private apiService: ECOSelfReferralApiService) {
     }
 
+    get isError(): boolean {
+        return !!this.errorMessage;
+    }
+
     onQuestionnaireComplete() {
+        this.errorMessage = null;
         this.apiService.submitECOSelfReferral(this.responseData)
             .subscribe(
                 () => {
@@ -22,8 +29,7 @@ export class ECOSelfReferralQuestionnaireComponent {
                 },
                 error => {
                     console.error(error);
-                    alert('We were not able to process your referral due to an unexpected error. Please try again later.');
-                    this.router.navigate(['/']);
+                    this.errorMessage = 'We were not able to process your ECO referral due to an unexpected error. Please try again later.';
                 }
             );
     }
