@@ -43,6 +43,15 @@
       color: $dark-blue;
       cursor: pointer;
       text-decoration: none;
+      outline: none;
+
+      &:hover, &:focus, &:active {
+        color: $light-blue;
+        background-color: $dark-blue;
+        &:after {
+          border-left-color: $dark-blue;
+        }
+      }
 
       &::before {
         content: '';
