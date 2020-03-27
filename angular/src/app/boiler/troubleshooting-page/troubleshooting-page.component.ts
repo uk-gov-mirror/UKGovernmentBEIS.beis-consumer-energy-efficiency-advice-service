@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-troubleshooting-page',
@@ -9,10 +10,12 @@ import {Router} from '@angular/router';
 export class TroubleshootingPageComponent implements OnInit {
     tips: {summary: string, details: string, imagePath: string}[];
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
+        this.pageTitle.set('Troubleshooting your boiler');
         this.tips = [
             {
                 summary: 'Supply OK?',

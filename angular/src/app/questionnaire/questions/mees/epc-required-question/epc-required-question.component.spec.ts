@@ -36,15 +36,4 @@ describe('EpcRequiredQuestionComponent', () => {
         // then
         expect(component.response).toBe(true);
     });
-
-    it('should notify of completion when clicking on one of the buttons', () => {
-        // given
-
-        // when
-        const no = fixture.debugElement.query(By.css('.no-button'));
-        no.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

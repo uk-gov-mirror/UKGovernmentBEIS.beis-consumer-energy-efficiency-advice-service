@@ -1,38 +1,16 @@
-<div class="your-plan page-row" *ngIf="showOldVersion || numberOfRecommendations > 0">
+<div class="your-plan page-row" *ngIf="numberOfRecommendations > 0">
     <div class="page-row-content">
-        <div class="plan-details" [class.old]="showOldVersion">
-            <div class="heading">{{showOldVersion ? 'Your Plan' : 'Your Potential Effect'}}</div>
-            <ng-container *ngIf="showOldVersion">
-                <div class="subheading"
-                     [class.plan-empty]="numberOfRecommendations === 0">
-                    {{numberOfRecommendations> 0 ? 'You have added:' : 'Try adding some recommendations to your plan'}}
-                </div>
-                <div class="subheading-tablet"
-                     [class.plan-empty]="numberOfRecommendations === 0">
-                    {{numberOfRecommendations > 0 ? getYouHaveAddedRecommendations() : 'Try adding some recommendations
-                    to your plan'}}
-                </div>
-                <div class="recommendations-list">
-                    <app-your-plan-footer-item *ngFor="let recommendation of userRecommendations"
-                                               [recommendation]="recommendation">
-                    </app-your-plan-footer-item>
-                    <app-your-plan-footer-combined-item *ngIf="landlordRecommendations.length"
-                                                        [recommendations]="landlordRecommendations"
-                                                        [combinedHeadline]="combinedLandlordRecommendationHeadline">
-                    </app-your-plan-footer-combined-item>
-                </div>
-            </ng-container>
+        <div class="plan-details">
+            <div class="heading">Your Potential Effect</div>
         </div>
-
         <div class="plan-summary">
             <app-your-plan-summary [isFooter]="true" class="is-footer"></app-your-plan-summary>
         </div>
-
-        <a class="do-button"
+        <a class="confirm-button"
            [class.disabled]="numberOfRecommendations === 0"
            routerLink="/energy-efficiency/your-plan"
            (click)="DoPlanClicked()">
-            <span class="do-string">DO</span>
+            <span class="confirm">MAKE PLAN</span>
         </a>
     </div>
 </div>

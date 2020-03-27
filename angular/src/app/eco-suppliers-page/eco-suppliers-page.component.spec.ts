@@ -6,6 +6,7 @@ import { ECOSuppliersPageComponent } from './eco-suppliers-page.component';
 import {WordpressECOSuppliersService} from "../shared/wordpress-eco-suppliers-service/wordpress-eco-suppliers.service";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {ResponseData} from "../shared/response-data/response-data";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('ECOSuppliersPageComponent', () => {
     let component: ECOSuppliersPageComponent;
@@ -18,6 +19,9 @@ describe('ECOSuppliersPageComponent', () => {
     const wordpressECOSuppliersServiceStub = {
         fetchAllECOSuppliers: () => Observable.of(expectedSuppliers)
     };
+    const pageTitleStub = {
+        set: () => {}
+    };
 
     beforeEach(async(() => {
         responseData = new ResponseData();
@@ -29,6 +33,7 @@ describe('ECOSuppliersPageComponent', () => {
             providers: [
                 {provide: WordpressECOSuppliersService, useValue: wordpressECOSuppliersServiceStub},
                 {provide: ResponseData, useValue: responseData},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
         .compileComponents();

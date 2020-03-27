@@ -26,6 +26,7 @@ import {MeasureCardComponent} from '../measure-card/measure-card.component';
 import {EnergySavingMeasureContentService} from '../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('WarmerHomeComponent', () => {
     let component: WarmerHomeComponent;
@@ -37,6 +38,10 @@ describe('WarmerHomeComponent', () => {
 
     const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -73,6 +78,7 @@ describe('WarmerHomeComponent', () => {
                 {provide: EnergySavingMeasureContentService, useValue: {
                     'fetchMeasureDetailsForLandingPage': (() => Observable.of([]))
                 }},
+                {provide: PageTitleService, useValue: pageTitleStub},
                 GoogleAnalyticsService,
             ]
         })

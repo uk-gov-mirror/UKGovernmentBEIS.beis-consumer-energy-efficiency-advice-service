@@ -4,6 +4,8 @@ import 'rxjs/add/operator/switchMap';
 import {WordpressMeasure} from '../shared/wordpress-measures-service/wordpress-measure';
 import {WordpressMeasuresService} from '../shared/wordpress-measures-service/wordpress-measures.service';
 import padStart from 'lodash-es/padStart';
+import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
   selector: 'app-measure-page',
@@ -19,7 +21,8 @@ export class MeasurePageComponent implements OnInit {
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private measureService: WordpressMeasuresService) {
+                private measureService: WordpressMeasuresService,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
@@ -42,11 +45,13 @@ export class MeasurePageComponent implements OnInit {
     }
 
     displayMeasure(measureData: WordpressMeasure): void {
-        if (!measureData) {
+        this.measureData = measureData;
+        if (measureData) {
+            this.pageTitle.set(measureData.title);
+        } else {
             this.isError = true;
             this.router.navigate(['/404'], {skipLocationChange: true});
         }
-        this.measureData = measureData;
         this.isLoading = false;
     }
 

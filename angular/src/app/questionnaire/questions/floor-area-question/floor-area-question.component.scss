@@ -31,8 +31,7 @@
 
       .floor-area-unit-input {
         @include question-button-font;
-        margin: 0 10px;
-        padding: 0 20px;
+        margin: 0 0 0 10px;
 
         display: flex;
         align-items: center;
@@ -65,6 +64,14 @@
 
       &:hover, &:focus {
         background-color: $lighter-medium-grey;
+      }
+
+      &.selected {
+        color: white;
+        background-color: $dark-blue;
+        &:hover, &:focus, &:active {
+          background-color: $dark-medium-blue;
+        }
       }
     }
   }

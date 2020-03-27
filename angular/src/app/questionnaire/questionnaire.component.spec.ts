@@ -25,6 +25,7 @@ import {AccordionComponent} from "../accordion/accordion.component";
 import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -42,6 +43,10 @@ describe('QuestionnaireComponent', () => {
         fetchQuestionsContent() {
             return Observable.of(allQuestionsContent);
         }
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     const userStateServiceStub = {
@@ -142,6 +147,7 @@ describe('QuestionnaireComponent', () => {
                 {provide: QuestionContentService, useValue: questionContentServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
                 {provide: ResponseData, useValue: responseDataStub},
+                {provide: PageTitleService, useValue: pageTitleStub},
             ],
         })
             .compileComponents();
@@ -230,7 +236,7 @@ describe('QuestionnaireComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
-                expect(questionReasonElement.classes.visible).toBeFalsy();
+                expect(questionReasonElement).toBeFalsy();
             });
         }));
     });

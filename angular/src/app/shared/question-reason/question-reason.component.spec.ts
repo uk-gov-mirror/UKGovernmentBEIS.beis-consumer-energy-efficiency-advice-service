@@ -36,7 +36,7 @@ describe('QuestionReasonComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
-                expect(questionReasonElement.classes.visible).toBeTruthy();
+                expect(questionReasonElement).toBeTruthy();
                 expect(questionReasonElement.nativeElement.innerText).toBe(questionReason);
             });
         }));
@@ -51,7 +51,7 @@ describe('QuestionReasonComponent', () => {
             // then
             fixture.whenStable().then(() => {
                 const questionReasonElement = fixture.debugElement.query(By.css('.question-reason'));
-                expect(questionReasonElement.classes.visible).toBeFalsy();
+                expect(questionReasonElement).toBeFalsy();
             });
         }));
 

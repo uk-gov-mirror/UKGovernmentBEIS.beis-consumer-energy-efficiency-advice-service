@@ -176,6 +176,7 @@ $icon-column-width: $add-to-plan-column-width;
       cursor: pointer;
       color: $dark-medium-blue;
       background-color: $light-blue;
+      border: none;
 
       &.selected {
         background-color: $dark-medium-blue;
@@ -203,8 +204,10 @@ $icon-column-width: $add-to-plan-column-width;
         border: none;
         outline: none;
         max-width: 100%;
+      }
 
-        &:focus {
+      &:hover, &:focus, &:active {
+        .add-to-plan-text {
           text-decoration: underline;
         }
       }

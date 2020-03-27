@@ -1,11 +1,8 @@
 <div class="question-component">
-    <div class="answer-grid multiple-choice-options floor-level-options">
-        <button class="multiple-choice-option floor-level-option"
-                *ngFor="let option of floorLevelOptions"
-                [class.selected]="response === option.value"
-                [ngClass]="option.className"
-                (click)="response = option.value; complete.emit()">
-            {{option.name}}
-        </button>
-    </div>
+    <app-multiple-choice-question name="floor-level"
+                                  [options]="floorLevelOptions"
+                                  [(response)]="response"
+                                  [twoColumnsOnDesktop]="true"
+                                  [capitalizeOptions]="true">
+    </app-multiple-choice-question>
 </div>

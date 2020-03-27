@@ -1,12 +1,6 @@
 <div class="question-component agricultural-tenancy-type-question">
-    <div class="answer-grid multiple-choice-options agricultural-tenancy-type-options">
-        <button class="multiple-choice-option agricultural-tenancy-type-option"
-                *ngFor="let option of options"
-                [class.selected]="response === option.value"
-                [ngClass]="option.className"
-                (click)="response = option.value; complete.emit()">
-            <span class="agricultural-tenancy-type-title">{{option.title}}</span>
-            <span class="agricultural-tenancy-type-description">{{option.description}}</span>
-        </button>
-    </div>
+    <app-multiple-choice-question name="agricultural-tenancy-type"
+                                  [options]="options"
+                                  [(response)]="response">
+    </app-multiple-choice-question>
 </div>

@@ -49,6 +49,7 @@ import {EnergyEfficiencyDisplayService} from "./energy-efficiency-display-servic
 import {LinkButtonComponent} from "./link-button/link-button.component";
 import {AccordionComponent} from "../accordion/accordion.component";
 import {ECOSelfReferralConsentData} from '../eco-self-referral/eco-self-referral-consent-data';
+import {PageTitleService} from "./page-title-service/page-title.service";
 
 @NgModule({
     declarations: [
@@ -134,6 +135,7 @@ export class SharedModule {
                 CookieService,
                 PlanInfoService,
                 EnergyEfficiencyDisplayService,
+                PageTitleService
             ]
         };
     }

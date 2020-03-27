@@ -4,8 +4,9 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {FloorLevel, getFloorLevelDescription} from '../floor-level-question/floor-level';
 import pull from 'lodash-es/pull';
 import includes from 'lodash-es/includes';
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class FloorLevelOption {
+class FloorLevelOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: FloorLevel, public readonly displayName: string) {
@@ -16,13 +17,10 @@ class FloorLevelOption {
 @Component({
     selector: 'app-floor-span-question',
     templateUrl: './floor-span-question.component.html',
-    styleUrls: ['./floor-span-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class FloorSpanQuestionComponent extends QuestionBaseComponent implements OnInit {
     floorLevelOptions: FloorLevelOption[];
-
-    readonly FloorLevel = FloorLevel;
 
     constructor(responseData: ResponseData) {
         super(responseData);

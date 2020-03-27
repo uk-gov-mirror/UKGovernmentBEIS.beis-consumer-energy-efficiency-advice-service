@@ -8,6 +8,7 @@ import {BoilerType} from '../boiler-types-service/boiler-type';
 import sortBy from 'lodash-es/sortBy';
 import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
 import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-boiler-make-model-replace',
@@ -30,11 +31,13 @@ export class BoilerMakeModelReplaceComponent implements OnInit {
     constructor(private gasAndOilBoilersService: GasAndOilBoilersService,
                 private boilerTypesService: BoilerTypesService,
                 private boilerPageMeasuresService: BoilerPageMeasuresService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private pageTitle: PageTitleService) {
         this.productIndexNumber = this.route.snapshot.paramMap.get('productIndexNumber');
     }
 
     ngOnInit() {
+        this.pageTitle.set('Replacing your boiler');
         Observable.forkJoin(
             this.gasAndOilBoilersService.getGasAndOilBoilerWithIndexNumber(this.productIndexNumber),
             this.boilerTypesService.fetchBoilerTypes(),

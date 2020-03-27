@@ -1,30 +1,32 @@
 <div class="epc-lookup">
-    <app-spinner-and-error-container [loading]="loading" [error]="error" errorMessage="Please enter a valid UK postcode"></app-spinner-and-error-container>
-    <div class="address-section" *ngIf="epcs !== undefined && !loading">
-        <div class="no-properties" *ngIf="epcs && epcs.length === 0">
-            We couldn't find any properties with an EPC at that postcode.
-        </div>
-        <div class="no-properties" *ngIf="!epcs">
-            Sorry, we couldn't fetch EPC data for that postcode.
-        </div>
-        <div class="address-dropdown-wrapper" *ngIf="epcs && epcs.length > 0">
-            <div class="address-help-text">We found Energy Performance Certificates (EPCs) for the following properties:</div>
-            <div class="address-select">
-                <select class="address-dropdown" [(ngModel)]="selectedEpc" aria-label="Please select your address">
-                    <option class="address-option" [ngValue]="undefined"
-                            selected disabled hidden >-- Please select your address --</option>
-                    <option class="address-option"
-                        *ngFor="let epc of epcs"
-                        [ngValue]="epc"
-                        [attr.aria-label]="epc.getDisplayedAddress">
-                        {{epc.getDisplayAddress()}}</option>
-                </select>
-                <button class="go-button" (click)="onAddressSelected()" [class.grey-go]="!this.selectedEpc">Go</button>
+    <app-spinner-and-error-container [loading]="loading" [error]="error" errorMessage="Please enter a valid UK postcode."></app-spinner-and-error-container>
+    <div aria-live="polite" class="results">
+        <div class="address-section" *ngIf="epcs !== undefined && !loading">
+            <div class="no-properties" *ngIf="epcs && epcs.length === 0">
+                We couldn't find any properties with an EPC at that postcode.
             </div>
-            <div>You should only access EPCs for properties you own or occupy or are thinking about owning or occupying</div>
+            <div class="no-properties" *ngIf="!epcs">
+                Sorry, we couldn't fetch EPC data for that postcode.
+            </div>
+            <div class="address-dropdown-wrapper" *ngIf="epcs && epcs.length > 0">
+                <div class="address-help-text">We found Energy Performance Certificates (EPCs) for the following properties:</div>
+                <div class="address-select">
+                    <select class="address-dropdown" [(ngModel)]="selectedEpc" aria-label="Please select your address">
+                        <option class="address-option" [ngValue]="undefined"
+                                selected disabled hidden >-- Please select your address --</option>
+                        <option class="address-option"
+                            *ngFor="let epc of epcs"
+                            [ngValue]="epc"
+                            [attr.aria-label]="epc.getDisplayedAddress">
+                            {{epc.getDisplayAddress()}}</option>
+                    </select>
+                    <button class="go-button" (click)="onAddressSelected()" [class.grey-go]="!this.selectedEpc">Go</button>
+                </div>
+                <div>You should only access EPCs for properties you own or occupy or are thinking about owning or occupying</div>
+            </div>
+            <button class="not-listed-button" (click)="onAddressNotListed()">
+                {{epcs && epcs.length > 0 ? 'My address is not listed' : 'Continue'}}
+            </button>
         </div>
-        <button class="not-listed-button" (click)="onAddressNotListed()">
-            {{epcs && epcs.length > 0 ? 'My address is not listed' : 'Continue'}}
-        </button>
     </div>
 </div>

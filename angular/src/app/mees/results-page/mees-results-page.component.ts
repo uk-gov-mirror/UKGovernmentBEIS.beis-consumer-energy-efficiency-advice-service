@@ -10,6 +10,8 @@ import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/l
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
+import {EnergySavingMeasureContentService} from "../../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 enum MeesResultsStatus {
     IrrelevantTenancyStartDate,
@@ -34,10 +36,13 @@ export class MeesResultsPageComponent implements OnInit {
     errorMessage: string;
 
     constructor(private responseData: ResponseData,
-                private questionnaireService: QuestionnaireService) {
+                private questionnaireService: QuestionnaireService,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
+        this.pageTitle.set('Landlord Results');
+
         if (!this.questionnaireService.isComplete('mees')) {
             this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
                 "not completed the questionnaire, or something has gone wrong.";

@@ -18,9 +18,18 @@ $mobile-step-number-margin: 12px;
   background-color: white;
 
   .step-main-row {
+    width: 100%;
+    background: none;
+    border: none;
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &:hover, &:focus, &:active {
+      .bullet {
+        background-color: $dark-medium-blue;
+      }
+    }
 
     .bullet {
       width: $step-number-bullet-diameter;
@@ -89,6 +98,8 @@ $mobile-step-number-margin: 12px;
         padding: 10px 0;
         display: flex;
         align-items: center;
+        background: none;
+        border: none;
 
         .read-more-button-icon {
           margin-left: 10px;
@@ -145,6 +156,20 @@ $mobile-step-number-margin: 12px;
             fill: $light-blue;
             display: block;
             line-height: 0;
+          }
+        }
+
+        &:hover, &:focus, &:active {
+          .more-info-description {
+            background-color: $dark-blue;
+            color: $light-blue;
+          }
+          .more-info-icon-container {
+            background-color: $light-blue;
+            .more-info-icon {
+              stroke: $dark-blue;
+              fill: $dark-blue;
+            }
           }
         }
       }

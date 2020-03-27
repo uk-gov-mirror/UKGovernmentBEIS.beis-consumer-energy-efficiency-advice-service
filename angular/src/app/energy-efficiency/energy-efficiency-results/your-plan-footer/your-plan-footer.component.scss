@@ -33,7 +33,7 @@
     display: flex;
     flex-wrap: wrap;
 
-    .do-button {
+    .confirm-button {
       background-color: $light-blue;
       box-sizing: border-box;
       display: flex;
@@ -43,6 +43,15 @@
       color: $dark-blue;
       cursor: pointer;
       text-decoration: none;
+      outline: none;
+
+      &:hover, &:focus, &:active {
+        color: $light-blue;
+        background-color: $dark-blue;
+        &:after {
+          border-left-color: $dark-blue;
+        }
+      }
 
       &::before {
         content: '';
@@ -67,9 +76,10 @@
         cursor: default;
       }
 
-      .do-string {
+      .confirm {
         margin-left: 8px;
         z-index: 2;
+        text-align: center;
       }
     }
   }
@@ -114,9 +124,9 @@
         position: relative;
       }
 
-      .do-button {
+      .confirm-button {
         position: relative;
-        font-size: 15px;
+        font-size: 10px;
         margin-left: 2px;
         margin-right: 7px;
         top: -7px;
@@ -165,11 +175,11 @@
         max-width: calc(100% - #{$add-to-plan-column-width});
       }
 
-      .do-button {
+      .confirm-button {
         position: absolute;
         right: 65px;
         bottom: 20px;
-        font-size: 20px;
+        font-size: 14px;
         @include has-chevron-button-sizing($add-to-plan-column-width * 0.7, 88px, 18px, 27px);
       }
     }
@@ -237,9 +247,9 @@
         flex: 0 0 2.75 * $data-card-width;
       }
 
-      .do-button {
+      .confirm-button {
         position: relative;
-        font-size: 26px;
+        font-size: 14px;
         @include has-chevron-button-sizing($add-to-plan-column-width, 110px, 19px, 29px);
       }
     }

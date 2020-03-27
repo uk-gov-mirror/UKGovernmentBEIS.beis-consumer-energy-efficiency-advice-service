@@ -12,6 +12,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Pipe, PipeTransform} from '@angular/core';
 import {WordpressPagesService} from '../shared/wordpress-pages-service/wordpress-pages.service';
 import {ContentsTableComponent} from "../shared/contents-table/contents-table.component";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('PageComponent', () => {
     let component: PageComponent;
@@ -27,6 +28,9 @@ describe('PageComponent', () => {
     };
     const pageServiceStub = {
         getPage: () => Observable.of(expectedPage)
+    };
+    const pageTitleStub = {
+        set: () => {}
     };
 
     const testSlug = 'test-page';
@@ -74,7 +78,8 @@ describe('PageComponent', () => {
             ],
             providers: [
                 {provide: ActivatedRoute, useClass: MockActivatedRoute},
-                {provide: WordpressPagesService, useValue: pageServiceStub}
+                {provide: WordpressPagesService, useValue: pageServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
             .compileComponents();

@@ -46,6 +46,14 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: 250px;
+      color: $dark-grey;
+      text-decoration: none;
+
+      &:hover, &:active, &:focus {
+        .link {
+          text-decoration: underline;
+        }
+      }
 
       .icon {
         padding: 20px 0;
@@ -71,6 +79,7 @@
         color: $dark-medium-blue;
         font-size: 12px;
         text-decoration: none;
+        font-family: $font-family;
       }
     }
   }

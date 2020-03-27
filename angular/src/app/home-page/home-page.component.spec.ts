@@ -16,12 +16,17 @@ import {SearchBarComponent} from '../layout-components/search-bar/search-bar.com
 import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-bar-suboption/nav-bar-suboption.component';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
     let fixture: ComponentFixture<HomePageComponent>;
 
     let responseDataStub: ResponseData;
+
+    const pageTitleStub = {
+        set: () => {}
+    };
 
     class DummyComponent {
     }
@@ -47,6 +52,7 @@ describe('HomePageComponent', () => {
                     provide: WordpressPagesService,
                     useValue: {getLatestPages: () => Observable.of([])}
                 },
+                {provide: PageTitleService, useValue: pageTitleStub},
                 GoogleAnalyticsService,
             ]
         })

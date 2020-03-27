@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {TenancyTypeQuestionComponent} from './tenancy-type-question.component';
 import {TenancyType} from './tenancy-type';
+import {MultipleChoiceQuestionComponent} from "../../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('TenancyTypeQuestionComponent', () => {
     let component: TenancyTypeQuestionComponent;
@@ -10,7 +11,7 @@ describe('TenancyTypeQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TenancyTypeQuestionComponent],
+            declarations: [TenancyTypeQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -36,16 +37,5 @@ describe('TenancyTypeQuestionComponent', () => {
 
         // then
         expect(component.response).toBe(TenancyType.AssuredTenancy);
-    });
-
-    it('should notify of completion when clicking on one of the buttons', () => {
-        // given
-
-        // when
-        const assured = fixture.debugElement.query(By.css('.assured-tenancy'));
-        assured.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

@@ -14,6 +14,7 @@ export class NumberQuestionComponent {
     @Input() maxQuantity?: number;
     @Input() step?: number = 1;
     @Input() prefix?: string;
+    @Input() labelledBy: string;
 
     @Input()
     set quantity(value: number) {

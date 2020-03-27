@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {TenureType} from './tenure-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
 @Component({
     selector: 'app-ownership-status-question',
@@ -9,7 +10,7 @@ import {ResponseData} from '../../../shared/response-data/response-data';
     animations: [slideInOutAnimation]
 })
 export class TenureTypeQuestionComponent extends QuestionBaseComponent {
-    tenureTypeOptions: TenureTypeOption[];
+    tenureTypeOptions: MultipleChoiceOption[];
 
     get responseForAnalytics(): string {
         return TenureType[this.response];
@@ -20,18 +21,18 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
         this.tenureTypeOptions = [
             {
                 value: TenureType.OwnerOccupancy,
-                id: 'owner-occupancy',
-                description: 'I own my own home'
+                className: 'owner-occupancy',
+                name: 'I own my own home'
             },
             {
                 value: TenureType.PrivateTenancy,
-                id: 'private-tenancy',
-                description: 'I rent my home from a private landlord'
+                className: 'private-tenancy',
+                name: 'I rent my home from a private landlord'
             },
             {
                 value: TenureType.SocialTenancy,
-                id: 'social-tenancy',
-                description: 'I rent my home from the council or a housing association'
+                className: 'social-tenancy',
+                name: 'I rent my home from the council or a housing association'
             },
         ];
     }
@@ -43,10 +44,4 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
     set response(val: TenureType) {
         this.responseData.tenureType = val;
     }
-}
-
-interface TenureTypeOption {
-    value: TenureType;
-    description: string;
-    id: string;
 }

@@ -24,7 +24,6 @@ $animation-duration-vertical: 0.5s;
 @mixin is-search-icon($size) {
   @include is-clickable-icon($size);
   stroke: $dark-medium-blue;
-  margin-right: 16px;
 }
 
 @mixin is-menu-icon($size) {
@@ -75,6 +74,12 @@ $animation-duration-vertical: 0.5s;
     .icon {
       @include is-search-icon(20px);
       flex-shrink: 0;
+    }
+
+    .search-button {
+      background: none;
+      border: none;
+      margin-right: 16px;
     }
   }
 

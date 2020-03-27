@@ -40,15 +40,4 @@ describe('GardenQuestionComponent', () => {
         // then
         expect(component.accessibility).toBe(GardenAccessibility.NoGarden);
     });
-
-    it('should notify of completion when clicking on an option', () => {
-        // given
-        const noGarden = fixture.debugElement.queryAll(By.css('.garden-option')).find(el => el.nativeElement.innerText === 'No garden');
-
-        // when
-        noGarden.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
-    });
 });

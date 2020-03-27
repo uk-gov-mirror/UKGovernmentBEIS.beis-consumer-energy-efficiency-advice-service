@@ -2,18 +2,28 @@
     <ul class="benefits" *ngIf="benefits.length">
         <li class="benefit" *ngFor="let benefit of benefits">{{benefit}}</li>
     </ul>
-    <div class="answer-grid multiple-choice-options benefits-options">
-        <button id="yes-option"
-                class="multiple-choice-option benefits-option"
-                [class.selected]="response === true"
-                (click)="response = true; complete.emit()">
-            Yes
-        </button>
-        <button id="no-option"
-                class="multiple-choice-option benefits-option"
-                [class.selected]="response === false"
-                (click)="response = false; complete.emit()">
-            No
-        </button>
+    <div class="answer-grid multiple-choice-options benefits-options two-columns-on-desktop">
+        <div class="multiple-choice-option-container">
+            <input id="yes" type="radio" name="yes-or-no" class="yes-button"
+                   [checked]="response === true"
+                   (click)="response = true">
+            <label for="yes" class="multiple-choice-option benefits-option"
+                   [class.selected]="response === true">
+                Yes
+            </label>
+        </div>
+        <div class="multiple-choice-option-container">
+            <!--
+                We need the `true;` here in the click handler or else the expression evaluates to false and the default
+                click behaviour is blocked. This causes a problem for the state of the radio buttons for screen readers.
+            -->
+            <input id="no" type="radio" name="yes-or-no" class="no-button"
+                   [checked]="response === false"
+                   (click)="response = false; true;">
+            <label for="no" class="multiple-choice-option benefits-option"
+                   [class.selected]="response === false">
+                No
+            </label>
+        </div>
     </div>
 </div>

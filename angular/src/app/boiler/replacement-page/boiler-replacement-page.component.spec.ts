@@ -17,6 +17,7 @@ import {FormsModule} from '@angular/forms';
 import {ResponseData} from "../../shared/response-data/response-data";
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {PostcodeEpcService} from "../../shared/postcode-epc-service/postcode-epc.service";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerReplacementPageComponent', () => {
     let component: BoilerReplacementPageComponent;
@@ -35,6 +36,10 @@ describe('BoilerReplacementPageComponent', () => {
 
     const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -58,6 +63,7 @@ describe('BoilerReplacementPageComponent', () => {
                 {provide: ResponseData, useClass: MockResponseData},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub},
             ]
         })
             .compileComponents();

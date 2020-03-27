@@ -7,6 +7,9 @@
 @mixin postcode-button() {
   background-color: $pink;
   color: white;
+  &:hover, &:focus, &:active {
+    background-color: $dark-medium-blue;
+  }
 
   border: none;
   cursor: pointer;
@@ -34,6 +37,10 @@
     height: 50px;
     width: 50px;
     margin-bottom: 0;
+  }
+
+  .results {
+    width: 100%;
   }
 
   .address-section {

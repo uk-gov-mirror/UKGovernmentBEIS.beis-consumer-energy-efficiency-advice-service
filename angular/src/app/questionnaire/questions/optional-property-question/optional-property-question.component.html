@@ -1,15 +1,15 @@
 <div class="optional-property-question question-component">
     <div class="answer-grid multiple-choice-options optional-property-question-options">
-        <button id="yes-option"
+        <button id="yes"
                 class="multiple-choice-option optional-property-question-option"
                 [class.selected]="response === true"
-                (click)="response = true; complete.emit()">
+                (click)="response = true">
             Yes, continue
         </button>
-        <button id="no-option"
+        <button id="no"
                 class="multiple-choice-option optional-property-question-option"
                 [class.selected]="response === false"
-                (click)="response = false; complete.emit()">
+                (click)="response = false">
             No, skip to heating
         </button>
     </div>

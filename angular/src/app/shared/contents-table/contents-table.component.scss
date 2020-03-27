@@ -4,7 +4,7 @@
 .contents-title {
   @include page-subheading-font;
   color: $dark-medium-blue;
-  margin-bottom: 8px;
+  margin: 8px 0;
 
   .contents-title-icon {
     width: 24px;
@@ -18,7 +18,9 @@
 .contents-link {
   cursor: pointer;
   margin-bottom: 4px;
-  display: flex;
+  color: $dark-grey;
+  background: none;
+  border: none;
 }
 
 .contents-number {

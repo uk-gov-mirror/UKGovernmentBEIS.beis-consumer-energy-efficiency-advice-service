@@ -80,7 +80,7 @@ export class PostcodeLookupComponent implements OnInit {
     private handleSearchError(error: any): void {
         this.error = true;
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
-            this.errorMessage = "Please enter a valid UK postcode";
+            this.errorMessage = "Please enter a valid UK postcode.";
         } else if (this.northernIrelandPostcode) {
             this.errorMessage = "We do not think this service is suitable/accurate for " +
                 "you (as your home is in Northern Ireland)";

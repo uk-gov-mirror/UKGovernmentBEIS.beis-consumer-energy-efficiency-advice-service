@@ -1,11 +1,8 @@
 <div class="question-component">
-    <div class="answer-grid multiple-choice-options home-type-options">
-        <button class="multiple-choice-option home-type-option"
-                *ngFor="let option of homeTypeOptions"
-                [class.selected]="response === option.value"
-                [ngClass]="option.className"
-                (click)="response = option.value; complete.emit()">
-            {{option.name}}
-        </button>
-    </div>
+    <app-multiple-choice-question name="home-type"
+                                  [options]="homeTypeOptions"
+                                  [(response)]="response"
+                                  [twoColumnsOnDesktop]="true"
+                                  [capitalizeOptions]="true">
+    </app-multiple-choice-question>
 </div>

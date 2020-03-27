@@ -22,6 +22,7 @@ import {WordpressSearchService} from './shared/wordpress-search-service/wordpres
 import {SpinnerAndErrorContainerComponent} from "./shared/spinner-and-error-container/spinner-and-error-container.component";
 import {ErrorBannerComponent} from "./error-banner/error-banner.component";
 import {GlobalErrorHandler} from "./shared/global-error-handler";
+import {PageTitleService} from "./shared/page-title-service/page-title.service";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -32,6 +33,10 @@ describe('AppComponent', () => {
 
     const mockCookieService = {
         check: () => {},
+        set: () => {}
+    };
+
+    const pageTitleStub = {
         set: () => {}
     };
 
@@ -59,6 +64,7 @@ describe('AppComponent', () => {
                 {provide: UserStateService, useValue: mockUserStateService},
                 {provide: RecommendationsService, useValue: {}},
                 {provide: ErrorHandler, useClass: GlobalErrorHandler},
+                {provide: PageTitleService, useValue: pageTitleStub},
             ]
         }).compileComponents();
     }));

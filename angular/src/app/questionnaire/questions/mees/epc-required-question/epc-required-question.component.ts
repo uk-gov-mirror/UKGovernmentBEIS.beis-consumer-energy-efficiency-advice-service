@@ -4,7 +4,6 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../../base-question
 @Component({
     selector: 'app-epc-required-question',
     templateUrl: '../../../common-questions/boolean-question/boolean-question.component.html',
-    styleUrls: ['../../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class EpcRequiredQuestionComponent extends QuestionBaseComponent {

@@ -39,7 +39,7 @@ describe('ShowersAndBathsQuestionComponent', () => {
 
     it('should populate with original number of showers in response data', async(() => {
         fixture.whenStable().then(() => {
-            const showersInput = fixture.debugElement.query(By.css('input#showers'));
+            const showersInput = fixture.debugElement.query(By.css('[aria-label="showers per week"]'));
             expect(showersInput.nativeElement.value).toBe(originalNumberOfShowers.toString());
         });
     }));
@@ -49,7 +49,7 @@ describe('ShowersAndBathsQuestionComponent', () => {
         const expectedShowers = 5;
 
         // when
-        const showersInput = fixture.debugElement.query(By.css('input#showers'));
+        const showersInput = fixture.debugElement.query(By.css('[aria-label="showers per week"]'));
         showersInput.nativeElement.value = expectedShowers;
         showersInput.nativeElement.dispatchEvent(new Event('input'));
 
@@ -59,7 +59,7 @@ describe('ShowersAndBathsQuestionComponent', () => {
 
     it('should populate with original number of baths in response data', async(() => {
         fixture.whenStable().then(() => {
-            const bathsInput = fixture.debugElement.query(By.css('input#baths'));
+            const bathsInput = fixture.debugElement.query(By.css('[aria-label="baths per week"]'));
             expect(bathsInput.nativeElement.value).toBe(originalNumberOfBaths.toString());
         });
     }));
@@ -69,7 +69,7 @@ describe('ShowersAndBathsQuestionComponent', () => {
         const expectedBaths = 11;
 
         // when
-        const bathsInput = fixture.debugElement.query(By.css('input#baths'));
+        const bathsInput = fixture.debugElement.query(By.css('[aria-label="baths per week"]'));
         bathsInput.nativeElement.value = expectedBaths;
         bathsInput.nativeElement.dispatchEvent(new Event('input'));
 

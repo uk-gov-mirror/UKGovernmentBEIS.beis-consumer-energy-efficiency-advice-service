@@ -7,10 +7,15 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {YourHomeComponent} from './your-home.component';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('YourHomeComponent', () => {
     let component: YourHomeComponent;
     let fixture: ComponentFixture<YourHomeComponent>;
+
+    const pageTitleStub = {
+        set: () => {}
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -25,6 +30,7 @@ describe('YourHomeComponent', () => {
                 {provide: EnergySavingMeasureContentService, useValue: {
                     'fetchMeasureDetails': (() => Observable.of([]))
                 }},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
             .compileComponents();

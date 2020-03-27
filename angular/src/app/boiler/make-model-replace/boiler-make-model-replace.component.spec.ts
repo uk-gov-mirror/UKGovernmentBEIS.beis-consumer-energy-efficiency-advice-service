@@ -20,6 +20,7 @@ import {RecommendationCardComponent} from '../../shared/recommendation-card/reco
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {FuelType} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerMakeModelReplaceComponent', () => {
     let component: BoilerMakeModelReplaceComponent;
@@ -49,6 +50,10 @@ describe('BoilerMakeModelReplaceComponent', () => {
         isComplete: () => true
     };
 
+    const pageTitleStub = {
+        set: () => {}
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
@@ -69,6 +74,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: BoilerPageMeasuresService, useValue: boilerPageMeasuresServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
             .compileComponents();

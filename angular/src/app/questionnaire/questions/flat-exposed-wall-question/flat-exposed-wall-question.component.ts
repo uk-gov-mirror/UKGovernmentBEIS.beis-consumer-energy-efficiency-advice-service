@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {FlatExposedWall, getFlatExposedWallDescription} from './flat-exposed-wall';
 import {ResponseData} from '../../../shared/response-data/response-data';
+import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class FlatExposedWallOption {
+class FlatExposedWallOption implements MultipleChoiceOption {
     public readonly name: string;
 
     constructor(public readonly value: FlatExposedWall, public readonly className: string) {
@@ -13,7 +14,6 @@ class FlatExposedWallOption {
 @Component({
     selector: 'app-flat-exposed-wall-question',
     templateUrl: './flat-exposed-wall-question.component.html',
-    styleUrls: ['./flat-exposed-wall-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class FlatExposedWallQuestionComponent extends QuestionBaseComponent {

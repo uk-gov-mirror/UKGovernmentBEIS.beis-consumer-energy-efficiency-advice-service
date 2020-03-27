@@ -23,6 +23,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -43,6 +44,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     shouldShowIndicator: boolean;
 
     @Input() questionnaireName: string;
+    @Input() questionnaireTitle: string;
     @Output() onQuestionnaireComplete = new EventEmitter<void>();
 
     @ViewChild(QuestionDirective) questionHost: QuestionDirective;
@@ -60,13 +62,15 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private changeDetectorRef: ChangeDetectorRef,
                 private questionHeadingProcessor: QuestionHeadingProcessor,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private userStateService: UserStateService) {
+                private userStateService: UserStateService,
+                private pageTitle: PageTitleService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
     }
 
     ngOnInit() {
+        this.pageTitle.set(this.questionnaireTitle);
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
         if (!this.questionnaire) {
             this.displayErrorAndLogMessage(`No questionnaire found for name "${ this.questionnaireName }"`);

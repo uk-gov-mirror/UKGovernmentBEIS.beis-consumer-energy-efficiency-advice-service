@@ -14,6 +14,7 @@ import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api
 import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerLandingPageComponent', () => {
     let component: BoilerLandingPageComponent;
@@ -25,6 +26,10 @@ describe('BoilerLandingPageComponent', () => {
 
     const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -46,7 +51,8 @@ describe('BoilerLandingPageComponent', () => {
             providers: [
                 {provide: PostcodeEpcService, useValue: postcodeEpcServiceStub},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
-                {provide: ResponseData, useClass: MockResponseData}
+                {provide: ResponseData, useClass: MockResponseData},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
             .compileComponents();

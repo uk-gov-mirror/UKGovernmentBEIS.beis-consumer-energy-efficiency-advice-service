@@ -1,11 +1,8 @@
 <div class="question-component">
-    <div class="answer-grid multiple-choice-options fuel-type-options">
-        <button class="multiple-choice-option fuel-type-option"
-             *ngFor="let option of fuelTypeOptions"
-             [class.selected]="response === option.value"
-             [ngClass]="option.className"
-             (click)="response = option.value; complete.emit()">
-            {{option.name}}
-        </button>
-    </div>
+    <app-multiple-choice-question name="fuel-type"
+                                  [options]="fuelTypeOptions"
+                                  [(response)]="response"
+                                  [twoColumnsOnDesktop]="true"
+                                  [capitalizeOptions]="true">
+    </app-multiple-choice-question>
 </div>

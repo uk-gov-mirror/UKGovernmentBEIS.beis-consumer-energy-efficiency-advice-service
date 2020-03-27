@@ -8,6 +8,7 @@ import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-
 import {ResponseData} from "../../shared/response-data/response-data";
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {Observable} from "rxjs/Observable";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('TroubleshootingPageComponent', () => {
     let component: TroubleshootingPageComponent;
@@ -15,6 +16,9 @@ describe('TroubleshootingPageComponent', () => {
 
     const postcodeApiServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(null)
+    };
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -32,6 +36,7 @@ describe('TroubleshootingPageComponent', () => {
             providers: [
                 {provide: ResponseData, useClass: MockResponseData},
                 {provide: PostcodeApiService, useValue: postcodeApiServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub},
             ]
         })
             .compileComponents();

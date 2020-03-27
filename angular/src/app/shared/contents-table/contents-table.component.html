@@ -1,10 +1,10 @@
-<div class="contents-title">
-  <div class="contents-title-icon" [inlineSVG]="'controls/menu.svg'"></div>
+<h2 class="contents-title">
+  <span class="contents-title-icon" [inlineSVG]="'controls/menu.svg'"></span>
   Contents
-</div>
+</h2>
 <div *ngFor="let heading of headings; let i = index">
-  <div class="contents-link" (click)="headingClicked(i)">
-    <div class="contents-number">{{getFormattedNumberFromIndex(i)}}</div>
-    <div class="contents-item">{{heading}}</div>
-  </div>
+  <button class="contents-link" (click)="headingClicked(i, $event)">
+    <span class="contents-number">{{getFormattedNumberFromIndex(i)}}</span>
+    <span class="contents-item">{{heading}}</span>
+  </button>
 </div>

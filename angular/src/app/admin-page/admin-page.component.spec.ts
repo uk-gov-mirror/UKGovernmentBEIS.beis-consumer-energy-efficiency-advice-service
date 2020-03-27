@@ -4,6 +4,7 @@ import {FormsModule}   from '@angular/forms';
 import { AdminPageComponent } from './admin-page.component';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {PageTitleService} from "../shared/page-title-service/page-title.service";
 
 describe('AdminPageComponent', () => {
     let component: AdminPageComponent;
@@ -11,6 +12,10 @@ describe('AdminPageComponent', () => {
 
     const userStateServiceStub = {
         joinSession: () => {}
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -23,7 +28,8 @@ describe('AdminPageComponent', () => {
                 FormsModule
             ],
             providers: [
-                {provide: UserStateService, useValue: userStateServiceStub}
+                {provide: UserStateService, useValue: userStateServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ]
         })
         .compileComponents();

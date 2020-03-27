@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {FlatExposedWallQuestionComponent} from './flat-exposed-wall-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {FlatExposedWall} from './flat-exposed-wall';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('FlatExposedWallQuestionComponent', () => {
     let fixture: ComponentFixture<FlatExposedWallQuestionComponent>;
@@ -11,7 +12,7 @@ describe('FlatExposedWallQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FlatExposedWallQuestionComponent],
+            declarations: [FlatExposedWallQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -37,16 +38,5 @@ describe('FlatExposedWallQuestionComponent', () => {
 
         // then
         expect(component.response).toBe(FlatExposedWall.ThreeSidesExposedWholeSide);
-    });
-
-    it('should notify of completion when clicking on a wall exposing position', () => {
-        // given
-
-        // when
-        const threeSidesExposed = fixture.debugElement.query(By.css('.three-sides-exposed'));
-        threeSidesExposed.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

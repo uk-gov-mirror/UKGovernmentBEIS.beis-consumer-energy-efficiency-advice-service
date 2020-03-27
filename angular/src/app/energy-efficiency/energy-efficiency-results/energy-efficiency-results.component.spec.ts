@@ -37,6 +37,7 @@ import {YourPlanFooterCombinedItemComponent} from "./your-plan-footer/your-plan-
 import {YourPlanFooterItemComponent} from "./your-plan-footer/your-plan-footer-item/your-plan-footer-item.component";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -58,6 +59,11 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     const userStateServiceStub = {
         saveState: () => {}
+    };
+
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     let responseData: ResponseData;
@@ -179,6 +185,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub},
                 AbTestingService,
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,

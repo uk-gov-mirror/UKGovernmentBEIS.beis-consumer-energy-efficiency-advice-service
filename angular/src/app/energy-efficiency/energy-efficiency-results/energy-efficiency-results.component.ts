@@ -17,6 +17,7 @@ import {getHomePropertyDescription} from "../../shared/home-property-description
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import Config from '../../config';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -30,7 +31,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     isLoading: boolean = true;
     isError: boolean = false;
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
-    showOldVersion: boolean;
     showDefaultRecommendation: boolean = false;
     showDefaultRentalMeasures: boolean = false;
     defaultRecommendationDisclaimer: string;
@@ -45,10 +45,13 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private userStateService: UserStateService,
                 private googleAnalyticsService: GoogleAnalyticsService,
                 private abTestingService: AbTestingService,
-                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
+        this.pageTitle.set('Energy efficiency results');
+
         if (!isComplete(this.responseData)) {
             this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
                 "not completed the questionnaire, or something has gone wrong.";
@@ -68,8 +71,6 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
 
         this.userStateService.saveState();
-
-        this.showOldVersion = this.abTestingService.isInGroupA();
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {

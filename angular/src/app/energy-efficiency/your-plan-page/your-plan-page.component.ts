@@ -7,6 +7,7 @@ import {RecommendationsService} from '../../shared/recommendations-service/recom
 import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import * as logger from 'loglevel';
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -35,10 +36,12 @@ export class YourPlanPageComponent implements OnInit {
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
                 private responseData: ResponseData,
-                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService) {
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
+                private pageTitle: PageTitleService) {
     }
 
     ngOnInit() {
+        this.pageTitle.set('Your Plan');
         if (!this.energyEfficiencyDisplayService.getActualNumberOfRecommendations()) {
             this.errorMessage = "Sorry, we can't show you your plan at the moment " +
                 "as it seems that you have not completed the questionnaire, " +

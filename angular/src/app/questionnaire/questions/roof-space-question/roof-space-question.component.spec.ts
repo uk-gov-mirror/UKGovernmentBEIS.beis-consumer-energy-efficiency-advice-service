@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {RoofSpaceQuestionComponent} from './roof-space-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {RoofSpace} from './roof-space';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('RoofSpaceQuestionComponent', () => {
     let component: RoofSpaceQuestionComponent;
@@ -11,7 +12,7 @@ describe('RoofSpaceQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [RoofSpaceQuestionComponent],
+            declarations: [RoofSpaceQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData],
         })
             .compileComponents();
@@ -30,23 +31,12 @@ describe('RoofSpaceQuestionComponent', () => {
 
     it('should set the response when clicking on an option', () => {
         // given
-        const noSpace = fixture.debugElement.queryAll(By.css('.roof-space-button')).find(el => el.nativeElement.innerText === 'No space');
+        const noSpace = fixture.debugElement.queryAll(By.css('.space-option')).find(el => el.nativeElement.innerText === 'No space');
 
         // when
         noSpace.nativeElement.click();
 
         // then
         expect(component.response).toBe(RoofSpace.NoSpace);
-    });
-
-    it('should notify of completion when clicking on an option', () => {
-        // given
-        const noSpace = fixture.debugElement.queryAll(By.css('.roof-space-button')).find(el => el.nativeElement.innerText === 'No space');
-
-        // when
-        noSpace.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

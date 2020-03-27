@@ -49,9 +49,6 @@ export class GardenQuestionComponent extends QuestionBaseComponent implements On
 
     handleOptionClicked(val: GardenAccessibility) {
         this.accessibility = val;
-        if (val !== GardenAccessibility.Accessible) {
-            this.complete.emit();
-        }
     }
 
     getTennisCourts() {

@@ -18,6 +18,7 @@ import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-butto
 import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerResultsPageComponent', () => {
     let component: BoilerResultsPageComponent;
@@ -35,6 +36,10 @@ describe('BoilerResultsPageComponent', () => {
 
     const userStateServiceStub = {
         saveState: () => {}
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     beforeEach(async(() => {
@@ -57,6 +62,7 @@ describe('BoilerResultsPageComponent', () => {
                 {provide: BoilerTypesService, useValue: boilerTypesServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
+                {provide: PageTitleService, useValue: pageTitleStub},
             ],
         })
             .compileComponents();

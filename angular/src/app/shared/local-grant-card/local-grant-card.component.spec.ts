@@ -56,8 +56,8 @@ describe('LocalGrantCardComponent', () => {
     });
 
     it('should display the website only if it exists', () => {
-        const websiteUrlElement = fixture.debugElement.query(By.css('.find-out-more-link')).nativeElement;
-        expect(websiteUrlElement.getAttribute('href')).toBe(grant.websiteUrl);
+        const anchorLinkElement = fixture.debugElement.query(By.css('a')).nativeElement;
+        expect(anchorLinkElement.getAttribute('href')).toBe(grant.websiteUrl);
         const phoneNumberElement = fixture.debugElement.query(By.css('.phone-number'));
         expect(phoneNumberElement).toBeFalsy();
     });

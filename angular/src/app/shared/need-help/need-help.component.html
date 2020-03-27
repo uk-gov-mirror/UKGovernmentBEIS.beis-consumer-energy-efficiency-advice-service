@@ -1,8 +1,8 @@
 <div class="need-help"
         (click)="toggleExpanded()">
-    <div class="header-bar">
-        <div class="help-icon" [inlineSVG]="'icons/help.svg'"></div>
-    </div>
+    <button class="help-button" aria-label="Contact Us">
+        <span class="help-icon" [inlineSVG]="'icons/help.svg'"></span>
+    </button>
     <div class="contents" *ngIf="expanded">
         <div>
             If you would like some help, call freephone

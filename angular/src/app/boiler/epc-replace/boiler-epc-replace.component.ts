@@ -8,6 +8,7 @@ import sortBy from 'lodash-es/sortBy';
 import {EpcApiService} from '../../shared/postcode-epc-service/epc-api-service/epc-api.service';
 import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
 import {EnergySavingRecommendation} from '../../shared/recommendation-card/energy-saving-recommendation';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-boiler-epc-replace',
@@ -24,11 +25,13 @@ export class BoilerEpcReplaceComponent implements OnInit {
     constructor(private epcApiService: EpcApiService,
                 private boilerPageMeasuresService: BoilerPageMeasuresService,
                 private boilerTypesService: BoilerTypesService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private pageTitle: PageTitleService) {
         this.lmkKey = this.route.snapshot.paramMap.get('lmkKey');
     }
 
     ngOnInit() {
+        this.pageTitle.set('Replacing your boiler');
         Observable.forkJoin(
             this.epcApiService.getRecommendationsForLmkKey(this.lmkKey),
             this.boilerPageMeasuresService.fetchMeasuresForBoilerPages(),

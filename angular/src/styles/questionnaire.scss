@@ -59,20 +59,60 @@ $desktop-multiple-choice-margin: 20px;
       .multiple-choice-options {
         max-width: $content-max-width;
 
+        &.capitalize-options {
+          .multiple-choice-option {
+            text-transform: capitalize;
+          }
+        }
+
+        .multiple-choice-option-container {
+          position: relative;
+          input {
+            &[type="radio"], &[type="checkbox"] {
+              // Hide button behind label.
+              position: absolute;
+              z-index: -1;
+              top: 10px;
+              left: 10px;
+              &:focus {
+                + .multiple-choice-option {
+                  background-color: $lighter-medium-grey;
+                  &.selected {
+                    color: white;
+                    background-color: $dark-medium-blue;
+                  }
+                }
+              }
+            }
+          }
+        }
+
         .multiple-choice-option {
           @include capsule-button;
           @include question-button-font;
           background-color: white;
           box-sizing: border-box;
           outline: none;
+          display: block;
+          text-align: center;
 
           &:hover, &:focus {
             background-color: $lighter-medium-grey;
           }
 
           &.selected {
-            background-color: $dark-blue;
             color: white;
+            background-color: $dark-blue;
+            &:hover {
+              background-color: $dark-medium-blue;
+            }
+          }
+
+          .multiple-choice-option-description {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            padding-top: 5px;
           }
         }
       }
@@ -83,13 +123,13 @@ $desktop-multiple-choice-margin: 20px;
         flex-direction: column;
         align-items: stretch;
 
-    .list-select-option {
-      background-color: $light-grey;
-      cursor: pointer;
-      padding: 4px 20px;
-      margin: 1px;
-      border-radius: 2px;
-      border: none;
+        .list-select-option {
+          background-color: $light-grey;
+          cursor: pointer;
+          padding: 4px 20px;
+          margin: 1px;
+          border-radius: 2px;
+          border: none;
 
           &:hover {
             background-color: darkgray;
@@ -215,6 +255,11 @@ $desktop-multiple-choice-margin: 20px;
     }
 
     .multiple-choice-options {
+      &.two-columns-on-desktop {
+        .multiple-choice-option-container {
+          @include is-grid-item($number-of-items: 2, $margin: 20px);
+        }
+      }
       .multiple-choice-option {
         padding: 12px 36px;
       }

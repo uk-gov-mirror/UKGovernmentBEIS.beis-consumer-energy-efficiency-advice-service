@@ -20,6 +20,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     isExpandedView: boolean = false;
     roundedInvestmentRequired: number;
     isMouseOverAddToPlanButton: boolean = false;
+    isFocusedAddToPlanButton: boolean = false;
     savingDisplay: string;
     summarisedHeadlines: string[];
 
@@ -32,6 +33,10 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
 
     constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
+    }
+
+    get showRemove() {
+        return this.isMouseOverAddToPlanButton || this.isFocusedAddToPlanButton;
     }
 
     ngOnInit() {
@@ -55,13 +60,21 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
         this.isMouseOverAddToPlanButton = false;
     }
 
+    focusAddToPlanButton(): void {
+        this.isFocusedAddToPlanButton = true;
+    }
+
+    blurAddToPlanButton(): void {
+        this.isFocusedAddToPlanButton = false;
+    }
+
     isAddedToPlan(): boolean {
         return !isEmpty(this.recommendations) && every(this.recommendations, recommendation => recommendation.isAddedToPlan);
     }
 
     getAddToPlanButtonText(): string {
         return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
-            this.isAddedToPlan(), this.isMouseOverAddToPlanButton
+            this.isAddedToPlan(), this.showRemove
         );
     }
 

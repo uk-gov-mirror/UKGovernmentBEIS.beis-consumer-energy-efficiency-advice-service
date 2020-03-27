@@ -1,7 +1,9 @@
 <div class="question-reason-container">
-  <div class="question-reason" [class.visible]="isExpanded">{{questionReason}}</div>
-  <button (click)="toggleDisplay()" class="question-reason-button" [title]="questionReason">
-    <div class="question-reason-icon">i</div>
-    <div class="question-reason-header">{{isExpanded ? 'Hide' : 'Why do we need this?'}}</div>
-  </button>
+    <button (click)="toggleDisplay()" class="question-reason-button">
+        <span class="question-reason-icon" aria-hidden="true"></span>
+        <span class="question-reason-header">{{isExpanded ? 'Hide' : 'Why do we need this?'}}</span>
+    </button>
+    <div aria-live="polite">
+        <div class="question-reason" *ngIf="isExpanded">{{questionReason}}</div>
+    </div>
 </div>

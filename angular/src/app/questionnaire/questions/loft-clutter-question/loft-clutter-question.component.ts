@@ -4,7 +4,6 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 @Component({
     selector: 'app-loft-clutter-question',
     templateUrl: '../../common-questions/boolean-question/boolean-question.component.html',
-    styleUrls: ['../../common-questions/boolean-question/boolean-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class LoftClutterQuestionComponent extends QuestionBaseComponent {

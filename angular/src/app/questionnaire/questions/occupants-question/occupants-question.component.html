@@ -7,7 +7,7 @@
             <div class="answer-grid">
                 <div class="adults-under-64-input occupants-input">
                     <div class="name">Aged under 64</div>
-                    <app-number-question itemsName="adults under 64"
+                    <app-number-question itemsName="adults aged under 64"
                                          [(quantity)]="adultsAgedUnder64"
                                          [minQuantity]="0"
                                          [maxQuantity]="20"></app-number-question>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="adults-over-80-input occupants-input">
                     <div class="name">Aged 80 or over</div>
-                    <app-number-question itemsName="adults aged over 80"
+                    <app-number-question itemsName="adults aged 80 and over"
                                          [(quantity)]="adultsAgedOver80"
                                          [minQuantity]="0"
                                          [maxQuantity]="20"></app-number-question>
@@ -33,17 +33,17 @@
                 Children
             </div>
             <div class="answer-grid ">
+                <div class="children-under-5-input occupants-input">
+                    <div class="name">Aged under 5</div>
+                    <app-number-question itemsName="children aged under 5"
+                                         [(quantity)]="childrenAgedUnder5"
+                                         [minQuantity]="0"
+                                         [maxQuantity]="20"></app-number-question>
+                </div>
                 <div class="children-aged-5-and-above-input occupants-input">
                     <div class="name">Aged 5 and above</div>
                     <app-number-question itemsName="children aged 5 and above"
                                          [(quantity)]="childrenAged5AndAbove"
-                                         [minQuantity]="0"
-                                         [maxQuantity]="20"></app-number-question>
-                </div>
-                <div class="children-under-5-input occupants-input">
-                    <div class="name">Aged under 5</div>
-                    <app-number-question itemsName="children under 5"
-                                         [(quantity)]="childrenAgedUnder5"
                                          [minQuantity]="0"
                                          [maxQuantity]="20"></app-number-question>
                 </div>

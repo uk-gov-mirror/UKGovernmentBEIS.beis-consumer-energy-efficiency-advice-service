@@ -1,6 +1,12 @@
-<div class="grant-card {{theme}}-theme">
+<a class="grant-card {{theme}}-theme" [href]="grant.websiteUrl" target="_blank" *ngIf="grant.websiteUrl">
+    <ng-container *ngTemplateOutlet="cardContent"></ng-container>
+</a>
+<div class="grant-card {{theme}}-theme" *ngIf="!grant.websiteUrl">
+    <ng-container *ngTemplateOutlet="cardContent"></ng-container>
+</div>
+<ng-template #cardContent>
     <div class="heading-container">
-        <div class="heading">{{grant.name}}</div>
+        <h3 class="heading">{{grant.name}}</h3>
         <div class="description">{{grant.description}}</div>
     </div>
     <div class="extra-info-container" *ngIf="grant.eligibilityCriteria || grant.websiteUrl || grant.phoneNumber">
@@ -8,16 +14,17 @@
             <span class="eligibility-text">Eligibility: </span>{{grant.eligibilityCriteria}}
         </div>
         <div class="find-out-more-container" *ngIf="grant.websiteUrl || grant.phoneNumber">
-            <a class="find-out-more-link" *ngIf="grant.websiteUrl" [href]="grant.websiteUrl" target="_blank">
+            <div class="find-out-more-link" *ngIf="grant.websiteUrl">
                 Find out more
                 <div class="new-window-icon" [inlineSVG]="'controls/new-window.svg'"></div>
-            </a>
+            </div>
             <ng-container *ngIf="!grant.websiteUrl && grant.phoneNumber">
                 <div class="find-out-more-text">Find out more</div>
+                <p>{{grant.name}}</p>
                 <a class="phone-number" href="tel:{{getPhoneNumberForLink()}}">
                     {{grant.phoneNumber}}
                 </a>
             </ng-container>
         </div>
     </div>
-</div>
+</ng-template>

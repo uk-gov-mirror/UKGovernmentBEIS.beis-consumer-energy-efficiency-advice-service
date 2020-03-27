@@ -5,13 +5,14 @@ import {
     AgriculturalTenancyType,
     getAgriculturalTenancyTypeTitle
 } from './agricultural-tenancy-type';
+import {MultipleChoiceOption} from "../../../common-questions/multiple-choice-question/multiple-choice-option";
 
-class AgriculturalTenancyTypeOption {
-    public readonly title: string;
+class AgriculturalTenancyTypeOption implements MultipleChoiceOption {
+    public readonly name: string;
     public readonly description: string;
 
     constructor(public readonly value: AgriculturalTenancyType, public readonly className: string) {
-        this.title = getAgriculturalTenancyTypeTitle(value);
+        this.name = getAgriculturalTenancyTypeTitle(value);
         this.description = getAgriculturalTenancyTypeDescription(value);
     }
 }
@@ -19,7 +20,6 @@ class AgriculturalTenancyTypeOption {
 @Component({
     selector: 'app-agricultural-tenancy-type-question',
     templateUrl: './agricultural-tenancy-type-question.component.html',
-    styleUrls: ['./agricultural-tenancy-type-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class AgriculturalTenancyTypeQuestionComponent extends QuestionBaseComponent {

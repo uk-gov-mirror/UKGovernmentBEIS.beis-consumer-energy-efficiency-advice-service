@@ -35,14 +35,14 @@ describe('DefenseRelatedBenefitsQuestionComponent', () => {
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {
-            const yesOption = fixture.debugElement.query(By.css('#yes-option'));
-            expect(yesOption.classes.selected).toBeTruthy();
+            const yesOption = fixture.debugElement.query(By.css('#yes')).nativeElement;
+            expect(yesOption.checked).toBeTruthy();
         });
     }));
 
     it('should set the response', () => {
         // when
-        const yesOption = fixture.debugElement.query(By.css('#yes-option')).nativeElement;
+        const yesOption = fixture.debugElement.query(By.css('#yes')).nativeElement;
         yesOption.click();
 
         // then

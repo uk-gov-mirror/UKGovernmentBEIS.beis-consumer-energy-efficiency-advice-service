@@ -17,19 +17,10 @@
   }
 
   .question-reason {
-    opacity: 0;
-    max-height: 0;
-    transition: opacity 0.5s linear, max-height 0.5s linear;
     background-color: white;
     border-radius: 10px;
     padding: 10px;
-    overflow: hidden;
-    margin-top: 20px;
-
-    &.visible {
-      opacity: 1;
-      max-height: 200px;
-    }
+    max-height: 200px;
   }
 
   .question-reason-button {
@@ -39,12 +30,16 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin-top: 20px;
 
     &:focus, &:hover {
       text-decoration: underline;
     }
 
     .question-reason-icon {
+      &::before {
+        content: 'i';
+      }
       display: flex;
       align-items: center;
       justify-content: center;

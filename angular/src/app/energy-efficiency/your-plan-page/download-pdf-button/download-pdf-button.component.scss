@@ -5,6 +5,7 @@ $download-pdf-button-width: 53px;
 $download-pdf-button-arrow-height: 12px;
 
 .download-pdf-button {
+  width: 100%;
   background-color: $light-blue;
   outline: none;
   border: none;
@@ -45,5 +46,18 @@ $download-pdf-button-arrow-height: 12px;
     height: 16px;
     display: block;
     line-height: 0;
+  }
+
+  &:hover, &:focus, &:active {
+    background-color: $dark-blue;
+    &:after {
+      border-top-color: $dark-blue;
+    }
+    .download-pdf-button-text {
+      color: $light-blue;
+    }
+    .download-pdf-button-icon {
+      stroke: $light-blue;
+    }
   }
 }

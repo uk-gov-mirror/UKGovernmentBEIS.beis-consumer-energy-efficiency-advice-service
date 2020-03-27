@@ -1,11 +1,6 @@
 <div class="question-component">
-    <div class="answer-grid multiple-choice-options">
-        <button class="multiple-choice-option"
-                *ngFor="let option of lettingOptions"
-                [class.selected]="response === option.value"
-                [ngClass]="option.className"
-                (click)="response = option.value; complete.emit()">
-            {{option.name}}
-        </button>
-    </div>
+    <app-multiple-choice-question name="letting"
+                                  [options]="lettingOptions"
+                                  [(response)]="response">
+    </app-multiple-choice-question>
 </div>

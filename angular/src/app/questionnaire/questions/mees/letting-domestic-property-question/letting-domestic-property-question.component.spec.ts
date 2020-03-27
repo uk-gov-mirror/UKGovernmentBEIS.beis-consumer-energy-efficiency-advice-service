@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {ResponseData} from '../../../../shared/response-data/response-data';
 import {LettingDomesticPropertyQuestionComponent} from './letting-domestic-property-question.component';
 import {LettingDomesticPropertyStage} from "./letting-domestic-property-stage";
+import {MultipleChoiceQuestionComponent} from "../../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('LettingDomesticPropertyQuestionComponent', () => {
     let component: LettingDomesticPropertyQuestionComponent;
@@ -10,7 +11,7 @@ describe('LettingDomesticPropertyQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LettingDomesticPropertyQuestionComponent],
+            declarations: [LettingDomesticPropertyQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -36,16 +37,5 @@ describe('LettingDomesticPropertyQuestionComponent', () => {
 
         // then
         expect(component.response).toBe(LettingDomesticPropertyStage.Currently);
-    });
-
-    it('should notify of completion when clicking on one of the buttons', () => {
-        // given
-
-        // when
-        const no = fixture.debugElement.query(By.css('.soon'));
-        no.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

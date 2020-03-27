@@ -12,8 +12,9 @@ export class ContentsTableComponent {
 
     constructor() {}
 
-    headingClicked(index: number) {
+    headingClicked(index: number, event: Event) {
         this.onHeadingClicked.emit(index);
+        event.preventDefault();
     }
 
     getFormattedNumberFromIndex(index: number): string {

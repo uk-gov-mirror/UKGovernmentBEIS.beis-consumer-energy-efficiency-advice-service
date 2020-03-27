@@ -65,6 +65,7 @@ export class ResponseData {
     public numberOfBedrooms: number;
     // Set by FloorAreaQuestionComponent, sent to BRE energy-calculation
     public floorArea: number;
+    public doesNotKnowFloorArea: boolean;
     // Set by FloorAreaQuestionComponent, sent to BRE energy-calculation
     public floorAreaUnit: FloorAreaUnit;
     // Set by FuelTypeQuestionComponent, sent to BRE energy-calculation, used by BoilerResultsPageComponent

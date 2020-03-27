@@ -68,25 +68,27 @@
                        [isSmallCard]="true"
                        [withSmallFontSize]="true"
         ></app-data-card>
-        <div class="add-to-plan-column"
+        <button class="add-to-plan-column"
              *ngIf="showAddToPlanColumn"
              [class.selected]="recommendation.isAddedToPlan"
              (mouseenter)="mouseEnterAddToPlanButton()"
              (mouseleave)="mouseLeaveAddToPlanButton()"
+             (focus)="focusAddToPlanButton()"
+             (blur)="blurAddToPlanButton()"
              (click)="toggleAddedToPlan()">
-            <button class="add-to-plan-text">
+            <span class="add-to-plan-text">
                 {{getAddToPlanButtonText()}}
-            </button>
-            <div class="add-to-plan-icon add"
+            </span>
+            <span class="add-to-plan-icon add"
                  *ngIf="!recommendation.isAddedToPlan"
-                 [inlineSVG]="'controls/add.svg'"></div>
-            <div class="add-to-plan-icon added"
-                 *ngIf="recommendation.isAddedToPlan && !isMouseOverAddToPlanButton"
+                 [inlineSVG]="'controls/add.svg'"></span>
+            <span class="add-to-plan-icon added"
+                 *ngIf="recommendation.isAddedToPlan && !showRemove"
                  [inlineSVG]="'controls/tick.svg'"
-            ></div>
-            <div class="add-to-plan-icon remove"
-                 *ngIf="recommendation.isAddedToPlan && isMouseOverAddToPlanButton"
-                 [inlineSVG]="'controls/remove.svg'"></div>
-        </div>
+            ></span>
+            <span class="add-to-plan-icon remove"
+                 *ngIf="recommendation.isAddedToPlan && showRemove"
+                 [inlineSVG]="'controls/remove.svg'"></span>
+        </button>
     </div>
 </div>

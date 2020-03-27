@@ -4,6 +4,7 @@ import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerRegulation} from './boiler-regulation-card/boiler-regulation-card.component';
 import includes from 'lodash-es/includes';
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 @Component({
     selector: 'app-boiler-advice-page',
@@ -40,7 +41,8 @@ export class BoilerAdvicePageComponent implements OnInit {
     ];
 
     constructor(private boilerTypesService: BoilerTypesService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private pageTitle: PageTitleService) {
         this.boilerSlug = route.snapshot.paramMap.get('slug');
     }
 
@@ -62,6 +64,7 @@ export class BoilerAdvicePageComponent implements OnInit {
 
     private setBoilerTypeFrom(boilerTypes: BoilerType[]) {
         this.boilerType = boilerTypes.find(boilerType => boilerType.slug === this.boilerSlug);
+        this.pageTitle.set(this.boilerType.name);
     }
 
     private handleError(err) {

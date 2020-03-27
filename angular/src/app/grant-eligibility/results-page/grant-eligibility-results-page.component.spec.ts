@@ -15,6 +15,7 @@ import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eli
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
 import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
+import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('GrantEligibilityResultsPageComponent', () => {
     let component: GrantEligibilityResultsPageComponent;
@@ -27,6 +28,10 @@ describe('GrantEligibilityResultsPageComponent', () => {
 
     const questionnaireServiceStub = {
         isComplete: () => true,
+    };
+
+    const pageTitleStub = {
+        set: () => {}
     };
 
     const dummyEligibilityResponse: EligibilityByGrant = {
@@ -54,7 +59,8 @@ describe('GrantEligibilityResultsPageComponent', () => {
             providers: [
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
-                {provide: ECOSelfReferralConsentData, useValue: new ECOSelfReferralConsentData()}
+                {provide: ECOSelfReferralConsentData, useValue: new ECOSelfReferralConsentData()},
+                {provide: PageTitleService, useValue: pageTitleStub}
             ],
         })
             .compileComponents();

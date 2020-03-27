@@ -14,23 +14,21 @@
         </div>
         <div class="email-your-plan your-plan-action">
             <div class="header">Email your plan</div>
-            <form class="email-form" (submit)="onEmailPdfClicked()" *ngIf="!emailIsLoading && !emailIsError">
+            <form class="email-form" (submit)="onEmailPdfClicked()">
                 <input [(ngModel)]="emailAddress"
                        name="emailAddress"
                        class="email-input"
                        title="Enter your email address"
                        type="email"
                        email
-                       required >
-                <button type="submit" class="send-email">GO</button>
+                       required
+                       [attr.aria-invalid]="emailIsError ? 'true' : 'false'">
+                <button type="submit" class="send-email" [disabled]="emailIsLoading">GO</button>
             </form>
             <app-spinner-and-error-container [loading]="emailIsLoading"
-                                             [error]="emailIsError">
+                                             [error]="emailIsError"
+                                             errorMessage="Please enter a valid email address.">
             </app-spinner-and-error-container>
-            <button *ngIf="emailIsError"
-                    (click)="emailAddress = null; emailIsLoading = false; emailIsError = false">
-                Reset
-            </button>
         </div>
         <div class="share-your-plan your-plan-action">
             <div class="header">Share your plan</div>

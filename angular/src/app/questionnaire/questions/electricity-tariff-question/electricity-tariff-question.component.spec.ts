@@ -4,6 +4,7 @@ import {By} from '@angular/platform-browser';
 import {ElectricityTariffQuestionComponent} from './electricity-tariff-question.component';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {ElectricityTariff} from './electricity-tariff';
+import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
 
 describe('ElectricityTariffQuestionComponent', () => {
     let fixture: ComponentFixture<ElectricityTariffQuestionComponent>;
@@ -11,7 +12,7 @@ describe('ElectricityTariffQuestionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ElectricityTariffQuestionComponent],
+            declarations: [ElectricityTariffQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -32,21 +33,10 @@ describe('ElectricityTariffQuestionComponent', () => {
         // given
 
         // when
-        const standard = fixture.debugElement.query(By.css('#standard-button'));
+        const standard = fixture.debugElement.query(By.css('.standard-button'));
         standard.nativeElement.click();
 
         // then
         expect(component.response).toBe(ElectricityTariff.Standard);
-    });
-
-    it('should notify of completion when clicking on a tariff type', () => {
-        // given
-
-        // when
-        const offPeak = fixture.debugElement.query(By.css('#off-peak-button'));
-        offPeak.nativeElement.click();
-
-        // then
-        expect(component.complete.emit).toHaveBeenCalled();
     });
 });

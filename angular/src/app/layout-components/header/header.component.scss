@@ -52,9 +52,11 @@ $animation-duration-vertical: 0.5s;
   cursor: pointer;
   background: none;
   border: none;
-  outline: none;
   padding: 0;
   display: inline-block;
+  &:not(:hover):not(:active):not(:focus) {
+    outline: none;
+  }
 }
 
 @mixin is-search-icon($size) {
