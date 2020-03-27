@@ -51,7 +51,7 @@ $download-pdf-button-arrow-height: 12px;
   &:hover, &:focus, &:active {
     background-color: $dark-blue;
     &:after {
-      border-top: $download-pdf-button-arrow-height solid $dark-blue;
+      border-top-color: $dark-blue;
     }
     .download-pdf-button-text {
       color: $light-blue;

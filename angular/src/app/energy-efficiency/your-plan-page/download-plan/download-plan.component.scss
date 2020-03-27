@@ -107,7 +107,7 @@ $action-divider-circle-diameter: 40px;
             background-color: $dark-blue;
             color: $light-blue;
             &:after {
-              border-left: $send-email-button-arrow-width solid $dark-blue;
+              border-left-color: $dark-blue;
             }
           }
 
@@ -115,7 +115,7 @@ $action-divider-circle-diameter: 40px;
             background-color: $dark-medium-grey;
             color: $light-grey;
             &:after {
-              border-left: $send-email-button-arrow-width solid $dark-medium-grey;
+              border-left-color: $dark-medium-grey;
             }
           }
         }
