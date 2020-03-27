@@ -34,15 +34,17 @@ describe('Home basics questionnaire', () => {
 
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
-        expect(element(by.css('#owner-occupancy-option')).isPresent()).toBe(true);
-        expect(element(by.css('#private-tenancy-option')).isPresent()).toBe(true);
-        expect(element(by.css('#social-tenancy-option')).isPresent()).toBe(true);
+        expect(element(by.css('.owner-occupancy')).isPresent()).toBe(true);
+        expect(element(by.css('.private-tenancy')).isPresent()).toBe(true);
+        expect(element(by.css('.social-tenancy')).isPresent()).toBe(true);
         page.clickOption('I own my own home');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Home type
         expect(page.getHeading()).toContain('type of home');
         page.clickOption('flat');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Storey count
@@ -53,11 +55,13 @@ describe('Home basics questionnaire', () => {
         // Which floor
         expect(page.getHeading()).toContain('Which floor is your property');
         page.clickOption('basement');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Flat position
         expect(page.getHeading()).toContain('flat position');
         page.clickOption('1 Side Exposed');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Home age
@@ -73,11 +77,13 @@ describe('Home basics questionnaire', () => {
         // The start of optional property questions
         expect(page.getHeading()).toContain('answer more questions about your property');
         CommonPageHelpers.clickButton('Yes');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Floor area
-        expect(page.getHeading()).toContain('What\'s the floor area of your');
-        CommonPageHelpers.clickButton('I don\'t know');
+        expect(page.getHeading()).toContain('the floor area of your');
+        CommonPageHelpers.clickButton('I don’t know');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Construction insulation
@@ -88,16 +94,19 @@ describe('Home basics questionnaire', () => {
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Hot water cylinder
         expect(page.getHeading()).toContain('hot water cylinder');
         page.clickOption('Yes');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
         page.clickOption('Standard');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Length of heating on
@@ -116,10 +125,11 @@ describe('Home basics questionnaire', () => {
 
         // Tenure type
         // Not testing the page heading because this is likely to be changed completely in wordpress
-        expect(element(by.css('#owner-occupancy-option')).isPresent()).toBe(true);
-        expect(element(by.css('#private-tenancy-option')).isPresent()).toBe(true);
-        expect(element(by.css('#social-tenancy-option')).isPresent()).toBe(true);
+        expect(element(by.css('.owner-occupancy')).isPresent()).toBe(true);
+        expect(element(by.css('.private-tenancy')).isPresent()).toBe(true);
+        expect(element(by.css('.social-tenancy')).isPresent()).toBe(true);
         page.clickOption('I own my own home');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // House Storey count
@@ -135,16 +145,19 @@ describe('Home basics questionnaire', () => {
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Hot water cylinder
         expect(page.getHeading()).toContain('hot water cylinder');
         page.clickOption('Yes');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
         page.clickOption('Standard');
+        page.goForwards();
         CommonPageHelpers.sleep(1000);
 
         // Length of heating on

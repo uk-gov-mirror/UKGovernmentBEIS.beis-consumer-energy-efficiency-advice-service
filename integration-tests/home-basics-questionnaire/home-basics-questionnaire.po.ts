@@ -37,7 +37,7 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         // This must be checked in the control flow, as this.miniEpcEnabled is set asynchronously in #selectAddressIfApplicable.
         return browser.controlFlow().execute(() => {
             if (this.miniEpcEnabled) {
-                expect(this.getHeading()).toContain('Here\'s what we know so far...');
+                expect(this.getHeading()).toContain('EPC summary');
                 CommonPageHelpers.clickButton('get a few more details');
                 CommonPageHelpers.sleep(1000);
             }
@@ -46,7 +46,7 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
 
     confirmEpcNotAvailable() {
         return browser.controlFlow().execute(() => {
-            expect(this.getHeading()).toContain('Here\'s what we know so far...');
+            expect(this.getHeading()).toContain('EPC summary');
             CommonPageHelpers.clickButton('get a few more details');
             CommonPageHelpers.sleep(1000);
         });

@@ -13,7 +13,7 @@ export class QuestionnairePage {
     clickOption(text: string) {
         const option = element(by.cssContainingText('.multiple-choice-option', text));
         option.getTagName().then((tagName: string) => {
-            const clickableOption = tagName === 'button' ? option : option.element(by.tagName('button'));
+            const clickableOption = tagName === 'button' || tagName === 'label' ? option : option.element(by.tagName('button'));
             CommonPageHelpers.clickWhenClickable(clickableOption);
         });
     }

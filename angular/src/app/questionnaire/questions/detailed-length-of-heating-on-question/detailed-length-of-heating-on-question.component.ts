@@ -18,7 +18,7 @@ export class DetailedLengthOfHeatingOnQuestionComponent extends QuestionBaseComp
         {name: 'All day but off at night', value: 2},
         {name: 'Morning and evening', value: 3},
         {name: 'Just once a day', value: 4},
-        {name: "I don't know", value: 5},
+        {name: "I don't’know", value: 5},
         {name: 'None of the above', value: 6},
     ];
 
