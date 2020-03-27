@@ -34,8 +34,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
 
     questionnaire: Questionnaire;
     isLoading: boolean;
-    isError: boolean;
-    errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
+    @Input() isError: boolean;
+    @Input() errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     currentQuestionIndex: number;
     allQuestionsContent: AllQuestionsContent;
     currentQuestionContent: QuestionContent;
