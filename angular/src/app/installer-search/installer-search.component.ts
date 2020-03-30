@@ -5,6 +5,7 @@ import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 import sortBy from 'lodash-es/sortBy';
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
+import {Installer, InstallerPaginator} from "./installer-search-service/installer-response";
 
 @Component({
     selector: 'app-installer-search',
@@ -16,7 +17,8 @@ export class InstallerSearchComponent implements OnInit {
     postcode = null;
     measures = [];
     selectedMeasure = null;
-    installers = [];
+    paginator: InstallerPaginator;
+    installers: Installer[] = [];
     searchButtonClicked = false;
     loading = false;
     errorMessage = null;
@@ -55,12 +57,13 @@ export class InstallerSearchComponent implements OnInit {
             this.errorMessage = null;
             this.loading = true;
             this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code)
-                .subscribe(installers => {
-                    this.installers = installers;
+                .subscribe(response => {
+                    this.paginator = response.paginator;
+                    this.installers = response.data;
                     this.loading = false;
                     this.searchButtonClicked = true;
                 }, error => {
-                    this.errorMessage = error.toString().replace('Error: ', '') + '.';
+                    this.errorMessage = error;
                 });
         } else {
             const messageParts = [];

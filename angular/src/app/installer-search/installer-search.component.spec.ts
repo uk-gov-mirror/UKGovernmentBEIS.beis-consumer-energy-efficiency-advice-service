@@ -10,6 +10,7 @@ import {MeasureContent} from "../shared/energy-saving-measure-content-service/me
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
+import {CeilPipe} from "../shared/ceil/ceil.pipe";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -31,7 +32,7 @@ describe('InstallerSearchComponent', () => {
         measureCode = null;
 
         TestBed.configureTestingModule({
-            declarations: [InstallerSearchComponent, SpinnerAndErrorContainerComponent],
+            declarations: [InstallerSearchComponent, SpinnerAndErrorContainerComponent, CeilPipe],
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},

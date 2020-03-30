@@ -3,15 +3,15 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpRequest} from '@angular/common/http';
 import {WordpressApiService} from '../../shared//wordpress-api-service/wordpress-api-service';
 import {InstallerSearchService} from "./installer-search.service";
-import {InstallerContent} from "./installer-content";
 import {Location} from '@angular/common';
+import {InstallerResponse} from './installer-response';
 
 describe('InstallerSearchService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: InstallerSearchService;
 
-    const mockApiResponse: InstallerContent[] = require('assets/test/installer-search-response.json');
+    const mockApiResponse: InstallerResponse = require('assets/test/installer-search-response.json');
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -35,7 +35,7 @@ describe('InstallerSearchService', () => {
 
         it('calls API and returns data correctly', async(() => {
             // when
-            const actualResponse = service.fetchInstallerDetails("NE302LZ", "100").toPromise();
+            const actualResponse = service.fetchInstallerDetails("NE30 2LZ", "100").toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
@@ -51,7 +51,7 @@ describe('InstallerSearchService', () => {
             const expectedStatusText = 'bad request';
 
             // when
-            const actualResponse = service.fetchInstallerDetails("NE302LZ", "100").toPromise();
+            const actualResponse = service.fetchInstallerDetails("NE30 2LZ", "100").toPromise();
             httpMock.expectOne(matchesExpectedRequest)
                 .error(
                     new ErrorEvent('mock network error'),
@@ -71,9 +71,7 @@ describe('InstallerSearchService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === '/api/installers/NE302LZ/100';
-            console.log(matchesExpectedUrl);
-            console.log(request.urlWithParams);
+            const matchesExpectedUrl = request.urlWithParams === '/api/installers/NE30%202LZ/100';
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

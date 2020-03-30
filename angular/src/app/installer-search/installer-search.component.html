@@ -39,47 +39,22 @@
                 </div>
                 <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
                     <h2 class="header">Results</h2>
-                    <p>We found {{installers.length}} installers matching your search.</p>
+                    <p>We found {{paginator.totalCount}} installers matching your search.</p>
+                    <p>
+                        Showing results {{(paginator.pageNumber - 1) * paginator.pageSize + 1}} to
+                        {{(paginator.pageNumber * paginator.pageSize)}}
+                        (page {{paginator.pageNumber}} of {{(paginator.totalCount / paginator.pageSize) | ceil}}).
+                    </p>
                 </div>
             </div>
-            <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
-                <!--
-                    Angular's fake `.table` tables render as cards on smaller screens, which is nice but is not as
-                    accessible on desktop so we have two versions of the table.
-                -->
-                <table class="results-table results-table-desktop">
-                    <thead>
-                        <tr class="table-row">
-                            <th class="participant table-heading">Company</th>
-                            <th class="certification-id table-heading">Certification ID</th>
-                            <th class="email-address table-heading">Email Address</th>
-                            <th class="phone-number table-heading">Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="installer table-row" *ngFor="let installer of installers">
-                            <td class="participant table-cell">{{installer.participant}}</td>
-                            <td class="certification-id table-cell">{{installer.certification_id}}</td>
-                            <td class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></td>
-                            <td class="phone-number table-cell">{{installer.phone_number}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="results-table results-table-mobile-and-tablet table">
-                    <div class="table-row">
-                        <div class="participant table-heading">Company</div>
-                        <div class="certification-id table-heading">Certification ID</div>
-                        <div class="email-address table-heading">Email Address</div>
-                        <div class="phone-number table-heading">Phone Number</div>
-                    </div>
-                    <div class="installer table-row" *ngFor="let installer of installers">
-                        <div class="participant table-cell">{{installer.participant}}</div>
-                        <div class="certification-id table-cell">{{installer.certification_id}}</div>
-                        <div class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></div>
-                        <div class="phone-number table-cell">{{installer.phone_number}}</div>
-                    </div>
-                </div>
-            </div>
+            <ul class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
+                <!-- TODO: Proper display of installers from TrustMark. -->
+                <li *ngFor="let installer of installers">
+                    <a [href]="installer.publicBranchUrl" target="_blank">
+                        {{installer.registeredName}}
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
