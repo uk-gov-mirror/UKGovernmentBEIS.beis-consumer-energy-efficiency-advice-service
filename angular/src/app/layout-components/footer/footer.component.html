@@ -1,16 +1,23 @@
-<div id="page-footer" class="footer page-row">
-    <div class="page-row-content">
-        <p id="contact-us" class="header">Contact us if you require further assistance on the freephone helpline:</p>
-        <div class="contact-us-details">
-            <div class="icon" [inlineSVG]="'controls/phone.svg'"></div>
-            <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number" title="Helpline phone number">
-                {{phoneNumber}}
-            </a>
+<div id="page-footer" class="footer">
+    <div class="page-row">
+        <div class="page-row-content">
+            <p id="contact-us" class="header">Contact us if you require further assistance on the freephone helpline:</p>
+            <div class="contact-us-details">
+                <div class="icon" [inlineSVG]="'controls/phone.svg'"></div>
+                <a href="tel:{{getPhoneNumberForLink()}}" class="phone-number" title="Helpline phone number">
+                    {{phoneNumber}}
+                </a>
+            </div>
+            <p class="opening-times">
+                Monday to Friday: 8am to 8pm
+                <br>
+                Saturday and Sunday: 9am to 5pm
+            </p>
         </div>
-        <p class="opening-times">
-            Monday to Friday: 8am to 8pm
-            <br>
-            Saturday and Sunday: 9am to 5pm
-        </p>
+    </div>
+    <div class="page-row">
+        <div class="page-row-content footer-links">
+            <a routerLink="/pages/accessibility-statement">Accessibility</a>
+        </div>
     </div>
 </div>

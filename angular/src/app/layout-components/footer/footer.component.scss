@@ -5,15 +5,12 @@
 
 // Component specific mixins
 @mixin is-page-footer($padding, $icon-size) {
-  .page-row-content {
-    padding: $padding;
-
-    .contact-us-details {
-      .icon {
-        width: $icon-size;
-        height: $icon-size;
-        flex-shrink: 0;
-      }
+  padding: $padding;
+  .contact-us-details {
+    .icon {
+      width: $icon-size;
+      height: $icon-size;
+      flex-shrink: 0;
     }
   }
 }
@@ -47,6 +44,10 @@
 .footer {
   background-color: $darker-grey;
 
+  .page-row {
+    margin-bottom: 10px;
+  }
+
   .page-row-content {
     .header, .phone-number {
       color: white;
@@ -77,6 +78,20 @@
     .opening-times {
       color: white;
       flex: none;
+    }
+  }
+
+  .footer-links {
+    a {
+      color: white;
+      text-decoration: none;
+      &:visited {
+        color: white;
+      }
+      &:hover, &:active, &:focus {
+        color: white;
+        text-decoration: underline;
+      }
     }
   }
 }
