@@ -23,6 +23,8 @@ export class InstallerSearchComponent implements OnInit {
     loading = false;
     errorMessage = null;
 
+    private lastSearchedPostcode: string = null;
+
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
                 private measureContentService: EnergySavingMeasureContentService,
@@ -52,14 +54,18 @@ export class InstallerSearchComponent implements OnInit {
         );
     }
 
-    submit() {
+    fetchInstallers() {
+        if (this.postcode !== this.lastSearchedPostcode) {
+            this.installers = [];
+        }
         if (this.selectedMeasure && this.postcode) {
             this.errorMessage = null;
             this.loading = true;
-            this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code)
+            const nextPage = this.paginator ? this.paginator.pageNumber + 1 : 1;
+            this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code, nextPage)
                 .subscribe(response => {
                     this.paginator = response.paginator;
-                    this.installers = response.data;
+                    this.installers = this.installers.concat(response.data);
                     this.loading = false;
                     this.searchButtonClicked = true;
                 }, error => {

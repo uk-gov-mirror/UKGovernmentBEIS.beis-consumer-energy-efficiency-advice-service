@@ -11,19 +11,24 @@ export class InstallerSearchService {
     constructor(private http: HttpClient, private location: Location) {
     }
 
-    fetchInstallerDetails(postcode: string, installerCode: string): Observable<InstallerResponse> {
+    fetchInstallerDetails(postcode: string, tradeCode: string, page: number = 1): Observable<InstallerResponse> {
         // TODO: Remove test code.
-        installerCode = '107';
-        if (postcode && postcode !== "") {
-            const url = this.location.prepareExternalUrl(InstallerSearchService.INSTALLER_API_ROOT +
-                "/" + encodeURIComponent(postcode.toUpperCase()) + "/" + encodeURIComponent(installerCode));
-            return this.http.get<InstallerResponse>(url).map(body => {
-                if (body && body.errorMessage) {
-                    throw new Error(body.errorMessage);
-                } else {
-                    return body;
-                }
-            });
+        tradeCode = '107';
+        if (!postcode) {
+            return;
         }
+        const root = InstallerSearchService.INSTALLER_API_ROOT;
+        const postcodeComponent = encodeURIComponent(postcode);
+        const tradeCodeComponent = encodeURIComponent(tradeCode);
+        const url = this.location.prepareExternalUrl(
+            `${root}/${postcodeComponent}/${tradeCodeComponent}?page=${page}`
+        );
+        return this.http.get<InstallerResponse>(url).map(body => {
+            if (body && body.errorMessage) {
+                throw new Error(body.errorMessage);
+            } else {
+                return body;
+            }
+        });
     }
 }

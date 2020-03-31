@@ -13,6 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -48,7 +49,10 @@ public class InstallerSearchController {
     }
 
     @GetMapping("/{postcode}/{tradeCode}")
-    public String get(@PathVariable String postcode, @PathVariable String tradeCode) throws URISyntaxException {
+    public String get(
+            @PathVariable String postcode,
+            @PathVariable String tradeCode,
+            @RequestParam("page") Integer page) throws URISyntaxException {
         String accessToken = getAccessToken();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
@@ -58,6 +62,8 @@ public class InstallerSearchController {
         URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                 .queryParam("postcode", postcode)
                 .queryParam("tradecodes", tradeCode)
+                .queryParam("pageNumber", page)
+                .queryParam("pageSize", 20)
                 .toUriString());
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         return response.getBody();
