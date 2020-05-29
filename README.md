@@ -117,7 +117,7 @@ you will remember (e.g. "root" / "password").
 
 Log in as root and run the following to create a WP user and database
 
-    CREATE DATABASE wordpress;
+    CREATE DATABASE wordpressbeissea;
     GRANT ALL PRIVILEGES ON wordpress.* TO "wordpress"@"localhost"
         IDENTIFIED BY "wordpressPassword123";
 

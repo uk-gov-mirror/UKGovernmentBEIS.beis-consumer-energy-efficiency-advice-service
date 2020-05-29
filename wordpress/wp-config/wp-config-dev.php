@@ -4,7 +4,8 @@ if (!defined('ABSPATH')) exit();
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wordpress');
+/** Note this is different to the production DB, which is just called `wordpress` */
+define('DB_NAME', 'wordpressbeissea');
 
 /** MySQL database username */
 define('DB_USER', 'wordpress');
