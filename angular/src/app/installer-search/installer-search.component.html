@@ -41,19 +41,17 @@
                     <p>We found {{paginator.totalCount}} installers matching your search.</p>
                 </div>
             </div>
-            <div class="results" *ngIf="searchButtonClicked && !error && installers.length > 0">
-                <!-- TODO: Proper UI for installers loaded from TrustMark. -->
-                <ul>
-                    <li *ngFor="let installer of installers">
-                        <a [href]="installer.publicBranchUrl" target="_blank">
-                            {{installer.registeredName}}
-                        </a>
-                    </li>
-                </ul>
-                <button *ngIf="installers.length < paginator.totalCount"
-                        (click)="fetchInstallers()">
-                    Load more
-                </button>
+            <div class="results display" *ngIf="searchButtonClicked && !error && installers.length > 0">
+                <div class="results-column">
+                    <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer"></app-installer-card>
+                    <button class="load-more-button" *ngIf="installers.length < paginator.totalCount"
+                            (click)="fetchInstallers()">
+                        Load more
+                    </button>
+                </div>
+                <div class="map-placeholder">
+                    MAP
+                </div>
             </div>
             <app-spinner-and-error-container [loading]="loading" [error]="error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
         </div>

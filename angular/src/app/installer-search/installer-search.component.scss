@@ -101,16 +101,43 @@
       margin: 50px 0;
     }
 
+    .results.display {
+      display: flex;
+      flex-direction: row;
+    }
     .results {
+      .map-placeholder {
+        background-color: #1A485F;
+        height: 80vh;
+        width: 70%;
+        color: white;
+        text-align: center;
+        margin-left: 20px;
+      }
       .header {
         color: $dark-blue;
         font-size: 28px;
         font-weight: bold;
       }
 
-      .results-table {
+      .results-column {
         margin-bottom: 50px;
         border-collapse: collapse;
+        height: 80vh;
+        width: 30%;
+        overflow: auto;
+        text-align: center;
+
+        .load-more-button {
+          background: $pink;
+          border: none;
+          color: white;
+          padding: 10px;
+          margin: 10px;
+          &:hover, &:focus, &:active {
+            background-color: $dark-medium-blue;
+          }
+        }
       }
 
       .table-cell {
