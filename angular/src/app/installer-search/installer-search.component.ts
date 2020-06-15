@@ -41,7 +41,7 @@ export class InstallerSearchComponent implements OnInit {
         this.postcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
-                    this.measures = measures.filter(measure => measure.acf.installer_code);
+                    this.measures = measures.filter(measure => measure.acf.trustmark_trade_codes);
                     this.measures = sortBy(this.measures, [m => m.acf.headline.toUpperCase()]);
                     if (params["measure-code"]) {
                         const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
@@ -62,7 +62,11 @@ export class InstallerSearchComponent implements OnInit {
             this.errorMessage = null;
             this.loading = true;
             const nextPage = this.paginator ? this.paginator.pageNumber + 1 : 1;
-            this.installerSearchService.fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.installer_code, nextPage)
+            // For now we will only be fetching the installers with the first trade code
+            // in the array of TrustMark trade codes.
+            // In the future all the trade codes in the array should be used.
+            this.installerSearchService
+                .fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.trustmark_trade_codes[0].trade_code, nextPage)
                 .subscribe(response => {
                     this.paginator = response.paginator;
                     this.installers = this.installers.concat(response.data);

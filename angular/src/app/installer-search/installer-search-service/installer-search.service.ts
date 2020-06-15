@@ -12,9 +12,7 @@ export class InstallerSearchService {
     }
 
     fetchInstallerDetails(postcode: string, tradeCode: string, page: number = 1): Observable<InstallerResponse> {
-        // TODO: Remove test code.
-        tradeCode = '107';
-        if (!postcode) {
+        if (!postcode || !tradeCode) {
             return;
         }
         const root = InstallerSearchService.INSTALLER_API_ROOT;
