@@ -21,10 +21,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+
 @RestController
 @RequestMapping("/api/installers")
 public class InstallerSearchController {
-
+    private final Integer numberOfItemsPerPage = 20;
     private final String searchUrl;
     private final String idServerUrl;
     private final String clientId;
@@ -63,7 +64,7 @@ public class InstallerSearchController {
                 .queryParam("postcode", postcode)
                 .queryParam("tradecodes", tradeCode)
                 .queryParam("pageNumber", page)
-                .queryParam("pageSize", 20)
+                .queryParam("pageSize", numberOfItemsPerPage)
                 .toUriString());
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         return response.getBody();

@@ -19,11 +19,9 @@ export class InstallerSearchComponent implements OnInit {
     selectedMeasure = null;
     paginator: InstallerPaginator;
     installers: Installer[] = [];
-    searchButtonClicked = false;
+    searchHasBeenPerformed = false;
     loading = false;
     errorMessage = null;
-
-    private lastSearchedPostcode: string = null;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
@@ -54,37 +52,66 @@ export class InstallerSearchComponent implements OnInit {
         );
     }
 
-    fetchInstallers() {
-        if (this.postcode !== this.lastSearchedPostcode) {
-            this.installers = [];
-        }
+    loadFirstPageOfInstallers() {
         if (this.selectedMeasure && this.postcode) {
             this.errorMessage = null;
             this.loading = true;
-            const nextPage = this.paginator ? this.paginator.pageNumber + 1 : 1;
-            // For now we will only be fetching the installers with the first trade code
-            // in the array of TrustMark trade codes.
-            // In the future all the trade codes in the array should be used.
-            this.installerSearchService
-                .fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.trustmark_trade_codes[0].trade_code, nextPage)
-                .subscribe(response => {
-                    this.paginator = response.paginator;
-                    this.installers = this.installers.concat(response.data);
-                    this.loading = false;
-                    this.searchButtonClicked = true;
-                }, error => {
-                    this.errorMessage = error;
-                });
+            this.fetchSpecificPageOfInstallers(1);
         } else {
-            const messageParts = [];
-            if (!this.postcode) {
-                // Matches the message from the API if postcode is invalid.
-                messageParts.push('No valid postcode supplied.');
-            }
-            if (!this.selectedMeasure) {
-                messageParts.push('No measure selected.');
-            }
-            this.errorMessage = messageParts.join(' ');
+            this.buildInvalidSearchErrorMessage();
         }
+    }
+
+    loadNextPageOfInstallers() {
+        if (this.selectedMeasure && this.postcode) {
+            this.errorMessage = null;
+            this.loading = true;
+            const nextPageNumber = this.paginator ? this.paginator.pageNumber + 1 : 1;
+            this.fetchSpecificPageOfInstallers(nextPageNumber);
+        } else {
+            this.buildInvalidSearchErrorMessage();
+        }
+    }
+
+    loadPreviousPageOfInstallers() {
+        if (this.selectedMeasure && this.postcode) {
+            this.errorMessage = null;
+            this.loading = true;
+            const previousPageNumber = this.paginator && this.paginator.pageNumber > 1 ? this.paginator.pageNumber - 1 : 1;
+            this.fetchSpecificPageOfInstallers(previousPageNumber);
+        } else {
+            this.buildInvalidSearchErrorMessage();
+        }
+    }
+
+    fetchSpecificPageOfInstallers(pageNumber: number) {
+        // For now we will only be fetching the installers with the first trade code
+        // in the array of TrustMark trade codes.
+        // In the future all the trade codes in the array should be used.
+        // tslint:disable-next-line:max-line-length
+        // tslint:disable-next-line:max-line-length
+        console.log(`Fetching installers with trade code ${this.selectedMeasure.acf.trustmark_trade_codes[0].trade_code}, page number ${pageNumber}`);
+        this.installerSearchService
+            .fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.trustmark_trade_codes[0].trade_code, pageNumber)
+            .subscribe(response => {
+                this.paginator = response.paginator;
+                this.installers = response.data;
+                this.loading = false;
+                this.searchHasBeenPerformed = true;
+            }, error => {
+                this.errorMessage = error;
+            });
+    }
+
+    buildInvalidSearchErrorMessage() {
+        const messageParts = [];
+        if (!this.postcode) {
+            // Matches the message from the API if postcode is invalid.
+            messageParts.push('No valid postcode supplied.');
+        }
+        if (!this.selectedMeasure) {
+            messageParts.push('No measure selected.');
+        }
+        this.errorMessage = messageParts.join(' ');
     }
 }

@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="selectors page-row">
-        <form (submit)="fetchInstallers()" class="selector-container page-row-content">
+        <form (submit)="loadFirstPageOfInstallers()" class="selector-container page-row-content">
             <div class="field-container postcode">
                 <label for="postcode" class="field-heading">Postcode</label>
                 <input id="postcode" [(ngModel)]="postcode" (blur)="postcode = $event.target.value"
@@ -29,25 +29,34 @@
     </div>
     <div class="results-section page-row">
         <div class="page-row-content">
-            <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
+            <div class="before-submit" *ngIf="!searchHasBeenPerformed && !loading">
                 Please enter your details above to find installers in your area.
             </div>
             <div aria-live="polite">
-                <div class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
+                <div class="no-results" *ngIf="searchHasBeenPerformed && !loading && installers.length === 0">
                     Sorry, we couldn't find any installers in your area.
                 </div>
-                <div class="results" *ngIf="searchButtonClicked && !error && installers.length > 0">
+                <div class="results" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
                     <h2 class="header">Results</h2>
-                    <p>We found {{paginator.totalCount}} installers matching your search.</p>
+                    <p>We found {{paginator.totalCount}} installers matching your search. Page {{paginator.pageNumber}} of {{paginator.totalCount/paginator.pageSize + 0.49 | number: '1.0-0'}}</p>
                 </div>
             </div>
-            <div class="results display" *ngIf="searchButtonClicked && !error && installers.length > 0">
-                <div class="results-column">
-                    <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer"></app-installer-card>
-                    <button class="load-more-button" *ngIf="installers.length < paginator.totalCount"
-                            (click)="fetchInstallers()">
-                        Load more
-                    </button>
+            <div class="results display" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
+                <div class="results-panel">
+                    <div class="results-column">
+                        <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer"></app-installer-card>
+                    </div>
+                    <div class="page-navigation-buttons">
+                        <button [ngClass]="{'page-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
+                                (click)="loadPreviousPageOfInstallers()">
+                            <
+                        </button>
+                        <div class="page-number">{{paginator.pageNumber}}</div>
+                        <button [ngClass]="{'page-navigation-button': true, 'disabled': paginator.pageSize*paginator.pageNumber >= paginator.totalCount }"
+                                (click)="loadNextPageOfInstallers()">
+                            >
+                        </button>
+                    </div>
                 </div>
                 <div class="map-placeholder">
                     MAP
