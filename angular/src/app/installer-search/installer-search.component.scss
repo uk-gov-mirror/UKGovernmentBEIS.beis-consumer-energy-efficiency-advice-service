@@ -101,10 +101,6 @@
       margin: 50px 0;
     }
 
-    .results.display {
-      display: flex;
-      flex-direction: row;
-    }
     .results {
       .map-placeholder {
         background-color: #1A485F;
@@ -123,8 +119,6 @@
       .results-column {
         margin-bottom: 50px;
         border-collapse: collapse;
-        height: 80vh;
-        width: 30%;
         overflow: auto;
         text-align: center;
 
@@ -221,6 +215,16 @@
     }
 
     .results {
+      &.display {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .results-column {
+        width: 100%;
+        height: 50vh;
+      }
+
       .results-table-desktop {
         display: none;
       }
@@ -295,6 +299,16 @@
     }
 
     .results {
+      &.display {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .results-column {
+        width: 100%;
+        height: 50vh;
+      }
+
       .results-table-desktop {
         display: none;
       }
@@ -356,6 +370,16 @@
     }
 
     .results {
+      &.display {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .results-column {
+        width: 30%;
+        height: 80vh;
+      }
+      
       .results-table-mobile-and-tablet {
         display: none;
       }

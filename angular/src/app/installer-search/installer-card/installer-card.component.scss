@@ -2,36 +2,41 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
 
-.installer-card {
-  background-color: $lighter-grey;
+@mixin is-flex-column {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  text-decoration: none;
-  color: #006280;
-  padding: 30px 50px 20px 20px;
   flex: auto;
   flex-direction: column;
   margin-top: 10px;
   margin-right: 10px;
   text-align: left;
+}
+
+.installer-card {
+  background-color: $lighter-grey;
+  text-decoration: none;
+  color: $dark-medium-blue;
+  padding: 30px 50px 20px 20px;
+  @include is-flex-column;
 
   .header {
+    .name {
+      @include installer-card-header-font;
+    }
   }
+
   .content {
-
+    @include card-body-font;
   }
 
-  &:hover, &:focus {
-    .footer {
-      .link-button {
-        background-color: $light-blue;
-        color: $dark-blue;
-      }
+  .details-button-arrow {
+    @include blue-arrow-button(20px, 40px);
+    padding-left: 10px;
+    text-decoration: none;
 
-      .link-button-arrow:after, .link-button-arrow:after {
-        border-left: 20px solid $light-blue;
-      }
+    &:focus, &:hover {
+      color: white;
     }
   }
 
@@ -48,41 +53,6 @@
       flex-direction: row;
       align-items: center;
     }
-
-    .link-button {
-      @include body-uppercase;
-      color: $dark-medium-blue;
-      text-align: left;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-      margin: 5px 0px 5px;
-
-      cursor: pointer;
-      border: none;
-      background-color: white;
-
-      padding: 13px 8px;
-      box-sizing: border-box;
-    }
-
-    .link-button-arrow {
-      position: relative;
-    }
-
-    .link-button-arrow:after {
-      content: '';
-
-      position: absolute;
-      right: -20px;
-      top: 0;
-
-      width: 0;
-      height: 0;
-      border-top: 19.7px solid transparent;
-      border-bottom: 19.7px solid transparent;
-
-      border-left: 20px solid white;
-    }
   }
 }
+

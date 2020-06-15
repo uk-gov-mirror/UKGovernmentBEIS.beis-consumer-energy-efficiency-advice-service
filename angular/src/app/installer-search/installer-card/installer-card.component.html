@@ -1,4 +1,4 @@
-<a class="installer-card" [href]="installerInfo.publicBranchUrl" target="_blank">
+<div class="installer-card">
     <div class="header">
         <div class="logo" *ngIf="installerInfo.logoUrl else defaultIcon">Show logo</div>
         <ng-template #defaultIcon>
@@ -7,13 +7,13 @@
         <h2 class="name">{{installerInfo.registeredName}}</h2>
     </div>
     <div class="content" *ngIf="installerInfo.description">
-        <p >{{installerInfo.description}}</p>
+        <p>{{installerInfo.description}}</p>
     </div>
     <div class="footer">
         <div class="distance">
             <div class="icon-location"></div>
-            <p>{{installerInfo.distanceInMiles | number: '1.0-1'}} miles</p>
+            <p><b>{{installerInfo.distanceInMiles | number: '1.0-1'}} miles</b></p>
         </div>
-        <a class="link-button link-button-arrow"> Details </a>
+        <a class="details-button-arrow" [href]="installerInfo.publicBranchUrl" target="_blank"> Details </a>
     </div>
-</a>
+</div>
