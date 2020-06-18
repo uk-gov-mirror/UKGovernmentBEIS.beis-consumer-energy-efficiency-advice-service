@@ -6,4 +6,6 @@ export interface InstallerInfo {
     description: string;
     distanceInMiles: number;
     town: string;
+    latitude: number;
+    longitude: number;
 }

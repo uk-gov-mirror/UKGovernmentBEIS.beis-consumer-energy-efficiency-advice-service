@@ -58,8 +58,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="map-placeholder">
-                    MAP
+                <div class="map-panel">
+                    <app-installer-map [installers]="installers" [postcode]="postcode"></app-installer-map>
                 </div>
             </div>
             <app-spinner-and-error-container [loading]="loading" [error]="error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
