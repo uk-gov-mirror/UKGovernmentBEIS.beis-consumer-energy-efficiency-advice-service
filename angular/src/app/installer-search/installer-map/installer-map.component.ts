@@ -38,10 +38,7 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
                 });
                 this.bounds.extend(marker.getPosition());
                 marker.addListener('click', () => {
-                    const infoWindow = new google.maps.InfoWindow({
-                        content: marker.getTitle()
-                    });
-                    infoWindow.open(marker.getMap(), marker);
+                    window.parent.postMessage(installer.id, '*');
                 });
                 return marker;
             }

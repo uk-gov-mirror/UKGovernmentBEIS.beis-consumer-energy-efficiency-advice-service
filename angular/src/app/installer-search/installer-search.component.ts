@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Directive, OnInit, HostListener} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResponseData} from "../shared/response-data/response-data";
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
@@ -22,12 +22,16 @@ export class InstallerSearchComponent implements OnInit {
     searchHasBeenPerformed = false;
     loading = false;
     errorMessage = null;
+    selectedInstallerId = null;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
                 private measureContentService: EnergySavingMeasureContentService,
                 private installerSearchService: InstallerSearchService,
                 private pageTitle: PageTitleService) {
+
+        // window.addEventListener("message", (event) => console.log("Hello World"), false);
+
     }
 
     get error() {
@@ -110,5 +114,16 @@ export class InstallerSearchComponent implements OnInit {
             messageParts.push('No measure selected.');
         }
         this.errorMessage = messageParts.join(' ');
+    }
+
+    @HostListener('window:message', ['$event'])
+    onMarkerClick(msg: MessageEvent) {
+        if (this.selectedInstallerId) {
+            const previousSelectedElement = document.getElementById(this.selectedInstallerId);
+            previousSelectedElement.className = "installer-card";
+        }
+        this.selectedInstallerId = msg.data;
+        const newSelectedElement = document.getElementById(this.selectedInstallerId);
+        newSelectedElement.classList.add("selected-installer");
     }
 }
