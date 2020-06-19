@@ -29,9 +29,6 @@ export class InstallerSearchComponent implements OnInit {
                 private measureContentService: EnergySavingMeasureContentService,
                 private installerSearchService: InstallerSearchService,
                 private pageTitle: PageTitleService) {
-
-        // window.addEventListener("message", (event) => console.log("Hello World"), false);
-
     }
 
     get error() {
@@ -58,6 +55,7 @@ export class InstallerSearchComponent implements OnInit {
 
     loadFirstPageOfInstallers() {
         if (this.selectedMeasure && this.postcode) {
+            this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
             this.fetchSpecificPageOfInstallers(1);
@@ -68,6 +66,7 @@ export class InstallerSearchComponent implements OnInit {
 
     loadNextPageOfInstallers() {
         if (this.selectedMeasure && this.postcode) {
+            this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
             const nextPageNumber = this.paginator ? this.paginator.pageNumber + 1 : 1;
@@ -79,6 +78,7 @@ export class InstallerSearchComponent implements OnInit {
 
     loadPreviousPageOfInstallers() {
         if (this.selectedMeasure && this.postcode) {
+            this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
             const previousPageNumber = this.paginator && this.paginator.pageNumber > 1 ? this.paginator.pageNumber - 1 : 1;
@@ -117,13 +117,39 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     @HostListener('window:message', ['$event'])
-    onMarkerClick(msg: MessageEvent) {
+    onMarkerClick(installerId: MessageEvent) {
+        this.deselectPreviousInstallerCardElement();
+        this.selectedInstallerId = installerId.data;
+        this.selectInstallerCardWithId(this.selectedInstallerId);
+    }
+
+    deselectPreviousInstallerCardElement() {
         if (this.selectedInstallerId) {
             const previousSelectedElement = document.getElementById(this.selectedInstallerId);
-            previousSelectedElement.className = "installer-card";
+            this.removeClassFromElement("selected-installer", previousSelectedElement);
         }
-        this.selectedInstallerId = msg.data;
+    }
+
+    selectInstallerCardWithId(id: number) {
+        this.selectedInstallerId = id;
         const newSelectedElement = document.getElementById(this.selectedInstallerId);
-        newSelectedElement.classList.add("selected-installer");
+        this.addClassToElement("selected-installer", newSelectedElement);
+        this.scrollElementIntoView(newSelectedElement);
+    }
+
+    addClassToElement(className: string, element: HTMLElement) {
+        element.classList.add(className);
+    }
+
+    removeClassFromElement(className: string, element: HTMLElement) {
+        const regex = new RegExp(`\\b${className}\\b`, "g");
+        element.className = element.className.replace(regex, "");
+    }
+
+    scrollElementIntoView(element: HTMLElement) {
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
     }
 }
