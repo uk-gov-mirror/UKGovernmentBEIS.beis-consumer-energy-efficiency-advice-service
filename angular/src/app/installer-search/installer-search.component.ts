@@ -92,6 +92,7 @@ export class InstallerSearchComponent implements OnInit {
         // For now we will only be fetching the installers with the first trade code
         // in the array of TrustMark trade codes.
         // In the future all the trade codes in the array should be used.
+        // TODO: SEA-16/19
         this.installerSearchService
             .fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.trustmark_trade_codes[0].trade_code, pageNumber)
             .subscribe(response => {

@@ -49,12 +49,12 @@
                     <div class="page-navigation-buttons">
                         <button [ngClass]="{'page-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
                                 (click)="loadPreviousPageOfInstallers()">
-                            <
+                            &lt;
                         </button>
                         <div class="page-number">{{paginator.pageNumber}}</div>
                         <button [ngClass]="{'page-navigation-button': true, 'disabled': paginator.pageSize*paginator.pageNumber >= paginator.totalCount }"
                                 (click)="loadNextPageOfInstallers()">
-                            >
+                            &gt;
                         </button>
                     </div>
                 </div>
