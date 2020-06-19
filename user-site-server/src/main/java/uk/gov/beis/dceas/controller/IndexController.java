@@ -45,6 +45,8 @@ public class IndexController {
     private String phoneNumber;
     @Value("${vcap.application.space_name}")
     private String spaceName;
+    @Value("${dceas.googleCloudPlatformAPIKey}")
+    private String googleCloudPlatformAPIKey;
 
     private final Environment environment;
     private final String angularHeadContent;
@@ -141,6 +143,7 @@ public class IndexController {
         model.addAttribute("spaceName", spaceName);
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
+        model.addAttribute("googleCloudPlatformAPIKey", googleCloudPlatformAPIKey);
 
         String savings = getSavingsFromShareLink(request);
         model.addAttribute("savings", savings);
