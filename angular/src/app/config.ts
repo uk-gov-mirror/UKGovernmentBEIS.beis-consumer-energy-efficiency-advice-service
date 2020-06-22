@@ -12,7 +12,7 @@ class Config {
     buildUrl: string;
     buildNumber: string;
     publicRootUrl: string;
-    googleCloudPlatformAPIKEy: string;
+    googleCloudPlatformApiKey: string;
 }
 
 export default () => (window as any).CONFIG as Config;
