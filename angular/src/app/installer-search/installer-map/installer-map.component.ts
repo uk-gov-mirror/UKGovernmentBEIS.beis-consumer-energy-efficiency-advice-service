@@ -7,8 +7,7 @@ import {InstallerInfo} from '../installer-card/installer-info';
     styleUrls: ['./installer-map.component.scss']
 })
 export class InstallerMapComponent implements AfterViewInit, OnChanges {
-    // @ts-ignore
-    @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
+    @ViewChild('mapContainer') gmap: ElementRef;
     @Input() installers: InstallerInfo[];
     @Input() postcode: string;
     map: google.maps.Map;
