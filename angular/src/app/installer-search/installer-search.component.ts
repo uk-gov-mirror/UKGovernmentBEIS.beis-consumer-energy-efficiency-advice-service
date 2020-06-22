@@ -119,32 +119,13 @@ export class InstallerSearchComponent implements OnInit {
 
     @HostListener('window:message', ['$event'])
     onMarkerClick(installerId: MessageEvent) {
-        this.deselectPreviousInstallerCardElement();
         this.selectedInstallerId = installerId.data;
-        this.selectInstallerCardWithId(this.selectedInstallerId);
+        this.showInstallerCardWithId(this.selectedInstallerId);
     }
 
-    deselectPreviousInstallerCardElement() {
-        if (this.selectedInstallerId) {
-            const previousSelectedElement = document.getElementById(this.selectedInstallerId);
-            this.removeClassFromElement("selected-installer", previousSelectedElement);
-        }
-    }
-
-    selectInstallerCardWithId(id: number) {
-        this.selectedInstallerId = id;
-        const newSelectedElement = document.getElementById(this.selectedInstallerId);
-        this.addClassToElement("selected-installer", newSelectedElement);
-        this.scrollElementIntoView(newSelectedElement);
-    }
-
-    addClassToElement(className: string, element: HTMLElement) {
-        element.classList.add(className);
-    }
-
-    removeClassFromElement(className: string, element: HTMLElement) {
-        const regex = new RegExp(`\\b${className}\\b`, "g");
-        element.className = element.className.replace(regex, "");
+    showInstallerCardWithId(id: number) {
+        const selectedInstallerCard = document.getElementById(id.toString(10));
+        this.scrollElementIntoView(selectedInstallerCard);
     }
 
     scrollElementIntoView(element: HTMLElement) {
