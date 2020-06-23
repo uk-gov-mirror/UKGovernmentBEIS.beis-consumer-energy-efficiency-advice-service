@@ -20,10 +20,6 @@
   padding: 30px 50px 20px 20px;
   @include is-flex-column;
 
-  &.selected-installer {
-    background: $light-medium-grey;
-  }
-
   .header {
     .name {
       @include installer-card-header-font;
@@ -56,6 +52,24 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+    }
+  }
+}
+
+.installer-card.selected-installer {
+  background: $dark-medium-blue;
+  color: $lighter-grey;
+
+  .header .name {
+    color: $lighter-grey;
+  }
+  .details-button-arrow {
+    &:focus, &:hover {
+      background-color: $pink;
+
+      &:after {
+        border-left-color: $pink;
+      }
     }
   }
 }
