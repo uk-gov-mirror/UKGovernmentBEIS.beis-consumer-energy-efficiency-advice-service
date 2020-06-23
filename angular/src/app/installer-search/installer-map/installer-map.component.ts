@@ -45,11 +45,10 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (this.map) {
-            this.removeAllInstallerMarkers();
+        if (this.map && this.propertyHasChanged('installers', changes)) {
             this.bounds = new google.maps.LatLngBounds();
-            this.bounds.extend(this.userLocationMarker.getPosition());
-            this.setInstallerMarkers();
+            this.resetInstallerMarkers();
+            this.resetUserLocationMarker();
             this.map.fitBounds(this.bounds);
         }
     }
@@ -83,5 +82,19 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
+    }
+
+    resetUserLocationMarker() {
+        this.userLocationMarker.setMap(null);
+        this.convertPostcodeToCoordinatesThenSetMarker();
+    }
+
+    resetInstallerMarkers() {
+        this.removeAllInstallerMarkers();
+        this.setInstallerMarkers();
+    }
+
+    propertyHasChanged(propertyName: string, changes: SimpleChanges) {
+        return changes[propertyName] && changes[propertyName].previousValue !== changes[propertyName].currentValue;
     }
 }
