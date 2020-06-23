@@ -37,29 +37,29 @@
                     Sorry, we couldn't find any installers in your area.
                 </div>
                 <div class="results" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
-                    <h2 class="header">Results</h2>
+                    <h2 class="results-header">Results</h2>
                     <p>We found {{paginator.totalCount}} installers matching your search. Page {{paginator.pageNumber}} of {{paginator.totalCount/paginator.pageSize + 0.49 | number: '1.0-0'}}</p>
-                </div>
-            </div>
-            <div class="results display" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
-                <div class="results-panel">
-                    <div class="results-column">
-                        <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId"></app-installer-card>
+                    <div class="results-display" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
+                        <div class="results-panel">
+                            <div class="results-column">
+                                <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId"></app-installer-card>
+                            </div>
+                            <div class="results-navigation-buttons">
+                                <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
+                                        (click)="loadPreviousPageOfInstallers()">
+                                    &lt;
+                                </button>
+                                <div class="page-number">{{paginator.pageNumber}}</div>
+                                <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageSize*paginator.pageNumber >= paginator.totalCount }"
+                                        (click)="loadNextPageOfInstallers()">
+                                    &gt;
+                                </button>
+                            </div>
+                        </div>
+                        <div class="map-panel">
+                            <app-installer-map [installers]="installers" [postcode]="postcode"></app-installer-map>
+                        </div>
                     </div>
-                    <div class="page-navigation-buttons">
-                        <button [ngClass]="{'page-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
-                                (click)="loadPreviousPageOfInstallers()">
-                            &lt;
-                        </button>
-                        <div class="page-number">{{paginator.pageNumber}}</div>
-                        <button [ngClass]="{'page-navigation-button': true, 'disabled': paginator.pageSize*paginator.pageNumber >= paginator.totalCount }"
-                                (click)="loadNextPageOfInstallers()">
-                            &gt;
-                        </button>
-                    </div>
-                </div>
-                <div class="map-panel">
-                    <app-installer-map [installers]="installers" [postcode]="postcode"></app-installer-map>
                 </div>
             </div>
             <app-spinner-and-error-container [loading]="loading" [error]="error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
