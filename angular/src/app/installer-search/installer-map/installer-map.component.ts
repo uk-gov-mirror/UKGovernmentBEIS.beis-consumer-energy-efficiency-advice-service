@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import {InstallerInfo} from '../installer-card/installer-info';
 
 @Component({
@@ -10,6 +10,7 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     @ViewChild('mapContainer') gmap: ElementRef;
     @Input() installers: InstallerInfo[];
     @Input() postcode: string;
+    @Output() markerClick = new EventEmitter<number>();
     map: google.maps.Map;
     markers;
     bounds = new google.maps.LatLngBounds();
@@ -37,7 +38,7 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
                 });
                 this.bounds.extend(marker.getPosition());
                 marker.addListener('click', () => {
-                    window.parent.postMessage(installer.id, '*');
+                    this.markerClick.next(installer.id);
                 });
                 return marker;
             }

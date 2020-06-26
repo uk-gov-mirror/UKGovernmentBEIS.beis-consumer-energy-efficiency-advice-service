@@ -13,7 +13,6 @@ import {Installer, InstallerPaginator} from "./installer-search-service/installe
     styleUrls: ['./installer-search.component.scss']
 })
 export class InstallerSearchComponent implements OnInit {
-
     postcode = null;
     measures = [];
     selectedMeasure = null;
@@ -117,9 +116,8 @@ export class InstallerSearchComponent implements OnInit {
         this.errorMessage = messageParts.join(' ');
     }
 
-    @HostListener('window:message', ['$event'])
-    onMarkerClick(installerId: MessageEvent) {
-        this.selectedInstallerId = installerId.data;
+    onMarkerClick(installerId: number) {
+        this.selectedInstallerId = installerId;
         this.showInstallerCardWithId(this.selectedInstallerId);
     }
 

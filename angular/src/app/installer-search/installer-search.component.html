@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="map-panel">
-                            <app-installer-map [installers]="installers" [postcode]="postcode"></app-installer-map>
+                            <app-installer-map [installers]="installers" [postcode]="postcode" (markerClick)="onMarkerClick($event)"></app-installer-map>
                         </div>
                     </div>
                 </div>
