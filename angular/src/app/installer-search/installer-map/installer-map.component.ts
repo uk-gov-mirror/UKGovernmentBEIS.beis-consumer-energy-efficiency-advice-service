@@ -1,4 +1,14 @@
-import {Component, AfterViewInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
+import {
+    Component,
+    AfterViewInit,
+    ViewChild,
+    ElementRef,
+    Input,
+    OnChanges,
+    SimpleChanges,
+    Output,
+    EventEmitter
+} from '@angular/core';
 import {InstallerInfo} from '../installer-card/installer-info';
 
 @Component({
@@ -6,6 +16,9 @@ import {InstallerInfo} from '../installer-card/installer-info';
     templateUrl: './installer-map.component.html',
     styleUrls: ['./installer-map.component.scss']
 })
+/* Here we create our custom google maps component, instead of using the off the shelf component
+provided by the @angular/google-maps library. This is because the google-maps library requires
+a more recent version of angular, which breaks our website. */
 export class InstallerMapComponent implements AfterViewInit, OnChanges {
     @ViewChild('mapContainer') gmap: ElementRef;
     @Input() installers: InstallerInfo[];
