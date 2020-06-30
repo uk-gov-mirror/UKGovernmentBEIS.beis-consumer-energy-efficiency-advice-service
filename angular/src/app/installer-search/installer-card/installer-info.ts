@@ -3,7 +3,6 @@ export interface InstallerInfo {
     registeredName: string;
     publicBranchUrl: string;
     logoUrl: string;
-    description: string;
     distanceInMiles: number;
     town: string;
     latitude: number;

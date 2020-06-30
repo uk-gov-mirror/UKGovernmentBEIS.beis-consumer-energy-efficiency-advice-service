@@ -6,9 +6,6 @@
         </ng-template>
         <h2 class="name">{{installerInfo.registeredName}}</h2>
     </div>
-    <div class="content" *ngIf="installerInfo.description">
-        <p>{{(installerInfo.description.length > 150) ? (installerInfo.description | slice:0:147) + '...' : installerInfo.description }}</p>
-    </div>
     <div class="footer">
         <div class="distance">
             <div class="icon-location"></div>

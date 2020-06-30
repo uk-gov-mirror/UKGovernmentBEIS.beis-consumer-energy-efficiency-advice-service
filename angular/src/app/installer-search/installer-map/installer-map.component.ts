@@ -47,7 +47,8 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
                 const marker = new google.maps.Marker({
                     position: coordinates,
                     map: this.map,
-                    title: installer.registeredName
+                    title: installer.registeredName,
+                    icon: '/dist/assets/images/icons/location.svg'
                 });
                 this.bounds.extend(marker.getPosition());
                 marker.addListener('click', () => {
