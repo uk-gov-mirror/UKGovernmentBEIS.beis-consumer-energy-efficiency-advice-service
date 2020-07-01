@@ -105,7 +105,7 @@
   }
 
   .map-panel {
-    padding-bottom: 30px;
+    padding-bottom: 0px;
   }
 
   .results-column {
@@ -120,28 +120,29 @@
     flex-direction: row;
     justify-content: center;
     margin-right: 25px;
-    margin-top: auto;
+    margin-top: 10px;
+    align-items: stretch;
 
     .page-number {
       background: $dark-medium-blue;
       border: none;
       color: white;
       padding: 10px 0px;
-      margin: 10px 2px;
+      margin: 0px 2px;
       width: 30px;
       text-align: center;
     }
 
     .results-navigation-button {
-      background: $pink;
+      background-color: $dark-medium-blue;
       border: none;
       color: white;
       padding: 10px 0px;
-      margin: 10px 0px;
+      margin: 0px 0px;
       width: 30px;
 
       &:hover {
-        background-color: $dark-medium-blue;
+        background-color: $pink;
       }
 
       &.disabled {
@@ -318,19 +319,22 @@
 
     .results-display {
       @include is-flex-row;
+      margin-bottom: 20px;
+      height: 80vh;
 
       .results-panel {
+        @include is-flex-column;
         width: 30%;
 
+
         .results-column {
-          height: 70vh;
+
         }
       }
 
       .map-panel {
         width: 70%;
         margin-left: 20px;
-        height: 80vh;
       }
     }
   }
