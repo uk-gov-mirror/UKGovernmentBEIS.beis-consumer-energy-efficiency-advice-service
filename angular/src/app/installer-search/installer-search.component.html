@@ -42,7 +42,7 @@
                     <div class="results-display" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
                         <div class="results-panel">
                             <div class="results-column">
-                                <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId"></app-installer-card>
+                                <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId" (mouseenter)="onInstallerCardHover(installer.id)" (mouseleave)="offInstallerCardHover()"></app-installer-card>
                             </div>
                             <div class="results-navigation-buttons">
                                 <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="map-panel">
-                            <app-installer-map [installers]="installers" [postcode]="postcode" (markerClick)="onMarkerClick($event)"></app-installer-map>
+                            <app-installer-map [installers]="installers" [postcode]="postcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
                         </div>
                     </div>
                 </div>

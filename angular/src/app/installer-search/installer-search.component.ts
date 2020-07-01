@@ -22,6 +22,7 @@ export class InstallerSearchComponent implements OnInit {
     loading = false;
     errorMessage = null;
     selectedInstallerId = null;
+    hoveredInstallerCardId = null;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
@@ -131,5 +132,13 @@ export class InstallerSearchComponent implements OnInit {
             behavior: 'smooth',
             block: 'nearest'
         });
+    }
+
+    onInstallerCardHover(installerId: number) {
+        this.hoveredInstallerCardId = installerId;
+    }
+
+    offInstallerCardHover() {
+        this.hoveredInstallerCardId = null;
     }
 }

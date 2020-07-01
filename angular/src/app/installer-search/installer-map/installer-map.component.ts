@@ -23,6 +23,7 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     @ViewChild('mapContainer') gmap: ElementRef;
     @Input() installers: InstallerInfo[];
     @Input() postcode: string;
+    @Input() hoveredInstallerCardId: number;
     @Output() markerClick = new EventEmitter<number>();
     map: google.maps.Map;
     markers;
@@ -48,12 +49,13 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
                     position: coordinates,
                     map: this.map,
                     title: installer.registeredName,
-                    icon: '/dist/assets/images/icons/location.svg'
+                    icon: '/dist/assets/images/icons/pink-marker.svg',
                 });
                 this.bounds.extend(marker.getPosition());
                 marker.addListener('click', () => {
                     this.markerClick.next(installer.id);
                 });
+                marker.set('installerId', installer.id);
                 return marker;
             }
         );
@@ -61,11 +63,59 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (this.map && this.propertyHasChanged('installers', changes)) {
-            this.bounds = new google.maps.LatLngBounds();
-            this.resetInstallerMarkers();
-            this.resetUserLocationMarker();
-            this.map.fitBounds(this.bounds);
+            this.updateMapAndAllMarkers();
         }
+        if (this.propertyHasChanged('hoveredInstallerCardId', changes)) {
+            this.updateHoveredInstallerCardMarkerIcon(changes);
+        }
+    }
+
+    updateMapAndAllMarkers() {
+        this.bounds = new google.maps.LatLngBounds();
+        this.resetInstallerMarkers();
+        this.resetUserLocationMarker();
+        this.map.fitBounds(this.bounds);
+    }
+
+    updateHoveredInstallerCardMarkerIcon(changes) {
+        if (this.hasStartedHoveringInstallerCard()) {
+            this.changeMarkerIconToBlueByInstallerId(this.hoveredInstallerCardId);
+        } else if (this.hasFinishedHoveringInstallerCard(changes)) {
+            const noLongerHoveredInstallerCardId = changes['hoveredInstallerCardId'].previousValue;
+            this.changeMarkerIconToPinkByInstallerId(noLongerHoveredInstallerCardId);
+        }
+    }
+
+    hasStartedHoveringInstallerCard() {
+        return !!this.hoveredInstallerCardId;
+    }
+
+    hasFinishedHoveringInstallerCard(changes) {
+        return this.markers && changes['hoveredInstallerCardId'].previousValue && !changes['hoveredInstallerCardId'].currentValue;
+    }
+
+    changeMarkerIconToBlueByInstallerId(installerId: number) {
+        const hoverMarker = this.getMarkerByInstallerId(installerId);
+        this.changeMarkerIconToBlue(hoverMarker);
+    }
+
+    changeMarkerIconToPinkByInstallerId(installerId: number) {
+        const hoverMarker = this.getMarkerByInstallerId(installerId);
+        this.changeMarkerIconToPink(hoverMarker);
+    }
+
+    getMarkerByInstallerId(installerId: number) {
+        return this.markers.find(marker => {
+            return marker.get('installerId') === installerId;
+        });
+    }
+
+    changeMarkerIconToBlue(marker) {
+        marker.setIcon('/dist/assets/images/icons/blue-marker.svg');
+    }
+
+    changeMarkerIconToPink(marker) {
+        marker.setIcon('/dist/assets/images/icons/pink-marker.svg');
     }
 
     removeAllInstallerMarkers() {
