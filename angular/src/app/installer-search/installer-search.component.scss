@@ -98,56 +98,60 @@
     margin: 50px 0;
   }
 
-  .results-header {
-    color: $dark-blue;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .map-panel {
-    padding-bottom: 0px;
-  }
-
-  .results-column {
-    border-collapse: collapse;
-    overflow: auto;
-    text-align: center;
-    width: 100%;
-  }
-
-  .results-navigation-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-right: 25px;
-    margin-top: 10px;
-    align-items: stretch;
-
-    .page-number {
-      background: $dark-medium-blue;
-      border: none;
-      color: white;
-      padding: 10px 0px;
-      margin: 0px 2px;
-      width: 30px;
-      text-align: center;
+  .results {
+    margin-bottom: 20px;
+  
+    .results-header {
+      color: $dark-blue;
+      font-size: 28px;
+      font-weight: bold;
     }
 
-    .results-navigation-button {
-      background-color: $dark-medium-blue;
-      border: none;
-      color: white;
-      padding: 10px 0px;
-      margin: 0px 0px;
-      width: 30px;
+    .map-panel {
+      padding-bottom: 0px;
+    }
 
-      &:hover {
-        background-color: $pink;
+    .results-column {
+      border-collapse: collapse;
+      overflow: auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    .results-navigation-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-right: 25px;
+      margin-top: 10px;
+      align-items: stretch;
+
+      .page-number {
+        background: $dark-medium-blue;
+        border: none;
+        color: white;
+        padding: 10px 0px;
+        margin: 0px 2px;
+        width: 30px;
+        text-align: center;
       }
 
-      &.disabled {
-        pointer-events: none;
-        background: $light-medium-grey;
+      .results-navigation-button {
+        background-color: $dark-medium-blue;
+        border: none;
+        color: white;
+        padding: 10px 0px;
+        margin: 0px 0px;
+        width: 30px;
+
+        &:hover {
+          background-color: $pink;
+        }
+
+        &.disabled {
+          pointer-events: none;
+          background: $light-medium-grey;
+        }
       }
     }
   }
@@ -197,6 +201,9 @@
 
         .results-column {
           height: 40vh;
+        }
+        .results-navigation-buttons {
+          margin-bottom: 10px;
         }
       }
 
@@ -253,10 +260,13 @@
       @include is-flex-column;
 
       .results-panel {
-        width: 100%;
+        width: 50%;
 
         .results-column {
           height: 40vh;
+        }
+        .results-navigation-buttons {
+          margin-bottom: 10px;
         }
       }
 
@@ -309,7 +319,6 @@
 
     .results-display {
       @include is-flex-row;
-      margin-bottom: 20px;
       height: 80vh;
 
       .results-panel {
