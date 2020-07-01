@@ -1,5 +1,5 @@
 @import "styles/mixins/font";
-@import "styles/mixins/miscellaneous";
+@import "styles/mixins/_miscellaneous";
 @import "styles/var/colors";
 
 // Component specific variables
@@ -156,7 +156,7 @@
 // Breakpoint specific styling
 @include mobile() {
   .installer-search {
-    .page-heading page-row-content{
+    .page-heading .page-row-content{
       padding: 25px 0;
 
       .heading-text {
@@ -178,23 +178,13 @@
       .postcode {
         flex: 1 1 100%;
         display: flex;
-
-        .postcode-input {
-          flex-basis: 100%;
-        }
       }
 
       .measure-name {
         flex: 1 1 100%;
-        display: flex;
-
-        .measure-name-input {
-          flex-basis: 100%;
-        }
       }
 
       .search-button {
-        flex: 1 1 100%;
         margin: 30px 0;
       }
     }
@@ -220,7 +210,7 @@
 
 @include tablet() {
   .installer-search {
-    .page-heading page-row-content {
+    .page-heading .page-row-content {
       padding: 60px 0;
 
       .heading-text {
@@ -325,11 +315,6 @@
       .results-panel {
         @include is-flex-column;
         width: 30%;
-
-
-        .results-column {
-
-        }
       }
 
       .map-panel {
