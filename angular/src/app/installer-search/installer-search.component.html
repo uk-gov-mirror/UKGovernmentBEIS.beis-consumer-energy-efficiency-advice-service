@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="selectors page-row">
-        <form (submit)="loadFirstPageOfInstallers()" class="selector-container page-row-content">
+        <form (submit)="loadFirstPageOfInstallers(); storeSearchedParameters();" class="selector-container page-row-content">
             <div class="field-container postcode">
                 <label for="postcode" class="field-heading">Postcode</label>
                 <input id="postcode" [(ngModel)]="postcode" (blur)="postcode = $event.target.value"

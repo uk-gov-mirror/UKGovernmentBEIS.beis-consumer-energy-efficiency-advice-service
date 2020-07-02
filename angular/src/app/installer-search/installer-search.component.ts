@@ -23,6 +23,8 @@ export class InstallerSearchComponent implements OnInit {
     errorMessage = null;
     selectedInstallerId = null;
     hoveredInstallerCardId = null;
+    lastSearchedMeasure = null;
+    lastSearchedPostcode = null;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
@@ -64,8 +66,14 @@ export class InstallerSearchComponent implements OnInit {
         }
     }
 
+    storeSearchedParameters() {
+        this.lastSearchedPostcode = this.postcode;
+        this.lastSearchedMeasure = this.selectedMeasure;
+    }
+
     loadNextPageOfInstallers() {
-        if (this.selectedMeasure && this.postcode) {
+        if (this.lastSearchedMeasure && this.lastSearchedPostcode) {
+            this.overwriteSearchParametersWithLastSearchedValues();
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
@@ -77,7 +85,8 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     loadPreviousPageOfInstallers() {
-        if (this.selectedMeasure && this.postcode) {
+        if (this.lastSearchedMeasure && this.lastSearchedPostcode) {
+            this.overwriteSearchParametersWithLastSearchedValues();
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
@@ -86,6 +95,11 @@ export class InstallerSearchComponent implements OnInit {
         } else {
             this.buildInvalidSearchErrorMessage();
         }
+    }
+
+    overwriteSearchParametersWithLastSearchedValues() {
+        this.selectedMeasure = this.lastSearchedMeasure;
+        this.postcode = this.lastSearchedPostcode;
     }
 
     fetchSpecificPageOfInstallers(pageNumber: number) {
