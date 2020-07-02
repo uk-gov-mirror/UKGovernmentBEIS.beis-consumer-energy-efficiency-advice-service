@@ -49,10 +49,10 @@ public class InstallerSearchController {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    @GetMapping("/{postcode}/{tradeCode}")
+    @GetMapping("/{postcode}")
     public String get(
             @PathVariable String postcode,
-            @PathVariable String tradeCode,
+            @RequestParam String[] tradecodes,
             @RequestParam("page") Integer page) throws URISyntaxException {
         String accessToken = getAccessToken();
         HttpHeaders headers = new HttpHeaders();
@@ -62,7 +62,7 @@ public class InstallerSearchController {
         // postcode. Without this, postcode parameters come out as (e.g.) NW5%25201TL instead of NW5%201TL.
         URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                 .queryParam("postcode", postcode)
-                .queryParam("tradecodes", tradeCode)
+                .queryParam("tradecodes", tradecodes)
                 .queryParam("pageNumber", page)
                 .queryParam("pageSize", numberOfItemsPerPage)
                 .toUriString());

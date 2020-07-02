@@ -11,15 +11,15 @@ export class InstallerSearchService {
     constructor(private http: HttpClient, private location: Location) {
     }
 
-    fetchInstallerDetails(postcode: string, tradeCode: string, page: number = 1): Observable<InstallerResponse> {
-        if (!postcode || !tradeCode) {
+    fetchInstallerDetails(postcode: string, tradeCodes: string[], page: number = 1): Observable<InstallerResponse> {
+        if (!postcode || tradeCodes.length === 0) {
             return;
         }
         const root = InstallerSearchService.INSTALLER_API_ROOT;
         const postcodeComponent = encodeURIComponent(postcode);
-        const tradeCodeComponent = encodeURIComponent(tradeCode);
+        const tradeCodeComponent = this.serializeTradeCodesIntoListOfUrlParameters(tradeCodes)
         const url = this.location.prepareExternalUrl(
-            `${root}/${postcodeComponent}/${tradeCodeComponent}?page=${page}`
+            `${root}/${postcodeComponent}?${tradeCodeComponent}&page=${page}`
         );
         return this.http.get<InstallerResponse>(url).map(body => {
             if (body && body.errorMessage) {
@@ -28,5 +28,12 @@ export class InstallerSearchService {
                 return body;
             }
         });
+    }
+
+    serializeTradeCodesIntoListOfUrlParameters(tradeCodes: string[]) {
+        let urlParameter = 'tradecodes=';
+        tradeCodes.forEach(tradeCode => urlParameter += encodeURIComponent(tradeCode) + ',');
+        const urlParameterWithoutLastComma = urlParameter.slice(0, -1);
+        return urlParameterWithoutLastComma;
     }
 }

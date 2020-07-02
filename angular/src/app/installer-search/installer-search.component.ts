@@ -103,12 +103,9 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     fetchSpecificPageOfInstallers(pageNumber: number) {
-        // For now we will only be fetching the installers with the first trade code
-        // in the array of TrustMark trade codes.
-        // In the future all the trade codes in the array should be used.
-        // TODO: SEA-16/19
+        const tradeCodes = this.getSelectedMeasureTradeCodesAsListOfStrings();
         this.installerSearchService
-            .fetchInstallerDetails(this.postcode, this.selectedMeasure.acf.trustmark_trade_codes[0].trade_code, pageNumber)
+            .fetchInstallerDetails(this.postcode, tradeCodes, pageNumber)
             .subscribe(response => {
                 this.paginator = response.paginator;
                 this.installers = response.data;
@@ -117,6 +114,10 @@ export class InstallerSearchComponent implements OnInit {
             }, error => {
                 this.errorMessage = error;
             });
+    }
+
+    getSelectedMeasureTradeCodesAsListOfStrings() {
+        return this.selectedMeasure.acf.trustmark_trade_codes.map(tradeCode => tradeCode.trade_code);
     }
 
     buildInvalidSearchErrorMessage() {
