@@ -156,4 +156,8 @@ export class InstallerSearchComponent implements OnInit {
     offInstallerCardHover() {
         this.hoveredInstallerCardId = null;
     }
+
+    getLastPageNumber() {
+        return Math.ceil(this.paginator.totalCount / this.paginator.pageSize);
+    }
 }
