@@ -6,6 +6,7 @@ import {InstallerSearchService} from "./installer-search-service/installer-searc
 import sortBy from 'lodash-es/sortBy';
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
 import {Installer, InstallerPaginator} from "./installer-search-service/installer-response";
+import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
 
 @Component({
     selector: 'app-installer-search',
@@ -33,10 +34,6 @@ export class InstallerSearchComponent implements OnInit {
                 private pageTitle: PageTitleService) {
     }
 
-    get error() {
-        return !!this.errorMessage;
-    }
-
     ngOnInit() {
         this.pageTitle.set('Find an installer');
         this.formPostcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
@@ -61,7 +58,7 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     loadFirstPageOfInstallers() {
-        if (this.selectedMeasure && this.postcode) {
+        if (this.selectedMeasure && this.postcode && this.isValidPostcode()) {
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
@@ -118,7 +115,7 @@ export class InstallerSearchComponent implements OnInit {
 
     buildInvalidSearchErrorMessage() {
         const messageParts = [];
-        if (!this.postcode) {
+        if (!this.postcode || !this.isValidPostcode()) {
             // Matches the message from the API if postcode is invalid.
             messageParts.push('No valid postcode supplied.');
         }
@@ -155,5 +152,9 @@ export class InstallerSearchComponent implements OnInit {
 
     getLastPageNumber() {
         return Math.ceil(this.paginator.totalCount / this.paginator.pageSize);
+    }
+
+    isValidPostcode() {
+        return PostcodeEpcService.isValidPostcode(this.postcode);
     }
 }
