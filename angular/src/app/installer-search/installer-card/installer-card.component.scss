@@ -44,7 +44,7 @@
   .footer {
     @include is-flex-column;
 
-    .icon-pink-marker:before {
+    .icon-inactive-marker:before {
       margin-right: 4px;
     }
 

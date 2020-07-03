@@ -14,8 +14,10 @@ import {Installer, InstallerPaginator} from "./installer-search-service/installe
 })
 export class InstallerSearchComponent implements OnInit {
     postcode = null;
-    measures = [];
+    formPostcode = null;
     selectedMeasure = null;
+    formSelectedMeasure = null;
+    measures = [];
     paginator: InstallerPaginator;
     installers: Installer[] = [];
     searchHasBeenPerformed = false;
@@ -23,8 +25,6 @@ export class InstallerSearchComponent implements OnInit {
     errorMessage = null;
     selectedInstallerId = null;
     hoveredInstallerCardId = null;
-    lastSearchedMeasure = null;
-    lastSearchedPostcode = null;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
@@ -39,20 +39,25 @@ export class InstallerSearchComponent implements OnInit {
 
     ngOnInit() {
         this.pageTitle.set('Find an installer');
-        this.postcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
+        this.formPostcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
-                    this.measures = measures.filter(measure => measure.acf.trustmark_trade_codes);
-                    this.measures = sortBy(this.measures, [m => m.acf.headline.toUpperCase()]);
+                    this.measures = sortBy(measures.filter(measure => measure.acf.trustmark_trade_codes),
+                        [m => m.acf.headline.toUpperCase()]);
                     if (params["measure-code"]) {
                         const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
                         if (chosenMeasure) {
-                            this.selectedMeasure = chosenMeasure;
+                            this.formSelectedMeasure = chosenMeasure;
                         }
                     }
                 });
             }
         );
+    }
+
+    updateSearchParametersWithFormValues() {
+        this.postcode = this.formPostcode;
+        this.selectedMeasure = this.formSelectedMeasure;
     }
 
     loadFirstPageOfInstallers() {
@@ -66,14 +71,9 @@ export class InstallerSearchComponent implements OnInit {
         }
     }
 
-    storeSearchedParameters() {
-        this.lastSearchedPostcode = this.postcode;
-        this.lastSearchedMeasure = this.selectedMeasure;
-    }
-
     loadNextPageOfInstallers() {
-        if (this.lastSearchedMeasure && this.lastSearchedPostcode) {
-            this.overwriteSearchParametersWithLastSearchedValues();
+        if (this.selectedMeasure && this.postcode) {
+            this.overwriteFormParametersWithLastSearchedValues();
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
@@ -85,8 +85,8 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     loadPreviousPageOfInstallers() {
-        if (this.lastSearchedMeasure && this.lastSearchedPostcode) {
-            this.overwriteSearchParametersWithLastSearchedValues();
+        if (this.selectedMeasure && this.postcode) {
+            this.overwriteFormParametersWithLastSearchedValues();
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
@@ -97,13 +97,13 @@ export class InstallerSearchComponent implements OnInit {
         }
     }
 
-    overwriteSearchParametersWithLastSearchedValues() {
-        this.selectedMeasure = this.lastSearchedMeasure;
-        this.postcode = this.lastSearchedPostcode;
+    overwriteFormParametersWithLastSearchedValues() {
+        this.formSelectedMeasure = this.selectedMeasure;
+        this.formPostcode = this.postcode;
     }
 
     fetchSpecificPageOfInstallers(pageNumber: number) {
-        const tradeCodes = this.getSelectedMeasureTradeCodesAsListOfStrings();
+        const tradeCodes = this.selectedMeasure.acf.trustmark_trade_codes.map(t => t.trade_code);
         this.installerSearchService
             .fetchInstallerDetails(this.postcode, tradeCodes, pageNumber)
             .subscribe(response => {
@@ -114,10 +114,6 @@ export class InstallerSearchComponent implements OnInit {
             }, error => {
                 this.errorMessage = error;
             });
-    }
-
-    getSelectedMeasureTradeCodesAsListOfStrings() {
-        return this.selectedMeasure.acf.trustmark_trade_codes.map(tradeCode => tradeCode.trade_code);
     }
 
     buildInvalidSearchErrorMessage() {
@@ -134,11 +130,11 @@ export class InstallerSearchComponent implements OnInit {
 
     onMarkerClick(installerId: number) {
         this.selectedInstallerId = installerId;
-        this.showInstallerCardWithId(this.selectedInstallerId);
+        this.showInstallerCardWithId('installer-card-' + this.selectedInstallerId);
     }
 
-    showInstallerCardWithId(id: number) {
-        const selectedInstallerCard = document.getElementById(id.toString(10));
+    showInstallerCardWithId(id: string) {
+        const selectedInstallerCard = document.getElementById(id);
         this.scrollElementIntoView(selectedInstallerCard);
     }
 
@@ -149,11 +145,11 @@ export class InstallerSearchComponent implements OnInit {
         });
     }
 
-    onInstallerCardHover(installerId: number) {
+    onInstallerCardMouseEnter(installerId: number) {
         this.hoveredInstallerCardId = installerId;
     }
 
-    offInstallerCardHover() {
+    onInstallerCardMouseLeave() {
         this.hoveredInstallerCardId = null;
     }
 

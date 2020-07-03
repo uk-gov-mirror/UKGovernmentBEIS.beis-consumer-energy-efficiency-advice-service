@@ -1,4 +1,4 @@
-<div class="installer-card" [id]="installerInfo.id" [class.selected-installer]="selectedInstallerId===installerInfo.id">
+<div class="installer-card" [id]="'installer-card-' + installerInfo.id" [class.selected-installer]="selectedInstallerId===installerInfo.id">
     <div class="header">
         <div class="logo" *ngIf="installerInfo.logoUrl else defaultIcon">Show logo</div>
         <ng-template #defaultIcon>
@@ -8,7 +8,7 @@
     </div>
     <div class="footer">
         <div class="distance">
-            <div class="icon-pink-marker"></div>
+            <div class="icon-inactive-marker"></div>
             <p><b>{{installerInfo.distanceInMiles | number: '1.0-1'}} miles</b></p>
         </div>
         <a class="details-button-arrow" [href]="installerInfo.publicBranchUrl" target="_blank"> Details </a>

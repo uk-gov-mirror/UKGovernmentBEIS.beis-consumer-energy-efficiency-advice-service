@@ -58,7 +58,7 @@ describe('InstallerSearchComponent', () => {
         fixture.whenStable().then(() => {
             fixture.detectChanges();
             const inputElement = fixture.debugElement.query(By.css('.postcode-input')).nativeElement;
-            expect(inputElement.value).toEqual(component.postcode);
+            expect(inputElement.value).toEqual(component.formPostcode);
         });
     });
 

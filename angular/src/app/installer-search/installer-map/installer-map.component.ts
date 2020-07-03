@@ -49,7 +49,7 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
                     position: coordinates,
                     map: this.map,
                     title: installer.registeredName,
-                    icon: '/dist/assets/images/icons/pink-marker.svg',
+                    icon: '/dist/assets/images/icons/inactive-marker.svg',
                 });
                 this.bounds.extend(marker.getPosition());
                 marker.addListener('click', () => {
@@ -79,10 +79,10 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
 
     updateHoveredInstallerCardMarkerIcon(changes) {
         if (this.hasStartedHoveringInstallerCard()) {
-            this.changeMarkerIconToBlueByInstallerId(this.hoveredInstallerCardId);
+            this.changeMarkerIconToActiveByInstallerId(this.hoveredInstallerCardId);
         } else if (this.hasFinishedHoveringInstallerCard(changes)) {
             const noLongerHoveredInstallerCardId = changes['hoveredInstallerCardId'].previousValue;
-            this.changeMarkerIconToPinkByInstallerId(noLongerHoveredInstallerCardId);
+            this.changeMarkerIconToInactiveByInstallerId(noLongerHoveredInstallerCardId);
         }
     }
 
@@ -94,14 +94,14 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
         return this.markers && changes['hoveredInstallerCardId'].previousValue && !changes['hoveredInstallerCardId'].currentValue;
     }
 
-    changeMarkerIconToBlueByInstallerId(installerId: number) {
+    changeMarkerIconToActiveByInstallerId(installerId: number) {
         const hoverMarker = this.getMarkerByInstallerId(installerId);
-        this.changeMarkerIconToBlue(hoverMarker);
+        this.changeMarkerIconToActive(hoverMarker);
     }
 
-    changeMarkerIconToPinkByInstallerId(installerId: number) {
+    changeMarkerIconToInactiveByInstallerId(installerId: number) {
         const hoverMarker = this.getMarkerByInstallerId(installerId);
-        this.changeMarkerIconToPink(hoverMarker);
+        this.changeMarkerIconToInactive(hoverMarker);
     }
 
     getMarkerByInstallerId(installerId: number) {
@@ -110,12 +110,12 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
         });
     }
 
-    changeMarkerIconToBlue(marker) {
-        marker.setIcon('/dist/assets/images/icons/blue-marker.svg');
+    changeMarkerIconToActive(marker) {
+        marker.setIcon('/dist/assets/images/icons/active-marker.svg');
     }
 
-    changeMarkerIconToPink(marker) {
-        marker.setIcon('/dist/assets/images/icons/pink-marker.svg');
+    changeMarkerIconToInactive(marker) {
+        marker.setIcon('/dist/assets/images/icons/inactive-marker.svg');
     }
 
     removeAllInstallerMarkers() {

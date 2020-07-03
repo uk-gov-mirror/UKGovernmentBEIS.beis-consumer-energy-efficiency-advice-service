@@ -6,16 +6,16 @@
         </div>
     </div>
     <div class="selectors page-row">
-        <form (submit)="loadFirstPageOfInstallers(); storeSearchedParameters();" class="selector-container page-row-content">
+        <form (submit)="updateSearchParametersWithFormValues(); loadFirstPageOfInstallers();" class="selector-container page-row-content">
             <div class="field-container postcode">
                 <label for="postcode" class="field-heading">Postcode</label>
-                <input id="postcode" [(ngModel)]="postcode" (blur)="postcode = $event.target.value"
+                <input id="postcode" [(ngModel)]="formPostcode" (blur)="formPostcode = $event.target.value"
                        [ngModelOptions]="{standalone: true}"
                        type="text" name="postcode" class="postcode-input">
             </div>
             <div class="field-container measure-name">
                 <label for="measure" class="field-heading">Measure Name</label>
-                <select id="measure" class="select-measure measure-name-input" [(ngModel)]="selectedMeasure"
+                <select id="measure" class="select-measure measure-name-input" [(ngModel)]="formSelectedMeasure"
                         [ngModelOptions]="{standalone: true}">
                     <option class='measure' *ngFor='let measure of measures' [ngValue]="measure">
                         {{measure.acf.headline}}
@@ -42,7 +42,7 @@
                     <div class="results-display" *ngIf="searchHasBeenPerformed && !error && installers.length > 0">
                         <div class="results-panel">
                             <div class="results-column">
-                                <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId" (mouseenter)="onInstallerCardHover(installer.id)" (mouseleave)="offInstallerCardHover()"></app-installer-card>
+                                <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId" (mouseenter)="onInstallerCardMouseEnter(installer.id)" (mouseleave)="onInstallerCardMouseLeave()"></app-installer-card>
                             </div>
                             <div class="results-navigation-buttons">
                                 <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="map-panel">
-                            <app-installer-map [installers]="installers" [postcode]="postcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
+                            <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
                         </div>
                     </div>
                 </div>
