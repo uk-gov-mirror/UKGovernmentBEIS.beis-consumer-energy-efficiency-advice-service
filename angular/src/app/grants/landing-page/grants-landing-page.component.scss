@@ -8,6 +8,19 @@ $grant-card-margin: 24px;
 // Component specific variables
 
 // Component specific mixins
+@mixin is-section-title {
+  color: $dark-medium-blue;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+@mixin is-summary {
+  @include page-summary-font;
+  font-weight: bold;
+  color: $dark-medium-blue;
+  margin: 24px 0;
+}
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .grants-landing-page {
@@ -25,6 +38,24 @@ $grant-card-margin: 24px;
       .heading-text {
         @include page-heading-font;
         color: $dark-blue;
+      }
+    }
+  }
+
+  .green-homes-grant {
+    .page-row-content { 
+      padding-bottom: 0;
+      
+      .section-title {
+        @include is-section-title();
+      }
+
+      .summary {
+        @include is-summary();
+      }
+
+      p:not(.summary) {
+        @include page-body-font;
       }
     }
   }
@@ -58,10 +89,7 @@ $grant-card-margin: 24px;
         }
 
         .grant-info-title-efficiency {
-          color: $dark-medium-blue;
-          font-size: 28px;
-          font-weight: bold;
-          line-height: 32px;
+          @include is-section-title();
         }
 
         &:not(:first-child) {
