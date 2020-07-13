@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
 
 @RestController
@@ -31,6 +35,7 @@ public class InstallerSearchController {
     private final String clientId;
     private final String clientSecret;
     private final RestTemplate restTemplate;
+    private final LoadingCache<String, String> accessTokenCache = CacheBuilder.newBuilder().expireAfterWrite(1, TimeUnit.HOURS).build(getAccessToken());
 
     public InstallerSearchController(
             @Value("${vcap.services.trustMark.search.url}")
@@ -54,7 +59,7 @@ public class InstallerSearchController {
             @PathVariable String postcode,
             @RequestParam String[] tradecodes,
             @RequestParam("page") Integer page) throws URISyntaxException {
-        String accessToken = getAccessToken();
+        String accessToken = accessTokenCache.getUnchecked("Trustmark Access Token");
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + accessToken);
         HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -70,14 +75,19 @@ public class InstallerSearchController {
         return response.getBody();
     }
 
-    private String getAccessToken() {
-        LinkedMultiValueMap<String, Object> formData = new LinkedMultiValueMap<>();
-        formData.add("client_id", clientId);
-        formData.add("client_secret", clientSecret);
-        formData.add("grant_type", "client_credentials");
-        formData.add("scope", "TrustMark.WebApi");
-        TrustMarkIdResponse response = restTemplate.postForObject(idServerUrl, formData, TrustMarkIdResponse.class);
-        return response.getAccessToken();
+    private CacheLoader<String, String> getAccessToken() {
+        return new CacheLoader<String, String>() {
+            @Override
+            public String load(String key) {
+                LinkedMultiValueMap<String, Object> formData = new LinkedMultiValueMap<>();
+                formData.add("client_id", clientId);
+                formData.add("client_secret", clientSecret);
+                formData.add("grant_type", "client_credentials");
+                formData.add("scope", "TrustMark.WebApi");
+                TrustMarkIdResponse response = restTemplate.postForObject(idServerUrl, formData, TrustMarkIdResponse.class);
+                return response.getAccessToken();
+            }
+        };
     }
 
     @lombok.Value
