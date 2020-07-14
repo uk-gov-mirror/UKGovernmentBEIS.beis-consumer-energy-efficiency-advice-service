@@ -22,6 +22,12 @@ $grant-card-margin: 24px;
   margin: 24px 0;
 }
 
+@mixin has-blue-border-top {
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 30px 0px;
+}
+
 // General styling (shouldn't contain many widths/sizes etc.)
 .grants-landing-page {
 
@@ -42,10 +48,16 @@ $grant-card-margin: 24px;
     }
   }
 
-  .green-homes-grant {
-    .page-row-content { 
-      padding-bottom: 0;
-      
+  .national-grants {
+    .page-row-content {
+      display: flex;
+      flex-direction: column;
+
+      .heading {
+        @include page-subheading-font;
+        margin-bottom: 16px;
+      }
+
       .section-title {
         @include is-section-title();
       }
@@ -57,39 +69,20 @@ $grant-card-margin: 24px;
       p:not(.summary) {
         @include page-body-font;
       }
-    }
-  }
-
-  .national-grants {
-    .page-row-content {
-      display: flex;
-      flex-direction: column;
-
-      .heading {
-        @include page-subheading-font;
-        margin-bottom: 16px;
-      }
 
       .grants-row {
         display: flex;
 
         .grant-info-title-bills {
+          @include has-blue-border-top;
           display: block;
           height: 1px;
-          border: 0;
-          border-top: 1px solid #ccc;
           margin: 1em 0;
-          padding: 30px 0px;
           width: 100%;
-
-          color: $dark-medium-blue;
-          font-size: 28px;
-          font-weight: bold;
-          line-height: 32px;
         }
 
         .grant-info-title-efficiency {
-          @include is-section-title();
+          @include has-blue-border-top;
         }
 
         &:not(:first-child) {
