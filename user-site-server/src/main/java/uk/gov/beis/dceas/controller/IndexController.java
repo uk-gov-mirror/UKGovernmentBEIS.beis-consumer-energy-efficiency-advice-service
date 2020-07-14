@@ -45,7 +45,7 @@ public class IndexController {
     private String phoneNumber;
     @Value("${vcap.application.space_name}")
     private String spaceName;
-    @Value("${dceas.googleCloudPlatformApiKey}")
+    @Value("${vcap.services.cloud.google.apiKey}")
     private String googleCloudPlatformApiKey;
 
     private final Environment environment;
