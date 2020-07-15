@@ -33,13 +33,13 @@ public class InstallerSearchController {
     private final RestTemplate restTemplate;
 
     public InstallerSearchController(
-            @Value("${vcap.services.trustMark.search.url}")
+            @Value("${vcap.services.trustMark.credentials.search.url}")
                     String searchUrl,
-            @Value("${vcap.services.trustMark.idServer.url}")
+            @Value("${vcap.services.trustMark.credentials.idServer.url}")
                     String idServerUrl,
-            @Value("${vcap.services.trustMark.idServer.credentials.clientId}")
+            @Value("${vcap.services.trustMark.credentials.idServer.clientId}")
                     String clientId,
-            @Value("${vcap.services.trustMark.idServer.credentials.clientSecret}")
+            @Value("${vcap.services.trustMark.credentials.idServer.clientSecret}")
                     String clientSecret,
             RestTemplateBuilder restTemplateBuilder) {
         this.searchUrl = searchUrl;
