@@ -13,6 +13,7 @@
                 SELECT COUNT(*)
                 FROM wp_posts
                 WHERE post_name = 'buckinghamshire'
+                AND post_type = 'local_authority'
                 AND post_status = 'publish'
             </sqlCheck>
         </preConditions>
