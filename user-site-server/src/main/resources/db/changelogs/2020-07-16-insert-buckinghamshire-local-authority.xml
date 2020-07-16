@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-07-16-insert-buckinghamshire-local-authority.xml"
+               author="lucas.nogueira@softwire.com"
+               dbms="mysql">
+        <preConditions>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM wp_posts
+                WHERE post_name = 'buckinghamshire'
+                AND post_status = 'publish'
+            </sqlCheck>
+        </preConditions>
+
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+-- The eco energy supplier images are now stored in WP as ACF image fields.
+-- (previously they were looked up in static files by post "slug").
+
+-- The parent post IDs here match those from the previous migration
+-- i.e. 9535-9549, 15 entries
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count) 
+VALUES
+(1,'2020-07-16 11:17:22','2020-07-16 10:17:22','','Buckinghamshire','','publish','closed','closed','','buckinghamshire','','','2020-07-16 11:17:22','2020-07-16 10:17:22','','0','http://localhost:81/local_authority/buckinghamshire/',0,'local_authority','','0');
+SET @p_id = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta` 
+(post_id, meta_key, meta_value)
+VALUES
+(@p_id,'_edit_lock','1594894860:1'),
+(@p_id,'_edit_last','1'),
+(@p_id,'grants','a:2:{i:0;s:4:"9787";i:1;s:4:"9802";}'),
+(@p_id,'_grants','field_59f0c4fe301b6'),
+(@p_id,'local_authority_code','E06000060'),
+(@p_id,'_local_authority_code','field_59ef61ef48e99'),
+(@p_id,'display_name','Buckinghamshire'),
+(@p_id,'_display_name','field_59f05f32da262'),
+(@p_id,'example_postcode','MK18 3PN'),
+(@p_id,'_example_postcode','field_5da46f5d40d63');
+
+UPDATE `wp_posts`
+SET 
+	post_status = 'trash',
+    post_name = CONCAT(IFNULL(post_name,''), '__trashed')
+WHERE 
+	post_type = 'local_authority' 
+    AND (
+		post_name = 'chiltern' 
+		OR post_name = 'south_bucks' 
+		OR post_name = 'wycombe' 
+		OR post_name = 'aylesbury_vale'
+        );
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>
