@@ -4,6 +4,12 @@
             <h1 class="heading">{{heading}}</h1>
         </div>
     </div>
+    <div class="ghg-sidebar page-row">
+        <div class="page-row-content">
+            <h3>Green Homes Grant</h3>
+            <p>Use our recommendations engine to suggest energy efficiency improvements for your home.</p>
+        </div>
+    </div>
     <div class="postcode page-row">
         <div class="page-row-content">
             <h2 class="heading">Enter your postcode for personalised advice</h2>
@@ -15,33 +21,6 @@
                 </p>
                 <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected($event)"></app-postcode-lookup>
                 <app-epc-lookup class="postcode-epc" [postcode]="postcode" (epcSelected)="onEpcSelected()"></app-epc-lookup>
-            </div>
-        </div>
-    </div>
-    <div class="measures page-row">
-        <div class="page-row-content">
-            <h2 class="heading">Measures you can take right now</h2>
-            <p class="body-text">
-                Here are a few things you can do immediately to help save money.<br/>
-                If you answer some more questions we can recommend other measures you can take.
-            </p>
-            <div class="measure-cards">
-                <app-measure-card *ngFor="let measure of measures" [measure]="measure"></app-measure-card>
-            </div>
-        </div>
-    </div>
-    <div class="browse page-row">
-        <div class="page-row-content">
-            <h2 class="heading">Advice and tips to reduce your energy bills</h2>
-            <div class="browse-cards">
-                <div class="full-width-card">
-                    <app-large-video-card [video]="video">
-                    </app-large-video-card>
-                </div>
-                <div class="small-cards">
-                    <app-article-card *ngFor="let article of articles" [article]="article">
-                    </app-article-card>
-                </div>
             </div>
         </div>
     </div>

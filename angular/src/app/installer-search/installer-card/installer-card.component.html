@@ -1,4 +1,4 @@
-<div class="installer-card" [id]="'installer-card-' + installerInfo.id" [class.selected-installer]="selectedInstallerId===installerInfo.id">
+<div class="installer-card" [id]="'installer-card-' + installerInfo.id" [class.selected-installer]="selectedInstallerId===installerInfo.id || showDetailsOverride">
     <div class="header">
         <div class="logo" *ngIf="installerInfo.logoUrl else defaultIcon">Show logo</div>
         <ng-template #defaultIcon>
@@ -11,6 +11,14 @@
             <div class="icon-inactive-marker"></div>
             <p><b>{{installerInfo.distanceInMiles | number: '1.0-1'}} miles</b></p>
         </div>
-        <a class="details-button-arrow" [href]="installerInfo.publicBranchUrl" target="_blank"> Details </a>
+        <a class="details-button-arrow" (click)="toggleClicked()"> Details </a>
+        <div class="add-quote">
+            <h4 class="header">Add quote to plan</h4>
+            <div><span class="tel-prefix">Tel:</span> 020 7925 0918</div>
+            <div class="quote-form">
+                <div class="currency-input">£<input type="text" class="quote-input"/></div>
+                <button type="submit" class="add-quote-button">GO</button>
+            </div>
+        </div>
     </div>
 </div>

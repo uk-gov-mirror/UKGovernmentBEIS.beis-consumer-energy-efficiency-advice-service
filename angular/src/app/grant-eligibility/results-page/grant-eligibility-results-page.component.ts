@@ -52,7 +52,7 @@ export class GrantEligibilityResultsPageComponent implements OnInit {
     }
 
     proceedToEcoSelfReferral() {
-        this.router.navigate(['/eco-self-referral/start']);
+        this.router.navigate(['/energy-efficiency/greener-home']);
     }
 
     private onLoadingComplete(eligibilityByGrant: EligibilityByGrant) {

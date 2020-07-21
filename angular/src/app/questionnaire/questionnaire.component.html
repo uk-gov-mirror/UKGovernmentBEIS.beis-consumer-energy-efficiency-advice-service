@@ -1,4 +1,12 @@
 <app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="page-row recommendations">
+    <div class="page-row-content">
+        <div class="ghg-sidebar">
+            <h3>Green Homes Grant</h3>
+            <p>Use the questionnaire below to find out whether you are eligible for a Green Homes Grant voucher.</p>
+        </div>
+    </div>
+</div>
 <div class="questions-container" *ngIf="!!currentQuestionContent">
     <div aria-live="assertive">
         <h1 id="question-heading" class="question-heading">

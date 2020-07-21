@@ -10,9 +10,15 @@ import { InstallerInfo } from './installer-info';
 export class InstallerCardComponent implements OnInit {
     @Input() installerInfo: InstallerInfo;
     @Input() selectedInstallerId: number;
+    showDetailsOverride: boolean = false;
+
     constructor() {
     }
 
     ngOnInit() {
+    }
+
+    toggleClicked() {
+        this.showDetailsOverride = !this.showDetailsOverride;
     }
 }

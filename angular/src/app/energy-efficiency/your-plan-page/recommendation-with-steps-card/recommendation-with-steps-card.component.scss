@@ -8,12 +8,148 @@
 // Component specific mixins
 
 // General styling (shouldn't contain many widths/sizes etc.)
+$send-email-button-height: 40px;
+$send-email-button-arrow-width: 10px;
+$action-divider-circle-diameter: 40px;
+
+.quote-added {
+  color: white;
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+
+  .more-info-description, .more-info-icon-container {
+    padding: 20px;
+  }
+
+  .more-info-description {
+    background-color: $dark-blue;
+    color: $light-blue;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .more-info-icon-container {
+    background-color: $light-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .more-info-icon {
+      width: 15px;
+      height: 23px;
+      stroke: $dark-blue;
+      fill: $dark-blue;
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  &:hover, &:focus, &:active {
+    .more-info-description {
+      background-color: $red;
+      color: white;
+    }
+
+    .more-info-icon-container {
+      background-color: $red;
+
+      .more-info-icon {
+        stroke: white;
+        fill: white;
+      }
+    }
+  }
+}
+.more-info-link {
+  color: white;
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  width: 250px;
+
+  .more-info-description, .more-info-icon-container {
+    padding: 20px;
+  }
+
+  .more-info-description {
+    background-color: $light-blue;
+    color: $dark-blue;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .more-info-icon-container {
+    background-color: $dark-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .more-info-icon {
+      width: 15px;
+      height: 23px;
+      stroke: $light-blue;
+      fill: $light-blue;
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  &:hover, &:focus, &:active {
+    .more-info-description {
+      background-color: $dark-blue;
+      color: $light-blue;
+    }
+    .more-info-icon-container {
+      background-color: $light-blue;
+      .more-info-icon {
+        stroke: $dark-blue;
+        fill: $dark-blue;
+      }
+    }
+  }
+}
+
 .recommendation-with-steps-card {
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 25px 20px;
+  }
+
+  .get-quote {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 42px;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .find-an-installer {
+  }
+  .add-quote {
+    flex: 1;
+    .header {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  }
+
   .details {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: white;
 
     .description {
       display: flex;
@@ -87,10 +223,11 @@
   }
 
   @include desktop() {
-    .details {
-      padding: 25px 20px;
+    .details-container {
       margin-bottom: 4px;
+    }
 
+    .details {
       & > :not(:first-child) {
         border-left: 1px solid $light-grey;
       }

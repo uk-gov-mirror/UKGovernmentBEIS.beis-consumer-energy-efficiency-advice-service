@@ -5,6 +5,13 @@
             <div class="body-text">Find a trustworthy installer in your area</div>
         </div>
     </div>
+    <div class="ghg-sidebar page-row">
+        <div class="page-row-content">
+            <h3>Green Homes Grant</h3>
+            <p>To apply for a Green Homes Grant voucher, you will need to get a quote from an installer for each measure.</p>
+            <p>Enter your details below to find an installer near you.</p>
+        </div>
+    </div>
     <div class="selectors page-row">
         <form (submit)="updateSearchParametersWithFormValues(); loadFirstPageOfInstallers();" class="selector-container page-row-content">
             <div class="field-container postcode">
@@ -29,6 +36,7 @@
     </div>
     <div class="results-section page-row">
         <div class="page-row-content">
+
             <div class="before-submit" *ngIf="!searchHasBeenPerformed && !loading">
                 Please enter your details above to find installers in your area.
             </div>

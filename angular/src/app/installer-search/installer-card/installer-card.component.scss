@@ -3,6 +3,10 @@
 @import "styles/var/colors";
 @import "styles/mixins/miscellaneous";
 
+$send-email-button-height: 40px;
+$send-email-button-arrow-width: 10px;
+$action-divider-circle-diameter: 40px;
+
 .installer-card {
   background-color: $lighter-grey;
   text-decoration: none;
@@ -32,7 +36,7 @@
   }
 
   .details-button-arrow {
-    @include blue-arrow-button(20px, 40px);
+    @include blue-arrow-button(10px, 40px);
     padding-left: 10px;
     text-decoration: none;
 
@@ -53,6 +57,10 @@
       align-items: center;
     }
   }
+
+  .add-quote {
+    display: none;
+  }
 }
 
 .installer-card.selected-installer {
@@ -71,5 +79,83 @@
       }
     }
   }
+
+  .add-quote {
+    display: block;
+  }
 }
 
+.add-quote {
+  margin-top: 10px;
+}
+
+.quote-form {
+  height: $send-email-button-height;
+  display: flex;
+  align-items: stretch;
+  margin-top: 10px;
+
+  .currency-input {
+    background-color: $lighter-grey;
+    @include plan-footer-description-font;
+    padding-left: 10px;
+    width: calc(100% - 80px);
+
+    .quote-input {
+      background-color: $lighter-grey;
+      @include plan-footer-description-font;
+      outline: none;
+      border: none;
+      margin: 0;
+      padding: 10px;
+      width: calc(100% - 80px);
+      box-sizing: border-box;
+    }
+  }
+
+
+
+  .add-quote-button {
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    flex: 0 0 60px;
+    background: $light-blue;
+    color: $dark-blue;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -$send-email-button-arrow-width;
+      width: 0;
+      height: 0;
+      border-left: $send-email-button-arrow-width solid $light-blue;
+      border-top: $send-email-button-height/2 solid transparent;
+      border-bottom: $send-email-button-height/2 solid transparent;
+    }
+
+    &:hover, &:focus, &:active {
+      background-color: $dark-blue;
+      color: $light-blue;
+      &:after {
+        border-left-color: $dark-blue;
+      }
+    }
+
+    &:disabled {
+      background-color: $dark-medium-grey;
+      color: $light-grey;
+      &:after {
+        border-left-color: $dark-medium-grey;
+      }
+    }
+  }
+}
+
+.tel-prefix {
+  font-weight: bold;
+}

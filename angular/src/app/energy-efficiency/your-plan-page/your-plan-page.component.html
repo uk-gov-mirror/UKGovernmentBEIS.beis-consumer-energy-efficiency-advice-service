@@ -28,7 +28,24 @@ If you change anything here, please consider whether anything needs changing the
             </div>
         </div>
         <div class="recommendations user-recommendations page-row">
+
             <div class="page-row-content">
+                <div class="ghg-sidebar">
+                    <h3>Green Homes Grant</h3>
+                    <p>To apply for a Green Homes Grant voucher, you will need to get quotes from installers for each applicable measure.</p>
+                    <p>Use the buttons below to find installers near you for each measure.</p>
+                </div>
+                <div class="ghg-sidebar">
+                    <h3>Green Homes Grant</h3>
+                    <p>You have obtained quotes for all measures that are eligible for a Green Homes Grant voucher.</p>
+                    <p>Continue to <a href="https://gov.uk" target="_blank noreferrer">GOV.UK</a> to apply for your grant.</p>
+                    <a href="https://green-homes-grant-prototype.herokuapp.com/green-homes-grant/apply?measureData=WwogIHsKICAgICJtZWFzdXJlIjogIkNhdml0eSB3YWxsIGluc3VsYXRpb24iLAogICAgImluc3RhbGxlciI6ICJXYWxscy1SLVVzIiwKICAgICJjb3N0IjogIsKjMTAwMDAiCiAgfSwKICB7CiAgICAibWVhc3VyZSI6ICJTb2xhciBwYW5lbHMiLAogICAgImluc3RhbGxlciI6ICJTb21lIGNvbXBhbnkiLAogICAgImNvc3QiOiAiwqM1MDAwIgogIH0KXQ" class="more-info-link">
+                        <div class="more-info-description">Apply for grant</div>
+                        <div class="more-info-icon-container">
+                            <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
+                        </div>
+                    </a>
+                </div>
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
                     <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
                 </div>
