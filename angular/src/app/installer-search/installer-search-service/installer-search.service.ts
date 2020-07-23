@@ -18,7 +18,7 @@ export class InstallerSearchService {
         const root = InstallerSearchService.INSTALLER_API_ROOT;
         const postcodeComponent = encodeURIComponent(postcode);
         const url = this.location.prepareExternalUrl(
-            `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(tradeCode => encodeURIComponent(tradeCode)).join(',')}&page=${page}`
+            `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
         return this.http.get<InstallerResponse>(url).map(body => {
             if (body && body.errorMessage) {
