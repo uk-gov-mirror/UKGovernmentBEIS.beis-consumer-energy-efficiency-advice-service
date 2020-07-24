@@ -3,11 +3,14 @@ package uk.gov.beis.dceas.controller;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,8 +42,10 @@ public class InstallerSearchController {
     private final RestTemplate restTemplate;
     private final LoadingCache<String, String> accessTokenCache = CacheBuilder
             .newBuilder()
+            // Trustmark token is valid for 1 hour. To be safe, we request a new one after 55 minutes.
             .expireAfterWrite(55, TimeUnit.MINUTES)
             .build(getAccessToken());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public InstallerSearchController(
             @Value("${vcap.services.trustMark.search.url}")
@@ -60,7 +65,7 @@ public class InstallerSearchController {
     }
 
     @GetMapping("/{postcode}")
-    public String get(
+    public Object get(
             @PathVariable String postcode,
             @RequestParam String[] tradecodes,
             @RequestParam("page") Integer page) throws URISyntaxException {
@@ -78,11 +83,16 @@ public class InstallerSearchController {
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-            return response.getBody();
+            return response;
         } catch (ExecutionException e) {
-            return "{\"errorMessage\": \"Failed to fetch Trustmark access token from cache.\"}";
+            log.error("Failed to fetch Trustmark access token from cache.", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (HttpClientErrorException e) {
-            return "{\"errorMessage\": \"Failed to fetch data from the Trustmark API.\"}";
+            log.error("Failed to fetch data from the Trustmark API.", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Error e) {
+            log.error(e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

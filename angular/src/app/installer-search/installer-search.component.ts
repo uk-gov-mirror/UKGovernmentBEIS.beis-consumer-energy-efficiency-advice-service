@@ -109,7 +109,7 @@ export class InstallerSearchComponent implements OnInit {
                 this.loading = false;
                 this.searchHasBeenPerformed = true;
             }, error => {
-                this.errorMessage = error;
+                this.errorMessage = "Sorry, something went wrong. Please try again or come back later.";
             });
     }
 
