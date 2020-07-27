@@ -40,7 +40,10 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
         this.tags = getActiveTags(this.recommendation.tags)
-            .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
+            .filter(t => t === EnergyEfficiencyRecommendationTag.Grant
+                || t === EnergyEfficiencyRecommendationTag.FundingAvailable
+                || t === EnergyEfficiencyRecommendationTag.GHGPrimary
+                || t === EnergyEfficiencyRecommendationTag.GHGSecondary);
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
     }
 

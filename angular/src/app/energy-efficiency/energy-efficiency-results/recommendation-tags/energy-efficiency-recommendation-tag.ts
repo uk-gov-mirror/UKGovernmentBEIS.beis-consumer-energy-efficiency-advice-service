@@ -21,8 +21,8 @@ export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEffic
         case EnergyEfficiencyRecommendationTag.Grant:               { return 'Grants'; }
         case EnergyEfficiencyRecommendationTag.TopRecommendations:  { return 'Our Top 5'; }
         case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'Energy Funding'; }
-        case EnergyEfficiencyRecommendationTag.GHGPrimary:          { return 'GHG Primary'; }
-        case EnergyEfficiencyRecommendationTag.GHGSecondary:        { return 'GHG Secondary'; }
+        case EnergyEfficiencyRecommendationTag.GHGPrimary:          { return 'GHG Eligible (primary)'; }
+        case EnergyEfficiencyRecommendationTag.GHGSecondary:        { return 'GHG Eligible (secondary)'; }
     }
 }
 
