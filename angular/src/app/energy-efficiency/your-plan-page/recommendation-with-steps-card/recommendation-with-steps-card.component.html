@@ -3,6 +3,16 @@
         <div class="description">
             <h2 class="headline">{{recommendation.headline}}</h2>
             <p class="summary">{{recommendation.summary}}</p>
+            <div class="tags">
+                <div *ngIf="hasGHGPrimaryTag()"
+                     [ngClass]="getGHGPrimaryClassName()"
+                     class="tag">{{getGHGPrimaryDescription()}}
+                </div>
+                <div *ngIf="hasGHGSecondaryTag()"
+                     [ngClass]="getGHGSecondaryClassName()"
+                     class="tag">{{getGHGSecondaryDescription()}}
+                </div>
+            </div>
         </div>
         <app-data-card class="investment-required-card"
                        heading="Investment required"
