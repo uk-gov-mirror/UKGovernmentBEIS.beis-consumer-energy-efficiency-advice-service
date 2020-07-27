@@ -50,7 +50,7 @@ VALUES
 
 UPDATE `wp_posts`
 SET 
-	post_status = 'trash',
+    post_status = 'trash',
     post_name = CONCAT(IFNULL(post_name,''), '__trashed')
 WHERE 
 	post_type = 'local_authority' 
