@@ -1,56 +1,90 @@
-[
-  {
-    "participant": "Thrift Energy Ltd",
-    "certification_id": "NICI01043",
-    "phone_number": "08006 893415",
-    "email_address": "info@thriftenergy.co.uk"
+{
+  "paginator": {
+    "pageNumber": 1,
+    "pageSize": 50,
+    "totalCount": 235
   },
-  {
-    "participant": "DMS Installations Ltd",
-    "certification_id": "OCEI01013",
-    "phone_number": "0141 638 1058",
-    "email_address": "installations@dmsenergysolutions.co.uk"
-  },
-  {
-    "participant": "Infinity Property Management Ltd",
-    "certification_id": "STRI10131",
-    "phone_number": "020 36384030",
-    "email_address": "info@infinitypm.co.uk"
-  },
-  {
-    "participant": "Golden Globe Merchants Ltd",
-    "certification_id": "STRI10251",
-    "phone_number": "07837 614517",
-    "email_address": "goldenglobeltd@hotmail.co.uk"
-  },
-  {
-    "participant": "Borthwick Heating",
-    "certification_id": "STRI10330",
-    "phone_number": "0800 9078284",
-    "email_address": "scott@borthwickheating.co.uk"
-  },
-  {
-    "participant": "Ellipse Energy Limited",
-    "certification_id": "STRI10366",
-    "phone_number": "0116 402 7958",
-    "email_address": "info@ellipseenergy.co.uk"
-  },
-  {
-    "participant": "Enhanced Carbon Savings Ltd",
-    "certification_id": "STRI10424",
-    "phone_number": "01752 564968",
-    "email_address": "info@enhancedcs.co.uk"
-  },
-  {
-    "participant": "Warmseal Windows (Newcastle) Ltd",
-    "certification_id": "BSI 94972",
-    "phone_number": "0191 264 8383",
-    "email_address": "greendeal@warmseal.co.uk"
-  },
-  {
-    "participant": "Anglian Building Products",
-    "certification_id": "BBAI9082",
-    "phone_number": "01603 428451",
-    "email_address": "Simon.Hardy@Angliangroup.com"
-  }
-]
+  "errorMessage": null,
+  "data": [
+    {
+      "id": 22039,
+      "trustMarkLicenceNumber": 1704215,
+      "registeredName": "GHE Solar Ltd",
+      "publicBranchUrl": "https://uat.trustmark.org.uk/firms/GHE-Solar-Ltd-1704215/Newbury-22039",
+      "branchName": "GHE Solar Ltd",
+      "description": null,
+      "logoUrl": "",
+      "webAddress": "",
+      "address1": "21 Kingfisher Court",
+      "address2": "Hambridge Road",
+      "town": "Newbury",
+      "county": "Berkshire",
+      "country": "UK",
+      "postcode": "RG14 5SJ",
+      "longitude": -1.301838,
+      "latitude": 51.401015,
+      "distance": 21422.995312929903,
+      "distanceInMiles": 13.311632133805666
+    },
+    {
+      "id": 22697,
+      "trustMarkLicenceNumber": 1717611,
+      "registeredName": "Saviour Energy Solutions Ltd",
+      "publicBranchUrl": "https://uat.trustmark.org.uk/firms/Saviour-Energy-Solutions-Ltd-1717611/SLOUGH-22697",
+      "branchName": "Saviour Energy Solutions Ltd",
+      "description": null,
+      "logoUrl": "",
+      "webAddress": "",
+      "address1": "Regal Court",
+      "address2": "42-44 High Street",
+      "town": "SLOUGH",
+      "county": "Berkshire",
+      "country": "UK",
+      "postcode": "SL1 1EL",
+      "longitude": -0.596505,
+      "latitude": 51.509719,
+      "distance": 42936.34399777485,
+      "distanceInMiles": 26.679407250019402
+    },
+    {
+      "id": 22342,
+      "trustMarkLicenceNumber": 1721329,
+      "registeredName": "Berks Insulation Ltd",
+      "publicBranchUrl": "https://uat.trustmark.org.uk/firms/Berks-Insulation-Ltd-1721329/Slough-22342",
+      "branchName": "Berks Insulation Ltd",
+      "description": null,
+      "logoUrl": "",
+      "webAddress": "",
+      "address1": "Albion House",
+      "address2": "Albion Close",
+      "town": "Slough",
+      "county": "Berkshire",
+      "country": "UK",
+      "postcode": "SL2 5DT",
+      "longitude": -0.586115,
+      "latitude": 51.512516,
+      "distance": 43695.27173047676,
+      "distanceInMiles": 27.150983079930246
+    },
+    {
+      "id": 22729,
+      "trustMarkLicenceNumber": 1749331,
+      "registeredName": "Thames Valley Insulation Ltd",
+      "publicBranchUrl": "https://uat.trustmark.org.uk/firms/Thames-Valley-Insulation-Ltd-1749331/Slough-22729",
+      "branchName": "Thames Valley Insulation Ltd",
+      "description": null,
+      "logoUrl": "",
+      "webAddress": "",
+      "address1": "Albion House, Albion Close",
+      "address2": "",
+      "town": "Slough",
+      "county": "Berkshire",
+      "country": "UK",
+      "postcode": "SL2 5DT",
+      "longitude": -0.586115,
+      "latitude": 51.512516,
+      "distance": 43695.27173047676,
+      "distanceInMiles": 27.150983079930246
+    }
+  ]
+}

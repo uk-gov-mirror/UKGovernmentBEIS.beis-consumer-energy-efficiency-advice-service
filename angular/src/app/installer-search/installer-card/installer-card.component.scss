@@ -1,0 +1,75 @@
+@import 'styles/mixins/buttons';
+@import "styles/mixins/font";
+@import "styles/var/colors";
+@import "styles/mixins/miscellaneous";
+
+.installer-card {
+  background-color: $lighter-grey;
+  text-decoration: none;
+  color: $dark-medium-blue;
+  padding: 30px 50px 20px 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  text-align: left;
+  align-items: stretch;
+  justify-content: space-between;
+  flex: auto;
+  @include is-flex-column;
+
+  .header {
+    @include is-flex-row;
+    align-items: flex-end;
+
+    .name {
+      @include installer-card-header-font;
+      margin-left: 0.5em;
+      margin-bottom: 1px;
+    }
+  }
+
+  .content {
+    @include card-body-font;
+  }
+
+  .details-button-arrow {
+    @include blue-arrow-button(20px, 40px);
+    padding-left: 10px;
+    text-decoration: none;
+
+    &:focus, &:hover {
+      color: white;
+    }
+  }
+
+  .footer {
+    @include is-flex-column;
+
+    .icon-inactive-marker:before {
+      margin-right: 4px;
+    }
+
+    .distance {
+      @include is-flex-row;
+      align-items: center;
+    }
+  }
+}
+
+.installer-card.selected-installer {
+  background: $dark-medium-blue;
+  color: $lighter-grey;
+
+  .header .name {
+    color: $lighter-grey;
+  }
+  .details-button-arrow {
+    &:focus, &:hover {
+      background-color: $pink;
+
+      &:after {
+        border-left-color: $pink;
+      }
+    }
+  }
+}
+

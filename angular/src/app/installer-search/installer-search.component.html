@@ -6,16 +6,16 @@
         </div>
     </div>
     <div class="selectors page-row">
-        <form (submit)="submit()" class="selector-container page-row-content">
+        <form (submit)="updateSearchParametersWithFormValues(); loadFirstPageOfInstallers();" class="selector-container page-row-content">
             <div class="field-container postcode">
                 <label for="postcode" class="field-heading">Postcode</label>
-                <input id="postcode" [(ngModel)]="postcode" (blur)="postcode = $event.target.value"
+                <input id="postcode" [(ngModel)]="formPostcode" (blur)="formPostcode = $event.target.value"
                        [ngModelOptions]="{standalone: true}"
                        type="text" name="postcode" class="postcode-input">
             </div>
             <div class="field-container measure-name">
                 <label for="measure" class="field-heading">Measure Name</label>
-                <select id="measure" class="select-measure measure-name-input" [(ngModel)]="selectedMeasure"
+                <select id="measure" class="select-measure measure-name-input" [(ngModel)]="formSelectedMeasure"
                         [ngModelOptions]="{standalone: true}">
                     <option class='measure' *ngFor='let measure of measures' [ngValue]="measure">
                         {{measure.acf.headline}}
@@ -29,57 +29,40 @@
     </div>
     <div class="results-section page-row">
         <div class="page-row-content">
-            <app-spinner-and-error-container [loading]="loading" [error]="error" [errorMessage]="errorMessage"></app-spinner-and-error-container>
-            <div class="before-submit" *ngIf="!searchButtonClicked && !loading">
+            <div class="before-submit" *ngIf="!searchHasBeenPerformed && !loading">
                 Please enter your details above to find installers in your area.
             </div>
             <div aria-live="polite">
-                <div class="no-results" *ngIf="searchButtonClicked && !loading && installers.length === 0">
+                <div class="no-results" *ngIf="searchHasBeenPerformed && !loading && installers.length === 0">
                     Sorry, we couldn't find any installers in your area.
                 </div>
-                <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
-                    <h2 class="header">Results</h2>
-                    <p>We found {{installers.length}} installers matching your search.</p>
-                </div>
-            </div>
-            <div class="results" *ngIf="searchButtonClicked && !loading && installers.length > 0">
-                <!--
-                    Angular's fake `.table` tables render as cards on smaller screens, which is nice but is not as
-                    accessible on desktop so we have two versions of the table.
-                -->
-                <table class="results-table results-table-desktop">
-                    <thead>
-                        <tr class="table-row">
-                            <th class="participant table-heading">Company</th>
-                            <th class="certification-id table-heading">Certification ID</th>
-                            <th class="email-address table-heading">Email Address</th>
-                            <th class="phone-number table-heading">Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="installer table-row" *ngFor="let installer of installers">
-                            <td class="participant table-cell">{{installer.participant}}</td>
-                            <td class="certification-id table-cell">{{installer.certification_id}}</td>
-                            <td class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></td>
-                            <td class="phone-number table-cell">{{installer.phone_number}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="results-table results-table-mobile-and-tablet table">
-                    <div class="table-row">
-                        <div class="participant table-heading">Company</div>
-                        <div class="certification-id table-heading">Certification ID</div>
-                        <div class="email-address table-heading">Email Address</div>
-                        <div class="phone-number table-heading">Phone Number</div>
-                    </div>
-                    <div class="installer table-row" *ngFor="let installer of installers">
-                        <div class="participant table-cell">{{installer.participant}}</div>
-                        <div class="certification-id table-cell">{{installer.certification_id}}</div>
-                        <div class="email-address table-cell"><a href="mailto: {{installer.email_address}}">{{installer.email_address}}</a></div>
-                        <div class="phone-number table-cell">{{installer.phone_number}}</div>
+                <div class="results" *ngIf="searchHasBeenPerformed && !errorMessage && installers.length > 0">
+                    <h2 class="results-header">Results</h2>
+                    <p>We found {{paginator.totalCount}} installers matching your search. Page {{paginator.pageNumber}} of {{getLastPageNumber()}}</p>
+                    <div class="results-display" *ngIf="searchHasBeenPerformed && !errorMessage && installers.length > 0">
+                        <div class="results-panel">
+                            <div class="results-column">
+                                <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId" (mouseenter)="onInstallerCardMouseEnter(installer.id)" (mouseleave)="onInstallerCardMouseLeave()"></app-installer-card>
+                            </div>
+                            <div class="results-navigation-buttons">
+                                <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
+                                        (click)="loadPreviousPageOfInstallers()">
+                                    &lt;
+                                </button>
+                                <div class="page-number">{{paginator.pageNumber}}</div>
+                                <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageSize*paginator.pageNumber >= paginator.totalCount }"
+                                        (click)="loadNextPageOfInstallers()">
+                                    &gt;
+                                </button>
+                            </div>
+                        </div>
+                        <div class="map-panel">
+                            <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
+                        </div>
                     </div>
                 </div>
             </div>
+            <app-spinner-and-error-container [loading]="loading" [error]="!!errorMessage" [errorMessage]="errorMessage"></app-spinner-and-error-container>
         </div>
     </div>
 </div>

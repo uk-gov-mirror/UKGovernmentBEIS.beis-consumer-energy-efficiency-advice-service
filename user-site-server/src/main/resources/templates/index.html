@@ -17,7 +17,8 @@
             buildGitCommit: [[${buildGitCommit}]],
             buildUrl: [[${buildUrl}]],
             buildNumber: [[${buildNumber}]],
-            publicRootUrl: [[${publicRootUrl}]]
+            publicRootUrl: [[${publicRootUrl}]],
+            googleCloudPlatformApiKey: [[${googleCloudPlatformApiKey}]]
         };
         /*]]>*/
     </script>
@@ -38,6 +39,8 @@
 
         gtag('config', gaId, { 'send_page_view': false });
     </script>
+    <script th:src="@{https://maps.googleapis.com/maps/api/js(key=${googleCloudPlatformApiKey})}"
+    type="text/javascript"></script>
     <!-- Social Meta Tags -->
     <meta property="og:title" content="Simple Energy Advice" />
     <meta property="og:url" content="https://www.simpleenergyadvice.org.uk/"/>

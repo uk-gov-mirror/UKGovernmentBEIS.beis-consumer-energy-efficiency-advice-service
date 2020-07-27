@@ -27,3 +27,6 @@ spring.jooq.sql-dialect=MySQL
 #Spring boot has a feature where it automatically restarts the Java app if it has detected any changes to resources or class files.
 #This does not work very well with the node auto compile feature. Therefore we need to disable it.
 spring.devtools.restart.enabled = false
+
+# API key used do render map at /installer-search
+vcap.services.google.maps.credentials.apiKey=...
