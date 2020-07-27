@@ -19,7 +19,6 @@ import {TenancyType} from '../../questionnaire/questions/mees/tenancy-type-quest
 import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-question/user-epc-rating';
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
-import {TenancyStartDate} from '../../questionnaire/questions/mees/tenancy-start-date-question/tenancy-start-date';
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 
 /**
@@ -169,8 +168,6 @@ export class ResponseData {
     // Used by MeesResultsPageComponent
     public lettingDomesticPropertyStage: LettingDomesticPropertyStage;
     // Used by MeesResultsPageComponent
-    public tenancyStartDate: TenancyStartDate;
-    // Used by MeesResultsPageComponent
     public propertyEpc: UserEpcRating;
     // Used by MeesResultsPageComponent
     public confirmEpcNotFound: boolean;
@@ -262,7 +259,6 @@ function deleteMatchingFieldsFromResponseData(responseData: ResponseData, matche
 
 export function clearMeesResponseData(responseData: ResponseData) {
     delete responseData.lettingDomesticPropertyStage;
-    delete responseData.tenancyStartDate;
     delete responseData.propertyEpc;
     delete responseData.confirmEpcNotFound;
     delete responseData.isEpcRequired;

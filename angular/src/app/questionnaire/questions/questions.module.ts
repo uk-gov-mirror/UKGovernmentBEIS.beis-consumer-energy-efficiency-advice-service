@@ -38,7 +38,6 @@ import {TenancyTypeQuestionComponent} from './mees/tenancy-type-question/tenancy
 import {PropertyEpcQuestionComponent} from './mees/property-epc-question/property-epc-question.component';
 import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.component';
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
-import {TenancyStartDateQuestionComponent} from './mees/tenancy-start-date-question/tenancy-start-date-question.component';
 import {BuiltFormQuestionComponent} from "./built-form-question/built-form-question.component";
 import {IncomeRelatedBenefitsQuestionComponent} from "./benefits-questions/income-related-benefits-question.component";
 import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pension-guarantee-credit-question.component";
@@ -89,7 +88,6 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
         LettingDomesticPropertyQuestionComponent,
-        TenancyStartDateQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         AgriculturalTenancyTypeQuestionComponent,
@@ -138,7 +136,6 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
         LettingDomesticPropertyQuestionComponent,
-        TenancyStartDateQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         AgriculturalTenancyTypeQuestionComponent,
@@ -194,7 +191,6 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
         GardenQuestionComponent,
         RoofSpaceQuestionComponent,
         LettingDomesticPropertyQuestionComponent,
-        TenancyStartDateQuestionComponent,
         EpcRequiredQuestionComponent,
         TenancyTypeQuestionComponent,
         AgriculturalTenancyTypeQuestionComponent,
