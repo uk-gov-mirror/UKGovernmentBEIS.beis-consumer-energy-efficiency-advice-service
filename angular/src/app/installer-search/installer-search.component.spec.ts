@@ -90,6 +90,7 @@ describe('InstallerSearchComponent', () => {
                     tags: null,
                     steps: null,
                     installer_code: '100',
+                    trustmark_trade_codes: []
                 }
             }]);
         }

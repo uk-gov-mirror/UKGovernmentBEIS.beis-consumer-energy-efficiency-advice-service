@@ -35,7 +35,7 @@ describe('InstallerSearchService', () => {
 
         it('calls API and returns data correctly', async(() => {
             // when
-            const actualResponse = service.fetchInstallerDetails("NE30 2LZ", "100").toPromise();
+            const actualResponse = service.fetchInstallerDetails("NE30 2LZ", ["100"]).toPromise();
             httpMock.expectOne(matchesExpectedRequest).flush(mockApiResponse);
 
             // then
@@ -51,7 +51,7 @@ describe('InstallerSearchService', () => {
             const expectedStatusText = 'bad request';
 
             // when
-            const actualResponse = service.fetchInstallerDetails("NE30 2LZ", "100").toPromise();
+            const actualResponse = service.fetchInstallerDetails("NE30 2LZ", ["100"]).toPromise();
             httpMock.expectOne(matchesExpectedRequest)
                 .error(
                     new ErrorEvent('mock network error'),
