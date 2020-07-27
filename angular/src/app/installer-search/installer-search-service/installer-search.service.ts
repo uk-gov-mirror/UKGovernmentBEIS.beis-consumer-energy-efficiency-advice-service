@@ -20,13 +20,7 @@ export class InstallerSearchService {
         const url = this.location.prepareExternalUrl(
             `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
-        return this.http.get<InstallerResponse>(url).map(body => {
-            if (body && body.errorMessage) {
-                throw new Error(body.errorMessage);
-            } else {
-                return body;
-            }
-        });
+        return this.http.get<InstallerResponse>(url);
     }
 }
 
