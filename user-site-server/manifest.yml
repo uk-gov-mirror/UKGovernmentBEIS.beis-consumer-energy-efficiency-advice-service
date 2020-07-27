@@ -26,3 +26,4 @@ applications:
     - greenDealOrb.installersApi
     - dceas-admin-logins
     - smtp
+    - google.maps
