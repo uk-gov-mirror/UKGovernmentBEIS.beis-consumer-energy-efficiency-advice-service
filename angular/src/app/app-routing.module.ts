@@ -42,6 +42,9 @@ import {ECOSelfReferralDonePageComponent} from "./eco-self-referral/eco-self-ref
 import {ECOSelfReferralDonePageGuard} from "./eco-self-referral/eco-self-referral-done-page/eco-self-referral-done-page.guard";
 import {ECOSelfReferralConsentGuard} from "./eco-self-referral/eco-self-referral-consent.guard";
 import {PrivacyPageComponent} from "./privacy-page/privacy-page.component";
+import {GreenHomesGrantQuestionnaireComponent} from "./green-homes-grant/green-homes-grant-questionnaire/green-homes-grant-questionnaire.component";
+import {GreenHomesGrantResultsPageComponent} from "./green-homes-grant/results-page/green-homes-grant-results-page.component";
+import {GreenHomesGrantResultsPageGuard} from "./green-homes-grant/results-page/green-homes-grant-results-page.guard";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -104,6 +107,16 @@ const routes: Routes = [
         path: 'grant-eligibility/results',
         component: GrantEligibilityResultsPageComponent,
         canActivate: [GrantEligibilityResultsPageGuard]
+    },
+    {
+        path: 'green-homes-grant/questionnaire',
+        component: GreenHomesGrantQuestionnaireComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'green-homes-grant/results',
+        component: GreenHomesGrantResultsPageComponent,
+        canActivate: [GreenHomesGrantResultsPageGuard]
     },
     {
         path: 'eco-self-referral/start',
