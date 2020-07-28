@@ -60,6 +60,19 @@
                             <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
                         </div>
                     </div>
+                    <div class="trustmark-credits">
+                        <div class="trustmark-logo">
+                            <p>Search powered by</p>
+                            <img src="https://www.trustmark.org.uk/images/default-source/default-album/trustmark-logo-white-for-dark-background.tmb-small.png?sfvrsn=34769307_1" title="Trustmark-Logo-WHITE-for-dark-background" alt="Trustmark-Logo-WHITE-for-dark-background">
+                        </div>
+                        <div>
+                            <p>TrustMark is the Government Endorsed Quality Scheme that covers work a consumer chooses to have carried out in or around their home.</p>
+                            <p>
+                                When a consumer chooses a TrustMark Registered Business, they are engaging an organisation that 
+                                has been thoroughly vetted to meet required standards, and has made a commitment to good customer service.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <app-spinner-and-error-container [loading]="loading" [error]="!!errorMessage" [errorMessage]="errorMessage"></app-spinner-and-error-container>
