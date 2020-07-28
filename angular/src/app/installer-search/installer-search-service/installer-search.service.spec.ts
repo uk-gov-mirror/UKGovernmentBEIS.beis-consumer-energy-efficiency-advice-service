@@ -71,7 +71,7 @@ describe('InstallerSearchService', () => {
 
         function matchesExpectedRequest(request: HttpRequest<any>): boolean {
             const matchesExpectedMethod = request.method === 'GET';
-            const matchesExpectedUrl = request.urlWithParams === '/api/installers/NE30%202LZ/100';
+            const matchesExpectedUrl = request.urlWithParams === '/api/installers/NE30%202LZ?tradecodes=100&page=1';
             return matchesExpectedMethod && matchesExpectedUrl;
         }
     });

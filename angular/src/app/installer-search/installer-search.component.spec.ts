@@ -11,6 +11,8 @@ import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-con
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
 import {CeilPipe} from "../shared/ceil/ceil.pipe";
+import {InstallerCardComponent} from "./installer-card/installer-card.component";
+import {InstallerMapComponent} from "./installer-map/installer-map.component";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -32,7 +34,8 @@ describe('InstallerSearchComponent', () => {
         measureCode = null;
 
         TestBed.configureTestingModule({
-            declarations: [InstallerSearchComponent, SpinnerAndErrorContainerComponent, CeilPipe],
+            declarations: [InstallerSearchComponent, InstallerCardComponent,
+                InstallerMapComponent, SpinnerAndErrorContainerComponent, CeilPipe],
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
