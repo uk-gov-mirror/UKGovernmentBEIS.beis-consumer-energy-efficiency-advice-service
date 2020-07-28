@@ -22,6 +22,7 @@ describe('MeasureCardComponent', () => {
             tags: [],
             steps: [],
             installer_code: '100',
+            trustmark_trade_codes: []
         }
     };
 

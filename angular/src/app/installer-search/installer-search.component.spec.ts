@@ -10,6 +10,9 @@ import {MeasureContent} from "../shared/energy-saving-measure-content-service/me
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
+import {CeilPipe} from "../shared/ceil/ceil.pipe";
+import {InstallerCardComponent} from "./installer-card/installer-card.component";
+import {InstallerMapComponent} from "./installer-map/installer-map.component";
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -31,7 +34,8 @@ describe('InstallerSearchComponent', () => {
         measureCode = null;
 
         TestBed.configureTestingModule({
-            declarations: [InstallerSearchComponent, SpinnerAndErrorContainerComponent],
+            declarations: [InstallerSearchComponent, InstallerCardComponent,
+                InstallerMapComponent, SpinnerAndErrorContainerComponent, CeilPipe],
             imports: [FormsModule],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
@@ -57,7 +61,7 @@ describe('InstallerSearchComponent', () => {
         fixture.whenStable().then(() => {
             fixture.detectChanges();
             const inputElement = fixture.debugElement.query(By.css('.postcode-input')).nativeElement;
-            expect(inputElement.value).toEqual(component.postcode);
+            expect(inputElement.value).toEqual(component.formPostcode);
         });
     });
 
@@ -89,6 +93,7 @@ describe('InstallerSearchComponent', () => {
                     tags: null,
                     steps: null,
                     installer_code: '100',
+                    trustmark_trade_codes: []
                 }
             }]);
         }

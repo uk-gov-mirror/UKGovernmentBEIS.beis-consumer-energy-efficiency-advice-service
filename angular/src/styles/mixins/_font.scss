@@ -344,6 +344,12 @@ $font-family-light: GothamLight, Gotham, Arial, sans-serif;
   font-weight: bold;
 }
 
+@mixin installer-card-header-font {
+  @include has-font-sizes-at-breakpoints(16px, 1.2em, 16px, 1.2em, 16px, 1.2em);
+  font-weight: bold;
+  color: $dark-medium-blue;
+}
+
 // The following rules ought to match the same format as the above rules; please
 // fix them if you are making changes in this area.
 @mixin focus-text {

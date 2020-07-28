@@ -87,26 +87,38 @@
                     </div>
                 </ng-container>
                 <ng-container *ngSwitchCase="MeesResultsStatus.InstallRecommendedImprovements">
-                    <div class="summary">
-                        Based on the information you have provided, your property is covered by the minimum standard
-                        regulations.
+                    <div class="summary" [ngSwitch]="stage">
+                        <ng-container *ngSwitchCase="LettingDomesticPropertyStage.Currently">
+                            Based on the information you have provided, your property is subject to the minimum
+                            standard regulations.
+                        </ng-container>
+                        <ng-container *ngSwitchCase="LettingDomesticPropertyStage.Soon">
+                            Based on the information you have provided, your property is not currently subject to
+                            the minimum standard regulations, but will be as soon as you enter into a tenancy
+                            agreement with a tenant.
+                        </ng-container>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <p>
-                                If you are already renting the property out, and you entered into a new tenancy on or after the
-                                1st of April 2018, then you may be letting it unlawfully unless you have registered a
-                                valid exemption. This could attract a fine. You should take steps immediately to improve
-                                the property to an EPC E rating.
+                            <p [ngSwitch]="stage">
+                                <ng-container *ngSwitchCase="LettingDomesticPropertyStage.Currently">
+                                    You have indicated that your property is currently rated EPC F or G. This means that
+                                    you may be letting it unlawfully, unless an exemption applies and this has been
+                                    registered on the PRS Exemptions Register. This could attract a fine. You should
+                                    take steps immediately to improve the property to an EPC E rating, or register an
+                                    exemption if the property meets the criteria for one.
+                                </ng-container>
+                                <ng-container *ngSwitchCase="LettingDomesticPropertyStage.Soon">
+                                    You have indicated that your property is currently rated EPC F or G. This means you
+                                    need to do what you can to make sure the property’s EPC rating is improved to E or
+                                    better before you let it, unless an exemption applies and this has been registered
+                                    on the PRS Exemptions Register.
+                                </ng-container>
                             </p>
                             <p>
-                                Otherwise you need to do what you can to improve the property before you enter into a
-                                new tenancy agreement, or by 1 April 2020, whichever comes soonest.
-                            </p>
-                            <p>
-                                You will never be required to spend more than £3,500 (including VAT) on improving your
-                                property to an EPC E rating. If you can get your property to EPC E by spending less
-                                money, you will have met your obligation.
+                                If you are improving the property, you will never be required to spend more than £3,500
+                                (including VAT) on energy efficiency measures. If you can get your property to EPC E by
+                                spending less money, you will have met your obligation.
                             </p>
                         </div>
                         <div class="column">
@@ -117,10 +129,13 @@
                             </p>
                             <p>
                                 You can include any energy efficiency improvements made since 1st October 2017 in this
-                                £3,500 cap. You can also include any third party funding, such as Green Deal finance or
+                                £3,500 cap. You can also include any third-party funding, such as Green Deal finance or
                                 local authority grant funding.
                             </p>
-
+                            <p *ngIf="stage === LettingDomesticPropertyStage.Soon">
+                                If you let your property without improving its energy efficiency or registering an
+                                exemption, you could attract a fine.
+                            </p>
                         </div>
                     </div>
                     <div class="link-buttons">

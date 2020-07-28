@@ -1,4 +1,5 @@
 @import "styles/mixins/font";
+@import "styles/mixins/miscellaneous";
 @import "styles/var/colors";
 
 // Component specific variables
@@ -29,8 +30,7 @@
       display: flex;
 
       .field-container {
-        flex-direction: column;
-        display: flex;
+        @include is-flex-column;
 
         .field-heading {
           color: $dark-blue;
@@ -40,101 +40,119 @@
         }
       }
 
-      .postcode {
-        .postcode-input {
-          background-color: white;
-          height: 72px;
-          padding: 0 24px;
-          font-size: 24px;
-          line-height: 29px;
-          font-weight: bold;
-          border: none;
-          text-transform: uppercase;
-        }
+      .postcode-input {
+        background-color: white;
+        height: 72px;
+        padding: 0 24px;
+        font-size: 24px;
+        line-height: 29px;
+        font-weight: bold;
+        border: none;
+        text-transform: uppercase;
       }
 
-      .measure-name {
-        .measure-name-input {
-          background-color: white;
-          height: 72px;
-          padding: 0 24px;
+      .measure-name-input {
+        background-color: white;
+        height: 72px;
+        padding: 0 24px;
+        font-size: 16px;
+        line-height: 29px;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+
+        .measure {
           font-size: 16px;
-          line-height: 29px;
-          font-weight: bold;
-          text-align: center;
-          border: none;
-
-          .measure {
-            font-size: 16px;
-            width: 100%;
-          }
+          width: 100%;
         }
       }
 
-      .search {
-        .search-button {
-          background-color: $pink;
-          &:hover, &:focus, &:active {
-            background-color: $dark-medium-blue;
-          }
-          height: 72px;
-          padding: 0 14px;
-          font-size: 18px;
-          color: white;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: bold;
-          text-align: center;
-          box-sizing: border-box;
+      .search-button {
+        background-color: $pink;
+        &:hover, &:focus, &:active {
+          background-color: $dark-medium-blue;
         }
+        height: 72px;
+        padding: 0 14px;
+        font-size: 18px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        text-align: center;
+        box-sizing: border-box;
       }
     }
   }
 
-  .results-section {
+  .before-submit {
+    color: $dark-blue;
+    margin: 50px 0;
+  }
 
-    .before-submit {
+  .no-results {
+    color: $dark-blue;
+    margin: 50px 0;
+  }
+
+  .results {
+    margin-bottom: 20px;
+  
+    .results-header {
       color: $dark-blue;
-      margin: 50px 0;
+      font-size: 28px;
+      font-weight: bold;
     }
 
-    .results {
-      .header {
-        color: $dark-blue;
-        font-size: 28px;
-        font-weight: bold;
+    .map-panel {
+      padding-bottom: 0;
+    }
+
+    .results-column {
+      border-collapse: collapse;
+      overflow: auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    .results-navigation-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-right: 25px;
+      margin-top: 10px;
+      align-items: stretch;
+
+      .page-number {
+        background: $dark-medium-blue;
+        border: none;
+        color: white;
+        padding: 10px 0;
+        margin: 0 2px;
+        width: 30px;
+        text-align: center;
       }
 
-      .results-table {
-        margin-bottom: 50px;
-        border-collapse: collapse;
-      }
+      .results-navigation-button {
+        background-color: $dark-medium-blue;
+        border: none;
+        color: white;
+        padding: 10px 0;
+        margin: 0 0;
+        width: 30px;
 
-      .table-cell {
-        box-sizing: border-box;
-        flex-grow: 1;
-        width: 100%;
-        padding: 15px;
-        overflow: hidden;
-        background: $lighter-grey;
+        &:hover {
+          background-color: $pink;
+        }
 
-        a {
-          color: $dark-blue;
+        &.disabled {
+          pointer-events: none;
+          background: $light-medium-grey;
         }
       }
-
-      .table-cell:first-of-type {
-        color: $dark-blue;
-        font-weight: bold;
-      }
-    }
-
-    .no-results {
-      color: $dark-blue;
-      margin: 50px 0;
     }
   }
 }
@@ -142,10 +160,8 @@
 // Breakpoint specific styling
 @include mobile() {
   .installer-search {
-    .page-heading {
-      .page-row-content {
-        padding: 25px 0;
-      }
+    .page-heading .page-row-content{
+      padding: 25px 0;
 
       .heading-text {
         font-size: 36px;
@@ -154,67 +170,46 @@
       }
     }
 
-    .selectors {
-      .selector-container {
-        margin: 0 20px;
-        flex-direction: column;
-        width: 90%;
+    .selector-container {
+      margin: 0 20px;
+      flex-direction: column;
+      width: 90%;
 
-        .field-container {
-          .field-heading {
-            padding-top: 15px;
-          }
-        }
+      .field-heading {
+        padding-top: 15px;
+      }
 
-        .postcode {
-          flex: 1 1 100%;
-          display: flex;
+      .postcode {
+        flex: 1 1 100%;
+        display: flex;
+      }
 
-          .postcode-input {
-            flex-basis: 100%;
-          }
-        }
+      .measure-name {
+        flex: 1 1 100%;
+      }
 
-        .measure-name {
-          flex: 1 1 100%;
-          display: flex;
-
-          .measure-name-input {
-            flex-basis: 100%;
-          }
-        }
-
-        .search {
-          .search-button {
-            flex: 1 1 100%;
-            margin: 30px 0;
-          }
-        }
+      .search-button {
+        margin: 30px 0;
       }
     }
 
-    .results {
-      .results-table-desktop {
-        display: none;
+    .results-display {
+      @include is-flex-column;
+
+      .results-panel {
+        width: 100%;
+
+        .results-column {
+          height: 40vh;
+        }
+        .results-navigation-buttons {
+          margin-bottom: 10px;
+        }
       }
-      .table {
 
-        .table-heading {
-          display: none;
-        }
-
-        .table-heading {
-          font-size: 18px;
-        }
-
-        .table-cell {
-          font-size: 13px;
-          font-family: $font-family-light;
-        }
-
-        .table-cell:last-of-type {
-          margin-bottom: 15px;
-        }
+      .map-panel {
+        width: 100%;
+        height: 50vh;
       }
     }
   }
@@ -222,10 +217,8 @@
 
 @include tablet() {
   .installer-search {
-    .page-heading {
-      .page-row-content {
-        padding: 60px 0;
-      }
+    .page-heading .page-row-content {
+      padding: 60px 0;
 
       .heading-text {
         font-size: 48px;
@@ -234,50 +227,52 @@
       }
     }
 
-    .selectors {
-      .selector-container {
-        align-items: flex-end;
-        margin: 0 34px;
+    .selector-container {
+      align-items: flex-end;
+      margin: 0 34px;
 
-        .postcode {
-          flex: 1 1 15%;
+      .postcode {
+        flex: 1 1 15%;
 
-          .postcode-input {
-            width: 150px;
-          }
+        .postcode-input {
+          width: 150px;
         }
+      }
 
-        .measure-name {
-          flex: 1 1 40%;
-          margin: 0 30px;
+      .measure-name {
+        flex: 1 1 40%;
+        margin: 0 30px;
 
-          .measure-name-input {
-            width: 100%;
-          }
+        .measure-name-input {
+          width: 100%;
         }
+      }
 
-        .search {
-          .search-button {
-            width: 130px;
-            flex-grow: 0;
-            flex-shrink: 0;
-            margin: 12px 0 0 auto;
-          }
-        }
+      .search-button {
+        width: 130px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 12px 0 0 auto;
       }
     }
 
-    .results {
-      .results-table-desktop {
-        display: none;
+    .results-display {
+      @include is-flex-column;
+
+      .results-panel {
+        width: 50%;
+
+        .results-column {
+          height: 40vh;
+        }
+        .results-navigation-buttons {
+          margin-bottom: 10px;
+        }
       }
-      .table {
-        .table-heading {
-          display: none;
-        }
-        .table-cell:last-of-type {
-          margin-bottom: 15px;
-        }
+
+      .map-panel {
+        width: 100%;
+        height: 50vh;
       }
     }
   }
@@ -285,10 +280,8 @@
 
 @include desktop() {
   .installer-search {
-    .page-heading {
-      .page-row-content {
-        padding: 60px 0;
-      }
+    .page-heading .page-row-content {
+      padding: 60px 0;
 
       .heading-text {
         font-size: 48px;
@@ -297,77 +290,45 @@
       }
     }
 
-    .selectors {
-      .selector-container {
-        margin: 0 34px;
-        justify-content: space-between;
-        align-items: flex-end;
+    .selector-container {
+      margin: 0 34px;
+      justify-content: space-between;
+      align-items: flex-end;
 
-        .postcode {
-          flex: 1 1 15%;
+      .postcode {
+        flex: 1 1 15%;
+      }
+
+      .measure-name {
+        flex: 1 1 40%;
+        margin: 0 30px;
+
+        .measure-name-input {
+          box-sizing: border-box;
+          width: 100%;
         }
+      }
 
-        .measure-name {
-          flex: 1 1 40%;
-          margin: 0 30px;
-
-          .measure-name-input {
-            box-sizing: border-box;
-            width: 100%;
-          }
-        }
-
-        .search {
-          .search-button {
-            width: 180px;
-            flex-grow: 0;
-            flex-shrink: 0;
-            margin: 12px 0 0 auto;
-          }
-        }
+      .search-button {
+        width: 180px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 12px 0 0 auto;
       }
     }
 
-    .results {
-      .results-table-mobile-and-tablet {
-        display: none;
+    .results-display {
+      @include is-flex-row;
+      height: 80vh;
+
+      .results-panel {
+        @include is-flex-column;
+        width: 30%;
       }
 
-      .table-heading {
-        background-color: $light-blue;
-        color: $dark-blue;
-        border-bottom: 10px solid white;
-        text-align: left;
-        padding: 15px;
-        box-sizing: border-box;
-        flex-grow: 1;
-        width: 100%;
-        overflow: hidden;
-      }
-
-      .table-cell {
-        border-top: solid 3px white;
-        border-bottom: solid 3px white;
-      }
-
-      .table-cell:not(:first-of-type) {
-        border-left: 3px solid white;
-      }
-
-      .table-cell:not(:last-of-type) {
-        border-right: 3px solid white;
-      }
-
-      .table > .table-cell {
-        width: 25%;
-      }
-
-      .certification-id {
-        max-width: 160px;
-      }
-
-      .phone-number {
-        max-width: 220px;
+      .map-panel {
+        width: 70%;
+        margin-left: 20px;
       }
     }
   }
