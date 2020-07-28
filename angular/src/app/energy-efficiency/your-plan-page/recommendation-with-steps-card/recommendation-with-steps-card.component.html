@@ -1,31 +1,39 @@
 <div class="recommendation-with-steps-card">
-    <div class="details">
-        <div class="description">
-            <h2 class="headline">{{recommendation.headline}}</h2>
-            <p class="summary">{{recommendation.summary}}</p>
-            <div class="tags">
-                <div *ngIf="hasGHGPrimaryTag()"
-                     [ngClass]="getGHGPrimaryClassName()"
-                     class="tag">{{getGHGPrimaryDescription()}}
-                </div>
-                <div *ngIf="hasGHGSecondaryTag()"
-                     [ngClass]="getGHGSecondaryClassName()"
-                     class="tag">{{getGHGSecondaryDescription()}}
+    <div class="card-header">
+        <div class="details">
+            <div class="description">
+                <h2 class="headline">{{recommendation.headline}}</h2>
+                <p class="summary">{{recommendation.summary}}</p>
+                <div class="tags">
+                    <div *ngIf="hasGHGPrimaryTag()"
+                        [ngClass]="getGHGPrimaryClassName()"
+                        class="tag">{{getGHGPrimaryDescription()}}
+                    </div>
+                    <div *ngIf="hasGHGSecondaryTag()"
+                        [ngClass]="getGHGSecondaryClassName()"
+                        class="tag">{{getGHGSecondaryDescription()}}
+                    </div>
                 </div>
             </div>
+            <app-data-card class="investment-required-card"
+                        heading="Investment required"
+                        [value]="'£' + getRoundedInvestment(recommendation)"
+                        [isSmallCard]="true"
+                        [withSmallFontSize]="true"
+            ></app-data-card>
+            <app-data-card class="monthly-savings-card"
+                        heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
+                        [value]="getSavingDisplay(recommendation)"
+                        [isSmallCard]="true"
+                        [withSmallFontSize]="true"
+            ></app-data-card>
         </div>
-        <app-data-card class="investment-required-card"
-                       heading="Investment required"
-                       [value]="'£' + getRoundedInvestment(recommendation)"
-                       [isSmallCard]="true"
-                       [withSmallFontSize]="true"
-        ></app-data-card>
-        <app-data-card class="monthly-savings-card"
-                       heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
-                       [value]="getSavingDisplay(recommendation)"
-                       [isSmallCard]="true"
-                       [withSmallFontSize]="true"
-        ></app-data-card>
+        <a *ngIf="hasGHGPrimaryTag() || hasGHGSecondaryTag()" class="more-info-link" [routerLink]="['/installer-search/', recommendation.measureCode, responseData.postcode]">
+            <div class="more-info-description">Get a quote</div>
+            <div class="more-info-icon-container">
+                <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
+            </div>
+        </a>
     </div>
     <div class="steps">
         <app-recommendation-step-card

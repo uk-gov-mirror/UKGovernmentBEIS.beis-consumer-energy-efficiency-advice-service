@@ -45,6 +45,12 @@ export class InstallerSearchComponent implements OnInit {
                             this.selectedMeasure = chosenMeasure;
                         }
                     }
+                    if (params["postcode"]) {
+                        this.postcode = params["postcode"];
+                    }
+                    if (this.selectedMeasure && this.postcode) {
+                        this.submit();
+                    }
                 });
             }
         );

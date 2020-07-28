@@ -1,5 +1,6 @@
 @import "styles/mixins/font";
 @import "styles/var/colors";
+@import "styles/mixins/buttons";
 @import "../../energy-efficiency-page-sizes";
 @import "../your-plan-page.component";
 @import "../../energy-efficiency-results/recommendation-tags/recommendation-tags";
@@ -10,24 +11,30 @@
 
 // General styling (shouldn't contain many widths/sizes etc.)
 .recommendation-with-steps-card {
-  .details {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  .card-header {
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    @include more-info-link-button;
 
-    .description {
+    .details {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
 
-      .headline {
-        font-weight: bold;
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
+      .description {
+        display: flex;
+        flex-direction: column;
 
-      .summary {
-        @include page-subheadline-small-font;
+        .headline {
+          font-weight: bold;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        .summary {
+          @include page-subheadline-small-font;
+        }
       }
     }
   }
@@ -36,78 +43,106 @@
 // Breakpoint specific styling
 .recommendation-with-steps-card {
   @include mobile() {
-    .details {
+    .card-header {
       margin-bottom: 4px;
 
-      & > :first-child {
-        border-bottom: 5px solid $light-grey;
+      .details {
+        & > :first-child {
+          border-bottom: 5px solid $light-grey;
+        }
+
+        & > :not(:last-child):not(:first-child) {
+          border-bottom: 1px solid $light-grey;
+        }
+
+        .description {
+          flex: 0 0 100%;
+          max-width: 100%;
+          padding: 12px 20px;
+        }
+
+        & > app-data-card {
+          flex: 0 0 100%;
+          max-width: 100%;
+          padding: 20px;
+        }
       }
 
-      & > :not(:last-child):not(:first-child) {
-        border-bottom: 1px solid $light-grey;
-      }
-
-      .description {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding: 12px 20px;
-      }
-
-      & > app-data-card {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding: 20px;
+      .more-info-link {
+        width: 60%;
+        height: 50px;
+        margin-bottom: 15px;
+        align-self: center;
       }
     }
   }
 
   @include tablet() {
-    .details {
+    .card-header {
       margin-bottom: 4px;
 
-      & > :first-child {
-        border-bottom: 2px solid $light-grey;
+      .details {
+        & > :first-child {
+          border-bottom: 2px solid $light-grey;
+        }
+
+        & > :last-child {
+          border-left: 1px solid $light-grey;
+        }
+
+        .description {
+          flex: 0 0 100%;
+          max-width: 100%;
+          padding: 20px 40px 20px 62px;
+        }
+
+        & > app-data-card {
+          flex: 0 0 50%;
+          max-width: 50%;
+          padding: 20px 0;
+        }
       }
 
-      & > :last-child {
-        border-left: 1px solid $light-grey;
-      }
-
-      .description {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding: 20px 40px 20px 62px;
-      }
-
-      & > app-data-card {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 20px 0;
+      .more-info-link {
+        @include is-grid-item($number-of-items: 3, $margin: 10px);
+        height: 50px;
+        align-self: flex-end;
+        margin-right: 40px;
+        margin-bottom: 15px;
       }
     }
   }
 
   @include desktop() {
-    .details {
-      padding: 25px 20px;
+    .card-header {
+      padding: 25px 20px 20px 20px;
       margin-bottom: 4px;
 
-      & > :not(:first-child) {
-        border-left: 1px solid $light-grey;
-      }
+      .details {
+        & > :not(:first-child) {
+          border-left: 1px solid $light-grey;
+        }
 
-      .description {
-        flex: 1;
-        padding: 0 20px 0 42px;
-      }
+        .description {
+          flex: 1;
+          padding: 0 20px 0 42px;
+        }
 
-      & > app-data-card {
-        flex: 0 0 $data-card-width;
+        & > app-data-card {
+          flex: 0 0 $data-card-width;
 
-        &:last-child {
-          padding-right: $desktop-summary-padding;
+          &:last-child {
+            padding-right: $desktop-summary-padding;
+          }
         }
       }
-    }
-  }
+
+      .more-info-link {
+        @include is-grid-item($number-of-items: 4, $margin: 10px);
+        height: 60px;
+        align-self: flex-end;
+        margin-right: 30px;
+      }
+    }    
+  } 
 }
