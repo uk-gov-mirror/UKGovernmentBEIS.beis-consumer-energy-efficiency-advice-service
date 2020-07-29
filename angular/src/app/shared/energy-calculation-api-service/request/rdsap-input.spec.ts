@@ -23,6 +23,7 @@ import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mee
 import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 import {Epc} from "../../postcode-epc-service/model/epc";
+import {Country} from "../../../questionnaire/questions/postcode-epc-question/country";
 
 describe('RdsapInput', () => {
 
@@ -38,6 +39,7 @@ describe('RdsapInput', () => {
             userJourneyType: UserJourneyType.ReduceEnergyBills,
             shouldIncludeGrantsQuestionnaire: false,
             shouldIncludeOptionalPropertyQuestions: false,
+            country: Country.England,
             postcode: 'sw1h0et',
             epc: null,
             localAuthorityCode: 'E09000033',

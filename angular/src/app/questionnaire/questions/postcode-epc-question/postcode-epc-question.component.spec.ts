@@ -11,6 +11,7 @@ import {EpcParserService} from '../../../shared/postcode-epc-service/epc-api-ser
 import {PostcodeEpcService} from '../../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../../../shared/postcode-epc-service/model/postcode-details';
 import {SpinnerAndErrorContainerComponent} from "../../../shared/spinner-and-error-container/spinner-and-error-container.component";
+import {Country} from "./country";
 
 describe('PostcodeEpcQuestionComponent', () => {
 
@@ -33,7 +34,8 @@ describe('PostcodeEpcQuestionComponent', () => {
         postcodeEpcResponse = Observable.of({
             postcode: VALID_POSTCODE,
             allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
-            localAuthorityCode: expectedLocalAuthorityCode
+            localAuthorityCode: expectedLocalAuthorityCode,
+            country: Country.England
         });
 
         spyOn(postcodeEpcServiceStub, 'fetchPostcodeDetails').and.callThrough();
@@ -141,7 +143,8 @@ describe('PostcodeEpcQuestionComponent', () => {
             postcodeEpcResponse = Observable.of({
                 postcode: VALID_POSTCODE,
                 allEpcsForPostcode: [],
-                localAuthorityCode: expectedLocalAuthorityCode
+                localAuthorityCode: expectedLocalAuthorityCode,
+                country: Country.England
             });
 
             // when
@@ -160,7 +163,8 @@ describe('PostcodeEpcQuestionComponent', () => {
             postcodeEpcResponse = Observable.of({
                 postcode: VALID_POSTCODE,
                 allEpcsForPostcode: [],
-                localAuthorityCode: expectedLocalAuthorityCode
+                localAuthorityCode: expectedLocalAuthorityCode,
+                country: Country.England
             });
 
             // when
