@@ -2,66 +2,15 @@
 <div class="green-homes-grant-result-page" *ngIf="!isLoading && !isError">
     <div class="page-row page-heading">
         <div class="page-row-content" [ngSwitch]="status">
-            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantResultsStatus.Eligible">
-                You may be eligible for the Green Homes Grant.
+            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantEligibility.Eligible">
+                You may be eligible for the partial Green Homes Grant.
             </h1>
-            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantResultsStatus.Ineligible">
+            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantEligibility.EligibleMeansTested">
+                You may be eligible for the full Green Homes Grant.
+            </h1>
+            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantEligibility.Ineligible">
                 You are not eligible for the Green Homes Grant.
             </h1>
-        </div>
-    </div>
-    <div class="page-row more-information">
-        <div class="page-row-content">
-            <div class="body-text" [ngSwitch]="status">
-                <ng-container *ngSwitchCase="GreenHomesGrantResultsStatus.Eligible">
-                    <p>From what you’ve told us, you may be able to get help from the Green Homes Grant.</p>
-                    <h2>
-                        Next steps
-                    </h2>
-                    <p>
-                        You can provide your contact details and additional information about your property to help
-                        energy companies identify and assess your case.
-                    </p>
-                    <div>
-                        <input id="eco-self-referral-storage-consent" name="eco-self-referral-storage-consent"
-                               type="checkbox"
-                               [checked]="ecoSelfReferralConsentData.hasGivenStorageConsent"
-                               (change)="ecoSelfReferralConsentData.hasGivenStorageConsent = !ecoSelfReferralConsentData.hasGivenStorageConsent">
-                        <label for="eco-self-referral-storage-consent">
-                            I am happy for my contact details and information about my property to be stored.
-                        </label>
-                    </div>
-                    <div>
-                        <input id="eco-self-referral-sharing-consent" name="eco-self-referral-sharing-consent"
-                               type="checkbox"
-                               [checked]="ecoSelfReferralConsentData.hasGivenSharingConsent"
-                               (change)="ecoSelfReferralConsentData.hasGivenSharingConsent = !ecoSelfReferralConsentData.hasGivenSharingConsent">
-                        <label for="eco-self-referral-sharing-consent">
-                            I am happy for these details to be shared with energy companies that may be able to help
-                            me under the ECO scheme.
-                        </label>
-                    </div>
-                    <p class="small-print">
-                        You must check the boxes above to indicate that you are happy for us to store and share your
-                        details if you wish to proceed. For more information, see our
-                        <a routerLink="/privacy">privacy notice</a>.
-                    </p>
-                    <button class="proceed-button"
-                            (click)="proceedToEcoSelfReferral()"
-                            [disabled]="!ecoSelfReferralConsentData.hasGivenFullConsent">
-                        Proceed
-                    </button>
-                </ng-container>
-                <ng-container *ngSwitchCase="GreenHomesGrantResultsStatus.Ineligible">
-                    <p>Unfortunately you do not meet the eligibility criteria for the Green Homes Grant.</p>
-                    <p>Although you are not eligible, you may be eligible for other grants and schemes operating in your area.</p>
-                    <app-link-button linkUrl="/grants"
-                                     buttonText="Local Schemes"></app-link-button>
-                </ng-container>
-                <a routerLink="/pages/energy-company-obligation" class="eco-info-link">
-                    Find out more on the ECO page
-                </a>
-            </div>
         </div>
     </div>
 </div>

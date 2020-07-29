@@ -1,6 +1,8 @@
 export enum GreenHomesGrantEligibility {
-    NotCalculated,
-    Ineligible,
-    MayBeEligible,
-    LikelyEligible
+    // Not low-income
+    Eligible,
+    // Low-income so eligible for full amount
+    EligibleMeansTested,
+    // Not in England
+    Ineligible
 }

@@ -4,16 +4,21 @@ import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-
 import 'rxjs/add/operator/toPromise';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {GreenHomesGrantService} from "./green-homes-grant.service";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
+import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
 
 describe('GreenHomesGrantService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: GreenHomesGrantService;
+    let responseData: ResponseData;
 
     beforeEach(async(() => {
+        responseData = new ResponseData();
+
         TestBed.configureTestingModule({
             providers: [GreenHomesGrantService,
-                ResponseData,
+                {provide: ResponseData, useValue: responseData},
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}},
             ],
             imports: [HttpClientTestingModule]
@@ -31,5 +36,25 @@ describe('GreenHomesGrantService', () => {
         it('should be created', () => {
             expect(service).toBeTruthy();
         });
+    });
+
+    describe('#getEligibility', () => {
+        it('should return ineligible for non-English addresses', async(() => {
+            responseData.country = Country.Wales;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.Ineligible);
+                });
+        }));
+
+        it('should return eligible for English addresses', async(() => {
+            responseData.country = Country.England;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.Eligible);
+                });
+        }));
     });
 });

@@ -9,7 +9,6 @@ import {LinkButtonComponent} from "../../shared/link-button/link-button.componen
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {GreenHomesGrantResultsPageComponent} from "./green-homes-grant-results-page.component";
 import {GreenHomesGrantQuestionnaireComponent} from "../green-homes-grant-questionnaire/green-homes-grant-questionnaire.component";
-import {GreenHomesGrantResultsStatus} from "./green-homes-grant-results-status";
 import {GreenHomesGrantEligibility} from "../green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-grant.service";
 import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
@@ -32,7 +31,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     };
 
     beforeEach(async(() => {
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.NotCalculated);
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Eligible);
         spyOn(greenHomesGrantServiceStub, 'getEligibility').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -87,13 +86,13 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
     it('should have eligible status when person is eligible', () => {
         // given
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.LikelyEligible);
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Eligible);
 
         // when
         fixture.detectChanges();
 
         // then
-        expect(component.status).toEqual(GreenHomesGrantResultsStatus.Eligible);
+        expect(component.status).toEqual(GreenHomesGrantEligibility.Eligible);
     });
 
     it('should have ineligible status when person is ineligible', () => {
@@ -104,7 +103,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         fixture.detectChanges();
 
         // then
-        expect(component.status).toEqual(GreenHomesGrantResultsStatus.Ineligible);
+        expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
     });
 });
 

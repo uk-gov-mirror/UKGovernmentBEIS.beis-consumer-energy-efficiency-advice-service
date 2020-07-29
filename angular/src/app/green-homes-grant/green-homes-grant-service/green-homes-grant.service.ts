@@ -6,6 +6,7 @@ import 'rxjs/add/operator/reduce';
 import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 @Injectable()
 export class GreenHomesGrantService {
@@ -19,13 +20,16 @@ export class GreenHomesGrantService {
     public getEligibility(): Observable<GreenHomesGrantEligibility> {
         if (!isEqual(this.responseData, this.cachedResponseData) || !this._eligibility) {
             this.cachedResponseData = clone(this.responseData);
-            this._eligibility = this.fetchEligibility().shareReplay(1);
+            this._eligibility = this.calculateEligibility();
         }
         return this._eligibility;
     }
 
-    // TODO SEA-36: Implement actual eligibility check
-    private fetchEligibility(): Observable<GreenHomesGrantEligibility> {
-        return Observable.of(GreenHomesGrantEligibility.LikelyEligible);
+    private calculateEligibility(): Observable<GreenHomesGrantEligibility> {
+        if (this.cachedResponseData.country !== Country.England) {
+            return Observable.of(GreenHomesGrantEligibility.Ineligible);
+        }
+        // TODO SEA-36: Add means tested eligibility requirement
+        return Observable.of(GreenHomesGrantEligibility.Eligible);
     }
 }

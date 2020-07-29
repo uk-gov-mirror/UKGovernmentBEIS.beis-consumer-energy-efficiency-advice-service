@@ -10,7 +10,7 @@ export class GreenHomesGrantQuestionnaire extends Questionnaire {
     public static getInstance(responseData: ResponseData) {
         if (!GreenHomesGrantQuestionnaire.currentInstance) {
             GreenHomesGrantQuestionnaire.currentInstance = new GreenHomesGrantQuestionnaire(responseData, GREEN_HOMES_GRANT_QUESTIONS);
-            responseData.userJourneyType = UserJourneyType.GrantEligibility;
+            responseData.userJourneyType = UserJourneyType.GreenHomesGrant;
             responseData.shouldIncludeGrantsQuestionnaire = true;
             GreenHomesGrantQuestionnaire.resetBenefitQuestionAnswers(responseData);
         }
