@@ -60,12 +60,13 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     updateSearchParametersWithFormValues() {
-        this.postcode = this.formPostcode;
+        this.postcode = this.addWhitespaceToPostcodeIfNone(this.formPostcode);
         this.selectedMeasure = this.formSelectedMeasure;
     }
 
     loadFirstPageOfInstallers() {
         if (this.selectedMeasure && this.postcode && this.isValidPostcode()) {
+            this.overwriteFormParametersWithLastSearchedValues();
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
