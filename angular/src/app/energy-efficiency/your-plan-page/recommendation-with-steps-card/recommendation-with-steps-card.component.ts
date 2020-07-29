@@ -18,6 +18,11 @@ import {
 })
 export class RecommendationWithStepsCardComponent {
 
+    displayableTags: EnergyEfficiencyRecommendationTag[] = [
+        EnergyEfficiencyRecommendationTag.GHGPrimary,
+        EnergyEfficiencyRecommendationTag.GHGSecondary
+    ];
+
     @Input() recommendation: EnergyEfficiencyRecommendation;
 
     constructor(private responseData: ResponseData,
@@ -40,27 +45,15 @@ export class RecommendationWithStepsCardComponent {
         this.googleAnalyticsService.sendEvent(eventName, 'plan-page', eventLabel);
     }
 
-    hasGHGPrimaryTag() {
-        return this.recommendation.tags & EnergyEfficiencyRecommendationTag.GHGPrimary;
+    getTagsToDisplay() {
+        return this.displayableTags.filter(tag => this.recommendation.tags & tag);
     }
 
-    hasGHGSecondaryTag() {
-        return this.recommendation.tags & EnergyEfficiencyRecommendationTag.GHGSecondary;
+    getTagClassName(tag: EnergyEfficiencyRecommendationTag) {
+        return getTagClassName(tag);
     }
 
-    getGHGPrimaryClassName() {
-        return getTagClassName(EnergyEfficiencyRecommendationTag.GHGPrimary);
-    }
-
-    getGHGSecondaryClassName() {
-        return getTagClassName(EnergyEfficiencyRecommendationTag.GHGSecondary);
-    }
-
-    getGHGPrimaryDescription() {
-        return getTagDescription(EnergyEfficiencyRecommendationTag.GHGSecondary);
-    }
-
-    getGHGSecondaryDescription() {
-        return getTagDescription(EnergyEfficiencyRecommendationTag.GHGSecondary);
+    getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
+        return getTagDescription(tag);
     }
 }

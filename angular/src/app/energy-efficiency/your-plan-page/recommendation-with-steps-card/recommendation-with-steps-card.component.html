@@ -4,13 +4,9 @@
             <h2 class="headline">{{recommendation.headline}}</h2>
             <p class="summary">{{recommendation.summary}}</p>
             <div class="tags">
-                <div *ngIf="hasGHGPrimaryTag()"
-                     [ngClass]="getGHGPrimaryClassName()"
-                     class="tag">{{getGHGPrimaryDescription()}}
-                </div>
-                <div *ngIf="hasGHGSecondaryTag()"
-                     [ngClass]="getGHGSecondaryClassName()"
-                     class="tag">{{getGHGSecondaryDescription()}}
+                <div *ngFor="let tag of getTagsToDisplay()"
+                     [ngClass]="getTagClassName(tag)"
+                     class="tag">{{getTagDescription(tag)}}
                 </div>
             </div>
         </div>
