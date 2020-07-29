@@ -4,9 +4,9 @@ import {QuestionType} from '../questions/question-type';
 import {ResponseData} from '../../shared/response-data/response-data';
 
 export abstract class QuestionMetadata {
-    constructor(public componentType: Type<QuestionBaseComponent>,
-                public questionId: string,
-                public questionType: QuestionType, ) {
+    constructor(public readonly componentType: Type<QuestionBaseComponent>,
+                public readonly questionId: string,
+                public readonly questionType: QuestionType, ) {
     }
 
     isApplicable(responseData: ResponseData): boolean {

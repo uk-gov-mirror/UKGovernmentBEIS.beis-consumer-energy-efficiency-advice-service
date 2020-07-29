@@ -30,6 +30,7 @@ import {EnergySavingMeasureContentService} from '../../shared/energy-saving-meas
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 describe('HomeImprovementsComponent', () => {
     let component: HomeImprovementsComponent;
@@ -39,7 +40,8 @@ describe('HomeImprovementsComponent', () => {
     const dummyPostcodeDetails: PostcodeDetails = {
         postcode: 'dummy',
         allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
-        localAuthorityCode: null
+        localAuthorityCode: null,
+        country: Country.England
     };
     const postcodeEpcServiceStub = {
         fetchPostcodeDetails: (postcode) => Observable.of(dummyPostcodeDetails)

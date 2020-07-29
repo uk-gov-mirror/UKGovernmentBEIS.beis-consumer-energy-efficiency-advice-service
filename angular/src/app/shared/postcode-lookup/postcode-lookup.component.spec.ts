@@ -11,6 +11,7 @@ import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/p
 import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
 import {SpinnerAndErrorContainerComponent} from '../spinner-and-error-container/spinner-and-error-container.component';
 import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 describe('PostcodeLookupComponent', () => {
     let component: PostcodeLookupComponent;
@@ -94,6 +95,6 @@ describe('PostcodeLookupComponent', () => {
 
         // then
         expect(component.postcodeSelected.emit)
-            .toHaveBeenCalledWith(new PostcodeDetails(VALID_POSTCODE, null, VALID_LOCAL_AUTHORITY_CODE));
+            .toHaveBeenCalledWith(new PostcodeDetails(VALID_POSTCODE, null, VALID_LOCAL_AUTHORITY_CODE, Country.England));
     });
 });
