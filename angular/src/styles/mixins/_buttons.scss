@@ -225,3 +225,58 @@ $rounded-corner-border-radius: 1000000px;
     -moz-appearance: textfield;
   }
 }
+
+@mixin more-info-link-button {
+  .more-info-link {
+    color: white;
+    display: flex;
+    cursor: pointer;
+    text-decoration: none;
+
+    .more-info-description, .more-info-icon-container {
+      padding: 20px;
+    }
+
+    .more-info-description {
+      background-color: $light-blue;
+      color: $dark-blue;
+      text-transform: uppercase;
+      font-size: 13px;
+      line-height: 15px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .more-info-icon-container {
+      background-color: $dark-blue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .more-info-icon {
+        width: 15px;
+        height: 23px;
+        stroke: $light-blue;
+        fill: $light-blue;
+        display: block;
+        line-height: 0;
+      }
+    }
+
+    &:hover, &:focus, &:active {
+      .more-info-description {
+        background-color: $dark-blue;
+        color: $light-blue;
+      }
+      .more-info-icon-container {
+        background-color: $light-blue;
+        .more-info-icon {
+          stroke: $dark-blue;
+          fill: $dark-blue;
+        }
+      }
+    }
+  }
+}

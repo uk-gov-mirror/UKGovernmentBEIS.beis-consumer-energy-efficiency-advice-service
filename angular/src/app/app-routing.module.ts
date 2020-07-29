@@ -227,6 +227,10 @@ const routes: Routes = [
         component: InstallerSearchComponent,
     },
     {
+        path: 'installer-search/:measure-code/:postcode',
+        component: InstallerSearchComponent,
+    },
+    {
         path: 'measures/:slug',
         component: MeasurePageComponent,
         pathMatch: 'full'

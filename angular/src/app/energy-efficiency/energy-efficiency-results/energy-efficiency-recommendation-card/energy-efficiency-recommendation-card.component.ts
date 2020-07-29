@@ -24,6 +24,12 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     isMouseOverAddToPlanButton: boolean = false;
     isFocusedAddToPlanButton: boolean = false;
     savingDisplay: string;
+    displayableTags: EnergyEfficiencyRecommendationTag[] = [
+        EnergyEfficiencyRecommendationTag.Grant,
+        EnergyEfficiencyRecommendationTag.FundingAvailable,
+        EnergyEfficiencyRecommendationTag.GHGPrimary,
+        EnergyEfficiencyRecommendationTag.GHGSecondary
+    ];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
@@ -40,7 +46,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     ngOnInit() {
         this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
         this.tags = getActiveTags(this.recommendation.tags)
-            .filter(t => t === EnergyEfficiencyRecommendationTag.Grant || t === EnergyEfficiencyRecommendationTag.FundingAvailable);
+            .filter(t => this.displayableTags.includes(t));
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
     }
 

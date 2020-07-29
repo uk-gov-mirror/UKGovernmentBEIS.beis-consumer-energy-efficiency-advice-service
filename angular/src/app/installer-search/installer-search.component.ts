@@ -47,18 +47,26 @@ export class InstallerSearchComponent implements OnInit {
                             this.formSelectedMeasure = chosenMeasure;
                         }
                     }
+                    if (params["postcode"]) {
+                        this.formPostcode = this.addWhitespaceToPostcodeIfNone(params["postcode"]);
+                    }
+                    if (this.formSelectedMeasure && this.formPostcode) {
+                        this.updateSearchParametersWithFormValues();
+                        this.loadFirstPageOfInstallers();
+                    }
                 });
             }
         );
     }
 
     updateSearchParametersWithFormValues() {
-        this.postcode = this.formPostcode;
+        this.postcode = this.addWhitespaceToPostcodeIfNone(this.formPostcode);
         this.selectedMeasure = this.formSelectedMeasure;
     }
 
     loadFirstPageOfInstallers() {
         if (this.selectedMeasure && this.postcode && this.isValidPostcode()) {
+            this.overwriteFormParametersWithLastSearchedValues();
             this.selectedInstallerId = null;
             this.errorMessage = null;
             this.loading = true;
@@ -156,5 +164,16 @@ export class InstallerSearchComponent implements OnInit {
 
     isValidPostcode() {
         return PostcodeEpcService.isValidPostcode(this.postcode);
+    }
+
+    /* According to https://ideal-postcodes.co.uk/guides/uk-postcode-format
+     the second half of the postcode is always 3 characters long.
+     We can thus easily find the split between sections and add the whitespace character there.*/
+    addWhitespaceToPostcodeIfNone(postcode: String) {
+        if (postcode.length >= 5 && postcode.charAt(postcode.length - 4) !== ' ') {
+            return postcode.slice(0, -3) + ' ' + postcode.slice(-3);
+        } else {
+            return postcode;
+        }
     }
 }
