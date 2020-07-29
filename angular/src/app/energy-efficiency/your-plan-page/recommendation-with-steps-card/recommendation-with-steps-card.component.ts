@@ -8,7 +8,8 @@ import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
-    getTagDescription
+    getTagDescription,
+    getActiveTags
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Component({
@@ -46,7 +47,7 @@ export class RecommendationWithStepsCardComponent {
     }
 
     getTagsToDisplay() {
-        return this.displayableTags.filter(tag => this.recommendation.tags & tag);
+        return getActiveTags(this.recommendation.tags).filter(t => this.displayableTags.includes(t));
     }
 
     getTagClassName(tag: EnergyEfficiencyRecommendationTag) {
