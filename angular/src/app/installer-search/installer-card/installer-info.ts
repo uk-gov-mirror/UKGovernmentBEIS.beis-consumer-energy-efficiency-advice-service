@@ -7,4 +7,6 @@ export interface InstallerInfo {
     town: string;
     latitude: number;
     longitude: number;
+    phoneNumber: string;
+    email: string;
 }

@@ -27,4 +27,6 @@ export interface Installer {
     latitude: number;
     distance: number;
     distanceInMiles: number;
+    phoneNumber: string;
+    email: string;
 }
