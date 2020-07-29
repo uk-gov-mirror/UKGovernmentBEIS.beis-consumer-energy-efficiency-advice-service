@@ -57,4 +57,9 @@ export class RecommendationWithStepsCardComponent {
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
         return getTagDescription(tag);
     }
+
+    hasGHGTag() {
+        const tags = getActiveTags(this.recommendation.tags);
+        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
+    }
 }
