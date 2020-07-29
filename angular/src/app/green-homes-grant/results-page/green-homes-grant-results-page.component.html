@@ -3,10 +3,10 @@
     <div class="page-row page-heading">
         <div class="page-row-content" [ngSwitch]="status">
             <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantResultsStatus.Eligible">
-                You may be eligible for ECO.
+                You may be eligible for the Green Homes Grant.
             </h1>
             <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantResultsStatus.Ineligible">
-                You are not eligible for ECO.
+                You are not eligible for the Green Homes Grant.
             </h1>
         </div>
     </div>
@@ -14,7 +14,7 @@
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
                 <ng-container *ngSwitchCase="GreenHomesGrantResultsStatus.Eligible">
-                    <p>From what you’ve told us, you may be able to get help from ECO.</p>
+                    <p>From what you’ve told us, you may be able to get help from the Green Homes Grant.</p>
                     <h2>
                         Next steps
                     </h2>

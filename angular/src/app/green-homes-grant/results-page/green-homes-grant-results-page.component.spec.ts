@@ -3,27 +3,24 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Observable} from 'rxjs/Observable';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {EligibilityByGrant} from "../../grants/grant-eligibility-service/eligibility-by-grant";
 import {SpinnerAndErrorContainerComponent} from "../../shared/spinner-and-error-container/spinner-and-error-container.component";
-import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
 import {QuestionnaireService} from "../../questionnaire/questionnaire.service";
-import {EcoHhcroHelpToHeat} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/eco-hhcro-help-to-heat";
-import {NationalGrantCalculator} from "../../grants/national-grant-calculator/national-grant-calculator";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
-import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {GreenHomesGrantResultsPageComponent} from "./green-homes-grant-results-page.component";
 import {GreenHomesGrantQuestionnaireComponent} from "../green-homes-grant-questionnaire/green-homes-grant-questionnaire.component";
 import {GreenHomesGrantResultsStatus} from "./green-homes-grant-results-status";
+import {GreenHomesGrantEligibility} from "../green-homes-grant-service/green-homes-grant-eligibility";
+import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-grant.service";
+import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 
 describe('GreenHomesGrantResultsPageComponent', () => {
     let component: GreenHomesGrantResultsPageComponent;
     let fixture: ComponentFixture<GreenHomesGrantResultsPageComponent>;
 
-    let eligibilityResponse: Observable<EligibilityByGrant>;
-    const grantsEligibilityServiceStub = {
-        getEligibilityByGrant: () => eligibilityResponse,
+    let eligibilityResponse: Observable<GreenHomesGrantEligibility>;
+    const greenHomesGrantServiceStub = {
+        getEligibility: () => eligibilityResponse,
     };
 
     const questionnaireServiceStub = {
@@ -34,16 +31,9 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         set: () => {}
     };
 
-    const dummyEligibilityResponse: EligibilityByGrant = {
-        [EcoHhcroHelpToHeat.GRANT_ID]: {
-            calculator: {} as NationalGrantCalculator,
-            eligibility: GrantEligibility.NotCalculated,
-        }
-    };
-
     beforeEach(async(() => {
-        eligibilityResponse = Observable.of(dummyEligibilityResponse);
-        spyOn(grantsEligibilityServiceStub, 'getEligibilityByGrant').and.callThrough();
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.NotCalculated);
+        spyOn(greenHomesGrantServiceStub, 'getEligibility').and.callThrough();
 
         TestBed.configureTestingModule({
             declarations: [
@@ -57,7 +47,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
               RouterTestingModule.withRoutes([])
             ],
             providers: [
-                {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
+                {provide: GreenHomesGrantService, useValue: greenHomesGrantServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
                 {provide: ECOSelfReferralConsentData, useValue: new ECOSelfReferralConsentData()},
                 {provide: PageTitleService, useValue: pageTitleStub}
@@ -75,12 +65,12 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should call grants eligibility service', () => {
+    it('should call Green Homes Grant service', () => {
         // when
         fixture.detectChanges();
 
         // then
-        expect(grantsEligibilityServiceStub.getEligibilityByGrant).toHaveBeenCalled();
+        expect(greenHomesGrantServiceStub.getEligibility).toHaveBeenCalled();
     });
 
     it('should display an error message if grants eligibility service responds with an error', () => {
@@ -97,7 +87,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
     it('should have eligible status when person is eligible', () => {
         // given
-        dummyEligibilityResponse[EcoHhcroHelpToHeat.GRANT_ID].eligibility = GrantEligibility.LikelyEligible;
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.LikelyEligible);
 
         // when
         fixture.detectChanges();
@@ -108,7 +98,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
     it('should have ineligible status when person is ineligible', () => {
         // given
-        dummyEligibilityResponse[EcoHhcroHelpToHeat.GRANT_ID].eligibility = GrantEligibility.Ineligible;
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
 
         // when
         fixture.detectChanges();

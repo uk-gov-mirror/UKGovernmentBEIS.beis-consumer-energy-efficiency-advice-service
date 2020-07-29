@@ -1,13 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
-import {GrantEligibilityService} from "../../grants/grant-eligibility-service/grant-eligibility.service";
-import {EcoHhcroHelpToHeat} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/eco-hhcro-help-to-heat";
-import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
-import {EligibilityByGrant} from "../../grants/grant-eligibility-service/eligibility-by-grant";
-import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {GreenHomesGrantResultsStatus} from "./green-homes-grant-results-status";
+import {GreenHomesGrantEligibility} from "../green-homes-grant-service/green-homes-grant-eligibility";
+import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-grant.service";
+import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 
 @Component({
     selector: 'app-green-homes-grant-results-page',
@@ -23,7 +21,7 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
     errorMessage: string;
 
     constructor(private questionnaireService: QuestionnaireService,
-                private grantsEligibilityService: GrantEligibilityService,
+                private greenHomesGrantService: GreenHomesGrantService,
                 private router: Router,
                 public ecoSelfReferralConsentData: ECOSelfReferralConsentData,
                 private pageTitle: PageTitleService) {
@@ -39,7 +37,7 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
             return;
         }
 
-        this.grantsEligibilityService.getEligibilityByGrant()
+        this.greenHomesGrantService.getEligibility()
             .subscribe(
                 eligibilityByGrant => this.onLoadingComplete(eligibilityByGrant),
                 (err) => {
@@ -54,11 +52,8 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
         this.router.navigate(['/eco-self-referral/start']);
     }
 
-    private onLoadingComplete(eligibilityByGrant: EligibilityByGrant) {
-        const ecoHhcroHelpToHeatEligibility = eligibilityByGrant[EcoHhcroHelpToHeat.GRANT_ID];
-        this.status = GreenHomesGrantResultsPageComponent.getEligibilityResultsStatus(
-            ecoHhcroHelpToHeatEligibility.eligibility
-        );
+    private onLoadingComplete(eligibility: GreenHomesGrantEligibility) {
+        this.status = GreenHomesGrantResultsPageComponent.getEligibilityResultsStatus(eligibility);
         this.isLoading = false;
     }
 
@@ -68,10 +63,9 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
         this.isError = true;
     }
 
-    private static getEligibilityResultsStatus(ecoHhcroHelpToHeatEligibility: GrantEligibility): GreenHomesGrantResultsStatus {
-        return (ecoHhcroHelpToHeatEligibility === GrantEligibility.MayBeEligible
-            || ecoHhcroHelpToHeatEligibility === GrantEligibility.LikelyEligible)
-            ? GreenHomesGrantResultsStatus.Eligible
-            : GreenHomesGrantResultsStatus.Ineligible;
+    private static getEligibilityResultsStatus(eligibility: GreenHomesGrantEligibility): GreenHomesGrantResultsStatus {
+        return eligibility === GreenHomesGrantEligibility.Ineligible
+            ? GreenHomesGrantResultsStatus.Ineligible
+            : GreenHomesGrantResultsStatus.Eligible;
     }
 }
