@@ -20,7 +20,16 @@ export class InstallerSearchService {
         const url = this.location.prepareExternalUrl(
             `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
-        return this.http.get<InstallerResponse>(url);
+
+        // TODO SEA-??: Remove this .map when the response actually has phone numbers/email addresses
+        return this.http.get<InstallerResponse>(url).map((response) => ({
+            ...response,
+            data: response.data.map((installer) => ({
+                ...installer,
+                phoneNumber: '020 7925 0918',
+                email: 'person@installer.co.uk',
+            })),
+        }));
     }
 }
 
