@@ -128,6 +128,16 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new IncomeQuestionMetadata()
 ];
 
+export const GREEN_HOMES_GRANT_QUESTIONS = [
+    new PensionGuaranteeCreditQuestionMetadata(),
+    new IncomeRelatedBenefitsQuestionMetadata(),
+    new SocietalBenefitsQuestionMetadata(),
+    new DefenseRelatedBenefitsQuestionMetadata(),
+    new ChildBenefitsQuestionMetadata(),
+    new OccupantsQuestionMetadata(),
+    new IncomeQuestionMetadata()
+];
+
 export const ECO_SELF_REFERRAL_QUESTIONS = [
     new ConfirmEpcQuestionMetadata(),
     // Personal details

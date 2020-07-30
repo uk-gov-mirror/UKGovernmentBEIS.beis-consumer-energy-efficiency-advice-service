@@ -20,6 +20,7 @@ import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-que
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -40,6 +41,8 @@ export class ResponseData {
 
     // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public postcode: string;
+    // Set by PostcodeEpcQuestionComponent, used to determine GHG eligibility
+    public country: Country;
     // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public epc: Epc;
     // Set by PostcodeEpcQuestionComponent, used for showing grants

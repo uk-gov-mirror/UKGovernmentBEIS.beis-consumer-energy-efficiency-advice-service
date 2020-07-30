@@ -10,6 +10,7 @@ import {EpcParserService} from '../postcode-epc-service/epc-api-service/epc-pars
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
 import {SpinnerAndErrorContainerComponent} from '../spinner-and-error-container/spinner-and-error-container.component';
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 describe('EpcLookupComponent', () => {
     let component: EpcLookupComponent;
@@ -25,7 +26,8 @@ describe('EpcLookupComponent', () => {
     const dummyPostcodeDetails: PostcodeDetails = {
         postcode: VALID_POSTCODE,
         allEpcsForPostcode: EpcParserService.parse(dummyEpcsResponse),
-        localAuthorityCode: null
+        localAuthorityCode: null,
+        country: Country.England
     };
 
     const postcodeEpcServiceStub = {
