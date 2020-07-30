@@ -108,17 +108,21 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     fetchSpecificPageOfInstallers(pageNumber: number) {
-        const tradeCodes = this.selectedMeasure.acf.trustmark_trade_codes.map(t => t.trade_code);
-        this.installerSearchService
-            .fetchInstallerDetails(this.postcode, tradeCodes, pageNumber)
-            .subscribe(response => {
-                this.paginator = response.paginator;
-                this.installers = response.data;
-                this.loading = false;
-                this.searchHasBeenPerformed = true;
-            }, error => {
-                this.errorMessage = "Sorry, something went wrong. Please try again or come back later.";
-            });
+        if (this.selectedMeasure && this.selectedMeasure.acf && this.selectedMeasure.acf.trustmark_trade_codes) {
+            const tradeCodes = this.selectedMeasure.acf.trustmark_trade_codes.map(t => t.trade_code);
+            this.installerSearchService
+                .fetchInstallerDetails(this.postcode, tradeCodes, pageNumber)
+                .subscribe(response => {
+                    this.paginator = response.paginator;
+                    this.installers = response.data;
+                    this.loading = false;
+                    this.searchHasBeenPerformed = true;
+                }, error => {
+                    this.errorMessage = "Sorry, something went wrong. Please try again or come back later.";
+                });
+        } else {
+            this.errorMessage = "Sorry, we can't perform this search because the selected measure doesn't have any trade codes.";
+        }
     }
 
     buildInvalidSearchErrorMessage() {
@@ -170,7 +174,7 @@ export class InstallerSearchComponent implements OnInit {
      the second half of the postcode is always 3 characters long.
      We can thus easily find the split between sections and add the whitespace character there.*/
     addWhitespaceToPostcodeIfNone(postcode: String) {
-        if (postcode.length >= 5 && postcode.charAt(postcode.length - 4) !== ' ') {
+        if (postcode && postcode.length >= 5 && postcode.charAt(postcode.length - 4) !== ' ') {
             return postcode.slice(0, -3) + ' ' + postcode.slice(-3);
         } else {
             return postcode;
