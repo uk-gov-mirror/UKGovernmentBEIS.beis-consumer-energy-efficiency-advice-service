@@ -11,10 +11,12 @@ public abstract class PdfRecommendationParams {
 
     private List<SelectedEnergyEfficiencyRecommendation> recommendations;
     private Integer tenureType;
+    private String postcode;
 
-    public PdfRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType) {
+    public PdfRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType, String postcode) {
         this.recommendations = recommendations;
         this.tenureType = tenureType;
+        this.postcode = postcode;
     }
 
     public abstract String getTitle();
@@ -29,4 +31,6 @@ public abstract class PdfRecommendationParams {
     public boolean getShowMonthlySavings() {
         return tenureType != OWNER_TENURE_TYPE;
     }
+
+    public String getPostcode() { return postcode; }
 }

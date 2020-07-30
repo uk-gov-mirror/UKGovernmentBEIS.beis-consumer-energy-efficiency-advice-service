@@ -43,11 +43,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
+import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.RecommendationTagsByJsonName;
 
 /**
  * Allows downloading or emailing your energy saving plan
@@ -119,7 +121,7 @@ public class EnergySavingPlanController {
 
         PlanInfo planInfo = request.getPlanInfo();
         PdfUserRecommendationParams pdfUserRecommendationParams =
-                new PdfUserRecommendationParams(planInfo.getRecommendations(), planInfo.getTenureType());
+                new PdfUserRecommendationParams(planInfo.getRecommendations(), planInfo.getTenureType(), planInfo.postcode);
 
         writePlanToOutputStream(pdfUserRecommendationParams, pdfBuffer, httpRequest, response, locale);
 
@@ -155,8 +157,8 @@ public class EnergySavingPlanController {
             throws Exception {
 
         PdfRecommendationParams pdfRecommendationParams = forLandlord
-                ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType)
-                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType);
+                ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode)
+                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode);
 
         downloadPlan(pdfRecommendationParams, httpRequest, response, locale);
     }
@@ -378,6 +380,8 @@ public class EnergySavingPlanController {
         List<SelectedEnergyEfficiencyRecommendation> recommendations;
         @NotNull
         Integer tenureType;
+        @NotNull
+        String postcode;
     }
 
     /**
@@ -440,6 +444,7 @@ public class EnergySavingPlanController {
         List<RecommendationStep> steps;
         String recommendationID;
         String measureCode;
+        List<String> trustMarkTradeCodes;
 
         /**
          * Keep this in sync with energy-efficiency-recommendation.ts `fromMeasure`
@@ -451,6 +456,8 @@ public class EnergySavingPlanController {
                 NationalGrantsService nationalGrantsService) {
 
             Map<String, Object> acfFields = (Map<String, Object>) measure.get("acf");
+
+            int tags = getTagsForMeasure((List<String>) acfFields.get("tags"));
 
             List<RecommendationStep> grantSteps;
             if (isNullOrEmpty(recommendation.nationalGrantForMeasureId)) {
@@ -468,7 +475,12 @@ public class EnergySavingPlanController {
 
             List<RecommendationStep> steps = ListUtils.union(measureSteps, grantSteps);
 
+            List<String> tradeCodes = getAcfList(acfFields.get("trustmark_trade_codes")).stream()
+                    .map(ttc -> (String) ttc.get("trade_code"))
+                    .collect(toList());
+
             return EnergyEfficiencyRecommendation.builder()
+                    .tags(tags)
                     .investmentPounds(recommendation.investmentPounds)
                     .minimumCostSavingPoundsPerYear(recommendation.minimumCostSavingPoundsPerYear)
                     .maximumCostSavingPoundsPerYear(recommendation.maximumCostSavingPoundsPerYear)
@@ -485,6 +497,7 @@ public class EnergySavingPlanController {
                     .steps(steps)
                     .recommendationID(recommendation.measureSlug)
                     .measureCode((String) acfFields.get("measure_code"))
+                    .trustMarkTradeCodes(tradeCodes)
                     .build();
         }
 
@@ -513,6 +526,7 @@ public class EnergySavingPlanController {
                             .map(step -> RecommendationStep.fromGrant(step, userSiteBaseUrl))
                             .collect(toList()))
                     .recommendationID(grant.getSlug())
+                    .trustMarkTradeCodes(emptyList())
                     .build();
         }
 
@@ -530,6 +544,13 @@ public class EnergySavingPlanController {
                     : maximumCostSavingPoundsPerYear;
             return roundAndFormatCostValueRange(minimumCostSaving, maximumCostSaving);
         }
+    }
+
+    private static Integer getTagsForMeasure(List<String> measureTags) {
+        return measureTags.stream()
+                .map(RecommendationTagsByJsonName::get)
+                .filter(Objects::nonNull)
+                .reduce(0, (acc, val) -> acc | val.getValue(), (x, y) -> x | y);
     }
 
     /**

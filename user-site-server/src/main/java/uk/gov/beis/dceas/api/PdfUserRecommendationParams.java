@@ -6,8 +6,8 @@ import java.util.List;
 
 public class PdfUserRecommendationParams extends PdfRecommendationParams {
 
-    public PdfUserRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType) {
-        super(recommendations, tenureType);
+    public PdfUserRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType, String postcode) {
+        super(recommendations, tenureType, postcode);
     }
 
     @Override
