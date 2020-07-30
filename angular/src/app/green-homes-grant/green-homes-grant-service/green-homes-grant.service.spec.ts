@@ -48,6 +48,15 @@ describe('GreenHomesGrantService', () => {
                 });
         }));
 
+        it('should return ineligible for new builds', async(() => {
+            responseData.newBuild = true;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.Ineligible);
+                });
+        }));
+
         it('should return eligible for English addresses', async(() => {
             responseData.country = Country.England;
 

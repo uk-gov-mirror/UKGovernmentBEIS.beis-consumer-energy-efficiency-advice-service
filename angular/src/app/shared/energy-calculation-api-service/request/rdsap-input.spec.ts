@@ -41,6 +41,7 @@ describe('RdsapInput', () => {
             shouldIncludeOptionalPropertyQuestions: false,
             country: Country.England,
             postcode: 'sw1h0et',
+            newBuild: false,
             epc: null,
             localAuthorityCode: 'E09000033',
             confirmEpc: true,

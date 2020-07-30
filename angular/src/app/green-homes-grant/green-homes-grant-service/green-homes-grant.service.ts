@@ -26,7 +26,8 @@ export class GreenHomesGrantService {
     }
 
     private calculateEligibility(): Observable<GreenHomesGrantEligibility> {
-        if (this.cachedResponseData.country !== Country.England) {
+        if (this.cachedResponseData.country !== Country.England
+            || this.cachedResponseData.newBuild) {
             return Observable.of(GreenHomesGrantEligibility.Ineligible);
         }
         // TODO SEA-36: Add means tested eligibility requirement
