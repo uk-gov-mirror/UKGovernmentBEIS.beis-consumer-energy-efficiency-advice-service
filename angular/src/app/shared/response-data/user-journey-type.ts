@@ -17,7 +17,7 @@ export enum UserJourneyType {
     Boiler,
     Grants,
     GrantEligibility,
-    GreenHomesGrant
+    GreenHomesGrantEligibility
 }
 
 /**
