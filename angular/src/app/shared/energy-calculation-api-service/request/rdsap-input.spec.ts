@@ -23,6 +23,7 @@ import {LettingDomesticPropertyStage} from '../../../questionnaire/questions/mee
 import {AgriculturalTenancyType} from '../../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {BuiltFormAnswer} from "../../../questionnaire/questions/built-form-question/built-form-answer";
 import {Epc} from "../../postcode-epc-service/model/epc";
+import {Country} from "../../../questionnaire/questions/postcode-epc-question/country";
 
 describe('RdsapInput', () => {
 
@@ -41,6 +42,7 @@ describe('RdsapInput', () => {
             postcode: 'sw1h0et',
             epc: null,
             localAuthorityCode: 'E09000033',
+            country: Country.England,
             confirmEpc: true,
             tenureType: TenureType.OwnerOccupancy,
             homeType: HomeType.FlatDuplexOrMaisonette,
