@@ -5,6 +5,12 @@ import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendat
 import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {
+    EnergyEfficiencyRecommendationTag,
+    getTagClassName,
+    getTagDescription,
+    getActiveTags
+} from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Component({
     selector: 'app-recommendation-with-steps-card',
@@ -12,6 +18,11 @@ import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics
     styleUrls: ['./recommendation-with-steps-card.component.scss']
 })
 export class RecommendationWithStepsCardComponent {
+
+    displayableTags: EnergyEfficiencyRecommendationTag[] = [
+        EnergyEfficiencyRecommendationTag.GHGPrimary,
+        EnergyEfficiencyRecommendationTag.GHGSecondary
+    ];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
 
@@ -33,5 +44,22 @@ export class RecommendationWithStepsCardComponent {
 
     sendEventToAnalytics(eventName: string, eventLabel?: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'plan-page', eventLabel);
+    }
+
+    getTagsToDisplay() {
+        return getActiveTags(this.recommendation.tags).filter(t => this.displayableTags.includes(t));
+    }
+
+    getTagClassName(tag: EnergyEfficiencyRecommendationTag) {
+        return getTagClassName(tag);
+    }
+
+    getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
+        return getTagDescription(tag);
+    }
+
+    hasGHGTag() {
+        const tags = getActiveTags(this.recommendation.tags);
+        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
     }
 }

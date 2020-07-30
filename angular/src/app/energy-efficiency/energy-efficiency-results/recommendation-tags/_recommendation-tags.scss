@@ -39,6 +39,14 @@
   .tag-funding-available {
     background-color: #E50046;
   }
+
+  .tag-ghg-primary {
+    background-color: $green;
+  }
+
+  .tag-ghg-secondary {
+    background-color: $amber;
+  }
 }
 
 // Breakpoint specific styling

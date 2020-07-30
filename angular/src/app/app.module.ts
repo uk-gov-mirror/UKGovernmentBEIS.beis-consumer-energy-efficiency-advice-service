@@ -32,6 +32,7 @@ import {GlobalErrorHandler} from "./shared/global-error-handler";
 import {SearchPageModule} from "./search-page/search-page.module";
 import {ECOSelfReferralModule} from "./eco-self-referral/eco-self-referral.module";
 import {PrivacyPageModule} from "./privacy-page/privacy-page.module";
+import {GreenHomesGrantModule} from "./green-homes-grant/green-homes-grant.module";
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import {PrivacyPageModule} from "./privacy-page/privacy-page.module";
         HomePageModule,
         GrantsModule.forRoot(),
         GrantEligibilityModule.forRoot(),
+        GreenHomesGrantModule.forRoot(),
         ECOSelfReferralModule.forRoot(),
         PageModule,
         MeasurePageModule,

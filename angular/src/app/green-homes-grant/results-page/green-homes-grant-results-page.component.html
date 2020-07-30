@@ -1,0 +1,16 @@
+<app-spinner-and-error-container [loading]="isLoading" [error]="isError" [errorMessage]="errorMessage"></app-spinner-and-error-container>
+<div class="green-homes-grant-result-page" *ngIf="!isLoading && !isError">
+    <div class="page-row page-heading">
+        <div class="page-row-content" [ngSwitch]="status">
+            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantEligibility.Eligible">
+                You may be eligible for the partial Green Homes Grant.
+            </h1>
+            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantEligibility.EligibleMeansTested">
+                You may be eligible for the full Green Homes Grant.
+            </h1>
+            <h1 class="heading-text" *ngSwitchCase="GreenHomesGrantEligibility.Ineligible">
+                You are not eligible for the Green Homes Grant.
+            </h1>
+        </div>
+    </div>
+</div>
