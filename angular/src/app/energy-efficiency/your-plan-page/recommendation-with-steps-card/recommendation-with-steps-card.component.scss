@@ -37,6 +37,16 @@
         }
       }
     }
+
+    .find-installers {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+
+      .installers {
+        display: none;
+      }
+    }
   }
 }
 
@@ -137,10 +147,30 @@
         }
       }
 
+      .find-installers {
+        padding-left: 42px;
+        flex-direction: row;
+
+        .installers {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+
+          .installers-list {
+            display: flex;
+            padding-left: 0;
+            font-family: $font-family-light;
+
+            .installer {
+              margin-left: 25px;
+            }
+          }
+        }
+      }
+
       .more-info-link {
         @include is-grid-item($number-of-items: 4, $margin: 10px);
         height: 60px;
-        align-self: flex-end;
         margin-right: 30px;
       }
     }    
