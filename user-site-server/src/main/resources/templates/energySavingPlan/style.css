@@ -4,8 +4,6 @@
         content: "Page " counter(page) " of " counter(pages);
         font-family: Gotham, Arial, sans-serif;
     }
-
-    margin: ;
 }
 
 body {
@@ -76,6 +74,23 @@ h1 img {
 
 .eligibility-text {
     font-weight: bold;
+}
+
+.quote-input {
+    width: 33%;
+    border: 2px solid #1A485F;
+    padding: 0.25em 1em 1em;
+    margin: 1em 0;
+}
+
+.quote-input label {
+    text-transform: uppercase;
+    font-size: small;
+}
+
+.quote-input input {
+    width: 100%;
+    font-size: x-large;
 }
 
 .ghg-context {
