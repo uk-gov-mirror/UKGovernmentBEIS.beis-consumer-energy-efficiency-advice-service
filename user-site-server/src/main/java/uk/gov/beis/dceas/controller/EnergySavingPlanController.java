@@ -25,6 +25,8 @@ import uk.gov.beis.dceas.api.NationalGrant;
 import uk.gov.beis.dceas.api.PdfLandlordRecommendationParams;
 import uk.gov.beis.dceas.api.PdfRecommendationParams;
 import uk.gov.beis.dceas.api.PdfUserRecommendationParams;
+import uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag;
+import uk.gov.beis.dceas.service.InstallerSearchService;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
 
@@ -44,6 +46,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
@@ -68,6 +71,7 @@ public class EnergySavingPlanController {
     private final NationalGrantsService nationalGrantsService;
     private final String publicRootUrl;
     private final JavaMailSender emailSender;
+    private final InstallerSearchService installerSearchService;
 
     public EnergySavingPlanController(
             ServletContext servletContext,
@@ -77,7 +81,9 @@ public class EnergySavingPlanController {
             NationalGrantsService nationalGrantsService,
             @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
                     String publicRootUrl,
-            JavaMailSender emailSender) {
+            JavaMailSender emailSender,
+            InstallerSearchService installerSearchService
+    ) {
         this.servletContext = servletContext;
         this.applicationContext = applicationContext;
         this.templateEngine = templateEngine;
@@ -85,6 +91,7 @@ public class EnergySavingPlanController {
         this.nationalGrantsService = nationalGrantsService;
         this.publicRootUrl = publicRootUrl;
         this.emailSender = emailSender;
+        this.installerSearchService = installerSearchService;
     }
 
     /**
@@ -223,6 +230,9 @@ public class EnergySavingPlanController {
         renderer.createPDF(out);
     }
 
+    private boolean isGhgEligible(EnergyEfficiencyRecommendation recommendation) {
+        return (recommendation.getTags() & (EnergyEfficiencyRecommendationTag.GHG_PRIMARY.getValue() | EnergyEfficiencyRecommendationTag.GHG_SECONDARY.getValue())) > 0;
+    }
     /**
      * Keep this in sync with recommendations.service.ts `getRecommendationsContent`
      */
@@ -259,6 +269,7 @@ public class EnergySavingPlanController {
         templateContext.setVariable("subheading", pdfRecommendationParams.getSubheading());
 
         templateContext.setVariable("recommendations", recommendations);
+        templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
 
         Double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> r.investmentPounds).sum();
@@ -284,6 +295,33 @@ public class EnergySavingPlanController {
         String totalSavingsDisplay = roundAndFormatCostValueRange(minimumSavings, maximumSavings);
 
         templateContext.setVariable("totalSavingsDisplay", totalSavingsDisplay);
+    }
+
+    private Map<String, List<InstallerSearchService.TrustMarkInstaller>> findGhgInstallers(
+            String postcode,
+            List<EnergyEfficiencyRecommendation> recommendations
+    ) {
+        return recommendations.stream()
+                .collect(Collectors.toMap(
+                        EnergyEfficiencyRecommendation::getRecommendationID,
+                        recommendation -> {
+                            if (isGhgEligible(recommendation)) {
+                                try {
+                                    return installerSearchService.findInstallers(
+                                            postcode,
+                                            recommendation.getTrustMarkTradeCodes().toArray(new String[0]),
+                                            1)
+                                            .getData()
+                                            .stream()
+                                            .limit(3)
+                                            .collect(toList());
+                                } catch (Exception e) {
+                                    return emptyList();
+                                }
+                            } else {
+                                return emptyList();
+                            }
+                        }));
     }
 
     private static String urlEncode(String val) {

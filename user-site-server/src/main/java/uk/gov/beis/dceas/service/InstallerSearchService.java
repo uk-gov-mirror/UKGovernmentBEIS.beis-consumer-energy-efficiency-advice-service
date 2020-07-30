@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -135,8 +136,9 @@ public class InstallerSearchService {
         Integer trustMarkLicenseNumber;
         String webAddress;
         String registeredName;
-        String phoneNumber = "abc";
-        String email = "abc";
+        // TODO SEA-??: Remove default values when the API actually returns this
+        String phoneNumber = "020 7925 0918";
+        String email = "person@installer.com";
     }
 
     @lombok.Value
@@ -152,6 +154,6 @@ public class InstallerSearchService {
     public static class TrustMarkSearchResponse {
         TrustMarkPaginator paginator;
         String errorMessage;
-        TrustMarkInstaller[] data;
+        List<TrustMarkInstaller> data;
     }
 }
