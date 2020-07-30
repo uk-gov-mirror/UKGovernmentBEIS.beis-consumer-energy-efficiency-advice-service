@@ -35,7 +35,6 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('ISS', this.installerSearchService.fetchInstallerDetails);
         this.pageTitle.set('Find an installer');
         this.formPostcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
