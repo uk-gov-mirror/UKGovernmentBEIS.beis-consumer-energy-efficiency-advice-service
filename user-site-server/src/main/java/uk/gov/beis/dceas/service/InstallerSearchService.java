@@ -67,7 +67,7 @@ public class InstallerSearchService {
             // We need to wrap in new URI() rather than using the string to prevent double encoding of spaces in the
             // postcode. Without this, postcode parameters come out as (e.g.) NW5%25201TL instead of NW5%201TL.
             URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
-                    .queryParam("postcode", postcode)
+                    .queryParam("postcode", formatPostcode(postcode))
                     .queryParam("tradecodes", tradecodes)
                     .queryParam("pageNumber", page)
                     .queryParam("pageSize", numberOfItemsPerPage)
@@ -83,6 +83,11 @@ public class InstallerSearchService {
             log.error(e.getMessage(), e);
             throw e;
         }
+    }
+
+    private String formatPostcode(String postcode) {
+        String stripped = postcode.replace(" ", "");
+        return stripped.substring(0, stripped.length() - 3) + " " + stripped.substring(stripped.length()-3);
     }
 
     private CacheLoader<String, String> getAccessToken() {
