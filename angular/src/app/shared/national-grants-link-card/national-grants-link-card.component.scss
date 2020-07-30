@@ -1,0 +1,11 @@
+@import "../local-grant-card/local-grant-card.component";
+
+.grant-card {
+  cursor: pointer;
+  .extra-info-container {
+    button.find-out-more-link {
+      cursor: pointer;
+      border: none;
+    }
+  }
+}

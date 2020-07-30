@@ -16,7 +16,7 @@
         <div class="find-out-more-container" *ngIf="grant.websiteUrl || grant.phoneNumber">
             <div class="find-out-more-link" *ngIf="grant.websiteUrl">
                 Find out more
-                <div class="new-window-icon" [inlineSVG]="'controls/new-window.svg'"></div>
+                <div class="icon" [inlineSVG]="'controls/new-window.svg'"></div>
             </div>
             <ng-container *ngIf="!grant.websiteUrl && grant.phoneNumber">
                 <div class="find-out-more-text">Find out more</div>
