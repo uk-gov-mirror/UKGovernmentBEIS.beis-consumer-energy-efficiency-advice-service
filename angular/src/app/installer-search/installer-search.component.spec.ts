@@ -8,7 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {MeasureContent} from "../shared/energy-saving-measure-content-service/measure-content";
 import {SpinnerAndErrorContainerComponent} from '../shared/spinner-and-error-container/spinner-and-error-container.component';
-import {InstallerSearchService} from "./installer-search-service/installer-search.service";
+import {InstallerSearchService} from "../shared/installer-search-service/installer-search.service";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
 import {CeilPipe} from "../shared/ceil/ceil.pipe";
 import {InstallerCardComponent} from "./installer-card/installer-card.component";

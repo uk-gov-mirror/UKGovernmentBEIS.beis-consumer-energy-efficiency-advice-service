@@ -2,10 +2,10 @@ import {Component, Directive, OnInit, HostListener} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ResponseData} from "../shared/response-data/response-data";
 import {EnergySavingMeasureContentService} from "../shared/energy-saving-measure-content-service/energy-saving-measure-content.service";
-import {InstallerSearchService} from "./installer-search-service/installer-search.service";
+import {InstallerSearchService} from "../shared/installer-search-service/installer-search.service";
 import sortBy from 'lodash-es/sortBy';
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
-import {Installer, InstallerPaginator} from "./installer-search-service/installer-response";
+import {Installer, InstallerPaginator} from "../shared/installer-search-service/installer-response";
 import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
 
 @Component({
@@ -35,6 +35,7 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('ISS', this.installerSearchService.fetchInstallerDetails);
         this.pageTitle.set('Find an installer');
         this.formPostcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {

@@ -1,7 +1,7 @@
 import {async, getTestBed, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HttpRequest} from '@angular/common/http';
-import {WordpressApiService} from '../../shared//wordpress-api-service/wordpress-api-service';
+import {WordpressApiService} from '../wordpress-api-service/wordpress-api-service';
 import {InstallerSearchService} from "./installer-search.service";
 import {Location} from '@angular/common';
 import {InstallerResponse} from './installer-response';
