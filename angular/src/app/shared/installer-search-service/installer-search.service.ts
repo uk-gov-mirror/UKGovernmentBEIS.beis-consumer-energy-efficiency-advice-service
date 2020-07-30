@@ -16,7 +16,7 @@ export class InstallerSearchService {
             return;
         }
         const root = InstallerSearchService.INSTALLER_API_ROOT;
-        const postcodeComponent = encodeURIComponent(postcode);
+        const postcodeComponent = encodeURIComponent(this.formatPostcode(postcode));
         const url = this.location.prepareExternalUrl(
             `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
@@ -30,6 +30,12 @@ export class InstallerSearchService {
                 email: 'person@installer.co.uk',
             })),
         }));
+    }
+
+    // The second half of a postcode always consists of three characters
+    private formatPostcode(postcode: string) {
+        const stripped = postcode.replace(' ', '');
+        return `${stripped.slice(0, -3)} ${stripped.slice(-3)}`;
     }
 }
 
