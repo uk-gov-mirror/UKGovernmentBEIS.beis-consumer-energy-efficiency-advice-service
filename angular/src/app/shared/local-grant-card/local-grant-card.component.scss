@@ -28,7 +28,7 @@
         &:after {
           border-left-color: $dark-blue;
         }
-        .new-window-icon {
+        .icon {
           fill: $light-blue;
         }
       }
@@ -76,10 +76,16 @@
       box-sizing: border-box;
       text-decoration: none;
 
-      .new-window-icon {
+      .icon {
         width: 14px;
         padding-left: 12px;
         fill: $dark-medium-blue;
+      }
+
+      &:hover, &:focus, &:active {
+        .icon {
+          fill: $light-blue;
+        }
       }
     }
   }
@@ -98,6 +104,17 @@
   &.default-theme {
     .heading-container {
       background-color: $light-blue;
+    }
+
+    .extra-info-container {
+      background-color: white;
+    }
+  }
+
+  &.darkblue-theme {
+    .heading-container {
+      background-color: $dark-blue;
+      color: white;
     }
 
     .extra-info-container {

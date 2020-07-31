@@ -9,9 +9,10 @@
             <div class="postcode-input">
                     <div class="enter-postcode-text">
                         <h2>Enter your postcode for localised grants</h2>
-                        <p>Telling us your postcode and answering a few questions
-                            on your circumstances will allow us to show you relevant national and local grants
-                            that you might be eligible for.</p>
+                        <p>
+                            Telling us your postcode will allow us to show you relevant local grants
+                            that you might be eligible for.
+                        </p>
                     </div>
                 <div class="enter-postcode-form">
                     <app-postcode-lookup class="postcode-epc" (postcodeSelected)="onPostcodeSelected($event)"></app-postcode-lookup>
@@ -30,11 +31,21 @@
                                             *ngFor="let grant of localAuthority.grants"
                                             [grant]="grant">
                             </app-local-grant-card>
+                            <app-national-grants-link-card class="grant-card"
+                                                           (click)="scrollTo(nationalGrants)"
+                                                            [hasLocalGrants]="true">
+                            </app-national-grants-link-card>
                         </div>
                     </div>
                     <div class="no-local-grants" *ngIf="localAuthority.grants.length === 0">
                         <div class="local-authority-name">You live in {{localAuthority.name}}. We can't find any grants available
                             from your local authority.
+                        </div>
+                        <div class="grant-cards">
+                            <app-national-grants-link-card class="grant-card"
+                                                           (click)="scrollTo(nationalGrants)"
+                                                           [hasLocalGrants]="false">
+                            </app-national-grants-link-card>
                         </div>
                     </div>
                     <p class="local-authority-update-message">
@@ -46,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="national-grants page-row">
+    <div class="national-grants page-row" #nationalGrants>
         <div class="page-row-content">
             <h2 class="grants-row">
                 <span class="section-title">Green Homes Grant</span>

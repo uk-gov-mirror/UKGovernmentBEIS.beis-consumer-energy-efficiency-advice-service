@@ -32,6 +32,7 @@ import {LargeVideoCardComponent} from './large-video-card/large-video-card.compo
 import {SafePipe} from './safe/safe.pipe';
 import {CeilPipe} from './ceil/ceil.pipe';
 import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.component';
+import {NationalGrantsLinkCardComponent} from './national-grants-link-card/national-grants-link-card.component';
 import {RecommendationsService} from './recommendations-service/recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
@@ -70,6 +71,7 @@ import {PageTitleService} from "./page-title-service/page-title.service";
         SafePipe,
         CeilPipe,
         LocalGrantCardComponent,
+        NationalGrantsLinkCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
         LatestNewsSectionComponent,
@@ -95,6 +97,7 @@ import {PageTitleService} from "./page-title-service/page-title.service";
         SafePipe,
         CeilPipe,
         LocalGrantCardComponent,
+        NationalGrantsLinkCardComponent,
         StickyRowWrapperComponent,
         DataCardComponent,
         LatestNewsSectionComponent,

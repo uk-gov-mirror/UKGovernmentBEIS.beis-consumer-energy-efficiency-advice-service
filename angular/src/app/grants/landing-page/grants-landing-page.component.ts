@@ -52,4 +52,8 @@ export class GrantsLandingPageComponent implements OnInit {
                     this.isError = true;
                 });
     }
+
+    scrollTo(el: HTMLElement) {
+        el.scrollIntoView({ behavior: 'smooth' });
+    }
 }
