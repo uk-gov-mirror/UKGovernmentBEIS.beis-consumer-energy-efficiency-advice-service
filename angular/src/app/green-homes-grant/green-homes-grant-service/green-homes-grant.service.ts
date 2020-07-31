@@ -30,7 +30,9 @@ export class GreenHomesGrantService {
             || this.cachedResponseData.newBuild) {
             return Observable.of(GreenHomesGrantEligibility.Ineligible);
         }
-        // TODO SEA-36: Add means tested eligibility requirement
+        if (this.cachedResponseData.ownsHome) {
+            return Observable.of(GreenHomesGrantEligibility.EligibleMeansTested);
+        }
         return Observable.of(GreenHomesGrantEligibility.Eligible);
     }
 }

@@ -127,7 +127,8 @@ export class ResponseData {
     public floorLevels: FloorLevel[];
     // Set by HotWaterCylinderQuestionComponent, sent to BRE energy-calculation
     public hotWaterCylinder: boolean;
-
+    // Set by OwnHomeQuestionComponent, used for GHG eligibility
+    public ownsHome: boolean;
     // Set by PensionGuaranteeCreditQuestionComponent, used by grants
     public receivePensionGuaranteeCredit: boolean;
     // Set by IncomeRelatedBenefitsQuestionComponent, used by grants

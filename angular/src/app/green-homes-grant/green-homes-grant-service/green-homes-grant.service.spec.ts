@@ -15,6 +15,7 @@ describe('GreenHomesGrantService', () => {
 
     beforeEach(async(() => {
         responseData = new ResponseData();
+        responseData.country = Country.England;
 
         TestBed.configureTestingModule({
             providers: [GreenHomesGrantService,
@@ -57,9 +58,16 @@ describe('GreenHomesGrantService', () => {
                 });
         }));
 
-        it('should return eligible for English addresses', async(() => {
-            responseData.country = Country.England;
+        it('should return eligible means-tested if they own their home', async(() => {
+            responseData.ownsHome = true;
 
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.EligibleMeansTested);
+                });
+        }));
+
+        it('should return eligible for English addresses', async(() => {
             service.getEligibility().toPromise()
                 .then(eligibility => {
                     expect(eligibility).toBe(GreenHomesGrantEligibility.Eligible);
