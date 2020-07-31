@@ -39,7 +39,6 @@ import {SocietalBenefitsQuestionMetadata} from "./benefits-questions/societal-be
 import {DefenseRelatedBenefitsQuestionMetadata} from "./benefits-questions/defense-related-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "./benefits-questions/child-benefits-question-metadata";
 import {ContactDetailsQuestionMetadata} from "./contact-details-question/contact-details-question-metadata";
-import {WallType} from "./construction-question/construction-types";
 import {HasLoftQuestionMetadata} from "./has-loft-question/has-loft-question-metadata";
 import {LoftInsulationQuestionMetadata} from "./loft-insulation-question/loft-insulation-question-metadata";
 import {LoftClutterQuestionMetadata} from "./loft-clutter-question/loft-clutter-question-metadata";
@@ -47,7 +46,9 @@ import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
 import {GreenHomesGrantPostcodeEpcQuestionMetadata} from "./green-homes-grant/green-homes-grant-postcode-epc-question/green-homes-grant-postcode-epc-question-metadata";
-import {EnglandOnly} from "./green-homes-grant/england-only";
+import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
+import {englandOnly, nonNewBuildOnly} from "./green-homes-grant/only-applicable-if";
+import {QuestionMetadata} from "../base-question/question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -130,15 +131,25 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new IncomeQuestionMetadata()
 ];
 
-export const GREEN_HOMES_GRANT_QUESTIONS = [
+const GHG_NON_NEW_BUILD_QUESTIONS: QuestionMetadata[] = [
+    new PensionGuaranteeCreditQuestionMetadata(),
+    new IncomeRelatedBenefitsQuestionMetadata(),
+    new SocietalBenefitsQuestionMetadata(),
+    new DefenseRelatedBenefitsQuestionMetadata(),
+    new ChildBenefitsQuestionMetadata(),
+    new OccupantsQuestionMetadata(),
+    new IncomeQuestionMetadata()
+].map(nonNewBuildOnly);
+
+const GHG_ENGLAND_ONLY_QUESTIONS: QuestionMetadata[] = [
+    new HomeAgeQuestionMetadata(),
+    new NewBuildQuestionMetadata(),
+    ...GHG_NON_NEW_BUILD_QUESTIONS
+].map(englandOnly);
+
+export const GREEN_HOMES_GRANT_QUESTIONS: QuestionMetadata[] = [
     new GreenHomesGrantPostcodeEpcQuestionMetadata(),
-    new EnglandOnly(new PensionGuaranteeCreditQuestionMetadata()),
-    new EnglandOnly(new IncomeRelatedBenefitsQuestionMetadata()),
-    new EnglandOnly(new SocietalBenefitsQuestionMetadata()),
-    new EnglandOnly(new DefenseRelatedBenefitsQuestionMetadata()),
-    new EnglandOnly(new ChildBenefitsQuestionMetadata()),
-    new EnglandOnly(new OccupantsQuestionMetadata()),
-    new EnglandOnly(new IncomeQuestionMetadata())
+    ...GHG_ENGLAND_ONLY_QUESTIONS
 ];
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [

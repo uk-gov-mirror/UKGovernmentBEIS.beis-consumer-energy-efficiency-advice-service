@@ -41,7 +41,7 @@ export class ResponseData {
 
     // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public postcode: string;
-    // Set by PostcodeEpcQuestionComponent, used to determine GHG eligibility
+    // Set by PostcodeEpcQuestionComponent, used for GHG eligibility
     public country: Country;
     // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public epc: Epc;
@@ -55,6 +55,8 @@ export class ResponseData {
     public homeType: HomeType;
     // Set by HomeAgeQuestionComponent, sent to BRE energy-calculation
     public homeAge: HomeAge;
+    // Set by NewBuildQuestionComponent, used for GHG eligibility
+    public newBuild: boolean;
     // Set by FlatExposedWallQuestionComponent, sent to BRE energy-calculation
     public numberOfExposedWallsInFlat: FlatExposedWall;
     // Set by BuiltFormQuestionComponent, sent to BRE energy-calculation

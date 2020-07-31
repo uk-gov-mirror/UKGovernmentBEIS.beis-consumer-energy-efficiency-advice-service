@@ -51,6 +51,7 @@ import {LoftClutterQuestionComponent} from "./loft-clutter-question/loft-clutter
 import {LoftInfestationQuestionComponent} from "./loft-infestation-question/loft-infestation-question.component";
 import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/loft-water-damage-question.component";
 import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
+import {NewBuildQuestionComponent} from "./new-build-question/new-build-question.component";
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
+        NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
@@ -123,6 +125,7 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
+        NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,
@@ -178,6 +181,7 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
+        NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         TenureTypeQuestionComponent,

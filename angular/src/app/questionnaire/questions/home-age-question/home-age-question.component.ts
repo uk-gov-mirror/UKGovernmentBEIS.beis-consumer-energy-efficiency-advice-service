@@ -1,7 +1,6 @@
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {HomeAge} from './home-age';
-import {Component, HostListener,  OnInit, Renderer2} from '@angular/core';
-import {ResponseData} from '../../../shared/response-data/response-data';
+import {Component,  OnInit} from '@angular/core';
 
 interface DropdownOption<T> {
     name: string;
