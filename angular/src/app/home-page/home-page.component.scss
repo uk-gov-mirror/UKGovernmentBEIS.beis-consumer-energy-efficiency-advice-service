@@ -67,6 +67,7 @@ $arrow-height: 48px;
       .heading {
         padding-right: $heading-padding-right;
         padding-bottom: $heading-padding-bottom;
+        margin: 0;
       }
 
       .description {
@@ -148,6 +149,19 @@ $arrow-height: 48px;
           @include large-link-font();
         }
       }
+    }
+  }
+
+  .green-homes-grant-section {
+    padding: 32px 0;
+    background-color: $lighter-grey;
+    .heading {
+      color: $dark-blue;
+      @include page-subheading-font();
+    }
+    .summary {
+      color: $dark-blue;
+      @include page-summary-font();
     }
   }
 
