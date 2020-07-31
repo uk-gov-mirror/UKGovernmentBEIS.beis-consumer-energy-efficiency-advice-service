@@ -3,6 +3,7 @@
 @import "styles/mixins/_buttons";
 @import "styles/mixins/_layout";
 @import "styles/var/colors";
+@import "./recommendation-tags/_recommendation-tags";
 
 // Component specific variables
 $grant-cards-per-row: 4;
@@ -62,15 +63,24 @@ $grant-card-margin: 24px;
     }
   }
 
-  .ghg-context.page-row {
-    font-weight: bold;
-    color: white;
-    background-color: $dark-green;
-    box-sizing: border-box;
-    padding: 0 20px;
+  .ghg-context-card {
+    background-color: white;
+    border: 5px solid $dark-green;
+    padding: 10px 20px;
+
+    .header {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .tag {
+      @include isTag($background-color: $green);
+      margin: 0 5px;
+      padding: 0 28px;
+    }
 
     a {
-      color: white;
+      color: $dark-green;
     }
   }
 }
