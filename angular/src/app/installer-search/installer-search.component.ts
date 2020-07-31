@@ -121,7 +121,7 @@ export class InstallerSearchComponent implements OnInit {
                     this.errorMessage = "Sorry, something went wrong. Please try again or come back later.";
                 });
         } else {
-            this.errorMessage = "Sorry, we can't perform this search because the selected measure doesn't have any trade codes.";
+            this.errorMessage = "Sorry, that measure isn't valid. Please try another.";
         }
     }
 
