@@ -19,6 +19,7 @@ export class PostcodeLookupComponent implements OnInit {
     error: boolean = false;
     errorMessage: string;
     country: Country;
+    Country = Country;
 
     /**
      * When the postcode has been entered by the user and validated this event will be fired.
