@@ -1,0 +1,24 @@
+@import "styles/var/colors";
+@import "styles/mixins/recommendation-tag";
+
+@mixin isGhgInfoBox {
+  background-color: white;
+  border: 5px solid $dark-green;
+  padding: 10px 20px;
+  line-height: 28px;
+
+  .header {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .tag {
+    @include isTag($background-color: $green);
+    margin: 0 5px;
+    padding: 0 28px;
+  }
+
+  a {
+    color: $dark-green;
+  }
+}

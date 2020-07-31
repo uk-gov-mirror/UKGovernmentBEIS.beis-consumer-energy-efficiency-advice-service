@@ -1,32 +1,8 @@
 @import "styles/var/colors";
 @import "styles/mixins/breakpoints";
 @import "styles/mixins/layout";
-@import "styles/mixins/_font";
-
-@mixin isTag($background-color) {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-family: $font-family;
-  color: white;
-  text-transform: uppercase;
-  font-size: 11px;
-  text-align: center;
-  background-color: $background-color;
-  height: 28px;
-
-  @include mobile() {
-    border-radius: 28px;
-  }
-
-  @include tablet() {
-    border-radius: 28px;
-  }
-
-  @include desktop() {
-    border-radius: 20px;
-  }
-}
+@import "styles/mixins/font";
+@import "styles/mixins/recommendation-tag";
 
 .tags {
   display: flex;

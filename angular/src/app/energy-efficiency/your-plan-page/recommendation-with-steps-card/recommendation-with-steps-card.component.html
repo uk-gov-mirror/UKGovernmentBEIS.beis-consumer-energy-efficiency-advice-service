@@ -24,7 +24,7 @@
                         [withSmallFontSize]="true"
             ></app-data-card>
         </div>
-        <a *ngIf="hasGHGTag()" class="more-info-link" [routerLink]="['/installer-search/', recommendation.measureCode, responseData.postcode]">
+        <a *ngIf="hasGHGTag" class="more-info-link" [routerLink]="['/installer-search/', recommendation.measureCode, responseData.postcode]">
             <div class="more-info-description">Get a quote</div>
             <div class="more-info-icon-container">
                 <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>

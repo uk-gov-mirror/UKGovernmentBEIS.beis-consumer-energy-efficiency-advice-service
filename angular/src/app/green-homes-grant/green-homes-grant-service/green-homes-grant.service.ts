@@ -7,6 +7,10 @@ import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
 import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
+import {
+    EnergyEfficiencyRecommendationTag,
+    getActiveTags
+} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Injectable()
 export class GreenHomesGrantService {
@@ -15,6 +19,11 @@ export class GreenHomesGrantService {
     private _eligibility: Observable<GreenHomesGrantEligibility>;
 
     constructor(private responseData: ResponseData) {
+    }
+
+    public hasGHGTag(flagValues: number) {
+        const tags = getActiveTags(flagValues);
+        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
     }
 
     public getEligibility(): Observable<GreenHomesGrantEligibility> {

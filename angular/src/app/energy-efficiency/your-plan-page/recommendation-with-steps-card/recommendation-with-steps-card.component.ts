@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {RoundingService} from "../../../shared/rounding-service/rounding.service";
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
@@ -11,13 +11,14 @@ import {
     getTagDescription,
     getActiveTags
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 @Component({
     selector: 'app-recommendation-with-steps-card',
     templateUrl: './recommendation-with-steps-card.component.html',
     styleUrls: ['./recommendation-with-steps-card.component.scss']
 })
-export class RecommendationWithStepsCardComponent {
+export class RecommendationWithStepsCardComponent implements OnInit {
 
     displayableTags: EnergyEfficiencyRecommendationTag[] = [
         EnergyEfficiencyRecommendationTag.GHGPrimary,
@@ -25,9 +26,15 @@ export class RecommendationWithStepsCardComponent {
     ];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
+    hasGHGTag: boolean = false;
 
     constructor(private responseData: ResponseData,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private greenHomesGrantService: GreenHomesGrantService) {
+    }
+
+    ngOnInit() {
+        this.hasGHGTag = this.greenHomesGrantService.hasGHGTag(this.recommendation.tags);
     }
 
     getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
@@ -56,10 +63,5 @@ export class RecommendationWithStepsCardComponent {
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
         return getTagDescription(tag);
-    }
-
-    hasGHGTag() {
-        const tags = getActiveTags(this.recommendation.tags);
-        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
     }
 }
