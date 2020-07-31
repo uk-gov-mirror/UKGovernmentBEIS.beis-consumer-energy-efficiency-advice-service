@@ -1,6 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 @import "styles/mixins/layout";
+@import "styles/mixins/ghg";
 @import "../energy-efficiency-page-sizes";
 @import "download-pdf-button/download-pdf-button.component";
 
@@ -16,6 +17,15 @@ $desktop-summary-padding: 20px;
 // General styling (shouldn't contain many widths/sizes etc.)
 * {
   box-sizing: border-box;
+}
+
+.ghg-context {
+  background-color: $lighter-grey;
+
+  .page-row-content {
+    @include isGhgInfoBox;
+    margin-top: 65px;
+  }
 }
 
 .your-plan-page {

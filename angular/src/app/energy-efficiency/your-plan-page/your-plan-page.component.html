@@ -27,6 +27,13 @@ If you change anything here, please consider whether anything needs changing the
                 </div>
             </div>
         </div>
+        <div class="ghg-context page-row" *ngIf="shouldShowGHGContext">
+            <div class="page-row-content">
+                <div class="header">Green Homes Grant</div>
+                <p>To continue, print your plan. Contact installers and get quotes for your selected measures.<p>
+                <p>Keep a record of these quotes - you will need it for the voucher application process.</p>
+            </div>
+        </div>
         <div class="recommendations user-recommendations page-row">
             <div class="page-row-content">
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
