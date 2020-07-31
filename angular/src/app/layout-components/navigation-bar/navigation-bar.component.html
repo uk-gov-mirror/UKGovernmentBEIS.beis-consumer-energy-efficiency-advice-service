@@ -2,14 +2,20 @@
     <div class="page-row-content">
         <app-search-bar></app-search-bar>
 
-        <ng-container *ngIf="showYourPlan">
-            <div class="your-plan-container">
-                <a routerLink="/energy-efficiency/your-plan/" class="your-plan" (click)="navLinkClicked('Your Plan')">
-                    <div class="menu-link-text">Your Plan</div>
-                    <div class="more-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-                </a>
-            </div>
-        </ng-container>
+        <div class="highlighted-link-container">
+            <a class="highlighted-link" *ngIf="showYourPlan"
+               routerLink="/energy-efficiency/your-plan/"
+               (click)="navLinkClicked('Your Plan')">
+                <div class="menu-link-text">Your Plan</div>
+                <div class="more-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+            </a>
+            <a class="highlighted-link" *ngIf="!showYourPlan"
+               routerLink="/pages/green-homes-grant/"
+                    (click)="navLinkClicked('Green Homes Grant')">
+                <div class="menu-link-text">Green Homes Grant</div>
+                <div class="more-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
+            </a>
+        </div>
 
         <a routerLink="/" class="menu-item" (click)="navLinkClicked('Home')">Home
         </a>
