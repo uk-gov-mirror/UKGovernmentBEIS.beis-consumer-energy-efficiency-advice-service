@@ -1,10 +1,12 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {RoundingService} from "../../../shared/rounding-service/rounding.service";
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
 import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
 import {ResponseData} from "../../../shared/response-data/response-data";
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {Installer} from "../../../shared/installer-search-service/installer-response";
+import {InstallerSearchService} from "../../../shared/installer-search-service/installer-search.service";
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
@@ -17,7 +19,7 @@ import {
     templateUrl: './recommendation-with-steps-card.component.html',
     styleUrls: ['./recommendation-with-steps-card.component.scss']
 })
-export class RecommendationWithStepsCardComponent {
+export class RecommendationWithStepsCardComponent implements OnInit {
 
     displayableTags: EnergyEfficiencyRecommendationTag[] = [
         EnergyEfficiencyRecommendationTag.GHGPrimary,
@@ -25,9 +27,15 @@ export class RecommendationWithStepsCardComponent {
     ];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
+    installers: Installer[];
 
     constructor(private responseData: ResponseData,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+                private googleAnalyticsService: GoogleAnalyticsService,
+                private installerSearchService: InstallerSearchService) {
+    }
+
+    ngOnInit() {
+        this.loadTrustMarkInstallers();
     }
 
     getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
@@ -61,5 +69,15 @@ export class RecommendationWithStepsCardComponent {
     hasGHGTag() {
         const tags = getActiveTags(this.recommendation.tags);
         return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
+    }
+
+    private loadTrustMarkInstallers() {
+        if (this.hasGHGTag() && this.recommendation.trustMarkTradeCodes.length) {
+            this.installerSearchService.fetchInstallerDetails(this.responseData.postcode, this.recommendation.trustMarkTradeCodes)
+                .subscribe(response => {
+                    this.installers = response.data.slice(0, 3);
+                    console.log(this.installers);
+                });
+        }
     }
 }

@@ -42,7 +42,8 @@ export class EnergyEfficiencyRecommendation {
                 public steps: RecommendationStep[],
                 public isAddedToPlan: boolean,
                 public recommendationID: string,
-                public measureCode: string) {
+                public measureCode: string,
+                public trustMarkTradeCodes: string[]) {
     }
 
     get isMeasure(): boolean {
@@ -94,6 +95,11 @@ export class EnergyEfficiencyRecommendation {
             estimatedInvestmentPounds = (measureResponse.min_installation_cost +
                 measureResponse.max_installation_cost) / 2;
         }
+
+        const tradeCodes = measureContent.acf.trustmark_trade_codes
+            ? measureContent.acf.trustmark_trade_codes.map(ttc => ttc.trade_code)
+            : [];
+
         return new EnergyEfficiencyRecommendation(
             estimatedInvestmentPounds,
             lifetime,
@@ -114,6 +120,7 @@ export class EnergyEfficiencyRecommendation {
             false,
             measureContent.slug,
             measureCode,
+            tradeCodes,
         );
     }
 
@@ -142,6 +149,7 @@ export class EnergyEfficiencyRecommendation {
             false,
             grant.grantId,
             null,
+            []
         );
     }
 }

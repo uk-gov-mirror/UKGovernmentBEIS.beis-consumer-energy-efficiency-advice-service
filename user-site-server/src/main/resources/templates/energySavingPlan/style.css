@@ -31,7 +31,7 @@ h1 img {
     width: 100%;
 }
 
-.data-card .heading {
+.data-card .heading, .installers .heading {
     text-transform: uppercase;
     font-size: small;
     line-height: 200%;

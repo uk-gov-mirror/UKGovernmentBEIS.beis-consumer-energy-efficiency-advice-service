@@ -5,8 +5,8 @@ import uk.gov.beis.dceas.controller.EnergySavingPlanController.SelectedEnergyEff
 import java.util.List;
 
 public class PdfLandlordRecommendationParams extends PdfRecommendationParams {
-    public PdfLandlordRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType) {
-        super(recommendations, tenureType);
+    public PdfLandlordRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType, String postcode) {
+        super(recommendations, tenureType, postcode);
     }
 
     @Override

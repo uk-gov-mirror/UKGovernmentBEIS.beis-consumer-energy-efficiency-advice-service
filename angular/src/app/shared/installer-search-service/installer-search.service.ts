@@ -16,11 +16,26 @@ export class InstallerSearchService {
             return;
         }
         const root = InstallerSearchService.INSTALLER_API_ROOT;
-        const postcodeComponent = encodeURIComponent(postcode);
+        const postcodeComponent = encodeURIComponent(this.formatPostcode(postcode));
         const url = this.location.prepareExternalUrl(
             `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
-        return this.http.get<InstallerResponse>(url);
+
+        // TODO SEA-??: Remove this .map when the response actually has phone numbers/email addresses
+        return this.http.get<InstallerResponse>(url).map((response) => ({
+            ...response,
+            data: response.data.map((installer) => ({
+                ...installer,
+                phoneNumber: '020 7925 0918',
+                email: 'person@installer.co.uk',
+            })),
+        }));
+    }
+
+    // The second half of a postcode always consists of three characters
+    private formatPostcode(postcode: string) {
+        const stripped = postcode.replace(' ', '');
+        return `${stripped.slice(0, -3)} ${stripped.slice(-3)}`;
     }
 }
 

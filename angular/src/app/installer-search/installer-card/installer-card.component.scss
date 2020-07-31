@@ -52,6 +52,12 @@
       @include is-flex-row;
       align-items: center;
     }
+
+    .phone {
+      .contact-prefix {
+        font-weight: bold;
+      }
+    }
   }
 }
 

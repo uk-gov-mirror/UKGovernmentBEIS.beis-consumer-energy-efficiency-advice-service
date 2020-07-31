@@ -39,9 +39,11 @@ export class PlanInfoService {
                     };
                 }
             });
+
         return {
             recommendations: recommendations,
-            tenureType: this.responseData.tenureType
+            tenureType: this.responseData.tenureType,
+            postcode: this.responseData.postcode,
         };
     }
 }
