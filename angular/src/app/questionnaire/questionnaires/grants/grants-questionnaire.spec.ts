@@ -11,6 +11,7 @@ import {IncomeRelatedBenefitsQuestionMetadata} from "../../questions/benefits-qu
 import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
 import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questions/societal-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
+import {Country} from "../../questions/postcode-epc-question/country";
 
 describe('GrantsQuestionnaire', () => {
 
@@ -68,6 +69,7 @@ describe('GrantsQuestionnaire', () => {
         // given
         responseData.postcode = 'SW1A1AA';
         responseData.localAuthorityCode = 'E09000033';
+        responseData.country = Country.England;
         responseData.epc = null;
         responseData.tenureType = undefined;
         responseData.numberOfChildrenAgedUnder5 = undefined;

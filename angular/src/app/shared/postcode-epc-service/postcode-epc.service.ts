@@ -10,6 +10,8 @@ import {PostcodeErrorResponse} from './model/response/postcode-error-response';
 import {PostcodeDetails} from './model/postcode-details';
 import {EpcApiService} from './epc-api-service/epc-api.service';
 import {Epc} from "./model/epc";
+import {parseCountry} from "../../questionnaire/questions/postcode-epc-question/country";
+import {PostcodeBasicDetailsResponse} from "./model/response/postcode-basic-details-response";
 
 @Injectable()
 export class PostcodeEpcService {
@@ -29,39 +31,24 @@ export class PostcodeEpcService {
         if (!PostcodeEpcService.isValidPostcode(postcode)) {
             return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
         }
-        return this.fetchEpcsForPostcode(postcode);
-    }
-
-    private fetchEpcsForPostcode(postcode: string): Observable<PostcodeDetails> {
         return this.epcApiService.getEpcsForPostcode(postcode)
-            .flatMap(epcs =>
-                this.getLocalAuthorityCodeFromEpcsOrPostcode(epcs, postcode)
-                    .map(localAuthorityCode => new PostcodeDetails(postcode, epcs, localAuthorityCode))
-            )
-            .catch(() =>
-                this.fetchLocalAuthorityCode(postcode)
-                    .map(localAuthorityCode => new PostcodeDetails(postcode, null, localAuthorityCode))
+            .catch(() => Observable.of(null))
+            .flatMap(
+                epcs => this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
+                        .map(PostcodeEpcService.buildPostcodeDetailsFromPostcodeResponse(postcode, epcs))
+                        .catch((postcodeApiError) => PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode))
             );
     }
 
-    private getLocalAuthorityCodeFromEpcsOrPostcode(epcs: Epc[], postcode: string): Observable<string> {
-        // Local authority code is the same for all EPCs for one postcode
-        const firstEpc = head(epcs);
-        if (firstEpc) {
-            return Observable.of(firstEpc.localAuthorityCode);
-        } else {
-            return this.fetchLocalAuthorityCode(postcode);
-        }
+    private static buildPostcodeDetailsFromPostcodeResponse(postcode: string, epcs: Epc[]) {
+        return function (postcodeResponse: PostcodeBasicDetailsResponse): PostcodeDetails {
+            const localAuthority = postcodeResponse.result.codes.admin_district;
+            const country = parseCountry(postcodeResponse.result.country);
+            return new PostcodeDetails(postcode, epcs, localAuthority, country);
+        };
     }
 
-    private fetchLocalAuthorityCode(postcode: string): Observable<string> {
-        return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
-            .map(postcodeResponse =>  postcodeResponse.result.codes.admin_district)
-            .catch((postcodeApiError) =>
-                PostcodeEpcService.handlePostcodeApiError(postcodeApiError, postcode));
-    }
-
-    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<string> {
+    private static handlePostcodeApiError(err: PostcodeErrorResponse, postcode: string): Observable<PostcodeDetails> {
         const isPostcodeNotFoundResponse: boolean = err.status === PostcodeApiService.POSTCODE_NOT_FOUND_STATUS;
         if (isPostcodeNotFoundResponse) {
             return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);

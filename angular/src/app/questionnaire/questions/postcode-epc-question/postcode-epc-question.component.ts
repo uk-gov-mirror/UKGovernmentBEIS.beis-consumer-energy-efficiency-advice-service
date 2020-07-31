@@ -7,6 +7,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {PostcodeEpcService} from '../../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../../../shared/postcode-epc-service/model/postcode-details';
+import {Country} from "./country";
 
 @Component({
     selector: 'app-postcode-epc-question',
@@ -44,6 +45,14 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
 
     set postcode(val: string) {
         this.responseData.postcode = val;
+    }
+
+    get country(): Country {
+        return this.responseData.country;
+    }
+
+    set country(val: Country) {
+        this.responseData.country = val;
     }
 
     get epc(): Epc {
@@ -112,6 +121,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
         this.localAuthorityCode = postcodeDetails.localAuthorityCode;
         this.postcode = postcodeDetails.postcode;
+        this.country = postcodeDetails.country;
         const epcs = postcodeDetails.allEpcsForPostcode;
         if (!epcs || epcs.length === 0) {
             return this.continueWithoutEpc();

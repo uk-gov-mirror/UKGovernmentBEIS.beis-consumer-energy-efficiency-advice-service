@@ -5,6 +5,7 @@ import {PostcodeApiService} from '../postcode-epc-service/postcode-api-service/p
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeBasicDetailsResponse} from '../postcode-epc-service/model/response/postcode-basic-details-response';
 import {PostcodeDetails} from "../postcode-epc-service/model/postcode-details";
+import {Country, parseCountry} from "../../questionnaire/questions/postcode-epc-question/country";
 
 @Component({
     selector: 'app-postcode-lookup',
@@ -17,8 +18,7 @@ export class PostcodeLookupComponent implements OnInit {
     loading: boolean = false;
     error: boolean = false;
     errorMessage: string;
-    northernIrelandPostcode: boolean = false;
-    scottishPostcode: boolean = false;
+    country: Country;
 
     /**
      * When the postcode has been entered by the user and validated this event will be fired.
@@ -43,23 +43,20 @@ export class PostcodeLookupComponent implements OnInit {
         }
 
         this.loading = true;
-        this.northernIrelandPostcode = false;
-        this.scottishPostcode = false;
         this.error = false;
         this.fetchPostcodeDetails(this.postcodeInput.replace(/\s/g, ''))
             .subscribe(
                 postcodeDetails => {
-                    this.northernIrelandPostcode = postcodeDetails.result.country === 'Northern Ireland';
-                    this.scottishPostcode = postcodeDetails.result.country === 'Scotland';
+                    this.country = parseCountry(postcodeDetails.result.country);
 
-                    if (this.northernIrelandPostcode || this.scottishPostcode) {
+                    if (this.country === Country.NorthernIreland || this.country === Country.Scotland) {
                         this.handleSearchError(null);
                         return;
                     }
 
                     const postcode = postcodeDetails.result.postcode.replace(/\s/g, '');
                     const localAuthorityCode = postcodeDetails.result.codes.admin_district;
-                    const postcodeData = new PostcodeDetails(postcode, null, localAuthorityCode);
+                    const postcodeData = new PostcodeDetails(postcode, null, localAuthorityCode, this.country);
                     this.postcodeSelected.emit(postcodeData);
                     this.loading = false;
                 },
@@ -81,10 +78,10 @@ export class PostcodeLookupComponent implements OnInit {
         this.error = true;
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
             this.errorMessage = "Please enter a valid UK postcode.";
-        } else if (this.northernIrelandPostcode) {
+        } else if (this.country === Country.NorthernIreland) {
             this.errorMessage = "We do not think this service is suitable/accurate for " +
                 "you (as your home is in Northern Ireland)";
-        } else if (this.scottishPostcode) {
+        } else if (this.country === Country.Scotland) {
             this.errorMessage = "";
         } else {
             this.errorMessage = "Oh no! The postcode lookup has failed. You can proceed without postcode information, though it " +
@@ -92,7 +89,8 @@ export class PostcodeLookupComponent implements OnInit {
         }
 
         let postcode: string;
-        if (this.northernIrelandPostcode || this.scottishPostcode) {
+        if (this.country === Country.NorthernIreland
+            || this.country === Country.Scotland) {
             // Prevent user from continuing
             postcode = undefined;
         } else {
@@ -100,6 +98,6 @@ export class PostcodeLookupComponent implements OnInit {
             postcode = null;
         }
         this.loading = false;
-        this.postcodeSelected.emit(new PostcodeDetails(postcode, null, null));
+        this.postcodeSelected.emit(new PostcodeDetails(postcode, null, null, this.country));
     }
 }

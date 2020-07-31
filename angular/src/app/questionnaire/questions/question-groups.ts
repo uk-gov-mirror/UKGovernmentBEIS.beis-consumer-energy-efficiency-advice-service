@@ -46,6 +46,8 @@ import {LoftClutterQuestionMetadata} from "./loft-clutter-question/loft-clutter-
 import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-infestation-question-metadata";
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
+import {GreenHomesGrantPostcodeEpcQuestionMetadata} from "./green-homes-grant/green-homes-grant-postcode-epc-question/green-homes-grant-postcode-epc-question-metadata";
+import {EnglandOnly} from "./green-homes-grant/england-only";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -129,13 +131,14 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
 ];
 
 export const GREEN_HOMES_GRANT_QUESTIONS = [
-    new PensionGuaranteeCreditQuestionMetadata(),
-    new IncomeRelatedBenefitsQuestionMetadata(),
-    new SocietalBenefitsQuestionMetadata(),
-    new DefenseRelatedBenefitsQuestionMetadata(),
-    new ChildBenefitsQuestionMetadata(),
-    new OccupantsQuestionMetadata(),
-    new IncomeQuestionMetadata()
+    new GreenHomesGrantPostcodeEpcQuestionMetadata(),
+    new EnglandOnly(new PensionGuaranteeCreditQuestionMetadata()),
+    new EnglandOnly(new IncomeRelatedBenefitsQuestionMetadata()),
+    new EnglandOnly(new SocietalBenefitsQuestionMetadata()),
+    new EnglandOnly(new DefenseRelatedBenefitsQuestionMetadata()),
+    new EnglandOnly(new ChildBenefitsQuestionMetadata()),
+    new EnglandOnly(new OccupantsQuestionMetadata()),
+    new EnglandOnly(new IncomeQuestionMetadata())
 ];
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [
