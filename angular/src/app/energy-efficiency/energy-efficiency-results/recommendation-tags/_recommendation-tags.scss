@@ -1,51 +1,67 @@
 @import "styles/var/colors";
 @import "styles/mixins/breakpoints";
 @import "styles/mixins/layout";
+@import "styles/mixins/_font";
+
+@mixin isTag($background-color) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font-family;
+  color: white;
+  text-transform: uppercase;
+  font-size: 11px;
+  text-align: center;
+  background-color: $background-color;
+  height: 28px;
+
+  @include mobile() {
+    border-radius: 28px;
+  }
+
+  @include tablet() {
+    border-radius: 28px;
+  }
+
+  @include desktop() {
+    border-radius: 20px;
+  }
+}
 
 .tags {
   display: flex;
   flex-wrap: wrap;
 
-  .tag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-transform: uppercase;
-    font-size: 11px;
-    text-align: center;
-  }
-
   .tag-quick-win {
-    background-color: #FF0066;
+    @include isTag($background-color: #FF0066);
   }
 
   .tag-small-spend {
-    background-color: $amber;
+    @include isTag($background-color: $amber);
   }
 
   .tag-longer-term {
-    background-color: #52CEA8;
+    @include isTag($background-color: #52CEA8);
   }
 
   .tag-grant {
-    background-color: $dark-medium-blue;
+    @include isTag($background-color: $dark-medium-blue)
   }
 
   .tag-top-recommendations {
-    background-color: #E50046;
+    @include isTag($background-color: #E50046);
   }
 
   .tag-funding-available {
-    background-color: #E50046;
+    @include isTag($background-color: #E50046);
   }
 
   .tag-ghg-primary {
-    background-color: $green;
+    @include isTag($background-color: $green);
   }
 
   .tag-ghg-secondary {
-    background-color: $amber;
+    @include isTag($background-color: $amber);
   }
 }
 
@@ -56,8 +72,6 @@
 
     .tag {
       @include is-grid-item($number-of-items: 2, $margin: 14px);
-      height: 28px;
-      border-radius: 28px;
     }
   }
 
@@ -66,8 +80,6 @@
 
     .tag {
       @include is-grid-item($number-of-items: 2, $margin: 20px);
-      height: 28px;
-      border-radius: 28px;
     }
 
   }
@@ -77,8 +89,6 @@
 
     .tag {
       @include is-grid-item($number-of-items: 2, $margin: 20px);
-      height: 28px;
-      border-radius: 20px;
     }
   }
 }
