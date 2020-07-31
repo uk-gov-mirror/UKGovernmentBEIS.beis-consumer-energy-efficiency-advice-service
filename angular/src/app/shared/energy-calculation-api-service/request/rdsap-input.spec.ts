@@ -39,7 +39,6 @@ describe('RdsapInput', () => {
             userJourneyType: UserJourneyType.ReduceEnergyBills,
             shouldIncludeGrantsQuestionnaire: false,
             shouldIncludeOptionalPropertyQuestions: false,
-            country: Country.England,
             postcode: 'sw1h0et',
             epc: null,
             localAuthorityCode: 'E09000033',
