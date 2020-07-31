@@ -61,6 +61,18 @@ $grant-card-margin: 24px;
       }
     }
   }
+
+  .ghg-context.page-row {
+    font-weight: bold;
+    color: white;
+    background-color: $dark-green;
+    box-sizing: border-box;
+    padding: 0 20px;
+
+    a {
+      color: white;
+    }
+  }
 }
 
 // Breakpoint specific styling

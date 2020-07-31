@@ -16,8 +16,9 @@ import {getFuelTypeDescription} from "../../questionnaire/questions/fuel-type-qu
 import {getHomePropertyDescription} from "../../shared/home-property-description-helper/home-property-description-helper";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
-import Config from '../../config';
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 
 @Component({
     selector: 'app-energy-efficiency-results-page',
@@ -33,6 +34,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     errorMessage: string = "Something went wrong and we can't load this page right now. Please try again later.";
     showDefaultRecommendation: boolean = false;
     showDefaultRentalMeasures: boolean = false;
+    isEligibleForGreenHomesGrant: boolean = false;
     defaultRecommendationDisclaimer: string;
 
     private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
@@ -46,7 +48,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
                 private googleAnalyticsService: GoogleAnalyticsService,
                 private abTestingService: AbTestingService,
                 private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
-                private pageTitle: PageTitleService) {
+                private pageTitle: PageTitleService,
+                private greenHomesGrantService: GreenHomesGrantService) {
     }
 
     ngOnInit() {
@@ -71,6 +74,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
 
         this.userStateService.saveState();
+        this.greenHomesGrantService.getEligibility()
+            .subscribe(eligible => { this.isEligibleForGreenHomesGrant = eligible !== GreenHomesGrantEligibility.Ineligible; });
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {
