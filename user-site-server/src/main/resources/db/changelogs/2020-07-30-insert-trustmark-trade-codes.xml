@@ -8,7 +8,7 @@
     <changeSet id="2020-07-30-insert-trustmark-trade-codes.xml"
                author="lucas.nogueira@softwire.com"
                dbms="mysql">
-        <sql stripComments="false" endDelimiter="GO">
+        <sql endDelimiter="GO">
             <![CDATA[
                 CREATE FUNCTION CheckMeasureExists(
                     postId BIGINT(20),
