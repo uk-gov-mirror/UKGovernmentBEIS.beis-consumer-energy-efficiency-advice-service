@@ -14,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private String username;
     @Value("${vcap.services.user-site-auth.credentials.password}")
     private String password;
-    @Value("${info.environment}")
+    @Value("${vcap.application.space_name}")
     private String environment;
 
     @Override
