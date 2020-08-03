@@ -52,7 +52,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
-import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.RecommendationTagsByJsonName;
+import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.RECOMMENDATION_TAGS_BY_JSON_NAME;
 
 /**
  * Allows downloading or emailing your energy saving plan
@@ -231,7 +231,8 @@ public class EnergySavingPlanController {
     }
 
     private boolean isGhgEligible(EnergyEfficiencyRecommendation recommendation) {
-        return (recommendation.getTags() & (EnergyEfficiencyRecommendationTag.GHG_PRIMARY.getValue() | EnergyEfficiencyRecommendationTag.GHG_SECONDARY.getValue())) > 0;
+        return (recommendation.getTags() &
+                (EnergyEfficiencyRecommendationTag.GHG_PRIMARY.getValue() | EnergyEfficiencyRecommendationTag.GHG_SECONDARY.getValue())) > 0;
     }
     /**
      * Keep this in sync with recommendations.service.ts `getRecommendationsContent`
@@ -393,6 +394,13 @@ public class EnergySavingPlanController {
         return linkUrl;
     }
 
+    private static Integer getTagsForMeasure(List<String> measureTags) {
+        return measureTags.stream()
+                .map(RECOMMENDATION_TAGS_BY_JSON_NAME::get)
+                .filter(Objects::nonNull)
+                .reduce(0, (acc, val) -> acc | val.getValue(), (x, y) -> x | y);
+    }
+
     @Value
     @Builder
     @SuppressWarnings("checkstyle:visibilitymodifier")
@@ -548,6 +556,7 @@ public class EnergySavingPlanController {
                 String userSiteBaseUrl) {
 
             return EnergyEfficiencyRecommendation.builder()
+                    .tags(EnergyEfficiencyRecommendationTag.GRANT.getValue())
                     .investmentPounds(0.0)
                     .minimumCostSavingPoundsPerYear(
                             defaultIfNull(recommendation.minimumCostSavingPoundsPerYear, 0.0))
@@ -582,13 +591,6 @@ public class EnergySavingPlanController {
                     : maximumCostSavingPoundsPerYear;
             return roundAndFormatCostValueRange(minimumCostSaving, maximumCostSaving);
         }
-    }
-
-    private static Integer getTagsForMeasure(List<String> measureTags) {
-        return measureTags.stream()
-                .map(RecommendationTagsByJsonName::get)
-                .filter(Objects::nonNull)
-                .reduce(0, (acc, val) -> acc | val.getValue(), (x, y) -> x | y);
     }
 
     /**
