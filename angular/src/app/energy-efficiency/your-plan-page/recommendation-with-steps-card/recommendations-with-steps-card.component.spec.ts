@@ -6,6 +6,8 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {RecommendationStepCardComponent} from "../recommendation-step-card/recommendation-step-card.component";
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
+import {InstallerSearchService} from "../../../shared/installer-search-service/installer-search.service";
+import { Observable } from '../../../../../node_modules/rxjs/Observable';
 
 describe('RecommendationWithStepsCardComponent', () => {
     let component: RecommendationWithStepsCardComponent;
@@ -15,6 +17,10 @@ describe('RecommendationWithStepsCardComponent', () => {
 
     beforeEach(async(() => {
         responseData = new ResponseData();
+
+        const installerSearchServiceStub = {
+            fetchInstallerDetails: () => Observable.of({}),
+        };
 
         TestBed.configureTestingModule({
             declarations: [
@@ -26,7 +32,8 @@ describe('RecommendationWithStepsCardComponent', () => {
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
-                GoogleAnalyticsService
+                {provide: InstallerSearchService, useValue: installerSearchServiceStub},
+                GoogleAnalyticsService,
             ],
             imports: [
                 RouterTestingModule,
