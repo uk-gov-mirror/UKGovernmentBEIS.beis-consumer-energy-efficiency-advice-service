@@ -6,6 +6,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.Builder;
+import org.quartz.utils.FindbugsSuppressWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,7 +70,7 @@ public class InstallerSearchService {
             // postcode. Without this, postcode parameters come out as (e.g.) NW5%25201TL instead of NW5%201TL.
             URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                     .queryParam("postcode", formatPostcode(postcode))
-                    .queryParam("tradecodes", tradecodes)
+                    .queryParam("tradecodes", (Object) tradecodes)
                     .queryParam("pageNumber", page)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
@@ -88,7 +89,7 @@ public class InstallerSearchService {
 
     private String formatPostcode(String postcode) {
         String stripped = postcode.replace(" ", "");
-        return stripped.substring(0, stripped.length() - 3) + " " + stripped.substring(stripped.length()-3);
+        return stripped.substring(0, stripped.length() - 3) + " " + stripped.substring(stripped.length() - 3);
     }
 
     private CacheLoader<String, String> getAccessToken() {
@@ -119,6 +120,8 @@ public class InstallerSearchService {
 
     @lombok.Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
+    @FindbugsSuppressWarnings
     public static class TrustMarkInstaller {
         String address1;
         String address2;
@@ -137,12 +140,15 @@ public class InstallerSearchService {
         String webAddress;
         String registeredName;
         // TODO SEA-??: Remove default values when the API actually returns this
+        @FindbugsSuppressWarnings
         String phoneNumber = "020 7925 0918";
+        @FindbugsSuppressWarnings
         String email = "person@installer.com";
-    }
+   }
 
     @lombok.Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     public static class TrustMarkPaginator {
         Integer pageNumber;
         Integer pageSize;
@@ -151,6 +157,7 @@ public class InstallerSearchService {
 
     @lombok.Value
     @Builder
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     public static class TrustMarkSearchResponse {
         TrustMarkPaginator paginator;
         String errorMessage;

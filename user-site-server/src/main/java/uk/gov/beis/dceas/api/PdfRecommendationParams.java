@@ -32,5 +32,7 @@ public abstract class PdfRecommendationParams {
         return tenureType != OWNER_TENURE_TYPE;
     }
 
-    public String getPostcode() { return postcode; }
+    public String getPostcode() {
+        return postcode;
+    }
 }

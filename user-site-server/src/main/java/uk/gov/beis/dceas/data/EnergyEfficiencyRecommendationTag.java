@@ -1,5 +1,6 @@
 package uk.gov.beis.dceas.data;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,15 @@ public enum EnergyEfficiencyRecommendationTag {
     GHG_PRIMARY(1 << 6),
     GHG_SECONDARY(1 << 7);
 
+    public static final Map<String, EnergyEfficiencyRecommendationTag> RECOMMENDATION_TAGS_BY_JSON_NAME
+            = Collections.unmodifiableMap(new HashMap<String, EnergyEfficiencyRecommendationTag>() {{
+        put("tag_quick_win", EnergyEfficiencyRecommendationTag.QUICK_WIN);
+        put("tag_small_spend", EnergyEfficiencyRecommendationTag.SMALL_SPEND);
+        put("tag_longer_term", EnergyEfficiencyRecommendationTag.LONGER_TERM);
+        put("tag_ghg_primary", EnergyEfficiencyRecommendationTag.GHG_PRIMARY);
+        put("tag_ghg_secondary", EnergyEfficiencyRecommendationTag.GHG_SECONDARY);
+    }});
+
     private final int value;
 
     EnergyEfficiencyRecommendationTag(int value) {
@@ -24,11 +34,4 @@ public enum EnergyEfficiencyRecommendationTag {
         return value;
     }
 
-    public static final Map<String, EnergyEfficiencyRecommendationTag> RecommendationTagsByJsonName = new HashMap<String, EnergyEfficiencyRecommendationTag>() {{
-        put("tag_quick_win", EnergyEfficiencyRecommendationTag.QUICK_WIN);
-        put("tag_small_spend", EnergyEfficiencyRecommendationTag.SMALL_SPEND);
-        put("tag_longer_term", EnergyEfficiencyRecommendationTag.LONGER_TERM);
-        put("tag_ghg_primary", EnergyEfficiencyRecommendationTag.GHG_PRIMARY);
-        put("tag_ghg_secondary", EnergyEfficiencyRecommendationTag.GHG_SECONDARY);
-    }};
 }
