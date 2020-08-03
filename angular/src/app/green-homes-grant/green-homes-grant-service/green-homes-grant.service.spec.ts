@@ -6,21 +6,57 @@ import {ResponseData} from '../../shared/response-data/response-data';
 import {GreenHomesGrantService} from "./green-homes-grant.service";
 import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
+import {IncomeThresholdService} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
+import {
+    IncomeThresholdByChildren,
+    IncomeThresholds
+} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-thresholds";
+import { Observable } from 'rxjs/Observable';
 
 describe('GreenHomesGrantService', () => {
     let httpMock: HttpTestingController;
     let injector: TestBed;
     let service: GreenHomesGrantService;
     let responseData: ResponseData;
+    let incomeThresholds: IncomeThresholds;
 
     beforeEach(async(() => {
         responseData = new ResponseData();
         responseData.country = Country.England;
+        responseData.ownsHome = true;
+        responseData.numberOfChildrenAgedUnder5 = 1;
+        responseData.numberOfChildrenAged5AndAbove = 0;
+        responseData.numberOfAdultsAgedUnder64 = 1;
+        responseData.numberOfAdultsAged64To80 = 0;
+        responseData.numberOfAdultsAgedOver80 = 0;
+
+        incomeThresholds = {
+            'child-benefits': {
+                singleClaim: new IncomeThresholdByChildren(
+                    0,
+                    18500,
+                    23000,
+                    27500,
+                    32000
+                ),
+                jointClaim: new IncomeThresholdByChildren(
+                    0,
+                    25500,
+                    30000,
+                    34500,
+                    39000
+                ),
+                getIncomeThresholdByChildren() {
+                    return this.singleClaim;
+                }
+            }
+        };
 
         TestBed.configureTestingModule({
             providers: [GreenHomesGrantService,
                 {provide: ResponseData, useValue: responseData},
                 {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}},
+                {provide: IncomeThresholdService, useValue: {fetchIncomeThresholds: () => Observable.of(incomeThresholds)}},
             ],
             imports: [HttpClientTestingModule]
         })
@@ -58,19 +94,49 @@ describe('GreenHomesGrantService', () => {
                 });
         }));
 
-        it('should return eligible means-tested if they own their home', async(() => {
-            responseData.ownsHome = true;
+        it('should return fully eligible if they own their home and are on non-child benefits', async(() => {
+            responseData.receiveSocietalBenefits = true;
 
             service.getEligibility().toPromise()
                 .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.EligibleMeansTested);
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.FullyEligible);
                 });
         }));
 
-        it('should return eligible for English addresses', async(() => {
+        it("should return partially eligible if they don't own their home and are on non-child benefits", async(() => {
+            responseData.receiveSocietalBenefits = true;
+            responseData.ownsHome = false;
+
             service.getEligibility().toPromise()
                 .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.Eligible);
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
+                });
+        }));
+
+        it('should return fully eligible if they earn below the child benefits threshold', async(() => {
+            responseData.receiveChildBenefits = true;
+            responseData.income = 10000;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.FullyEligible);
+                });
+        }));
+
+        it('should return partially eligible if they earn above the child benefits threshold', async(() => {
+            responseData.receiveChildBenefits = true;
+            responseData.income = 1000000;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
+                });
+        }));
+
+        it('should return partially eligible for English addresses without benefits', async(() => {
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
                 });
         }));
     });

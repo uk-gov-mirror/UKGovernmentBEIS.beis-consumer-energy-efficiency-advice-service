@@ -31,7 +31,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     };
 
     beforeEach(async(() => {
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Eligible);
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
         spyOn(greenHomesGrantServiceStub, 'getEligibility').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -86,13 +86,13 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
     it('should have eligible status when person is eligible', () => {
         // given
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Eligible);
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
 
         // when
         fixture.detectChanges();
 
         // then
-        expect(component.status).toEqual(GreenHomesGrantEligibility.Eligible);
+        expect(component.status).toEqual(GreenHomesGrantEligibility.PartiallyEligible);
     });
 
     it('should have ineligible status when person is ineligible', () => {

@@ -1,7 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {Observable} from 'rxjs/Observable';
 import {ResponseData} from '../../../../shared/response-data/response-data';
-import {IncomeThresholds} from './income-threshold-service/income-thresholds';
+import {IncomeThresholdByChildren, IncomeThresholds} from './income-threshold-service/income-thresholds';
 import {EcoHhcroHelpToHeat} from './eco-hhcro-help-to-heat';
 import {IncomeThresholdService} from './income-threshold-service/income-threshold.service';
 import {GrantEligibility} from '../../../grant-eligibility-service/grant-eligibility';
@@ -12,20 +12,21 @@ describe('EcoHhcroHelpToHeat', () => {
 
     const incomeThresholds: IncomeThresholds = {
         'child-benefits': {
-            'singleClaim': {
-                'zeroChildren': 0,
-                'oneChild': 18500,
-                'twoChildren': 23000,
-                'threeChildren': 27500,
-                'fourPlusChildren': 32000
-            },
-            'jointClaim': {
-                'zeroChildren': 0,
-                'oneChild': 25500,
-                'twoChildren': 30000,
-                'threeChildren': 34500,
-                'fourPlusChildren': 39000
-            }
+            singleClaim: new IncomeThresholdByChildren(
+                0,
+                18500,
+                23000,
+                27500,
+                32000
+            ),
+            jointClaim: new IncomeThresholdByChildren(
+                0,
+                25500,
+                30000,
+                34500,
+                39000
+            ),
+            getIncomeThresholdByChildren: () => this.singleClaim
         }
     };
 

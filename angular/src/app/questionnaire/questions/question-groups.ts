@@ -51,6 +51,7 @@ import {Country} from "./postcode-epc-question/country";
 import {HomeAge} from "./home-age-question/home-age";
 import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
 import {QuestionGroupBuilder} from "./question-group-builder";
+import {GreenHomesGrantOccupantsQuestionMetadata} from "./green-homes-grant/green-homes-grant-occupants-question/green-homes-grant-occupants-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -146,7 +147,7 @@ export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
     new SocietalBenefitsQuestionMetadata(),
     new DefenseRelatedBenefitsQuestionMetadata(),
     new ChildBenefitsQuestionMetadata(),
-    new OccupantsQuestionMetadata(),
+    new GreenHomesGrantOccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()
 ]).build();
 
