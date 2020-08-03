@@ -67,6 +67,7 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            trustMarkTradeCodes: [],
         },
         {
             investmentPounds: 999,
@@ -89,6 +90,7 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            trustMarkTradeCodes: [],
         },
         {
             investmentPounds: 20,
@@ -111,6 +113,7 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
+            trustMarkTradeCodes: [],
         }
     ];
 
