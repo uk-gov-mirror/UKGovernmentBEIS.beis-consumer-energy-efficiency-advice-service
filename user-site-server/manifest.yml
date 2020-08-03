@@ -27,3 +27,4 @@ applications:
     - dceas-admin-logins
     - smtp
     - google.maps
+    - trustMark
