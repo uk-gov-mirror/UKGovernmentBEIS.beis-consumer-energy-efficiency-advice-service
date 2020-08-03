@@ -125,7 +125,7 @@ public class EnergySavingPlanControllerTest {
                         post("/api/plan/download")
                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                                 .content(formBody)
-                                .with(user("user").password("pwd")))
+                                .with(user("username").password("password")))
                 .andExpect(status().isOk())
                 .andReturn();
 
