@@ -41,6 +41,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -123,7 +124,8 @@ public class EnergySavingPlanControllerTest {
                 .perform(
                         post("/api/plan/download")
                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                                .content(formBody))
+                                .content(formBody)
+                                .with(user("username").password("password")))
                 .andExpect(status().isOk())
                 .andReturn();
 
