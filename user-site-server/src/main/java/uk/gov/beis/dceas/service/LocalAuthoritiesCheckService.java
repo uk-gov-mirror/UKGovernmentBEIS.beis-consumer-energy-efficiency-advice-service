@@ -55,7 +55,7 @@ public class LocalAuthoritiesCheckService {
         DSLContext database,
         JavaMailSender emailSender,
         @Value("${dceas.local-authorities-support-email}") String supportEmail,
-        @Value("${info.environment}") String environment) {
+        @Value("${vcap.application.space_name}") String environment) {
 
         this.httpClient = httpClientBuilder.build();
         this.postcodesUrl = postcodesUrl;
