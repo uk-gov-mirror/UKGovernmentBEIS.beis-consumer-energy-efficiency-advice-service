@@ -140,6 +140,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
         if (this.nextQuestionExists()) {
             this.goForwardsOneQuestion();
         } else {
+            this.userStateService.saveState();
             this.onQuestionnaireComplete.emit();
         }
     }
