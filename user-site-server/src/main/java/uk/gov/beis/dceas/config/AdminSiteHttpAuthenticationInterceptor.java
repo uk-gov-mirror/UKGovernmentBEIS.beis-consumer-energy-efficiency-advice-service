@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;
+import java.util.Collections;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -37,7 +38,8 @@ public class AdminSiteHttpAuthenticationInterceptor
     @Override
     public void intercept(RequestData data) {
         if (apiAuthHeaderValue != null) {
-            data.getHeaders().add("Authorization", apiAuthHeaderValue);
+            // Use .put rather than .add to replace the existing basic auth header (if present)
+            data.getHeaders().put("Authorization", Collections.singletonList(apiAuthHeaderValue));
         }
     }
 }
