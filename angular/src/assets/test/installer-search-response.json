@@ -24,7 +24,9 @@
       "longitude": -1.301838,
       "latitude": 51.401015,
       "distance": 21422.995312929903,
-      "distanceInMiles": 13.311632133805666
+      "distanceInMiles": 13.311632133805666,
+      "phoneNumber": "020 7925 0918",
+      "email": "person@installer.co.uk"
     },
     {
       "id": 22697,
@@ -44,7 +46,9 @@
       "longitude": -0.596505,
       "latitude": 51.509719,
       "distance": 42936.34399777485,
-      "distanceInMiles": 26.679407250019402
+      "distanceInMiles": 26.679407250019402,
+      "phoneNumber": "020 7925 0918",
+      "email": "person@installer.co.uk"
     },
     {
       "id": 22342,
@@ -64,7 +68,9 @@
       "longitude": -0.586115,
       "latitude": 51.512516,
       "distance": 43695.27173047676,
-      "distanceInMiles": 27.150983079930246
+      "distanceInMiles": 27.150983079930246,
+      "phoneNumber": "020 7925 0918",
+      "email": "person@installer.co.uk"
     },
     {
       "id": 22729,
@@ -84,7 +90,9 @@
       "longitude": -0.586115,
       "latitude": 51.512516,
       "distance": 43695.27173047676,
-      "distanceInMiles": 27.150983079930246
+      "distanceInMiles": 27.150983079930246,
+      "phoneNumber": "020 7925 0918",
+      "email": "person@installer.co.uk"
     }
   ]
 }

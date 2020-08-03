@@ -29,6 +29,7 @@ import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-dis
 import {AbTestingService} from "../../shared/analytics/ab-testing.service";
 import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
+import {InstallerSearchService} from "../../shared/installer-search-service/installer-search.service";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -156,6 +157,10 @@ describe('YourPlanPageComponent', () => {
         getLandlordRecommendationsInPlan: () => recommendations
     };
 
+    const installerSearchServiceStub = {
+        fetchInstallerDetails: () => Observable.of({}),
+    };
+
     beforeEach(async(() => {
         localAuthorityResponse = Observable.of({
             name: 'Westminster',
@@ -182,6 +187,7 @@ describe('YourPlanPageComponent', () => {
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},
+                {provide: InstallerSearchService, useValue: installerSearchServiceStub},
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,
                 AbTestingService,
