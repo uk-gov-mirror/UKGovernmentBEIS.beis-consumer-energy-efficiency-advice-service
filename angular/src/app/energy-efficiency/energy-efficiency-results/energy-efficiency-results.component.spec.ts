@@ -38,6 +38,8 @@ import {YourPlanFooterItemComponent} from "./your-plan-footer/your-plan-footer-i
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -64,6 +66,10 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     const pageTitleStub = {
         set: () => {}
+    };
+
+    const greenHomesGrantStub = {
+        getEligibility: () => Observable.of(GreenHomesGrantEligibility.Eligible),
     };
 
     let responseData: ResponseData;
@@ -189,6 +195,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},
+                {provide: GreenHomesGrantService, useValue: greenHomesGrantStub},
                 AbTestingService,
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,
