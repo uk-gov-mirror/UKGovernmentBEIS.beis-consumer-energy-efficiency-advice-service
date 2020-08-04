@@ -13,4 +13,23 @@
             </h1>
         </div>
     </div>
+    <div class="page-row more-information">
+        <div class="page-row-content">
+            <div class="body-text">
+                <div *ngIf="status === GreenHomesGrantEligibility.Ineligible">
+                    <app-link-button
+                            linkUrl="/grants"
+                            buttonText="Back to financial assistance"
+                    ></app-link-button>
+                </div>
+                <div *ngIf="status === GreenHomesGrantEligibility.PartiallyEligible || status === GreenHomesGrantEligibility.FullyEligible">
+<!--                    TODO SEA-53: Use correct link to GHG measures-->
+                    <app-link-button
+                            linkUrl="/green-homes-grant"
+                            buttonText="Find out what measures you could get under the Green Homes Grant"
+                    ></app-link-button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

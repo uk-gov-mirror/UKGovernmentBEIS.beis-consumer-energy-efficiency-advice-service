@@ -16,6 +16,7 @@ import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-refer
 describe('GreenHomesGrantResultsPageComponent', () => {
     let component: GreenHomesGrantResultsPageComponent;
     let fixture: ComponentFixture<GreenHomesGrantResultsPageComponent>;
+    let domElement: HTMLElement;
 
     let eligibilityResponse: Observable<GreenHomesGrantEligibility>;
     const greenHomesGrantServiceStub = {
@@ -43,7 +44,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
                 LinkButtonComponent,
             ],
             imports: [
-              RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([])
             ],
             providers: [
                 {provide: GreenHomesGrantService, useValue: greenHomesGrantServiceStub},
@@ -58,6 +59,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(GreenHomesGrantResultsPageComponent);
         component = fixture.componentInstance;
+        domElement = fixture.debugElement.nativeElement;
     });
 
     it('should be constructed', () => {
@@ -84,7 +86,20 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         expect(component.isError).toBeTruthy();
     });
 
-    it('should have eligible status when person is eligible', () => {
+    it('should have fully eligible status when person is fully eligible', () => {
+        // given
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.FullyEligible);
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        expect(component.status).toEqual(GreenHomesGrantEligibility.FullyEligible);
+        expect(domElement.querySelector('app-link-button').textContent)
+            .toContain('Find out what measures you could get under the Green Homes Grant');
+    });
+
+    it('should have partial eligible status when person is partially eligible', () => {
         // given
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
 
@@ -93,6 +108,8 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
         // then
         expect(component.status).toEqual(GreenHomesGrantEligibility.PartiallyEligible);
+        expect(domElement.querySelector('app-link-button').textContent)
+            .toContain('Find out what measures you could get under the Green Homes Grant');
     });
 
     it('should have ineligible status when person is ineligible', () => {
@@ -104,6 +121,8 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
         // then
         expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
+        expect(domElement.querySelector('app-link-button').textContent)
+            .toContain('Back to financial assistance');
     });
 });
 
