@@ -6,8 +6,10 @@ a few browser tests.
 Run them with:
 
     npm install
-    npm run test -- --baseUrl=https://dceas-user-site-int.cloudapps.digital/
+    TESTS_USERNAME=beissea TESTS_PASSWORD='{password}' TESTS_HOST=https://dceas-user-site-int.cloudapps.digital/ npm run test
+
+(Note the single quotes around the password).
 
 To run them against local version
 
-    npm run test -- --baseUrl=http://localhost:8080/
+    TESTS_HOST=http://localhost:8080/ npm run test
