@@ -18,9 +18,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable();
+        
         if (!Strings.isNullOrEmpty(password)) {
-            http.cors().and().csrf().disable()
-                    .authorizeRequests()
+            http.authorizeRequests()
                     .anyRequest().authenticated()
                     .and()
                     .httpBasic()
