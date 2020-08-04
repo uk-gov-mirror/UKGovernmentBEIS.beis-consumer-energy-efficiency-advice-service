@@ -70,7 +70,7 @@ public class InstallerSearchService {
             // postcode. Without this, postcode parameters come out as (e.g.) NW5%25201TL instead of NW5%201TL.
             URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                     .queryParam("postcode", formatPostcode(postcode))
-                    .queryParam("tradecodes", (Object) tradecodes)
+                    .queryParam("tradecodes", (Object[]) tradecodes)
                     .queryParam("pageNumber", page)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
