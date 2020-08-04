@@ -6,13 +6,16 @@
   "scripts": {
     "//": "See: https://github.com/angular/webdriver-manager/issues/404#issuecomment-518975918",
     "pretest": "cd node_modules/protractor && npm i webdriver-manager@latest",
-    "test": "webdriver-manager update --gecko=false && protractor protractor.conf.js"
+    "test": "concurrently -ks first \"ts-node proxy.ts\" \"webdriver-manager update --gecko=false && protractor protractor.conf.js --baseUrl=http://localhost:8081\""
   },
   "author": "Softwire",
   "license": "ISC",
   "dependencies": {
+    "@types/http-proxy": "^1.17.4",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.3",
+    "concurrently": "^5.2.0",
+    "http-proxy": "^1.18.1",
     "jasmine-spec-reporter": "^4.2.1",
     "protractor": "^5.4.0",
     "ts-node": "^3.3.0",

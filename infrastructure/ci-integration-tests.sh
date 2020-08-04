@@ -42,4 +42,4 @@ cd integration-tests
 npm install
 
 # Run tests
-npm run test -- --baseUrl=https://dceas-user-site-int.cloudapps.digital/
+TESTS_HOST=$URL npm run test
