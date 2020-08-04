@@ -14,6 +14,12 @@
     </div>
     <div class="page-row recommendations">
         <div class="page-row-content">
+            <div class="ghg-context-card" *ngIf="this.isEligibleForGreenHomesGrant">
+                <div class="header">Green Homes Grant</div>
+                <p>You could save money on these improvements with the Green Homes Grant.<p>
+                <p>To be eligible, you must add at least one <span class="tag">GHG Eligible (primary)</span> measure to your plan.</p>
+                <p>Please visit <a [routerLink]="'/pages/green-homes-grant'">this page</a> for more information.</p>
+            </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getUserRecommendations()"
