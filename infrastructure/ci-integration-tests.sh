@@ -20,7 +20,7 @@ OK=false
 until [ $n -ge 6 ]
 do
     echo "Attempt: $n"
-    RESPONSE_CODE=$(curl --silent --write-out "%{http_code}" $URL -o /dev/null)
+    RESPONSE_CODE=$(curl --silent --user "$TESTS_USERNAME:$TESTS_PASSWORD" --write-out "%{http_code}" $URL -o /dev/null)
     echo "Response code: $RESPONSE_CODE"
     if [ $RESPONSE_CODE -eq 200 ]; then
         OK=true
