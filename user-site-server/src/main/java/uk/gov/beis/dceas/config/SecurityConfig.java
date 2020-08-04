@@ -20,7 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         if (!environment.toUpperCase().equals("LIVE")) {
-            http.authorizeRequests()
+            http.cors().and().csrf().disable()
+                    .authorizeRequests()
                     .anyRequest().authenticated()
                     .and()
                     .httpBasic()
