@@ -54,6 +54,12 @@
             </div>
         </div>
 
+        <div class="ghg-context page-row" th:if="${isGhgEligible}">
+            <h3>Green Homes Grant</h3>
+            To continue, print your plan. Contact installers and get quotes for your selected measures.
+            Keep a record of these quotes - you will need them for the voucher application process.
+        </div>
+
         <div class="recommendations page-row">
             <div class="page-row-content">
                 <div class="recommendation-steps-card" th:each="recommendation : ${recommendations}">
@@ -84,7 +90,7 @@
                                 £120
                             </div>
                         </div>
-                        <div class="installers" th:if="${!ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
+                        <div class="installers" th:if="${isGhgEligible and !ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
                             <div class="heading">
                                 Nearby installers
                             </div>

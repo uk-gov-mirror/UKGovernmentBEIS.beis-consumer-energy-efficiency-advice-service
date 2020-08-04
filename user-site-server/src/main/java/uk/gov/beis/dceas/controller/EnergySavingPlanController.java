@@ -52,6 +52,8 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
+import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_PRIMARY;
+import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_SECONDARY;
 import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.RECOMMENDATION_TAGS_BY_JSON_NAME;
 
 /**
@@ -271,8 +273,11 @@ public class EnergySavingPlanController {
 
         templateContext.setVariable("recommendations", recommendations);
         templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
+        templateContext.setVariable("isGhgEligible", recommendations.stream().anyMatch(rec ->
+                (rec.getTags() & (GHG_PRIMARY.getValue() | GHG_SECONDARY.getValue())) > 0)
+        );
 
-        Double totalInvestment = recommendations.stream()
+        double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> r.investmentPounds).sum();
 
         templateContext.setVariable("roundedTotalInvestmentRequired",
