@@ -4,7 +4,6 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'app-own-home-question',
     templateUrl: './own-home-question.component.html',
-    styleUrls: ['./own-home-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class OwnHomeQuestionComponent extends QuestionBaseComponent {

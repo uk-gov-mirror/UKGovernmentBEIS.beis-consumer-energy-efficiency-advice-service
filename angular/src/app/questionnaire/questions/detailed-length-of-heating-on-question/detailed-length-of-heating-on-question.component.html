@@ -1,6 +1,6 @@
 <div class="question-component detailed-length-of-heating-on-question">
     <form class="answer-grid questionnaire-form" (submit)="handleFormSubmit()">
-        <div class="heating-pattern-question">
+        <div class="heating-pattern-question centered-question">
             <select name="heating-pattern-dropdown" class="dropdown-input text-input heating-pattern-dropdown"
                     aria-labelledby="heating-pattern-dropdown" [(ngModel)]="heatingPatternType">
                 <option *ngFor="let heatingPattern of heatingPatterns" [ngValue]="heatingPattern.value">{{heatingPattern.name}}</option>
@@ -37,7 +37,7 @@
                                  [maxQuantity]="11"></app-number-question>
         </div>
 
-        <div class="heating-hours-question" *ngIf="heatingPatternType === 4">
+        <div class="heating-hours-question centered-question" *ngIf="heatingPatternType === 4">
 
             <div id="heating-hours" class="sub-question-text">
                 How many hours do you leave your heating on per day?

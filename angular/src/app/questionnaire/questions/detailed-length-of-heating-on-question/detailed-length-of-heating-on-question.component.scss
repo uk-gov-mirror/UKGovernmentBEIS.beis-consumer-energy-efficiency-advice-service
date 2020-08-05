@@ -12,10 +12,6 @@
   }
 
   .heating-pattern-question {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     .heating-pattern-dropdown {
       border-radius: 12%/50%;
     }
@@ -44,9 +40,6 @@
   }
 
   .heating-hours-question {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     .sub-question-text {
       color: $dark-blue;

@@ -2,7 +2,7 @@ import {QuestionMetadata} from "../base-question/question-metadata";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {QuestionType} from "./question-type";
 import {QuestionBaseComponent} from "../base-question/question-base-component";
-import { Type } from "@angular/core";
+import {Type} from "@angular/core";
 
 export class QuestionGroupBuilder {
     constructor(
@@ -32,7 +32,7 @@ class OnlyApplicableIf implements QuestionMetadata {
     public readonly questionType: QuestionType;
 
     constructor(
-        private readonly applicableIf: (responseData: ResponseData) => boolean,
+        private readonly wrapperIsApplicable: (responseData: ResponseData) => boolean,
         private readonly wrappedQuestionMetadata: QuestionMetadata
     ) {
         this.componentType = wrappedQuestionMetadata.componentType;
@@ -45,6 +45,6 @@ class OnlyApplicableIf implements QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return this.applicableIf(responseData) && this.wrappedQuestionMetadata.isApplicable(responseData);
+        return this.wrapperIsApplicable(responseData) && this.wrappedQuestionMetadata.isApplicable(responseData);
     }
 }
