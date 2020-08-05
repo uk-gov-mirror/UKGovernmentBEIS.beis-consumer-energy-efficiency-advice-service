@@ -4,8 +4,6 @@
         content: "Page " counter(page) " of " counter(pages);
         font-family: Gotham, Arial, sans-serif;
     }
-
-    margin: ;
 }
 
 body {
@@ -78,8 +76,39 @@ h1 img {
     font-weight: bold;
 }
 
+.installers {
+    width: 67%;
+    font-size: small;
+}
+
+.quote-input {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 33%;
+    border: 2px solid #1A485F;
+    padding: 0.25em 1em 1em;
+    margin: 1em 0;
+}
+
+.quote-input label {
+    text-transform: uppercase;
+    font-size: small;
+}
+
+.quote-input input {
+    width: 100%;
+    font-size: x-large;
+}
+
 .ghg-context {
     border: 5px solid #407D56;
     padding: 0 1em 1em;
     margin-top: 4em;
+}
+
+.quote {
+    width: 100%;
+    position: relative;
+    min-height: 5em;
 }
