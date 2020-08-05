@@ -76,7 +76,15 @@ h1 img {
     font-weight: bold;
 }
 
+.installers {
+    width: 67%;
+    font-size: small;
+}
+
 .quote-input {
+    position: absolute;
+    right: 0;
+    top: 0;
     width: 33%;
     border: 2px solid #1A485F;
     padding: 0.25em 1em 1em;
@@ -97,4 +105,10 @@ h1 img {
     border: 5px solid #407D56;
     padding: 0 1em 1em;
     margin-top: 4em;
+}
+
+.quote {
+    width: 100%;
+    position: relative;
+    min-height: 5em;
 }
