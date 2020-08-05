@@ -52,6 +52,7 @@ import {LoftInfestationQuestionComponent} from "./loft-infestation-question/loft
 import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/loft-water-damage-question.component";
 import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
 import {NewBuildQuestionComponent} from "./new-build-question/new-build-question.component";
+import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.component";
 
 @NgModule({
     declarations: [
@@ -79,6 +80,7 @@ import {NewBuildQuestionComponent} from "./new-build-question/new-build-question
         NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
+        OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
@@ -128,6 +130,7 @@ import {NewBuildQuestionComponent} from "./new-build-question/new-build-question
         NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
+        OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
@@ -184,6 +187,7 @@ import {NewBuildQuestionComponent} from "./new-build-question/new-build-question
         NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
+        OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
