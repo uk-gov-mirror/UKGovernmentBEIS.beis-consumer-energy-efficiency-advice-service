@@ -8,6 +8,8 @@ import {RecommendationStepCardComponent} from "../recommendation-step-card/recom
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import {InstallerSearchService} from "../../../shared/installer-search-service/installer-search.service";
 import { Observable } from '../../../../../node_modules/rxjs/Observable';
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {GreenHomesGrantEligibility} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 
 describe('RecommendationWithStepsCardComponent', () => {
     let component: RecommendationWithStepsCardComponent;
@@ -22,6 +24,10 @@ describe('RecommendationWithStepsCardComponent', () => {
             fetchInstallerDetails: () => Observable.of({}),
         };
 
+        const greenHomesGrantStub = {
+            getEligibility: () => Observable.of(GreenHomesGrantEligibility.Eligible),
+        };
+
         TestBed.configureTestingModule({
             declarations: [
                 RecommendationWithStepsCardComponent,
@@ -33,6 +39,7 @@ describe('RecommendationWithStepsCardComponent', () => {
             providers: [
                 {provide: ResponseData, useValue: responseData},
                 {provide: InstallerSearchService, useValue: installerSearchServiceStub},
+                {provide: GreenHomesGrantService, useValue: greenHomesGrantStub},
                 GoogleAnalyticsService,
             ],
             imports: [

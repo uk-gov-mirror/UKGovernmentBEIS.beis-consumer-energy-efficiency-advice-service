@@ -30,6 +30,8 @@ import {AbTestingService} from "../../shared/analytics/ab-testing.service";
 import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {InstallerSearchService} from "../../shared/installer-search-service/installer-search.service";
+import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -161,6 +163,11 @@ describe('YourPlanPageComponent', () => {
         fetchInstallerDetails: () => Observable.of({}),
     };
 
+    const greenHomesGrantStub = {
+        getEligibility: () => Observable.of(GreenHomesGrantEligibility.Eligible),
+        hasGHGTag: () => true,
+    };
+
     beforeEach(async(() => {
         localAuthorityResponse = Observable.of({
             name: 'Westminster',
@@ -188,6 +195,7 @@ describe('YourPlanPageComponent', () => {
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},
                 {provide: InstallerSearchService, useValue: installerSearchServiceStub},
+                {provide: GreenHomesGrantService, useValue: greenHomesGrantStub},
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,
                 AbTestingService,

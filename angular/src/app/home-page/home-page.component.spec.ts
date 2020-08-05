@@ -17,6 +17,7 @@ import {NavBarSuboptionComponent} from '../layout-components/navigation-bar/nav-
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {SpinnerAndErrorContainerComponent} from "../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
+import {LinkButtonComponent} from "../shared/link-button/link-button.component";
 
 describe('HomePageComponent', () => {
     let component: HomePageComponent;
@@ -36,7 +37,7 @@ describe('HomePageComponent', () => {
         TestBed.configureTestingModule({
             declarations: [HomePageComponent, LatestNewsSectionComponent,
                 LatestNewsCardComponent, NavBarSuboptionComponent, NavigationBarComponent,
-                SearchBarComponent, SpinnerAndErrorContainerComponent],
+                SearchBarComponent, SpinnerAndErrorContainerComponent, LinkButtonComponent],
             imports: [RouterTestingModule.withRoutes([
                 {path: 'energy-efficiency/results', component: DummyComponent},
                 {path: 'grants', component: DummyComponent},
