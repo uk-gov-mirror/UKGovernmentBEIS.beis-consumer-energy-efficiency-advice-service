@@ -87,7 +87,7 @@
     display: inline-block;
   }
 
-  .your-plan {
+  .highlighted-link {
     background-color: $dark-medium-blue;
     color: white;
     text-transform: uppercase;
@@ -119,7 +119,7 @@
         padding-left: 20px;
       }
 
-      .your-plan {
+      .highlighted-link {
         padding: 10px 20px;
       }
     }
@@ -131,7 +131,7 @@
       display: none;
     }
 
-    .your-plan {
+    .highlighted-link {
       width: 100%;
       margin: 0 -20px;
       padding: 10px 20px;
@@ -158,7 +158,7 @@
       cursor: pointer;
     }
 
-    .your-plan-container {
+    .highlighted-link-container {
       height: 100%;
       width: 200px;
       min-width: 200px;
@@ -169,10 +169,10 @@
       flex-grow: 1;
     }
 
-    .your-plan {
+    .highlighted-link {
       width: 200px;
       min-width: 200px;
-      padding: 15px;
+      padding: 15px 8px;
     }
 
     app-search-bar {

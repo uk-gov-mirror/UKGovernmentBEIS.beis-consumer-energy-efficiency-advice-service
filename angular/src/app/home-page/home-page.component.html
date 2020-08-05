@@ -22,9 +22,24 @@
             </div>
         </div>
     </div>
+    <div class="green-homes-grant-section page-row">
+        <div class="page-row-content">
+            <h2 class="heading">Green Homes Grant</h2>
+            <p class="summary">The Chancellor announced on 8th July a £2bn Green Homes Grant in England.</p>
+            <p>
+                Under this scheme homeowners and landlords are able to apply for a voucher to fund up to
+                two thirds of the cost of hiring tradespeople to upgrade the energy performance of their home
+                (up to a maximum contribution of around £5000). Low income households are eligible for up
+                to 100% government funding, up to around £10,000.
+            </p>
+            <app-link-button [linkUrl]="'/pages/green-homes-grant'"
+                             [buttonText]="'Find out more about the Green Homes Grant'">
+            </app-link-button>
+        </div>
+    </div>
     <div class="page-row quick-links">
         <a class="quick-link calculator" (click)="onEnergyCalculatorButtonClick()" tabindex="0">
-            <div class="heading">Try our energy efficiency calculator</div>
+            <h2 class="heading">Try our energy efficiency calculator</h2>
             <div class="description">
                 It takes 5 minutes to complete to receive your recommendations
             </div>
@@ -32,7 +47,7 @@
             <span class="calculator-image"></span>
         </a>
         <a class="quick-link grants" (click)="onGrantsButtonClick()" tabindex="0">
-            <div class="heading">Learn about home energy grants</div>
+            <h2 class="heading">Learn about home energy grants</h2>
             <div class="description">
                 You might be eligible for help with your energy bills or making your home more energy efficient
             </div>
@@ -40,7 +55,7 @@
             <span class="grants-image"></span>
         </a>
         <a class="quick-link boiler" (click)="onBoilerButtonClick()" tabindex="0">
-            <div class="heading">Boilers and heating systems</div>
+            <h2 class="heading">Boilers and heating systems</h2>
             <div class="description">
                 Troubleshooting your boiler or finding the perfect replacement
             </div>
