@@ -13,6 +13,7 @@ import {
     getTagDescription,
     getActiveTags
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 @Component({
     selector: 'app-recommendation-with-steps-card',
@@ -27,15 +28,18 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     ];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
+    hasGHGTag: boolean = false;
     installers: Installer[];
 
     constructor(private responseData: ResponseData,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private installerSearchService: InstallerSearchService) {
+                private installerSearchService: InstallerSearchService,
+                private greenHomesGrantService: GreenHomesGrantService) {
     }
 
     ngOnInit() {
         this.loadTrustMarkInstallers();
+        this.hasGHGTag = this.greenHomesGrantService.hasGHGTag(this.recommendation.tags);
     }
 
     getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
@@ -66,13 +70,11 @@ export class RecommendationWithStepsCardComponent implements OnInit {
         return getTagDescription(tag);
     }
 
-    hasGHGTag() {
-        const tags = getActiveTags(this.recommendation.tags);
-        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
-    }
-
     private loadTrustMarkInstallers() {
-        if (this.hasGHGTag() && this.recommendation.trustMarkTradeCodes.length) {
+        if (
+            this.greenHomesGrantService.hasGHGTag(this.recommendation.tags)
+            && this.recommendation.trustMarkTradeCodes.length
+        ) {
             this.installerSearchService.fetchInstallerDetails(this.responseData.postcode, this.recommendation.trustMarkTradeCodes)
                 .subscribe(response => {
                     this.installers = response.data.slice(0, 3);

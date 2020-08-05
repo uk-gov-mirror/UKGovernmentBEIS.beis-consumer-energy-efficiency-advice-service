@@ -77,3 +77,9 @@ h1 img {
 .eligibility-text {
     font-weight: bold;
 }
+
+.ghg-context {
+    border: 5px solid #407D56;
+    padding: 0 1em 1em;
+    margin-top: 4em;
+}
