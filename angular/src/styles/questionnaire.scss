@@ -14,6 +14,12 @@ $desktop-multiple-choice-margin: 20px;
 .questions-container {
 
   .question {
+    .centered-question {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .question-component {
 
       .questionnaire-form {

@@ -4,7 +4,6 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'app-new-build-question',
     templateUrl: './new-build-question.component.html',
-    styleUrls: ['./new-build-question.component.scss'],
     animations: [slideInOutAnimation]
 })
 export class NewBuildQuestionComponent extends QuestionBaseComponent {

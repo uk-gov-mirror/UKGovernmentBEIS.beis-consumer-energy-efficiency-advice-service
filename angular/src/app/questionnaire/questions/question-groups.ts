@@ -47,8 +47,10 @@ import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
 import {GreenHomesGrantPostcodeEpcQuestionMetadata} from "./green-homes-grant/green-homes-grant-postcode-epc-question/green-homes-grant-postcode-epc-question-metadata";
 import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
-import {englandOnly, nonNewBuildOnly} from "./green-homes-grant/only-applicable-if";
-import {QuestionMetadata} from "../base-question/question-metadata";
+import {Country} from "./postcode-epc-question/country";
+import {HomeAge} from "./home-age-question/home-age";
+import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
+import {QuestionGroupBuilder} from "./question-group-builder";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -131,7 +133,14 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new IncomeQuestionMetadata()
 ];
 
-const GHG_NON_NEW_BUILD_QUESTIONS: QuestionMetadata[] = [
+export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
+    new GreenHomesGrantPostcodeEpcQuestionMetadata()
+]).andThenContinueIf(responseData => responseData.country === Country.England, [
+    new HomeAgeQuestionMetadata(),
+    new NewBuildQuestionMetadata()
+]).andThenContinueIf(responseData => !responseData.newBuild, [
+    new OwnHomeQuestionMetadata()
+]).andThenContinueIf(responseData => responseData.ownsHome, [
     new PensionGuaranteeCreditQuestionMetadata(),
     new IncomeRelatedBenefitsQuestionMetadata(),
     new SocietalBenefitsQuestionMetadata(),
@@ -139,18 +148,7 @@ const GHG_NON_NEW_BUILD_QUESTIONS: QuestionMetadata[] = [
     new ChildBenefitsQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()
-].map(nonNewBuildOnly);
-
-const GHG_ENGLAND_ONLY_QUESTIONS: QuestionMetadata[] = [
-    new HomeAgeQuestionMetadata(),
-    new NewBuildQuestionMetadata(),
-    ...GHG_NON_NEW_BUILD_QUESTIONS
-].map(englandOnly);
-
-export const GREEN_HOMES_GRANT_QUESTIONS: QuestionMetadata[] = [
-    new GreenHomesGrantPostcodeEpcQuestionMetadata(),
-    ...GHG_ENGLAND_ONLY_QUESTIONS
-];
+]).build();
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [
     new ConfirmEpcQuestionMetadata(),
