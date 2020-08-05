@@ -90,16 +90,22 @@
                                 £120
                             </div>
                         </div>
-                        <div class="installers" th:if="${isGhgEligible and !ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
-                            <div class="heading">
-                                Nearby installers
+                        <div class="quote">
+                            <div class="installers" th:if="${isGhgEligible and !ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
+                                <div class="heading">
+                                    Nearby installers
+                                </div>
+                                <ul>
+                                    <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
+                                        th:text="${installer.getRegisteredName() + ' - ' + installer.getPhoneNumber()}">
+                                        Solar Panels Ltd - 020 7925 0918
+                                    </li>
+                                </ul>
                             </div>
-                            <ul>
-                                <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
-                                    th:text="${installer.getRegisteredName() + ' - ' + installer.getPhoneNumber()}">
-                                    Solar Panels Ltd - 020 7925 0918
-                                </li>
-                            </ul>
+                            <div class="quote-input">
+                                <label>Your Quote</label>
+                                <input type="text" />
+                            </div>
                         </div>
                     </div>
                     <div class="steps">
