@@ -93,5 +93,6 @@
     <include file="changelogs/2020-08-06-insert-trustmark-trade-codes.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-06-fix-question-publish-dates.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-06-hide-postcode-epc-reason-by-default.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-08-06-add-any-benefits-question.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

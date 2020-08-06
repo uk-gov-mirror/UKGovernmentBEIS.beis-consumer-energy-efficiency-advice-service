@@ -139,6 +139,8 @@ export class ResponseData {
     public receiveDefenseRelatedBenefits: boolean;
     // Set by ChildBenefitsQuestionComponent, used by grants
     public receiveChildBenefits: boolean;
+    // Set by AnyBenefitsQuestionComponent, used by GHG
+    public receiveAnyBenefits: boolean;
     // Set by IncomeQuestionComponent, used by grants
     public income: number;
 

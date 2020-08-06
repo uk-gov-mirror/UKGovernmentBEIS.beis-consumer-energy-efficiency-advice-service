@@ -18,6 +18,7 @@ export class GreenHomesGrantQuestionnaire extends Questionnaire {
     }
 
     private static resetBenefitQuestionAnswers(responseData: ResponseData): void {
+        responseData.receiveAnyBenefits = undefined;
         responseData.receivePensionGuaranteeCredit = undefined;
         responseData.receiveIncomeRelatedBenefits = undefined;
         responseData.receiveSocietalBenefits = undefined;

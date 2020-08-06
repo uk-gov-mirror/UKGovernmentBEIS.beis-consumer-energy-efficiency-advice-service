@@ -54,9 +54,11 @@ import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question
 import {NewBuildQuestionComponent} from "./new-build-question/new-build-question.component";
 import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.component";
 import {CountryPostcodeQuestionComponent} from "./country-postcode-question/country-postcode-question.component";
+import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-question.component";
 
 @NgModule({
     declarations: [
+        AnyBenefitsQuestionComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
@@ -108,6 +110,7 @@ import {CountryPostcodeQuestionComponent} from "./country-postcode-question/coun
         WallTypeQuestionComponent
     ],
     exports: [
+        AnyBenefitsQuestionComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
@@ -166,6 +169,7 @@ import {CountryPostcodeQuestionComponent} from "./country-postcode-question/coun
         NouisliderModule,
     ],
     entryComponents: [
+        AnyBenefitsQuestionComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
