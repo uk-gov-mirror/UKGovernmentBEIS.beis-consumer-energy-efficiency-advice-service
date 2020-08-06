@@ -73,7 +73,6 @@ export class CountryPostcodeQuestionComponent extends QuestionBaseComponent impl
 
     private displayPostcodeValidationError(): void {
         this.shouldDisplayLoadingSpinner = false;
-        this.validationError = null;
         this.validationError = CountryPostcodeQuestionComponent.ERROR_VALIDATION;
     }
 
