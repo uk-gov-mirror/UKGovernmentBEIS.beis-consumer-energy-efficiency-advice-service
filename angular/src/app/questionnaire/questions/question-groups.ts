@@ -48,7 +48,6 @@ import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-
 import {GreenHomesGrantPostcodeEpcQuestionMetadata} from "./green-homes-grant/green-homes-grant-postcode-epc-question/green-homes-grant-postcode-epc-question-metadata";
 import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
 import {Country} from "./postcode-epc-question/country";
-import {HomeAge} from "./home-age-question/home-age";
 import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
 import {QuestionGroupBuilder} from "./question-group-builder";
 import {GreenHomesGrantOccupantsQuestionMetadata} from "./green-homes-grant/green-homes-grant-occupants-question/green-homes-grant-occupants-question-metadata";
@@ -71,6 +70,7 @@ export const CORE_BRE_QUESTIONS = [
     new FloorSpanQuestionMetadata(),
     new FlatExposedWallQuestionMetadata(),
     new HomeAgeQuestionMetadata(),
+    new NewBuildQuestionMetadata(),
     new BedroomsQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),

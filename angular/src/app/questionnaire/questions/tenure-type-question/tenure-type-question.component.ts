@@ -43,5 +43,6 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
 
     set response(val: TenureType) {
         this.responseData.tenureType = val;
+        this.responseData.ownsHome = (val === TenureType.OwnerOccupancy);
     }
 }
