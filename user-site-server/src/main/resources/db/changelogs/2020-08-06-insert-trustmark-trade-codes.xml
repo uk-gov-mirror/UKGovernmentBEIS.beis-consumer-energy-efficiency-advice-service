@@ -227,7 +227,7 @@
                 DROP FUNCTION CheckMeasureExists;
             ]]>
         </sql>
-        <dropProcedure procedureName="InsertTadeCode"/>
+        <dropProcedure procedureName="InsertTradeCode"/>
         <dropProcedure procedureName="InsertNumberOfTradeCodes"/> 
         <dropView viewName="measures"/>  
     </changeSet>
