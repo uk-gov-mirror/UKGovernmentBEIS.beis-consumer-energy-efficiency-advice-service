@@ -97,7 +97,7 @@
                                 </div>
                                 <ul>
                                     <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
-                                        th:text="${installer.getRegisteredName() + ' - ' + installer.getPhoneNumber()}">
+                                        th:text="${installer.getRegisteredName() + (installer.getPhoneNumber().isEmpty() ? '' : ' - ' + installer.getPhoneNumber())}">
                                         Solar Panels Ltd - 020 7925 0918
                                     </li>
                                 </ul>

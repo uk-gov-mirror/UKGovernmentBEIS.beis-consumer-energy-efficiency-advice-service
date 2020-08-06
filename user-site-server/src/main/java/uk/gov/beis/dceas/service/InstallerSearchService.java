@@ -139,11 +139,8 @@ public class InstallerSearchService {
         Integer trustMarkLicenseNumber;
         String webAddress;
         String registeredName;
-        // TODO SEA-43: Remove default values when the API actually returns this
-        @FindbugsSuppressWarnings
-        String phoneNumber = "020 7925 0918";
-        @FindbugsSuppressWarnings
-        String email = "person@installer.com";
+        String phoneNumber;
+        String email;
    }
 
     @lombok.Value
