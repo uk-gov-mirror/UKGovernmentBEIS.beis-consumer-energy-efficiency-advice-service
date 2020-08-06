@@ -12,6 +12,7 @@ import {
     IncomeThresholds
 } from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-thresholds";
 import {Observable} from 'rxjs/Observable';
+import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 describe('GreenHomesGrantService', () => {
     let httpMock: HttpTestingController;
@@ -88,21 +89,21 @@ describe('GreenHomesGrantService', () => {
                 });
         }));
 
-        it("should return partially eligible if they don't own their home", async(() => {
+        it("should return ineligible if they don't own their home", async(() => {
             responseData.country = Country.England;
             responseData.newBuild = false;
-            responseData.ownsHome = false;
+            responseData.ownsHome = OwnHome.Tenant;
 
             service.getEligibility().toPromise()
                 .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.Ineligible);
                 });
         }));
 
         it('should return fully eligible if they own their home and are on non-child benefits', async(() => {
             responseData.country = Country.England;
             responseData.newBuild = false;
-            responseData.ownsHome = true;
+            responseData.ownsHome = OwnHome.Owner;
             responseData.receiveSocietalBenefits = true;
 
             service.getEligibility().toPromise()
@@ -111,22 +112,10 @@ describe('GreenHomesGrantService', () => {
                 });
         }));
 
-        it("should return partially eligible if they don't own their home and are on non-child benefits", async(() => {
-            responseData.country = Country.England;
-            responseData.newBuild = false;
-            responseData.ownsHome = false;
-            responseData.receiveSocietalBenefits = true;
-
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-                });
-        }));
-
         it('should return fully eligible if they earn below the child benefits threshold', async(() => {
             responseData.country = Country.England;
             responseData.newBuild = false;
-            responseData.ownsHome = true;
+            responseData.ownsHome = OwnHome.Owner;
             responseData.receiveChildBenefits = true;
             responseData.income = 10000;
             responseData.numberOfChildrenAgedUnder5 = 1;
@@ -144,7 +133,7 @@ describe('GreenHomesGrantService', () => {
         it('should return partially eligible if they earn above the child benefits threshold', async(() => {
             responseData.country = Country.England;
             responseData.newBuild = false;
-            responseData.ownsHome = true;
+            responseData.ownsHome = OwnHome.Owner;
             responseData.receiveChildBenefits = true;
             responseData.income = 1000000;
             responseData.numberOfChildrenAgedUnder5 = 1;

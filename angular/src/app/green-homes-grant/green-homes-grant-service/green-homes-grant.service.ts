@@ -12,6 +12,7 @@ import {
     getActiveTags
 } from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {IncomeThresholdService} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
+import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 @Injectable()
 export class GreenHomesGrantService {
@@ -38,18 +39,10 @@ export class GreenHomesGrantService {
     }
 
     private calculateEligibility(responseData: ResponseData): Observable<GreenHomesGrantEligibility> {
-        if (responseData.country !== Country.England || responseData.newBuild) {
+        if (responseData.country !== Country.England || responseData.newBuild || responseData.ownsHome === OwnHome.Tenant) {
             return Observable.of(GreenHomesGrantEligibility.Ineligible);
         }
 
-        if (!responseData.ownsHome) {
-            return Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
-        }
-
-        return this.getEligibilityFromBenefits(responseData);
-    }
-
-    private getEligibilityFromBenefits(responseData: ResponseData): Observable<GreenHomesGrantEligibility> {
         if (GreenHomesGrantService.receivesAnyBenefitOtherThanChildBenefits(responseData)) {
             return Observable.of(GreenHomesGrantEligibility.FullyEligible);
         }
