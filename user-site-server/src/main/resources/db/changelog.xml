@@ -91,5 +91,6 @@
     <include file="changelogs/2020-07-30-add-new-build-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-07-31-add-own-home-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-06-insert-trustmark-trade-codes.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-08-06-add-green-homes-grant-page.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
