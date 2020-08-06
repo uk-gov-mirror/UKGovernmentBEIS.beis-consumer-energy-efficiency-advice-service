@@ -19,12 +19,4 @@
 @include tablet() {
 }
 @include desktop() {
-  .garden-question {
-    .garden-options {
-      .garden-option {
-        @include is-grid-item($number-of-items: 3, $margin: 20px);
-        white-space: nowrap;
-      }
-    }
-  }
 }
