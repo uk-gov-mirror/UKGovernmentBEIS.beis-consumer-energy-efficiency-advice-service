@@ -16,16 +16,21 @@
         <div class="page-row-content">
             <div class="ghg-context-card" *ngIf="this.isEligibleForGreenHomesGrant">
                 <div class="header">Green Homes Grant</div>
-                <p>You could save money on these improvements with the Green Homes Grant.<p>
-                <p>To be eligible, you must add at least one <span class="tag">GHG Eligible (primary)</span> measure to your plan.</p>
-                <p>To apply, you will need quotes from an approved installer. We well help you find installers for measures in your plan.</p>
+                <ng-container *ngIf="isOwnerOccupied">
+                    <p>You could save money on these improvements with the Green Homes Grant.<p>
+                    <p>To be eligible, you must add at least one <span class="tag">GHG Eligible (primary)</span> measure to your plan.</p>
+                    <p>To apply, you will need quotes from an approved installer. We well help you find installers for measures in your plan.</p>
+                </ng-container>
+                <ng-container *ngIf="!isOwnerOccupied">
+                    <p>Your landlord might be eligible to use the Green Homes Grant to make these improvements.</p>
+                </ng-container>
                 <p>Please visit <a [routerLink]="'/pages/green-homes-grant'">this page</a> for more information.</p>
             </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getUserRecommendations()"
                         [recommendation]="recommendation"
-                        [showMonthlySavings]="showMonthlySavings"
+                        [showMonthlySavings]="!isOwnerOccupied"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                 ></app-energy-efficiency-recommendation-card>
                 <app-energy-efficiency-combined-recommendation-card
@@ -34,7 +39,7 @@
                         [combinedSummary]="'Since you are renting, some of our recommendations will need to be carried out by your landlord.'"
                         [combinedIconPath]="'icons/home-improve.svg'"
                         [recommendations]="getLandlordRecommendations()"
-                        [showMonthlySavings]="showMonthlySavings"
+                        [showMonthlySavings]="!isOwnerOccupied"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
                 ></app-energy-efficiency-combined-recommendation-card>
             </div>
