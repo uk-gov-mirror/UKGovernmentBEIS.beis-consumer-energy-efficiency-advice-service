@@ -85,5 +85,5 @@ These, as it stands, are the steps that should be taken when creating a new ques
 
  * 	Add a new post of type 'Question' and define the question heading and (if desired)
     help text. Add a migration so that your new question will be added to all environments; 
-    see 2018-04-18-add-hot-water-cylinder--question.xml for an example.
+    see `2018-11-22-add-built-form-question.xml` for an example.
  * 	Ensure the slug corresponds to the questionId in MyQuestionMetadata

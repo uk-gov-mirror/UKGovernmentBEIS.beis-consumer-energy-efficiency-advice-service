@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-06-fix-question-publish-dates.xml"
+               author="matt.barnfield@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+UPDATE wp_posts
+SET post_date='2020-08-06', post_date_gmt='2020-08-06', post_modified='2020-08-06', post_modified_gmt='2020-08-06'
+WHERE post_name='hot-water-cylinder' OR post_name='own_home' OR post_name='new_build';
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>
