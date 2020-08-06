@@ -31,6 +31,7 @@ import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questio
 import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
 import {NewBuildQuestionMetadata} from "../../questions/new-build-question/new-build-question-metadata";
+import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -64,6 +65,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -107,6 +109,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new LivingRoomTemperatureQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new ShowersAndBathsQuestionMetadata(),
@@ -150,6 +153,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata(),
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
@@ -190,6 +194,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
+            new GardenQuestionMetadata(),
             new GrantsQuestionnaireQuestionMetadata(),
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
