@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-06-hide-postcode-epc-reason-by-default.xml"
+               author="matt.barnfield@softwire.com">
+        <sql><![CDATA[
+
+UPDATE wp_postmeta
+SET meta_value = 0
+WHERE meta_key = 'autoOpenQuestionReason'
+AND post_id = (SELECT ID FROM wp_posts WHERE post_name = 'postcode_epc');
+
+        ]]></sql>
+    </changeSet>
+</databaseChangeLog>
