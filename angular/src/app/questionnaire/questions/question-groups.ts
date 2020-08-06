@@ -45,13 +45,13 @@ import {LoftClutterQuestionMetadata} from "./loft-clutter-question/loft-clutter-
 import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-infestation-question-metadata";
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
-import {GreenHomesGrantPostcodeEpcQuestionMetadata} from "./green-homes-grant/green-homes-grant-postcode-epc-question/green-homes-grant-postcode-epc-question-metadata";
 import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
 import {Country} from "./postcode-epc-question/country";
 import {HomeAge} from "./home-age-question/home-age";
 import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
 import {QuestionGroupBuilder} from "./question-group-builder";
 import {GreenHomesGrantOccupantsQuestionMetadata} from "./green-homes-grant/green-homes-grant-occupants-question/green-homes-grant-occupants-question-metadata";
+import {CountryPostcodeQuestionMetadata} from "./country-postcode-question/country-postcode-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -135,11 +135,11 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
 ];
 
 export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
-    new GreenHomesGrantPostcodeEpcQuestionMetadata()
+    new CountryPostcodeQuestionMetadata()
 ]).andThenContinueIf(responseData => responseData.country === Country.England, [
     new HomeAgeQuestionMetadata(),
     new NewBuildQuestionMetadata()
-]).andThenContinueIf(responseData => !responseData.newBuild, [
+]).andThenContinueIf(responseData => !responseData.newBuild || responseData.homeAge !== HomeAge.from2011toPresent, [
     new OwnHomeQuestionMetadata()
 ]).andThenContinueIf(responseData => responseData.ownsHome, [
     new PensionGuaranteeCreditQuestionMetadata(),

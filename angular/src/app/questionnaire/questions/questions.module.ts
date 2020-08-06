@@ -53,6 +53,7 @@ import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/lof
 import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
 import {NewBuildQuestionComponent} from "./new-build-question/new-build-question.component";
 import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.component";
+import {CountryPostcodeQuestionComponent} from "./country-postcode-question/country-postcode-question.component";
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.co
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -111,6 +113,7 @@ import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.co
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -168,6 +171,7 @@ import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.co
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
