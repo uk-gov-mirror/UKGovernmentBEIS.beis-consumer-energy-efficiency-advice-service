@@ -86,8 +86,8 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         return this.allRecommendations.landlordRecommendations;
     }
 
-    get showMonthlySavings() {
-        return this.responseData.tenureType !== TenureType.OwnerOccupancy;
+    get isOwnerOccupied() {
+        return this.responseData.tenureType === TenureType.OwnerOccupancy;
     }
 
     sendEventToAnalytics(eventName: string) {
