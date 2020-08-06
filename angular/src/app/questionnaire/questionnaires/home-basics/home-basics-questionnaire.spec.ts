@@ -30,6 +30,7 @@ import {IncomeRelatedBenefitsQuestionMetadata} from "../../questions/benefits-qu
 import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questions/societal-benefits-question-metadata";
 import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
+import {NewBuildQuestionMetadata} from "../../questions/new-build-question/new-build-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -53,6 +54,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorSpanQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
+            new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -95,6 +97,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorSpanQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
+            new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -137,6 +140,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorSpanQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
+            new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
@@ -176,6 +180,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorSpanQuestionMetadata(),
             new FlatExposedWallQuestionMetadata(),
             new HomeAgeQuestionMetadata(),
+            new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
