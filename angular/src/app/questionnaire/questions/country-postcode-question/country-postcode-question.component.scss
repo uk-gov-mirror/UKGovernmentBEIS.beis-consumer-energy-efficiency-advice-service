@@ -1,0 +1,21 @@
+@import "styles/var/colors";
+
+.country-postcode-question {
+  justify-content: center;
+
+  #postcode-input.text-input {
+    border-radius: 10%/50%;
+  }
+
+  .icon-search {
+    height: 30px;
+    width: 30px;
+    stroke: $dark-grey;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin-left: 20px;
+  }
+}

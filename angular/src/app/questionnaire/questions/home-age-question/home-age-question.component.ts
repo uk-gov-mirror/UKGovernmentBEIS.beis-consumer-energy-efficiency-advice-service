@@ -38,7 +38,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
     }
 
     ngOnInit() {
-        this.homeAge = HomeAge.pre1900;
+        this.homeAge = this.responseData.homeAge || HomeAge.pre1900;
     }
 
     get homeAge(): HomeAge {
