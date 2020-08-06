@@ -69,7 +69,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
     };
 
     const greenHomesGrantStub = {
-        getEligibility: () => Observable.of(GreenHomesGrantEligibility.Eligible),
+        getEligibility: () => Observable.of(GreenHomesGrantEligibility.PartiallyEligible),
     };
 
     let responseData: ResponseData;
