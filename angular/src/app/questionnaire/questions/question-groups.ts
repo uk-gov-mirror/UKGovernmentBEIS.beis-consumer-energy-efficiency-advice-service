@@ -85,6 +85,10 @@ export const CORE_BRE_QUESTIONS = [
     new DetailedLengthOfHeatingOnQuestionMetadata()
 ];
 
+export const GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS = [
+    new GardenQuestionMetadata()
+];
+
 export const BASIC_BEHAVIOURAL_QUESTIONS = [
     new LivingRoomTemperatureQuestionMetadata(),
     new OccupantsQuestionMetadata(),

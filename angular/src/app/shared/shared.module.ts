@@ -34,6 +34,7 @@ import {CeilPipe} from './ceil/ceil.pipe';
 import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.component';
 import {NationalGrantsLinkCardComponent} from './national-grants-link-card/national-grants-link-card.component';
 import {RecommendationsService} from './recommendations-service/recommendations.service';
+import {GreenHomesGrantRecommendationsService} from './recommendations-service/green-homes-grant-recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
@@ -139,6 +140,7 @@ export class SharedModule {
                 GoogleAnalyticsService,
                 AssetsService,
                 RecommendationsService,
+                GreenHomesGrantRecommendationsService,
                 CookieService,
                 PlanInfoService,
                 EnergyEfficiencyDisplayService,
