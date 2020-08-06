@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-06-insert-trustmark-trade-codes.xml"
+               author="lucas.nogueira@softwire.com"
+               dbms="mysql">
+        <sql endDelimiter="GO">
+            <![CDATA[
+                CREATE FUNCTION CheckMeasureExists(
+                    postId BIGINT(20),
+                    measureCode LONGTEXT)
+                    RETURNS BOOLEAN
+                BEGIN
+                    DECLARE numberOfValidMeasures BIGINT DEFAULT 0;
+
+                    SET numberOfValidMeasures = (
+                        SELECT COUNT(*)
+                        FROM measures
+                        WHERE post_id = postId AND meta_value = measureCode
+                    );
+
+                    RETURN IF(numberOfValidMeasures = 1, TRUE, FALSE);
+                END
+                GO
+                ]]>
+        </sql>
+        <createProcedure procedureName="InsertTradeCode">
+            CREATE PROCEDURE InsertTradeCode(
+                IN postId BIGINT(20),
+                IN measureCode LONGTEXT,
+                IN tradeCodeIndex VARCHAR(255),
+                IN tradeCode LONGTEXT
+            )
+            BEGIN
+                DECLARE tradeCodeMetaKey VARCHAR(255);
+                IF CheckMeasureExists(postId, measureCode) THEN
+                    SET tradeCodeMetaKey = CONCAT('trustmark_trade_codes_', tradeCodeIndex, '_trade_code');
+
+                    INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+                    VALUES
+                        (postId, tradeCodeMetaKey, tradeCode),
+                        (postId, CONCAT('_', tradeCodeMetaKey), 'field_0000000000002');
+                END IF;
+            END
+        </createProcedure>
+        <createProcedure procedureName="InsertNumberOfTradeCodes">
+            CREATE PROCEDURE InsertNumberOfTradeCodes(
+                    IN postId BIGINT(20),
+                    IN measureCode LONGTEXT
+                )
+            BEGIN
+                DECLARE numberOfTradeCodes LONGTEXT;
+                IF CheckMeasureExists(postId, measureCode) THEN
+                    SET numberOfTradeCodes = (
+                        SELECT COUNT(*)
+                        FROM wp_postmeta
+                        WHERE post_id = postId AND meta_key REGEXP '^trustmark_trade_codes_[0-9]+_trade_code$'
+                    );
+
+                    INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+                    VALUES
+                        (postId, 'trustmark_trade_codes', numberOfTradeCodes),
+                        (postId, '_trustmark_trade_codes', 'field_0000000000001');
+                END IF;
+            END
+        </createProcedure>
+        <sql>
+            <![CDATA[
+                UPDATE wp_postmeta
+                SET meta_value = ''
+                WHERE meta_key = 'trustmark_trade_codes';
+
+                DELETE FROM wp_postmeta
+                WHERE meta_key REGEXP '^_?trustmark_trade_codes($|_[0-9]+_trade_code$)';
+
+                CREATE VIEW measures
+                AS SELECT post_id, post_type, meta_key, meta_value
+                    FROM wp_posts
+                    INNER JOIN wp_postmeta
+                    ON wp_posts.ID = wp_postmeta.post_id
+                    WHERE post_type = 'measure' AND meta_key = 'measure_code';
+
+                -- Low Energy Lighting
+                CALL InsertTradeCode(9579, 'low_energy_lights', '0', '24');
+                CALL InsertTradeCode(9579, 'low_energy_lights', '1', '144');
+                CALL InsertTradeCode(9579, 'low_energy_lights', '2', '145');
+                CALL InsertNumberOfTradeCodes(9579, 'low_energy_lights');
+
+                -- Solar electric panels
+                CALL InsertTradeCode(3753, 'U', '0', '55');
+                CALL InsertNumberOfTradeCodes(3753, 'U');
+
+                -- Fit new outside doors
+                CALL InsertTradeCode(3752, 'X', '0', '98');
+                CALL InsertTradeCode(3752, 'X', '1', '99');
+                CALL InsertNumberOfTradeCodes(3752, 'X');
+
+                -- Fit secondary glazing
+                CALL InsertTradeCode(3751, 'P', '0', '98');
+                CALL InsertTradeCode(3751, 'P', '1', '99');
+                CALL InsertNumberOfTradeCodes(3751, 'P');
+
+                -- Upgrade double glazing
+                CALL InsertTradeCode(3750, 'O3', '0', '98');
+                CALL InsertTradeCode(3750, 'O3', '1', '99');
+                CALL InsertNumberOfTradeCodes(3750, 'O3');
+
+                -- Fit new double glazed windows
+                CALL InsertTradeCode(3748, 'O', '0', '98');
+                CALL InsertTradeCode(3748, 'O', '1', '99');
+                CALL InsertNumberOfTradeCodes(3748, 'O');
+
+                -- Heat recovery system for mixer showers
+                CALL InsertTradeCode(3746, 'Y', '0', '142');
+                CALL InsertTradeCode(3746, 'Y', '1', '143');
+                CALL InsertNumberOfTradeCodes(3746, 'Y');
+
+                -- Solar water heating
+                CALL InsertTradeCode(3745, 'N', '0', '56');
+                CALL InsertNumberOfTradeCodes(3745, 'N');
+
+                -- Ground source heat pump
+                CALL InsertTradeCode(3743, 'Z4', '0', '119');
+                CALL InsertNumberOfTradeCodes(3743, 'Z4');
+
+                -- Air source heat pump
+                CALL InsertTradeCode(3741, 'Z1', '0', '116');
+                CALL InsertNumberOfTradeCodes(3741, 'Z1');
+
+                -- High heat retention storage heaters
+                CALL InsertTradeCode(3739, 'L2', '0', '112');
+                CALL InsertTradeCode(3739, 'L2', '1', '113');
+                CALL InsertNumberOfTradeCodes(3739, 'L2');
+
+                -- Flue gas heat recovery
+                CALL InsertTradeCode(3734, 'T2', '0', '128');
+                CALL InsertTradeCode(3734, 'T2', '1', '129');
+                CALL InsertNumberOfTradeCodes(3734, 'T2');
+
+                -- Fit new heating controls
+                CALL InsertTradeCode(3729, 'G', '0', '114');
+                CALL InsertTradeCode(3729, 'G', '1', '115');
+                CALL InsertNumberOfTradeCodes(3729, 'G');
+
+                -- Hot water cylinder thermostat
+                CALL InsertTradeCode(3728, 'F', '0', '114');
+                CALL InsertTradeCode(3728, 'F', '1', '115');
+                CALL InsertNumberOfTradeCodes(3728, 'F');
+
+                -- Hot water cylinder insulation
+                CALL InsertTradeCode(3727, 'C', '0', '114');
+                CALL InsertTradeCode(3727, 'C', '1', '115');
+                CALL InsertNumberOfTradeCodes(3727, 'C');
+
+                -- Draught-proof your windows and doors
+                CALL InsertTradeCode(3725, 'D', '0', '96');
+                CALL InsertTradeCode(3725, 'D', '1', '97');
+                CALL InsertNumberOfTradeCodes(3725, 'D');
+
+                -- Floor insulation (for a solid floor)
+                CALL InsertTradeCode(3724, 'W2', '0', '104');
+                CALL InsertTradeCode(3724, 'W2', '1', '105');
+                CALL InsertNumberOfTradeCodes(3724, 'W2');
+
+                -- Floor insulation (for a suspended floor)
+                CALL InsertTradeCode(3723, 'W1', '0', '104');
+                CALL InsertTradeCode(3723, 'W1', '1', '105');
+                CALL InsertNumberOfTradeCodes(3723, 'W1');
+
+                -- Solid Wall Insulation
+                CALL InsertTradeCode(3719, 'Q2', '0', '82');
+                CALL InsertTradeCode(3719, 'Q2', '1', '83');
+                CALL InsertTradeCode(3719, 'Q2', '2', '84');
+                CALL InsertTradeCode(3719, 'Q2', '3', '85');
+                CALL InsertNumberOfTradeCodes(3719, 'Q2');
+
+                -- Cavity wall insulation
+                CALL InsertTradeCode(3718, 'B', '0', '90');
+                CALL InsertTradeCode(3718, 'B', '1', '91');
+                CALL InsertNumberOfTradeCodes(3718, 'B');
+
+                -- Roof room insulation
+                CALL InsertTradeCode(3717, 'A3', '0', '102');
+                CALL InsertTradeCode(3717, 'A3', '1', '103');
+                CALL InsertNumberOfTradeCodes(3717, 'A3');
+
+                -- Improve flat roof insulation
+                CALL InsertTradeCode(3716, 'A2', '0', '94');
+                CALL InsertTradeCode(3716, 'A2', '1', '95');
+                CALL InsertNumberOfTradeCodes(3716, 'A2');
+
+                -- Add loft insulation
+                CALL InsertTradeCode(3715, 'A', '0', '54');
+                CALL InsertTradeCode(3715, 'A', '1', '92');
+                CALL InsertTradeCode(3715, 'A', '2', '93');
+                CALL InsertNumberOfTradeCodes(3715, 'A');
+
+                -- Wood pellets boiler
+                CALL InsertTradeCode(3737, 'K', '0', '51');
+                CALL InsertNumberOfTradeCodes(3737, 'K');
+
+                -- Condensing gas boiler (fuel switch)
+                CALL InsertTradeCode(3733, 'T', '0', '107');
+                CALL InsertTradeCode(3733, 'T', '1', '108');
+                CALL InsertNumberOfTradeCodes(3733, 'T');
+
+                -- Condensing gas boiler (no fuel switch)
+                CALL InsertTradeCode(3732, 'S', '0', '107');
+                CALL InsertTradeCode(3732, 'S', '1', '108');
+                CALL InsertNumberOfTradeCodes(3732, 'S');
+
+                -- Replacement condensing boiler
+                CALL InsertTradeCode(3731, 'I', '0', '107');
+                CALL InsertTradeCode(3731, 'I', '1', '108');
+                CALL InsertNumberOfTradeCodes(3731, 'I');
+
+                -- Party wall insulation
+                CALL InsertTradeCode(3720, 'B4', '0', '90');
+                CALL InsertTradeCode(3720, 'B4', '1', '91');
+                CALL InsertNumberOfTradeCodes(3720, 'B4');
+
+
+                DROP FUNCTION CheckMeasureExists;
+            ]]>
+        </sql>
+        <dropProcedure procedureName="InsertTadeCode"/>
+        <dropProcedure procedureName="InsertNumberOfTradeCodes"/> 
+        <dropView viewName="measures"/>  
+    </changeSet>
+</databaseChangeLog>
