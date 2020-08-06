@@ -7,7 +7,7 @@ export class CountryPostcodeQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             CountryPostcodeQuestionComponent,
-            'country_postcode',
+            'postcode_epc',
             QuestionType.House
         );
     }
