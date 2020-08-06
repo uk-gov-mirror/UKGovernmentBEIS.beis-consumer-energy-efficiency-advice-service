@@ -1,6 +1,6 @@
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {HomeAge} from './home-age';
-import {Component,  OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 interface DropdownOption<T> {
     name: string;
@@ -47,5 +47,8 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
 
     set homeAge(val: HomeAge) {
         this.responseData.homeAge = val;
+        if (val !== HomeAge.from2011toPresent) {
+            this.responseData.newBuild = false;
+        }
     }
 }
