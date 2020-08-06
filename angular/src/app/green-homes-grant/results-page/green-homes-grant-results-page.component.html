@@ -16,6 +16,11 @@
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text">
+                <div class="ineligible-reason" *ngIf="isTenant">
+                    Sorry, you're not eligible for the Green Homes Grant because you rent your home.
+                    However, your landlord might be eligible to get the grant on your behalf.
+                    Take our questionnaire now to get some handy tips to send to your landlord.
+                </div>
                 <div *ngIf="status === GreenHomesGrantEligibility.Ineligible">
                     <app-link-button
                             linkUrl="/grants"
