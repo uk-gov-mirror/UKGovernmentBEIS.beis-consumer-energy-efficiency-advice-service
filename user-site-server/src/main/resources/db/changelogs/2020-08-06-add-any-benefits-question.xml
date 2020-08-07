@@ -21,7 +21,7 @@ INSERT INTO `wp_postmeta`
     (post_id, meta_key, meta_value)
 VALUES
     (@post_id, '_questionHeading', 'field_59e8be23eda3e'),
-    (@post_id, 'questionHeading', 'Do you receive any form of benefit?');
+    (@post_id, 'questionHeading', 'Does a member of your household receive any form of benefit?');
 
 ]]></sql>
     </changeSet>
