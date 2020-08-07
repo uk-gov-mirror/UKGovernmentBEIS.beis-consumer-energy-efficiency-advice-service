@@ -6,6 +6,7 @@ import {GreenHomesGrantEligibility} from "../green-homes-grant-service/green-hom
 import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-grant.service";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 @Component({
     selector: 'app-green-homes-grant-results-page',
@@ -49,6 +50,14 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
 
     get isTenant(): boolean {
         return this.responseData.ownsHome === OwnHome.Tenant;
+    }
+
+    get newBuild(): boolean {
+        return this.responseData.newBuild;
+    }
+
+    get notEngland(): boolean {
+        return this.responseData.country !== Country.England;
     }
 
     private onLoadingComplete(eligibility: GreenHomesGrantEligibility) {

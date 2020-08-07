@@ -28,20 +28,41 @@
         <div class="page-row-content">
             <div class="body-text">
                 <div class="ineligible-reason" *ngIf="isTenant">
-                    Sorry, you're not eligible for the Green Homes Grant because you rent your home.
-                    However, your landlord might be eligible to get the grant on your behalf.
-                    <a href="/energy-efficiency/home-improvements">Take our questionnaire now</a> to get some handy tips to send to your landlord.
+                    <p>
+                        Sorry, you're not eligible for the Green Homes Grant because you rent your home.
+                        However, your landlord might be eligible to get the grant on your behalf.
+                    </p>
+
+                    <app-link-button
+                            linkUrl="/energy-efficiency/home-improvements"
+                            buttonText="Take our questionnaire now to get some handy tips to send to your landlord."
+                    ></app-link-button>
+                    <a href="/grants">Back to financial assistance</a>
                 </div>
-                <div *ngIf="status === GreenHomesGrantEligibility.Ineligible">
+                <div class="ineligible-reason" *ngIf="notEngland">
+                    <p>
+                        Sorry, you're not eligible for the Green Homes Grant because your home is not in England.
+                        However there may be other forms of financial assistance available in your area.
+                    </p>
+
+                    <app-link-button
+                            linkUrl="/grants"
+                            buttonText="Take our questionnaire now to get some handy tips to send to your landlord."
+                    ></app-link-button>
+                </div>
+                <div class="ineligible-reason" *ngIf="newBuild">
+                    <p>Sorry, you're not eligible for the Green Homes Grant because your home is a new build.</p>
+
                     <app-link-button
                             linkUrl="/grants"
                             buttonText="Back to financial assistance"
                     ></app-link-button>
                 </div>
+
                 <div *ngIf="status === GreenHomesGrantEligibility.PartiallyEligible || status === GreenHomesGrantEligibility.FullyEligible">
 <!--                    TODO SEA-53: Use correct link to GHG measures-->
                     <app-link-button
-                            linkUrl="/pages/green-homes-grant"
+                            linkUrl="/energy-efficiency/home-improvements"
                             buttonText="Find out what measures you could get under the Green Homes Grant"
                     ></app-link-button>
                 </div>
