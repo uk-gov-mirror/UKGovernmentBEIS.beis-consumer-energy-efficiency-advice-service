@@ -53,6 +53,7 @@ import {GreenHomesGrantOccupantsQuestionMetadata} from "./green-homes-grant/gree
 import {CountryPostcodeQuestionMetadata} from "./country-postcode-question/country-postcode-question-metadata";
 import {OwnHome} from "./own-home-question/ownHome";
 import {AnyBenefitsQuestionMetadata} from "./benefits-questions/any-benefits-question-metadata";
+import {HomeAge} from "./home-age-question/home-age";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
