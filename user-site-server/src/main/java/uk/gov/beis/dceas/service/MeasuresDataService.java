@@ -1,8 +1,10 @@
 package uk.gov.beis.dceas.service;
 
+import com.google.common.base.Strings;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -38,8 +40,13 @@ public class MeasuresDataService {
 
     public MeasuresDataService(
             Environment environment,
-            RestTemplateBuilder httpClientBuilder) {
+            RestTemplateBuilder httpClientBuilder,
+            @Value("${vcap.services.user-site-auth.credentials.username}") String username,
+            @Value("${vcap.services.user-site-auth.credentials.password}") String password) {
         this.environment = environment;
+        if (!Strings.isNullOrEmpty(username) && !Strings.isNullOrEmpty(password)) {
+            httpClientBuilder = httpClientBuilder.basicAuthorization(username, password);
+        }
         this.httpClient = httpClientBuilder.build();
     }
 
