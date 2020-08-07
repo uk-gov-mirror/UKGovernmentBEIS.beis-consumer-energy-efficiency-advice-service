@@ -3,6 +3,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 import {TenureType} from './tenure-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
+import {OwnHome} from "../own-home-question/ownHome";
 
 @Component({
     selector: 'app-ownership-status-question',
@@ -43,6 +44,6 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
 
     set response(val: TenureType) {
         this.responseData.tenureType = val;
-        this.responseData.ownsHome = (val === TenureType.OwnerOccupancy);
+        this.responseData.ownsHome = val === TenureType.OwnerOccupancy ? OwnHome.Owner : OwnHome.Tenant;
     }
 }
