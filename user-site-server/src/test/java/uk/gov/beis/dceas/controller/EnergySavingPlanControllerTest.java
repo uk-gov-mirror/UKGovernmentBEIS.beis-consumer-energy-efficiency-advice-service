@@ -161,7 +161,9 @@ public class EnergySavingPlanControllerTest {
 
             return new MeasuresDataService(
                     mock(Environment.class),
-                    restTemplateBuilder);
+                    restTemplateBuilder,
+                    "",
+                    "");
         }
 
         @Bean
