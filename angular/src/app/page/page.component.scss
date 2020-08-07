@@ -39,6 +39,13 @@ $aspect-ratio: 9/16;
       padding: 0px 10px 0px 2em;
     }
 
+    .measure-lists {
+      .list-header {
+        color:$dark-blue;
+        @include large-link-font;
+      }
+    }
+
     .beis-button {
       @include beis-button();
     }
@@ -68,9 +75,22 @@ $aspect-ratio: 9/16;
       padding: 28px 0 44px;
 
       .page-row-content {
-        p, h2, h3 {
+        h2 {
+          padding: 10px 10px 0 10px;
+        }
+
+        p, h3 {
           padding: 0px 10px;
         }
+      }
+    }
+
+    .measure-lists {
+      display: flex;
+      flex-direction: column;
+
+      .list-content {
+        padding-left: 20px;
       }
     }
   }
@@ -87,6 +107,19 @@ $aspect-ratio: 9/16;
     .main-row {
       padding: 33px 0 40px;
     }
+
+    .measure-lists {
+      display: flex;
+      flex-direction: row;
+
+      .measure-list {
+        width: 50%;
+
+        .list-content {
+          padding-left: 20px;
+        }
+      }
+    }
   }
 
   @include desktop() {
@@ -100,6 +133,19 @@ $aspect-ratio: 9/16;
 
     .main-row {
       padding: 30px 0;
+    }
+
+    .measure-lists {
+      display: flex;
+      flex-direction: row;
+
+      .measure-list {
+        width: 50%;
+
+        .list-content {
+          padding-left: 20px;
+        }
+      }
     }
   }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-06-add-green-homes-grant-page.xml"
+               author="lucas.nogueira@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+                INSERT INTO wp_posts (post_author, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_content_filtered, post_parent, guid, post_type)
+                VALUES (1, '', 'Green Homes Grant', '', 'publish', 'closed', 'closed', '', 'green-homes-grant', '', '', '', 0, 'https://www.simpleenergyadvice.org.uk/pages/green-homes-grant', 'page');
+
+                ]]>
+       </sql>
+    </changeSet>
+</databaseChangeLog>
