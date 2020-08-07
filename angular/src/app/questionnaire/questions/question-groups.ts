@@ -52,7 +52,7 @@ import {QuestionGroupBuilder} from "./question-group-builder";
 import {GreenHomesGrantOccupantsQuestionMetadata} from "./green-homes-grant/green-homes-grant-occupants-question/green-homes-grant-occupants-question-metadata";
 import {CountryPostcodeQuestionMetadata} from "./country-postcode-question/country-postcode-question-metadata";
 import {OwnHome} from "./own-home-question/ownHome";
-import {HomeAge} from "./home-age-question/home-age";
+import {AnyBenefitsQuestionMetadata} from "./benefits-questions/any-benefits-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -146,6 +146,8 @@ export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
 ]).andThenContinueIf(responseData =>
     (!responseData.newBuild || responseData.homeAge !== HomeAge.from2011toPresent)
     && responseData.ownsHome !== OwnHome.Landlord, [
+    new AnyBenefitsQuestionMetadata()
+]).andThenContinueIf(responseData => responseData.receiveAnyBenefits, [
     new PensionGuaranteeCreditQuestionMetadata(),
     new IncomeRelatedBenefitsQuestionMetadata(),
     new SocietalBenefitsQuestionMetadata(),
