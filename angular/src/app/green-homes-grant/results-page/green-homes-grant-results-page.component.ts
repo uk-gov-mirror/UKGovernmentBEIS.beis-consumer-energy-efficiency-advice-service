@@ -4,6 +4,8 @@ import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {GreenHomesGrantEligibility} from "../green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-grant.service";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 @Component({
     selector: 'app-green-homes-grant-results-page',
@@ -21,7 +23,8 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
     constructor(private questionnaireService: QuestionnaireService,
                 private greenHomesGrantService: GreenHomesGrantService,
                 private router: Router,
-                private pageTitle: PageTitleService) {
+                private pageTitle: PageTitleService,
+                private responseData: ResponseData) {
     }
 
     ngOnInit() {
@@ -42,6 +45,10 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
                     this.displayErrorMessage(err);
                 }
             );
+    }
+
+    get isTenant(): boolean {
+        return this.responseData.ownsHome === OwnHome.Tenant;
     }
 
     private onLoadingComplete(eligibility: GreenHomesGrantEligibility) {

@@ -12,11 +12,14 @@ import {GreenHomesGrantQuestionnaireComponent} from "../green-homes-grant-questi
 import {GreenHomesGrantEligibility} from "../green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-grant.service";
 import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
+import {ResponseData} from "../../shared/response-data/response-data";
+import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 describe('GreenHomesGrantResultsPageComponent', () => {
     let component: GreenHomesGrantResultsPageComponent;
     let fixture: ComponentFixture<GreenHomesGrantResultsPageComponent>;
     let domElement: HTMLElement;
+    let responseData: ResponseData;
 
     let eligibilityResponse: Observable<GreenHomesGrantEligibility>;
     const greenHomesGrantServiceStub = {
@@ -28,10 +31,12 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     };
 
     const pageTitleStub = {
-        set: () => {}
+        set: () => {
+        }
     };
 
     beforeEach(async(() => {
+        responseData = new ResponseData();
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
         spyOn(greenHomesGrantServiceStub, 'getEligibility').and.callThrough();
 
@@ -50,7 +55,8 @@ describe('GreenHomesGrantResultsPageComponent', () => {
                 {provide: GreenHomesGrantService, useValue: greenHomesGrantServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
                 {provide: ECOSelfReferralConsentData, useValue: new ECOSelfReferralConsentData()},
-                {provide: PageTitleService, useValue: pageTitleStub}
+                {provide: PageTitleService, useValue: pageTitleStub},
+                {provide: ResponseData, useValue: responseData}
             ],
         })
             .compileComponents();
@@ -123,6 +129,17 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
         expect(domElement.querySelector('app-link-button').textContent)
             .toContain('Back to financial assistance');
+    });
+
+    it('should display a message when a person is ineligible due to being a tenant', () => {
+        responseData.ownsHome = OwnHome.Tenant;
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+
+        fixture.detectChanges();
+
+        expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
+        expect(domElement.querySelector('.ineligible-reason').textContent)
+            .toContain('Sorry, you\'re not eligible for the Green Homes Grant because you rent your home.');
     });
 });
 

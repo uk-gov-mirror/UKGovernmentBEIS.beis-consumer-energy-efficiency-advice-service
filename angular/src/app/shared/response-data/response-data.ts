@@ -21,6 +21,7 @@ import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/l
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
+import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -128,7 +129,7 @@ export class ResponseData {
     // Set by HotWaterCylinderQuestionComponent, sent to BRE energy-calculation
     public hotWaterCylinder: boolean;
     // Set by OwnHomeQuestionComponent, used for GHG eligibility
-    public ownsHome: boolean;
+    public ownsHome: OwnHome;
     // Set by PensionGuaranteeCreditQuestionComponent, used by grants
     public receivePensionGuaranteeCredit: boolean;
     // Set by IncomeRelatedBenefitsQuestionComponent, used by grants
