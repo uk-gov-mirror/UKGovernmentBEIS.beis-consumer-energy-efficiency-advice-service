@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-07-reword-new-build-question"
+               author="matt.barnfield@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+UPDATE wp_postmeta
+SET meta_value='Is your home a new build property which has not yet been occupied?'
+WHERE post_id = (SELECT ID FROM wp_posts WHERE post_name = 'new_build')
+    AND meta_key='questionHeading';
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>
