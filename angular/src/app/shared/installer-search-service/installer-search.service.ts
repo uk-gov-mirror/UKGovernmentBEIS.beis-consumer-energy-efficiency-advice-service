@@ -21,15 +21,7 @@ export class InstallerSearchService {
             `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
 
-        // TODO SEA-43: Remove this .map when the response actually has phone numbers/email addresses
-        return this.http.get<InstallerResponse>(url).map((response) => ({
-            ...response,
-            data: response.data.map((installer) => ({
-                ...installer,
-                phoneNumber: '020 7925 0918',
-                email: 'person@installer.co.uk',
-            })),
-        }));
+        return this.http.get<InstallerResponse>(url);
     }
 
     // The second half of a postcode always consists of three characters

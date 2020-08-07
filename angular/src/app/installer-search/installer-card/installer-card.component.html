@@ -12,7 +12,7 @@
             <p><b>{{installerInfo.distanceInMiles | number: '1.0-1'}} miles</b></p>
         </div>
         <div class="phone">
-            <p><span class="contact-prefix">Tel:</span> {{installerInfo.phoneNumber}}</p>
+            <p *ngIf="installerInfo.phoneNumber"><span class="contact-prefix">Tel:</span> {{installerInfo.phoneNumber}}</p>
         </div>
         <a class="details-button-arrow" [href]="installerInfo.publicBranchUrl" target="_blank"> Details </a>
     </div>
