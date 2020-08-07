@@ -47,6 +47,31 @@
         display: none;
       }
     }
+
+    .mcs-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+
+      .mcs-logo-and-copy {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .mcs-logo {
+          margin-right: 20px;
+          img {
+            width: 40px;
+          } 
+        }
+
+        .mcs-copy {
+          @include small-print-font;
+        }
+      }
+    }
   }
 }
 
@@ -55,6 +80,7 @@
   @include mobile() {
     .card-header {
       margin-bottom: 4px;
+      padding-left: 20px;
 
       .details {
         & > :first-child {
@@ -68,7 +94,7 @@
         .description {
           flex: 0 0 100%;
           max-width: 100%;
-          padding: 12px 20px;
+          padding: 12px 20px 12px 0;
         }
 
         & > app-data-card {
@@ -84,12 +110,38 @@
         margin-bottom: 15px;
         align-self: center;
       }
+
+      .mcs-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 20px 20px 0 20px;
+  
+        .mcs-logo-and-copy {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+  
+          .mcs-logo {
+            margin-right: 10px;
+            img {
+              width: 40px;
+            } 
+          }
+        }
+
+        .more-info-link {
+          align-self: flex-start;
+        }
+      }
     }
   }
 
   @include tablet() {
     .card-header {
       margin-bottom: 4px;
+      padding-left: 62px;
 
       .details {
         & > :first-child {
@@ -103,7 +155,7 @@
         .description {
           flex: 0 0 100%;
           max-width: 100%;
-          padding: 20px 40px 20px 62px;
+          padding: 20px 40px 20px 0;
         }
 
         & > app-data-card {
@@ -125,7 +177,7 @@
 
   @include desktop() {
     .card-header {
-      padding: 25px 20px 20px 20px;
+      padding: 25px 20px 20px 62px;
       margin-bottom: 4px;
 
       .details {
@@ -135,7 +187,7 @@
 
         .description {
           flex: 1;
-          padding: 0 20px 0 42px;
+          padding: 0 20px 0 0;
         }
 
         & > app-data-card {
@@ -148,7 +200,6 @@
       }
 
       .find-installers {
-        padding-left: 42px;
         flex-direction: row;
 
         .installers {
