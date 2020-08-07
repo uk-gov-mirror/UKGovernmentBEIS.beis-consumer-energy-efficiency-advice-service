@@ -2,6 +2,7 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 import {Component} from '@angular/core';
 import {OwnHome} from "./ownHome";
 import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
+import {TenureType} from "../tenure-type-question/tenure-type";
 
 @Component({
     selector: 'app-own-home-question',
@@ -25,5 +26,8 @@ export class OwnHomeQuestionComponent extends QuestionBaseComponent {
 
     set response(val: OwnHome) {
         this.responseData.ownsHome = val;
+        if (val === OwnHome.Owner) {
+            this.responseData.tenureType = TenureType.OwnerOccupancy;
+        }
     }
 }
