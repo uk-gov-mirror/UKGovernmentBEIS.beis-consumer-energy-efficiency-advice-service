@@ -49,11 +49,12 @@ import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-
 import {Country} from "./postcode-epc-question/country";
 import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
 import {QuestionGroupBuilder} from "./question-group-builder";
-import {GreenHomesGrantOccupantsQuestionMetadata} from "./green-homes-grant/green-homes-grant-occupants-question/green-homes-grant-occupants-question-metadata";
 import {CountryPostcodeQuestionMetadata} from "./country-postcode-question/country-postcode-question-metadata";
 import {OwnHome} from "./own-home-question/ownHome";
 import {AnyBenefitsQuestionMetadata} from "./benefits-questions/any-benefits-question-metadata";
 import {HomeAge} from "./home-age-question/home-age";
+import {ContributionBasedBenefitsQuestionMetadata } from './benefits-questions/contribution-based-benefits-question-metadata';
+import {HousingBenefitQuestionMetadata} from './benefits-questions/housing-benefit-question-metadata';
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -149,13 +150,11 @@ export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
     && responseData.ownsHome !== OwnHome.Landlord, [
     new AnyBenefitsQuestionMetadata()
 ]).andThenContinueIf(responseData => responseData.receiveAnyBenefits, [
-    new PensionGuaranteeCreditQuestionMetadata(),
     new IncomeRelatedBenefitsQuestionMetadata(),
+    new PensionGuaranteeCreditQuestionMetadata(),
     new SocietalBenefitsQuestionMetadata(),
-    new DefenseRelatedBenefitsQuestionMetadata(),
-    new ChildBenefitsQuestionMetadata(),
-    new GreenHomesGrantOccupantsQuestionMetadata(),
-    new IncomeQuestionMetadata()
+    new ContributionBasedBenefitsQuestionMetadata(),
+    new HousingBenefitQuestionMetadata()
 ]).build();
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [

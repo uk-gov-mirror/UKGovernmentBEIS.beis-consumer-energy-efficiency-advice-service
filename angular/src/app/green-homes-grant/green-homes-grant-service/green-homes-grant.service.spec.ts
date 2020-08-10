@@ -111,41 +111,5 @@ describe('GreenHomesGrantService', () => {
                     expect(eligibility).toBe(GreenHomesGrantEligibility.FullyEligible);
                 });
         }));
-
-        it('should return fully eligible if they earn below the child benefits threshold', async(() => {
-            responseData.country = Country.England;
-            responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Owner;
-            responseData.receiveChildBenefits = true;
-            responseData.income = 10000;
-            responseData.numberOfChildrenAgedUnder5 = 1;
-            responseData.numberOfChildrenAged5AndAbove = 0;
-            responseData.numberOfAdultsAgedUnder64 = 1;
-            responseData.numberOfAdultsAged64To80 = 0;
-            responseData.numberOfAdultsAgedOver80 = 0;
-
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.FullyEligible);
-                });
-        }));
-
-        it('should return partially eligible if they earn above the child benefits threshold', async(() => {
-            responseData.country = Country.England;
-            responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Owner;
-            responseData.receiveChildBenefits = true;
-            responseData.income = 1000000;
-            responseData.numberOfChildrenAgedUnder5 = 1;
-            responseData.numberOfChildrenAged5AndAbove = 0;
-            responseData.numberOfAdultsAgedUnder64 = 1;
-            responseData.numberOfAdultsAged64To80 = 0;
-            responseData.numberOfAdultsAgedOver80 = 0;
-
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-                });
-        }));
     });
 });
