@@ -63,6 +63,10 @@ node-scripts/boiler-pcdf-parser/outputs
 .DS_Store
 Thumbs.db
 
+# Terraform
+**/.terraform/*
+*.tfstate
+
 # Default gitignore for Wordpress from https://github.com/github/gitignore/blob/master/WordPress.gitignore
 
 wordpress/*.log
@@ -84,3 +88,4 @@ wordpress/sitemap.xml.gz
 
 *~
 target
+
