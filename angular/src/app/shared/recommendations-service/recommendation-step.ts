@@ -11,6 +11,7 @@ export class RecommendationStep {
             route: string;
             isRelativeURL: boolean;
         }
+        isMcsLink: boolean;
     }[];
 
     /**
@@ -27,6 +28,7 @@ export class RecommendationStep {
                     // The linked_page is a Wordpress Post URL, like:
                     //   http://admin-site/category/slug
                     linkProps: WordpressPagesService.getRouteForPageFromUrl(link.link_url),
+                    isMcsLink: link.is_mcs_link
                 };
             });
     }

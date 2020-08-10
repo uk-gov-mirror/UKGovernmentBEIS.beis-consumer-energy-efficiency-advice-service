@@ -122,7 +122,37 @@ $mobile-step-number-margin: 12px;
       flex-wrap: wrap;
       box-sizing: border-box;
 
-      @include more-info-link-button;
+      .more-info-link-container {
+        width: 100%;
+
+        @include more-info-link-button;
+      }
+
+      .mcs-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .mcs-logo-and-copy {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 60%;
+
+          .mcs-logo {
+            margin-right: 20px;
+
+            img {
+              width: 80px;
+            } 
+          }
+
+          .mcs-copy {
+            @include small-print-font;
+          }
+        }
+      }
     }
   }
 }
@@ -169,6 +199,23 @@ $mobile-step-number-margin: 12px;
           width: 100%;
           margin-bottom: 12px;
           height: 60px;
+        }
+
+        .mcs-info {
+          flex-direction: column;
+          align-items: flex-start;
+  
+          .mcs-logo-and-copy {
+            width: 100%;
+  
+            .mcs-logo {
+              margin-right: 10px;
+  
+              img {
+                width: 50px;
+              } 
+            }
+          }
         }
       }
     }

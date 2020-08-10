@@ -43,7 +43,8 @@ export class EnergyEfficiencyRecommendation {
                 public isAddedToPlan: boolean,
                 public recommendationID: string,
                 public measureCode: string,
-                public trustMarkTradeCodes: string[]) {
+                public trustMarkTradeCodes: string[],
+                public isMcsSearchProvider: boolean) {
     }
 
     get isMeasure(): boolean {
@@ -75,6 +76,11 @@ export class EnergyEfficiencyRecommendation {
             measureContent.acf.advantages.map(x => x.advantage);
         const measureSteps = measureContent.acf.steps && measureContent.acf.steps
             .map(stepResponse => new RecommendationStep(stepResponse));
+        const isMcsSearchProvider = measureContent.acf.steps && !!measureContent.acf.steps.filter(
+            stepResponse => stepResponse.more_info_links && stepResponse.more_info_links.filter(
+                link => link.is_mcs_link
+                ).length
+            ).length;
         const grant = head(grants);
         const grantSteps = (grant && grant.steps && grant.steps.length > 0) ? grant.steps : [];
         const costSavingUncertaintyPercentage = measureResponse.uncertainty;
@@ -121,6 +127,7 @@ export class EnergyEfficiencyRecommendation {
             measureContent.slug,
             measureCode,
             tradeCodes,
+            isMcsSearchProvider
         );
     }
 
@@ -149,7 +156,8 @@ export class EnergyEfficiencyRecommendation {
             false,
             grant.grantId,
             null,
-            []
+            [],
+            false
         );
     }
 }

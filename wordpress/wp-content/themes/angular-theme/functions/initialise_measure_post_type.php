@@ -405,6 +405,13 @@ function setup_measure_acf_group() {
                                     'default_value' => '',
                                     'placeholder' => '',
                                 ),
+                                array (
+                                    'key' => 'field_5a1d8z0ropti3',
+                                    'label' => 'Include MCS info',
+                                    'instructions' => '',
+                                    'name' => 'is_mcs_link',
+                                    'type' => 'true_false'
+                                )
                             ),
                         ),
                     ),

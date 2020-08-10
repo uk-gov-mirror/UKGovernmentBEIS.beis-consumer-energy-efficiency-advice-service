@@ -5,5 +5,6 @@ export interface RecommendationStepResponse {
     more_info_links: {
         button_text: string;
         link_url: string;
+        is_mcs_link: boolean;
     }[];
 }
