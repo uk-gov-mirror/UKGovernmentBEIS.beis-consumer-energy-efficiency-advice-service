@@ -28,7 +28,7 @@ resource "aws_ssm_parameter" "cloudwatch_config" {
 }
 
 resource "aws_instance" "cloudwatch_agent" {
-  instance_type        = "t2.micro"
+  instance_type        = "t3.nano"
   ami                  = "ami-07d9160fa81ccffb5"
   iam_instance_profile = aws_iam_role.cloudwatch_agent_server_role.name
   user_data            = templatefile("data/agent_user_data.tpl", { config_parameter = aws_ssm_parameter.cloudwatch_config.name })
