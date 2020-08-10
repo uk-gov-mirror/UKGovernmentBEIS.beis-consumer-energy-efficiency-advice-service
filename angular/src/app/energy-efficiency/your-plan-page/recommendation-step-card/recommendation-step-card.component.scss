@@ -122,7 +122,11 @@ $mobile-step-number-margin: 12px;
       flex-wrap: wrap;
       box-sizing: border-box;
 
-      @include more-info-link-button;
+      .more-info-link-container {
+        width: 100%;
+
+        @include more-info-link-button;
+      }
 
       .mcs-info {
         display: flex;
