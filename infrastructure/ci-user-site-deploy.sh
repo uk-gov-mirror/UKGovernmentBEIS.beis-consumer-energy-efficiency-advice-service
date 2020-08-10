@@ -56,5 +56,5 @@ cf target -o beis-domestic-energy-advice-service -s $SPACE
 if [[ $SPACE == "live" ]]; then
     cf blue-green-deploy dceas-user-site
 else
-    cf push --hostname $HOSTNAME
+    cf push --hostname $HOSTNAME -f manifest-$SPACE.yml
 fi
