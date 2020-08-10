@@ -243,10 +243,7 @@
       "height": 6,
       "properties": {
         "title": null,
-        "alarms": [
-          "arn:aws:cloudwatch:eu-west-1:759738647770:alarm:LIVE dceas-user-site CPU",
-          "arn:aws:cloudwatch:eu-west-1:759738647770:alarm:LIVE dceas-admin-site CPU"
-        ]
+        "alarms": ${alarm_arns}
       }
     }
   ]

@@ -1,8 +1,3 @@
-resource "aws_cloudwatch_dashboard" "live" {
-  dashboard_name = "CloudWatch-Default"
-  dashboard_body = file("data/live_dashboard.json")
-}
-
 # Note that there is also an email subscription to this topic, but 
 # email subscriptions are unsupported by Terraform
 resource "aws_sns_topic" "dceas_live_alarms" {
@@ -102,3 +97,14 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
     }
   }
 }
+
+resource "aws_cloudwatch_dashboard" "live" {
+  dashboard_name = "CloudWatch-Default"
+  dashboard_body = templatefile("data/live_dashboard.tpl", {
+    alarm_arns = jsonencode([
+      aws_cloudwatch_metric_alarm.live_user_cpu.arn,
+      aws_cloudwatch_metric_alarm.live_admin_cpu.arn,
+    ])
+  })
+}
+
