@@ -29,29 +29,33 @@
             <div class="body-text">
                 <div class="ineligible-reason" *ngIf="isTenant">
                     <p>
-                        Sorry, you're not eligible for the Green Homes Grant because you rent your home.
+                        Sorry, you're not eligible for the Green Homes Grant because you rent your home.<br>
                         However, your landlord might be eligible to get the grant on your behalf.
                     </p>
-
+                    
+                    <p>Take our questionnaire now to get some handy tips to send to your landlord.</p>
                     <app-link-button
                             linkUrl="/energy-efficiency/home-improvements"
-                            buttonText="Take our questionnaire now to get some handy tips to send to your landlord."
+                            buttonText="Take the questionnaire"
                     ></app-link-button>
                     <a href="/grants">Back to financial assistance</a>
                 </div>
                 <div class="ineligible-reason" *ngIf="notEngland">
                     <p>
-                        Sorry, you're not eligible for the Green Homes Grant because your home is not in England.
+                        Sorry, you're not eligible for the Green Homes Grant because your home is not in England.<br>
                         However there may be other forms of financial assistance available in your area.
-                    </p>
+                    </p>     
 
                     <app-link-button
                             linkUrl="/grants"
-                            buttonText="Take our questionnaire now to get some handy tips to send to your landlord."
+                            buttonText="Back to financial assistance"
                     ></app-link-button>
                 </div>
                 <div class="ineligible-reason" *ngIf="newBuild">
-                    <p>Sorry, you're not eligible for the Green Homes Grant because your home is a new build.</p>
+                    <p>
+                        Sorry, you're not eligible for the Green Homes Grant because your home is a new build.<br>
+                        However, there may be other forms of financial assistance available to you.
+                    </p>
 
                     <app-link-button
                             linkUrl="/grants"
