@@ -17,7 +17,7 @@
             "log_stream_name": "dceas-admin-site"
           },
           {
-            "file_path": "/var/log/cloudfoundry/other.log",
+            "file_path": "/var/log/logstash/cloudfoundry/other.log",
             "log_group_name": "live",
             "log_stream_name": "other"
           }

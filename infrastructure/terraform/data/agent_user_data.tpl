@@ -30,10 +30,12 @@ cat > /etc/logrotate.d/cloudfoundry << EOF
 }
 EOF
 
+# Reduce the JVM heap size to run on a micro instance
 cat >> /etc/logstash/jvm.options << EOF
 -Xms500m
 -Xmx500m
 -XX:ParallelGCThreads=1
 EOF
+
 /usr/share/logstash/bin/system-install
 systemctl start logstash.service
