@@ -97,6 +97,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         },
         {
             investmentPounds: 999,
@@ -120,6 +121,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         },
         {
             investmentPounds: 20,
@@ -150,6 +152,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         }
     ];
 

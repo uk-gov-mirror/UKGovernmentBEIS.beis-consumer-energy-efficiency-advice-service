@@ -34,6 +34,7 @@ describe('YourPlanSummaryComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         },
         {
             investmentPounds: 999,
@@ -57,6 +58,7 @@ describe('YourPlanSummaryComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         },
         {
             investmentPounds: 20,
@@ -80,6 +82,7 @@ describe('YourPlanSummaryComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         }
     ];
 
