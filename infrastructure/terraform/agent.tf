@@ -37,3 +37,7 @@ resource "aws_instance" "cloudwatch_agent" {
     Name = "Cloud Foundry metrics exporter"
   }
 }
+
+resource "aws_eip" "cloudwatch_agent" {
+  instance = aws_instance.cloudwatch_agent.id
+}
