@@ -7,7 +7,7 @@ rpm -U ./amazon-cloudwatch-agent.rpm
 
 # Install logstash
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
-cat >> /etc/yum.repos.d/logstash.repo << EOF
+cat > /etc/yum.repos.d/logstash.repo << EOF
 [logstash-7.x]
 name=Elastic repository for 7.x packages
 baseurl=https://artifacts.elastic.co/packages/7.x/yum
@@ -19,10 +19,10 @@ type=rpm-md
 EOF
 
 yum install -y java-1.8.0-openjdk logstash
-aws ssm get-parameter --name ${logstash_config_parameter} --output text --query Parameter.Value --region eu-west-1 > logstash.conf
+aws ssm get-parameter --name ${logstash_config_parameter} --output text --query Parameter.Value --region eu-west-1 > /etc/logstash/conf.d/cloudfoundry.conf
 
-cat >> /etc/logrotate.d/cloudfoundry << EOF
-/var/log/cloudfoundry/*log {
+cat > /etc/logrotate.d/cloudfoundry << EOF
+/var/log/logstash/cloudfoundry/*log {
     daily
     missingok
     rotate 3
@@ -30,5 +30,10 @@ cat >> /etc/logrotate.d/cloudfoundry << EOF
 }
 EOF
 
-export LS_JAVA_OPTS="-Xms500m -Xmx500m -XX:ParallelGCThreads=1"
-/usr/share/logstash/bin/logstash -f logstash.conf
+cat >> /etc/logstash/jvm.options << EOF
+-Xms500m
+-Xmx500m
+-XX:ParallelGCThreads=1
+EOF
+/usr/share/logstash/bin/system-install
+systemctl start logstash.service

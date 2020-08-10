@@ -7,12 +7,12 @@
       "files": {
         "collect_list": [
           {
-            "file_path": "/var/log/cloudfoundry/dceas-user-site.log",
+            "file_path": "/var/log/logstash/cloudfoundry/dceas-user-site.log",
             "log_group_name": "live",
             "log_stream_name": "dceas-user-site"
           },
           {
-            "file_path": "/var/log/cloudfoundry/dceas-admin-site.log",
+            "file_path": "/var/log/logstash/cloudfoundry/dceas-admin-site.log",
             "log_group_name": "live",
             "log_stream_name": "dceas-admin-site"
           },
