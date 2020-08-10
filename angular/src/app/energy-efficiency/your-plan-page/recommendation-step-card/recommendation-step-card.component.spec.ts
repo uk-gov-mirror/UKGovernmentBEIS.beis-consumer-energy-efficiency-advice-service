@@ -23,14 +23,16 @@ describe('RecommendationStepCardComponent', () => {
                 linkProps: {
                     route: 'http://google.com',
                     isRelativeURL: false
-                }
+                },
+                isMcsLink: false
             },
             {
                 buttonText: 'Test page 2',
                 linkProps: {
                     route: '/static-page-2',
                     isRelativeURL: true
-                }
+                },
+                isMcsLink: false
             }
         ]
     };

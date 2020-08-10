@@ -110,6 +110,7 @@ describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
+            isMcsSearchProvider: false
         };
     }
 
