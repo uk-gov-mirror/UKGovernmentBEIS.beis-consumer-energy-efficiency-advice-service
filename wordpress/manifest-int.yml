@@ -15,4 +15,4 @@ applications:
     - dceas-database
     - dceas-wordpress-secrets
     - dceas-admin-logins
-  memory: 6G
+  memory: 1G

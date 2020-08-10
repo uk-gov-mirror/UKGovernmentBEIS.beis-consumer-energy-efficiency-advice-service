@@ -28,4 +28,4 @@ applications:
     - smtp
     - google.maps
     - trustMark
-  memory: 2G
+  memory: 1G
