@@ -37,7 +37,7 @@ export class GardenQuestionComponent extends QuestionBaseComponent implements On
     };
 
     ngOnInit() {
-        this.size = 100;
+        this.size = this.responseData.gardenSizeSquareMetres || 100;
     }
 
     get responseForAnalytics(): string {

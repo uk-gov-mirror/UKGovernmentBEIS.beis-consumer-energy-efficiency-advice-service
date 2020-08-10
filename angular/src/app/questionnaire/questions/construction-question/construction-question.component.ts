@@ -39,9 +39,9 @@ export class ConstructionQuestionComponent extends QuestionBaseComponent impleme
     ];
 
     ngOnInit() {
-        this.roofType = RoofType.DoNotKnow;
-        this.wallType = WallType.DoNotKnow;
-        this.glazingType = GlazingType.DoNotKnow;
+        this.roofType = this.responseData.roofType || RoofType.DoNotKnow;
+        this.wallType = this.responseData.wallType || WallType.DoNotKnow;
+        this.glazingType = this.responseData.glazingType || GlazingType.DoNotKnow;
     }
 
     get responseForAnalytics(): string {
