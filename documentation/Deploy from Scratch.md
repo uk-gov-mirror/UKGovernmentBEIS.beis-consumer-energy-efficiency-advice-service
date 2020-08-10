@@ -18,6 +18,7 @@ These instructions are kept for future reference.
   * [User Site Hostname](#user-site-hostname)
   * [Forwarding the User Site old hostname to the canonical hostname](#forwarding-the-user-site-old-hostname-to-the-canonical-hostname)
   * [Forwarding the non "www" hostname to the main hostname](#forwarding-the-non-www-hostname-to-the-main-hostname)
+- [Metric Collection](#metric-collection)
 
 <!-- tocstop -->
 
@@ -154,3 +155,11 @@ I have discussed this with LCN support and they say they cannot do it.
 
 We could fix this if we transferred the hostname to AWS and used an ALIAS record,
 see e.g. https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html
+
+## Metric Collection
+
+Deploy the AWS resources required to ingest the CloudFoundry metrics - see the Terraform [README](../infrastructure/terraform/README.md)..
+
+Set up [paas-metric-exporter](https://docs.cloud.service.gov.uk/monitoring_apps.html#metrics-exporter-app-with-statsd) somewhere in the Cloud Foundry
+organisation - it will collect metrics from every application in every space. Set the `STATSD_ENDPOINT` to the IP address of the EC2 instance deployed via Terraform.
+
