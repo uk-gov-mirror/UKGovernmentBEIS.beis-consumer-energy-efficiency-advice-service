@@ -1,21 +1,24 @@
 <div class="construction-question question-component">
     <form class="answer-grid questionnaire-form" (submit)="complete.emit()">
         <div class="insulation-type-input">
-            <label id="roof-type-label" class="question">What type of roof insulation?</label>
-            <select name="roof-type" class="dropdown-input text-input roof-type" aria-labelledby="roof-type-label" [(ngModel)]="roofType">
-                <option *ngFor="let roofType of roofTypes" [ngValue]="roofType.value">{{roofType.name}}</option>
+            <label id="roof-type-label" for="roof-type-select" class="question">What type of roof insulation?</label>
+            <select id="roof-type-select" name="roof-type" class="dropdown-input text-input roof-type"
+                    aria-labelledby="roof-type-label" [(ngModel)]="roofType">
+                <option *ngFor="let type of roofTypes" [ngValue]="type.value">{{type.name}}</option>
             </select>
         </div>
         <div class="insulation-type-input">
-            <label id="wall-type-label" class="question">What type of wall insulation?</label>
-            <select name="wall-type" class="dropdown-input text-input wall-type" aria-labelledby="wall-type-label" [(ngModel)]="wallType">
-                <option *ngFor="let wallType of wallTypes" [ngValue]="wallType.value">{{wallType.name}}</option>
+            <label id="wall-type-label" for="wall-type-select" class="question">What type of wall insulation?</label>
+            <select id="wall-type-select" name="wall-type" class="dropdown-input text-input wall-type"
+                    aria-labelledby="wall-type-label" [(ngModel)]="wallType">
+                <option *ngFor="let type of wallTypes" [ngValue]="type.value">{{type.name}}</option>
             </select>
         </div>
         <div class="insulation-type-input">
-            <label id="glazing-type-label" class="question">What sort of glazing?</label>
-            <select name="glazing-type" class="dropdown-input text-input glazing-type" aria-labelledby="glazing-type-label" [(ngModel)]="glazingType">
-                <option *ngFor="let glazingType of glazingTypes" [ngValue]="glazingType.value">{{glazingType.name}}</option>
+            <label id="glazing-type-label" for="glazing-type-select" class="question">What sort of glazing?</label>
+            <select id="glazing-type-select" name="glazing-type" class="dropdown-input text-input glazing-type"
+                    aria-labelledby="glazing-type-label" [(ngModel)]="glazingType">
+                <option *ngFor="let type of glazingTypes" [ngValue]="type.value">{{type.name}}</option>
             </select>
         </div>
     </form>
