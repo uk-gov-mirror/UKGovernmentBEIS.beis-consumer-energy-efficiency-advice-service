@@ -7,7 +7,7 @@ export class HousingBenefitQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
             HousingBenefitQuestionComponent,
-            'benefits',
+            'housing_benefit',
             QuestionType.Behaviour
         );
     }
