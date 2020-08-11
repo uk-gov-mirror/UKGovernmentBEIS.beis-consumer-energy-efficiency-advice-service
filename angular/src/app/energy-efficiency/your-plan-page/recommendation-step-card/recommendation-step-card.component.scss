@@ -141,11 +141,7 @@ $mobile-step-number-margin: 12px;
           width: 60%;
 
           .mcs-logo {
-            margin-right: 20px;
-
-            img {
-              width: 80px;
-            } 
+            margin-right: 10px;
           }
 
           .mcs-copy {
@@ -252,6 +248,20 @@ $mobile-step-number-margin: 12px;
           @include is-grid-item($number-of-items: 2, $margin: 20px);
           height: 70px;
         }
+
+        .mcs-info {
+          .more-info-link {
+            //fine-tuning width for the current MCS copy
+            width: 39%
+          }
+
+          .mcs-logo {    
+            img {
+              //fine-tuning logo height for the current MCS copy
+              height: 70px;
+            } 
+          }
+        }
       }
     }
   }
@@ -283,6 +293,20 @@ $mobile-step-number-margin: 12px;
         .more-info-link {
           @include is-grid-item($number-of-items: 2, $margin: 10px);
           height: 80px;
+        }
+
+        .mcs-info {
+          .more-info-link {
+            //fine-tuning width for the current MCS copy
+            width: 41%
+          }
+          
+          .mcs-logo {    
+            img {
+              //fine-tuning logo height for the current MCS copy
+              height: 80px;
+            } 
+          }
         }
       }
     }
