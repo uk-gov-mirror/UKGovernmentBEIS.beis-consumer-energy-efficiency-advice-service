@@ -57,9 +57,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
-            new ConstructionQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -75,7 +75,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new SocietalBenefitsQuestionMetadata(),
             new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
-            new IncomeQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
@@ -101,9 +101,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
-            new ConstructionQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -119,7 +119,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new SocietalBenefitsQuestionMetadata(),
             new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
-            new IncomeQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
@@ -145,9 +145,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
-            new ConstructionQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -160,7 +160,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new SocietalBenefitsQuestionMetadata(),
             new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
-            new IncomeQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
@@ -186,9 +186,9 @@ describe('HomeBasicsQuestionnaire', () => {
             new HomeAgeQuestionMetadata(),
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
+            new ConstructionQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
-            new ConstructionQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
@@ -201,7 +201,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new SocietalBenefitsQuestionMetadata(),
             new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
-            new IncomeQuestionMetadata(),
+            new IncomeQuestionMetadata()
         ];
 
         // when
