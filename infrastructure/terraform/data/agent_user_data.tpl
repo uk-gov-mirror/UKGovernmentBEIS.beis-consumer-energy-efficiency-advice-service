@@ -22,7 +22,7 @@ yum install -y java-1.8.0-openjdk logstash
 aws ssm get-parameter --name ${logstash_config_parameter} --output text --query Parameter.Value --region eu-west-1 > /etc/logstash/conf.d/cloudfoundry.conf
 
 cat > /etc/logrotate.d/cloudfoundry << EOF
-/var/log/logstash/cloudfoundry/*log {
+/var/log/logstash/cloudfoundry/*/*log {
     daily
     missingok
     rotate 3

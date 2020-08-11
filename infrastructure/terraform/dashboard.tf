@@ -100,11 +100,28 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
 
 resource "aws_cloudwatch_dashboard" "live" {
   dashboard_name = "CloudWatch-Default"
-  dashboard_body = templatefile("data/live_dashboard.tpl", {
+  dashboard_body = templatefile("data/dashboard.tpl", {
+    space = "live"
     alarm_arns = jsonencode([
       aws_cloudwatch_metric_alarm.live_user_cpu.arn,
       aws_cloudwatch_metric_alarm.live_admin_cpu.arn,
     ])
+  })
+}
+
+resource "aws_cloudwatch_dashboard" "staging" {
+  dashboard_name = "staging"
+  dashboard_body = templatefile("data/dashboard.tpl", {
+    space = "staging"
+    alarm_arns = "[]"
+  })
+}
+
+resource "aws_cloudwatch_dashboard" "int" {
+  dashboard_name = "int"
+  dashboard_body = templatefile("data/dashboard.tpl", {
+    space = "int"
+    alarm_arns = "[]"
   })
 }
 

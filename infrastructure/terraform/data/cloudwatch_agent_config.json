@@ -7,18 +7,48 @@
       "files": {
         "collect_list": [
           {
-            "file_path": "/var/log/logstash/cloudfoundry/dceas-user-site.log",
+            "file_path": "/var/log/logstash/cloudfoundry/live/dceas-user-site.log",
             "log_group_name": "live",
             "log_stream_name": "dceas-user-site"
           },
           {
-            "file_path": "/var/log/logstash/cloudfoundry/dceas-admin-site.log",
+            "file_path": "/var/log/logstash/cloudfoundry/live/dceas-admin-site.log",
             "log_group_name": "live",
             "log_stream_name": "dceas-admin-site"
           },
           {
-            "file_path": "/var/log/logstash/cloudfoundry/other.log",
+            "file_path": "/var/log/logstash/cloudfoundry/live/other.log",
             "log_group_name": "live",
+            "log_stream_name": "other"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/dceas-user-site.log",
+            "log_group_name": "staging",
+            "log_stream_name": "dceas-user-site"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/dceas-admin-site.log",
+            "log_group_name": "staging",
+            "log_stream_name": "dceas-admin-site"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/other.log",
+            "log_group_name": "staging",
+            "log_stream_name": "other"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/dceas-user-site.log",
+            "log_group_name": "int",
+            "log_stream_name": "dceas-user-site"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/dceas-admin-site.log",
+            "log_group_name": "int",
+            "log_stream_name": "dceas-admin-site"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/other.log",
+            "log_group_name": "int",
             "log_stream_name": "other"
           }
         ]
