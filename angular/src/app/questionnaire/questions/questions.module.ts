@@ -40,6 +40,7 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
 import {BuiltFormQuestionComponent} from "./built-form-question/built-form-question.component";
 import {IncomeRelatedBenefitsQuestionComponent} from "./benefits-questions/income-related-benefits-question.component";
+import {ContributionBasedBenefitsQuestionComponent} from "./benefits-questions/contribution-based-benefits-question.component";
 import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pension-guarantee-credit-question.component";
 import {ChildBenefitsQuestionComponent} from "./benefits-questions/child-benefits-question.component";
 import {DefenseRelatedBenefitsQuestionComponent} from "./benefits-questions/defense-related-benefits-question.component";
@@ -55,6 +56,8 @@ import {NewBuildQuestionComponent} from "./new-build-question/new-build-question
 import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.component";
 import {CountryPostcodeQuestionComponent} from "./country-postcode-question/country-postcode-question.component";
 import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-question.component";
+import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-benefit-question.component";
+
 
 @NgModule({
     declarations: [
@@ -65,6 +68,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
         CountryPostcodeQuestionComponent,
+        ContributionBasedBenefitsQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
@@ -78,6 +82,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
+        HousingBenefitQuestionComponent,
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -116,6 +121,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        ContributionBasedBenefitsQuestionComponent,
         CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
@@ -130,6 +136,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
+        HousingBenefitQuestionComponent,
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -175,6 +182,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
+        ContributionBasedBenefitsQuestionComponent,
         CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
@@ -189,6 +197,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
+        HousingBenefitQuestionComponent,
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,

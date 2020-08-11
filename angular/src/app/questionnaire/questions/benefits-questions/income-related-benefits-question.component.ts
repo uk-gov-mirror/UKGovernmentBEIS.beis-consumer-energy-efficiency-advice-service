@@ -13,7 +13,7 @@ export class IncomeRelatedBenefitsQuestionComponent extends QuestionBaseComponen
     benefits = [
         'Income Support',
         'Income-Based Jobseeker’s Allowance (JSA)',
-        'Income-Related Employment and Support Allowance (ESA)',
+        'Income-Based Employment and Support Allowance (ESA)',
         'Universal Credit'
     ];
 

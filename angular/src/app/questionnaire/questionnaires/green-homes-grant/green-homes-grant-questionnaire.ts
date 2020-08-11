@@ -21,9 +21,11 @@ export class GreenHomesGrantQuestionnaire extends Questionnaire {
         responseData.receiveAnyBenefits = undefined;
         responseData.receivePensionGuaranteeCredit = undefined;
         responseData.receiveIncomeRelatedBenefits = undefined;
+        responseData.receiveContributionBasedBenefits = undefined;
         responseData.receiveSocietalBenefits = undefined;
         responseData.receiveDefenseRelatedBenefits = undefined;
         responseData.receiveChildBenefits = undefined;
+        responseData.receiveHousingBenefit = undefined;
         responseData.income = undefined;
     }
 }

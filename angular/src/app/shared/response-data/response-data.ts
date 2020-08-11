@@ -134,12 +134,16 @@ export class ResponseData {
     public receivePensionGuaranteeCredit: boolean;
     // Set by IncomeRelatedBenefitsQuestionComponent, used by grants
     public receiveIncomeRelatedBenefits: boolean;
+    // Set by ContributionBasedBenefitsQuestionCompoenet
+    public receiveContributionBasedBenefits: boolean;
     // Set by SocietalBenefitsQuestionComponent, used by grants
     public receiveSocietalBenefits: boolean;
     // Set by DefenseRelatedBenefitsQuestionComponent, used by grants
     public receiveDefenseRelatedBenefits: boolean;
     // Set by ChildBenefitsQuestionComponent, used by grants
     public receiveChildBenefits: boolean;
+    // Set by HousingBenefitsQuestionComponent
+    public receiveHousingBenefit: boolean;
     // Set by AnyBenefitsQuestionComponent, used by GHG
     public receiveAnyBenefits: boolean;
     // Set by IncomeQuestionComponent, used by grants
