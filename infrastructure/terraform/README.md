@@ -1,6 +1,6 @@
 # BEIS SEA Infrastructure
 
-This repository contains Terraform definitions for the AWS resources which power the metric gathering/visualising/alerting for the SEA application.
+This repository contains Terraform definitions for the AWS resources which power the log ingestion and metric gathering/visualising/alerting for the SEA applications.
 
 ## Set up
 
