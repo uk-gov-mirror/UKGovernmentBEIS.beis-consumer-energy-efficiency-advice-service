@@ -27,19 +27,6 @@
     <div class="page-row more-information">
         <div class="page-row-content">
             <div class="body-text">
-                <div class="ineligible-reason" *ngIf="isTenant">
-                    <p>
-                        Sorry, you're not eligible for the Green Homes Grant because you rent your home.<br>
-                        However, your landlord might be eligible to get the grant on your behalf.
-                    </p>
-                    
-                    <p>Take our questionnaire now to get some handy tips to send to your landlord.</p>
-                    <app-link-button
-                            linkUrl="/energy-efficiency/home-improvements"
-                            buttonText="Take the questionnaire"
-                    ></app-link-button>
-                    <a href="/grants">Back to financial assistance</a>
-                </div>
                 <div class="ineligible-reason" *ngIf="notEngland">
                     <p>
                         Sorry, you're not eligible for the Green Homes Grant because your home is not in England.<br>
@@ -51,7 +38,20 @@
                             buttonText="Back to financial assistance"
                     ></app-link-button>
                 </div>
-                <div class="ineligible-reason" *ngIf="newBuild">
+                <div class="ineligible-reason" *ngIf="isTenant && !notEngland">
+                    <p>
+                        Sorry, you're not eligible for the Green Homes Grant because you rent your home.<br>
+                        However, your landlord might be eligible to get the grant on your behalf.
+                    </p>
+
+                    <p>Take our questionnaire now to get some handy tips to send to your landlord.</p>
+                    <app-link-button
+                            linkUrl="/energy-efficiency/home-improvements"
+                            buttonText="Take the questionnaire"
+                    ></app-link-button>
+                    <a href="/grants">Back to financial assistance</a>
+                </div>
+                <div class="ineligible-reason" *ngIf="newBuild && !isTenant && !notEngland">
                     <p>
                         Sorry, you're not eligible for the Green Homes Grant because your home is a new build.<br>
                         However, there may be other forms of financial assistance available to you.
