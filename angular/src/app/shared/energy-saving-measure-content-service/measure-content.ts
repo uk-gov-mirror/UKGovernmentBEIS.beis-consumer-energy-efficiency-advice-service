@@ -14,5 +14,8 @@ export interface MeasureContent {
         steps: RecommendationStepResponse[],
         installer_code: string;
         trustmark_trade_codes: { trade_code: string }[];
+        installation_cost_lower_bound?: string;
+        installation_cost_upper_bound?: string;
+        lifetime?: string;
     };
 }

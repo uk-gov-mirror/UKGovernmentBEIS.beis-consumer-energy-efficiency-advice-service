@@ -75,14 +75,18 @@ export const CORE_BRE_QUESTIONS = [
     new HomeAgeQuestionMetadata(),
     new NewBuildQuestionMetadata(),
     new BedroomsQuestionMetadata(),
+    new ConstructionQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),
-    new ConstructionQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new HotWaterCylinderQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
     new DetailedLengthOfHeatingOnQuestionMetadata()
+];
+
+export const GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS = [
+    new GardenQuestionMetadata()
 ];
 
 export const BASIC_BEHAVIOURAL_QUESTIONS = [
