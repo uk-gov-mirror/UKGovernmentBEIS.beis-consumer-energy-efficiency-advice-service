@@ -24,12 +24,14 @@ resource "aws_iam_role_policy_attachment" "ssm_full_access_attachment" {
 resource "aws_ssm_parameter" "cloudwatch_config" {
   name  = "AmazonCloudwatch-BEISCF"
   type  = "String"
+  tier  = "Advanced"
   value = file("data/cloudwatch_agent_config.json")
 }
 
 resource "aws_ssm_parameter" "logstash_config" {
   name  = "cf-logstash-config"
   type  = "String"
+  tier  = "Advanced"
   value = file("data/logstash_config.conf")
 }
 

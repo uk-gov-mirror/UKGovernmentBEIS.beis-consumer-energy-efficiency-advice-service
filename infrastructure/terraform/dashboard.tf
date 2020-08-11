@@ -112,7 +112,7 @@ resource "aws_cloudwatch_dashboard" "live" {
 resource "aws_cloudwatch_dashboard" "staging" {
   dashboard_name = "staging"
   dashboard_body = templatefile("data/dashboard.tpl", {
-    space = "staging"
+    space      = "staging"
     alarm_arns = "[]"
   })
 }
@@ -120,7 +120,7 @@ resource "aws_cloudwatch_dashboard" "staging" {
 resource "aws_cloudwatch_dashboard" "int" {
   dashboard_name = "int"
   dashboard_body = templatefile("data/dashboard.tpl", {
-    space = "int"
+    space      = "int"
     alarm_arns = "[]"
   })
 }
