@@ -6,12 +6,14 @@ import {EnergySavingRecommendation} from '../../shared/recommendation-card/energ
 import {ResponseData} from '../../shared/response-data/response-data';
 import {isGasOrOil} from '../../questionnaire/questions/fuel-type-question/fuel-type';
 import {WaterTankSpace} from '../../questionnaire/questions/water-tank-question/water-tank-space';
-import {GardenAccessibility} from '../../questionnaire/questions/garden-question/garden-accessibility';
-import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
-import {RoofSpace} from '../../questionnaire/questions/roof-space-question/roof-space';
 import sortBy from 'lodash-es/sortBy';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
+import {
+    shouldRecommendAirSourceHeatPump,
+    shouldRecommendGroundSourceHeatPump,
+    shouldRecommendSolarWaterHeater
+} from "../../shared/heating-systems/heating-systems";
 
 @Component({
     selector: 'app-boiler-results-page',
@@ -72,25 +74,14 @@ export class BoilerResultsPageComponent implements OnInit, AfterViewInit, AfterV
             case 'regular-boiler':
                 return isGasOrOil(this.responseData.fuelType) && this.responseData.waterTankSpace === WaterTankSpace.Bigger;
             case 'ground-source-heat-pump':
-                return this.hasLargeGarden(this.responseData) && this.isWellInsulated(this.responseData);
+                return shouldRecommendGroundSourceHeatPump(this.responseData);
             case 'air-source-heat-pump':
-                return this.responseData.gardenAccessibility !== GardenAccessibility.NoGarden && this.isWellInsulated(this.responseData);
+                return shouldRecommendAirSourceHeatPump(this.responseData);
             case 'solar-water-heater':
-                return this.responseData.waterTankSpace !== WaterTankSpace.None && this.responseData.roofSpace !== RoofSpace.NoSpace;
+                return shouldRecommendSolarWaterHeater(this.responseData);
             default:
                 return false;
         }
-    }
-
-    private hasLargeGarden(responseData: ResponseData) {
-        return responseData.gardenAccessibility === GardenAccessibility.Accessible &&
-               responseData.gardenSizeSquareMetres >= 400;
-    }
-
-    private isWellInsulated(responseData: ResponseData) {
-        return responseData.roofType !== RoofType.PitchedNoInsulation && responseData.roofType !== RoofType.FlatNoInsulation  &&
-               responseData.wallType !== WallType.CavityNoInsulation  && responseData.wallType !== WallType.SolidNoInsulation &&
-               responseData.glazingType !== GlazingType.Single;
     }
 
     private setEqualHeightsOnOptionCardSections() {

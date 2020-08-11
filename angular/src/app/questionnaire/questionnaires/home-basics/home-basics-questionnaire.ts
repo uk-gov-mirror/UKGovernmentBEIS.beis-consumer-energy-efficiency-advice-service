@@ -7,7 +7,8 @@ import {
     CORE_BRE_QUESTIONS,
     EPC_AND_OWNERSHIP_STATUS,
     GRANTS_QUESTIONNAIRE_QUESTION,
-    GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES
+    GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
+    GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS
 } from '../../questions/question-groups';
 import concat from 'lodash-es/concat';
 import {ResponseData} from '../../../shared/response-data/response-data';
@@ -36,6 +37,7 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
                 return concat(
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
+                    GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS,
                     BASIC_BEHAVIOURAL_QUESTIONS,
                     GRANTS_QUESTIONNAIRE_QUESTION,
                     GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
@@ -45,6 +47,7 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
                 return concat(
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
+                    GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS,
                     GRANTS_QUESTIONNAIRE_QUESTION,
                     GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
                 );
@@ -53,6 +56,7 @@ export class HomeBasicsQuestionnaire extends Questionnaire {
                     ADDRESS,
                     EPC_AND_OWNERSHIP_STATUS,
                     CORE_BRE_QUESTIONS,
+                    GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS,
                     GRANTS_QUESTIONNAIRE_QUESTION,
                     GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES,
                 );
