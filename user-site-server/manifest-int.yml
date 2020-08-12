@@ -26,4 +26,4 @@ applications:
     - greenDealOrb.installersApi
     - dceas-admin-logins
     - smtp
-  memory: 2G
+  memory: 1G
