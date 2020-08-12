@@ -276,8 +276,8 @@ public class EnergySavingPlanController {
         templateContext.setVariable("isGhgEligible", recommendations.stream().anyMatch(rec ->
                 (rec.getTags() & (GHG_PRIMARY.getValue() | GHG_SECONDARY.getValue())) > 0)
         );
-        templateContext.setVariable("ghgEligiblePrimaryThreshold", GHG_PRIMARY.getValue());
-        templateContext.setVariable("ghgEligibleSecondaryThreshold", GHG_SECONDARY.getValue());
+        templateContext.setVariable("ghgEligiblePrimaryValue", GHG_PRIMARY.getValue());
+        templateContext.setVariable("ghgEligibleSecondaryValue", GHG_SECONDARY.getValue());
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> r.investmentPounds).sum();
