@@ -96,5 +96,6 @@
     <include file="changelogs/2020-08-06-add-green-homes-grant-page.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-06-add-any-benefits-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-07-reword-new-build-question.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-08-13-add-english-property-question.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

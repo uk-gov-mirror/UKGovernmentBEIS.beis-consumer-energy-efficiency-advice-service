@@ -6,7 +6,6 @@ import 'rxjs/add/operator/reduce';
 import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
-import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 import {
     EnergyEfficiencyRecommendationTag,
     getActiveTags
@@ -37,7 +36,7 @@ export class GreenHomesGrantService {
     }
 
     private calculateEligibility(responseData: ResponseData): Observable<GreenHomesGrantEligibility> {
-        if (responseData.country !== Country.England || responseData.newBuild || responseData.ownsHome === OwnHome.Tenant) {
+        if (!responseData.englishProperty || responseData.newBuild || responseData.ownsHome === OwnHome.Tenant) {
             return Observable.of(GreenHomesGrantEligibility.Ineligible);
         }
 

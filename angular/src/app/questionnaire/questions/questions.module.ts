@@ -57,6 +57,7 @@ import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.co
 import {CountryPostcodeQuestionComponent} from "./country-postcode-question/country-postcode-question.component";
 import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-question.component";
 import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-benefit-question.component";
+import {EnglishPropertyQuestionComponent} from './english-property-question/english-property-question.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-bene
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
+        EnglishPropertyQuestionComponent,
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
@@ -126,6 +128,7 @@ import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-bene
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
+        EnglishPropertyQuestionComponent,
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
@@ -187,6 +190,7 @@ import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-bene
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
+        EnglishPropertyQuestionComponent,
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,

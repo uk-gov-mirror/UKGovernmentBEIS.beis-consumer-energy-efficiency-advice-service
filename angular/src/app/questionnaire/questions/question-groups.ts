@@ -55,6 +55,7 @@ import {AnyBenefitsQuestionMetadata} from "./benefits-questions/any-benefits-que
 import {HomeAge} from "./home-age-question/home-age";
 import {ContributionBasedBenefitsQuestionMetadata } from './benefits-questions/contribution-based-benefits-question-metadata';
 import {HousingBenefitQuestionMetadata} from './benefits-questions/housing-benefit-question-metadata';
+import {EnglishPropertyQuestionMetadata} from './english-property-question/english-property-question-metadata';
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -143,8 +144,8 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
 ];
 
 export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
-    new CountryPostcodeQuestionMetadata()
-]).andThenContinueIf(responseData => responseData.country === Country.England, [
+    new EnglishPropertyQuestionMetadata()
+]).andThenContinueIf(responseData => responseData.englishProperty, [
     new OwnHomeQuestionMetadata()
 ]).andThenContinueIf(responseData => responseData.ownsHome !== OwnHome.Tenant, [
     new HomeAgeQuestionMetadata(),

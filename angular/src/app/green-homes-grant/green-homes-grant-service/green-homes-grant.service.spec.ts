@@ -71,7 +71,7 @@ describe('GreenHomesGrantService', () => {
 
     describe('#getEligibility', () => {
         it('should return ineligible for non-English addresses', async(() => {
-            responseData.country = Country.Wales;
+            responseData.englishProperty = false;
 
             service.getEligibility().toPromise()
                 .then(eligibility => {
@@ -80,7 +80,7 @@ describe('GreenHomesGrantService', () => {
         }));
 
         it('should return ineligible for new builds', async(() => {
-            responseData.country = Country.England;
+            responseData.englishProperty = true;
             responseData.newBuild = true;
 
             service.getEligibility().toPromise()
@@ -90,7 +90,7 @@ describe('GreenHomesGrantService', () => {
         }));
 
         it("should return ineligible if they don't own their home", async(() => {
-            responseData.country = Country.England;
+            responseData.englishProperty = true;
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Tenant;
 
@@ -101,7 +101,7 @@ describe('GreenHomesGrantService', () => {
         }));
 
         it('should return fully eligible if they own their home and are on non-child benefits', async(() => {
-            responseData.country = Country.England;
+            responseData.englishProperty = true;
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Owner;
             responseData.receiveSocietalBenefits = true;
