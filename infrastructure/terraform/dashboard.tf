@@ -1,7 +1,6 @@
 locals {
-  # Scale factor = space memory allocation/application memory allocation
-  admin_site_cpu_scale_factor = 10
-  user_site_cpu_scale_factor  = 30
+  user_cpu_scale_factor = { for k, v in var.user_site_memory_allocation: k => var.org_memory_limit / v}
+  admin_cpu_scale_factor = { for k, v in var.admin_site_memory_allocation: k => var.org_memory_limit / v}
 }
 
 # Note that there is also an email subscription to this topic, but 
@@ -20,7 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
   alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
-    expression  = "${local.admin_site_cpu_scale_factor} * MAX(METRICS())"
+    expression  = "${local.admin_cpu_scale_factor["live"]} * MAX(METRICS())"
     id          = "e1"
     label       = "Max dceas-admin-site instance CPU"
     return_data = true
@@ -67,7 +66,7 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
   alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
-    expression  = "${local.user_site_cpu_scale_factor} * MAX(METRICS())"
+    expression  = "${local.user_cpu_scale_factor["live"]} * MAX(METRICS())"
     id          = "e1"
     label       = "Max dceas-user-site instance CPU"
     return_data = true
@@ -112,8 +111,8 @@ resource "aws_cloudwatch_dashboard" "live" {
       aws_cloudwatch_metric_alarm.live_user_cpu.arn,
       aws_cloudwatch_metric_alarm.live_admin_cpu.arn,
     ]),
-    user_site_cpu_scale_factor  = local.user_site_cpu_scale_factor
-    admin_site_cpu_scale_factor = local.admin_site_cpu_scale_factor
+    user_site_cpu_scale_factor  = local.user_cpu_scale_factor["live"]
+    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["live"]
   })
 }
 
@@ -122,8 +121,8 @@ resource "aws_cloudwatch_dashboard" "staging" {
   dashboard_body = templatefile("data/dashboard.tpl", {
     space                       = "staging"
     alarm_arns                  = "[]"
-    user_site_cpu_scale_factor  = local.user_site_cpu_scale_factor
-    admin_site_cpu_scale_factor = local.admin_site_cpu_scale_factor
+    user_site_cpu_scale_factor  = local.user_cpu_scale_factor["staging"]
+    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["staging"]
   })
 }
 
@@ -132,8 +131,8 @@ resource "aws_cloudwatch_dashboard" "int" {
   dashboard_body = templatefile("data/dashboard.tpl", {
     space                       = "int"
     alarm_arns                  = "[]"
-    user_site_cpu_scale_factor  = local.user_site_cpu_scale_factor
-    admin_site_cpu_scale_factor = local.admin_site_cpu_scale_factor
+    user_site_cpu_scale_factor  = local.user_cpu_scale_factor["int"]
+    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["int"]
   })
 }
 
