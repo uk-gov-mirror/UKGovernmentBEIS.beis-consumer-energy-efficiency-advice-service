@@ -163,6 +163,45 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         expect(domElement.querySelector('.ineligible-reason').textContent)
             .toContain('Sorry, you\'re not eligible for the Green Homes Grant because your home is a new build.');
     });
+
+    it('should display a single message when the property is both outside England and a new build', () => {
+        responseData.newBuild = true;
+        responseData.ownsHome = OwnHome.Owner;
+        responseData.country = Country.Scotland;
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+
+        fixture.detectChanges();
+        expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
+        expect(domElement.querySelectorAll('.ineligible-reason').length).toBe(1);
+        expect(domElement.querySelector('.ineligible-reason').textContent)
+            .toContain('Sorry, you\'re not eligible for the Green Homes Grant because your home is not in England.');
+    });
+
+    it('should display a single message when the property is both outside England and rented', () => {
+        responseData.newBuild = false;
+        responseData.ownsHome = OwnHome.Tenant;
+        responseData.country = Country.Scotland;
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+
+        fixture.detectChanges();
+        expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
+        expect(domElement.querySelectorAll('.ineligible-reason').length).toBe(1);
+        expect(domElement.querySelector('.ineligible-reason').textContent)
+            .toContain('Sorry, you\'re not eligible for the Green Homes Grant because your home is not in England.');
+    });
+
+    it('should display a single message when the property is both rented and a new build', () => {
+        responseData.newBuild = true;
+        responseData.ownsHome = OwnHome.Tenant;
+        responseData.country = Country.England;
+        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+
+        fixture.detectChanges();
+        expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
+        expect(domElement.querySelectorAll('.ineligible-reason').length).toBe(1);
+        expect(domElement.querySelector('.ineligible-reason').textContent)
+            .toContain('Sorry, you\'re not eligible for the Green Homes Grant because you rent your home.');
+    });
 });
 
 @Component({
