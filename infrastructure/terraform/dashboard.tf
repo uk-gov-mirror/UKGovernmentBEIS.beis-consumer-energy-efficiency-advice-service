@@ -1,3 +1,8 @@
+locals {
+  user_cpu_scale_factor = { for k, v in var.user_site_memory_allocation: k => var.org_memory_limit / v}
+  admin_cpu_scale_factor = { for k, v in var.admin_site_memory_allocation: k => var.org_memory_limit / v}
+}
+
 # Note that there is also an email subscription to this topic, but 
 # email subscriptions are unsupported by Terraform
 resource "aws_sns_topic" "dceas_live_alarms" {
@@ -7,14 +12,14 @@ resource "aws_sns_topic" "dceas_live_alarms" {
 resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
   alarm_name          = "LIVE dceas-admin-site CPU"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 15
+  threshold           = 100
   evaluation_periods  = "1"
   treat_missing_data  = "breaching"
   datapoints_to_alarm = 1
   alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
-    expression  = "MAX(METRICS())"
+    expression  = "${local.admin_cpu_scale_factor["live"]} * MAX(METRICS())"
     id          = "e1"
     label       = "Max dceas-admin-site instance CPU"
     return_data = true
@@ -54,14 +59,14 @@ resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
 resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
   alarm_name          = "LIVE dceas-user-site CPU"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 5
+  threshold           = 100
   evaluation_periods  = "1"
   treat_missing_data  = "breaching"
   datapoints_to_alarm = 1
   alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
-    expression  = "MAX(METRICS())"
+    expression  = "${local.user_cpu_scale_factor["live"]} * MAX(METRICS())"
     id          = "e1"
     label       = "Max dceas-user-site instance CPU"
     return_data = true
@@ -100,11 +105,34 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
 
 resource "aws_cloudwatch_dashboard" "live" {
   dashboard_name = "CloudWatch-Default"
-  dashboard_body = templatefile("data/live_dashboard.tpl", {
+  dashboard_body = templatefile("data/dashboard.tpl", {
+    space = "live"
     alarm_arns = jsonencode([
       aws_cloudwatch_metric_alarm.live_user_cpu.arn,
       aws_cloudwatch_metric_alarm.live_admin_cpu.arn,
-    ])
+    ]),
+    user_site_cpu_scale_factor  = local.user_cpu_scale_factor["live"]
+    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["live"]
+  })
+}
+
+resource "aws_cloudwatch_dashboard" "staging" {
+  dashboard_name = "staging"
+  dashboard_body = templatefile("data/dashboard.tpl", {
+    space                       = "staging"
+    alarm_arns                  = "[]"
+    user_site_cpu_scale_factor  = local.user_cpu_scale_factor["staging"]
+    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["staging"]
+  })
+}
+
+resource "aws_cloudwatch_dashboard" "int" {
+  dashboard_name = "int"
+  dashboard_body = templatefile("data/dashboard.tpl", {
+    space                       = "int"
+    alarm_arns                  = "[]"
+    user_site_cpu_scale_factor  = local.user_cpu_scale_factor["int"]
+    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["int"]
   })
 }
 

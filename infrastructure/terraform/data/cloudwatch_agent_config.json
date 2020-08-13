@@ -2,6 +2,104 @@
   "agent": {
     "run_as_user": "cwagent"
   },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/live/dceas-user-site.app.log",
+            "log_group_name": "live",
+            "log_stream_name": "dceas-user-site application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/live/dceas-user-site.gorouter.log",
+            "log_group_name": "live",
+            "log_stream_name": "dceas-user-site access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/live/dceas-admin-site.app.log",
+            "log_group_name": "live",
+            "log_stream_name": "dceas-admin-site application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/live/dceas-admin-site.gorouter.log",
+            "log_group_name": "live",
+            "log_stream_name": "dceas-admin-site access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/live/other.app.log",
+            "log_group_name": "live",
+            "log_stream_name": "other application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/live/other.gorouter.log",
+            "log_group_name": "live",
+            "log_stream_name": "other access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/dceas-user-site.app.log",
+            "log_group_name": "staging",
+            "log_stream_name": "dceas-user-site application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/dceas-user-site.gorouter.log",
+            "log_group_name": "staging",
+            "log_stream_name": "dceas-user-site access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/dceas-admin-site.app.log",
+            "log_group_name": "staging",
+            "log_stream_name": "dceas-admin-site application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/dceas-admin-site.gorouter.log",
+            "log_group_name": "staging",
+            "log_stream_name": "dceas-admin-site access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/other.app.log",
+            "log_group_name": "staging",
+            "log_stream_name": "other application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/staging/other.gorouter.log",
+            "log_group_name": "staging",
+            "log_stream_name": "other access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/dceas-user-site.app.log",
+            "log_group_name": "int",
+            "log_stream_name": "dceas-user-site application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/dceas-user-site.gorouter.log",
+            "log_group_name": "int",
+            "log_stream_name": "dceas-user-site access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/dceas-admin-site.app.log",
+            "log_group_name": "int",
+            "log_stream_name": "dceas-admin-site application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/dceas-admin-site.gorouter.log",
+            "log_group_name": "int",
+            "log_stream_name": "dceas-admin-site access log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/other.app.log",
+            "log_group_name": "int",
+            "log_stream_name": "other application log"
+          },
+          {
+            "file_path": "/var/log/logstash/cloudfoundry/int/other.gorouter.log",
+            "log_group_name": "int",
+            "log_stream_name": "other access log"
+          }
+        ]
+      }
+    }
+  },
   "metrics": {
     "metrics_collected": {
       "statsd": {

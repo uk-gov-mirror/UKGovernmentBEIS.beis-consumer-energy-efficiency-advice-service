@@ -24,14 +24,66 @@ resource "aws_iam_role_policy_attachment" "ssm_full_access_attachment" {
 resource "aws_ssm_parameter" "cloudwatch_config" {
   name  = "AmazonCloudwatch-BEISCF"
   type  = "String"
+  tier  = "Advanced"
   value = file("data/cloudwatch_agent_config.json")
 }
 
+resource "aws_ssm_parameter" "logstash_config" {
+  name  = "cf-logstash-config"
+  type  = "String"
+  tier  = "Advanced"
+  value = file("data/logstash_config.conf")
+}
+
+resource "aws_security_group" "cloudwatch_agent" {
+  ingress {
+    description = "ssh"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "statsd"
+    from_port   = 8125
+    to_port     = 8125
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "syslog"
+    from_port   = 5000
+    to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_key_pair" "cloudwatch_agent" {
+  key_name   = "softwire"
+  public_key = file("data/instance_public_key")
+}
+
 resource "aws_instance" "cloudwatch_agent" {
-  instance_type        = "t3.nano"
-  ami                  = "ami-07d9160fa81ccffb5"
-  iam_instance_profile = aws_iam_role.cloudwatch_agent_server_role.name
-  user_data            = templatefile("data/agent_user_data.tpl", { config_parameter = aws_ssm_parameter.cloudwatch_config.name })
+  instance_type          = "t3.micro"
+  ami                    = "ami-07d9160fa81ccffb5"
+  iam_instance_profile   = aws_iam_role.cloudwatch_agent_server_role.name
+  vpc_security_group_ids = [aws_security_group.cloudwatch_agent.id]
+  key_name               = aws_key_pair.cloudwatch_agent.key_name
+
+  user_data = templatefile("data/agent_user_data.tpl", {
+    cloudwatch_config_parameter = aws_ssm_parameter.cloudwatch_config.name
+    logstash_config_parameter   = aws_ssm_parameter.logstash_config.name
+  })
 
   tags = {
     Name = "Cloud Foundry metrics exporter"

@@ -18,7 +18,7 @@ These instructions are kept for future reference.
   * [User Site Hostname](#user-site-hostname)
   * [Forwarding the User Site old hostname to the canonical hostname](#forwarding-the-user-site-old-hostname-to-the-canonical-hostname)
   * [Forwarding the non "www" hostname to the main hostname](#forwarding-the-non-www-hostname-to-the-main-hostname)
-- [Metric Collection](#metric-collection)
+- [Metric and Log Collection](#metric/log-collection)
 
 <!-- tocstop -->
 
@@ -156,10 +156,25 @@ I have discussed this with LCN support and they say they cannot do it.
 We could fix this if we transferred the hostname to AWS and used an ALIAS record,
 see e.g. https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html
 
-## Metric Collection
+## Metric/Log Collection
 
-Deploy the AWS resources required to ingest the CloudFoundry metrics - see the Terraform [README](../infrastructure/terraform/README.md)..
+Deploy the AWS resources required to ingest the CloudFoundry metrics/logs - see the Terraform [README](../infrastructure/terraform/README.md).
 
 Set up [paas-metric-exporter](https://docs.cloud.service.gov.uk/monitoring_apps.html#metrics-exporter-app-with-statsd) somewhere in the Cloud Foundry
-organisation - it will collect metrics from every application in every space. Set the `STATSD_ENDPOINT` to the IP address of the EC2 instance deployed via Terraform.
+organisation - it will collect metrics from every application in every space. Set the `STATSD_ENDPOINT` to `{EC2 instance Elastic IP}:8125`
 
+Tell the metric-exporter to only send the metrics we need to AWS.
+
+    cf set-env metric-exporter METRIC_WHITELIST "cpu,memoryUtilization,responseTime.2xx,requests.5xx"
+    cf restage metric-exporter
+
+In each space, create a new user provided service to drain logs to AWS:
+
+    cf cups aws-syslog-drain -l syslog://{EC2 instance Elastic IP}:5000
+
+Bind the applications to this service:
+
+    cf bind-service dceas-user-site aws-syslog-drain
+    cf bind-service dceas-admin-site aws-syslog-drain
+
+Logs will begin to flow to CloudWatch after a short delay. See the [Cloud Foundry documentation](https://docs.cloudfoundry.org/devguide/services/log-management.html) for more details.

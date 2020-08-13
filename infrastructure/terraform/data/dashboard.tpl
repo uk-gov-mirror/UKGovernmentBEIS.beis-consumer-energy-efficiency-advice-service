@@ -10,9 +10,17 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} cpu dceas-admin-site live NOT old', 'Average', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} cpu dceas-admin-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
-              "period": 300
+              "period": 300,
+              "visible": false
+            }
+          ],
+          [
+            {
+              "expression": "${admin_site_cpu_scale_factor}*e1",
+              "label": "",
+              "id": "e2"
             }
           ]
         ],
@@ -40,7 +48,7 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} memoryUtilization dceas-admin-site live NOT old', 'Average', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} memoryUtilization dceas-admin-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
               "period": 300
             }
@@ -73,7 +81,7 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} responseTime_2xx dceas-admin-site live NOT old', 'Average', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} responseTime_2xx dceas-admin-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
               "period": 300,
               "region": "eu-west-1"
@@ -104,9 +112,17 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} cpu dceas-user-site live NOT old', 'Average', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} cpu dceas-user-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
-              "period": 300
+              "period": 300,
+              "visible": false
+            }
+          ],
+          [
+            {
+              "expression": "${user_site_cpu_scale_factor}*e1",
+              "label": "",
+              "id": "e2"
             }
           ]
         ],
@@ -134,7 +150,7 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} requests_5xx dceas-admin-site live NOT old', 'Sum', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} requests_5xx dceas-admin-site ${space} NOT old', 'Sum', 300)",
               "id": "e1",
               "period": 300,
               "region": "eu-west-1"
@@ -158,7 +174,7 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} memoryUtilization dceas-user-site live NOT old', 'Average', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} memoryUtilization dceas-user-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
               "period": 300,
               "region": "eu-west-1"
@@ -192,7 +208,7 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} responseTime_2xx dceas-user-site live NOT old', 'Average', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} responseTime_2xx dceas-user-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
               "period": 300
             }
@@ -222,7 +238,7 @@
         "metrics": [
           [
             {
-              "expression": "SEARCH('{CWAgent,host,metric_type} requests_5xx dceas-user-site live NOT old', 'Sum', 300)",
+              "expression": "SEARCH('{CWAgent,host,metric_type} requests_5xx dceas-user-site ${space} NOT old', 'Sum', 300)",
               "id": "e1",
               "period": 300
             }
@@ -234,6 +250,7 @@
         "period": 300,
         "title": "dceas-user-site 5xx responses"
       }
+    %{ if alarm_arns != "[]" }
     },
     {
       "type": "alarm",
@@ -245,6 +262,7 @@
         "title": null,
         "alarms": ${alarm_arns}
       }
+    %{ endif }
     }
   ]
 }
