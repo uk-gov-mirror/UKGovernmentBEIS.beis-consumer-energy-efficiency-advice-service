@@ -71,15 +71,12 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     }
 
     private loadTrustMarkInstallers() {
-        console.log('pre if', this.recommendation);
         if (
             this.greenHomesGrantService.hasGHGTag(this.recommendation.tags)
             && this.recommendation.trustMarkTradeCodes.length
         ) {
-            console.log('post if');
             this.installerSearchService.fetchInstallerDetails(this.responseData.postcode, this.recommendation.trustMarkTradeCodes)
                 .subscribe(response => {
-                    console.log('got response', response);
                     this.installers = response.data.slice(0, 3);
                 });
         }
