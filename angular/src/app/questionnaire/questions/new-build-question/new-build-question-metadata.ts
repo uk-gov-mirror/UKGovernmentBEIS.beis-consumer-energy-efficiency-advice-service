@@ -14,7 +14,9 @@ export class NewBuildQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.homeAge === HomeAge.from2011toPresent;
+        // The home age question may or may not have been asked
+        return responseData.homeAge === undefined
+            || responseData.homeAge === HomeAge.from2011toPresent;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {

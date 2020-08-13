@@ -147,11 +147,8 @@ export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
 ]).andThenContinueIf(responseData => responseData.country === Country.England, [
     new OwnHomeQuestionMetadata()
 ]).andThenContinueIf(responseData => responseData.ownsHome !== OwnHome.Tenant, [
-    new HomeAgeQuestionMetadata(),
     new NewBuildQuestionMetadata()
-]).andThenContinueIf(responseData =>
-    (!responseData.newBuild || responseData.homeAge !== HomeAge.from2011toPresent)
-    && responseData.ownsHome !== OwnHome.Landlord, [
+]).andThenContinueIf(responseData => !responseData.newBuild && responseData.ownsHome !== OwnHome.Landlord, [
     new AnyBenefitsQuestionMetadata()
 ]).andThenContinueIf(responseData => responseData.receiveAnyBenefits, [
     new IncomeRelatedBenefitsQuestionMetadata(),
