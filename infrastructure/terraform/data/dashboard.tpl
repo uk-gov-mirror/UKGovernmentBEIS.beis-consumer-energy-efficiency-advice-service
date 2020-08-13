@@ -12,7 +12,15 @@
             {
               "expression": "SEARCH('{CWAgent,host,metric_type} cpu dceas-admin-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
-              "period": 300
+              "period": 300,
+              "visible": false
+            }
+          ],
+          [
+            {
+              "expression": "${admin_site_cpu_scale_factor}*e1",
+              "label": "",
+              "id": "e2"
             }
           ]
         ],
@@ -106,7 +114,15 @@
             {
               "expression": "SEARCH('{CWAgent,host,metric_type} cpu dceas-user-site ${space} NOT old', 'Average', 300)",
               "id": "e1",
-              "period": 300
+              "period": 300,
+              "visible": false
+            }
+          ],
+          [
+            {
+              "expression": "${user_site_cpu_scale_factor}*e1",
+              "label": "",
+              "id": "e2"
             }
           ]
         ],
