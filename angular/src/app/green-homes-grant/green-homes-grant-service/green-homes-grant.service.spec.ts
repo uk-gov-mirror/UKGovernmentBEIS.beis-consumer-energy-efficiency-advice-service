@@ -19,38 +19,14 @@ describe('GreenHomesGrantService', () => {
     let injector: TestBed;
     let service: GreenHomesGrantService;
     let responseData: ResponseData;
-    let incomeThresholds: IncomeThresholds;
 
     beforeEach(async(() => {
         responseData = new ResponseData();
 
-        incomeThresholds = {
-            'child-benefits': {
-                singleClaim: new IncomeThresholdByChildren(
-                    0,
-                    18500,
-                    23000,
-                    27500,
-                    32000
-                ),
-                jointClaim: new IncomeThresholdByChildren(
-                    0,
-                    25500,
-                    30000,
-                    34500,
-                    39000
-                ),
-                getIncomeThresholdByChildren() {
-                    return this.singleClaim;
-                }
-            }
-        };
-
         TestBed.configureTestingModule({
             providers: [GreenHomesGrantService,
                 {provide: ResponseData, useValue: responseData},
-                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}},
-                {provide: IncomeThresholdService, useValue: {fetchIncomeThresholds: () => Observable.of(incomeThresholds)}},
+                {provide: WordpressApiService, useValue: {getFullApiEndpoint: x => x}}
             ],
             imports: [HttpClientTestingModule]
         })
@@ -109,6 +85,47 @@ describe('GreenHomesGrantService', () => {
             service.getEligibility().toPromise()
                 .then(eligibility => {
                     expect(eligibility).toBe(GreenHomesGrantEligibility.FullyEligible);
+                });
+        }));
+
+        it("should return partially eligible if they are a landlord and it's not a new build", async(() => {
+            responseData.country = Country.England;
+            responseData.newBuild = false;
+            responseData.ownsHome = OwnHome.Landlord;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
+                });
+        }));
+
+        it('should return partially eligible if they are in England, own their home and have no benefits', async(() => {
+            responseData.country = Country.England;
+            responseData.newBuild = false;
+            responseData.ownsHome = OwnHome.Owner;
+            responseData.receiveSocietalBenefits = false;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
+                });
+        }));
+
+        it("should return partially eligible if they say they have benefits, but then don't have any of the benefits on the list",
+        async(() => {
+            responseData.country = Country.England;
+            responseData.newBuild = false;
+            responseData.ownsHome = OwnHome.Owner;
+            responseData.receiveAnyBenefits = true;
+            responseData.receivePensionGuaranteeCredit = false;
+            responseData.receiveIncomeRelatedBenefits = false;
+            responseData.receiveContributionBasedBenefits = false;
+            responseData.receiveSocietalBenefits = false;
+            responseData.receiveHousingBenefit = false;
+
+            service.getEligibility().toPromise()
+                .then(eligibility => {
+                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
                 });
         }));
     });
