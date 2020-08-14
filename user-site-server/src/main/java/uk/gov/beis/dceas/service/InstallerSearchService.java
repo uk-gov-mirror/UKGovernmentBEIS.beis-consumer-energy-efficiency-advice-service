@@ -24,6 +24,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class InstallerSearchService {
@@ -74,7 +77,8 @@ public class InstallerSearchService {
                     .queryParam("pageNumber", page)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
-            return restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();
+            TrustMarkSearchResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();
+            return getPublicUseInstallersFilteredResponse(response);
         } catch (ExecutionException e) {
             log.error("Failed to fetch Trustmark access token from cache.", e);
             throw e;
@@ -105,6 +109,16 @@ public class InstallerSearchService {
                 return response.getAccessToken();
             }
         };
+    }
+
+    private TrustMarkSearchResponse getPublicUseInstallersFilteredResponse(TrustMarkSearchResponse response) {
+        Pattern notForPublicUseRegex = Pattern.compile("^TrustMark (.*\\(Not For Public Use\\).*)|(.*Demo.*)$", Pattern.CASE_INSENSITIVE);
+
+        List<TrustMarkInstaller> filteredInstallers = response.data.stream().filter(
+                installer -> !notForPublicUseRegex.matcher(installer.registeredName).find()
+            ).collect(Collectors.toList());
+
+        return new TrustMarkSearchResponse(response.paginator, response.errorMessage, filteredInstallers);
     }
 
     @lombok.Value
