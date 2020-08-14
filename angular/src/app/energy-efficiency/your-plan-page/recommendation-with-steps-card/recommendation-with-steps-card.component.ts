@@ -78,7 +78,6 @@ export class RecommendationWithStepsCardComponent implements OnInit {
             this.installerSearchService.fetchInstallerDetails(this.responseData.postcode, this.recommendation.trustMarkTradeCodes)
                 .subscribe(response => {
                     this.installers = response.data.slice(0, 3);
-                    console.log(this.installers);
                 });
         }
     }

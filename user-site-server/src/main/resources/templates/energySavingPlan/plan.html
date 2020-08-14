@@ -97,7 +97,7 @@
                                 </div>
                                 <ul>
                                     <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
-                                        th:text="${installer.getRegisteredName() + (installer.getPhoneNumber().isEmpty() ? '' : ' - ' + installer.getPhoneNumber())}">
+                                        th:text="${installer.getRegisteredName() + (#strings.isEmpty(installer.getPhoneNumber()) ? '' : ' - ' + installer.getPhoneNumber())}">
                                         Solar Panels Ltd - 020 7925 0918
                                     </li>
                                 </ul>
@@ -106,6 +106,13 @@
                                 <label>Your Quote</label>
                                 <input type="text" />
                             </div>
+                        </div>
+                        <!-- ThymeLeaf doesn't support bitwise operations so we do this nonsense -->
+                        <div class="ghg-tag ghg-tag--primary" th:if="${(recommendation.tags / ghgEligiblePrimaryValue) % 2 > 0}">
+                            GHG Eligible (Primary)
+                        </div>
+                        <div class="ghg-tag ghg-tag--secondary" th:if="${(recommendation.tags / ghgEligibleSecondaryValue) % 2 > 0}">
+                            GHG Eligible (Secondary)
                         </div>
                     </div>
                     <div class="steps">
@@ -120,6 +127,7 @@
                                     What it is
                                 </span>
                             </h3>
+
                             <div class="step-details-drawer">
                                 <div class="step-info">
                                     <div class="step-description" th:text="${step.description}">
