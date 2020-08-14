@@ -14,7 +14,6 @@ import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-g
 import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
-import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 describe('GreenHomesGrantResultsPageComponent', () => {
     let component: GreenHomesGrantResultsPageComponent;
@@ -96,7 +95,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     it('should have fully eligible status when person is fully eligible', () => {
         // given
         responseData.newBuild = false;
-        responseData.country = Country.England;
+        responseData.englishProperty = true;
         responseData.ownsHome = OwnHome.Owner;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.FullyEligible);
 
@@ -112,7 +111,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     it('should have partial eligible status when person is partially eligible', () => {
         // given
         responseData.newBuild = false;
-        responseData.country = Country.England;
+        responseData.englishProperty = true;
         responseData.ownsHome = OwnHome.Owner;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
 
@@ -128,7 +127,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     it('should display a message when a person is ineligible due to being a tenant', () => {
         responseData.ownsHome = OwnHome.Tenant;
         responseData.newBuild = false;
-        responseData.country = Country.England;
+        responseData.englishProperty = true;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
 
         fixture.detectChanges();
@@ -139,7 +138,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     });
 
     it('should display a message when a property is ineligible due to being outside of England', () => {
-        responseData.country = Country.Wales;
+        responseData.englishProperty = false;
         responseData.newBuild = false;
         responseData.ownsHome = OwnHome.Owner;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
@@ -153,7 +152,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
     it('should display a message when property is ineligible because it is a new build', () => {
         responseData.newBuild = true;
-        responseData.country = Country.England;
+        responseData.englishProperty = true;
         responseData.ownsHome = OwnHome.Owner;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
 

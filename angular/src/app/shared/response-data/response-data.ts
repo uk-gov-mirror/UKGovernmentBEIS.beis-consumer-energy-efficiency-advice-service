@@ -166,6 +166,9 @@ export class ResponseData {
     // Set by LoftWaterDamageQuestionComponent, used by ECO self-referral
     public hasLoftHistoryOfWaterDamage: boolean;
 
+    // Set by EnglishPropertyQuestionComponent, used by GHG eligibility questionnaire
+    public englishProperty: boolean;
+
     get numberOfAdults(): number {
         return this.numberOfAdultsAgedUnder64 +
             this.numberOfAdultsAged64To80 +
