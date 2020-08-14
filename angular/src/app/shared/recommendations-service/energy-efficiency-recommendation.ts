@@ -76,11 +76,9 @@ export class EnergyEfficiencyRecommendation {
             measureContent.acf.advantages.map(x => x.advantage);
         const measureSteps = measureContent.acf.steps && measureContent.acf.steps
             .map(stepResponse => new RecommendationStep(stepResponse));
-        const isMcsSearchProvider = measureContent.acf.steps && !!measureContent.acf.steps.filter(
-            stepResponse => stepResponse.more_info_links && stepResponse.more_info_links.filter(
-                link => link.is_mcs_link
-                ).length
-            ).length;
+        const isMcsSearchProvider = measureContent.acf.steps && measureContent.acf.steps.some(stepResponse =>
+            stepResponse.more_info_links && stepResponse.more_info_links.some(link => link.is_mcs_link)
+        );
         const grant = head(grants);
         const grantSteps = (grant && grant.steps && grant.steps.length > 0) ? grant.steps : [];
         const costSavingUncertaintyPercentage = measureResponse.uncertainty;

@@ -14,6 +14,6 @@
         <div class="phone">
             <p *ngIf="installerInfo.phoneNumber"><span class="contact-prefix">Tel:</span> {{installerInfo.phoneNumber}}</p>
         </div>
-        <a class="details-button-arrow" [href]="installerInfo.publicBranchUrl" target="_blank"> Details </a>
+        <a class="details-button-arrow" [href]="installerInfo.publicBranchUrl" target="_blank" (click)="sendAnalyticsEvent()"> Details </a>
     </div>
 </div>
