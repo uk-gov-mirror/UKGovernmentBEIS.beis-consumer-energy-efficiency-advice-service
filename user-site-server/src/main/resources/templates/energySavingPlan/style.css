@@ -53,11 +53,6 @@ h1 img {
     page-break-before: always;
 }
 
-.recommendation-steps-card:first-child .details {
-    margin-top: 5em;
-    page-break-before: avoid;
-}
-
 .recommendation-step-card {
     margin-top: 4em;
 }
