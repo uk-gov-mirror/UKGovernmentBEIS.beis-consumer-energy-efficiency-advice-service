@@ -166,7 +166,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     it('should display a single message when the property is both outside England and a new build', () => {
         responseData.newBuild = true;
         responseData.ownsHome = OwnHome.Owner;
-        responseData.country = Country.Scotland;
+        responseData.englishProperty = false;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
 
         fixture.detectChanges();
@@ -179,7 +179,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     it('should display a single message when the property is both outside England and rented', () => {
         responseData.newBuild = false;
         responseData.ownsHome = OwnHome.Tenant;
-        responseData.country = Country.Scotland;
+        responseData.englishProperty = false;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
 
         fixture.detectChanges();
@@ -192,7 +192,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     it('should display a single message when the property is both rented and a new build', () => {
         responseData.newBuild = true;
         responseData.ownsHome = OwnHome.Tenant;
-        responseData.country = Country.England;
+        responseData.englishProperty = true;
         eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
 
         fixture.detectChanges();
