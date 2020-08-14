@@ -89,7 +89,7 @@ describe('GreenHomesGrantService', () => {
         }));
 
         it("should return partially eligible if they are a landlord and it's not a new build", async(() => {
-            responseData.country = Country.England;
+            responseData.englishProperty = true;
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Landlord;
 
@@ -100,7 +100,7 @@ describe('GreenHomesGrantService', () => {
         }));
 
         it('should return partially eligible if they are in England, own their home and have no benefits', async(() => {
-            responseData.country = Country.England;
+            responseData.englishProperty = true;
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Owner;
             responseData.receiveSocietalBenefits = false;
@@ -113,7 +113,7 @@ describe('GreenHomesGrantService', () => {
 
         it("should return partially eligible if they say they have benefits, but then don't have any of the benefits on the list",
         async(() => {
-            responseData.country = Country.England;
+            responseData.englishProperty = true;
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Owner;
             responseData.receiveAnyBenefits = true;
