@@ -12,4 +12,4 @@ Run them with:
 
 To run them against local version
 
-    TESTS_HOST=http://localhost:8080/ npm run test
+    npm run test

@@ -74,6 +74,11 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
+        // Construction insulation
+        expect(page.getHeading()).toContain('What best describes the construction');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
         // The start of optional property questions
         expect(page.getHeading()).toContain('answer more questions about your property');
         CommonPageHelpers.clickButton('Yes');
@@ -83,11 +88,6 @@ describe('Home basics questionnaire', () => {
         // Floor area
         expect(page.getHeading()).toContain('the floor area of your');
         CommonPageHelpers.clickButton('I don’t know');
-        page.goForwards();
-        CommonPageHelpers.sleep(1000);
-
-        // Construction insulation
-        expect(page.getHeading()).toContain('What best describes the construction');
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
@@ -111,6 +111,50 @@ describe('Home basics questionnaire', () => {
 
         // Length of heating on
         expect(page.getHeading()).toContain('Most days during winter I have my heating on:');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Garden accessibility
+        expect(page.getHeading()).toContain('garden accessible');
+        page.clickOption('No garden');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Benefits
+        expect(page.getHeading()).toContain('currently receiving a form of benefit');
+        page.clickOption('Yes');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Pension guarantee credit
+        expect(page.getHeading()).toContain('Pension Guarantee Credit');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Other benefits
+        expect(page.getHeading()).toContain('any of the following benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Other benefits contd
+        expect(page.getHeading()).toContain('any of the following benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Other benefits contd
+        expect(page.getHeading()).toContain('any of the following benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Child Benefit
+        expect(page.getHeading()).toContain('Child Benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
     });
 
     it('should include core questions but skip questions with answers obtainable from EPC', () => {
@@ -142,6 +186,11 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(1000);
 
+        // Construction insulation
+        expect(page.getHeading()).toContain('What best describes the construction');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
         // Fuel type
         expect(page.getHeading()).toContain('type of fuel');
         page.clickOption('electricity');
@@ -162,5 +211,49 @@ describe('Home basics questionnaire', () => {
 
         // Length of heating on
         expect(page.getHeading()).toContain('Most days during winter I have my heating on:');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Garden accessibility
+        expect(page.getHeading()).toContain('garden accessible');
+        page.clickOption('No garden');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Benefits
+        expect(page.getHeading()).toContain('currently receiving a form of benefit');
+        page.clickOption('Yes');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Pension guarantee credit
+        expect(page.getHeading()).toContain('Pension Guarantee Credit');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Other benefits
+        expect(page.getHeading()).toContain('any of the following benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Other benefits contd
+        expect(page.getHeading()).toContain('any of the following benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Other benefits contd
+        expect(page.getHeading()).toContain('any of the following benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
+
+        // Child Benefit
+        expect(page.getHeading()).toContain('Child Benefits');
+        page.clickOption('No');
+        page.goForwards();
+        CommonPageHelpers.sleep(1000);
     });
 });
