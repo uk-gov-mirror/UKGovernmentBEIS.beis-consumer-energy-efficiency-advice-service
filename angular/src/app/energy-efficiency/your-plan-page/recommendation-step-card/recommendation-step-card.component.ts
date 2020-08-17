@@ -40,4 +40,8 @@ export class RecommendationStepCardComponent implements OnInit {
             this.onAnalyticsEvent.emit('read-more_clicked');
         }
     }
+
+    sendMcsEvent() {
+        this.onAnalyticsEvent.emit('vist-mcs-website_clicked');
+    }
 }

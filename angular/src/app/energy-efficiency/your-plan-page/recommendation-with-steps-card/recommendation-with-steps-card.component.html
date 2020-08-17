@@ -34,8 +34,9 @@
                 </ul>
             </div>
 
-            <a class="more-info-link" [routerLink]="['/installer-search/', recommendation.measureCode, responseData.postcode]">
-
+            <a class="more-info-link"
+                [routerLink]="['/installer-search/', recommendation.measureCode, responseData.postcode]"
+                (click)="sendEventToAnalytics('get-a-quote_clicked')">
                 <div class="more-info-description">Get a quote</div>
                 <div class="more-info-icon-container">
                     <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
@@ -54,7 +55,10 @@
                     </p>
                 </div>
             </div>
-            <a class="more-info-link" target="_blank" href="https://mcscertified.com/find-an-installer/">
+            <a class="more-info-link"
+               target="_blank"
+               href="https://mcscertified.com/find-an-installer/"
+               (click)="sendEventToAnalytics('visit-mcs-website_clicked')">
                 <div class="more-info-description">Find installers</div>
                 <div class="more-info-icon-container">
                     <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
