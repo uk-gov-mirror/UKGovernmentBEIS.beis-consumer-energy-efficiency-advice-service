@@ -33,33 +33,17 @@
                     </li>
                 </ul>
             </div>
-
-            <a class="more-info-link" [routerLink]="['/installer-search/', recommendation.measureCode, responseData.postcode]">
-
-                <div class="more-info-description">Get a quote</div>
-                <div class="more-info-icon-container">
-                    <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
-                </div>
-            </a>
         </div>
-        <div class="mcs-info" *ngIf="recommendation.isMcsSearchProvider">
-            <div class="mcs-logo-and-copy">
-                <div class="mcs-logo">
-                    <img src="/dist/assets/images/logos/mcs-logo.png" title="MCS Logo" alt="MCS Logo">
-                </div>
-                <div class="mcs-copy">
-                    <p>
-                        MCS certifies products and installers so people can have confidence in the low-carbon technology they invest in. 
-                        Visit the MCS website to search for installers and get a quote.
-                    </p>
-                </div>
+        <div class="mcs-logo-and-copy" *ngIf="recommendation.isMcsSearchProvider">
+            <div class="mcs-logo">
+                <img src="/dist/assets/images/logos/mcs-logo.png" title="MCS Logo" alt="MCS Logo">
             </div>
-            <a class="more-info-link" target="_blank" href="https://mcscertified.com/find-an-installer/">
-                <div class="more-info-description">Find installers</div>
-                <div class="more-info-icon-container">
-                    <div class="more-info-icon" [inlineSVG]="'controls/main-arrow.svg'"></div>
-                </div>
-            </a>
+            <div class="mcs-copy">
+                <p>
+                    MCS certifies products and installers so people can have confidence in the low-carbon technology they invest in. 
+                    Visit the MCS website to search for installers and get a quote.
+                </p>
+            </div>
         </div>
     </div>
     <div class="steps">
