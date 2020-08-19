@@ -21,7 +21,7 @@ describe('TenureTypeQuestionComponent', () => {
     }));
 
     beforeEach(() => {
-        responseData = TestBed.get(ResponseData);
+        responseData = new ResponseData();
         fixture = TestBed.createComponent(TenureTypeQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');

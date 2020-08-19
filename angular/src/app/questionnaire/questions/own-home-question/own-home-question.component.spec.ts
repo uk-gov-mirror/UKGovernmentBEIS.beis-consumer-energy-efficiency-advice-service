@@ -59,7 +59,7 @@ describe('OwnHomeQuestionComponent', () => {
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {
-            const yesOption = fixture.debugElement.query(By.css('#option-0')).nativeElement;
+            const yesOption = fixture.debugElement.query(By.css('#option-1')).nativeElement;
             yesOption.click();
 
             expect(responseData.ownsHome).toBe(OwnHome.Landlord);
@@ -71,7 +71,7 @@ describe('OwnHomeQuestionComponent', () => {
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {
-            const yesOption = fixture.debugElement.query(By.css('#option-0')).nativeElement;
+            const yesOption = fixture.debugElement.query(By.css('#option-2')).nativeElement;
             yesOption.click();
 
             expect(responseData.ownsHome).toBe(OwnHome.Tenant);

@@ -38,9 +38,9 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
         ];
 
         // Prefill must be done here so the question isn't skipped when using best guess for tenants
-        this.response = this.response || this.responseData.ownsHome === OwnHome.Tenant
+        this.response = this.response || (this.responseData.ownsHome === OwnHome.Tenant
             ? TenureType.PrivateTenancy
-            : undefined;
+            : undefined);
     }
 
     get response(): TenureType {
