@@ -10,7 +10,7 @@ import {GrantEligibilityService} from '../../grants/grant-eligibility-service/gr
 import {EnergyEfficiencyRecommendation} from './energy-efficiency-recommendation';
 import {MeasuresResponse} from '../energy-calculation-api-service/response/measures-response';
 import {MeasureContent} from '../energy-saving-measure-content-service/measure-content';
-import {EnergyEfficiencyRecommendationTag, hasTag} from '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
+import {EnergyEfficiencyRecommendationTag} from '../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag';
 import {EnergySavingMeasureResponse} from '../energy-calculation-api-service/response/energy-saving-measure-response';
 import {HabitMeasureResponse} from '../energy-calculation-api-service/response/habit-measure-response';
 import {EnergyCalculationResponse} from "../energy-calculation-api-service/response/energy-calculation-response";
@@ -241,38 +241,9 @@ export class RecommendationsService {
             .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
     }
 
-    // The entries in "recommendationArrays" are arrays of recommendations from different sources.
-    // We first group these arrays by their Green Homes Grant eligibility before interleaving them.
+    // The entries in "recommendationArrays" are arrays of recommendations from different sources
+    // We interleave them into a single list, taking one from each array in turn until they are exhausted
     private static orderRecommendations(recommendationArrays:
-        (EnergyEfficiencyRecommendation[])[]): EnergyEfficiencyRecommendation[] {
-        const groupedArrays: ({
-            ghgPrimary: EnergyEfficiencyRecommendation[],
-            ghgSecondary: EnergyEfficiencyRecommendation[],
-            ghgNotEligible: EnergyEfficiencyRecommendation[]
-        })[] = recommendationArrays.map(array => {
-            const ghgGroups = { ghgPrimary: [], ghgSecondary: [], ghgNotEligible: [] };
-            array.forEach(recommendation => {
-                if (hasTag(recommendation, EnergyEfficiencyRecommendationTag.GHGPrimary)) {
-                    ghgGroups.ghgPrimary.push(recommendation);
-                } else if (hasTag(recommendation, EnergyEfficiencyRecommendationTag.GHGSecondary)) {
-                    ghgGroups.ghgSecondary.push(recommendation);
-                } else {
-                    ghgGroups.ghgNotEligible.push(recommendation);
-                }
-            });
-            return ghgGroups;
-        });
-        const ghgPrimaryRecommendationArrays = groupedArrays.map(g => g.ghgPrimary);
-        const ghgSecondaryRecommendationArrays = groupedArrays.map(g => g.ghgSecondary);
-        const ghgNotEligibleRecommendationArrays = groupedArrays.map(g => g.ghgNotEligible);
-        return this.interleaveRecommendations(ghgPrimaryRecommendationArrays)
-            .concat(this.interleaveRecommendations(ghgSecondaryRecommendationArrays))
-            .concat(this.interleaveRecommendations(ghgNotEligibleRecommendationArrays));
-    }
-
-    // The entries in "recommendationArrays" are arrays of recommendations from different sources.
-    // We interleave them into a single list, taking one from each array in turn until they are exhausted.
-    private static interleaveRecommendations(recommendationArrays:
         (EnergyEfficiencyRecommendation[])[]): EnergyEfficiencyRecommendation[] {
         const maxLength = RecommendationsService.getMaxLengthOfRecommendationArrays(recommendationArrays);
         const orderedRecommendations = [];

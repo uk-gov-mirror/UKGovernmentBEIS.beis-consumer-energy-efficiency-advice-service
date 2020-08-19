@@ -1,6 +1,5 @@
 import values from 'lodash-es/values';
 import {MeasureContent} from '../../../shared/energy-saving-measure-content-service/measure-content';
-import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 
 export enum EnergyEfficiencyRecommendationTag {
     None = 0,
@@ -45,10 +44,6 @@ export function getActiveTags(flagValues: number): EnergyEfficiencyRecommendatio
         .map(tag => parseInt(tag))
         .filter(tag => !isNaN(tag))
         .filter(tag => tag & flagValues);
-}
-
-export function hasTag(recommendation: EnergyEfficiencyRecommendation, tag: EnergyEfficiencyRecommendationTag) {
-    return (recommendation.tags & tag) !== 0;
 }
 
 export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficiencyRecommendationTag {
