@@ -69,7 +69,7 @@ export class PostcodeLookupComponent implements OnInit {
         return this.postcodeApiService.fetchBasicPostcodeDetails(postcode)
             .catch(() => {
                 if (!PostcodeEpcService.isValidPostcode(postcode)) {
-                    return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
+                    return Observable.throw(PostcodeEpcService.POSTCODE_INVALID);
                 }
                 return Observable.throw(`Error when fetching details for postcode "${ postcode }"`);
             });
@@ -77,7 +77,7 @@ export class PostcodeLookupComponent implements OnInit {
 
     private handleSearchError(error: any): void {
         this.error = true;
-        if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
+        if (error === PostcodeEpcService.POSTCODE_INVALID) {
             this.errorMessage = "Please enter a valid UK postcode.";
         } else if (this.country === Country.NorthernIreland) {
             this.errorMessage = "We do not think this service is suitable/accurate for " +
@@ -91,12 +91,13 @@ export class PostcodeLookupComponent implements OnInit {
 
         let postcode: string;
         if (this.country === Country.NorthernIreland
-            || this.country === Country.Scotland) {
+            || this.country === Country.Scotland
+            || error === PostcodeEpcService.POSTCODE_INVALID) {
             // Prevent user from continuing
             postcode = undefined;
         } else {
             // Allow user to continue
-            postcode = null;
+            postcode = this.postcodeInput || null;
         }
         this.loading = false;
         this.postcodeSelected.emit(new PostcodeDetails(postcode, null, null, this.country));

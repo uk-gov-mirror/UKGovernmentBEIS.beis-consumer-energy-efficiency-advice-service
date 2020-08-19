@@ -17,6 +17,7 @@ import {PostcodeBasicDetailsResponse} from "./model/response/postcode-basic-deta
 export class PostcodeEpcService {
 
     static readonly POSTCODE_NOT_FOUND: string = 'POSTCODE_NOT_FOUND';
+    static readonly POSTCODE_INVALID: string = 'POSTCODE_INVALID';
     private static readonly POSTCODE_REGEXP: RegExp = /^[a-zA-Z]{1,2}[0-9][a-zA-Z0-9]?\s?[0-9][a-zA-Z]{2}$/;
 
     constructor(private epcApiService: EpcApiService,
@@ -29,7 +30,7 @@ export class PostcodeEpcService {
 
     fetchPostcodeDetails(postcode: string): Observable<PostcodeDetails> {
         if (!PostcodeEpcService.isValidPostcode(postcode)) {
-            return Observable.throw(PostcodeEpcService.POSTCODE_NOT_FOUND);
+            return Observable.throw(PostcodeEpcService.POSTCODE_INVALID);
         }
         return this.epcApiService.getEpcsForPostcode(postcode)
             .catch(() => Observable.of(null))

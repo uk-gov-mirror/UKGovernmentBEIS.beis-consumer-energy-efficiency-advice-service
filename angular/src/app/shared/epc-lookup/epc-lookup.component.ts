@@ -105,9 +105,14 @@ export class EpcLookupComponent implements OnChanges, OnInit {
             // The postcode has changed so we should clear the existing responses
             resetResponseDataForNewEpc(this.responseData);
 
-            this.responseData.postcode = this.postcodeDetails.postcode;
-            this.responseData.country = this.postcodeDetails.country;
-            this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
+            if (!this.postcodeDetails) {
+                // In the event postcode lookup failed, this.postcodeDetails won't be set - continue anyway
+                this.responseData.postcode = selectedPostcode;
+            } else {
+                this.responseData.postcode = this.postcodeDetails.postcode;
+                this.responseData.country = this.postcodeDetails.country;
+                this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
+            }
         }
 
         this.epcSelected.emit();
@@ -123,6 +128,8 @@ export class EpcLookupComponent implements OnChanges, OnInit {
 
     private handlePostcodeSearchError(error: any): void {
         if (error === PostcodeEpcService.POSTCODE_NOT_FOUND) {
+            this.displayPostcodeLookupError();
+        } else if (error === PostcodeEpcService.POSTCODE_INVALID) {
             this.displayPostcodeValidationError();
         }
     }
@@ -130,6 +137,11 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     private displayPostcodeValidationError(): void {
         this.resetSearchState();
         this.error = true;
+    }
+
+    private displayPostcodeLookupError(): void {
+        this.resetSearchState();
+        this.epcs = null;
     }
 
     private resetSearchState(): void {
