@@ -75,11 +75,10 @@ export class GoogleAnalyticsService {
     }
 
     private static setCookiePolicy(accepted: boolean): void {
-        const d: Date = new Date();
+        const expiryDate: Date = new Date();
         // Set the expiry for 1 year
-        d.setTime(d.getTime() + 365 * 24 * 60 * 60 * 1000);
-        const expiry: string = `expires=${d.toUTCString()}`;
-        document.cookie = `${ACCEPTED_COOKIES}=${accepted}; ${expiry}`;
+        expiryDate.setTime(expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
+        document.cookie = `${ACCEPTED_COOKIES}=${accepted}; expires=${expiryDate.toUTCString()}; path=/`;
     }
 
     private static get cookies(): Cookies {

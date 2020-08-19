@@ -29,6 +29,8 @@
     <script type="text/javascript" th:inline="javascript">
         var acceptCookies = [[${acceptCookies}]];
         var gaId = [[${gaId}]];
+        // This will disable all analytics tracking if set to true
+        // https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out
         window["ga-disable-" + gaId] = !acceptCookies;
         // Google Analytics tracking code
         window.dataLayer = window.dataLayer || [];
