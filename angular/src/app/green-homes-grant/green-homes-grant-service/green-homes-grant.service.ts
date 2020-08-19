@@ -11,6 +11,7 @@ import {
     getActiveTags
 } from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 @Injectable()
 export class GreenHomesGrantService {
@@ -36,7 +37,9 @@ export class GreenHomesGrantService {
     }
 
     private calculateEligibility(responseData: ResponseData): Observable<GreenHomesGrantEligibility> {
-        if (!responseData.englishProperty || responseData.newBuild || responseData.ownsHome === OwnHome.Tenant) {
+        if (!(responseData.englishProperty || responseData.country === Country.England)
+            || responseData.newBuild
+            || responseData.ownsHome === OwnHome.Tenant) {
             return Observable.of(GreenHomesGrantEligibility.Ineligible);
         }
 
