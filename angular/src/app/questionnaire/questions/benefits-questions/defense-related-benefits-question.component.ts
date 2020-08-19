@@ -29,5 +29,8 @@ export class DefenseRelatedBenefitsQuestionComponent extends QuestionBaseCompone
 
     set response(val: boolean) {
         this.responseData.receiveDefenseRelatedBenefits = val;
+        if (val) {
+            this.responseData.receiveAnyBenefits = true;
+        }
     }
 }

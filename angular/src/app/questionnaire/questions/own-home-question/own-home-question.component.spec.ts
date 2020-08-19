@@ -5,6 +5,7 @@ import {By} from '@angular/platform-browser';
 import {OwnHomeQuestionComponent} from "./own-home-question.component";
 import {OwnHome} from "./ownHome";
 import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
+import {TenureType} from "../tenure-type-question/tenure-type";
 
 describe('OwnHomeQuestionComponent', () => {
     let component: OwnHomeQuestionComponent;
@@ -42,7 +43,7 @@ describe('OwnHomeQuestionComponent', () => {
         });
     }));
 
-    it('should set the response', async(() => {
+    it('should set the response for owners', async(() => {
         fixture.detectChanges();
 
         fixture.whenStable().then(() => {
@@ -50,6 +51,31 @@ describe('OwnHomeQuestionComponent', () => {
             yesOption.click();
 
             expect(responseData.ownsHome).toBe(OwnHome.Owner);
+            expect(responseData.tenureType).toBe(TenureType.OwnerOccupancy);
+        });
+    }));
+
+    it('should set the response for owners', async(() => {
+        fixture.detectChanges();
+
+        fixture.whenStable().then(() => {
+            const yesOption = fixture.debugElement.query(By.css('#option-0')).nativeElement;
+            yesOption.click();
+
+            expect(responseData.ownsHome).toBe(OwnHome.Landlord);
+            expect(responseData.tenureType).toBe(TenureType.OwnerOccupancy);
+        });
+    }));
+
+    it('should set the response for tenants', async(() => {
+        fixture.detectChanges();
+
+        fixture.whenStable().then(() => {
+            const yesOption = fixture.debugElement.query(By.css('#option-0')).nativeElement;
+            yesOption.click();
+
+            expect(responseData.ownsHome).toBe(OwnHome.Tenant);
+            expect(responseData.tenureType).toBe(undefined);
         });
     }));
 });

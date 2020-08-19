@@ -26,7 +26,7 @@ export class OwnHomeQuestionComponent extends QuestionBaseComponent {
 
     set response(val: OwnHome) {
         this.responseData.ownsHome = val;
-        if (val === OwnHome.Owner) {
+        if (val === OwnHome.Owner || val === OwnHome.Landlord) {
             this.responseData.tenureType = TenureType.OwnerOccupancy;
         }
     }

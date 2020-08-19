@@ -28,5 +28,8 @@ export class PensionGuaranteeCreditQuestionComponent extends QuestionBaseCompone
 
     set response(val: boolean) {
         this.responseData.receivePensionGuaranteeCredit = val;
+        if (val) {
+            this.responseData.receiveAnyBenefits = true;
+        }
     }
 }

@@ -39,7 +39,10 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
     }
 
     get response(): TenureType {
-        return this.responseData.tenureType;
+        return this.responseData.tenureType ||
+            this.responseData.ownsHome === OwnHome.Tenant
+                ? TenureType.PrivateTenancy
+                : undefined;
     }
 
     set response(val: TenureType) {

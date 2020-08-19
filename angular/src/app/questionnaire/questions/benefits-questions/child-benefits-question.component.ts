@@ -24,5 +24,8 @@ export class ChildBenefitsQuestionComponent extends QuestionBaseComponent {
 
     set response(val: boolean) {
         this.responseData.receiveChildBenefits = val;
+        if (val) {
+            this.responseData.receiveAnyBenefits = true;
+        }
     }
 }
