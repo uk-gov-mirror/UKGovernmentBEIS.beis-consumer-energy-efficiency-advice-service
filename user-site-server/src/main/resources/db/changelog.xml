@@ -98,4 +98,5 @@
     <include file="changelogs/2020-08-07-reword-new-build-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-13-add-english-property-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-19-add-cookies-page.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-08-11-add-housing-benefit-question" relativeToChangelogFile="true" />
 </databaseChangeLog>
