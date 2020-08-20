@@ -4,6 +4,12 @@ import {Location} from '@angular/common';
 declare const gtag: any;
 declare const gaId: string;
 
+interface Cookies {
+    [key: string]: string | undefined;
+}
+
+const ACCEPTED_COOKIES = 'acceptedCookiePolicy';
+
 @Injectable()
 export class GoogleAnalyticsService {
     private static readonly GOOGLE_ANALYTICS_SUPPORTED: boolean = typeof gtag !== 'undefined' && typeof gaId !== 'undefined';
@@ -47,6 +53,43 @@ export class GoogleAnalyticsService {
         // Send an event with an arbitrary name because there is no real event to report. We just want to associate a
         // dimension with the user's whole session.
         gtag('event', `set_dimension_${name}`, { [name]: value });
+    }
+
+    get hasSetCookiePreference() {
+        return GoogleAnalyticsService.cookies[ACCEPTED_COOKIES] !== undefined;
+    }
+
+    allowCookies() {
+        GoogleAnalyticsService.setCookiePolicy(true);
+        this.setEnabled(true);
+        this.recordPageView();
+    }
+
+    rejectCookies() {
+        GoogleAnalyticsService.setCookiePolicy(false);
+        this.setEnabled(false);
+    }
+
+    setEnabled(enabled: boolean) {
+        window["ga-disable-" + gaId] = !enabled;
+    }
+
+    private static setCookiePolicy(accepted: boolean): void {
+        const expiryDate: Date = new Date();
+        // Set the expiry for 1 year
+        expiryDate.setTime(expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
+        document.cookie = `${ACCEPTED_COOKIES}=${accepted}; expires=${expiryDate.toUTCString()}; path=/`;
+    }
+
+    private static get cookies(): Cookies {
+        return document.cookie.split('; ').reduce(
+            (prev: Cookies, curr) => {
+                const [key, value] = curr.split('=');
+                prev[key] = value;
+                return prev;
+            },
+            {}
+        );
     }
 }
 

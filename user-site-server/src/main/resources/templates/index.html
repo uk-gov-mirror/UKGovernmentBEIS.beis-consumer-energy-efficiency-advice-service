@@ -28,8 +28,11 @@
     <!-- Google tracking -->
     <script type="text/javascript" th:src="@{https://www.googletagmanager.com/gtag/js(id=${gaId})}"></script>
     <script type="text/javascript" th:inline="javascript">
+        var acceptCookies = [[${acceptCookies}]];
         var gaId = [[${gaId}]];
-
+        // This will disable all analytics tracking if set to true
+        // https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out
+        window["ga-disable-" + gaId] = !acceptCookies;
         // Google Analytics tracking code
         window.dataLayer = window.dataLayer || [];
         function gtag() {
@@ -37,7 +40,9 @@
         }
         gtag('js', new Date());
 
-        gtag('config', gaId, { 'send_page_view': false });
+        gtag('config', gaId, {
+            'send_page_view': false
+        });
     </script>
     <script th:src="@{https://maps.googleapis.com/maps/api/js(key=${googleCloudPlatformApiKey})}"
     type="text/javascript"></script>
