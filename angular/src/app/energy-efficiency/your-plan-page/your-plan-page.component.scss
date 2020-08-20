@@ -25,6 +25,11 @@ $desktop-summary-padding: 20px;
   .page-row-content {
     @include isGhgInfoBox;
     margin-top: 65px;
+
+    &.ghg-next-steps {
+      margin-top: 0;
+      margin-bottom: 65px;
+    }
   }
 }
 
@@ -125,7 +130,7 @@ $desktop-summary-padding: 20px;
         .subheading {
           flex: 0 0 100%;
           max-width: 100%;
-          padding: 0 20px 33px;
+          padding: 20px 20px 33px;
           background-color: $lighter-grey;
         }
 

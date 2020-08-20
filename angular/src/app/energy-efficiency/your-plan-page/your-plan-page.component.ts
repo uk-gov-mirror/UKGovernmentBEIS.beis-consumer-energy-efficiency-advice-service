@@ -8,8 +8,8 @@ import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import * as logger from 'loglevel';
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
-import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -17,6 +17,21 @@ import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-
     styleUrls: ['./your-plan-page.component.scss']
 })
 export class YourPlanPageComponent implements OnInit {
+
+    localAuthorityGrants: LocalAuthorityGrant[] = [];
+    localAuthorityName: string;
+    isError: boolean = false;
+    errorMessage: string;
+    shouldShowGHGContext: boolean = false;
+    ghgEligibility: GreenHomesGrantEligibility;
+
+    constructor(private recommendationsService: RecommendationsService,
+                private localAuthorityService: LocalAuthorityService,
+                private responseData: ResponseData,
+                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
+                private pageTitle: PageTitleService,
+                private greenHomesGrantService: GreenHomesGrantService) {
+    }
 
     get userRecommendations(): EnergyEfficiencyRecommendation[] {
         return this.recommendationsService.getUserRecommendationsInPlan();
@@ -30,19 +45,28 @@ export class YourPlanPageComponent implements OnInit {
         return this.energyEfficiencyDisplayService.getApparentNumberOfRecommendations();
     }
 
-    localAuthorityGrants: LocalAuthorityGrant[] = [];
-    localAuthorityName: string;
-    isError: boolean = false;
-    errorMessage: string;
-    shouldShowGHGContext: boolean = false;
-
-    constructor(private recommendationsService: RecommendationsService,
-                private localAuthorityService: LocalAuthorityService,
-                private responseData: ResponseData,
-                private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
-                private pageTitle: PageTitleService,
-                private greenHomesGrantService: GreenHomesGrantService) {
+    get numberOfPrimaryRecommendations(): number {
+        return this.recommendationsService.getRecommendationsInPlan().filter(
+            r => this.greenHomesGrantService.hasGHGPrimaryTag(r.tags)
+        ).length;
     }
+
+    get numberOfSecondaryRecommendations(): number {
+        return this.recommendationsService.getRecommendationsInPlan().filter(
+            r => this.greenHomesGrantService.hasGHGSecondaryTag(r.tags)
+        ).length;
+    }
+
+    get ghgDiscountProportion(): string {
+        return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
+            ? "100%" : "2/3";
+    }
+
+    get ghgMaximumAmount(): string {
+        return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
+            ? "10,000" : "5,000";
+    }
+
 
     ngOnInit() {
         this.pageTitle.set('Your Plan');
@@ -62,9 +86,9 @@ export class YourPlanPageComponent implements OnInit {
 
         this.greenHomesGrantService.getEligibility()
             .subscribe(eligibility => {
+                this.ghgEligibility = eligibility;
                 this.shouldShowGHGContext =
-                    (eligibility !== GreenHomesGrantEligibility.Ineligible)
-                    && this.recommendationsService.getUserRecommendationsInPlan()
+                    this.recommendationsService.getUserRecommendationsInPlan()
                         .concat(this.recommendationsService.getLandlordRecommendationsInPlan())
                         .some(
                             recommendation => this.greenHomesGrantService.hasGHGTag(recommendation.tags)

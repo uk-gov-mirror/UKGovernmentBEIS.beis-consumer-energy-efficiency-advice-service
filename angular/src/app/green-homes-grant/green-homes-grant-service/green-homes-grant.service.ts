@@ -23,8 +23,17 @@ export class GreenHomesGrantService {
     ) {}
 
     public hasGHGTag(flagValues: number) {
+        return this.hasGHGPrimaryTag(flagValues) || this.hasGHGSecondaryTag(flagValues);
+    }
+
+    public hasGHGPrimaryTag(flagValues: number) {
         const tags = getActiveTags(flagValues);
-        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary) || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
+        return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary);
+    }
+
+    public hasGHGSecondaryTag(flagValues: number) {
+        const tags = getActiveTags(flagValues);
+        return tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
     }
 
     public getEligibility(): Observable<GreenHomesGrantEligibility> {

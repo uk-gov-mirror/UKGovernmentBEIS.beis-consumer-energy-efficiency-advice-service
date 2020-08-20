@@ -1,7 +1,6 @@
 package uk.gov.beis.dceas.controller;
 
 import com.google.common.io.Resources;
-import lombok.experimental.var;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -20,8 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Optional;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
@@ -69,10 +66,10 @@ public class IndexController {
 
         // We read the "dist" index.html from Angular, and inject it into our
         // index page, to use things like Angular's content hash stamping etc.
-        URL indexResouce = getClass().getResource("/public/dist/index.html");
-        if (indexResouce != null) {
+        URL indexResource = getClass().getResource("/public/dist/index.html");
+        if (indexResource != null) {
             String angularIndexFileContent = Resources.toString(
-                indexResouce,
+                indexResource,
                 StandardCharsets.UTF_8);
 
             Document document = Jsoup.parse(angularIndexFileContent);

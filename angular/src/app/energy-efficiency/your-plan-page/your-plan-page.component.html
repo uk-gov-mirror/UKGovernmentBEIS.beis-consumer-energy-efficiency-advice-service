@@ -15,23 +15,30 @@ If you change anything here, please consider whether anything needs changing the
                 <div class="heading-container">
                     <h1 class="heading">Your plan</h1>
 
-                    <div class="subheading" *ngIf="numberOfRecommendations === 1">
+                    <h3 class="subheading" *ngIf="numberOfRecommendations === 1">
                         You have added 1 recommendation to your plan. You'll find all the steps and things you need to
                         consider to implement this measure.
-                    </div>
-                    <div class="subheading" *ngIf="numberOfRecommendations > 1">
+                    </h3>
+                    <h3 class="subheading" *ngIf="numberOfRecommendations > 1">
                         You have added {{numberOfRecommendations}} recommendations to your plan. You'll find all the
                         steps and things you need to consider to implement those measures.
-                    </div>
+                    </h3>
                     <app-your-plan-summary></app-your-plan-summary>
                 </div>
             </div>
         </div>
         <div class="ghg-context page-row" *ngIf="shouldShowGHGContext">
             <div class="page-row-content">
-                <div class="header">Green Homes Grant</div>
-                <p>To continue, print your plan. Contact installers and get quotes for your selected measures.<p>
-                <p>Keep a record of these quotes - you will need them for the voucher application process.</p>
+                <h2>Fund improvements with the Green Homes Grant</h2>
+                <p>
+                    You have added {{numberOfPrimaryRecommendations}} primary measure{{numberOfPrimaryRecommendations === 1 ? '' : 's'}}
+                    and {{numberOfSecondaryRecommendations}} secondary measure{{numberOfPrimaryRecommendations === 1 ? '' : 's'}}
+                    to your plan. Under the Green Homes Grant, you may be eligible for funding {{ghgDiscountProportion}}
+                    of the total cost, up to £{{ghgMaximumAmount}}.
+                </p>
+                <div class="subheading">What are the next steps?</div>
+                <p>Download your plan and contact installers to get quotes for the improvements that you have selected.
+                    Keep a record of these quotes, as you will need to submit them as part of the application process.</p>
             </div>
         </div>
         <div class="recommendations user-recommendations page-row">
@@ -69,6 +76,17 @@ If you change anything here, please consider whether anything needs changing the
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of landlordRecommendations">
                     <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
                 </div>
+            </div>
+        </div>
+        <div class="ghg-context page-row" *ngIf="shouldShowGHGContext">
+            <div class="ghg-next-steps page-row-content">
+                <h2>Next steps in applying for the Green Homes Grant</h2>
+                <p>
+                    Download your plan and contact installers to get quotes for the improvements that you have selected.
+                    Keep a record of these quotes, as you will need to submit them as part of the application process.
+                </p>
+                <p>Vouchers will start to be issued from the end of September. Further details on how to apply will be
+                announced by the Government in the coming weeks.</p>
             </div>
         </div>
     </div>
