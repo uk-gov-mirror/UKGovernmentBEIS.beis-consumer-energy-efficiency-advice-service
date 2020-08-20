@@ -22,7 +22,10 @@ function hasLargeGarden(responseData: ResponseData) {
 }
 
 function isWellInsulated(responseData: ResponseData) {
-    return responseData.roofType !== RoofType.PitchedNoInsulation && responseData.roofType !== RoofType.FlatNoInsulation  &&
-        responseData.wallType !== WallType.CavityNoInsulation  && responseData.wallType !== WallType.SolidNoInsulation &&
-        responseData.glazingType !== GlazingType.Single;
+    const hasRoofInsulation = responseData.roofType !== RoofType.PitchedNoInsulation && responseData.roofType !== RoofType.FlatNoInsulation;
+    const hasWallInsulation = responseData.wallType !== WallType.CavityNoInsulation && responseData.wallType !== WallType.SolidNoInsulation;
+    const hasDoubleOrTripleGlazing = responseData.glazingType !== GlazingType.Single;
+    return (hasRoofInsulation && hasWallInsulation)
+        || (hasRoofInsulation && hasDoubleOrTripleGlazing)
+        || (hasWallInsulation && hasDoubleOrTripleGlazing);
 }

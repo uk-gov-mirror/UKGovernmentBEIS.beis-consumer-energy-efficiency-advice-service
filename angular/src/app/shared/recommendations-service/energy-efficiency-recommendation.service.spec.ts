@@ -83,8 +83,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: [],
-            isMcsSearchProvider: false
+            trustMarkTradeCodes: []
         };
     }
 });
