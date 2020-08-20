@@ -4,6 +4,7 @@ import {Epc} from '../postcode-epc-service/model/epc';
 import {EpcParserService} from '../postcode-epc-service/epc-api-service/epc-parser.service';
 import {PostcodeEpcService} from '../postcode-epc-service/postcode-epc.service';
 import {PostcodeDetails} from '../postcode-epc-service/model/postcode-details';
+import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 
 @Component({
     selector: 'app-epc-lookup',
@@ -93,6 +94,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
 
             this.responseData.postcode = this.postcodeDetails.postcode;
             this.responseData.country = this.postcodeDetails.country;
+            this.responseData.englishProperty = this.postcodeDetails.country === Country.England;
             this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
             this.responseData.epc = selectedEpc;
         }
@@ -107,6 +109,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
 
             this.responseData.postcode = this.postcodeDetails.postcode;
             this.responseData.country = this.postcodeDetails.country;
+            this.responseData.englishProperty = this.postcodeDetails.country === Country.England;
             this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
         }
 

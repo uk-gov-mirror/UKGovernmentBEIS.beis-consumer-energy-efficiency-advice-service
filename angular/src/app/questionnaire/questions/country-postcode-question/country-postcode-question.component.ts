@@ -48,6 +48,7 @@ export class CountryPostcodeQuestionComponent extends QuestionBaseComponent impl
 
     set country(val: Country) {
         this.responseData.country = val;
+        this.responseData.englishProperty = val === Country.England;
     }
 
     get localAuthorityCode(): string {
