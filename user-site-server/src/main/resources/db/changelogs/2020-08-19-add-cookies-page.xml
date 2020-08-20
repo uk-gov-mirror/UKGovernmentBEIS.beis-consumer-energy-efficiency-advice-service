@@ -23,7 +23,7 @@ VALUES (1, '
 </ul>
 
 <h2>Strictly necessary cookies</h2>
-<p>These essential cookies do things like remember your progress through questionnaires.</p>
+<p>These essential cookies do things like remember your privacy preferences.</p>
 <p>They always need to be on.</p>
 
 ', 'Cookies', '', 'publish', 'closed', 'closed', '', 'cookies', '', '', '', 0, 'https://www.simpleenergyadvice.org.uk/pages/cookies', 'page');
