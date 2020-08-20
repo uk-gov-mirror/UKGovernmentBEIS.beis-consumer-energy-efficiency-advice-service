@@ -15,13 +15,6 @@
                 </button>
             </div>
         </div>
-        <div class="global-alert-banner">
-            <p>
-                Please visit
-                <a routerLink="/pages/coronavirus">this page</a>
-                for information related to Coronavirus (COVID-19).
-            </p>
-        </div>
         <div role="banner">
             <app-header (onMobileNavToggled)="toggleMobileNav()" (closeSearch)="closeSearchBar()" (closeNav)="hideMobileNav()" [shouldCloseSearchBar]="shouldCloseSearchBar"></app-header>
             <app-navigation-bar (onHideMobileNav)="hideMobileNav()" [shouldExpandNav]="shouldExpandNav"></app-navigation-bar>
