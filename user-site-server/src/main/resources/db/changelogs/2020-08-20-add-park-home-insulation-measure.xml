@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-20-add-park-home-insulation-measure.xml"
+               author="sarah.binney@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+INSERT INTO wp_posts
+    (post_author, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_content_filtered, post_parent, guid, post_type)
+VALUES
+    (1, '', 'Park home insulation', '', 'publish', 'closed', 'closed', '', 'meta_park_home_insulation', '', '', '', 0, 'https://www.simpleenergyadvice.org.uk/recommendation/meta_park_home_insulation', 'measure');
+
+                ]]>
+       </sql>
+    </changeSet>
+</databaseChangeLog>

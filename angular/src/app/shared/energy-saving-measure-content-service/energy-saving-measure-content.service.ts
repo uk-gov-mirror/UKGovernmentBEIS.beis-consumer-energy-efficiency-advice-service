@@ -23,6 +23,7 @@ export class EnergySavingMeasureContentService {
         Y2: 'icons/hotwater.svg',
         O2: 'icons/windows.svg',
         V2: 'icons/green.svg',
+        'park_home_insulation': 'icons/warm-home.svg',
 
         // Heating and Hotwater
         Y: 'icons/hotwater.svg',
