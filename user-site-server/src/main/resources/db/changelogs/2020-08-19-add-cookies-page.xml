@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-19-add-cookies-page.xml"
+               author="matt.barnfield@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+INSERT INTO wp_posts (post_author, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_content_filtered, post_parent, guid, post_type)
+VALUES (1, '
+
+<h2>Cookies that measure website use</h2>
+<p>We use Google Analytics to measure how you use the register to vote service so we can improve it based on user needs. Google Analytics sets cookies that store anonymised information about:</p>
+<ul>
+    <li>how you got to the service</li>
+    <li>the pages you visit on the service, and how long you spend on each page</li>
+    <li>what you click on while you’re using the service</li>
+    <li>We do not allow Google to use or share the data about how you use this site.</li>
+</ul>
+
+', 'Cookies', '', 'publish', 'closed', 'closed', '', 'cookies', '', '', '', 0, 'https://www.simpleenergyadvice.org.uk/pages/cookies', 'page');
+
+                ]]>
+       </sql>
+    </changeSet>
+</databaseChangeLog>

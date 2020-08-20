@@ -1,5 +1,20 @@
 <div class="main-content-wrapper">
     <div id="main-content" class="main-content">
+        <div class="cookie-banner" *ngIf="shouldShowCookieBanner">
+
+            <p>
+                We use <a routerLink="/pages/cookies">cookies to collect information</a> about how you use Simple Energy Advice.
+                We use this information to make the website work as well as possible.
+            </p>
+            <div class="cookie-banner-buttons">
+                <button class="cookie-button" (click)="allowCookies()">
+                    Accept
+                </button>
+                <button class="cookie-button" (click)="rejectCookies()">
+                    Reject
+                </button>
+            </div>
+        </div>
         <div class="global-alert-banner">
             <p>
                 Please visit

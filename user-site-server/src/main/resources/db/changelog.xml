@@ -88,5 +88,5 @@
     <include file="changelogs/2019-01-03-update-benefits-questions.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-03-03-add-eco-self-referral-table.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-07-16-insert-buckinghamshire-local-authority.xml" relativeToChangelogFile="true" />
-
+    <include file="changelogs/2020-08-19-add-cookies-page.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

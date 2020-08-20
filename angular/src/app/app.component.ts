@@ -71,6 +71,19 @@ export class AppComponent implements OnInit {
         this.shouldExpandNav = false;
     }
 
+    get shouldShowCookieBanner(): boolean {
+        return !this.googleAnalyticsService.hasSetCookiePreference;
+    }
+
+    allowCookies(): void {
+        this.googleAnalyticsService.allowCookies();
+        this.handleAdReferral();
+    }
+
+    rejectCookies(): void {
+        this.googleAnalyticsService.rejectCookies();
+    }
+
     private handleAdReferral(): void {
          // Skip the first change event, which always gives an empty map during the initial app load:
          // https://github.com/angular/angular/issues/12157. Check the next event, which will contain the actual query

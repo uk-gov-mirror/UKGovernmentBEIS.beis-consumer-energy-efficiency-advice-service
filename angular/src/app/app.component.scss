@@ -1,6 +1,7 @@
 @import "styles/var/colors";
 @import "styles/mixins/font";
 @import "styles/mixins/layout";
+@import "styles/mixins/buttons";
 
 .main-content-wrapper {
   // IE requires the flex containers parent to also have display: flex;
@@ -32,25 +33,52 @@
     background-color: $global-alert-banner;
     color: white;
     text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
     p {
       font-family: $font-family;
-      margin-left: 10px;
-      margin-right: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     a {
       color: white;
+    }
+  }
+
+  .cookie-banner {
+    @extend .global-alert-banner;
+    background-color: $cookie-banner;
+    padding-bottom: 12px;
+
+    .cookie-banner-buttons {
+      .cookie-button {
+        background: $light-blue;
+        color: $dark-blue;
+        text-decoration: none;
+        border: none;
+        padding: 12px;
+        margin-right: 12px;
+        cursor: pointer;
+        align-items: center;
+
+        &:focus, &:hover {
+          background: $dark-blue;
+          color: $light-blue;
+        }
+      }
     }
   }
 }
 
 @include mobile() {
   .global-alert-banner {
-    padding-right: $mobile-help-button-width;
+    padding-right: $mobile-help-button-width + 10px;
   }
 }
 
 @include tablet() {
   .global-alert-banner {
-    padding-right: $tablet-help-button-width;
+    padding-right: $tablet-help-button-width + 10px;
   }
 }
