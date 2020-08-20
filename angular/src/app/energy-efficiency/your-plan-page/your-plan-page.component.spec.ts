@@ -166,6 +166,8 @@ describe('YourPlanPageComponent', () => {
     const greenHomesGrantStub = {
         getEligibility: () => Observable.of(GreenHomesGrantEligibility.PartiallyEligible),
         hasGHGTag: () => true,
+        hasGHGPrimaryTag: () => true,
+        hasGHGSecondaryTag: () => false
     };
 
     beforeEach(async(() => {
