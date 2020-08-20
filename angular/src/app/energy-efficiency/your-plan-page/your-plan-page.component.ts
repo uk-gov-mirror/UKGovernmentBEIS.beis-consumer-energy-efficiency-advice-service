@@ -57,7 +57,7 @@ export class YourPlanPageComponent implements OnInit {
         ).length;
     }
 
-    get ghgCostPercentage(): string {
+    get ghgDiscountProportion(): string {
         return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
             ? "100%" : "2/3";
     }
