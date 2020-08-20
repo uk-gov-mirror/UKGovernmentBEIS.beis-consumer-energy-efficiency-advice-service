@@ -14,7 +14,7 @@ export class EnglishPropertyQuestionMetadata extends QuestionMetadata {
     }
 
     isApplicable(responseData: ResponseData): boolean {
-        return responseData.userJourneyType === UserJourneyType.GreenHomesGrantEligibility;
+        return true;
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
