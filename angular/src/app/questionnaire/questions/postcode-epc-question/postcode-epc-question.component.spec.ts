@@ -183,6 +183,10 @@ describe('PostcodeEpcQuestionComponent', () => {
             // given
             component.postcodeInput = VALID_POSTCODE;
             const expectedEpc = new Epc(dummyEpcsResponse.rows[1]);
+            expectedEpc.address = undefined;
+            expectedEpc.address1 = undefined;
+            expectedEpc.address2 = undefined;
+            expectedEpc.address3 = undefined;
 
             // when
             fixture.debugElement.query(By.css('.icon-search')).nativeElement.click();

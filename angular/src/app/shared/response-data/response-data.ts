@@ -198,11 +198,13 @@ export class ResponseData {
         return this.epcData;
     }
     set epc(val: Epc) {
-        // Don't save address, as it's personally identifiable information.
-        val.address = undefined;
-        val.address1 = undefined;
-        val.address2 = undefined;
-        val.address3 = undefined;
+        if (val) {
+            // Don't save address, as it's personally identifiable information.
+            val.address = undefined;
+            val.address1 = undefined;
+            val.address2 = undefined;
+            val.address3 = undefined;
+        }
         this.epcData = val;
     }
 
