@@ -24,6 +24,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class InstallerSearchService {
@@ -39,6 +42,7 @@ public class InstallerSearchService {
             .expireAfterWrite(55, TimeUnit.MINUTES)
             .build(getAccessToken());
     private final Logger log = LoggerFactory.getLogger(getClass());
+    private static final Pattern NOT_FOR_PUBLIC_USE = Pattern.compile("^TrustMark (.*\\(Not For Public Use\\).*)|(.*Demo.*)$", Pattern.CASE_INSENSITIVE);
 
     public InstallerSearchService(
             @Value("${vcap.services.trustMark.credentials.search.url}")
@@ -74,7 +78,8 @@ public class InstallerSearchService {
                     .queryParam("pageNumber", page)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
-            return restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();
+            TrustMarkSearchResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();
+            return getPublicUseInstallersFilteredResponse(response);
         } catch (ExecutionException e) {
             log.error("Failed to fetch Trustmark access token from cache.", e);
             throw e;
@@ -105,6 +110,23 @@ public class InstallerSearchService {
                 return response.getAccessToken();
             }
         };
+    }
+
+    /* Trustmark's API may return installers that are not meant for public use. They use these for testing, thus we should filter
+    them out. There's about 11 of them, and they should all match the NOT_FOR_PUBLIC_USE regex pattern. This means that we may
+    not always return 20 installers per page. There's a few edge cases that can happen in the frontend, all rooted in the fact that we might
+    return an empty page (if all the 20 installers returned by Trustmark are invalid) but these are relatively 
+    rare since the number of Not For Public Use installers is small relative to the page size (currently 20). Moreover, since these invalid
+    installers have different trade codes, it is even less likely for several of them to be returned. Given how it is unlikely that we return
+    an empty page (only truly a severe error if this is not the last page), or even impossible (since the first and middle pages have 20 items,
+    and there's only 11 invalid installers), we've decided not to implement a workaround to overcome this edge case. This would be a faff and we
+    would end up with a more error prone and less readable code */
+    private TrustMarkSearchResponse getPublicUseInstallersFilteredResponse(TrustMarkSearchResponse response) {
+            List<TrustMarkInstaller> filteredInstallers = response.data.stream().filter(
+                installer -> !NOT_FOR_PUBLIC_USE.matcher(installer.registeredName).find()
+            ).collect(Collectors.toList());
+
+        return new TrustMarkSearchResponse(response.paginator, response.errorMessage, filteredInstallers);
     }
 
     @lombok.Value
