@@ -29,9 +29,16 @@ If you change anything here, please consider whether anything needs changing the
         </div>
         <div class="ghg-context page-row" *ngIf="shouldShowGHGContext">
             <div class="page-row-content">
-                <div class="header">Green Homes Grant</div>
-                <p>To continue, print your plan. Contact installers and get quotes for your selected measures.<p>
-                <p>Keep a record of these quotes - you will need them for the voucher application process.</p>
+                <h2>Fund improvements with the Green Homes Grant</h2>
+                <p>
+                    You have added {{numberOfPrimaryRecommendations}} primary measure{{numberOfPrimaryRecommendations > 1 ? 's' : ''}}
+                    and {{numberOfSecondaryRecommendations}} secondary measure{{numberOfPrimaryRecommendations > 1 ? 's' : ''}}
+                    to your plan. Under the Green Homes Grant, you may be eligible for funding {{ghgCostPercentage}}
+                    of the total cost, up to £{{ghgMaximumAmount}}.
+                <p>
+                <div class="subheading">What are the next steps?</div>
+                <p>Download your plan and contact installers to get quotes for the improvements that you have selected.
+                    Keep a record of these quotes, as you will need to submit them as part of the application process.</p>
             </div>
         </div>
         <div class="recommendations user-recommendations page-row">
