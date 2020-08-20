@@ -96,8 +96,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: [],
-            isMcsSearchProvider: false
+            trustMarkTradeCodes: []
         },
         {
             investmentPounds: 999,
@@ -120,8 +119,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: [],
-            isMcsSearchProvider: false
+            trustMarkTradeCodes: []
         },
         {
             investmentPounds: 20,
@@ -151,8 +149,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: [],
-            isMcsSearchProvider: false
+            trustMarkTradeCodes: []
         }
     ];
 

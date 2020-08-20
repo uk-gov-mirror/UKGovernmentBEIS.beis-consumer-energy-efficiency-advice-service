@@ -51,8 +51,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         isAddedToPlan: false,
         recommendationID: '',
         isMeasure: true,
-        trustMarkTradeCodes: [],
-        isMcsSearchProvider: false
+        trustMarkTradeCodes: []
     };
 
     beforeEach(async(() => {

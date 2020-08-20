@@ -62,7 +62,8 @@
                        [isSmallCard]="true"
                        [withSmallFontSize]="true"
         ></app-data-card>
-        <app-data-card class="monthly-savings-card"
+        <app-data-card *ngIf="savingDisplay != '-'"
+                       class="monthly-savings-card"
                        heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
                        [value]="savingDisplay"
                        [isSmallCard]="true"
