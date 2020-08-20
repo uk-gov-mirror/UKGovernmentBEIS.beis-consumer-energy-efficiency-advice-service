@@ -49,7 +49,7 @@
                             linkUrl="/energy-efficiency/home-improvements"
                             buttonText="Take the questionnaire"
                     ></app-link-button>
-                    <a href="/grants">Back to financial assistance</a>
+                    <p><a href="/grants">Back to financial assistance</a></p>
                 </div>
                 <div class="ineligible-reason" *ngIf="newBuild && !isTenant && !notEngland">
                     <p>
@@ -64,10 +64,17 @@
                 </div>
 
                 <div *ngIf="status === GreenHomesGrantEligibility.PartiallyEligible || status === GreenHomesGrantEligibility.FullyEligible">
+                    <h2>What can I use the funding for?</h2>
+                    <p>You can use the Green Homes Grant to help fund the installation of energy efficiency and low
+                        carbon heating improvements to your property.</p>
+                    <p>You can find out which measures are best suited to your situation by answering a few additional
+                        questions about your property.</p>
                     <app-link-button
                             linkUrl="/energy-efficiency/home-improvements"
                             buttonText="Find out what measures you could get under the Green Homes Grant"
                     ></app-link-button>
+                    <p>Alternatively, you can find the full list of measures covered under the Green Homes Grant by
+                        going to the <a href="/pages/green-homes-grant">Green Homes Grant page</a>.</p>
                 </div>
             </div>
         </div>

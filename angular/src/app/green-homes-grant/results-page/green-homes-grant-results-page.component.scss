@@ -42,7 +42,11 @@
     padding: 40px 0;
 
     .body-text {
-      @include page-body-font;
+
+      h2 {
+        font-weight: bold;
+        color: $dark-blue;
+      }
     }
 
     .eco-info-link {
