@@ -36,6 +36,13 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
                 name: 'I rent my home from the council or a housing association'
             },
         ];
+
+        // Prefill must be done here so the question isn't skipped when using best guess for tenants
+        if (this.response === undefined) {
+            this.response = this.responseData.ownsHome === OwnHome.Tenant
+                ? TenureType.PrivateTenancy
+                : undefined;
+        }
     }
 
     get response(): TenureType {

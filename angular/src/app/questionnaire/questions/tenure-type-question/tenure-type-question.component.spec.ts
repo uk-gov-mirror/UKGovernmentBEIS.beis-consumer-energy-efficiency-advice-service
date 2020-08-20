@@ -5,10 +5,12 @@ import {ResponseData} from '../../../shared/response-data/response-data';
 import {TenureTypeQuestionComponent} from './tenure-type-question.component';
 import {TenureType} from './tenure-type';
 import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
+import {OwnHome} from "../own-home-question/ownHome";
 
 describe('TenureTypeQuestionComponent', () => {
     let component: TenureTypeQuestionComponent;
     let fixture: ComponentFixture<TenureTypeQuestionComponent>;
+    let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -19,6 +21,7 @@ describe('TenureTypeQuestionComponent', () => {
     }));
 
     beforeEach(() => {
+        responseData = new ResponseData();
         fixture = TestBed.createComponent(TenureTypeQuestionComponent);
         component = fixture.componentInstance;
         spyOn(component.complete, 'emit');
@@ -37,5 +40,46 @@ describe('TenureTypeQuestionComponent', () => {
 
         // then
         expect(component.response).toBe(TenureType.PrivateTenancy);
+    });
+
+    it('should update the response data for owner occupancy', () => {
+        const question = new TenureTypeQuestionComponent(responseData);
+
+        question.response = TenureType.OwnerOccupancy;
+
+        expect(responseData.tenureType).toBe(TenureType.OwnerOccupancy);
+        expect(responseData.ownsHome).toBe(OwnHome.Owner);
+    });
+
+    it('should update the response data for private tenancy', () => {
+        const question = new TenureTypeQuestionComponent(responseData);
+
+        question.response = TenureType.PrivateTenancy;
+
+        expect(responseData.tenureType).toBe(TenureType.PrivateTenancy);
+        expect(responseData.ownsHome).toBe(OwnHome.Tenant);
+    });
+
+    it('should update the response data for social tenancy', () => {
+        const question = new TenureTypeQuestionComponent(responseData);
+
+        question.response = TenureType.SocialTenancy;
+
+        expect(responseData.tenureType).toBe(TenureType.SocialTenancy);
+        expect(responseData.ownsHome).toBe(OwnHome.Tenant);
+    });
+
+    it('should pre-select the correct point', () => {
+        responseData.tenureType = TenureType.SocialTenancy;
+        const question = new TenureTypeQuestionComponent(responseData);
+
+        expect(question.response).toBe(TenureType.SocialTenancy);
+    });
+
+    it('should pre-select based on own home response', () => {
+        responseData.ownsHome = OwnHome.Tenant;
+        const question = new TenureTypeQuestionComponent(responseData);
+
+        expect(question.response).toBe(TenureType.PrivateTenancy);
     });
 });

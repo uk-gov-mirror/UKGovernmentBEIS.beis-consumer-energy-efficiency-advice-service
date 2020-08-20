@@ -29,5 +29,8 @@ export class IncomeRelatedBenefitsQuestionComponent extends QuestionBaseComponen
 
     set response(val: boolean) {
         this.responseData.receiveIncomeRelatedBenefits = val;
+        if (val) {
+            this.responseData.receiveAnyBenefits = true;
+        }
     }
 }
