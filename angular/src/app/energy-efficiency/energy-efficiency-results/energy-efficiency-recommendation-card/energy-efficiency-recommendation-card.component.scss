@@ -354,6 +354,12 @@ $icon-column-width: $add-to-plan-column-width;
         order: 6;
         padding: 20px 0;
         border-right: 1px solid $light-grey;
+
+        &:nth-last-child(2) {
+          flex: 1 0;
+          flex-basis: calc((100% - #{$add-to-plan-column-width}) / 2);
+          max-width: calc((100% - #{$add-to-plan-column-width}));
+        }
       }
 
       .monthly-savings-card {
