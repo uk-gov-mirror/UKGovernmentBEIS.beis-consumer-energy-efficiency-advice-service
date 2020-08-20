@@ -66,6 +66,9 @@ $grant-card-margin: 24px;
 
   .ghg-context-card {
     @include isGhgInfoBox;
+    .emphasis {
+      font-weight: bold;
+    }
   }
 }
 
