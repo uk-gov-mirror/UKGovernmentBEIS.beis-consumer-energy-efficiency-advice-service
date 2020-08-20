@@ -24,5 +24,8 @@ export class HousingBenefitQuestionComponent extends QuestionBaseComponent {
 
     set response(val: boolean) {
         this.responseData.receiveHousingBenefit = val;
+        if (val) {
+            this.responseData.receiveAnyBenefits = true;
+        }
     }
 }

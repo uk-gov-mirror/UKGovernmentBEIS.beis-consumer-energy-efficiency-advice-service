@@ -27,5 +27,8 @@ export class ContributionBasedBenefitsQuestionComponent extends QuestionBaseComp
 
     set response(val: boolean) {
         this.responseData.receiveContributionBasedBenefits = val;
+        if (val) {
+            this.responseData.receiveAnyBenefits = true;
+        }
     }
 }

@@ -53,6 +53,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
 
     set country(val: Country) {
         this.responseData.country = val;
+        this.responseData.englishProperty = val === Country.England;
     }
 
     get epc(): Epc {

@@ -1,5 +1,6 @@
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {Component} from '@angular/core';
+import {Country} from "../postcode-epc-question/country";
 
 @Component({
     selector: 'app-english-property-question',
@@ -19,5 +20,8 @@ export class EnglishPropertyQuestionComponent extends QuestionBaseComponent {
 
     set response(val: boolean) {
         this.responseData.englishProperty = val;
+        if (val) {
+            this.responseData.country = Country.England;
+        }
     }
 }
