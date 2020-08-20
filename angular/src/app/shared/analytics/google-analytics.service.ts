@@ -67,6 +67,7 @@ export class GoogleAnalyticsService {
 
     rejectCookies() {
         GoogleAnalyticsService.setCookiePolicy(false);
+        GoogleAnalyticsService.deleteAnalyticsCookies();
         this.setEnabled(false);
     }
 
@@ -79,6 +80,15 @@ export class GoogleAnalyticsService {
         // Set the expiry for 1 year
         expiryDate.setTime(expiryDate.getTime() + 365 * 24 * 60 * 60 * 1000);
         document.cookie = `${ACCEPTED_COOKIES}=${accepted}; expires=${expiryDate.toUTCString()}; path=/`;
+    }
+
+    private static deleteAnalyticsCookies(): void {
+        GoogleAnalyticsService.deleteCookie("_ga");
+        GoogleAnalyticsService.deleteCookie("_gid");
+    }
+
+    private static deleteCookie(name: string): void {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
     }
 
     private static get cookies(): Cookies {

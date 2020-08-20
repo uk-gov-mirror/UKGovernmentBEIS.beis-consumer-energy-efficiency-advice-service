@@ -44,8 +44,6 @@ export class ResponseData {
     public postcode: string;
     // Set by PostcodeEpcQuestionComponent, used for GHG eligibility
     public country: Country;
-    // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
-    public epc: Epc;
     // Set by PostcodeEpcQuestionComponent, used for showing grants
     public localAuthorityCode: string;
     // Always set to `true` by ConfirmEpcQuestionComponent, not used
@@ -193,6 +191,20 @@ export class ResponseData {
     public tenancyType: TenancyType;
     // Used by MeesResultsPageComponent
     public agriculturalTenancyType: AgriculturalTenancyType;
+
+    // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
+    private epcData: Epc;
+    get epc(): Epc {
+        return this.epcData;
+    }
+    set epc(val: Epc) {
+        // Don't save address, as it's personally identifiable information.
+        val.address = undefined;
+        val.address1 = undefined;
+        val.address2 = undefined;
+        val.address3 = undefined;
+        this.epcData = val;
+    }
 
     constructor() {
         if (!sessionStorageAvailable()) {
