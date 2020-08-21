@@ -80,14 +80,14 @@ export const CORE_BRE_QUESTIONS = [
     new FloorAreaQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new HotWaterCylinderQuestionMetadata(),
-    new OutsideSpaceQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
     new DetailedLengthOfHeatingOnQuestionMetadata()
 ];
 
 export const GREEN_HOMES_GRANT_RECOMMENDATIONS_QUESTIONS = [
-    new GardenQuestionMetadata()
+    new GardenQuestionMetadata(),
+    new OutsideSpaceQuestionMetadata()
 ];
 
 export const BASIC_BEHAVIOURAL_QUESTIONS = [
