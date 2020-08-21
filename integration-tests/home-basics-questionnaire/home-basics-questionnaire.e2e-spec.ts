@@ -103,6 +103,12 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(500);
 
+        // Outside space
+        expect(page.getHeading()).toContain('Do you have access to an external wall, flat room or other outside space?');
+        page.clickOption('Yes');
+        page.goForwards();
+        CommonPageHelpers.sleep(500);
+
         // Tariff
         expect(page.getHeading()).toContain('electricity tariff');
         page.clickOption('Standard');
@@ -199,6 +205,12 @@ describe('Home basics questionnaire', () => {
 
         // Hot water cylinder
         expect(page.getHeading()).toContain('hot water cylinder');
+        page.clickOption('Yes');
+        page.goForwards();
+        CommonPageHelpers.sleep(500);
+
+        // Outside space
+        expect(page.getHeading()).toContain('Do you have access to an external wall, flat room or other outside space?');
         page.clickOption('Yes');
         page.goForwards();
         CommonPageHelpers.sleep(500);
