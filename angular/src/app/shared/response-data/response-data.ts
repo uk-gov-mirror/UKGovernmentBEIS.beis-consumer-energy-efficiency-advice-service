@@ -22,6 +22,7 @@ import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricu
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
+import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -114,6 +115,8 @@ export class ResponseData {
     public wallType: WallType;
     // Set by ConstructionQuestionComponent, sent to BRE energy-calculation, used by BoilerResultsPageComponent
     public glazingType: GlazingType;
+    // Set by FloorInsulationQuestionComponent
+    public floorInsulation: FloorInsulation;
     // Set by WaterTankQuestionComponent, used by BoilerResultsPageComponent
     public waterTankSpace: WaterTankSpace;
     // Set by GardenQuestionComponent, used by BoilerResultsPageComponent

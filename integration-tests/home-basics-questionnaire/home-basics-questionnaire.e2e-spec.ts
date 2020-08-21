@@ -79,6 +79,11 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(500);
 
+        // Floor insulation
+        expect(page.getHeading()).toContain('What kind of floor insulation');
+        page.goForwards();
+        CommonPageHelpers.sleep(500);
+
         // The start of optional property questions
         expect(page.getHeading()).toContain('answer more questions about your property');
         CommonPageHelpers.clickButton('Yes');
@@ -194,6 +199,11 @@ describe('Home basics questionnaire', () => {
 
         // Construction insulation
         expect(page.getHeading()).toContain('What best describes the construction');
+        page.goForwards();
+        CommonPageHelpers.sleep(500);
+
+        // Floor insulation
+        expect(page.getHeading()).toContain('What kind of floor insulation');
         page.goForwards();
         CommonPageHelpers.sleep(500);
 

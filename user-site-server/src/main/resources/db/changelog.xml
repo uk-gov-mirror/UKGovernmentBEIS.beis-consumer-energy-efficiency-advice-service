@@ -101,4 +101,5 @@
     <include file="changelogs/2020-08-11-add-housing-benefit-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-20-add-park-home-insulation-measure.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-21-add-outside-space-question.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-08-21-add-floor-insulation-question.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

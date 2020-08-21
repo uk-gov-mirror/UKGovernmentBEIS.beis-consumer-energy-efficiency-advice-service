@@ -59,6 +59,7 @@ import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-qu
 import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-benefit-question.component";
 import {EnglishPropertyQuestionComponent} from './english-property-question/english-property-question.component';
 import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-space-question.component";
+import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floor-insulation-question.component";
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-sp
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
+        FloorInsulationQuestionComponent,
         FloorLevelQuestionComponent,
         FloorSpanQuestionComponent,
         FuelTypeQuestionComponent,
@@ -134,6 +136,7 @@ import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-sp
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
+        FloorInsulationQuestionComponent,
         FloorLevelQuestionComponent,
         FloorSpanQuestionComponent,
         FuelTypeQuestionComponent,
@@ -197,6 +200,7 @@ import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-sp
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
+        FloorInsulationQuestionComponent,
         FloorLevelQuestionComponent,
         FloorSpanQuestionComponent,
         FuelTypeQuestionComponent,

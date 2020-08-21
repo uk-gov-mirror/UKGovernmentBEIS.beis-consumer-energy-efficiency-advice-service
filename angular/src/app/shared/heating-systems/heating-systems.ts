@@ -1,8 +1,9 @@
 import {ResponseData} from "../response-data/response-data";
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
-import {GlazingType, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
+import {RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
 import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
+import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
 
 export function shouldRecommendGroundSourceHeatPump(responseData: ResponseData): boolean {
     return hasLargeGarden(responseData) && isWellInsulated(responseData);
@@ -25,8 +26,8 @@ function hasLargeGarden(responseData: ResponseData) {
 function isWellInsulated(responseData: ResponseData) {
     const hasRoofInsulation = responseData.roofType !== RoofType.PitchedNoInsulation && responseData.roofType !== RoofType.FlatNoInsulation;
     const hasWallInsulation = responseData.wallType !== WallType.CavityNoInsulation && responseData.wallType !== WallType.SolidNoInsulation;
-    const hasDoubleOrTripleGlazing = responseData.glazingType !== GlazingType.Single;
+    const hasFloorInsulation = responseData.floorInsulation !== FloorInsulation.None;
     return (hasRoofInsulation && hasWallInsulation)
-        || (hasRoofInsulation && hasDoubleOrTripleGlazing)
-        || (hasWallInsulation && hasDoubleOrTripleGlazing);
+        || (hasRoofInsulation && hasFloorInsulation)
+        || (hasWallInsulation && hasFloorInsulation);
 }

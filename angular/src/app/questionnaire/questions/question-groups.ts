@@ -54,6 +54,7 @@ import {ContributionBasedBenefitsQuestionMetadata } from './benefits-questions/c
 import {HousingBenefitQuestionMetadata} from './benefits-questions/housing-benefit-question-metadata';
 import {EnglishPropertyQuestionMetadata} from './english-property-question/english-property-question-metadata';
 import {OutsideSpaceQuestionMetadata} from "./outside-space-question/outside-space-question-metadata";
+import {FloorInsulationQuestionMetadata} from "./floor-insulation-question/floor-insulation-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -76,6 +77,7 @@ export const CORE_BRE_QUESTIONS = [
     new NewBuildQuestionMetadata(),
     new BedroomsQuestionMetadata(),
     new ConstructionQuestionMetadata(),
+    new FloorInsulationQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
@@ -188,6 +190,8 @@ export const ECO_SELF_REFERRAL_QUESTIONS = [
 export const BOILER_QUESTIONS = [
     // Used to decide if the property is "well insulated", restricts which boilers are offered
     new ConstructionQuestionMetadata(),
+    // Used to decide whether heat pumps are offered
+    new FloorInsulationQuestionMetadata(),
     // Used to decide if boilers with tanks can be offered
     new WaterTankQuestionMetadata(),
     // Used to decide if ground-source-heat-pump boilers can be offered
