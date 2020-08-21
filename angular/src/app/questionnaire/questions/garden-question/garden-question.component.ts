@@ -65,6 +65,9 @@ export class GardenQuestionComponent extends QuestionBaseComponent implements On
 
     set accessibility(val: GardenAccessibility) {
         this.responseData.gardenAccessibility = val;
+        if (val === GardenAccessibility.Accessible) {
+            this.responseData.hasOutsideSpace = true;
+        }
     }
 
     get size(): number {

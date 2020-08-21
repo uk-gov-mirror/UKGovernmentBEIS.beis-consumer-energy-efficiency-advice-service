@@ -1,13 +1,13 @@
 import {QuestionMetadata} from '../../base-question/question-metadata';
 import {QuestionType} from '../question-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
-import {EnglishPropertyQuestionComponent} from "./english-property-question.component";
+import {OutsideSpaceQuestionComponent} from "./outside-space-question.component";
 
-export class EnglishPropertyQuestionMetadata extends QuestionMetadata {
+export class OutsideSpaceQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            EnglishPropertyQuestionComponent,
-            'english_property',
+            OutsideSpaceQuestionComponent,
+            'outside_space',
             QuestionType.House
         );
     }
@@ -17,6 +17,6 @@ export class EnglishPropertyQuestionMetadata extends QuestionMetadata {
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.englishProperty !== undefined;
+        return responseData.hasOutsideSpace !== undefined;
     }
 }

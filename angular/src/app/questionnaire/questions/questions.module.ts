@@ -58,6 +58,7 @@ import {CountryPostcodeQuestionComponent} from "./country-postcode-question/coun
 import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-question.component";
 import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-benefit-question.component";
 import {EnglishPropertyQuestionComponent} from './english-property-question/english-property-question.component';
+import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-space-question.component";
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import {EnglishPropertyQuestionComponent} from './english-property-question/engl
         NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
+        OutsideSpaceQuestionComponent,
         OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
@@ -146,6 +148,7 @@ import {EnglishPropertyQuestionComponent} from './english-property-question/engl
         NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
+        OutsideSpaceQuestionComponent,
         OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
@@ -208,6 +211,7 @@ import {EnglishPropertyQuestionComponent} from './english-property-question/engl
         NewBuildQuestionComponent,
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
+        OutsideSpaceQuestionComponent,
         OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,

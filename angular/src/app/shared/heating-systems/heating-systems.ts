@@ -9,7 +9,8 @@ export function shouldRecommendGroundSourceHeatPump(responseData: ResponseData):
 }
 
 export function shouldRecommendAirSourceHeatPump(responseData: ResponseData): boolean {
-    return responseData.gardenAccessibility !== GardenAccessibility.NoGarden && isWellInsulated(responseData);
+    return (responseData.gardenAccessibility !== GardenAccessibility.NoGarden || responseData.hasOutsideSpace)
+        && isWellInsulated(responseData);
 }
 
 export function shouldRecommendSolarWaterHeater(responseData: ResponseData): boolean {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-21-add-outside-space-question.xml"
+               author="matt.barnfield@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+INSERT INTO wp_posts (post_author, post_content, post_title, post_excerpt, post_name, to_ping, pinged, post_content_filtered, post_parent, post_type)
+VALUES (1, '', 'Outside Space', '', 'outside_space', '','','', 0, 'question');
+
+SET @postid =  LAST_INSERT_ID();
+
+INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+VALUES
+(@postid, 'questionHeading', 'Do you have access to an external wall, flat room or other outside space?'),
+(@postid, '_questionHeading', 'field_59e8be23eda3e'),
+(@postid, 'helpHtml', 'Flats above ground level need a balcony'),
+(@postid, '_helpHtml', 'field_59e8cfc09ab2a')
+;
+
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>

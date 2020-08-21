@@ -120,6 +120,8 @@ export class ResponseData {
     public gardenAccessibility: GardenAccessibility;
     // Set by GardenQuestionComponent, used by BoilerResultsPageComponent
     public gardenSizeSquareMetres: number;
+    // Set by OutsideSpaceQuestion
+    public hasOutsideSpace: boolean;
     // Set by RoofSpaceQuestionComponent, used by BoilerResultsPageComponent
     public roofSpace: RoofSpace;
     // Set by FloorSpanQuestionComponent, sent to BRE energy-calculation

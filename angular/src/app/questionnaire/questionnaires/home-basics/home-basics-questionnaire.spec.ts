@@ -32,6 +32,7 @@ import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-q
 import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
 import {NewBuildQuestionMetadata} from "../../questions/new-build-question/new-build-question-metadata";
 import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
+import {OutsideSpaceQuestionMetadata} from "../../questions/outside-space-question/outside-space-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -62,6 +63,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
+            new OutsideSpaceQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
@@ -106,6 +108,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
+            new OutsideSpaceQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
@@ -150,6 +153,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
+            new OutsideSpaceQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),
@@ -191,6 +195,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
             new HotWaterCylinderQuestionMetadata(),
+            new OutsideSpaceQuestionMetadata(),
             new BoilerTypeQuestionMetadata(),
             new ElectricityTariffQuestionMetadata(),
             new DetailedLengthOfHeatingOnQuestionMetadata(),

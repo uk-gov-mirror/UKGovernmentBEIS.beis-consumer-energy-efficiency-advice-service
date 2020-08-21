@@ -46,16 +46,14 @@ import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
 import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
-import {Country} from "./postcode-epc-question/country";
 import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
 import {QuestionGroupBuilder} from "./question-group-builder";
-import {CountryPostcodeQuestionMetadata} from "./country-postcode-question/country-postcode-question-metadata";
 import {OwnHome} from "./own-home-question/ownHome";
 import {AnyBenefitsQuestionMetadata} from "./benefits-questions/any-benefits-question-metadata";
-import {HomeAge} from "./home-age-question/home-age";
 import {ContributionBasedBenefitsQuestionMetadata } from './benefits-questions/contribution-based-benefits-question-metadata';
 import {HousingBenefitQuestionMetadata} from './benefits-questions/housing-benefit-question-metadata';
 import {EnglishPropertyQuestionMetadata} from './english-property-question/english-property-question-metadata';
+import {OutsideSpaceQuestionMetadata} from "./outside-space-question/outside-space-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -82,6 +80,7 @@ export const CORE_BRE_QUESTIONS = [
     new FloorAreaQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
     new HotWaterCylinderQuestionMetadata(),
+    new OutsideSpaceQuestionMetadata(),
     new BoilerTypeQuestionMetadata(),
     new ElectricityTariffQuestionMetadata(),
     new DetailedLengthOfHeatingOnQuestionMetadata()
@@ -193,6 +192,8 @@ export const BOILER_QUESTIONS = [
     new WaterTankQuestionMetadata(),
     // Used to decide if ground-source-heat-pump boilers can be offered
     new GardenQuestionMetadata(),
+    // Used to decide if air-source heat pumps can be offered
+    new OutsideSpaceQuestionMetadata(),
     // Used to decide if solar boilers can be offered
     new RoofSpaceQuestionMetadata(),
     // Restricts which boilers are offered
