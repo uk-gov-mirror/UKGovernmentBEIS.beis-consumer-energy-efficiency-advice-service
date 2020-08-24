@@ -12,5 +12,6 @@
         [value]="totalSavingsDisplay"
         [isVerticalAtMobile]="true"
         [isSmallCard]="isFooter"
-        [withSmallFontSize]="true">
+        [withSmallFontSize]="true"
+        *ngIf="totalSavingsDisplay !== '-'">
 </app-data-card>
