@@ -81,6 +81,7 @@ describe('Home basics questionnaire', () => {
 
         // Floor insulation
         expect(page.getHeading()).toContain('What kind of floor insulation');
+        page.clickOption('None');
         page.goForwards();
         CommonPageHelpers.sleep(500);
 
@@ -204,6 +205,7 @@ describe('Home basics questionnaire', () => {
 
         // Floor insulation
         expect(page.getHeading()).toContain('What kind of floor insulation');
+        page.clickOption('None');
         page.goForwards();
         CommonPageHelpers.sleep(500);
 
