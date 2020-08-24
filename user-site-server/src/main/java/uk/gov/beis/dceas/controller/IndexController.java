@@ -167,20 +167,6 @@ public class IndexController {
 
         model.addAttribute("acceptCookies", acceptCookies);
 
-        Cookie[] cookies = request.getCookies();
-
-        Stream<Cookie> cookiesStream = (cookies != null)
-                ? Stream.of(cookies)
-                : Stream.empty();
-
-        boolean acceptCookies = cookiesStream
-                .filter(c -> c.getName().equals(ACCEPTED_COOKIES))
-                .findFirst()
-                .map(c -> c.getValue().equals("true"))
-                .orElse(false);
-
-        model.addAttribute("acceptCookies", acceptCookies);
-
         String savings = getSavingsFromShareLink(request);
         model.addAttribute("savings", savings);
 
