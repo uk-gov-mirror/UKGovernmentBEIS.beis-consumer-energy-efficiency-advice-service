@@ -1,6 +1,7 @@
 package uk.gov.beis.dceas.controller;
 
 import com.google.common.io.Resources;
+import lombok.experimental.var;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -19,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
@@ -149,6 +152,20 @@ public class IndexController {
         model.addAttribute("angularHeadContent", angularHeadContent);
         model.addAttribute("angularBodyContent", angularBodyContent);
         model.addAttribute("googleCloudPlatformApiKey", googleCloudPlatformApiKey);
+
+        Cookie[] cookies = request.getCookies();
+
+        Stream<Cookie> cookiesStream = (cookies != null)
+                ? Stream.of(cookies)
+                : Stream.empty();
+
+        boolean acceptCookies = cookiesStream
+                .filter(c -> c.getName().equals(ACCEPTED_COOKIES))
+                .findFirst()
+                .map(c -> c.getValue().equals("true"))
+                .orElse(false);
+
+        model.addAttribute("acceptCookies", acceptCookies);
 
         Cookie[] cookies = request.getCookies();
 
