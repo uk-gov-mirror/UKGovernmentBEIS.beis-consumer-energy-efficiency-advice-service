@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2020-08-24-rename-lc-heat-measures.xml"
+               author="sarah.binney@softwire.com"
+               dbms="mysql">
+
+        <update tableName="wp_posts">
+            <column name="post_title" value="Solar thermal"/>
+            <column name="post_name" value="meta_solar_thermal"/>
+            <where>post_name = 'meta_solar_water_heating'</where>
+        </update>
+
+        <update tableName="wp_posts">
+            <column name="post_title" value="Biomass pellet boiler"/>
+            <column name="post_name" value="meta_biomass_pellet_boiler"/>
+            <where>post_name = 'meta_wood_pellets_boiler'</where>
+        </update>
+
+    </changeSet>
+</databaseChangeLog>
