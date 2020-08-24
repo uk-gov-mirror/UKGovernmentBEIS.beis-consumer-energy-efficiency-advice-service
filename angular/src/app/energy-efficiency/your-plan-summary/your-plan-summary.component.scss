@@ -51,7 +51,6 @@
   }
 
   @include desktop() {
-    justify-content: flex-end;
     app-data-card {
       flex: 0 0 $data-card-width;
     }
