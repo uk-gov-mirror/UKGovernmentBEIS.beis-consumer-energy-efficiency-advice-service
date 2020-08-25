@@ -8,7 +8,7 @@
   line-height: 1.2;
 
   .tag {
-    @include isTag($background-color: $green);
+    @include isTag($background-color: $ghg-primary-tag);
     margin: 0 5px;
     padding: 0 28px;
   }

@@ -33,11 +33,11 @@
   }
 
   .tag-ghg-primary {
-    @include isTag($background-color: $green);
+    @include isTag($background-color: $ghg-primary-tag);
   }
 
   .tag-ghg-secondary {
-    @include isTag($background-color: $amber);
+    @include isTag($background-color: #4C7F14);
   }
 }
 
