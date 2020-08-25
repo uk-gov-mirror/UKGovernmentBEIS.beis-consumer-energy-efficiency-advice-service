@@ -72,13 +72,17 @@
 }
 
 @include mobile() {
-  .global-alert-banner {
-    padding-right: $mobile-help-button-width + 10px;
+  .main-content {
+    .global-alert-banner {
+      padding-right: $mobile-help-button-width + 10px;
+    }
   }
 }
 
 @include tablet() {
-  .global-alert-banner {
-    padding-right: $tablet-help-button-width + 10px;
+  .main-content {
+    .global-alert-banner {
+      padding-right: $mobile-help-button-width + 10px;
+    }
   }
 }
