@@ -32,3 +32,10 @@ $min-large-desktop-breakpoint: 1260px;
     @content;
   }
 }
+
+// Only to be used in essential situations, will conflict with desktop() above
+@mixin small-desktop {
+  @media (min-width: ($max-tablet-breakpoint + 1px)) and (max-width: $min-large-desktop-breakpoint - 1px) {
+    @content;
+  }
+}

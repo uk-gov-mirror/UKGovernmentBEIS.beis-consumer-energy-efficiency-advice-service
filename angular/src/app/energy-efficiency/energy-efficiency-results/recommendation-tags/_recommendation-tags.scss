@@ -47,7 +47,7 @@
     @include is-grid($margin-compensation: 14px);
 
     .tag {
-      @include is-grid-item($number-of-items: 2, $margin: 14px);
+      @include is-grid-item($number-of-items: 1, $margin: 14px);
     }
   }
 
@@ -60,7 +60,15 @@
 
   }
 
-  @include desktop() {
+  @include small-desktop() {
+    @include is-grid($margin-compensation: 20px);
+
+    .tag {
+      @include is-grid-item($number-of-items: 1, $margin: 20px);
+    }
+  }
+
+  @include large-desktop() {
     @include is-grid($margin-compensation: 20px);
 
     .tag {
