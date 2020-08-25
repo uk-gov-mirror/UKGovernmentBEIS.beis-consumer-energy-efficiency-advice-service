@@ -28,4 +28,6 @@ applications:
     - smtp
     - google.maps
     - trustMark
+    - user-site-auth
+    - aws-syslog-drain
   memory: 2G

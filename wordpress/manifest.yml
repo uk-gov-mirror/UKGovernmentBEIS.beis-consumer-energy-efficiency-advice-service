@@ -15,4 +15,5 @@ applications:
     - dceas-database
     - dceas-wordpress-secrets
     - dceas-admin-logins
+    - aws-syslog-drain
   memory: 6G
