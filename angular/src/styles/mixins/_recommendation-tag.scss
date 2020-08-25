@@ -11,6 +11,8 @@
   text-align: center;
   background-color: $background-color;
   height: 28px;
+  max-width: 300px;
+  padding: 15px 0;
 
   @include mobile() {
     border-radius: 28px;
