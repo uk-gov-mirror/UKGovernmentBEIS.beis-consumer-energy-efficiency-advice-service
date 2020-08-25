@@ -31,7 +31,7 @@
 
   .global-alert-banner {
     background-color: $global-alert-banner;
-    color: white;
+    color: $dark-grey;
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
@@ -42,14 +42,19 @@
       margin-right: auto;
     }
     a {
-      color: white;
+      color: $dark-grey;
     }
   }
 
   .cookie-banner {
     @extend .global-alert-banner;
+    color: white;
     background-color: $cookie-banner;
     padding-bottom: 12px;
+
+    a {
+      color: white;
+    }
 
     .cookie-banner-buttons {
       .cookie-button {

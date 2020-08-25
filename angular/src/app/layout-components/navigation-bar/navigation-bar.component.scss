@@ -102,6 +102,17 @@
       margin: 2px 0 0 auto;
     }
   }
+
+  .green-homes-grant-link {
+    @extend .highlighted-link;
+
+    background-color: $ghg-green;
+    color: $dark-grey;
+
+    .more-icon {
+      fill: $dark-grey;
+    }
+  }
 }
 
 // Breakpoint specific styling

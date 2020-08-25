@@ -16,13 +16,14 @@ $separator-grey: #DDDDDD;
 
 $govuk-blue: #005EA5;
 
-$global-alert-banner: #355f43;
-$cookie-banner: #7d4052;
-
 // Theme colours
 $dark-blue: #1A485F;
 $dark-medium-blue: #006280;
 $icon-blue: #01ABCE;
 $light-blue: #BEE8F1;
 $dark-green: #355F43;
-$light-green: #def1c8
+$light-green: #def1c8;
+$ghg-green: #b8ff69;
+
+$global-alert-banner: $ghg-green;
+$cookie-banner: #7d4052;
