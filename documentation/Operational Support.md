@@ -168,9 +168,9 @@ will not receive information about local grants, and we will not send EPC data t
 
 ### Google Analytics
 
-The site uses Google Analytics to track users.
+The site uses Google Analytics to track users who have clicked "Accept" on the cookie banner.
 
-If this service is down, users should hopefully not see any errors.
+If this service is down, users should not see any errors.
 
 ## Updating Wordpress
 
@@ -228,11 +228,31 @@ To copy the database from `staging` to `int`, do:
 
 ## Monitoring
 
-TODO:BEIS-203 document monitoring
+### Graphs and metrics
 
-Logs, graphs etc.
+We stream live server metrics from GOV.UK PaaS into an AWS CloudWatch account. For access,
+please contact the project Technical Lead.
+
+To view the dashboard and individual metrics, log into the Simple Energy Advice AWS account
+ and click CloudWatch. The default dashboard is for Live, but there are similar dashboards
+  for Int and Staging you can see under `Dashboards`.
 
 ### Application logs
+
+We stream access and application logs from the user site and admin site into an AWS
+CloudWatch account. For access, please contact the project Technical Lead.
+
+#### Viewing current and past logs through CloudWatch
+
+Log into the Simple Energy Advice AWS account.
+
+Click CloudWatch > Log groups.
+
+#### Viewing live logs through CloudFoundry
+
+You can also use the CloudFoundry CLI to stream logs from the server directly to your
+terminal, but only as the logs come in - if you want to search historic logs, you'll
+need to go to CloudWatch.
 
 For the admin site, run
 
@@ -244,12 +264,12 @@ For the user site, run
 
 ## Troubleshooting
 
-TODO:BEIS-203 document Troubleshooting
+In the event of a live issue, try these steps in order.
 
-### Initial investigations if the live site is down
-
-If the site is down, try `cf app dceas-user-site` and
-the logs commands above for initial investigation.
+1. Log in to CloudWatch and take a look at the dashboard.
+1. If a single instance is misbehaving (e.g. high response time), restart it: `cf restart-app-instance dceas-[user|admin]-site 0` where `0` is the instance number
+1. If the site is under heavy load (e.g. high CPU usage), provision more instances: `cf scale dceas-[user|admin]-site -i 3` where 3 is the new number of instances you want
+1. Look at the live application logs for any e.g. Java exceptions that might be the result of bugs in the code
 
 ### Known issue: "waiting for changelog lock"
 
