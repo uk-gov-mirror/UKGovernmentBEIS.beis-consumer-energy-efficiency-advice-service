@@ -31,7 +31,7 @@ export class YourPlanSummaryComponent {
     getRoundedTotalInvestmentRequired(): number {
         const totalInvestment = sumBy(
             this.recommendations,
-            recommendation => recommendation.investmentPounds
+            recommendation => recommendation.installationCost.estimatedInvestment
         );
         return RoundingService.roundCostValue(totalInvestment);
     }

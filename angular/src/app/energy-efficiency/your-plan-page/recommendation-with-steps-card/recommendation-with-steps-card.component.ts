@@ -42,8 +42,15 @@ export class RecommendationWithStepsCardComponent implements OnInit {
         this.hasGHGTag = this.greenHomesGrantService.hasGHGTag(this.recommendation.tags);
     }
 
-    getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
-        return RoundingService.roundCostValue(recommendation.investmentPounds);
+    getInvestmentRequiredString() {
+        if (this.recommendation.installationCost.installationCostRange) {
+            const range = this.recommendation.installationCost.installationCostRange;
+            return `£${range.min} - £${range.max}`;
+        } else if (this.recommendation.installationCost.estimatedInvestment >= 0) {
+            return '£' + RoundingService.roundCostValue(this.recommendation.installationCost.estimatedInvestment);
+        } else {
+            return '-';
+        }
     }
 
     get showMonthlySavings() {

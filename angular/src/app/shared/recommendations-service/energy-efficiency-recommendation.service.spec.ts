@@ -63,7 +63,6 @@ describe('EnergyEfficiencyRecommendationService', () => {
         minimumCostSavingPoundsPerYear: number, maximumCostSavingPoundsPerYear
     ): EnergyEfficiencyRecommendation {
         return {
-            investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             minimumCostSavingPoundsPerYear: minimumCostSavingPoundsPerYear,
@@ -83,7 +82,8 @@ describe('EnergyEfficiencyRecommendationService', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: {estimatedInvestment: 20}
         };
     }
 });

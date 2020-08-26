@@ -13,6 +13,7 @@ import {
     EnergySavingMeasureResponse,
     isEnergySavingMeasureResponse
 } from '../energy-calculation-api-service/response/energy-saving-measure-response';
+import {InstallationCost} from "./installation-cost";
 
 export class EnergyEfficiencyRecommendation {
 
@@ -24,8 +25,7 @@ export class EnergyEfficiencyRecommendation {
         "cold-weather-payments": 'icons/cold-weather.svg',
     };
 
-    constructor(public investmentPounds: number,
-                public lifetimeYears: number,
+    constructor(public lifetimeYears: number,
                 public costSavingPoundsPerYear: number,
                 public minimumCostSavingPoundsPerYear: number,
                 public maximumCostSavingPoundsPerYear: number,
@@ -43,7 +43,8 @@ export class EnergyEfficiencyRecommendation {
                 public isAddedToPlan: boolean,
                 public recommendationID: string,
                 public measureCode: string,
-                public trustMarkTradeCodes: string[]) {
+                public trustMarkTradeCodes: string[],
+                public installationCost: InstallationCost) {
     }
 
     get isMeasure(): boolean {
@@ -88,20 +89,26 @@ export class EnergyEfficiencyRecommendation {
             maximumCostSavingPerYear += grant.annualPaymentPoundsForMeasure;
         }
         let lifetime: number = null;
-        let estimatedInvestmentPounds: number = 0;
+        let installationCost: InstallationCost = {};
         if (isEnergySavingMeasureResponse(measureResponse)) {
             lifetime = measureResponse.lifetime;
+            if (measureResponse.show_investment_as_range) {
+                installationCost = {
+                    installationCostRange: {
+                        min: measureResponse.min_installation_cost,
+                        max: measureResponse.max_installation_cost
+                    }
+                };
+            }
             // Estimate investment cost as the midpoint of the range included in the response
-            estimatedInvestmentPounds = (measureResponse.min_installation_cost +
+            installationCost.estimatedInvestment = (measureResponse.min_installation_cost +
                 measureResponse.max_installation_cost) / 2;
         }
-
         const tradeCodes = measureContent.acf.trustmark_trade_codes
             ? measureContent.acf.trustmark_trade_codes.map(ttc => ttc.trade_code)
             : [];
 
         return new EnergyEfficiencyRecommendation(
-            estimatedInvestmentPounds,
             lifetime,
             costSavingPerYear,
             minimumCostSavingPerYear,
@@ -120,7 +127,8 @@ export class EnergyEfficiencyRecommendation {
             false,
             measureContent.slug,
             measureCode,
-            tradeCodes
+            tradeCodes,
+            installationCost
         );
     }
 
@@ -130,7 +138,6 @@ export class EnergyEfficiencyRecommendation {
     static fromNationalGrant(grant: StandaloneNationalGrant): EnergyEfficiencyRecommendation {
         const costSavingPerYear = grant.annualPaymentPoundsStandalone || 0;
         return new EnergyEfficiencyRecommendation(
-            0, // No investment cost for a grant
             null, // No lifetime for a grant
             costSavingPerYear,
             costSavingPerYear,
@@ -149,7 +156,8 @@ export class EnergyEfficiencyRecommendation {
             false,
             grant.grantId,
             null,
-            []
+            [],
+            {estimatedInvestment: 0} // No investment cost for a grant
         );
     }
 }

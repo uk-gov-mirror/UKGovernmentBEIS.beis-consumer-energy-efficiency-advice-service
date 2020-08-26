@@ -84,7 +84,8 @@ export class GreenHomesGrantRecommendationsService {
             cost_saving: 0,
             uncertainty: 0,
             FIT: 0,
-            RHI: 0
+            RHI: 0,
+            show_investment_as_range: true
         };
     }
 }

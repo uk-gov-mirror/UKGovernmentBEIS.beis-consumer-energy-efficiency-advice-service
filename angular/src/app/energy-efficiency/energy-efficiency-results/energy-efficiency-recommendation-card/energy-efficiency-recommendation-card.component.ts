@@ -19,7 +19,7 @@ import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-
 export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
-    roundedInvestmentRequired: number;
+    investmentRequired: string;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     isFocusedAddToPlanButton: boolean = false;
@@ -44,7 +44,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
+        this.investmentRequired = this.getInvestmentRequiredString();
         this.tags = getActiveTags(this.recommendation.tags)
             .filter(t => this.displayableTags.includes(t));
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
@@ -96,5 +96,16 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     sendEventToAnalytics(eventName: string) {
         this.googleAnalyticsService.sendEvent(eventName, 'results-page', this.recommendation.recommendationID);
+    }
+
+    getInvestmentRequiredString() {
+        if (this.recommendation.installationCost.installationCostRange) {
+            const range = this.recommendation.installationCost.installationCostRange;
+            return `£${range.min} - £${range.max}`;
+        } else if (this.recommendation.installationCost.estimatedInvestment >= 0) {
+            return '£' + RoundingService.roundCostValue(this.recommendation.installationCost.estimatedInvestment);
+        } else {
+            return '-';
+        }
     }
 }

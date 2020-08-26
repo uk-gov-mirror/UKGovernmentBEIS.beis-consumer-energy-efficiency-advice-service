@@ -26,14 +26,14 @@ export class PlanInfoService {
                     return {
                         measureSlug: r.recommendationID,
                         nationalGrantForMeasureId: (r.grant && r.grant.grantId),
-                        investmentPounds: r.investmentPounds,
+                        investmentPounds: r.installationCost.estimatedInvestment,
                         minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
                         maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                     };
                 } else {
                     return {
                         grantSlug: r.recommendationID,
-                        investmentPounds: r.investmentPounds,
+                        investmentPounds: r.installationCost.estimatedInvestment,
                         minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
                         maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                     };

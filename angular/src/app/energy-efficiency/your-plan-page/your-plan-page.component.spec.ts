@@ -39,7 +39,6 @@ describe('YourPlanPageComponent', () => {
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
-            investmentPounds: 199,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
             minimumCostSavingPoundsPerYear: 89,
@@ -70,10 +69,10 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: {estimatedInvestment: 199}
         },
         {
-            investmentPounds: 999,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
             minimumCostSavingPoundsPerYear: 180,
@@ -93,10 +92,10 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: {estimatedInvestment: 999}
         },
         {
-            investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             minimumCostSavingPoundsPerYear: 9,
@@ -116,7 +115,8 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: {estimatedInvestment: 20}
         }
     ];
 

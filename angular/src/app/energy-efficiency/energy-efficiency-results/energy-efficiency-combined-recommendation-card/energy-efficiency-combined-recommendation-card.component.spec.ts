@@ -89,7 +89,6 @@ describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
 
     function getRecommendation(): EnergyEfficiencyRecommendation {
         return {
-            investmentPounds: 200,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 100,
             minimumCostSavingPoundsPerYear: 90,
@@ -109,7 +108,8 @@ describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: {estimatedInvestment: 200}
         };
     }
 
