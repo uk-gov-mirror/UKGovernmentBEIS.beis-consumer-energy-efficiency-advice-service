@@ -4,7 +4,7 @@ This repository contains Terraform definitions for the AWS resources which power
 
 ## Set up
 
-1. Install Terraform
+1. Install Terraform 0.13.0
 2. Obtain CLI credentials for the AWS account from https://aws.softwire.com.  
     i. Click 'BEIS Simple Energy Advice' and then 'Command line or programmatic access'  
     ii. Set the environment variables from 'Option 1' in your terminal (note that these credentials will expire regularly: you will have to reset them)
