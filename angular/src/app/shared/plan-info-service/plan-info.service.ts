@@ -23,17 +23,37 @@ export class PlanInfoService {
         const recommendations = recommendationsInPlan
             .map(r => {
                 if (r.isMeasure) {
-                    return {
-                        measureSlug: r.recommendationID,
-                        nationalGrantForMeasureId: (r.grant && r.grant.grantId),
-                        investmentPounds: r.installationCost.estimatedInvestment,
-                        minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
-                        maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
-                    };
+                    if (r.installationCost.installationCostRange) {
+                        return {
+                            measureSlug: r.recommendationID,
+                            nationalGrantForMeasureId: (r.grant && r.grant.grantId),
+                            installationCost: {
+                                estimatedInvestment: r.installationCost.estimatedInvestment,
+                                installationCostRange: {
+                                    min: r.installationCost.installationCostRange.min,
+                                    max: r.installationCost.installationCostRange.max
+                                }
+                            },
+                            minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
+                            maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
+                        };
+                    } else {
+                        return {
+                            measureSlug: r.recommendationID,
+                            nationalGrantForMeasureId: (r.grant && r.grant.grantId),
+                            installationCost: {
+                                estimatedInvestment: r.installationCost.estimatedInvestment
+                            },
+                            minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
+                            maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
+                        };
+                    }
                 } else {
                     return {
                         grantSlug: r.recommendationID,
-                        investmentPounds: r.installationCost.estimatedInvestment,
+                        installationCost: {
+                            estimatedInvestment: r.installationCost.estimatedInvestment
+                        },
                         minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
                         maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                     };
