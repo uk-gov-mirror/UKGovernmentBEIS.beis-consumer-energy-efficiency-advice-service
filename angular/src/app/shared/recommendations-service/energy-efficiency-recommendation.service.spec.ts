@@ -1,6 +1,7 @@
 import {EnergyEfficiencyRecommendationService} from "./energy-efficiency-recommendation.service";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import {InstallationCost} from "./installation-cost";
 
 describe('EnergyEfficiencyRecommendationService', () => {
     const MINIMUM_BEFORE_ROUNDING = 5;
@@ -83,7 +84,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 20}
+            installationCost: new InstallationCost(20, 20, true)
         };
     }
 });

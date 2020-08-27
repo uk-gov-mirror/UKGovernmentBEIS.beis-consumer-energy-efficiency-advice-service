@@ -9,6 +9,7 @@ import Config from '../../config';
 import toString from 'lodash-es/toString';
 import {ResponseData} from "../response-data/response-data";
 import {RdsapInputHelper} from "./request/rdsap-input-helper";
+import keys from 'lodash-es/keys';
 
 @Injectable()
 export class EnergyCalculationApiService {
@@ -32,6 +33,9 @@ export class EnergyCalculationApiService {
 
             return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput, {params: params}).shareReplay(1)
                 .do(response => {
+                    keys(response.measures).map(measureCode => {
+                        response.measures[measureCode].isBreRange = true;
+                    });
                     if (!response.isDefaultResponse) {
                         this.cachedResults = response;
                     }

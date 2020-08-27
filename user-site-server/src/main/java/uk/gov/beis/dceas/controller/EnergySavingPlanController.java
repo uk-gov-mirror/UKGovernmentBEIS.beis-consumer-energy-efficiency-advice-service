@@ -484,6 +484,7 @@ public class EnergySavingPlanController {
     private static class Range {
         Double min;
         Double max;
+        Boolean isBreRange;
     }
 
     /**
@@ -598,7 +599,8 @@ public class EnergySavingPlanController {
         }
 
         public String getInvestmentRequiredString() {
-            if (installationCost.installationCostRange != null) {
+            Range range = installationCost.installationCostRange;
+            if (range != null && !range.isBreRange) {
                 return getRoundedInvestmentRange();
             } else if (installationCost.estimatedInvestment >= 0) {
                 return getRoundedInvestment();

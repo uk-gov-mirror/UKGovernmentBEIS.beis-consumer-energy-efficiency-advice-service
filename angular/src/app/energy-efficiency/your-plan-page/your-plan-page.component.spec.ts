@@ -32,6 +32,7 @@ import {PageTitleService} from "../../shared/page-title-service/page-title.servi
 import {InstallerSearchService} from "../../shared/installer-search-service/installer-search.service";
 import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -70,7 +71,7 @@ describe('YourPlanPageComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 199}
+            installationCost: new InstallationCost(199, 199, true)
         },
         {
             lifetimeYears: 40,
@@ -93,7 +94,7 @@ describe('YourPlanPageComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 999}
+            installationCost: new InstallationCost(999, 999, true)
         },
         {
             lifetimeYears: 40,
@@ -116,7 +117,7 @@ describe('YourPlanPageComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 20}
+            installationCost: new InstallationCost(20, 20, true)
         }
     ];
 

@@ -6,6 +6,7 @@ import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
+import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 
 describe('YourPlanSummaryComponent', () => {
     let component: YourPlanSummaryComponent;
@@ -33,7 +34,7 @@ describe('YourPlanSummaryComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 199}
+            installationCost: new InstallationCost(199, 199, true)
         },
         {
             lifetimeYears: 40,
@@ -56,7 +57,7 @@ describe('YourPlanSummaryComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 999}
+            installationCost: new InstallationCost(999, 999, true)
         },
         {
             lifetimeYears: 40,
@@ -79,7 +80,7 @@ describe('YourPlanSummaryComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 20}
+            installationCost: new InstallationCost(20, 20, true)
         }
     ];
 

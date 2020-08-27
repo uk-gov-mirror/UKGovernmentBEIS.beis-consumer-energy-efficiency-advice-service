@@ -23,36 +23,25 @@ export class PlanInfoService {
         const recommendations = recommendationsInPlan
             .map(r => {
                 if (r.isMeasure) {
-                    if (r.installationCost.installationCostRange) {
                         return {
                             measureSlug: r.recommendationID,
                             nationalGrantForMeasureId: (r.grant && r.grant.grantId),
                             installationCost: {
-                                estimatedInvestment: r.installationCost.estimatedInvestment,
+                                estimatedInvestment: r.installationCost.getEstimatedInvestment(),
                                 installationCostRange: {
-                                    min: r.installationCost.installationCostRange.min,
-                                    max: r.installationCost.installationCostRange.max
+                                    min: r.installationCost.min,
+                                    max: r.installationCost.max,
+                                    isBreRange: r.installationCost.isBreRange
                                 }
                             },
                             minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
                             maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                         };
-                    } else {
-                        return {
-                            measureSlug: r.recommendationID,
-                            nationalGrantForMeasureId: (r.grant && r.grant.grantId),
-                            installationCost: {
-                                estimatedInvestment: r.installationCost.estimatedInvestment
-                            },
-                            minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
-                            maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
-                        };
-                    }
                 } else {
                     return {
                         grantSlug: r.recommendationID,
                         installationCost: {
-                            estimatedInvestment: r.installationCost.estimatedInvestment
+                            estimatedInvestment: r.installationCost.getEstimatedInvestment()
                         },
                         minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
                         maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear

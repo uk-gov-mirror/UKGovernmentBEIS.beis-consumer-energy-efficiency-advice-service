@@ -88,22 +88,8 @@ export class EnergyEfficiencyRecommendation {
             minimumCostSavingPerYear += grant.annualPaymentPoundsForMeasure;
             maximumCostSavingPerYear += grant.annualPaymentPoundsForMeasure;
         }
-        let lifetime: number = null;
-        let installationCost: InstallationCost = {};
-        if (isEnergySavingMeasureResponse(measureResponse)) {
-            lifetime = measureResponse.lifetime;
-            if (measureResponse.show_investment_as_range) {
-                installationCost = {
-                    installationCostRange: {
-                        min: measureResponse.min_installation_cost,
-                        max: measureResponse.max_installation_cost
-                    }
-                };
-            }
-            // Estimate investment cost as the midpoint of the range included in the response
-            installationCost.estimatedInvestment = (measureResponse.min_installation_cost +
-                measureResponse.max_installation_cost) / 2;
-        }
+        const lifetime = isEnergySavingMeasureResponse(measureResponse) ? measureResponse.lifetime : null;
+        const installationCost = EnergyEfficiencyRecommendation.getInstallationCostFromMeasure(measureResponse);
         const tradeCodes = measureContent.acf.trustmark_trade_codes
             ? measureContent.acf.trustmark_trade_codes.map(ttc => ttc.trade_code)
             : [];
@@ -157,7 +143,15 @@ export class EnergyEfficiencyRecommendation {
             grant.grantId,
             null,
             [],
-            {estimatedInvestment: 0} // No investment cost for a grant
+            new InstallationCost(0, 0, true) // No investment cost for a grant
         );
+    }
+
+    private static getInstallationCostFromMeasure(measureResponse: MeasureResponse): InstallationCost {
+        if (isEnergySavingMeasureResponse(measureResponse)) {
+            return new InstallationCost(measureResponse.min_installation_cost,
+                measureResponse.max_installation_cost, measureResponse.isBreRange);
+        }
+        return null;
     }
 }

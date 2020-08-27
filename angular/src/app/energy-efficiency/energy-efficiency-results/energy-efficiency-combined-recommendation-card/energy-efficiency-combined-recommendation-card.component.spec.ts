@@ -12,6 +12,7 @@ import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import {InstallationCost} from "../../../shared/recommendations-service/installation-cost";
 
 describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
     let component: EnergyEfficiencyCombinedRecommendationCardComponent;
@@ -109,7 +110,7 @@ describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 200}
+            installationCost: new InstallationCost(100, 300, true)
         };
     }
 

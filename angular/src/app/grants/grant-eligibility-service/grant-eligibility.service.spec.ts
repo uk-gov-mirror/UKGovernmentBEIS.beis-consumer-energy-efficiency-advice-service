@@ -207,7 +207,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
             const fitMeasureCode = 'U';
 
@@ -233,7 +233,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
             const fitMeasureCode = 'U';
 
@@ -259,7 +259,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
 
             // when
@@ -284,7 +284,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
 
             // when
@@ -309,7 +309,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
 
             // when
@@ -335,7 +335,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
 
             // when
@@ -361,7 +361,7 @@ describe('GrantEligibilityService', () => {
                 'lifetime': 40,
                 'min_installation_cost': 500,
                 'max_installation_cost': 1500,
-                'show_investment_as_range': false
+                'isBreRange': true
             };
 
             // when

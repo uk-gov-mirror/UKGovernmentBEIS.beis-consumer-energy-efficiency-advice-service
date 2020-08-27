@@ -40,6 +40,7 @@ import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-serv
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
+import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -96,7 +97,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 199}
+            installationCost: new InstallationCost(199, 199, true)
         },
         {
             lifetimeYears: 40,
@@ -119,7 +120,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 999}
+            installationCost: new InstallationCost(999, 999, true)
         },
         {
             lifetimeYears: 40,
@@ -149,7 +150,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
             recommendationID: '',
             isMeasure: true,
             trustMarkTradeCodes: [],
-            installationCost: {estimatedInvestment: 20}
+            installationCost: new InstallationCost(20, 20, true)
         }
     ];
 

@@ -43,14 +43,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     }
 
     getInvestmentRequiredString() {
-        if (this.recommendation.installationCost.installationCostRange) {
-            const range = this.recommendation.installationCost.installationCostRange;
-            return `£${range.min} - £${range.max}`;
-        } else if (this.recommendation.installationCost.estimatedInvestment >= 0) {
-            return '£' + RoundingService.roundCostValue(this.recommendation.installationCost.estimatedInvestment);
-        } else {
-            return '-';
-        }
+        return this.recommendation.installationCost.getInvestmentRequiredString();
     }
 
     get showMonthlySavings() {
