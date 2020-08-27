@@ -9,6 +9,12 @@ resource "aws_sns_topic" "dceas_live_alarms" {
   name = "dceas-live-alarms"
 }
 
+# This topic will call the person on out-of-hours support through PagerDuty
+# See: https://support.pagerduty.com/docs/aws-cloudwatch-integration-guide
+resource "aws_sns_topic" "dceas_pagerduty_notifications" {
+  name = "dceas-pagerduty-notifications"
+}
+
 resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
   alarm_name          = "LIVE dceas-admin-site CPU"
   comparison_operator = "GreaterThanThreshold"
@@ -99,6 +105,106 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
       namespace   = "CWAgent"
       period      = 300
       stat        = "Average"
+    }
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
+  alarm_name          = "LIVE dceas-user-site 5xx"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 5
+  evaluation_periods  = "1"
+  treat_missing_data  = "missing"
+  datapoints_to_alarm = 1
+  alarm_actions       = [
+    aws_sns_topic.dceas_live_alarms.arn,
+    aws_sns_topic.dceas_pagerduty_notifications.arn
+  ]
+
+  metric_query {
+    expression  = "SUM(METRICS())"
+    id          = "e1"
+    label       = "dceas-user-site 5xx responses"
+    return_data = true
+  }
+
+  metric_query {
+    id          = "m1"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "gauge"
+      }
+      metric_name = "mycf_live_dceas-user-site_0_requests_5xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "m2"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "gauge"
+      }
+      metric_name = "mycf_live_dceas-user-site_1_requests_5xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "live_user_2xx_response_time" {
+  alarm_name          = "LIVE dceas-user-site 2xx response time"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 1000
+  evaluation_periods  = "1"
+  treat_missing_data  = "missing"
+  datapoints_to_alarm = 1
+  alarm_actions       = [
+    aws_sns_topic.dceas_live_alarms.arn,
+    aws_sns_topic.dceas_pagerduty_notifications.arn
+  ]
+
+  metric_query {
+    expression  = "AVG(METRICS())"
+    id          = "e1"
+    label       = "dceas-user-site 2xx response time (ms)"
+    return_data = true
+  }
+
+  metric_query {
+    id          = "m1"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "gauge"
+      }
+      metric_name = "mycf_live_dceas-user-site_0_responseTime_2xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "m2"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "gauge"
+      }
+      metric_name = "mycf_live_dceas-user-site_1_responseTime_2xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
     }
   }
 }
