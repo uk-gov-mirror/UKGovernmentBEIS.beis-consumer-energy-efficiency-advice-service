@@ -49,7 +49,7 @@ import uk.gov.beis.dceas.db.gen.tables.WpPosts;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DefaultSchema extends SchemaImpl {
 
-    private static final long serialVersionUID = -880649562;
+    private static final long serialVersionUID = 372639908;
 
     /**
      * The reference instance of <code></code>
@@ -176,7 +176,7 @@ public class DefaultSchema extends SchemaImpl {
 
     private final List<Sequence<?>> getSequences0() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.SYSTEM_SEQUENCE_F83AE49A_103C_44B9_822B_52F382B39390);
+            Sequences.SYSTEM_SEQUENCE_53CFD773_E2F5_4941_8B5D_29326A70784E);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package uk.gov.beis.dceas.controller;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Resources;
 import lombok.experimental.var;
 import org.jsoup.Jsoup;
@@ -9,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.View;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
@@ -35,6 +39,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @Controller
 public class IndexController {
+    private static final Map<String, String> redirects = ImmutableMap.<String, String>builder()
+            .put("/measures/meta_solar_water_heating","/measures/meta_solar_thermal")
+            .put("/measures/meta_wood_pellets_boiler","/measures/meta_biomass_pellet_boiler")
+            .build();
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     // This is coupled with ACCEPTED_COOKIES in app.component.ts
@@ -141,7 +149,14 @@ public class IndexController {
         "/privacy/**",
     },
         method = GET)
-    public String index(Model model, HttpServletRequest request) throws IOException {
+    public String index(Model model, HttpServletRequest request) {
+        String path = request.getRequestURI();
+
+        if (redirects.containsKey(path)) {
+            request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.MOVED_PERMANENTLY);
+            return "redirect:" + redirects.get(path);
+        }
+
         model.addAttribute("publicRootUrl", publicRootUrl);
         model.addAttribute("apiRoot", apiRoot);
         model.addAttribute("staticRoot", staticRoot);
