@@ -27,6 +27,7 @@
         <div class="find-installers" *ngIf="hasGHGTag">
             <div class="installers">
                 Nearby installers:
+                <div class="loading-spinner-small" *ngIf="loadingInstallerDetails"></div>
                 <ul class="installers-list">
                     <li class="installer" *ngFor="let installer of installers">
                         {{installer.registeredName}} - {{installer.phoneNumber}}
