@@ -41,7 +41,7 @@ resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
       }
       metric_name = "mycf_live_dceas-admin-site_0_cpu"
       namespace   = "CWAgent"
-      period      = 300
+      period      = 900
       stat        = "Average"
     }
   }
@@ -56,7 +56,7 @@ resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
       }
       metric_name = "mycf_live_dceas-admin-site_1_cpu"
       namespace   = "CWAgent"
-      period      = 300
+      period      = 900
       stat        = "Average"
     }
   }
@@ -88,7 +88,7 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
       }
       metric_name = "mycf_live_dceas-user-site_0_cpu"
       namespace   = "CWAgent"
-      period      = 300
+      period      = 900
       stat        = "Average"
     }
   }
@@ -103,7 +103,7 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
       }
       metric_name = "mycf_live_dceas-user-site_1_cpu"
       namespace   = "CWAgent"
-      period      = 300
+      period      = 900
       stat        = "Average"
     }
   }
