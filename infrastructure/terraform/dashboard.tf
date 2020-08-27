@@ -114,10 +114,13 @@ resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
   comparison_operator = "GreaterThanThreshold"
   threshold           = 5
   evaluation_periods  = "1"
-  treat_missing_data  = "missing"
+  treat_missing_data  = "notBreaching"
   datapoints_to_alarm = 1
   alarm_actions       = [
     aws_sns_topic.dceas_live_alarms.arn,
+    aws_sns_topic.dceas_pagerduty_notifications.arn
+  ]
+  ok_actions = [
     aws_sns_topic.dceas_pagerduty_notifications.arn
   ]
 
@@ -134,7 +137,7 @@ resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
     metric {
       dimensions = {
         "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "gauge"
+        "metric_type" = "counter"
       }
       metric_name = "mycf_live_dceas-user-site_0_requests_5xx"
       namespace   = "CWAgent"
@@ -149,7 +152,7 @@ resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
     metric {
       dimensions = {
         "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "gauge"
+        "metric_type" = "counter"
       }
       metric_name = "mycf_live_dceas-user-site_1_requests_5xx"
       namespace   = "CWAgent"
@@ -170,6 +173,9 @@ resource "aws_cloudwatch_metric_alarm" "live_user_2xx_response_time" {
     aws_sns_topic.dceas_live_alarms.arn,
     aws_sns_topic.dceas_pagerduty_notifications.arn
   ]
+  ok_actions = [
+    aws_sns_topic.dceas_pagerduty_notifications.arn
+  ]
 
   metric_query {
     expression  = "AVG(METRICS())"
@@ -184,12 +190,12 @@ resource "aws_cloudwatch_metric_alarm" "live_user_2xx_response_time" {
     metric {
       dimensions = {
         "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "gauge"
+        "metric_type" = "timing"
       }
       metric_name = "mycf_live_dceas-user-site_0_responseTime_2xx"
       namespace   = "CWAgent"
       period      = 300
-      stat        = "Sum"
+      stat        = "Average"
     }
   }
 
@@ -199,12 +205,12 @@ resource "aws_cloudwatch_metric_alarm" "live_user_2xx_response_time" {
     metric {
       dimensions = {
         "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "gauge"
+        "metric_type" = "timing"
       }
       metric_name = "mycf_live_dceas-user-site_1_responseTime_2xx"
       namespace   = "CWAgent"
       period      = 300
-      stat        = "Sum"
+      stat        = "Average"
     }
   }
 }
@@ -216,6 +222,8 @@ resource "aws_cloudwatch_dashboard" "live" {
     alarm_arns = jsonencode([
       aws_cloudwatch_metric_alarm.live_user_cpu.arn,
       aws_cloudwatch_metric_alarm.live_admin_cpu.arn,
+      aws_cloudwatch_metric_alarm.live_user_5xx.arn,
+      aws_cloudwatch_metric_alarm.live_user_2xx_response_time.arn,
     ]),
     user_site_cpu_scale_factor  = local.user_cpu_scale_factor["live"]
     admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["live"]
