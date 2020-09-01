@@ -1,3 +1,4 @@
+variable "total_memory_allocation" { default = 28 }
 variable "org_memory_limit" { default = 60 }
 
 variable "admin_site_memory_allocation" { 

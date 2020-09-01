@@ -1,6 +1,7 @@
 locals {
-  user_cpu_scale_factor = { for k, v in var.user_site_memory_allocation: k => var.org_memory_limit / v}
-  admin_cpu_scale_factor = { for k, v in var.admin_site_memory_allocation: k => var.org_memory_limit / v}
+  allocated_memory_ratio = var.total_memory_allocation / var.org_memory_limit
+  user_cpu_scale_factor = { for k, v in var.user_site_memory_allocation: k => local.allocated_memory_ratio * var.total_memory_allocation / v}
+  admin_cpu_scale_factor = { for k, v in var.admin_site_memory_allocation: k => local.allocated_memory_ratio * var.total_memory_allocation / v}
 }
 
 # Note that there is also an email subscription to this topic, but 
@@ -60,6 +61,21 @@ resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
       stat        = "Average"
     }
   }
+
+  metric_query {
+    id          = "m3"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "gauge"
+      }
+      metric_name = "mycf_live_dceas-admin-site_2_cpu"
+      namespace   = "CWAgent"
+      period      = 900
+      stat        = "Average"
+    }
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
@@ -107,12 +123,27 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
       stat        = "Average"
     }
   }
+
+  metric_query {
+    id          = "m3"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "gauge"
+      }
+      metric_name = "mycf_live_dceas-user-site_2_cpu"
+      namespace   = "CWAgent"
+      period      = 900
+      stat        = "Average"
+    }
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
   alarm_name          = "LIVE dceas-user-site 5xx"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 5
+  threshold           = 10
   evaluation_periods  = "1"
   treat_missing_data  = "notBreaching"
   datapoints_to_alarm = 1
@@ -155,6 +186,21 @@ resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
         "metric_type" = "counter"
       }
       metric_name = "mycf_live_dceas-user-site_1_requests_5xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "m3"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "counter"
+      }
+      metric_name = "mycf_live_dceas-user-site_2_requests_5xx"
       namespace   = "CWAgent"
       period      = 300
       stat        = "Sum"
@@ -208,6 +254,21 @@ resource "aws_cloudwatch_metric_alarm" "live_user_2xx_response_time" {
         "metric_type" = "timing"
       }
       metric_name = "mycf_live_dceas-user-site_1_responseTime_2xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Average"
+    }
+  }
+
+  metric_query {
+    id          = "m3"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "timing"
+      }
+      metric_name = "mycf_live_dceas-user-site_2_responseTime_2xx"
       namespace   = "CWAgent"
       period      = 300
       stat        = "Average"
