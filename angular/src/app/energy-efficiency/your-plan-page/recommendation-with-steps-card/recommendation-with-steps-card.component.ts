@@ -29,6 +29,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
     hasGHGTag: boolean = false;
+    loadingInstallerDetails: boolean = false;
     installers: Installer[];
 
     constructor(private responseData: ResponseData,
@@ -38,8 +39,8 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadTrustMarkInstallers();
         this.hasGHGTag = this.greenHomesGrantService.hasGHGTag(this.recommendation.tags);
+        this.loadTrustMarkInstallers();
     }
 
     getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
@@ -71,14 +72,16 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     }
 
     private loadTrustMarkInstallers() {
-        if (
-            this.greenHomesGrantService.hasGHGTag(this.recommendation.tags)
-            && this.recommendation.trustMarkTradeCodes.length
-        ) {
+        if (this.hasGHGTag && this.recommendation.trustMarkTradeCodes.length) {
+            this.loadingInstallerDetails = true;
             this.installerSearchService.fetchInstallerDetails(this.responseData.postcode, this.recommendation.trustMarkTradeCodes)
-                .subscribe(response => {
-                    this.installers = response.data.slice(0, 3);
-                });
+                .subscribe(
+                    response => {
+                        this.installers = response.data.slice(0, 3);
+                    },
+                    undefined,
+                    () => this.loadingInstallerDetails = false
+                );
         }
     }
 }
