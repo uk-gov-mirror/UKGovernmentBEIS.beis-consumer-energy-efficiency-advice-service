@@ -40,8 +40,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 public class IndexController {
     private static final Map<String, String> redirects = ImmutableMap.<String, String>builder()
-            .put("/measures/meta_solar_water_heating","/measures/meta_solar_thermal")
-            .put("/measures/meta_wood_pellets_boiler","/measures/meta_biomass_pellet_boiler")
+            .put("/measures/meta_solar_water_heating", "/measures/meta_solar_thermal")
+            .put("/measures/meta_wood_pellets_boiler", "/measures/meta_biomass_pellet_boiler")
             .build();
 
     private final Logger log = LoggerFactory.getLogger(getClass());
