@@ -149,6 +149,69 @@ resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
   datapoints_to_alarm = 1
   alarm_actions       = [
     aws_sns_topic.dceas_live_alarms.arn,
+  ]
+
+  metric_query {
+    expression  = "SUM(METRICS())"
+    id          = "e1"
+    label       = "dceas-user-site 5xx responses"
+    return_data = true
+  }
+
+  metric_query {
+    id          = "m1"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "counter"
+      }
+      metric_name = "mycf_live_dceas-user-site_0_requests_5xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "m2"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "counter"
+      }
+      metric_name = "mycf_live_dceas-user-site_1_requests_5xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "m3"
+    return_data = false
+    metric {
+      dimensions = {
+        "host"        = aws_instance.cloudwatch_agent.private_dns
+        "metric_type" = "counter"
+      }
+      metric_name = "mycf_live_dceas-user-site_2_requests_5xx"
+      namespace   = "CWAgent"
+      period      = 300
+      stat        = "Sum"
+    }
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "live_user_5xx_ooh_callout" {
+  alarm_name          = "LIVE dceas-user-site 5xx OOH callout"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 200
+  evaluation_periods  = "1"
+  treat_missing_data  = "notBreaching"
+  datapoints_to_alarm = 1
+  alarm_actions       = [
     aws_sns_topic.dceas_pagerduty_notifications.arn
   ]
   ok_actions = [
