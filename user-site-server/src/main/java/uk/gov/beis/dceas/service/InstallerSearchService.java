@@ -14,13 +14,16 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.beis.dceas.exception.InstallerSearchException;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -41,8 +44,8 @@ public class InstallerSearchService {
             // Trustmark token is valid for 1 hour. To be safe, we request a new one after 55 minutes.
             .expireAfterWrite(55, TimeUnit.MINUTES)
             .build(getAccessToken());
-    private final Logger log = LoggerFactory.getLogger(getClass());
     private static final Pattern NOT_FOR_PUBLIC_USE = Pattern.compile("^TrustMark (.*\\(Not For Public Use\\).*)|(.*Demo.*)$", Pattern.CASE_INSENSITIVE);
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public InstallerSearchService(
             @Value("${vcap.services.trustMark.credentials.search.url}")
@@ -64,7 +67,7 @@ public class InstallerSearchService {
     public TrustMarkSearchResponse findInstallers(
             String postcode,
             String[] tradecodes,
-            Integer page) throws Exception {
+            Integer page) throws InstallerSearchException {
         try {
             String accessToken = accessTokenCache.get("Trustmark Access Token");
             HttpHeaders headers = new HttpHeaders();
@@ -81,14 +84,22 @@ public class InstallerSearchService {
             TrustMarkSearchResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();
             return getPublicUseInstallersFilteredResponse(response);
         } catch (ExecutionException e) {
-            log.error("Failed to fetch Trustmark access token from cache.", e);
-            throw e;
-        } catch (HttpClientErrorException e) {
-            log.error("Failed to fetch data from the Trustmark API.", e);
-            throw e;
-        } catch (Error e) {
-            log.error(e.getMessage(), e);
-            throw e;
+            throw new InstallerSearchException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Failed to fetch Trustmark access token from cache."
+            );
+        } catch (HttpStatusCodeException e) {
+            throw new InstallerSearchException(
+                    e.getStatusCode(),
+                    "Failed to fetch data for postcode " + postcode +
+                            " and tradecodes " + String.join(", ", tradecodes) +
+                            " from the Trustmark API. Response: " + e.getResponseBodyAsString()
+            );
+        } catch (URISyntaxException e) {
+            throw new InstallerSearchException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Invalid URI syntax for Trustmark request: " + e.getReason()
+            );
         }
     }
 
