@@ -33,7 +33,7 @@ export class EnergyCalculationApiService {
 
             return this.http.post<EnergyCalculationResponse>(this.breEndpoint, rdSapInput, {params: params}).shareReplay(1)
                 .do(response => {
-                    keys(response.measures).map(measureCode => {
+                    keys(response.measures).forEach(measureCode => {
                         response.measures[measureCode].isBreRange = true;
                     });
                     if (!response.isDefaultResponse) {

@@ -1,15 +1,11 @@
 import {RoundingService} from "../rounding-service/rounding.service";
 
 export class InstallationCost {
-    min: number;
-    max: number;
-    isBreRange: boolean;
-
-    constructor(min: number, max: number, isBreRange: boolean) {
-        this.min = min;
-        this.max = max;
-        this.isBreRange = isBreRange;
-    }
+    constructor(
+        public min: number,
+        public max: number,
+        public isBreRange: boolean
+    ) {}
 
     // Estimate investment cost as the midpoint of the range
     public getEstimatedInvestment(): number {
@@ -18,7 +14,7 @@ export class InstallationCost {
 
     public getInvestmentRequiredString(): string {
         if (!this.isBreRange) {
-            return `£${this.min} - £${this.max}`;
+            return `£${RoundingService.roundCostValue(this.min)} - £${RoundingService.roundCostValue(this.max)}`;
         } else if (this.getEstimatedInvestment() >= 0) {
             return '£' + RoundingService.roundCostValue(this.getEstimatedInvestment());
         } else {
