@@ -30,7 +30,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     @Input() recommendation: EnergyEfficiencyRecommendation;
     hasGHGTag: boolean = false;
     loadingInstallerDetails: boolean = false;
-    installers: Installer[];
+    installers: Installer[] = [];
 
     constructor(private responseData: ResponseData,
                 private googleAnalyticsService: GoogleAnalyticsService,
@@ -79,8 +79,13 @@ export class RecommendationWithStepsCardComponent implements OnInit {
                     response => {
                         this.installers = response.data.slice(0, 3);
                     },
-                    undefined,
-                    () => this.loadingInstallerDetails = false
+                    () => {
+                        this.installers = [];
+                        this.loadingInstallerDetails = false;
+                    },
+                    () => {
+                        this.loadingInstallerDetails = false;
+                    }
                 );
         }
     }
