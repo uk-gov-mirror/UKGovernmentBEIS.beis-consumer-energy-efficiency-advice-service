@@ -152,6 +152,6 @@ export class EnergyEfficiencyRecommendation {
             return new InstallationCost(measureResponse.min_installation_cost,
                 measureResponse.max_installation_cost, measureResponse.isBreRange);
         }
-        return null;
+        return new InstallationCost(0, 0, true); // No installation cost;
     }
 }

@@ -18,7 +18,7 @@ export class InstallationCost {
         } else if (this.getEstimatedInvestment() >= 0) {
             return '£' + RoundingService.roundCostValue(this.getEstimatedInvestment());
         } else {
-            return '-';
+            return '£0';
         }
     }
 }
