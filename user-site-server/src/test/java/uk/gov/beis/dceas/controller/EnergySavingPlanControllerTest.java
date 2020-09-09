@@ -26,6 +26,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.beis.dceas.api.NationalGrant;
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.PlanInfo;
+import uk.gov.beis.dceas.controller.EnergySavingPlanController.InstallationCost;
+import uk.gov.beis.dceas.controller.EnergySavingPlanController.Range;
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.SelectedEnergyEfficiencyRecommendation;
 import uk.gov.beis.dceas.service.InstallerSearchService;
 import uk.gov.beis.dceas.service.MeasuresDataService;
@@ -80,7 +82,7 @@ public class EnergySavingPlanControllerTest {
                                         "meta_wall_insulation_brick_age_band_a_d",
                                         null,
                                         null,
-                                        9000.0,
+                                        new InstallationCost(9000.0, new Range(9000.0, 9000.0, true)),
                                         130.01,
                                         130.01),
                                 // A measure
@@ -88,7 +90,7 @@ public class EnergySavingPlanControllerTest {
                                         "meta_one_degree_reduction",
                                         null,
                                         null,
-                                        0.0,
+                                        new InstallationCost(0.0, new Range(0.0, 0.0, true)),
                                         43.86,
                                         43.86),
                                 // A measure with an attached grant:
@@ -96,7 +98,7 @@ public class EnergySavingPlanControllerTest {
                                         "meta_loft_insulation",
                                         null,
                                         "eco-hhcro-help-to-heat",
-                                        225.0,
+                                        new InstallationCost(225.0, new Range(225.0, 225.0, true)),
                                         378.24,
                                         378.24),
                                 // A grant
@@ -104,7 +106,7 @@ public class EnergySavingPlanControllerTest {
                                         null,
                                         "cold-weather-payments",
                                         null,
-                                        0.0,
+                                        new InstallationCost(0.0, new Range(0.0, 0.0, true)),
                                         null,
                                         null)))
                 .tenureType(0)
