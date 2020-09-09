@@ -475,13 +475,13 @@ public class EnergySavingPlanController {
 
     @Value
     @Builder
-    private static class InstallationCost {
+    public static class InstallationCost {
         Double estimatedInvestment;
         Range installationCostRange;
     }
 
     @Value
-    private static class Range {
+    public static class Range {
         Double min;
         Double max;
         Boolean isBreRange;
