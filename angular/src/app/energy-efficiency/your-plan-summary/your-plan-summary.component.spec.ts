@@ -6,6 +6,7 @@ import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {RecommendationsService} from '../../shared/recommendations-service/recommendations.service';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
+import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 
 describe('YourPlanSummaryComponent', () => {
     let component: YourPlanSummaryComponent;
@@ -13,7 +14,6 @@ describe('YourPlanSummaryComponent', () => {
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
-            investmentPounds: 199,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
             minimumCostSavingPoundsPerYear: 89,
@@ -33,10 +33,10 @@ describe('YourPlanSummaryComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(199, 199, true)
         },
         {
-            investmentPounds: 999,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
             minimumCostSavingPoundsPerYear: 180,
@@ -56,10 +56,10 @@ describe('YourPlanSummaryComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(999, 999, true)
         },
         {
-            investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             minimumCostSavingPoundsPerYear: 9,
@@ -79,7 +79,8 @@ describe('YourPlanSummaryComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(20, 20, true)
         }
     ];
 

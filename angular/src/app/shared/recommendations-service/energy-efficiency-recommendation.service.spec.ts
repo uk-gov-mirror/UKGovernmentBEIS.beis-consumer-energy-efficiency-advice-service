@@ -1,6 +1,7 @@
 import {EnergyEfficiencyRecommendationService} from "./energy-efficiency-recommendation.service";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {EnergyEfficiencyRecommendation} from "./energy-efficiency-recommendation";
+import {InstallationCost} from "./installation-cost";
 
 describe('EnergyEfficiencyRecommendationService', () => {
     const MINIMUM_BEFORE_ROUNDING = 5;
@@ -63,7 +64,6 @@ describe('EnergyEfficiencyRecommendationService', () => {
         minimumCostSavingPoundsPerYear: number, maximumCostSavingPoundsPerYear
     ): EnergyEfficiencyRecommendation {
         return {
-            investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             minimumCostSavingPoundsPerYear: minimumCostSavingPoundsPerYear,
@@ -83,7 +83,8 @@ describe('EnergyEfficiencyRecommendationService', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(20, 20, true)
         };
     }
 });

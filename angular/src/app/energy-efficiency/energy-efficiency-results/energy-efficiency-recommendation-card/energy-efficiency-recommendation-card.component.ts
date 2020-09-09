@@ -19,7 +19,7 @@ import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-
 export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     isExpandedView: boolean = false;
-    roundedInvestmentRequired: number;
+    investmentRequiredString: string;
     tags: EnergyEfficiencyRecommendationTag[];
     isMouseOverAddToPlanButton: boolean = false;
     isFocusedAddToPlanButton: boolean = false;
@@ -44,7 +44,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.roundedInvestmentRequired = RoundingService.roundCostValue(this.recommendation.investmentPounds);
+        this.investmentRequiredString = this.recommendation.installationCost.getInvestmentRequiredString();
         this.tags = getActiveTags(this.recommendation.tags)
             .filter(t => this.displayableTags.includes(t));
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);

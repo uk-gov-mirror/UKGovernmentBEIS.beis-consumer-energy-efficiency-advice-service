@@ -206,7 +206,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 0,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
             const fitMeasureCode = 'U';
 
@@ -231,7 +232,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 0,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
             const fitMeasureCode = 'U';
 
@@ -256,7 +258,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 100,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
 
             // when
@@ -280,7 +283,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 0,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
 
             // when
@@ -304,7 +308,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 0,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
 
             // when
@@ -329,7 +334,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 0,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
 
             // when
@@ -354,7 +360,8 @@ describe('GrantEligibilityService', () => {
                 'RHI': 0,
                 'lifetime': 40,
                 'min_installation_cost': 500,
-                'max_installation_cost': 1500
+                'max_installation_cost': 1500,
+                'isBreRange': true
             };
 
             // when

@@ -15,6 +15,7 @@ import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
+import {InstallationCost} from "../../../shared/recommendations-service/installation-cost";
 
 describe('EnergyEfficiencyRecommendationCardComponent', () => {
     let component: EnergyEfficiencyRecommendationCardComponent;
@@ -31,7 +32,6 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
     };
 
     const recommendation: EnergyEfficiencyRecommendation = {
-        investmentPounds: 200,
         lifetimeYears: 40,
         costSavingPoundsPerYear: 100,
         minimumCostSavingPoundsPerYear: 90,
@@ -51,7 +51,8 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         isAddedToPlan: false,
         recommendationID: '',
         isMeasure: true,
-        trustMarkTradeCodes: []
+        trustMarkTradeCodes: [],
+        installationCost: new InstallationCost(100, 300, true)
     };
 
     beforeEach(async(() => {

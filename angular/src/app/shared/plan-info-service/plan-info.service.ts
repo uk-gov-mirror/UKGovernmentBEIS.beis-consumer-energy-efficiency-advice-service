@@ -23,17 +23,26 @@ export class PlanInfoService {
         const recommendations = recommendationsInPlan
             .map(r => {
                 if (r.isMeasure) {
-                    return {
-                        measureSlug: r.recommendationID,
-                        nationalGrantForMeasureId: (r.grant && r.grant.grantId),
-                        investmentPounds: r.investmentPounds,
-                        minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
-                        maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
-                    };
+                        return {
+                            measureSlug: r.recommendationID,
+                            nationalGrantForMeasureId: (r.grant && r.grant.grantId),
+                            installationCost: {
+                                estimatedInvestment: r.installationCost.getEstimatedInvestment(),
+                                installationCostRange: {
+                                    min: r.installationCost.min,
+                                    max: r.installationCost.max,
+                                    isBreRange: r.installationCost.isBreRange
+                                }
+                            },
+                            minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
+                            maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
+                        };
                 } else {
                     return {
                         grantSlug: r.recommendationID,
-                        investmentPounds: r.investmentPounds,
+                        installationCost: {
+                            estimatedInvestment: r.installationCost.getEstimatedInvestment()
+                        },
                         minimumCostSavingPoundsPerYear: r.minimumCostSavingPoundsPerYear,
                         maximumCostSavingPoundsPerYear: r.maximumCostSavingPoundsPerYear
                     };

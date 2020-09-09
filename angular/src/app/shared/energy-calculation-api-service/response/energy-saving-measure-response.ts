@@ -7,6 +7,7 @@ export interface EnergySavingMeasureResponse extends MeasureResponse {
     min_installation_cost: number;
     FIT: number;
     RHI: number;
+    isBreRange: boolean;
 }
 
 export function isEnergySavingMeasureResponse(measure: MeasureResponse): measure is EnergySavingMeasureResponse {

@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
-import {RoundingService} from "../../../shared/rounding-service/rounding.service";
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
 import {TenureType} from "../../../questionnaire/questions/tenure-type-question/tenure-type";
 import {ResponseData} from "../../../shared/response-data/response-data";
@@ -44,8 +43,8 @@ export class RecommendationWithStepsCardComponent implements OnInit {
         this.loadTrustMarkInstallers();
     }
 
-    getRoundedInvestment(recommendation: EnergyEfficiencyRecommendation) {
-        return RoundingService.roundCostValue(recommendation.investmentPounds);
+    getInvestmentRequiredString() {
+        return this.recommendation.installationCost.getInvestmentRequiredString();
     }
 
     get showMonthlySavings() {

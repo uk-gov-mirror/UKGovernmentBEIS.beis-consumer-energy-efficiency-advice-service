@@ -77,6 +77,16 @@
           max-width: 100%;
           padding: 20px;
         }
+
+        .investment-required-card {
+          ::ng-deep .data-card {
+            align-items: center;
+
+            .value-container {
+              text-align: right;
+            }
+          }
+        }
       }
     }
   }
@@ -131,6 +141,10 @@
           &:last-child {
             padding-right: $desktop-summary-padding;
           }
+        }
+
+        .investment-required-card {
+          text-align: center;
         }
       }
 

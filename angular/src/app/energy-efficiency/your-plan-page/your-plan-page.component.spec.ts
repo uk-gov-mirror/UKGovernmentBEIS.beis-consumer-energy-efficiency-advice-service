@@ -32,6 +32,7 @@ import {PageTitleService} from "../../shared/page-title-service/page-title.servi
 import {InstallerSearchService} from "../../shared/installer-search-service/installer-search.service";
 import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -39,7 +40,6 @@ describe('YourPlanPageComponent', () => {
 
     const recommendations: EnergyEfficiencyRecommendation[] = [
         {
-            investmentPounds: 199,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 99,
             minimumCostSavingPoundsPerYear: 89,
@@ -70,10 +70,10 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(199, 199, true)
         },
         {
-            investmentPounds: 999,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 200,
             minimumCostSavingPoundsPerYear: 180,
@@ -93,10 +93,10 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(999, 999, true)
         },
         {
-            investmentPounds: 20,
             lifetimeYears: 40,
             costSavingPoundsPerYear: 10,
             minimumCostSavingPoundsPerYear: 9,
@@ -116,7 +116,8 @@ describe('YourPlanPageComponent', () => {
             isAddedToPlan: false,
             recommendationID: '',
             isMeasure: true,
-            trustMarkTradeCodes: []
+            trustMarkTradeCodes: [],
+            installationCost: new InstallationCost(20, 20, true)
         }
     ];
 

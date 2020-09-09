@@ -280,7 +280,7 @@ public class EnergySavingPlanController {
         templateContext.setVariable("ghgEligibleSecondaryValue", GHG_SECONDARY.getValue());
 
         double totalInvestment = recommendations.stream()
-                .mapToDouble(r -> r.investmentPounds).sum();
+                .mapToDouble(r -> r.installationCost.estimatedInvestment).sum();
 
         templateContext.setVariable("roundedTotalInvestmentRequired",
                 roundAndFormatCostValue(totalInvestment));
@@ -464,13 +464,27 @@ public class EnergySavingPlanController {
          */
         String nationalGrantForMeasureId;
 
-        Double investmentPounds;
+        InstallationCost installationCost;
         /**
          * If a measure, this is `costSavingPoundsPerYear`, adjusted by 'uncertainty'
          * If a grant, this is `calculator.getStandaloneAnnualPaymentPounds` adjusted by 'uncertainty'
          */
         Double minimumCostSavingPoundsPerYear;
         Double maximumCostSavingPoundsPerYear;
+    }
+
+    @Value
+    @Builder
+    private static class InstallationCost {
+        Double estimatedInvestment;
+        Range installationCostRange;
+    }
+
+    @Value
+    private static class Range {
+        Double min;
+        Double max;
+        Boolean isBreRange;
     }
 
     /**
@@ -482,7 +496,6 @@ public class EnergySavingPlanController {
     @SuppressWarnings("checkstyle:visibilitymodifier")
     private static class EnergyEfficiencyRecommendation {
 
-        Double investmentPounds;
         Double minimumCostSavingPoundsPerYear;
         Double maximumCostSavingPoundsPerYear;
         Double energySavingKwhPerYear;
@@ -498,6 +511,7 @@ public class EnergySavingPlanController {
         String recommendationID;
         String measureCode;
         List<String> trustMarkTradeCodes;
+        InstallationCost installationCost;
 
         /**
          * Keep this in sync with energy-efficiency-recommendation.ts `fromMeasure`
@@ -534,7 +548,7 @@ public class EnergySavingPlanController {
 
             return EnergyEfficiencyRecommendation.builder()
                     .tags(tags)
-                    .investmentPounds(recommendation.investmentPounds)
+                    .installationCost(recommendation.installationCost)
                     .minimumCostSavingPoundsPerYear(recommendation.minimumCostSavingPoundsPerYear)
                     .maximumCostSavingPoundsPerYear(recommendation.maximumCostSavingPoundsPerYear)
                     .readMoreRoute(
@@ -564,7 +578,7 @@ public class EnergySavingPlanController {
 
             return EnergyEfficiencyRecommendation.builder()
                     .tags(EnergyEfficiencyRecommendationTag.GRANT.getValue())
-                    .investmentPounds(0.0)
+                    .installationCost(InstallationCost.builder().estimatedInvestment(0.0).build())
                     .minimumCostSavingPoundsPerYear(
                             defaultIfNull(recommendation.minimumCostSavingPoundsPerYear, 0.0))
                     .maximumCostSavingPoundsPerYear(
@@ -584,8 +598,23 @@ public class EnergySavingPlanController {
                     .build();
         }
 
+        public String getInvestmentRequiredString() {
+            Range range = installationCost.installationCostRange;
+            if (range != null && !range.isBreRange) {
+                return getRoundedInvestmentRange();
+            } else if (installationCost.estimatedInvestment >= 0) {
+                return getRoundedInvestment();
+            } else {
+                return "-";
+            }
+        }
+
         public String getRoundedInvestment() {
-            return roundAndFormatCostValue(investmentPounds);
+            return roundAndFormatCostValue(installationCost.estimatedInvestment);
+        }
+
+        public String getRoundedInvestmentRange() {
+            return roundAndFormatCostValueRange(installationCost.installationCostRange.min, installationCost.installationCostRange.max);
         }
 
         public String getRoundedSavings(boolean showMonthlySavings) {

@@ -97,7 +97,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
 
     private getRoundedInvestmentRequired(): number {
         const investmentCosts = this.recommendations
-            .map(recommendation => (recommendation.investmentPounds));
+            .map(recommendation => (recommendation.installationCost.getEstimatedInvestment()));
         const totalCost = sum(investmentCosts);
         return RoundingService.roundCostValue(totalCost);
     }

@@ -81,7 +81,8 @@ describe('RecommendationsService', () => {
                 cost_saving: 0,
                 uncertainty: 0,
                 FIT: 0,
-                RHI: 0
+                RHI: 0,
+                isBreRange: false
             }
         },
         // Ground source heat pump.
@@ -96,7 +97,8 @@ describe('RecommendationsService', () => {
                 cost_saving: 0,
                 uncertainty: 0,
                 FIT: 0,
-                RHI: 0
+                RHI: 0,
+                isBreRange: false
             }
         }
     ];
@@ -262,7 +264,7 @@ describe('RecommendationsService', () => {
                     EnergyEfficiencyRecommendationTag.Grant;
                 expect(userRecommendations[8].tags).toEqual(expectedTags);
                 expect(userRecommendations[8].lifetimeYears).toEqual(30);
-                expect(userRecommendations[8].investmentPounds).toEqual(750);
+                expect(userRecommendations[8].installationCost.getEstimatedInvestment()).toEqual(750);
             });
         }));
 
@@ -324,7 +326,7 @@ describe('RecommendationsService', () => {
             // then
             recommendationsObservable.toPromise().then(recommendations => {
                 const actualRecommendations = recommendations.userRecommendations
-                    .map(rec => [rec.investmentPounds, rec.lifetimeYears]);
+                    .map(rec => [rec.installationCost && rec.installationCost.getEstimatedInvestment(), rec.lifetimeYears]);
                 expectedMeasures.forEach(measure => expect(actualRecommendations).toContain(measure));
             });
         }));
