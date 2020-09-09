@@ -14,6 +14,7 @@ import {
     getActiveTags
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-recommendation-with-steps-card',
@@ -30,7 +31,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     @Input() recommendation: EnergyEfficiencyRecommendation;
     hasGHGTag: boolean = false;
     loadingInstallerDetails: boolean = false;
-    installers: Installer[];
+    installers: Installer[] = [];
 
     constructor(private responseData: ResponseData,
                 private googleAnalyticsService: GoogleAnalyticsService,
@@ -75,12 +76,17 @@ export class RecommendationWithStepsCardComponent implements OnInit {
         if (this.hasGHGTag && this.recommendation.trustMarkTradeCodes.length) {
             this.loadingInstallerDetails = true;
             this.installerSearchService.fetchInstallerDetails(this.responseData.postcode, this.recommendation.trustMarkTradeCodes)
-                .subscribe(
+                .pipe(
+                    finalize(() => {
+                        this.loadingInstallerDetails = false;
+                    })
+                ).subscribe(
                     response => {
                         this.installers = response.data.slice(0, 3);
                     },
-                    undefined,
-                    () => this.loadingInstallerDetails = false
+                    () => {
+                        this.installers = [];
+                    }
                 );
         }
     }
