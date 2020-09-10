@@ -280,7 +280,14 @@ public class EnergySavingPlanController {
         templateContext.setVariable("ghgEligibleSecondaryValue", GHG_SECONDARY.getValue());
 
         double totalInvestment = recommendations.stream()
-                .mapToDouble(r -> r.installationCost.estimatedInvestment).sum();
+                .mapToDouble(r -> {
+                    if (r.installationCost != null && r.installationCost.estimatedInvestment != null) {
+                        return r.installationCost.estimatedInvestment;
+                    }
+                    else {
+                        return 0.0;
+                    }
+                }).sum();
 
         templateContext.setVariable("roundedTotalInvestmentRequired",
                 roundAndFormatCostValue(totalInvestment));

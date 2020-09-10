@@ -146,8 +146,9 @@
   }
   @include desktop() {
     @include is-vertical-app-card($padding: 10px, $heading-height: 20px, $value-height: 70px);
-    
+
     .value-container {
+      // IE needs this otherwise the value inside this container will overflow instead of wrapping
       width: 100%;
     }
   }
