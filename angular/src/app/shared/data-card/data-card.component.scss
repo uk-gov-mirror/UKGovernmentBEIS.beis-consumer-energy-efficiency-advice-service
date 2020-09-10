@@ -146,5 +146,9 @@
   }
   @include desktop() {
     @include is-vertical-app-card($padding: 10px, $heading-height: 20px, $value-height: 70px);
+    
+    .value-container {
+      width: 100%;
+    }
   }
 }
