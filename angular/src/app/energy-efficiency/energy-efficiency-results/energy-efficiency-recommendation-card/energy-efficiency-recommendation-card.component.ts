@@ -3,7 +3,7 @@ import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-se
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
-    getTagDescription
+    getTagDescription, GHG_ONLY_TAGS
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
@@ -32,10 +32,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         EnergyEfficiencyRecommendationTag.Grant,
         EnergyEfficiencyRecommendationTag.FundingAvailable
     ];
-    private static readonly ghgOnlyTags = [
-        EnergyEfficiencyRecommendationTag.GHGPrimary,
-        EnergyEfficiencyRecommendationTag.GHGSecondary
-    ];
 
     constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
@@ -51,7 +47,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         this.displayableTags = EnergyEfficiencyRecommendationCardComponent.alwaysDisplayableTags;
 
         if (this.shouldShowGhgContext) {
-            this.displayableTags = this.displayableTags.concat(EnergyEfficiencyRecommendationCardComponent.ghgOnlyTags);
+            this.displayableTags = this.displayableTags.concat(GHG_ONLY_TAGS);
         }
 
         this.tags = this.recommendation.tags.filter(t => this.displayableTags.includes(t));
