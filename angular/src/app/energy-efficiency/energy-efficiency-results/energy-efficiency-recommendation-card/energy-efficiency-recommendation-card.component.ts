@@ -18,7 +18,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
-    @Input() ghgEligible: boolean = true;
+    @Input() shouldShowGhgContext: boolean = true;
 
     isExpandedView: boolean = false;
     investmentRequiredString: string;
@@ -50,13 +50,11 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     initTags() {
         this.displayableTags = EnergyEfficiencyRecommendationCardComponent.alwaysDisplayableTags;
 
-        if (this.ghgEligible) {
+        if (this.shouldShowGhgContext) {
             this.displayableTags = this.displayableTags.concat(EnergyEfficiencyRecommendationCardComponent.ghgOnlyTags);
         }
 
         this.tags = this.recommendation.tags.filter(t => this.displayableTags.includes(t));
-        console.log("Recommendations: ", this.recommendation.tags);
-        console.log("Displayed tags: ", this.tags);
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {

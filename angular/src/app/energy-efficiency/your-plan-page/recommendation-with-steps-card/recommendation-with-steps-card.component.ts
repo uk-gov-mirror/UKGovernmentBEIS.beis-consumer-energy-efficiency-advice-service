@@ -21,10 +21,10 @@ import { finalize } from 'rxjs/operators';
 })
 export class RecommendationWithStepsCardComponent implements OnInit {
 
-    displayableTags: EnergyEfficiencyRecommendationTag[] = [];
+    displayableTags: EnergyEfficiencyRecommendationTag[];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
-    @Input() shouldShowGHGContext: boolean = true;
+    @Input() shouldShowGhgContext: boolean = true;
 
     hasGHGTag: boolean = false;
     loadingInstallerDetails: boolean = false;
@@ -36,9 +36,9 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.shouldShowGHGContext) {
-            this.displayableTags = GHG_ONLY_TAGS;
-        }
+        this.displayableTags = this.shouldShowGhgContext
+            ? GHG_ONLY_TAGS
+            : [];
         this.hasGHGTag = GreenHomesGrantService.hasGHGTag(this.recommendation.tags);
         this.loadTrustMarkInstallers();
     }
