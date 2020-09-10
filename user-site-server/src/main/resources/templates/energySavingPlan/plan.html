@@ -107,10 +107,10 @@
                                 <input type="text" />
                             </div>
                         </div>
-                        <div class="ghg-tag ghg-tag--primary" th:if="${recommendation.tags.contains(ghgEligiblePrimary)}">
+                        <div class="ghg-tag ghg-tag--primary" th:if="${shouldShowGhgContext and recommendation.tags.contains(ghgEligiblePrimary)}">
                             GHG Eligible (Primary)
                         </div>
-                        <div class="ghg-tag ghg-tag--secondary" th:if="${recommendation.tags.contains(ghgEligibleSecondary)}">
+                        <div class="ghg-tag ghg-tag--secondary" th:if="${shouldShowGhgContext and recommendation.tags.contains(ghgEligibleSecondary)}">
                             GHG Eligible (Secondary)
                         </div>
                     </div>

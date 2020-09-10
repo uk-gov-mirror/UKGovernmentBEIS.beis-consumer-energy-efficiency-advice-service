@@ -2,12 +2,15 @@ import {ResponseData} from "../response-data/response-data";
 import {RecommendationsService} from "../recommendations-service/recommendations.service";
 import {Injectable} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from "../recommendations-service/energy-efficiency-recommendation";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 
 @Injectable()
 export class PlanInfoService {
 
     constructor(private responseData: ResponseData,
-                private recommendationsService: RecommendationsService) {
+                private recommendationsService: RecommendationsService,
+                private greenHomesGrantService: GreenHomesGrantService) {
     }
 
     public getUserPlanInfo() {
@@ -53,6 +56,7 @@ export class PlanInfoService {
             recommendations: recommendations,
             tenureType: this.responseData.tenureType,
             postcode: this.responseData.postcode,
+            shouldShowGhgContext: this.greenHomesGrantService.getEligibility() !== GreenHomesGrantEligibility.Ineligible
         };
     }
 }

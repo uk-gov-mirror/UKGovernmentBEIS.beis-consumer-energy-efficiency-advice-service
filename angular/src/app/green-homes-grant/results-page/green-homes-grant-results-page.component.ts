@@ -36,15 +36,8 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
             return;
         }
 
-        this.greenHomesGrantService.getEligibility()
-            .subscribe(
-                eligibilityByGrant => this.onLoadingComplete(eligibilityByGrant),
-                (err) => {
-                    this.errorMessage = "Sorry, we can't show you results as it seems that you have " +
-                        "not completed the questionnaire, or something has gone wrong.";
-                    this.displayErrorMessage(err);
-                }
-            );
+        this.status = this.greenHomesGrantService.getEligibility();
+        this.isLoading = false;
     }
 
     get isTenant(): boolean {
@@ -57,11 +50,6 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
 
     get notEngland(): boolean {
         return !this.responseData.englishProperty;
-    }
-
-    private onLoadingComplete(eligibility: GreenHomesGrantEligibility) {
-        this.status = eligibility;
-        this.isLoading = false;
     }
 
     private displayErrorMessage(err: any): void {

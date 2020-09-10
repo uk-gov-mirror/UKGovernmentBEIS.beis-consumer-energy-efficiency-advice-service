@@ -74,8 +74,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
 
         this.userStateService.saveState();
-        this.greenHomesGrantService.getEligibility()
-            .subscribe(eligible => { this.isEligibleForGreenHomesGrant = eligible !== GreenHomesGrantEligibility.Ineligible; });
+        this.isEligibleForGreenHomesGrant = this.greenHomesGrantService.getEligibility() !== GreenHomesGrantEligibility.Ineligible;
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {

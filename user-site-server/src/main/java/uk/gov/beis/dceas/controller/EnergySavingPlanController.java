@@ -130,8 +130,12 @@ public class EnergySavingPlanController {
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
 
         PlanInfo planInfo = request.getPlanInfo();
-        PdfUserRecommendationParams pdfUserRecommendationParams =
-                new PdfUserRecommendationParams(planInfo.getRecommendations(), planInfo.getTenureType(), planInfo.postcode);
+        PdfUserRecommendationParams pdfUserRecommendationParams = new PdfUserRecommendationParams(
+                planInfo.getRecommendations(),
+                planInfo.getTenureType(),
+                planInfo.postcode,
+                planInfo.shouldShowGhgContext
+        );
 
         writePlanToOutputStream(pdfUserRecommendationParams, pdfBuffer, httpRequest, response, locale);
 
@@ -168,7 +172,7 @@ public class EnergySavingPlanController {
 
         PdfRecommendationParams pdfRecommendationParams = forLandlord
                 ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode)
-                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode);
+                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode, request.shouldShowGhgContext);
 
         downloadPlan(pdfRecommendationParams, httpRequest, response, locale);
     }
@@ -273,9 +277,10 @@ public class EnergySavingPlanController {
 
         templateContext.setVariable("recommendations", recommendations);
         templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
-        templateContext.setVariable("isGhgEligible", recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
+        templateContext.setVariable("isGhgEligible", pdfRecommendationParams.shouldShowGhgContext() && recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
         templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
         templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
+        templateContext.setVariable("shouldShowGhgContext", pdfRecommendationParams.shouldShowGhgContext());
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> r.installationCost.estimatedInvestment).sum();
@@ -433,6 +438,8 @@ public class EnergySavingPlanController {
         Integer tenureType;
         @NotNull
         String postcode;
+        @NotNull
+        boolean shouldShowGhgContext;
     }
 
     /**

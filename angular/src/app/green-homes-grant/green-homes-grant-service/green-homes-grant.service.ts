@@ -13,18 +13,16 @@ import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 export class GreenHomesGrantService {
 
     private cachedResponseData: ResponseData;
-    private _eligibility: Observable<GreenHomesGrantEligibility>;
+    private _eligibility: GreenHomesGrantEligibility;
 
-    constructor(
-        private responseData: ResponseData,
-    ) {}
+    constructor(private responseData: ResponseData,) {}
 
     public static hasGHGTag(tags) {
         return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary)
             || tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary);
     }
 
-    public getEligibility(): Observable<GreenHomesGrantEligibility> {
+    public getEligibility(): GreenHomesGrantEligibility {
         if (!isEqual(this.responseData, this.cachedResponseData) || !this._eligibility) {
             this.cachedResponseData = clone(this.responseData);
             this._eligibility = GreenHomesGrantService.calculateEligibility(this.responseData);
@@ -32,16 +30,16 @@ export class GreenHomesGrantService {
         return this._eligibility;
     }
 
-    private static calculateEligibility(responseData: ResponseData): Observable<GreenHomesGrantEligibility> {
+    private static calculateEligibility(responseData: ResponseData): GreenHomesGrantEligibility {
         if (!responseData.englishProperty || responseData.newBuild || responseData.ownsHome === OwnHome.Tenant) {
-            return Observable.of(GreenHomesGrantEligibility.Ineligible);
+            return GreenHomesGrantEligibility.Ineligible;
         }
 
         if (GreenHomesGrantService.receivesAnyBenefit(responseData)) {
-            return Observable.of(GreenHomesGrantEligibility.FullyEligible);
+            return GreenHomesGrantEligibility.FullyEligible;
         }
 
-        return Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
+        return GreenHomesGrantEligibility.PartiallyEligible;
     }
 
     private static receivesAnyBenefit(responseData: ResponseData): boolean {

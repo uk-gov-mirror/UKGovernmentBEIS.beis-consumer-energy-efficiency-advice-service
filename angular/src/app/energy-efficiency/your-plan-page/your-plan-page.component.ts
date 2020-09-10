@@ -23,7 +23,7 @@ export class YourPlanPageComponent implements OnInit {
     localAuthorityName: string;
     isError: boolean = false;
     errorMessage: string;
-    shouldShowGHGContext: boolean = false;
+    shouldShowGhgContext: boolean = false;
     ghgEligibility: GreenHomesGrantEligibility;
 
     constructor(private recommendationsService: RecommendationsService,
@@ -85,16 +85,13 @@ export class YourPlanPageComponent implements OnInit {
                 error => this.handleLocalAuthorityServiceError(error)
             );
 
-        this.greenHomesGrantService.getEligibility()
-            .subscribe(eligibility => {
-                this.ghgEligibility = eligibility;
-                this.shouldShowGHGContext = eligibility !== GreenHomesGrantEligibility.Ineligible &&
-                    this.recommendationsService.getUserRecommendationsInPlan()
-                        .concat(this.recommendationsService.getLandlordRecommendationsInPlan())
-                        .some(
-                            recommendation => GreenHomesGrantService.hasGHGTag(recommendation.tags)
-                        );
-            });
+        this.ghgEligibility = this.greenHomesGrantService.getEligibility();
+        this.shouldShowGhgContext = this.ghgEligibility !== GreenHomesGrantEligibility.Ineligible &&
+            this.recommendationsService.getUserRecommendationsInPlan()
+                .concat(this.recommendationsService.getLandlordRecommendationsInPlan())
+                .some(
+                    recommendation => GreenHomesGrantService.hasGHGTag(recommendation.tags)
+                );
     }
 
     handleLocalAuthorityServiceResponse(response: LocalAuthority) {
