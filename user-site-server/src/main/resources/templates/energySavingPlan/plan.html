@@ -107,11 +107,10 @@
                                 <input type="text" />
                             </div>
                         </div>
-                        <!-- ThymeLeaf doesn't support bitwise operations so we do this nonsense -->
-                        <div class="ghg-tag ghg-tag--primary" th:if="${(recommendation.tags / ghgEligiblePrimaryValue) % 2 > 0}">
+                        <div class="ghg-tag ghg-tag--primary" th:if="${recommendation.tags.contains(ghgEligiblePrimary)}">
                             GHG Eligible (Primary)
                         </div>
-                        <div class="ghg-tag ghg-tag--secondary" th:if="${(recommendation.tags / ghgEligibleSecondaryValue) % 2 > 0}">
+                        <div class="ghg-tag ghg-tag--secondary" th:if="${recommendation.tags.contains(ghgEligibleSecondary)}">
                             GHG Eligible (Secondary)
                         </div>
                     </div>

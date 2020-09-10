@@ -260,8 +260,10 @@ describe('RecommendationsService', () => {
                 expect(userRecommendations[8].readMoreRoute).toEqual('/measures/meta_solar_photovoltaic_panels');
                 expect(userRecommendations[8].iconPath).toBe(EnergySavingMeasureContentService.measureIcons['U']);
                 expect(userRecommendations[8].advantages).toEqual(['Green', 'Cost effective']);
-                const expectedTags = EnergyEfficiencyRecommendationTag.LongerTerm |
-                    EnergyEfficiencyRecommendationTag.Grant;
+                const expectedTags = [
+                    EnergyEfficiencyRecommendationTag.LongerTerm,
+                    EnergyEfficiencyRecommendationTag.Grant
+                ];
                 expect(userRecommendations[8].tags).toEqual(expectedTags);
                 expect(userRecommendations[8].lifetimeYears).toEqual(30);
                 expect(userRecommendations[8].installationCost.getEstimatedInvestment()).toEqual(750);
@@ -293,9 +295,9 @@ describe('RecommendationsService', () => {
             recommendationsObservable.toPromise().then((recommendations) => {
                 const userRecommendations = recommendations.userRecommendations;
                 userRecommendations.filter((rec, index) => index < 5)
-                    .forEach(rec => expect(rec.tags & EnergyEfficiencyRecommendationTag.TopRecommendations).toBeTruthy());
+                    .forEach(rec => expect(rec.tags.includes(EnergyEfficiencyRecommendationTag.TopRecommendations)).toBeTruthy());
                 userRecommendations.filter((rec, index) => index >= 5)
-                    .forEach(rec => expect(rec.tags & EnergyEfficiencyRecommendationTag.TopRecommendations).toBeFalsy());
+                    .forEach(rec => expect(rec.tags.includes(EnergyEfficiencyRecommendationTag.TopRecommendations)).toBeFalsy());
             });
         }));
 

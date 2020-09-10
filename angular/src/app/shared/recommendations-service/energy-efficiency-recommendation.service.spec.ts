@@ -75,7 +75,7 @@ describe('EnergyEfficiencyRecommendationService', () => {
             summary: 'No description available',
             whatItIs: '',
             isItRightForMe: '',
-            tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
+            tags: [EnergyEfficiencyRecommendationTag.LongerTerm, EnergyEfficiencyRecommendationTag.Grant],
             grant: null,
             advantages: [],
             steps: [],

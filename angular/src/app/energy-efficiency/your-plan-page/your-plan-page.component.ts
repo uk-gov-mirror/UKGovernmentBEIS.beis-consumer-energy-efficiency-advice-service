@@ -10,6 +10,7 @@ import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-dis
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
+import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -47,13 +48,13 @@ export class YourPlanPageComponent implements OnInit {
 
     get numberOfPrimaryRecommendations(): number {
         return this.recommendationsService.getRecommendationsInPlan().filter(
-            r => this.greenHomesGrantService.hasGHGPrimaryTag(r.tags)
+            r => r.tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary)
         ).length;
     }
 
     get numberOfSecondaryRecommendations(): number {
         return this.recommendationsService.getRecommendationsInPlan().filter(
-            r => this.greenHomesGrantService.hasGHGSecondaryTag(r.tags)
+            r => r.tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary)
         ).length;
     }
 
@@ -87,11 +88,11 @@ export class YourPlanPageComponent implements OnInit {
         this.greenHomesGrantService.getEligibility()
             .subscribe(eligibility => {
                 this.ghgEligibility = eligibility;
-                this.shouldShowGHGContext =
+                this.shouldShowGHGContext = eligibility !== GreenHomesGrantEligibility.Ineligible &&
                     this.recommendationsService.getUserRecommendationsInPlan()
                         .concat(this.recommendationsService.getLandlordRecommendationsInPlan())
                         .some(
-                            recommendation => this.greenHomesGrantService.hasGHGTag(recommendation.tags)
+                            recommendation => GreenHomesGrantService.hasGHGTag(recommendation.tags)
                         );
             });
     }

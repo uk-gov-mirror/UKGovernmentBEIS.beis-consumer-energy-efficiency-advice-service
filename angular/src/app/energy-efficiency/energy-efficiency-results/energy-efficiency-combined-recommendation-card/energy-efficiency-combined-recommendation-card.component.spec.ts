@@ -101,7 +101,7 @@ describe('EnergyEfficiencyCombinedRecommendationCardComponent', () => {
             summary: 'No description available',
             whatItIs: '',
             isItRightForMe: '',
-            tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
+            tags: [EnergyEfficiencyRecommendationTag.LongerTerm, EnergyEfficiencyRecommendationTag.Grant],
             grant: {} as NationalGrantForMeasure,
             advantages: [],
             steps: [],

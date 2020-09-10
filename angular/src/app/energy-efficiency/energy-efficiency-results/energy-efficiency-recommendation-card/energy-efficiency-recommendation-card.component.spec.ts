@@ -43,7 +43,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         summary: 'No description available',
         whatItIs: '',
         isItRightForMe: '',
-        tags: EnergyEfficiencyRecommendationTag.LongerTerm | EnergyEfficiencyRecommendationTag.Grant,
+        tags: [EnergyEfficiencyRecommendationTag.LongerTerm, EnergyEfficiencyRecommendationTag.Grant],
         grant: grant,
         advantages: advantages,
         steps: [],

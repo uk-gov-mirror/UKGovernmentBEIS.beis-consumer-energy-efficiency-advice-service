@@ -40,6 +40,7 @@
                         [recommendation]="recommendation"
                         [showMonthlySavings]="!isOwnerOccupied"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
+                        [ghgEligible]="this.isEligibleForGreenHomesGrant"
                 ></app-energy-efficiency-recommendation-card>
                 <app-energy-efficiency-combined-recommendation-card
                         *ngIf="shouldShowLandlordRecommendation() && getLandlordRecommendations().length"

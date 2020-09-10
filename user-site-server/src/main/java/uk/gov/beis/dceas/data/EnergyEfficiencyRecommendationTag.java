@@ -5,15 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum EnergyEfficiencyRecommendationTag {
-    NONE(0),
-    TOP_RECOMMENDATIONS(1),
-    QUICK_WIN(1 << 1),
-    SMALL_SPEND(1 << 2),
-    LONGER_TERM(1 << 3),
-    GRANT(1 << 4),
-    FUNDING_AVAILABLE(1 << 5),
-    GHG_PRIMARY(1 << 6),
-    GHG_SECONDARY(1 << 7);
+    TOP_RECOMMENDATIONS,
+    QUICK_WIN,
+    SMALL_SPEND,
+    LONGER_TERM,
+    GRANT,
+    FUNDING_AVAILABLE,
+    GHG_PRIMARY,
+    GHG_SECONDARY;
 
     public static final Map<String, EnergyEfficiencyRecommendationTag> RECOMMENDATION_TAGS_BY_JSON_NAME
             = Collections.unmodifiableMap(new HashMap<String, EnergyEfficiencyRecommendationTag>() {{
@@ -23,15 +22,4 @@ public enum EnergyEfficiencyRecommendationTag {
         put("tag_ghg_primary", EnergyEfficiencyRecommendationTag.GHG_PRIMARY);
         put("tag_ghg_secondary", EnergyEfficiencyRecommendationTag.GHG_SECONDARY);
     }});
-
-    private final int value;
-
-    EnergyEfficiencyRecommendationTag(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
 }

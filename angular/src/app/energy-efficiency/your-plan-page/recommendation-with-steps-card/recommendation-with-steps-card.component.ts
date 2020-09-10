@@ -9,8 +9,7 @@ import {InstallerSearchService} from "../../../shared/installer-search-service/i
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
-    getTagDescription,
-    getActiveTags
+    getTagDescription, GHG_ONLY_TAGS
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import { finalize } from 'rxjs/operators';
@@ -22,24 +21,25 @@ import { finalize } from 'rxjs/operators';
 })
 export class RecommendationWithStepsCardComponent implements OnInit {
 
-    displayableTags: EnergyEfficiencyRecommendationTag[] = [
-        EnergyEfficiencyRecommendationTag.GHGPrimary,
-        EnergyEfficiencyRecommendationTag.GHGSecondary
-    ];
+    displayableTags: EnergyEfficiencyRecommendationTag[] = [];
 
     @Input() recommendation: EnergyEfficiencyRecommendation;
+    @Input() shouldShowGHGContext: boolean = true;
+
     hasGHGTag: boolean = false;
     loadingInstallerDetails: boolean = false;
     installers: Installer[] = [];
 
     constructor(private responseData: ResponseData,
                 private googleAnalyticsService: GoogleAnalyticsService,
-                private installerSearchService: InstallerSearchService,
-                private greenHomesGrantService: GreenHomesGrantService) {
+                private installerSearchService: InstallerSearchService) {
     }
 
     ngOnInit() {
-        this.hasGHGTag = this.greenHomesGrantService.hasGHGTag(this.recommendation.tags);
+        if (this.shouldShowGHGContext) {
+            this.displayableTags = GHG_ONLY_TAGS;
+        }
+        this.hasGHGTag = GreenHomesGrantService.hasGHGTag(this.recommendation.tags);
         this.loadTrustMarkInstallers();
     }
 
@@ -60,7 +60,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     }
 
     getTagsToDisplay() {
-        return getActiveTags(this.recommendation.tags).filter(t => this.displayableTags.includes(t));
+        return this.recommendation.tags.filter(t => this.displayableTags.includes(t));
     }
 
     getTagClassName(tag: EnergyEfficiencyRecommendationTag) {
