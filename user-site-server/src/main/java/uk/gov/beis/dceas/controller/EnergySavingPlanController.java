@@ -4,6 +4,7 @@ package uk.gov.beis.dceas.controller;
 import com.google.common.io.Resources;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.var;
 import org.apache.commons.collections4.ListUtils;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -53,6 +54,7 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
+import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_INELIGIBLE;
 import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_PRIMARY;
 import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_SECONDARY;
 import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.RECOMMENDATION_TAGS_BY_JSON_NAME;
@@ -280,6 +282,7 @@ public class EnergySavingPlanController {
         templateContext.setVariable("isGhgEligible", pdfRecommendationParams.shouldShowGhgContext() && recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
         templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
         templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
+        templateContext.setVariable("ghgIneligible", GHG_INELIGIBLE);
         templateContext.setVariable("shouldShowGhgContext", pdfRecommendationParams.shouldShowGhgContext());
 
         double totalInvestment = recommendations.stream()
@@ -405,10 +408,16 @@ public class EnergySavingPlanController {
     }
 
     private static List<EnergyEfficiencyRecommendationTag> getTagsForMeasure(List<String> measureTags) {
-        return measureTags.stream()
+        List<EnergyEfficiencyRecommendationTag> tags = measureTags.stream()
                 .map(RECOMMENDATION_TAGS_BY_JSON_NAME::get)
                 .filter(Objects::nonNull)
                 .collect(toList());
+
+        if (!tags.contains(GHG_PRIMARY) && !tags.contains(GHG_SECONDARY)) {
+            tags.add(GHG_INELIGIBLE);
+        }
+
+        return tags;
     }
 
     @Value
