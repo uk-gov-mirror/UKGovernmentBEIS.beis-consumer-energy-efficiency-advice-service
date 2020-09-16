@@ -39,6 +39,10 @@
   .tag-ghg-secondary {
     @include isTag($background-color: #4C7F14);
   }
+
+  .tag-ghg-ineligible {
+    @include isTag($background-color: #CA4F1A);
+  }
 }
 
 // Breakpoint specific styling
