@@ -1,19 +1,13 @@
 import {Injectable} from '@angular/core';
 import {ResponseData} from '../../shared/response-data/response-data';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/reduce';
-import isEqual from 'lodash-es/isEqual';
-import clone from 'lodash-es/clone';
 import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency/energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 @Injectable()
 export class GreenHomesGrantService {
-
-    private cachedResponseData: ResponseData;
-    private _eligibility: GreenHomesGrantEligibility;
 
     constructor(private responseData: ResponseData,) {}
 
@@ -23,19 +17,11 @@ export class GreenHomesGrantService {
     }
 
     public getEligibility(): GreenHomesGrantEligibility {
-        if (!isEqual(this.responseData, this.cachedResponseData) || !this._eligibility) {
-            this.cachedResponseData = clone(this.responseData);
-            this._eligibility = GreenHomesGrantService.calculateEligibility(this.responseData);
-        }
-        return this._eligibility;
-    }
-
-    private static calculateEligibility(responseData: ResponseData): GreenHomesGrantEligibility {
-        if (!responseData.englishProperty || responseData.newBuild || responseData.ownsHome === OwnHome.Tenant) {
+        if (!this.responseData.englishProperty || this.responseData.newBuild || this.responseData.ownsHome === OwnHome.Tenant) {
             return GreenHomesGrantEligibility.Ineligible;
         }
 
-        if (GreenHomesGrantService.receivesAnyBenefit(responseData)) {
+        if (GreenHomesGrantService.receivesAnyBenefit(this.responseData)) {
             return GreenHomesGrantEligibility.FullyEligible;
         }
 

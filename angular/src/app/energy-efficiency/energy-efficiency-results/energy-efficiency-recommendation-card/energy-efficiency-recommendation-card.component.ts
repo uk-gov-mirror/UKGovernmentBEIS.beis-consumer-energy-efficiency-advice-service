@@ -28,7 +28,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     savingDisplay: string;
     displayableTags: EnergyEfficiencyRecommendationTag[];
 
-    private static readonly alwaysDisplayableTags = [
+    private static readonly ALWAYS_DISPLAYABLE_TAGS = [
         EnergyEfficiencyRecommendationTag.Grant,
         EnergyEfficiencyRecommendationTag.FundingAvailable
     ];
@@ -44,7 +44,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     }
 
     initTags() {
-        this.displayableTags = EnergyEfficiencyRecommendationCardComponent.alwaysDisplayableTags;
+        this.displayableTags = EnergyEfficiencyRecommendationCardComponent.ALWAYS_DISPLAYABLE_TAGS;
 
         if (this.shouldShowGhgContext) {
             this.displayableTags = this.displayableTags.concat(GHG_ONLY_TAGS);

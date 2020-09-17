@@ -9,7 +9,8 @@ import {InstallerSearchService} from "../../../shared/installer-search-service/i
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
-    getTagDescription, GHG_ONLY_TAGS
+    getTagDescription,
+    GHG_ONLY_TAGS
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import { finalize } from 'rxjs/operators';

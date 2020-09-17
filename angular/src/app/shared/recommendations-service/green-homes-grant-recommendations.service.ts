@@ -18,7 +18,7 @@ export interface GreenHomesGrantRecommendation {
     response: EnergySavingMeasureResponse;
 }
 
-const MEASURE_RECOMMENDATION_PREDICATES: { [code: string]: (responseData: ResponseData) => boolean } = {
+const SHOULD_RECOMMEND_MEASURE_WITH_CODE: { [code: string]: (responseData: ResponseData) => boolean } = {
     // Air source heat pump.
     'Z1': shouldRecommendAirSourceHeatPump,
     // Ground source heat pump.
@@ -45,8 +45,8 @@ export class GreenHomesGrantRecommendationsService {
                 return [];
             }
 
-            return Object.keys(MEASURE_RECOMMENDATION_PREDICATES)
-                .filter(code => MEASURE_RECOMMENDATION_PREDICATES[code](this.responseData))
+            return Object.keys(SHOULD_RECOMMEND_MEASURE_WITH_CODE)
+                .filter(code => SHOULD_RECOMMEND_MEASURE_WITH_CODE[code](this.responseData))
                 .map(code => GreenHomesGrantRecommendationsService.buildRecommendation(code, measuresContent))
                 .filter(x => x);
         });
