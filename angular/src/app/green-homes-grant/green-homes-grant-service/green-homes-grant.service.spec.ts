@@ -49,20 +49,14 @@ describe('GreenHomesGrantService', () => {
         it('should return ineligible for non-English addresses', async(() => {
             responseData.englishProperty = false;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.Ineligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.Ineligible);
         }));
 
         it('should return ineligible for new builds', async(() => {
             responseData.englishProperty = true;
             responseData.newBuild = true;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.Ineligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.Ineligible);
         }));
 
         it("should return ineligible if they don't own their home", async(() => {
@@ -70,10 +64,7 @@ describe('GreenHomesGrantService', () => {
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Tenant;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.Ineligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.Ineligible);
         }));
 
         it('should return fully eligible if they own their home and are on non-child benefits', async(() => {
@@ -82,10 +73,7 @@ describe('GreenHomesGrantService', () => {
             responseData.ownsHome = OwnHome.Owner;
             responseData.receiveSocietalBenefits = true;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.FullyEligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.FullyEligible);
         }));
 
         it("should return partially eligible if they are a landlord and it's not a new build", async(() => {
@@ -93,10 +81,7 @@ describe('GreenHomesGrantService', () => {
             responseData.newBuild = false;
             responseData.ownsHome = OwnHome.Landlord;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.PartiallyEligible);
         }));
 
         it('should return partially eligible if they are in England, own their home and have no benefits', async(() => {
@@ -105,10 +90,7 @@ describe('GreenHomesGrantService', () => {
             responseData.ownsHome = OwnHome.Owner;
             responseData.receiveSocietalBenefits = false;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.PartiallyEligible);
         }));
 
         it("should return partially eligible if they say they have benefits, but then don't have any of the benefits on the list",
@@ -123,10 +105,7 @@ describe('GreenHomesGrantService', () => {
             responseData.receiveSocietalBenefits = false;
             responseData.receiveHousingBenefit = false;
 
-            service.getEligibility().toPromise()
-                .then(eligibility => {
-                    expect(eligibility).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-                });
+            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.PartiallyEligible);
         }));
     });
 });

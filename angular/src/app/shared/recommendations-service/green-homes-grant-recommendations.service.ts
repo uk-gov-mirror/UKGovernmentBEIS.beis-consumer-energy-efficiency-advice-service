@@ -18,7 +18,7 @@ export interface GreenHomesGrantRecommendation {
     response: EnergySavingMeasureResponse;
 }
 
-const MEASURE_RECOMMENDATION_PREDICATES: { [code: string]: (responseData: ResponseData) => boolean } = {
+const SHOULD_RECOMMEND_MEASURE_WITH_CODE: { [code: string]: (responseData: ResponseData) => boolean } = {
     // Air source heat pump.
     'Z1': shouldRecommendAirSourceHeatPump,
     // Ground source heat pump.
@@ -40,24 +40,15 @@ export class GreenHomesGrantRecommendationsService {
     }
 
     getGreenHomesGrantRecommendations(): Observable<GreenHomesGrantRecommendation[]> {
-        return Observable.forkJoin(
-            this.greenHomesGrantService.getEligibility(),
-            this.measureService.fetchMeasureDetails()
-        ).mergeMap(([eligibility, measuresContent]) => {
-            if (eligibility === GreenHomesGrantEligibility.Ineligible) {
-                return Observable.of([]);
+        return this.measureService.fetchMeasureDetails().map((measuresContent) => {
+            if (this.greenHomesGrantService.getEligibility() === GreenHomesGrantEligibility.Ineligible) {
+                return [];
             }
-            const recommendations = [];
-            for (const [code, shouldRecommendMeasure] of Object.entries(MEASURE_RECOMMENDATION_PREDICATES)) {
-                if (!shouldRecommendMeasure(this.responseData)) {
-                    continue;
-                }
-                const recommendation = GreenHomesGrantRecommendationsService.buildRecommendation(code, measuresContent);
-                if (recommendation !== null) {
-                    recommendations.push(recommendation);
-                }
-            }
-            return Observable.of(recommendations);
+
+            return Object.keys(SHOULD_RECOMMEND_MEASURE_WITH_CODE)
+                .filter(code => SHOULD_RECOMMEND_MEASURE_WITH_CODE[code](this.responseData))
+                .map(code => GreenHomesGrantRecommendationsService.buildRecommendation(code, measuresContent))
+                .filter(x => x);
         });
     }
 
@@ -71,7 +62,7 @@ export class GreenHomesGrantRecommendationsService {
             parseInt(measure.acf.installation_cost_upper_bound),
             parseInt(measure.acf.lifetime)
         );
-        return { code, response };
+        return {code, response};
     }
 
     private static getResponse(minInstallationCost: number, maxInstallationCost: number, lifetime: number): EnergySavingMeasureResponse {

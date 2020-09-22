@@ -18,7 +18,10 @@ import {TenureType} from "../../questionnaire/questions/tenure-type-question/ten
 import {UserJourneyType} from "../response-data/user-journey-type";
 import {FullMeasuresResponse} from "../energy-calculation-api-service/response/full-measures-response";
 import {EnergyEfficiencyRecommendations} from "./energy-efficiency-recommendations";
-import {GreenHomesGrantRecommendation, GreenHomesGrantRecommendationsService} from "./green-homes-grant-recommendations.service";
+import {
+    GreenHomesGrantRecommendation,
+    GreenHomesGrantRecommendationsService
+} from "./green-homes-grant-recommendations.service";
 
 @Injectable()
 export class RecommendationsService {
@@ -104,9 +107,9 @@ export class RecommendationsService {
     }
 
     private getUserRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
-                                      measuresContent: MeasureContent[],
-                                      habitRecommendations: EnergyEfficiencyRecommendation[],
-                                      grantRecommendations: EnergyEfficiencyRecommendation[]
+                                          measuresContent: MeasureContent[],
+                                          habitRecommendations: EnergyEfficiencyRecommendation[],
+                                          grantRecommendations: EnergyEfficiencyRecommendation[]
     ): Observable<EnergyEfficiencyRecommendation[]> {
         return this.getRecommendationsContent(measures, measuresContent)
             .map(homeImprovementRecommendations => {
@@ -118,7 +121,7 @@ export class RecommendationsService {
     }
 
     private getLandlordRecommendationsContent(measures: MeasuresResponse<EnergySavingMeasureResponse>,
-                                      measuresContent: MeasureContent[]
+                                              measuresContent: MeasureContent[]
     ): Observable<EnergyEfficiencyRecommendation[]> {
         return this.getRecommendationsContent(measures, measuresContent)
             .map(homeImprovementRecommendations => {
@@ -141,7 +144,7 @@ export class RecommendationsService {
                 const measureContent: MeasureContent = measuresContent
                     .find((recommendationTypeDetail) => recommendationTypeDetail.acf.measure_code === measureCode);
                 if (!measureContent) {
-                    console.error(`Recommendation with code ${ measureCode } not recognised`);
+                    console.error(`Recommendation with code ${measureCode} not recognised`);
                     return null;
                 }
                 return this.grantsEligibilityService
@@ -219,7 +222,7 @@ export class RecommendationsService {
                 const recommendationMetadata: MeasureContent = measuresContent
                     .find((recommendationTypeDetail) => recommendationTypeDetail.acf.measure_code === measureCode);
                 if (!recommendationMetadata) {
-                    console.error(`Recommendation with code ${ measureCode } not recognised`);
+                    console.error(`Recommendation with code ${measureCode} not recognised`);
                     return null;
                 }
                 const iconPath = EnergySavingMeasureContentService.measureIcons[measureCode] ||
@@ -238,13 +241,13 @@ export class RecommendationsService {
     private static tagTopRecommendations(recommendations: EnergyEfficiencyRecommendation[]): void {
         recommendations
             .slice(0, RecommendationsService.TOP_RECOMMENDATIONS)
-            .forEach(recommendation => recommendation.tags |= EnergyEfficiencyRecommendationTag.TopRecommendations);
+            .forEach(recommendation => recommendation.tags.push(EnergyEfficiencyRecommendationTag.TopRecommendations));
     }
 
     // The entries in "recommendationArrays" are arrays of recommendations from different sources
     // We interleave them into a single list, taking one from each array in turn until they are exhausted
     private static orderRecommendations(recommendationArrays:
-        (EnergyEfficiencyRecommendation[])[]): EnergyEfficiencyRecommendation[] {
+                                            (EnergyEfficiencyRecommendation[])[]): EnergyEfficiencyRecommendation[] {
         const maxLength = RecommendationsService.getMaxLengthOfRecommendationArrays(recommendationArrays);
         const orderedRecommendations = [];
         for (let i = 0; i < maxLength; i++) {

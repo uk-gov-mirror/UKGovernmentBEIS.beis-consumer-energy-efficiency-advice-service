@@ -27,7 +27,7 @@ If you change anything here, please consider whether anything needs changing the
                 </div>
             </div>
         </div>
-        <div class="ghg-context page-row" *ngIf="shouldShowGHGContext">
+        <div class="ghg-context page-row" *ngIf="shouldShowGhgContext">
             <div class="page-row-content">
                 <h2>Fund improvements with the Green Homes Grant</h2>
                 <p>
@@ -47,7 +47,11 @@ If you change anything here, please consider whether anything needs changing the
         <div class="recommendations user-recommendations page-row">
             <div class="page-row-content">
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
-                    <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
+                    <app-recommendation-with-steps-card
+                            [recommendation]="recommendation"
+                            [shouldShowGhgContext]="shouldShowGhgContext"
+                    >
+                    </app-recommendation-with-steps-card>
                 </div>
             </div>
         </div>
@@ -81,7 +85,7 @@ If you change anything here, please consider whether anything needs changing the
                 </div>
             </div>
         </div>
-        <div class="ghg-context page-row" *ngIf="shouldShowGHGContext">
+        <div class="ghg-context page-row" *ngIf="shouldShowGhgContext">
             <div class="ghg-next-steps page-row-content">
                 <h2>Next steps in applying for the Green Homes Grant</h2>
                 <p>

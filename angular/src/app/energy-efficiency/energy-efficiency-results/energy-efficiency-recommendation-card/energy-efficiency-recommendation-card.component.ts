@@ -2,11 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {
     EnergyEfficiencyRecommendationTag,
-    getActiveTags,
     getTagClassName,
-    getTagDescription
+    getTagDescription, GHG_ONLY_TAGS
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
-import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
@@ -17,6 +15,10 @@ import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-
     styleUrls: ['./energy-efficiency-recommendation-card.component.scss']
 })
 export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
+    @Input() recommendation: EnergyEfficiencyRecommendation;
+    @Input() showMonthlySavings: boolean = true;
+    @Input() showAddToPlanColumn: boolean = true;
+    @Input() shouldShowGhgContext: boolean = true;
 
     isExpandedView: boolean = false;
     investmentRequiredString: string;
@@ -24,30 +26,31 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     isMouseOverAddToPlanButton: boolean = false;
     isFocusedAddToPlanButton: boolean = false;
     savingDisplay: string;
-    displayableTags: EnergyEfficiencyRecommendationTag[] = [
-        EnergyEfficiencyRecommendationTag.Grant,
-        EnergyEfficiencyRecommendationTag.FundingAvailable,
-        EnergyEfficiencyRecommendationTag.GHGPrimary,
-        EnergyEfficiencyRecommendationTag.GHGSecondary
-    ];
+    displayableTags: EnergyEfficiencyRecommendationTag[];
 
-    @Input() recommendation: EnergyEfficiencyRecommendation;
-    @Input() showMonthlySavings: boolean = true;
-    @Input() showAddToPlanColumn: boolean = true;
+    private static readonly ALWAYS_DISPLAYABLE_TAGS = [
+        EnergyEfficiencyRecommendationTag.Grant,
+        EnergyEfficiencyRecommendationTag.FundingAvailable
+    ];
 
     constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
     }
 
-    get showRemove() {
-        return this.isMouseOverAddToPlanButton || this.isFocusedAddToPlanButton;
-    }
-
     ngOnInit() {
         this.investmentRequiredString = this.recommendation.installationCost.getInvestmentRequiredString();
-        this.tags = getActiveTags(this.recommendation.tags)
-            .filter(t => this.displayableTags.includes(t));
+        this.initTags();
         this.savingDisplay = EnergyEfficiencyRecommendationService.getSavingDisplay(this.recommendation, this.showMonthlySavings);
+    }
+
+    initTags() {
+        this.displayableTags = EnergyEfficiencyRecommendationCardComponent.ALWAYS_DISPLAYABLE_TAGS;
+
+        if (this.shouldShowGhgContext) {
+            this.displayableTags = this.displayableTags.concat(GHG_ONLY_TAGS);
+        }
+
+        this.tags = this.recommendation.tags.filter(t => this.displayableTags.includes(t));
     }
 
     getTagDescription(tag: EnergyEfficiencyRecommendationTag) {
@@ -85,6 +88,10 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         return this.energyEfficiencyDisplayService.getRecommendationCardAddToPlanText(
             this.recommendation.isAddedToPlan, this.showRemove
         );
+    }
+
+    get showRemove() {
+        return this.isMouseOverAddToPlanButton || this.isFocusedAddToPlanButton;
     }
 
     toggleAddedToPlan(): void {

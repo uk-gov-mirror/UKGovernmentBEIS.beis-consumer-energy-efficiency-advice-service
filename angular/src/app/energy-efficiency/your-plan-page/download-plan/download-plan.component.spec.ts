@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {SpinnerAndErrorContainerComponent} from "../../../shared/spinner-and-error-container/spinner-and-error-container.component";
 import {DownloadPdfButtonComponent} from "../download-pdf-button/download-pdf-button.component";
 import {PlanInfoService} from "../../../shared/plan-info-service/plan-info.service";
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('DownloadPlanComponent', () => {
     let component: DownloadPlanComponent;
@@ -31,6 +32,7 @@ describe('DownloadPlanComponent', () => {
                 GoogleAnalyticsService,
                 {provide: RecommendationsService, useValue: {getRecommendationsInPlan: () => []}},
                 PlanInfoService,
+                GreenHomesGrantService
             ],
             imports: [
                 InlineSVGModule,

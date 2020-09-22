@@ -9,14 +9,21 @@ public abstract class PdfRecommendationParams {
     // Keep in sync with tenure-type.ts
     private static final int OWNER_TENURE_TYPE = 0;
 
-    private List<SelectedEnergyEfficiencyRecommendation> recommendations;
-    private Integer tenureType;
-    private String postcode;
+    private final List<SelectedEnergyEfficiencyRecommendation> recommendations;
+    private final boolean showGhgContext;
+    private final Integer tenureType;
+    private final String postcode;
 
-    public PdfRecommendationParams(List<SelectedEnergyEfficiencyRecommendation> recommendations, Integer tenureType, String postcode) {
+    public PdfRecommendationParams(
+            List<SelectedEnergyEfficiencyRecommendation> recommendations,
+            Integer tenureType,
+            String postcode,
+            boolean showGhgContext
+    ) {
         this.recommendations = recommendations;
         this.tenureType = tenureType;
         this.postcode = postcode;
+        this.showGhgContext = showGhgContext;
     }
 
     public abstract String getTitle();
@@ -34,5 +41,9 @@ public abstract class PdfRecommendationParams {
 
     public String getPostcode() {
         return postcode;
+    }
+
+    public boolean shouldShowGhgContext() {
+        return showGhgContext;
     }
 }

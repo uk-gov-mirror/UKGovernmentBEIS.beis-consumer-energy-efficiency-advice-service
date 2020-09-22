@@ -36,7 +36,7 @@ export class EnergyEfficiencyRecommendation {
                 public whatItIs: string,
                 public isItRightForMe: string,
                 public iconPath: string,
-                public tags: EnergyEfficiencyRecommendationTag,
+                public tags: EnergyEfficiencyRecommendationTag[],
                 public grant: NationalGrantForMeasure,
                 public advantages: string[],
                 public steps: RecommendationStep[],
@@ -60,16 +60,15 @@ export class EnergyEfficiencyRecommendation {
                        iconClassName: string,
                        grants: NationalGrantForMeasure[]): EnergyEfficiencyRecommendation {
 
-        let tags: EnergyEfficiencyRecommendationTag = getTagsForMeasure(measureContent);
+        const tags: EnergyEfficiencyRecommendationTag[] = getTagsForMeasure(measureContent);
 
-        const shouldIncludeGrantTag = grants && grants.length > 0;
-        if (shouldIncludeGrantTag) {
-            tags |= EnergyEfficiencyRecommendationTag.Grant;
+        if (grants && grants.length) {
+            tags.push(EnergyEfficiencyRecommendationTag.Grant);
         }
 
         const energySavingMeasureResponse = measureResponse as EnergySavingMeasureResponse;
         if (energySavingMeasureResponse.RHI && energySavingMeasureResponse.RHI > 0) {
-            tags |= EnergyEfficiencyRecommendationTag.FundingAvailable;
+            tags.push(EnergyEfficiencyRecommendationTag.FundingAvailable);
         }
 
         const advantages = measureContent.acf.advantages &&
@@ -135,7 +134,7 @@ export class EnergyEfficiencyRecommendation {
             null,
             null,
             EnergyEfficiencyRecommendation.grantIcons[grant.grantId],
-            EnergyEfficiencyRecommendationTag.Grant,
+            [EnergyEfficiencyRecommendationTag.Grant],
             null,
             grant.advantages,
             grant.steps,

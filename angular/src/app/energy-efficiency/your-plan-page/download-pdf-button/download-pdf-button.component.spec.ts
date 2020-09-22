@@ -6,8 +6,9 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 import {PlanInfoService} from "../../../shared/plan-info-service/plan-info.service";
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
-describe('DownloadPlanComponent', () => {
+describe('DownloadPdfButtonComponent', () => {
     let component: DownloadPdfButtonComponent;
     let fixture: ComponentFixture<DownloadPdfButtonComponent>;
 
@@ -25,6 +26,7 @@ describe('DownloadPlanComponent', () => {
                 GoogleAnalyticsService,
                 {provide: RecommendationsService, useValue: {}},
                 PlanInfoService,
+                GreenHomesGrantService
             ],
             imports: [
                 InlineSVGModule,

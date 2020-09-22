@@ -1,17 +1,20 @@
-import values from 'lodash-es/values';
 import {MeasureContent} from '../../../shared/energy-saving-measure-content-service/measure-content';
 
 export enum EnergyEfficiencyRecommendationTag {
-    None = 0,
-    TopRecommendations = 1,
-    QuickWin = 1 << 1,
-    SmallSpend = 1 << 2,
-    LongerTerm = 1 << 3,
-    Grant = 1 << 4,
-    FundingAvailable = 1 << 5,
-    GHGPrimary = 1 << 6,
-    GHGSecondary = 1 << 7
+    TopRecommendations,
+    QuickWin,
+    SmallSpend,
+    LongerTerm,
+    Grant,
+    FundingAvailable,
+    GHGPrimary,
+    GHGSecondary
 }
+
+export const GHG_ONLY_TAGS = [
+    EnergyEfficiencyRecommendationTag.GHGPrimary,
+    EnergyEfficiencyRecommendationTag.GHGSecondary
+];
 
 export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEfficiencyRecommendationTag) {
     switch (energyEfficiencyRecommendationTag) {
@@ -39,28 +42,13 @@ export function getTagClassName(energyEfficiencyRecommendationTag: EnergyEfficie
     }
 }
 
-export function getActiveTags(flagValues: number): EnergyEfficiencyRecommendationTag[] {
-    return values(EnergyEfficiencyRecommendationTag)
-        .map(tag => parseInt(tag))
-        .filter(tag => !isNaN(tag))
-        .filter(tag => tag & flagValues);
+export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficiencyRecommendationTag[] {
+    return measureContent.acf.tags
+        .map(tagName => RECOMMENDATION_TAGS_BY_JSON_NAME[tagName])
+        .filter(x => x);
 }
 
-export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficiencyRecommendationTag {
-    let tags: EnergyEfficiencyRecommendationTag = EnergyEfficiencyRecommendationTag.None;
-    if (measureContent.acf.tags) {
-        tags = measureContent.acf.tags
-            .map(tagName => RECOMMENDATION_TAGS_BY_JSON_NAME[tagName])
-            .filter(x => x)
-            .reduce((result, value) => {
-                result |= value;
-                return result;
-            }, EnergyEfficiencyRecommendationTag.None);
-    }
-    return tags;
-}
-
-const RECOMMENDATION_TAGS_BY_JSON_NAME = {
+const RECOMMENDATION_TAGS_BY_JSON_NAME: {[key: string]: EnergyEfficiencyRecommendationTag | undefined} = {
     tag_quick_win: EnergyEfficiencyRecommendationTag.QuickWin,
     tag_small_spend: EnergyEfficiencyRecommendationTag.SmallSpend,
     tag_longer_term: EnergyEfficiencyRecommendationTag.LongerTerm,

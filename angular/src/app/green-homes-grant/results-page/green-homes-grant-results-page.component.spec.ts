@@ -21,7 +21,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
     let domElement: HTMLElement;
     let responseData: ResponseData;
 
-    let eligibilityResponse: Observable<GreenHomesGrantEligibility>;
+    let eligibilityResponse: GreenHomesGrantEligibility;
     const greenHomesGrantServiceStub = {
         getEligibility: () => eligibilityResponse,
     };
@@ -37,7 +37,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
 
     beforeEach(async(() => {
         responseData = new ResponseData();
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
+        eligibilityResponse = GreenHomesGrantEligibility.PartiallyEligible;
         spyOn(greenHomesGrantServiceStub, 'getEligibility').and.callThrough();
 
         TestBed.configureTestingModule({
@@ -80,24 +80,12 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         expect(greenHomesGrantServiceStub.getEligibility).toHaveBeenCalled();
     });
 
-    it('should display an error message if grants eligibility service responds with an error', () => {
-        // given
-        eligibilityResponse = ErrorObservable.create('some error text');
-
-        // when
-        fixture.detectChanges();
-
-        // then
-        expect(component.isLoading).toBeFalsy();
-        expect(component.isError).toBeTruthy();
-    });
-
     it('should have fully eligible status when person is fully eligible', () => {
         // given
         responseData.newBuild = false;
         responseData.englishProperty = true;
         responseData.ownsHome = OwnHome.Owner;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.FullyEligible);
+        eligibilityResponse = GreenHomesGrantEligibility.FullyEligible;
 
         // when
         fixture.detectChanges();
@@ -113,7 +101,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.newBuild = false;
         responseData.englishProperty = true;
         responseData.ownsHome = OwnHome.Owner;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.PartiallyEligible);
+        eligibilityResponse = GreenHomesGrantEligibility.PartiallyEligible;
 
         // when
         fixture.detectChanges();
@@ -128,7 +116,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.ownsHome = OwnHome.Tenant;
         responseData.newBuild = false;
         responseData.englishProperty = true;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+        eligibilityResponse = GreenHomesGrantEligibility.Ineligible;
 
         fixture.detectChanges();
 
@@ -141,7 +129,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.englishProperty = false;
         responseData.newBuild = false;
         responseData.ownsHome = OwnHome.Owner;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+        eligibilityResponse = GreenHomesGrantEligibility.Ineligible;
 
         fixture.detectChanges();
 
@@ -154,7 +142,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.newBuild = true;
         responseData.englishProperty = true;
         responseData.ownsHome = OwnHome.Owner;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+        eligibilityResponse = GreenHomesGrantEligibility.Ineligible;
 
         fixture.detectChanges();
 
@@ -167,7 +155,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.newBuild = true;
         responseData.ownsHome = OwnHome.Owner;
         responseData.englishProperty = false;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+        eligibilityResponse = GreenHomesGrantEligibility.Ineligible;
 
         fixture.detectChanges();
         expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
@@ -180,7 +168,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.newBuild = false;
         responseData.ownsHome = OwnHome.Tenant;
         responseData.englishProperty = false;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+        eligibilityResponse = GreenHomesGrantEligibility.Ineligible;
 
         fixture.detectChanges();
         expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);
@@ -193,7 +181,7 @@ describe('GreenHomesGrantResultsPageComponent', () => {
         responseData.newBuild = true;
         responseData.ownsHome = OwnHome.Tenant;
         responseData.englishProperty = true;
-        eligibilityResponse = Observable.of(GreenHomesGrantEligibility.Ineligible);
+        eligibilityResponse = GreenHomesGrantEligibility.Ineligible;
 
         fixture.detectChanges();
         expect(component.status).toEqual(GreenHomesGrantEligibility.Ineligible);

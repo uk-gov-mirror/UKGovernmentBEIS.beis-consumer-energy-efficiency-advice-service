@@ -50,6 +50,7 @@ import java.util.stream.Collectors;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_PRIMARY;
@@ -129,8 +130,12 @@ public class EnergySavingPlanController {
         ByteArrayOutputStream pdfBuffer = new ByteArrayOutputStream();
 
         PlanInfo planInfo = request.getPlanInfo();
-        PdfUserRecommendationParams pdfUserRecommendationParams =
-                new PdfUserRecommendationParams(planInfo.getRecommendations(), planInfo.getTenureType(), planInfo.postcode);
+        PdfUserRecommendationParams pdfUserRecommendationParams = new PdfUserRecommendationParams(
+                planInfo.getRecommendations(),
+                planInfo.getTenureType(),
+                planInfo.postcode,
+                planInfo.shouldShowGhgContext
+        );
 
         writePlanToOutputStream(pdfUserRecommendationParams, pdfBuffer, httpRequest, response, locale);
 
@@ -167,7 +172,7 @@ public class EnergySavingPlanController {
 
         PdfRecommendationParams pdfRecommendationParams = forLandlord
                 ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode)
-                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode);
+                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode, request.shouldShowGhgContext);
 
         downloadPlan(pdfRecommendationParams, httpRequest, response, locale);
     }
@@ -232,9 +237,8 @@ public class EnergySavingPlanController {
         renderer.createPDF(out);
     }
 
-    private boolean isGhgEligible(EnergyEfficiencyRecommendation recommendation) {
-        return (recommendation.getTags() &
-                (EnergyEfficiencyRecommendationTag.GHG_PRIMARY.getValue() | EnergyEfficiencyRecommendationTag.GHG_SECONDARY.getValue())) > 0;
+    private static boolean isGhgEligible(EnergyEfficiencyRecommendation recommendation) {
+        return recommendation.getTags().stream().anyMatch(tag -> tag == GHG_PRIMARY || tag == GHG_SECONDARY);
     }
     /**
      * Keep this in sync with recommendations.service.ts `getRecommendationsContent`
@@ -273,11 +277,10 @@ public class EnergySavingPlanController {
 
         templateContext.setVariable("recommendations", recommendations);
         templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
-        templateContext.setVariable("isGhgEligible", recommendations.stream().anyMatch(rec ->
-                (rec.getTags() & (GHG_PRIMARY.getValue() | GHG_SECONDARY.getValue())) > 0)
-        );
-        templateContext.setVariable("ghgEligiblePrimaryValue", GHG_PRIMARY.getValue());
-        templateContext.setVariable("ghgEligibleSecondaryValue", GHG_SECONDARY.getValue());
+        templateContext.setVariable("isGhgEligible", pdfRecommendationParams.shouldShowGhgContext() && recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
+        templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
+        templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
+        templateContext.setVariable("shouldShowGhgContext", pdfRecommendationParams.shouldShowGhgContext());
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> {
@@ -408,11 +411,11 @@ public class EnergySavingPlanController {
         return linkUrl;
     }
 
-    private static Integer getTagsForMeasure(List<String> measureTags) {
+    private static List<EnergyEfficiencyRecommendationTag> getTagsForMeasure(List<String> measureTags) {
         return measureTags.stream()
                 .map(RECOMMENDATION_TAGS_BY_JSON_NAME::get)
                 .filter(Objects::nonNull)
-                .reduce(0, (acc, val) -> acc | val.getValue(), (x, y) -> x | y);
+                .collect(toList());
     }
 
     @Value
@@ -442,6 +445,8 @@ public class EnergySavingPlanController {
         Integer tenureType;
         @NotNull
         String postcode;
+        @NotNull
+        boolean shouldShowGhgContext;
     }
 
     /**
@@ -512,7 +517,7 @@ public class EnergySavingPlanController {
         String whatItIs;
         String isItRightForMe;
         String iconPath;
-        Integer tags;
+        List<EnergyEfficiencyRecommendationTag> tags;
         List<String> advantages;
         List<RecommendationStep> steps;
         String recommendationID;
@@ -531,7 +536,7 @@ public class EnergySavingPlanController {
 
             Map<String, Object> acfFields = (Map<String, Object>) measure.get("acf");
 
-            int tags = getTagsForMeasure((List<String>) acfFields.get("tags"));
+            List<EnergyEfficiencyRecommendationTag> tags = getTagsForMeasure((List<String>) acfFields.get("tags"));
 
             List<RecommendationStep> grantSteps;
             if (isNullOrEmpty(recommendation.nationalGrantForMeasureId)) {
@@ -584,7 +589,7 @@ public class EnergySavingPlanController {
                 String userSiteBaseUrl) {
 
             return EnergyEfficiencyRecommendation.builder()
-                    .tags(EnergyEfficiencyRecommendationTag.GRANT.getValue())
+                    .tags(singletonList(EnergyEfficiencyRecommendationTag.GRANT))
                     .installationCost(InstallationCost.builder().estimatedInvestment(0.0).build())
                     .minimumCostSavingPoundsPerYear(
                             defaultIfNull(recommendation.minimumCostSavingPoundsPerYear, 0.0))
