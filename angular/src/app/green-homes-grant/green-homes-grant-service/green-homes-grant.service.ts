@@ -9,7 +9,7 @@ import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 @Injectable()
 export class GreenHomesGrantService {
 
-    constructor(private responseData: ResponseData,) {}
+    constructor(private responseData: ResponseData) {}
 
     public static hasGHGTag(tags) {
         return tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary)
