@@ -128,3 +128,7 @@ h1 img {
 .ghg-tag--secondary {
     background-color: #F5A623;
 }
+
+.ghg-tag--ineligible {
+    background-color: #CA4F1A;
+}

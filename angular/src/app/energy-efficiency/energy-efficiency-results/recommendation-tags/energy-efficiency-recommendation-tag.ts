@@ -8,12 +8,14 @@ export enum EnergyEfficiencyRecommendationTag {
     Grant,
     FundingAvailable,
     GHGPrimary,
-    GHGSecondary
+    GHGSecondary,
+    GHGIneligible
 }
 
 export const GHG_ONLY_TAGS = [
     EnergyEfficiencyRecommendationTag.GHGPrimary,
-    EnergyEfficiencyRecommendationTag.GHGSecondary
+    EnergyEfficiencyRecommendationTag.GHGSecondary,
+    EnergyEfficiencyRecommendationTag.GHGIneligible
 ];
 
 export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEfficiencyRecommendationTag) {
@@ -26,6 +28,7 @@ export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEffic
         case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'Energy Funding'; }
         case EnergyEfficiencyRecommendationTag.GHGPrimary:          { return 'GHG Eligible (primary)'; }
         case EnergyEfficiencyRecommendationTag.GHGSecondary:        { return 'GHG Eligible (secondary)'; }
+        case EnergyEfficiencyRecommendationTag.GHGIneligible:       { return 'Not GHG Eligible'; }
     }
 }
 
@@ -39,6 +42,7 @@ export function getTagClassName(energyEfficiencyRecommendationTag: EnergyEfficie
         case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'tag-funding-available'; }
         case EnergyEfficiencyRecommendationTag.GHGPrimary:          { return 'tag-ghg-primary'; }
         case EnergyEfficiencyRecommendationTag.GHGSecondary:        { return 'tag-ghg-secondary'; }
+        case EnergyEfficiencyRecommendationTag.GHGIneligible:       { return 'tag-ghg-ineligible'; }
     }
 }
 

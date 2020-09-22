@@ -12,7 +12,8 @@ public enum EnergyEfficiencyRecommendationTag {
     GRANT,
     FUNDING_AVAILABLE,
     GHG_PRIMARY,
-    GHG_SECONDARY;
+    GHG_SECONDARY,
+    GHG_INELIGIBLE;
 
     public static final Map<String, EnergyEfficiencyRecommendationTag> RECOMMENDATION_TAGS_BY_JSON_NAME
             = Collections.unmodifiableMap(new HashMap<String, EnergyEfficiencyRecommendationTag>() {{

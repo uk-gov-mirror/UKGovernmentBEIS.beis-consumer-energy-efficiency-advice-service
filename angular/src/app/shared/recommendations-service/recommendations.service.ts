@@ -116,6 +116,7 @@ export class RecommendationsService {
                 const allRecommendations = [homeImprovementRecommendations, habitRecommendations, grantRecommendations];
                 const orderedRecommendations = RecommendationsService.orderRecommendations(allRecommendations);
                 RecommendationsService.tagTopRecommendations(orderedRecommendations);
+                RecommendationsService.tagGhgIneligible(orderedRecommendations);
                 return orderedRecommendations;
             });
     }
@@ -242,6 +243,13 @@ export class RecommendationsService {
         recommendations
             .slice(0, RecommendationsService.TOP_RECOMMENDATIONS)
             .forEach(recommendation => recommendation.tags.push(EnergyEfficiencyRecommendationTag.TopRecommendations));
+    }
+
+    private static tagGhgIneligible(recommendations: EnergyEfficiencyRecommendation[]): void {
+        recommendations
+            .filter(recommendation => !recommendation.tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary)
+                && !recommendation.tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary))
+            .forEach(recommendation => recommendation.tags.push(EnergyEfficiencyRecommendationTag.GHGIneligible));
     }
 
     // The entries in "recommendationArrays" are arrays of recommendations from different sources
