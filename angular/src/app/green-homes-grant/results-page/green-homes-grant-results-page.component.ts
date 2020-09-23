@@ -17,6 +17,7 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
     // Import the enum into the component scope so it can be used in the component html:
     GreenHomesGrantEligibility = GreenHomesGrantEligibility;
     isError: boolean = false;
+    isLoading: boolean = true;
     errorMessage: string;
 
     constructor(private questionnaireService: QuestionnaireService,
@@ -36,6 +37,7 @@ export class GreenHomesGrantResultsPageComponent implements OnInit {
         }
 
         this.status = this.greenHomesGrantService.getEligibility();
+        this.isLoading = false;
     }
 
     get isTenant(): boolean {
