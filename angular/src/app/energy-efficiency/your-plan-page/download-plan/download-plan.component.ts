@@ -37,6 +37,7 @@ export class DownloadPlanComponent {
 
     public onEmailPdfClicked() {
         this.sendEventToAnalytics('email-plan_clicked');
+        this.emailIsError = false;
         this.emailIsLoading = true;
 
         const planInfo = this.planInfoService.getUserPlanInfo();
