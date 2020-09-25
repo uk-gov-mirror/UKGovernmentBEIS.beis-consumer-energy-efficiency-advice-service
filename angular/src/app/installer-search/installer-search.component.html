@@ -36,6 +36,7 @@
                 <div class="no-results" *ngIf="searchHasBeenPerformed && !loading && installers.length === 0">
                     Sorry, we couldn't find any installers in your area.
                 </div>
+                <app-spinner-and-error-container [error]="getUserLatLngUnsuccessful && !loading &&  !errorMessage  && installers.length > 0" [errorMessage]="'Sorry, something went wrong. Your current location could not be displayed on the map.'"></app-spinner-and-error-container>
                 <div class="results" *ngIf="searchHasBeenPerformed && !errorMessage && installers.length > 0">
                     <h2 class="results-header">Results</h2>
                     <p>We found {{paginator.totalCount}} installers matching your search. Page {{paginator.pageNumber}} of {{getLastPageNumber()}}</p>
@@ -57,7 +58,7 @@
                             </div>
                         </div>
                         <div class="map-panel">
-                            <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
+                            <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (getUserLatLngUnsuccessful)="onGetUserLatLngUnsuccessful()" (markerClick)="onMarkerClick($event)"></app-installer-map>
                         </div>
                     </div>
                     <div class="trustmark-credits">

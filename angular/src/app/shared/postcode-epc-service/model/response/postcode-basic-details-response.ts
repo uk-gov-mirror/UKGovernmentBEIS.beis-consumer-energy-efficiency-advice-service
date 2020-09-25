@@ -3,6 +3,8 @@ export interface PostcodeBasicDetailsResponse {
     result: {
         country: string;
         postcode: string;
+        latitude: number;
+        longitude: number;
         codes: {
             admin_district: string;
         };
