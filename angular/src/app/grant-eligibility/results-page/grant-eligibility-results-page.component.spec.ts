@@ -16,6 +16,7 @@ import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status"
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
 import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
+import { InlineSVGModule } from 'ng-inline-svg';
 
 describe('GrantEligibilityResultsPageComponent', () => {
     let component: GrantEligibilityResultsPageComponent;
@@ -54,7 +55,8 @@ describe('GrantEligibilityResultsPageComponent', () => {
                 LinkButtonComponent,
             ],
             imports: [
-              RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                InlineSVGModule
             ],
             providers: [
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},

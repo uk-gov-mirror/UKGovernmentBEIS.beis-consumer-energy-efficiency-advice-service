@@ -14,6 +14,7 @@ import {GreenHomesGrantService} from "../green-homes-grant-service/green-homes-g
 import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 import {ResponseData} from "../../shared/response-data/response-data";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
+import { InlineSVGModule } from 'ng-inline-svg';
 
 describe('GreenHomesGrantResultsPageComponent', () => {
     let component: GreenHomesGrantResultsPageComponent;
@@ -49,7 +50,8 @@ describe('GreenHomesGrantResultsPageComponent', () => {
                 LinkButtonComponent,
             ],
             imports: [
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                InlineSVGModule
             ],
             providers: [
                 {provide: GreenHomesGrantService, useValue: greenHomesGrantServiceStub},
