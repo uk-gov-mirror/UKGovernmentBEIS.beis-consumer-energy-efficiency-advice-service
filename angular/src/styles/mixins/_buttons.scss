@@ -129,15 +129,14 @@ $rounded-corner-border-radius: 1000000px;
     .beis-button-text {
       background-color: $primary-color;
       color: $secondary-color;
-
-      .new-tab-icon {
-        fill: $secondary-color;
-      }
     }
     .beis-button-icon-container {
       background-color: $secondary-color;
       .beis-button-icon {
         color: $primary-color;
+        .new-tab-icon {
+          fill: $primary-color;
+        }
       }
     }
   }
@@ -151,11 +150,6 @@ $rounded-corner-border-radius: 1000000px;
     align-items: center;
     justify-content: flex-start;
     padding: 20px;
-
-    .new-tab-icon {
-      fill: $primary-color;
-      width: 24px;
-    }
   }
 
   .beis-button-icon-container {
@@ -166,12 +160,18 @@ $rounded-corner-border-radius: 1000000px;
     padding: 20px;
 
     .beis-button-icon {
-      width: 15px;
+      width: 21px;
       line-height: 23px;
       font-size: 23px;
       font-weight: bold;
       color: $secondary-color;
       display: block;
+      text-align: center;
+
+      .new-tab-icon {
+        fill: $secondary-color;
+        width: 24px;
+      }
     }
   }
 }
