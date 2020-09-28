@@ -1,6 +1,10 @@
 <a class="link-button"
    [href]="linkUrl"
-   [ngClass]="{'centred': centred, 'green-link-button': variant === 'green'}"
+   [ngClass]="{
+    'centred': centred,
+    'default-link-button': variant === 'default',
+    'green-link-button': variant === 'green'
+   }"
    [target]="openInNewTab ? '_blank' : '_self'"
 >
     <span class="link-button-text beis-button-text">
@@ -8,7 +12,7 @@
     </span>
     <span class="link-button-icon-container beis-button-icon-container">
         <span class="link-button-icon beis-button-icon">
-            <div *ngIf="!openInNewTab">></div>
+            <div *ngIf="!openInNewTab">&gt;</div>
             <div *ngIf="openInNewTab" class="new-tab-icon" [inlineSVG]="'controls/new-window.svg'"></div>
         </span>
     </span>
