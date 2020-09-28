@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import endsWith from 'lodash-es/endsWith';
 import {LinkButtonComponent} from "./link-button.component";
+import { InlineSVGModule } from 'ng-inline-svg';
 
 describe('LinkButtonComponent', () => {
     let component: LinkButtonComponent;
@@ -12,7 +13,8 @@ describe('LinkButtonComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LinkButtonComponent]
+            declarations: [LinkButtonComponent],
+            imports: [InlineSVGModule]
         })
             .compileComponents();
     }));

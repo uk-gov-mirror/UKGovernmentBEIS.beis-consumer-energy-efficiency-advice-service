@@ -116,7 +116,7 @@ $rounded-corner-border-radius: 1000000px;
   }
 }
 
-@mixin beis-button() {
+@mixin beis-button($primary-color: $dark-blue, $secondary-color: $light-blue) {
   color: white;
   display: flex;
   cursor: pointer;
@@ -127,30 +127,39 @@ $rounded-corner-border-radius: 1000000px;
 
   &:hover, &:focus, &:active {
     .beis-button-text {
-      background-color: $dark-blue;
-      color: $light-blue;
+      background-color: $primary-color;
+      color: $secondary-color;
+
+      .new-tab-icon {
+        fill: $secondary-color;
+      }
     }
     .beis-button-icon-container {
-      background-color: $light-blue;
+      background-color: $secondary-color;
       .beis-button-icon {
-        color: $dark-blue;
+        color: $primary-color;
       }
     }
   }
 
   .beis-button-text {
-    background-color: $light-blue;
-    color: $dark-blue;
+    background-color: $secondary-color;
+    color: $primary-color;
     @include more-info-button-font;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding: 20px;
+
+    .new-tab-icon {
+      fill: $primary-color;
+      width: 24px;
+    }
   }
 
   .beis-button-icon-container {
-    background-color: $dark-blue;
+    background-color: $primary-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,7 +170,7 @@ $rounded-corner-border-radius: 1000000px;
       line-height: 23px;
       font-size: 23px;
       font-weight: bold;
-      color: $light-blue;
+      color: $secondary-color;
       display: block;
     }
   }

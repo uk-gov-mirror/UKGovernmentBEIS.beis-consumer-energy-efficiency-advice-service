@@ -3,8 +3,13 @@
 .link-button {
   @include beis-button();
 
+  &.green-link-button {
+    @include beis-button(white, $dark-green);
+  }
+
   &.centred {
     // Override left alignment in beis-button
     margin: 16px auto;
   }
 }
+
