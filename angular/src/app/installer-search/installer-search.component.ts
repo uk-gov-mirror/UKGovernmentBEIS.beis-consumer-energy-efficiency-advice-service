@@ -61,6 +61,7 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     updateSearchParametersWithFormValues() {
+        this.getUserLatLngUnsuccessful = false;
         this.postcode = this.addWhitespaceToPostcodeIfNone(this.formPostcode);
         this.selectedMeasure = this.formSelectedMeasure;
     }
