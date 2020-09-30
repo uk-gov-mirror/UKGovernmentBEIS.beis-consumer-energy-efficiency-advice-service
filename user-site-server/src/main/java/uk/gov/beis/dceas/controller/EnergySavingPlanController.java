@@ -620,14 +620,16 @@ public class EnergySavingPlanController {
         }
 
         public String getInvestmentRequiredString() {
-            Range range = installationCost.installationCostRange;
-            if (range != null && !range.isBreRange) {
-                return getRoundedInvestmentRange();
-            } else if (installationCost.estimatedInvestment >= 0) {
-                return getRoundedInvestment();
-            } else {
-                return "-";
+            if (installationCost != null) {
+                Range range = installationCost.installationCostRange;
+                Double investment = installationCost.estimatedInvestment;
+                if (range != null && range.min != null && range.max != null && !range.isBreRange) {
+                    return getRoundedInvestmentRange();
+                } else if (investment != null && investment >= 0) {
+                    return getRoundedInvestment();
+                }
             }
+            return "-";
         }
 
         public String getRoundedInvestment() {
