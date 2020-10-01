@@ -505,7 +505,7 @@ public class EnergySavingPlanController {
     public static class Range {
         Double min;
         Double max;
-        Boolean isBreRange;
+        boolean isBreRange;
     }
 
     /**
@@ -623,7 +623,7 @@ public class EnergySavingPlanController {
             if (installationCost != null) {
                 Range range = installationCost.getInstallationCostRange();
                 Double investment = installationCost.getEstimatedInvestment();
-                if (range != null && range.getMin() != null && range.getMax() != null && !range.getIsBreRange()) {
+                if (range != null && range.getMin() != null && range.getMax() != null && !range.isBreRange()) {
                     return getRoundedInvestmentRange();
                 } else if (investment != null && investment >= 0) {
                     return getRoundedInvestment();
