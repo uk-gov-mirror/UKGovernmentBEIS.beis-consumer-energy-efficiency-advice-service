@@ -30,6 +30,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     hasGHGTag: boolean = false;
     loadingInstallerDetails: boolean = false;
     installers: Installer[] = [];
+    allInstallersUrl: string;
 
     constructor(private responseData: ResponseData,
                 private googleAnalyticsService: GoogleAnalyticsService,
@@ -41,6 +42,10 @@ export class RecommendationWithStepsCardComponent implements OnInit {
             ? GHG_ONLY_TAGS
             : [];
         this.hasGHGTag = GreenHomesGrantService.hasGHGTag(this.recommendation.tags);
+        this.allInstallersUrl = InstallerSearchService.getTrustmarkInstallerListUrl(
+            this.responseData.postcode,
+            this.recommendation.trustMarkTradeCodes
+        );
         this.loadTrustMarkInstallers();
     }
 
@@ -82,10 +87,22 @@ export class RecommendationWithStepsCardComponent implements OnInit {
                     })
                 ).subscribe(
                     response => {
-                        this.installers = response.data.slice(0, 3);
+                        // TODO SEA-241: Remove test installer
+                        this.installers = [
+                            {
+                                registeredName: "Test name",
+                                phoneNumber: "01010 123 456"
+                            } as any
+                        ];//response.data.slice(0, 3).filter(installer => installer.distanceInMiles <= 30);
                     },
                     () => {
-                        this.installers = [];
+                        // TODO SEA-241: Remove test installer
+                        this.installers = [
+                            {
+                                registeredName: "Test name",
+                                phoneNumber: "01010 123 456"
+                            } as any
+                        ];
                     }
                 );
         }

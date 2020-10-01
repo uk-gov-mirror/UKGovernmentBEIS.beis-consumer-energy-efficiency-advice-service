@@ -39,13 +39,7 @@
     }
 
     .find-installers {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-
-      .installers {
-        display: none;
-      }
+      display: none;
     }
   }
 }
@@ -149,12 +143,13 @@
       }
 
       .find-installers {
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
 
         .installers {
           display: flex;
           align-items: center;
-          font-size: 12px;
 
           .installers-list {
             display: flex;
