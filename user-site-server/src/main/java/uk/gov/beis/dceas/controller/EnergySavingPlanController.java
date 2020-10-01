@@ -287,8 +287,8 @@ public class EnergySavingPlanController {
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> {
-                    if (r.installationCost != null && r.installationCost.estimatedInvestment != null) {
-                        return r.installationCost.estimatedInvestment;
+                    if (r.installationCost != null && r.installationCost.getEstimatedInvestment() != null) {
+                        return r.installationCost.getEstimatedInvestment();
                     }
                     else {
                         return 0.0;
@@ -621,9 +621,9 @@ public class EnergySavingPlanController {
 
         public String getInvestmentRequiredString() {
             if (installationCost != null) {
-                Range range = installationCost.installationCostRange;
-                Double investment = installationCost.estimatedInvestment;
-                if (range != null && range.min != null && range.max != null && !range.isBreRange) {
+                Range range = installationCost.getInstallationCostRange();
+                Double investment = installationCost.getEstimatedInvestment();
+                if (range != null && range.getMin() != null && range.getMax() != null && !range.getIsBreRange()) {
                     return getRoundedInvestmentRange();
                 } else if (investment != null && investment >= 0) {
                     return getRoundedInvestment();
@@ -633,11 +633,11 @@ public class EnergySavingPlanController {
         }
 
         public String getRoundedInvestment() {
-            return roundAndFormatCostValue(installationCost.estimatedInvestment);
+            return roundAndFormatCostValue(installationCost.getEstimatedInvestment());
         }
 
         public String getRoundedInvestmentRange() {
-            return roundAndFormatCostValueRange(installationCost.installationCostRange.min, installationCost.installationCostRange.max);
+            return roundAndFormatCostValueRange(installationCost.getInstallationCostRange().getMin(), installationCost.getInstallationCostRange().getMax());
         }
 
         public String getRoundedSavings(boolean showMonthlySavings) {
