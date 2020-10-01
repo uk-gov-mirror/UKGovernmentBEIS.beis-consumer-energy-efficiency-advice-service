@@ -13,6 +13,8 @@ import {PageTitleService} from "../shared/page-title-service/page-title.service"
 import {CeilPipe} from "../shared/ceil/ceil.pipe";
 import {InstallerCardComponent} from "./installer-card/installer-card.component";
 import {InstallerMapComponent} from "./installer-map/installer-map.component";
+import {LinkButtonComponent} from "../shared/link-button/link-button.component";
+import {InlineSVGModule} from 'ng-inline-svg';
 
 describe('InstallerSearchComponent', () => {
     let component: InstallerSearchComponent;
@@ -34,9 +36,18 @@ describe('InstallerSearchComponent', () => {
         measureCode = null;
 
         TestBed.configureTestingModule({
-            declarations: [InstallerSearchComponent, InstallerCardComponent,
-                InstallerMapComponent, SpinnerAndErrorContainerComponent, CeilPipe],
-            imports: [FormsModule],
+            declarations: [
+                InstallerSearchComponent,
+                InstallerCardComponent,
+                InstallerMapComponent,
+                SpinnerAndErrorContainerComponent,
+                CeilPipe,
+                LinkButtonComponent
+            ],
+            imports: [
+                FormsModule,
+                InlineSVGModule
+            ],
             providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
                 {provide: ResponseData, useClass: MockResponseData},
                 {provide: Router, useValue: {'navigate': function() {}}},

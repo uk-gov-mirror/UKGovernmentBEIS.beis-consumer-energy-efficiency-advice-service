@@ -66,8 +66,7 @@ public class InstallerSearchService {
 
     public TrustMarkSearchResponse findInstallers(
             String postcode,
-            String[] tradecodes,
-            Integer page) throws InstallerSearchException {
+            String[] tradecodes) throws InstallerSearchException {
         try {
             String accessToken = accessTokenCache.get("Trustmark Access Token");
             HttpHeaders headers = new HttpHeaders();
@@ -78,7 +77,7 @@ public class InstallerSearchService {
             URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                     .queryParam("postcode", formatPostcode(postcode))
                     .queryParam("tradecodes", (Object[]) tradecodes)
-                    .queryParam("pageNumber", page)
+                    .queryParam("pageNumber", 1)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
             TrustMarkSearchResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();

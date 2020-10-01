@@ -87,22 +87,10 @@ export class RecommendationWithStepsCardComponent implements OnInit {
                     })
                 ).subscribe(
                     response => {
-                        // TODO SEA-241: Remove test installer
-                        this.installers = [
-                            {
-                                registeredName: "Test name",
-                                phoneNumber: "01010 123 456"
-                            } as any
-                        ];//response.data.slice(0, 3).filter(installer => installer.distanceInMiles <= 30);
+                        this.installers = response.data.slice(0, 3);
                     },
                     () => {
-                        // TODO SEA-241: Remove test installer
-                        this.installers = [
-                            {
-                                registeredName: "Test name",
-                                phoneNumber: "01010 123 456"
-                            } as any
-                        ];
+                        this.installers = [];
                     }
                 );
         }

@@ -29,10 +29,9 @@ public class InstallerSearchController {
     @GetMapping("/{postcode}")
     public ResponseEntity<TrustMarkSearchResponse> get(
             @PathVariable String postcode,
-            @RequestParam String[] tradecodes,
-            @RequestParam("page") Integer page) {
+            @RequestParam String[] tradecodes) {
         try {
-            TrustMarkSearchResponse installers = installerSearchService.findInstallers(postcode, tradecodes, page);
+            TrustMarkSearchResponse installers = installerSearchService.findInstallers(postcode, tradecodes);
             return new ResponseEntity<>(installers, HttpStatus.OK);
         } catch (InstallerSearchException e) {
             log.error(e.getMessage());

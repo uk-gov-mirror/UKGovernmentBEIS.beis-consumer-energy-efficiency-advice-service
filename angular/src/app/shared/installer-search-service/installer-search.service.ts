@@ -16,17 +16,20 @@ export class InstallerSearchService {
         return postcode;
     }
 
-    fetchInstallerDetails(postcode: string, tradeCodes: string[], page: number = 1): Observable<InstallerResponse> {
+    fetchInstallerDetails(postcode: string, tradeCodes: string[]): Observable<InstallerResponse> {
         if (!postcode || !tradeCodes || tradeCodes.length === 0) {
             return;
         }
         const root = InstallerSearchService.INSTALLER_API_ROOT;
         const postcodeComponent = encodeURIComponent(InstallerSearchService.formatPostcode(postcode));
         const url = this.location.prepareExternalUrl(
-            `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
+            `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}`
         );
 
-        return this.http.get<InstallerResponse>(url);
+        return this.http.get<InstallerResponse>(url).map(response => ({
+            ...response,
+            data: response.data.filter(installer => installer.distanceInMiles <= 30)
+        }));
     }
 
     // The second half of a postcode always consists of three characters
