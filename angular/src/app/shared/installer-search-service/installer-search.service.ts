@@ -11,12 +11,17 @@ export class InstallerSearchService {
     constructor(private http: HttpClient, private location: Location) {
     }
 
+    static getTrustmarkInstallerListUrl(postcode: string, tradeCodes: string[]) {
+        // TODO SEA-241: Use correct url
+        return postcode;
+    }
+
     fetchInstallerDetails(postcode: string, tradeCodes: string[], page: number = 1): Observable<InstallerResponse> {
         if (!postcode || !tradeCodes || tradeCodes.length === 0) {
             return;
         }
         const root = InstallerSearchService.INSTALLER_API_ROOT;
-        const postcodeComponent = encodeURIComponent(this.formatPostcode(postcode));
+        const postcodeComponent = encodeURIComponent(InstallerSearchService.formatPostcode(postcode));
         const url = this.location.prepareExternalUrl(
             `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}&page=${page}`
         );
@@ -25,7 +30,7 @@ export class InstallerSearchService {
     }
 
     // The second half of a postcode always consists of three characters
-    private formatPostcode(postcode: string) {
+    private static formatPostcode(postcode: string) {
         const stripped = postcode.replace(' ', '');
         return `${stripped.slice(0, -3)} ${stripped.slice(-3)}`;
     }
