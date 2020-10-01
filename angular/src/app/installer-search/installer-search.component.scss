@@ -116,6 +116,29 @@
       overflow: auto;
       text-align: center;
       width: 100%;
+
+      .all-installers-card {
+        background-color: $lighter-grey;
+        text-decoration: none;
+        color: $dark-medium-blue;
+        padding: 20px;
+        margin-top: 10px;
+        margin-right: 10px;
+        text-align: left;
+        align-items: stretch;
+        justify-content: space-between;
+        flex: auto;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          @include installer-card-header-font;
+        }
+
+        .description {
+          @include card-body-font;
+        }
+      }
     }
 
     .results-navigation-buttons {

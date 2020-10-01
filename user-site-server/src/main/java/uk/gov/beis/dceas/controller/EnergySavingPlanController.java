@@ -349,8 +349,7 @@ public class EnergySavingPlanController {
                                 try {
                                     return installerSearchService.findInstallers(
                                             postcode,
-                                            recommendation.getTrustMarkTradeCodes().toArray(new String[0]),
-                                            1)
+                                            recommendation.getTrustMarkTradeCodes().toArray(new String[0]))
                                             .getData()
                                             .stream()
                                             .limit(3)
