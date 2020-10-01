@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
@@ -279,6 +280,7 @@ public class EnergySavingPlanController {
 
         templateContext.setVariable("recommendations", recommendations);
         templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
+        templateContext.setVariable("allInstallersUrls", getTrustmarkInstallerListUrls(pdfRecommendationParams.getPostcode(), recommendations));
         templateContext.setVariable("isGhgEligible", pdfRecommendationParams.shouldShowGhgContext() && recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
         templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
         templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
@@ -316,6 +318,23 @@ public class EnergySavingPlanController {
         String totalSavingsDisplay = roundAndFormatCostValueRange(minimumSavings, maximumSavings);
 
         templateContext.setVariable("totalSavingsDisplay", totalSavingsDisplay);
+    }
+
+    private Map<String, Optional<String>> getTrustmarkInstallerListUrls(
+            String postcode,
+            List<EnergyEfficiencyRecommendation> recommendations
+    ) {
+        return recommendations.stream()
+                .collect(Collectors.toMap(
+                        EnergyEfficiencyRecommendation::getRecommendationID,
+                        recommendation -> {
+                            if (isGhgEligible(recommendation)) {
+                                // TODO SEA-241: Use correct Trustmark URL
+                                return Optional.of("https://www.website.com/" + postcode + "/" + String.join(", ", recommendation.trustMarkTradeCodes));
+                            }
+                            return Optional.empty();
+                        }
+                ));
     }
 
     private Map<String, List<InstallerSearchService.TrustMarkInstaller>> findGhgInstallers(
