@@ -30,6 +30,7 @@ export class RecommendationWithStepsCardComponent implements OnInit {
     hasGHGTag: boolean = false;
     loadingInstallerDetails: boolean = false;
     installers: Installer[] = [];
+    allInstallersUrl: string;
 
     constructor(private responseData: ResponseData,
                 private googleAnalyticsService: GoogleAnalyticsService,
@@ -41,6 +42,10 @@ export class RecommendationWithStepsCardComponent implements OnInit {
             ? GHG_ONLY_TAGS
             : [];
         this.hasGHGTag = GreenHomesGrantService.hasGHGTag(this.recommendation.tags);
+        this.allInstallersUrl = InstallerSearchService.getTrustmarkInstallerListUrl(
+            this.responseData.postcode,
+            this.recommendation.trustMarkTradeCodes
+        );
         this.loadTrustMarkInstallers();
     }
 

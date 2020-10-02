@@ -91,16 +91,32 @@
                             </div>
                         </div>
                         <div class="quote">
-                            <div class="installers" th:if="${isGhgEligible and !ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
-                                <div class="heading">
-                                    Nearby installers
+                            <div th:if="${isGhgEligible}">
+                                <div class="installers" th:if="${!ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
+                                    <div class="heading">
+                                        Nearby installers
+                                    </div>
+                                    <ul>
+                                        <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
+                                            th:text="${installer.getRegisteredName() + (#strings.isEmpty(installer.getPhoneNumber()) ? '' : ' - ' + installer.getPhoneNumber())}">
+                                            Solar Panels Ltd - 020 7925 0918
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul>
-                                    <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
-                                        th:text="${installer.getRegisteredName() + (#strings.isEmpty(installer.getPhoneNumber()) ? '' : ' - ' + installer.getPhoneNumber())}">
-                                        Solar Panels Ltd - 020 7925 0918
-                                    </li>
-                                </ul>
+                                    <a class="all-installers-link"
+                                       th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
+                                       th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
+                                       target="_blank">
+                                        See all available installers on the Trustmark website
+                                    </a>
+                                    <!-- Also include the link URL in the text, as a blue bit of "clickable"
+                                         text isn't much use in a printout -->
+                                    <a class="all-installers-link"
+                                       th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
+                                       th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
+                                       th:text="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}">
+                                        http://example.com
+                                    </a>
                             </div>
                             <div class="quote-input">
                                 <label>Your Quote</label>

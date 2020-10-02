@@ -66,8 +66,7 @@ public class InstallerSearchService {
 
     public TrustMarkSearchResponse findInstallers(
             String postcode,
-            String[] tradecodes,
-            Integer page) throws InstallerSearchException {
+            String[] tradecodes) throws InstallerSearchException {
         try {
             String accessToken = accessTokenCache.get("Trustmark Access Token");
             HttpHeaders headers = new HttpHeaders();
@@ -78,7 +77,8 @@ public class InstallerSearchService {
             URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                     .queryParam("postcode", formatPostcode(postcode))
                     .queryParam("tradecodes", (Object[]) tradecodes)
-                    .queryParam("pageNumber", page)
+                    // Trustmark do support pagination, but we only display the first page
+                    .queryParam("pageNumber", 1)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
             TrustMarkSearchResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TrustMarkSearchResponse.class).getBody();
@@ -103,7 +103,7 @@ public class InstallerSearchService {
         }
     }
 
-    private String formatPostcode(String postcode) {
+    public String formatPostcode(String postcode) {
         String stripped = postcode.replace(" ", "");
         return stripped.substring(0, stripped.length() - 3) + " " + stripped.substring(stripped.length() - 3);
     }
