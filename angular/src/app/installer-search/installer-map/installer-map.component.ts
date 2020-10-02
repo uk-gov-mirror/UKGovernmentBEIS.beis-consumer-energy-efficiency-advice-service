@@ -131,16 +131,13 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     convertPostcodeToCoordinatesThenSetMarker() {
         this.postcodeApiService.fetchBasicPostcodeDetails(this.postcode).subscribe(
             response => {
-                this.setUserLocationMarker(response.result)
+                this.setUserLocationMarker(response.result);
             },
             () => this.getUserLatLngUnsuccessful.emit()
-        )
+        );
     }
-    
+
     setUserLocationMarker = (result) => {
-        console.log(result);
-        console.log(result.latitude);
-        console.log(result.longitude);
         this.userLocationMarker = new google.maps.Marker({
             position: new google.maps.LatLng(result.latitude, result.longitude),
             map: this.map,
@@ -153,7 +150,7 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
                 fillColor: "#006280",
                 fillOpacity: 1
             }
-        })
+        });
             this.bounds.extend(this.userLocationMarker.getPosition());
             this.map.fitBounds(this.bounds);
         }
