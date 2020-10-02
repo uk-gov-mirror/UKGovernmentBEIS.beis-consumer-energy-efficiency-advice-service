@@ -26,6 +26,7 @@ export class InstallerSearchComponent implements OnInit {
     errorMessage = null;
     selectedInstallerId = null;
     hoveredInstallerCardId = null;
+    getUserLatLngUnsuccessful = false;
 
     constructor(private route: ActivatedRoute,
                 private responseData: ResponseData,
@@ -60,6 +61,7 @@ export class InstallerSearchComponent implements OnInit {
     }
 
     updateSearchParametersWithFormValues() {
+        this.getUserLatLngUnsuccessful = false;
         this.postcode = this.addWhitespaceToPostcodeIfNone(this.formPostcode);
         this.selectedMeasure = this.formSelectedMeasure;
     }
@@ -140,6 +142,10 @@ export class InstallerSearchComponent implements OnInit {
     onMarkerClick(installerId: number) {
         this.selectedInstallerId = installerId;
         this.showInstallerCardWithId('installer-card-' + this.selectedInstallerId);
+    }
+
+    onGetUserLatLngUnsuccessful() {
+        this.getUserLatLngUnsuccessful = true;
     }
 
     showInstallerCardWithId(id: string) {
