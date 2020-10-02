@@ -195,7 +195,10 @@ describe('YourPlanPageComponent', () => {
                 LinkButtonComponent
             ],
             providers: [
-                {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
+                {provide: ResponseData, useValue: {
+                    postcode: "NW5 1TL",
+                    localAuthorityCode: localAuthorityCode
+                }},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},

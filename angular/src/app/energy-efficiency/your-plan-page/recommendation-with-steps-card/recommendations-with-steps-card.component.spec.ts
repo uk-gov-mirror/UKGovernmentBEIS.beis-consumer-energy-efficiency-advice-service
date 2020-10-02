@@ -63,6 +63,7 @@ describe('RecommendationWithStepsCardComponent', () => {
 
     beforeEach(async(() => {
         responseData = new ResponseData();
+        responseData.postcode = "NW5 1TL";
 
         const installerSearchServiceStub = {
             fetchInstallerDetails: () => Observable.of({}),
