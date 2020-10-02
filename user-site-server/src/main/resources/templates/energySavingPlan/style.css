@@ -77,9 +77,6 @@ h1 img {
 }
 
 .quote-input {
-    position: absolute;
-    right: 0;
-    top: 0;
     width: 33%;
     border: 2px solid #1A485F;
     padding: 0.25em 1em 1em;
