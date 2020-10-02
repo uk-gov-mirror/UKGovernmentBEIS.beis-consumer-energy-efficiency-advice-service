@@ -4,7 +4,6 @@ package uk.gov.beis.dceas.controller;
 import com.google.common.io.Resources;
 import lombok.Builder;
 import lombok.Value;
-import lombok.experimental.var;
 import org.apache.commons.collections4.ListUtils;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
@@ -42,6 +42,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -77,6 +78,7 @@ public class EnergySavingPlanController {
     private final NationalGrantsService nationalGrantsService;
     private final String publicRootUrl;
     private final JavaMailSender emailSender;
+    private final String trustmarkInstallersUrl;
     private final InstallerSearchService installerSearchService;
 
     public EnergySavingPlanController(
@@ -87,6 +89,8 @@ public class EnergySavingPlanController {
             NationalGrantsService nationalGrantsService,
             @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
                     String publicRootUrl,
+            @org.springframework.beans.factory.annotation.Value("${vcap.services.trustMark.credentials.allInstallers.url}")
+                    String trustmarkInstallersUrl,
             JavaMailSender emailSender,
             InstallerSearchService installerSearchService
     ) {
@@ -98,6 +102,7 @@ public class EnergySavingPlanController {
         this.publicRootUrl = publicRootUrl;
         this.emailSender = emailSender;
         this.installerSearchService = installerSearchService;
+        this.trustmarkInstallersUrl = trustmarkInstallersUrl;
     }
 
     /**
@@ -329,12 +334,20 @@ public class EnergySavingPlanController {
                         EnergyEfficiencyRecommendation::getRecommendationID,
                         recommendation -> {
                             if (isGhgEligible(recommendation)) {
-                                // TODO SEA-241: Use correct Trustmark URL
-                                return Optional.of("https://www.website.com/" + postcode + "/" + String.join(", ", recommendation.trustMarkTradeCodes));
+                                return Optional.of(getTrustmarkInstallerListUrl(postcode, recommendation.trustMarkTradeCodes));
                             }
                             return Optional.empty();
                         }
                 ));
+    }
+
+    private String getTrustmarkInstallerListUrl(String postcode, List<String> tradeCodes) {
+        return UriComponentsBuilder.fromHttpUrl(trustmarkInstallersUrl)
+                .queryParam("postCode", installerSearchService.formatPostcode(postcode))
+                .queryParam("tradeCode", tradeCodes.stream()
+                        .max(Comparator.comparingInt(Integer::valueOf))
+                        .orElse(""))
+                .toUriString();
     }
 
     private Map<String, List<InstallerSearchService.TrustMarkInstaller>> findGhgInstallers(
