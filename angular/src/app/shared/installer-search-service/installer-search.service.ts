@@ -3,17 +3,21 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {InstallerResponse} from './installer-response';
 import {Location} from '@angular/common';
+import {maxBy} from 'lodash';
 
 @Injectable()
 export class InstallerSearchService {
     private static readonly INSTALLER_API_ROOT = '/api/installers';
+    private static readonly TRUSTMARK_SEARCH_URL = 'https://www.trustmark.org.uk/find-a-tradesman';
 
     constructor(private http: HttpClient, private location: Location) {
     }
 
     static getTrustmarkInstallerListUrl(postcode: string, tradeCodes: string[]) {
-        // TODO SEA-241: Use correct url
-        return postcode;
+        const formattedPostcode = encodeURIComponent(InstallerSearchService.formatPostcode(postcode));
+        // We take the highest tradecode because Trustmark don't support multiple trade codes yet
+        const tradeCode = encodeURIComponent(maxBy(tradeCodes, parseInt));
+        return `${InstallerSearchService.TRUSTMARK_SEARCH_URL}?postCode=${formattedPostcode}&tradeCode=${tradeCode}`;
     }
 
     fetchInstallerDetails(postcode: string, tradeCodes: string[]): Observable<InstallerResponse> {

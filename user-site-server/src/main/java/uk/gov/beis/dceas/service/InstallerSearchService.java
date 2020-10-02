@@ -77,6 +77,7 @@ public class InstallerSearchService {
             URI url = new URI(UriComponentsBuilder.fromHttpUrl(searchUrl)
                     .queryParam("postcode", formatPostcode(postcode))
                     .queryParam("tradecodes", (Object[]) tradecodes)
+                    // Trustmark do support pagination, but we only display the first page
                     .queryParam("pageNumber", 1)
                     .queryParam("pageSize", numberOfItemsPerPage)
                     .toUriString());
@@ -102,7 +103,7 @@ public class InstallerSearchService {
         }
     }
 
-    private String formatPostcode(String postcode) {
+    public String formatPostcode(String postcode) {
         String stripped = postcode.replace(" ", "");
         return stripped.substring(0, stripped.length() - 3) + " " + stripped.substring(stripped.length() - 3);
     }
