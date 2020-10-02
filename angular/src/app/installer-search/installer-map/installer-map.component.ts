@@ -138,9 +138,6 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     }
 
     setUserLocationMarker = (result) => {
-        console.log(result);
-        console.log(result.latitude);
-        console.log(result.longitude);
         this.userLocationMarker = new google.maps.Marker({
             position: new google.maps.LatLng(result.latitude, result.longitude),
             map: this.map,
