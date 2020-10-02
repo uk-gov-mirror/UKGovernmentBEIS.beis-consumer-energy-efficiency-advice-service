@@ -209,6 +209,10 @@ export class ResponseData {
             val.address1 = undefined;
             val.address2 = undefined;
             val.address3 = undefined;
+
+            if (val.constructionAgeBand !== null) {
+                this.homeAge = val.constructionAgeBand;
+            }
         }
         this.epcData = val;
     }

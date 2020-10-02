@@ -1,5 +1,6 @@
 import {EpcRating} from './epc-rating';
 import {EpcResponse} from './response/epc-response';
+import {HomeAge} from "../../../questionnaire/questions/home-age-question/home-age";
 
 export class Epc {
 
@@ -90,6 +91,7 @@ export class Epc {
     public localAuthorityLabel: string;
     public constituencyLabel: string;
     public certificateHash: string;
+    public constructionAgeBand: HomeAge | null;
 
     private static MAIN_HEAT_DESCRIPTION_EMPTY_RESPONSE = 'Main-Heating';
 
@@ -117,6 +119,7 @@ export class Epc {
         this.localAuthorityCode = epcResponse['local-authority'];
         this.epcDate = new Date(epcResponse['lodgement-date']);
         this.certificateHash = epcResponse['certificate-hash'];
+        this.constructionAgeBand = Epc.getParsedConstructionAgeBand(epcResponse['construction-age-band']);
 
         this.buildingReferenceNumber = epcResponse['building-reference-number'];
         this.potentialEnergyRating = epcResponse['potential-energy-rating'];
@@ -224,6 +227,49 @@ export class Epc {
             return false;
         } else {
             return null;
+        }
+    }
+
+    private static getParsedConstructionAgeBand(val?: string): HomeAge | null {
+        switch (val ? val.replace("England and Wales: ", "").toLowerCase() : null) {
+            case ("before 1900"): {
+                return HomeAge.pre1900;
+            }
+            case ("1900-1929"): {
+                return HomeAge.from1900to1929;
+            }
+            case ("1930-1949"): {
+                return HomeAge.from1930to1949;
+            }
+            case ("1950-1966"): {
+                return HomeAge.from1950to1966;
+            }
+            case ("1967-1975"): {
+                return HomeAge.from1967to1975;
+            }
+            case ("1976-1982"): {
+                return HomeAge.from1976to1982;
+            }
+            case ("1983-1990"): {
+                return HomeAge.from1983to1990;
+            }
+            case ("1991-1995"): {
+                return HomeAge.from1991to1995;
+            }
+            case ("1996-2002"): {
+                return HomeAge.from1996to2002;
+            }
+            case ("2003-2006"): {
+                return HomeAge.from2003to2006;
+            }
+            case ("2007-2011"): {
+                return HomeAge.from2007to2011;
+            }
+            case ("2012 onwards"): {
+                return HomeAge.from2011toPresent;
+            }
+            default:
+                return null;
         }
     }
 }

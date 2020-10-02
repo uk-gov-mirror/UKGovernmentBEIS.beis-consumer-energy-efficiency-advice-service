@@ -193,11 +193,6 @@ describe('Home basics questionnaire', () => {
         page.goForwards();
         CommonPageHelpers.sleep(500);
 
-        // Home age
-        expect(page.getHeading()).toContain('When was your home built');
-        page.goForwards();
-        CommonPageHelpers.sleep(500);
-
         // Construction insulation
         expect(page.getHeading()).toContain('What best describes the construction');
         page.goForwards();
