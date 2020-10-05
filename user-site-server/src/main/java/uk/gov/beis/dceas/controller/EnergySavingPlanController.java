@@ -294,8 +294,8 @@ public class EnergySavingPlanController {
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> {
-                    if (r.installationCost != null && r.installationCost.estimatedInvestment != null) {
-                        return r.installationCost.estimatedInvestment;
+                    if (r.installationCost != null && r.installationCost.getEstimatedInvestment() != null) {
+                        return r.installationCost.getEstimatedInvestment();
                     }
                     else {
                         return 0.0;
@@ -536,7 +536,7 @@ public class EnergySavingPlanController {
     public static class Range {
         Double min;
         Double max;
-        Boolean isBreRange;
+        boolean isBreRange;
     }
 
     /**
@@ -651,22 +651,24 @@ public class EnergySavingPlanController {
         }
 
         public String getInvestmentRequiredString() {
-            Range range = installationCost.installationCostRange;
-            if (range != null && !range.isBreRange) {
-                return getRoundedInvestmentRange();
-            } else if (installationCost.estimatedInvestment >= 0) {
-                return getRoundedInvestment();
-            } else {
-                return "-";
+            if (installationCost != null) {
+                Range range = installationCost.getInstallationCostRange();
+                Double investment = installationCost.getEstimatedInvestment();
+                if (range != null && range.getMin() != null && range.getMax() != null && !range.isBreRange()) {
+                    return getRoundedInvestmentRange();
+                } else if (investment != null && investment >= 0) {
+                    return getRoundedInvestment();
+                }
             }
+            return "-";
         }
 
         public String getRoundedInvestment() {
-            return roundAndFormatCostValue(installationCost.estimatedInvestment);
+            return roundAndFormatCostValue(installationCost.getEstimatedInvestment());
         }
 
         public String getRoundedInvestmentRange() {
-            return roundAndFormatCostValueRange(installationCost.installationCostRange.min, installationCost.installationCostRange.max);
+            return roundAndFormatCostValueRange(installationCost.getInstallationCostRange().getMin(), installationCost.getInstallationCostRange().getMax());
         }
 
         public String getRoundedSavings(boolean showMonthlySavings) {

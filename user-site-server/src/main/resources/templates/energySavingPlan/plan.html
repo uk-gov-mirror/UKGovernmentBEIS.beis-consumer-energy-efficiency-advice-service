@@ -65,10 +65,10 @@
                 <div class="recommendation-steps-card" th:each="recommendation : ${recommendations}">
                     <div class="details">
                         <div class="description">
-                            <h2 class="headline" th:text="${recommendation.headline}">
+                            <h2 class="headline" th:text="${recommendation.getHeadline()}">
                                 Solid wall insulation
                             </h2>
-                            <div class="summary" th:text="${recommendation.summary}">
+                            <div class="summary" th:text="${recommendation.getSummary()}">
                                 Insulation can be added to the inside or
                                 outside surface of your walls to help keep
                                 your home warm and cut your heating bills.
@@ -76,7 +76,7 @@
                         </div>
                         <div class="data-card">
                             <div class="heading">Investment required</div>
-                            <div class="value" th:text="${recommendation.investmentRequiredString}">
+                            <div class="value" th:text="${recommendation.getInvestmentRequiredString()}">
                                 £9000
                             </div>
                         </div>
@@ -123,39 +123,39 @@
                                 <input type="text" />
                             </div>
                         </div>
-                        <div class="ghg-tag ghg-tag--primary" th:if="${shouldShowGhgContext and recommendation.tags.contains(ghgEligiblePrimary)}">
+                        <div class="ghg-tag ghg-tag--primary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligiblePrimary)}">
                             GHG Eligible (Primary)
                         </div>
-                        <div class="ghg-tag ghg-tag--secondary" th:if="${shouldShowGhgContext and recommendation.tags.contains(ghgEligibleSecondary)}">
+                        <div class="ghg-tag ghg-tag--secondary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligibleSecondary)}">
                             GHG Eligible (Secondary)
                         </div>
-                        <div class="ghg-tag ghg-tag--ineligible" th:if="${shouldShowGhgContext and recommendation.tags.contains(ghgIneligible)}">
+                        <div class="ghg-tag ghg-tag--ineligible" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgIneligible)}">
                             Not GHG Eligible
                         </div>
                     </div>
                     <div class="steps">
-                        <div class="recommendation-step-card" th:each="step,iterStat : ${recommendation.steps}">
+                        <div class="recommendation-step-card" th:each="step,iterStat : ${recommendation.getSteps()}">
                             <h3>
                                 <div class="bullet"></div>
                                 <span class="step-number">
                                     Step
                                     <span th:text='${T(String).format("%02d", iterStat.index + 1)}'>1</span>
                                 </span>
-                                <span class="step-headline" th:text="${step.headline}">
+                                <span class="step-headline" th:text="${step.getHeadline()}">
                                     What it is
                                 </span>
                             </h3>
 
                             <div class="step-details-drawer">
                                 <div class="step-info">
-                                    <div class="step-description" th:text="${step.description}">
+                                    <div class="step-description" th:text="${step.getDescription()}">
                                         Insulation can be added to the
                                         inside or outside surface of
                                         your walls to help keep your home
                                         warm and cut your heating bills.
                                     </div>
                                     <!-- `utext` is used here as wordpress supplies <br /> tags for us -->
-                                    <div class="read-more-content" th:utext="${step.readMore}">
+                                    <div class="read-more-content" th:utext="${step.getReadMore()}">
                                         If your walls are not suitable for standard cavity wall insulation, then it may
                                         be possible to fit solid wall insulation instead.
                                         <br/>
@@ -170,17 +170,17 @@
                                         <ul></ul>
                                     </div>
                                 </div>
-                                <div class="more-info-link" th:each="moreInfoLink : ${step.moreInfoLinks}">
+                                <div class="more-info-link" th:each="moreInfoLink : ${step.getMoreInfoLinks()}">
                                     <a class="more-info-link"
-                                       th:href="${moreInfoLink.url}"
-                                       th:text="${moreInfoLink.buttonText}">
+                                       th:href="${moreInfoLink.getUrl()}"
+                                       th:text="${moreInfoLink.getButtonText()}">
                                         Search for Installers
                                     </a>
                                     <!-- Also include the link URL in the text, as a blue bit of "clickable"
                                          text isn't much use in a printout -->
                                     <a class="more-info-link"
-                                       th:href="${moreInfoLink.url}"
-                                       th:text="${moreInfoLink.url}">
+                                       th:href="${moreInfoLink.getUrl()}"
+                                       th:text="${moreInfoLink.getUrl()}">
                                         http://example.com
                                     </a>
                                 </div>
