@@ -76,6 +76,15 @@ describe('InstallerSearchComponent', () => {
         });
     });
 
+    it('should have the correct measure selected by default', () => {
+        fixture.whenStable().then(() => {
+            fixture.detectChanges();
+            const inputElement = fixture.debugElement.query(By.css('.select-measure')).nativeElement;
+            const selectedOption = inputElement.options[inputElement.selectedIndex];
+            expect(selectedOption.text).toEqual('Test Headline');
+        });
+    });
+
     class MockActivatedRoute {
 
         public params = Observable.of({

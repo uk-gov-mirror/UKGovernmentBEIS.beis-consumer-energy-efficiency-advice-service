@@ -8,6 +8,11 @@ import {PageTitleService} from "../shared/page-title-service/page-title.service"
 import {Installer} from "../shared/installer-search-service/installer-response";
 import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
 
+const CUSTOM_MEASURE_CODE_MAPPING = {
+    Q1: 'Q2',
+    Q: 'Q2'
+};
+
 @Component({
     selector: 'app-installer-search',
     templateUrl: './installer-search.component.html',
@@ -39,10 +44,16 @@ export class InstallerSearchComponent implements OnInit {
         this.formPostcode = this.responseData.postcode && this.responseData.postcode.toUpperCase();
         this.route.params.subscribe(params => {
                 this.measureContentService.fetchMeasureDetails().subscribe(measures => {
-                    this.measures = sortBy(measures.filter(measure => measure.acf.trustmark_trade_codes),
+                    this.measures = sortBy(
+                        measures.filter(measure => (
+                            measure.acf.trustmark_trade_codes
+                            && !Object.keys(CUSTOM_MEASURE_CODE_MAPPING).includes(measure.acf.measure_code))
+                        ),
                         [m => m.acf.headline.toUpperCase()]);
+
                     if (params["measure-code"]) {
-                        const chosenMeasure = (measures.filter(measure => params["measure-code"] === measure.acf.measure_code))[0];
+                        const chosenMeasureCode = CUSTOM_MEASURE_CODE_MAPPING[params['measure-code']] || params['measure-code'];
+                        const chosenMeasure = (measures.filter(measure => chosenMeasureCode === measure.acf.measure_code))[0];
                         if (chosenMeasure) {
                             this.formSelectedMeasure = chosenMeasure;
                         }
