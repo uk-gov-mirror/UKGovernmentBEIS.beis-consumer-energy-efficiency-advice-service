@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';

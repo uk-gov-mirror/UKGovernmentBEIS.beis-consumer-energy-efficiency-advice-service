@@ -25,8 +25,8 @@
                         *ngIf="getSavingDisplay(recommendation)!='-'">
             </app-data-card>
         </div>
-        <div class="find-installers" *ngIf="hasGHGTag && (installers.length > 0 || loadingInstallerDetails)">
-            <div class="installers">
+        <div class="find-installers" *ngIf="hasGHGTag">
+            <div class="installers" *ngIf="installers.length > 0 || loadingInstallerDetails">
                 Nearby installers:
                 <div class="loading-spinner-small" *ngIf="loadingInstallerDetails"></div>
                 <ul class="installers-list">
@@ -34,6 +34,9 @@
                         {{installer.registeredName}} - {{installer.phoneNumber}}
                     </li>
                 </ul>
+            </div>
+            <div class="all-installers-link">
+                <a [href]="allInstallersUrl" target="_blank">See all available installers on the Trustmark website</a>
             </div>
         </div>
     </div>

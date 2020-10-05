@@ -33,6 +33,7 @@ import {InstallerSearchService} from "../../shared/installer-search-service/inst
 import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
+import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -191,9 +192,13 @@ describe('YourPlanPageComponent', () => {
                 SpinnerAndErrorContainerComponent,
                 RecommendationWithStepsCardComponent,
                 DownloadPdfButtonComponent,
+                LinkButtonComponent
             ],
             providers: [
-                {provide: ResponseData, useValue: {localAuthorityCode: localAuthorityCode}},
+                {provide: ResponseData, useValue: {
+                    postcode: "NW5 1TL",
+                    localAuthorityCode: localAuthorityCode
+                }},
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},

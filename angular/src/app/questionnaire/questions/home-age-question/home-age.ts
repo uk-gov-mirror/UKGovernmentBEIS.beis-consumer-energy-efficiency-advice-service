@@ -10,5 +10,5 @@ export enum HomeAge {
     from1996to2002,
     from2003to2006,
     from2007to2011,
-    from2011toPresent
+    from2012toPresent
 }

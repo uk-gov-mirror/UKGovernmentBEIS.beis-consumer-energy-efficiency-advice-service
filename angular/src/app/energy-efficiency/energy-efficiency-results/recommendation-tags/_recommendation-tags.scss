@@ -37,7 +37,7 @@
   }
 
   .tag-ghg-secondary {
-    @include isTag($background-color: #4C7F14);
+    @include isTag($background-color: $ghg-secondary-tag);
   }
 
   .tag-ghg-ineligible {

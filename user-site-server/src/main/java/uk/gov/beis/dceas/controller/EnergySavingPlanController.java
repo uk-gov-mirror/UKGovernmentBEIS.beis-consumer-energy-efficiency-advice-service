@@ -4,7 +4,6 @@ package uk.gov.beis.dceas.controller;
 import com.google.common.io.Resources;
 import lombok.Builder;
 import lombok.Value;
-import lombok.experimental.var;
 import org.apache.commons.collections4.ListUtils;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.context.SpringWebContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
@@ -42,11 +42,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
@@ -76,6 +78,7 @@ public class EnergySavingPlanController {
     private final NationalGrantsService nationalGrantsService;
     private final String publicRootUrl;
     private final JavaMailSender emailSender;
+    private final String trustmarkInstallersUrl;
     private final InstallerSearchService installerSearchService;
 
     public EnergySavingPlanController(
@@ -86,6 +89,8 @@ public class EnergySavingPlanController {
             NationalGrantsService nationalGrantsService,
             @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
                     String publicRootUrl,
+            @org.springframework.beans.factory.annotation.Value("${vcap.services.trustMark.credentials.allInstallers.url}")
+                    String trustmarkInstallersUrl,
             JavaMailSender emailSender,
             InstallerSearchService installerSearchService
     ) {
@@ -97,6 +102,7 @@ public class EnergySavingPlanController {
         this.publicRootUrl = publicRootUrl;
         this.emailSender = emailSender;
         this.installerSearchService = installerSearchService;
+        this.trustmarkInstallersUrl = trustmarkInstallersUrl;
     }
 
     /**
@@ -279,6 +285,7 @@ public class EnergySavingPlanController {
 
         templateContext.setVariable("recommendations", recommendations);
         templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
+        templateContext.setVariable("allInstallersUrls", getTrustmarkInstallerListUrls(pdfRecommendationParams.getPostcode(), recommendations));
         templateContext.setVariable("isGhgEligible", pdfRecommendationParams.shouldShowGhgContext() && recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
         templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
         templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
@@ -287,8 +294,8 @@ public class EnergySavingPlanController {
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> {
-                    if (r.installationCost != null && r.installationCost.estimatedInvestment != null) {
-                        return r.installationCost.estimatedInvestment;
+                    if (r.installationCost != null && r.installationCost.getEstimatedInvestment() != null) {
+                        return r.installationCost.getEstimatedInvestment();
                     }
                     else {
                         return 0.0;
@@ -318,6 +325,31 @@ public class EnergySavingPlanController {
         templateContext.setVariable("totalSavingsDisplay", totalSavingsDisplay);
     }
 
+    private Map<String, Optional<String>> getTrustmarkInstallerListUrls(
+            String postcode,
+            List<EnergyEfficiencyRecommendation> recommendations
+    ) {
+        return recommendations.stream()
+                .collect(Collectors.toMap(
+                        EnergyEfficiencyRecommendation::getRecommendationID,
+                        recommendation -> {
+                            if (isGhgEligible(recommendation)) {
+                                return Optional.of(getTrustmarkInstallerListUrl(postcode, recommendation.trustMarkTradeCodes));
+                            }
+                            return Optional.empty();
+                        }
+                ));
+    }
+
+    private String getTrustmarkInstallerListUrl(String postcode, List<String> tradeCodes) {
+        return UriComponentsBuilder.fromHttpUrl(trustmarkInstallersUrl)
+                .queryParam("postCode", installerSearchService.formatPostcode(postcode))
+                .queryParam("tradeCode", tradeCodes.stream()
+                        .max(Comparator.comparingInt(Integer::valueOf))
+                        .orElse(""))
+                .toUriString();
+    }
+
     private Map<String, List<InstallerSearchService.TrustMarkInstaller>> findGhgInstallers(
             String postcode,
             List<EnergyEfficiencyRecommendation> recommendations
@@ -330,8 +362,7 @@ public class EnergySavingPlanController {
                                 try {
                                     return installerSearchService.findInstallers(
                                             postcode,
-                                            recommendation.getTrustMarkTradeCodes().toArray(new String[0]),
-                                            1)
+                                            recommendation.getTrustMarkTradeCodes().toArray(new String[0]))
                                             .getData()
                                             .stream()
                                             .limit(3)
@@ -505,7 +536,7 @@ public class EnergySavingPlanController {
     public static class Range {
         Double min;
         Double max;
-        Boolean isBreRange;
+        boolean isBreRange;
     }
 
     /**
@@ -620,22 +651,24 @@ public class EnergySavingPlanController {
         }
 
         public String getInvestmentRequiredString() {
-            Range range = installationCost.installationCostRange;
-            if (range != null && !range.isBreRange) {
-                return getRoundedInvestmentRange();
-            } else if (installationCost.estimatedInvestment >= 0) {
-                return getRoundedInvestment();
-            } else {
-                return "-";
+            if (installationCost != null) {
+                Range range = installationCost.getInstallationCostRange();
+                Double investment = installationCost.getEstimatedInvestment();
+                if (range != null && range.getMin() != null && range.getMax() != null && !range.isBreRange()) {
+                    return getRoundedInvestmentRange();
+                } else if (investment != null && investment >= 0) {
+                    return getRoundedInvestment();
+                }
             }
+            return "-";
         }
 
         public String getRoundedInvestment() {
-            return roundAndFormatCostValue(installationCost.estimatedInvestment);
+            return roundAndFormatCostValue(installationCost.getEstimatedInvestment());
         }
 
         public String getRoundedInvestmentRange() {
-            return roundAndFormatCostValueRange(installationCost.installationCostRange.min, installationCost.installationCostRange.max);
+            return roundAndFormatCostValueRange(installationCost.getInstallationCostRange().getMin(), installationCost.getInstallationCostRange().getMax());
         }
 
         public String getRoundedSavings(boolean showMonthlySavings) {

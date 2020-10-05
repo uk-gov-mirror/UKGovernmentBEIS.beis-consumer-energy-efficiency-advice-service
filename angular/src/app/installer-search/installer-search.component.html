@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="selectors page-row">
-        <form (submit)="updateSearchParametersWithFormValues(); loadFirstPageOfInstallers();" class="selector-container page-row-content">
+        <form (submit)="updateSearchParametersWithFormValues(); loadInstallers();" class="selector-container page-row-content">
             <div class="field-container postcode">
                 <label for="postcode" class="field-heading">Postcode</label>
                 <input id="postcode" [(ngModel)]="formPostcode" (blur)="formPostcode = $event.target.value"
@@ -34,30 +34,35 @@
             </div>
             <div aria-live="polite">
                 <div class="no-results" *ngIf="searchHasBeenPerformed && !loading && installers.length === 0">
-                    Sorry, we couldn't find any installers in your area.
+                    Sorry, we couldn't find any installers in your area. You may be able to find some on the Trustmark website.
+                    <app-link-button
+                            [linkUrl]="trustmarkLinkUrl"
+                            [buttonText]="'Find installers on the Trustmark website'"
+                            [openInNewTab]="true"
+                    ></app-link-button>
                 </div>
+                <app-spinner-and-error-container [error]="getUserLatLngUnsuccessful && !loading &&  !errorMessage  && installers.length > 0" [errorMessage]="'Sorry, something went wrong. Your current location could not be displayed on the map.'"></app-spinner-and-error-container>
                 <div class="results" *ngIf="searchHasBeenPerformed && !errorMessage && installers.length > 0">
                     <h2 class="results-header">Results</h2>
-                    <p>We found {{paginator.totalCount}} installers matching your search. Page {{paginator.pageNumber}} of {{getLastPageNumber()}}</p>
                     <div class="results-display" *ngIf="searchHasBeenPerformed && !errorMessage && installers.length > 0">
                         <div class="results-panel">
                             <div class="results-column">
                                 <app-installer-card *ngFor="let installer of installers" [installerInfo]="installer" [selectedInstallerId]="selectedInstallerId" (mouseenter)="onInstallerCardMouseEnter(installer.id)" (mouseleave)="onInstallerCardMouseLeave()"></app-installer-card>
-                            </div>
-                            <div class="results-navigation-buttons">
-                                <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageNumber <= 1}"
-                                        (click)="loadPreviousPageOfInstallers()">
-                                    &lt;
-                                </button>
-                                <div class="page-number">{{paginator.pageNumber}}</div>
-                                <button [ngClass]="{'results-navigation-button': true, 'disabled': paginator.pageSize*paginator.pageNumber >= paginator.totalCount }"
-                                        (click)="loadNextPageOfInstallers()">
-                                    &gt;
-                                </button>
+                                <div class="all-installers-card">
+                                    <h3 class="title">Looking for more installers?</h3>
+                                    <div class="description">You can find a more comprehensive list of installers on the Trustmark website</div>
+                                    <app-link-button
+                                            [linkUrl]="trustmarkLinkUrl"
+                                            [buttonText]="'Find installers on the Trustmark website'"
+                                            [openInNewTab]="true"
+                                            [centred]="true"
+                                    >
+                                    </app-link-button>
+                                </div>
                             </div>
                         </div>
                         <div class="map-panel">
-                            <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (markerClick)="onMarkerClick($event)"></app-installer-map>
+                            <app-installer-map [installers]="installers" [postcode]="formPostcode" [hoveredInstallerCardId]="hoveredInstallerCardId" (getUserLatLngUnsuccessful)="onGetUserLatLngUnsuccessful()" (markerClick)="onMarkerClick($event)"></app-installer-map>
                         </div>
                     </div>
                     <div class="trustmark-credits">

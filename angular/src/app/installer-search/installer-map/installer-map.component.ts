@@ -9,6 +9,7 @@ import {
     Output,
     EventEmitter
 } from '@angular/core';
+import { PostcodeApiService } from '../../shared/postcode-epc-service/postcode-api-service/postcode-api.service';
 import {InstallerInfo} from '../installer-card/installer-info';
 
 @Component({
@@ -25,11 +26,15 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     @Input() postcode: string;
     @Input() hoveredInstallerCardId: number;
     @Output() markerClick = new EventEmitter<number>();
+    @Output() getUserLatLngUnsuccessful = new EventEmitter<void>();
     map: google.maps.Map;
     markers;
     bounds = new google.maps.LatLngBounds();
-    geocoder = new google.maps.Geocoder();
     userLocationMarker;
+
+    constructor(
+        private postcodeApiService: PostcodeApiService) {
+    }
 
     ngAfterViewInit() {
         this.mapInitializer();
@@ -124,33 +129,36 @@ export class InstallerMapComponent implements AfterViewInit, OnChanges {
     }
 
     convertPostcodeToCoordinatesThenSetMarker() {
-        this.geocoder.geocode({'address': this.postcode}, this.setUserLocationMarker);
+        this.postcodeApiService.fetchBasicPostcodeDetails(this.postcode).subscribe(
+            response => {
+                this.setUserLocationMarker(response.result);
+            },
+            () => this.getUserLatLngUnsuccessful.emit()
+        );
     }
 
-    setUserLocationMarker = (results, status) => {
-        if (status === google.maps.GeocoderStatus.OK) {
-            this.userLocationMarker = new google.maps.Marker({
-                position: results[0].geometry.location,
-                map: this.map,
-                title: "Your location",
-                icon: {
-                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-                    scale: 5,
-                    strokeWeight: 2,
-                    strokeColor: "#006280",
-                    fillColor: "#006280",
-                    fillOpacity: 1
-                }
-            });
+    setUserLocationMarker = (result) => {
+        this.userLocationMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(result.latitude, result.longitude),
+            map: this.map,
+            title: "Your location",
+            icon: {
+                path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                scale: 5,
+                strokeWeight: 2,
+                strokeColor: "#006280",
+                fillColor: "#006280",
+                fillOpacity: 1
+            }
+        });
             this.bounds.extend(this.userLocationMarker.getPosition());
             this.map.fitBounds(this.bounds);
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
         }
-    }
 
     resetUserLocationMarker() {
-        this.userLocationMarker.setMap(null);
+        if (this.userLocationMarker) {
+            this.userLocationMarker.setMap(null);
+        }
         this.convertPostcodeToCoordinatesThenSetMarker();
     }
 

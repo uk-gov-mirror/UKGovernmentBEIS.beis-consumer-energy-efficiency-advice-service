@@ -6,6 +6,10 @@
 :host {
   display: flex;
 
+  app-data-card {
+    flex: 1;
+  }
+
   & > :not(:first-child) {
     border-left: 1px solid $light-grey;
   }
@@ -27,10 +31,6 @@
       border-left: none;
     }
 
-    app-data-card {
-      flex: 1;
-    }
-
     .no-mobile {
       display: none;
     }
@@ -41,18 +41,8 @@
       border-left: none;
     }
 
-    app-data-card {
-      flex: 1;
-    }
-
     .no-tablet {
       display: none;
-    }
-  }
-
-  @include desktop() {
-    app-data-card {
-      flex: 0 0 $data-card-width;
     }
   }
 }

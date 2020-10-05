@@ -39,6 +39,8 @@ describe('PostcodeApiService', () => {
                 result: {
                     country: "England",
                     postcode: postcode,
+                    latitude: 51.498772,
+                    longitude: -0.130974,
                     codes: {
                         admin_district: 'E09000033'
                     }
