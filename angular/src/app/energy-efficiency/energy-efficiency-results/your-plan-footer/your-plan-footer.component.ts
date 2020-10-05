@@ -24,6 +24,12 @@ export class YourPlanFooterComponent {
         return this.energyEfficiencyDisplayService.getApparentNumberOfRecommendations();
     }
 
+    get totalSavingsPerYear(): number {
+        return this.recommendationsService.getRecommendationsInPlan()
+            .reduce((totalSavings, recommendation) =>
+                totalSavings + recommendation.costSavingPoundsPerYear, 0);
+    }
+
     get combinedLandlordRecommendationHeadline(): string {
         return this.energyEfficiencyDisplayService.getCombinedLandlordRecommendationHeadline();
     }
