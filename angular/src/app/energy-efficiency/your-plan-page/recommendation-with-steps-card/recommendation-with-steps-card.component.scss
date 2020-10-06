@@ -144,23 +144,7 @@
 
       .find-installers {
         display: flex;
-        flex-direction: column;
-        font-size: 12px;
-
-        .installers {
-          display: flex;
-          align-items: center;
-
-          .installers-list {
-            display: flex;
-            padding-left: 0;
-            font-family: $font-family-light;
-
-            .installer {
-              margin-left: 25px;
-            }
-          }
-        }
+        margin-top: 16px;
       }
     }    
   } 

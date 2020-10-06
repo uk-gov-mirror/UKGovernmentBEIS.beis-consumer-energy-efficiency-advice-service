@@ -3,7 +3,7 @@
 
 This project is the BEIS Energy Efficiency Website.
 
-It is public-facing.
+It is public-facing and open source.
 
 ## Table of Contents
 

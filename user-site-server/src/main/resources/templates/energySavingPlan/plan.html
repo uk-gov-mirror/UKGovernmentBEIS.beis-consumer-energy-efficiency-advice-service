@@ -74,53 +74,46 @@
                                 your home warm and cut your heating bills.
                             </div>
                         </div>
-                        <div class="data-card">
-                            <div class="heading">Investment required</div>
-                            <div class="value" th:text="${recommendation.getInvestmentRequiredString()}">
-                                £9000
-                            </div>
-                        </div>
-                        <div class="data-card" th:if="${recommendation.getRoundedSavings(showMonthlySavings) != '-'}">
-                            <div class="heading">
-                                Savings per
-                                <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
-                                up to
-                            </div>
-                            <div class="value" th:text="${recommendation.getRoundedSavings(showMonthlySavings)}">
-                                £120
-                            </div>
-                        </div>
-                        <div class="quote">
-                            <div th:if="${isGhgEligible}">
-                                <div class="installers" th:if="${!ghgInstallers.get(recommendation.getRecommendationID()).isEmpty()}">
-                                    <div class="heading">
-                                        Nearby installers
+                        <div>
+                            <div>
+                                <div class="data-card">
+                                    <div class="heading">Investment required</div>
+                                    <div class="value" th:text="${recommendation.getInvestmentRequiredString()}">
+                                        £9000
                                     </div>
-                                    <ul>
-                                        <li th:each="installer : ${ghgInstallers.get(recommendation.getRecommendationID())}"
-                                            th:text="${installer.getRegisteredName() + (#strings.isEmpty(installer.getPhoneNumber()) ? '' : ' - ' + installer.getPhoneNumber())}">
-                                            Solar Panels Ltd - 020 7925 0918
-                                        </li>
-                                    </ul>
                                 </div>
-                                    <a class="all-installers-link"
-                                       th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
-                                       th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
-                                       target="_blank">
-                                        See all available installers on the Trustmark website
-                                    </a>
-                                    <!-- Also include the link URL in the text, as a blue bit of "clickable"
-                                         text isn't much use in a printout -->
-                                    <a class="all-installers-link"
-                                       th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
-                                       th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
-                                       th:text="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}">
-                                        http://example.com
-                                    </a>
+                                <div class="data-card" th:if="${recommendation.getRoundedSavings(showMonthlySavings) != '-'}">
+                                    <div class="heading">
+                                        Savings per
+                                        <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
+                                        up to
+                                    </div>
+                                    <div class="value" th:text="${recommendation.getRoundedSavings(showMonthlySavings)}">
+                                        £120
+                                    </div>
+                                </div>
                             </div>
                             <div class="quote-input">
                                 <label>Your Quote</label>
                                 <input type="text" />
+                            </div>
+                        </div>
+                        <div class="quote">
+                            <div th:if="${isGhgEligible}">
+                                <a class="all-installers-link"
+                                   th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
+                                   th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
+                                   target="_blank">
+                                    See all available installers on the Trustmark website
+                                </a>
+                                <!-- Also include the link URL in the text, as a blue bit of "clickable"
+                                     text isn't much use in a printout -->
+                                <a class="all-installers-link"
+                                   th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
+                                   th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
+                                   th:text="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}">
+                                    http://example.com
+                                </a>
                             </div>
                         </div>
                         <div class="ghg-tag ghg-tag--primary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligiblePrimary)}">
