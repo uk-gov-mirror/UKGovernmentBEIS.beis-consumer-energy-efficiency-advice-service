@@ -48,27 +48,31 @@ describe('InstallerSearchComponent', () => {
                 FormsModule,
                 InlineSVGModule
             ],
-            providers: [{provide: ActivatedRoute, useClass: MockActivatedRoute},
+            providers: [{provide: ActivatedRoute, useValue: new MockActivatedRoute()},
                 {provide: ResponseData, useClass: MockResponseData},
                 {provide: Router, useValue: {'navigate': function() {}}},
                 {provide: EnergySavingMeasureContentService, useClass: MockMeasureContent},
                 {provide: InstallerSearchService, useValue: installerServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub}],
-        })
-            .compileComponents();
+        });
     }));
 
-    beforeEach(() => {
+    const setupFixture = async () => {
+        await TestBed.compileComponents();
         fixture = TestBed.createComponent(InstallerSearchComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-    });
+    };
 
-    it('should create', () => {
+    it('should create', async () => {
+        await setupFixture();
+
         expect(component).toBeTruthy();
     });
 
-    it('should display the value of postcode', () => {
+    it('should display the value of postcode', async () => {
+        await setupFixture();
+
         fixture.whenStable().then(() => {
             fixture.detectChanges();
             const inputElement = fixture.debugElement.query(By.css('.postcode-input')).nativeElement;
@@ -76,11 +80,42 @@ describe('InstallerSearchComponent', () => {
         });
     });
 
-    class MockActivatedRoute {
+    it('should have the correct measure selected by default', async () => {
+        await setupFixture();
 
-        public params = Observable.of({
-            "measure-code": "Test Measure Code",
+        fixture.whenStable().then(() => {
+            fixture.detectChanges();
+            const inputElement = fixture.debugElement.query(By.css('.select-measure')).nativeElement;
+            const selectedOption = inputElement.options[inputElement.selectedIndex];
+            expect(selectedOption.text).toEqual('Test Headline');
         });
+    });
+
+    it('should override measure codes if required', async () => {
+        TestBed.overrideProvider(ActivatedRoute, {
+            useValue: new MockActivatedRoute("Q1")
+        });
+        await setupFixture();
+
+        fixture.whenStable().then(() => {
+            fixture.detectChanges();
+            const inputElement = fixture.debugElement.query(By.css('.select-measure')).nativeElement;
+            const selectedOption = inputElement.options[inputElement.selectedIndex];
+            expect(inputElement.options.length).toEqual(2);
+            expect(inputElement.options[0].label).toEqual('Test Headline');
+            expect(inputElement.options[1].label).toEqual('Test Replacement Headline');
+            expect(selectedOption.text).toEqual('Test Replacement Headline');
+        });
+    });
+
+    class MockActivatedRoute {
+        public params;
+
+        constructor (measureCodeParam?: string) {
+            this.params = Observable.of({
+                "measure-code": measureCodeParam || "Test Measure Code",
+            });
+        }
     }
 
     class MockResponseData {
@@ -91,22 +126,56 @@ describe('InstallerSearchComponent', () => {
         measures: Observable<MeasureContent[]>;
 
         public fetchMeasureDetails(): Observable<MeasureContent[]> {
-            return Observable.of([{
-                slug: null,
-                acf: {
-                    measure_code: "Test Measure Code",
-                    headline: "Test Headline",
-                    summary: null,
-                    what_it_is: null,
-                    is_it_right_for_me: null,
-                    advantages: [{advantage: null}],
-                    statistic: "Test Statistic",
-                    tags: null,
-                    steps: null,
-                    installer_code: '100',
-                    trustmark_trade_codes: []
+            return Observable.of([
+                {
+                    slug: null,
+                    acf: {
+                        measure_code: "Test Measure Code",
+                        headline: "Test Headline",
+                        summary: null,
+                        what_it_is: null,
+                        is_it_right_for_me: null,
+                        advantages: [{advantage: null}],
+                        statistic: "Test Statistic",
+                        tags: null,
+                        steps: null,
+                        installer_code: '100',
+                        trustmark_trade_codes: []
+                    }
+                },
+                {
+                    slug: null,
+                    acf: {
+                        measure_code: "Q1",
+                        headline: "Test Ignored Headline",
+                        summary: null,
+                        what_it_is: null,
+                        is_it_right_for_me: null,
+                        advantages: [{advantage: null}],
+                        statistic: "Test Statistic",
+                        tags: null,
+                        steps: null,
+                        installer_code: '100',
+                        trustmark_trade_codes: []
+                    }
+                },
+                {
+                    slug: null,
+                    acf: {
+                        measure_code: "Q2",
+                        headline: "Test Replacement Headline",
+                        summary: null,
+                        what_it_is: null,
+                        is_it_right_for_me: null,
+                        advantages: [{advantage: null}],
+                        statistic: "Test Statistic",
+                        tags: null,
+                        steps: null,
+                        installer_code: '100',
+                        trustmark_trade_codes: []
+                    }
                 }
-            }]);
+            ]);
         }
     }
 });
