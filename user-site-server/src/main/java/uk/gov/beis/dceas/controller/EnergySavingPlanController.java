@@ -344,9 +344,8 @@ public class EnergySavingPlanController {
     private String getTrustmarkInstallerListUrl(String postcode, List<String> tradeCodes) {
         return UriComponentsBuilder.fromHttpUrl(trustmarkInstallersUrl)
                 .queryParam("postCode", installerSearchService.formatPostcode(postcode))
-                .queryParam("tradeCode", tradeCodes.stream()
-                        .max(Comparator.comparingInt(Integer::valueOf))
-                        .orElse(""))
+                // The TrustMark link supports a query parameter of up to 6 trade codes
+                .queryParam("tradeCode", tradeCodes.stream().limit(6).collect(Collectors.joining(",")))
                 .toUriString();
     }
 

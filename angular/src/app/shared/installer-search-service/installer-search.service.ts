@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {InstallerResponse} from './installer-response';
 import {Location} from '@angular/common';
-import {maxBy} from 'lodash';
 
 @Injectable()
 export class InstallerSearchService {
@@ -15,9 +14,9 @@ export class InstallerSearchService {
 
     static getTrustmarkInstallerListUrl(postcode: string, tradeCodes: string[]) {
         const formattedPostcode = encodeURIComponent(InstallerSearchService.formatPostcode(postcode));
-        // We take the highest tradecode because Trustmark don't support multiple trade codes yet
-        const tradeCode = encodeURIComponent(maxBy(tradeCodes, parseInt));
-        return `${InstallerSearchService.TRUSTMARK_SEARCH_URL}?postCode=${formattedPostcode}&tradeCode=${tradeCode}`;
+        // The TrustMark link supports a query parameter of up to 6 trade codes
+        const formattedTradeCodes = tradeCodes.slice(0, 6).map(encodeURIComponent).join(',');
+        return `${InstallerSearchService.TRUSTMARK_SEARCH_URL}?postCode=${formattedPostcode}&tradeCode=${formattedTradeCodes}`;
     }
 
     fetchInstallerDetails(postcode: string, tradeCodes: string[]): Observable<InstallerResponse> {
