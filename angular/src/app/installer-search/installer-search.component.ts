@@ -8,7 +8,13 @@ import {PageTitleService} from "../shared/page-title-service/page-title.service"
 import {Installer} from "../shared/installer-search-service/installer-response";
 import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.service";
 
-const CUSTOM_MEASURE_CODE_MAPPING = {
+/**
+ * Certain measures have the same headline and TrustMark trade code, but different measure codes.
+ * To avoid these creating duplicate options in the dropdown, we map any with shared fields onto a single option.
+ * The options that have been mapped are then filtered out by the dropdown.
+ */
+
+const MEASURE_CODE_OVERRIDES = {
     Q1: 'Q2',
     Q: 'Q2'
 };
@@ -47,12 +53,12 @@ export class InstallerSearchComponent implements OnInit {
                     this.measures = sortBy(
                         measures.filter(measure => (
                             measure.acf.trustmark_trade_codes
-                            && !Object.keys(CUSTOM_MEASURE_CODE_MAPPING).includes(measure.acf.measure_code))
+                            && !Object.keys(MEASURE_CODE_OVERRIDES).includes(measure.acf.measure_code))
                         ),
                         [m => m.acf.headline.toUpperCase()]);
 
                     if (params["measure-code"]) {
-                        const chosenMeasureCode = CUSTOM_MEASURE_CODE_MAPPING[params['measure-code']] || params['measure-code'];
+                        const chosenMeasureCode = MEASURE_CODE_OVERRIDES[params['measure-code']] || params['measure-code'];
                         const chosenMeasure = (measures.filter(measure => chosenMeasureCode === measure.acf.measure_code))[0];
                         if (chosenMeasure) {
                             this.formSelectedMeasure = chosenMeasure;
