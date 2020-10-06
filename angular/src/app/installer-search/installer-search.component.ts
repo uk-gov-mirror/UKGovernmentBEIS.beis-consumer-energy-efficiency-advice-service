@@ -15,8 +15,8 @@ import {PostcodeEpcService} from "../shared/postcode-epc-service/postcode-epc.se
  */
 
 const MEASURE_CODE_OVERRIDES = {
-    Q1: 'Q2',
-    Q: 'Q2'
+    Q1: 'Q2', // Wall insulation other -> Cavity fill and solid wall insulation
+    Q: 'Q2' // Wall insulation brick age band A-D -> Cavity fill and solid wall insulation
 };
 
 @Component({
