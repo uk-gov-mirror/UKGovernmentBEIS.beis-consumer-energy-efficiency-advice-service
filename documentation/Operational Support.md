@@ -262,6 +262,16 @@ For the user site, run
 
     cf logs dceas-user-site --recent
 
+#### Viewing the autoscaling history through CloudFoundry
+
+You can see the history of scaling up and down by the autoscaler by running:
+
+    cf autoscaling-history dceas-user-site
+
+or
+
+    cf autoscaling-history dceas-admin-site 
+
 ## Troubleshooting
 
 In the event of a live issue, try these steps in order.
