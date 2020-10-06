@@ -42,7 +42,7 @@
                             £210
                         </div>
                     </div>
-                    <div class="data-card">
+                    <div class="data-card" th:if="${totalSavingsDisplay != '-'}">
                         <div class="heading">Total savings per
                             <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>
                         </div>
@@ -80,7 +80,7 @@
                                 £9000
                             </div>
                         </div>
-                        <div class="data-card">
+                        <div class="data-card" th:if="${recommendation.getRoundedSavings(showMonthlySavings) != '-'}">
                             <div class="heading">
                                 Savings per
                                 <span th:text="${showMonthlySavings ? 'month' : 'year'}">year</span>

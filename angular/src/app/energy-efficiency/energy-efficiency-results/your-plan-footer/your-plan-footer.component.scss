@@ -103,6 +103,10 @@
           font-weight: bold;
         }
 
+        .no-mobile {
+          display: none;
+        }
+
         &.old {
           .subheading {
             display: none;
@@ -131,6 +135,12 @@
         margin-right: 7px;
         top: -7px;
         @include has-chevron-button-sizing($do-button-width, 60px, 12px, 16px);
+      }
+
+      .centralised-confirm-button-mobile {
+        width: 80%;
+        margin: 0 auto;
+        right: 8px;
       }
     }
   }

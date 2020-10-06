@@ -1,12 +1,13 @@
 <div class="your-plan page-row" *ngIf="numberOfRecommendations > 0">
     <div class="page-row-content">
         <div class="plan-details">
-            <div class="heading">Your Potential Effect</div>
+            <div class="heading" [ngClass]="{'no-mobile': !hasTotalSavingsPerYear}">Your Potential Effect</div>
         </div>
         <div class="plan-summary">
             <app-your-plan-summary [isFooter]="true" class="is-footer"></app-your-plan-summary>
         </div>
         <a class="confirm-button"
+           [ngClass]="{'centralised-confirm-button-mobile': !hasTotalSavingsPerYear}"
            [class.disabled]="numberOfRecommendations === 0"
            routerLink="/energy-efficiency/your-plan"
            (click)="DoPlanClicked()">

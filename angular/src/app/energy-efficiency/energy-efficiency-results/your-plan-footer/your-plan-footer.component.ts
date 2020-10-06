@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
+import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
 import {RecommendationsService} from '../../../shared/recommendations-service/recommendations.service';
 import {AbTestingService} from '../../../shared/analytics/ab-testing.service';
 import {EnergyEfficiencyDisplayService} from "../../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
@@ -22,6 +23,11 @@ export class YourPlanFooterComponent {
 
     get numberOfRecommendations(): number {
         return this.energyEfficiencyDisplayService.getApparentNumberOfRecommendations();
+    }
+
+    get hasTotalSavingsPerYear(): boolean {
+        return this.recommendationsService.getRecommendationsInPlan()
+                .some(recommendation => EnergyEfficiencyRecommendationService.getSavingDisplay(recommendation, false) !== '-');
     }
 
     get combinedLandlordRecommendationHeadline(): string {

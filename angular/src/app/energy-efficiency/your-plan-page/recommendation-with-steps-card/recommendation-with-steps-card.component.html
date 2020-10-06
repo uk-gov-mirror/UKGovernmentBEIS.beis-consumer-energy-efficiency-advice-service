@@ -22,7 +22,8 @@
                         [value]="getSavingDisplay(recommendation)"
                         [isSmallCard]="true"
                         [withSmallFontSize]="true"
-            ></app-data-card>
+                        *ngIf="getSavingDisplay(recommendation)!='-'">
+            </app-data-card>
         </div>
         <div class="find-installers" *ngIf="hasGHGTag">
             <div class="installers" *ngIf="installers.length > 0 || loadingInstallerDetails">
