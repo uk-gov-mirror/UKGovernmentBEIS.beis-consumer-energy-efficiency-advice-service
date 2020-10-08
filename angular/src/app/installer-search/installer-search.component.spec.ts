@@ -139,7 +139,6 @@ describe('InstallerSearchComponent', () => {
                         statistic: "Test Statistic",
                         tags: null,
                         steps: null,
-                        installer_code: '100',
                         trustmark_trade_codes: []
                     }
                 },
@@ -155,7 +154,6 @@ describe('InstallerSearchComponent', () => {
                         statistic: "Test Statistic",
                         tags: null,
                         steps: null,
-                        installer_code: '100',
                         trustmark_trade_codes: []
                     }
                 },
@@ -171,7 +169,6 @@ describe('InstallerSearchComponent', () => {
                         statistic: "Test Statistic",
                         tags: null,
                         steps: null,
-                        installer_code: '100',
                         trustmark_trade_codes: []
                     }
                 }
