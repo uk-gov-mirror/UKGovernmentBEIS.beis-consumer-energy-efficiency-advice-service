@@ -29,7 +29,7 @@ cd wordpress
 cf target -o beis-domestic-energy-advice-service -s $SPACE
 
 if [[ $SPACE == "live" ]]; then
-    cf blue-green-deploy dceas-admin-site
+    cf blue-green-deploy dceas-admin-site --delete-old-apps
 else
     cf push --hostname $HOSTNAME -f manifest-$SPACE.yml
 fi
