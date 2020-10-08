@@ -17,6 +17,7 @@ applications:
   # default startup timeout being too short for our Java app
   # https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html#-timeout
   timeout: 120
+  health-check-type: port
   services:
     - dceas-database
     - epc.opendatacommunities.org
