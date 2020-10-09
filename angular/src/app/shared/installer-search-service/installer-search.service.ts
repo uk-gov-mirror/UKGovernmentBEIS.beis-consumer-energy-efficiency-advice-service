@@ -15,7 +15,7 @@ export class InstallerSearchService {
     static getTrustmarkInstallerListUrl(postcode: string, tradeCodes: string[]) {
         const formattedPostcode = encodeURIComponent(InstallerSearchService.formatPostcode(postcode));
         // The TrustMark link supports a query parameter of up to 6 trade codes
-        const formattedTradeCodes = tradeCodes.slice(0, 6).map(encodeURIComponent).join(',');
+        const formattedTradeCodes = tradeCodes.filter(code => !!code).slice(0, 6).map(encodeURIComponent).join(',');
         return `${InstallerSearchService.TRUSTMARK_SEARCH_URL}?postCode=${formattedPostcode}&tradeCode=${formattedTradeCodes}`;
     }
 
@@ -26,7 +26,7 @@ export class InstallerSearchService {
         const root = InstallerSearchService.INSTALLER_API_ROOT;
         const postcodeComponent = encodeURIComponent(InstallerSearchService.formatPostcode(postcode));
         const url = this.location.prepareExternalUrl(
-            `${root}/${postcodeComponent}?tradecodes=${tradeCodes.map(encodeURIComponent).join(',')}`
+            `${root}/${postcodeComponent}?tradecodes=${tradeCodes.filter(code => !!code).map(encodeURIComponent).join(',')}`
         );
 
         return this.http.get<InstallerResponse>(url).map(response => ({
