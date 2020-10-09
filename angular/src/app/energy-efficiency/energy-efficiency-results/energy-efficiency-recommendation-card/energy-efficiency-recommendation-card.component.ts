@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {
     EnergyEfficiencyRecommendationTag,
@@ -19,6 +19,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
     @Input() shouldShowGhgContext: boolean = true;
+    @Output() recommendationsInPlanChanged: EventEmitter<null> = new EventEmitter<null>();
 
     isExpandedView: boolean = false;
     investmentRequiredString: string;
@@ -99,6 +100,7 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
         if (this.recommendation.isAddedToPlan) {
             this.sendEventToAnalytics('add-to-plan_clicked');
         }
+        this.recommendationsInPlanChanged.emit();
     }
 
     sendEventToAnalytics(eventName: string) {

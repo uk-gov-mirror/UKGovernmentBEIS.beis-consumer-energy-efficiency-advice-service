@@ -4,7 +4,7 @@ import isEqual from 'lodash-es/isEqual';
 import clone from 'lodash-es/clone';
 import keys from 'lodash-es/keys';
 import 'rxjs/add/operator/do';
-import {ResponseData} from '../response-data/response-data';
+import {isComplete, ResponseData} from '../response-data/response-data';
 import {EnergySavingMeasureContentService} from '../energy-saving-measure-content-service/energy-saving-measure-content.service';
 import {GrantEligibilityService} from '../../grants/grant-eligibility-service/grant-eligibility.service';
 import {EnergyEfficiencyRecommendation} from './energy-efficiency-recommendation';
@@ -22,6 +22,9 @@ import {
     GreenHomesGrantRecommendation,
     GreenHomesGrantRecommendationsService
 } from "./green-homes-grant-recommendations.service";
+import {SessionService} from "../session-service/session.service";
+import {InstallationCost} from "./installation-cost";
+import {NationalGrantForMeasure} from "../../grants/model/national-grant-for-measure";
 
 @Injectable()
 export class RecommendationsService {
@@ -31,23 +34,31 @@ export class RecommendationsService {
 
     private cachedResponseData: ResponseData;
     private cachedRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
+    private recommendationsSessionKey = "recommendations";
 
     constructor(private responseData: ResponseData,
                 private measureService: EnergySavingMeasureContentService,
                 private grantsEligibilityService: GrantEligibilityService,
                 private greenHomesGrantRecommendationsService: GreenHomesGrantRecommendationsService) {
+        this.getSessionRecommendations();
     }
 
     getAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
         if (!isEqual(this.responseData, this.cachedResponseData) || !this.cachedRecommendations.hasRecommendations()) {
             this.cachedResponseData = clone(this.responseData);
-            return this.refreshAllRecommendations(energyCalculation)
-                .do(recommendations => this.cachedRecommendations = recommendations)
-                .catch(() => {
-                    return Observable.of(RecommendationsService.DEFAULT_RECOMMENDATIONS);
-                });
+            if (!this.cachedRecommendations.hasRecommendations() || !isComplete(this.responseData)) {
+                return this.refreshAllRecommendations(energyCalculation)
+                    .do(recommendations => {
+                        this.cachedRecommendations = recommendations;
+                        SessionService.saveToSession(this.recommendationsSessionKey, this.cachedRecommendations);
+                    })
+                    .catch(() => {
+                        this.cachedRecommendations = RecommendationsService.DEFAULT_RECOMMENDATIONS;
+                        return Observable.of(this.cachedRecommendations);
+                    });
+            }
+            return Observable.of(this.cachedRecommendations);
         }
-        return Observable.of(this.cachedRecommendations);
     }
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
@@ -63,6 +74,10 @@ export class RecommendationsService {
     getLandlordRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
         return this.cachedRecommendations.landlordRecommendations
             .filter(recommendation => recommendation.isAddedToPlan);
+    }
+
+    updateSessionRecommendations() {
+        SessionService.saveToSession(this.recommendationsSessionKey, this.cachedRecommendations);
     }
 
     private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
@@ -214,6 +229,47 @@ export class RecommendationsService {
                 recommendation => recommendation.recommendationID !== `meta_one_degree_reduction`);
         }
         return habitRecommendations;
+    }
+
+    private getSessionRecommendations() {
+        try {
+            const sessionRecommendations: EnergyEfficiencyRecommendations =
+                SessionService.getFromSession(this.recommendationsSessionKey);
+            if (sessionRecommendations) {
+                for (const i in sessionRecommendations) {
+                    if (sessionRecommendations.hasOwnProperty(i)) {
+                        this.cachedRecommendations[i] = sessionRecommendations[i].map(recommendation =>
+                            new EnergyEfficiencyRecommendation(
+                                recommendation.lifetimeYears,
+                                recommendation.costSavingPoundsPerYear,
+                                recommendation.minimumCostSavingPoundsPerYear,
+                                recommendation.maximumCostSavingPoundsPerYear,
+                                recommendation.energySavingKwhPerYear,
+                                recommendation.readMoreRoute,
+                                recommendation.headline,
+                                recommendation.summary,
+                                recommendation.whatItIs,
+                                recommendation.isItRightForMe,
+                                recommendation.iconPath,
+                                recommendation.tags,
+                                recommendation.grant,
+                                recommendation.advantages,
+                                recommendation.steps,
+                                recommendation.isAddedToPlan,
+                                recommendation.recommendationID,
+                                recommendation.measureCode,
+                                recommendation.trustMarkTradeCodes,
+                                new InstallationCost(
+                                    recommendation.installationCost.min,
+                                    recommendation.installationCost.max,
+                                    recommendation.installationCost.isBreRange)
+                            ));
+                    }
+                }
+            }
+        } catch {
+            this.cachedRecommendations = new EnergyEfficiencyRecommendations();
+        }
     }
 
     private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,

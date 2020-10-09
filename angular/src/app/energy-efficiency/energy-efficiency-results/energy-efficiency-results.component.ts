@@ -107,6 +107,10 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
         this.isError = true;
     }
 
+    private onRecommendationInPlanChanged(): void {
+        this.recommendationsService.updateSessionRecommendations();
+    }
+
     private onLoadingComplete(
         allRecommendations: EnergyEfficiencyRecommendations,
         energyCalculationResponse: EnergyCalculationResponse
