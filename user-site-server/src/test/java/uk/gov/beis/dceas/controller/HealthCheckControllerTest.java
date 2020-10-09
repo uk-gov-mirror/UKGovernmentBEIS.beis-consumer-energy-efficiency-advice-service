@@ -15,7 +15,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @Import(SecurityConfig.class)
-@SpringBootTest(properties = { "vcap.services.user-site-auth.credentials.username=foo", "vcap.services.user-site-auth.credentials.password=bar" })
+@SpringBootTest(properties = {
+        "vcap.services.user-site-auth.credentials.username=someUsernameTheTestDoesn'tKnow",
+        "vcap.services.user-site-auth.credentials.password=someObscurePasswordTheTestDoesn'tKnow"
+})
 @AutoConfigureMockMvc
 public class HealthCheckControllerTest {
     @Autowired
