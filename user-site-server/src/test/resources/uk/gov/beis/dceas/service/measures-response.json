@@ -65,8 +65,7 @@
       ],
       "what_it_is": "There are two main types of energy efficient light bulbs available in the UK. Light Emitting Diodes (LEDs) and Compact Fluorescent Lamps (CFLs). Both are cost-effective options for most general lighting requirements.",
       "is_it_right_for_me": "Energy efficient bulbs are available in a wide range of fittings and outputs. Most households can fit energy efficient lights throughout the whole house. Modern energy efficient bulbs can look and feel exactly like old fashioned bulbs, so there is no reason not to fit them.",
-      "statistic": "£5 annual saving for a single replacement bulb",
-      "installer_code": "107"
+      "statistic": "£5 annual saving for a single replacement bulb"
     },
     "slug": "low-energy-lighting"
   },
@@ -225,8 +224,7 @@
       ],
       "what_it_is": "Solar photovoltaic panels – or PV for short – produce electricity when the sun shines on them. You can use this electricity in the home to run appliances, and any that you don’t use can be sold back to the grid.",
       "is_it_right_for_me": "If you have an area of roof that faces roughly south, and which isn’t often shaded by trees or buildings, then you might want to consider solar PV.",
-      "statistic": "",
-      "installer_code": "113"
+      "statistic": ""
     },
     "slug": "meta_solar_photovoltaic_panels"
   },
@@ -289,8 +287,7 @@
       ],
       "what_it_is": "Replacing your outside doors with highly insulated and well draught-proofed doors will help keep your home warm in general, and particularly the room that the door opens into.",
       "is_it_right_for_me": "If you have old or poor quality outside doors, then you could benefit from replacing them with something more effective to keep the heat in.",
-      "statistic": "",
-      "installer_code": "100"
+      "statistic": ""
     },
     "slug": "meta_high_performance_external_doors"
   },
@@ -342,8 +339,7 @@
       ],
       "what_it_is": "You can improve the performance of a window by fitting a secondary glazing layer on the inside – effectively you’re fitting an extra window in the same gap in the wall.",
       "is_it_right_for_me": "Secondary glazing can be effective if you have old windows but you can’t afford to replace them, or you’re not allowed to, or you just don’t want to change the way your house looks from the outside.",
-      "statistic": "",
-      "installer_code": "120"
+      "statistic": ""
     },
     "slug": "meta_secondary_glazing_to_single_glazed_windows"
   },
@@ -458,8 +454,7 @@
       ],
       "what_it_is": "Replacing old single glazed windows with new double glazing will make your home more comfortable and easy to heat.",
       "is_it_right_for_me": "If you have single glazed windows then it is well worth considering replacing them.",
-      "statistic": "",
-      "installer_code": "116"
+      "statistic": ""
     },
     "slug": "meta_replace_single_glazed_windows_with_low_e_double_glazing"
   },
@@ -576,8 +571,7 @@
       ],
       "what_it_is": "Solar water heating panels provide hot water for your taps and showers when the sun shines.",
       "is_it_right_for_me": "Solar water heating is usually installed in homes with a regular boiler and hot water cylinder. It can be possible to fit solar water heating with a combi boiler, but this is not always straightforward – ask an installer for advice on this.",
-      "statistic": "",
-      "installer_code": "122"
+      "statistic": ""
     },
     "slug": "meta_solar_water_heating"
   },
@@ -658,8 +652,7 @@
       ],
       "what_it_is": "A ground source heat pump takes heat at a low temperature from the ground outside your house. It then uses an electric compressor system to increase the temperature of this heat, so it can be used to provide space heating and hot water for your home.",
       "is_it_right_for_me": "Ground source heat pumps require either a large garden or similar area for a ground loop, or a smaller area with access for drilling equipment, for a borehole. They are most likely to be attractive in homes that are well insulated, and where other heating options like gas are not available.",
-      "statistic": "",
-      "installer_code": "97"
+      "statistic": ""
     },
     "slug": "meta_ground_source_heat_pump"
   },
@@ -740,8 +733,7 @@
       ],
       "what_it_is": "An air source heat pump takes heat at a low temperature from the outside air. It then uses an electric compressor system to increase the temperature of this heat, so it can provide space heating and hot water for your home.",
       "is_it_right_for_me": "Air source heat pumps are most likely to be attractive in homes that are well insulated, and where other heating options like gas are not available. They may also be worth thinking about for homes that donlt have the sapce for a ground source heat pump.",
-      "statistic": "",
-      "installer_code": "186"
+      "statistic": ""
     },
     "slug": "meta_air_source_heat_pump"
   },
@@ -941,8 +933,7 @@
       ],
       "what_it_is": "A flue gas heat recovery system uses some of the heat from your boiler’s flue gases and uses it to help heat your hot water.",
       "is_it_right_for_me": "Flue gas heat recovery devices are suitable for condensing combi boilers only.",
-      "statistic": "",
-      "installer_code": "95"
+      "statistic": ""
     },
     "slug": "meta_flue_gas_heat_recovery_device_in_conjunction_with_boiler"
   },
@@ -1208,8 +1199,7 @@
       ],
       "what_it_is": "A condensing boiler is just a name for a modern, efficient boiler that turns more of the heat it produces into hot water for your radiators and taps.",
       "is_it_right_for_me": "If you have a gas boiler that was fitted before 2005, then the chances are that it is an inefficient boiler. If this is the case, then you could cut your heating bills significantly by replacing it with a modern efficient model.",
-      "statistic": "",
-      "installer_code": "96"
+      "statistic": ""
     },
     "slug": "meta_replacement_condensing_boiler"
   },
@@ -1272,8 +1262,7 @@
       ],
       "what_it_is": "Upgrading your heating controls could help you save money, while also making sure that your home is always comfortable.",
       "is_it_right_for_me": "If you can’t control the time your heating turns on or off, and the temperature throughout the house, then you should consider fitting new heating controls.",
-      "statistic": "",
-      "installer_code": "98"
+      "statistic": ""
     },
     "slug": "meta_heating_controls_wet_system"
   },
@@ -1323,8 +1312,7 @@
       ],
       "what_it_is": "Fitting a hot water cylinder thermostat will help keep your hot water at the right temperature and avoid wasting energy keeping it hotter than you need.",
       "is_it_right_for_me": "If you have a hot water cylinder and it doesn’t have a thermostat, then you should get one fitted.",
-      "statistic": "",
-      "installer_code": "90"
+      "statistic": ""
     },
     "slug": "meta_hot_water_cylinder_thermostat"
   },
@@ -1383,8 +1371,7 @@
       ],
       "what_it_is": "You need good insulation on your hot water cylinder so your water stays hot and you don’t waste money heating it up twice.",
       "is_it_right_for_me": "If you have a hot water cylinder, and it has less than 80mm (3 inches) of insulation, then you should consider adding some more.",
-      "statistic": "",
-      "installer_code": "102"
+      "statistic": ""
     },
     "slug": "meta_hot_water_cylinder_insulation"
   },
@@ -1508,8 +1495,7 @@
       ],
       "what_it_is": "Sealing the unwanted gaps around your doors and windows will help keep the heat in, and will cut down on cold draughts throughout your home.",
       "is_it_right_for_me": "Unless your house is very new, you probably have some draughts somewhere in the house, and it may be worth doing something to control them.",
-      "statistic": "40% of heat is lost through doors, windows and floor",
-      "installer_code": "91"
+      "statistic": "40% of heat is lost through doors, windows and floor"
     },
     "slug": "meta_draughtproof_all_windows_and_doors"
   },
@@ -1563,8 +1549,7 @@
       ],
       "what_it_is": "Adding insulation to an existing solid floor not straightforward, but it will help you make sure your whole house is keeping the heat in.",
       "is_it_right_for_me": "If the ground floor of your house is made of a solid concrete slab, or flagstones or similar, with no air gap underneath, then you may want to consider solid floor insulation. ",
-      "statistic": "",
-      "installer_code": "125"
+      "statistic": ""
     },
     "slug": "meta_floor_insulation_solid_floor"
   },
@@ -1627,8 +1612,7 @@
       ],
       "what_it_is": "Adding insulation to a suspended wooden floor is relatively straightforward, and will help you make sure your whole house is keeping the heat in.",
       "is_it_right_for_me": "If the ground floor of your house is built on wooden joists with a gap underneath, then floor insulation is a relatively easy job. ",
-      "statistic": "",
-      "installer_code": "125"
+      "statistic": ""
     },
     "slug": "meta_floor_insulation_suspended_floor"
   },
@@ -1894,8 +1878,7 @@
       ],
       "what_it_is": "Insulation can be added to the inside or outside surface of your walls to help keep your home warm and cut your heating bills.",
       "is_it_right_for_me": "If your house was built before the 1920s, then it is quite likely to have solid walls. Some newer houses were built without a standard cavity, in which case solid wall insulation may be the best option.",
-      "statistic": "",
-      "installer_code": "93"
+      "statistic": ""
     },
     "slug": "meta_cavity_fill_and_solid_wall_insulation"
   },
@@ -1970,8 +1953,7 @@
       ],
       "what_it_is": "Many houses are built with walls made up of two layers – an outer and an inner leaf. The gap between, known as the cavity, can often be filled with insulation to make the house more efficient.",
       "is_it_right_for_me": "If your house was built between 1920 and 1995, then the chances are it was built with an uninsulated cavity in the wall, and it may be suitable for cavity wall insulation.",
-      "statistic": "",
-      "installer_code": "88"
+      "statistic": ""
     },
     "slug": "meta_cavity_wall_insulation"
   },
@@ -2021,8 +2003,7 @@
       ],
       "what_it_is": "If you have had your loft converted into a room, or if your house was built with a room in the loft, with at least some sloping ceilings, then you have a roof room or “room in the roof”. If this roof room is not insulated then you will find it very difficult to heat. You will be losing heat to the outside world through all the walls and ceilings, and you could be losing heat from the rooms below as well. Insulating your loft room could make a real difference to your comfort and energy bills.",
       "is_it_right_for_me": "",
-      "statistic": "",
-      "installer_code": "118"
+      "statistic": ""
     },
     "slug": "meta_room_in_roof_insulation"
   },
@@ -2145,8 +2126,7 @@
       ],
       "what_it_is": "",
       "is_it_right_for_me": "If you have an unheated loft with less than 200mm (8 inches) of insulation at the floor level, then it is probably worth adding an additional layer to help keep the heat in.",
-      "statistic": "25% of heat is lost through roofs",
-      "installer_code": "117"
+      "statistic": "25% of heat is lost through roofs"
     },
     "slug": "meta_loft_insulation"
   },
