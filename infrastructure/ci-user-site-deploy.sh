@@ -58,11 +58,6 @@ if [[ $SPACE == "live" ]]; then
     cd ..
     ./infrastructure/autoscaler/ci-autoscaling-deploy.sh dceas-user-site
     cf stop dceas-user-site-old
-elif [[ $SPACE == "staging" ]]; then
-    cf blue-green-deploy dceas-user-site-staging -f manifest-staging.yml
-    cd ..
-    ./infrastructure/autoscaler/ci-autoscaling-deploy.sh dceas-user-site-staging
-    cf stop dceas-user-site-staging-old
 else
     cf push --hostname $HOSTNAME -f manifest-$SPACE.yml
 fi
