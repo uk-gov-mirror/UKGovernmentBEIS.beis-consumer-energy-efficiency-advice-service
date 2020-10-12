@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         if (!Strings.isNullOrEmpty(password)) {
             http.authorizeRequests()
+                    .antMatchers("/api/health").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .httpBasic()
