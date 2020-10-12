@@ -163,7 +163,6 @@ function setup_measure_acf_group() {
                             'name' => 'trade_code',
                             'type' => 'text',
                             'instructions' => '',
-                            'required' => 0,
                             'conditional_logic' => 0,
                             'wrapper' => array(
                                 'width' => '',
@@ -174,9 +173,9 @@ function setup_measure_acf_group() {
                             'placeholder' => '',
                             'prepend' => '',
                             'append' => '',
-                            'maxlength' => '',
                             'formatting' => 'html',
                             'maxlength' => '127',
+                            'required' => '1'
                         ),
                     ),
                 ),
