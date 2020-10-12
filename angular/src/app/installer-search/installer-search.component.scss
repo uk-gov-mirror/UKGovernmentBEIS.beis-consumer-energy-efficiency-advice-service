@@ -249,6 +249,11 @@
 
           .results-column {
             height: 40vh;
+            margin-bottom: 20px;
+
+            .all-installers-card {
+              margin-right: 0;
+            }
           }
           .results-navigation-buttons {
             margin-bottom: 10px;
@@ -314,11 +319,13 @@
       @include is-flex-column;
 
       .results-panel {
-        width: 50%;
+        width: 100%;
 
         .results-column {
           height: 40vh;
+          margin-bottom: 20px;
         }
+
         .results-navigation-buttons {
           margin-bottom: 10px;
         }
