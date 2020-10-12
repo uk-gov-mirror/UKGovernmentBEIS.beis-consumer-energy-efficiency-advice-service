@@ -14,7 +14,7 @@ describe('ConfirmEpcQuestionComponent', () => {
     let fixture: ComponentFixture<ConfirmEpcQuestionComponent>;
     let epcResponse: EpcResponse;
 
-    function injectEpcAndDetectChanges(epc: Epc) {
+    function injectEpcAndDetectChanges(epc?: Epc) {
         const injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = epc;
         fixture.detectChanges();
@@ -51,7 +51,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
     it('should not display EPC results if there is no epc', async(() => {
         // when
-        injectEpcAndDetectChanges(null);
+        injectEpcAndDetectChanges();
 
         // then
         fixture.whenStable().then(() => {

@@ -33,7 +33,7 @@ describe('FloorAreaQuestionComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set floor area when inputting a value', async(() => {
+    it('should set floor area when inputting a value', () => {
         fixture.whenStable().then(() => {
             // given
             const expectedArea = 100;
@@ -47,7 +47,7 @@ describe('FloorAreaQuestionComponent', () => {
             expect(responseData.floorArea).toBe(expectedArea);
             expect(responseData.floorAreaUnit).toBe(component.floorAreaUnits[0].value);
         });
-    }));
+    });
 
     it('should set floor area to 0 when clicking "I don\'t know".', () => {
         // given
@@ -60,16 +60,17 @@ describe('FloorAreaQuestionComponent', () => {
         expect(responseData.floorArea).toBe(0);
     });
 
-    it('should set floor area unit to square foot when clicking the unit', () => {
+    it('should set the floor area unit on the response data', () => {
         // given
 
         // when
         fixture.whenStable().then(() => {
-            const squareFootUnitButton = fixture.debugElement.query(By.css('.unit-option.square-foot'));
-            squareFootUnitButton.nativeElement.click();
+            const floorAreaUnitDropdown = fixture.debugElement.query(By.css('.floor-area-unit'));
+            floorAreaUnitDropdown.nativeElement.value = "1: 1";
+            floorAreaUnitDropdown.nativeElement.dispatchEvent(new Event('change'));
 
             // then
-            expect(responseData.floorAreaUnit).toBe(component.floorAreaUnits[1].value);
+            expect(responseData.floorAreaUnit).toBe(FloorAreaUnit.SquareFoot);
         });
     });
 
@@ -135,7 +136,7 @@ describe('FloorAreaQuestionComponent', () => {
 
     function thereIsEpcWithTotalFloorArea(totalFloorArea: number) {
         responseData.epc = {
-            'totalFloorArea' : totalFloorArea.toString()
+            'totalFloorArea': totalFloorArea.toString()
         } as Epc;
     }
 });

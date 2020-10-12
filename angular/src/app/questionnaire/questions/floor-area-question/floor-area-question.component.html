@@ -7,9 +7,9 @@
                            aria-labelledby="question-heading" [ngModel]="floorAreaDisplay" (ngModelChange)="updateFloorArea($event)">
                 </div>
                 <div class="floor-area-unit-input multiple-choice-options unit-options">
-                    <select name="home-age" class="dropdown-input text-input home-age"
+                    <select name="floor-area-unit" class="dropdown-input text-input floor-area-unit"
                             aria-label="unit (square metres or square feet)" [(ngModel)]="selectedFloorAreaUnit">
-                        <option *ngFor="let floorAreaUnit of floorAreaUnits" [ngValue]="floorAreaUnit.value">
+                        <option *ngFor="let floorAreaUnit of floorAreaUnits" [ngValue]="floorAreaUnit.value" class="unit-option">
                             {{floorAreaUnit.basicUnitDisplay}}
                         </option>
                     </select>

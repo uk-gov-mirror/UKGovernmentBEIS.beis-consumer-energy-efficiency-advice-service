@@ -37,7 +37,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
     electricityTariff: ElectricityTariff;
     electricityTariffDescription: string;
     savingsPerYear: number;
-    epcFormattedDate: string;
+    epcFormattedDate: string | null;
 
     private static readonly EPC_DESCRIPTIONS: { [epcRating: number]: string } = {
         [EpcRating.A]: 'very good',
@@ -135,8 +135,7 @@ export class ConfirmEpcQuestionComponent extends QuestionBaseComponent implement
         return Math.round(totalSavings / 10) * 10; // Round the result to the nearest 10
     }
 
-    private static getFormattedDateFromEpc(epc: Epc): string {
-        const epcDate = moment(epc.epcDate);
-        return epcDate.format('MMMM YYYY');
+    private static getFormattedDateFromEpc(epc: Epc): string | null {
+        return epc.epcDate ? moment(epc.epcDate).format('MMMM YYYY') : null;
     }
 }

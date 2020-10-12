@@ -34,11 +34,11 @@ export function getFuelTypeDescription(fuelType: FuelType): string {
 export function getFuelTypeFromEpc(epc: Epc): FuelType {
     // This is not a complete mapping but there are too many options for mainHeatDescription and mainFuel to parse them all.
     // mainFuel is marked as deprecated in some places so we should try mainHeatDescription first
-    if (epc.mainHeatDescription && includes(epc.mainHeatDescription, 'mains gas')) {
+    if (epc.mainheatDescription && includes(epc.mainheatDescription, 'mains gas')) {
         return FuelType.MainsGas;
     } else if (epc.mainFuel && includes(epc.mainFuel, 'mains gas')) {
         return FuelType.MainsGas;
-    } else if (epc.mainHeatDescription && includes(epc.mainHeatDescription, 'electric')) {
+    } else if (epc.mainheatDescription && includes(epc.mainheatDescription, 'electric')) {
         return FuelType.Electricity;
     } else if (epc.mainFuel && includes(epc.mainFuel, 'electric')) {
         return FuelType.Electricity;

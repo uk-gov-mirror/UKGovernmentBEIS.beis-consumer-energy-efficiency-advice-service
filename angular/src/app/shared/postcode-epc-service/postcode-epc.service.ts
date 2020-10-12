@@ -3,7 +3,6 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
-import head from 'lodash-es/head';
 
 import {PostcodeApiService} from './postcode-api-service/postcode-api.service';
 import {PostcodeErrorResponse} from './model/response/postcode-error-response';

@@ -17,7 +17,7 @@
                         <option class="address-option"
                             *ngFor="let epc of epcs"
                             [ngValue]="epc"
-                            [attr.aria-label]="epc.getDisplayedAddress">
+                            [attr.aria-label]="epc.getDisplayAddress()">
                             {{epc.getDisplayAddress()}}</option>
                     </select>
                     <button class="go-button" (click)="onAddressSelected()" [class.grey-go]="!this.selectedEpc">Go</button>

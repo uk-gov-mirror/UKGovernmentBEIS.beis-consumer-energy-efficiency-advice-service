@@ -204,17 +204,22 @@ export class ResponseData {
     }
     set epc(val: Epc) {
         if (val) {
-            // Don't save address, as it's personally identifiable information.
-            val.address = undefined;
-            val.address1 = undefined;
-            val.address2 = undefined;
-            val.address3 = undefined;
+            const clonedEpc = new Epc(undefined, val);
 
-            if (val.constructionAgeBand !== null) {
-                this.homeAge = val.constructionAgeBand;
+            // Don't save address, as it's personally identifiable information.
+            clonedEpc.address = undefined;
+            clonedEpc.address1 = undefined;
+            clonedEpc.address2 = undefined;
+            clonedEpc.address3 = undefined;
+
+            if (clonedEpc.constructionAgeBand !== null) {
+                this.homeAge = clonedEpc.constructionAgeBand;
             }
+
+            this.epcData = clonedEpc;
+        } else {
+            this.epcData = undefined;
         }
-        this.epcData = val;
     }
 
     constructor() {
