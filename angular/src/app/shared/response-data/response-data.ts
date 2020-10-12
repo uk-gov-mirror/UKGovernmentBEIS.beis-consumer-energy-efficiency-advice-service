@@ -25,6 +25,9 @@ import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
 import {SessionService} from "../session-service/session.service";
 
+const RESPONSE_DATA_SESSION_KEY = 'responseData';
+
+
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
  *
@@ -222,18 +225,16 @@ export class ResponseData {
         if (!SessionService.sessionStorageAvailable()) {
             return;
         }
-        const storedResponseData = SessionService.getFromSession(responseDataSessionStorageKey);
+        const storedResponseData = SessionService.getFromSession(RESPONSE_DATA_SESSION_KEY);
         if (storedResponseData) {
             replaceOldResponseData(this, storedResponseData);
         }
     }
 
     saveToSessionStorage() {
-        SessionService.saveToSession(responseDataSessionStorageKey, this);
+        SessionService.saveToSession(RESPONSE_DATA_SESSION_KEY, this);
     }
 }
-
-const responseDataSessionStorageKey = 'responseData';
 
 export function isComplete(responseData: ResponseData) {
     return new RdSapInput(responseData).isMinimalDataSet();
