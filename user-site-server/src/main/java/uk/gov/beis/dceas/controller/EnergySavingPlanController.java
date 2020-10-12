@@ -348,7 +348,7 @@ public class EnergySavingPlanController {
                 .queryParam(
                         "tradeCode",
                         tradeCodes.stream()
-                                .filter(c -> !c.equals(""))
+                                .filter(c -> !isNullOrEmpty(c))
                                 .limit(6)
                                 .collect(Collectors.joining(",")))
                 .toUriString();
