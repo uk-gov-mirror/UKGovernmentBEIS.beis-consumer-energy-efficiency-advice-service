@@ -14,7 +14,7 @@ describe('ConfirmEpcQuestionComponent', () => {
     let fixture: ComponentFixture<ConfirmEpcQuestionComponent>;
     let epcResponse: EpcResponse;
 
-    function injectEpcAndDetectChanges(epc?: Epc) {
+    function injectEpcAndDetectChanges(epc: Epc | undefined) {
         const injectedResponseData = fixture.debugElement.injector.get(ResponseData);
         injectedResponseData.epc = epc;
         fixture.detectChanges();
@@ -41,7 +41,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
     it('should display EPC results if there is an epc', async(() => {
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {
@@ -51,7 +51,7 @@ describe('ConfirmEpcQuestionComponent', () => {
 
     it('should not display EPC results if there is no epc', async(() => {
         // when
-        injectEpcAndDetectChanges();
+        injectEpcAndDetectChanges(undefined);
 
         // then
         fixture.whenStable().then(() => {
@@ -65,7 +65,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['current-energy-rating'] = EpcRating[expectedEpcRating];
 
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {
@@ -80,7 +80,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['floor-level'] = '1';
 
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {
@@ -93,7 +93,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['mainheat-description'] = 'mains gas';
 
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {
@@ -107,7 +107,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['hotwater-description'] = 'electric, off-peak tariff';
 
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {
@@ -121,7 +121,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['number-habitable-rooms'] = expectedNumberHabitableRooms.toString();
 
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {
@@ -135,7 +135,7 @@ describe('ConfirmEpcQuestionComponent', () => {
         epcResponse['local-authority-label'] = expectedLocalAuthority;
 
         // when
-        injectEpcAndDetectChanges(new Epc(epcResponse));
+        injectEpcAndDetectChanges(Epc.fromEpcResponse(epcResponse));
 
         // then
         fixture.whenStable().then(() => {

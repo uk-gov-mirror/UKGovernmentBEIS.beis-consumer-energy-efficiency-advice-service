@@ -50,7 +50,7 @@ describe('EpcApiService', () => {
 
             // then
             actualResponse.then((response) => {
-                expect(response).toEqual([new Epc(dummyEpcResponse)]);
+                expect(response).toEqual([Epc.fromEpcResponse(dummyEpcResponse)]);
             });
             httpMock.verify();
         }));

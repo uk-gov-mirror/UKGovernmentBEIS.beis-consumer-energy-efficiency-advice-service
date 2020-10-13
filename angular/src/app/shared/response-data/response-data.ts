@@ -204,7 +204,7 @@ export class ResponseData {
     }
     set epc(val: Epc) {
         if (val) {
-            const clonedEpc = new Epc(undefined, val);
+            const clonedEpc = Epc.clone(val);
 
             // Don't save address, as it's personally identifiable information.
             clonedEpc.address = undefined;
