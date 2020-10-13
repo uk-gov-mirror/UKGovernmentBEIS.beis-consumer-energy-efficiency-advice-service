@@ -79,3 +79,9 @@
   }
 }
 
+// Breakpoint specific styling
+@include mobile() {
+  .installer-card {
+    margin-right: 0;
+  }
+}
