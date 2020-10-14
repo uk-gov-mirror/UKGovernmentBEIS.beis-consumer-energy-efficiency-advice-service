@@ -182,7 +182,7 @@ describe('PostcodeEpcQuestionComponent', () => {
         it('should set the response when an epc is selected', async(() => {
             // given
             component.postcodeInput = VALID_POSTCODE;
-            const expectedEpc = new Epc(dummyEpcsResponse.rows[1]);
+            const expectedEpc = Epc.fromEpcResponse(dummyEpcsResponse.rows[1]);
             expectedEpc.address = undefined;
             expectedEpc.address1 = undefined;
             expectedEpc.address2 = undefined;

@@ -9,8 +9,7 @@ export abstract class EpcParserService {
         if (!epcApiResponse) {
             return [];
         }
-        return epcApiResponse.rows
-            .map(epcResponse => new Epc(epcResponse));
+        return epcApiResponse.rows.map(Epc.fromEpcResponse);
     }
 
     static sortEpcsByHouseNumberOrAlphabetically(a: Epc, b: Epc): number {

@@ -16,7 +16,7 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     public static readonly ENTER_KEY_CODE: number = 13;
 
     loading: boolean = false;
-    epcs: Epc[] | void;
+    epcs: Epc[] | null | undefined;
     selectedEpc: Epc;
     error: boolean = false;
     keyboardUser: boolean;
@@ -88,16 +88,13 @@ export class EpcLookupComponent implements OnChanges, OnInit {
     }
 
     private setResponseData(selectedEpc: Epc) {
-        if (JSON.stringify(selectedEpc) !== JSON.stringify(this.responseData.epc)) {
-            // The EPC has changed so we should clear the existing responses
-            resetResponseDataForNewEpc(this.responseData);
+        resetResponseDataForNewEpc(this.responseData);
 
-            this.responseData.postcode = this.postcodeDetails.postcode;
-            this.responseData.country = this.postcodeDetails.country;
-            this.responseData.englishProperty = this.postcodeDetails.country === Country.England;
-            this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
-            this.responseData.epc = selectedEpc;
-        }
+        this.responseData.postcode = this.postcodeDetails.postcode;
+        this.responseData.country = this.postcodeDetails.country;
+        this.responseData.englishProperty = this.postcodeDetails.country === Country.England;
+        this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
+        this.responseData.epc = selectedEpc;
 
         this.epcSelected.emit(selectedEpc && selectedEpc.lmkKey);
     }

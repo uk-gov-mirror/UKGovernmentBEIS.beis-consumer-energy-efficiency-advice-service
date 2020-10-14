@@ -96,12 +96,7 @@ describe('EpcLookupComponent', () => {
         fixture.detectChanges();
 
         // when
-        const showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
-        // Angular syntax for custom ngValue
-        showerTypeSelect.nativeElement.value = '1: 1';
-        showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
-
-        component.selectedEpc = dummyEpcsResponse;
+        component.selectedEpc = dummyPostcodeDetails.allEpcsForPostcode[0];
         fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
 
         // then
@@ -116,16 +111,27 @@ describe('EpcLookupComponent', () => {
         fixture.detectChanges();
 
         // when
-        const showerTypeSelect = fixture.debugElement.query(By.css('.address-dropdown'));
-        // Angular syntax for custom ngValue
-        showerTypeSelect.nativeElement.value = '1: 1';
-        showerTypeSelect.nativeElement.dispatchEvent(new Event('change'));
-
-        component.selectedEpc = dummyEpcsResponse;
+        component.selectedEpc = dummyPostcodeDetails.allEpcsForPostcode[0];
         fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
 
         // then
         expect(responseData.postcode).toBe(VALID_POSTCODE);
+    });
+
+    it('should copy the epc object without mutating when setting the response data epc', () => {
+        // given
+        component.postcode = VALID_POSTCODE;
+        component.ngOnChanges({});
+        fixture.detectChanges();
+
+        // when
+        component.selectedEpc = dummyPostcodeDetails.allEpcsForPostcode[0];
+        fixture.debugElement.query(By.css('.go-button')).nativeElement.click();
+
+        // then
+        expect(responseData.epc.county).toBe('Greater London Authority');
+        expect(responseData.epc.address1).toBe(undefined);
+        expect(component.selectedEpc.address1).toBe('Apartment 1');
     });
 
     it('should emit an event when "my address is not listed" is selected', () => {
