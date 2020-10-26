@@ -31,8 +31,5 @@ export class SocietalBenefitsQuestionComponent extends QuestionBaseComponent {
 
     set response(val: boolean) {
         this.responseData.receiveSocietalBenefits = val;
-        if (val) {
-            this.responseData.receiveAnyBenefits = true;
-        }
     }
 }

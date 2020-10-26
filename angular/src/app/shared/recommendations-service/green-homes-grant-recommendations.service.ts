@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {EnergySavingMeasureResponse} from "../energy-calculation-api-service/response/energy-saving-measure-response";
 import {ResponseData} from "../response-data/response-data";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
-import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {
     shouldRecommendAirSourceHeatPump,
     shouldRecommendGroundSourceHeatPump
@@ -12,6 +10,7 @@ import {HomeType} from "../../questionnaire/questions/home-type-question/home-ty
 import {RoofType} from "../../questionnaire/questions/construction-question/construction-types";
 import {EnergySavingMeasureContentService} from "../energy-saving-measure-content-service/energy-saving-measure-content.service";
 import {MeasureContent} from "../energy-saving-measure-content-service/measure-content";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 export interface GreenHomesGrantRecommendation {
     code: string;
@@ -41,7 +40,7 @@ export class GreenHomesGrantRecommendationsService {
 
     getGreenHomesGrantRecommendations(): Observable<GreenHomesGrantRecommendation[]> {
         return this.measureService.fetchMeasureDetails().map((measuresContent) => {
-            if (this.greenHomesGrantService.getEligibility() === GreenHomesGrantEligibility.Ineligible) {
+            if (!this.greenHomesGrantService.shouldShowGhgContext()) {
                 return [];
             }
 

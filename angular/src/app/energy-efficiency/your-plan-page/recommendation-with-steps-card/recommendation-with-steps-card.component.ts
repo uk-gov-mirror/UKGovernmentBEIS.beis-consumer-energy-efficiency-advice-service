@@ -12,8 +12,8 @@ import {
     getTagDescription,
     GHG_ONLY_TAGS
 } from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import { finalize } from 'rxjs/operators';
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 @Component({
     selector: 'app-recommendation-with-steps-card',

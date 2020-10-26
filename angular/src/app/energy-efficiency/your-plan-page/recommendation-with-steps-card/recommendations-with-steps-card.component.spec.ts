@@ -8,7 +8,7 @@ import {RecommendationStepCardComponent} from "../recommendation-step-card/recom
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import {InstallerSearchService} from "../../../shared/installer-search-service/installer-search.service";
 import {Observable} from '../../../../../node_modules/rxjs/Observable';
-import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant.service";
 import {GreenHomesGrantEligibility} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {By} from '@angular/platform-browser';
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";

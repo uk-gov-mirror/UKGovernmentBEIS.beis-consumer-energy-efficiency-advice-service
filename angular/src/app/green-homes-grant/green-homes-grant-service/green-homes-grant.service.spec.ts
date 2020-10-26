@@ -4,15 +4,6 @@ import {WordpressApiService} from '../../shared/wordpress-api-service/wordpress-
 import 'rxjs/add/operator/toPromise';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {GreenHomesGrantService} from "./green-homes-grant.service";
-import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
-import {GreenHomesGrantEligibility} from "./green-homes-grant-eligibility";
-import {IncomeThresholdService} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-threshold.service";
-import {
-    IncomeThresholdByChildren,
-    IncomeThresholds
-} from "../../grants/national-grant-calculator/grants/eco-hhcro-help-to-heat/income-threshold-service/income-thresholds";
-import {Observable} from 'rxjs/Observable';
-import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 
 describe('GreenHomesGrantService', () => {
     let httpMock: HttpTestingController;
@@ -46,66 +37,25 @@ describe('GreenHomesGrantService', () => {
     });
 
     describe('#getEligibility', () => {
-        it('should return ineligible for non-English addresses', async(() => {
+        it('should not show GHG context for non-English addresses', async(() => {
             responseData.englishProperty = false;
+            responseData.newBuild = false;
 
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.Ineligible);
+            expect(service.shouldShowGhgContext()).toBeFalsy();
         }));
 
-        it('should return ineligible for new builds', async(() => {
+        it('should not show GHG context for new builds', async(() => {
             responseData.englishProperty = true;
             responseData.newBuild = true;
 
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.Ineligible);
+            expect(service.shouldShowGhgContext()).toBeFalsy();
         }));
 
-        it("should return ineligible if they don't own their home", async(() => {
+        it('should show GHG context for English non-new builds', async(() => {
             responseData.englishProperty = true;
             responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Tenant;
 
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.Ineligible);
-        }));
-
-        it('should return fully eligible if they own their home and are on non-child benefits', async(() => {
-            responseData.englishProperty = true;
-            responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Owner;
-            responseData.receiveSocietalBenefits = true;
-
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.FullyEligible);
-        }));
-
-        it("should return partially eligible if they are a landlord and it's not a new build", async(() => {
-            responseData.englishProperty = true;
-            responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Landlord;
-
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-        }));
-
-        it('should return partially eligible if they are in England, own their home and have no benefits', async(() => {
-            responseData.englishProperty = true;
-            responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Owner;
-            responseData.receiveSocietalBenefits = false;
-
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.PartiallyEligible);
-        }));
-
-        it("should return partially eligible if they say they have benefits, but then don't have any of the benefits on the list",
-        async(() => {
-            responseData.englishProperty = true;
-            responseData.newBuild = false;
-            responseData.ownsHome = OwnHome.Owner;
-            responseData.receiveAnyBenefits = true;
-            responseData.receivePensionGuaranteeCredit = false;
-            responseData.receiveIncomeRelatedBenefits = false;
-            responseData.receiveContributionBasedBenefits = false;
-            responseData.receiveSocietalBenefits = false;
-            responseData.receiveHousingBenefit = false;
-
-            expect(service.getEligibility()).toBe(GreenHomesGrantEligibility.PartiallyEligible);
+            expect(service.shouldShowGhgContext()).toBeTruthy();
         }));
     });
 });

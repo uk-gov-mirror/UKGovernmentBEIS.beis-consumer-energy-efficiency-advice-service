@@ -69,7 +69,6 @@ describe('GrantsQuestionnaire', () => {
         // given
         responseData.postcode = 'SW1A1AA';
         responseData.localAuthorityCode = 'E09000033';
-        responseData.country = Country.England;
         responseData.epc = null;
         responseData.tenureType = undefined;
         responseData.numberOfChildrenAgedUnder5 = undefined;
