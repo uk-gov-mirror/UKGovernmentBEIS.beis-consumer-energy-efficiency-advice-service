@@ -4,3 +4,7 @@ export enum TenureType {
     PrivateTenancy,
     SocialTenancy
 }
+
+export function isTenant(tenureType: TenureType | undefined) {
+    return [TenureType.PrivateTenancy, TenureType.SocialTenancy].includes(tenureType);
+}

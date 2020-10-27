@@ -56,18 +56,6 @@ export class YourPlanPageComponent implements OnInit {
         ).length;
     }
 
-    // TODO SEA-218: work out what to do here
-    get ghgDiscountProportion(): string {
-        return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
-            ? "100%" : "2/3";
-    }
-
-    get ghgMaximumAmount(): string {
-        return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
-            ? "10,000" : "5,000";
-    }
-
-
     ngOnInit() {
         this.pageTitle.set('Your Plan');
         if (!this.energyEfficiencyDisplayService.getActualNumberOfRecommendations()) {

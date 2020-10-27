@@ -154,7 +154,6 @@ describe('PostcodeEpcQuestionComponent', () => {
             fixture.whenStable().then(() => {
                 expect(component.postcode).toEqual(VALID_POSTCODE);
                 expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
-                expect(component.country).toEqual(Country.Wales);
             });
         }));
 
@@ -199,7 +198,6 @@ describe('PostcodeEpcQuestionComponent', () => {
                 expect(component.postcode).toEqual(VALID_POSTCODE);
                 expect(component.epc).toEqual(expectedEpc);
                 expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
-                expect(component.country).toEqual(Country.England);
             });
         }));
 
@@ -233,7 +231,6 @@ describe('PostcodeEpcQuestionComponent', () => {
                 expect(component.postcode).toEqual(VALID_POSTCODE);
                 expect(component.epc).toBeUndefined();
                 expect(component.localAuthorityCode).toEqual(expectedLocalAuthorityCode);
-                expect(component.country).toEqual(Country.England);
             });
         }));
 
