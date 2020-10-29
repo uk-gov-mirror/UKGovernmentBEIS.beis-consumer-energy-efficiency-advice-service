@@ -19,7 +19,7 @@ VALUES
 
 DELETE FROM wp_postmeta
 WHERE post_id IN (
-    SELECT post_id FROM wp_posts WHERE post_name IN
+    SELECT ID FROM wp_posts WHERE post_name IN
         (SELECT post_name FROM ghg_question_names)
     );
 
