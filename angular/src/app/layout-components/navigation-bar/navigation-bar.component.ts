@@ -73,6 +73,7 @@ export class NavigationBarComponent {
             // Existing recommendations are cleared when a questionnaire component is loaded.
             // This happens after the NavigationEnd event and so we need to set this property as false
             // explicitly when navigating to a questionnaire page.
+            // TODO SEA-258: Make this less hacky by moving display management of showYourPlan to somewhere more sensible.
             if (event instanceof NavigationEnd) {
                 if (event.url.includes("questionnaire")) {
                     this.showYourPlan = false;
