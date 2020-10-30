@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
-import {NavigationStart, Router} from "@angular/router";
+import {NavigationStart, Router, NavigationEnd} from "@angular/router";
 
 import {NavigationSuboption} from "./navigation-suboption";
 import {RecommendationsService} from "../../shared/recommendations-service/recommendations.service";
@@ -66,9 +66,19 @@ export class NavigationBarComponent {
             if (event instanceof NavigationStart && this.shouldExpandNav) {
                 this.hideMobileNav();
             }
-            this.showYourPlan = this.recommendationsService.getRecommendationsInPlan().length > 0;
             // This needs to be regularly checked as it could change quite often.
             // Performing it on a routing change is a suitable time to do this.
+            this.showYourPlan = this.recommendationsService.getRecommendationsInPlan().length > 0;
+
+            // Existing recommendations are cleared when a questionnaire component is loaded.
+            // This happens after the NavigationEnd event and so we need to set this property as false
+            // explicitly when navigating to a questionnaire page.
+            // TODO SEA-258: Make this less hacky by moving display management of showYourPlan to somewhere more sensible.
+            if (event instanceof NavigationEnd) {
+                if (event.url.includes("questionnaire")) {
+                    this.showYourPlan = false;
+                }
+            }
         });
         // This component listens to all click and keyup events, and never de-registers
         // for simplicity as it persists for the life of the SPA

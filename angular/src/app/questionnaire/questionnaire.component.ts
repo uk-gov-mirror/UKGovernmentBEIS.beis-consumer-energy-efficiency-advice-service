@@ -24,6 +24,7 @@ import {QuestionHeadingProcessor} from './question-heading-processor.service';
 import {GoogleAnalyticsService} from '../shared/analytics/google-analytics.service';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
+import {RecommendationsService} from "../shared/recommendations-service/recommendations.service";
 
 @Component({
     selector: 'app-questionnaire',
@@ -63,7 +64,8 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
                 private questionHeadingProcessor: QuestionHeadingProcessor,
                 private googleAnalyticsService: GoogleAnalyticsService,
                 private userStateService: UserStateService,
-                private pageTitle: PageTitleService) {
+                private pageTitle: PageTitleService,
+                private recommendationsService: RecommendationsService) {
         this.currentQuestionIndex = 0;
         this.isLoading = true;
         this.isError = false;
@@ -72,6 +74,7 @@ export class QuestionnaireComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.pageTitle.set(this.questionnaireTitle);
         this.questionnaire = this.questionnaireService.getQuestionnaireWithName(this.questionnaireName);
+        this.recommendationsService.clearRecommendations();
         if (!this.questionnaire) {
             this.displayErrorAndLogMessage(`No questionnaire found for name "${ this.questionnaireName }"`);
             this.router.navigate(['/404'], {skipLocationChange: true});

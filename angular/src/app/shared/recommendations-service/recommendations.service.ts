@@ -22,6 +22,10 @@ import {
     GreenHomesGrantRecommendation,
     GreenHomesGrantRecommendationsService
 } from "./green-homes-grant-recommendations.service";
+import {SessionService} from "../session-service/session.service";
+import {InstallationCost} from "./installation-cost";
+
+const RECOMMENDATIONS_SESSION_KEY = "recommendations";
 
 @Injectable()
 export class RecommendationsService {
@@ -29,40 +33,58 @@ export class RecommendationsService {
     private static TOP_RECOMMENDATIONS: number = 5;
     private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
-    private cachedResponseData: ResponseData;
-    private cachedRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
+    private responseData: ResponseData;
+    private recommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
-    constructor(private responseData: ResponseData,
+    constructor(private sessionResponseData: ResponseData,
                 private measureService: EnergySavingMeasureContentService,
                 private grantsEligibilityService: GrantEligibilityService,
                 private greenHomesGrantRecommendationsService: GreenHomesGrantRecommendationsService) {
+        this.getSessionRecommendations();
     }
 
     getAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
-        if (!isEqual(this.responseData, this.cachedResponseData) || !this.cachedRecommendations.hasRecommendations()) {
-            this.cachedResponseData = clone(this.responseData);
-            return this.refreshAllRecommendations(energyCalculation)
-                .do(recommendations => this.cachedRecommendations = recommendations)
-                .catch(() => {
-                    return Observable.of(RecommendationsService.DEFAULT_RECOMMENDATIONS);
-                });
+        if (!isEqual(this.sessionResponseData, this.responseData) || !this.recommendations.hasRecommendations()) {
+            const isNewInstance = !this.responseData;
+            this.responseData = clone(this.sessionResponseData);
+            if (!this.recommendations.hasRecommendations() || !isNewInstance) {
+                return this.refreshAllRecommendations(energyCalculation)
+                    .do(recommendations => {
+                        this.recommendations = recommendations;
+                        this.saveRecommendationsToSession();
+                    })
+                    .catch(() => {
+                        this.recommendations = RecommendationsService.DEFAULT_RECOMMENDATIONS;
+                        this.saveRecommendationsToSession();
+                        return Observable.of(this.recommendations);
+                    });
+            }
         }
-        return Observable.of(this.cachedRecommendations);
+        return Observable.of(this.recommendations);
     }
 
     getRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.cachedRecommendations.getAll()
+        return this.recommendations.getAll()
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 
     getUserRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.cachedRecommendations.userRecommendations
+        return this.recommendations.userRecommendations
             .filter(recommendation => recommendation.isAddedToPlan);
     }
 
     getLandlordRecommendationsInPlan(): EnergyEfficiencyRecommendation[] {
-        return this.cachedRecommendations.landlordRecommendations
+        return this.recommendations.landlordRecommendations
             .filter(recommendation => recommendation.isAddedToPlan);
+    }
+
+    updateSessionRecommendations() {
+        SessionService.saveToSession(RECOMMENDATIONS_SESSION_KEY, this.recommendations);
+    }
+
+    clearRecommendations() {
+        this.removeRecommendationsFromSession();
+        this.recommendations = new EnergyEfficiencyRecommendations();
     }
 
     private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
@@ -200,20 +222,69 @@ export class RecommendationsService {
     }
 
     private isRentalUser() {
-        return this.responseData.tenureType !== TenureType.OwnerOccupancy && !!this.responseData.tenureType;
+        return this.sessionResponseData.tenureType !== TenureType.OwnerOccupancy && !!this.sessionResponseData.tenureType;
     }
 
     private getFilteredHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,
                                                    measuresContent: MeasureContent[]): EnergyEfficiencyRecommendation[] {
-        if (this.responseData.userJourneyType === UserJourneyType.PlanHomeImprovements) {
+        if (this.sessionResponseData.userJourneyType === UserJourneyType.PlanHomeImprovements) {
             return [];
         }
         const habitRecommendations = RecommendationsService.getHabitRecommendationsContent(measures, measuresContent);
-        if (this.responseData.userJourneyType === UserJourneyType.MakeHomeWarmer) {
+        if (this.sessionResponseData.userJourneyType === UserJourneyType.MakeHomeWarmer) {
             return habitRecommendations.filter(
                 recommendation => recommendation.recommendationID !== `meta_one_degree_reduction`);
         }
         return habitRecommendations;
+    }
+
+    private getSessionRecommendations() {
+        try {
+            const sessionRecommendations: EnergyEfficiencyRecommendations =
+                SessionService.getFromSession(RECOMMENDATIONS_SESSION_KEY);
+            if (sessionRecommendations) {
+                for (const i of Object.keys(sessionRecommendations)) {
+                    this.recommendations[i] = sessionRecommendations[i].map(recommendation =>
+                        new EnergyEfficiencyRecommendation(
+                            recommendation.lifetimeYears,
+                            recommendation.costSavingPoundsPerYear,
+                            recommendation.minimumCostSavingPoundsPerYear,
+                            recommendation.maximumCostSavingPoundsPerYear,
+                            recommendation.energySavingKwhPerYear,
+                            recommendation.readMoreRoute,
+                            recommendation.headline,
+                            recommendation.summary,
+                            recommendation.whatItIs,
+                            recommendation.isItRightForMe,
+                            recommendation.iconPath,
+                            recommendation.tags,
+                            recommendation.grant,
+                            recommendation.advantages,
+                            recommendation.steps,
+                            recommendation.isAddedToPlan,
+                            recommendation.recommendationID,
+                            recommendation.measureCode,
+                            recommendation.trustMarkTradeCodes,
+                            new InstallationCost(
+                                recommendation.installationCost.min,
+                                recommendation.installationCost.max,
+                                recommendation.installationCost.isBreRange)
+                        ));
+                }
+            } else {
+                this.recommendations = new EnergyEfficiencyRecommendations();
+            }
+        } catch {
+            this.recommendations = new EnergyEfficiencyRecommendations();
+        }
+    }
+
+    private saveRecommendationsToSession() {
+        SessionService.saveToSession(RECOMMENDATIONS_SESSION_KEY, this.recommendations);
+    }
+
+    private removeRecommendationsFromSession() {
+        SessionService.removeFromSession(RECOMMENDATIONS_SESSION_KEY);
     }
 
     private static getHabitRecommendationsContent(measures: MeasuresResponse<HabitMeasureResponse>,

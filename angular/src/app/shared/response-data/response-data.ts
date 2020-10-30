@@ -23,6 +23,10 @@ import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question
 import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
 import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
+import {SessionService} from "../session-service/session.service";
+
+const RESPONSE_DATA_SESSION_KEY = 'responseData';
+
 
 /**
  * This is a global mutable singleton which tracks the user's answers to the questionnaires.
@@ -223,34 +227,17 @@ export class ResponseData {
     }
 
     constructor() {
-        if (!sessionStorageAvailable()) {
+        if (!SessionService.sessionStorageAvailable()) {
             return;
         }
-        const storedResponseData = sessionStorage.getItem(responseDataSessionStorageKey);
+        const storedResponseData = SessionService.getFromSession(RESPONSE_DATA_SESSION_KEY);
         if (storedResponseData) {
-            replaceOldResponseData(this, JSON.parse(storedResponseData));
+            replaceOldResponseData(this, storedResponseData);
         }
     }
 
     saveToSessionStorage() {
-        if (sessionStorageAvailable()) {
-            sessionStorage.setItem(responseDataSessionStorageKey, JSON.stringify(this));
-        }
-    }
-}
-
-const responseDataSessionStorageKey = 'responseData';
-
-// Simplified version of
-// https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Feature-detecting_localStorage
-function sessionStorageAvailable() {
-    try {
-        const x = '__storage_test__';
-        sessionStorage.setItem(x, x);
-        sessionStorage.removeItem(x);
-        return true;
-    } catch (e) {
-        return false;
+        SessionService.saveToSession(RESPONSE_DATA_SESSION_KEY, this);
     }
 }
 

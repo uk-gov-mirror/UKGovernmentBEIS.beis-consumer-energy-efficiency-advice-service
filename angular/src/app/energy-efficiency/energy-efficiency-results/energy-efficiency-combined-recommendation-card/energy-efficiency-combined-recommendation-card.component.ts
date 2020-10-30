@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-service/energy-efficiency-recommendation';
 import {RoundingService} from '../../../shared/rounding-service/rounding.service';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
@@ -30,6 +30,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
     @Input() combinedIconPath: string;
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
+    @Output() recommendationsInPlanChanged: EventEmitter<null> = new EventEmitter<null>();
 
     constructor(private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private googleAnalyticsService: GoogleAnalyticsService) {
@@ -85,6 +86,7 @@ export class EnergyEfficiencyCombinedRecommendationCardComponent implements OnIn
         if (this.isAddedToPlan()) {
             this.sendEventToAnalytics('add-to-plan_clicked');
         }
+        this.recommendationsInPlanChanged.emit();
     }
 
     sendEventToAnalytics(eventName: string) {
