@@ -26,6 +26,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {UserStateService} from "../shared/user-state-service/user-state-service";
 import {PageTitleService} from "../shared/page-title-service/page-title.service";
+import {RecommendationsService} from "../shared/recommendations-service/recommendations.service";
 
 describe('QuestionnaireComponent', () => {
     let component: QuestionnaireComponent;
@@ -51,6 +52,10 @@ describe('QuestionnaireComponent', () => {
 
     const userStateServiceStub = {
         saveState: () => {}
+    };
+
+    const recommendationsServiceStub = {
+        clearRecommendations: () => {}
     };
 
     class TestQuestion extends QuestionMetadata {
@@ -148,6 +153,7 @@ describe('QuestionnaireComponent', () => {
                 {provide: UserStateService, useValue: userStateServiceStub},
                 {provide: ResponseData, useValue: responseDataStub},
                 {provide: PageTitleService, useValue: pageTitleStub},
+                {provide: RecommendationsService, useValue: recommendationsServiceStub}
             ],
         })
             .compileComponents();
