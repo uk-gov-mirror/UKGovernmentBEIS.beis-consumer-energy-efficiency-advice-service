@@ -162,7 +162,7 @@ export class ResponseData {
     // Set by LoftWaterDamageQuestionComponent, used by ECO self-referral
     public hasLoftHistoryOfWaterDamage: boolean;
 
-    // Set by EnglishPropertyQuestionComponent
+    // Set by EPC components, used to determine whether to show GHG context
     public englishProperty: boolean;
 
     get numberOfAdults(): number {

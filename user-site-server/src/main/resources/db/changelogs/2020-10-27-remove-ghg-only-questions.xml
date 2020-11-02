@@ -9,24 +9,12 @@
                author="matt.barnfield@softwire.com"
                dbms="mysql">
         <sql><![CDATA[
-CREATE TEMPORARY TABLE ghg_question_names (post_name VARCHAR(200) PRIMARY KEY);
-INSERT INTO ghg_question_names
-VALUES
-    ('any_benefits'),
-    ('postcode_epc'),
-    ('english_property'),
-    ('own_home');
 
-DELETE FROM wp_postmeta
-WHERE post_id IN (
-    SELECT ID FROM wp_posts WHERE post_name IN
-        (SELECT post_name FROM ghg_question_names)
-    );
-
-DELETE FROM wp_posts
-WHERE post_name IN (SELECT post_name FROM ghg_question_names);
-
-DROP TEMPORARY TABLE ghg_question_names;
+DELETE p, pm
+FROM wp_posts p
+INNER JOIN wp_postmeta pm
+ON p.ID = pm.post_id
+WHERE p.post_name IN ('any_benefits', 'postcode_epc', 'english_property', 'own_home');
 
        ]]></sql>
     </changeSet>
