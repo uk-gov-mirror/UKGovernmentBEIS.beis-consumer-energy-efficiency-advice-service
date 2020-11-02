@@ -140,6 +140,10 @@ describe('RecommendationsService', () => {
         service = injector.get(RecommendationsService);
     });
 
+    afterEach(() => {
+        service.clearRecommendations();
+    });
+
     describe('#construct', () => {
         it('should be created', () => {
             expect(service).toBeTruthy();
