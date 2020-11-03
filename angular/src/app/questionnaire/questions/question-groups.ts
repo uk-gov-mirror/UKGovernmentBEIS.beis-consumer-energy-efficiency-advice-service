@@ -45,16 +45,9 @@ import {LoftClutterQuestionMetadata} from "./loft-clutter-question/loft-clutter-
 import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-infestation-question-metadata";
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
-import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
-import {OwnHomeQuestionMetadata} from "./own-home-question/own-home-question-metadata";
-import {QuestionGroupBuilder} from "./question-group-builder";
-import {OwnHome} from "./own-home-question/ownHome";
-import {AnyBenefitsQuestionMetadata} from "./benefits-questions/any-benefits-question-metadata";
-import {ContributionBasedBenefitsQuestionMetadata } from './benefits-questions/contribution-based-benefits-question-metadata';
-import {HousingBenefitQuestionMetadata} from './benefits-questions/housing-benefit-question-metadata';
-import {EnglishPropertyQuestionMetadata} from './english-property-question/english-property-question-metadata';
 import {OutsideSpaceQuestionMetadata} from "./outside-space-question/outside-space-question-metadata";
 import {FloorInsulationQuestionMetadata} from "./floor-insulation-question/floor-insulation-question-metadata";
+import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -143,22 +136,6 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new OccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()
 ];
-
-export const GREEN_HOMES_GRANT_QUESTIONS = new QuestionGroupBuilder([
-    new EnglishPropertyQuestionMetadata()
-]).andThenContinueIf(responseData => responseData.englishProperty, [
-    new OwnHomeQuestionMetadata()
-]).andThenContinueIf(responseData => responseData.ownsHome !== OwnHome.Tenant, [
-    new NewBuildQuestionMetadata()
-]).andThenContinueIf(responseData => !responseData.newBuild && responseData.ownsHome !== OwnHome.Landlord, [
-    new AnyBenefitsQuestionMetadata()
-]).andThenContinueIf(responseData => responseData.receiveAnyBenefits, [
-    new IncomeRelatedBenefitsQuestionMetadata(),
-    new PensionGuaranteeCreditQuestionMetadata(),
-    new SocietalBenefitsQuestionMetadata(),
-    new ContributionBasedBenefitsQuestionMetadata(),
-    new HousingBenefitQuestionMetadata()
-]).build();
 
 export const ECO_SELF_REFERRAL_QUESTIONS = [
     new ConfirmEpcQuestionMetadata(),

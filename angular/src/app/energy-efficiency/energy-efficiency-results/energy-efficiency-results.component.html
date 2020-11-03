@@ -14,7 +14,7 @@
     </div>
     <div class="page-row recommendations">
         <div class="page-row-content">
-            <div class="ghg-context-card" *ngIf="this.isEligibleForGreenHomesGrant">
+            <div class="ghg-context-card" *ngIf="this.shouldShowGhgContext">
                 <h2>Fund improvements with the Green Homes Grant</h2>
                 <ng-container *ngIf="isOwnerOccupied">
                     <p>To be eligible, you must add at least one <span class="tag">GHG Eligible (primary)</span> measure to your plan.</p>
@@ -40,7 +40,7 @@
                         [recommendation]="recommendation"
                         [showMonthlySavings]="!isOwnerOccupied"
                         [showAddToPlanColumn]="!showDefaultRecommendation && !showDefaultRentalMeasures"
-                        [shouldShowGhgContext]="this.isEligibleForGreenHomesGrant"
+                        [shouldShowGhgContext]="this.shouldShowGhgContext"
                         (recommendationsInPlanChanged)="onRecommendationInPlanChanged()"
                 ></app-energy-efficiency-recommendation-card>
                 <app-energy-efficiency-combined-recommendation-card

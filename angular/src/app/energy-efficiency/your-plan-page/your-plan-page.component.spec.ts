@@ -30,10 +30,9 @@ import {AbTestingService} from "../../shared/analytics/ab-testing.service";
 import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {InstallerSearchService} from "../../shared/installer-search-service/installer-search.service";
-import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -166,10 +165,8 @@ describe('YourPlanPageComponent', () => {
     };
 
     const greenHomesGrantStub = {
-        getEligibility: () => Observable.of(GreenHomesGrantEligibility.PartiallyEligible),
+        shouldShowGhgContext: () => true,
         hasGHGTag: () => true,
-        hasGHGPrimaryTag: () => true,
-        hasGHGSecondaryTag: () => false
     };
 
     beforeEach(async(() => {

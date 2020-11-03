@@ -47,13 +47,12 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
         this.responseData.postcode = val;
     }
 
-    get country(): Country {
-        return this.responseData.country;
+    get englishProperty(): boolean {
+        return this.responseData.englishProperty;
     }
 
-    set country(val: Country) {
-        this.responseData.country = val;
-        this.responseData.englishProperty = val === Country.England;
+    set englishProperty(val: boolean) {
+        this.responseData.englishProperty = val;
     }
 
     get epc(): Epc {
@@ -122,7 +121,7 @@ export class PostcodeEpcQuestionComponent extends QuestionBaseComponent implemen
     private handlePostcodeDetails(postcodeDetails: PostcodeDetails): void {
         this.localAuthorityCode = postcodeDetails.localAuthorityCode;
         this.postcode = postcodeDetails.postcode;
-        this.country = postcodeDetails.country;
+        this.englishProperty = postcodeDetails.country === Country.England;
         const epcs = postcodeDetails.allEpcsForPostcode;
         if (!epcs || epcs.length === 0) {
             return this.continueWithoutEpc();

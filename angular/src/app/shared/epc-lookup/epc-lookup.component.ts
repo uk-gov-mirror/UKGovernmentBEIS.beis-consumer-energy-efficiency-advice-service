@@ -91,7 +91,6 @@ export class EpcLookupComponent implements OnChanges, OnInit {
         resetResponseDataForNewEpc(this.responseData);
 
         this.responseData.postcode = this.postcodeDetails.postcode;
-        this.responseData.country = this.postcodeDetails.country;
         this.responseData.englishProperty = this.postcodeDetails.country === Country.England;
         this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
         this.responseData.epc = selectedEpc;
@@ -109,7 +108,6 @@ export class EpcLookupComponent implements OnChanges, OnInit {
                 this.responseData.postcode = selectedPostcode;
             } else {
                 this.responseData.postcode = this.postcodeDetails.postcode;
-                this.responseData.country = this.postcodeDetails.country;
                 this.responseData.englishProperty = this.postcodeDetails.country === Country.England;
                 this.responseData.localAuthorityCode = this.postcodeDetails.localAuthorityCode;
             }

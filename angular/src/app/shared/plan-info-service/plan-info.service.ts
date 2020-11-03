@@ -3,7 +3,6 @@ import {RecommendationsService} from "../recommendations-service/recommendations
 import {Injectable} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from "../recommendations-service/energy-efficiency-recommendation";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
-import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 
 @Injectable()
 export class PlanInfoService {
@@ -56,7 +55,7 @@ export class PlanInfoService {
             recommendations: recommendations,
             tenureType: this.responseData.tenureType,
             postcode: this.responseData.postcode,
-            shouldShowGhgContext: this.greenHomesGrantService.getEligibility() !== GreenHomesGrantEligibility.Ineligible
+            shouldShowGhgContext: this.greenHomesGrantService.shouldShowGhgContext()
         };
     }
 }

@@ -8,9 +8,8 @@ import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import * as logger from 'loglevel';
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
-import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -24,7 +23,6 @@ export class YourPlanPageComponent implements OnInit {
     isError: boolean = false;
     errorMessage: string;
     shouldShowGhgContext: boolean = false;
-    ghgEligibility: GreenHomesGrantEligibility;
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
@@ -58,17 +56,6 @@ export class YourPlanPageComponent implements OnInit {
         ).length;
     }
 
-    get ghgDiscountProportion(): string {
-        return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
-            ? "100%" : "2/3";
-    }
-
-    get ghgMaximumAmount(): string {
-        return this.ghgEligibility === GreenHomesGrantEligibility.FullyEligible
-            ? "10,000" : "5,000";
-    }
-
-
     ngOnInit() {
         this.pageTitle.set('Your Plan');
         if (!this.energyEfficiencyDisplayService.getActualNumberOfRecommendations()) {
@@ -85,8 +72,7 @@ export class YourPlanPageComponent implements OnInit {
                 error => this.handleLocalAuthorityServiceError(error)
             );
 
-        this.ghgEligibility = this.greenHomesGrantService.getEligibility();
-        this.shouldShowGhgContext = this.ghgEligibility !== GreenHomesGrantEligibility.Ineligible &&
+        this.shouldShowGhgContext = this.greenHomesGrantService.shouldShowGhgContext() &&
             this.recommendationsService.getUserRecommendationsInPlan()
                 .concat(this.recommendationsService.getLandlordRecommendationsInPlan())
                 .some(

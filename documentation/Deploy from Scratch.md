@@ -18,7 +18,7 @@ These instructions are kept for future reference.
   * [User Site Hostname](#user-site-hostname)
   * [Forwarding the User Site old hostname to the canonical hostname](#forwarding-the-user-site-old-hostname-to-the-canonical-hostname)
   * [Forwarding the non "www" hostname to the main hostname](#forwarding-the-non-www-hostname-to-the-main-hostname)
-- [Metric and Log Collection](#metric/log-collection)
+- [Metric/Log Collection](#metriclog-collection)
 
 <!-- tocstop -->
 

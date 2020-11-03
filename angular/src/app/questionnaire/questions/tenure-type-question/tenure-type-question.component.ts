@@ -3,7 +3,6 @@ import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/qu
 import {TenureType} from './tenure-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {MultipleChoiceOption} from "../../common-questions/multiple-choice-question/multiple-choice-option";
-import {OwnHome} from "../own-home-question/ownHome";
 
 @Component({
     selector: 'app-ownership-status-question',
@@ -36,13 +35,6 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
                 name: 'I rent my home from the council or a housing association'
             },
         ];
-
-        // Prefill must be done here so the question isn't skipped when using best guess for tenants
-        if (this.response === undefined) {
-            this.response = this.responseData.ownsHome === OwnHome.Tenant
-                ? TenureType.PrivateTenancy
-                : undefined;
-        }
     }
 
     get response(): TenureType {
@@ -51,6 +43,5 @@ export class TenureTypeQuestionComponent extends QuestionBaseComponent {
 
     set response(val: TenureType) {
         this.responseData.tenureType = val;
-        this.responseData.ownsHome = val === TenureType.OwnerOccupancy ? OwnHome.Owner : OwnHome.Tenant;
     }
 }

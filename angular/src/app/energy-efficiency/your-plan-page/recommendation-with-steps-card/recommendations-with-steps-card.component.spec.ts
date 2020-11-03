@@ -8,14 +8,13 @@ import {RecommendationStepCardComponent} from "../recommendation-step-card/recom
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import {InstallerSearchService} from "../../../shared/installer-search-service/installer-search.service";
 import {Observable} from '../../../../../node_modules/rxjs/Observable';
-import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
-import {GreenHomesGrantEligibility} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {By} from '@angular/platform-browser';
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {InstallationCost} from "../../../shared/recommendations-service/installation-cost";
 import {NationalGrantForMeasure} from "../../../grants/model/national-grant-for-measure";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
+import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('RecommendationWithStepsCardComponent', () => {
     let component: RecommendationWithStepsCardComponent;
@@ -70,7 +69,7 @@ describe('RecommendationWithStepsCardComponent', () => {
         };
 
         const greenHomesGrantStub = {
-            getEligibility: () => Observable.of(GreenHomesGrantEligibility.PartiallyEligible),
+            shouldShowGhgContext: () => true,
         };
 
         TestBed.configureTestingModule({

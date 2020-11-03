@@ -38,9 +38,8 @@ import {YourPlanFooterItemComponent} from "./your-plan-footer/your-plan-footer-i
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
-import {GreenHomesGrantEligibility} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant-eligibility";
 import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
+import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -70,7 +69,7 @@ describe('EnergyEfficiencyResultsComponent', () => {
     };
 
     const greenHomesGrantStub = {
-        getEligibility: () => Observable.of(GreenHomesGrantEligibility.PartiallyEligible),
+        shouldShowGhgContext: () => true,
     };
 
     let responseData: ResponseData;

@@ -21,7 +21,6 @@ import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/l
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
 import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
-import {OwnHome} from "../../questionnaire/questions/own-home-question/ownHome";
 import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
 import {SessionService} from "../session-service/session.service";
 
@@ -47,8 +46,6 @@ export class ResponseData {
 
     // Set by PostcodeEpcQuestionComponent, sent to BRE energy-calculation
     public postcode: string;
-    // Set by PostcodeEpcQuestionComponent, used for GHG eligibility
-    public country: Country;
     // Set by PostcodeEpcQuestionComponent, used for showing grants
     public localAuthorityCode: string;
     // Always set to `true` by ConfirmEpcQuestionComponent, not used
@@ -59,7 +56,7 @@ export class ResponseData {
     public homeType: HomeType;
     // Set by HomeAgeQuestionComponent, sent to BRE energy-calculation
     public homeAge: HomeAge;
-    // Set by NewBuildQuestionComponent, used for GHG eligibility
+    // Set by NewBuildQuestionComponent
     public newBuild: boolean;
     // Set by FlatExposedWallQuestionComponent, sent to BRE energy-calculation
     public numberOfExposedWallsInFlat: FlatExposedWall;
@@ -135,8 +132,6 @@ export class ResponseData {
     public floorLevels: FloorLevel[];
     // Set by HotWaterCylinderQuestionComponent, sent to BRE energy-calculation
     public hotWaterCylinder: boolean;
-    // Set by OwnHomeQuestionComponent, used for GHG eligibility
-    public ownsHome: OwnHome;
     // Set by PensionGuaranteeCreditQuestionComponent, used by grants
     public receivePensionGuaranteeCredit: boolean;
     // Set by IncomeRelatedBenefitsQuestionComponent, used by grants
@@ -151,8 +146,6 @@ export class ResponseData {
     public receiveChildBenefits: boolean;
     // Set by HousingBenefitsQuestionComponent
     public receiveHousingBenefit: boolean;
-    // Set by AnyBenefitsQuestionComponent, used by GHG
-    public receiveAnyBenefits: boolean;
     // Set by IncomeQuestionComponent, used by grants
     public income: number;
 
@@ -173,7 +166,7 @@ export class ResponseData {
     // Set by LoftWaterDamageQuestionComponent, used by ECO self-referral
     public hasLoftHistoryOfWaterDamage: boolean;
 
-    // Set by EnglishPropertyQuestionComponent, used by GHG eligibility questionnaire
+    // Set by EPC components, used to determine whether to show GHG context
     public englishProperty: boolean;
 
     get numberOfAdults(): number {

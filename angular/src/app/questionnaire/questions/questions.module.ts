@@ -40,7 +40,6 @@ import {EpcNotFoundComponent} from './mees/epc-not-found-question/epc-not-found.
 import {AgriculturalTenancyTypeQuestionComponent} from './mees/agricultural-tenancy-type-question/agricultural-tenancy-type-question.component';
 import {BuiltFormQuestionComponent} from "./built-form-question/built-form-question.component";
 import {IncomeRelatedBenefitsQuestionComponent} from "./benefits-questions/income-related-benefits-question.component";
-import {ContributionBasedBenefitsQuestionComponent} from "./benefits-questions/contribution-based-benefits-question.component";
 import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pension-guarantee-credit-question.component";
 import {ChildBenefitsQuestionComponent} from "./benefits-questions/child-benefits-question.component";
 import {DefenseRelatedBenefitsQuestionComponent} from "./benefits-questions/defense-related-benefits-question.component";
@@ -53,29 +52,20 @@ import {LoftInfestationQuestionComponent} from "./loft-infestation-question/loft
 import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/loft-water-damage-question.component";
 import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
 import {NewBuildQuestionComponent} from "./new-build-question/new-build-question.component";
-import {OwnHomeQuestionComponent} from "./own-home-question/own-home-question.component";
-import {CountryPostcodeQuestionComponent} from "./country-postcode-question/country-postcode-question.component";
-import {AnyBenefitsQuestionComponent} from "./benefits-questions/any-benefits-question.component";
-import {HousingBenefitQuestionComponent} from "./benefits-questions/housing-benefit-question.component";
-import {EnglishPropertyQuestionComponent} from './english-property-question/english-property-question.component';
 import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-space-question.component";
 import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floor-insulation-question.component";
 
 
 @NgModule({
     declarations: [
-        AnyBenefitsQuestionComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
-        CountryPostcodeQuestionComponent,
-        ContributionBasedBenefitsQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
-        EnglishPropertyQuestionComponent,
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
@@ -87,7 +77,6 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
-        HousingBenefitQuestionComponent,
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -95,7 +84,6 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         OutsideSpaceQuestionComponent,
-        OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
@@ -121,18 +109,14 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         WallTypeQuestionComponent
     ],
     exports: [
-        AnyBenefitsQuestionComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
-        ContributionBasedBenefitsQuestionComponent,
-        CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
-        EnglishPropertyQuestionComponent,
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
@@ -144,7 +128,6 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
-        HousingBenefitQuestionComponent,
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -152,7 +135,6 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         OutsideSpaceQuestionComponent,
-        OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,
@@ -185,18 +167,14 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         NouisliderModule,
     ],
     entryComponents: [
-        AnyBenefitsQuestionComponent,
         BedroomsQuestionComponent,
         BoilerTypeQuestionComponent,
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
-        ContributionBasedBenefitsQuestionComponent,
-        CountryPostcodeQuestionComponent,
         DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
-        EnglishPropertyQuestionComponent,
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
@@ -208,7 +186,6 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
         HouseStoreysQuestionComponent,
-        HousingBenefitQuestionComponent,
         IncomeQuestionComponent,
         IncomeRelatedBenefitsQuestionComponent,
         LivingRoomTemperatureQuestionComponent,
@@ -216,7 +193,6 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         OccupantsQuestionComponent,
         OptionalPropertyQuestionComponent,
         OutsideSpaceQuestionComponent,
-        OwnHomeQuestionComponent,
         TenureTypeQuestionComponent,
         PensionGuaranteeCreditQuestionComponent,
         PostcodeEpcQuestionComponent,

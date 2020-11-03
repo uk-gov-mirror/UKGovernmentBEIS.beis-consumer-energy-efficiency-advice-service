@@ -7,7 +7,6 @@ import {BoilerQuestionnaire} from './questionnaires/boiler/boiler-questionnaire'
 import {MeesQuestionnaire} from './questionnaires/mees/mees-questionnaire';
 import {GrantEligibilityQuestionnaire} from "./questionnaires/grant-eligibility/grant-eligibility-questionnaire";
 import {ECOSelfReferralQuestionnaire} from "./questionnaires/eco-self-referral/eco-self-referral-questionnaire";
-import {GreenHomesGrantQuestionnaire} from "./questionnaires/green-homes-grant/green-homes-grant-questionnaire";
 
 type QuestionnaireFactory = (responseData: ResponseData) => Questionnaire;
 
@@ -19,7 +18,6 @@ export class QuestionnaireService {
         'boiler': BoilerQuestionnaire.getInstance,
         'mees': MeesQuestionnaire.getInstance,
         'grant-eligibility': GrantEligibilityQuestionnaire.getInstance,
-        'green-homes-grant': GreenHomesGrantQuestionnaire.getInstance,
         'eco-self-referral': ECOSelfReferralQuestionnaire.getInstance
     };
 
