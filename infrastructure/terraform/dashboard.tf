@@ -1,7 +1,7 @@
 locals {
   allocated_memory_ratio = var.total_memory_allocation / var.org_memory_limit
-  user_cpu_scale_factor = { for k, v in var.user_site_memory_allocation: k => local.allocated_memory_ratio * var.total_memory_allocation / v}
-  admin_cpu_scale_factor = { for k, v in var.admin_site_memory_allocation: k => local.allocated_memory_ratio * var.total_memory_allocation / v}
+  user_cpu_scale_factor  = { for k, v in var.user_site_memory_allocation : k => local.allocated_memory_ratio * var.total_memory_allocation / v }
+  admin_cpu_scale_factor = { for k, v in var.admin_site_memory_allocation : k => local.allocated_memory_ratio * var.total_memory_allocation / v }
 }
 
 # Note that there is also an email subscription to this topic, but 
@@ -12,6 +12,9 @@ resource "aws_sns_topic" "dceas_live_alarms" {
 
 # This topic will call the person on out-of-hours support through PagerDuty
 # See: https://support.pagerduty.com/docs/aws-cloudwatch-integration-guide
+# This is not currently used anywhere as we don't have OOH support,
+# but is left in so the PagerDuty integration is ready to go if we
+# need OOH support in future
 resource "aws_sns_topic" "dceas_pagerduty_notifications" {
   name = "dceas-pagerduty-notifications"
 }
@@ -24,6 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "live_admin_cpu" {
   treat_missing_data  = "breaching"
   datapoints_to_alarm = 1
   alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
+  ok_actions          = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
     expression  = "${local.admin_cpu_scale_factor["live"]} * MAX(METRICS())"
@@ -86,6 +90,7 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
   treat_missing_data  = "breaching"
   datapoints_to_alarm = 1
   alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
+  ok_actions          = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
     expression  = "${local.user_cpu_scale_factor["live"]} * MAX(METRICS())"
@@ -143,80 +148,12 @@ resource "aws_cloudwatch_metric_alarm" "live_user_cpu" {
 resource "aws_cloudwatch_metric_alarm" "live_user_5xx" {
   alarm_name          = "LIVE dceas-user-site 5xx"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 10
+  threshold           = 25
   evaluation_periods  = "1"
   treat_missing_data  = "notBreaching"
   datapoints_to_alarm = 1
-  alarm_actions       = [
-    aws_sns_topic.dceas_live_alarms.arn,
-  ]
-
-  metric_query {
-    expression  = "SUM(METRICS())"
-    id          = "e1"
-    label       = "dceas-user-site 5xx responses"
-    return_data = true
-  }
-
-  metric_query {
-    id          = "m1"
-    return_data = false
-    metric {
-      dimensions = {
-        "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "counter"
-      }
-      metric_name = "mycf_live_dceas-user-site_0_requests_5xx"
-      namespace   = "CWAgent"
-      period      = 300
-      stat        = "Sum"
-    }
-  }
-
-  metric_query {
-    id          = "m2"
-    return_data = false
-    metric {
-      dimensions = {
-        "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "counter"
-      }
-      metric_name = "mycf_live_dceas-user-site_1_requests_5xx"
-      namespace   = "CWAgent"
-      period      = 300
-      stat        = "Sum"
-    }
-  }
-
-  metric_query {
-    id          = "m3"
-    return_data = false
-    metric {
-      dimensions = {
-        "host"        = aws_instance.cloudwatch_agent.private_dns
-        "metric_type" = "counter"
-      }
-      metric_name = "mycf_live_dceas-user-site_2_requests_5xx"
-      namespace   = "CWAgent"
-      period      = 300
-      stat        = "Sum"
-    }
-  }
-}
-
-resource "aws_cloudwatch_metric_alarm" "live_user_5xx_ooh_callout" {
-  alarm_name          = "LIVE dceas-user-site 5xx OOH callout"
-  comparison_operator = "GreaterThanThreshold"
-  threshold           = 200
-  evaluation_periods  = "1"
-  treat_missing_data  = "notBreaching"
-  datapoints_to_alarm = 1
-  alarm_actions       = [
-    aws_sns_topic.dceas_pagerduty_notifications.arn
-  ]
-  ok_actions = [
-    aws_sns_topic.dceas_pagerduty_notifications.arn
-  ]
+  alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn]
+  ok_actions          = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
     expression  = "SUM(METRICS())"
@@ -278,13 +215,8 @@ resource "aws_cloudwatch_metric_alarm" "live_user_2xx_response_time" {
   evaluation_periods  = "1"
   treat_missing_data  = "missing"
   datapoints_to_alarm = 1
-  alarm_actions       = [
-    aws_sns_topic.dceas_live_alarms.arn,
-    aws_sns_topic.dceas_pagerduty_notifications.arn
-  ]
-  ok_actions = [
-    aws_sns_topic.dceas_pagerduty_notifications.arn
-  ]
+  alarm_actions       = [aws_sns_topic.dceas_live_alarms.arn, ]
+  ok_actions          = [aws_sns_topic.dceas_live_alarms.arn]
 
   metric_query {
     expression  = "AVG(METRICS())"
@@ -350,7 +282,7 @@ resource "aws_cloudwatch_dashboard" "live" {
       aws_cloudwatch_metric_alarm.live_user_2xx_response_time.arn,
     ]),
     user_site_cpu_scale_factor  = local.user_cpu_scale_factor["live"]
-    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["live"]
+    admin_site_cpu_scale_factor = local.admin_cpu_scale_factor["live"]
   })
 }
 
@@ -360,7 +292,7 @@ resource "aws_cloudwatch_dashboard" "staging" {
     space                       = "staging"
     alarm_arns                  = "[]"
     user_site_cpu_scale_factor  = local.user_cpu_scale_factor["staging"]
-    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["staging"]
+    admin_site_cpu_scale_factor = local.admin_cpu_scale_factor["staging"]
   })
 }
 
@@ -370,7 +302,7 @@ resource "aws_cloudwatch_dashboard" "int" {
     space                       = "int"
     alarm_arns                  = "[]"
     user_site_cpu_scale_factor  = local.user_cpu_scale_factor["int"]
-    admin_site_cpu_scale_factor  = local.admin_cpu_scale_factor["int"]
+    admin_site_cpu_scale_factor = local.admin_cpu_scale_factor["int"]
   })
 }
 
