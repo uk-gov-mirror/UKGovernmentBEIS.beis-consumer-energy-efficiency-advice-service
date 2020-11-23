@@ -26,8 +26,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
         {name: '1991 to 1995', value: HomeAge.from1991to1995},
         {name: '1996 to 2002', value: HomeAge.from1996to2002},
         {name: '2003 to 2006', value: HomeAge.from2003to2006},
-        {name: '2007 to 2011', value: HomeAge.from2007to2011},
-        {name: '2012 or later', value: HomeAge.from2012toPresent},
+        {name: '2007 or later', value: HomeAge.from2007toPresent}
     ];
 
 
@@ -47,7 +46,7 @@ export class HomeAgeQuestionComponent extends QuestionBaseComponent implements O
 
     set homeAge(val: HomeAge) {
         this.responseData.homeAge = val;
-        if (val !== HomeAge.from2012toPresent) {
+        if (val !== HomeAge.from2007toPresent) {
             this.responseData.newBuild = false;
         }
     }

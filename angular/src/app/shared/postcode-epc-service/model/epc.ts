@@ -529,11 +529,8 @@ export class Epc {
             case ("2003-2006"): {
                 return HomeAge.from2003to2006;
             }
-            case ("2007-2011"): {
-                return HomeAge.from2007to2011;
-            }
-            case ("2012 onwards"): {
-                return HomeAge.from2012toPresent;
+            case ("2007 onwards"): {
+                return HomeAge.from2007toPresent;
             }
             default:
                 return null;
