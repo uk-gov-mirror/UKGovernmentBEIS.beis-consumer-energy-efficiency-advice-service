@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BEIS_Energy_Efficiency.iml" filepath="$PROJECT_DIR$/.idea/modules/BEIS_Energy_Efficiency.iml" group="BEIS_Energy_Efficiency" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BEIS_Energy_Efficiency.iml" filepath="$PROJECT_DIR$/.idea/modules/BEIS_Energy_Efficiency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-site-server/BEIS_Energy_Efficiency.user-site-server.iml" filepath="$PROJECT_DIR$/.idea/modules/user-site-server/BEIS_Energy_Efficiency.user-site-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-site-server/BEIS_Energy_Efficiency.user-site-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-site-server/BEIS_Energy_Efficiency.user-site-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-site-server/BEIS_Energy_Efficiency.user-site-server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/user-site-server/BEIS_Energy_Efficiency.user-site-server.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/load-tests/.idea/modules/load-tests.iml" filepath="$PROJECT_DIR$/load-tests/.idea/modules/load-tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/load-tests/.idea/modules/load-tests-build.iml" filepath="$PROJECT_DIR$/load-tests/.idea/modules/load-tests-build.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-site-server/user-site-server.iml" filepath="$PROJECT_DIR$/.idea/modules/user-site-server/user-site-server.iml" group="BEIS Energy Efficiency/user-site-server" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-site-server/user-site-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-site-server/user-site-server_main.iml" group="BEIS Energy Efficiency/user-site-server" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-site-server/user-site-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/user-site-server/user-site-server_test.iml" group="BEIS Energy Efficiency/user-site-server" />
       <module fileurl="file://$PROJECT_DIR$/wordpress/wordpress.iml" filepath="$PROJECT_DIR$/wordpress/wordpress.iml" />
     </modules>
   </component>

@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Integration tests" type="JavaScriptTestRunnerProtractor">
+    <config-file value="$PROJECT_DIR$/integration-tests/protractor.conf.js" />
+    <node-interpreter value="project" />
+    <protractor-package value="$PROJECT_DIR$/integration-tests/node_modules/protractor" />
+    <protractor-options value="" />
+    <envs />
+    <scope-kind value="ALL" />
+    <method v="2" />
+  </configuration>
+</component>

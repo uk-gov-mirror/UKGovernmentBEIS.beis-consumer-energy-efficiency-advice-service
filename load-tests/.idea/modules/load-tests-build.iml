@@ -12,7 +12,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="SBT: sbt-and-plugins">
+      <library name="sbt: sbt-and-plugins">
         <CLASSES>
           <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.10/sbt_0.13/io.gatling/gatling-sbt/jars/gatling-sbt-2.2.0.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.10.6/lib/jansi.jar!/" />
@@ -127,5 +127,9 @@
         </SOURCES>
       </library>
     </orderEntry>
+  </component>
+  <component name="SbtModule">
+    <option name="buildForURI" value="file:/$MODULE_DIR$/../../" />
+    <option name="imports" value="_root_.io.gatling.sbt.GatlingPlugin.autoImport._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.io.gatling.sbt.GatlingPlugin, sbt._, Keys._, dsl._" />
   </component>
 </module>

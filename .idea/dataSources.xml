@@ -8,11 +8,5 @@
       <jdbc-driver>org.h2.Driver</jdbc-driver>
       <jdbc-url>jdbc:h2:$PROJECT_DIR$/build/db/dev.db;MODE=MYSQL;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;DATABASE_TO_UPPER=false</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="wordpressbeissea" uuid="20fd0301-c463-4289-8e59-5f9cf8ecb605">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/wordpressbeissea</jdbc-url>
-    </data-source>
   </component>
 </project>
