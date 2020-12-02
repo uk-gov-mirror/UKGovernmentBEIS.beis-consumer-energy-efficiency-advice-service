@@ -5,16 +5,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="2020-10-27-remove-ghg-only-questions.xml"
+    <changeSet id="2020-12-02-update-confirm-epc-heading.xml"
                author="matt.barnfield@softwire.com"
                dbms="mysql">
         <sql><![CDATA[
 
-DELETE p, pm
-FROM wp_posts p
-INNER JOIN wp_postmeta pm
-ON p.ID = pm.post_id
-WHERE p.post_name IN ('any_benefits', 'english_property', 'own_home');
+UPDATE wp_postmeta pm
+JOIN wp_posts p
+ON pm.post_id = p.id
+SET pm.meta_value = 'EPC summary'
+WHERE p.post_name = 'confirm_epc'
+AND pm.meta_key = 'questionHeading';
 
        ]]></sql>
     </changeSet>

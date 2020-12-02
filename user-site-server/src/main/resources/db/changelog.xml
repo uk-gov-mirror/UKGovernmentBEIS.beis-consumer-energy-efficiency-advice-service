@@ -103,4 +103,5 @@
     <include file="changelogs/2020-08-21-add-floor-insulation-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-08-24-rename-lc-heat-measures.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-10-27-remove-ghg-only-questions.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2020-12-02-update-confirm-epc-heading.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
