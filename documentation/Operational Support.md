@@ -67,12 +67,12 @@ You may need to clear the WP cache if you have made changes to any WP posts. You
 ### Staging deployment
 
 The same as "live", except that the branch name is "`staging`" and it should
-track `master`:
+track `main`:
 
-    git fetch origin master:staging
+    git fetch origin main:staging
     git push origin staging:staging
 
-Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/staging...master?expand=1)
+Or [use the github web UI](https://github.com/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service/compare/staging...main?expand=1)
 
 The Travis job at
 https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service
@@ -82,7 +82,7 @@ watches this branch and will deploy it to:
 
 ### Int deployment
 
-The "int" site is automatically updated after each code change on `master` by the Travis job at
+The "int" site is automatically updated after each code change on `main` by the Travis job at
 https://travis-ci.org/UKGovernmentBEIS/beis-consumer-energy-efficiency-advice-service
 which deploys to:
   * https://dceas-user-site-int.cloudapps.digital/

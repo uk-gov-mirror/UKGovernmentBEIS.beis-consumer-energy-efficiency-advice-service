@@ -1,7 +1,7 @@
 sudo: required
 branches:
   only:
-  - master
+  - main
   - staging
   - live
 language: java
@@ -18,7 +18,7 @@ jobs:
     - stage: test
       script: ./infrastructure/ci-admin-site-test.sh
     - stage: deploy-to-int
-      if: branch=master
+      if: branch=main
       script: SPACE=int ./infrastructure/deploy.sh
     - stage: deploy-to-staging
       if: branch=staging
