@@ -28,11 +28,14 @@ $aspect-ratio: 9/16;
     }
 
     h2 {
-      border-top: 1px solid $dark-medium-blue;
       padding-top: 24px;
       margin: 24px 0;
       color: $dark-medium-blue;
       @include page-section-heading-font;
+    }
+
+    p ~ h2 {
+      border-top: 1px solid $dark-medium-blue;
     }
 
     ul {
