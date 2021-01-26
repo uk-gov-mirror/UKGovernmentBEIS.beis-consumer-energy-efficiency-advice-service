@@ -266,8 +266,7 @@ describe('RecommendationsService', () => {
                 expect(userRecommendations[8].advantages).toEqual(['Green', 'Cost effective']);
                 const expectedTags = [
                     EnergyEfficiencyRecommendationTag.LongerTerm,
-                    EnergyEfficiencyRecommendationTag.Grant,
-                    EnergyEfficiencyRecommendationTag.GHGIneligible
+                    EnergyEfficiencyRecommendationTag.Grant
                 ];
                 expect(userRecommendations[8].tags).toEqual(expectedTags);
                 expect(userRecommendations[8].lifetimeYears).toEqual(30);
