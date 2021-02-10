@@ -122,9 +122,6 @@
                         <div class="ghg-tag ghg-tag--secondary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligibleSecondary)}">
                             GHG Eligible (Secondary)
                         </div>
-                        <div class="ghg-tag ghg-tag--ineligible" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgIneligible)}">
-                            Not GHG Eligible
-                        </div>
                     </div>
                     <div class="steps">
                         <div class="recommendation-step-card" th:each="step,iterStat : ${recommendation.getSteps()}">
