@@ -15,6 +15,6 @@ export class InstallerCardComponent {
     }
 
     sendAnalyticsEvent() {
-        this.googleAnalyticsService.sendEvent('trustmark-link_clicked', 'installer-search', this.selectedInstallerId.toString());
+        this.googleAnalyticsService.sendEvent('trustmark-link_clicked', 'installer-search', this.installerInfo.id.toString());
     }
 }
