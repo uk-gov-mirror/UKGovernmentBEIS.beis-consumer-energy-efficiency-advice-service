@@ -8,8 +8,7 @@
 ---
 applications:
 - name: dceas-admin-site
-  buildpacks:
-    - https://github.com/cloudfoundry/php-buildpack#v4.4.26
+  buildpack: https://github.com/cloudfoundry/php-buildpack#v4.4.26
   stack: cflinuxfs3
   path: .
   services:
