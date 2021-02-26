@@ -11,7 +11,7 @@
                 <label for="postcode" class="field-heading">Postcode</label>
                 <input id="postcode" [(ngModel)]="formPostcode" (blur)="formPostcode = $event.target.value"
                        [ngModelOptions]="{standalone: true}"
-                       type="text" name="postcode" class="postcode-input">
+                       type="text" name="postcode" class="postcode-input" autocomplete="postal-code">
             </div>
             <div class="field-container measure-name">
                 <label for="measure" class="field-heading">Measure Name</label>
