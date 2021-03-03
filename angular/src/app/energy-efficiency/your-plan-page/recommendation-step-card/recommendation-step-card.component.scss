@@ -80,41 +80,6 @@ $mobile-step-number-margin: 12px;
 
     .step-info {
       font-family: $font-family-light;
-
-      .read-more-content-container {
-        &.read-more-expanded {
-          .read-more-content {
-            display: flex;
-          }
-        }
-
-        .read-more-content {
-          display: none;
-        }
-      }
-
-      .read-more-button {
-        cursor: pointer;
-        @include read-more-font;
-        padding: 10px 0;
-        display: flex;
-        align-items: center;
-        background: none;
-        border: none;
-
-        .read-more-button-icon {
-          margin-left: 10px;
-          fill: $dark-medium-blue;
-          display: block;
-          width: 7px;
-          height: 4px;
-          line-height: 0;
-
-          &.expanded {
-            transform: rotate(180deg);
-          }
-        }
-      }
     }
 
     .more-info-links {
