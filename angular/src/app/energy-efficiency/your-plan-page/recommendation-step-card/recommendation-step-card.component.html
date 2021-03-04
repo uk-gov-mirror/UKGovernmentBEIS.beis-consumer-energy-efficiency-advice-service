@@ -1,10 +1,13 @@
 <div class="recommendation-step-card" *ngIf="step">
-    <button class="step-main-row" (click)="toggleIsExpanded()">
+    <button class="step-main-row"
+            [attr.aria-expanded]="isExpanded"
+            (click)="toggleIsExpanded()">
         <span class="bullet"></span>
         <span class="step-number">Step {{formattedStepNumber}}</span>
-        <span class="step-headline" [title]="isExpanded ? 'Hide details' : 'See more detail'">{{step.headline}}</span>
+        <span class="step-headline" >{{step.headline}}</span>
         <span class="expand-step-icon" [class.expanded]="isExpanded"
-                title="See more details" [inlineSVG]="'controls/expand-arrow.svg'"></span>
+              [attr.aria-label]="isExpanded ? 'Hide details' : 'See more detail'"
+              [inlineSVG]="'controls/expand-arrow.svg'"></span>
     </button>
     <div class="step-details-drawer" [class.expanded]="isExpanded">
         <div class="step-info">
