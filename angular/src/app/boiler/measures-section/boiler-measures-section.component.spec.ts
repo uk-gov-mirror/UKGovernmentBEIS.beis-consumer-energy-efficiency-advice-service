@@ -7,7 +7,7 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {BoilerMeasuresSectionComponent} from './boiler-measures-section.component';
 import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 
 describe('BoilerMeasuresSectionComponent', () => {
     let component: BoilerMeasuresSectionComponent;
@@ -26,7 +26,7 @@ describe('BoilerMeasuresSectionComponent', () => {
             declarations: [
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,

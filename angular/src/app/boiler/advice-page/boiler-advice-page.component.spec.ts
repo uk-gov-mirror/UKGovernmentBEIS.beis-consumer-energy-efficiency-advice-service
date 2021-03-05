@@ -9,7 +9,7 @@ import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-
 import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
 import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
 describe('BoilerAdvicePageComponent', () => {
@@ -32,7 +32,7 @@ describe('BoilerAdvicePageComponent', () => {
                 BoilerAdvicePageComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerRegulationCardComponent,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule,

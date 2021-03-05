@@ -21,7 +21,7 @@ import {GasAndOilBoilersService} from './gas-and-oil-boilers/gas-and-oil-boilers
 import {BoilerMakeModelReplaceComponent} from './make-model-replace/boiler-make-model-replace.component';
 import {BoilerAdvicePageComponent} from './advice-page/boiler-advice-page.component';
 import {BoilerRegulationCardComponent} from './advice-page/boiler-regulation-card/boiler-regulation-card.component';
-import {BoilerLinkButtonComponent} from './boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../shared/router-link-button/router-link-button.component';
 import {TroubleshootingPageComponent} from './troubleshooting-page/troubleshooting-page.component';
 
 @NgModule({
@@ -37,7 +37,6 @@ import {TroubleshootingPageComponent} from './troubleshooting-page/troubleshooti
         BoilerMakeModelReplaceComponent,
         BoilerAdvicePageComponent,
         BoilerRegulationCardComponent,
-        BoilerLinkButtonComponent,
         TroubleshootingPageComponent
     ],
     imports: [
@@ -46,7 +45,7 @@ import {TroubleshootingPageComponent} from './troubleshooting-page/troubleshooti
         FormsModule,
         RoutingModule,
         QuestionnaireModule,
-        InlineSVGModule
+        InlineSVGModule,
     ],
     exports: [
         BoilerLandingPageComponent,

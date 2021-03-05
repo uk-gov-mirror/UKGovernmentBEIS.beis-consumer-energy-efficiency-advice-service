@@ -2,7 +2,7 @@
 <div class="results-page" *ngIf="!isLoading && !isError">
     <div class="page-row results-header-row">
         <div class="page-row-content">
-            <h1 class="heading-text">Now build your plan</h1>
+            <h1 class="heading-text">{{isEditing ? "Edit your plan" : "Now build your plan"}}</h1>
             <div class="header-data-cards">
                 <app-data-card
                         heading="Your estimated monthly bills are"

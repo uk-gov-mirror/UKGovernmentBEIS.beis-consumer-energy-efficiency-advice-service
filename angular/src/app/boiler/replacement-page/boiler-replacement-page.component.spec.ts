@@ -9,7 +9,7 @@ import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-
 import {BoilerTypeMetadataResponse} from '../boiler-types-service/boiler-type-metadata-response';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {PostcodeLookupComponent} from "../../shared/postcode-lookup/postcode-lookup.component";
 import {EpcLookupComponent} from "../../shared/epc-lookup/epc-lookup.component";
@@ -48,7 +48,7 @@ describe('BoilerReplacementPageComponent', () => {
                 BoilerReplacementPageComponent,
                 BoilerReplacementCardComponent,
                 SpinnerAndErrorContainerComponent,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
                 DataCardComponent,
                 PostcodeLookupComponent,
                 EpcLookupComponent

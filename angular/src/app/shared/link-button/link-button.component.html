@@ -1,19 +1,20 @@
 <a class="link-button"
-   [href]="linkUrl"
+   [href]="type === 'href' ? linkUrl : null"
    [ngClass]="{
     'centred': centred,
     'default-link-button': variant === 'default',
     'green-link-button': variant === 'green'
    }"
-   [target]="openInNewTab ? '_blank' : '_self'"
->
-    <span class="link-button-text beis-button-text">
-        {{buttonText}}
+   [target]="openInNewTab ? '_blank' : '_self'">
+
+<span class="link-button-text beis-button-text">
+    {{buttonText}}
+</span>
+<span class="link-button-icon-container beis-button-icon-container">
+    <span class="link-button-icon beis-button-icon">
+        <div *ngIf="!openInNewTab" class="arrow-icon" [inlineSVG]="'controls/chevron-right-uncoloured.svg'"></div>
+        <div *ngIf="openInNewTab" class="new-tab-icon" [inlineSVG]="'controls/new-window.svg'"></div>
     </span>
-    <span class="link-button-icon-container beis-button-icon-container">
-        <span class="link-button-icon beis-button-icon">
-            <div *ngIf="!openInNewTab">&gt;</div>
-            <div *ngIf="openInNewTab" class="new-tab-icon" [inlineSVG]="'controls/new-window.svg'"></div>
-        </span>
-    </span>
+</span>
 </a>
+<!--   [routerLink]="type === 'router' ? linkUrl : null"-->

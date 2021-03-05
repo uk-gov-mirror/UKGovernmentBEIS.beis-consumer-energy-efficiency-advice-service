@@ -134,6 +134,9 @@ $rounded-corner-border-radius: 1000000px;
       background-color: $secondary-color;
       .beis-button-icon {
         color: $primary-color;
+        .arrow-icon {
+          stroke: $primary-color;
+        }
         .new-tab-icon {
           fill: $primary-color;
         }
@@ -167,6 +170,15 @@ $rounded-corner-border-radius: 1000000px;
       color: $secondary-color;
       display: block;
       text-align: center;
+      stroke: $light-blue;
+
+      .arrow-icon {
+        flex: 0 0 70px;
+        stroke: $secondary-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
       .new-tab-icon {
         fill: $secondary-color;
