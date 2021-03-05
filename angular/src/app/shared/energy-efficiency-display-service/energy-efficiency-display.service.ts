@@ -35,7 +35,7 @@ export class EnergyEfficiencyDisplayService {
 
     public getRecommendationCardAddToPlanText(isAddedToPlan: boolean, showRemove: boolean): string {
         if (!isAddedToPlan) {
-            return 'Show me how';
+            return 'Add to plan';
         } else {
             return showRemove ? 'Remove from plan' : 'Added to plan';
         }

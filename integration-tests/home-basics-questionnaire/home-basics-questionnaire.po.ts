@@ -38,7 +38,7 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
         return browser.controlFlow().execute(() => {
             if (this.miniEpcEnabled) {
                 expect(this.getHeading()).toContain('EPC summary');
-                CommonPageHelpers.clickButton('get a few more details');
+                CommonPageHelpers.clickButton('additional details');
                 CommonPageHelpers.sleep(1000);
             }
         });
@@ -47,7 +47,7 @@ export class HomeBasicsQuestionnairePage extends QuestionnairePage {
     confirmEpcNotAvailable() {
         return browser.controlFlow().execute(() => {
             expect(this.getHeading()).toContain('EPC summary');
-            CommonPageHelpers.clickButton('get a few more details');
+            CommonPageHelpers.clickButton('additional details');
             CommonPageHelpers.sleep(1000);
         });
     }

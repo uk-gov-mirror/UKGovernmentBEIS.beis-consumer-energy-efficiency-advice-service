@@ -13,12 +13,12 @@
             <div>OR</div>
         </div>
         <div class="email-your-plan your-plan-action">
-            <div class="header">Email your plan</div>
+            <div class="header" id="email-address">Email your plan</div>
             <form class="email-form" (submit)="onEmailPdfClicked()">
                 <input [(ngModel)]="emailAddress"
                        name="emailAddress"
                        class="email-input"
-                       title="Enter your email address"
+                       aria-labelledby="email-address"
                        type="email"
                        email
                        required
