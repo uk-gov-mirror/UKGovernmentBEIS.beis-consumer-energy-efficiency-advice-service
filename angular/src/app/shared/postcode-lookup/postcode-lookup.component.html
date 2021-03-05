@@ -1,7 +1,7 @@
 <div class="postcode-lookup">
     <form class="postcode-input" (ngSubmit)="onPostcodeSubmit()">
         <input class="postcode-input-text" spellcheck="false" type="text" [(ngModel)]="postcodeInput"
-            name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode"
+            name="postcode-input" aria-label="Enter your postcode" title="Enter your postcode" autocomplete="postal-code"
             [attr.aria-invalid]="error ? 'true' : 'false'">
         <button class="postcode-input-submit" type="submit"
             title="Submit" aria-label="Submit"></button>
