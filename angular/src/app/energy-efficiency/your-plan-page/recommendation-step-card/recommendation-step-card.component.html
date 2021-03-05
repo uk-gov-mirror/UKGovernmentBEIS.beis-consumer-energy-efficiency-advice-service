@@ -11,17 +11,7 @@
             <p class="step-description">
                 {{step.description}}
             </p>
-            <ng-container *ngIf="step.readMore">
-                <!-- innerHTML is used here as wordpress supplies <br /> tags for us -->
-                <div class="read-more-content-container" [class.read-more-expanded]="isReadMoreExpanded">
-                    <div class="read-more-content" innerHTML="<br />{{step.readMore}}"></div>
-                </div>
-                <button class="read-more-button" (click)="toggleIsReadMoreExpanded()">
-                    <span class="read-more-button-text">{{isReadMoreExpanded ? "Read Less" : "Read More"}}</span>
-                    <span class="read-more-button-icon" [class.expanded]="isReadMoreExpanded"
-                        title="Read more" [inlineSVG]="'controls/expand-arrow.svg'"></span>
-                </button>
-            </ng-container>
+            <div class="step-read-more" [innerHTML]="step.readMore"></div>
         </div>
         <div class="more-info-links" *ngIf="step.moreInfoLinks">
             <ng-container *ngFor="let moreInfoLink of step.moreInfoLinks">

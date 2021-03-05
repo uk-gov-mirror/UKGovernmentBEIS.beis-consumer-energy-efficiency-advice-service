@@ -14,7 +14,6 @@ export class RecommendationStepCardComponent implements OnInit {
     @Output() onAnalyticsEvent: EventEmitter<string> = new EventEmitter<string>();
 
     isExpanded: boolean;
-    isReadMoreExpanded: boolean;
 
     private static readonly INITIAL_STEP_NUMBER: number = 1;
 
@@ -31,13 +30,6 @@ export class RecommendationStepCardComponent implements OnInit {
         this.isExpanded = !this.isExpanded;
         if (this.isExpanded) {
             this.onAnalyticsEvent.emit('expand-step_clicked');
-        }
-    }
-
-    toggleIsReadMoreExpanded(): void {
-        this.isReadMoreExpanded = !this.isReadMoreExpanded;
-        if (this.isReadMoreExpanded) {
-            this.onAnalyticsEvent.emit('read-more_clicked');
         }
     }
 

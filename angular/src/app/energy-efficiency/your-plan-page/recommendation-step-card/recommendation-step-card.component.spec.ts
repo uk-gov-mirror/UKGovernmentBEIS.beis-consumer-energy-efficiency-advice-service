@@ -127,43 +127,7 @@ describe('RecommendationStepCardComponent', () => {
         expect(stepNumberElement.innerText.toLowerCase()).toEqual(step.description.toLowerCase());
     });
 
-    it('should hide read more button when there is no read more content', () => {
-        // given
-        // Deep clone "step"
-        const noReadMoreStep: RecommendationStep = JSON.parse(JSON.stringify(step));
-        noReadMoreStep.readMore = '';
-
-        // when
-        component.step = noReadMoreStep;
-        fixture.detectChanges();
-        toggleDetailsDrawerExpanded();
-
-        // then
-        const readMoreButtonElement = fixture.debugElement.query(By.css('.read-more-button'));
-        expect(readMoreButtonElement).toBeNull();
-    });
-
-    it('should show read more button when there is read more content', () => {
-        // when
-        fixture.detectChanges();
-        toggleDetailsDrawerExpanded();
-
-        // then
-        const readMoreButtonElement = fixture.debugElement.query(By.css('.read-more-button'));
-        expect(readMoreButtonElement).not.toBeNull();
-    });
-
-    it('should hide read more section', () => {
-        // when
-        fixture.detectChanges();
-        toggleDetailsDrawerExpanded();
-
-        // then
-        const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content-container')).nativeElement;
-        expect(readMoreContentElement.classList).not.toContain('read-more-expanded');
-    });
-
-    it('should show read more section when clicked', () => {
+    it('should display the correct read more', () => {
         // when
         fixture.detectChanges();
         toggleDetailsDrawerExpanded();
