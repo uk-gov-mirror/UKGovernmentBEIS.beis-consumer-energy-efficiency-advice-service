@@ -123,19 +123,18 @@ describe('RecommendationStepCardComponent', () => {
         toggleDetailsDrawerExpanded();
 
         // then
-        const stepNumberElement = fixture.debugElement.query(By.css('.step-description')).nativeElement;
-        expect(stepNumberElement.innerText.toLowerCase()).toEqual(step.description.toLowerCase());
+        const stepDescriptionElement = fixture.debugElement.query(By.css('.step-description')).nativeElement;
+        expect(stepDescriptionElement.innerText.toLowerCase()).toEqual(step.description.toLowerCase());
     });
 
     it('should display the correct read more', () => {
         // when
         fixture.detectChanges();
         toggleDetailsDrawerExpanded();
-        toggleReadMoreExpanded();
 
         // then
-        const readMoreContentElement = fixture.debugElement.query(By.css('.read-more-content')).nativeElement;
-        expect(readMoreContentElement.innerText.toLowerCase()).toContain(step.readMore.toLowerCase());
+        const stepReadMoreElement = fixture.debugElement.query(By.css('.step-read-more')).nativeElement;
+        expect(stepReadMoreElement.innerText.toLowerCase()).toEqual(step.readMore.toLowerCase());
     });
 
     it('should display the correct links', () => {
@@ -165,12 +164,6 @@ describe('RecommendationStepCardComponent', () => {
     function toggleDetailsDrawerExpanded() {
         const mainRowElement = fixture.debugElement.query(By.css('.step-main-row')).nativeElement;
         mainRowElement.click();
-        fixture.detectChanges();
-    }
-
-    function toggleReadMoreExpanded() {
-        const readMoreButton = fixture.debugElement.query(By.css('.read-more-button')).nativeElement;
-        readMoreButton.click();
         fixture.detectChanges();
     }
 });
