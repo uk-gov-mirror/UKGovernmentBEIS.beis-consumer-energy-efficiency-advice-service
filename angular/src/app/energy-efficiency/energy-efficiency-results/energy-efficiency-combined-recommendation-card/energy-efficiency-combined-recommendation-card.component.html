@@ -21,9 +21,13 @@
                 </ul>
             </div>
         </div>
-        <div class="more-detail-button" [class.expanded]="isExpandedView" (click)="toggleExpandedView()">
+        <button class="more-detail-button"
+                [attr.aria-expanded]="isExpandedView"
+                [attr.aria-label]="isExpandedView ? 'Hide details' : 'See more detail'"
+                [class.expanded]="isExpandedView"
+                (click)="toggleExpandedView()">
             <div class="more-detail-icon" [inlineSVG]="'controls/more-detail.svg'"></div>
-        </div>
+        </button>
         <app-data-card class="investment-required-card"
                        heading="Investment required"
                        [value]="'£' + roundedInvestmentRequired"
