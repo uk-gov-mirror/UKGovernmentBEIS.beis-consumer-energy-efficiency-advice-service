@@ -30,8 +30,8 @@
     }
   }
 
-  .proceed-button {
-    @include proceed-button();
+  app-router-link-button {
+    max-width: 300px;
     margin: 20px 0;
   }
 
