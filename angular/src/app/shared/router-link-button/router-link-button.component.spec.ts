@@ -4,7 +4,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {RouterLinkButtonComponent} from './router-link-button.component';
 
-describe('BoilerLinkButtonComponent', () => {
+describe('RouterLinkButtonComponent', () => {
     let component: RouterLinkButtonComponent;
     let fixture: ComponentFixture<RouterLinkButtonComponent>;
 
@@ -34,7 +34,7 @@ describe('BoilerLinkButtonComponent', () => {
     });
 
     it('should show the right link text', () => {
-        const textElement = fixture.debugElement.query(By.css('.text-container')).nativeElement;
+        const textElement = fixture.debugElement.query(By.css('.router-link-button-text')).nativeElement;
         expect(textElement.innerText).toBe(linkText.toUpperCase());
     });
 });
