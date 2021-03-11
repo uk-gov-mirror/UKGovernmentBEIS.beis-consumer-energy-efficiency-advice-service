@@ -35,6 +35,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
     showDefaultRentalMeasures: boolean = false;
     shouldShowGhgContext: boolean = false;
     defaultRecommendationDisclaimer: string;
+    isEditing: boolean = false;
 
     private allRecommendations: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
 
@@ -74,6 +75,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
 
         this.userStateService.saveState();
         this.shouldShowGhgContext = this.greenHomesGrantService.shouldShowGhgContext();
+        this.isEditing = this.recommendationsService.getRecommendationsInPlan().length > 0;
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {

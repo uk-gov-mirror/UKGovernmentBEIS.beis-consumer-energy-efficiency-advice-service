@@ -11,7 +11,7 @@ import {PostcodeLookupComponent} from '../../shared/postcode-lookup/postcode-loo
 import {ResponseData} from '../../shared/response-data/response-data';
 import {PostcodeEpcService} from '../../shared/postcode-epc-service/postcode-epc.service';
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 import {SpinnerAndErrorContainerComponent} from '../../shared/spinner-and-error-container/spinner-and-error-container.component';
 import {EpcLookupComponent} from '../../shared/epc-lookup/epc-lookup.component';
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
@@ -40,7 +40,7 @@ describe('BoilerLandingPageComponent', () => {
                 PostcodeLookupComponent,
                 EpcLookupComponent,
                 TimesPipe,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
                 SpinnerAndErrorContainerComponent
             ],
             imports: [

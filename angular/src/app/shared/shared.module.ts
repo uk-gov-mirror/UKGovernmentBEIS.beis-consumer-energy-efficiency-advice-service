@@ -55,6 +55,7 @@ import {ECOSelfReferralConsentData} from '../eco-self-referral/eco-self-referral
 import {PageTitleService} from "./page-title-service/page-title.service";
 import {InstallerSearchService} from "./installer-search-service/installer-search.service";
 import {GreenHomesGrantService} from "../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {RouterLinkButtonComponent} from "./router-link-button/router-link-button.component";
 
 @NgModule({
     declarations: [
@@ -82,6 +83,7 @@ import {GreenHomesGrantService} from "../green-homes-grant/green-homes-grant-ser
         ContentsTableComponent,
         LinkButtonComponent,
         AccordionComponent,
+        RouterLinkButtonComponent
     ],
     exports: [
         PostcodeLookupComponent,
@@ -108,6 +110,7 @@ import {GreenHomesGrantService} from "../green-homes-grant/green-homes-grant-ser
         ContentsTableComponent,
         LinkButtonComponent,
         AccordionComponent,
+        RouterLinkButtonComponent
     ],
     imports: [
         HttpClientModule,
