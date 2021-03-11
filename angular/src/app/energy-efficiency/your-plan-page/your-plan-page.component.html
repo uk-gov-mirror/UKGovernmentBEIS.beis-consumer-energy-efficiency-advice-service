@@ -13,16 +13,25 @@ If you change anything here, please consider whether anything needs changing the
         <div class="your-plan-header page-row">
             <div class="page-row-content">
                 <div class="heading-container">
-                    <h1 class="heading">Your plan</h1>
+                    <div class="left-heading-content">
+                        <h1 class="heading">Your plan</h1>
 
-                    <p class="subheading" *ngIf="numberOfRecommendations === 1">
-                        You have added 1 recommendation to your plan. You'll find all the steps and things you need to
-                        consider to implement this measure.
-                    </p>
-                    <p class="subheading" *ngIf="numberOfRecommendations > 1">
-                        You have added {{numberOfRecommendations}} recommendations to your plan. You'll find all the
-                        steps and things you need to consider to implement those measures.
-                    </p>
+                        <div class="heading-details">
+                            <p class="subheading" *ngIf="numberOfRecommendations === 1">
+                                You have added 1 recommendation to your plan. You'll find all the steps and things you need to
+                                consider to implement this measure.
+                            </p>
+                            <p class="subheading" *ngIf="numberOfRecommendations > 1">
+                                You have added {{numberOfRecommendations}} recommendations to your plan. You'll find all the
+                                steps and things you need to consider to implement those measures.
+                            </p>
+                            <app-router-link-button
+                                    [class]="'edit-plan-button'"
+                                    [text]="'Edit your plan'"
+                                    [path]="'/energy-efficiency/results'">
+                            </app-router-link-button>
+                        </div>
+                    </div>
                     <app-your-plan-summary></app-your-plan-summary>
                 </div>
             </div>

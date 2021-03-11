@@ -20,7 +20,7 @@ import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measure
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {GasAndOilBoilersService} from '../gas-and-oil-boilers/gas-and-oil-boilers.service';
 import values from 'lodash-es/values';
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 
@@ -82,7 +82,7 @@ describe('BoilerEpcReplaceComponent', () => {
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
                 DataCardComponent
             ],
             imports: [

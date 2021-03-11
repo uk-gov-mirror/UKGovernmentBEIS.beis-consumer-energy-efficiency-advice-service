@@ -14,7 +14,7 @@ import {BoilerType} from '../boiler-types-service/boiler-type';
 import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import values from 'lodash-es/values';
 import {BoilerPageMeasuresService} from '../measures-section/boiler-page-measures.service';
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 import {BoilerMeasuresSectionComponent} from '../measures-section/boiler-measures-section.component';
 import {RecommendationCardComponent} from '../../shared/recommendation-card/recommendation-card.component';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
@@ -60,7 +60,7 @@ describe('BoilerMakeModelReplaceComponent', () => {
                 BoilerMakeModelReplaceComponent,
                 SpinnerAndErrorContainerComponent,
                 BoilerReplacementCardComponent,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
                 BoilerMeasuresSectionComponent,
                 RecommendationCardComponent,
                 DataCardComponent

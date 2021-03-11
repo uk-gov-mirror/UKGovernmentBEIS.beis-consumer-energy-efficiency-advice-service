@@ -1,0 +1,14 @@
+@import "src/styles/var/colors";
+@import "src/styles/mixins/buttons";
+
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+.router-link-button {
+  @include beis-button();
+  height: 100%;
+  margin: 0;
+  max-width: none;
+}

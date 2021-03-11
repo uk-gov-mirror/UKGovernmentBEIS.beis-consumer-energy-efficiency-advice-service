@@ -1,7 +1,8 @@
 @import "styles/var/colors";
+@import "styles/mixins/buttons";
 @import "styles/mixins/font";
-@import "styles/mixins/layout";
 @import "styles/mixins/ghg";
+@import "styles/mixins/layout";
 @import "../energy-efficiency-page-sizes";
 @import "download-pdf-button/download-pdf-button.component";
 
@@ -41,11 +42,15 @@ $desktop-summary-padding: 20px;
       .heading {
         @include page-heading-small-font;
         color: $dark-blue;
-        padding-bottom: 10px;
       }
 
       .subheading {
         @include page-subheadline-small-font;
+      }
+
+      .edit-plan-button {
+        margin: 15px 0 10px 0;
+        max-width: 300px;
       }
     }
   }
@@ -111,6 +116,12 @@ $desktop-summary-padding: 20px;
 // Breakpoint specific styling
 .your-plan-page {
   @include mobile() {
+    a.link-button {
+      max-width: 100%;
+      margin: 16px $grant-card-margin;
+      color: pink;
+    }
+
     .your-plan-header {
       .page-row-content {
         margin: 0;
@@ -127,10 +138,18 @@ $desktop-summary-padding: 20px;
           color: $dark-blue;
         }
 
+        .heading-details {
+          background-color: $lighter-grey;
+        }
+
         .subheading {
           flex: 0 0 100%;
           max-width: 100%;
-          padding: 20px 20px 33px;
+          padding: 20px 20px 0 20px;
+        }
+
+        .edit-plan-button {
+          margin: 0 20px 20px 20px;
           background-color: $lighter-grey;
         }
 
@@ -174,6 +193,13 @@ $desktop-summary-padding: 20px;
   }
 
   @include tablet() {
+    .left-heading-content {
+      a.link-button.default-link-button {
+        max-width: 100%;
+        margin: 16px $grant-card-margin;
+        background-color: pink;
+      }
+    }
     .your-plan-header {
       .page-row-content {
         margin: 0;
@@ -195,9 +221,17 @@ $desktop-summary-padding: 20px;
           flex: 0 0 100%;
           max-width: 100%;
           order: 3;
-          padding: 30px 34px;
-          background-color: $lighter-grey;
+          padding: 30px 34px 5px 34px;
           color: $dark-grey;
+        }
+
+        .heading-details {
+          background-color: $lighter-grey;
+        }
+
+        .edit-plan-button {
+          margin: 5px 34px 30px 34px;
+          background-color: $lighter-grey;
         }
 
         app-your-plan-summary {
@@ -255,11 +289,11 @@ $desktop-summary-padding: 20px;
         min-height: 150px;
 
         & > * {
-          border-right: 1px solid $light-grey;
+          flex: 1 0 auto;
         }
 
-        .heading, .subheading {
-          flex: 1 0 auto;
+        .left-heading-content {
+          border-right: 1px solid $light-grey;
           width: calc(100% - 2 * #{$data-card-width} - #{$desktop-summary-padding});
         }
 
@@ -271,6 +305,7 @@ $desktop-summary-padding: 20px;
           right: 0;
           top: $desktop-heading-vertical-padding;
           width: 2 * $data-card-width + $desktop-summary-padding;
+          height: calc(100% - 2 * #{$desktop-heading-vertical-padding});
         }
       }
     }

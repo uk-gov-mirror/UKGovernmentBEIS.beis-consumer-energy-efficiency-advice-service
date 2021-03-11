@@ -29,7 +29,8 @@ export class YourPlanPageComponent implements OnInit {
                 private responseData: ResponseData,
                 private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
                 private pageTitle: PageTitleService,
-                private greenHomesGrantService: GreenHomesGrantService) {
+                private greenHomesGrantService: GreenHomesGrantService,
+                ) {
     }
 
     get userRecommendations(): EnergyEfficiencyRecommendation[] {

@@ -14,7 +14,7 @@ import {BoilerTypesService} from '../boiler-types-service/boiler-types.service';
 import {ResponseData} from '../../shared/response-data/response-data';
 import {QuestionnaireService} from '../../questionnaire/questionnaire.service';
 import {BoilerType} from '../boiler-types-service/boiler-type';
-import {BoilerLinkButtonComponent} from '../boiler-link-button/boiler-link-button.component';
+import {RouterLinkButtonComponent} from '../../shared/router-link-button/router-link-button.component';
 import {BoilerReplacementCardComponent} from '../boiler-replacement-card/boiler-replacement-card.component';
 import {UserStateService} from "../../shared/user-state-service/user-state-service";
 import {DataCardComponent} from '../../shared/data-card/data-card.component';
@@ -50,7 +50,7 @@ describe('BoilerResultsPageComponent', () => {
                 BoilerReplacementCardComponent,
                 RecommendationCardComponent,
                 SpinnerAndErrorContainerComponent,
-                BoilerLinkButtonComponent,
+                RouterLinkButtonComponent,
                 DataCardComponent,
             ],
             imports: [
