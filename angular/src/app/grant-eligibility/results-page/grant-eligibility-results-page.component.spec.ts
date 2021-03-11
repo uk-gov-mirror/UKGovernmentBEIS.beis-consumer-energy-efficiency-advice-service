@@ -14,7 +14,6 @@ import {NationalGrantCalculator} from "../../grants/national-grant-calculator/na
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
-import {ECOSelfReferralConsentData} from "../../eco-self-referral/eco-self-referral-consent-data";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import { InlineSVGModule } from 'ng-inline-svg';
 
@@ -61,7 +60,6 @@ describe('GrantEligibilityResultsPageComponent', () => {
             providers: [
                 {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
                 {provide: QuestionnaireService, useValue: questionnaireServiceStub},
-                {provide: ECOSelfReferralConsentData, useValue: new ECOSelfReferralConsentData()},
                 {provide: PageTitleService, useValue: pageTitleStub}
             ],
         })

@@ -14,43 +14,11 @@
         <div class="page-row-content">
             <div class="body-text" [ngSwitch]="status">
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Eligible">
-                    <p>From what you’ve told us, you may be able to get help from ECO.</p>
-                    <h2>
-                        Next steps
-                    </h2>
-                    <p>
-                        You can provide your contact details and additional information about your property to help
-                        energy companies identify and assess your case.
-                    </p>
-                    <div>
-                        <input id="eco-self-referral-storage-consent" name="eco-self-referral-storage-consent"
-                               type="checkbox"
-                               [checked]="ecoSelfReferralConsentData.hasGivenStorageConsent"
-                               (change)="ecoSelfReferralConsentData.hasGivenStorageConsent = !ecoSelfReferralConsentData.hasGivenStorageConsent">
-                        <label for="eco-self-referral-storage-consent">
-                            I am happy for my contact details and information about my property to be stored.
-                        </label>
-                    </div>
-                    <div>
-                        <input id="eco-self-referral-sharing-consent" name="eco-self-referral-sharing-consent"
-                               type="checkbox"
-                               [checked]="ecoSelfReferralConsentData.hasGivenSharingConsent"
-                               (change)="ecoSelfReferralConsentData.hasGivenSharingConsent = !ecoSelfReferralConsentData.hasGivenSharingConsent">
-                        <label for="eco-self-referral-sharing-consent">
-                            I am happy for these details to be shared with energy companies that may be able to help
-                            me under the ECO scheme.
-                        </label>
-                    </div>
-                    <p class="small-print">
-                        You must check the boxes above to indicate that you are happy for us to store and share your
-                        details if you wish to proceed. For more information, see our
-                        <a routerLink="/privacy">privacy notice</a>.
-                    </p>
-                    <button class="proceed-button"
-                            (click)="proceedToEcoSelfReferral()"
-                            [disabled]="!ecoSelfReferralConsentData.hasGivenFullConsent">
-                        Proceed
-                    </button>
+                    <p>From what you’ve told us, you may be able to get help from ECO. Please contact your energy supplier to find out more.</p>
+                    <app-link-button
+                        buttonText="ECO Suppliers"
+                        linkUrl="/eco-suppliers">
+                    </app-link-button>
                 </ng-container>
                 <ng-container *ngSwitchCase="GrantEligibilityResultsStatus.Ineligible">
                     <p>Unfortunately you do not meet the eligibility criteria for the ECO scheme.</p>

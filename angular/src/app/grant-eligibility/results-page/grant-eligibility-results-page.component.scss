@@ -30,11 +30,6 @@
     }
   }
 
-  .proceed-button {
-    @include proceed-button();
-    margin: 20px 0;
-  }
-
   .more-information {
     flex-grow: 1;
     background-color: $lighter-grey;
