@@ -33,6 +33,7 @@ import {InstallerSearchService} from "../../shared/installer-search-service/inst
 import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
 import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
+import {RouterLinkButtonComponent} from "../../shared/router-link-button/router-link-button.component";
 
 describe('YourPlanPageComponent', () => {
     let component: YourPlanPageComponent;
@@ -189,7 +190,8 @@ describe('YourPlanPageComponent', () => {
                 SpinnerAndErrorContainerComponent,
                 RecommendationWithStepsCardComponent,
                 DownloadPdfButtonComponent,
-                LinkButtonComponent
+                LinkButtonComponent,
+                RouterLinkButtonComponent
             ],
             providers: [
                 {provide: ResponseData, useValue: {
