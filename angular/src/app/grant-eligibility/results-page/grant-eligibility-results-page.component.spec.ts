@@ -13,9 +13,9 @@ import {EcoHhcroHelpToHeat} from "../../grants/national-grant-calculator/grants/
 import {NationalGrantCalculator} from "../../grants/national-grant-calculator/national-grant-calculator";
 import {GrantEligibility} from "../../grants/grant-eligibility-service/grant-eligibility";
 import {GrantEligibilityResultsStatus} from "./grant-eligibility-results-status";
-import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import { InlineSVGModule } from 'ng-inline-svg';
+import {RouterLinkButtonComponent} from "../../shared/router-link-button/router-link-button.component";
 
 describe('GrantEligibilityResultsPageComponent', () => {
     let component: GrantEligibilityResultsPageComponent;
@@ -51,7 +51,7 @@ describe('GrantEligibilityResultsPageComponent', () => {
                 GrantEligibilityQuestionnaireComponent,
                 SpinnerAndErrorContainerComponent,
                 MockQuestionnaireComponent,
-                LinkButtonComponent,
+                RouterLinkButtonComponent,
             ],
             imports: [
                 RouterTestingModule.withRoutes([]),

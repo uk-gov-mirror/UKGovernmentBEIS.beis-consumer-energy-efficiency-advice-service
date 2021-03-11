@@ -30,6 +30,11 @@
     }
   }
 
+  app-router-link-button {
+    max-width: 300px;
+    margin: 20px 0;
+  }
+
   .more-information {
     flex-grow: 1;
     background-color: $lighter-grey;
