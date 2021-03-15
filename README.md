@@ -118,8 +118,8 @@ you will remember (e.g. "root" / "password").
 Log in as root and run the following to create a WP user and database
 
     CREATE DATABASE wordpressbeissea;
-    GRANT ALL PRIVILEGES ON wordpress.* TO "wordpress"@"localhost"
-        IDENTIFIED BY "wordpressPassword123";
+    CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'wordpressPassword123';
+    GRANT ALL PRIVILEGES ON wordpressbeissea.* TO 'wordpress'@'localhost';
 
 Get a dump of the database from somewhere (another developer,
 the live site etc.) and restore it to that database.
