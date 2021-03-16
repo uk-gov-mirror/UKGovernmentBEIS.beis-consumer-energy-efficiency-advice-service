@@ -83,6 +83,7 @@
 
   .footer-links {
     a {
+      display: flex;
       color: white;
       text-decoration: none;
       &:visited {
@@ -93,6 +94,19 @@
         text-decoration: underline;
       }
     }
+
+    .privacy-notice {
+      padding-right: 20px;
+    }
+
+    .accessibility {
+      padding-left: 20px;
+    }
+
+    .link-divider {
+      border-left: 1px solid white;
+      height: 100%;
+    }
   }
 }
 
@@ -101,6 +115,19 @@
   .footer {
     @include is-page-footer(88px 0 84px 0, 20px);
     @include has-vertical-content(26px);
+
+    .link-divider {
+      display: none;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .privacy-notice, .accessibility {
+        padding: 15px 0;
+      }
+    }
   }
 }
 
