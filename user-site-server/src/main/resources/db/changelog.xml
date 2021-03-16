@@ -105,4 +105,5 @@
     <include file="changelogs/2020-10-27-remove-ghg-only-questions.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2020-12-02-update-confirm-epc-heading.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2021-02-10-add-pitched-roof-insulation-measure.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2021-03-12-add-privacy-notice-page.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
