@@ -98,8 +98,9 @@ see the "Development Setup - Admin Site" section below. Run the "Wordpress on lo
 You will need the database installed locally, follow
 the "Development Setup - MySQL Database" section below.
 
-You will need PHP installed and registered in IntelliJ.
-You can install PHP using the Microsoft Web Platform Insaller at
+You will need PHP 7.2 installed and registered in IntelliJ (PHP 7.4 will also work, but may cause warning 
+and error messages to be shown across the top of the site).
+You can install PHP using the Microsoft Web Platform Installer at
 https://www.iis.net/downloads/microsoft/web-platform-installer
 
 You should be able to launch the site by selecting the "on local server"
@@ -118,8 +119,8 @@ you will remember (e.g. "root" / "password").
 Log in as root and run the following to create a WP user and database
 
     CREATE DATABASE wordpressbeissea;
-    GRANT ALL PRIVILEGES ON wordpress.* TO "wordpress"@"localhost"
-        IDENTIFIED BY "wordpressPassword123";
+    CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'wordpressPassword123';
+    GRANT ALL PRIVILEGES ON wordpressbeissea.* TO 'wordpress'@'localhost';
 
 Get a dump of the database from somewhere (another developer,
 the live site etc.) and restore it to that database.
