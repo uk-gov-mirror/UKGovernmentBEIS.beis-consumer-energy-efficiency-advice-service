@@ -3,7 +3,7 @@
   Contents
 </h2>
 <div *ngFor="let heading of headings; let i = index">
-  <button class="contents-link" (click)="headingClicked(i, $event)">
+  <button class="contents-link" (click)="headingClicked(i, $event)" role="link">
     <span class="contents-number">{{getFormattedNumberFromIndex(i)}}</span>
     <span class="contents-item">{{heading}}</span>
   </button>
