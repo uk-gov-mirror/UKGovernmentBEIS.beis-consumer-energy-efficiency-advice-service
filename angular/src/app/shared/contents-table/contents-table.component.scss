@@ -21,6 +21,7 @@
   color: $dark-grey;
   background: none;
   border: none;
+  text-align: left;
 }
 
 .contents-number {
@@ -29,6 +30,6 @@
 }
 
 .contents-item {
-  display: inline-block;
+  display: inline;
   @include page-body-font;
 }
