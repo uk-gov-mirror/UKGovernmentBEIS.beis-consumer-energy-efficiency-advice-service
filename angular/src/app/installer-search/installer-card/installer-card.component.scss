@@ -79,6 +79,10 @@
   }
 }
 
+.installer-logo {
+  width: 36px;
+}
+
 // Breakpoint specific styling
 @include mobile() {
   .installer-card {
