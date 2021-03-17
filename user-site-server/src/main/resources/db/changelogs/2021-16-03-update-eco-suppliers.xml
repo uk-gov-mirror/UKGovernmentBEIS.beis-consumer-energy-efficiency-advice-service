@@ -36,6 +36,12 @@ DELETE FROM wp_posts WHERE id = 9537;
 DELETE FROM wp_posts WHERE id = 10498;
 DELETE FROM wp_posts WHERE id = 9631;
 
+-- SSE
+DELETE FROM wp_postmeta WHERE post_id = 9539;
+DELETE FROM wp_postmeta WHERE post_id = 9633;
+DELETE FROM wp_posts WHERE id = 9539;
+DELETE FROM wp_posts WHERE id = 9633;
+
 -- Add new suppliers
 
 -- Ecotricity
