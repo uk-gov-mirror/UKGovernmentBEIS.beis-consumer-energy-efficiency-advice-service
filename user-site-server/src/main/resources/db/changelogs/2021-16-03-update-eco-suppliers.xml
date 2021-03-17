@@ -10,13 +10,7 @@
                dbms="mysql">
         <sql><![CDATA[
 
--- This is only run on MySQL as the H2 database does not have the correct fields
-
--- List of energy suppliers participating in the Energy Company Obligation. The up to date list can be found at:
--- https://www.ofgem.gov.uk/environmental-programmes/eco/contacts-guidance-and-resources/supplier-contact-details
--- This list will change very infrequently, since it's a list of all the companies that have over 250,000 users
-
--- Delete Suppliers that are no longer participating
+-- Delete Suppliers that are no longer in scheme
 
 -- Green Network Energy
 DELETE FROM wp_postmeta WHERE post_id = 10779;
