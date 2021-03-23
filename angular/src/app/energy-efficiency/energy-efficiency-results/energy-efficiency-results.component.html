@@ -14,26 +14,6 @@
     </div>
     <div class="page-row recommendations">
         <div class="page-row-content">
-            <div class="ghg-context-card" *ngIf="this.shouldShowGhgContext">
-                <h2>Fund improvements with the Green Homes Grant</h2>
-                <ng-container *ngIf="isOwnerOccupied">
-                    <p>To be eligible, you must add at least one <span class="tag">GHG Eligible (primary)</span> measure to your plan.</p>
-                    <p>
-                        If you do this, any primary or secondary measures added to your plan may be partially covered under the Green Homes Grant.
-                        Note that the subsidy for secondary measures is capped at the value of the subsidy provided for primary measures.
-                    </p>
-                    <h3>What are primary and secondary measures?</h3>
-                    <p>
-                        <span class="emphasis">Primary measures</span> refer to home insulation and low carbon heat measures.
-                        <span class="emphasis">Secondary measures</span> refer to additional energy saving measures, including improvements to
-                        windows and doors, as well as heating controls.
-                    </p>
-                </ng-container>
-                <ng-container *ngIf="!isOwnerOccupied">
-                    <p>Your landlord may be eligible to use the Green Homes Grant to make these improvements.</p>
-                    <p>For more information, see <a href="/pages/green-homes-grant">the Green Homes Grant page</a>.</p>
-                </ng-container>
-            </div>
             <div class="recommendation-cards">
                 <app-energy-efficiency-recommendation-card
                         *ngFor="let recommendation of getUserRecommendations()"

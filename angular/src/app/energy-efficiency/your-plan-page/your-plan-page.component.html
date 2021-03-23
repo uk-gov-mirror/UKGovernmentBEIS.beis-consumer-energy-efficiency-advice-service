@@ -36,30 +36,6 @@ If you change anything here, please consider whether anything needs changing the
                 </div>
             </div>
         </div>
-        <div class="ghg-context page-row" *ngIf="shouldShowGhgContext">
-            <div class="page-row-content">
-                <h2>Fund improvements with the Green Homes Grant</h2>
-                <p>
-                    You have added {{numberOfPrimaryRecommendations}} primary measure{{numberOfPrimaryRecommendations === 1 ? '' : 's'}}
-                    and {{numberOfSecondaryRecommendations}} secondary measure{{numberOfSecondaryRecommendations === 1 ? '' : 's'}}
-                    to your plan. Under the Green Homes Grant, you may be eligible for funding 2/3 of the total cost, up to £5,000.
-                    If you receive certain benefits, you may instead be eligible for funding 100% of the total cost, up to £10,000.
-                </p>
-                <h3 class="subheading">What are the next steps?</h3>
-                <p>
-                    Download your plan and contact installers to get quotes for the improvements that you have selected.
-                    You should get at least 3 quotes to make sure you are getting the best value for money.
-                    Keep a record of these quotes, as you will need to submit them as part of the application process.
-                </p>
-                <p>You can apply for the Green Homes Grant on the GOV.UK website.</p>
-                <app-link-button [linkUrl]="'https://www.gov.uk/apply-green-homes-grant'"
-                                 [buttonText]="'Apply for the Green Homes Grant'"
-                                 [variant]="'green'"
-                                 [openInNewTab]="true"
-                >
-                </app-link-button>
-            </div>
-        </div>
         <div class="recommendations user-recommendations page-row">
             <div class="page-row-content">
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
@@ -99,23 +75,6 @@ If you change anything here, please consider whether anything needs changing the
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of landlordRecommendations">
                     <app-recommendation-with-steps-card [recommendation]="recommendation"></app-recommendation-with-steps-card>
                 </div>
-            </div>
-        </div>
-        <div class="ghg-context page-row" *ngIf="shouldShowGhgContext">
-            <div class="ghg-next-steps page-row-content">
-                <h2>Next steps in applying for the Green Homes Grant</h2>
-                <p>
-                    Download your plan and contact installers to get quotes for the improvements that you have selected.
-                    You should get at least 3 quotes to make sure you are getting the best value for money.
-                    Keep a record of these quotes, as you will need to submit them as part of the application process.
-                </p>
-                <p>You can apply for the Green Homes Grant on the GOV.UK website.</p>
-                <app-link-button [linkUrl]="'https://www.gov.uk/apply-green-homes-grant'"
-                                 [buttonText]="'Apply for the Green Homes Grant'"
-                                 [variant]="'green'"
-                                 [openInNewTab]="true"
-                >
-                </app-link-button>
             </div>
         </div>
     </div>
