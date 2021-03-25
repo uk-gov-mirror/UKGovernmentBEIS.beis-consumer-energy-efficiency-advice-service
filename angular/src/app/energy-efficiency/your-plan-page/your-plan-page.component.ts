@@ -8,8 +8,6 @@ import {LocalAuthorityGrant} from '../../grants/model/local-authority-grant';
 import * as logger from 'loglevel';
 import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-display-service/energy-efficiency-display.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
-import {EnergyEfficiencyRecommendationTag} from "../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 @Component({
     selector: 'app-your-plan-page',
@@ -22,15 +20,12 @@ export class YourPlanPageComponent implements OnInit {
     localAuthorityName: string;
     isError: boolean = false;
     errorMessage: string;
-    shouldShowGhgContext: boolean = false;
 
     constructor(private recommendationsService: RecommendationsService,
                 private localAuthorityService: LocalAuthorityService,
                 private responseData: ResponseData,
                 private energyEfficiencyDisplayService: EnergyEfficiencyDisplayService,
-                private pageTitle: PageTitleService,
-                private greenHomesGrantService: GreenHomesGrantService,
-                ) {
+                private pageTitle: PageTitleService) {
     }
 
     get userRecommendations(): EnergyEfficiencyRecommendation[] {
@@ -43,18 +38,6 @@ export class YourPlanPageComponent implements OnInit {
 
     get numberOfRecommendations(): number {
         return this.energyEfficiencyDisplayService.getApparentNumberOfRecommendations();
-    }
-
-    get numberOfPrimaryRecommendations(): number {
-        return this.recommendationsService.getRecommendationsInPlan().filter(
-            r => r.tags.includes(EnergyEfficiencyRecommendationTag.GHGPrimary)
-        ).length;
-    }
-
-    get numberOfSecondaryRecommendations(): number {
-        return this.recommendationsService.getRecommendationsInPlan().filter(
-            r => r.tags.includes(EnergyEfficiencyRecommendationTag.GHGSecondary)
-        ).length;
     }
 
     ngOnInit() {
@@ -72,13 +55,6 @@ export class YourPlanPageComponent implements OnInit {
                 response => this.handleLocalAuthorityServiceResponse(response),
                 error => this.handleLocalAuthorityServiceError(error)
             );
-
-        this.shouldShowGhgContext = this.greenHomesGrantService.shouldShowGhgContext() &&
-            this.recommendationsService.getUserRecommendationsInPlan()
-                .concat(this.recommendationsService.getLandlordRecommendationsInPlan())
-                .some(
-                    recommendation => GreenHomesGrantService.hasGHGTag(recommendation.tags)
-                );
     }
 
     handleLocalAuthorityServiceResponse(response: LocalAuthority) {

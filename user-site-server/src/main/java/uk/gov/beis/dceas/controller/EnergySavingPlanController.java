@@ -27,7 +27,6 @@ import uk.gov.beis.dceas.api.PdfLandlordRecommendationParams;
 import uk.gov.beis.dceas.api.PdfRecommendationParams;
 import uk.gov.beis.dceas.api.PdfUserRecommendationParams;
 import uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag;
-import uk.gov.beis.dceas.service.InstallerSearchService;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
 
@@ -42,22 +41,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
-import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_PRIMARY;
-import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.GHG_SECONDARY;
 import static uk.gov.beis.dceas.data.EnergyEfficiencyRecommendationTag.RECOMMENDATION_TAGS_BY_JSON_NAME;
 
 /**
@@ -77,8 +71,6 @@ public class EnergySavingPlanController {
     private final NationalGrantsService nationalGrantsService;
     private final String publicRootUrl;
     private final JavaMailSender emailSender;
-    private final String trustmarkInstallersUrl;
-    private final InstallerSearchService installerSearchService;
 
     public EnergySavingPlanController(
             ServletContext servletContext,
@@ -88,11 +80,7 @@ public class EnergySavingPlanController {
             NationalGrantsService nationalGrantsService,
             @org.springframework.beans.factory.annotation.Value("${dceas.publicRootUrl}")
                     String publicRootUrl,
-            @org.springframework.beans.factory.annotation.Value("${vcap.services.trustMark.credentials.allInstallers.url}")
-                    String trustmarkInstallersUrl,
-            JavaMailSender emailSender,
-            InstallerSearchService installerSearchService
-    ) {
+            JavaMailSender emailSender) {
         this.servletContext = servletContext;
         this.applicationContext = applicationContext;
         this.templateEngine = templateEngine;
@@ -100,8 +88,6 @@ public class EnergySavingPlanController {
         this.nationalGrantsService = nationalGrantsService;
         this.publicRootUrl = publicRootUrl;
         this.emailSender = emailSender;
-        this.installerSearchService = installerSearchService;
-        this.trustmarkInstallersUrl = trustmarkInstallersUrl;
     }
 
     /**
@@ -140,8 +126,7 @@ public class EnergySavingPlanController {
         PdfUserRecommendationParams pdfUserRecommendationParams = new PdfUserRecommendationParams(
                 planInfo.getRecommendations(),
                 planInfo.getTenureType(),
-                planInfo.postcode,
-                planInfo.shouldShowGhgContext
+                planInfo.postcode
         );
 
         writePlanToOutputStream(pdfUserRecommendationParams, pdfBuffer, httpRequest, response, locale);
@@ -179,7 +164,7 @@ public class EnergySavingPlanController {
 
         PdfRecommendationParams pdfRecommendationParams = forLandlord
                 ? new PdfLandlordRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode)
-                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode, request.shouldShowGhgContext);
+                : new PdfUserRecommendationParams(request.getRecommendations(), request.tenureType, request.postcode);
 
         downloadPlan(pdfRecommendationParams, httpRequest, response, locale);
     }
@@ -244,9 +229,6 @@ public class EnergySavingPlanController {
         renderer.createPDF(out);
     }
 
-    private static boolean isGhgEligible(EnergyEfficiencyRecommendation recommendation) {
-        return recommendation.getTags().stream().anyMatch(tag -> tag == GHG_PRIMARY || tag == GHG_SECONDARY);
-    }
     /**
      * Keep this in sync with recommendations.service.ts `getRecommendationsContent`
      */
@@ -283,9 +265,6 @@ public class EnergySavingPlanController {
         templateContext.setVariable("subheading", pdfRecommendationParams.getSubheading());
 
         templateContext.setVariable("recommendations", recommendations);
-        templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
-        templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
-        templateContext.setVariable("shouldShowGhgContext", pdfRecommendationParams.shouldShowGhgContext());
 
         double totalInvestment = recommendations.stream()
                 .mapToDouble(r -> {
@@ -425,8 +404,6 @@ public class EnergySavingPlanController {
         Integer tenureType;
         @NotNull
         String postcode;
-        @NotNull
-        boolean shouldShowGhgContext;
     }
 
     /**

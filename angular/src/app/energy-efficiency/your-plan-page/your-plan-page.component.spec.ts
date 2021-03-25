@@ -29,10 +29,8 @@ import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-dis
 import {AbTestingService} from "../../shared/analytics/ab-testing.service";
 import {PlanInfoService} from "../../shared/plan-info-service/plan-info.service";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
-import {InstallerSearchService} from "../../shared/installer-search-service/installer-search.service";
 import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
 import {LinkButtonComponent} from "../../shared/link-button/link-button.component";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import {RouterLinkButtonComponent} from "../../shared/router-link-button/router-link-button.component";
 
 describe('YourPlanPageComponent', () => {
@@ -161,15 +159,6 @@ describe('YourPlanPageComponent', () => {
         getLandlordRecommendationsInPlan: () => recommendations
     };
 
-    const installerSearchServiceStub = {
-        fetchInstallerDetails: () => Observable.of({}),
-    };
-
-    const greenHomesGrantStub = {
-        shouldShowGhgContext: () => true,
-        hasGHGTag: () => true,
-    };
-
     beforeEach(async(() => {
         localAuthorityResponse = Observable.of({
             name: 'Westminster',
@@ -201,8 +190,6 @@ describe('YourPlanPageComponent', () => {
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: LocalAuthorityService, useValue: localAuthorityServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},
-                {provide: InstallerSearchService, useValue: installerSearchServiceStub},
-                {provide: GreenHomesGrantService, useValue: greenHomesGrantStub},
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,
                 AbTestingService,

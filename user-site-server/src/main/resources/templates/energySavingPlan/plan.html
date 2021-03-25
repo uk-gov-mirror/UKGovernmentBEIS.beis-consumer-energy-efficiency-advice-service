@@ -91,12 +91,6 @@
                                 <input type="text" />
                             </div>
                         </div>
-                        <div class="ghg-tag ghg-tag--primary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligiblePrimary)}">
-                            GHG Eligible (Primary)
-                        </div>
-                        <div class="ghg-tag ghg-tag--secondary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligibleSecondary)}">
-                            GHG Eligible (Secondary)
-                        </div>
                     </div>
                     <div class="steps">
                         <div class="recommendation-step-card" th:each="step,iterStat : ${recommendation.getSteps()}">

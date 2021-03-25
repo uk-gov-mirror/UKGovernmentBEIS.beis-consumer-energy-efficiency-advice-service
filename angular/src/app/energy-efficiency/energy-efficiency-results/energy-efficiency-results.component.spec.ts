@@ -39,7 +39,6 @@ import {EnergyEfficiencyDisplayService} from "../../shared/energy-efficiency-dis
 import {EnergyEfficiencyRecommendations} from "../../shared/recommendations-service/energy-efficiency-recommendations";
 import {PageTitleService} from "../../shared/page-title-service/page-title.service";
 import {InstallationCost} from '../../shared/recommendations-service/installation-cost';
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('EnergyEfficiencyResultsComponent', () => {
     let component: EnergyEfficiencyResultsComponent;
@@ -66,10 +65,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
 
     const pageTitleStub = {
         set: () => {}
-    };
-
-    const greenHomesGrantStub = {
-        shouldShowGhgContext: () => true,
     };
 
     let responseData: ResponseData;
@@ -195,7 +190,6 @@ describe('EnergyEfficiencyResultsComponent', () => {
                 {provide: RecommendationsService, useValue: recommendationsServiceStub},
                 {provide: UserStateService, useValue: userStateServiceStub},
                 {provide: PageTitleService, useValue: pageTitleStub},
-                {provide: GreenHomesGrantService, useValue: greenHomesGrantStub},
                 AbTestingService,
                 GoogleAnalyticsService,
                 EnergyEfficiencyDisplayService,

@@ -34,7 +34,6 @@ import {CeilPipe} from './ceil/ceil.pipe';
 import {LocalGrantCardComponent} from './local-grant-card/local-grant-card.component';
 import {NationalGrantsLinkCardComponent} from './national-grants-link-card/national-grants-link-card.component';
 import {RecommendationsService} from './recommendations-service/recommendations.service';
-import {GreenHomesGrantRecommendationsService} from './recommendations-service/green-homes-grant-recommendations.service';
 import {StickyRowWrapperComponent} from './sticky-row-wrapper/sticky-row-wrapper.component';
 import {DataCardComponent} from './data-card/data-card.component';
 import {WordpressMeasuresService} from './wordpress-measures-service/wordpress-measures.service';
@@ -53,8 +52,6 @@ import {LinkButtonComponent} from "./link-button/link-button.component";
 import {AccordionComponent} from "../accordion/accordion.component";
 import {ECOSelfReferralConsentData} from '../eco-self-referral/eco-self-referral-consent-data';
 import {PageTitleService} from "./page-title-service/page-title.service";
-import {InstallerSearchService} from "./installer-search-service/installer-search.service";
-import {GreenHomesGrantService} from "../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 import {RouterLinkButtonComponent} from "./router-link-button/router-link-button.component";
 
 @NgModule({
@@ -144,13 +141,10 @@ export class SharedModule {
                 GoogleAnalyticsService,
                 AssetsService,
                 RecommendationsService,
-                GreenHomesGrantRecommendationsService,
                 CookieService,
                 PlanInfoService,
                 EnergyEfficiencyDisplayService,
-                PageTitleService,
-                InstallerSearchService,
-                GreenHomesGrantService
+                PageTitleService
             ]
         };
     }

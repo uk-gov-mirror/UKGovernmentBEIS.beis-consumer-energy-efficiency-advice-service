@@ -45,8 +45,7 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
         isItRightForMe: '',
         tags: [
             EnergyEfficiencyRecommendationTag.LongerTerm,
-            EnergyEfficiencyRecommendationTag.Grant,
-            EnergyEfficiencyRecommendationTag.GHGPrimary
+            EnergyEfficiencyRecommendationTag.Grant
         ],
         grant: grant,
         advantages: advantages,
@@ -103,24 +102,11 @@ describe('EnergyEfficiencyRecommendationCardComponent', () => {
             expect(summaryElement.innerText).toBe(recommendation.summary);
         });
 
-        it('should display the grants and GHG tags', () => {
+        it('should display the grants tag', () => {
             // given
             const tagsElements = fixture.debugElement.queryAll(By.css('.tag'));
 
             // then
-            expect(tagsElements.length).toBe(2);
-            const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
-            expect(tagNames).toContain('grants');
-            expect(tagNames).toContain('ghg eligible (primary)');
-        });
-
-        it('should not display GHG tags if not eligible', () => {
-            component.shouldShowGhgContext = false;
-            component.ngOnInit();
-            fixture.detectChanges();
-
-            const tagsElements = fixture.debugElement.queryAll(By.css('.tag'));
-
             expect(tagsElements.length).toBe(1);
             const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
             expect(tagNames).toContain('grants');

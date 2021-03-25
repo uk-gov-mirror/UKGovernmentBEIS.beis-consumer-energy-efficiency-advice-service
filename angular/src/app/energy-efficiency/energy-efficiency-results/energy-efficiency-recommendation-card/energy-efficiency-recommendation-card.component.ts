@@ -3,7 +3,7 @@ import {EnergyEfficiencyRecommendation} from '../../../shared/recommendations-se
 import {
     EnergyEfficiencyRecommendationTag,
     getTagClassName,
-    getTagDescription, GHG_ONLY_TAGS
+    getTagDescription
 } from '../recommendation-tags/energy-efficiency-recommendation-tag';
 import {GoogleAnalyticsService} from '../../../shared/analytics/google-analytics.service';
 import {EnergyEfficiencyRecommendationService} from "../../../shared/recommendations-service/energy-efficiency-recommendation.service";
@@ -18,7 +18,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
     @Input() recommendation: EnergyEfficiencyRecommendation;
     @Input() showMonthlySavings: boolean = true;
     @Input() showAddToPlanColumn: boolean = true;
-    @Input() shouldShowGhgContext: boolean = true;
     @Output() recommendationsInPlanChanged: EventEmitter<null> = new EventEmitter<null>();
 
     isExpandedView: boolean = false;
@@ -46,11 +45,6 @@ export class EnergyEfficiencyRecommendationCardComponent implements OnInit {
 
     initTags() {
         this.displayableTags = EnergyEfficiencyRecommendationCardComponent.ALWAYS_DISPLAYABLE_TAGS;
-
-        if (this.shouldShowGhgContext) {
-            this.displayableTags = this.displayableTags.concat(GHG_ONLY_TAGS);
-        }
-
         this.tags = this.recommendation.tags.filter(t => this.displayableTags.includes(t));
     }
 

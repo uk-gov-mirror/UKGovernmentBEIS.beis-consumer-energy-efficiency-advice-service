@@ -6,15 +6,8 @@ export enum EnergyEfficiencyRecommendationTag {
     SmallSpend,
     LongerTerm,
     Grant,
-    FundingAvailable,
-    GHGPrimary,
-    GHGSecondary
+    FundingAvailable
 }
-
-export const GHG_ONLY_TAGS = [
-    EnergyEfficiencyRecommendationTag.GHGPrimary,
-    EnergyEfficiencyRecommendationTag.GHGSecondary
-];
 
 export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEfficiencyRecommendationTag) {
     switch (energyEfficiencyRecommendationTag) {
@@ -24,8 +17,6 @@ export function getTagDescription(energyEfficiencyRecommendationTag: EnergyEffic
         case EnergyEfficiencyRecommendationTag.Grant:               { return 'Grants'; }
         case EnergyEfficiencyRecommendationTag.TopRecommendations:  { return 'Our Top 5'; }
         case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'Energy Funding'; }
-        case EnergyEfficiencyRecommendationTag.GHGPrimary:          { return 'GHG Eligible (primary)'; }
-        case EnergyEfficiencyRecommendationTag.GHGSecondary:        { return 'GHG Eligible (secondary)'; }
     }
 }
 
@@ -37,8 +28,6 @@ export function getTagClassName(energyEfficiencyRecommendationTag: EnergyEfficie
         case EnergyEfficiencyRecommendationTag.Grant:               { return 'tag-grant'; }
         case EnergyEfficiencyRecommendationTag.TopRecommendations:  { return 'tag-top-recommendations'; }
         case EnergyEfficiencyRecommendationTag.FundingAvailable:    { return 'tag-funding-available'; }
-        case EnergyEfficiencyRecommendationTag.GHGPrimary:          { return 'tag-ghg-primary'; }
-        case EnergyEfficiencyRecommendationTag.GHGSecondary:        { return 'tag-ghg-secondary'; }
     }
 }
 
@@ -51,7 +40,5 @@ export function getTagsForMeasure(measureContent: MeasureContent): EnergyEfficie
 const RECOMMENDATION_TAGS_BY_JSON_NAME: {[key: string]: EnergyEfficiencyRecommendationTag | undefined} = {
     tag_quick_win: EnergyEfficiencyRecommendationTag.QuickWin,
     tag_small_spend: EnergyEfficiencyRecommendationTag.SmallSpend,
-    tag_longer_term: EnergyEfficiencyRecommendationTag.LongerTerm,
-    tag_ghg_primary: EnergyEfficiencyRecommendationTag.GHGPrimary,
-    tag_ghg_secondary: EnergyEfficiencyRecommendationTag.GHGSecondary
+    tag_longer_term: EnergyEfficiencyRecommendationTag.LongerTerm
 };

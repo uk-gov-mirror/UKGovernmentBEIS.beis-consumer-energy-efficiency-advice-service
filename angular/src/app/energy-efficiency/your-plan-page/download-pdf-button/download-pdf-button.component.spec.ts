@@ -6,7 +6,6 @@ import {InlineSVGModule} from 'ng-inline-svg';
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
 import {RecommendationsService} from "../../../shared/recommendations-service/recommendations.service";
 import {PlanInfoService} from "../../../shared/plan-info-service/plan-info.service";
-import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('DownloadPdfButtonComponent', () => {
     let component: DownloadPdfButtonComponent;
@@ -25,8 +24,7 @@ describe('DownloadPdfButtonComponent', () => {
                 {provide: ResponseData, useValue: responseData},
                 GoogleAnalyticsService,
                 {provide: RecommendationsService, useValue: {}},
-                PlanInfoService,
-                GreenHomesGrantService
+                PlanInfoService
             ],
             imports: [
                 InlineSVGModule,

@@ -6,15 +6,11 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {InlineSVGModule} from 'ng-inline-svg';
 import {RecommendationStepCardComponent} from "../recommendation-step-card/recommendation-step-card.component";
 import {GoogleAnalyticsService} from "../../../shared/analytics/google-analytics.service";
-import {InstallerSearchService} from "../../../shared/installer-search-service/installer-search.service";
-import {Observable} from '../../../../../node_modules/rxjs/Observable';
-import {By} from '@angular/platform-browser';
 import {EnergyEfficiencyRecommendation} from "../../../shared/recommendations-service/energy-efficiency-recommendation";
 import {EnergyEfficiencyRecommendationTag} from "../../energy-efficiency-results/recommendation-tags/energy-efficiency-recommendation-tag";
 import {InstallationCost} from "../../../shared/recommendations-service/installation-cost";
 import {NationalGrantForMeasure} from "../../../grants/model/national-grant-for-measure";
 import {GrantEligibility} from "../../../grants/grant-eligibility-service/grant-eligibility";
-import {GreenHomesGrantService} from "../../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 describe('RecommendationWithStepsCardComponent', () => {
     let component: RecommendationWithStepsCardComponent;
@@ -47,7 +43,6 @@ describe('RecommendationWithStepsCardComponent', () => {
         tags: [
             EnergyEfficiencyRecommendationTag.LongerTerm,
             EnergyEfficiencyRecommendationTag.Grant,
-            EnergyEfficiencyRecommendationTag.GHGPrimary
         ],
         grant: grant,
         advantages: advantages,
@@ -64,14 +59,6 @@ describe('RecommendationWithStepsCardComponent', () => {
         responseData = new ResponseData();
         responseData.postcode = "NW5 1TL";
 
-        const installerSearchServiceStub = {
-            fetchInstallerDetails: () => Observable.of({}),
-        };
-
-        const greenHomesGrantStub = {
-            shouldShowGhgContext: () => true,
-        };
-
         TestBed.configureTestingModule({
             declarations: [
                 RecommendationWithStepsCardComponent,
@@ -82,8 +69,6 @@ describe('RecommendationWithStepsCardComponent', () => {
             ],
             providers: [
                 {provide: ResponseData, useValue: responseData},
-                {provide: InstallerSearchService, useValue: installerSearchServiceStub},
-                {provide: GreenHomesGrantService, useValue: greenHomesGrantStub},
                 GoogleAnalyticsService,
             ],
             imports: [
@@ -104,23 +89,6 @@ describe('RecommendationWithStepsCardComponent', () => {
     describe('#construct', () => {
         it('should create', () => {
             expect(component).toBeTruthy();
-        });
-
-        it('should display the GHG tag', () => {
-            const tagsElements = fixture.debugElement.queryAll(By.css('.tag'));
-
-            expect(tagsElements.length).toBe(1);
-            const tagNames = tagsElements.map(element => element.nativeElement.innerText.toLowerCase());
-            expect(tagNames).toContain('ghg eligible (primary)');
-        });
-
-        it('should not display GHG tags if not eligible', () => {
-            component.shouldShowGhgContext = false;
-            component.ngOnInit();
-            fixture.detectChanges();
-
-            const tagsElements = fixture.debugElement.queryAll(By.css('.tag'));
-            expect(tagsElements.length).toBe(0);
         });
     });
 });

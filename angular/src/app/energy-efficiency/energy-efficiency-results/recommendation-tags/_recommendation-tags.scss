@@ -31,14 +31,6 @@
   .tag-funding-available {
     @include isTag($background-color: #E50046);
   }
-
-  .tag-ghg-primary {
-    @include isTag($background-color: $ghg-primary-tag);
-  }
-
-  .tag-ghg-secondary {
-    @include isTag($background-color: $ghg-secondary-tag);
-  }
 }
 
 // Breakpoint specific styling
