@@ -41,7 +41,6 @@ import {ECOSelfReferralQuestionnaireComponent} from "./eco-self-referral/eco-sel
 import {ECOSelfReferralDonePageComponent} from "./eco-self-referral/eco-self-referral-done-page/eco-self-referral-done-page.component";
 import {ECOSelfReferralDonePageGuard} from "./eco-self-referral/eco-self-referral-done-page/eco-self-referral-done-page.guard";
 import {ECOSelfReferralConsentGuard} from "./eco-self-referral/eco-self-referral-consent.guard";
-import {PrivacyPageComponent} from "./privacy-page/privacy-page.component";
 
 /**
  * This const defines the URL routes for the Angular application.
@@ -253,11 +252,6 @@ const routes: Routes = [
     {
         path: 'search',
         component: SearchPageComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'privacy',
-        component: PrivacyPageComponent,
         pathMatch: 'full'
     },
     {

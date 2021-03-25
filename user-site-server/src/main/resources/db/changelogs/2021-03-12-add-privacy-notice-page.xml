@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2021-03-12-add-privacy-notice-page.xml"
+               author="laura.saunders@softwire.com"
+               dbms="mysql">
+        <sql>
+            <![CDATA[
+                INSERT INTO wp_posts (
+                    post_author,
+                    post_content,
+                    post_title,
+                    post_excerpt,
+                    post_status,
+                    comment_status,
+                    ping_status,
+                    post_password,
+                    post_name,
+                    to_ping,
+                    pinged,
+                    post_content_filtered,
+                    post_parent,
+                    guid,
+                    post_type
+                )
+                VALUES (
+                    1,
+                    '<p class="summary">
+                        Simple Energy Advice provides government endorsed energy advice to consumers. It is run by the Department of Business, Energy & Industrial Strategy. This privacy policy will explain how our organisation uses the personal data we collect from you when you use our website.
+                    </p>
+
+                    <h2>What data do we collect?</h2>
+                    <p>
+                        Simple Energy Advice collects first-party cookies to measure website use.
+                    </p>
+                    <p>
+                        The data that we ask for in our questionnaires is not stored. It is used to provide advice and then discarded.
+                    </p>
+
+                    <h2>How do we collect your data?</h2>
+                    <p>
+                        You directly provide Simple Energy Advice with most of the data we collect. We collect data and process data when you:
+                    </p>
+                    <ul>
+                        <li>Use or view our website via your browser’s cookies.</li>
+                    </ul>
+                    <p>Simple Energy Advice may also receive your data indirectly from the following sources:</p>
+                    <ul>
+                        <li>Looking up your Energy Performance Certificate (EPC) based on the address that you provide.</li>
+                    </ul>
+                    <h2>How will we use your data?</h2>
+                    <p>Simple Energy Advice collects your data so that we can:</p>
+                    <ul>
+                        <li>Provide you with energy saving advice.</li>
+                    </ul>
+
+                    <h2>How do we store your data?</h2>
+                    <p>
+                        Simple Energy Advice securely stores your data in a UK-hosted database via GOV.UK PaaS. For more information on the security measures in place, see: <a href="https://www.cloud.service.gov.uk/security">https://www.cloud.service.gov.uk/security</a>
+                    </p>
+                    <p>
+                        Previously Simple Energy Advice kept ECO self-referral information, a tool since removed from the site. This data has since been fully deleted.
+                    </p>
+                    <h2>What are your data protection rights?</h2>
+                    <p>
+                        Simple Energy Advice would like to make sure you are fully aware of all of your data protection rights.
+                        Every user is entitled to the following:
+                    </p>
+                    <p>
+                        <strong>The right to access</strong>- You have the right to request Simple Energy Advice for copies of your personal data. We may charge you a small fee for this service.
+                    </p>
+                    <p>
+                        <strong>The right to rectification</strong>- You have the right to request that Simple Energy Advice correct any information you believe is inaccurate. You also have the right to request Simple Energy Advice to complete the information you believe is incomplete.
+                    </p>
+                    <p>
+                        <strong>The right to erasure</strong>- You have the right to request that Simple Energy Advice erase your personal data, under certain conditions.
+                    </p>
+                    <p>
+                        <strong>The right to restrict processing</strong>- You have the right to request that Simple Energy Advice restrict the processing of your personal data, under certain conditions.
+                    </p>
+                    <p>
+                        <strong>The right to object to processing</strong>- You have the right to object to Simple Energy Advice’s processing of your personal data, under certain conditions.
+                    </p>
+                    <p>
+                        <strong>The right to data portability</strong>- You have the right to request that Simple Energy Advice transfer the data that we have collected to another organization, or directly to you, under certain conditions.
+                    </p>
+                    <p>
+                        If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please email us at: <a href="mailto:websitefeedback@simpleenergyadvice.org.uk">websitefeedback@simpleenergyadvice.org.uk</a>
+                    </p>
+                    <h2>What are cookies?</h2>
+                    <p>
+                        Cookies are text files placed on your computer to collect standard Internet log information and visitor behavior information. When you visit our websites, we may collect information from you automatically through cookies or similar technology.
+                    </p>
+                    <p>
+                        For further information, visit: <a href="https://www.allaboutcookies.org/">https://www.allaboutcookies.org</a>
+                    </p>
+                    <h2>How do we use cookies?</h2>
+                    <p>
+                        Simple Energy Advice uses cookies in a range of ways to improve your experience on our website, including:
+                    </p>
+                    <ul>
+                        <li>Understanding how you use our website</li>
+                        <li>Remembering your answers to previously asked questions</li>
+                    </ul>
+                    <h2>How to manage cookies</h2>
+                    <p>
+                        You can set your browser not to accept cookies, and the above website tells you how to remove cookies from your browser. However, in a few cases, some of our website features may not function as a result.
+                    </p>
+                    <h2>
+                        Privacy policies of other websites
+                    </h2>
+                    <p>
+                        The Simple Energy Advice website contains links to other websites. Our privacy policy applies only to our website, so if you click on a link to another website, you should read their privacy policy.
+                    </p>
+                    <h2>Changes to our privacy policy</h2>
+                    <p>
+                        Simple Energy Advice keeps its privacy policy under review and places any updates on this web page. This privacy policy was last updated on 10 March 2021.
+                    </p>
+                    <h2>How to contact us</h2>
+                    <p>
+                        If you have any questions about Simple Energy Advice’s privacy policy, the data we hold on you, or you would like to exercise one of your data protection rights, please do not hesitate to contact us.
+                    </p>
+                    <p>
+                        Email us at: <a href="mailto:websitefeedback@simpleenergyadvice.org.uk">websitefeedback@simpleenergyadvice.org.uk</a>
+                    </p>
+                    <h2>How to contact the appropriate authority</h2>
+                    <p>
+                        Should you wish to report a complaint or if you feel that Simple Energy Advice has not addressed your concern in a satisfactory manner, you may contact the <a href="https://ico.org.uk/">Information Commissioner’s Office</a>.
+                    </p>',
+                    'Privacy notice',
+                    '',
+                    'publish',
+                    'closed',
+                    'closed',
+                    '',
+                    'privacy-notice',
+                    '',
+                    '',
+                    '',
+                    0,
+                    'https://www.simpleenergyadvice.org.uk/pages/privacy-notice',
+                    'page');
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

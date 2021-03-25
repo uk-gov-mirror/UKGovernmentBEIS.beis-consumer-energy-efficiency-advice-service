@@ -31,7 +31,6 @@ import {HttpErrorInterceptor} from "./shared/http-error-interceptor";
 import {GlobalErrorHandler} from "./shared/global-error-handler";
 import {SearchPageModule} from "./search-page/search-page.module";
 import {ECOSelfReferralModule} from "./eco-self-referral/eco-self-referral.module";
-import {PrivacyPageModule} from "./privacy-page/privacy-page.module";
 
 @NgModule({
     declarations: [
@@ -57,7 +56,6 @@ import {PrivacyPageModule} from "./privacy-page/privacy-page.module";
         MeasurePageModule,
         ECOSuppliersPageModule,
         SearchPageModule,
-        PrivacyPageModule,
         AdminPageModule,
         LandingPageModule,
         LayoutComponentsModule.forRoot(),
