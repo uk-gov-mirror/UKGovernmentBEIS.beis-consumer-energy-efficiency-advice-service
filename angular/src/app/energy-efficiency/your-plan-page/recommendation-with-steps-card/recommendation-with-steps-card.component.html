@@ -11,12 +11,6 @@
                     </div>
                 </div>
             </div>
-            <app-data-card class="investment-required-card"
-                        heading="Investment required"
-                        [value]="getInvestmentRequiredString()"
-                        [isSmallCard]="true"
-                        [withSmallFontSize]="true"
-            ></app-data-card>
             <app-data-card class="monthly-savings-card"
                         heading="Savings per {{showMonthlySavings ? 'month' : 'year'}} up to"
                         [value]="getSavingDisplay(recommendation)"
@@ -24,6 +18,12 @@
                         [withSmallFontSize]="true"
                         *ngIf="getSavingDisplay(recommendation)!='-'">
             </app-data-card>
+            <app-data-card class="investment-required-card"
+                           heading="Investment required"
+                           [value]="getInvestmentRequiredString()"
+                           [isSmallCard]="true"
+                           [withSmallFontSize]="true"
+            ></app-data-card>
         </div>
     </div>
     <div class="steps">
