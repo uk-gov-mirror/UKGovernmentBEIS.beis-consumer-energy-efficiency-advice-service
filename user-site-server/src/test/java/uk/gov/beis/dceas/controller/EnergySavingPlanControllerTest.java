@@ -29,7 +29,6 @@ import uk.gov.beis.dceas.controller.EnergySavingPlanController.PlanInfo;
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.InstallationCost;
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.Range;
 import uk.gov.beis.dceas.controller.EnergySavingPlanController.SelectedEnergyEfficiencyRecommendation;
-import uk.gov.beis.dceas.service.InstallerSearchService;
 import uk.gov.beis.dceas.service.MeasuresDataService;
 import uk.gov.beis.dceas.service.NationalGrantsService;
 import uk.gov.beis.dceas.spring.DownloadPlanRequestParameterConverter;
@@ -214,11 +213,6 @@ public class EnergySavingPlanControllerTest {
         @Bean
         public JavaMailSender javaMailSender() {
             return mock(JavaMailSender.class);
-        }
-
-        @Bean
-        public InstallerSearchService installerSearchService() {
-            return mock(InstallerSearchService.class);
         }
     }
 }

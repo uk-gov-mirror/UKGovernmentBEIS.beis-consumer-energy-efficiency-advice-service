@@ -13,7 +13,6 @@ import {EnergyEfficiencyRecommendationTag} from '../../energy-efficiency/energy-
 import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
 import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
-import {GreenHomesGrantRecommendation, GreenHomesGrantRecommendationsService} from "./green-homes-grant-recommendations.service";
 
 describe('RecommendationsService', () => {
     let injector: TestBed;
@@ -68,50 +67,10 @@ describe('RecommendationsService', () => {
         fetchMeasureDetails: () => measuresResponse
     };
 
-    const dummyGreenHomesGrantRecommendations = [
-        // Air source heat pump.
-        {
-            code: 'Z1',
-            response: {
-                number: '',
-                min_installation_cost: 3000,
-                max_installation_cost: 10000,
-                lifetime: 20,
-                energy_saving: 0,
-                cost_saving: 0,
-                uncertainty: 0,
-                FIT: 0,
-                RHI: 0,
-                isBreRange: false
-            }
-        },
-        // Ground source heat pump.
-        {
-            code: 'Z4',
-            response: {
-                number: '',
-                min_installation_cost: 9000,
-                max_installation_cost: 17000,
-                lifetime: 20,
-                energy_saving: 0,
-                cost_saving: 0,
-                uncertainty: 0,
-                FIT: 0,
-                RHI: 0,
-                isBreRange: false
-            }
-        }
-    ];
-    let greenHomesGrantRecommendations: Observable<GreenHomesGrantRecommendation[]>;
-    const greenHomesGrantRecommendationsServiceStub = {
-        getGreenHomesGrantRecommendations: () => greenHomesGrantRecommendations
-    };
-
     let responseData: ResponseData;
 
     beforeEach(async(() => {
         measuresResponse = Observable.of(dummyMeasures);
-        greenHomesGrantRecommendations = Observable.of(dummyGreenHomesGrantRecommendations);
         responseData = new ResponseData();
         responseData.tenureType = TenureType.OwnerOccupancy;
         standaloneNationalGrantsResponse = Observable.of(standaloneNationalGrants);
@@ -121,7 +80,6 @@ describe('RecommendationsService', () => {
         spyOn(grantsEligibilityServiceStub, 'getEligibleStandaloneGrants').and.callThrough();
         spyOn(energyCalculationApiServiceStub, 'fetchEnergyCalculation').and.callThrough();
         spyOn(measuresServiceStub, 'fetchMeasureDetails').and.callThrough();
-        spyOn(greenHomesGrantRecommendationsServiceStub, 'getGreenHomesGrantRecommendations').and.callThrough();
 
         TestBed.configureTestingModule({
             providers: [
@@ -129,9 +87,8 @@ describe('RecommendationsService', () => {
                 {provide: ResponseData, useValue: responseData},
                 {provide: EnergyCalculationApiService, useValue: energyCalculationApiServiceStub},
                 {provide: EnergySavingMeasureContentService, useValue: measuresServiceStub},
-                {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub},
-                {provide: GreenHomesGrantRecommendationsService, useValue: greenHomesGrantRecommendationsServiceStub}
-            ]
+                {provide: GrantEligibilityService, useValue: grantsEligibilityServiceStub}
+                ]
         });
     }));
 
@@ -315,25 +272,6 @@ describe('RecommendationsService', () => {
                     .userRecommendations
                     .find(rec => rec.headline === 'Cavity wall insulation');
                 expect(cavityWallInsulationRecommendation.grant.name).toBe('National Grant For Measure');
-            });
-        }));
-
-        it('should include Green Homes Grant recommendations not returned by BRE', async(() => {
-            // given
-            const expectedMeasures = dummyGreenHomesGrantRecommendations.map(recommendation => {
-                const { min_installation_cost, max_installation_cost, lifetime } = recommendation.response;
-                const investmentPounds =  (min_installation_cost + max_installation_cost) / 2;
-                return [investmentPounds, lifetime];
-            });
-
-            // when
-            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
-
-            // then
-            recommendationsObservable.toPromise().then(recommendations => {
-                const actualRecommendations = recommendations.userRecommendations
-                    .map(rec => [rec.installationCost && rec.installationCost.getEstimatedInvestment(), rec.lifetimeYears]);
-                expectedMeasures.forEach(measure => expect(actualRecommendations).toContain(measure));
             });
         }));
     });

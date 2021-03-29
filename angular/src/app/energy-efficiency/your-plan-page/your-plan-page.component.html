@@ -40,9 +40,7 @@ If you change anything here, please consider whether anything needs changing the
             <div class="page-row-content">
                 <div class="recommendation-steps-card-container" *ngFor="let recommendation of userRecommendations">
                     <app-recommendation-with-steps-card
-                            [recommendation]="recommendation"
-                            [shouldShowGhgContext]="shouldShowGhgContext"
-                    >
+                            [recommendation]="recommendation">
                     </app-recommendation-with-steps-card>
                 </div>
             </div>

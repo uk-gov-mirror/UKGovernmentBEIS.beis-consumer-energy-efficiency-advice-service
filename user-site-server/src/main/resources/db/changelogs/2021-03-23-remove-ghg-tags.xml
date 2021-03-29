@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2021-03-23-remove-ghg-tags.xml"
+               author="laura.saunders@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+-- Remove GHG primary tags
+
+DELETE wp_postmeta
+WHERE meta_key = 'tags' AND post_id in (11303, 11349);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:1:{i:0;s:15:"tag_longer_term";}'
+WHERE meta_key = 'tags' AND post_id in (3721,3722,11418,11319,11317,11419,11417);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";}'
+WHERE meta_key = 'tags' AND post_id in (
+11402,
+11409,
+11422,
+3741,
+11411,
+11383,
+11404,
+3743,
+11388,
+11413,
+11393,
+11398,
+11406,
+11381,
+11386,
+11390,
+11395,
+11342,
+11400,
+11366,
+11379,
+11392,
+11325,
+11339,
+11384,
+11403,
+11410,
+11354,
+11345,
+11357,
+11382,
+11397,
+11387,
+11394,
+11414,
+11389,
+11399,
+11407,
+3737,
+11380,
+11391,
+11385,
+11355,
+11326);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:22:"tag_floors-walls&roofs";}'
+WHERE meta_key = 'tags' AND post_id in (
+3719,
+11316,
+3720,
+11321,
+11350,
+3723,
+11324,
+3724,
+11353,
+11416,
+11315,
+11320,
+3716,
+11318,
+3717,
+11323,
+3718);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:3:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";i:2;s:16:"tag_solar-energy";}'
+WHERE meta_key = 'tags' AND post_id in (
+11396,
+3745,
+11347,
+11356,
+11327,
+11408,
+11412,
+11405,
+11343);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:4:{i:0;s:15:"tag_longer_term";i:1;s:22:"tag_floors-walls&roofs";i:2;s:20:"tag_make_home_warmer";i:3;s:21:"tag_home_improvements";}'
+WHERE meta_key = 'tags' AND post_id in (
+11322,
+11426,
+3715);
+
+-- Remove GHG secondary
+
+UPDATE wp_postmeta
+SET meta_value = 'a:1:{i:0;s:15:"tag_longer_term";}'
+WHERE meta_key = 'tags' AND post_id in (11346,11332);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:17:"tag_windows&doors";}'
+WHERE meta_key = 'tags' AND post_id in (
+11331,
+11335,
+3748,
+3749,
+11333,
+3751,
+11330,
+11351,
+3752,
+11348,
+11352,
+11372);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:2:{i:0;s:15:"tag_longer_term";i:1;s:21:"tag_heating&hot-water";}'
+WHERE meta_key = 'tags' AND post_id in (
+11338,
+3728,
+3729,
+11334,
+3727,
+11336);
+
+UPDATE wp_postmeta
+SET meta_value = 'a:4:{i:0;s:15:"tag_longer_term";i:1;s:17:"tag_windows&doors";i:2;s:20:"tag_make_home_warmer";i:3;s:21:"tag_home_improvements";}'
+WHERE meta_key = 'tags' AND post_id in (
+11329,
+3725);
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>

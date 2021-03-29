@@ -2,14 +2,13 @@ import {ResponseData} from "../response-data/response-data";
 import {RecommendationsService} from "../recommendations-service/recommendations.service";
 import {Injectable} from '@angular/core';
 import {EnergyEfficiencyRecommendation} from "../recommendations-service/energy-efficiency-recommendation";
-import {GreenHomesGrantService} from "../../green-homes-grant/green-homes-grant-service/green-homes-grant.service";
 
 @Injectable()
 export class PlanInfoService {
 
     constructor(private responseData: ResponseData,
-                private recommendationsService: RecommendationsService,
-                private greenHomesGrantService: GreenHomesGrantService) {
+                private recommendationsService: RecommendationsService
+    ) {
     }
 
     public getUserPlanInfo() {
@@ -54,8 +53,7 @@ export class PlanInfoService {
         return {
             recommendations: recommendations,
             tenureType: this.responseData.tenureType,
-            postcode: this.responseData.postcode,
-            shouldShowGhgContext: this.greenHomesGrantService.shouldShowGhgContext()
+            postcode: this.responseData.postcode
         };
     }
 }

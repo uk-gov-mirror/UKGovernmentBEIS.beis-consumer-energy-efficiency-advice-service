@@ -18,10 +18,6 @@ import {TenureType} from "../../questionnaire/questions/tenure-type-question/ten
 import {UserJourneyType} from "../response-data/user-journey-type";
 import {FullMeasuresResponse} from "../energy-calculation-api-service/response/full-measures-response";
 import {EnergyEfficiencyRecommendations} from "./energy-efficiency-recommendations";
-import {
-    GreenHomesGrantRecommendation,
-    GreenHomesGrantRecommendationsService
-} from "./green-homes-grant-recommendations.service";
 import {SessionService} from "../session-service/session.service";
 import {InstallationCost} from "./installation-cost";
 
@@ -38,8 +34,7 @@ export class RecommendationsService {
 
     constructor(private sessionResponseData: ResponseData,
                 private measureService: EnergySavingMeasureContentService,
-                private grantsEligibilityService: GrantEligibilityService,
-                private greenHomesGrantRecommendationsService: GreenHomesGrantRecommendationsService) {
+                private grantsEligibilityService: GrantEligibilityService) {
         this.getSessionRecommendations();
     }
 
@@ -91,10 +86,9 @@ export class RecommendationsService {
         return Observable.forkJoin(
             this.measureService.fetchMeasureDetails(),
             this.grantsEligibilityService.getEligibleStandaloneGrants(),
-            this.greenHomesGrantRecommendationsService.getGreenHomesGrantRecommendations()
         )
             .mergeMap(
-                ([measuresContent, eligibleStandaloneGrants, greenHomesGrantRecommendations]) => {
+                ([measuresContent, eligibleStandaloneGrants]) => {
                     if (!energyCalculation) {
                         throw new Error('Received empty energy calculation response');
                     }
@@ -103,7 +97,7 @@ export class RecommendationsService {
                     const grantRecommendations = eligibleStandaloneGrants
                         .map(grant => EnergyEfficiencyRecommendation.fromNationalGrant(grant));
                     return this.getAllRecommendationsContent(
-                        this.getFullMeasuresFromEnergyCalculation(energyCalculation, greenHomesGrantRecommendations),
+                        this.getFullMeasuresFromEnergyCalculation(energyCalculation),
                         measuresContent,
                         habitRecommendations,
                         grantRecommendations
@@ -186,19 +180,10 @@ export class RecommendationsService {
     }
 
     private getFullMeasuresFromEnergyCalculation(
-        energyCalculation: EnergyCalculationResponse,
-        greenHomesGrantRecommendations: GreenHomesGrantRecommendation[]
+        energyCalculation: EnergyCalculationResponse
     ): FullMeasuresResponse<EnergySavingMeasureResponse> {
         const userMeasures = this.getMeasuresFromEnergyCalculation(energyCalculation);
         const landlordMeasures = this.getLandlordMeasuresFromEnergyCalculation(energyCalculation);
-        const ownerMeasures = this.isRentalUser() ? landlordMeasures : userMeasures;
-        for (const recommendation of greenHomesGrantRecommendations) {
-            if (ownerMeasures[recommendation.code] !== undefined) {
-                // This measure is already being recommended.
-                continue;
-            }
-            ownerMeasures[recommendation.code] = recommendation.response;
-        }
         return {
             userMeasures: userMeasures,
             landlordMeasures: landlordMeasures
