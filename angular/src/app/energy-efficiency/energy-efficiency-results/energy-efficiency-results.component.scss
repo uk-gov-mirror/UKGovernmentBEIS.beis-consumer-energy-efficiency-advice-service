@@ -2,7 +2,6 @@
 @import "styles/mixins/font";
 @import "styles/mixins/buttons";
 @import "styles/mixins/layout";
-@import "styles/mixins/ghg";
 @import "styles/var/colors";
 @import "./recommendation-tags/recommendation-tags";
 
@@ -61,13 +60,6 @@ $grant-card-margin: 24px;
       .recommendations-heading {
         @include card-heading-font;
       }
-    }
-  }
-
-  .ghg-context-card {
-    @include isGhgInfoBox;
-    .emphasis {
-      font-weight: bold;
     }
   }
 }

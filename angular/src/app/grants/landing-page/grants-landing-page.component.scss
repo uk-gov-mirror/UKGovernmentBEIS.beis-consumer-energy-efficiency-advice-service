@@ -80,11 +80,7 @@ $grant-card-margin: 24px;
           height: 1px;
           margin: 1em 0;
         }
-
-        .grant-info-title-efficiency {
-          @include has-blue-border-top;
-        }
-
+        
         &:not(:first-child) {
           margin-top: 20px;
         }

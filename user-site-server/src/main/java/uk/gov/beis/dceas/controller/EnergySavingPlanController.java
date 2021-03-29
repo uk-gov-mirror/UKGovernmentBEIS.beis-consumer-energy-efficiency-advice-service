@@ -283,9 +283,6 @@ public class EnergySavingPlanController {
         templateContext.setVariable("subheading", pdfRecommendationParams.getSubheading());
 
         templateContext.setVariable("recommendations", recommendations);
-        templateContext.setVariable("ghgInstallers", findGhgInstallers(pdfRecommendationParams.getPostcode(), recommendations));
-        templateContext.setVariable("allInstallersUrls", getTrustmarkInstallerListUrls(pdfRecommendationParams.getPostcode(), recommendations));
-        templateContext.setVariable("isGhgEligible", pdfRecommendationParams.shouldShowGhgContext() && recommendations.stream().anyMatch(EnergySavingPlanController::isGhgEligible));
         templateContext.setVariable("ghgEligiblePrimary", GHG_PRIMARY);
         templateContext.setVariable("ghgEligibleSecondary", GHG_SECONDARY);
         templateContext.setVariable("shouldShowGhgContext", pdfRecommendationParams.shouldShowGhgContext());
@@ -321,61 +318,6 @@ public class EnergySavingPlanController {
         String totalSavingsDisplay = roundAndFormatCostValueRange(minimumSavings, maximumSavings);
 
         templateContext.setVariable("totalSavingsDisplay", totalSavingsDisplay);
-    }
-
-    private Map<String, Optional<String>> getTrustmarkInstallerListUrls(
-            String postcode,
-            List<EnergyEfficiencyRecommendation> recommendations
-    ) {
-        return recommendations.stream()
-                .collect(Collectors.toMap(
-                        EnergyEfficiencyRecommendation::getRecommendationID,
-                        recommendation -> {
-                            if (isGhgEligible(recommendation)) {
-                                return Optional.of(getTrustmarkInstallerListUrl(postcode, recommendation.trustMarkTradeCodes));
-                            }
-                            return Optional.empty();
-                        }
-                ));
-    }
-
-    private String getTrustmarkInstallerListUrl(String postcode, List<String> tradeCodes) {
-        return UriComponentsBuilder.fromHttpUrl(trustmarkInstallersUrl)
-                .queryParam("postCode", installerSearchService.formatPostcode(postcode))
-                // The TrustMark link supports a query parameter of up to 6 trade codes
-                .queryParam(
-                        "tradeCode",
-                        tradeCodes.stream()
-                                .filter(c -> !isNullOrEmpty(c))
-                                .limit(6)
-                                .collect(Collectors.joining(",")))
-                .toUriString();
-    }
-
-    private Map<String, List<InstallerSearchService.TrustMarkInstaller>> findGhgInstallers(
-            String postcode,
-            List<EnergyEfficiencyRecommendation> recommendations
-    ) {
-        return recommendations.stream()
-                .collect(Collectors.toMap(
-                        EnergyEfficiencyRecommendation::getRecommendationID,
-                        recommendation -> {
-                            if (isGhgEligible(recommendation)) {
-                                try {
-                                    return installerSearchService.findInstallers(
-                                            postcode,
-                                            recommendation.getTrustMarkTradeCodes().toArray(new String[0]))
-                                            .getData()
-                                            .stream()
-                                            .limit(3)
-                                            .collect(toList());
-                                } catch (Exception e) {
-                                    return emptyList();
-                                }
-                            } else {
-                                return emptyList();
-                            }
-                        }));
     }
 
     private static String urlEncode(String val) {

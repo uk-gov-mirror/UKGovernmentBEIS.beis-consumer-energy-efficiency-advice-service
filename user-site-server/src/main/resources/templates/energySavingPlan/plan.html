@@ -53,13 +53,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="ghg-context page-row" th:if="${isGhgEligible}">
-            <h3>Green Homes Grant</h3>
-            To continue, print your plan. Contact installers and get quotes for your selected measures.
-            Keep a record of these quotes - you will need them for the voucher application process.
-        </div>
-
         <div class="recommendations page-row">
             <div class="page-row-content">
                 <div class="recommendation-steps-card" th:each="recommendation : ${recommendations}">
@@ -96,24 +89,6 @@
                             <div class="quote-input">
                                 <label>Your Quote</label>
                                 <input type="text" />
-                            </div>
-                        </div>
-                        <div class="quote">
-                            <div th:if="${isGhgEligible}">
-                                <a class="all-installers-link"
-                                   th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
-                                   th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
-                                   target="_blank">
-                                    See all available installers on the Trustmark website
-                                </a>
-                                <!-- Also include the link URL in the text, as a blue bit of "clickable"
-                                     text isn't much use in a printout -->
-                                <a class="all-installers-link"
-                                   th:if="${allInstallersUrls.get(recommendation.getRecommendationID()).isPresent()}"
-                                   th:href="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}"
-                                   th:text="${allInstallersUrls.get(recommendation.getRecommendationID()).get()}">
-                                    http://example.com
-                                </a>
                             </div>
                         </div>
                         <div class="ghg-tag ghg-tag--primary" th:if="${shouldShowGhgContext and recommendation.getTags().contains(ghgEligiblePrimary)}">
