@@ -98,16 +98,3 @@ h1 img {
     position: relative;
     min-height: 7em;
 }
-
-.ghg-tag {
-    display: inline-block;
-    color: white;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: bold;
-    text-align: center;
-    height: 28px;
-    border-radius: 20px;
-    padding: 0 20px;
-    width: 40%;
-}
