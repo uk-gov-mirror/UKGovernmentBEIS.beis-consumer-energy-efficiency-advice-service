@@ -23,7 +23,11 @@
     .name {
       @include installer-card-header-font;
       margin-left: 0.5em;
-      margin-bottom: 1px;
+    }
+
+    .icon-home-improve, .logo {
+      display: flex;
+      align-self: center;
     }
   }
 
