@@ -1,6 +1,8 @@
 <div class="installer-card" [id]="'installer-card-' + installerInfo.id" [class.selected-installer]="selectedInstallerId===installerInfo.id">
     <div class="header">
-        <div class="logo" *ngIf="installerInfo.logoUrl else defaultIcon">Show logo</div>
+        <div class="logo" *ngIf="installerInfo.logoUrl else defaultIcon">
+            <img class="installer-logo" [src]="installerInfo.logoUrl" [alt]="installerInfo.registeredName + ' logo'"/>
+        </div>
         <ng-template #defaultIcon>
             <div class="icon-home-improve"></div>
         </ng-template>
