@@ -46,110 +46,115 @@ DELETE FROM wp_posts WHERE id = 9633;
 
 -- Ecotricity
 
-INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (11500, 1, 'Ecotricity', 'ecotricity', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+INSERT INTO wp_posts ( post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
+VALUES (1, 'Ecotricity', 'ecotricity', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+SET @p_ecotricity = LAST_INSERT_ID();
+
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11500, 'name', 'Ecotricity');
+VALUES (@p_ecotricity, 'name', 'Ecotricity');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11500, '_name', 'field_5a9577ec6836a');
+VALUES (@p_ecotricity, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11500, 'supplier_info_link', 'https://www.ecotricity.co.uk/');
+VALUES (@p_ecotricity, 'supplier_info_link', 'https://www.ecotricity.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11500, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (@p_ecotricity, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Pure Planet
 
-INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (11501, 1, 'Pure Planet', 'pure-planet', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+INSERT INTO wp_posts (post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
+VALUES (1, 'Pure Planet', 'pure-planet', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+SET @p_pure_planet = LAST_INSERT_ID();
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11501, 'name', 'Pure Planet');
+VALUES (@p_pure_planet, 'name', 'Pure Planet');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11501, '_name', 'field_5a9577ec6836a');
+VALUES (@p_pure_planet, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11501, 'supplier_info_link', 'https://www.purepla.net/');
+VALUES (@p_pure_planet, 'supplier_info_link', 'https://www.purepla.net/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11501, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (@p_pure_planet, '_supplier_info_link', 'field_5a9578756836c');
 
 -- So Energy
 
-INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (11502, 1, 'So Energy', 'so-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+INSERT INTO wp_posts (post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
+VALUES ( 1, 'So Energy', 'so-energy', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+SET @p_so_energy = LAST_INSERT_ID();
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11502, 'name', 'So Energy');
+VALUES (@p_so_energy, 'name', 'So Energy');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11502, '_name', 'field_5a9577ec6836a');
+VALUES (@p_so_energy, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11502, 'supplier_info_link', 'https://www.so.energy/');
+VALUES (@p_so_energy, 'supplier_info_link', 'https://www.so.energy/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11502, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (@p_so_energy, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Utility Point
 
-INSERT INTO wp_posts (ID, post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
-VALUES (11503, 1, 'Utility Point', 'utility-point', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+INSERT INTO wp_posts (post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
+VALUES ( 1, 'Utility Point', 'utility-point', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+SET @p_utility_point = LAST_INSERT_ID();
 
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11503, 'name', 'Utility Point');
+VALUES (@p_utility_point, 'name', 'Utility Point');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11503, '_name', 'field_5a9577ec6836a');
+VALUES (@p_utility_point, '_name', 'field_5a9577ec6836a');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11503, 'supplier_info_link', 'https://www.utilitypoint.co.uk/');
+VALUES (@p_utility_point, 'supplier_info_link', 'https://www.utilitypoint.co.uk/');
 INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
-VALUES (11503, '_supplier_info_link', 'field_5a9578756836c');
+VALUES (@p_utility_point, '_supplier_info_link', 'field_5a9578756836c');
 
 -- Add images
 
 INSERT INTO `wp_posts`
 (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
 VALUES
-(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','ecotricity.jpeg','','inherit','open','closed','','ecotricity-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',11500,'/wp-content/uploads/2021/03/ecotricity.jpeg',0,'attachment','image/jpeg',0);
+(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','ecotricity.jpeg','','inherit','open','closed','','ecotricity-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',@p_ecotricity,'/wp-content/uploads/2021/03/ecotricity.jpeg',0,'attachment','image/jpeg',0);
 SET @p_1 = LAST_INSERT_ID();
 
 INSERT INTO `wp_posts`
 (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
 VALUES
-(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','pure-planet.jpeg','','inherit','open','closed','','pure-planet-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',11501,'/wp-content/uploads/2021/03/pure-planet.jpeg',0,'attachment','image/jpeg',0);
+(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','pure-planet.jpeg','','inherit','open','closed','','pure-planet-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',@p_pure_planet,'/wp-content/uploads/2021/03/pure-planet.jpeg',0,'attachment','image/jpeg',0);
 SET @p_2 = LAST_INSERT_ID();
 
 INSERT INTO `wp_posts`
 (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
 VALUES
-(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','so-energy.jpeg','','inherit','open','closed','','so-energy-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',11502,'/wp-content/uploads/2021/03/so-energy.jpeg',0,'attachment','image/jpeg',0);
+(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','so-energy.jpeg','','inherit','open','closed','','so-energy-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',@p_so_energy,'/wp-content/uploads/2021/03/so-energy.jpeg',0,'attachment','image/jpeg',0);
 SET @p_3 = LAST_INSERT_ID();
 
 INSERT INTO `wp_posts`
 (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
 VALUES
-(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','utility-point.jpeg','','inherit','open','closed','','utility-point-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',11503,'/wp-content/uploads/2021/03/utility-point.jpeg',0,'attachment','image/jpeg',0);
+(1,'2021-03-16 15:00:00','2021-03-16 14:00:00','','utility-point.jpeg','','inherit','open','closed','','utility-point-jpeg','','','2021-03-16 15:00:00','2021-03-16 14:00:00','',@p_utility_point,'/wp-content/uploads/2021/03/utility-point.jpeg',0,'attachment','image/jpeg',0);
 SET @p_4 = LAST_INSERT_ID();
 
 INSERT INTO `wp_postmeta`
 (post_id, meta_key, meta_value)
 VALUES
 
-(11500,'logo_image',@p_1),
-(11500,'_logo_image','field_5a1ecb4e53f99'),
+(@p_ecotricity,'logo_image',@p_1),
+(@p_ecotricity,'_logo_image','field_5a1ecb4e53f99'),
 (@p_1,'_wp_attached_file','2021/03/ecotricity.jpeg'),
 (@p_1,'_wp_attachment_context','acf-upload'),
 (@p_1,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2021/03/ecotricity.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(11501,'logo_image',@p_2),
-(11501,'_logo_image','field_5a1ecb4e53f99'),
+(@p_pure_planet,'logo_image',@p_2),
+(@p_pure_planet,'_logo_image','field_5a1ecb4e53f99'),
 (@p_2,'_wp_attached_file','2021/03/pure-planet.jpeg'),
 (@p_2,'_wp_attachment_context','acf-upload'),
 (@p_2,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2021/03/pure-planet.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(11502,'logo_image',@p_3),
-(11502,'_logo_image','field_5a1ecb4e53f99'),
+(@p_so_energy,'logo_image',@p_3),
+(@p_so_energy,'_logo_image','field_5a1ecb4e53f99'),
 (@p_3,'_wp_attached_file','2021/03/so-energy.jpeg'),
 (@p_3,'_wp_attachment_context','acf-upload'),
 (@p_3,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2021/03/so-energy.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
 
-(11503,'logo_image',@p_4),
-(11503,'_logo_image','field_5a1ecb4e53f99'),
+(@p_utility_point,'logo_image',@p_4),
+(@p_utility_point,'_logo_image','field_5a1ecb4e53f99'),
 (@p_4,'_wp_attached_file','2021/03/utility-point.jpeg'),
 (@p_4,'_wp_attachment_context','acf-upload'),
 (@p_4,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2021/03/utility-point.jpeg\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}');
