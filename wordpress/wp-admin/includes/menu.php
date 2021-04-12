@@ -164,17 +164,23 @@ foreach ( $menu as $id => $data ) {
 		$_wp_menu_nopriv[ $data[2] ] = true;
 	}
 
-	/*
-	 * If there is only one submenu and it is has same destination as the parent,
-	 * remove the submenu.
-	 */
-	if ( ! empty( $submenu[ $data[2] ] ) && 1 === count( $submenu[ $data[2] ] ) ) {
-		$subs      = $submenu[ $data[2] ];
-		$first_sub = reset( $subs );
-		if ( $data[2] == $first_sub[2] ) {
-			unset( $submenu[ $data[2] ] );
-		}
-	}
+    // ===BEIS SEA===
+    // The code below is deliberately commented out by us as a work around to a WordPress bug that was preventing
+    // the proper configuration of the Local Authority role.
+    // The bug stops Local Authority users from seeing the list of Local Authorities (error displayed).
+    // See:https://stackoverflow.com/questions/58218457/wordpress-user-with-custom-role-cannot-view-list-page-for-custom-post-types-with/58234091
+
+    /*
+     * If there is only one submenu and it is has same destination as the parent,
+     * remove the submenu.
+     */
+    //	if ( ! empty( $submenu[ $data[2] ] ) && 1 === count( $submenu[ $data[2] ] ) ) {
+    //		$subs      = $submenu[ $data[2] ];
+    //		$first_sub = reset( $subs );
+    //		if ( $data[2] == $first_sub[2] ) {
+    //			unset( $submenu[ $data[2] ] );
+    //		}
+    //	}
 
 	// If submenu is empty...
 	if ( empty( $submenu[ $data[2] ] ) ) {
