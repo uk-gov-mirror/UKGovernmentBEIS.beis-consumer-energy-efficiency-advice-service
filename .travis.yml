@@ -18,7 +18,7 @@ jobs:
     - stage: test
       script: ./infrastructure/ci-admin-site-test.sh
     - stage: deploy-to-int
-      if: branch=main
+      if: branch=wordpressUpdateDeployToInt
       script: SPACE=int ./infrastructure/deploy.sh
     - stage: deploy-to-staging
       if: branch=staging
