@@ -4,6 +4,7 @@ branches:
   - main
   - staging
   - live
+  - wordpressUpdateDeployToInt
 language: java
 jdk:
   - openjdk8
