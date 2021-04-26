@@ -2,7 +2,7 @@
 
 defined ( 'ABSPATH' ) or die();
 
-class WP_REST_Search_Controller extends WP_REST_Controller
+class WP_REST_Any_Post_Search_Controller extends WP_REST_Controller
 {
 
     private static $instance;

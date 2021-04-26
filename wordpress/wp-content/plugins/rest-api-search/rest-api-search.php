@@ -3,12 +3,16 @@
 Plugin Name: REST API Search
 Plugin URI:  https://github.com/KCPT19/REST-API-Search
 Description: Adds in the missing search functionality of all post types to the REST API v2 plugin.
-Version:     1.4
+Version:     1.5
 Author:      KCPT
 Author URI:  https://github.com/orgs/KCPT19
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
+
+// -- BEIS SEA-285 --
+// This plugin is no longer being developed.
+// The plugin code has been edited to be compatible with PHP 7.4 and WordPress 5.7.1
 
 defined( 'ABSPATH' ) or die();
 
@@ -27,9 +31,9 @@ class REST_API_Search
     public function restAPI()
     {
 
-        require_once dirname( __FILE__ ) . '/lib/class-wp-rest-search-controller.php';
+        require_once __DIR__  . '/lib/class-wp-rest-any-post-search-controller.php';
 
-        $this->controller = new WP_REST_Search_Controller();
+        $this->controller = new WP_REST_Any_Post_Search_Controller();
         $this->controller->register_routes();
 
     }
