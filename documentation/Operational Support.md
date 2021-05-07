@@ -188,17 +188,23 @@ You must instead:
  * Commit the changes to `git`
  * Deploy a new version of the site (see "Deployment" above)
 
-**Note:** There is an edit made directly in `wp-admin/includes/menu.php` as a workaround to a
-WordPress bug. This edit will need to be made again in any update (unless the update fixes
-the bug). See:
-https://stackoverflow.com/questions/58218457/wordpress-user-with-custom-role-cannot-view-list-page-for-custom-post-types-with/58234091
+**Notes:** 
+
+ * There is an edit made directly in `wp-admin/includes/menu.php` as a workaround to a 
+   WordPress bug. This edit will need to be made again in any update (unless the update fixes 
+   the bug). See:
+   https://stackoverflow.com/questions/58218457/wordpress-user-with-custom-role-cannot-view-list-page-for-custom-post-types-with/58234091
+   
+ *  The Rest API Search plugin is no longer being developed and is not compatible with 
+    WordPress 5.7.1 which we are currently using. SEA-319 has been created to investigate updating
+    to use the core WP search API as this has been updated since the code was written. 
 
 ## Updating the Deployed PHP Version
 
 The deployed PHP version is set in the .bp-config/options.json file, e.g.
 
 ```
-"PHP_VERSION": "{PHP_72_LATEST}"
+"PHP_VERSION": "{PHP_74LATEST}"
 ```
 
 Available versions can be deduced by looking at the php buildpack page [here](https://buildpacks.cloudfoundry.org/#/buildpacks/php/v4.3.63) or by looking at the buildpack repository [here](https://github.com/cloudfoundry/php-buildpack).

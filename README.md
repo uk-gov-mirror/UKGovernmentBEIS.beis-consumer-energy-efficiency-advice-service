@@ -98,8 +98,7 @@ see the "Development Setup - Admin Site" section below. Run the "Wordpress on lo
 You will need the database installed locally, follow
 the "Development Setup - MySQL Database" section below.
 
-You will need PHP 7.2 installed and registered in IntelliJ (PHP 7.4 will also work, but may cause warning 
-and error messages to be shown across the top of the site).
+You will need PHP 7.4 installed and registered in IntelliJ.
 You can install PHP using the Microsoft Web Platform Installer at
 https://www.iis.net/downloads/microsoft/web-platform-installer
 
