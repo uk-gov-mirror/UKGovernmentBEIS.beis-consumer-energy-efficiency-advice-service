@@ -17,3 +17,5 @@ applications:
     - dceas-admin-logins
     - aws-syslog-drain
   memory: 1G
+  routes:
+    - route: dceas-admin-site-int

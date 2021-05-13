@@ -11,23 +11,6 @@ set -ex
 # The caller should be logged in to CF, see https://docs.cloud.service.gov.uk/#setting-up-custom-scripts
 
 [[ -v SPACE ]] || read -p "Which space? (int,staging,live): " SPACE
-case $SPACE in
-  int | staging )
-    HOSTNAME=dceas-user-site-$SPACE
-  ;;
-  live )
-    # This is not the hostname on which users will reach the site, but it
-    # is the correct hostname for CF config.
-    # There is a CloudFront CDN layer in front of this site which adds the
-    # public facing hostname.
-    HOSTNAME=dceas-user-site
-  ;;
-  * )
-    echo "Bad space value"
-    exit 1
-  ;;
-esac
-
 
 pushd angular
 
@@ -58,5 +41,5 @@ if [[ $SPACE == "live" ]]; then
     cd ..
     ./infrastructure/autoscaler/ci-autoscaling-deploy.sh dceas-user-site
 else
-    cf push --hostname $HOSTNAME -f manifest-$SPACE.yml
+    cf push -f manifest-$SPACE.yml
 fi

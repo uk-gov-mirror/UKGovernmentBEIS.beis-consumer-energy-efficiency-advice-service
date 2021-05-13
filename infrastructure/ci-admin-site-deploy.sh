@@ -11,18 +11,6 @@ set -ex
 # The caller should be logged in to CF, see https://docs.cloud.service.gov.uk/#setting-up-custom-scripts
 
 [[ -v SPACE ]] || read -p "Which space? (int,staging,live): " SPACE
-case $SPACE in
-  int | staging )
-    HOSTNAME=dceas-admin-site-$SPACE
-  ;;
-  live )
-    HOSTNAME=dceas-admin-site
-  ;;
-  * )
-    echo "Bad space value"
-    exit 1
-  ;;
-esac
 
 cd wordpress
 
@@ -33,5 +21,5 @@ if [[ $SPACE == "live" ]]; then
     cd ..
     ./infrastructure/autoscaler/ci-autoscaling-deploy.sh dceas-admin-site
 else
-    cf push --hostname $HOSTNAME -f manifest-$SPACE.yml
+    cf push -f manifest-$SPACE.yml
 fi

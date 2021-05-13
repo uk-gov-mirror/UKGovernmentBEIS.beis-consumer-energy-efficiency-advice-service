@@ -33,3 +33,5 @@ applications:
     - user-site-auth
     - aws-syslog-drain
   memory: 1G
+  routes:
+    - route: dceas-user-site-int
