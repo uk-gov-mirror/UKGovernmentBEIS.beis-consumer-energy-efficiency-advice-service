@@ -54,10 +54,9 @@ cd user-site-server
 cf target -o beis-domestic-energy-advice-service -s $SPACE
 
 if [[ $SPACE == "live" ]]; then
-    cf blue-green-deploy dceas-user-site
+    cf push dceas-user-site --strategy rolling
     cd ..
     ./infrastructure/autoscaler/ci-autoscaling-deploy.sh dceas-user-site
-    cf stop dceas-user-site-old
 else
     cf push --hostname $HOSTNAME -f manifest-$SPACE.yml
 fi
