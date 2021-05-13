@@ -34,4 +34,4 @@ applications:
     - aws-syslog-drain
   memory: 2G
   routes:
-    - route: dceas-user-site
+    - route: dceas-user-site.cloudapps.digital

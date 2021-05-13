@@ -18,4 +18,4 @@ applications:
     - aws-syslog-drain
   memory: 1G
   routes:
-    - route: dceas-admin-site-staging
+    - route: dceas-admin-site-staging.cloudapps.digital
