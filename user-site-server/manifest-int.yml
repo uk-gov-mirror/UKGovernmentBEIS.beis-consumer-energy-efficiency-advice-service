@@ -8,7 +8,7 @@
 ---
 applications:
 - name: dceas-user-site
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.37
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
   stack: cflinuxfs3
   path: build/libs/user-site-server-0.0.1-SNAPSHOT.jar
   # The application startup timeout in seconds. Default is 60.
