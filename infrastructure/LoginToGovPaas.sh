@@ -1,0 +1,1 @@
+cf login -a api.cloud.service.gov.uk -u username -p 'password' -s int
