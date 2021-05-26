@@ -9,12 +9,6 @@
                 <div class="menu-link-text">Your Plan</div>
                 <div class="more-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
             </a>
-            <a class="green-homes-grant-link" *ngIf="!showYourPlan"
-               routerLink="/pages/green-homes-grant/"
-                    (click)="navLinkClicked('Green Homes Grant')">
-                <div class="menu-link-text">Green Homes Grant</div>
-                <div class="more-icon" [inlineSVG]="'controls/expand-arrow.svg'"></div>
-            </a>
         </div>
 
         <a routerLink="/" class="menu-item" (click)="navLinkClicked('Home')">Home
