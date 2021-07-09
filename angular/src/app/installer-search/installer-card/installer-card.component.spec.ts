@@ -37,7 +37,6 @@ describe('InstallerCardComponent', () => {
             phoneNumber: "1234",
             email: "installer@test.com"
         };
-        // component.selectedInstallerId
         fixture.detectChanges();
     });
 

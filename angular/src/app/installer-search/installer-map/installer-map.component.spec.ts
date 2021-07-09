@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {InstallerMapComponent} from "./installer-map.component";
 import {PostcodeApiService} from "../../shared/postcode-epc-service/postcode-api-service/postcode-api.service";
 import {Observable} from 'rxjs/Observable';
-import {PostcodeBasicDetailsResponse} from "../../shared/postcode-epc-service/model/response/postcode-basic-details-response";
 
 describe('InstallerMapComponent', () => {
     let component: InstallerMapComponent;
