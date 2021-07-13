@@ -58,6 +58,20 @@ describe('InstallerCardComponent', () => {
         });
     }));
 
+    it('should display the default logo give no custom logo', async(() => {
+        // given
+        component.installerInfo.logoUrl = undefined;
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        fixture.whenStable().then(() => {
+            const logoElement = fixture.debugElement.query(By.css('.icon-home-improve'));
+            expect(logoElement).toBeTruthy();
+        });
+    }));
+
     it('should display the installer registered name', async(() => {
         // given
         const expectedRegisteredName = "Installer name";
@@ -72,18 +86,27 @@ describe('InstallerCardComponent', () => {
         });
     }));
 
-    it('should display the distance in miles', async(() => {
+    it('should display the correct distance for one mile', async(() => {
         // given
-        const expectedDistanceInMiles = "1 miles";
+        const expectedDistanceInMiles = "1 mile";
 
         // when
         fixture.detectChanges();
 
         // then
-        fixture.whenStable().then(() => {
-            const distanceElement = fixture.debugElement.query(By.css('.distance b'));
-            expect(distanceElement.nativeElement.innerText).toBe(expectedDistanceInMiles);
-        });
+        assertDistanceInMilesIs(expectedDistanceInMiles);
+    }));
+
+    it('should display the correct distance for more than one mile', async(() => {
+        // given
+        component.installerInfo.distanceInMiles = 2;
+        const expectedDistanceInMiles = "2 miles";
+
+        // when
+        fixture.detectChanges();
+
+        // then
+        assertDistanceInMilesIs(expectedDistanceInMiles);
     }));
 
     it('should display the installer phone number', async(() => {
@@ -113,4 +136,11 @@ describe('InstallerCardComponent', () => {
             expect(detailsElement.nativeElement.href).toBe(expectedPublicBranchUrl);
         });
     }));
+
+    function assertDistanceInMilesIs(expectedDistanceInMiles) {
+        fixture.whenStable().then(() => {
+            const distanceElement = fixture.debugElement.query(By.css('.distance b'));
+            expect(distanceElement.nativeElement.innerText).toBe(expectedDistanceInMiles);
+        });
+    }
 });

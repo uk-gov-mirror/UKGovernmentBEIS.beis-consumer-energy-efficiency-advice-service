@@ -11,7 +11,9 @@
     <div class="footer">
         <div class="distance">
             <div class="icon-inactive-marker"></div>
-            <p><b>{{installerInfo.distanceInMiles | number: '1.0-1'}} miles</b></p>
+            <p>
+                <b>{{installerInfo.distanceInMiles | number: '1.0-1'}} {{installerInfo.distanceInMiles == 1 ? 'mile' : 'miles'}}</b>
+            </p>
         </div>
         <div class="phone">
             <p *ngIf="installerInfo.phoneNumber"><span class="contact-prefix">Tel:</span> {{installerInfo.phoneNumber}}</p>
