@@ -6,9 +6,9 @@ LOCAL_PORT=7100
 # Login
 ./LoginToGovPaaS.sh
 
-[[ -v PAAS_ENV_SHORTNAME ]] || read -p "Which environment? (int,test,live): " PAAS_ENV_SHORTNAME
+[[ -v PAAS_ENV_SHORTNAME ]] || read -p "Which environment? (int,staging,live): " PAAS_ENV_SHORTNAME
 case $PAAS_ENV_SHORTNAME in
-  int | test | live )
+  int | staging | live )
   ;;
   * )
     echo "Bad env value"
