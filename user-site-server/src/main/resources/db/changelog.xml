@@ -108,4 +108,5 @@
     <include file="changelogs/2021-03-10-clear-eco-self-referral-data.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2021-03-12-add-privacy-notice-page.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2021-16-03-update-eco-suppliers.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2021-08-02-add-glazing-type-question.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2021-08-02-add-glazing-type-question.xml"
+               author="laura.saunders@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+INSERT INTO wp_posts (post_author, post_content, post_title, post_excerpt, post_name, to_ping, pinged, post_content_filtered, post_parent, post_type)
+VALUES (1, '', 'Glazing type', '', 'glazing_type', '','','', 0, 'question');
+
+SET @post_id =  LAST_INSERT_ID();
+
+INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+VALUES
+    (@post_id, '_autoOpenQuestionReason', 'field_5a0c5ddf40b11'),
+    (@post_id, 'autoOpenQuestionReason', '0'),
+    (@post_id, '_questionReason', 'field_5a0179b00e182'),
+    (@post_id, 'questionReason', 'Eligibility for certain grants is determined by your benefits status'),
+    (@post_id, '_helpHtml', 'field_59e8cfc09ab2a'),
+    (@post_id, 'helpHtml', ''),
+    (@post_id, 'questionHeading', 'What kind of glazing do you have?'),
+    (@post_id, '_questionHeading', 'field_59e8be23eda3e')
+;
+
+       ]]></sql>
+    </changeSet>
+</databaseChangeLog>

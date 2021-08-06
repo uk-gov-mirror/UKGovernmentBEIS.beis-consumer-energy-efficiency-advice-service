@@ -15,10 +15,10 @@
             </select>
         </div>
         <div class="insulation-type-input">
-            <label id="glazing-type-label" for="glazing-type-select" class="question">What sort of glazing?</label>
-            <select id="glazing-type-select" name="glazing-type" class="dropdown-input text-input glazing-type"
-                    aria-labelledby="glazing-type-label" [(ngModel)]="glazingType">
-                <option *ngFor="let type of glazingTypes" [ngValue]="type.value">{{type.name}}</option>
+            <label id="floor-type-label" for="floor-type-select" class="question">What sort of floor insulation?</label>
+            <select id="floor-type-select" name="floor-type" class="dropdown-input text-input floor-type"
+                    aria-labelledby="floor-type-label" [(ngModel)]="floorType">
+                <option *ngFor="let type of floorTypes" [ngValue]="type.value">{{type.name}}</option>
             </select>
         </div>
     </form>

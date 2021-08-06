@@ -53,8 +53,7 @@ import {LoftWaterDamageQuestionComponent} from "./loft-water-damage-question/lof
 import {WallTypeQuestionComponent} from "./wall-type-question/wall-type-question.component";
 import {NewBuildQuestionComponent} from "./new-build-question/new-build-question.component";
 import {OutsideSpaceQuestionComponent} from "./outside-space-question/outside-space-question.component";
-import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floor-insulation-question.component";
-
+import {GlazingTypeQuestionComponent} from "./glazing-type-question/glazing-type-question.component";
 
 @NgModule({
     declarations: [
@@ -69,10 +68,10 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
-        FloorInsulationQuestionComponent,
         FloorLevelQuestionComponent,
         FloorSpanQuestionComponent,
         FuelTypeQuestionComponent,
+        GlazingTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
@@ -120,10 +119,10 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
-        FloorInsulationQuestionComponent,
         FloorLevelQuestionComponent,
         FloorSpanQuestionComponent,
         FuelTypeQuestionComponent,
+        GlazingTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
@@ -178,10 +177,10 @@ import {FloorInsulationQuestionComponent} from "./floor-insulation-question/floo
         FlatExposedWallQuestionComponent,
         FlatStoreysQuestionComponent,
         FloorAreaQuestionComponent,
-        FloorInsulationQuestionComponent,
         FloorLevelQuestionComponent,
         FloorSpanQuestionComponent,
         FuelTypeQuestionComponent,
+        GlazingTypeQuestionComponent,
         HomeAgeQuestionComponent,
         HomeTypeQuestionComponent,
         HotWaterCylinderQuestionComponent,
