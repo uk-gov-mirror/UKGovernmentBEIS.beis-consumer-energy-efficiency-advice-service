@@ -60,19 +60,19 @@ describe('ShowerTypeQuestionComponent', () => {
         });
     }));
 
-    it('should set the response when new glazing type selected', async(() => {
+    it('should set the response when new floor type selected', async(() => {
         // given
-        const expectedGlazingType = component.glazingTypes[0];
+        const expectedFloorType = component.floorTypes[0];
 
         // when
         fixture.whenStable().then(() => {
-            const glazingTypeSelect = fixture.debugElement.query(By.css('select.glazing-type'));
+            const floorTypeSelect = fixture.debugElement.query(By.css('select.floor-type'));
             // Angular syntax for custom ngValue
-            glazingTypeSelect.nativeElement.value = '0: 0';
-            glazingTypeSelect.nativeElement.dispatchEvent(new Event('change'));
+            floorTypeSelect.nativeElement.value = '0: 0';
+            floorTypeSelect.nativeElement.dispatchEvent(new Event('change'));
 
             // then
-            expect(component.glazingType).toBe(expectedGlazingType.value);
+            expect(component.floorType).toBe(expectedFloorType.value);
         });
     }));
 });

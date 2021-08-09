@@ -33,7 +33,7 @@ import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/
 import {NewBuildQuestionMetadata} from "../../questions/new-build-question/new-build-question-metadata";
 import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
 import {OutsideSpaceQuestionMetadata} from "../../questions/outside-space-question/outside-space-question-metadata";
-import {FloorInsulationQuestionMetadata} from "../../questions/floor-insulation-question/floor-insulation-question-metadata";
+import {GlazingTypeQuestionMetadata} from "../../questions/glazing-type-question/glazing-type-question-metadata";
 
 describe('HomeBasicsQuestionnaire', () => {
 
@@ -60,7 +60,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new FloorInsulationQuestionMetadata(),
+            new GlazingTypeQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
@@ -106,7 +106,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new FloorInsulationQuestionMetadata(),
+            new GlazingTypeQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
@@ -152,7 +152,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new FloorInsulationQuestionMetadata(),
+            new GlazingTypeQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
@@ -195,7 +195,7 @@ describe('HomeBasicsQuestionnaire', () => {
             new NewBuildQuestionMetadata(),
             new BedroomsQuestionMetadata(),
             new ConstructionQuestionMetadata(),
-            new FloorInsulationQuestionMetadata(),
+            new GlazingTypeQuestionMetadata(),
             new OptionalPropertyQuestionMetadata(),
             new FloorAreaQuestionMetadata(),
             new FuelTypeQuestionMetadata(),
