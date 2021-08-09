@@ -152,19 +152,6 @@ $arrow-height: 48px;
     }
   }
 
-  .research-participant-section {
-    padding: 32px 0;
-    background-color: $lighter-grey;
-    .heading {
-      color: $dark-blue;
-      @include page-subheading-font();
-    }
-    .summary {
-      color: $dark-blue;
-      @include page-summary-font();
-    }
-  }
-
   .quick-links {
     .quick-link {
       position: relative;
