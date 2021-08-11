@@ -22,4 +22,4 @@ export enum FloorInsulation {
     SolidFloor,
     SuspendedFloor,
     None
-};
+}
