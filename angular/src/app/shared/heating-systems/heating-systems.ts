@@ -26,9 +26,7 @@ function isWellInsulated(responseData: ResponseData) {
     const hasRoofInsulation = responseData.roofType !== RoofType.PitchedNoInsulation && responseData.roofType !== RoofType.FlatNoInsulation;
     const hasWallInsulation = responseData.wallType !== WallType.CavityNoInsulation && responseData.wallType !== WallType.SolidNoInsulation;
     const hasFloorInsulation = responseData.floorInsulation !== FloorInsulation.None;
-    return atLeastTwoConditionsMet([hasRoofInsulation, hasFloorInsulation, hasWallInsulation]);
-}
-
-function atLeastTwoConditionsMet(conditionsArray: Array<boolean>): boolean {
-    return conditionsArray.filter(Boolean).length > 2;
+    return (hasRoofInsulation && hasWallInsulation)
+        || (hasRoofInsulation && hasFloorInsulation)
+        || (hasWallInsulation && hasFloorInsulation);
 }
