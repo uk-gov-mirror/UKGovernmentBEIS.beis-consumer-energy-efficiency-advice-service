@@ -13,6 +13,8 @@ import {EnergyEfficiencyRecommendationTag} from '../../energy-efficiency/energy-
 import {StandaloneNationalGrant} from '../../grants/model/standalone-national-grant';
 import {NationalGrantForMeasure} from '../../grants/model/national-grant-for-measure';
 import {TenureType} from "../../questionnaire/questions/tenure-type-question/tenure-type";
+import {SessionService} from "../session-service/session.service";
+import {EnergyEfficiencyRecommendations} from "./energy-efficiency-recommendations";
 
 describe('RecommendationsService', () => {
     let injector: TestBed;
@@ -272,6 +274,24 @@ describe('RecommendationsService', () => {
                     .userRecommendations
                     .find(rec => rec.headline === 'Cavity wall insulation');
                 expect(cavityWallInsulationRecommendation.grant.name).toBe('National Grant For Measure');
+            });
+        }));
+
+        it('should save recommendations to session', async(() => {
+            // when
+            const recommendationsObservable = service.getAllRecommendations(dummyEnergyCalculations);
+
+            // then
+            recommendationsObservable.toPromise().then((recommendations) => {
+
+                const sessionRecommendations: EnergyEfficiencyRecommendations =
+                    SessionService.getFromSession('recommendations');
+
+                // test data in assets/test/energy-calculation-response.json and assets/test/measures-response.json
+                expect(sessionRecommendations.userRecommendations
+                    .some(measure => measure.headline === 'Lower thermostat by one degree')).toBeTruthy();
+                expect(sessionRecommendations.userRecommendations
+                    .some(measure => measure.headline === 'Cavity wall insulation')).toBeTruthy();
             });
         }));
     });
