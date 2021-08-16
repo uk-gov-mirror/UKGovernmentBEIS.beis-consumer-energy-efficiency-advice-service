@@ -71,7 +71,7 @@ export class EnergyEfficiencyResultsComponent implements OnInit {
             );
 
         this.userStateService.saveState();
-        this.isEditing = this.recommendationsService.getRecommendationsInPlan().length > 0;
+        this.isEditing = this.recommendationsService.hasRecommendationsInPlan;
     }
 
     getUserRecommendations(): EnergyEfficiencyRecommendation[] {
