@@ -107,6 +107,19 @@ describe('RecommendationsService', () => {
         it('should be created', () => {
             expect(service).toBeTruthy();
         });
+
+        it('should use session recommendations when initialising new service', async(() => {
+            // given
+            expect(service.getUserRecommendationsInPlan().length).toBe(0);
+            const recommendations = require('assets/test/recommendation-session-data.json');
+            sessionStorage.setItem('recommendations', JSON.stringify(recommendations));
+
+            // when
+            service.initialiseRecommendations();
+
+            // then
+            expect(service.getUserRecommendationsInPlan().length).toBe(1);
+        }));
     });
 
     describe('#getAllRecommendations', () => {

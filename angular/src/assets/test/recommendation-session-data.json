@@ -1,0 +1,71 @@
+{
+  "userRecommendations": [
+    {
+      "lifetimeYears": 42,
+      "costSavingPoundsPerYear": 7.11,
+      "minimumCostSavingPoundsPerYear": 6.399,
+      "maximumCostSavingPoundsPerYear": 7.821000000000001,
+      "energySavingKwhPerYear": 211.38,
+      "readMoreRoute": "/measures/meta_cavity_wall_insulation",
+      "headline": "Cavity wall insulation",
+      "summary": "If your house has cavity walls that have not been insulated, it may be possible to inject insulation into the cavity to help keep your house warm.",
+      "whatItIs": "Many houses are built with walls made up of two layers – an outer and an inner leaf. The gap between, known as the cavity, can often be filled with insulation to make the house more efficient.",
+      "isItRightForMe": "If your house was built between 1920 and 1995, then the chances are it was built with an uninsulated cavity in the wall, and it may be suitable for cavity wall insulation.",
+      "iconPath": "icons/walls.svg",
+      "tags": [],
+      "advantages": [
+        "Quick and easy installation",
+        "Significant energy savings",
+        "Financial support may be available"
+      ],
+      "steps": [
+        {
+          "headline": "What it is",
+          "description": "Many houses are built with walls made up of two layers – an outer and an inner leaf. The gap between, known as the cavity, can often be filled with insulation to make the house more efficient.",
+          "readMore": "If your home has cavity walls, and they're suitable for insulation, then you'll need a specialist company to insulate them. They will drill holes in the mortar joints of your outside walls and inject insulation through the holes until the cavity has been filled. The holes are then re-filled with mortar to match the original.<br />\r\n<br />\r\nThe most common materials are:<br />\r\n•\tMineral wool – like loft insulation rolls, but chopped up so it can be blown into the cavity<br />\r\n•\tPolystyrene beads – small spheres of expanded polystyrene. A bonding agent is added so that the beads will stay in place.<br />\r\n<br />\r\nSometimes foam insulation is injected, and this then sets rigid inside the cavity. This is more expensive than standard cavity wall insulation, but can be used in many situations where standard materials aren't suitable. It's also a particularly effective insulant.<br />\r\n",
+          "moreInfoLinks": []
+        },
+        {
+          "headline": "Is it right for me?",
+          "description": "If your house was built between 1920 and 1995, then the chances are it was built with an uninsulated cavity in the wall, and it may be suitable for cavity wall insulation.",
+          "readMore": "Before about 1920, most houses in the UK were built with solid walls – that is, the outside walls were made of a single solid layer of brick or stone. After 1920 it became increasingly common to build houses with an inner and an outer leaf with an air gap in between. This is known as a cavity wall, as opposed to a solid wall with no air gap.<br />\r\n<br />\r\nFrom about 1982, some houses were built with insulation in the gap between the inner and the outer leaf. If your house was built after 1995 then it probably does have cavity walls but they are probably already insulated, and it is unlikely that adding any further insulation would be worthwhile. However, many houses built between 1982 and 2000 were built with uninsulated cavities, so it could be worth checking.<br />\r\n<br />\r\nSome homes are not built of standard brick, stone or concrete block. Cavity wall insulation is usually not suitable for these.<br />\r\n<br />\r\nSome homes built with uninsulated cavities are not suitable for standard insulation, including:<br />\r\n•\tVery narrow or uneven cavities<br />\r\n•\tAreas with high exposure to driving rain<br />\r\n•\tAreas with a high risk of flooding<br />\r\n<br />\r\nSome of these houses may be suitable for more expensive foam injection, but some may not be suitable for any form of cavity insulation.<br />\r\n<br />\r\nIf you are in any doubt about whether you could have cavity wall insulation, ask a certified installer to visit. They can carry out a survey to determine if your walls are suitable and, if so, what materials can be used.<br />\r\n<br />\r\nIf your house has solid walls, or any other wall type that is not suitable for cavity insulation, then it may still be possible to insulate it.<br />\r\n",
+          "moreInfoLinks": []
+        },
+        {
+          "headline": "How to get it",
+          "description": "You will need a professional installer to install cavity wall insulation.",
+          "readMore": "",
+          "moreInfoLinks": []
+        },
+        {
+          "headline": "Financial help",
+          "description": "Some households may get help towards the cost of installing cavity wall insulation, through a scheme called ECO: Help to Heat. ",
+          "readMore": "",
+          "moreInfoLinks": []
+        },
+        {
+          "headline": "Living with cavity wall insulation",
+          "description": "Once your walls are insulated, the only difference you should notice is that your home is easier and cheaper to heat. You should keep on top of standard home maintenance jobs to make sure that your roof and walls don’t leak and your gutters are working properly. This is important for any home, but it’s particularly important if you’ve had your walls insulated.",
+          "readMore": "",
+          "moreInfoLinks": []
+        },
+        {
+          "headline": "Other things you may want to know",
+          "description": "Filling a wall cavity with insulation will stop the cavity from being ventilated. This is OK for many homes, but not for all. Your installer should make sure your home is suitable before agreeing to do the work, but there are things you can do to make sure everything goes smoothly.",
+          "readMore": "Any reputable installer will either be a member of the Cavity Insulation Guarantee Agency (CIGA) or will have an equivalent independent insurance backed 25 year guarantee. <br />\r\n<br />\r\nThis will ensure:<br />\r\n•\tThe installer carries out all the necessary checks and follows procedure to make sure your home is not at risk of damage from inappropriate insulation.<br />\r\n•\tIf there are any problems with the installation then you will have a guarantee that the fault will be rectified, no matter what has happened to the installation company in the meantime<br />\r\n<br />\r\nYou should always check that your installer is signed up to an appropriate guarantee scheme.<br />\r\n<br />\r\nIt's possible that an installer will visit your property for a survey, but then refuse to go ahead with an installation. They may:<br />\r\n•\tAdvise you that you need to carry out certain repairs or amendments before they can go ahead. You should carry out the work required and then ask the installation company to visit for a second survey.<br />\r\n•\tAdvise you that cavity wall insulation is not suitable for your property. It may be that other insulation methods would be appropriate. You can ask your installer for advice on this, or look for other installers who can offer an alternative. You should not look for another installer who is prepared to inject standard cavity insulation if you have been advised that it is inappropriate for your home.",
+          "moreInfoLinks": []
+        }
+      ],
+      "isAddedToPlan": true,
+      "recommendationID": "meta_cavity_wall_insulation",
+      "measureCode": "B",
+      "trustMarkTradeCodes": [],
+      "installationCost": {
+        "min": 500,
+        "max": 1500,
+        "isBreRange": true
+      }
+    }
+  ],
+  "landlordRecommendations": []
+}
