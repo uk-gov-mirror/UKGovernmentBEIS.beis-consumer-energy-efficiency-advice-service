@@ -108,7 +108,7 @@ describe('RecommendationsService', () => {
             expect(service).toBeTruthy();
         });
 
-        it('should use session recommendations when initialising new service', async(() => {
+        it('should use session recommendations when initialising new service', () => {
             // given
             const recommendations = require('assets/test/recommendation-session-data.json');
             sessionStorage.setItem('recommendations', JSON.stringify(recommendations));
@@ -118,7 +118,7 @@ describe('RecommendationsService', () => {
 
             // then
             expect(service.getUserRecommendationsInPlan().length).toBe(1);
-        }));
+        });
     });
 
     describe('#getAllRecommendations', () => {
