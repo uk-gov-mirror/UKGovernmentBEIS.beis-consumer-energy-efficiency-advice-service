@@ -110,7 +110,6 @@ describe('RecommendationsService', () => {
 
         it('should use session recommendations when initialising new service', async(() => {
             // given
-            expect(service.getUserRecommendationsInPlan().length).toBe(0);
             const recommendations = require('assets/test/recommendation-session-data.json');
             sessionStorage.setItem('recommendations', JSON.stringify(recommendations));
 
