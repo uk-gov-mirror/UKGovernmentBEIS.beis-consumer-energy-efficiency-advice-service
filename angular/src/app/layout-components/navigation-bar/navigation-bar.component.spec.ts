@@ -20,6 +20,10 @@ describe('NavigationBarComponent', () => {
         fetchTopLevelPages: () => Observable.of([])
     };
 
+    const mockRecommendationsService = {
+        hasRecommendationsInPlan$: Observable.of(true)
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ NavigationBarComponent,
@@ -34,7 +38,7 @@ describe('NavigationBarComponent', () => {
             providers: [
                 {provide: WordpressPagesService, useValue: mockWordpressPagesService},
                 {provide: WordpressSearchService, useValue: {}},
-                {provide: RecommendationsService, useValue: {}},
+                {provide: RecommendationsService, useValue:  mockRecommendationsService},
                 GoogleAnalyticsService,
             ]
         })
