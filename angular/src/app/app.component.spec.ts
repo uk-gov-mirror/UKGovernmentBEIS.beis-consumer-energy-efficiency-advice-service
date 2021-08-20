@@ -30,6 +30,7 @@ describe('AppComponent', () => {
 
     const mockWordpressPagesService = {getTopLevelPages: () => Observable.of([])};
     const mockUserStateService = {getSessionReference: () => "reference"};
+    const mockRecommendationsService = {hasRecommendationsInPlan$: Observable.of(true)};
 
     const mockCookieService = {
         check: () => {},
@@ -62,7 +63,7 @@ describe('AppComponent', () => {
                 {provide: SVGCacheService, useValue: {setBaseUrl: () => {}}},
                 {provide: CookieService, useValue: mockCookieService},
                 {provide: UserStateService, useValue: mockUserStateService},
-                {provide: RecommendationsService, useValue: {}},
+                {provide: RecommendationsService, useValue: mockRecommendationsService},
                 {provide: ErrorHandler, useClass: GlobalErrorHandler},
                 {provide: PageTitleService, useValue: pageTitleStub},
             ]
