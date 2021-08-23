@@ -35,6 +35,10 @@ export class RecommendationsService {
     constructor(private sessionResponseData: ResponseData,
                 private measureService: EnergySavingMeasureContentService,
                 private grantsEligibilityService: GrantEligibilityService) {
+        this.initialiseRecommendations();
+    }
+
+    initialiseRecommendations() {
         this.getSessionRecommendations();
     }
 
