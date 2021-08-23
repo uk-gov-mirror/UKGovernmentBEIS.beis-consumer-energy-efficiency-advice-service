@@ -8,7 +8,8 @@ import {HomeType} from '../../questionnaire/questions/home-type-question/home-ty
 import {RdSapInput} from '../energy-calculation-api-service/request/rdsap-input';
 import {UserJourneyType} from './user-journey-type';
 import {TenureType} from '../../questionnaire/questions/tenure-type-question/tenure-type';
-import {GlazingType, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
+import {FloorInsulation, RoofType, WallType} from '../../questionnaire/questions/construction-question/construction-types';
+import {GlazingType} from "../../questionnaire/questions/glazing-type-question/glazing-type";
 import {WaterTankSpace} from '../../questionnaire/questions/water-tank-question/water-tank-space';
 import {GardenAccessibility} from '../../questionnaire/questions/garden-question/garden-accessibility';
 import {RoofSpace} from '../../questionnaire/questions/roof-space-question/roof-space';
@@ -20,8 +21,6 @@ import {UserEpcRating} from '../../questionnaire/questions/mees/property-epc-que
 import {LettingDomesticPropertyStage} from '../../questionnaire/questions/mees/letting-domestic-property-question/letting-domestic-property-stage';
 import {AgriculturalTenancyType} from '../../questionnaire/questions/mees/agricultural-tenancy-type-question/agricultural-tenancy-type';
 import {BuiltFormAnswer} from "../../questionnaire/questions/built-form-question/built-form-answer";
-import {Country} from "../../questionnaire/questions/postcode-epc-question/country";
-import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
 import {SessionService} from "../session-service/session.service";
 
 const RESPONSE_DATA_SESSION_KEY = 'responseData';

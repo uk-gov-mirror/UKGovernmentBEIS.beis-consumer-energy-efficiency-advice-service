@@ -1,18 +1,18 @@
 import {QuestionMetadata} from '../../base-question/question-metadata';
 import {QuestionType} from '../question-type';
 import {ResponseData} from '../../../shared/response-data/response-data';
-import {FloorInsulationQuestionComponent} from "./floor-insulation-question.component";
+import {GlazingTypeQuestionComponent} from "./glazing-type-question.component";
 
-export class FloorInsulationQuestionMetadata extends QuestionMetadata {
+export class GlazingTypeQuestionMetadata extends QuestionMetadata {
     constructor() {
         super(
-            FloorInsulationQuestionComponent,
-            'floor_insulation',
+            GlazingTypeQuestionComponent,
+            'glazing_type',
             QuestionType.House
         );
     }
 
     hasBeenAnswered(responseData: ResponseData): boolean {
-        return responseData.floorInsulation !== undefined;
+        return responseData.glazingType !== undefined;
     }
 }

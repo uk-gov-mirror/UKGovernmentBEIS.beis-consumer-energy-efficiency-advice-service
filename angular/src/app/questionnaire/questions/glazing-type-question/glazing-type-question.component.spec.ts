@@ -3,17 +3,17 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ResponseData} from '../../../shared/response-data/response-data';
 import {By} from '@angular/platform-browser';
 import {MultipleChoiceQuestionComponent} from "../../common-questions/multiple-choice-question/multiple-choice-question.component";
-import {FloorInsulationQuestionComponent} from "./floor-insulation-question.component";
-import {FloorInsulation} from "./floor-insulation";
+import {GlazingTypeQuestionComponent} from "./glazing-type-question.component";
+import {GlazingType} from "./glazing-type";
 
-describe('FloorInsulationQuestionComponent', () => {
-    let component: FloorInsulationQuestionComponent;
-    let fixture: ComponentFixture<FloorInsulationQuestionComponent>;
+describe('GlazingTypeQuestionComponent', () => {
+    let component: GlazingTypeQuestionComponent;
+    let fixture: ComponentFixture<GlazingTypeQuestionComponent>;
     let responseData: ResponseData;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FloorInsulationQuestionComponent, MultipleChoiceQuestionComponent],
+            declarations: [GlazingTypeQuestionComponent, MultipleChoiceQuestionComponent],
             providers: [ResponseData]
         })
             .compileComponents();
@@ -21,7 +21,7 @@ describe('FloorInsulationQuestionComponent', () => {
 
     beforeEach(() => {
         responseData = TestBed.get(ResponseData);
-        fixture = TestBed.createComponent(FloorInsulationQuestionComponent);
+        fixture = TestBed.createComponent(GlazingTypeQuestionComponent);
         component = fixture.componentInstance;
     });
 
@@ -31,7 +31,7 @@ describe('FloorInsulationQuestionComponent', () => {
 
     it('should populate with answer in response data', async(() => {
         // given
-        responseData.floorInsulation = FloorInsulation.SolidFloor;
+        responseData.glazingType = GlazingType.Single;
 
         // when
         fixture.detectChanges();
@@ -49,7 +49,7 @@ describe('FloorInsulationQuestionComponent', () => {
             const yesOption = fixture.debugElement.query(By.css('#option-0')).nativeElement;
             yesOption.click();
 
-            expect(responseData.floorInsulation).toBe(FloorInsulation.DontKnow);
+            expect(responseData.glazingType).toBe(GlazingType.DoNotKnow);
         });
     }));
 });

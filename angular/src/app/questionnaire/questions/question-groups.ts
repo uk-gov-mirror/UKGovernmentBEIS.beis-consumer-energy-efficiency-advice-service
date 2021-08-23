@@ -46,8 +46,8 @@ import {LoftInfestationQuestionMetadata} from "./loft-infestation-question/loft-
 import {LoftWaterDamageQuestionMetadata} from "./loft-water-damage-question/loft-water-damage-question-metadata";
 import {WallTypeQuestionMetadata} from "./wall-type-question/wall-type-question-metadata";
 import {OutsideSpaceQuestionMetadata} from "./outside-space-question/outside-space-question-metadata";
-import {FloorInsulationQuestionMetadata} from "./floor-insulation-question/floor-insulation-question-metadata";
 import {NewBuildQuestionMetadata} from "./new-build-question/new-build-question-metadata";
+import {GlazingTypeQuestionMetadata} from "./glazing-type-question/glazing-type-question-metadata";
 
 export const ADDRESS = [
     new PostcodeEpcQuestionMetadata()
@@ -70,7 +70,7 @@ export const CORE_BRE_QUESTIONS = [
     new NewBuildQuestionMetadata(),
     new BedroomsQuestionMetadata(),
     new ConstructionQuestionMetadata(),
-    new FloorInsulationQuestionMetadata(),
+    new GlazingTypeQuestionMetadata(),
     new OptionalPropertyQuestionMetadata(),
     new FloorAreaQuestionMetadata(),
     new FuelTypeQuestionMetadata(),
@@ -165,10 +165,10 @@ export const ECO_SELF_REFERRAL_QUESTIONS = [
 ];
 
 export const BOILER_QUESTIONS = [
-    // Used to decide if the property is "well insulated", restricts which boilers are offered
+    // Both below questions used to decide if the property is "well insulated", restricts which boilers are offered.
+    // Used to determine whether heat pumps are offered (floor insulation).
     new ConstructionQuestionMetadata(),
-    // Used to decide whether heat pumps are offered
-    new FloorInsulationQuestionMetadata(),
+    new GlazingTypeQuestionMetadata(),
     // Used to decide if boilers with tanks can be offered
     new WaterTankQuestionMetadata(),
     // Used to decide if ground-source-heat-pump boilers can be offered

@@ -1,6 +1,6 @@
 import {QuestionBaseComponent, slideInOutAnimation} from '../../base-question/question-base-component';
 import {Component, OnInit} from '@angular/core';
-import {GlazingType, RoofType, WallType} from './construction-types';
+import {FloorInsulation, RoofType, WallType} from './construction-types';
 
 interface DropdownOption<T> {
     name: string;
@@ -31,24 +31,24 @@ export class ConstructionQuestionComponent extends QuestionBaseComponent impleme
         {name: 'Solid wall - insulated', value: WallType.SolidInsulated},
     ];
 
-    readonly glazingTypes: DropdownOption<GlazingType>[] = [
-        {name: 'I don\'t know', value: GlazingType.DoNotKnow},
-        {name: 'Single glazing', value: GlazingType.Single},
-        {name: 'Double glazing', value: GlazingType.Double},
-        {name: 'Triple glazing', value: GlazingType.Triple},
+    readonly floorTypes: DropdownOption<FloorInsulation>[] = [
+        {name: "I don\'t know", value: FloorInsulation.DontKnow},
+        {name: 'Solid floor', value: FloorInsulation.SolidFloor},
+        {name: 'Suspended floor', value: FloorInsulation.SuspendedFloor},
+        {name: 'None', value: FloorInsulation.None},
     ];
 
     ngOnInit() {
         this.roofType = this.responseData.roofType || RoofType.DoNotKnow;
         this.wallType = this.responseData.wallType || WallType.DoNotKnow;
-        this.glazingType = this.responseData.glazingType || GlazingType.DoNotKnow;
+        this.floorType = this.responseData.floorInsulation || FloorInsulation.DontKnow;
     }
 
     get responseForAnalytics(): string {
         return JSON.stringify({
             roofType: RoofType[this.roofType],
             wallType: WallType[this.wallType],
-            glazingType: GlazingType[this.glazingType],
+            floorType: FloorInsulation[this.floorType],
         });
     }
 
@@ -68,11 +68,11 @@ export class ConstructionQuestionComponent extends QuestionBaseComponent impleme
         this.responseData.wallType = val;
     }
 
-    get glazingType(): GlazingType {
-        return this.responseData.glazingType;
+    get floorType(): FloorInsulation {
+        return this.responseData.floorInsulation;
     }
 
-    set glazingType(val: GlazingType) {
-        this.responseData.glazingType = val;
+    set floorType(val: FloorInsulation) {
+        this.responseData.floorInsulation = val;
     }
 }

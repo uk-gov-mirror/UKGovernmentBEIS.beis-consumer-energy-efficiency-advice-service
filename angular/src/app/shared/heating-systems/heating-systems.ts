@@ -1,9 +1,8 @@
 import {ResponseData} from "../response-data/response-data";
 import {GardenAccessibility} from "../../questionnaire/questions/garden-question/garden-accessibility";
-import {RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
+import {FloorInsulation, RoofType, WallType} from "../../questionnaire/questions/construction-question/construction-types";
 import {WaterTankSpace} from "../../questionnaire/questions/water-tank-question/water-tank-space";
 import {RoofSpace} from "../../questionnaire/questions/roof-space-question/roof-space";
-import {FloorInsulation} from "../../questionnaire/questions/floor-insulation-question/floor-insulation";
 
 export function shouldRecommendGroundSourceHeatPump(responseData: ResponseData): boolean {
     return hasLargeGarden(responseData) && isWellInsulated(responseData);

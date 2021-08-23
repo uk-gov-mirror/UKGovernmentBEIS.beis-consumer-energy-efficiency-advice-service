@@ -15,6 +15,6 @@ export class ConstructionQuestionMetadata extends QuestionMetadata {
     hasBeenAnswered(responseData: ResponseData): boolean {
         return responseData.wallType !== undefined &&
                responseData.roofType !== undefined &&
-               responseData.glazingType !== undefined;
+               responseData.floorInsulation !== undefined;
     }
 }
