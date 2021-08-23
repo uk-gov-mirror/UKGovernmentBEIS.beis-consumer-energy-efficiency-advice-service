@@ -20,11 +20,15 @@ import {FullMeasuresResponse} from "../energy-calculation-api-service/response/f
 import {EnergyEfficiencyRecommendations} from "./energy-efficiency-recommendations";
 import {SessionService} from "../session-service/session.service";
 import {InstallationCost} from "./installation-cost";
+import { Subject } from '../../../../node_modules/rxjs';
 
 const RECOMMENDATIONS_SESSION_KEY = "recommendations";
 
 @Injectable()
 export class RecommendationsService {
+
+    public hasRecommendationsInPlanSource = new Subject<boolean>();
+    public hasRecommendationsInPlan$ = this.hasRecommendationsInPlanSource.asObservable();
 
     private static TOP_RECOMMENDATIONS: number = 5;
     private static DEFAULT_RECOMMENDATIONS: EnergyEfficiencyRecommendations = new EnergyEfficiencyRecommendations();
@@ -40,6 +44,11 @@ export class RecommendationsService {
 
     initialiseRecommendations() {
         this.getSessionRecommendations();
+        this.hasRecommendationsInPlanSource.next(this.hasRecommendationsInPlan);
+    }
+
+    get hasRecommendationsInPlan(): boolean {
+        return this.getRecommendationsInPlan().length > 0;
     }
 
     getAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
@@ -79,11 +88,13 @@ export class RecommendationsService {
 
     updateSessionRecommendations() {
         SessionService.saveToSession(RECOMMENDATIONS_SESSION_KEY, this.recommendations);
+        this.hasRecommendationsInPlanSource.next(this.hasRecommendationsInPlan);
     }
 
     clearRecommendations() {
         this.removeRecommendationsFromSession();
         this.recommendations = new EnergyEfficiencyRecommendations();
+        this.hasRecommendationsInPlanSource.next(this.hasRecommendationsInPlan);
     }
 
     private refreshAllRecommendations(energyCalculation: EnergyCalculationResponse): Observable<EnergyEfficiencyRecommendations> {
