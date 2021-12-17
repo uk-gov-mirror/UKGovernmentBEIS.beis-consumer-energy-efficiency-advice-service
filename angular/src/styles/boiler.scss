@@ -2,7 +2,7 @@
 @import "var/colors";
 
 .page-row:not(.page-heading) {
-  padding: 80px 0;
+    padding: 80px 0;
 }
 
 .heading {
@@ -49,7 +49,13 @@
     font-size: 48px;
     line-height: 62px;
     font-weight: bold;
-
     color: $dark-medium-blue;
+  }
+}
+
+@include mobile-and-tablet() {
+  .page-heading .heading-text {
+    font-size: 40px;
+    line-height: 44px;
   }
 }
