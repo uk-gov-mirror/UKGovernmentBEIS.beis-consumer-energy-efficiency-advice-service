@@ -5,12 +5,13 @@
             <div class="explanation">
                 <div class="heading">{{recommendation.headline}}</div>
                 <div class="summary">{{recommendation.summary}}</div>
+                <a class="read-more" *ngIf="recommendation.readMoreRoute !== undefined" [routerLink]="recommendation.readMoreRoute">
+                    <span class="read-more-text">Read more</span>
+                    <span class="icon-caret-down"></span>
+                </a>
             </div>
         </div>
-        <a class="read-more" *ngIf="recommendation.readMoreRoute !== undefined" [routerLink]="recommendation.readMoreRoute">
-            <span class="read-more-text">Read more</span>
-            <span class="icon-caret-down"></span>
-        </a>
+
     </div>
     <div class="box investment" *ngIf="recommendation.investmentPounds !== undefined">
         <div class="box-heading">Investment required</div>

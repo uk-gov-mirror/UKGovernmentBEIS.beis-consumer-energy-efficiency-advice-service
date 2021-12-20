@@ -24,3 +24,32 @@
     margin-top: 48px;
   }
 }
+
+@include mobile-and-tablet() {
+  .boiler-measures-section {
+    .body {
+      flex-direction: column;
+
+      .body-text {
+        margin-right: 0;
+        margin-bottom: 32px;
+        align-self: flex-start;
+      }
+
+      .link-button {
+        flex: auto;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .boiler-measures-section {
+    .body {
+      .link-button {
+        max-width: 350px;
+        align-self: flex-start;
+      }
+    }
+  }
+}

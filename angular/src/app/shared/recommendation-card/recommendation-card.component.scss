@@ -52,7 +52,6 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
         @include body-uppercase;
         font-weight: normal;
         text-align: center;
-        height: 48px;
         margin: 0 48px;
       }
 
@@ -63,45 +62,46 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
         justify-content: center;
       }
     }
-  }
 
-  .box.description {
-
-    box-sizing: border-box;
-    padding: 16px;
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-
-    .content {
-      flex: 1 1 auto;
+    &.description {
+      box-sizing: border-box;
+      padding: 16px;
       display: flex;
-      align-items: center;
+      width: 100%;
+      align-items: stretch;
 
-      .icon {
-        height: 38px;
-        width: 38px;
-        margin-right: 16px;
-      }
-
-      .explanation {
+      .content {
+        flex: 1 1 auto;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        width: 100%;
+        align-items: center;
+        padding-top: 16px;
 
-        .heading {
-          @include card-heading-small;
-          color: $dark-medium-blue;
-          margin-bottom: 16px;
-          width: 100%;
+        .icon {
+          height: 38px;
+          width: 38px;
+          margin-right: 16px;
+          padding-bottom: 20px;
         }
 
-        .summary {
-          font-family: $font-family-light;
-          font-size: 14px;
+        .explanation {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
           width: 100%;
+
+          .heading {
+            @include card-heading-small;
+            color: $dark-medium-blue;
+            margin-bottom: 16px;
+            width: 100%;
+          }
+
+          .summary {
+            font-family: $font-family-light;
+            font-size: 14px;
+            width: 100%;
+          }
         }
       }
     }
@@ -110,6 +110,7 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
       display: flex;
       flex: 0 0 auto;
       align-items: flex-end;
+      align-self: flex-end;
 
       text-decoration: none;
       cursor: pointer;
@@ -123,6 +124,84 @@ $remaining-boxes-width: $content-max-width - $investment-box-width - $savings-bo
         position: relative;
         top: 6px;
         margin-left: 8px;
+      }
+    }
+  }
+}
+
+@include desktop() {
+  .recommendation-card {
+    .box:not(.description) .box-heading {
+      height: 48px;
+    }
+  }
+}
+
+@include tablet() {
+  .recommendation-card {
+    flex-wrap: wrap;
+
+    .box {
+      &.savings, &.investment {
+        width: 50%;
+      }
+    }
+
+    .box.description .content {
+      .icon {
+        align-self: flex-start;
+        padding: 10px 0 0 0;
+      }
+
+      .explanation {
+        padding: 10px 60px 0 0;
+      }
+    }
+  }
+}
+
+@include mobile-and-tablet() {
+  .recommendation-card {
+    .box {
+      &:not(.description) {
+        padding: 20px 0;
+      }
+
+      .description {
+        flex-direction: column;
+        padding: 20px;
+
+        .content .explanation .summary {
+          font-size: 16px;
+          line-height: 18px;
+        }
+      }
+
+      .read-more {
+        padding-top: 20px;
+        align-self: flex-start;
+      }
+    }
+  }
+}
+
+@include mobile() {
+  .recommendation-card {
+    flex-direction: column;
+
+    .box {
+      &.savings, &.investment {
+        width: 100%;
+      }
+    }
+
+    .box.description .content {
+      flex-direction: row-reverse;
+
+      .icon {
+        align-self: flex-start;
+        margin-right: 0;
+        padding: 0;
       }
     }
   }
