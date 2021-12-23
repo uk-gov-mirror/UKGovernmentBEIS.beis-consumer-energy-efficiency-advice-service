@@ -33,11 +33,13 @@
 
           &.icon-tick {
             background: white url('/assets/images/icons/tick-pink.svg') no-repeat center;
-            background-size: 42px 42px;
           }
 
           &.icon-cross {
             background: white url('/assets/images/icons/cross-pink.svg') no-repeat center;
+          }
+
+          &.icon-tick, &.icon-cross {
             background-size: 42px 42px;
           }
         }
@@ -68,6 +70,67 @@
 
       .replacement-card:not(:last-child) {
         margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .boiler-make-model-replace .found-boiler {
+    .no-replace, .replace {
+      .summary {
+        margin: 0 64px 32px 0;
+      }
+
+      .link-button {
+          max-width: 350px;
+          align-self: flex-start;
+      }
+    }
+  }
+}
+
+@include mobile-and-tablet() {
+  .boiler-make-model-replace {
+    .page-row:not(.page-heading) {
+      padding: 40px 0;
+    }
+
+    .found-boiler {
+      .no-replace, .replace {
+        flex-direction: column;
+
+        .link-button {
+          flex: auto;
+        }
+
+        .summary .replace-text {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@include mobile() {
+  .boiler-make-model-replace .found-boiler {
+    .no-replace, .replace {
+      .summary {
+        .replace-text {
+          margin-bottom: 32px;
+        }
+
+        .icon {
+          flex: 0 0 50px;
+          height: 50px;
+          border-radius: 50%;
+          align-self: flex-start;
+          margin-right: 16px;
+
+          &.icon-tick, &.icon-cross {
+            background-size: 28px;
+          }
+        }
       }
     }
   }
