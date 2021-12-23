@@ -1,10 +1,12 @@
 @import "styles/boiler";
 @import "styles/var/colors";
 
+$default-spacing: 32px;
 $pros-and-cons-per-row: 3;
-$pros-and-cons-margin: 32px;
+$pros-and-cons-margin: $default-spacing;
 
 .boiler-advice-page {
+
   .page-heading {
     .heading-text {
       text-transform: capitalize;
@@ -22,20 +24,11 @@ $pros-and-cons-margin: 32px;
       .description, .stats, .installers {
         flex: 0 0 auto;
         box-sizing: border-box;
-        padding: 16px 0;
-
-        &:not(:last-child) {
-          padding-right: 32px;
-        }
-
-        &:not(:first-child) {
-          padding-left: 32px;
-        }
+        padding-bottom: 0.5 * $default-spacing;
       }
 
       .description {
         width: 30%;
-
         font-size: 20px;
         line-height: 24px;
         font-family: $font-family-light;
@@ -67,11 +60,10 @@ $pros-and-cons-margin: 32px;
       }
 
       .installers {
-        width: 35%;
-
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 35%;
       }
     }
   }
@@ -80,7 +72,7 @@ $pros-and-cons-margin: 32px;
     display: block;
 
     .pros-container, .cons-container {
-      margin-top: 32px;
+      margin-top: $default-spacing;
       display: flex;
       align-items: stretch;
       flex-wrap: wrap;
@@ -88,11 +80,6 @@ $pros-and-cons-margin: 32px;
       .pro, .con {
         flex: 0 0 auto;
         flex-basis: calc((100% - #{$pros-and-cons-per-row * $pros-and-cons-margin} - 1px) / #{$pros-and-cons-per-row});
-
-        margin-bottom: 1.5 * $pros-and-cons-margin;
-        &:not(:nth-child(#{$pros-and-cons-per-row}n)) {
-          margin-right: $pros-and-cons-margin;
-        }
 
         .heading-text {
           font-size: 18px;
@@ -108,8 +95,8 @@ $pros-and-cons-margin: 32px;
   }
 
   .pros + .cons {
-    padding-top: 60px;
     border-top: 1px solid $light-medium-grey;
+    padding-top: 60px;
   }
 
   .regulations-row {
@@ -117,6 +104,7 @@ $pros-and-cons-margin: 32px;
   }
 
   .regulations {
+
     .heading {
       margin-bottom: 12px;
     }
@@ -124,6 +112,98 @@ $pros-and-cons-margin: 32px;
     .body-text {
       margin-bottom: 24px;
       width: 80%;
+    }
+  }
+}
+
+@include desktop() {
+  .boiler-advice-page {
+    .summary .summary-container {
+      .description, .stats, .installers {
+        padding-top: 0.5 * $default-spacing;
+
+        &:not(:last-child) {
+          padding-right: $default-spacing;
+        }
+
+        &:not(:first-child) {
+          padding-left: $default-spacing;
+        }
+      }
+    }
+
+    .pros-cons {
+      .pros-container, .cons-container {
+        .pro, .con {
+          margin-bottom: 1.5 * $pros-and-cons-margin;
+
+          &:not(:nth-child(#{$pros-and-cons-per-row}n)) {
+            margin-right: $pros-and-cons-margin;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile-and-tablet() {
+  .boiler-advice-page {
+    .page-row:not(.page-heading) {
+      padding: 40px 0;
+    }
+
+    .summary {
+      .summary-container {
+        flex-direction: column;
+
+        .description {
+          width: 100%;
+        }
+
+        .stats {
+          padding-top: 0.5 * $default-spacing;
+          width: 100%;
+          border: none;
+          max-width: 500px;
+
+          .stats-item {
+            .name {
+              width: 40%;
+              padding-right: 5px;
+            }
+
+            .value {
+              width: 60%;
+            }
+          }
+        }
+
+        .installers {
+          width: 100%;
+          max-width: 350px;
+          margin-top: 16px;
+        }
+      }
+    }
+
+    .pros-cons {
+      .pros-container, .cons-container {
+        flex-direction: column;
+
+        .pro, .con {
+          margin-bottom: $pros-and-cons-margin;
+        }
+      }
+
+      .pros + .cons {
+        padding-top: $default-spacing;
+      }
+    }
+
+    .regulations {
+      .body-text {
+          width: 100%;
+      }
     }
   }
 }

@@ -13,7 +13,6 @@ $remaining-width: $content-max-width - $efficiency-box-width;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-
   margin: 16px 0;
 
   .box {
@@ -28,7 +27,6 @@ $remaining-width: $content-max-width - $efficiency-box-width;
 
     &.efficiency {
       flex: 0 0 auto;
-      width: $efficiency-box-width;
       background-color: $dark-medium-blue;
       font-weight: bold;
       color: white;
@@ -42,7 +40,6 @@ $remaining-width: $content-max-width - $efficiency-box-width;
         @include body-uppercase;
         font-weight: normal;
         text-align: center;
-        height: 48px;
       }
 
       .box-content {
@@ -55,7 +52,6 @@ $remaining-width: $content-max-width - $efficiency-box-width;
   }
 
   .box.description {
-
     box-sizing: border-box;
     padding: 16px;
     display: flex;
@@ -82,14 +78,75 @@ $remaining-width: $content-max-width - $efficiency-box-width;
           @include card-heading-font;
           color: $dark-medium-blue;
           margin-bottom: 16px;
-          width: 80%;
         }
 
         .summary {
           font-size: 14px;
-          width: 80%;
+          line-height: 18px;
         }
       }
     }
   }
 }
+
+
+@include desktop() {
+  .boiler-regulation-card {
+    .box.efficiency .box-heading {
+      height: 48px;
+    }
+
+    .box.description .content .explanation {
+      .headline, .summary {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@include tablet() {
+  .boiler-regulation-card {
+    .box.description {
+      padding: 20px;
+
+      .content .explanation {
+        padding: 10px 40px 0 0;
+      }
+    }
+  }
+}
+
+@include mobile-and-tablet() {
+  .boiler-regulation-card {
+    flex-direction: column;
+
+    .box.efficiency {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+}
+
+@include mobile() {
+  .boiler-regulation-card {
+    .box.efficiency {
+      width: 100%;
+    }
+
+    .box.description {
+      padding: 20px;
+
+      .content {
+        flex-direction: row-reverse;
+        padding: 10px 0;
+
+        .icon {
+          align-self: flex-start;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+
