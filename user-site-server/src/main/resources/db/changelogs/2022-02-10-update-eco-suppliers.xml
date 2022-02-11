@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2022-02-10-update-eco-suppliers.xml"
+               author="malina.slevoaca@softwire.com"
+               dbms="mysql">
+        <sql><![CDATA[
+
+            -- Add new supplier
+
+            -- Outfox the Market
+
+            INSERT INTO wp_posts ( post_author, post_title, post_name, post_parent, post_type, comment_status, ping_status, post_content, post_excerpt, to_ping, pinged, post_content_filtered)
+            VALUES (1, 'Outfox the Market', 'outfox-the-market', 0, 'eco-supplier', 'closed', 'closed', '', '', '', '', '');
+            SET @p_outfox_the_market = LAST_INSERT_ID();
+
+            INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+            VALUES (@p_outfox_the_market, 'name', 'Outfox the Market');
+            INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+            VALUES (@p_outfox_the_market, '_name', 'field_5a9577ec6836a');
+            INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+            VALUES (@p_outfox_the_market, 'supplier_info_link', 'https://www.outfoxthemarket.co.uk/');
+            INSERT INTO wp_postmeta (post_id, meta_key, meta_value)
+            VALUES (@p_outfox_the_market, '_supplier_info_link', 'field_5a9578756836c');
+
+            -- Add image
+
+            INSERT INTO `wp_posts`
+            (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+            VALUES
+            (1,'2022-02-10 17:00:00','2022-02-10 17:00:00','','outfox-the-market.png','','inherit','open','closed','','outfox-the-market-png','','','2022-02-10 17:00:00','2022-02-10 17:00:00','',@p_outfox_the_market,'/wp-content/uploads/2022/02/outfox-the-market.png',0,'attachment','image/png',0);
+            SET @p_1 = LAST_INSERT_ID();
+
+            INSERT INTO `wp_postmeta`
+            (post_id, meta_key, meta_value)
+            VALUES
+
+            (@p_outfox_the_market,'logo_image',@p_1),
+            (@p_outfox_the_market,'_logo_image','field_5a1ecb4e53f99'),
+            (@p_1,'_wp_attached_file','2022/02/outfox-the-market.png'),
+            (@p_1,'_wp_attachment_context','acf-upload'),
+            (@p_1,'_wp_attachment_metadata','a:4:{s:5:\"width\";i:151;s:6:\"height\";i:79;s:4:\"file\";s:24:\"2022/02/outfox-the-market.png\";s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}')
+
+]]></sql>
+    </changeSet>
+</databaseChangeLog>
