@@ -3,6 +3,7 @@ import toString from 'lodash-es/toString';
 import {Epc} from '../../postcode-epc-service/model/epc';
 import {TenureType} from '../../../questionnaire/questions/tenure-type-question/tenure-type';
 import {RdsapInputHelper} from "./rdsap-input-helper";
+import {GardenAccessibility} from "../../../questionnaire/questions/garden-question/garden-accessibility";
 
 
 export class RdSapInput {
@@ -33,6 +34,10 @@ export class RdSapInput {
     readonly showers_per_week: number;
     readonly baths_per_week: number;
     readonly shower_type: string;
+
+    readonly user_journey_type: number;
+    readonly outside_space: boolean;
+    readonly accessible_garden: boolean;
 
     readonly measures_package: string[];
 
@@ -70,6 +75,10 @@ export class RdSapInput {
         this.with_vulnerable_occupants = RdsapInputHelper.getWithVulnerableOccupants(responseData);
         this.showers_per_week = responseData.numberOfShowersPerWeek;
         this.baths_per_week = responseData.numberOfBathsPerWeek;
+
+        this.outside_space = responseData.hasOutsideSpace;
+        this.accessible_garden = responseData.gardenAccessibility === GardenAccessibility.Accessible;
+        this.user_journey_type = responseData.userJourneyType;
 
         this.measures_package = selectedMeasureCodes;
     }
