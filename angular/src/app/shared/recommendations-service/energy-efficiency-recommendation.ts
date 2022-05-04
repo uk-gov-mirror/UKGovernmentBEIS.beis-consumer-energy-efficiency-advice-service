@@ -79,7 +79,7 @@ export class EnergyEfficiencyRecommendation {
         const grantSteps = (grant && grant.steps && grant.steps.length > 0) ? grant.steps : [];
         const costSavingUncertaintyPercentage = measureResponse.uncertainty;
         const costSavingUncertainty: number = costSavingUncertaintyPercentage / 100;
-        let costSavingPerYear: number = measureResponse.cost_saving;
+        let costSavingPerYear: number = measureResponse.cost_saving > 0 ? measureResponse.cost_saving : 0;
         let minimumCostSavingPerYear: number = costSavingPerYear * (1 - costSavingUncertainty);
         let maximumCostSavingPerYear: number = costSavingPerYear * (1 + costSavingUncertainty);
         if (grant && grant.annualPaymentPoundsForMeasure) {
