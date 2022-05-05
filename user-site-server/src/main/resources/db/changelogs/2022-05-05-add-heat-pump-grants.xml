@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="2022-05-05-add-heat-pump-grants.xml"
+               author="laura.saunders@softwire.com"
+               dbms="mysql">
+
+        <sql><![CDATA[
+
+-- This is only run on MySQL as the H2 database does not have the correct fields
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+(1,'2020-05-05 18:11:43','2020-05-05 17:11:43','','Boiler upgrade scheme (GSHP)','','publish','closed','closed','','boiler-upgrade-scheme-gshp','','','2022-05-05 18:16:52','2022-05-02 17:16:52','',0,'',0,'national_grant','',0);
+
+SET @p_1 = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta`
+(post_id, meta_key, meta_value)
+VALUES
+(@p_1,'heading','Boiler upgrade scheme'),
+(@p_1,'_heading','field_5a0d969b5dbb1'),
+(@p_1,'description','Get £6000 off the cost of your heat pump and installation. Further detail is <a href="https://www.gov.uk/guidance/check-if-you-may-be-eligible-for-the-boiler-upgrade-scheme-from-april-2022">here</a>.'),
+(@p_1,'_description','field_5a0d96a17c14c'),
+(@p_1,'link_to_measures','0'),
+(@p_1,'_link_to_measures','field_5a130423bd41e'),
+(@p_1,'display_without_measures','0'),
+(@p_1,'_display_without_measures','field_5a13037c70fa5');
+
+INSERT INTO `wp_posts`
+(post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count)
+VALUES
+    (1,'2020-05-05 18:11:43','2020-05-05 17:11:43','','Boiler upgrade scheme (ASHP)','','publish','closed','closed','','boiler-upgrade-scheme-ashp','','','2022-05-05 18:16:52','2022-05-02 17:16:52','',0,'',0,'national_grant','',0);
+
+SET @p_2 = LAST_INSERT_ID();
+
+INSERT INTO `wp_postmeta`
+    (post_id, meta_key, meta_value)
+VALUES
+    (@p_2,'heading','Boiler upgrade scheme'),
+    (@p_2,'_heading','field_5a0d969b5dbb1'),
+    (@p_2,'description','Get £5000 off the cost of your heat pump and installation. Further detail is <a href="https://www.gov.uk/guidance/check-if-you-may-be-eligible-for-the-boiler-upgrade-scheme-from-april-2022">here</a>.'),
+    (@p_2,'_description','field_5a0d96a17c14c'),
+    (@p_2,'link_to_measures','0'),
+    (@p_2,'_link_to_measures','field_5a130423bd41e'),
+    (@p_2,'display_without_measures','0'),
+    (@p_2,'_display_without_measures','field_5a13037c70fa5');
+]]></sql>
+    </changeSet>
+</databaseChangeLog>

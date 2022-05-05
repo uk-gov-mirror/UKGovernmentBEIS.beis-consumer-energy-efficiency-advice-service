@@ -23,6 +23,8 @@ export class EnergyEfficiencyRecommendation {
         "winter-fuel-payments": 'icons/winter-fuel.svg',
         "warm-home-discount": 'icons/warm-home.svg',
         "cold-weather-payments": 'icons/cold-weather.svg',
+        "boiler-upgrade-scheme-ground-source-heat-pump": 'icons/warm-home.svg',
+        "boiler-upgrade-scheme": 'icons/warm-home.svg',
     };
 
     constructor(public lifetimeYears: number,

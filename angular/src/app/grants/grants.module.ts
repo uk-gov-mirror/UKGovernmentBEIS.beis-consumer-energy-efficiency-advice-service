@@ -20,6 +20,8 @@ import {NationalGrantCalculator} from './national-grant-calculator/national-gran
 import {NationalGrantCalculatorProvider} from './national-grant-calculator/provider/national-grant-calculator.provider';
 import {RenewableHeatIncentive} from './national-grant-calculator/grants/renewable-heat-incentive/renewable-heat-incentive';
 import {FuelPoorNetworkExtensionScheme} from "./national-grant-calculator/grants/fuel-poor-network-extension-scheme/fuel-poor-network-extension-scheme";
+import {BoilerUpgradeSchemeAshp} from "./national-grant-calculator/grants/boiler-upgrade-scheme/boiler-upgrade-scheme-ashp";
+import {BoilerUpgradeSchemeGshp} from "./national-grant-calculator/grants/boiler-upgrade-scheme/boiler-upgrade-scheme-gshp";
 
 @NgModule({
     declarations: [
@@ -54,6 +56,8 @@ export class GrantsModule {
                 {provide: NationalGrantCalculator, useClass: WinterFuelPayments, multi: true},
                 {provide: NationalGrantCalculator, useClass: RenewableHeatIncentive, multi: true},
                 {provide: NationalGrantCalculator, useClass: FuelPoorNetworkExtensionScheme, multi: true},
+                {provide: NationalGrantCalculator, useClass: BoilerUpgradeSchemeAshp, multi: true},
+                {provide: NationalGrantCalculator, useClass: BoilerUpgradeSchemeGshp, multi: true}
             ]
         };
     }
