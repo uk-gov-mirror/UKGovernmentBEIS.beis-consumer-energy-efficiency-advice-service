@@ -13,7 +13,8 @@ describe('LatestNewsCardComponent', () => {
         route: 'fake-route',
         descriptionHtml: 'description',
         coverImage: null,
-        videoEmbed: null
+        videoEmbed: null,
+        tags: []
     };
 
     beforeEach(async(() => {
