@@ -8,6 +8,7 @@ export class WordpressPage implements WordpressSearchable {
     descriptionHtml: string;
     coverImage?: AcfImage;
     videoEmbed: string;
+    tags: string[];
 
     constructor(wordpressPageResponse: WordpressPageResponse) {
         this.route = '/pages/' + encodeURIComponent(wordpressPageResponse.slug);
@@ -15,5 +16,6 @@ export class WordpressPage implements WordpressSearchable {
         this.descriptionHtml = wordpressPageResponse.excerpt.rendered;
         this.coverImage = wordpressPageResponse.acf.cover_image;
         this.videoEmbed = wordpressPageResponse.acf.video_embed;
+        this.tags = wordpressPageResponse.acf.tags;
     }
 }

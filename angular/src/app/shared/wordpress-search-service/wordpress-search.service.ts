@@ -21,6 +21,8 @@ export class WordpressSearchService {
         const searchTerm = searchText.replace(/[^0-9a-z ]/gi, '').replace(/ /g, '+');
         const endpoint = this.wordpressApiService.getFullApiEndpoint(`${WordpressSearchService.searchEndpoint}/${searchTerm}`);
         return this.http.get<WordpressSearchResponse[]>(endpoint)
-            .map(responses => responses.map(response => WordpressPostFactory.create(response)));
+            .map(responses => responses.map(response => WordpressPostFactory
+                .create(response))
+                .filter(r => !r.tags.some(t => t === "tag_hide_from_search")));
     }
 }

@@ -291,7 +291,8 @@ function setup_measure_acf_group() {
                         'tag_reduce_bills' => 'Reduce your bills',
                         'tag_make_home_warmer' => 'Make your home warmer',
                         'tag_make_home_greener' => 'Make your home greener',
-                        'tag_home_improvements' => 'Home improvements'
+                        'tag_home_improvements' => 'Home improvements',
+                        'tag_hide_from_search' => 'Hide from search'
                     ),
                     'default_value' => '',
                     'layout' => 'vertical',
