@@ -111,4 +111,6 @@
     <include file="changelogs/2021-08-02-add-distinct-glazing-type-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2021-08-06-remove-separate-floor-insulation-question.xml" relativeToChangelogFile="true" />
     <include file="changelogs/2022-02-10-update-eco-suppliers.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2022-05-05-add-new-measures.xml" relativeToChangelogFile="true" />
+    <include file="changelogs/2022-05-05-add-heat-pump-grants.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

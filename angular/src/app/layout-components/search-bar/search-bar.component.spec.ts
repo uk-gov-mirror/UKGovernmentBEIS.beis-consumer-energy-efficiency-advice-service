@@ -20,11 +20,11 @@ describe('SearchBarComponent', () => {
     let injector: TestBed;
 
     const mockSearchResult: WordpressSearchable[] = [
-        {route: 'page-1', title: 'Test page 1', descriptionHtml: 'Description 1'},
-        {route: 'page-2', title: 'Test page 2', descriptionHtml: 'Description 2'},
-        {route: 'page-3', title: 'Test page 3', descriptionHtml: 'Description 3'},
-        {route: 'page-3', title: 'Test page 4', descriptionHtml: 'Description 4'},
-        {route: 'page-3', title: 'Test page 5', descriptionHtml: 'Description 5'}
+        {route: 'page-1', title: 'Test page 1', descriptionHtml: 'Description 1', tags: []},
+        {route: 'page-2', title: 'Test page 2', descriptionHtml: 'Description 2', tags: []},
+        {route: 'page-3', title: 'Test page 3', descriptionHtml: 'Description 3', tags: []},
+        {route: 'page-3', title: 'Test page 4', descriptionHtml: 'Description 4', tags: []},
+        {route: 'page-3', title: 'Test page 5', descriptionHtml: 'Description 5', tags: []}
     ];
 
     const mockWordpressSearchService = {search: () => Observable.of(mockSearchResult)};

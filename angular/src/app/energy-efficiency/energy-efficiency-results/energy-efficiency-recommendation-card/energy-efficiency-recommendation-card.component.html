@@ -38,13 +38,13 @@
             </div>
             <div class="right-for-me" *ngIf="recommendation.isItRightForMe">
                 <div class="heading">Is it right for me?</div>
-                <div class="description"> {{recommendation.isItRightForMe}}</div>
+                <div class="description" [innerHTML]="recommendation.isItRightForMe" ></div>
             </div>
             <div class="grants" *ngIf="recommendation.grant">
                 <div class="heading">Grants</div>
                 <div class="grant-info-card">
                     <div class="grant-name">{{recommendation.grant.name}}</div>
-                    <div class="grant-description">{{recommendation.grant.description}}</div>
+                    <div class="grant-description" [innerHTML]="recommendation.grant.description"></div>
                     <div class="grant-more-info-link-row" *ngIf="recommendation.grant.findOutMoreLink">
                         <a class="grant-more-info-link" [routerLink]="recommendation.grant.findOutMoreLink">
                             Find out more</a>

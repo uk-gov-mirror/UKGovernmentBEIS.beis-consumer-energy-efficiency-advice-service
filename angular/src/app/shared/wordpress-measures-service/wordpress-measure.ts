@@ -8,6 +8,7 @@ export class WordpressMeasure implements WordpressSearchable {
     summary: string;
     advantages: string[];
     steps: RecommendationStep[];
+    tags: string[];
 
     get descriptionHtml() {
         return `<p>${this.summary}</p>`;
@@ -21,5 +22,6 @@ export class WordpressMeasure implements WordpressSearchable {
             && wordpressMeasureResponse.acf.advantages.map(x => x.advantage);
         this.steps = wordpressMeasureResponse.acf.steps && wordpressMeasureResponse.acf.steps
             .map(stepResponse => new RecommendationStep(stepResponse));
+        this.tags = wordpressMeasureResponse.acf.tags;
     }
 }

@@ -7,7 +7,8 @@ export interface WordpressPageResponse {
     excerpt: PageContent;
     acf: {
         cover_image?: AcfImage,
-        video_embed: string
+        video_embed: string,
+        tags: string[];
     };
 }
 

@@ -41,6 +41,9 @@ describe('EnergyCalculationApiService', () => {
         wall_type: undefined,
         glazing_type: undefined,
         hot_water_cylinder: false,
+        user_journey_type: 0,
+        accessible_garden: true,
+        outside_space: true,
         isMinimalDataSet: () => true,
         measures_package: []
     };
