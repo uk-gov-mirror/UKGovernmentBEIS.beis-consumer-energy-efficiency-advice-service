@@ -8,7 +8,7 @@ import {Observable} from 'rxjs/Observable';
 export class BoilerUpgradeSchemeAshp extends NationalGrantCalculator {
 
     constructor() {
-        super('boiler-upgrade-scheme');
+        super('boiler-upgrade-scheme-ashp');
     }
 
     getEligibility(responseData: ResponseData): Observable<GrantEligibility> {
