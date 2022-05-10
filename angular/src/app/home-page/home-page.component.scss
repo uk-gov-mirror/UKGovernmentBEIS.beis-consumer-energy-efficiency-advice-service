@@ -163,6 +163,9 @@ $arrow-height: 48px;
       color: $dark-blue;
       @include page-summary-font();
     }
+    ::ng-deep .bus-page-link a {
+      max-width: 310px;
+    }
   }
 
   .quick-links {
