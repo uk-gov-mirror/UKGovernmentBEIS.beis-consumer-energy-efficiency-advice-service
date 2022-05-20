@@ -15,7 +15,8 @@ export class BoilerType {
     }
 
     get averageInstallationCost() {
-        return (this.installationCostLower + this.installationCostUpper) / 2;
+        const avgCost = (this.installationCostLower + this.installationCostUpper) / 2;
+        return Number.isNaN(avgCost) ? undefined : avgCost;
     }
 
     static fromMetadata(metadata: BoilerTypeMetadataResponse): BoilerType {
@@ -24,12 +25,16 @@ export class BoilerType {
             metadata.acf.name,
             metadata.acf.description,
             metadata.acf.space_requirement,
-            +metadata.acf.installation_cost_lower_bound,
-            +metadata.acf.installation_cost_upper_bound,
-            +metadata.acf.lifetime,
-            +metadata.acf.running_cost,
+            BoilerType.getFigureValue(metadata.acf.installation_cost_lower_bound),
+            BoilerType.getFigureValue(metadata.acf.installation_cost_upper_bound),
+            BoilerType.getFigureValue(metadata.acf.lifetime),
+            BoilerType.getFigureValue(metadata.acf.running_cost),
             metadata.acf.pros === false ? [] : metadata.acf.pros,
             metadata.acf.cons === false ? [] : metadata.acf.cons,
         );
+    }
+
+    static getFigureValue(figure: number) {
+        return figure.toString() !== '' ? +figure : undefined;
     }
 }

@@ -16,7 +16,7 @@
 
         <div class="expanded-view-row" [class.expanded]="isExpandedView">
             <div class="content">
-                <div class="lifetime">
+                <div class="lifetime" *ngIf="boilerType.lifetimeYears !== undefined">
                     <div class="title">Average lifetime</div>
                     <div class="value">{{boilerType.lifetimeYears}} years</div>
                 </div>
@@ -26,12 +26,14 @@
                 </div>
             </div>
         </div>
-        <app-data-card class="installation-card"
+        <app-data-card *ngIf="boilerType.averageInstallationCost !== undefined"
+                       class="installation-card"
                        heading="Average installation cost"
                        [value]="'£' + boilerType.averageInstallationCost.toFixed(0)"
                        isSmallCard="true"
         ></app-data-card>
-        <app-data-card class="running-cost-card"
+        <app-data-card *ngIf="boilerType.runningCostPerYear !== undefined"
+                       class="running-cost-card"
                        heading="Average running cost"
                        [value]="'£' + boilerType.runningCostPerYear.toFixed(0)"
                        isSmallCard="true"
