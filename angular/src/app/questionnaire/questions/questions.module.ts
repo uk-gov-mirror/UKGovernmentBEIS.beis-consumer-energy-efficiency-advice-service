@@ -42,7 +42,6 @@ import {BuiltFormQuestionComponent} from "./built-form-question/built-form-quest
 import {IncomeRelatedBenefitsQuestionComponent} from "./benefits-questions/income-related-benefits-question.component";
 import {PensionGuaranteeCreditQuestionComponent} from "./benefits-questions/pension-guarantee-credit-question.component";
 import {ChildBenefitsQuestionComponent} from "./benefits-questions/child-benefits-question.component";
-import {DefenseRelatedBenefitsQuestionComponent} from "./benefits-questions/defense-related-benefits-question.component";
 import {SocietalBenefitsQuestionComponent} from "./benefits-questions/societal-benefits-question.component";
 import {ContactDetailsQuestionComponent} from "./contact-details-question/contact-details-question.component";
 import {HasLoftQuestionComponent} from "./has-loft-question/has-loft-question.component";
@@ -62,7 +61,6 @@ import {GlazingTypeQuestionComponent} from "./glazing-type-question/glazing-type
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
-        DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatExposedWallQuestionComponent,
@@ -113,7 +111,6 @@ import {GlazingTypeQuestionComponent} from "./glazing-type-question/glazing-type
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
-        DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatExposedWallQuestionComponent,
@@ -171,7 +168,6 @@ import {GlazingTypeQuestionComponent} from "./glazing-type-question/glazing-type
         BuiltFormQuestionComponent,
         ChildBenefitsQuestionComponent,
         ConfirmEpcQuestionComponent,
-        DefenseRelatedBenefitsQuestionComponent,
         DetailedLengthOfHeatingOnQuestionComponent,
         ElectricityTariffQuestionComponent,
         FlatExposedWallQuestionComponent,
