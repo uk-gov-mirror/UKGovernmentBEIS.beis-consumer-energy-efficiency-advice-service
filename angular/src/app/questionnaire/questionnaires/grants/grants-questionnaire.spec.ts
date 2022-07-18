@@ -8,7 +8,6 @@ import {UserJourneyType} from '../../../shared/response-data/user-journey-type';
 import {IncomeQuestionMetadata} from '../../questions/income-question/income-question-metadata';
 import {PensionGuaranteeCreditQuestionMetadata} from "../../questions/benefits-questions/pension-guarantee-credit-question-metadata";
 import {IncomeRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/income-related-benefits-question-metadata";
-import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
 import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questions/societal-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
 import {Country} from "../../questions/postcode-epc-question/country";
@@ -35,7 +34,6 @@ describe('GrantsQuestionnaire', () => {
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
             new SocietalBenefitsQuestionMetadata(),
-            new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new IncomeQuestionMetadata()
@@ -82,7 +80,6 @@ describe('GrantsQuestionnaire', () => {
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
             new SocietalBenefitsQuestionMetadata(),
-            new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
             new OccupantsQuestionMetadata(),
             new IncomeQuestionMetadata()

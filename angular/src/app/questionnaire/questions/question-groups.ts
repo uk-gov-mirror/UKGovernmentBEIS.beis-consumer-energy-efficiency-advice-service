@@ -36,7 +36,6 @@ import {BuiltFormQuestionMetadata} from "./built-form-question/built-form-questi
 import {IncomeRelatedBenefitsQuestionMetadata} from "./benefits-questions/income-related-benefits-question-metadata";
 import {PensionGuaranteeCreditQuestionMetadata} from "./benefits-questions/pension-guarantee-credit-question-metadata";
 import {SocietalBenefitsQuestionMetadata} from "./benefits-questions/societal-benefits-question-metadata";
-import {DefenseRelatedBenefitsQuestionMetadata} from "./benefits-questions/defense-related-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "./benefits-questions/child-benefits-question-metadata";
 import {ContactDetailsQuestionMetadata} from "./contact-details-question/contact-details-question-metadata";
 import {HasLoftQuestionMetadata} from "./has-loft-question/has-loft-question-metadata";
@@ -108,8 +107,6 @@ export const GRANTS_QUESTIONS = [
     // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
     new SocietalBenefitsQuestionMetadata(),
     // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
-    new DefenseRelatedBenefitsQuestionMetadata(),
-    // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
     new ChildBenefitsQuestionMetadata(),
     // Used  for some grant applicability e.g. EcoHhcroHelpToHeat
     new OccupantsQuestionMetadata(),
@@ -121,7 +118,6 @@ export const GRANTS_QUESTIONS_FOR_HOMEPAGE_QUESTIONNAIRES = [
     new PensionGuaranteeCreditQuestionMetadata(),
     new IncomeRelatedBenefitsQuestionMetadata(),
     new SocietalBenefitsQuestionMetadata(),
-    new DefenseRelatedBenefitsQuestionMetadata(),
     new ChildBenefitsQuestionMetadata(),
     new IncomeQuestionMetadata()
 ];
@@ -131,7 +127,6 @@ export const GRANT_ELIGIBILITY_QUESTIONS = [
     new PensionGuaranteeCreditQuestionMetadata(),
     new IncomeRelatedBenefitsQuestionMetadata(),
     new SocietalBenefitsQuestionMetadata(),
-    new DefenseRelatedBenefitsQuestionMetadata(),
     new ChildBenefitsQuestionMetadata(),
     new OccupantsQuestionMetadata(),
     new IncomeQuestionMetadata()

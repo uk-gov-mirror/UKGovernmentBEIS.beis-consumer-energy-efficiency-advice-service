@@ -28,7 +28,6 @@ import {BuiltFormQuestionMetadata} from "../../questions/built-form-question/bui
 import {PensionGuaranteeCreditQuestionMetadata} from "../../questions/benefits-questions/pension-guarantee-credit-question-metadata";
 import {IncomeRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/income-related-benefits-question-metadata";
 import {SocietalBenefitsQuestionMetadata} from "../../questions/benefits-questions/societal-benefits-question-metadata";
-import {DefenseRelatedBenefitsQuestionMetadata} from "../../questions/benefits-questions/defense-related-benefits-question-metadata";
 import {ChildBenefitsQuestionMetadata} from "../../questions/benefits-questions/child-benefits-question-metadata";
 import {NewBuildQuestionMetadata} from "../../questions/new-build-question/new-build-question-metadata";
 import {GardenQuestionMetadata} from "../../questions/garden-question/garden-question-metadata";
@@ -77,7 +76,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
             new SocietalBenefitsQuestionMetadata(),
-            new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata()
         ];
@@ -123,7 +121,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
             new SocietalBenefitsQuestionMetadata(),
-            new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata()
         ];
@@ -166,7 +163,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
             new SocietalBenefitsQuestionMetadata(),
-            new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata()
         ];
@@ -209,7 +205,6 @@ describe('HomeBasicsQuestionnaire', () => {
             new PensionGuaranteeCreditQuestionMetadata(),
             new IncomeRelatedBenefitsQuestionMetadata(),
             new SocietalBenefitsQuestionMetadata(),
-            new DefenseRelatedBenefitsQuestionMetadata(),
             new ChildBenefitsQuestionMetadata(),
             new IncomeQuestionMetadata()
         ];
