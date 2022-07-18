@@ -12,12 +12,7 @@ export class SocietalBenefitsQuestionComponent extends QuestionBaseComponent {
     benefits = [
         'Child Tax Credit',
         'Working Tax Credit',
-        'Disability Living Allowance',
-        'Personal Independence Payment (PIP)',
-        'Attendance Allowance',
-        'Carer\'s Allowance',
-        'Severe Disablement Allowance',
-        'Industrial Injuries Disablement Benefits'
+        'Housing Benefit'
     ];
 
     get responseForAnalytics(): string {
